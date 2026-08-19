@@ -45,11 +45,11 @@ public class CameraSession {
     private Camera.AutoFocusCallback autoFocusCallback = new Camera.AutoFocusCallback() {
         @Override
         public final void onAutoFocus(boolean z, Camera camera) {
-            CameraSession.lambda$new$0(z, camera);
+            CameraSession.$r8$lambda$BSjrOWlJ0XlSz8pFjO9V6cBNhHE(z, camera);
         }
     };
 
-    public static void lambda$new$0(boolean z, Camera camera) {
+    public static void $r8$lambda$BSjrOWlJ0XlSz8pFjO9V6cBNhHE(boolean z, Camera camera) {
     }
 
     public CameraSession(CameraInfo cameraInfo, Size size, Size size2, int i, boolean z) {
@@ -139,12 +139,13 @@ public class CameraSession {
             String str = this.currentFlashMode;
             String str2 = z ? "torch" : "off";
             this.currentFlashMode = str2;
-            if (!TextUtils.equals(str, str2)) {
-                if (this.isRound) {
-                    configureRoundCamera(false);
-                } else {
-                    configurePhotoCamera();
-                }
+            if (TextUtils.equals(str, str2)) {
+                return;
+            }
+            if (this.isRound) {
+                configureRoundCamera(false);
+            } else {
+                configurePhotoCamera();
             }
         } catch (Exception e) {
             FileLog.e(e);

@@ -43,95 +43,92 @@ public class StackBarChartView extends BaseChartView {
         float f;
         float f2;
         float f3;
+        float f4;
+        Canvas canvas2 = canvas;
         ChartData chartData = this.chartData;
         if (chartData == null) {
             return;
         }
-        float f4 = this.chartWidth;
+        float f5 = this.chartWidth;
         ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
-        float f5 = chartPickerDelegate.pickerEnd;
-        float f6 = chartPickerDelegate.pickerStart;
-        float f7 = f4 / (f5 - f6);
-        float f8 = BaseChartView.HORIZONTAL_PADDING;
-        float f9 = (f6 * f7) - f8;
+        float f6 = chartPickerDelegate.pickerEnd;
+        float f7 = chartPickerDelegate.pickerStart;
+        float f8 = f5 / (f6 - f7);
+        float f9 = BaseChartView.HORIZONTAL_PADDING;
+        float f10 = (f7 * f8) - f9;
         float[] fArr = ((StackBarChartData) chartData).xPercentage;
         if (fArr.length < 2) {
             f = 1.0f;
             f2 = 1.0f;
         } else {
-            float f10 = fArr[1];
-            float f11 = f10 * f7;
-            f = f10 * (f7 - f11);
-            f2 = f11;
+            float f11 = fArr[1];
+            float f12 = f11 * f8;
+            f = f11 * (f8 - f12);
+            f2 = f12;
         }
-        int i = ((int) (f8 / f2)) + 1;
+        int i = ((int) (f9 / f2)) + 1;
         int iMax = Math.max(0, (this.startXIndex - i) - 2);
         int iMin = Math.min(((StackBarChartData) this.chartData).xPercentage.length - 1, this.endXIndex + i + 2);
         for (int i2 = 0; i2 < this.lines.size(); i2++) {
             ((LineViewData) this.lines.get(i2)).linesPathBottomSize = 0;
         }
-        canvas.save();
+        canvas2.save();
         int i3 = this.transitionMode;
-        float f12 = 2.0f;
-        float f13 = 0.0f;
         if (i3 == 2) {
             this.postTransition = true;
             this.selectionA = 0.0f;
             TransitionParams transitionParams = this.transitionParams;
-            float f14 = transitionParams.progress;
-            f3 = 1.0f - f14;
-            canvas.scale((f14 * 2.0f) + 1.0f, 1.0f, transitionParams.pX, transitionParams.pY);
-        } else if (i3 == 1) {
-            TransitionParams transitionParams2 = this.transitionParams;
-            f3 = transitionParams2.progress;
-            canvas.scale(f3, 1.0f, transitionParams2.pX, transitionParams2.pY);
+            float f13 = transitionParams.progress;
+            f4 = 1.0f - f13;
+            f3 = 2.0f;
+            canvas2.scale((f13 * 2.0f) + 1.0f, 1.0f, transitionParams.pX, transitionParams.pY);
         } else {
-            f3 = i3 == 3 ? this.transitionParams.progress : 1.0f;
+            f3 = 2.0f;
+            if (i3 == 1) {
+                TransitionParams transitionParams2 = this.transitionParams;
+                f4 = transitionParams2.progress;
+                canvas2.scale(f4, 1.0f, transitionParams2.pX, transitionParams2.pY);
+            } else {
+                f4 = i3 == 3 ? this.transitionParams.progress : 1.0f;
+            }
         }
         boolean z = this.selectedIndex >= 0 && this.legendShowing;
         while (iMax <= iMin) {
             if (this.selectedIndex != iMax || !z) {
                 int i4 = 0;
-                float f15 = 0.0f;
+                float f14 = 0.0f;
                 while (i4 < this.lines.size()) {
                     LineViewData lineViewData = (LineViewData) this.lines.get(i4);
-                    if (lineViewData.enabled || lineViewData.alpha != f13) {
+                    if (lineViewData.enabled || lineViewData.alpha != 0.0f) {
                         long[] jArr = lineViewData.line.y;
-                        float f16 = ((f2 / f12) + (((StackBarChartData) this.chartData).xPercentage[iMax] * (f7 - f2))) - f9;
+                        float f15 = ((f2 / f3) + (((StackBarChartData) this.chartData).xPercentage[iMax] * (f8 - f2))) - f10;
                         float measuredHeight = (jArr[iMax] / this.currentMaxHeight) * ((getMeasuredHeight() - this.chartBottom) - BaseChartView.SIGNATURE_TEXT_HEIGHT) * lineViewData.alpha;
                         float measuredHeight2 = (getMeasuredHeight() - this.chartBottom) - measuredHeight;
                         float[] fArr2 = lineViewData.linesPath;
                         int i5 = lineViewData.linesPathBottomSize;
                         int i6 = i5 + 1;
                         lineViewData.linesPathBottomSize = i6;
-                        fArr2[i5] = f16;
+                        fArr2[i5] = f15;
                         int i7 = i5 + 2;
                         lineViewData.linesPathBottomSize = i7;
-                        fArr2[i6] = measuredHeight2 - f15;
+                        fArr2[i6] = measuredHeight2 - f14;
                         int i8 = i5 + 3;
                         lineViewData.linesPathBottomSize = i8;
-                        fArr2[i7] = f16;
+                        fArr2[i7] = f15;
                         lineViewData.linesPathBottomSize = i5 + 4;
-                        fArr2[i8] = (getMeasuredHeight() - this.chartBottom) - f15;
-                        f15 += measuredHeight;
+                        fArr2[i8] = (getMeasuredHeight() - this.chartBottom) - f14;
+                        f14 += measuredHeight;
                     }
                     i4++;
-                    f3 = f3;
+                    f8 = f8;
                     iMin = iMin;
-                    f9 = f9;
-                    f12 = 2.0f;
-                    f13 = 0.0f;
                 }
             }
             iMax++;
-            f3 = f3;
+            f8 = f8;
             iMin = iMin;
-            f9 = f9;
-            f12 = 2.0f;
-            f13 = 0.0f;
         }
-        float f17 = f9;
-        float f18 = f3;
+        float f16 = f8;
         for (int i9 = 0; i9 < this.lines.size(); i9++) {
             StackBarViewData stackBarViewData = (StackBarViewData) this.lines.get(i9);
             Paint paint = (z || this.postTransition) ? stackBarViewData.unselectedPaint : stackBarViewData.paint;
@@ -141,26 +138,29 @@ public class StackBarChartView extends BaseChartView {
             if (this.postTransition) {
                 stackBarViewData.unselectedPaint.setColor(ColorUtils.blendARGB(stackBarViewData.lineColor, stackBarViewData.blendColor, 1.0f));
             }
-            paint.setAlpha((int) (f18 * 255.0f));
+            paint.setAlpha((int) (255.0f * f4));
             paint.setStrokeWidth(f);
-            canvas.drawLines(stackBarViewData.linesPath, 0, stackBarViewData.linesPathBottomSize, paint);
+            canvas2.drawLines(stackBarViewData.linesPath, 0, stackBarViewData.linesPathBottomSize, paint);
         }
         if (z) {
-            float f19 = 0.0f;
-            for (int i10 = 0; i10 < this.lines.size(); i10++) {
+            int i10 = 0;
+            float f17 = 0.0f;
+            while (i10 < this.lines.size()) {
                 LineViewData lineViewData2 = (LineViewData) this.lines.get(i10);
                 if (lineViewData2.enabled || lineViewData2.alpha != 0.0f) {
                     long[] jArr2 = lineViewData2.line.y;
                     float[] fArr3 = ((StackBarChartData) this.chartData).xPercentage;
                     int i11 = this.selectedIndex;
-                    float f20 = ((f2 / 2.0f) + (fArr3[i11] * (f7 - f2))) - f17;
+                    float f18 = ((f2 / f3) + (fArr3[i11] * (f16 - f2))) - f10;
                     float measuredHeight3 = (jArr2[i11] / this.currentMaxHeight) * ((getMeasuredHeight() - this.chartBottom) - BaseChartView.SIGNATURE_TEXT_HEIGHT) * lineViewData2.alpha;
                     float measuredHeight4 = (getMeasuredHeight() - this.chartBottom) - measuredHeight3;
                     lineViewData2.paint.setStrokeWidth(f);
-                    lineViewData2.paint.setAlpha((int) (f18 * 255.0f));
-                    canvas.drawLine(f20, measuredHeight4 - f19, f20, (getMeasuredHeight() - this.chartBottom) - f19, lineViewData2.paint);
-                    f19 += measuredHeight3;
+                    lineViewData2.paint.setAlpha((int) (f4 * 255.0f));
+                    canvas2.drawLine(f18, measuredHeight4 - f17, f18, (getMeasuredHeight() - this.chartBottom) - f17, lineViewData2.paint);
+                    f17 += measuredHeight3;
                 }
+                i10++;
+                canvas2 = canvas;
             }
         }
         canvas.restore();

@@ -78,7 +78,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
             rLottieDrawable2.setOnAnimationEndListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setState$0();
+                    this.f$0.animatingState = null;
                 }
             });
             setAnimation(rLottieDrawable2);
@@ -93,10 +93,6 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
             }
             setContentDescription(LocaleController.getString(R.string.AccDescrVideoMessage));
         }
-    }
-
-    public void lambda$setState$0() {
-        this.animatingState = null;
     }
 
     public State getCurrentState() {
@@ -121,7 +117,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         return null;
     }
 
-    private static final class TransitState {
+    static final class TransitState {
         private static final TransitState[] $VALUES;
         public static final TransitState GIF_TO_KEYBOARD;
         public static final TransitState GIF_TO_SMILE;

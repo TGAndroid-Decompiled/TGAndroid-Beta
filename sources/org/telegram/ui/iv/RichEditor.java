@@ -41,7 +41,6 @@ import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -331,7 +330,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onCustomTransitionAnimation$0(valueAnimator);
+                    RichEditor.$r8$lambda$w4qDwUkzVIrPulHllhCK2YV0Ce0(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -370,12 +369,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         return super.onCustomTransitionAnimation(z, runnable);
     }
 
-    public void lambda$onCustomTransitionAnimation$0(ValueAnimator valueAnimator) {
-        this.animateOpenProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        updateAnimatingLocations();
-        this.listView.setTranslationX(AndroidUtilities.lerp(this.animateEnterViewFrom[0] - this.animateEnterViewTo[0], 0, this.animateOpenProgress));
-        this.listView.setTranslationY(AndroidUtilities.lerp(this.animateEnterViewFrom[1] - this.animateEnterViewTo[1], 0, this.animateOpenProgress));
-        this.container.invalidate();
+    public static void $r8$lambda$w4qDwUkzVIrPulHllhCK2YV0Ce0(RichEditor richEditor, ValueAnimator valueAnimator) {
+        richEditor.getClass();
+        richEditor.animateOpenProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        richEditor.updateAnimatingLocations();
+        richEditor.listView.setTranslationX(AndroidUtilities.lerp(richEditor.animateEnterViewFrom[0] - richEditor.animateEnterViewTo[0], 0, richEditor.animateOpenProgress));
+        richEditor.listView.setTranslationY(AndroidUtilities.lerp(richEditor.animateEnterViewFrom[1] - richEditor.animateEnterViewTo[1], 0, richEditor.animateOpenProgress));
+        richEditor.container.invalidate();
     }
 
     @Override
@@ -573,7 +573,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$1(view3);
+                RichEditor.m4917$r8$lambda$4gGevx4lBwDe_ZzqF37syC4Ed0(this.f$0, view3);
             }
         });
         this.topPanel.addView(this.backButton, LayoutHelper.createFrame(44, 44.0f, 51, 8.0f, 8.0f, 8.0f, 8.0f));
@@ -593,7 +593,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$2(view3);
+                this.f$0.listView.undo();
             }
         });
         this.historyButtons.addView(this.undoButton, LayoutHelper.createLinear(41, 41, 16));
@@ -608,7 +608,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.redoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$3(view3);
+                this.f$0.listView.redo();
             }
         });
         this.historyButtons.addView(this.redoButton, LayoutHelper.createLinear(41, 41, 16));
@@ -645,7 +645,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.aiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$5(view3);
+                RichEditor.m4916$r8$lambda$4biD02idLVMjJvr3RaqGbXdwc(this.f$0, view3);
             }
         });
         FrameLayout frameLayout5 = new FrameLayout(context);
@@ -697,32 +697,32 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.emojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$6(view3);
+                this.f$0.toggleEmojiPopup();
             }
         });
         addBlockButton(R.drawable.iv_text, 1).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$20(context, view3);
+                RichEditor.$r8$lambda$UrQLAsmHnJQoydOmVFH1OsuI9Vw(this.f$0, context, view3);
             }
         });
         addBlockButton(R.drawable.iv_lists, 2, true).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$27(view3);
+                RichEditor.$r8$lambda$ju5AFPn31H05doo06Gn4PTFDx_A(this.f$0, view3);
             }
         });
         addBlockButton(R.drawable.iv_table, 4, true).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$28(view3);
+                RichEditor.$r8$lambda$_W84ZhMz3XzIh4BM0mod0XIgq_I(this.f$0, view3);
             }
         });
         int i6 = R.drawable.iv_math;
         addBlockButton(i6, 7, true).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$30(view3);
+                RichEditor.$r8$lambda$ksOa2zTYVTqzoTkbd32oqjfNmUQ(this.f$0, view3);
             }
         });
         ImageView imageView9 = new ImageView(context);
@@ -737,7 +737,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$31(view3);
+                RichEditor.$r8$lambda$rTscU_tvcAFyv_tEpab5wVDR1D0(this.f$0, view3);
             }
         });
         this.bottomPanel.addView(frameLayout5, LayoutHelper.createLinear(0, 44, 1.0f));
@@ -822,25 +822,29 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
+                Canvas canvas2;
                 float f = this.leftGradientAlpha.set(canScrollHorizontally(-1));
                 float f2 = this.rightGradientAlpha.set(canScrollHorizontally(1));
                 if (f > 0.0f || f2 > 0.0f) {
-                    canvas.saveLayerAlpha(getScrollX(), 0.0f, getScrollX() + getWidth(), getHeight(), 255, 31);
+                    canvas2 = canvas;
+                    canvas2.saveLayerAlpha(getScrollX(), 0.0f, getScrollX() + getWidth(), getHeight(), 255, 31);
+                } else {
+                    canvas2 = canvas;
                 }
-                super.dispatchDraw(canvas);
+                super.dispatchDraw(canvas2);
                 if (f > 0.0f || f2 > 0.0f) {
-                    canvas.save();
+                    canvas2.save();
                     if (f > 0.0f) {
                         RectF rectF = AndroidUtilities.rectTmp;
                         rectF.set(getScrollX(), 0.0f, getScrollX() + AndroidUtilities.dp(48.0f), getHeight());
-                        this.clip.draw(canvas, rectF, 0, f);
+                        this.clip.draw(canvas2, rectF, 0, f);
                     }
                     if (f2 > 0.0f) {
                         RectF rectF2 = AndroidUtilities.rectTmp;
                         rectF2.set((getScrollX() + getWidth()) - AndroidUtilities.dp(48.0f), 0.0f, getScrollX() + getWidth(), getHeight());
-                        this.clip.draw(canvas, rectF2, 2, f2);
+                        this.clip.draw(canvas2, rectF2, 2, f2);
                     }
-                    canvas.restore();
+                    canvas2.restore();
                 }
             }
         };
@@ -874,7 +878,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.quoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$32(view3);
+                RichEditor.$r8$lambda$68YcMyw1_suhfWN_6X7bsPmpBmY(this.f$0, view3);
             }
         });
         LinearLayout linearLayout6 = this.formattingPanelLayout;
@@ -885,7 +889,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.inlineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$33(view3);
+                this.f$0.listView.onInlineButtonClicked(view3);
             }
         });
         LinearLayout linearLayout7 = this.formattingPanelLayout;
@@ -902,7 +906,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.linkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$34(view3);
+                this.f$0.listView.onLinkClicked();
             }
         });
         this.formattingLayout2.addView(this.linkButton, LayoutHelper.createLinear(38, 38, 16));
@@ -912,7 +916,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$35(view3);
+                this.f$0.listView.onDateClicked();
             }
         });
         this.formattingLayout2.addView(this.dateButton, LayoutHelper.createLinear(38, 38, 16));
@@ -930,7 +934,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.mathButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$36(view3);
+                this.f$0.listView.onMathClicked();
             }
         });
         this.formattingLayout3.addView(this.mathButton, LayoutHelper.createLinear(38, 38, 16));
@@ -947,7 +951,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.aiStyleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$37(view3);
+                this.f$0.onAiStyleSelection();
             }
         });
         this.formattingLayout1.addView(this.aiStyleButton, LayoutHelper.createLinear(38, 38, 16));
@@ -975,7 +979,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$38(view3);
+                this.f$0.sendMessage();
             }
         });
         this.sendButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -992,7 +996,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.container.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
             public final void onGlobalFocusChanged(View view3, View view4) {
-                this.f$0.lambda$createView$39(view3, view4);
+                this.f$0.updateBlockButtons();
             }
         });
         updatePremiumButtons();
@@ -1057,17 +1061,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             RichEditor.this.openLocationPicker(blockRow);
         }
 
-        public ItemOptions lambda$onSlashSuggest$0(View view) {
-            return ItemOptions.makeOptions(RichEditor.this, view);
-        }
-
         @Override
         public void onSlashSuggest(RichTextCell richTextCell, String str) {
             if (RichEditor.this.commandSuggestions == null) {
                 RichEditor.this.commandSuggestions = new RichCommandSuggestions(new RichCommandSuggestions.MenuFactory() {
                     @Override
                     public final ItemOptions make(View view) {
-                        return this.f$0.lambda$onSlashSuggest$0(view);
+                        return ItemOptions.makeOptions(RichEditor.this, view);
                     }
                 }, RichEditor.this.getResourceProvider());
             }
@@ -1111,51 +1111,35 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$createView$1(View view) {
-        if (this.listView.deselectIfAny()) {
+    public static void m4917$r8$lambda$4gGevx4lBwDe_ZzqF37syC4Ed0(RichEditor richEditor, View view) {
+        if (richEditor.listView.deselectIfAny()) {
             return;
         }
-        finishFragment();
+        richEditor.finishFragment();
     }
 
-    public void lambda$createView$2(View view) {
-        this.listView.undo();
-    }
-
-    public void lambda$createView$3(View view) {
-        this.listView.redo();
-    }
-
-    public void lambda$createView$5(View view) {
-        if (this.listView.isInSelectionMode()) {
-            onAiStyleSelection();
+    public static void m4916$r8$lambda$4biD02idLVMjJvr3RaqGbXdwc(final RichEditor richEditor, View view) {
+        if (richEditor.listView.isInSelectionMode()) {
+            richEditor.onAiStyleSelection();
         } else {
-            new RichAIComposeSheet(getContext(), this.currentAccount, getResourceProvider(), new Utilities.Callback() {
+            new RichAIComposeSheet(richEditor.getContext(), richEditor.currentAccount, richEditor.getResourceProvider(), new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$createView$4((TL_iv.RichMessage) obj);
+                    this.f$0.listView.addRichMessage((TL_iv.RichMessage) obj);
                 }
             }).show();
         }
     }
 
-    public void lambda$createView$4(TL_iv.RichMessage richMessage) {
-        this.listView.addRichMessage(richMessage);
-    }
-
-    public void lambda$createView$6(View view) {
-        toggleEmojiPopup();
-    }
-
-    public void lambda$createView$20(Context context, View view) {
-        ItemOptions itemOptions = this.currentMenuVisible;
+    public static void $r8$lambda$UrQLAsmHnJQoydOmVFH1OsuI9Vw(final RichEditor richEditor, Context context, View view) {
+        ItemOptions itemOptions = richEditor.currentMenuVisible;
         if (itemOptions != null) {
             itemOptions.dismiss();
-            this.currentMenuVisible = null;
+            richEditor.currentMenuVisible = null;
         }
-        boolean z = (MessagesController.getInstance(this.currentAccount).richEditorAllowed() || UserConfig.getInstance(this.currentAccount).isPremium()) ? false : true;
-        final BlockRow blockRowFindFocusedRow = this.listView.findFocusedRow();
-        final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions((BaseFragment) this, view, true).dontFocus();
+        boolean z = (MessagesController.getInstance(richEditor.currentAccount).richEditorAllowed() || UserConfig.getInstance(richEditor.currentAccount).isPremium()) ? false : true;
+        final BlockRow blockRowFindFocusedRow = richEditor.listView.findFocusedRow();
+        final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions((BaseFragment) richEditor, view, true).dontFocus();
         final ItemOptions itemOptionsMakeSwipeback = itemOptionsDontFocus.makeSwipeback();
         itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
             @Override
@@ -1167,7 +1151,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading1), R.drawable.iv_h1, LocaleController.getString(R.string.ArticleHeading1), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$8(blockRowFindFocusedRow, itemOptionsDontFocus);
+                RichEditor.m4937$r8$lambda$vDvpaaxTjkUakyRWvcE4wUA5yY(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
             }
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -1175,7 +1159,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading2), R.drawable.iv_h2, LocaleController.getString(R.string.ArticleHeading2), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$9(blockRowFindFocusedRow, itemOptionsDontFocus);
+                RichEditor.m4936$r8$lambda$qBgqSiYCXNTH9h40bCu8vr2Q50(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
             }
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -1183,7 +1167,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading3), R.drawable.iv_h3, LocaleController.getString(R.string.ArticleHeading3), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$10(blockRowFindFocusedRow, itemOptionsDontFocus);
+                RichEditor.m4928$r8$lambda$bo8X0wrWBdEnttjAo3UqmFplo(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
             }
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -1191,7 +1175,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading4), R.drawable.iv_h4, LocaleController.getString(R.string.ArticleHeading4), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$11(blockRowFindFocusedRow, itemOptionsDontFocus);
+                RichEditor.$r8$lambda$cfb4sYQ0e7RCBovAzyNAUlqS2Yo(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
             }
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -1199,7 +1183,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading5), R.drawable.iv_h5, LocaleController.getString(R.string.ArticleHeading5), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$12(blockRowFindFocusedRow, itemOptionsDontFocus);
+                RichEditor.$r8$lambda$DlUVS3ntE3WFISpTF7TIErcFpKc(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
             }
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -1207,7 +1191,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading6), R.drawable.iv_h6, LocaleController.getString(R.string.ArticleHeading6), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$13(blockRowFindFocusedRow, itemOptionsDontFocus);
+                RichEditor.$r8$lambda$QXjFETsyZ0Cjb86RXsvDftryqhs(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
             }
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -1226,116 +1210,96 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockParagraph), R.drawable.iv_text2, LocaleController.getString(R.string.ArticleText), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$15(blockRowFindFocusedRow);
+                this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockParagraph());
             }
         });
         itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockBlockquote), R.drawable.iv_quote, LocaleController.getString(R.string.ArticleQuote), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$16(blockRowFindFocusedRow);
+                this.f$0.listView.turnInto(blockRowFindFocusedRow, RichEditorListView.newBlockquote(), 0, 0, false, false);
             }
         });
         itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockPullquote), new RequiresPremiumDrawable(context, R.drawable.iv_pullquote).setPremium(z).setCutoutColorKey(i), LocaleController.getString(R.string.ArticlePullquote), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$17(blockRowFindFocusedRow);
+                this.f$0.listView.turnInto(blockRowFindFocusedRow, RichEditorListView.newPullquote(), 0, 0, false, false);
             }
         });
         itemOptionsDontFocus.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
         itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockPreformatted), R.drawable.iv_code, LocaleController.getString(R.string.ArticleCode), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$18(blockRowFindFocusedRow);
+                this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockPreformatted());
             }
         });
         itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockFooter), new RequiresPremiumDrawable(context, R.drawable.iv_footer).setPremium(z).setCutoutColorKey(i), LocaleController.getString(R.string.ArticleFooter), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$19(blockRowFindFocusedRow);
+                this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockFooter());
             }
         });
         itemOptionsDontFocus.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
-        this.currentMenuVisible = itemOptionsDontFocus.show();
+        richEditor.currentMenuVisible = itemOptionsDontFocus.show();
     }
 
-    public void lambda$createView$8(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading1());
+    public static void m4937$r8$lambda$vDvpaaxTjkUakyRWvcE4wUA5yY(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
+        richEditor.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading1());
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$9(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading2());
+    public static void m4936$r8$lambda$qBgqSiYCXNTH9h40bCu8vr2Q50(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
+        richEditor.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading2());
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$10(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading3());
+    public static void m4928$r8$lambda$bo8X0wrWBdEnttjAo3UqmFplo(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
+        richEditor.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading3());
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$11(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading4());
+    public static void $r8$lambda$cfb4sYQ0e7RCBovAzyNAUlqS2Yo(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
+        richEditor.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading4());
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$12(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading5());
+    public static void $r8$lambda$DlUVS3ntE3WFISpTF7TIErcFpKc(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
+        richEditor.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading5());
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$13(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading6());
+    public static void $r8$lambda$QXjFETsyZ0Cjb86RXsvDftryqhs(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
+        richEditor.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading6());
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$15(BlockRow blockRow) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockParagraph());
-    }
-
-    public void lambda$createView$16(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, RichEditorListView.newBlockquote(), 0, 0, false, false);
-    }
-
-    public void lambda$createView$17(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, RichEditorListView.newPullquote(), 0, 0, false, false);
-    }
-
-    public void lambda$createView$18(BlockRow blockRow) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockPreformatted());
-    }
-
-    public void lambda$createView$19(BlockRow blockRow) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockFooter());
-    }
-
-    public void lambda$createView$27(View view) {
-        ItemOptions itemOptions = this.currentMenuVisible;
+    public static void $r8$lambda$ju5AFPn31H05doo06Gn4PTFDx_A(final RichEditor richEditor, View view) {
+        ItemOptions itemOptions = richEditor.currentMenuVisible;
         if (itemOptions != null) {
             itemOptions.dismiss();
-            this.currentMenuVisible = null;
+            richEditor.currentMenuVisible = null;
         }
-        final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions(this, view).dontFocus();
-        final BlockRow blockRowFindFocusedRow = this.listView.findFocusedRow();
+        final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions(richEditor, view).dontFocus();
+        final BlockRow blockRowFindFocusedRow = richEditor.listView.findFocusedRow();
         boolean z = false;
         ItemOptions itemOptionsAddChecked = itemOptionsDontFocus.addChecked(blockRowFindFocusedRow == null || !blockRowFindFocusedRow.isInList(), R.drawable.field_carret_empty, LocaleController.getString(R.string.ArticleNone), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$21(blockRowFindFocusedRow);
+                this.f$0.listView.turnIntoList(blockRowFindFocusedRow, 0);
             }
         }).addChecked((blockRowFindFocusedRow == null || !blockRowFindFocusedRow.isInList() || blockRowFindFocusedRow.isChecklist() || blockRowFindFocusedRow.isOrdered()) ? false : true, R.drawable.iv_list, LocaleController.getString(R.string.ArticleListBulletedList), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$22(blockRowFindFocusedRow);
+                this.f$0.listView.turnIntoList(blockRowFindFocusedRow, 1);
             }
         }).addChecked(blockRowFindFocusedRow != null && blockRowFindFocusedRow.isInList() && !blockRowFindFocusedRow.isChecklist() && blockRowFindFocusedRow.isOrdered(), R.drawable.iv_ordered_list, LocaleController.getString(R.string.ArticleListNumberedList), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$23(blockRowFindFocusedRow);
+                this.f$0.listView.turnIntoList(blockRowFindFocusedRow, 2);
             }
         }).addChecked(blockRowFindFocusedRow != null && blockRowFindFocusedRow.isInList() && blockRowFindFocusedRow.isChecklist() && !blockRowFindFocusedRow.isOrdered(), R.drawable.iv_todo, LocaleController.getString(R.string.ArticleListChecklist), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$24(blockRowFindFocusedRow);
+                this.f$0.listView.turnIntoList(blockRowFindFocusedRow, 3);
             }
         });
         if (blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockDetails)) {
@@ -1343,18 +1307,18 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
         int i = R.drawable.iv_details;
         String string = LocaleController.getString(R.string.ArticleToggleBlock);
-        RichEditorListView richEditorListView = this.listView;
+        RichEditorListView richEditorListView = richEditor.listView;
         Objects.requireNonNull(richEditorListView);
         itemOptionsAddChecked.addChecked(z, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda30(richEditorListView));
-        boolean zCanIndentSelection = this.listView.canIndentSelection();
-        boolean zCanOutdentSelection = this.listView.canOutdentSelection();
+        boolean zCanIndentSelection = richEditor.listView.canIndentSelection();
+        boolean zCanOutdentSelection = richEditor.listView.canOutdentSelection();
         if (zCanIndentSelection || zCanOutdentSelection) {
             itemOptionsDontFocus.addGap();
             if (zCanIndentSelection) {
                 itemOptionsDontFocus.add(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createView$25(itemOptionsDontFocus);
+                        RichEditor.m4925$r8$lambda$O4gPlpnlu692INSExp0DSN92w0(this.f$0, itemOptionsDontFocus);
                     }
                 });
             }
@@ -1362,130 +1326,87 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                 itemOptionsDontFocus.add(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createView$26(itemOptionsDontFocus);
+                        RichEditor.$r8$lambda$8H6Wnc1oj1QtU0_b5VykgtLK9q4(this.f$0, itemOptionsDontFocus);
                     }
                 });
             }
         }
-        this.currentMenuVisible = itemOptionsDontFocus.forceTop(true).show();
+        richEditor.currentMenuVisible = itemOptionsDontFocus.forceTop(true).show();
     }
 
-    public void lambda$createView$21(BlockRow blockRow) {
-        this.listView.turnIntoList(blockRow, 0);
-    }
-
-    public void lambda$createView$22(BlockRow blockRow) {
-        this.listView.turnIntoList(blockRow, 1);
-    }
-
-    public void lambda$createView$23(BlockRow blockRow) {
-        this.listView.turnIntoList(blockRow, 2);
-    }
-
-    public void lambda$createView$24(BlockRow blockRow) {
-        this.listView.turnIntoList(blockRow, 3);
-    }
-
-    public void lambda$createView$25(ItemOptions itemOptions) {
-        this.listView.indentSelection(false);
+    public static void m4925$r8$lambda$O4gPlpnlu692INSExp0DSN92w0(RichEditor richEditor, ItemOptions itemOptions) {
+        richEditor.listView.indentSelection(false);
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$26(ItemOptions itemOptions) {
-        this.listView.indentSelection(true);
+    public static void $r8$lambda$8H6Wnc1oj1QtU0_b5VykgtLK9q4(RichEditor richEditor, ItemOptions itemOptions) {
+        richEditor.listView.indentSelection(true);
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$28(View view) {
+    public static void $r8$lambda$_W84ZhMz3XzIh4BM0mod0XIgq_I(RichEditor richEditor, View view) {
         RichTableCell richTableCellFindFocusedTableCell;
         TL_iv.pageTableCell pagetablecellFocusedCellOf;
-        ItemOptions itemOptions = this.currentMenuVisible;
+        ItemOptions itemOptions = richEditor.currentMenuVisible;
         if (itemOptions != null) {
             itemOptions.dismiss();
-            this.currentMenuVisible = null;
+            richEditor.currentMenuVisible = null;
         }
-        RichEditorListView richEditorListView = this.listView;
+        RichEditorListView richEditorListView = richEditor.listView;
         RichTableCell richTableCell = richEditorListView.activeCellSelectionTable;
-        if (richTableCell == null && (richTableCellFindFocusedTableCell = richEditorListView.findFocusedTableCell()) != null && richTableCellFindFocusedTableCell.getModel() != null && (pagetablecellFocusedCellOf = this.listView.focusedCellOf(richTableCellFindFocusedTableCell)) != null) {
-            this.listView.enterCellSelectionMode(richTableCellFindFocusedTableCell, pagetablecellFocusedCellOf);
+        if (richTableCell == null && (richTableCellFindFocusedTableCell = richEditorListView.findFocusedTableCell()) != null && richTableCellFindFocusedTableCell.getModel() != null && (pagetablecellFocusedCellOf = richEditor.listView.focusedCellOf(richTableCellFindFocusedTableCell)) != null) {
+            richEditor.listView.enterCellSelectionMode(richTableCellFindFocusedTableCell, pagetablecellFocusedCellOf);
             richTableCell = richTableCellFindFocusedTableCell;
         }
         if (richTableCell != null && richTableCell.getModel() != null && richTableCell.hasCellSelection()) {
-            this.listView.showTableCellMenu(richTableCell);
+            richEditor.listView.showTableCellMenu(richTableCell);
         } else {
-            this.listView.addBlock(RichTextCell.newEmptyTable(2, 2));
+            richEditor.listView.addBlock(RichTextCell.newEmptyTable(2, 2));
         }
     }
 
-    public void lambda$createView$30(View view) {
-        ItemOptions itemOptions = this.currentMenuVisible;
+    public static void $r8$lambda$ksOa2zTYVTqzoTkbd32oqjfNmUQ(final RichEditor richEditor, View view) {
+        ItemOptions itemOptions = richEditor.currentMenuVisible;
         final TL_iv.pageBlockMath pageblockmath = null;
         if (itemOptions != null) {
             itemOptions.dismiss();
-            this.currentMenuVisible = null;
+            richEditor.currentMenuVisible = null;
         }
-        BlockRow blockRowFindFocusedRow = this.listView.findFocusedRow();
+        BlockRow blockRowFindFocusedRow = richEditor.listView.findFocusedRow();
         if (blockRowFindFocusedRow != null) {
             TL_iv.PageBlock pageBlock = blockRowFindFocusedRow.block;
             if (pageBlock instanceof TL_iv.pageBlockMath) {
                 pageblockmath = (TL_iv.pageBlockMath) pageBlock;
             }
         }
-        ChatAttachAlertRichLayout.showEditLatexSheet(getContext(), (pageblockmath == null || TextUtils.isEmpty(pageblockmath.source)) ? "" : pageblockmath.source, new Utilities.Callback() {
+        ChatAttachAlertRichLayout.showEditLatexSheet(richEditor.getContext(), (pageblockmath == null || TextUtils.isEmpty(pageblockmath.source)) ? "" : pageblockmath.source, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$createView$29(pageblockmath, (String) obj);
+                RichEditor.$r8$lambda$4_jb_63GAI1helO7CAoi7puoENw(this.f$0, pageblockmath, (String) obj);
             }
-        }, getResourceProvider());
+        }, richEditor.getResourceProvider());
     }
 
-    public void lambda$createView$29(TL_iv.pageBlockMath pageblockmath, String str) {
+    public static void $r8$lambda$4_jb_63GAI1helO7CAoi7puoENw(RichEditor richEditor, TL_iv.pageBlockMath pageblockmath, String str) {
+        richEditor.getClass();
         if (pageblockmath != null) {
             pageblockmath.source = str;
-            this.listView.adapter.update(false);
+            richEditor.listView.adapter.update(false);
         } else {
             TL_iv.pageBlockMath pageblockmath2 = new TL_iv.pageBlockMath();
             pageblockmath2.source = str;
-            this.listView.addBlock(pageblockmath2);
+            richEditor.listView.addBlock(pageblockmath2);
         }
     }
 
-    public void lambda$createView$31(View view) {
-        this.listView.pendingMediaRow = null;
-        openAttach();
+    public static void $r8$lambda$rTscU_tvcAFyv_tEpab5wVDR1D0(RichEditor richEditor, View view) {
+        richEditor.listView.pendingMediaRow = null;
+        richEditor.openAttach();
     }
 
-    public void lambda$createView$32(View view) {
-        this.listView.toggleQuoteOnSelection();
-        updateFormattingButtons();
-    }
-
-    public void lambda$createView$33(View view) {
-        this.listView.onInlineButtonClicked(view);
-    }
-
-    public void lambda$createView$34(View view) {
-        this.listView.onLinkClicked();
-    }
-
-    public void lambda$createView$35(View view) {
-        this.listView.onDateClicked();
-    }
-
-    public void lambda$createView$36(View view) {
-        this.listView.onMathClicked();
-    }
-
-    public void lambda$createView$37(View view) {
-        onAiStyleSelection();
-    }
-
-    public void lambda$createView$38(View view) {
-        sendMessage();
-    }
-
-    public void lambda$createView$39(View view, View view2) {
-        updateBlockButtons();
+    public static void $r8$lambda$68YcMyw1_suhfWN_6X7bsPmpBmY(RichEditor richEditor, View view) {
+        richEditor.listView.toggleQuoteOnSelection();
+        richEditor.updateFormattingButtons();
     }
 
     @Override
@@ -1547,21 +1468,21 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateBottomPanel$40();
+                    RichEditor.m4921$r8$lambda$DqqewMoolDeTO6ymIX1zdfrJNc(this.f$0);
                 }
             }).start();
             this.formattingPanel.setVisibility(0);
             this.formattingPanel.animate().alpha(this.bottomPanelType == 1 ? 1.0f : 0.0f).scaleX(this.bottomPanelType == 1 ? 1.0f : 0.8f).scaleY(this.bottomPanelType == 1 ? 1.0f : 0.8f).translationY(this.bottomPanelType == 1 ? 0.0f : AndroidUtilities.dp(30.0f)).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateBottomPanel$41();
+                    RichEditor.$r8$lambda$24qlEaMNPF2SSG5CMYGAwqfg2_E(this.f$0);
                 }
             }).start();
             this.trashPanel.setVisibility(0);
             this.trashPanel.animate().alpha(this.bottomPanelType == 2 ? 1.0f : 0.0f).scaleX(this.bottomPanelType == 2 ? 1.0f : 0.8f).scaleY(this.bottomPanelType == 2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateBottomPanel$42();
+                    RichEditor.m4923$r8$lambda$HybCnjoB4yQY5ej3eBeGdDWauA(this.f$0);
                 }
             }).start();
             return;
@@ -1582,21 +1503,21 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.trashPanel.setScaleY(i == 2 ? 1.0f : 0.8f);
     }
 
-    public void lambda$updateBottomPanel$40() {
-        if (this.bottomPanelType != 0) {
-            this.bottomPanel.setVisibility(8);
+    public static void m4921$r8$lambda$DqqewMoolDeTO6ymIX1zdfrJNc(RichEditor richEditor) {
+        if (richEditor.bottomPanelType != 0) {
+            richEditor.bottomPanel.setVisibility(8);
         }
     }
 
-    public void lambda$updateBottomPanel$41() {
-        if (this.bottomPanelType != 1) {
-            this.formattingPanel.setVisibility(8);
+    public static void $r8$lambda$24qlEaMNPF2SSG5CMYGAwqfg2_E(RichEditor richEditor) {
+        if (richEditor.bottomPanelType != 1) {
+            richEditor.formattingPanel.setVisibility(8);
         }
     }
 
-    public void lambda$updateBottomPanel$42() {
-        if (this.bottomPanelType != 2) {
-            this.trashPanel.setVisibility(8);
+    public static void m4923$r8$lambda$HybCnjoB4yQY5ej3eBeGdDWauA(RichEditor richEditor) {
+        if (richEditor.bottomPanelType != 2) {
+            richEditor.trashPanel.setVisibility(8);
         }
     }
 
@@ -1733,7 +1654,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                 i = 0;
             }
         }
-        for (Button button : this.blockButtons) {
+        ArrayList arrayList = this.blockButtons;
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            Button button = (Button) obj;
             int iIntValue = ((Integer) button.getTag()).intValue();
             button.setSelected(i == iIntValue);
             if (i == iIntValue) {
@@ -1800,16 +1727,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$addFormattingButton$43(i2, view);
+                this.f$0.listView.onFormattingClicked(i2);
             }
         });
         this.formattingButtons.add(button);
         LinearLayout linearLayout = this.formattingPanelLayout;
         linearLayout.addView(button, LayoutHelper.createLinear(38, 38, 16, linearLayout.getChildCount() > 0 ? 2 : 0, 0, 0, 0));
-    }
-
-    public void lambda$addFormattingButton$43(int i, View view) {
-        this.listView.onFormattingClicked(i);
     }
 
     static String formattingButtonContentDescription(int i) {
@@ -1866,8 +1789,14 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         int endOffset = textSelectionHelper.getEndOffset();
         boolean z = false;
         boolean z2 = startCell >= 0 && endCell >= 0 && endCell >= startCell && endCell < this.listView.itemRows.size();
-        for (Button button2 : this.formattingButtons) {
+        ArrayList arrayList = this.formattingButtons;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            int i2 = i + 1;
+            Button button2 = (Button) arrayList.get(i);
             button2.setSelected(z2 && this.listView.isStyleFullyApplied(((Integer) button2.getTag()).intValue(), startCell, startOffset, endCell, endOffset));
+            i = i2;
         }
         setBoldEnabled(!this.listView.isSelectionAllHeadings());
         Button button3 = this.linkButton;
@@ -1885,7 +1814,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     private void setBoldEnabled(boolean z) {
-        for (Button button : this.formattingButtons) {
+        ArrayList arrayList = this.formattingButtons;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Button button = (Button) obj;
             if (((Integer) button.getTag()).intValue() == 1) {
                 button.setEnabled(z);
             }
@@ -1911,7 +1846,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    private void onAiStyleSelection() {
+    public void onAiStyleSelection() {
         TL_iv.RichMessage richMessageExtractRichMessage;
         RichEditorListView.SelectionEdit selectionEditBeginSelectionEdit = this.listView.beginSelectionEdit();
         if (selectionEditBeginSelectionEdit == null || (richMessageExtractRichMessage = selectionEditBeginSelectionEdit.extractRichMessage()) == null || richMessageExtractRichMessage.blocks.isEmpty()) {
@@ -1927,10 +1862,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         int endChildPosition = textSelectionHelper.getEndChildPosition();
         int startOffset = textSelectionHelper.getStartOffset();
         int endOffset = textSelectionHelper.getEndOffset();
-        for (Button button : this.formattingButtons) {
+        ArrayList arrayList = this.formattingButtons;
+        int size = arrayList.size();
+        boolean z = false;
+        for (int i = 0; i < size; i++) {
+            Button button = (Button) arrayList.get(i);
             button.setSelected(this.listView.isStyleFullyAppliedTable(((Integer) button.getTag()).intValue(), startCell, startChildPosition, startOffset, endChildPosition, endOffset));
         }
-        boolean z = false;
         boolean z2 = startChildPosition == endChildPosition;
         RichEditText richEditTextTableEditText = z2 ? this.listView.tableEditText(startCell, startChildPosition) : null;
         int iMax = Math.max(0, Math.min(startOffset, endOffset));
@@ -1958,13 +1896,17 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         boolean z = false;
         int iMax = richEditTextCaptionEditText == null ? 0 : Math.max(0, Math.min(Math.min(startOffset, endOffset), richEditTextCaptionEditText.length()));
         int iMax2 = richEditTextCaptionEditText == null ? 0 : Math.max(0, Math.min(Math.max(startOffset, endOffset), richEditTextCaptionEditText.length()));
-        Iterator it = this.formattingButtons.iterator();
+        ArrayList arrayList = this.formattingButtons;
+        int size = arrayList.size();
+        int i = 0;
         while (true) {
             boolean z2 = true;
-            if (!it.hasNext()) {
+            if (i >= size) {
                 break;
             }
-            Button button = (Button) it.next();
+            Object obj = arrayList.get(i);
+            i++;
+            Button button = (Button) obj;
             int iIntValue = ((Integer) button.getTag()).intValue();
             if (richEditTextCaptionEditText == null || iMax >= iMax2 || (iIntValue & richEditTextCaptionEditText.getCurrentStyle(iMax, iMax2)) == 0) {
                 z2 = false;
@@ -2417,13 +2359,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
             @Override
             public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z, int i4, long j) {
-                this.f$0.lambda$openAttach$44(chatAttachAlert, messageMedia, i3, z, i4, j);
+                RichEditor.m4926$r8$lambda$Sbz8JWBULLYclcV_Bk0GBIKfZ8(this.f$0, chatAttachAlert, messageMedia, i3, z, i4, j);
             }
         });
         chatAttachAlert.setAudioSelectDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
             @Override
             public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i3, int i4, long j, boolean z2, long j2) {
-                this.f$0.lambda$openAttach$45(chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
+                RichEditor.$r8$lambda$2l5aKb8mvoGLFoAbOuaS1yARxAo(this.f$0, chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
             }
         });
         chatAttachAlert.setDocumentsDelegate(new ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate() {
@@ -2440,7 +2382,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             @Override
             public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i3, int i4, long j, boolean z2, long j2) {
                 if (arrayList != null && !arrayList.isEmpty()) {
-                    RichEditor.this.listView.lambda$attachDocument$42((String) arrayList.get(0));
+                    RichEditor.this.listView.attachDocument((String) arrayList.get(0));
                 } else if (arrayList3 != null && !arrayList3.isEmpty()) {
                     RichEditor.this.listView.attachDocument((MessageObject) arrayList3.get(0));
                 }
@@ -2466,7 +2408,8 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         chatAttachAlert.show();
     }
 
-    public void lambda$openAttach$44(ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public static void m4926$r8$lambda$Sbz8JWBULLYclcV_Bk0GBIKfZ8(RichEditor richEditor, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+        richEditor.getClass();
         if (messageMedia == null || messageMedia.geo == null) {
             chatAttachAlert.dismiss(true);
             return;
@@ -2476,13 +2419,14 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         pageblockmap.zoom = 15;
         pageblockmap.w = 600;
         pageblockmap.h = 400;
-        this.listView.addBlock(pageblockmap);
+        richEditor.listView.addBlock(pageblockmap);
         chatAttachAlert.dismiss(true);
     }
 
-    public void lambda$openAttach$45(ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public static void $r8$lambda$2l5aKb8mvoGLFoAbOuaS1yARxAo(RichEditor richEditor, ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+        richEditor.getClass();
         if (arrayList != null && !arrayList.isEmpty()) {
-            this.listView.attachAudio((MessageObject) arrayList.get(0));
+            richEditor.listView.attachAudio((MessageObject) arrayList.get(0));
         }
         chatAttachAlert.dismiss(true);
     }
@@ -2549,16 +2493,16 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         openConversionSheet(context, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda1(richEditorListView), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showConversionSheet$46();
+                RichEditor.m4918$r8$lambda$5INSHdIx6t7Khuwx3ZH_RRyeSQ(this.f$0);
             }
         }, getResourceProvider());
     }
 
-    public void lambda$showConversionSheet$46() {
-        if (UserConfig.getInstance(this.currentAccount).isPremium()) {
+    public static void m4918$r8$lambda$5INSHdIx6t7Khuwx3ZH_RRyeSQ(RichEditor richEditor) {
+        if (UserConfig.getInstance(richEditor.currentAccount).isPremium()) {
             return;
         }
-        showDialog(new PremiumFeatureBottomSheet(this, 43, true));
+        richEditor.showDialog(new PremiumFeatureBottomSheet(richEditor, 43, true));
     }
 
     public void openLocationPicker(final BlockRow blockRow) {
@@ -2613,7 +2557,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
                 @Override
                 public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
-                    this.f$0.lambda$openLocationPicker$48(blockRow, chatAttachAlert, messageMedia, i, z, i2, j);
+                    RichEditor.$r8$lambda$LatNvwt6leaGrnce25wqEPLMvqs(this.f$0, blockRow, chatAttachAlert, messageMedia, i, z, i2, j);
                 }
             });
             chatAttachAlert.init();
@@ -2621,11 +2565,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$openLocationPicker$48(final BlockRow blockRow, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public static void $r8$lambda$LatNvwt6leaGrnce25wqEPLMvqs(final RichEditor richEditor, final BlockRow blockRow, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+        richEditor.getClass();
         if (messageMedia == null || messageMedia.geo == null) {
             return;
         }
-        RichEditorHistory richEditorHistory = this.listView.history;
+        RichEditorHistory richEditorHistory = richEditor.listView.history;
         if (richEditorHistory != null) {
             richEditorHistory.flush();
         }
@@ -2636,25 +2581,25 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             pageblockmap.w = 600;
             pageblockmap.h = 400;
         }
-        RichEditorHistory richEditorHistory2 = this.listView.history;
+        RichEditorHistory richEditorHistory2 = richEditor.listView.history;
         if (richEditorHistory2 != null) {
             richEditorHistory2.record();
         }
         chatAttachAlert.dismiss(true);
-        this.listView.post(new Runnable() {
+        richEditor.listView.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openLocationPicker$47(blockRow);
+                RichEditor.$r8$lambda$WR6_04kI1pdGoXHPPtNLWaMrfVs(this.f$0, blockRow);
             }
         });
     }
 
-    public void lambda$openLocationPicker$47(BlockRow blockRow) {
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
+    public static void $r8$lambda$WR6_04kI1pdGoXHPPtNLWaMrfVs(RichEditor richEditor, BlockRow blockRow) {
+        View viewFindViewByItemObject = richEditor.listView.findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichMapCell) {
-            ((RichMapCell) viewFindViewByItemObject).bind(blockRow, this.listView.getMapDelegate());
+            ((RichMapCell) viewFindViewByItemObject).bind(blockRow, richEditor.listView.getMapDelegate());
         } else {
-            this.listView.adapter.update(false);
+            richEditor.listView.adapter.update(false);
         }
     }
 
@@ -2663,7 +2608,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         return this.editingMessageObject == null && (chatActivity = this.chatActivity) != null && chatActivity.isInScheduleMode();
     }
 
-    private void sendMessage() {
+    public void sendMessage() {
         if (isSendLocked()) {
             showConversionSheet();
         } else if (isInScheduleMode()) {
@@ -2721,7 +2666,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$sendMessage$49(messageObject, arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, arrayListCollect, dialogId, replyMessage, threadMessage, z, i, i2, messageChatSendParams, sendMonoForumPeerId);
+                RichEditor.m4927$r8$lambda$U_nVg49r5Vc_2xoSRFa0uSoudg(this.f$0, messageObject, arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, arrayListCollect, dialogId, replyMessage, threadMessage, z, i, i2, messageChatSendParams, sendMonoForumPeerId);
             }
         };
         Runnable runnable3 = this.onSentCallback;
@@ -2737,11 +2682,11 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$sendMessage$49(MessageObject messageObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, long j, MessageObject messageObject2, MessageObject messageObject3, boolean z, int i, int i2, SendMessageChatArguments sendMessageChatArguments, long j2) {
+    public static void m4927$r8$lambda$U_nVg49r5Vc_2xoSRFa0uSoudg(RichEditor richEditor, MessageObject messageObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, long j, MessageObject messageObject2, MessageObject messageObject3, boolean z, int i, int i2, SendMessageChatArguments sendMessageChatArguments, long j2) {
         if (messageObject != null) {
-            SendMessagesHelper.prepareEditingArticle(AccountInstance.getInstance(this.currentAccount), messageObject, arrayList, arrayList2, arrayList3, arrayList4, false, this.chatActivity);
+            SendMessagesHelper.prepareEditingArticle(AccountInstance.getInstance(richEditor.currentAccount), messageObject, arrayList, arrayList2, arrayList3, arrayList4, false, richEditor.chatActivity);
         } else {
-            SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.currentAccount), arrayList, arrayList2, arrayList3, arrayList4, false, j, messageObject2, messageObject3, z, i, i2, sendMessageChatArguments, 0L, j2, 0L);
+            SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(richEditor.currentAccount), arrayList, arrayList2, arrayList3, arrayList4, false, j, messageObject2, messageObject3, z, i, i2, sendMessageChatArguments, 0L, j2, 0L);
         }
     }
 
@@ -2768,7 +2713,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         messageSendPreview2.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$onSendLongClick$50(dialogInterface);
+                this.f$0.messageSendPreview = null;
             }
         });
         final long dialogId = this.chatActivity.getDialogId();
@@ -2806,7 +2751,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         ChatActivityEnterView.SendButton sendButton = this.messageSendPreview.setSendButton(this.sendButton, true, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$onSendLongClick$51(view2);
+                RichEditor.$r8$lambda$30DVmA0Yn9JNk6OW_K9xkQ4MBP0(this.f$0, view2);
             }
         });
         if (sendButton != null) {
@@ -2819,14 +2764,24 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             itemOptionsMakeOptions.add(R.drawable.msg_calendar2, LocaleController.getString(zIsUserSelf ? R.string.SetReminder : R.string.ScheduleMessage), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSendLongClick$52(dialogId);
+                    RichEditor richEditor = this.f$0;
+                    AlertsCreator.createScheduleDatePickerDialog(richEditor.getParentActivity(), dialogId, new AlertsCreator.ScheduleDatePickerDelegate() {
+                        @Override
+                        public void didSelectDate(boolean z, int i, int i2) {
+                            RichEditor.this.sendMessage(z, i, i2);
+                            if (RichEditor.this.messageSendPreview != null) {
+                                RichEditor.this.messageSendPreview.dismissInstant();
+                                RichEditor.this.messageSendPreview = null;
+                            }
+                        }
+                    }, richEditor.getResourceProvider());
                 }
             });
             if (!zIsUserSelf && dialogId > 0) {
                 itemOptionsMakeOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onSendLongClick$53();
+                        RichEditor.$r8$lambda$MXiD9R5V9mFBwMAY4xdp6DPidf8(this.f$0);
                     }
                 });
             }
@@ -2835,7 +2790,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             itemOptionsMakeOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSendLongClick$54();
+                    RichEditor.$r8$lambda$3tmTkwGsk7EZCGuvQndTFJyHKXY(this.f$0);
                 }
             });
         }
@@ -2849,47 +2804,30 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         return true;
     }
 
-    public void lambda$onSendLongClick$50(DialogInterface dialogInterface) {
-        this.messageSendPreview = null;
-    }
-
-    public void lambda$onSendLongClick$51(View view) {
-        sendMessage();
-        MessageSendPreview messageSendPreview = this.messageSendPreview;
+    public static void $r8$lambda$30DVmA0Yn9JNk6OW_K9xkQ4MBP0(RichEditor richEditor, View view) {
+        richEditor.sendMessage();
+        MessageSendPreview messageSendPreview = richEditor.messageSendPreview;
         if (messageSendPreview != null) {
             messageSendPreview.dismiss(true);
-            this.messageSendPreview = null;
+            richEditor.messageSendPreview = null;
         }
     }
 
-    public void lambda$onSendLongClick$52(long j) {
-        AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), j, new AlertsCreator.ScheduleDatePickerDelegate() {
-            @Override
-            public void didSelectDate(boolean z, int i, int i2) {
-                RichEditor.this.sendMessage(z, i, i2);
-                if (RichEditor.this.messageSendPreview != null) {
-                    RichEditor.this.messageSendPreview.dismissInstant();
-                    RichEditor.this.messageSendPreview = null;
-                }
-            }
-        }, getResourceProvider());
-    }
-
-    public void lambda$onSendLongClick$53() {
-        sendMessage(true, 2147483646, 0);
-        MessageSendPreview messageSendPreview = this.messageSendPreview;
+    public static void $r8$lambda$MXiD9R5V9mFBwMAY4xdp6DPidf8(RichEditor richEditor) {
+        richEditor.sendMessage(true, 2147483646, 0);
+        MessageSendPreview messageSendPreview = richEditor.messageSendPreview;
         if (messageSendPreview != null) {
             messageSendPreview.dismiss(false);
-            this.messageSendPreview = null;
+            richEditor.messageSendPreview = null;
         }
     }
 
-    public void lambda$onSendLongClick$54() {
-        sendMessage(false, 0, 0);
-        MessageSendPreview messageSendPreview = this.messageSendPreview;
+    public static void $r8$lambda$3tmTkwGsk7EZCGuvQndTFJyHKXY(RichEditor richEditor) {
+        richEditor.sendMessage(false, 0, 0);
+        MessageSendPreview messageSendPreview = richEditor.messageSendPreview;
         if (messageSendPreview != null) {
             messageSendPreview.dismiss(true);
-            this.messageSendPreview = null;
+            richEditor.messageSendPreview = null;
         }
     }
 
@@ -2920,7 +2858,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         return true;
     }
 
-    private void toggleEmojiPopup() {
+    public void toggleEmojiPopup() {
         if (this.emojiViewVisible) {
             openKeyboardFromPopup();
         } else {
@@ -3012,7 +2950,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateEmojiSearch$55(valueAnimator2);
+                RichEditor.$r8$lambda$BKjJhXG1S_o3ePWdDRB7sjvhDbM(this.f$0, valueAnimator2);
             }
         });
         this.emojiSearchAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -3020,9 +2958,10 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.emojiSearchAnimator.start();
     }
 
-    public void lambda$animateEmojiSearch$55(ValueAnimator valueAnimator) {
-        this.emojiSearchProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        applyEmojiSearchOffset();
+    public static void $r8$lambda$BKjJhXG1S_o3ePWdDRB7sjvhDbM(RichEditor richEditor, ValueAnimator valueAnimator) {
+        richEditor.getClass();
+        richEditor.emojiSearchProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        richEditor.applyEmojiSearchOffset();
     }
 
     private void closeEmojiSearch() {
@@ -3359,10 +3298,14 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     private void updatePremiumButtons() {
+        int i = 0;
         boolean z = (MessagesController.getInstance(this.currentAccount).richEditorAllowed() || UserConfig.getInstance(this.currentAccount).isPremium()) ? false : true;
-        Iterator it = this.premiumButtons.iterator();
-        while (it.hasNext()) {
-            ((Button) it.next()).setPremiumLocked(z);
+        ArrayList arrayList = this.premiumButtons;
+        int size = arrayList.size();
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((Button) obj).setPremiumLocked(z);
         }
     }
 
@@ -3452,25 +3395,25 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                RichEditor.lambda$openConversionSheet$56(bottomSheetShow, runnable2, view);
+                RichEditor.$r8$lambda$MG8n1tO8Xr5DMXFPt20zxHR_cyk(bottomSheetShow, runnable2, view);
             }
         });
         round2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                RichEditor.lambda$openConversionSheet$57(bottomSheetShow, runnable, view);
+                RichEditor.m4914$r8$lambda$l3bpecYm1v9axzuUl4wf1Nkswo(bottomSheetShow, runnable, view);
             }
         });
         return bottomSheetShow;
     }
 
-    public static void lambda$openConversionSheet$56(BottomSheet bottomSheet, Runnable runnable, View view) {
-        bottomSheet.lambda$new$0();
+    public static void $r8$lambda$MG8n1tO8Xr5DMXFPt20zxHR_cyk(BottomSheet bottomSheet, Runnable runnable, View view) {
+        bottomSheet.dismiss();
         runnable.run();
     }
 
-    public static void lambda$openConversionSheet$57(BottomSheet bottomSheet, Runnable runnable, View view) {
-        bottomSheet.lambda$new$0();
+    public static void m4914$r8$lambda$l3bpecYm1v9axzuUl4wf1Nkswo(BottomSheet bottomSheet, Runnable runnable, View view) {
+        bottomSheet.dismiss();
         runnable.run();
     }
 }

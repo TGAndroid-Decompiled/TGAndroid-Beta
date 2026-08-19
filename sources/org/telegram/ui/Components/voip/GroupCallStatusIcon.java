@@ -25,25 +25,25 @@ public class GroupCallStatusIcon {
     private Runnable shakeHandCallback = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$0();
+            GroupCallStatusIcon.m2979$r8$lambda$iUSg5CwNgobxBuUEf7sm5Zp0xU(this.f$0);
         }
     };
     private Runnable raiseHandCallback = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$1();
+            GroupCallStatusIcon.m2977$r8$lambda$Q2X7GT50hFIASvkVcIe9D0_jHs(this.f$0);
         }
     };
     private Runnable updateRunnable = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$2();
+            GroupCallStatusIcon.$r8$lambda$5W5cJ9LLa8sbsY36SfVA9SZh7Jk(this.f$0);
         }
     };
     private Runnable checkRaiseRunnable = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$3();
+            this.f$0.updateIcon(true);
         }
     };
 
@@ -51,17 +51,18 @@ public class GroupCallStatusIcon {
         void onStatusChanged();
     }
 
-    public void lambda$new$0() {
-        this.shakeHandDrawable.setOnFinishCallback(null, 0);
-        this.micDrawable.setOnFinishCallback(null, 0);
-        RLottieImageView rLottieImageView = this.iconView;
+    public static void m2979$r8$lambda$iUSg5CwNgobxBuUEf7sm5Zp0xU(GroupCallStatusIcon groupCallStatusIcon) {
+        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(null, 0);
+        groupCallStatusIcon.micDrawable.setOnFinishCallback(null, 0);
+        RLottieImageView rLottieImageView = groupCallStatusIcon.iconView;
         if (rLottieImageView != null) {
-            rLottieImageView.setAnimation(this.micDrawable);
+            rLottieImageView.setAnimation(groupCallStatusIcon.micDrawable);
         }
     }
 
-    public void lambda$new$1() {
+    public static void m2977$r8$lambda$Q2X7GT50hFIASvkVcIe9D0_jHs(GroupCallStatusIcon groupCallStatusIcon) {
         int i;
+        groupCallStatusIcon.getClass();
         int iNextInt = Utilities.random.nextInt(100);
         int i2 = 120;
         if (iNextInt < 32) {
@@ -84,13 +85,13 @@ public class GroupCallStatusIcon {
                 }
             }
         }
-        this.shakeHandDrawable.setCustomEndFrame(i2);
-        this.shakeHandDrawable.setOnFinishCallback(this.shakeHandCallback, i2 - 1);
-        this.shakeHandDrawable.setCurrentFrame(i);
-        RLottieImageView rLottieImageView = this.iconView;
+        groupCallStatusIcon.shakeHandDrawable.setCustomEndFrame(i2);
+        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(groupCallStatusIcon.shakeHandCallback, i2 - 1);
+        groupCallStatusIcon.shakeHandDrawable.setCurrentFrame(i);
+        RLottieImageView rLottieImageView = groupCallStatusIcon.iconView;
         if (rLottieImageView != null) {
-            rLottieImageView.setAnimation(this.shakeHandDrawable);
-            this.iconView.playAnimation();
+            rLottieImageView.setAnimation(groupCallStatusIcon.shakeHandDrawable);
+            groupCallStatusIcon.iconView.playAnimation();
         }
     }
 
@@ -101,13 +102,13 @@ public class GroupCallStatusIcon {
         this.shakeHandDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), true, null);
     }
 
-    public void lambda$new$2() {
-        this.isSpeaking = false;
-        Callback callback = this.callback;
+    public static void $r8$lambda$5W5cJ9LLa8sbsY36SfVA9SZh7Jk(GroupCallStatusIcon groupCallStatusIcon) {
+        groupCallStatusIcon.isSpeaking = false;
+        Callback callback = groupCallStatusIcon.callback;
         if (callback != null) {
             callback.onStatusChanged();
         }
-        this.updateRunnableScheduled = false;
+        groupCallStatusIcon.updateRunnableScheduled = false;
     }
 
     public void setAmplitude(double d) {
@@ -125,10 +126,6 @@ public class GroupCallStatusIcon {
             AndroidUtilities.runOnUIThread(this.updateRunnable, 500L);
             this.updateRunnableScheduled = true;
         }
-    }
-
-    public void lambda$new$3() {
-        updateIcon(true);
     }
 
     public void setImageView(RLottieImageView rLottieImageView) {

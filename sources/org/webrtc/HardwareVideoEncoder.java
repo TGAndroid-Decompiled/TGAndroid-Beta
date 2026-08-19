@@ -73,7 +73,7 @@ class HardwareVideoEncoder implements VideoEncoder {
         return VideoEncoder.CC.$default$isHardwareEncoder(this);
     }
 
-    private static class BusyCount {
+    static class BusyCount {
         private int count;
         private final Object countLock;
 
@@ -507,7 +507,7 @@ class HardwareVideoEncoder implements VideoEncoder {
                 runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$deliverEncodedImage$0(iDequeueOutputBuffer);
+                        HardwareVideoEncoder.m5085$r8$lambda$a6LPD7mvT4vb0z5KnudGzH4pKU(this.f$0, iDequeueOutputBuffer);
                     }
                 };
             }
@@ -528,13 +528,14 @@ class HardwareVideoEncoder implements VideoEncoder {
         }
     }
 
-    public void lambda$deliverEncodedImage$0(int i) {
+    public static void m5085$r8$lambda$a6LPD7mvT4vb0z5KnudGzH4pKU(HardwareVideoEncoder hardwareVideoEncoder, int i) {
+        hardwareVideoEncoder.getClass();
         try {
-            this.codec.releaseOutputBuffer(i, false);
+            hardwareVideoEncoder.codec.releaseOutputBuffer(i, false);
         } catch (Exception e) {
             Logging.e("HardwareVideoEncoder", "releaseOutputBuffer failed", e);
         }
-        this.outputBuffersBusyCount.decrement();
+        hardwareVideoEncoder.outputBuffersBusyCount.decrement();
     }
 
     public void releaseCodecOnOutputThread() {

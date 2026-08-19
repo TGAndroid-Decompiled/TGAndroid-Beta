@@ -26,28 +26,25 @@ public final class VoIPPendingCall {
         return new VoIPPendingCall(activity, j, z, 1000L, accountInstance);
     }
 
-    public void lambda$new$0(int i, int i2, Object[] objArr) {
+    public static void m1169$r8$lambda$edP4Tyseyyaa_Rhro5SI9dhuHU(VoIPPendingCall voIPPendingCall, int i, int i2, Object[] objArr) {
+        voIPPendingCall.getClass();
         if (i == NotificationCenter.didUpdateConnectionState) {
-            onConnectionStateUpdated(false);
+            voIPPendingCall.onConnectionStateUpdated(false);
         }
-    }
-
-    public void lambda$new$1() {
-        onConnectionStateUpdated(true);
     }
 
     private VoIPPendingCall(Activity activity, long j, boolean z, long j2, AccountInstance accountInstance) {
         NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                this.f$0.lambda$new$0(i, i2, objArr);
+                VoIPPendingCall.m1169$r8$lambda$edP4Tyseyyaa_Rhro5SI9dhuHU(this.f$0, i, i2, objArr);
             }
         };
         this.observer = notificationCenterDelegate;
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                this.f$0.onConnectionStateUpdated(true);
             }
         };
         this.releaseRunnable = runnable;
@@ -66,7 +63,7 @@ public final class VoIPPendingCall {
         handler.postDelayed(runnable, j2);
     }
 
-    private boolean onConnectionStateUpdated(boolean z) {
+    public boolean onConnectionStateUpdated(boolean z) {
         if (this.released || !(z || isConnected(this.accountInstance) || isAirplaneMode())) {
             return false;
         }

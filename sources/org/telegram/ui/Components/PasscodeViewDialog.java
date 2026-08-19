@@ -32,7 +32,7 @@ public class PasscodeViewDialog extends Dialog {
         ViewCompat.setOnApplyWindowInsetsListener(frameLayout, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                return PasscodeViewDialog.lambda$new$0(view, windowInsetsCompat);
+                return WindowInsetsCompat.CONSUMED;
             }
         });
         PasscodeView passcodeView = new PasscodeView(context) {
@@ -61,10 +61,6 @@ public class PasscodeViewDialog extends Dialog {
         };
         this.passcodeView = passcodeView;
         frameLayout.addView(passcodeView, LayoutHelper.createFrame(-1, -1, 119));
-    }
-
-    public static WindowInsetsCompat lambda$new$0(View view, WindowInsetsCompat windowInsetsCompat) {
-        return WindowInsetsCompat.CONSUMED;
     }
 
     @Override

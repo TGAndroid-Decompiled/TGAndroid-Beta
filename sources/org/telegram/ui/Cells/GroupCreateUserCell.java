@@ -300,7 +300,7 @@ public class GroupCreateUserCell extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setChecked$1(valueAnimator2);
+                    GroupCreateUserCell.m1490$r8$lambda$0ODu9SijOg8zq0OeAD5ZPfbw(this.f$0, valueAnimator2);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {
@@ -320,17 +320,18 @@ public class GroupCreateUserCell extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$setChecked$1(ValueAnimator valueAnimator) {
+    public static void m1490$r8$lambda$0ODu9SijOg8zq0OeAD5ZPfbw(GroupCreateUserCell groupCreateUserCell, ValueAnimator valueAnimator) {
+        groupCreateUserCell.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float f = 0.18f * fFloatValue;
-        float f2 = this.isChecked ? 1.0f - f : 0.82f + f;
-        this.avatarImageView.setScaleX(f2);
-        this.avatarImageView.setScaleY(f2);
-        if (!this.isChecked) {
+        float f2 = groupCreateUserCell.isChecked ? 1.0f - f : 0.82f + f;
+        groupCreateUserCell.avatarImageView.setScaleX(f2);
+        groupCreateUserCell.avatarImageView.setScaleY(f2);
+        if (!groupCreateUserCell.isChecked) {
             fFloatValue = 1.0f - fFloatValue;
         }
-        this.checkProgress = fFloatValue;
-        invalidate();
+        groupCreateUserCell.checkProgress = fFloatValue;
+        groupCreateUserCell.invalidate();
     }
 
     public void setCheckBoxEnabled(boolean z) {
@@ -397,7 +398,7 @@ public class GroupCreateUserCell extends FrameLayout {
                 }
             }
             String str3 = (String) this.currentObject;
-            str3.hashCode();
+            str3.getClass();
             switch (str3) {
                 case "archived":
                     this.avatarDrawable.setAvatarType(11);

@@ -85,10 +85,16 @@ public class PopupSwipeBackLayout extends FrameLayout {
 
             @Override
             public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                if (!PopupSwipeBackLayout.this.isProcessingSwipe && !PopupSwipeBackLayout.this.isSwipeDisallowed) {
-                    if (!PopupSwipeBackLayout.this.isSwipeBackDisallowed && PopupSwipeBackLayout.this.transitionProgress == 1.0f && f <= (-scaledTouchSlop) && Math.abs(f) >= Math.abs(1.5f * f2)) {
+                MotionEvent motionEvent3;
+                if (PopupSwipeBackLayout.this.isProcessingSwipe || PopupSwipeBackLayout.this.isSwipeDisallowed) {
+                    motionEvent3 = motionEvent2;
+                } else {
+                    if (PopupSwipeBackLayout.this.isSwipeBackDisallowed || PopupSwipeBackLayout.this.transitionProgress != 1.0f || f > (-scaledTouchSlop) || Math.abs(f) < Math.abs(1.5f * f2)) {
+                        motionEvent3 = motionEvent2;
+                    } else {
                         PopupSwipeBackLayout popupSwipeBackLayout = PopupSwipeBackLayout.this;
-                        if (!popupSwipeBackLayout.isDisallowedView(motionEvent2, popupSwipeBackLayout.getChildAt(popupSwipeBackLayout.transitionProgress > 0.5f ? 1 : 0))) {
+                        motionEvent3 = motionEvent2;
+                        if (!popupSwipeBackLayout.isDisallowedView(motionEvent3, popupSwipeBackLayout.getChildAt(popupSwipeBackLayout.transitionProgress > 0.5f ? 1 : 0))) {
                             PopupSwipeBackLayout.this.isProcessingSwipe = true;
                             MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                             for (int i = 0; i < PopupSwipeBackLayout.this.getChildCount(); i++) {
@@ -101,7 +107,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
                 }
                 if (PopupSwipeBackLayout.this.isProcessingSwipe) {
                     PopupSwipeBackLayout.this.toProgress = -1.0f;
-                    PopupSwipeBackLayout.this.transitionProgress = 1.0f - Math.max(0.0f, Math.min(1.0f, (motionEvent2.getX() - motionEvent.getX()) / PopupSwipeBackLayout.this.getWidth()));
+                    PopupSwipeBackLayout.this.transitionProgress = 1.0f - Math.max(0.0f, Math.min(1.0f, (motionEvent3.getX() - motionEvent.getX()) / PopupSwipeBackLayout.this.getWidth()));
                     PopupSwipeBackLayout.this.invalidateTransforms();
                 }
                 return PopupSwipeBackLayout.this.isProcessingSwipe;
@@ -129,6 +135,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
+        Canvas canvas2;
         int iIndexOfChild = indexOfChild(view);
         int iSave = canvas.save();
         if (iIndexOfChild != 0) {
@@ -143,9 +150,12 @@ public class PopupSwipeBackLayout extends FrameLayout {
         boolean zDrawChild = super.drawChild(canvas, view, j);
         if (iIndexOfChild == 0) {
             this.overlayPaint.setAlpha((int) (this.transitionProgress * 64.0f));
-            canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.overlayPaint);
+            canvas2 = canvas;
+            canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.overlayPaint);
+        } else {
+            canvas2 = canvas;
         }
-        canvas.restoreToCount(iSave);
+        canvas2.restoreToCount(iSave);
         return zDrawChild;
     }
 
@@ -274,7 +284,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$animateToState$0(valueAnimator);
+                PopupSwipeBackLayout.$r8$lambda$lD2k2nk9BhvsbLCzSy9iF11t1is(this.f$0, valueAnimator);
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
@@ -304,9 +314,10 @@ public class PopupSwipeBackLayout extends FrameLayout {
         duration.start();
     }
 
-    public void lambda$animateToState$0(ValueAnimator valueAnimator) {
-        this.transitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidateTransforms();
+    public static void $r8$lambda$lD2k2nk9BhvsbLCzSy9iF11t1is(PopupSwipeBackLayout popupSwipeBackLayout, ValueAnimator valueAnimator) {
+        popupSwipeBackLayout.getClass();
+        popupSwipeBackLayout.transitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        popupSwipeBackLayout.invalidateTransforms();
     }
 
     public void setOnForegroundOpenFinished(Runnable runnable) {
@@ -485,7 +496,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setNewForegroundHeight$1(valueAnimator2);
+                        PopupSwipeBackLayout.$r8$lambda$ObfyE7Etbw85ej5Mr4wmQtinImM(this.f$0, valueAnimator2);
                     }
                 });
                 this.isAnimationInProgress = true;
@@ -505,9 +516,10 @@ public class PopupSwipeBackLayout extends FrameLayout {
         }
     }
 
-    public void lambda$setNewForegroundHeight$1(ValueAnimator valueAnimator) {
-        this.overrideForegroundHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidateTransforms();
+    public static void $r8$lambda$ObfyE7Etbw85ej5Mr4wmQtinImM(PopupSwipeBackLayout popupSwipeBackLayout, ValueAnimator valueAnimator) {
+        popupSwipeBackLayout.getClass();
+        popupSwipeBackLayout.overrideForegroundHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        popupSwipeBackLayout.invalidateTransforms();
     }
 
     public void setForegroundColor(int i) {

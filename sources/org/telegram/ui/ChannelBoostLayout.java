@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
@@ -386,7 +385,7 @@ public class ChannelBoostLayout extends FrameLayout {
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$new$0(context, j, resourcesProvider, baseFragment, view, i);
+                ChannelBoostLayout.$r8$lambda$jNZ_oDBa1s6UY7PfADYGSJVvFOk(this.f$0, context, j, resourcesProvider, baseFragment, view, i);
             }
         });
         addView(recyclerListView);
@@ -399,23 +398,28 @@ public class ChannelBoostLayout extends FrameLayout {
         StarsController.getInstance(this.currentAccount).getGiveawayOptions();
     }
 
-    public void lambda$new$0(Context context, long j, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment, View view, int i) {
-        boolean z;
+    public static void $r8$lambda$jNZ_oDBa1s6UY7PfADYGSJVvFOk(ChannelBoostLayout channelBoostLayout, Context context, long j, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment, View view, int i) {
+        long j2;
+        Theme.ResourcesProvider resourcesProvider2;
+        BaseFragment baseFragment2;
+        channelBoostLayout.getClass();
         if (view instanceof GiftedUserCell) {
             GiftedUserCell giftedUserCell = (GiftedUserCell) view;
             TL_stories.Boost boost = giftedUserCell.getBoost();
-            boolean z2 = boost.giveaway;
-            if (z2 && boost.stars > 0) {
-                StarsIntroActivity.showBoostsSheet(context, this.currentAccount, j, boost, resourcesProvider);
-                z = false;
+            boolean z = boost.giveaway;
+            if (z && boost.stars > 0) {
+                StarsIntroActivity.showBoostsSheet(context, channelBoostLayout.currentAccount, j, boost, resourcesProvider);
+                j2 = j;
+                resourcesProvider2 = resourcesProvider;
             } else {
-                boolean z3 = boost.gift;
-                if (((z3 || z2) && boost.user_id >= 0) || boost.unclaimed) {
-                    z = false;
+                j2 = j;
+                resourcesProvider2 = resourcesProvider;
+                boolean z2 = boost.gift;
+                if (((z2 || z) && boost.user_id >= 0) || boost.unclaimed) {
                     TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
                     tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
                     tL_payments_checkedGiftCode.to_id = boost.user_id;
-                    tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-this.currentChat.id);
+                    tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-channelBoostLayout.currentChat.id);
                     int i2 = boost.date;
                     tL_payments_checkedGiftCode.date = i2;
                     tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
@@ -428,36 +432,41 @@ public class ChannelBoostLayout extends FrameLayout {
                     } else {
                         tL_payments_checkedGiftCode.boost = boost;
                     }
-                    new GiftInfoBottomSheet(baseFragment, false, true, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
-                } else if (z2 && boost.user_id == -1) {
+                    baseFragment2 = baseFragment;
+                    new GiftInfoBottomSheet(baseFragment2, false, true, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
+                } else if (z && boost.user_id == -1) {
                     Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
-                    z = false;
                     lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
                     lottieLayout.textView.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
                     lottieLayout.textView.setSingleLine(false);
                     lottieLayout.textView.setMaxLines(2);
                     Bulletin.make(baseFragment, lottieLayout, 2750).show();
-                } else {
-                    z = false;
-                    if (!z3 && !z2) {
-                        baseFragment.presentFragment(ProfileActivity.of(giftedUserCell.getDialogId()));
-                    }
+                } else if (!z2 && !z) {
+                    baseFragment.presentFragment(ProfileActivity.of(giftedUserCell.getDialogId()));
+                }
+                if (view instanceof TextCell) {
+                    BoostPagerBottomSheet.show(baseFragment2, j2, resourcesProvider2);
+                }
+                if (view instanceof GiveawayCell) {
+                    BoostPagerBottomSheet.show(baseFragment2, resourcesProvider2, j2, ((GiveawayCell) view).getPrepaidGiveaway());
+                }
+                if (((ItemInternal) channelBoostLayout.items.get(i)).viewType == 9) {
+                    channelBoostLayout.loadUsers(Boolean.valueOf(channelBoostLayout.selectedTab == 1));
                 }
             }
         } else {
-            z = false;
+            j2 = j;
+            resourcesProvider2 = resourcesProvider;
         }
+        baseFragment2 = baseFragment;
         if (view instanceof TextCell) {
-            BoostPagerBottomSheet.show(baseFragment, j, resourcesProvider);
+            BoostPagerBottomSheet.show(baseFragment2, j2, resourcesProvider2);
         }
         if (view instanceof GiveawayCell) {
-            BoostPagerBottomSheet.show(baseFragment, resourcesProvider, j, ((GiveawayCell) view).getPrepaidGiveaway());
+            BoostPagerBottomSheet.show(baseFragment2, resourcesProvider2, j2, ((GiveawayCell) view).getPrepaidGiveaway());
         }
-        if (((ItemInternal) this.items.get(i)).viewType == 9) {
-            if (this.selectedTab == 1) {
-                z = true;
-            }
-            loadUsers(Boolean.valueOf(z));
+        if (((ItemInternal) channelBoostLayout.items.get(i)).viewType == 9) {
+            channelBoostLayout.loadUsers(Boolean.valueOf(channelBoostLayout.selectedTab == 1));
         }
     }
 
@@ -531,11 +540,12 @@ public class ChannelBoostLayout extends FrameLayout {
         }
     }
 
-    public void lambda$loadStatistic$2(final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public static void $r8$lambda$VT6n8LoJDdZqxZ_RvnrWTtkotW4(final ChannelBoostLayout channelBoostLayout, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        channelBoostLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadStatistic$1(tL_premium_boostsStatus);
+                ChannelBoostLayout.$r8$lambda$ndMXgb9bmHOloxbENRqfUevpSJA(this.f$0, tL_premium_boostsStatus);
             }
         });
     }
@@ -544,22 +554,22 @@ public class ChannelBoostLayout extends FrameLayout {
         MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                this.f$0.lambda$loadStatistic$2((TL_stories.TL_premium_boostsStatus) obj);
+                ChannelBoostLayout.$r8$lambda$VT6n8LoJDdZqxZ_RvnrWTtkotW4(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
             }
         });
     }
 
-    public void lambda$loadStatistic$1(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        this.boostsStatus = tL_premium_boostsStatus;
-        this.progressLayout.animate().cancel();
-        this.progressLayout.animate().alpha(0.0f).setDuration(100L).setStartDelay(0L).setListener(new AnimatorListenerAdapter() {
+    public static void $r8$lambda$ndMXgb9bmHOloxbENRqfUevpSJA(ChannelBoostLayout channelBoostLayout, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        channelBoostLayout.boostsStatus = tL_premium_boostsStatus;
+        channelBoostLayout.progressLayout.animate().cancel();
+        channelBoostLayout.progressLayout.animate().alpha(0.0f).setDuration(100L).setStartDelay(0L).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 ChannelBoostLayout.this.progressLayout.setVisibility(8);
             }
         });
-        updateRows(true);
-        loadUsers(null);
+        channelBoostLayout.updateRows(true);
+        channelBoostLayout.loadUsers(null);
     }
 
     private void loadUsers(Boolean bool) {
@@ -571,30 +581,31 @@ public class ChannelBoostLayout extends FrameLayout {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadUsers$4();
+                    ChannelBoostLayout.$r8$lambda$yBrRgy32wtnfF7YsSVzdS8lZ3a8(this.f$0);
                 }
             });
         } else if (bool.booleanValue()) {
             loadOnlyGifts(null, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadUsers$5();
+                    ChannelBoostLayout.m1544$r8$lambda$Yn9d3OTxj8S4ja7NwgiC5UU6Gw(this.f$0);
                 }
             });
         } else {
             loadOnlyBoosts(null, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadUsers$6();
+                    ChannelBoostLayout.m1545$r8$lambda$d7vyIwnRlk3NlITRXX8W6w_48(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$loadUsers$4() {
+    public static void $r8$lambda$yBrRgy32wtnfF7YsSVzdS8lZ3a8(final ChannelBoostLayout channelBoostLayout) {
+        channelBoostLayout.getClass();
         CountDownLatch countDownLatch = new CountDownLatch(2);
-        loadOnlyBoosts(countDownLatch, null);
-        loadOnlyGifts(countDownLatch, null);
+        channelBoostLayout.loadOnlyBoosts(countDownLatch, null);
+        channelBoostLayout.loadOnlyGifts(countDownLatch, null);
         try {
             countDownLatch.await();
         } catch (InterruptedException unused) {
@@ -602,24 +613,24 @@ public class ChannelBoostLayout extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadUsers$3();
+                ChannelBoostLayout.m1546$r8$lambda$gnaW0lu2o7JU43k9fsYeRmZRBI(this.f$0);
             }
         });
     }
 
-    public void lambda$loadUsers$3() {
-        this.usersLoading = false;
-        updateRows(true);
+    public static void m1546$r8$lambda$gnaW0lu2o7JU43k9fsYeRmZRBI(ChannelBoostLayout channelBoostLayout) {
+        channelBoostLayout.usersLoading = false;
+        channelBoostLayout.updateRows(true);
     }
 
-    public void lambda$loadUsers$5() {
-        this.usersLoading = false;
-        updateRows(true);
+    public static void m1544$r8$lambda$Yn9d3OTxj8S4ja7NwgiC5UU6Gw(ChannelBoostLayout channelBoostLayout) {
+        channelBoostLayout.usersLoading = false;
+        channelBoostLayout.updateRows(true);
     }
 
-    public void lambda$loadUsers$6() {
-        this.usersLoading = false;
-        updateRows(true);
+    public static void m1545$r8$lambda$d7vyIwnRlk3NlITRXX8W6w_48(ChannelBoostLayout channelBoostLayout) {
+        channelBoostLayout.usersLoading = false;
+        channelBoostLayout.updateRows(true);
     }
 
     private void loadOnlyBoosts(final CountDownLatch countDownLatch, final Runnable runnable) {
@@ -630,50 +641,56 @@ public class ChannelBoostLayout extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_premium_getBoostsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadOnlyBoosts$8(countDownLatch, runnable, tLObject, tL_error);
+                ChannelBoostLayout.m1543$r8$lambda$S9Pz4JotZX_U56uiBAd2lFXDYA(this.f$0, countDownLatch, runnable, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public void lambda$loadOnlyBoosts$8(final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1543$r8$lambda$S9Pz4JotZX_U56uiBAd2lFXDYA(final ChannelBoostLayout channelBoostLayout, final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        channelBoostLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadOnlyBoosts$7(countDownLatch, tLObject, runnable);
+                ChannelBoostLayout.$r8$lambda$5ZKnb5Pdhgbfe_Ee2Q3EfRCkkx8(this.f$0, countDownLatch, tLObject, runnable);
             }
         });
     }
 
-    public void lambda$loadOnlyBoosts$7(CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+    public static void $r8$lambda$5ZKnb5Pdhgbfe_Ee2Q3EfRCkkx8(ChannelBoostLayout channelBoostLayout, CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+        channelBoostLayout.getClass();
         if (countDownLatch != null) {
             countDownLatch.countDown();
         }
         if (tLObject != null) {
-            this.limitBoosts = 20;
+            channelBoostLayout.limitBoosts = 20;
             TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject;
             boolean z = false;
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_premium_boostsList.users, false);
-            this.lastBoostsOffset = tL_premium_boostsList.next_offset;
-            this.boosters.addAll(tL_premium_boostsList.boosts);
-            Iterator it = this.boosters.iterator();
+            MessagesController.getInstance(channelBoostLayout.currentAccount).putUsers(tL_premium_boostsList.users, false);
+            channelBoostLayout.lastBoostsOffset = tL_premium_boostsList.next_offset;
+            channelBoostLayout.boosters.addAll(tL_premium_boostsList.boosts);
+            ArrayList arrayList = channelBoostLayout.boosters;
+            int size = arrayList.size();
             int i = 0;
+            int i2 = 0;
             while (true) {
-                int i2 = 1;
-                if (!it.hasNext()) {
+                int i3 = 1;
+                if (i >= size) {
                     break;
                 }
-                int i3 = ((TL_stories.Boost) it.next()).multiplier;
-                if (i3 > 0) {
-                    i2 = i3;
+                Object obj = arrayList.get(i);
+                i++;
+                int i4 = ((TL_stories.Boost) obj).multiplier;
+                if (i4 > 0) {
+                    i3 = i4;
                 }
-                i += i2;
+                i2 += i3;
             }
-            this.nextBoostRemaining = Math.max(0, tL_premium_boostsList.count - i);
-            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && this.nextBoostRemaining > 0) {
+            channelBoostLayout.nextBoostRemaining = Math.max(0, tL_premium_boostsList.count - i2);
+            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && channelBoostLayout.nextBoostRemaining > 0) {
                 z = true;
             }
-            this.hasBoostsNext = z;
-            this.totalBoosts = tL_premium_boostsList.count;
+            channelBoostLayout.hasBoostsNext = z;
+            channelBoostLayout.totalBoosts = tL_premium_boostsList.count;
             if (runnable != null) {
                 runnable.run();
             }
@@ -689,57 +706,63 @@ public class ChannelBoostLayout extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_premium_getBoostsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadOnlyGifts$10(countDownLatch, runnable, tLObject, tL_error);
+                ChannelBoostLayout.$r8$lambda$FokkGKwIbRc478gKtvmSEt81oyc(this.f$0, countDownLatch, runnable, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public void lambda$loadOnlyGifts$10(final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$FokkGKwIbRc478gKtvmSEt81oyc(final ChannelBoostLayout channelBoostLayout, final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        channelBoostLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadOnlyGifts$9(countDownLatch, tLObject, runnable);
+                ChannelBoostLayout.$r8$lambda$iWtPm0XOKsted3hZdkIpbpgzM3c(this.f$0, countDownLatch, tLObject, runnable);
             }
         });
     }
 
-    public void lambda$loadOnlyGifts$9(CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+    public static void $r8$lambda$iWtPm0XOKsted3hZdkIpbpgzM3c(ChannelBoostLayout channelBoostLayout, CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+        channelBoostLayout.getClass();
         if (countDownLatch != null) {
             countDownLatch.countDown();
         }
         if (tLObject != null) {
-            this.limitGifts = 20;
+            channelBoostLayout.limitGifts = 20;
             TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject;
             boolean z = false;
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_premium_boostsList.users, false);
-            this.lastGiftsOffset = tL_premium_boostsList.next_offset;
-            this.gifts.addAll(tL_premium_boostsList.boosts);
-            Iterator it = this.gifts.iterator();
+            MessagesController.getInstance(channelBoostLayout.currentAccount).putUsers(tL_premium_boostsList.users, false);
+            channelBoostLayout.lastGiftsOffset = tL_premium_boostsList.next_offset;
+            channelBoostLayout.gifts.addAll(tL_premium_boostsList.boosts);
+            ArrayList arrayList = channelBoostLayout.gifts;
+            int size = arrayList.size();
             int i = 0;
+            int i2 = 0;
             while (true) {
-                int i2 = 1;
-                if (!it.hasNext()) {
+                int i3 = 1;
+                if (i >= size) {
                     break;
                 }
-                int i3 = ((TL_stories.Boost) it.next()).multiplier;
-                if (i3 > 0) {
-                    i2 = i3;
+                Object obj = arrayList.get(i);
+                i++;
+                int i4 = ((TL_stories.Boost) obj).multiplier;
+                if (i4 > 0) {
+                    i3 = i4;
                 }
-                i += i2;
+                i2 += i3;
             }
-            this.nextGiftsRemaining = Math.max(0, tL_premium_boostsList.count - i);
-            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && this.nextGiftsRemaining > 0) {
+            channelBoostLayout.nextGiftsRemaining = Math.max(0, tL_premium_boostsList.count - i2);
+            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && channelBoostLayout.nextGiftsRemaining > 0) {
                 z = true;
             }
-            this.hasGiftsNext = z;
-            this.totalGifts = tL_premium_boostsList.count;
+            channelBoostLayout.hasGiftsNext = z;
+            channelBoostLayout.totalGifts = tL_premium_boostsList.count;
             if (runnable != null) {
                 runnable.run();
             }
         }
     }
 
-    private class ItemInternal extends AdapterWithDiffUtils.Item {
+    class ItemInternal extends AdapterWithDiffUtils.Item {
         TL_stories.Boost booster;
         boolean isLast;
         TL_stories.PrepaidGiveaway prepaidGiveaway;

@@ -599,7 +599,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         Collections.sort(this.defaultThemes, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return ThemeActivity.lambda$updateRows$0((Theme.ThemeInfo) obj, (Theme.ThemeInfo) obj2);
+                return Integer.compare(((Theme.ThemeInfo) obj).sortIndex, ((Theme.ThemeInfo) obj2).sortIndex);
             }
         });
         int i12 = this.currentType;
@@ -851,10 +851,6 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         updateMenuItem();
     }
 
-    public static int lambda$updateRows$0(Theme.ThemeInfo themeInfo, Theme.ThemeInfo themeInfo2) {
-        return Integer.compare(themeInfo.sortIndex, themeInfo2.sortIndex);
-    }
-
     @Override
     public boolean onFragmentCreate() {
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.locationPermissionGranted);
@@ -976,7 +972,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             showDialog(this.sharingProgressDialog, new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$didReceivedNotification$1(dialogInterface);
+                    ThemeActivity.m4669$r8$lambda$pDhCLvXW9kAM_5k3xcl4TfOjCk(this.f$0, dialogInterface);
                 }
             });
             return;
@@ -999,10 +995,10 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$didReceivedNotification$1(DialogInterface dialogInterface) {
-        this.sharingProgressDialog = null;
-        this.sharingTheme = null;
-        this.sharingAccent = null;
+    public static void m4669$r8$lambda$pDhCLvXW9kAM_5k3xcl4TfOjCk(ThemeActivity themeActivity, DialogInterface dialogInterface) {
+        themeActivity.sharingProgressDialog = null;
+        themeActivity.sharingTheme = null;
+        themeActivity.sharingAccent = null;
     }
 
     @Override
@@ -1037,7 +1033,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 getMessagesController().getContentSettings(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$createView$2((TL_account.contentSettings) obj);
+                        ThemeActivity.$r8$lambda$2hkMdQ_Deq_3qTmsvhTeIpsmDXs(this.f$0, (TL_account.contentSettings) obj);
                     }
                 });
             }
@@ -1078,7 +1074,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
             @Override
             public final void onItemClick(View view, int i3, float f, float f2) {
-                this.f$0.lambda$createView$13(context, view, i3, f, f2);
+                ThemeActivity.$r8$lambda$v5A2K14SuCfVVf9TPmb7FpgKSk4(this.f$0, context, view, i3, f, f2);
             }
         });
         if (this.currentType == 0) {
@@ -1096,20 +1092,26 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$15();
+                    ThemeActivity themeActivity = this.f$0;
+                    themeActivity.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
+                        @Override
+                        public final int run() {
+                            return this.f$0.sensitiveContentRow;
+                        }
+                    });
                 }
             }, 200L);
         }
         return this.fragmentView;
     }
 
-    public void lambda$createView$2(TL_account.contentSettings contentsettings) {
+    public static void $r8$lambda$2hkMdQ_Deq_3qTmsvhTeIpsmDXs(ThemeActivity themeActivity, TL_account.contentSettings contentsettings) {
         ListAdapter listAdapter;
-        RecyclerListView recyclerListView = this.listView;
-        if (recyclerListView == null || !recyclerListView.isAttachedToWindow() || (listAdapter = this.listAdapter) == null) {
+        RecyclerListView recyclerListView = themeActivity.listView;
+        if (recyclerListView == null || !recyclerListView.isAttachedToWindow() || (listAdapter = themeActivity.listAdapter) == null) {
             return;
         }
-        int i = this.sensitiveContentRow;
+        int i = themeActivity.sensitiveContentRow;
         boolean z = false;
         boolean z2 = i >= 0;
         if (contentsettings != null && contentsettings.sensitive_can_change) {
@@ -1118,7 +1120,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         if (z2 == z) {
             listAdapter.notifyItemChanged(i);
         } else {
-            updateRows(true);
+            themeActivity.updateRows(true);
         }
     }
 
@@ -1142,7 +1144,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 Theme.ThemeAccent accent = Theme.getCurrentTheme().getAccent(false);
                 if (accent.info == null) {
                     ThemeActivity.this.getMessagesController().saveThemeToServer(accent.parentTheme, accent);
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, accent.parentTheme, accent);
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needShareTheme, accent.parentTheme, accent);
                     return;
                 }
                 String str = "https://" + ThemeActivity.this.getMessagesController().linkPrefix + "/addtheme/" + accent.info.slug;
@@ -1163,7 +1165,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 builder.setPositiveButton(LocaleController.getString("Reset", R.string.Reset), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        this.f$0.lambda$onItemClick$0(alertDialog, i2);
+                        ThemeActivity.AnonymousClass1.m4675$r8$lambda$woc2Pg8UDVLyp7jztIHSTeuY(this.f$0, alertDialog, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1203,7 +1205,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     ThemeActivity.this.menuItem.getIconView().getLocationInWindow(iArr);
                     iArr[0] = iArr[0] + (ThemeActivity.this.menuItem.getIconView().getMeasuredWidth() / 2);
                     iArr[1] = iArr[1] + (ThemeActivity.this.menuItem.getIconView().getMeasuredHeight() / 2);
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr, -1, Boolean.valueOf(zEquals), ThemeActivity.this.menuItem.getIconView());
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr, -1, Boolean.valueOf(zEquals), ThemeActivity.this.menuItem.getIconView());
                     ThemeActivity.this.updateRows(true);
                     Theme.turnOffAutoNight(ThemeActivity.this);
                 }
@@ -1219,13 +1221,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 ThemeActivity.this.menuItem.getIconView().getLocationInWindow(iArr2);
                 iArr2[0] = iArr2[0] + (ThemeActivity.this.menuItem.getIconView().getMeasuredWidth() / 2);
                 iArr2[1] = iArr2[1] + (ThemeActivity.this.menuItem.getIconView().getMeasuredHeight() / 2);
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr2, -1, Boolean.valueOf(zEquals), ThemeActivity.this.menuItem.getIconView());
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr2, -1, Boolean.valueOf(zEquals), ThemeActivity.this.menuItem.getIconView());
                 ThemeActivity.this.updateRows(true);
                 Theme.turnOffAutoNight(ThemeActivity.this);
             }
         }
 
-        public void lambda$onItemClick$0(AlertDialog alertDialog, int i) {
+        public static void m4675$r8$lambda$woc2Pg8UDVLyp7jztIHSTeuY(AnonymousClass1 anonymousClass1, AlertDialog alertDialog, int i) {
             boolean fontSize = ThemeActivity.this.setFontSize(AndroidUtilities.isTablet() ? 18 : 16);
             if (ThemeActivity.this.setBubbleRadius(17, true)) {
                 fontSize = true;
@@ -1254,7 +1256,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     return;
                 }
                 if (theme.currentAccentId != Theme.DEFALT_THEME_ACCENT_ID) {
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, currentTheme, Boolean.valueOf(ThemeActivity.this.currentType == 1), null, Integer.valueOf(Theme.DEFALT_THEME_ACCENT_ID));
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, currentTheme, Boolean.valueOf(ThemeActivity.this.currentType == 1), null, Integer.valueOf(Theme.DEFALT_THEME_ACCENT_ID));
                     ThemeActivity.this.listAdapter.notifyItemChanged(ThemeActivity.this.themeAccentListRow);
                 } else {
                     Theme.reloadWallpaper(true);
@@ -1263,11 +1265,11 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$createView$13(Context context, final View view, final int i, float f, float f2) {
+    public static void $r8$lambda$v5A2K14SuCfVVf9TPmb7FpgKSk4(final ThemeActivity themeActivity, Context context, final View view, final int i, float f, float f2) {
         int i2;
         int i3;
         String string;
-        if (i == this.enableAnimationsRow) {
+        if (i == themeActivity.enableAnimationsRow) {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             boolean z = globalMainSettings.getBoolean("view_animations", true);
             SharedPreferences.Editor editorEdit = globalMainSettings.edit();
@@ -1281,15 +1283,15 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             return;
         }
-        if (i == this.backgroundRow) {
-            presentFragment(new WallpapersListActivity(0));
+        if (i == themeActivity.backgroundRow) {
+            themeActivity.presentFragment(new WallpapersListActivity(0));
             return;
         }
-        if (i == this.changeUserColor) {
-            presentFragment(new PeerColorActivity(0L).setOnApplied(this));
+        if (i == themeActivity.changeUserColor) {
+            themeActivity.presentFragment(new PeerColorActivity(0L).setOnApplied(themeActivity));
             return;
         }
-        if (i == this.sendByEnterRow) {
+        if (i == themeActivity.sendByEnterRow) {
             SharedPreferences globalMainSettings2 = MessagesController.getGlobalMainSettings();
             boolean z3 = globalMainSettings2.getBoolean("send_by_enter", false);
             SharedPreferences.Editor editorEdit2 = globalMainSettings2.edit();
@@ -1302,7 +1304,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             return;
         }
-        if (i == this.raiseToSpeakRow) {
+        if (i == themeActivity.raiseToSpeakRow) {
             SharedConfig.toggleRaiseToSpeak();
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(SharedConfig.raiseToSpeak);
@@ -1310,7 +1312,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             return;
         }
-        if (i == this.nextMediaTapRow) {
+        if (i == themeActivity.nextMediaTapRow) {
             SharedConfig.toggleNextMediaTap();
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(SharedConfig.nextMediaTap);
@@ -1318,23 +1320,23 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             return;
         }
-        if (i == this.raiseToListenRow) {
+        if (i == themeActivity.raiseToListenRow) {
             SharedConfig.toggleRaiseToListen();
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(SharedConfig.raiseToListen);
             }
-            if (!SharedConfig.raiseToListen && this.raiseToSpeakRow != -1) {
-                for (int i4 = 0; i4 < this.listView.getChildCount(); i4++) {
-                    View childAt = this.listView.getChildAt(i4);
-                    if ((childAt instanceof TextCheckCell) && this.listView.getChildAdapterPosition(childAt) == this.raiseToSpeakRow) {
+            if (!SharedConfig.raiseToListen && themeActivity.raiseToSpeakRow != -1) {
+                for (int i4 = 0; i4 < themeActivity.listView.getChildCount(); i4++) {
+                    View childAt = themeActivity.listView.getChildAt(i4);
+                    if ((childAt instanceof TextCheckCell) && themeActivity.listView.getChildAdapterPosition(childAt) == themeActivity.raiseToSpeakRow) {
                         ((TextCheckCell) childAt).setChecked(false);
                     }
                 }
             }
-            updateRows(false);
+            themeActivity.updateRows(false);
             return;
         }
-        if (i == this.pauseOnRecordRow) {
+        if (i == themeActivity.pauseOnRecordRow) {
             SharedConfig.togglePauseMusicOnRecord();
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(SharedConfig.pauseMusicOnRecord);
@@ -1342,7 +1344,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             return;
         }
-        if (i == this.pauseOnMediaRow) {
+        if (i == themeActivity.pauseOnMediaRow) {
             SharedConfig.togglePauseMusicOnMedia();
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(SharedConfig.pauseMusicOnMedia);
@@ -1350,8 +1352,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             return;
         }
-        if (i == this.distanceRow) {
-            if (getParentActivity() == null) {
+        if (i == themeActivity.distanceRow) {
+            if (themeActivity.getParentActivity() == null) {
                 return;
             }
             final AtomicReference atomicReference = new AtomicReference();
@@ -1360,7 +1362,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             CharSequence[] charSequenceArr = {LocaleController.getString("DistanceUnitsAutomatic", R.string.DistanceUnitsAutomatic), LocaleController.getString("DistanceUnitsKilometers", R.string.DistanceUnitsKilometers), LocaleController.getString("DistanceUnitsMiles", R.string.DistanceUnitsMiles)};
             final int i5 = 0;
             while (i5 < 3) {
-                RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
+                RadioColorCell radioColorCell = new RadioColorCell(themeActivity.getParentActivity());
                 radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
                 radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
                 radioColorCell.setTextAndValue(charSequenceArr[i5], i5 == SharedConfig.distanceSystemType);
@@ -1369,18 +1371,18 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 radioColorCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$createView$3(i5, atomicReference, view2);
+                        ThemeActivity.m4672$r8$lambda$vBy7czrF7UI6WXFqTpHTwgqqvM(this.f$0, i5, atomicReference, view2);
                     }
                 });
                 i5++;
             }
-            AlertDialog alertDialogCreate = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("DistanceUnitsTitle", R.string.DistanceUnitsTitle)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
+            AlertDialog alertDialogCreate = new AlertDialog.Builder(themeActivity.getParentActivity()).setTitle(LocaleController.getString("DistanceUnitsTitle", R.string.DistanceUnitsTitle)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
             atomicReference.set(alertDialogCreate);
-            showDialog(alertDialogCreate);
+            themeActivity.showDialog(alertDialogCreate);
             return;
         }
-        if (i == this.searchEngineRow) {
-            if (getParentActivity() == null) {
+        if (i == themeActivity.searchEngineRow) {
+            if (themeActivity.getParentActivity() == null) {
                 return;
             }
             final AtomicReference atomicReference2 = new AtomicReference();
@@ -1392,7 +1394,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             final int i6 = 0;
             while (i6 < size) {
                 charSequenceArr2[i6] = ((SearchEngine) searchEngines.get(i6)).name;
-                RadioColorCell radioColorCell2 = new RadioColorCell(getParentActivity());
+                RadioColorCell radioColorCell2 = new RadioColorCell(themeActivity.getParentActivity());
                 radioColorCell2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
                 radioColorCell2.setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
                 radioColorCell2.setTextAndValue(charSequenceArr2[i6], i6 == SharedConfig.searchEngineType);
@@ -1401,24 +1403,24 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 radioColorCell2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$createView$4(i6, atomicReference2, view2);
+                        ThemeActivity.$r8$lambda$Sw6vFYI4tjSxxmGeJ9K8laTsc5I(this.f$0, i6, atomicReference2, view2);
                     }
                 });
                 i6++;
             }
-            AlertDialog alertDialogCreate2 = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout2).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
+            AlertDialog alertDialogCreate2 = new AlertDialog.Builder(themeActivity.getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout2).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
             atomicReference2.set(alertDialogCreate2);
-            showDialog(alertDialogCreate2);
+            themeActivity.showDialog(alertDialogCreate2);
             return;
         }
-        if (i == this.bluetoothScoRow) {
-            if (getParentActivity() == null) {
+        if (i == themeActivity.bluetoothScoRow) {
+            if (themeActivity.getParentActivity() == null) {
                 return;
             }
             final AtomicReference atomicReference3 = new AtomicReference();
             LinearLayout linearLayout3 = new LinearLayout(context);
             linearLayout3.setOrientation(1);
-            RadioColorCell radioColorCell3 = new RadioColorCell(getParentActivity());
+            RadioColorCell radioColorCell3 = new RadioColorCell(themeActivity.getParentActivity());
             radioColorCell3.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
             int i7 = Theme.key_radioBackground;
             int color = Theme.getColor(i7);
@@ -1431,10 +1433,10 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             radioColorCell3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$createView$5(atomicReference3, view2);
+                    ThemeActivity.m4668$r8$lambda$o88CKzHyrJdHWq83ol_Gg0RIn4(this.f$0, atomicReference3, view2);
                 }
             });
-            RadioColorCell radioColorCell4 = new RadioColorCell(getParentActivity());
+            RadioColorCell radioColorCell4 = new RadioColorCell(themeActivity.getParentActivity());
             radioColorCell4.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
             radioColorCell4.setCheckColor(Theme.getColor(i7), Theme.getColor(i8));
             radioColorCell4.setTextAndText2AndValue(LocaleController.getString(R.string.MicrophoneForVoiceMessagesScoIfConnected), LocaleController.getString(R.string.MicrophoneForVoiceMessagesScoHint), SharedConfig.recordViaSco);
@@ -1443,15 +1445,15 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             radioColorCell4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$createView$7(atomicReference3, view2);
+                    ThemeActivity.$r8$lambda$FWhgCi96jq8uq11LzrLgie2oeG8(this.f$0, atomicReference3, view2);
                 }
             });
-            AlertDialog alertDialogCreate3 = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.MicrophoneForVoiceMessages)).setView(linearLayout3).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
+            AlertDialog alertDialogCreate3 = new AlertDialog.Builder(themeActivity.getParentActivity()).setTitle(LocaleController.getString(R.string.MicrophoneForVoiceMessages)).setView(linearLayout3).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
             atomicReference3.set(alertDialogCreate3);
-            showDialog(alertDialogCreate3);
+            themeActivity.showDialog(alertDialogCreate3);
             return;
         }
-        if (i == this.directShareRow) {
+        if (i == themeActivity.directShareRow) {
             SharedConfig.toggleDirectShare();
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(SharedConfig.directShare);
@@ -1459,50 +1461,56 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             return;
         }
-        if (i == this.sensitiveContentRow) {
-            if (!getMessagesController().showSensitiveContent()) {
+        if (i == themeActivity.sensitiveContentRow) {
+            if (!themeActivity.getMessagesController().showSensitiveContent()) {
                 final Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createView$8(view);
+                        ThemeActivity.$r8$lambda$kD9VW2rfjJl2Qo30sP0SLPf0LzM(this.f$0, view);
                     }
                 };
-                showDialog(new AlertDialog.Builder(context, this.resourceProvider).setTitle(LocaleController.getString(R.string.ConfirmSensitiveContentTitle)).setMessage(LocaleController.getString(R.string.ConfirmSensitiveContentText)).setPositiveButton(LocaleController.getString(R.string.Confirm), new AlertDialog.OnButtonClickListener() {
+                themeActivity.showDialog(new AlertDialog.Builder(context, themeActivity.resourceProvider).setTitle(LocaleController.getString(R.string.ConfirmSensitiveContentTitle)).setMessage(LocaleController.getString(R.string.ConfirmSensitiveContentText)).setPositiveButton(LocaleController.getString(R.string.Confirm), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i10) {
-                        this.f$0.lambda$createView$10(runnable, alertDialog, i10);
+                        ThemeActivity themeActivity2 = this.f$0;
+                        ThemeActivity.verifyAge(themeActivity2.getContext(), themeActivity2.currentAccount, new Utilities.Callback() {
+                            @Override
+                            public final void run(Object obj) {
+                                ThemeActivity.m4663$r8$lambda$F5FZy6So8EmIHL3PewrVJsS0(themeActivity2, runnable, (Boolean) obj);
+                            }
+                        }, themeActivity2.getResourceProvider());
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create());
                 return;
             } else {
-                getMessagesController().setContentSettings(false);
+                themeActivity.getMessagesController().setContentSettings(false);
                 if (view instanceof TextCheckCell) {
-                    ((TextCheckCell) view).setChecked(getMessagesController().showSensitiveContent());
+                    ((TextCheckCell) view).setChecked(themeActivity.getMessagesController().showSensitiveContent());
                     return;
                 }
                 return;
             }
         }
-        if (i == this.contactsReimportRow) {
+        if (i == themeActivity.contactsReimportRow) {
             return;
         }
-        if (i == this.contactsSortRow) {
-            if (getParentActivity() == null) {
+        if (i == themeActivity.contactsSortRow) {
+            if (themeActivity.getParentActivity() == null) {
                 return;
             }
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            AlertDialog.Builder builder = new AlertDialog.Builder(themeActivity.getParentActivity());
             builder.setTitle(LocaleController.getString("SortBy", R.string.SortBy));
             builder.setItems(new CharSequence[]{LocaleController.getString("Default", R.string.Default), LocaleController.getString("SortFirstName", R.string.SortFirstName), LocaleController.getString("SortLastName", R.string.SortLastName)}, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i10) {
-                    this.f$0.lambda$createView$11(i, dialogInterface, i10);
+                    ThemeActivity.$r8$lambda$7p4ys0LQEjjF2kr4dYXi6gFz9Cg(this.f$0, i, dialogInterface, i10);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            showDialog(builder.create());
+            themeActivity.showDialog(builder.create());
             return;
         }
-        if (i == this.chatBlurRow) {
+        if (i == themeActivity.chatBlurRow) {
             SharedConfig.toggleChatBlur();
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(SharedConfig.chatBlurEnabled());
@@ -1510,7 +1518,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             return;
         }
-        if (i == this.nightThemeRow) {
+        if (i == themeActivity.nightThemeRow) {
             if ((LocaleController.isRTL && f <= AndroidUtilities.dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.dp(76.0f))) {
                 NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) view;
                 if (Theme.selectedAutoNightType == 0) {
@@ -1538,74 +1546,74 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), currentNightThemeName, R.drawable.menu_night_mode_24, z5, 0, false, true);
                 return;
             }
-            presentFragment(new ThemeActivity(1));
+            themeActivity.presentFragment(new ThemeActivity(1));
             return;
         }
-        if (i == this.browserRow) {
+        if (i == themeActivity.browserRow) {
             if ((LocaleController.isRTL && f <= AndroidUtilities.dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.dp(76.0f))) {
-                getMessagesController().toggleWebBrowserInAppEnabled();
-                ((NotificationsCheckCell) view).setChecked(getMessagesController().isWebBrowserInAppEnabled());
+                themeActivity.getMessagesController().toggleWebBrowserInAppEnabled();
+                ((NotificationsCheckCell) view).setChecked(themeActivity.getMessagesController().isWebBrowserInAppEnabled());
                 return;
             } else {
-                presentFragment(new WebBrowserSettings(null));
+                themeActivity.presentFragment(new WebBrowserSettings(null));
                 return;
             }
         }
-        if (i == this.nightDisabledRow) {
+        if (i == themeActivity.nightDisabledRow) {
             if (Theme.selectedAutoNightType == 0) {
                 return;
             }
             Theme.selectedAutoNightType = 0;
-            updateRows(true);
+            themeActivity.updateRows(true);
             Theme.checkAutoNightThemeConditions();
             return;
         }
-        if (i == this.nightScheduledRow) {
+        if (i == themeActivity.nightScheduledRow) {
             if (Theme.selectedAutoNightType == 1) {
                 return;
             }
             Theme.selectedAutoNightType = 1;
             if (Theme.autoNightScheduleByLocation) {
-                updateSunTime(null, true);
+                themeActivity.updateSunTime(null, true);
             }
-            updateRows(true);
+            themeActivity.updateRows(true);
             Theme.checkAutoNightThemeConditions();
             return;
         }
-        if (i == this.nightAutomaticRow) {
+        if (i == themeActivity.nightAutomaticRow) {
             if (Theme.selectedAutoNightType == 2) {
                 return;
             }
             Theme.selectedAutoNightType = 2;
-            updateRows(true);
+            themeActivity.updateRows(true);
             Theme.checkAutoNightThemeConditions();
             return;
         }
-        if (i == this.nightSystemDefaultRow) {
+        if (i == themeActivity.nightSystemDefaultRow) {
             if (Theme.selectedAutoNightType == 3) {
                 return;
             }
             Theme.selectedAutoNightType = 3;
-            updateRows(true);
+            themeActivity.updateRows(true);
             Theme.checkAutoNightThemeConditions();
             return;
         }
-        if (i == this.scheduleLocationRow) {
+        if (i == themeActivity.scheduleLocationRow) {
             boolean z6 = !Theme.autoNightScheduleByLocation;
             Theme.autoNightScheduleByLocation = z6;
             ((TextCheckCell) view).setChecked(z6);
-            updateRows(true);
+            themeActivity.updateRows(true);
             if (Theme.autoNightScheduleByLocation) {
-                updateSunTime(null, true);
+                themeActivity.updateSunTime(null, true);
             }
             Theme.checkAutoNightThemeConditions();
             return;
         }
-        if (i == this.scheduleFromRow || i == this.scheduleToRow) {
-            if (getParentActivity() == null) {
+        if (i == themeActivity.scheduleFromRow || i == themeActivity.scheduleToRow) {
+            if (themeActivity.getParentActivity() == null) {
                 return;
             }
-            if (i == this.scheduleFromRow) {
+            if (i == themeActivity.scheduleFromRow) {
                 i2 = Theme.autoNightDayStartTime;
                 i3 = i2 / 60;
             } else {
@@ -1614,151 +1622,136 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             int i11 = i2 - (i3 * 60);
             final TextSettingsCell textSettingsCell = (TextSettingsCell) view;
-            showDialog(new TimePickerDialog(getParentActivity(), new TimePickerDialog.OnTimeSetListener() {
+            themeActivity.showDialog(new TimePickerDialog(themeActivity.getParentActivity(), new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public final void onTimeSet(TimePicker timePicker, int i12, int i13) {
-                    this.f$0.lambda$createView$12(i, textSettingsCell, timePicker, i12, i13);
+                    ThemeActivity.$r8$lambda$u4JLZmB1MeecpwR6Z9YPtmo6mYk(this.f$0, i, textSettingsCell, timePicker, i12, i13);
                 }
             }, i3, i11, true));
             return;
         }
-        if (i == this.scheduleUpdateLocationRow) {
-            updateSunTime(null, true);
+        if (i == themeActivity.scheduleUpdateLocationRow) {
+            themeActivity.updateSunTime(null, true);
             return;
         }
-        if (i == this.createNewThemeRow) {
-            createNewTheme();
+        if (i == themeActivity.createNewThemeRow) {
+            themeActivity.createNewTheme();
             return;
         }
-        if (i == this.editThemeRow) {
-            editTheme();
-        } else if (i == this.stickersRow) {
-            presentFragment(new StickersActivity(0, null));
-        } else if (i == this.liteModeRow) {
-            presentFragment(new LiteModeSettingsActivity());
+        if (i == themeActivity.editThemeRow) {
+            themeActivity.editTheme();
+        } else if (i == themeActivity.stickersRow) {
+            themeActivity.presentFragment(new StickersActivity(0, null));
+        } else if (i == themeActivity.liteModeRow) {
+            themeActivity.presentFragment(new LiteModeSettingsActivity());
         }
     }
 
-    public void lambda$createView$3(int i, AtomicReference atomicReference, View view) {
+    public static void m4672$r8$lambda$vBy7czrF7UI6WXFqTpHTwgqqvM(ThemeActivity themeActivity, int i, AtomicReference atomicReference, View view) {
+        themeActivity.getClass();
         SharedConfig.setDistanceSystemType(i);
-        this.updateDistance = true;
-        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.distanceRow);
+        themeActivity.updateDistance = true;
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = themeActivity.listView.findViewHolderForAdapterPosition(themeActivity.distanceRow);
         if (viewHolderFindViewHolderForAdapterPosition != null) {
-            this.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, this.distanceRow);
+            themeActivity.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, themeActivity.distanceRow);
         }
         ((Dialog) atomicReference.get()).dismiss();
     }
 
-    public void lambda$createView$4(int i, AtomicReference atomicReference, View view) {
+    public static void $r8$lambda$Sw6vFYI4tjSxxmGeJ9K8laTsc5I(ThemeActivity themeActivity, int i, AtomicReference atomicReference, View view) {
+        themeActivity.getClass();
         SharedConfig.setSearchEngineType(i);
-        this.updateSearchEngine = true;
-        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.searchEngineRow);
+        themeActivity.updateSearchEngine = true;
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = themeActivity.listView.findViewHolderForAdapterPosition(themeActivity.searchEngineRow);
         if (viewHolderFindViewHolderForAdapterPosition != null) {
-            this.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, this.searchEngineRow);
+            themeActivity.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, themeActivity.searchEngineRow);
         }
         ((Dialog) atomicReference.get()).dismiss();
     }
 
-    public void lambda$createView$5(AtomicReference atomicReference, View view) {
+    public static void m4668$r8$lambda$o88CKzHyrJdHWq83ol_Gg0RIn4(ThemeActivity themeActivity, AtomicReference atomicReference, View view) {
+        themeActivity.getClass();
         SharedConfig.recordViaSco = false;
         SharedConfig.saveConfig();
-        this.updateRecordViaSco = true;
+        themeActivity.updateRecordViaSco = true;
         ((Dialog) atomicReference.get()).dismiss();
-        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.bluetoothScoRow);
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = themeActivity.listView.findViewHolderForAdapterPosition(themeActivity.bluetoothScoRow);
         if (viewHolderFindViewHolderForAdapterPosition != null) {
-            this.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, this.bluetoothScoRow);
+            themeActivity.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, themeActivity.bluetoothScoRow);
         }
     }
 
-    public void lambda$createView$7(final AtomicReference atomicReference, View view) {
+    public static void $r8$lambda$FWhgCi96jq8uq11LzrLgie2oeG8(final ThemeActivity themeActivity, final AtomicReference atomicReference, View view) {
+        themeActivity.getClass();
         PermissionRequest.ensurePermission(R.raw.permission_request_microphone, R.string.PermissionNoBluetoothWithHint, "android.permission.BLUETOOTH_CONNECT", new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$createView$6(atomicReference, (Boolean) obj);
+                ThemeActivity.$r8$lambda$4M7U5cyuogjKajDRHTjQWkRhick(this.f$0, atomicReference, (Boolean) obj);
             }
         });
         SharedConfig.recordViaSco = true;
         SharedConfig.saveConfig();
-        this.updateRecordViaSco = true;
+        themeActivity.updateRecordViaSco = true;
         ((Dialog) atomicReference.get()).dismiss();
-        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.bluetoothScoRow);
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = themeActivity.listView.findViewHolderForAdapterPosition(themeActivity.bluetoothScoRow);
         if (viewHolderFindViewHolderForAdapterPosition != null) {
-            this.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, this.bluetoothScoRow);
+            themeActivity.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, themeActivity.bluetoothScoRow);
         }
     }
 
-    public void lambda$createView$6(AtomicReference atomicReference, Boolean bool) {
+    public static void $r8$lambda$4M7U5cyuogjKajDRHTjQWkRhick(ThemeActivity themeActivity, AtomicReference atomicReference, Boolean bool) {
         RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition;
+        themeActivity.getClass();
         if (bool.booleanValue()) {
             return;
         }
         SharedConfig.recordViaSco = false;
         SharedConfig.saveConfig();
-        this.updateRecordViaSco = true;
+        themeActivity.updateRecordViaSco = true;
         ((Dialog) atomicReference.get()).dismiss();
-        RecyclerListView recyclerListView = this.listView;
-        if (recyclerListView == null || !recyclerListView.isAttachedToWindow() || (viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.bluetoothScoRow)) == null) {
+        RecyclerListView recyclerListView = themeActivity.listView;
+        if (recyclerListView == null || !recyclerListView.isAttachedToWindow() || (viewHolderFindViewHolderForAdapterPosition = themeActivity.listView.findViewHolderForAdapterPosition(themeActivity.bluetoothScoRow)) == null) {
             return;
         }
-        this.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, this.bluetoothScoRow);
+        themeActivity.listAdapter.onBindViewHolder(viewHolderFindViewHolderForAdapterPosition, themeActivity.bluetoothScoRow);
     }
 
-    public void lambda$createView$8(View view) {
-        getMessagesController().setContentSettings(true);
+    public static void $r8$lambda$kD9VW2rfjJl2Qo30sP0SLPf0LzM(ThemeActivity themeActivity, View view) {
+        themeActivity.getMessagesController().setContentSettings(true);
         if (view instanceof TextCheckCell) {
-            ((TextCheckCell) view).setChecked(getMessagesController().showSensitiveContent());
+            ((TextCheckCell) view).setChecked(themeActivity.getMessagesController().showSensitiveContent());
         }
     }
 
-    public void lambda$createView$10(final Runnable runnable, AlertDialog alertDialog, int i) {
-        verifyAge(getContext(), this.currentAccount, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                this.f$0.lambda$createView$9(runnable, (Boolean) obj);
-            }
-        }, getResourceProvider());
-    }
-
-    public void lambda$createView$9(Runnable runnable, Boolean bool) {
+    public static void m4663$r8$lambda$F5FZy6So8EmIHL3PewrVJsS0(ThemeActivity themeActivity, Runnable runnable, Boolean bool) {
+        themeActivity.getClass();
         if (bool.booleanValue()) {
             runnable.run();
         } else {
-            BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText)).show();
+            BulletinFactory.of(themeActivity).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText)).show();
         }
     }
 
-    public void lambda$createView$11(int i, DialogInterface dialogInterface, int i2) {
+    public static void $r8$lambda$7p4ys0LQEjjF2kr4dYXi6gFz9Cg(ThemeActivity themeActivity, int i, DialogInterface dialogInterface, int i2) {
+        themeActivity.getClass();
         SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
         editorEdit.putInt("sortContactsBy", i2);
         editorEdit.commit();
-        ListAdapter listAdapter = this.listAdapter;
+        ListAdapter listAdapter = themeActivity.listAdapter;
         if (listAdapter != null) {
             listAdapter.notifyItemChanged(i);
         }
     }
 
-    public void lambda$createView$12(int i, TextSettingsCell textSettingsCell, TimePicker timePicker, int i2, int i3) {
+    public static void $r8$lambda$u4JLZmB1MeecpwR6Z9YPtmo6mYk(ThemeActivity themeActivity, int i, TextSettingsCell textSettingsCell, TimePicker timePicker, int i2, int i3) {
         int i4 = (i2 * 60) + i3;
-        if (i == this.scheduleFromRow) {
+        if (i == themeActivity.scheduleFromRow) {
             Theme.autoNightDayStartTime = i4;
             textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightFrom", R.string.AutoNightFrom), String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), true);
         } else {
             Theme.autoNightDayEndTime = i4;
             textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTo", R.string.AutoNightTo), String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), true);
         }
-    }
-
-    public int lambda$createView$14() {
-        return this.sensitiveContentRow;
-    }
-
-    public void lambda$createView$15() {
-        this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
-            @Override
-            public final int run() {
-                return this.f$0.lambda$createView$14();
-            }
-        });
     }
 
     @Override
@@ -1783,14 +1776,15 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         builder.setPositiveButton(LocaleController.getString("CreateTheme", R.string.CreateTheme), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$createNewTheme$16(alertDialog, i);
+                ThemeActivity.m4674$r8$lambda$zw9LyNQJjGMm0eyR_387UkgXP8(this.f$0, alertDialog, i);
             }
         });
         showDialog(builder.create());
     }
 
-    public void lambda$createNewTheme$16(AlertDialog alertDialog, int i) {
-        AlertsCreator.createThemeCreateDialog(this, 0, null, null);
+    public static void m4674$r8$lambda$zw9LyNQJjGMm0eyR_387UkgXP8(ThemeActivity themeActivity, AlertDialog alertDialog, int i) {
+        themeActivity.getClass();
+        AlertsCreator.createThemeCreateDialog(themeActivity, 0, null, null);
     }
 
     @Override
@@ -1846,7 +1840,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ThemeActivity.lambda$verifyAge$20(buttonWithCounterView, messagesController, str, i, context, resourcesProvider, i2, callback, bottomSheetArr, view);
+                ThemeActivity.m4671$r8$lambda$uozHzELxr3wVaxAYbSzijnvu_w(buttonWithCounterView, messagesController, str, i, context, resourcesProvider, i2, callback, bottomSheetArr, view);
             }
         });
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 7, 2, 29, 2, 14));
@@ -1855,7 +1849,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         bottomSheetShow.fixNavigationBar();
     }
 
-    public static void lambda$verifyAge$20(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, final String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, View view) {
+    public static void m4671$r8$lambda$uozHzELxr3wVaxAYbSzijnvu_w(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, final String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -1863,25 +1857,25 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         PermissionRequest.ensurePermission(R.raw.permission_request_camera, R.string.AgeVerificationNeedCameraPermission, "android.permission.CAMERA", new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ThemeActivity.lambda$verifyAge$19(buttonWithCounterView, messagesController, str, i, context, resourcesProvider, i2, callback, bottomSheetArr, (Boolean) obj);
+                ThemeActivity.m4666$r8$lambda$XlJxHor5V0Uy8jknfANjs6yLaU(buttonWithCounterView, messagesController, str, i, context, resourcesProvider, i2, callback, bottomSheetArr, (Boolean) obj);
             }
         });
     }
 
-    public static void lambda$verifyAge$19(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, Boolean bool) {
+    public static void m4666$r8$lambda$XlJxHor5V0Uy8jknfANjs6yLaU(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, Boolean bool) {
         if (!bool.booleanValue()) {
             buttonWithCounterView.setLoading(false);
         } else {
             messagesController.getUserNameResolver().resolve(str, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ThemeActivity.lambda$verifyAge$18(buttonWithCounterView, messagesController, i, context, resourcesProvider, i2, callback, bottomSheetArr, (Long) obj);
+                    ThemeActivity.$r8$lambda$CbtDnHAhwyxtHOEorJstUdRwPBo(buttonWithCounterView, messagesController, i, context, resourcesProvider, i2, callback, bottomSheetArr, (Long) obj);
                 }
             });
         }
     }
 
-    public static void lambda$verifyAge$18(ButtonWithCounterView buttonWithCounterView, MessagesController messagesController, int i, Context context, Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, BottomSheet[] bottomSheetArr, Long l) {
+    public static void $r8$lambda$CbtDnHAhwyxtHOEorJstUdRwPBo(ButtonWithCounterView buttonWithCounterView, MessagesController messagesController, int i, Context context, Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, BottomSheet[] bottomSheetArr, Long l) {
         if (l == null) {
             buttonWithCounterView.setLoading(false);
             return;
@@ -1901,7 +1895,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         botWebViewSheet.setOnVerifiedAge(new Utilities.Callback4() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                ThemeActivity.lambda$verifyAge$17(i2, botWebViewSheet, callback, (Boolean) obj, (Double) obj2, (String) obj3, (Double) obj4);
+                ThemeActivity.m4665$r8$lambda$RDYnJnFitcwfnyCjEBWrLOKAqw(i2, botWebViewSheet, callback, (Boolean) obj, (Double) obj2, (String) obj3, (Double) obj4);
             }
         });
         botWebViewSheet.setDefaultFullsize(true);
@@ -1910,17 +1904,17 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         botWebViewSheet.requestWebView(safeLastFragment, webViewRequestPropsOf);
         botWebViewSheet.show();
         buttonWithCounterView.setLoading(false);
-        bottomSheetArr[0].lambda$new$0();
+        bottomSheetArr[0].dismiss();
     }
 
-    public static void lambda$verifyAge$17(int i, BotWebViewSheet botWebViewSheet, Utilities.Callback callback, Boolean bool, Double d, String str, Double d2) {
+    public static void m4665$r8$lambda$RDYnJnFitcwfnyCjEBWrLOKAqw(int i, BotWebViewSheet botWebViewSheet, Utilities.Callback callback, Boolean bool, Double d, String str, Double d2) {
         boolean zBooleanValue;
         if (d != null) {
             zBooleanValue = d.doubleValue() >= ((double) i);
         } else {
             zBooleanValue = bool.booleanValue();
         }
-        botWebViewSheet.lambda$openOptions$42();
+        botWebViewSheet.dismiss();
         callback.run(Boolean.valueOf(zBooleanValue));
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!zBooleanValue || safeLastFragment == null) {
@@ -1972,7 +1966,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     builder.setPositiveButton(LocaleController.getString("ConnectingToProxyEnable", R.string.ConnectingToProxyEnable), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i) {
-                            this.f$0.lambda$updateSunTime$21(alertDialog, i);
+                            ThemeActivity.$r8$lambda$hAioia46sT_dm2_U0Rp825WYduw(this.f$0, alertDialog, i);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -2012,7 +2006,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateSunTime$23();
+                ThemeActivity.$r8$lambda$tK3zKxFuObHbNgcksbrnWLUI6CA(this.f$0);
             }
         });
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findViewHolderForAdapterPosition(this.scheduleLocationInfoRow);
@@ -2027,18 +2021,19 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$updateSunTime$21(AlertDialog alertDialog, int i) {
-        if (getParentActivity() == null) {
+    public static void $r8$lambda$hAioia46sT_dm2_U0Rp825WYduw(ThemeActivity themeActivity, AlertDialog alertDialog, int i) {
+        if (themeActivity.getParentActivity() == null) {
             return;
         }
         try {
-            getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+            themeActivity.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
         } catch (Exception unused) {
         }
     }
 
-    public void lambda$updateSunTime$23() {
+    public static void $r8$lambda$tK3zKxFuObHbNgcksbrnWLUI6CA(final ThemeActivity themeActivity) {
         final String locality;
+        themeActivity.getClass();
         try {
             List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, Locale.getDefault()).getFromLocation(Theme.autoNightLocationLatitude, Theme.autoNightLocationLongitude, 1);
             locality = fromLocation.size() > 0 ? fromLocation.get(0).getLocality() : null;
@@ -2047,20 +2042,21 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateSunTime$22(locality);
+                ThemeActivity.m4667$r8$lambda$bvzBk_XlcvyXki6qKoYqWj7WE(this.f$0, locality);
             }
         });
     }
 
-    public void lambda$updateSunTime$22(String str) {
+    public static void m4667$r8$lambda$bvzBk_XlcvyXki6qKoYqWj7WE(ThemeActivity themeActivity, String str) {
         RecyclerListView.Holder holder;
+        themeActivity.getClass();
         Theme.autoNightCityName = str;
         if (str == null) {
             Theme.autoNightCityName = String.format("(%.06f, %.06f)", Double.valueOf(Theme.autoNightLocationLatitude), Double.valueOf(Theme.autoNightLocationLongitude));
         }
         Theme.saveAutoNightThemeConfig();
-        RecyclerListView recyclerListView = this.listView;
-        if (recyclerListView == null || (holder = (RecyclerListView.Holder) recyclerListView.findViewHolderForAdapterPosition(this.scheduleUpdateLocationRow)) == null) {
+        RecyclerListView recyclerListView = themeActivity.listView;
+        if (recyclerListView == null || (holder = (RecyclerListView.Holder) recyclerListView.findViewHolderForAdapterPosition(themeActivity.scheduleUpdateLocationRow)) == null) {
             return;
         }
         View view = holder.itemView;
@@ -2103,7 +2099,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return LocaleController.formatString("AutoNightUpdateLocationInfo", R.string.AutoNightUpdateLocationInfo, String.format("%02d:%02d", Integer.valueOf(i4), Integer.valueOf(i3 - (i4 * 60))), str);
     }
 
-    private static class InnerAccentView extends View {
+    static class InnerAccentView extends View {
         private ObjectAnimator checkAnimator;
         private boolean checked;
         private float checkedState;
@@ -2352,7 +2348,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     builder.setItems(charSequenceArr, iArr, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) throws Throwable {
-                            this.f$0.lambda$showOptionsForTheme$1(themeInfo, dialogInterface, i);
+                            ThemeActivity.ListAdapter.$r8$lambda$zTgYDzbKt8ihxZ2T2Mo8jbwEmD8(this.f$0, themeInfo, dialogInterface, i);
                         }
                     });
                     AlertDialog alertDialogCreate = builder.create();
@@ -2364,20 +2360,27 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$showOptionsForTheme$1(final Theme.ThemeInfo themeInfo, DialogInterface dialogInterface, int i) throws Throwable {
+        public static void $r8$lambda$zTgYDzbKt8ihxZ2T2Mo8jbwEmD8(final ListAdapter listAdapter, final Theme.ThemeInfo themeInfo, DialogInterface dialogInterface, int i) throws Throwable {
             File assetFile;
+            Throwable th;
+            ?? r3;
             String str;
             File file;
             Intent intent;
-            FileOutputStream fileOutputStream;
+            Exception exc;
             if (ThemeActivity.this.getParentActivity() == null) {
                 return;
             }
-            FileOutputStream fileOutputStream2 = null;
+            ?? r2 = 0;
+            r2 = 0;
+            r2 = 0;
+            r2 = 0;
+            ?? r4 = 0;
+            r2 = 0;
             if (i == 0) {
                 if (themeInfo.info == null) {
                     ThemeActivity.this.getMessagesController().saveThemeToServer(themeInfo, null);
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, themeInfo, null);
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needShareTheme, themeInfo, null);
                     return;
                 }
                 String str2 = "https://" + ThemeActivity.this.getMessagesController().linkPrefix + "/addtheme/" + themeInfo.info.slug;
@@ -2407,7 +2410,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        this.f$0.lambda$showOptionsForTheme$0(themeInfo, alertDialog, i2);
+                        ThemeActivity.ListAdapter.m4676$r8$lambda$6Aryyeh6g9qSqvSjJ71n_XgnhY(this.f$0, themeInfo, alertDialog, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -2433,16 +2436,17 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 try {
                     try {
                         try {
-                            fileOutputStream = new FileOutputStream(assetFile);
+                            FileOutputStream fileOutputStream = new FileOutputStream(assetFile);
                             try {
                                 fileOutputStream.write(AndroidUtilities.getStringBytes(sb.toString()));
                                 fileOutputStream.close();
                             } catch (Exception e) {
-                                e = e;
-                                fileOutputStream2 = fileOutputStream;
-                                FileLog.e(e);
-                                if (fileOutputStream2 != null) {
-                                    fileOutputStream2.close();
+                                exc = e;
+                                r2 = fileOutputStream;
+                                FileLog.e(exc);
+                                if (r2 != 0) {
+                                    r2.close();
+                                    r2 = r2;
                                 }
                                 str = themeInfo.name;
                                 if (!str.endsWith(".attheme")) {
@@ -2452,6 +2456,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                 if (AndroidUtilities.copyFile(assetFile, file)) {
                                     intent = new Intent("android.intent.action.SEND");
                                     intent.setType("text/xml");
+                                    r2 = "android.intent.extra.STREAM";
                                     if (Build.VERSION.SDK_INT >= 24) {
                                         try {
                                             intent.putExtra("android.intent.extra.STREAM", FileProvider.getUriForFile(ThemeActivity.this.getParentActivity(), ApplicationLoader.getApplicationId() + ".provider", file));
@@ -2463,28 +2468,33 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                         intent.putExtra("android.intent.extra.STREAM", Uri.fromFile(file));
                                     }
                                     ThemeActivity.this.startActivityForResult(Intent.createChooser(intent, LocaleController.getString("ShareFile", R.string.ShareFile)), 500);
+                                    r4 = r2;
+                                } else {
+                                    r4 = r2;
                                 }
-                                return;
-                            } catch (Throwable th) {
-                                th = th;
-                                if (fileOutputStream != null) {
+                            } catch (Throwable th2) {
+                                th = th2;
+                                r3 = fileOutputStream;
+                                if (r3 != 0) {
                                     try {
-                                        fileOutputStream.close();
+                                        r3.close();
+                                        throw th;
                                     } catch (Exception e2) {
                                         FileLog.e(e2);
+                                        throw th;
                                     }
                                 }
                                 throw th;
                             }
                         } catch (Exception e3) {
-                            e = e3;
+                            FileLog.e(e3);
                         }
-                    } catch (Throwable th2) {
-                        th = th2;
-                        fileOutputStream = fileOutputStream2;
+                    } catch (Exception e4) {
+                        exc = e4;
                     }
-                } catch (Exception e4) {
-                    FileLog.e(e4);
+                } catch (Throwable th3) {
+                    th = th3;
+                    r3 = r4;
                 }
             } else {
                 String str3 = themeInfo.assetName;
@@ -2497,31 +2507,36 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             file = new File(FileLoader.getDirectory(4), FileLoader.fixFileName(str));
             try {
                 if (AndroidUtilities.copyFile(assetFile, file)) {
-                    return;
-                }
-                intent = new Intent("android.intent.action.SEND");
-                intent.setType("text/xml");
-                if (Build.VERSION.SDK_INT >= 24) {
-                    intent.putExtra("android.intent.extra.STREAM", FileProvider.getUriForFile(ThemeActivity.this.getParentActivity(), ApplicationLoader.getApplicationId() + ".provider", file));
-                    intent.setFlags(1);
+                    r4 = r2;
                 } else {
-                    intent.putExtra("android.intent.extra.STREAM", Uri.fromFile(file));
+                    intent = new Intent("android.intent.action.SEND");
+                    intent.setType("text/xml");
+                    r2 = "android.intent.extra.STREAM";
+                    if (Build.VERSION.SDK_INT >= 24) {
+                        intent.putExtra("android.intent.extra.STREAM", FileProvider.getUriForFile(ThemeActivity.this.getParentActivity(), ApplicationLoader.getApplicationId() + ".provider", file));
+                        intent.setFlags(1);
+                    } else {
+                        intent.putExtra("android.intent.extra.STREAM", Uri.fromFile(file));
+                    }
+                    ThemeActivity.this.startActivityForResult(Intent.createChooser(intent, LocaleController.getString("ShareFile", R.string.ShareFile)), 500);
+                    r4 = r2;
                 }
-                ThemeActivity.this.startActivityForResult(Intent.createChooser(intent, LocaleController.getString("ShareFile", R.string.ShareFile)), 500);
             } catch (Exception e5) {
                 FileLog.e(e5);
+                r4 = r2;
             }
         }
 
-        public void lambda$showOptionsForTheme$0(Theme.ThemeInfo themeInfo, AlertDialog alertDialog, int i) {
+        public static void m4676$r8$lambda$6Aryyeh6g9qSqvSjJ71n_XgnhY(ListAdapter listAdapter, Theme.ThemeInfo themeInfo, AlertDialog alertDialog, int i) {
+            listAdapter.getClass();
             MessagesController.getInstance(themeInfo.account).saveTheme(themeInfo, null, themeInfo == Theme.getCurrentNightTheme(), true);
             if (Theme.deleteTheme(themeInfo)) {
                 ((BaseFragment) ThemeActivity.this).parentLayout.rebuildAllFragmentViews(true, true);
             }
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeListUpdated, new Object[0]);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.themeListUpdated, new Object[0]);
         }
 
-        public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) {
+        public static void $r8$lambda$5kfwAA3Dj9F1C6IpsJxJmYwz8h8(ListAdapter listAdapter, ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) {
             Theme.ThemeInfo currentNightTheme = ThemeActivity.this.currentType == 1 ? Theme.getCurrentNightTheme() : Theme.getCurrentTheme();
             if (i != themeAccentsListAdapter.getItemCount() - 1) {
                 Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) themeAccentsListAdapter.themeAccents.get(i);
@@ -2531,7 +2546,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 int i2 = currentNightTheme.currentAccentId;
                 int i3 = themeAccent.id;
                 if (i2 != i3) {
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, currentNightTheme, Boolean.valueOf(ThemeActivity.this.currentType == 1), null, Integer.valueOf(themeAccent.id));
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, currentNightTheme, Boolean.valueOf(ThemeActivity.this.currentType == 1), null, Integer.valueOf(themeAccent.id));
                     EmojiThemes.saveCustomTheme(currentNightTheme, themeAccent.id);
                     Theme.turnOffAutoNight(ThemeActivity.this);
                 } else {
@@ -2563,7 +2578,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public boolean lambda$onCreateViewHolder$5(final ThemeAccentsListAdapter themeAccentsListAdapter, View view, int i) {
+        public static boolean $r8$lambda$Qzk_mTDXwKbVgZaZJbIYdkx0dcQ(final ListAdapter listAdapter, final ThemeAccentsListAdapter themeAccentsListAdapter, View view, int i) {
+            listAdapter.getClass();
             if (i >= 0 && i < themeAccentsListAdapter.themeAccents.size()) {
                 final Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) themeAccentsListAdapter.themeAccents.get(i);
                 if (themeAccent.id >= 100 && !themeAccent.isDefault) {
@@ -2574,7 +2590,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     builder.setItems(new CharSequence[]{string, string2, (tL_theme == null || !tL_theme.creator) ? null : LocaleController.getString("ThemeSetUrl", R.string.ThemeSetUrl), LocaleController.getString("DeleteTheme", R.string.DeleteTheme)}, new int[]{R.drawable.msg_edit, R.drawable.msg_share, R.drawable.msg_link, R.drawable.msg_delete}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i2) {
-                            this.f$0.lambda$onCreateViewHolder$4(themeAccent, themeAccentsListAdapter, dialogInterface, i2);
+                            ThemeActivity.ListAdapter.$r8$lambda$iGWsCvPBdd4kG_S9hXgNaYVykDs(this.f$0, themeAccent, themeAccentsListAdapter, dialogInterface, i2);
                         }
                     });
                     AlertDialog alertDialogCreate = builder.create();
@@ -2586,7 +2602,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             return false;
         }
 
-        public void lambda$onCreateViewHolder$4(final Theme.ThemeAccent themeAccent, final ThemeAccentsListAdapter themeAccentsListAdapter, DialogInterface dialogInterface, int i) {
+        public static void $r8$lambda$iGWsCvPBdd4kG_S9hXgNaYVykDs(final ListAdapter listAdapter, final Theme.ThemeAccent themeAccent, final ThemeAccentsListAdapter themeAccentsListAdapter, DialogInterface dialogInterface, int i) {
             if (ThemeActivity.this.getParentActivity() == null) {
                 return;
             }
@@ -2597,7 +2613,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             if (i == 1) {
                 if (themeAccent.info == null) {
                     ThemeActivity.this.getMessagesController().saveThemeToServer(themeAccent.parentTheme, themeAccent);
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, themeAccent.parentTheme, themeAccent);
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needShareTheme, themeAccent.parentTheme, themeAccent);
                     return;
                 }
                 String str = "https://" + ThemeActivity.this.getMessagesController().linkPrefix + "/addtheme/" + themeAccent.info.slug;
@@ -2617,7 +2633,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    this.f$0.lambda$onCreateViewHolder$3(themeAccentsListAdapter, themeAccent, alertDialog, i2);
+                    ThemeActivity.ListAdapter.$r8$lambda$x2HguB2hSCzJ72AbppmQD156TO4(this.f$0, themeAccentsListAdapter, themeAccent, alertDialog, i2);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -2629,16 +2645,18 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$onCreateViewHolder$3(ThemeAccentsListAdapter themeAccentsListAdapter, Theme.ThemeAccent themeAccent, AlertDialog alertDialog, int i) {
+        public static void $r8$lambda$x2HguB2hSCzJ72AbppmQD156TO4(ListAdapter listAdapter, ThemeAccentsListAdapter themeAccentsListAdapter, Theme.ThemeAccent themeAccent, AlertDialog alertDialog, int i) {
+            listAdapter.getClass();
             if (Theme.deleteThemeAccent(themeAccentsListAdapter.currentTheme, themeAccent, true)) {
                 Theme.refreshThemeColors();
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, Theme.getActiveTheme(), Boolean.valueOf(ThemeActivity.this.currentType == 1), null, -1);
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, Theme.getActiveTheme(), Boolean.valueOf(ThemeActivity.this.currentType == 1), null, -1);
             }
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View notificationsCheckCell;
+            View bubbleRadiusCell;
             int i2 = 0;
             switch (i) {
                 case 1:
@@ -2735,28 +2753,32 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     tintRecyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
                         public final void onItemClick(View view, int i3) {
-                            this.f$0.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView, view, i3);
+                            ThemeActivity.ListAdapter.$r8$lambda$5kfwAA3Dj9F1C6IpsJxJmYwz8h8(this.f$0, themeAccentsListAdapter, tintRecyclerListView, view, i3);
                         }
                     });
                     tintRecyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
                         @Override
                         public final boolean onItemClick(View view, int i3) {
-                            return this.f$0.lambda$onCreateViewHolder$5(themeAccentsListAdapter, view, i3);
+                            return ThemeActivity.ListAdapter.$r8$lambda$Qzk_mTDXwKbVgZaZJbIYdkx0dcQ(this.f$0, themeAccentsListAdapter, view, i3);
                         }
                     });
                     tintRecyclerListView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(62.0f)));
-                    notificationsCheckCell = tintRecyclerListView;
+                    bubbleRadiusCell = tintRecyclerListView;
+                    notificationsCheckCell = bubbleRadiusCell;
                     break;
                 case 13:
-                    notificationsCheckCell = ThemeActivity.this.new BubbleRadiusCell(this.mContext);
+                    bubbleRadiusCell = ThemeActivity.this.new BubbleRadiusCell(this.mContext);
+                    notificationsCheckCell = bubbleRadiusCell;
                     break;
                 case 14:
                 case 18:
                 default:
-                    notificationsCheckCell = new TextCell(this.mContext);
+                    bubbleRadiusCell = new TextCell(this.mContext);
+                    notificationsCheckCell = bubbleRadiusCell;
                     break;
                 case 15:
-                    notificationsCheckCell = new SwipeGestureSettingsView(this.mContext, ((BaseFragment) ThemeActivity.this).currentAccount);
+                    bubbleRadiusCell = new SwipeGestureSettingsView(this.mContext, ((BaseFragment) ThemeActivity.this).currentAccount);
+                    notificationsCheckCell = bubbleRadiusCell;
                     break;
                 case 16:
                     ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(this.mContext, ((BaseFragment) ThemeActivity.this).parentLayout, i2) {
@@ -2769,7 +2791,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         }
                     };
                     themePreviewMessagesCell.setImportantForAccessibility(4);
-                    notificationsCheckCell = themePreviewMessagesCell;
+                    bubbleRadiusCell = themePreviewMessagesCell;
+                    notificationsCheckCell = bubbleRadiusCell;
                     break;
                 case 17:
                     Context context2 = this.mContext;
@@ -2777,15 +2800,18 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     DefaultThemesPreviewCell defaultThemesPreviewCell = new DefaultThemesPreviewCell(context2, themeActivity3, themeActivity3.currentType);
                     defaultThemesPreviewCell.setFocusable(false);
                     defaultThemesPreviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    notificationsCheckCell = defaultThemesPreviewCell;
+                    bubbleRadiusCell = defaultThemesPreviewCell;
+                    notificationsCheckCell = bubbleRadiusCell;
                     break;
                 case 19:
-                    notificationsCheckCell = new RadioButtonCell(this.mContext);
+                    bubbleRadiusCell = new RadioButtonCell(this.mContext);
+                    notificationsCheckCell = bubbleRadiusCell;
                     break;
                 case 20:
                     Context context3 = this.mContext;
                     ThemeActivity themeActivity4 = ThemeActivity.this;
-                    notificationsCheckCell = new AppIconsSelectorCell(context3, themeActivity4, ((BaseFragment) themeActivity4).currentAccount);
+                    bubbleRadiusCell = new AppIconsSelectorCell(context3, themeActivity4, ((BaseFragment) themeActivity4).currentAccount);
+                    notificationsCheckCell = bubbleRadiusCell;
                     break;
                 case 21:
                     notificationsCheckCell = new PeerColorActivity.ChangeNameColorCell(((BaseFragment) ThemeActivity.this).currentAccount, 0L, this.mContext, ThemeActivity.this.getResourceProvider());
@@ -3297,7 +3323,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$24();
+                ThemeActivity.m4662$r8$lambda$ClPdEBJ7Chuy4EHDuol94dMYw(this.f$0);
             }
 
             @Override
@@ -3308,33 +3334,33 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$24() {
-        for (int i = 0; i < this.listView.getChildCount(); i++) {
-            View childAt = this.listView.getChildAt(i);
+    public static void m4662$r8$lambda$ClPdEBJ7Chuy4EHDuol94dMYw(ThemeActivity themeActivity) {
+        for (int i = 0; i < themeActivity.listView.getChildCount(); i++) {
+            View childAt = themeActivity.listView.getChildAt(i);
             if (childAt instanceof AppIconsSelectorCell) {
                 ((AppIconsSelectorCell) childAt).getAdapter().notifyDataSetChanged();
             } else if (childAt instanceof PeerColorActivity.ChangeNameColorCell) {
                 ((PeerColorActivity.ChangeNameColorCell) childAt).updateColors();
             }
         }
-        for (int i2 = 0; i2 < this.listView.getCachedChildCount(); i2++) {
-            View cachedChildAt = this.listView.getCachedChildAt(i2);
+        for (int i2 = 0; i2 < themeActivity.listView.getCachedChildCount(); i2++) {
+            View cachedChildAt = themeActivity.listView.getCachedChildAt(i2);
             if (cachedChildAt instanceof AppIconsSelectorCell) {
                 ((AppIconsSelectorCell) cachedChildAt).getAdapter().notifyDataSetChanged();
             } else if (cachedChildAt instanceof PeerColorActivity.ChangeNameColorCell) {
                 ((PeerColorActivity.ChangeNameColorCell) cachedChildAt).updateColors();
             }
         }
-        for (int i3 = 0; i3 < this.listView.getHiddenChildCount(); i3++) {
-            View hiddenChildAt = this.listView.getHiddenChildAt(i3);
+        for (int i3 = 0; i3 < themeActivity.listView.getHiddenChildCount(); i3++) {
+            View hiddenChildAt = themeActivity.listView.getHiddenChildAt(i3);
             if (hiddenChildAt instanceof AppIconsSelectorCell) {
                 ((AppIconsSelectorCell) hiddenChildAt).getAdapter().notifyDataSetChanged();
             } else if (hiddenChildAt instanceof PeerColorActivity.ChangeNameColorCell) {
                 ((PeerColorActivity.ChangeNameColorCell) hiddenChildAt).updateColors();
             }
         }
-        for (int i4 = 0; i4 < this.listView.getAttachedScrapChildCount(); i4++) {
-            View attachedScrapChildAt = this.listView.getAttachedScrapChildAt(i4);
+        for (int i4 = 0; i4 < themeActivity.listView.getAttachedScrapChildCount(); i4++) {
+            View attachedScrapChildAt = themeActivity.listView.getAttachedScrapChildAt(i4);
             if (attachedScrapChildAt instanceof AppIconsSelectorCell) {
                 ((AppIconsSelectorCell) attachedScrapChildAt).getAdapter().notifyDataSetChanged();
             } else if (attachedScrapChildAt instanceof PeerColorActivity.ChangeNameColorCell) {

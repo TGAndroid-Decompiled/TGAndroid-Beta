@@ -126,7 +126,9 @@ public class BotStorage {
         File file2 = new File(dir2, sb2.toString());
         if (!file.exists() && file2.exists()) {
             file2.renameTo(file);
-        } else if (this.secured) {
+            return file;
+        }
+        if (this.secured) {
             File file3 = new File(getDir(), this.user_id + "_" + this.bot_id + "_s");
             if (!file.exists() && file3.exists()) {
                 file3.renameTo(file);
@@ -330,7 +332,7 @@ public class BotStorage {
 
                 @Override
                 public final boolean test(Object obj) {
-                    return BotStorage.lambda$getKey$0(hashSet, (BotStorage.StorageConfig) obj);
+                    return BotStorage.m4813$r8$lambda$2TrejV4DZFTKINv8zN0Fm9UNc(hashSet, (BotStorage.StorageConfig) obj);
                 }
             }).collect(Collectors.toSet())).iterator();
             while (it.hasNext()) {
@@ -348,7 +350,7 @@ public class BotStorage {
         return new Pair(strOptString, Boolean.valueOf(z));
     }
 
-    public static boolean lambda$getKey$0(HashSet hashSet, StorageConfig storageConfig) {
+    public static boolean m4813$r8$lambda$2TrejV4DZFTKINv8zN0Fm9UNc(HashSet hashSet, StorageConfig storageConfig) {
         return !hashSet.contains(Long.valueOf(storageConfig.user_id));
     }
 
@@ -383,7 +385,7 @@ public class BotStorage {
 
             @Override
             public final boolean test(Object obj) {
-                return BotStorage.lambda$getStoragesWithKey$1(hashSet, (BotStorage.StorageConfig) obj);
+                return BotStorage.m4814$r8$lambda$WR9erIHrU4gsykerJmxzH3I8b0(hashSet, (BotStorage.StorageConfig) obj);
             }
         }).collect(Collectors.toSet())) {
             try {
@@ -398,7 +400,7 @@ public class BotStorage {
         return arrayList;
     }
 
-    public static boolean lambda$getStoragesWithKey$1(HashSet hashSet, StorageConfig storageConfig) {
+    public static boolean m4814$r8$lambda$WR9erIHrU4gsykerJmxzH3I8b0(HashSet hashSet, StorageConfig storageConfig) {
         return !hashSet.contains(Long.valueOf(storageConfig.user_id));
     }
 
@@ -530,7 +532,7 @@ public class BotStorage {
             c1StorageCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BotStorage.lambda$showChooseStorage$2(strArr, storageConfig, arrayList, buttonWithCounterView, view);
+                    BotStorage.$r8$lambda$F0LUj9F8WXBbvF1WTUfplcMfhfg(strArr, storageConfig, arrayList, buttonWithCounterView, view);
                 }
             });
             linearLayout.addView(c1StorageCell, LayoutHelper.createLinear(-1, 56));
@@ -546,13 +548,13 @@ public class BotStorage {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotStorage.lambda$showChooseStorage$3(zArr, callback, strArr, bottomSheetCreate, view);
+                BotStorage.$r8$lambda$1QeqdZGUGcNLkOPCyxkRxBxR_Dk(zArr, callback, strArr, bottomSheetCreate, view);
             }
         });
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                BotStorage.lambda$showChooseStorage$4(zArr, callback, dialogInterface);
+                BotStorage.m4815$r8$lambda$_XiV6ygf3hnFTc2t7ybF1GjLJQ(zArr, callback, dialogInterface);
             }
         });
         bottomSheetCreate.show();
@@ -595,25 +597,28 @@ public class BotStorage {
         }
     }
 
-    public static void lambda$showChooseStorage$2(String[] strArr, StorageConfig storageConfig, ArrayList arrayList, ButtonWithCounterView buttonWithCounterView, View view) {
+    public static void $r8$lambda$F0LUj9F8WXBbvF1WTUfplcMfhfg(String[] strArr, StorageConfig storageConfig, ArrayList arrayList, ButtonWithCounterView buttonWithCounterView, View view) {
         strArr[0] = storageConfig.storage_id;
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            C1StorageCell c1StorageCell = (C1StorageCell) it.next();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            C1StorageCell c1StorageCell = (C1StorageCell) obj;
             c1StorageCell.setChecked(TextUtils.equals(c1StorageCell.id, strArr[0]));
         }
         buttonWithCounterView.setEnabled(strArr[0] != null);
     }
 
-    public static void lambda$showChooseStorage$3(boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
+    public static void $r8$lambda$1QeqdZGUGcNLkOPCyxkRxBxR_Dk(boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
         if (!zArr[0] && callback != null) {
             zArr[0] = true;
             callback.run(strArr[0]);
         }
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
     }
 
-    public static void lambda$showChooseStorage$4(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+    public static void m4815$r8$lambda$_XiV6ygf3hnFTc2t7ybF1GjLJQ(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
         if (zArr[0] || callback == null) {
             return;
         }

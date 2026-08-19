@@ -42,9 +42,7 @@ public class FragmentContextViewWavesDrawable {
 
     public void draw(float f, float f2, float f3, float f4, Canvas canvas, FragmentContextView fragmentContextView, float f5) {
         long j;
-        boolean z;
         long j2;
-        int i;
         WeavingState weavingState;
         float f6;
         float f7;
@@ -56,14 +54,15 @@ public class FragmentContextViewWavesDrawable {
         float f13;
         float f14;
         float f15;
+        float f16;
         checkColors();
-        boolean z2 = fragmentContextView != null && this.parents.size() > 0;
+        boolean z = fragmentContextView != null && this.parents.size() > 0;
         if (f2 > f4) {
             return;
         }
         WeavingState weavingState2 = this.currentState;
-        boolean z3 = (weavingState2 == null || this.previousState == null || ((weavingState2.currentState != 1 || this.previousState.currentState != 0) && (this.previousState.currentState != 1 || this.currentState.currentState != 0))) ? false : true;
-        if (z2) {
+        boolean z2 = (weavingState2 == null || this.previousState == null || ((weavingState2.currentState != 1 || this.previousState.currentState != 0) && (this.previousState.currentState != 1 || this.currentState.currentState != 0))) ? false : true;
+        if (z) {
             long jElapsedRealtime = SystemClock.elapsedRealtime();
             j = jElapsedRealtime - this.lastUpdateTime;
             this.lastUpdateTime = jElapsedRealtime;
@@ -75,50 +74,50 @@ public class FragmentContextViewWavesDrawable {
                 z = false;
             }
             if (z) {
-                f7 = this.animateToAmplitude;
-                f8 = this.amplitude;
-                if (f7 != f8) {
-                    f14 = this.animateAmplitudeDiff;
-                    f15 = f8 + (j2 * f14);
-                    this.amplitude = f15;
-                    if (f14 > 0.0f) {
-                        if (f15 > f7) {
-                            this.amplitude = f7;
+                f8 = this.animateToAmplitude;
+                f9 = this.amplitude;
+                if (f8 != f9) {
+                    f15 = this.animateAmplitudeDiff;
+                    f16 = f9 + (j2 * f15);
+                    this.amplitude = f16;
+                    if (f15 > 0.0f) {
+                        if (f16 > f8) {
+                            this.amplitude = f8;
                         }
-                    } else if (f15 < f7) {
-                        this.amplitude = f7;
+                    } else if (f16 < f8) {
+                        this.amplitude = f8;
                     }
                     fragmentContextView.invalidate();
                 }
-                f9 = this.animateToAmplitude;
-                f10 = this.amplitude2;
-                if (f9 != f10) {
-                    f12 = this.animateAmplitudeDiff2;
-                    f13 = f10 + (j2 * f12);
-                    this.amplitude2 = f13;
-                    if (f12 > 0.0f) {
-                        if (f13 > f9) {
-                            this.amplitude2 = f9;
+                f10 = this.animateToAmplitude;
+                f11 = this.amplitude2;
+                if (f10 != f11) {
+                    f13 = this.animateAmplitudeDiff2;
+                    f14 = f11 + (j2 * f13);
+                    this.amplitude2 = f14;
+                    if (f13 > 0.0f) {
+                        if (f14 > f10) {
+                            this.amplitude2 = f10;
                         }
-                    } else if (f13 < f9) {
-                        this.amplitude2 = f9;
+                    } else if (f14 < f10) {
+                        this.amplitude2 = f10;
                     }
                     fragmentContextView.invalidate();
                 }
                 if (this.previousState != null) {
-                    f11 = this.progressToState + (j2 / 250.0f);
-                    this.progressToState = f11;
-                    if (f11 > 1.0f) {
+                    f12 = this.progressToState + (j2 / 250.0f);
+                    this.progressToState = f12;
+                    if (f12 > 1.0f) {
                         this.progressToState = 1.0f;
                         this.previousState = null;
                     }
                     fragmentContextView.invalidate();
                 }
             }
-            for (i = 0; i < 2; i++) {
+            for (int i = 0; i < 2; i++) {
                 if (i == 0 || this.previousState != null) {
                     if (i == 0) {
-                        f6 = 1.0f - this.progressToState;
+                        f7 = 1.0f - this.progressToState;
                         this.previousState.setToPaint(this.paint);
                     } else {
                         weavingState = this.currentState;
@@ -134,15 +133,16 @@ public class FragmentContextViewWavesDrawable {
                             weavingState.update((int) (f4 - f2), (int) (f3 - f), j2, this.amplitude);
                         }
                         this.currentState.setToPaint(this.paint);
+                        f7 = f6;
                     }
-                    if ((i == 1 || !z3) && i == 1) {
-                        this.paint.setAlpha((int) (255.0f * f6));
+                    if ((i == 1 || !z2) && i == 1) {
+                        this.paint.setAlpha((int) (255.0f * f7));
                     } else {
                         this.paint.setAlpha(255);
                     }
-                    if (i != 1 && z3) {
+                    if (i != 1 && z2) {
                         this.path.rewind();
-                        this.path.addCircle(f3 - AndroidUtilities.dp(18.0f), f2 + ((f4 - f2) / 2.0f), (f3 - f) * 1.1f * f6, Path.Direction.CW);
+                        this.path.addCircle(f3 - AndroidUtilities.dp(18.0f), f2 + ((f4 - f2) / 2.0f), (f3 - f) * 1.1f * f7, Path.Direction.CW);
                         canvas.save();
                         canvas.clipPath(this.path);
                         canvas.drawRoundRect(f, f2, f3, f4, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
@@ -154,43 +154,42 @@ public class FragmentContextViewWavesDrawable {
             }
         }
         j = 0;
-        z = z2;
         j2 = j;
         if (z) {
-            f7 = this.animateToAmplitude;
-            f8 = this.amplitude;
-            if (f7 != f8) {
-                f14 = this.animateAmplitudeDiff;
-                f15 = f8 + (j2 * f14);
-                this.amplitude = f15;
-                if (f14 > 0.0f) {
-                    if (f15 > f7) {
-                        this.amplitude = f7;
+            f8 = this.animateToAmplitude;
+            f9 = this.amplitude;
+            if (f8 != f9) {
+                f15 = this.animateAmplitudeDiff;
+                f16 = f9 + (j2 * f15);
+                this.amplitude = f16;
+                if (f15 > 0.0f) {
+                    if (f16 > f8) {
+                        this.amplitude = f8;
                     }
-                } else if (f15 < f7) {
-                    this.amplitude = f7;
+                } else if (f16 < f8) {
+                    this.amplitude = f8;
                 }
                 fragmentContextView.invalidate();
             }
-            f9 = this.animateToAmplitude;
-            f10 = this.amplitude2;
-            if (f9 != f10) {
-                f12 = this.animateAmplitudeDiff2;
-                f13 = f10 + (j2 * f12);
-                this.amplitude2 = f13;
-                if (f12 > 0.0f) {
-                    if (f13 > f9) {
-                        this.amplitude2 = f9;
+            f10 = this.animateToAmplitude;
+            f11 = this.amplitude2;
+            if (f10 != f11) {
+                f13 = this.animateAmplitudeDiff2;
+                f14 = f11 + (j2 * f13);
+                this.amplitude2 = f14;
+                if (f13 > 0.0f) {
+                    if (f14 > f10) {
+                        this.amplitude2 = f10;
                     }
-                } else if (f13 < f9) {
-                    this.amplitude2 = f9;
+                } else if (f14 < f10) {
+                    this.amplitude2 = f10;
                 }
                 fragmentContextView.invalidate();
             }
             if (this.previousState != null) {
-                f11 = this.progressToState + (j2 / 250.0f);
-                this.progressToState = f11;
-                if (f11 > 1.0f) {
+                f12 = this.progressToState + (j2 / 250.0f);
+                this.progressToState = f12;
+                if (f12 > 1.0f) {
                     this.progressToState = 1.0f;
                     this.previousState = null;
                 }
@@ -200,7 +199,7 @@ public class FragmentContextViewWavesDrawable {
         while (i < 2) {
             if (i == 0) {
                 if (i == 0) {
-                    f6 = 1.0f - this.progressToState;
+                    f7 = 1.0f - this.progressToState;
                     this.previousState.setToPaint(this.paint);
                 } else {
                     weavingState = this.currentState;
@@ -216,11 +215,12 @@ public class FragmentContextViewWavesDrawable {
                         weavingState.update((int) (f4 - f2), (int) (f3 - f), j2, this.amplitude);
                     }
                     this.currentState.setToPaint(this.paint);
+                    f7 = f6;
                 }
                 if (i == 1) {
-                    this.paint.setAlpha((int) (255.0f * f6));
+                    this.paint.setAlpha((int) (255.0f * f7));
                 } else {
-                    this.paint.setAlpha((int) (255.0f * f6));
+                    this.paint.setAlpha((int) (255.0f * f7));
                 }
                 if (i != 1) {
                     canvas.drawRoundRect(f, f2, f3, f4, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
@@ -229,7 +229,7 @@ public class FragmentContextViewWavesDrawable {
                 }
             } else {
                 if (i == 0) {
-                    f6 = 1.0f - this.progressToState;
+                    f7 = 1.0f - this.progressToState;
                     this.previousState.setToPaint(this.paint);
                 } else {
                     weavingState = this.currentState;
@@ -245,11 +245,12 @@ public class FragmentContextViewWavesDrawable {
                         weavingState.update((int) (f4 - f2), (int) (f3 - f), j2, this.amplitude);
                     }
                     this.currentState.setToPaint(this.paint);
+                    f7 = f6;
                 }
                 if (i == 1) {
-                    this.paint.setAlpha((int) (255.0f * f6));
+                    this.paint.setAlpha((int) (255.0f * f7));
                 } else {
-                    this.paint.setAlpha((int) (255.0f * f6));
+                    this.paint.setAlpha((int) (255.0f * f7));
                 }
                 if (i != 1) {
                     canvas.drawRoundRect(f, f2, f3, f4, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);

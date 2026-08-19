@@ -44,7 +44,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
     private static final Interpolator interpolator = new Interpolator() {
         @Override
         public final float getInterpolation(float f) {
-            return PhotoPickerSearchActivity.lambda$static$0(f);
+            return PhotoPickerSearchActivity.$r8$lambda$kao_7BN7wkVBpYWnDaLbyRDV4AE(f);
         }
     };
     private boolean animatingForward;
@@ -61,7 +61,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
     private Paint backgroundPaint = new Paint();
     private ViewPage[] viewPages = new ViewPage[2];
 
-    public static float lambda$static$0(float f) {
+    public static float $r8$lambda$kao_7BN7wkVBpYWnDaLbyRDV4AE(float f) {
         float f2 = f - 1.0f;
         return (f2 * f2 * f2 * f2 * f2) + 1.0f;
     }
@@ -244,6 +244,12 @@ public class PhotoPickerSearchActivity extends BaseFragment {
 
             @Override
             protected void onMeasure(int i4, int i5) {
+                int iMakeMeasureSpec;
+                int measuredHeight;
+                int i6;
+                int childCount;
+                int i7;
+                View childAt;
                 int size = View.MeasureSpec.getSize(i4);
                 int size2 = View.MeasureSpec.getSize(i5);
                 setMeasuredDimension(size, size2);
@@ -251,38 +257,52 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                 if (AndroidUtilities.dp(20.0f) >= 0) {
                     if (!AndroidUtilities.isInMultiwindow) {
                         size2 -= PhotoPickerSearchActivity.this.commentTextView.getEmojiPadding();
-                        i5 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
+                        iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
                     }
-                } else {
+                    measuredHeight = ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getMeasuredHeight();
                     this.globalIgnoreLayout = true;
-                    PhotoPickerSearchActivity.this.commentTextView.hideEmojiView();
+                    for (i6 = 0; i6 < PhotoPickerSearchActivity.this.viewPages.length; i6++) {
+                        if (PhotoPickerSearchActivity.this.viewPages[i6] != null && PhotoPickerSearchActivity.this.viewPages[i6].listView != null) {
+                            PhotoPickerSearchActivity.this.viewPages[i6].listView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + measuredHeight, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+                        }
+                    }
                     this.globalIgnoreLayout = false;
+                    childCount = getChildCount();
+                    for (i7 = 0; i7 < childCount; i7++) {
+                        childAt = getChildAt(i7);
+                        if (childAt == null && childAt.getVisibility() != 8 && childAt != ((BaseFragment) PhotoPickerSearchActivity.this).actionBar) {
+                            if (PhotoPickerSearchActivity.this.commentTextView != null && PhotoPickerSearchActivity.this.commentTextView.isPopupView(childAt)) {
+                                if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (size2 - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
+                                    } else {
+                                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - AndroidUtilities.statusBarHeight) + getPaddingTop(), 1073741824));
+                                    }
+                                } else {
+                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
+                                }
+                            } else {
+                                measureChildWithMargins(childAt, i4, 0, iMakeMeasureSpec, 0);
+                            }
+                        }
+                    }
                 }
-                int measuredHeight = ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getMeasuredHeight();
                 this.globalIgnoreLayout = true;
-                for (int i6 = 0; i6 < PhotoPickerSearchActivity.this.viewPages.length; i6++) {
-                    if (PhotoPickerSearchActivity.this.viewPages[i6] != null && PhotoPickerSearchActivity.this.viewPages[i6].listView != null) {
+                PhotoPickerSearchActivity.this.commentTextView.hideEmojiView();
+                this.globalIgnoreLayout = false;
+                iMakeMeasureSpec = i5;
+                measuredHeight = ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getMeasuredHeight();
+                this.globalIgnoreLayout = true;
+                while (i6 < PhotoPickerSearchActivity.this.viewPages.length) {
+                    if (PhotoPickerSearchActivity.this.viewPages[i6] != null) {
                         PhotoPickerSearchActivity.this.viewPages[i6].listView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + measuredHeight, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
                     }
                 }
                 this.globalIgnoreLayout = false;
-                int childCount = getChildCount();
-                for (int i7 = 0; i7 < childCount; i7++) {
-                    View childAt = getChildAt(i7);
-                    if (childAt != null && childAt.getVisibility() != 8 && childAt != ((BaseFragment) PhotoPickerSearchActivity.this).actionBar) {
-                        if (PhotoPickerSearchActivity.this.commentTextView != null && PhotoPickerSearchActivity.this.commentTextView.isPopupView(childAt)) {
-                            if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
-                                if (AndroidUtilities.isTablet()) {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (size2 - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
-                                } else {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - AndroidUtilities.statusBarHeight) + getPaddingTop(), 1073741824));
-                                }
-                            } else {
-                                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                            }
-                        } else {
-                            measureChildWithMargins(childAt, i4, 0, i5, 0);
-                        }
+                childCount = getChildCount();
+                while (i7 < childCount) {
+                    childAt = getChildAt(i7);
+                    if (childAt == null) {
                     }
                 }
             }
@@ -515,31 +535,21 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                         float x2 = PhotoPickerSearchActivity.this.viewPages[0].getX();
                         PhotoPickerSearchActivity.this.tabsAnimation = new AnimatorSet();
                         PhotoPickerSearchActivity.this.backAnimation = Math.abs(x2) < ((float) PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()) / 3.0f && (Math.abs(xVelocity) < 3500.0f || Math.abs(xVelocity) < Math.abs(yVelocity));
-                        if (!PhotoPickerSearchActivity.this.backAnimation) {
+                        boolean z = PhotoPickerSearchActivity.this.backAnimation;
+                        Property property = View.TRANSLATION_X;
+                        if (!z) {
                             measuredWidth = PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth() - Math.abs(x2);
                             if (PhotoPickerSearchActivity.this.animatingForward) {
-                                AnimatorSet animatorSet = PhotoPickerSearchActivity.this.tabsAnimation;
-                                ViewPage viewPage = PhotoPickerSearchActivity.this.viewPages[0];
-                                Property property = View.TRANSLATION_X;
-                                animatorSet.playTogether(ObjectAnimator.ofFloat(viewPage, (Property<ViewPage, Float>) property, -PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property, 0.0f));
+                                PhotoPickerSearchActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[0], (Property<ViewPage, Float>) property, -PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property, 0.0f));
                             } else {
-                                AnimatorSet animatorSet2 = PhotoPickerSearchActivity.this.tabsAnimation;
-                                ViewPage viewPage2 = PhotoPickerSearchActivity.this.viewPages[0];
-                                Property property2 = View.TRANSLATION_X;
-                                animatorSet2.playTogether(ObjectAnimator.ofFloat(viewPage2, (Property<ViewPage, Float>) property2, PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property2, 0.0f));
+                                PhotoPickerSearchActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[0], (Property<ViewPage, Float>) property, PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property, 0.0f));
                             }
                         } else {
                             measuredWidth = Math.abs(x2);
                             if (PhotoPickerSearchActivity.this.animatingForward) {
-                                AnimatorSet animatorSet3 = PhotoPickerSearchActivity.this.tabsAnimation;
-                                ViewPage viewPage3 = PhotoPickerSearchActivity.this.viewPages[0];
-                                Property property3 = View.TRANSLATION_X;
-                                animatorSet3.playTogether(ObjectAnimator.ofFloat(viewPage3, (Property<ViewPage, Float>) property3, 0.0f), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property3, PhotoPickerSearchActivity.this.viewPages[1].getMeasuredWidth()));
+                                PhotoPickerSearchActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[0], (Property<ViewPage, Float>) property, 0.0f), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property, PhotoPickerSearchActivity.this.viewPages[1].getMeasuredWidth()));
                             } else {
-                                AnimatorSet animatorSet4 = PhotoPickerSearchActivity.this.tabsAnimation;
-                                ViewPage viewPage4 = PhotoPickerSearchActivity.this.viewPages[0];
-                                Property property4 = View.TRANSLATION_X;
-                                animatorSet4.playTogether(ObjectAnimator.ofFloat(viewPage4, (Property<ViewPage, Float>) property4, 0.0f), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property4, -PhotoPickerSearchActivity.this.viewPages[1].getMeasuredWidth()));
+                                PhotoPickerSearchActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[0], (Property<ViewPage, Float>) property, 0.0f), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property, -PhotoPickerSearchActivity.this.viewPages[1].getMeasuredWidth()));
                             }
                         }
                         PhotoPickerSearchActivity.this.tabsAnimation.setInterpolator(PhotoPickerSearchActivity.interpolator);
@@ -560,9 +570,9 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                                 if (PhotoPickerSearchActivity.this.backAnimation) {
                                     PhotoPickerSearchActivity.this.viewPages[1].setVisibility(8);
                                 } else {
-                                    ViewPage viewPage5 = PhotoPickerSearchActivity.this.viewPages[0];
+                                    ViewPage viewPage = PhotoPickerSearchActivity.this.viewPages[0];
                                     PhotoPickerSearchActivity.this.viewPages[0] = PhotoPickerSearchActivity.this.viewPages[1];
-                                    PhotoPickerSearchActivity.this.viewPages[1] = viewPage5;
+                                    PhotoPickerSearchActivity.this.viewPages[1] = viewPage;
                                     PhotoPickerSearchActivity.this.viewPages[1].setVisibility(8);
                                     PhotoPickerSearchActivity photoPickerSearchActivity = PhotoPickerSearchActivity.this;
                                     photoPickerSearchActivity.swipeBackEnabled = photoPickerSearchActivity.viewPages[0].selectedType == PhotoPickerSearchActivity.this.scrollSlidingTextTabStrip.getFirstTabId();
@@ -883,7 +893,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         int i7 = Theme.key_chat_attachActiveTab;
         arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextView.class}, null, null, null, i7));
         arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextView.class}, null, null, null, Theme.key_chat_attachUnactiveTab));
-        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextView.class}, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, new Class[]{TextView.class}, null, null, null, i6));
         arrayList.add(new ThemeDescription(null, 0, null, null, new Drawable[]{this.scrollSlidingTextTabStrip.getSelectorDrawable()}, null, i7));
         arrayList.addAll(this.imagesSearch.getThemeDescriptions());
         arrayList.addAll(this.gifsSearch.getThemeDescriptions());

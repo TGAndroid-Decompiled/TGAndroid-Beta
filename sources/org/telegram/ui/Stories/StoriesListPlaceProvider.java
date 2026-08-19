@@ -152,7 +152,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                         transitionViewHolder.drawClip = new StoryViewer.HolderClip() {
                             @Override
                             public final void clip(Canvas canvas, RectF rectF, float f, boolean z) {
-                                StoriesListPlaceProvider.lambda$findView$0(path, canvas, rectF, f, z);
+                                StoriesListPlaceProvider.$r8$lambda$dVvQM61LLLmGehYO5ae62iOJhMA(path, canvas, rectF, f, z);
                             }
                         };
                     } else {
@@ -217,7 +217,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                     transitionViewHolder.drawAbove = new StoryViewer.HolderDrawAbove() {
                         @Override
                         public final void draw(Canvas canvas, RectF rectF, float f, boolean z) {
-                            StoriesListPlaceProvider.lambda$findView$1(sharedPhotoVideoCell2, fastScroll, iArr, canvas, rectF, f, z);
+                            StoriesListPlaceProvider.$r8$lambda$DVGIpiWkCMGnkOFEE2Al1jnXguk(sharedPhotoVideoCell2, fastScroll, iArr, canvas, rectF, f, z);
                         }
                     };
                     transitionViewHolder.clipParent = (View) sharedPhotoVideoCell2.getParent();
@@ -316,7 +316,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
         return false;
     }
 
-    public static void lambda$findView$0(Path path, Canvas canvas, RectF rectF, float f, boolean z) {
+    public static void $r8$lambda$dVvQM61LLLmGehYO5ae62iOJhMA(Path path, Canvas canvas, RectF rectF, float f, boolean z) {
         if (z) {
             return;
         }
@@ -326,7 +326,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
         canvas.clipPath(path, Region.Op.DIFFERENCE);
     }
 
-    public static void lambda$findView$1(SharedPhotoVideoCell2 sharedPhotoVideoCell2, RecyclerListView.FastScroll fastScroll, int[] iArr, Canvas canvas, RectF rectF, float f, boolean z) {
+    public static void $r8$lambda$DVGIpiWkCMGnkOFEE2Al1jnXguk(SharedPhotoVideoCell2 sharedPhotoVideoCell2, RecyclerListView.FastScroll fastScroll, int[] iArr, Canvas canvas, RectF rectF, float f, boolean z) {
         sharedPhotoVideoCell2.drawDuration(canvas, rectF, f);
         sharedPhotoVideoCell2.drawViews(canvas, rectF, f);
         if (sharedPhotoVideoCell2.isSearchingHashtag) {

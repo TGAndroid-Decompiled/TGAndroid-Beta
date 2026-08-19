@@ -206,7 +206,7 @@ public class CounterView extends View {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        this.f$0.lambda$setText$0(valueAnimator3);
+                        CounterView.CounterDrawable.m2235$r8$lambda$Q3XKFRUZsz7kSJnw0IIyy2ZxrI(this.f$0, valueAnimator3);
                     }
                 });
                 this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -283,9 +283,10 @@ public class CounterView extends View {
             }
         }
 
-        public void lambda$setText$0(ValueAnimator valueAnimator) {
-            this.countChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            View view = this.parent;
+        public static void m2235$r8$lambda$Q3XKFRUZsz7kSJnw0IIyy2ZxrI(CounterDrawable counterDrawable, ValueAnimator valueAnimator) {
+            counterDrawable.getClass();
+            counterDrawable.countChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            View view = counterDrawable.parent;
             if (view != null) {
                 view.invalidate();
             }

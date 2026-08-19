@@ -13,13 +13,9 @@ public class ShortcutResultReceiver extends BroadcastReceiver {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ShortcutResultReceiver.lambda$onReceive$0(callbackRemove);
+                    callbackRemove.run(Boolean.TRUE);
                 }
             });
         }
-    }
-
-    public static void lambda$onReceive$0(Utilities.Callback callback) {
-        callback.run(Boolean.TRUE);
     }
 }

@@ -25,15 +25,14 @@ public final class IntRange extends IntProgression {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof IntRange) {
-            if (!isEmpty() || !((IntRange) obj).isEmpty()) {
-                IntRange intRange = (IntRange) obj;
-                if (getFirst() != intRange.getFirst() || getLast() != intRange.getLast()) {
-                }
-            }
+        if (!(obj instanceof IntRange)) {
+            return false;
+        }
+        if (isEmpty() && ((IntRange) obj).isEmpty()) {
             return true;
         }
-        return false;
+        IntRange intRange = (IntRange) obj;
+        return getFirst() == intRange.getFirst() && getLast() == intRange.getLast();
     }
 
     @Override

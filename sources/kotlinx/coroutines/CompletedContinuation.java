@@ -18,19 +18,18 @@ final class CompletedContinuation {
         if ((i & 2) != 0) {
             cancelHandler = completedContinuation.cancelHandler;
         }
-        CancelHandler cancelHandler2 = cancelHandler;
         if ((i & 4) != 0) {
             function1 = completedContinuation.onCancellation;
         }
-        Function1 function2 = function1;
         if ((i & 8) != 0) {
             obj2 = completedContinuation.idempotentResume;
         }
-        Object obj4 = obj2;
         if ((i & 16) != 0) {
             th = completedContinuation.cancelCause;
         }
-        return completedContinuation.copy(obj, cancelHandler2, function2, obj4, th);
+        Throwable th2 = th;
+        Function1 function2 = function1;
+        return completedContinuation.copy(obj, cancelHandler, function2, obj2, th2);
     }
 
     public final CompletedContinuation copy(Object obj, CancelHandler cancelHandler, Function1 function1, Object obj2, Throwable th) {

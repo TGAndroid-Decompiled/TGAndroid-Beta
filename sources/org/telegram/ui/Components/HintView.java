@@ -135,13 +135,9 @@ public class HintView extends FrameLayout {
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createCloseButton$0(view);
+                this.f$0.hide(true);
             }
         });
-    }
-
-    public void lambda$createCloseButton$0(View view) {
-        hide(true);
     }
 
     public void setBackgroundColor(int i, int i2) {
@@ -339,13 +335,9 @@ public class HintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(HintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onAnimationEnd$0();
+                    HintView.this.hide();
                 }
             }, HintView.this.currentType == 0 ? 10000L : 2000L);
-        }
-
-        public void lambda$onAnimationEnd$0() {
-            HintView.this.hide();
         }
     }
 
@@ -373,14 +365,16 @@ public class HintView extends FrameLayout {
         if (z) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
-            if (this.useScale) {
+            boolean z2 = this.useScale;
+            Property property = View.ALPHA;
+            if (z2) {
                 setPivotX(this.arrowImageView.getX() + (this.arrowImageView.getMeasuredWidth() / 2.0f));
                 setPivotY(this.arrowImageView.getY() + (this.arrowImageView.getMeasuredHeight() / 2.0f));
-                this.animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_Y, 0.5f, 1.0f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_X, 0.5f, 1.0f));
+                this.animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_Y, 0.5f, 1.0f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_X, 0.5f, 1.0f));
                 this.animatorSet.setDuration(350L);
                 this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             } else {
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 0.0f, 1.0f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) property, 0.0f, 1.0f));
                 this.animatorSet.setDuration(300L);
             }
             this.animatorSet.addListener(new AnonymousClass2());
@@ -404,13 +398,9 @@ public class HintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(HintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onAnimationEnd$0();
+                    HintView.this.hide();
                 }
             }, HintView.this.showingDuration);
-        }
-
-        public void lambda$onAnimationEnd$0() {
-            HintView.this.hide();
         }
     }
 
@@ -649,12 +639,14 @@ public class HintView extends FrameLayout {
         if (z) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
-            if (this.useScale) {
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_Y, 1.0f, 0.5f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_X, 1.0f, 0.5f));
+            boolean z2 = this.useScale;
+            Property property = View.ALPHA;
+            if (z2) {
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) property, 1.0f, 0.0f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_Y, 1.0f, 0.5f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_X, 1.0f, 0.5f));
                 this.animatorSet.setDuration(150L);
                 this.animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
             } else {
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 0.0f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) property, 0.0f));
                 this.animatorSet.setDuration(300L);
             }
             this.animatorSet.addListener(new AnimatorListenerAdapter() {

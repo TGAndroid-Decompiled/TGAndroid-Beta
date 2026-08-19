@@ -32,11 +32,11 @@ public class ChangeNameActivity extends BaseFragment {
     private EditTextBoldCursor lastNameField;
     private Theme.ResourcesProvider resourcesProvider;
 
-    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$gcnxyxS84kCDz_EqMdnOhnbbsJo(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static void lambda$saveName$3(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$hTGE7lCqp8KFgHj5cy6tmKlYMJE(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public ChangeNameActivity(Theme.ResourcesProvider resourcesProvider) {
@@ -76,7 +76,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return ChangeNameActivity.lambda$createView$0(view, motionEvent);
+                return ChangeNameActivity.$r8$lambda$gcnxyxS84kCDz_EqMdnOhnbbsJo(view, motionEvent);
             }
         });
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
@@ -115,7 +115,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.firstNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i6, KeyEvent keyEvent) {
-                return this.f$0.lambda$createView$1(textView, i6, keyEvent);
+                return ChangeNameActivity.$r8$lambda$hDn9PmUck_PcM8IA4QieXFBRBhk(this.f$0, textView, i6, keyEvent);
             }
         });
         EditTextBoldCursor editTextBoldCursor5 = new EditTextBoldCursor(context) {
@@ -144,7 +144,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.lastNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i6, KeyEvent keyEvent) {
-                return this.f$0.lambda$createView$2(textView, i6, keyEvent);
+                return ChangeNameActivity.m1521$r8$lambda$pYQqOPMW4FTo9sIFLGh8DVhPPo(this.f$0, textView, i6, keyEvent);
             }
         });
         if (user != null) {
@@ -156,22 +156,24 @@ public class ChangeNameActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean $r8$lambda$hDn9PmUck_PcM8IA4QieXFBRBhk(ChangeNameActivity changeNameActivity, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
+            changeNameActivity.getClass();
             return false;
         }
-        this.lastNameField.requestFocus();
-        EditTextBoldCursor editTextBoldCursor = this.lastNameField;
+        changeNameActivity.lastNameField.requestFocus();
+        EditTextBoldCursor editTextBoldCursor = changeNameActivity.lastNameField;
         editTextBoldCursor.setSelection(editTextBoldCursor.length());
         return true;
     }
 
-    public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 6) {
-            return false;
+    public static boolean m1521$r8$lambda$pYQqOPMW4FTo9sIFLGh8DVhPPo(ChangeNameActivity changeNameActivity, TextView textView, int i, KeyEvent keyEvent) {
+        if (i == 6) {
+            changeNameActivity.doneButton.performClick();
+            return true;
         }
-        this.doneButton.performClick();
-        return true;
+        changeNameActivity.getClass();
+        return false;
     }
 
     @Override
@@ -206,12 +208,12 @@ public class ChangeNameActivity extends BaseFragment {
                 user.last_name = updateprofile.last_name;
             }
             UserConfig.getInstance(this.currentAccount).saveConfig(true);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.mainUserInfoChanged, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateprofile, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChangeNameActivity.lambda$saveName$3(tLObject, tL_error);
+                    ChangeNameActivity.$r8$lambda$hTGE7lCqp8KFgHj5cy6tmKlYMJE(tLObject, tL_error);
                 }
             });
         }
@@ -228,17 +230,17 @@ public class ChangeNameActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onTransitionAnimationEnd$4();
+                    ChangeNameActivity.m1520$r8$lambda$obe45pXivvV73tUEq_duePnlNE(this.f$0);
                 }
             }, 100L);
         }
     }
 
-    public void lambda$onTransitionAnimationEnd$4() {
-        EditTextBoldCursor editTextBoldCursor = this.firstNameField;
+    public static void m1520$r8$lambda$obe45pXivvV73tUEq_duePnlNE(ChangeNameActivity changeNameActivity) {
+        EditTextBoldCursor editTextBoldCursor = changeNameActivity.firstNameField;
         if (editTextBoldCursor != null) {
             editTextBoldCursor.requestFocus();
-            AndroidUtilities.showKeyboard(this.firstNameField);
+            AndroidUtilities.showKeyboard(changeNameActivity.firstNameField);
         }
     }
 
@@ -269,7 +271,7 @@ public class ChangeNameActivity extends BaseFragment {
         arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i6));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i8));
+        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i8));
         return arrayList;
     }
 }

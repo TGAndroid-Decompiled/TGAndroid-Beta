@@ -166,13 +166,9 @@ public class ChecksHintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(ChecksHintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onAnimationEnd$0();
+                    ChecksHintView.this.hide();
                 }
             }, 3000L);
-        }
-
-        public void lambda$onAnimationEnd$0() {
-            ChecksHintView.this.hide();
         }
     }
 

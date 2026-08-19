@@ -27,13 +27,13 @@ public abstract class CustomPopupMenu {
         this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return this.f$0.lambda$new$0(view, motionEvent);
+                return CustomPopupMenu.$r8$lambda$ScMRpIBVmb0pKRV6aYDzWkRwdwU(this.f$0, view, motionEvent);
             }
         });
         this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                this.f$0.lambda$new$1(keyEvent);
+                CustomPopupMenu.$r8$lambda$MfVTfsNaEXore7YXhCfNE8dp04Y(this.f$0, keyEvent);
             }
         });
         this.popupLayout.setShownFromBottom(false);
@@ -53,14 +53,15 @@ public abstract class CustomPopupMenu {
         this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public final void onDismiss() {
-                this.f$0.lambda$new$2();
+                CustomPopupMenu.$r8$lambda$sYyJto5SvamWUCpe3whtOhK1SWY(this.f$0);
             }
         });
     }
 
-    public boolean lambda$new$0(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$ScMRpIBVmb0pKRV6aYDzWkRwdwU(CustomPopupMenu customPopupMenu, View view, MotionEvent motionEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
-        if (motionEvent.getActionMasked() != 1 || (actionBarPopupWindow = this.popupWindow) == null || !actionBarPopupWindow.isShowing()) {
+        customPopupMenu.getClass();
+        if (motionEvent.getActionMasked() != 1 || (actionBarPopupWindow = customPopupMenu.popupWindow) == null || !actionBarPopupWindow.isShowing()) {
             return false;
         }
         Rect rect = AndroidUtilities.rectTmp2;
@@ -68,20 +69,21 @@ public abstract class CustomPopupMenu {
         if (rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
             return false;
         }
-        this.popupWindow.dismiss();
+        customPopupMenu.popupWindow.dismiss();
         return false;
     }
 
-    public void lambda$new$1(KeyEvent keyEvent) {
+    public static void $r8$lambda$MfVTfsNaEXore7YXhCfNE8dp04Y(CustomPopupMenu customPopupMenu, KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.popupWindow) != null && actionBarPopupWindow.isShowing()) {
-            this.popupWindow.dismiss();
+        customPopupMenu.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = customPopupMenu.popupWindow) != null && actionBarPopupWindow.isShowing()) {
+            customPopupMenu.popupWindow.dismiss();
         }
     }
 
-    public void lambda$new$2() {
-        onDismissed();
-        this.isShowing = false;
+    public static void $r8$lambda$sYyJto5SvamWUCpe3whtOhK1SWY(CustomPopupMenu customPopupMenu) {
+        customPopupMenu.onDismissed();
+        customPopupMenu.isShowing = false;
     }
 
     public void show(View view, int i, int i2) {

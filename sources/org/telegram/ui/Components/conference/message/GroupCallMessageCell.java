@@ -153,7 +153,7 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         this.onMessageStateUpdateListener = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.onMessageStateUpdate(true);
             }
         };
         this.senderNameSpan = new ClickableSpan() {
@@ -191,11 +191,7 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         setWillNotDraw(false);
     }
 
-    public void lambda$new$0() {
-        onMessageStateUpdate(true);
-    }
-
-    private void onMessageStateUpdate(boolean z) {
+    public void onMessageStateUpdate(boolean z) {
         GroupCallMessage groupCallMessage = this.groupCallMessage;
         if (groupCallMessage != null) {
             this.isSendDelayedAnimator.setValue(groupCallMessage.isSendDelayed(), z);
@@ -507,9 +503,9 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
             layout.text.set(0.0f, (layout.bubble.top + AndroidUtilities.dp(19.0f)) - spoilersTextView.getLayout().getLineBaseline(0));
             if (z) {
                 layout.text.offset((layout.bubble.right - AndroidUtilities.dp(32.0f)) - measuredWidth, 0.0f);
-            } else {
-                layout.text.offset(layout.bubble.left + AndroidUtilities.dp(32.0f), 0.0f);
+                return layout;
             }
+            layout.text.offset(layout.bubble.left + AndroidUtilities.dp(32.0f), 0.0f);
             return layout;
         }
     }

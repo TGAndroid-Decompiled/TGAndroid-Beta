@@ -331,7 +331,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             Rect rect4 = this.boundsWithPadding;
             float f7 = rect4.left;
             float f8 = rect4.top;
-            float f9 = f8 + this.strokeWidthTop;
+            float f9 = this.strokeWidthTop + f8;
             float f10 = rect4.right;
             float fMin2 = Math.min(f8 + this.radii[0], rect4.bottom);
             float[] fArr7 = BlurredBackgroundDrawable.tmpRadii;
@@ -529,12 +529,12 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             float f8 = f - f7;
             float f9 = f3 + f7;
             if (canvas.clipRect(f8, f2, f9, MathUtils.clamp((2.0f * f5) + f2, f2, f4))) {
-                canvas.drawRoundRect(f8, f2 + f7, f9, f4 + f7, f5, f5, paint);
+                canvas.drawRoundRect(f8, f2 + f7, f9, f7 + f4, f5, f5, paint);
             }
         } else {
             float f10 = f - f7;
             float f11 = f3 + f7;
-            if (canvas.clipRect(f10, MathUtils.clamp(f4 - (2.0f * f5), f2, f4), f11, f4)) {
+            if (canvas.clipRect(f10, MathUtils.clamp(f4 - (f5 * 2.0f), f2, f4), f11, f4)) {
                 canvas.drawRoundRect(f10, f2 - f7, f11, f4 - f7, f5, f5, paint);
             }
         }
@@ -607,7 +607,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         float f6 = rect.top;
         float f7 = f6 + f3;
         float f8 = rect.right;
-        float f9 = f8 + f2;
+        float f9 = f2 + f8;
         float f10 = rect.bottom;
         float f11 = f10 + f3;
         int i2 = this.alpha;
@@ -742,7 +742,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             NinePatchDrawable ninePatchDrawableCreateNinePatch = NinePatchBuilder.createNinePatch(this.ninePatchRef, this.boundProps.radii, this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, Color.alpha(i) == 255 ? i : 1, new NinePatchBuilder.NinePathRenderer() {
                 @Override
                 public final void draw(Canvas canvas, RectF rectF, float[] fArr) {
-                    this.f$0.lambda$checkNinePatchDrawable$0(i, z, canvas, rectF, fArr);
+                    BlurredBackgroundDrawable.$r8$lambda$fexu4BuDDV4RRaYPT0plP2f0pmY(this.f$0, i, z, canvas, rectF, fArr);
                 }
             });
             this.ninePatchDrawable = ninePatchDrawableCreateNinePatch;
@@ -751,28 +751,32 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         return this.ninePatchDrawable;
     }
 
-    public void lambda$checkNinePatchDrawable$0(int i, boolean z, Canvas canvas, RectF rectF, float[] fArr) {
+    public static void $r8$lambda$fexu4BuDDV4RRaYPT0plP2f0pmY(BlurredBackgroundDrawable blurredBackgroundDrawable, int i, boolean z, Canvas canvas, RectF rectF, float[] fArr) {
+        char c;
+        blurredBackgroundDrawable.getClass();
         Path path = new Path();
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF, fArr, direction);
         Paint paint = new Paint(1);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(i);
-        float f = this.shadowLayerRadius;
+        float f = blurredBackgroundDrawable.shadowLayerRadius;
         if (f > 0.0f) {
-            paint.setShadowLayer(f, this.shadowLayerDx, this.shadowLayerDy, this.shadowColor);
+            paint.setShadowLayer(f, blurredBackgroundDrawable.shadowLayerDx, blurredBackgroundDrawable.shadowLayerDy, blurredBackgroundDrawable.shadowColor);
         }
         canvas.drawPath(path, paint);
-        if (this.shadowLayerRadius > 0.0f) {
+        if (blurredBackgroundDrawable.shadowLayerRadius > 0.0f) {
             paint.clearShadowLayer();
             canvas.drawPath(path, paint);
         }
         if (z) {
-            float[] fArrCopyOf = Arrays.copyOf(this.boundProps.radii, 8);
+            float[] fArrCopyOf = Arrays.copyOf(blurredBackgroundDrawable.boundProps.radii, 8);
             boolean zRadiiAreSame = RadiiUtils.radiiAreSame(fArrCopyOf);
             float fMin = Math.min(rectF.width(), rectF.height()) / 2.0f;
             Paint paint2 = new Paint(1);
-            if (Color.alpha(this.strokeColorTop) > 0 && fArrCopyOf[0] > 0.0f) {
+            if (Color.alpha(blurredBackgroundDrawable.strokeColorTop) <= 0 || fArrCopyOf[0] <= 0.0f) {
+                c = 0;
+            } else {
                 float[] fArr2 = tmpRadii;
                 Arrays.fill(fArr2, 0.0f);
                 fArr2[0] = fArrCopyOf[0];
@@ -788,14 +792,15 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
                 Path path2 = new Path();
                 float f2 = rectF.left;
                 float f3 = rectF.top;
+                c = 0;
                 path2.addRoundRect(f2, f3, rectF.right, Math.min(Math.max(fArrCopyOf[0], fArrCopyOf[2]) + f3, rectF.bottom), fArr2, direction);
                 float f4 = rectF.left;
                 float f5 = rectF.top;
-                path2.addRoundRect(f4, f5 + this.boundProps.strokeWidthTop, rectF.right, Math.min(f5 + Math.max(fArrCopyOf[0], fArrCopyOf[2]), rectF.bottom), fArr2, Path.Direction.CCW);
-                paint2.setColor(this.strokeColorTop);
+                path2.addRoundRect(f4, f5 + blurredBackgroundDrawable.boundProps.strokeWidthTop, rectF.right, Math.min(f5 + Math.max(fArrCopyOf[0], fArrCopyOf[2]), rectF.bottom), fArr2, Path.Direction.CCW);
+                paint2.setColor(blurredBackgroundDrawable.strokeColorTop);
                 canvas.drawPath(path2, paint2);
             }
-            if (Color.alpha(this.strokeColorBottom) <= 0 || fArrCopyOf[4] <= 0.0f) {
+            if (Color.alpha(blurredBackgroundDrawable.strokeColorBottom) <= 0 || fArrCopyOf[4] <= 0.0f) {
                 return;
             }
             float[] fArr3 = tmpRadii;
@@ -804,7 +809,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             fArr3[5] = fArrCopyOf[5];
             fArr3[6] = fArrCopyOf[6];
             fArr3[7] = fArrCopyOf[7];
-            if (zRadiiAreSame && fArrCopyOf[0] > fMin) {
+            if (zRadiiAreSame && fArrCopyOf[c] > fMin) {
                 fArr3[7] = fMin;
                 fArr3[6] = fMin;
                 fArr3[5] = fMin;
@@ -812,8 +817,8 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             }
             Path path3 = new Path();
             path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(fArrCopyOf[4], fArrCopyOf[6]), rectF.top), rectF.right, rectF.bottom, fArr3, direction);
-            path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(fArrCopyOf[4], fArrCopyOf[6]), rectF.top), rectF.right, rectF.bottom - this.boundProps.strokeWidthBottom, fArr3, Path.Direction.CCW);
-            paint2.setColor(this.strokeColorBottom);
+            path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(fArrCopyOf[4], fArrCopyOf[6]), rectF.top), rectF.right, rectF.bottom - blurredBackgroundDrawable.boundProps.strokeWidthBottom, fArr3, Path.Direction.CCW);
+            paint2.setColor(blurredBackgroundDrawable.strokeColorBottom);
             canvas.drawPath(path3, paint2);
         }
     }

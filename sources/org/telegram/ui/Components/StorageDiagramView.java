@@ -151,7 +151,6 @@ public abstract class StorageDiagramView extends View implements NotificationCen
 
     @Override
     protected void onDraw(Canvas canvas) {
-        double d;
         int i;
         if (this.data == null) {
             return;
@@ -193,7 +192,6 @@ public abstract class StorageDiagramView extends View implements NotificationCen
         float f7 = 0.0f;
         while (true) {
             ClearViewData[] clearViewDataArr = this.data;
-            d = 180.0d;
             i = 255;
             if (i2 >= clearViewDataArr.length) {
                 break;
@@ -208,9 +206,9 @@ public abstract class StorageDiagramView extends View implements NotificationCen
                         clearViewData.paint.setColor(Theme.getColor(clearViewData.colorKey));
                         this.data[i2].paint.setAlpha(255);
                         double dWidth = this.rectF.width() / 2.0f;
-                        if (Math.abs((float) (((double) f10) * ((3.141592653589793d * dWidth) / 180.0d))) <= 1.0f) {
-                            double d2 = (-90.0f) - (360.0f * f7);
-                            canvas.drawPoint(this.rectF.centerX() + ((float) (Math.cos(Math.toRadians(d2)) * dWidth)), this.rectF.centerY() + ((float) (dWidth * Math.sin(Math.toRadians(d2)))), this.data[i2].paint);
+                        if (Math.abs((float) (((3.141592653589793d * dWidth) / 180.0d) * ((double) f10))) <= 1.0f) {
+                            double d = (-90.0f) - (360.0f * f7);
+                            canvas.drawPoint(this.rectF.centerX() + ((float) (Math.cos(Math.toRadians(d)) * dWidth)), this.rectF.centerY() + ((float) (dWidth * Math.sin(Math.toRadians(d)))), this.data[i2].paint);
                         } else {
                             this.data[i2].paint.setStyle(Paint.Style.STROKE);
                             canvas.drawArc(this.rectF, (-90.0f) - (360.0f * f7), f10, false, this.data[i2].paint);
@@ -234,16 +232,18 @@ public abstract class StorageDiagramView extends View implements NotificationCen
                 if (f12 != 0.0f) {
                     if (!clearViewData2.firstDraw) {
                         float f13 = (f12 * (-360.0f)) + ((1.0f - this.singleProgress) * 10.0f);
-                        float f14 = f13 > 0.0f ? 0.0f : f13;
+                        if (f13 > 0.0f) {
+                            f13 = 0.0f;
+                        }
                         clearViewData2.paint.setColor(Theme.getColor(clearViewData2.colorKey));
                         this.data[i3].paint.setAlpha(i);
                         double dWidth2 = this.rectF.width() / 2.0f;
-                        if (Math.abs((float) (((double) f14) * ((dWidth2 * 3.141592653589793d) / d))) <= 1.0f) {
-                            double d3 = (-90.0f) - (f11 * 360.0f);
-                            canvas.drawPoint(this.rectF.centerX() + ((float) (Math.cos(Math.toRadians(d3)) * dWidth2)), this.rectF.centerY() + ((float) (dWidth2 * Math.sin(Math.toRadians(d3)))), this.data[i3].paint);
+                        if (Math.abs((float) (((double) f13) * ((dWidth2 * 3.141592653589793d) / 180.0d))) <= 1.0f) {
+                            double d2 = (-90.0f) - (f11 * 360.0f);
+                            canvas.drawPoint(this.rectF.centerX() + ((float) (dWidth2 * Math.cos(Math.toRadians(d2)))), this.rectF.centerY() + ((float) (Math.sin(Math.toRadians(d2)) * dWidth2)), this.data[i3].paint);
                         } else {
                             this.data[i3].paint.setStyle(Paint.Style.STROKE);
-                            canvas.drawArc(this.rectF, (-90.0f) - (f11 * 360.0f), f14, false, this.data[i3].paint);
+                            canvas.drawArc(this.rectF, (-90.0f) - (f11 * 360.0f), f13, false, this.data[i3].paint);
                         }
                     }
                     f11 += f12;
@@ -251,7 +251,6 @@ public abstract class StorageDiagramView extends View implements NotificationCen
             }
             i3++;
             i = 255;
-            d = 180.0d;
         }
         ImageReceiver imageReceiver = this.avatarImageReceiver;
         if (imageReceiver != null) {
@@ -377,7 +376,7 @@ public abstract class StorageDiagramView extends View implements NotificationCen
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$update$0(clearViewDataArr, valueAnimator2);
+                StorageDiagramView.$r8$lambda$aRBhXNGBD8hxfdPtEDiiKBOVXgA(this.f$0, clearViewDataArr, valueAnimator2);
             }
         });
         this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -402,12 +401,13 @@ public abstract class StorageDiagramView extends View implements NotificationCen
         this.valueAnimator.start();
     }
 
-    public void lambda$update$0(ClearViewData[] clearViewDataArr, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$aRBhXNGBD8hxfdPtEDiiKBOVXgA(StorageDiagramView storageDiagramView, ClearViewData[] clearViewDataArr, ValueAnimator valueAnimator) {
+        storageDiagramView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         for (int i = 0; i < clearViewDataArr.length; i++) {
-            this.drawingPercentage[i] = (this.startFromPercentage[i] * (1.0f - fFloatValue)) + (this.animateToPercentage[i] * fFloatValue);
+            storageDiagramView.drawingPercentage[i] = (storageDiagramView.startFromPercentage[i] * (1.0f - fFloatValue)) + (storageDiagramView.animateToPercentage[i] * fFloatValue);
         }
-        invalidate();
+        storageDiagramView.invalidate();
     }
 
     @Override
@@ -454,7 +454,7 @@ public abstract class StorageDiagramView extends View implements NotificationCen
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setPressed$1(valueAnimator2);
+                        StorageDiagramView.$r8$lambda$ATR54lDOgXOxCBVfgFDIbKuF3J8(this.f$0, valueAnimator2);
                     }
                 });
                 this.backAnimator.addListener(new AnimatorListenerAdapter() {
@@ -471,9 +471,10 @@ public abstract class StorageDiagramView extends View implements NotificationCen
         }
     }
 
-    public void lambda$setPressed$1(ValueAnimator valueAnimator) {
-        this.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$ATR54lDOgXOxCBVfgFDIbKuF3J8(StorageDiagramView storageDiagramView, ValueAnimator valueAnimator) {
+        storageDiagramView.getClass();
+        storageDiagramView.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        storageDiagramView.invalidate();
     }
 
     public long updateDescription() {

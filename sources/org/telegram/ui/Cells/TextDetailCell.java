@@ -57,7 +57,7 @@ public class TextDetailCell extends FrameLayout {
         spoilersTextView.setOnLinkLongPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                this.f$0.lambda$new$0(clickableSpan);
+                TextDetailCell.$r8$lambda$83xd1Ik7Tped6omL3O_en0xt5uk(this.f$0, clickableSpan);
             }
         });
         spoilersTextView.setTextSize(1, 16.0f);
@@ -90,7 +90,7 @@ public class TextDetailCell extends FrameLayout {
         linksTextView.setOnLinkLongPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                this.f$0.lambda$new$1(clickableSpan);
+                TextDetailCell.$r8$lambda$Lqqs9QkEf_XSQbdvK9DQ68T2tG8(this.f$0, clickableSpan);
             }
         });
         if (z2) {
@@ -126,7 +126,7 @@ public class TextDetailCell extends FrameLayout {
         linksTextView2.setOnLinkLongPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                this.f$0.lambda$new$2(clickableSpan);
+                TextDetailCell.$r8$lambda$goIaOAzvIxxiQNJjhHu0nvK11YY(this.f$0, clickableSpan);
             }
         });
         boolean z3 = this.multiline;
@@ -157,33 +157,36 @@ public class TextDetailCell extends FrameLayout {
         addView(imageView, LayoutHelper.createFrameRelatively(48.0f, 48.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
     }
 
-    public void lambda$new$0(ClickableSpan clickableSpan) {
+    public static void $r8$lambda$83xd1Ik7Tped6omL3O_en0xt5uk(TextDetailCell textDetailCell, ClickableSpan clickableSpan) {
+        textDetailCell.getClass();
         if (clickableSpan != null) {
             try {
-                performHapticFeedback(0, 1);
+                textDetailCell.performHapticFeedback(0, 1);
             } catch (Exception unused) {
             }
-            clickableSpan.onClick(this.textView);
+            clickableSpan.onClick(textDetailCell.textView);
         }
     }
 
-    public void lambda$new$1(ClickableSpan clickableSpan) {
+    public static void $r8$lambda$Lqqs9QkEf_XSQbdvK9DQ68T2tG8(TextDetailCell textDetailCell, ClickableSpan clickableSpan) {
+        textDetailCell.getClass();
         if (clickableSpan != null) {
             try {
-                performHapticFeedback(0, 1);
+                textDetailCell.performHapticFeedback(0, 1);
             } catch (Exception unused) {
             }
-            clickableSpan.onClick(this.valueTextView);
+            clickableSpan.onClick(textDetailCell.valueTextView);
         }
     }
 
-    public void lambda$new$2(ClickableSpan clickableSpan) {
+    public static void $r8$lambda$goIaOAzvIxxiQNJjhHu0nvK11YY(TextDetailCell textDetailCell, ClickableSpan clickableSpan) {
+        textDetailCell.getClass();
         if (clickableSpan != null) {
             try {
-                performHapticFeedback(0, 1);
+                textDetailCell.performHapticFeedback(0, 1);
             } catch (Exception unused) {
             }
-            clickableSpan.onClick(this.valueTextView);
+            clickableSpan.onClick(textDetailCell.valueTextView);
         }
     }
 

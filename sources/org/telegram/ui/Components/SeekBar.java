@@ -230,12 +230,16 @@ public class SeekBar {
     }
 
     public void draw(Canvas canvas) {
+        Canvas canvas2;
         float f = this.alpha;
         if (f <= 0.0f) {
             return;
         }
         if (f < 1.0f) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, this.width, this.height, (int) (f * 255.0f), 31);
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, this.width, this.height, (int) (f * 255.0f), 31);
+        } else {
+            canvas2 = canvas;
         }
         RectF rectF = this.rect;
         int i = thumbWidth / 2;
@@ -243,7 +247,7 @@ public class SeekBar {
         int i3 = this.lineHeight / 2;
         rectF.set(i, i2 - i3, this.width - i, i2 + i3);
         paint.setColor(this.selected ? this.backgroundSelectedColor : this.backgroundColor);
-        drawProgressBar(canvas, this.rect, paint);
+        drawProgressBar(canvas2, this.rect, paint);
         if (this.bufferedProgress > 0.0f) {
             paint.setColor(this.selected ? this.backgroundSelectedColor : this.cacheColor);
             RectF rectF2 = this.rect;
@@ -252,7 +256,7 @@ public class SeekBar {
             int i5 = this.height / 2;
             int i6 = this.lineHeight / 2;
             rectF2.set(f2, i5 - i6, (this.bufferedProgress * (this.width - i4)) + f2, i5 + i6);
-            drawProgressBar(canvas, this.rect, paint);
+            drawProgressBar(canvas2, this.rect, paint);
         }
         RectF rectF3 = this.rect;
         int i7 = thumbWidth / 2;
@@ -261,7 +265,7 @@ public class SeekBar {
         int i9 = this.lineHeight / 2;
         rectF3.set(f3, i8 - i9, i7 + (this.pressed ? this.draggingThumbX : this.thumbX), i8 + i9);
         paint.setColor(this.progressColor);
-        drawProgressBar(canvas, this.rect, paint);
+        drawProgressBar(canvas2, this.rect, paint);
         paint.setColor(this.circleColor);
         float fDp = AndroidUtilities.dp(this.pressed ? 8.0f : 6.0f);
         if (this.currentRadius != fDp) {
@@ -288,9 +292,9 @@ public class SeekBar {
                 view.invalidate();
             }
         }
-        canvas.drawCircle((this.pressed ? this.draggingThumbX : this.thumbX) + (thumbWidth / 2), this.height / 2, this.currentRadius, paint);
+        canvas2.drawCircle((this.pressed ? this.draggingThumbX : this.thumbX) + (thumbWidth / 2), this.height / 2, this.currentRadius, paint);
         if (this.alpha < 1.0f) {
-            canvas.restore();
+            canvas2.restore();
         }
         updateTimestampAnimation();
     }
@@ -372,7 +376,7 @@ public class SeekBar {
             Collections.sort(this.timestamps, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return SeekBar.lambda$updateTimestamps$0((Pair) obj, (Pair) obj2);
+                    return SeekBar.$r8$lambda$Z3AHhuRQfXw11EzXbdCyVNofXTQ((Pair) obj, (Pair) obj2);
                 }
             });
         } catch (Exception e2) {
@@ -388,7 +392,7 @@ public class SeekBar {
         }
     }
 
-    public static int lambda$updateTimestamps$0(Pair pair, Pair pair2) {
+    public static int $r8$lambda$Z3AHhuRQfXw11EzXbdCyVNofXTQ(Pair pair, Pair pair2) {
         if (((Float) pair.first).floatValue() > ((Float) pair2.first).floatValue()) {
             return 1;
         }
@@ -397,6 +401,10 @@ public class SeekBar {
 
     private void drawProgressBar(Canvas canvas, RectF rectF, Paint paint2) {
         int size;
+        char c;
+        float fFloatValue;
+        char c2;
+        char c3;
         SeekBar seekBar = this;
         float f = thumbWidth / 2.0f;
         ArrayList arrayList = seekBar.timestamps;
@@ -429,7 +437,6 @@ public class SeekBar {
         if (i < 0) {
             i = 0;
         }
-        int i2 = 1;
         for (int size2 = seekBar.timestamps.size() - 1; size2 >= 0; size2--) {
             if (1.0f - ((Float) ((Pair) seekBar.timestamps.get(size2)).first).floatValue() >= fDp2) {
                 size = size2 + 1;
@@ -439,17 +446,31 @@ public class SeekBar {
         if (size < 0) {
             size = seekBar.timestamps.size();
         }
-        int i3 = i;
-        while (i3 <= size) {
-            float fFloatValue = i3 == i ? 0.0f : ((Float) ((Pair) seekBar.timestamps.get(i3 - 1)).first).floatValue();
-            float fFloatValue2 = i3 == size ? 1.0f : ((Float) ((Pair) seekBar.timestamps.get(i3)).first).floatValue();
-            while (i3 != size && i3 != 0 && i3 < seekBar.timestamps.size() - i2 && ((Float) ((Pair) seekBar.timestamps.get(i3)).first).floatValue() - fFloatValue <= fDp2) {
-                i3++;
-                fFloatValue2 = ((Float) ((Pair) seekBar.timestamps.get(i3)).first).floatValue();
+        int i2 = i;
+        while (i2 <= size) {
+            if (i2 == i) {
+                fFloatValue = 0.0f;
+                c = 0;
+            } else {
+                c = 0;
+                fFloatValue = ((Float) ((Pair) seekBar.timestamps.get(i2 - 1)).first).floatValue();
+            }
+            float fFloatValue2 = i2 == size ? 1.0f : ((Float) ((Pair) seekBar.timestamps.get(i2)).first).floatValue();
+            while (true) {
+                if (i2 == size || i2 == 0) {
+                    c2 = 1;
+                    break;
+                }
+                c2 = 1;
+                if (i2 >= seekBar.timestamps.size() - 1 || ((Float) ((Pair) seekBar.timestamps.get(i2)).first).floatValue() - fFloatValue > fDp2) {
+                    break;
+                }
+                i2++;
+                fFloatValue2 = ((Float) ((Pair) seekBar.timestamps.get(i2)).first).floatValue();
             }
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.left = AndroidUtilities.lerp(f3, f4, fFloatValue) + (i3 > 0 ? fDp : 0.0f);
-            float fLerp = AndroidUtilities.lerp(f3, f4, fFloatValue2) - (i3 < size ? fDp : 0.0f);
+            rectF2.left = AndroidUtilities.lerp(f3, f4, fFloatValue) + (i2 > 0 ? fDp : 0.0f);
+            float fLerp = AndroidUtilities.lerp(f3, f4, fFloatValue2) - (i2 < size ? fDp : 0.0f);
             rectF2.right = fLerp;
             float f5 = rectF.right;
             boolean z = fLerp > f5;
@@ -465,47 +486,66 @@ public class SeekBar {
                 if (tmpRadii == null) {
                     tmpRadii = new float[8];
                 }
-                if (i3 == i || (z && rectF2.left >= rectF.left)) {
-                    float[] fArr = tmpRadii;
-                    fArr[7] = f;
-                    fArr[6] = f;
-                    fArr[1] = f;
-                    fArr[0] = f;
-                    float f8 = 0.7f * f * seekBar.timestampsAppearing;
-                    fArr[5] = f8;
-                    fArr[4] = f8;
-                    fArr[3] = f8;
-                    fArr[2] = f8;
-                } else if (i3 >= size) {
-                    float[] fArr2 = tmpRadii;
-                    float f9 = 0.7f * f * seekBar.timestampsAppearing;
-                    fArr2[7] = f9;
-                    fArr2[6] = f9;
-                    fArr2[1] = f9;
-                    fArr2[0] = f9;
-                    fArr2[5] = f;
-                    fArr2[4] = f;
-                    fArr2[3] = f;
-                    fArr2[2] = f;
+                if (i2 != i) {
+                    if (z) {
+                        c3 = 3;
+                        if (rectF2.left >= rectF.left) {
+                        }
+                        tmpPath.addRoundRect(rectF2, tmpRadii, Path.Direction.CW);
+                        if (z) {
+                            break;
+                        }
+                    } else {
+                        c3 = 3;
+                    }
+                    if (i2 >= size) {
+                        float[] fArr = tmpRadii;
+                        float f8 = 0.7f * f * seekBar.timestampsAppearing;
+                        fArr[7] = f8;
+                        fArr[6] = f8;
+                        fArr[c2] = f8;
+                        fArr[c] = f8;
+                        fArr[5] = f;
+                        fArr[4] = f;
+                        fArr[c3] = f;
+                        fArr[2] = f;
+                    } else {
+                        float[] fArr2 = tmpRadii;
+                        float f9 = 0.7f * f * seekBar.timestampsAppearing;
+                        fArr2[5] = f9;
+                        fArr2[4] = f9;
+                        fArr2[c3] = f9;
+                        fArr2[2] = f9;
+                        fArr2[7] = f9;
+                        fArr2[6] = f9;
+                        fArr2[c2] = f9;
+                        fArr2[c] = f9;
+                    }
+                    tmpPath.addRoundRect(rectF2, tmpRadii, Path.Direction.CW);
+                    if (z) {
+                        break;
+                        break;
+                    }
                 } else {
-                    float[] fArr3 = tmpRadii;
-                    float f10 = 0.7f * f * seekBar.timestampsAppearing;
-                    fArr3[5] = f10;
-                    fArr3[4] = f10;
-                    fArr3[3] = f10;
-                    fArr3[2] = f10;
-                    fArr3[7] = f10;
-                    fArr3[6] = f10;
-                    fArr3[1] = f10;
-                    fArr3[0] = f10;
+                    c3 = 3;
                 }
+                float[] fArr3 = tmpRadii;
+                fArr3[7] = f;
+                fArr3[6] = f;
+                fArr3[c2] = f;
+                fArr3[c] = f;
+                float f10 = 0.7f * f * seekBar.timestampsAppearing;
+                fArr3[5] = f10;
+                fArr3[4] = f10;
+                fArr3[c3] = f10;
+                fArr3[2] = f10;
                 tmpPath.addRoundRect(rectF2, tmpRadii, Path.Direction.CW);
                 if (z) {
                     break;
+                    break;
                 }
             }
-            i3++;
-            i2 = 1;
+            i2++;
             seekBar = this;
         }
         canvas.drawPath(tmpPath, paint2);

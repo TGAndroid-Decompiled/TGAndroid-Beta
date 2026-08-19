@@ -348,15 +348,15 @@ public class FiltersView extends RecyclerListView {
                 if (i16 >= 10 && i16 <= 99) {
                     i16 += 2000;
                 }
-                int i17 = Calendar.getInstance().get(1);
-                if (!validDateForMont(i14 - 1, i15) || i16 < 2013 || i16 > i17) {
+                int i17 = i16;
+                int i18 = Calendar.getInstance().get(1);
+                if (!validDateForMont(i14 - 1, i15) || i17 < 2013 || i17 > i18) {
                     return;
                 }
                 Calendar calendar4 = Calendar.getInstance();
-                int i18 = i16;
-                calendar4.set(i18, i15, i14, 0, 0, 0);
+                calendar4.set(i17, i15, i14, 0, 0, 0);
                 long timeInMillis5 = calendar4.getTimeInMillis();
-                calendar4.set(i18, i15, i14 + 1, 0, 0, 0);
+                calendar4.set(i17, i15, i14 + 1, 0, 0, 0);
                 arrayList.add(new DateData(LocaleController.getInstance().getFormatterYearMax().format(timeInMillis5), timeInMillis5, calendar4.getTimeInMillis() - 1));
                 return;
             }
@@ -365,24 +365,23 @@ public class FiltersView extends RecyclerListView {
         if (yearPatter.matcher(strTrim).matches()) {
             int iIntValue = Integer.valueOf(strTrim).intValue();
             int i19 = Calendar.getInstance().get(1);
-            if (iIntValue < 2013) {
-                while (i19 >= 2013) {
+            if (iIntValue >= 2013) {
+                if (iIntValue <= i19) {
                     Calendar calendar5 = Calendar.getInstance();
-                    calendar5.set(i19, 0, 1, 0, 0, 0);
+                    calendar5.set(iIntValue, 0, 1, 0, 0, 0);
                     long timeInMillis6 = calendar5.getTimeInMillis();
-                    calendar5.set(i19 + 1, 0, 1, 0, 0, 0);
-                    arrayList.add(new DateData(Integer.toString(i19), timeInMillis6, calendar5.getTimeInMillis() - 1));
-                    i19--;
+                    calendar5.set(iIntValue + 1, 0, 1, 0, 0, 0);
+                    arrayList.add(new DateData(Integer.toString(iIntValue), timeInMillis6, calendar5.getTimeInMillis() - 1));
+                    return;
                 }
                 return;
             }
-            if (iIntValue <= i19) {
+            for (int i20 = i19; i20 >= 2013; i20--) {
                 Calendar calendar6 = Calendar.getInstance();
-                calendar6.set(iIntValue, 0, 1, 0, 0, 0);
+                calendar6.set(i20, 0, 1, 0, 0, 0);
                 long timeInMillis7 = calendar6.getTimeInMillis();
-                calendar6.set(iIntValue + 1, 0, 1, 0, 0, 0);
-                arrayList.add(new DateData(Integer.toString(iIntValue), timeInMillis7, calendar6.getTimeInMillis() - 1));
-                return;
+                calendar6.set(i20 + 1, 0, 1, 0, 0, 0);
+                arrayList.add(new DateData(Integer.toString(i20), timeInMillis7, calendar6.getTimeInMillis() - 1));
             }
             return;
         }
@@ -422,9 +421,9 @@ public class FiltersView extends RecyclerListView {
         int month3 = getMonth(strTrim);
         long timeInMillis8 = Calendar.getInstance().getTimeInMillis();
         if (month3 >= 0) {
-            for (int i20 = Calendar.getInstance().get(1); i20 >= 2013; i20--) {
+            for (int i21 = Calendar.getInstance().get(1); i21 >= 2013; i21--) {
                 Calendar calendar7 = Calendar.getInstance();
-                calendar7.set(i20, month3, 1, 0, 0, 0);
+                calendar7.set(i21, month3, 1, 0, 0, 0);
                 long timeInMillis9 = calendar7.getTimeInMillis();
                 if (timeInMillis9 <= timeInMillis8) {
                     calendar7.add(2, 1);
@@ -451,36 +450,25 @@ public class FiltersView extends RecyclerListView {
     }
 
     private static void createForDayMonth(ArrayList arrayList, int i, int i2) {
-        long j;
         if (validDateForMont(i, i2)) {
-            int i3 = 1;
-            int i4 = Calendar.getInstance().get(1);
+            int i3 = Calendar.getInstance().get(1);
             long timeInMillis = Calendar.getInstance().getTimeInMillis();
             GregorianCalendar gregorianCalendar = (GregorianCalendar) Calendar.getInstance();
-            int i5 = i4;
-            while (i5 >= 2013) {
-                if (i2 == i3 && i == 28 && !gregorianCalendar.isLeapYear(i5)) {
-                    j = timeInMillis;
-                } else {
+            for (int i4 = i3; i4 >= 2013; i4--) {
+                if (i2 != 1 || i != 28 || gregorianCalendar.isLeapYear(i4)) {
                     Calendar calendar = Calendar.getInstance();
-                    calendar.set(i5, i2, i + 1, 0, 0, 0);
+                    calendar.set(i4, i2, i + 1, 0, 0, 0);
                     long timeInMillis2 = calendar.getTimeInMillis();
-                    if (timeInMillis2 > timeInMillis) {
-                        j = timeInMillis;
-                    } else {
-                        j = timeInMillis;
-                        calendar.set(i5, i2, i + 2, 0, 0, 0);
+                    if (timeInMillis2 <= timeInMillis) {
+                        calendar.set(i4, i2, i + 2, 0, 0, 0);
                         long timeInMillis3 = calendar.getTimeInMillis() - 1;
-                        if (i5 == i4) {
+                        if (i4 == i3) {
                             arrayList.add(new DateData(LocaleController.getInstance().getFormatterDayMonth().format(timeInMillis2), timeInMillis2, timeInMillis3));
                         } else {
                             arrayList.add(new DateData(LocaleController.getInstance().getFormatterYearMax().format(timeInMillis2), timeInMillis2, timeInMillis3));
                         }
                     }
                 }
-                i5--;
-                timeInMillis = j;
-                i3 = 1;
             }
         }
     }
@@ -495,13 +483,11 @@ public class FiltersView extends RecyclerListView {
             return -1;
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE", Locale.ENGLISH);
-        int i = 0;
-        while (i < 7) {
+        for (int i = 0; i < 7; i++) {
             calendar.set(7, i);
             if (LocaleController.getInstance().getFormatterWeekLong().format(calendar.getTime()).toLowerCase().startsWith(str) || simpleDateFormat.format(calendar.getTime()).toLowerCase().startsWith(str)) {
                 return i;
             }
-            i++;
         }
         return -1;
     }

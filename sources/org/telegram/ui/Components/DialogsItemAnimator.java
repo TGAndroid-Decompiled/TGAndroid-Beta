@@ -12,7 +12,6 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Cells.DialogCell;
@@ -39,7 +38,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
     protected void onAllAnimationsDone() {
     }
 
-    private static class MoveInfo {
+    static class MoveInfo {
         public int fromX;
         public int fromY;
         public RecyclerView.ViewHolder holder;
@@ -60,7 +59,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
         this.listView = recyclerListView;
     }
 
-    private static class ChangeInfo {
+    static class ChangeInfo {
         public int fromX;
         public int fromY;
         public RecyclerView.ViewHolder newHolder;
@@ -95,73 +94,89 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
         if (zIsEmpty && zIsEmpty2 && zIsEmpty4 && zIsEmpty3) {
             return;
         }
-        Iterator it = this.mPendingRemovals.iterator();
-        while (it.hasNext()) {
-            animateRemoveImpl((RecyclerView.ViewHolder) it.next());
+        ArrayList arrayList = this.mPendingRemovals;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            animateRemoveImpl((RecyclerView.ViewHolder) obj);
         }
         this.mPendingRemovals.clear();
         if (!zIsEmpty2) {
-            final ArrayList arrayList = new ArrayList(this.mPendingMoves);
-            this.mMovesList.add(arrayList);
+            final ArrayList arrayList2 = new ArrayList(this.mPendingMoves);
+            this.mMovesList.add(arrayList2);
             this.mPendingMoves.clear();
             new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$runPendingAnimations$0(arrayList);
+                    DialogsItemAnimator.m2263$r8$lambda$Tmkt5WHPBtOWx6TOR3yKVwc0EI(this.f$0, arrayList2);
                 }
             }.run();
         }
         if (!zIsEmpty3) {
-            final ArrayList arrayList2 = new ArrayList(this.mPendingChanges);
-            this.mChangesList.add(arrayList2);
+            final ArrayList arrayList3 = new ArrayList(this.mPendingChanges);
+            this.mChangesList.add(arrayList3);
             this.mPendingChanges.clear();
             new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$runPendingAnimations$1(arrayList2);
+                    DialogsItemAnimator.$r8$lambda$k34OtOvltMY4EoqnNz1n6KthLis(this.f$0, arrayList3);
                 }
             }.run();
         }
         if (zIsEmpty4) {
             return;
         }
-        final ArrayList arrayList3 = new ArrayList(this.mPendingAdditions);
-        this.mAdditionsList.add(arrayList3);
+        final ArrayList arrayList4 = new ArrayList(this.mPendingAdditions);
+        this.mAdditionsList.add(arrayList4);
         this.mPendingAdditions.clear();
         new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runPendingAnimations$2(arrayList3);
+                DialogsItemAnimator.$r8$lambda$1KH7iFPFYJLZVIt6F17GVHgF8tw(this.f$0, arrayList4);
             }
         }.run();
     }
 
-    public void lambda$runPendingAnimations$0(ArrayList arrayList) {
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            MoveInfo moveInfo = (MoveInfo) it.next();
-            animateMoveImpl(moveInfo.holder, null, moveInfo.fromX, moveInfo.fromY, moveInfo.toX, moveInfo.toY);
+    public static void m2263$r8$lambda$Tmkt5WHPBtOWx6TOR3yKVwc0EI(DialogsItemAnimator dialogsItemAnimator, ArrayList arrayList) {
+        dialogsItemAnimator.getClass();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            MoveInfo moveInfo = (MoveInfo) obj;
+            dialogsItemAnimator.animateMoveImpl(moveInfo.holder, null, moveInfo.fromX, moveInfo.fromY, moveInfo.toX, moveInfo.toY);
         }
         arrayList.clear();
-        this.mMovesList.remove(arrayList);
+        dialogsItemAnimator.mMovesList.remove(arrayList);
     }
 
-    public void lambda$runPendingAnimations$1(ArrayList arrayList) {
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            animateChangeImpl((ChangeInfo) it.next());
+    public static void $r8$lambda$k34OtOvltMY4EoqnNz1n6KthLis(DialogsItemAnimator dialogsItemAnimator, ArrayList arrayList) {
+        dialogsItemAnimator.getClass();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            dialogsItemAnimator.animateChangeImpl((ChangeInfo) obj);
         }
         arrayList.clear();
-        this.mChangesList.remove(arrayList);
+        dialogsItemAnimator.mChangesList.remove(arrayList);
     }
 
-    public void lambda$runPendingAnimations$2(ArrayList arrayList) {
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            animateAddImpl((RecyclerView.ViewHolder) it.next());
+    public static void $r8$lambda$1KH7iFPFYJLZVIt6F17GVHgF8tw(DialogsItemAnimator dialogsItemAnimator, ArrayList arrayList) {
+        dialogsItemAnimator.getClass();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            dialogsItemAnimator.animateAddImpl((RecyclerView.ViewHolder) obj);
         }
         arrayList.clear();
-        this.mAdditionsList.remove(arrayList);
+        dialogsItemAnimator.mAdditionsList.remove(arrayList);
     }
 
     @Override

@@ -102,10 +102,10 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         void didAddToContacts();
     }
 
-    public static void lambda$createView$3() {
+    public static void $r8$lambda$LPPvgrrSUfJi0dFhajZWoG7VFqg() {
     }
 
-    public static void lambda$createView$6() {
+    public static void $r8$lambda$xBHCyOJY0xiiShPXNdsiY1Ru3IA() {
     }
 
     @Override
@@ -197,8 +197,8 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                     ContactAddActivity.this.getMessagesController().putUser(user, false);
                     ContactAddActivity.this.getContactsController().addContact(user, textWithEntities, ContactAddActivity.this.needAddException && ContactAddActivity.this.checkShare);
                     MessagesController.getNotificationsSettings(((BaseFragment) ContactAddActivity.this).currentAccount).edit().putInt("dialog_bar_vis3" + ContactAddActivity.this.user_id, 3).commit();
-                    ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
-                    ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ContactAddActivity.this.user_id));
+                    ContactAddActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+                    ContactAddActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ContactAddActivity.this.user_id));
                     if (userFull != null) {
                         if (textWithEntities != null && textWithEntities.text.length() > 0) {
                             userFull.flags2 |= 4194304;
@@ -208,7 +208,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                             userFull.note = null;
                         }
                         MessagesStorage.getInstance(((BaseFragment) ContactAddActivity.this).currentAccount).updateUserInfo(userFull, true);
-                        ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.id), userFull);
+                        ContactAddActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.id), userFull);
                     }
                     ContactAddActivity.this.finishFragment();
                     if (ContactAddActivity.this.delegate != null) {
@@ -290,7 +290,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.firstNameField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                return this.f$0.lambda$createView$0(textView6, i3, keyEvent);
+                return ContactAddActivity.m3013$r8$lambda$3Ke0YFOZiSmmGaLyyocYBbwso0(this.f$0, textView6, i3, keyEvent);
             }
         });
         this.firstNameField.editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -309,7 +309,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.lastNameField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                return this.f$0.lambda$createView$1(textView6, i3, keyEvent);
+                return ContactAddActivity.$r8$lambda$Yv3qDHbupvNsFO0WOskvRfEhOMU(this.f$0, textView6, i3, keyEvent);
             }
         });
         this.lastNameField.setText(this.lastNameFromCard);
@@ -321,7 +321,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.noteField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                return this.f$0.lambda$createView$2(textView6, i3, keyEvent);
+                return ContactAddActivity.m3016$r8$lambda$R6Hd7gjnA3L0IzvXDmd_zGagyU(this.f$0, textView6, i3, keyEvent);
             }
         });
         if (!this.addContact) {
@@ -343,7 +343,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.suggestPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$createView$5(user, rLottieDrawable, view2);
+                    ContactAddActivity.m3018$r8$lambda$_EzzeNPOlfXaByXkvKt2mLFsuM(this.f$0, user, rLottieDrawable, view2);
                 }
             });
             TextCell textCell3 = new TextCell(context, this.resourcesProvider);
@@ -358,7 +358,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.setAvatarCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$createView$8(user, rLottieDrawable2, view2);
+                    ContactAddActivity.$r8$lambda$kpNUl29aiUAMS4rH4tm8ukJGJg0(this.f$0, user, rLottieDrawable2, view2);
                 }
             });
             this.oldAvatarView = new BackupImageView(context);
@@ -390,7 +390,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.oldPhotoCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$createView$10(context, user, view2);
+                    ContactAddActivity.$r8$lambda$qDO9pkHLNwldO3qCRYQWvfP7jKI(this.f$0, context, user, view2);
                 }
             });
             TextCell textCell4 = new TextCell(context, this.resourcesProvider);
@@ -403,7 +403,13 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.suggestBirthday.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$createView$14(user, view2);
+                    ContactAddActivity contactAddActivity = this.f$0;
+                    contactAddActivity.showDialog(AlertsCreator.createBirthdayPickerDialog(contactAddActivity.getContext(), LocaleController.formatString(R.string.UserSuggestBirthdayTitle, UserObject.getForcedFirstName(user)), LocaleController.getString(R.string.UserSuggestBirthdayButton), null, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            ContactAddActivity.$r8$lambda$6fK64oJczWipKHj06X0ITORcu0A(this.f$0, (TL_account.TL_birthday) obj);
+                        }
+                    }, null, false, false, contactAddActivity.resourcesProvider).create());
                 }
             });
             TLRPC.UserFull userFull = getMessagesController().getUserFull(this.user_id);
@@ -448,116 +454,120 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         return frameLayout;
     }
 
-    public boolean lambda$createView$0(TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m3013$r8$lambda$3Ke0YFOZiSmmGaLyyocYBbwso0(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
+            contactAddActivity.getClass();
             return false;
         }
-        this.lastNameField.editText.requestFocus();
-        EditTextCaption editTextCaption = this.lastNameField.editText;
+        contactAddActivity.lastNameField.editText.requestFocus();
+        EditTextCaption editTextCaption = contactAddActivity.lastNameField.editText;
         editTextCaption.setSelection(editTextCaption.length());
         return true;
     }
 
-    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean $r8$lambda$Yv3qDHbupvNsFO0WOskvRfEhOMU(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
         if (i == 6) {
-            this.doneButton.performClick();
+            contactAddActivity.doneButton.performClick();
             return true;
         }
         if (i != 5) {
+            contactAddActivity.getClass();
             return false;
         }
-        this.noteField.editText.requestFocus();
-        this.noteField.editText.setSelection(this.lastNameField.editText.length());
+        contactAddActivity.noteField.editText.requestFocus();
+        contactAddActivity.noteField.editText.setSelection(contactAddActivity.lastNameField.editText.length());
         return true;
     }
 
-    public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 6) {
-            return false;
+    public static boolean m3016$r8$lambda$R6Hd7gjnA3L0IzvXDmd_zGagyU(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
+        if (i == 6) {
+            contactAddActivity.doneButton.performClick();
+            return true;
         }
-        this.doneButton.performClick();
-        return true;
+        contactAddActivity.getClass();
+        return false;
     }
 
-    public void lambda$createView$5(TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
+    public static void m3018$r8$lambda$_EzzeNPOlfXaByXkvKt2mLFsuM(final ContactAddActivity contactAddActivity, TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
         TLRPC.UserProfilePhoto userProfilePhoto;
-        this.photoSelectedType = 1;
-        this.imageUpdater.setUser(user);
-        this.imageUpdater.openMenu(((user == null || (userProfilePhoto = user.photo) == null) ? null : userProfilePhoto.photo_small) != null, new Runnable() {
+        contactAddActivity.photoSelectedType = 1;
+        contactAddActivity.imageUpdater.setUser(user);
+        contactAddActivity.imageUpdater.openMenu(((user == null || (userProfilePhoto = user.photo) == null) ? null : userProfilePhoto.photo_small) != null, new Runnable() {
             @Override
             public final void run() {
-                ContactAddActivity.lambda$createView$3();
+                ContactAddActivity.$r8$lambda$LPPvgrrSUfJi0dFhajZWoG7VFqg();
             }
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$createView$4(rLottieDrawable, dialogInterface);
+                ContactAddActivity.$r8$lambda$ad2UodIu9do5Pj3zEbveRtIvjZc(this.f$0, rLottieDrawable, dialogInterface);
             }
         }, 2);
         rLottieDrawable.setCurrentFrame(0);
         rLottieDrawable.setCustomEndFrame(43);
-        this.suggestPhoto.imageView.playAnimation();
+        contactAddActivity.suggestPhoto.imageView.playAnimation();
     }
 
-    public void lambda$createView$4(RLottieDrawable rLottieDrawable, DialogInterface dialogInterface) {
-        if (!this.imageUpdater.isUploadingImage()) {
+    public static void $r8$lambda$ad2UodIu9do5Pj3zEbveRtIvjZc(ContactAddActivity contactAddActivity, RLottieDrawable rLottieDrawable, DialogInterface dialogInterface) {
+        if (!contactAddActivity.imageUpdater.isUploadingImage()) {
             rLottieDrawable.setCustomEndFrame(85);
-            this.suggestPhoto.imageView.playAnimation();
+            contactAddActivity.suggestPhoto.imageView.playAnimation();
         } else {
             rLottieDrawable.setCurrentFrame(0, false);
         }
     }
 
-    public void lambda$createView$8(TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
+    public static void $r8$lambda$kpNUl29aiUAMS4rH4tm8ukJGJg0(final ContactAddActivity contactAddActivity, TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
         TLRPC.UserProfilePhoto userProfilePhoto;
-        this.photoSelectedType = 2;
-        this.imageUpdater.setUser(user);
-        this.imageUpdater.openMenu(((user == null || (userProfilePhoto = user.photo) == null) ? null : userProfilePhoto.photo_small) != null, new Runnable() {
+        contactAddActivity.photoSelectedType = 2;
+        contactAddActivity.imageUpdater.setUser(user);
+        contactAddActivity.imageUpdater.openMenu(((user == null || (userProfilePhoto = user.photo) == null) ? null : userProfilePhoto.photo_small) != null, new Runnable() {
             @Override
             public final void run() {
-                ContactAddActivity.lambda$createView$6();
+                ContactAddActivity.$r8$lambda$xBHCyOJY0xiiShPXNdsiY1Ru3IA();
             }
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$createView$7(rLottieDrawable, dialogInterface);
+                ContactAddActivity.m3015$r8$lambda$EH0aC7TQw_tVreAqbFCIFNP6pg(this.f$0, rLottieDrawable, dialogInterface);
             }
         }, 1);
         rLottieDrawable.setCurrentFrame(0);
         rLottieDrawable.setCustomEndFrame(43);
-        this.setAvatarCell.imageView.playAnimation();
+        contactAddActivity.setAvatarCell.imageView.playAnimation();
     }
 
-    public void lambda$createView$7(RLottieDrawable rLottieDrawable, DialogInterface dialogInterface) {
-        if (!this.imageUpdater.isUploadingImage()) {
+    public static void m3015$r8$lambda$EH0aC7TQw_tVreAqbFCIFNP6pg(ContactAddActivity contactAddActivity, RLottieDrawable rLottieDrawable, DialogInterface dialogInterface) {
+        if (!contactAddActivity.imageUpdater.isUploadingImage()) {
             rLottieDrawable.setCustomEndFrame(86);
-            this.setAvatarCell.imageView.playAnimation();
+            contactAddActivity.setAvatarCell.imageView.playAnimation();
         } else {
             rLottieDrawable.setCurrentFrame(0, false);
         }
     }
 
-    public void lambda$createView$10(Context context, final TLRPC.User user, View view) {
+    public static void $r8$lambda$qDO9pkHLNwldO3qCRYQWvfP7jKI(final ContactAddActivity contactAddActivity, Context context, final TLRPC.User user, View view) {
+        contactAddActivity.getClass();
         AlertsCreator.createSimpleAlert(context, LocaleController.getString(R.string.ResetToOriginalPhotoTitle), LocaleController.formatString(R.string.ResetToOriginalPhotoMessage, user.first_name), LocaleController.getString(R.string.Reset), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$9(user);
+                ContactAddActivity.$r8$lambda$A1D9DYZfHyXBJQijDCGXKICfiYY(this.f$0, user);
             }
-        }, this.resourcesProvider).show();
+        }, contactAddActivity.resourcesProvider).show();
     }
 
-    public void lambda$createView$9(TLRPC.User user) {
-        this.avatar = null;
-        sendPhotoChangedRequest(null, null, null, null, null, 0.0d, 2);
-        TLRPC.User user2 = getMessagesController().getUser(Long.valueOf(this.user_id));
+    public static void $r8$lambda$A1D9DYZfHyXBJQijDCGXKICfiYY(ContactAddActivity contactAddActivity, TLRPC.User user) {
+        contactAddActivity.avatar = null;
+        contactAddActivity.sendPhotoChangedRequest(null, null, null, null, null, 0.0d, 2);
+        TLRPC.User user2 = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id));
         user2.photo.personal = false;
-        TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.user_id);
+        TLRPC.UserFull userFull = MessagesController.getInstance(contactAddActivity.currentAccount).getUserFull(contactAddActivity.user_id);
         if (userFull != null) {
             userFull.personal_photo = null;
             userFull.flags &= -2097153;
-            getMessagesStorage().updateUserInfo(userFull, true);
+            contactAddActivity.getMessagesStorage().updateUserInfo(userFull, true);
         }
-        TLRPC.Photo photo = this.prevAvatar;
+        TLRPC.Photo photo = contactAddActivity.prevAvatar;
         if (photo != null) {
             user2.photo.photo_id = photo.id;
             ArrayList<TLRPC.PhotoSize> arrayList = photo.sizes;
@@ -575,44 +585,34 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(user);
-        getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
-        updateCustomPhotoInfo();
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
+        contactAddActivity.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
+        contactAddActivity.updateCustomPhotoInfo();
+        contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
+        contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
     }
 
-    public void lambda$createView$14(TLRPC.User user, View view) {
-        showDialog(AlertsCreator.createBirthdayPickerDialog(getContext(), LocaleController.formatString(R.string.UserSuggestBirthdayTitle, UserObject.getForcedFirstName(user)), LocaleController.getString(R.string.UserSuggestBirthdayButton), null, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                this.f$0.lambda$createView$13((TL_account.TL_birthday) obj);
-            }
-        }, null, false, false, this.resourcesProvider).create());
-    }
-
-    public void lambda$createView$13(TL_account.TL_birthday tL_birthday) {
+    public static void $r8$lambda$6fK64oJczWipKHj06X0ITORcu0A(final ContactAddActivity contactAddActivity, TL_account.TL_birthday tL_birthday) {
+        contactAddActivity.getClass();
         TLRPC.TL_users_suggestBirthday tL_users_suggestBirthday = new TLRPC.TL_users_suggestBirthday();
-        tL_users_suggestBirthday.id = getMessagesController().getInputUser(this.user_id);
+        tL_users_suggestBirthday.id = contactAddActivity.getMessagesController().getInputUser(contactAddActivity.user_id);
         tL_users_suggestBirthday.birthday = tL_birthday;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_users_suggestBirthday, new RequestDelegate() {
+        ConnectionsManager.getInstance(contactAddActivity.currentAccount).sendRequest(tL_users_suggestBirthday, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$createView$12(tLObject, tL_error);
+                ContactAddActivity.$r8$lambda$onHRfweks0FkISKAl_O3ozbOX9A(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$createView$12(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$onHRfweks0FkISKAl_O3ozbOX9A(final ContactAddActivity contactAddActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
+        contactAddActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$11();
+                ContactAddActivity contactAddActivity2 = this.f$0;
+                contactAddActivity2.presentFragment(ChatActivity.of(contactAddActivity2.user_id), true);
             }
         });
-    }
-
-    public void lambda$createView$11() {
-        presentFragment(ChatActivity.of(this.user_id), true);
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -652,49 +652,49 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$fillItems$15(user);
+                    ContactAddActivity.$r8$lambda$xdKjEnTnfha47Imxskb0NLcS64k(this.f$0, user);
                 }
             });
             this.firstSet = false;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$fillItems$16();
+                    ContactAddActivity.$r8$lambda$zbhpFdZP3ohrp6wd36cgS_y1EzY(this.f$0);
                 }
             }, 200L);
         }
     }
 
-    public void lambda$fillItems$15(TLRPC.User user) {
+    public static void $r8$lambda$xdKjEnTnfha47Imxskb0NLcS64k(ContactAddActivity contactAddActivity, TLRPC.User user) {
         String str;
-        if (user != null && this.firstNameFromCard == null && this.lastNameFromCard == null) {
-            if (user.phone == null && (str = this.phone) != null) {
+        if (user != null && contactAddActivity.firstNameFromCard == null && contactAddActivity.lastNameFromCard == null) {
+            if (user.phone == null && (str = contactAddActivity.phone) != null) {
                 user.phone = PhoneFormat.stripExceptNumbers(str);
             }
-            this.firstNameField.setText(user.first_name);
-            EditTextCaption editTextCaption = this.firstNameField.editText;
+            contactAddActivity.firstNameField.setText(user.first_name);
+            EditTextCaption editTextCaption = contactAddActivity.firstNameField.editText;
             editTextCaption.setSelection(editTextCaption.length());
-            this.lastNameField.setText(user.last_name);
+            contactAddActivity.lastNameField.setText(user.last_name);
         }
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(this.user_id);
+        TLRPC.UserFull userFull = contactAddActivity.getMessagesController().getUserFull(contactAddActivity.user_id);
         if (userFull != null) {
             TLRPC.TL_textWithEntities tL_textWithEntities = userFull.note;
             if (tL_textWithEntities != null) {
-                this.noteField.setText(tL_textWithEntities);
+                contactAddActivity.noteField.setText(tL_textWithEntities);
             } else {
-                this.noteField.setText("");
+                contactAddActivity.noteField.setText("");
             }
         }
-        if (this.focusNotes) {
-            this.noteField.editText.requestFocus();
-            AndroidUtilities.showKeyboard(this.noteField.editText);
+        if (contactAddActivity.focusNotes) {
+            contactAddActivity.noteField.editText.requestFocus();
+            AndroidUtilities.showKeyboard(contactAddActivity.noteField.editText);
         }
     }
 
-    public void lambda$fillItems$16() {
-        if (this.focusNotes) {
-            this.noteField.editText.requestFocus();
-            AndroidUtilities.showKeyboard(this.noteField.editText);
+    public static void $r8$lambda$zbhpFdZP3ohrp6wd36cgS_y1EzY(ContactAddActivity contactAddActivity) {
+        if (contactAddActivity.focusNotes) {
+            contactAddActivity.noteField.editText.requestFocus();
+            AndroidUtilities.showKeyboard(contactAddActivity.noteField.editText);
         }
     }
 
@@ -708,7 +708,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             new AlertDialog.Builder(getParentActivity(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.DeleteContact)).setMessage(LocaleController.getString(R.string.AreYouSureDeleteContact)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
-                    this.f$0.lambda$onItemClick$17(user, alertDialog, i3);
+                    ContactAddActivity.m3012$r8$lambda$e3wlnV0R6aSXk3GYIRYW8Z9SQw(this.f$0, user, alertDialog, i3);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             return;
@@ -720,14 +720,15 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    public void lambda$onItemClick$17(TLRPC.User user, AlertDialog alertDialog, int i) {
+    public static void m3012$r8$lambda$e3wlnV0R6aSXk3GYIRYW8Z9SQw(ContactAddActivity contactAddActivity, TLRPC.User user, AlertDialog alertDialog, int i) {
+        contactAddActivity.getClass();
         ArrayList<TLRPC.User> arrayList = new ArrayList<>();
         arrayList.add(user);
-        getContactsController().deleteContact(arrayList, true);
+        contactAddActivity.getContactsController().deleteContact(arrayList, true);
         if (user != null) {
             user.contact = false;
         }
-        finishFragment();
+        contactAddActivity.finishFragment();
     }
 
     private void showAvatarProgress(final boolean z, boolean z2) {
@@ -890,53 +891,54 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadPhoto$19(photoSize2, inputFile, inputFile2, photoSize, videoSize, d, z);
+                ContactAddActivity.$r8$lambda$exa9PMiFxqkTsrAA0XoM_oa3ICY(this.f$0, photoSize2, inputFile, inputFile2, photoSize, videoSize, d, z);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$19(TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.PhotoSize photoSize2, TLRPC.VideoSize videoSize, double d, boolean z) {
-        if (this.imageUpdater.isCanceled()) {
+    public static void $r8$lambda$exa9PMiFxqkTsrAA0XoM_oa3ICY(final ContactAddActivity contactAddActivity, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.PhotoSize photoSize2, TLRPC.VideoSize videoSize, double d, boolean z) {
+        if (contactAddActivity.imageUpdater.isCanceled()) {
             return;
         }
-        int i = this.photoSelectedTypeFinal;
+        int i = contactAddActivity.photoSelectedTypeFinal;
         if (i == 2) {
-            this.avatar = photoSize.location;
+            contactAddActivity.avatar = photoSize.location;
         } else if (i == 1) {
-            NavigationExt.backToFragment(this, new NavigationExt.FragmentConsumer() {
+            NavigationExt.backToFragment(contactAddActivity, new NavigationExt.FragmentConsumer() {
                 @Override
                 public final boolean consume(BaseFragment baseFragment) {
-                    return this.f$0.lambda$didUploadPhoto$18(baseFragment);
+                    return ContactAddActivity.$r8$lambda$WipdR54a5GE4KAyeowHETpSDC2w(this.f$0, baseFragment);
                 }
             });
         }
         if (inputFile != null || inputFile2 != null) {
-            TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
-            if (this.suggestPhotoMessageFinal == null && user != null) {
+            TLRPC.User user = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id));
+            if (contactAddActivity.suggestPhotoMessageFinal == null && user != null) {
                 PhotoUtilities.applyPhotoToUser(photoSize, photoSize2, inputFile2 != null, user, true);
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(user);
-                getMessagesStorage().putUsersAndChats(arrayList, null, false, true);
-                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
-                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
+                contactAddActivity.getMessagesStorage().putUsersAndChats(arrayList, null, false, true);
+                contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
+                contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
             }
-            sendPhotoChangedRequest(this.avatar, photoSize2.location, inputFile, inputFile2, videoSize, d, this.photoSelectedTypeFinal);
-            showAvatarProgress(false, true);
+            contactAddActivity.sendPhotoChangedRequest(contactAddActivity.avatar, photoSize2.location, inputFile, inputFile2, videoSize, d, contactAddActivity.photoSelectedTypeFinal);
+            contactAddActivity.showAvatarProgress(false, true);
         } else {
-            this.avatarImage.setImage(ImageLocation.getForLocal(this.avatar), "50_50", this.avatarDrawable, getMessagesController().getUser(Long.valueOf(this.user_id)));
-            if (this.photoSelectedTypeFinal == 2) {
-                showAvatarProgress(true, false);
+            contactAddActivity.avatarImage.setImage(ImageLocation.getForLocal(contactAddActivity.avatar), "50_50", contactAddActivity.avatarDrawable, contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id)));
+            if (contactAddActivity.photoSelectedTypeFinal == 2) {
+                contactAddActivity.showAvatarProgress(true, false);
             } else {
-                createServiceMessageLocal(photoSize, photoSize2, z);
+                contactAddActivity.createServiceMessageLocal(photoSize, photoSize2, z);
             }
         }
-        updateCustomPhotoInfo();
+        contactAddActivity.updateCustomPhotoInfo();
     }
 
-    public boolean lambda$didUploadPhoto$18(BaseFragment baseFragment) {
+    public static boolean $r8$lambda$WipdR54a5GE4KAyeowHETpSDC2w(ContactAddActivity contactAddActivity, BaseFragment baseFragment) {
+        contactAddActivity.getClass();
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
-            if (chatActivity.getDialogId() == this.user_id && chatActivity.getChatMode() == 0) {
+            if (chatActivity.getDialogId() == contactAddActivity.user_id && chatActivity.getChatMode() == 0) {
                 chatActivity.scrollToLastMessage(true, false);
                 return true;
             }
@@ -949,17 +951,18 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadFailed$20();
+                ContactAddActivity.m3020$r8$lambda$qYGxjBsWvau4rfOiPeoUNv2Vxo(this.f$0);
             }
         });
     }
 
-    public void lambda$didUploadFailed$20() {
-        ImageUpdater.ImageUpdaterDelegate.CC.$default$didUploadFailed(this);
-        if (this.suggestPhotoMessageFinal != null) {
+    public static void m3020$r8$lambda$qYGxjBsWvau4rfOiPeoUNv2Vxo(ContactAddActivity contactAddActivity) {
+        contactAddActivity.getClass();
+        ImageUpdater.ImageUpdaterDelegate.CC.$default$didUploadFailed(contactAddActivity);
+        if (contactAddActivity.suggestPhotoMessageFinal != null) {
             ArrayList arrayList = new ArrayList();
-            arrayList.add(Integer.valueOf(this.suggestPhotoMessageFinal.getId()));
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDeleted, arrayList, 0L, Boolean.FALSE);
+            arrayList.add(Integer.valueOf(contactAddActivity.suggestPhotoMessageFinal.getId()));
+            NotificationCenter.getInstance(contactAddActivity.currentAccount).postNotificationName(NotificationCenter.messagesDeleted, arrayList, 0L, Boolean.FALSE);
         }
     }
 
@@ -1024,22 +1027,23 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         getConnectionsManager().sendRequest(tL_photos_uploadContactProfilePhoto, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$sendPhotoChangedRequest$22(fileLocation, inputFile2, fileLocation2, i, tLObject, tL_error);
+                ContactAddActivity.$r8$lambda$eGkCh7LY_YtQXfGR1eAlRjBHfN8(this.f$0, fileLocation, inputFile2, fileLocation2, i, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$sendPhotoChangedRequest$22(final TLRPC.FileLocation fileLocation, final TLRPC.InputFile inputFile, final TLRPC.FileLocation fileLocation2, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$eGkCh7LY_YtQXfGR1eAlRjBHfN8(final ContactAddActivity contactAddActivity, final TLRPC.FileLocation fileLocation, final TLRPC.InputFile inputFile, final TLRPC.FileLocation fileLocation2, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        contactAddActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$sendPhotoChangedRequest$21(fileLocation, inputFile, tLObject, fileLocation2, i);
+                ContactAddActivity.$r8$lambda$kKVjjLtKJNSYaQon_nZfpucaUMo(this.f$0, fileLocation, inputFile, tLObject, fileLocation2, i);
             }
         });
     }
 
-    public void lambda$sendPhotoChangedRequest$21(TLRPC.FileLocation fileLocation, TLRPC.InputFile inputFile, TLObject tLObject, TLRPC.FileLocation fileLocation2, int i) {
-        if (this.suggestPhotoMessageFinal != null) {
+    public static void $r8$lambda$kKVjjLtKJNSYaQon_nZfpucaUMo(ContactAddActivity contactAddActivity, TLRPC.FileLocation fileLocation, TLRPC.InputFile inputFile, TLObject tLObject, TLRPC.FileLocation fileLocation2, int i) {
+        if (contactAddActivity.suggestPhotoMessageFinal != null) {
             return;
         }
         if ((fileLocation == null && inputFile == null) || tLObject == null) {
@@ -1047,40 +1051,40 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
         TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
         ArrayList<TLRPC.PhotoSize> arrayList = tL_photos_photo.photo.sizes;
-        TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
-        TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.user_id);
+        TLRPC.User user = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id));
+        TLRPC.UserFull userFull = MessagesController.getInstance(contactAddActivity.currentAccount).getUserFull(contactAddActivity.user_id);
         if (userFull != null) {
             userFull.personal_photo = tL_photos_photo.photo;
             userFull.flags |= 2097152;
-            getMessagesStorage().updateUserInfo(userFull, true);
+            contactAddActivity.getMessagesStorage().updateUserInfo(userFull, true);
         }
         if (user != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 100);
             TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000);
             if (closestPhotoSizeWithSize != null && fileLocation != null) {
-                FileLoader.getInstance(this.currentAccount).getPathToAttach(fileLocation, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
-                ImageLoader.getInstance().replaceImageInCache(fileLocation.volume_id + "_" + fileLocation.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(this.currentAccount, user, 1), false);
+                FileLoader.getInstance(contactAddActivity.currentAccount).getPathToAttach(fileLocation, true).renameTo(FileLoader.getInstance(contactAddActivity.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
+                ImageLoader.getInstance().replaceImageInCache(fileLocation.volume_id + "_" + fileLocation.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(contactAddActivity.currentAccount, user, 1), false);
             }
             if (closestPhotoSizeWithSize2 != null && fileLocation2 != null) {
-                FileLoader.getInstance(this.currentAccount).getPathToAttach(fileLocation2, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
+                FileLoader.getInstance(contactAddActivity.currentAccount).getPathToAttach(fileLocation2, true).renameTo(FileLoader.getInstance(contactAddActivity.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
             }
             PhotoUtilities.applyPhotoToUser(tL_photos_photo.photo, user, true);
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(user);
-            getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
-            getMessagesController().getDialogPhotos(this.user_id).addPhotoAtStart(tL_photos_photo.photo);
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
-            if (getParentActivity() != null) {
+            contactAddActivity.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
+            contactAddActivity.getMessagesController().getDialogPhotos(contactAddActivity.user_id).addPhotoAtStart(tL_photos_photo.photo);
+            contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
+            contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
+            if (contactAddActivity.getParentActivity() != null) {
                 if (i == 2) {
-                    BulletinFactory.of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", R.string.UserCustomPhotoSeted, user.first_name))).show();
+                    BulletinFactory.of(contactAddActivity).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", R.string.UserCustomPhotoSeted, user.first_name))).show();
                 } else {
-                    BulletinFactory.of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", R.string.UserCustomPhotoSeted, user.first_name))).show();
+                    BulletinFactory.of(contactAddActivity).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", R.string.UserCustomPhotoSeted, user.first_name))).show();
                 }
             }
         }
-        this.avatar = null;
-        updateCustomPhotoInfo();
+        contactAddActivity.avatar = null;
+        contactAddActivity.updateCustomPhotoInfo();
     }
 
     @Override
@@ -1113,7 +1117,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$23();
+                ContactAddActivity.m3017$r8$lambda$T_6M11wWMFrF7SslX27q5BlHQ(this.f$0);
             }
 
             @Override
@@ -1158,12 +1162,12 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$23() {
+    public static void m3017$r8$lambda$T_6M11wWMFrF7SslX27q5BlHQ(ContactAddActivity contactAddActivity) {
         TLRPC.User user;
-        if (this.avatarImage == null || (user = getMessagesController().getUser(Long.valueOf(this.user_id))) == null) {
+        if (contactAddActivity.avatarImage == null || (user = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id))) == null) {
             return;
         }
-        this.avatarDrawable.setInfo(this.currentAccount, user);
-        this.avatarImage.invalidate();
+        contactAddActivity.avatarDrawable.setInfo(contactAddActivity.currentAccount, user);
+        contactAddActivity.avatarImage.invalidate();
     }
 }

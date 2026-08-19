@@ -1,6 +1,8 @@
 package org.telegram;
 
+import androidx.core.provider.FontProvider$ContentQueryWrapperApi24Impl$$ExternalSyntheticAutoCloseableForwarder1;
 import java.util.Comparator;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -9,28 +11,37 @@ import org.telegram.messenger.FileLog;
 
 public class DispatchQueuePriority {
     private volatile CountDownLatch pauseLatch;
-    ThreadPoolExecutor threadPoolExecutor;
+    ThreadPoolExecutor threadPoolExecutor = new AnonymousClass1(1, 1, 60, TimeUnit.SECONDS, new PriorityBlockingQueue(10, new Comparator() {
+        @Override
+        public int compare(Runnable runnable, Runnable runnable2) {
+            return (runnable2 instanceof PriorityRunnable ? ((PriorityRunnable) runnable2).priority : 1) - (runnable instanceof PriorityRunnable ? ((PriorityRunnable) runnable).priority : 1);
+        }
+    }));
 
-    public DispatchQueuePriority(String str) {
-        int i = 1;
-        this.threadPoolExecutor = new ThreadPoolExecutor(i, 1, 60L, TimeUnit.SECONDS, new PriorityBlockingQueue(10, new Comparator() {
-            @Override
-            public int compare(Runnable runnable, Runnable runnable2) {
-                return (runnable2 instanceof PriorityRunnable ? ((PriorityRunnable) runnable2).priority : 1) - (runnable instanceof PriorityRunnable ? ((PriorityRunnable) runnable).priority : 1);
-            }
-        })) {
-            @Override
-            protected void beforeExecute(Thread thread, Runnable runnable) {
-                CountDownLatch countDownLatch = DispatchQueuePriority.this.pauseLatch;
-                if (countDownLatch != null) {
-                    try {
-                        countDownLatch.await();
-                    } catch (InterruptedException e) {
-                        FileLog.e(e);
-                    }
+    class AnonymousClass1 extends ThreadPoolExecutor implements AutoCloseable {
+        @Override
+        public void close() {
+            FontProvider$ContentQueryWrapperApi24Impl$$ExternalSyntheticAutoCloseableForwarder1.m(this);
+        }
+
+        AnonymousClass1(int i, int i2, long j, TimeUnit timeUnit, BlockingQueue blockingQueue) {
+            super(i, i2, j, timeUnit, blockingQueue);
+        }
+
+        @Override
+        protected void beforeExecute(Thread thread, Runnable runnable) {
+            CountDownLatch countDownLatch = DispatchQueuePriority.this.pauseLatch;
+            if (countDownLatch != null) {
+                try {
+                    countDownLatch.await();
+                } catch (InterruptedException e) {
+                    FileLog.e(e);
                 }
             }
-        };
+        }
+    }
+
+    public DispatchQueuePriority(String str) {
     }
 
     public void postRunnable(Runnable runnable) {
@@ -39,7 +50,7 @@ public class DispatchQueuePriority {
 
     public Runnable postRunnable(Runnable runnable, int i) {
         if (i != 1) {
-            runnable = new PriorityRunnable(i, runnable);
+            runnable = new PriorityRunnable(i, runnable, null);
         }
         postRunnable(runnable);
         return runnable;
@@ -69,6 +80,10 @@ public class DispatchQueuePriority {
     private static class PriorityRunnable implements Runnable {
         final int priority;
         final Runnable runnable;
+
+        PriorityRunnable(int i, Runnable runnable, AnonymousClass1 anonymousClass1) {
+            this(i, runnable);
+        }
 
         private PriorityRunnable(int i, Runnable runnable) {
             this.priority = i;

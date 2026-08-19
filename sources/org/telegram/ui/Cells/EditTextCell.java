@@ -91,15 +91,11 @@ public class EditTextCell extends FrameLayout {
         });
     }
 
-    public void lambda$hideKeyboardOnEnter$0() {
-        AndroidUtilities.hideKeyboard(this.editText);
-    }
-
     public void hideKeyboardOnEnter() {
         whenHitEnter(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$hideKeyboardOnEnter$0();
+                AndroidUtilities.hideKeyboard(this.f$0.editText);
             }
         });
     }

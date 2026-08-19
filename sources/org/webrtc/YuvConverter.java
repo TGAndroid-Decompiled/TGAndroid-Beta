@@ -72,91 +72,106 @@ public class YuvConverter {
     }
 
     public VideoFrame.I420Buffer convert(VideoFrame.TextureBuffer textureBuffer) {
-        ByteBuffer byteBuffer;
         int i;
+        int i2;
+        final ByteBuffer byteBuffer;
+        int i3;
         this.threadChecker.checkIsOnValidThread();
         VideoFrame.TextureBuffer textureBuffer2 = (VideoFrame.TextureBuffer) this.videoFrameDrawer.prepareBufferForViewportSize(textureBuffer, textureBuffer.getWidth(), textureBuffer.getHeight());
         int width = textureBuffer2.getWidth();
         int height = textureBuffer2.getHeight();
-        int i2 = ((width + 7) / 8) * 8;
-        int i3 = (height + 1) / 2;
-        int i4 = height + i3;
-        ByteBuffer byteBufferNativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer(i2 * i4);
-        int i5 = i2 / 4;
+        int i4 = ((width + 7) / 8) * 8;
+        int i5 = (height + 1) / 2;
+        int i6 = height + i5;
+        ByteBuffer byteBufferNativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer(i4 * i6);
+        int i7 = i4 / 4;
         Matrix matrix = new Matrix();
         matrix.preTranslate(0.5f, 0.5f);
         matrix.preScale(1.0f, -1.0f);
         matrix.preTranslate(-0.5f, -0.5f);
         try {
-            this.i420TextureFrameBuffer.setSize(i5, i4);
+            this.i420TextureFrameBuffer.setSize(i7, i6);
             GLES20.glBindFramebuffer(36160, this.i420TextureFrameBuffer.getFrameBufferId());
             GlUtil.checkNoGLES2Error("glBindFramebuffer");
             this.shaderCallbacks.setPlaneY();
-            byteBuffer = byteBufferNativeAllocateByteBuffer;
+            i = i4;
+            i3 = 0;
             try {
-                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i5, height, false);
+                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i7, height, false);
                 this.shaderCallbacks.setPlaneU();
-                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i5 / 2, i3, false);
-                this.shaderCallbacks.setPlaneV();
-                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i5 / 2, height, i5 / 2, i3, false);
-                GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
-                GlUtil.checkNoGLES2Error("YuvConverter.convert");
-                i = 0;
                 try {
-                    GLES20.glBindFramebuffer(36160, 0);
-                } catch (Exception e) {
-                    e = e;
-                    FileLog.e(e);
-                }
-            } catch (Exception e2) {
-                e = e2;
-                i = 0;
-                FileLog.e(e);
-                int i6 = i2 * height;
-                int i7 = i2 / 2;
-                int i8 = i6 + i7;
-                final ByteBuffer byteBuffer2 = byteBuffer;
-                byteBuffer2.position(i);
-                byteBuffer2.limit(i6);
-                ByteBuffer byteBufferSlice = byteBuffer2.slice();
-                byteBuffer2.position(i6);
-                int i9 = ((i3 - 1) * i2) + i7;
-                byteBuffer2.limit(i6 + i9);
-                ByteBuffer byteBufferSlice2 = byteBuffer2.slice();
-                byteBuffer2.position(i8);
-                byteBuffer2.limit(i8 + i9);
-                ByteBuffer byteBufferSlice3 = byteBuffer2.slice();
-                textureBuffer2.release();
-                return JavaI420Buffer.wrap(width, height, byteBufferSlice, i2, byteBufferSlice2, i2, byteBufferSlice3, i2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        JniCommon.nativeFreeByteBuffer(byteBuffer2);
+                    VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i7 / 2, i5, false);
+                    this.shaderCallbacks.setPlaneV();
+                    VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i7 / 2, height, i7 / 2, i5, false);
+                    i2 = i5;
+                    try {
+                        byteBuffer = byteBufferNativeAllocateByteBuffer;
+                        try {
+                            GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
+                            GlUtil.checkNoGLES2Error("YuvConverter.convert");
+                            GLES20.glBindFramebuffer(36160, 0);
+                        } catch (Exception e) {
+                            e = e;
+                            FileLog.e(e);
+                        }
+                    } catch (Exception e2) {
+                        e = e2;
+                        byteBuffer = byteBufferNativeAllocateByteBuffer;
+                        FileLog.e(e);
+                        int i8 = i * height;
+                        int i9 = i / 2;
+                        int i10 = i8 + i9;
+                        byteBuffer.position(i3);
+                        byteBuffer.limit(i8);
+                        ByteBuffer byteBufferSlice = byteBuffer.slice();
+                        byteBuffer.position(i8);
+                        int i11 = (i * (i2 - 1)) + i9;
+                        byteBuffer.limit(i8 + i11);
+                        ByteBuffer byteBufferSlice2 = byteBuffer.slice();
+                        byteBuffer.position(i10);
+                        byteBuffer.limit(i10 + i11);
+                        ByteBuffer byteBufferSlice3 = byteBuffer.slice();
+                        textureBuffer2.release();
+                        return JavaI420Buffer.wrap(width, height, byteBufferSlice, i, byteBufferSlice2, i, byteBufferSlice3, i, new Runnable() {
+                            @Override
+                            public final void run() {
+                                JniCommon.nativeFreeByteBuffer(byteBuffer);
+                            }
+                        });
                     }
-                });
+                } catch (Exception e3) {
+                    e = e3;
+                    i2 = i5;
+                }
+            } catch (Exception e4) {
+                e = e4;
+                i2 = i5;
             }
-        } catch (Exception e3) {
-            e = e3;
+        } catch (Exception e5) {
+            e = e5;
+            i = i4;
+            i2 = i5;
             byteBuffer = byteBufferNativeAllocateByteBuffer;
+            i3 = 0;
         }
-        int i10 = i2 * height;
-        int i11 = i2 / 2;
-        int i12 = i10 + i11;
-        final ByteBuffer byteBuffer3 = byteBuffer;
-        byteBuffer3.position(i);
-        byteBuffer3.limit(i10);
-        ByteBuffer byteBufferSlice4 = byteBuffer3.slice();
-        byteBuffer3.position(i10);
-        int i13 = ((i3 - 1) * i2) + i11;
-        byteBuffer3.limit(i10 + i13);
-        ByteBuffer byteBufferSlice5 = byteBuffer3.slice();
-        byteBuffer3.position(i12);
-        byteBuffer3.limit(i12 + i13);
-        ByteBuffer byteBufferSlice6 = byteBuffer3.slice();
+        int i12 = i * height;
+        int i13 = i / 2;
+        int i14 = i12 + i13;
+        byteBuffer.position(i3);
+        byteBuffer.limit(i12);
+        ByteBuffer byteBufferSlice4 = byteBuffer.slice();
+        byteBuffer.position(i12);
+        int i15 = (i * (i2 - 1)) + i13;
+        byteBuffer.limit(i12 + i15);
+        ByteBuffer byteBufferSlice5 = byteBuffer.slice();
+        byteBuffer.position(i14);
+        byteBuffer.limit(i14 + i15);
+        ByteBuffer byteBufferSlice6 = byteBuffer.slice();
         textureBuffer2.release();
-        return JavaI420Buffer.wrap(width, height, byteBufferSlice4, i2, byteBufferSlice5, i2, byteBufferSlice6, i2, new Runnable() {
+        return JavaI420Buffer.wrap(width, height, byteBufferSlice4, i, byteBufferSlice5, i, byteBufferSlice6, i, new Runnable() {
             @Override
             public final void run() {
-                JniCommon.nativeFreeByteBuffer(byteBuffer3);
+                JniCommon.nativeFreeByteBuffer(byteBuffer);
             }
         });
     }

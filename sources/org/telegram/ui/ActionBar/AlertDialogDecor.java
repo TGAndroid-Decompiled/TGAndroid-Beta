@@ -40,11 +40,11 @@ public class AlertDialogDecor extends AlertDialog {
         return false;
     }
 
-    public void lambda$new$0() {
-        this.rootView.setVisibility(0);
-        this.dimView.setAlpha(0.0f);
-        this.contentView.startAnimation(AnimationUtils.loadAnimation(getContext(), this.resEnterAnimation));
-        this.dimView.animate().setDuration(300L).alpha(1.0f).setListener(new AnimatorListenerAdapter() {
+    public static void $r8$lambda$8RLZCjnGF2HtuczYbgz5AZPNT2M(AlertDialogDecor alertDialogDecor) {
+        alertDialogDecor.rootView.setVisibility(0);
+        alertDialogDecor.dimView.setAlpha(0.0f);
+        alertDialogDecor.contentView.startAnimation(AnimationUtils.loadAnimation(alertDialogDecor.getContext(), alertDialogDecor.resEnterAnimation));
+        alertDialogDecor.dimView.animate().setDuration(300L).alpha(1.0f).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (AlertDialogDecor.this.onShowListener != null) {
@@ -61,7 +61,7 @@ public class AlertDialogDecor extends AlertDialog {
         this.showRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                AlertDialogDecor.$r8$lambda$8RLZCjnGF2HtuczYbgz5AZPNT2M(this.f$0);
             }
         };
     }
@@ -91,7 +91,7 @@ public class AlertDialogDecor extends AlertDialog {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$show$1(view);
+                this.f$0.dismiss();
             }
         });
         View view = new View(getContext());
@@ -107,7 +107,7 @@ public class AlertDialogDecor extends AlertDialog {
         ViewCompat.setOnApplyWindowInsetsListener(this.rootView, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view2, WindowInsetsCompat windowInsetsCompat) {
-                return AlertDialogDecor.lambda$show$2(frameLayout2, view2, windowInsetsCompat);
+                return AlertDialogDecor.$r8$lambda$MfRho_Mx6ljB7hFhFOV_Aw5clhE(frameLayout2, view2, windowInsetsCompat);
             }
         });
         this.rootView.setVisibility(4);
@@ -119,11 +119,7 @@ public class AlertDialogDecor extends AlertDialog {
         }
     }
 
-    public void lambda$show$1(View view) {
-        dismiss();
-    }
-
-    public static WindowInsetsCompat lambda$show$2(FrameLayout frameLayout, View view, WindowInsetsCompat windowInsetsCompat) {
+    public static WindowInsetsCompat $r8$lambda$MfRho_Mx6ljB7hFhFOV_Aw5clhE(FrameLayout frameLayout, View view, WindowInsetsCompat windowInsetsCompat) {
         Rect rect = new Rect();
         if (Build.VERSION.SDK_INT >= 30) {
             Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars());

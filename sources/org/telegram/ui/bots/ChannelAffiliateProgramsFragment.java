@@ -76,10 +76,10 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     private View emptyLayout;
     private GLIconTextureView iconTextureView;
 
-    public static void lambda$showConnectAffiliateAlert$14(DialogInterface dialogInterface) {
+    public static void $r8$lambda$IcNRNxpxS4fjkN6ISX9CYpyMFyg(DialogInterface dialogInterface) {
     }
 
-    public static void lambda$showShareAffiliateAlert$24(DialogInterface dialogInterface) {
+    public static void $r8$lambda$s5dd51qpgOmxoxkAzPDs_oY_Tx4(DialogInterface dialogInterface) {
     }
 
     public ChannelAffiliateProgramsFragment(long j) {
@@ -129,13 +129,13 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i) {
-                this.f$0.lambda$createView$0(context, view2, i);
+                ChannelAffiliateProgramsFragment.m4840$r8$lambda$S6DQSZrLbOM8anVGh_wYjW9Hi4(this.f$0, context, view2, i);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view2, int i) {
-                return this.f$0.lambda$createView$8(context, view2, i);
+                return ChannelAffiliateProgramsFragment.$r8$lambda$s4pG8SXMtOVvt3YupXOgDQ91tI4(this.f$0, context, view2, i);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -156,21 +156,21 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(Context context, View view, int i) {
-        UniversalAdapter universalAdapter = this.adapter;
+    public static void m4840$r8$lambda$S6DQSZrLbOM8anVGh_wYjW9Hi4(ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment, Context context, View view, int i) {
+        UniversalAdapter universalAdapter = channelAffiliateProgramsFragment.adapter;
         if (universalAdapter == null) {
             return;
         }
         Object obj = universalAdapter.getItem(i).object;
         if (obj instanceof TL_payments.starRefProgram) {
-            showConnectAffiliateAlert(context, this.currentAccount, (TL_payments.starRefProgram) obj, this.dialogId, this.resourceProvider, false);
+            showConnectAffiliateAlert(context, channelAffiliateProgramsFragment.currentAccount, (TL_payments.starRefProgram) obj, channelAffiliateProgramsFragment.dialogId, channelAffiliateProgramsFragment.resourceProvider, false);
         } else if (obj instanceof TL_payments.connectedBotStarRef) {
-            showShareAffiliateAlert(context, this.currentAccount, (TL_payments.connectedBotStarRef) obj, this.dialogId, this.resourceProvider);
+            showShareAffiliateAlert(context, channelAffiliateProgramsFragment.currentAccount, (TL_payments.connectedBotStarRef) obj, channelAffiliateProgramsFragment.dialogId, channelAffiliateProgramsFragment.resourceProvider);
         }
     }
 
-    public boolean lambda$createView$8(final Context context, View view, int i) {
-        UniversalAdapter universalAdapter = this.adapter;
+    public static boolean $r8$lambda$s4pG8SXMtOVvt3YupXOgDQ91tI4(final ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment, final Context context, View view, int i) {
+        UniversalAdapter universalAdapter = channelAffiliateProgramsFragment.adapter;
         if (universalAdapter == null) {
             return false;
         }
@@ -179,85 +179,84 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             return false;
         }
         final TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-        final TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(connectedbotstarref.bot_id));
-        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, view);
+        final TLRPC.User user = MessagesController.getInstance(channelAffiliateProgramsFragment.currentAccount).getUser(Long.valueOf(connectedbotstarref.bot_id));
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(channelAffiliateProgramsFragment, view);
         boolean z = user.bot_has_main_app;
         int i2 = R.drawable.msg_bot;
         itemOptionsMakeOptions.addIf(z, i2, LocaleController.getString(R.string.ProfileBotOpenApp), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$1(user);
+                ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment2 = this.f$0;
+                channelAffiliateProgramsFragment2.getMessagesController().openApp(user, channelAffiliateProgramsFragment2.getClassGuid());
             }
         }).addIf(!user.bot_has_main_app, i2, LocaleController.getString(R.string.BotWebViewOpenBot), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$2(connectedbotstarref);
+                ChannelAffiliateProgramsFragment.$r8$lambda$_sizowstevUphjqmZidD6SoR8C8(this.f$0, connectedbotstarref);
             }
         }).add(R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$3(connectedbotstarref, user);
+                ChannelAffiliateProgramsFragment.$r8$lambda$nc0I7UuqC5XsCcSlZpxeZh1TkV0(this.f$0, connectedbotstarref, user);
             }
         }).addIf(!connectedbotstarref.revoked, R.drawable.msg_leave, (CharSequence) LocaleController.getString(R.string.LeaveAffiliateLinkButton), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$7(context, user, connectedbotstarref);
+                ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment2 = this.f$0;
+                new AlertDialog.Builder(context, channelAffiliateProgramsFragment2.resourceProvider).setTitle(LocaleController.getString(R.string.LeaveAffiliateLink)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LeaveAffiliateLinkAlert, UserObject.getUserName(user)))).setPositiveButton(LocaleController.getString(R.string.LeaveAffiliateLinkButton), new AlertDialog.OnButtonClickListener() {
+                    @Override
+                    public final void onClick(AlertDialog alertDialog, int i3) {
+                        ChannelAffiliateProgramsFragment.$r8$lambda$OHgQH7I7OYCEF6W0jIlPHpcEI2M(channelAffiliateProgramsFragment2, connectedbotstarref, alertDialog, i3);
+                    }
+                }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             }
         }).setGravity(5).show();
         return true;
     }
 
-    public void lambda$createView$1(TLRPC.User user) {
-        getMessagesController().openApp(user, getClassGuid());
+    public static void $r8$lambda$_sizowstevUphjqmZidD6SoR8C8(ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment, TL_payments.connectedBotStarRef connectedbotstarref) {
+        channelAffiliateProgramsFragment.getClass();
+        channelAffiliateProgramsFragment.presentFragment(ChatActivity.of(connectedbotstarref.bot_id));
     }
 
-    public void lambda$createView$2(TL_payments.connectedBotStarRef connectedbotstarref) {
-        presentFragment(ChatActivity.of(connectedbotstarref.bot_id));
-    }
-
-    public void lambda$createView$3(TL_payments.connectedBotStarRef connectedbotstarref, TLRPC.User user) {
+    public static void $r8$lambda$nc0I7UuqC5XsCcSlZpxeZh1TkV0(ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment, TL_payments.connectedBotStarRef connectedbotstarref, TLRPC.User user) {
+        channelAffiliateProgramsFragment.getClass();
         AndroidUtilities.addToClipboard(connectedbotstarref.url);
-        BulletinFactory.of(this).createSimpleBulletin(R.raw.copy, LocaleController.getString(R.string.AffiliateProgramLinkCopiedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AffiliateProgramLinkCopiedText, AffiliateProgramFragment.percents(connectedbotstarref.commission_permille), UserObject.getUserName(user)))).show();
+        BulletinFactory.of(channelAffiliateProgramsFragment).createSimpleBulletin(R.raw.copy, LocaleController.getString(R.string.AffiliateProgramLinkCopiedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AffiliateProgramLinkCopiedText, AffiliateProgramFragment.percents(connectedbotstarref.commission_permille), UserObject.getUserName(user)))).show();
     }
 
-    public void lambda$createView$7(Context context, TLRPC.User user, final TL_payments.connectedBotStarRef connectedbotstarref) {
-        new AlertDialog.Builder(context, this.resourceProvider).setTitle(LocaleController.getString(R.string.LeaveAffiliateLink)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LeaveAffiliateLinkAlert, UserObject.getUserName(user)))).setPositiveButton(LocaleController.getString(R.string.LeaveAffiliateLinkButton), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$createView$6(connectedbotstarref, alertDialog, i);
-            }
-        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
-    }
-
-    public void lambda$createView$6(TL_payments.connectedBotStarRef connectedbotstarref, AlertDialog alertDialog, int i) {
-        final AlertDialog alertDialog2 = new AlertDialog(getParentActivity(), 3);
+    public static void $r8$lambda$OHgQH7I7OYCEF6W0jIlPHpcEI2M(final ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment, TL_payments.connectedBotStarRef connectedbotstarref, AlertDialog alertDialog, int i) {
+        channelAffiliateProgramsFragment.getClass();
+        final AlertDialog alertDialog2 = new AlertDialog(channelAffiliateProgramsFragment.getParentActivity(), 3);
         alertDialog2.showDelayed(200L);
         TL_payments.editConnectedStarRefBot editconnectedstarrefbot = new TL_payments.editConnectedStarRefBot();
         editconnectedstarrefbot.link = connectedbotstarref.url;
-        editconnectedstarrefbot.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+        editconnectedstarrefbot.peer = MessagesController.getInstance(channelAffiliateProgramsFragment.currentAccount).getInputPeer(channelAffiliateProgramsFragment.dialogId);
         editconnectedstarrefbot.revoked = true;
-        getConnectionsManager().sendRequest(editconnectedstarrefbot, new RequestDelegate() {
+        channelAffiliateProgramsFragment.getConnectionsManager().sendRequest(editconnectedstarrefbot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$createView$5(alertDialog2, tLObject, tL_error);
+                ChannelAffiliateProgramsFragment.$r8$lambda$9ixyU8YFPyfDPe5RLcKYiNT6giE(this.f$0, alertDialog2, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$createView$5(final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$9ixyU8YFPyfDPe5RLcKYiNT6giE(final ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        channelAffiliateProgramsFragment.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$4(tLObject, alertDialog);
+                ChannelAffiliateProgramsFragment.$r8$lambda$U0_uI_TGos3EIgzBTjWy982N6KE(this.f$0, tLObject, alertDialog);
             }
         });
     }
 
-    public void lambda$createView$4(TLObject tLObject, AlertDialog alertDialog) {
+    public static void $r8$lambda$U0_uI_TGos3EIgzBTjWy982N6KE(ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment, TLObject tLObject, AlertDialog alertDialog) {
+        channelAffiliateProgramsFragment.getClass();
         if (tLObject instanceof TL_payments.connectedStarRefBots) {
-            BotStarsController.getInstance(this.currentAccount).getChannelConnectedBots(this.dialogId).applyEdit((TL_payments.connectedStarRefBots) tLObject);
-            BotStarsController.getInstance(this.currentAccount).getChannelSuggestedBots(this.dialogId).reload();
-            this.adapter.update(true);
+            BotStarsController.getInstance(channelAffiliateProgramsFragment.currentAccount).getChannelConnectedBots(channelAffiliateProgramsFragment.dialogId).applyEdit((TL_payments.connectedStarRefBots) tLObject);
+            BotStarsController.getInstance(channelAffiliateProgramsFragment.currentAccount).getChannelSuggestedBots(channelAffiliateProgramsFragment.dialogId).reload();
+            channelAffiliateProgramsFragment.adapter.update(true);
         }
         alertDialog.dismiss();
     }
@@ -372,7 +371,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             ItemOptions itemOptionsAddChecked = itemOptionsMakeOptions.addChecked(z, string, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAffiliateProgramsFragment.AnonymousClass4.lambda$onClick$0(channelSuggestedBots);
+                    channelSuggestedBots.setSort(BotStarsController.ChannelSuggestedBots.Sort.BY_DATE);
                 }
             });
             boolean z2 = this.val$sort == BotStarsController.ChannelSuggestedBots.Sort.BY_REVENUE;
@@ -381,7 +380,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             ItemOptions itemOptionsAddChecked2 = itemOptionsAddChecked.addChecked(z2, string2, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAffiliateProgramsFragment.AnonymousClass4.lambda$onClick$1(channelSuggestedBots2);
+                    channelSuggestedBots2.setSort(BotStarsController.ChannelSuggestedBots.Sort.BY_REVENUE);
                 }
             });
             boolean z3 = this.val$sort == BotStarsController.ChannelSuggestedBots.Sort.BY_PROFITABILITY;
@@ -390,21 +389,9 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             itemOptionsAddChecked2.addChecked(z3, string3, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAffiliateProgramsFragment.AnonymousClass4.lambda$onClick$2(channelSuggestedBots3);
+                    channelSuggestedBots3.setSort(BotStarsController.ChannelSuggestedBots.Sort.BY_PROFITABILITY);
                 }
             }).setGravity(5).setDrawScrim(false).setDimAlpha(0).translate(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f)).show();
-        }
-
-        public static void lambda$onClick$0(BotStarsController.ChannelSuggestedBots channelSuggestedBots) {
-            channelSuggestedBots.setSort(BotStarsController.ChannelSuggestedBots.Sort.BY_DATE);
-        }
-
-        public static void lambda$onClick$1(BotStarsController.ChannelSuggestedBots channelSuggestedBots) {
-            channelSuggestedBots.setSort(BotStarsController.ChannelSuggestedBots.Sort.BY_REVENUE);
-        }
-
-        public static void lambda$onClick$2(BotStarsController.ChannelSuggestedBots channelSuggestedBots) {
-            channelSuggestedBots.setSort(BotStarsController.ChannelSuggestedBots.Sort.BY_PROFITABILITY);
         }
 
         @Override
@@ -708,10 +695,15 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     }
 
     public static void showConnectAffiliateAlert(final Context context, final int i, final TL_payments.starRefProgram starrefprogram, final long j, final Theme.ResourcesProvider resourcesProvider, final boolean z) {
+        float f;
+        char c;
         String pluralString;
-        LinearLayout linearLayout;
         BackupImageView backupImageView;
+        LinearLayout linearLayout;
         TextView textView;
+        final BottomSheet bottomSheetCreate;
+        final Runnable runnable;
+        Theme.ResourcesProvider resourcesProvider2;
         if (starrefprogram == null || context == null) {
             return;
         }
@@ -745,12 +737,15 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             textView2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), Theme.getColor(Theme.key_color_green, resourcesProvider)));
             textView2.setTypeface(AndroidUtilities.bold());
             textView2.setTextSize(1, 10.0f);
+            f = 10.0f;
             textView2.setPadding(AndroidUtilities.dp(5.33f), 0, AndroidUtilities.dp(5.33f), 0);
             textView2.setTextColor(-1);
             textView2.setGravity(17);
             textView2.setText(StarsIntroActivity.replaceStars("⭐️ " + ((Object) StarsIntroActivity.formatStarsAmountShort(starrefprogram.daily_revenue_per_user, 1.0f, ',')), 0.75f, new ColoredImageSpan[1]));
             frameLayout3.addView(textView2, LayoutHelper.createFrame(-2, 15.66f));
             frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, -4.0f));
+        } else {
+            f = 10.0f;
         }
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
@@ -769,12 +764,12 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         backupImageView3.setRoundRadius(AndroidUtilities.dp(30.0f));
         frameLayout4.addView(backupImageView3, LayoutHelper.createFrame(60, 60, 119));
         FrameLayout frameLayout5 = new FrameLayout(context);
-        int iDp = AndroidUtilities.dp(10.0f);
+        int iDp = AndroidUtilities.dp(f);
         int i2 = Theme.key_dialogBackground;
         frameLayout5.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i2, resourcesProvider)));
         frameLayout5.setPadding(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
         TextView textView3 = new TextView(context);
-        textView3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
+        textView3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 10.0f);
         textView3.setPadding(AndroidUtilities.dp(5.33f), 0, AndroidUtilities.dp(5.33f), 0);
@@ -836,115 +831,228 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         String userName = UserObject.getUserName(user);
         CharSequence charSequencePercents = AffiliateProgramFragment.percents(starrefprogram.commission_permille);
         int i7 = starrefprogram.duration_months;
-        if (i7 <= 0) {
-            pluralString = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
-        } else {
-            pluralString = (i7 < 12 || i7 % 12 != 0) ? LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i7, new Object[0]) : LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i7 / 12, new Object[0]);
+        if (i7 > 0) {
+            if (i7 < 12 || i7 % 12 != 0) {
+                userName = userName;
+                c = 0;
+                pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i7, new Object[0]);
+            } else {
+                pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i7 / 12, new Object[0]);
+            }
+            Object[] objArr = new Object[3];
+            objArr[c] = userName;
+            objArr[1] = charSequencePercents;
+            objArr[2] = pluralString;
+            textView7.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(i6, objArr)), textView7.getPaint().getFontMetricsInt(), false));
+            linearLayout2.addView(textView7, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 22.0f));
+            if (j >= 0) {
+                TextView textView8 = new TextView(context);
+                textView8.setTextColor(Theme.getColor(i3, resourcesProvider));
+                textView8.setTextSize(1, 14.0f);
+                textView8.setGravity(17);
+                textView8.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkSendTo));
+                linearLayout2.addView(textView8, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
+                LinearLayout linearLayout4 = new LinearLayout(context);
+                linearLayout4.setOrientation(0);
+                linearLayout4.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider)));
+                linearLayout4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider), Theme.blendOver(Theme.getColor(i4, resourcesProvider), Theme.getColor(Theme.key_listSelector, resourcesProvider))));
+                BackupImageView backupImageView4 = new BackupImageView(context);
+                backupImageView4.setRoundRadius(AndroidUtilities.dp(14.0f));
+                linearLayout4.addView(backupImageView4, LayoutHelper.createLinear(28, 28));
+                TextView textView9 = new TextView(context);
+                textView9.setTextSize(1, 13.0f);
+                textView9.setTextColor(Theme.getColor(i3, resourcesProvider));
+                linearLayout4.addView(textView9, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
+                ImageView imageView3 = new ImageView(context);
+                imageView3.setScaleType(scaleType);
+                imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i5, resourcesProvider), mode));
+                imageView3.setImageResource(R.drawable.arrows_select);
+                linearLayout4.addView(imageView3, LayoutHelper.createLinear(-2, -2, 16, 2, 0, 5, 0));
+                linearLayout2.addView(linearLayout4, LayoutHelper.createLinear(-2, 28, 1, 0, 11, 0, 20));
+                linearLayout = linearLayout4;
+                backupImageView = backupImageView4;
+                textView = textView9;
+            } else {
+                backupImageView = null;
+                linearLayout = null;
+                textView = null;
+            }
+            final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+            buttonWithCounterView.setText(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButton), false);
+            linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
+            linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfo), new Runnable() {
+                @Override
+                public final void run() {
+                    Browser.openUrl(context, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
+                }
+            }));
+            linksTextView.setGravity(17);
+            linksTextView.setTextSize(1, 12.0f);
+            linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
+            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
+            linearLayout2.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 14, 14, 6));
+            builder.setCustomView(linearLayout2);
+            bottomSheetCreate = builder.create();
+            backupImageView2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ChannelAffiliateProgramsFragment.$r8$lambda$u08yvmq6eYP6ESO54NvUTqSJEm0(bottomSheetCreate, starrefprogram, view);
+                }
+            });
+            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ChannelAffiliateProgramsFragment.m4842$r8$lambda$XpRUTWcD8Qf60LYRYKywfdbQTg(buttonWithCounterView, jArr, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user, view);
+                }
+            });
+            bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    ChannelAffiliateProgramsFragment.$r8$lambda$s5dd51qpgOmxoxkAzPDs_oY_Tx4(dialogInterface);
+                }
+            });
+            final BackupImageView backupImageView5 = backupImageView;
+            final TextView textView10 = textView;
+            runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    ChannelAffiliateProgramsFragment.$r8$lambda$rHlQjS6rQzJZVWBe1x1qEJrZ2KM(jArr, i, backupImageView3, backupImageView5, textView10);
+                }
+            };
+            runnable.run();
+            if (linearLayout != null) {
+                BotStarsController.getInstance(i).loadAdminedBots();
+                BotStarsController.getInstance(i).loadAdminedChannels();
+                final LinearLayout linearLayout5 = linearLayout;
+                resourcesProvider2 = resourcesProvider;
+                linearLayout5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        ChannelAffiliateProgramsFragment.m4841$r8$lambda$XgA49I2JQGHCeLKN4jezb1aQ(i, bottomSheetCreate, resourcesProvider, linearLayout5, jArr, runnable, view);
+                    }
+                });
+            } else {
+                resourcesProvider2 = resourcesProvider;
+            }
+            linearLayout3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ChannelAffiliateProgramsFragment.$r8$lambda$RSMiA0pDgQwFzQxvPORVXXWPlFw(bottomSheetCreate, starrefprogram, view);
+                }
+            });
+            bottomSheetCreate.fixNavigationBar(Theme.getColor(i2, resourcesProvider2));
+            bottomSheetCreate.show();
         }
-        textView7.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(i6, userName, charSequencePercents, pluralString)), textView7.getPaint().getFontMetricsInt(), false));
+        pluralString = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
+        c = 0;
+        Object[] objArr2 = new Object[3];
+        objArr2[c] = userName;
+        objArr2[1] = charSequencePercents;
+        objArr2[2] = pluralString;
+        textView7.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(i6, objArr2)), textView7.getPaint().getFontMetricsInt(), false));
         linearLayout2.addView(textView7, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 22.0f));
         if (j >= 0) {
-            TextView textView8 = new TextView(context);
-            textView8.setTextColor(Theme.getColor(i3, resourcesProvider));
-            textView8.setTextSize(1, 14.0f);
-            textView8.setGravity(17);
-            textView8.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkSendTo));
-            linearLayout2.addView(textView8, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
-            LinearLayout linearLayout4 = new LinearLayout(context);
-            linearLayout4.setOrientation(0);
-            linearLayout4.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider)));
-            linearLayout4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider), Theme.blendOver(Theme.getColor(i4, resourcesProvider), Theme.getColor(Theme.key_listSelector, resourcesProvider))));
-            BackupImageView backupImageView4 = new BackupImageView(context);
-            backupImageView4.setRoundRadius(AndroidUtilities.dp(14.0f));
-            linearLayout4.addView(backupImageView4, LayoutHelper.createLinear(28, 28));
-            TextView textView9 = new TextView(context);
-            textView9.setTextSize(1, 13.0f);
-            textView9.setTextColor(Theme.getColor(i3, resourcesProvider));
-            linearLayout4.addView(textView9, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
-            ImageView imageView3 = new ImageView(context);
-            imageView3.setScaleType(scaleType);
-            imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i5, resourcesProvider), mode));
-            imageView3.setImageResource(R.drawable.arrows_select);
-            linearLayout4.addView(imageView3, LayoutHelper.createLinear(-2, -2, 16, 2, 0, 5, 0));
-            linearLayout2.addView(linearLayout4, LayoutHelper.createLinear(-2, 28, 1, 0, 11, 0, 20));
-            linearLayout = linearLayout4;
-            backupImageView = backupImageView4;
-            textView = textView9;
+            TextView textView11 = new TextView(context);
+            textView11.setTextColor(Theme.getColor(i3, resourcesProvider));
+            textView11.setTextSize(1, 14.0f);
+            textView11.setGravity(17);
+            textView11.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkSendTo));
+            linearLayout2.addView(textView11, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
+            LinearLayout linearLayout6 = new LinearLayout(context);
+            linearLayout6.setOrientation(0);
+            linearLayout6.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider)));
+            linearLayout6.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider), Theme.blendOver(Theme.getColor(i4, resourcesProvider), Theme.getColor(Theme.key_listSelector, resourcesProvider))));
+            BackupImageView backupImageView6 = new BackupImageView(context);
+            backupImageView6.setRoundRadius(AndroidUtilities.dp(14.0f));
+            linearLayout6.addView(backupImageView6, LayoutHelper.createLinear(28, 28));
+            TextView textView12 = new TextView(context);
+            textView12.setTextSize(1, 13.0f);
+            textView12.setTextColor(Theme.getColor(i3, resourcesProvider));
+            linearLayout6.addView(textView12, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
+            ImageView imageView4 = new ImageView(context);
+            imageView4.setScaleType(scaleType);
+            imageView4.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i5, resourcesProvider), mode));
+            imageView4.setImageResource(R.drawable.arrows_select);
+            linearLayout6.addView(imageView4, LayoutHelper.createLinear(-2, -2, 16, 2, 0, 5, 0));
+            linearLayout2.addView(linearLayout6, LayoutHelper.createLinear(-2, 28, 1, 0, 11, 0, 20));
+            linearLayout = linearLayout6;
+            backupImageView = backupImageView6;
+            textView = textView12;
         } else {
-            linearLayout = null;
             backupImageView = null;
+            linearLayout = null;
             textView = null;
         }
-        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButton), false);
-        linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfo), new Runnable() {
+        final ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, resourcesProvider);
+        buttonWithCounterView2.setText(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButton), false);
+        linearLayout2.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48));
+        LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
+        linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfo), new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$9(context);
+                Browser.openUrl(context, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
             }
         }));
-        linksTextView.setGravity(17);
-        linksTextView.setTextSize(1, 12.0f);
-        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
-        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
-        linearLayout2.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 14, 14, 6));
+        linksTextView2.setGravity(17);
+        linksTextView2.setTextSize(1, 12.0f);
+        linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
+        linksTextView2.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
+        linearLayout2.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 49, 14, 14, 14, 6));
         builder.setCustomView(linearLayout2);
-        final BottomSheet bottomSheetCreate = builder.create();
+        bottomSheetCreate = builder.create();
         backupImageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$10(bottomSheetCreate, starrefprogram, view);
+                ChannelAffiliateProgramsFragment.$r8$lambda$u08yvmq6eYP6ESO54NvUTqSJEm0(bottomSheetCreate, starrefprogram, view);
             }
         });
-        final LinearLayout linearLayout5 = linearLayout;
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$13(buttonWithCounterView, jArr, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user, view);
+                ChannelAffiliateProgramsFragment.m4842$r8$lambda$XpRUTWcD8Qf60LYRYKywfdbQTg(buttonWithCounterView2, jArr, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user, view);
             }
         });
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$14(dialogInterface);
+                ChannelAffiliateProgramsFragment.$r8$lambda$s5dd51qpgOmxoxkAzPDs_oY_Tx4(dialogInterface);
             }
         });
-        final BackupImageView backupImageView5 = backupImageView;
-        final TextView textView10 = textView;
-        final Runnable runnable = new Runnable() {
+        final BackupImageView backupImageView7 = backupImageView;
+        final TextView textView13 = textView;
+        runnable = new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$15(jArr, i, backupImageView3, backupImageView5, textView10);
+                ChannelAffiliateProgramsFragment.$r8$lambda$rHlQjS6rQzJZVWBe1x1qEJrZ2KM(jArr, i, backupImageView3, backupImageView7, textView13);
             }
         };
         runnable.run();
-        if (linearLayout5 != null) {
+        if (linearLayout != null) {
             BotStarsController.getInstance(i).loadAdminedBots();
             BotStarsController.getInstance(i).loadAdminedChannels();
-            linearLayout5.setOnClickListener(new View.OnClickListener() {
+            final View linearLayout7 = linearLayout;
+            resourcesProvider2 = resourcesProvider;
+            linearLayout7.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$17(i, bottomSheetCreate, resourcesProvider, linearLayout5, jArr, runnable, view);
+                    ChannelAffiliateProgramsFragment.m4841$r8$lambda$XgA49I2JQGHCeLKN4jezb1aQ(i, bottomSheetCreate, resourcesProvider, linearLayout7, jArr, runnable, view);
                 }
             });
+        } else {
+            resourcesProvider2 = resourcesProvider;
         }
         linearLayout3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$18(bottomSheetCreate, starrefprogram, view);
+                ChannelAffiliateProgramsFragment.$r8$lambda$RSMiA0pDgQwFzQxvPORVXXWPlFw(bottomSheetCreate, starrefprogram, view);
             }
         });
-        bottomSheetCreate.fixNavigationBar(Theme.getColor(i2, resourcesProvider));
+        bottomSheetCreate.fixNavigationBar(Theme.getColor(i2, resourcesProvider2));
         bottomSheetCreate.show();
     }
 
-    public static void lambda$showConnectAffiliateAlert$9(Context context) {
-        Browser.openUrl(context, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
-    }
-
-    public static void lambda$showConnectAffiliateAlert$10(BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, View view) {
+    public static void $r8$lambda$u08yvmq6eYP6ESO54NvUTqSJEm0(BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, View view) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
             bottomSheet.dismiss();
@@ -952,7 +1060,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         }
     }
 
-    public static void lambda$showConnectAffiliateAlert$13(final ButtonWithCounterView buttonWithCounterView, long[] jArr, final int i, final TL_payments.starRefProgram starrefprogram, final BottomSheet bottomSheet, final long j, final boolean z, final Context context, final Theme.ResourcesProvider resourcesProvider, final TLRPC.User user, View view) {
+    public static void m4842$r8$lambda$XpRUTWcD8Qf60LYRYKywfdbQTg(final ButtonWithCounterView buttonWithCounterView, long[] jArr, final int i, final TL_payments.starRefProgram starrefprogram, final BottomSheet bottomSheet, final long j, final boolean z, final Context context, final Theme.ResourcesProvider resourcesProvider, final TLRPC.User user, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -964,21 +1072,17 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         ConnectionsManager.getInstance(i).sendRequest(connectstarrefbot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$12(buttonWithCounterView, i, j2, bottomSheet, starrefprogram, j, z, context, resourcesProvider, user, tLObject, tL_error);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChannelAffiliateProgramsFragment.$r8$lambda$LRr52sRYPPx8YPyfkS8PVzQPZoY(buttonWithCounterView, tLObject, i, j, bottomSheet, starrefprogram, j, z, context, resourcesProvider, user, tL_error);
+                    }
+                });
             }
         });
     }
 
-    public static void lambda$showConnectAffiliateAlert$12(final ButtonWithCounterView buttonWithCounterView, final int i, final long j, final BottomSheet bottomSheet, final TL_payments.starRefProgram starrefprogram, final long j2, final boolean z, final Context context, final Theme.ResourcesProvider resourcesProvider, final TLRPC.User user, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$11(buttonWithCounterView, tLObject, i, j, bottomSheet, starrefprogram, j2, z, context, resourcesProvider, user, tL_error);
-            }
-        });
-    }
-
-    public static void lambda$showConnectAffiliateAlert$11(ButtonWithCounterView buttonWithCounterView, TLObject tLObject, int i, long j, BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, long j2, boolean z, Context context, Theme.ResourcesProvider resourcesProvider, TLRPC.User user, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$LRr52sRYPPx8YPyfkS8PVzQPZoY(ButtonWithCounterView buttonWithCounterView, TLObject tLObject, int i, long j, BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, long j2, boolean z, Context context, Theme.ResourcesProvider resourcesProvider, TLRPC.User user, TLRPC.TL_error tL_error) {
         TL_payments.connectedBotStarRef connectedbotstarref;
         BaseFragment safeLastFragment;
         int i2 = 0;
@@ -1005,16 +1109,17 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                 i2++;
             }
         }
+        TL_payments.connectedBotStarRef connectedbotstarref2 = connectedbotstarref;
         if ((j2 != j || z) && (safeLastFragment = LaunchActivity.getSafeLastFragment()) != null && (!(safeLastFragment instanceof ChannelAffiliateProgramsFragment) || ((ChannelAffiliateProgramsFragment) safeLastFragment).dialogId != j)) {
             safeLastFragment.presentFragment(new ChannelAffiliateProgramsFragment(j));
         }
-        if (connectedbotstarref != null) {
-            BotStarsController.getInstance(i).getChannelSuggestedBots(j).remove(connectedbotstarref.bot_id);
-            BulletinFactory.of(showShareAffiliateAlert(context, i, connectedbotstarref, j, resourcesProvider).topBulletinContainer, resourcesProvider).createUsersBulletin(user, LocaleController.getString(R.string.AffiliateProgramJoinedTitle), LocaleController.getString(R.string.AffiliateProgramJoinedText)).show();
+        if (connectedbotstarref2 != null) {
+            BotStarsController.getInstance(i).getChannelSuggestedBots(j).remove(connectedbotstarref2.bot_id);
+            BulletinFactory.of(showShareAffiliateAlert(context, i, connectedbotstarref2, j, resourcesProvider).topBulletinContainer, resourcesProvider).createUsersBulletin(user, LocaleController.getString(R.string.AffiliateProgramJoinedTitle), LocaleController.getString(R.string.AffiliateProgramJoinedText)).show();
         }
     }
 
-    public static void lambda$showConnectAffiliateAlert$15(long[] jArr, int i, BackupImageView backupImageView, BackupImageView backupImageView2, TextView textView) {
+    public static void $r8$lambda$rHlQjS6rQzJZVWBe1x1qEJrZ2KM(long[] jArr, int i, BackupImageView backupImageView, BackupImageView backupImageView2, TextView textView) {
         if (jArr[0] >= 0) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(jArr[0]));
             AvatarDrawable avatarDrawable = new AvatarDrawable();
@@ -1050,12 +1155,17 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         }
     }
 
-    public static void lambda$showConnectAffiliateAlert$17(int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view, final long[] jArr, final Runnable runnable, View view2) {
+    public static void m4841$r8$lambda$XgA49I2JQGHCeLKN4jezb1aQ(int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view, final long[] jArr, final Runnable runnable, View view2) {
         final long j;
-        ArrayList<TLObject> admined = BotStarsController.getInstance(i).getAdmined();
+        ArrayList admined = BotStarsController.getInstance(i).getAdmined();
         admined.add(0, UserConfig.getInstance(i).getCurrentUser());
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(bottomSheet.getContainerView(), resourcesProvider, view);
-        for (TLObject tLObject : admined) {
+        int size = admined.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = admined.get(i2);
+            i2++;
+            TLObject tLObject = (TLObject) obj;
             if (tLObject instanceof TLRPC.User) {
                 j = ((TLRPC.User) tLObject).id;
             } else if (tLObject instanceof TLRPC.Chat) {
@@ -1067,19 +1177,19 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             itemOptionsMakeOptions.addChat(tLObject, j == jArr[0], new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$16(jArr, j, runnable);
+                    ChannelAffiliateProgramsFragment.m4843$r8$lambda$myZWo4kuTQPqu_UZiRZ7NiFhCg(jArr, j, runnable);
                 }
             });
         }
         itemOptionsMakeOptions.setDrawScrim(false).setDimAlpha(0).setGravity(5).translate(AndroidUtilities.dp(24.0f), 0.0f).show();
     }
 
-    public static void lambda$showConnectAffiliateAlert$16(long[] jArr, long j, Runnable runnable) {
+    public static void m4843$r8$lambda$myZWo4kuTQPqu_UZiRZ7NiFhCg(long[] jArr, long j, Runnable runnable) {
         jArr[0] = j;
         runnable.run();
     }
 
-    public static void lambda$showConnectAffiliateAlert$18(final BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, View view) {
+    public static void $r8$lambda$RSMiA0pDgQwFzQxvPORVXXWPlFw(final BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, View view) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
             bottomSheet.dismiss();
@@ -1097,30 +1207,32 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     }
 
     public static BottomSheet showShareAffiliateAlert(final Context context, final int i, final TL_payments.connectedBotStarRef connectedbotstarref, final long j, final Theme.ResourcesProvider resourcesProvider) {
-        int i2;
+        LinearLayout linearLayout;
         char c;
         String pluralString;
-        int i3;
+        int i2;
         char c2;
         String pluralString2;
-        int i4;
-        View view;
-        int i5;
+        long j2;
+        int i3;
         String pluralString3;
+        final TL_payments.connectedBotStarRef connectedbotstarref2;
+        final Theme.ResourcesProvider resourcesProvider2;
         if (connectedbotstarref == null || context == null) {
             return null;
         }
-        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
+        ?? builder = new BottomSheet.Builder(context, false, resourcesProvider);
         TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(connectedbotstarref.bot_id));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        View view2 = new View(context);
-        view2.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(40.0f), Theme.getColor(connectedbotstarref.revoked ? Theme.key_color_red : Theme.key_featuredStickers_addButton, resourcesProvider)));
-        frameLayout.addView(view2, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
+        ?? linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        ?? r17 = 0;
+        linearLayout2.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
+        linearLayout2.setClipChildren(false);
+        linearLayout2.setClipToPadding(false);
+        ?? frameLayout = new FrameLayout(context);
+        View view = new View(context);
+        view.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(40.0f), Theme.getColor(connectedbotstarref.revoked ? Theme.key_color_red : Theme.key_featuredStickers_addButton, resourcesProvider)));
+        frameLayout.addView(view, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
@@ -1129,10 +1241,10 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         imageView.setScaleY(connectedbotstarref.revoked ? 2.0f : 1.8f);
         frameLayout.addView(imageView, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
         if (connectedbotstarref.participants > 0) {
-            FrameLayout frameLayout2 = new FrameLayout(context);
+            ?? frameLayout2 = new FrameLayout(context);
             frameLayout2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(50.0f), Theme.getColor(Theme.key_dialogBackground, resourcesProvider)));
             frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 66.0f, 0.0f, 0.0f));
-            TextView textView = new TextView(context);
+            ?? textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 12.0f);
             textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.5f), Theme.getColor(connectedbotstarref.revoked ? Theme.key_color_red : Theme.key_color_green, resourcesProvider)));
@@ -1150,153 +1262,153 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             textView.setGravity(17);
             frameLayout2.addView(textView, LayoutHelper.createFrame(-1, 19.0f, 119, 1.33f, 1.33f, 1.33f, 1.33f));
         }
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 0));
+        linearLayout2.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 0));
         TextView textView2 = new TextView(context);
-        int i6 = Theme.key_windowBackgroundWhiteBlackText;
-        textView2.setTextColor(Theme.getColor(i6, resourcesProvider));
+        int i4 = Theme.key_windowBackgroundWhiteBlackText;
+        textView2.setTextColor(Theme.getColor(i4, resourcesProvider));
         textView2.setTextSize(1, 20.0f);
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkTitle));
         textView2.setTypeface(AndroidUtilities.bold());
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 20.0f, 16.0f, 20.0f, 9.33f));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setOrientation(0);
+        linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2, 20.0f, 16.0f, 20.0f, 9.33f));
+        LinearLayout linearLayout3 = new LinearLayout(context);
+        linearLayout3.setOrientation(0);
         int iDp = AndroidUtilities.dp(28.0f);
-        int i7 = Theme.key_windowBackgroundGray;
-        linearLayout2.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i7, resourcesProvider)));
+        int i5 = Theme.key_windowBackgroundGray;
+        linearLayout3.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i5, resourcesProvider)));
         BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(14.0f));
         AvatarDrawable avatarDrawable = new AvatarDrawable();
-        linearLayout2.addView(backupImageView, LayoutHelper.createLinear(28, 28));
+        linearLayout3.addView(backupImageView, LayoutHelper.createLinear(28, 28));
         TextView textView3 = new TextView(context);
         textView3.setTextSize(1, 13.0f);
-        textView3.setTextColor(Theme.getColor(i6, resourcesProvider));
+        textView3.setTextColor(Theme.getColor(i4, resourcesProvider));
         textView3.setText(DialogObject.getName(i, connectedbotstarref.bot_id));
         avatarDrawable.setInfo(user);
         backupImageView.setForUserOrChat(user, avatarDrawable);
-        linearLayout2.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
+        linearLayout3.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(scaleType);
-        int i8 = Theme.key_dialogTextGray3;
-        int color = Theme.getColor(i8, resourcesProvider);
+        int i6 = Theme.key_dialogTextGray3;
+        int color = Theme.getColor(i6, resourcesProvider);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView2.setColorFilter(new PorterDuffColorFilter(color, mode));
         imageView2.setImageResource(R.drawable.settings_arrow);
         imageView2.setScaleX(1.2f);
         imageView2.setScaleY(1.2f);
-        linearLayout2.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 5, 0, 8, 0));
-        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, 28, 1, 4, 0, 4, 0));
-        ScaleStateListAnimator.apply(linearLayout2);
+        linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 5, 0, 8, 0));
+        linearLayout2.addView(linearLayout3, LayoutHelper.createLinear(-2, 28, 1, 4, 0, 4, 0));
+        ScaleStateListAnimator.apply(linearLayout3);
         TextView textView4 = new TextView(context);
-        textView4.setTextColor(Theme.getColor(i6, resourcesProvider));
+        textView4.setTextColor(Theme.getColor(i4, resourcesProvider));
         textView4.setTextSize(1, 14.0f);
         textView4.setGravity(17);
         if (connectedbotstarref.revoked) {
             textView4.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ChannelAffiliateProgramLinkTextRevoked)));
-            i2 = i8;
-            user = user;
+            linearLayout = linearLayout3;
         } else if (j < 0) {
-            int i9 = R.string.ChannelAffiliateProgramLinkTextChannel;
+            int i7 = R.string.ChannelAffiliateProgramLinkTextChannel;
             CharSequence charSequencePercents = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
             String userName = UserObject.getUserName(user);
-            int i10 = connectedbotstarref.duration_months;
-            if (i10 <= 0) {
+            int i8 = connectedbotstarref.duration_months;
+            if (i8 <= 0) {
                 pluralString2 = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
-                i2 = i8;
+                linearLayout = linearLayout3;
                 c2 = 0;
             } else {
-                i2 = i8;
-                if (i10 < 12 || i10 % 12 != 0) {
+                linearLayout = linearLayout3;
+                if (i8 < 12 || i8 % 12 != 0) {
                     c2 = 0;
-                    pluralString2 = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i10, new Object[0]);
+                    pluralString2 = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i8, new Object[0]);
                 } else {
                     c2 = 0;
-                    pluralString2 = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i10 / 12, new Object[0]);
+                    pluralString2 = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i8 / 12, new Object[0]);
                 }
             }
             Object[] objArr = new Object[3];
             objArr[c2] = charSequencePercents;
             objArr[1] = userName;
             objArr[2] = pluralString2;
-            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i9, objArr)));
-            user = user;
+            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i7, objArr)));
         } else {
-            i2 = i8;
-            int i11 = R.string.ChannelAffiliateProgramLinkTextUser;
+            linearLayout = linearLayout3;
+            int i9 = R.string.ChannelAffiliateProgramLinkTextUser;
             CharSequence charSequencePercents2 = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
             String userName2 = UserObject.getUserName(user);
-            int i12 = connectedbotstarref.duration_months;
-            if (i12 <= 0) {
+            int i10 = connectedbotstarref.duration_months;
+            if (i10 <= 0) {
                 pluralString = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
-                i3 = 3;
+                i2 = 3;
                 c = 0;
             } else {
-                if (i12 < 12 || i12 % 12 != 0) {
+                if (i10 < 12 || i10 % 12 != 0) {
                     c = 0;
-                    pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i12, new Object[0]);
+                    pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i10, new Object[0]);
                 } else {
                     c = 0;
-                    pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i12 / 12, new Object[0]);
+                    pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i10 / 12, new Object[0]);
                 }
-                i3 = 3;
+                i2 = 3;
             }
-            Object[] objArr2 = new Object[i3];
+            Object[] objArr2 = new Object[i2];
             objArr2[c] = charSequencePercents2;
             objArr2[1] = userName2;
             objArr2[2] = pluralString;
-            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i11, objArr2)));
+            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i9, objArr2)));
         }
-        linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 20.0f, 19.0f, 20.0f, 18.0f));
+        linearLayout2.addView(textView4, LayoutHelper.createLinear(-1, -2, 20.0f, 19.0f, 20.0f, 18.0f));
         if (connectedbotstarref.revoked) {
-            i4 = i7;
-            view = null;
+            i4 = i4;
+            user = user;
+            j2 = j;
         } else {
             TextView textView5 = new TextView(context);
-            textView5.setTextColor(Theme.getColor(i6, resourcesProvider));
+            textView5.setTextColor(Theme.getColor(i4, resourcesProvider));
             textView5.setTextSize(1, 14.0f);
             textView5.setGravity(17);
             textView5.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkSendTo));
-            linearLayout.addView(textView5, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
-            LinearLayout linearLayout3 = new LinearLayout(context);
-            linearLayout3.setOrientation(0);
-            i4 = i7;
-            linearLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider)));
+            linearLayout2.addView(textView5, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
+            ?? linearLayout4 = new LinearLayout(context);
+            linearLayout4.setOrientation(0);
+            linearLayout4.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i5, resourcesProvider)));
             BackupImageView backupImageView2 = new BackupImageView(context);
             backupImageView2.setRoundRadius(AndroidUtilities.dp(14.0f));
             AvatarDrawable avatarDrawable2 = new AvatarDrawable();
-            linearLayout3.addView(backupImageView2, LayoutHelper.createLinear(28, 28));
+            linearLayout4.addView(backupImageView2, LayoutHelper.createLinear(28, 28));
             TextView textView6 = new TextView(context);
             textView6.setTextSize(1, 13.0f);
-            textView6.setTextColor(Theme.getColor(i6, resourcesProvider));
+            textView6.setTextColor(Theme.getColor(i4, resourcesProvider));
             if (j >= 0) {
                 TLRPC.User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(j));
                 avatarDrawable2.setInfo(user2);
                 backupImageView2.setForUserOrChat(user2, avatarDrawable2);
                 textView6.setText(UserObject.getUserName(user2));
+                j2 = j;
             } else {
-                TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+                j2 = j;
+                TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j2));
                 avatarDrawable2.setInfo(chat);
                 backupImageView2.setForUserOrChat(chat, avatarDrawable2);
                 textView6.setText(chat == null ? "" : chat.title);
             }
-            linearLayout3.addView(textView6, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
+            linearLayout4.addView(textView6, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
             ImageView imageView3 = new ImageView(context);
             imageView3.setScaleType(scaleType);
-            imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), mode));
+            imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i6, resourcesProvider), mode));
             imageView3.setImageResource(R.drawable.arrows_select);
-            linearLayout3.addView(imageView3, LayoutHelper.createLinear(-2, -2, 16, 2, 0, 5, 0));
-            linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-2, 28, 1, 0, 9, 0, 22));
-            view = linearLayout3;
+            linearLayout4.addView(imageView3, LayoutHelper.createLinear(-2, -2, 16, 2, 0, 5, 0));
+            linearLayout2.addView(linearLayout4, LayoutHelper.createLinear(-2, 28, 1, 0, 9, 0, 22));
+            r17 = linearLayout4;
         }
         TextView textView7 = new TextView(context);
         textView7.setTextSize(1, 16.0f);
         textView7.setGravity(17);
-        textView7.setTextColor(Theme.getColor(i6, resourcesProvider));
-        textView7.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i4, resourcesProvider), Theme.blendOver(Theme.getColor(i4, resourcesProvider), Theme.getColor(Theme.key_listSelector, resourcesProvider))));
+        textView7.setTextColor(Theme.getColor(i4, resourcesProvider));
+        textView7.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i5, resourcesProvider), Theme.blendOver(Theme.getColor(i5, resourcesProvider), Theme.getColor(Theme.key_listSelector, resourcesProvider))));
         textView7.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f));
         String str = connectedbotstarref.url;
         textView7.setText((str == null || !str.startsWith("https://")) ? connectedbotstarref.url : connectedbotstarref.url.substring(8));
-        linearLayout.addView(textView7, LayoutHelper.createFrame(-1, -2.0f, 7, 0.0f, 0.0f, 0.0f, 12.0f));
+        linearLayout2.addView(textView7, LayoutHelper.createFrame(-1, -2.0f, 7, 0.0f, 0.0f, 0.0f, 12.0f));
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         if (!connectedbotstarref.revoked) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
@@ -1307,69 +1419,75 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         } else {
             buttonWithCounterView.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkRejoin), false);
         }
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
+        linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-        long j2 = connectedbotstarref.participants;
-        if (j2 <= 0) {
-            i5 = 1;
+        long j3 = connectedbotstarref.participants;
+        if (j3 <= 0) {
+            i3 = 1;
             pluralString3 = LocaleController.formatString(R.string.ChannelAffiliateProgramLinkOpenedNone, UserObject.getUserName(user));
         } else {
-            i5 = 1;
-            pluralString3 = LocaleController.formatPluralString("ChannelAffiliateProgramLinkOpened", (int) j2, UserObject.getUserName(user));
+            i3 = 1;
+            pluralString3 = LocaleController.formatPluralString("ChannelAffiliateProgramLinkOpened", (int) j3, UserObject.getUserName(user));
         }
         linksTextView.setText(pluralString3);
         linksTextView.setGravity(17);
-        linksTextView.setTextSize(i5, 12.0f);
+        linksTextView.setTextSize(i3, 12.0f);
         linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
-        linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 12, 14, 2));
-        builder.setCustomView(linearLayout);
+        linearLayout2.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 12, 14, 2));
+        builder.setCustomView(linearLayout2);
         final BottomSheet bottomSheetCreate = builder.create();
         final TLRPC.User user3 = user;
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$19(connectedbotstarref, bottomSheetCreate, resourcesProvider, user3);
+                ChannelAffiliateProgramsFragment.$r8$lambda$SMHHNYwLqpSUSV1onZnaUGrpXFo(connectedbotstarref, bottomSheetCreate, resourcesProvider, user3);
             }
         };
         if (!connectedbotstarref.revoked) {
             textView7.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view3) {
+                public final void onClick(View view2) {
                     runnable.run();
                 }
             });
         }
+        final long j4 = j2;
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$23(connectedbotstarref, i, bottomSheetCreate, context, j, resourcesProvider, runnable, view3);
+            public final void onClick(View view2) {
+                ChannelAffiliateProgramsFragment.$r8$lambda$tpdveAv7H9ApMIxMHVHQz7ezBY4(connectedbotstarref, i, bottomSheetCreate, context, j4, resourcesProvider, runnable, view2);
             }
         });
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$24(dialogInterface);
+                ChannelAffiliateProgramsFragment.$r8$lambda$IcNRNxpxS4fjkN6ISX9CYpyMFyg(dialogInterface);
             }
         });
-        if (view != null) {
+        if (r17 != 0) {
             BotStarsController.getInstance(i).loadAdminedBots();
             BotStarsController.getInstance(i).loadAdminedChannels();
-            final View view3 = view;
-            view.setOnClickListener(new View.OnClickListener() {
+            resourcesProvider2 = resourcesProvider;
+            final ?? r4 = r17;
+            connectedbotstarref2 = connectedbotstarref;
+            r4.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view4) {
-                    ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$29(i, bottomSheetCreate, resourcesProvider, view3, j, context, connectedbotstarref, view4);
+                public final void onClick(View view2) {
+                    ChannelAffiliateProgramsFragment.m4844$r8$lambda$rkFAKYigEpM2vOin2Pe0z1jB8Q(i, bottomSheetCreate, resourcesProvider2, r4, j, context, connectedbotstarref, view2);
                 }
             });
+        } else {
+            connectedbotstarref2 = connectedbotstarref;
+            resourcesProvider2 = resourcesProvider;
         }
-        linearLayout2.setOnClickListener(new View.OnClickListener() {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view4) {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$30(bottomSheetCreate, connectedbotstarref, view4);
+            public final void onClick(View view2) {
+                ChannelAffiliateProgramsFragment.m4837$r8$lambda$DA_jYfNNWEocIbgyGZeSJnRhK8(bottomSheetCreate, connectedbotstarref2, view2);
             }
         });
-        bottomSheetCreate.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+        bottomSheetCreate.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider2));
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!AndroidUtilities.isTablet() && safeLastFragment != null && !AndroidUtilities.hasDialogOnTop(safeLastFragment)) {
             bottomSheetCreate.makeAttached(safeLastFragment);
@@ -1378,19 +1496,24 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         return bottomSheetCreate;
     }
 
-    public static void lambda$showShareAffiliateAlert$19(TL_payments.connectedBotStarRef connectedbotstarref, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, TLRPC.User user) {
+    public static void $r8$lambda$SMHHNYwLqpSUSV1onZnaUGrpXFo(TL_payments.connectedBotStarRef connectedbotstarref, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, TLRPC.User user) {
         AndroidUtilities.addToClipboard(connectedbotstarref.url);
         BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).createSimpleBulletin(R.raw.copy, LocaleController.getString(R.string.AffiliateProgramLinkCopiedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AffiliateProgramLinkCopiedText, AffiliateProgramFragment.percents(connectedbotstarref.commission_permille), UserObject.getUserName(user)))).show();
     }
 
-    public static void lambda$showShareAffiliateAlert$23(TL_payments.connectedBotStarRef connectedbotstarref, final int i, final BottomSheet bottomSheet, final Context context, final long j, final Theme.ResourcesProvider resourcesProvider, Runnable runnable, View view) {
+    public static void $r8$lambda$tpdveAv7H9ApMIxMHVHQz7ezBY4(TL_payments.connectedBotStarRef connectedbotstarref, final int i, final BottomSheet bottomSheet, final Context context, final long j, final Theme.ResourcesProvider resourcesProvider, Runnable runnable, View view) {
         if (connectedbotstarref.revoked) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(connectedbotstarref.bot_id));
             if (user != null) {
                 MessagesController.getInstance(i).loadFullUser(user, 0, true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$22(bottomSheet, context, i, j, resourcesProvider, (TLRPC.UserFull) obj);
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                ChannelAffiliateProgramsFragment.m4838$r8$lambda$GfWtO3GPRLf2Utb4HcFxHVUeXo(userFull, bottomSheet, context, i, j, resourcesProvider);
+                            }
+                        });
                     }
                 });
                 return;
@@ -1400,16 +1523,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         runnable.run();
     }
 
-    public static void lambda$showShareAffiliateAlert$22(final BottomSheet bottomSheet, final Context context, final int i, final long j, final Theme.ResourcesProvider resourcesProvider, final TLRPC.UserFull userFull) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$21(userFull, bottomSheet, context, i, j, resourcesProvider);
-            }
-        });
-    }
-
-    public static void lambda$showShareAffiliateAlert$21(TLRPC.UserFull userFull, BottomSheet bottomSheet, Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
+    public static void m4838$r8$lambda$GfWtO3GPRLf2Utb4HcFxHVUeXo(TLRPC.UserFull userFull, BottomSheet bottomSheet, Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
         if (userFull == null || userFull.starref_program == null) {
             return;
         }
@@ -1417,48 +1531,64 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         showConnectAffiliateAlert(context, i, userFull.starref_program, j, resourcesProvider, true);
     }
 
-    public static void lambda$showShareAffiliateAlert$29(final int i, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, View view, long j, final Context context, final TL_payments.connectedBotStarRef connectedbotstarref, View view2) {
+    public static void m4844$r8$lambda$rkFAKYigEpM2vOin2Pe0z1jB8Q(final int i, final BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view, long j, final Context context, final TL_payments.connectedBotStarRef connectedbotstarref, View view2) {
         long j2;
-        ArrayList<TLObject> admined = BotStarsController.getInstance(i).getAdmined();
+        ArrayList admined = BotStarsController.getInstance(i).getAdmined();
         admined.add(0, UserConfig.getInstance(i).getCurrentUser());
-        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(bottomSheet.getContainerView(), resourcesProvider, view);
-        for (TLObject tLObject : admined) {
+        final Theme.ResourcesProvider resourcesProvider2 = resourcesProvider;
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(bottomSheet.getContainerView(), resourcesProvider2, view);
+        int size = admined.size();
+        int i2 = 0;
+        while (i2 < size) {
+            int i3 = i2 + 1;
+            TLObject tLObject = (TLObject) admined.get(i2);
             if (tLObject instanceof TLRPC.User) {
                 j2 = ((TLRPC.User) tLObject).id;
-            } else if (tLObject instanceof TLRPC.Chat) {
-                TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                    j2 = -chat.id;
+            } else {
+                if (tLObject instanceof TLRPC.Chat) {
+                    TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+                    if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+                        j2 = -chat.id;
+                    }
                 }
+                resourcesProvider2 = resourcesProvider;
+                i2 = i3;
             }
             final long j3 = j2;
             itemOptionsMakeOptions.addChat(tLObject, j3 == j, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$28(i, context, j3, connectedbotstarref, bottomSheet, resourcesProvider);
+                    int i4 = i;
+                    Context context2 = context;
+                    long j4 = j3;
+                    TL_payments.connectedBotStarRef connectedbotstarref2 = connectedbotstarref;
+                    BotStarsController.getInstance(i4).getConnectedBot(context2, j4, connectedbotstarref2.bot_id, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            ChannelAffiliateProgramsFragment.$r8$lambda$U5M0dEYFsmK8eGou6IsN1ErQ8PI(i4, connectedbotstarref2, bottomSheet, context2, j4, resourcesProvider, (TL_payments.connectedBotStarRef) obj);
+                        }
+                    });
                 }
             });
+            resourcesProvider2 = resourcesProvider;
+            i2 = i3;
         }
         itemOptionsMakeOptions.setDrawScrim(false).setDimAlpha(0).setGravity(5).translate(AndroidUtilities.dp(24.0f), 0.0f).show();
     }
 
-    public static void lambda$showShareAffiliateAlert$28(final int i, final Context context, final long j, final TL_payments.connectedBotStarRef connectedbotstarref, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider) {
-        BotStarsController.getInstance(i).getConnectedBot(context, j, connectedbotstarref.bot_id, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$27(i, connectedbotstarref, bottomSheet, context, j, resourcesProvider, (TL_payments.connectedBotStarRef) obj);
-            }
-        });
-    }
-
-    public static void lambda$showShareAffiliateAlert$27(final int i, TL_payments.connectedBotStarRef connectedbotstarref, final BottomSheet bottomSheet, final Context context, final long j, final Theme.ResourcesProvider resourcesProvider, TL_payments.connectedBotStarRef connectedbotstarref2) {
+    public static void $r8$lambda$U5M0dEYFsmK8eGou6IsN1ErQ8PI(final int i, TL_payments.connectedBotStarRef connectedbotstarref, final BottomSheet bottomSheet, final Context context, final long j, final Theme.ResourcesProvider resourcesProvider, TL_payments.connectedBotStarRef connectedbotstarref2) {
         if (connectedbotstarref2 == null) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(connectedbotstarref.bot_id));
             if (user != null) {
                 MessagesController.getInstance(i).loadFullUser(user, 0, true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$26(bottomSheet, context, i, j, resourcesProvider, (TLRPC.UserFull) obj);
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                ChannelAffiliateProgramsFragment.$r8$lambda$xtQBE4xrwBaD_CFWzyNr4lb7X2Y(userFull, bottomSheet, context, i, j, resourcesProvider);
+                            }
+                        });
                     }
                 });
                 return;
@@ -1469,16 +1599,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         showShareAffiliateAlert(context, i, connectedbotstarref2, j, resourcesProvider);
     }
 
-    public static void lambda$showShareAffiliateAlert$26(final BottomSheet bottomSheet, final Context context, final int i, final long j, final Theme.ResourcesProvider resourcesProvider, final TLRPC.UserFull userFull) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$25(userFull, bottomSheet, context, i, j, resourcesProvider);
-            }
-        });
-    }
-
-    public static void lambda$showShareAffiliateAlert$25(TLRPC.UserFull userFull, BottomSheet bottomSheet, Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
+    public static void $r8$lambda$xtQBE4xrwBaD_CFWzyNr4lb7X2Y(TLRPC.UserFull userFull, BottomSheet bottomSheet, Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
         if (userFull == null || userFull.starref_program == null) {
             return;
         }
@@ -1486,7 +1607,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         showConnectAffiliateAlert(context, i, userFull.starref_program, j, resourcesProvider, true);
     }
 
-    public static void lambda$showShareAffiliateAlert$30(BottomSheet bottomSheet, TL_payments.connectedBotStarRef connectedbotstarref, View view) {
+    public static void m4837$r8$lambda$DA_jYfNNWEocIbgyGZeSJnRhK8(BottomSheet bottomSheet, TL_payments.connectedBotStarRef connectedbotstarref, View view) {
         bottomSheet.dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {

@@ -81,9 +81,15 @@ public class Vector<T extends TLObject> extends TLObject {
 
     public ArrayList<Integer> toIntArray() {
         ArrayList<Integer> arrayList = new ArrayList<>();
-        for (T t : this.objects) {
-            if (t instanceof Int) {
-                arrayList.add(Integer.valueOf(((Int) t).value));
+        ArrayList<T> arrayList2 = this.objects;
+        int size = arrayList2.size();
+        int i = 0;
+        while (i < size) {
+            T t = arrayList2.get(i);
+            i++;
+            T t2 = t;
+            if (t2 instanceof Int) {
+                arrayList.add(Integer.valueOf(((Int) t2).value));
             }
         }
         return arrayList;

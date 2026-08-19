@@ -237,7 +237,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onClick$0();
+                        StoryMediaAreasView.$r8$lambda$wc8LwHVmh144RDVgKzunkNgkFJ8(this.f$0);
                     }
                 }, 200L);
                 TL_stories.MediaArea mediaArea = this.selectedArea.mediaArea;
@@ -384,7 +384,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                 duration.setOnHiddenListener(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onClick$1(duration);
+                        StoryMediaAreasView.$r8$lambda$qdQ5l8e3zN3QaCKysaiqxcg4kAQ(this.f$0, duration);
                     }
                 });
                 if (z) {
@@ -411,7 +411,8 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                 duration.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$onClick$2(view2);
+                        StoryMediaAreasView storyMediaAreasView = this.f$0;
+                        storyMediaAreasView.onClick(storyMediaAreasView.selectedArea);
                     }
                 });
                 duration.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -459,7 +460,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
             duration.setOnHiddenListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onClick$1(duration);
+                    StoryMediaAreasView.$r8$lambda$qdQ5l8e3zN3QaCKysaiqxcg4kAQ(this.f$0, duration);
                 }
             });
             if (z) {
@@ -491,7 +492,8 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
             duration.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$onClick$2(view2);
+                    StoryMediaAreasView storyMediaAreasView = this.f$0;
+                    storyMediaAreasView.onClick(storyMediaAreasView.selectedArea);
                 }
             });
             duration.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -501,26 +503,22 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
         }
     }
 
-    public void lambda$onClick$0() {
-        HintView2 hintView2 = this.hintView;
+    public static void $r8$lambda$wc8LwHVmh144RDVgKzunkNgkFJ8(StoryMediaAreasView storyMediaAreasView) {
+        HintView2 hintView2 = storyMediaAreasView.hintView;
         if (hintView2 != null) {
             hintView2.hide();
-            this.hintView = null;
+            storyMediaAreasView.hintView = null;
         }
-        onHintVisible(false);
+        storyMediaAreasView.onHintVisible(false);
     }
 
-    public void lambda$onClick$1(HintView2 hintView2) {
-        this.hintsContainer.removeView(hintView2);
-        if (hintView2 == this.hintView) {
-            this.selectedArea = null;
-            invalidate();
-            onHintVisible(false);
+    public static void $r8$lambda$qdQ5l8e3zN3QaCKysaiqxcg4kAQ(StoryMediaAreasView storyMediaAreasView, HintView2 hintView2) {
+        storyMediaAreasView.hintsContainer.removeView(hintView2);
+        if (hintView2 == storyMediaAreasView.hintView) {
+            storyMediaAreasView.selectedArea = null;
+            storyMediaAreasView.invalidate();
+            storyMediaAreasView.onHintVisible(false);
         }
-    }
-
-    public void lambda$onClick$2(View view) {
-        onClick(this.selectedArea);
     }
 
     public void closeHint() {
@@ -607,6 +605,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
     }
 
     private void drawHighlight(Canvas canvas) {
+        Canvas canvas2;
         float measuredHeight;
         AnimatedFloat animatedFloat = this.parentHighlightAlpha;
         AreaView areaView = this.selectedArea;
@@ -615,8 +614,9 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
         boolean z = areaView2 != null && areaView2.scaleOnTap;
         float f2 = this.parentHighlightScaleAlpha.set(z);
         if (f > 0.0f) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
-            canvas.drawColor(Theme.multAlpha(402653184, f));
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
+            canvas2.drawColor(Theme.multAlpha(402653184, f));
             for (int i = 0; i < getChildCount(); i++) {
                 View childAt = getChildAt(i);
                 if (childAt != this.hintsContainer) {
@@ -624,30 +624,32 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                     AreaView areaView3 = this.selectedArea;
                     float f3 = animatedFloat2.set(childAt == areaView3 && areaView3.supportsBounds);
                     if (f3 > 0.0f) {
-                        canvas.save();
+                        canvas2.save();
                         this.rectF.set(childAt.getX(), childAt.getY(), childAt.getX() + childAt.getMeasuredWidth(), childAt.getY() + childAt.getMeasuredHeight());
-                        canvas.rotate(childAt.getRotation(), this.rectF.centerX(), this.rectF.centerY());
+                        canvas2.rotate(childAt.getRotation(), this.rectF.centerX(), this.rectF.centerY());
                         this.cutPaint.setAlpha((int) (f3 * 255.0f));
                         RectF rectF = this.rectF;
-                        canvas.drawRoundRect(rectF, rectF.height() * 0.2f, this.rectF.height() * 0.2f, this.cutPaint);
-                        canvas.restore();
+                        canvas2.drawRoundRect(rectF, rectF.height() * 0.2f, this.rectF.height() * 0.2f, this.cutPaint);
+                        canvas2.restore();
                     }
                 }
             }
-            canvas.restore();
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
         }
         if ((z || f2 > 0.0f) && this.lastSelectedArea != null) {
             if (this.parentBitmap == null) {
                 this.parentBitmap = getPlayingBitmap();
             }
             if (this.parentBitmap != null) {
-                canvas.drawColor(Theme.multAlpha(805306368, f2));
-                canvas.save();
+                canvas2.drawColor(Theme.multAlpha(805306368, f2));
+                canvas2.save();
                 this.clipPath.rewind();
                 this.rectF.set(this.lastSelectedArea.getX(), this.lastSelectedArea.getY(), this.lastSelectedArea.getX() + this.lastSelectedArea.getMeasuredWidth(), this.lastSelectedArea.getY() + this.lastSelectedArea.getMeasuredHeight());
                 float fLerp = AndroidUtilities.lerp(1.0f, (this.lastSelectedArea.bounceOnTap ? this.lastSelectedArea.bounce.getScale(0.05f) : 1.0f) * 1.05f, f2);
-                canvas.scale(fLerp, fLerp, this.rectF.centerX(), this.rectF.centerY());
-                canvas.rotate(this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
+                canvas2.scale(fLerp, fLerp, this.rectF.centerX(), this.rectF.centerY());
+                canvas2.rotate(this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
                 AreaView areaView4 = this.lastSelectedArea;
                 TL_stories.MediaAreaCoordinates mediaAreaCoordinates = areaView4.mediaArea.coordinates;
                 if ((mediaAreaCoordinates.flags & 1) != 0) {
@@ -656,19 +658,19 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                     measuredHeight = areaView4.getMeasuredHeight() * 0.2f;
                 }
                 this.clipPath.addRoundRect(this.rectF, measuredHeight, measuredHeight, Path.Direction.CW);
-                canvas.clipPath(this.clipPath);
+                canvas2.clipPath(this.clipPath);
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
                 this.rect.set(0, 0, this.parentBitmap.getWidth(), this.parentBitmap.getHeight());
-                canvas.rotate(-this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
-                canvas.drawBitmap(this.parentBitmap, this.rect, rectF2, (Paint) null);
-                canvas.restore();
-                canvas.save();
-                canvas.translate(this.lastSelectedArea.getX(), this.lastSelectedArea.getY());
-                canvas.rotate(this.lastSelectedArea.getRotation(), this.lastSelectedArea.getPivotX(), this.lastSelectedArea.getPivotY());
-                canvas.scale(this.lastSelectedArea.getScaleX() * fLerp, this.lastSelectedArea.getScaleY() * fLerp, this.lastSelectedArea.getPivotX(), this.lastSelectedArea.getPivotY());
-                this.lastSelectedArea.drawAbove(canvas);
-                canvas.restore();
+                canvas2.rotate(-this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
+                canvas2.drawBitmap(this.parentBitmap, this.rect, rectF2, (Paint) null);
+                canvas2.restore();
+                canvas2.save();
+                canvas2.translate(this.lastSelectedArea.getX(), this.lastSelectedArea.getY());
+                canvas2.rotate(this.lastSelectedArea.getRotation(), this.lastSelectedArea.getPivotX(), this.lastSelectedArea.getPivotY());
+                canvas2.scale(this.lastSelectedArea.getScaleX() * fLerp, this.lastSelectedArea.getScaleY() * fLerp, this.lastSelectedArea.getPivotX(), this.lastSelectedArea.getPivotY());
+                this.lastSelectedArea.drawAbove(canvas2);
+                canvas2.restore();
             }
         } else {
             Bitmap bitmap = this.parentBitmap;
@@ -709,15 +711,31 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
 
     public boolean hasSelectedForScale() {
         AreaView areaView = this.selectedArea;
-        return areaView != null && (areaView.scaleOnTap || this.selectedArea.supportsBounds);
+        if (areaView != null) {
+            return areaView.scaleOnTap || this.selectedArea.supportsBounds;
+        }
+        return false;
     }
 
     public boolean hasAreaAboveAt(float f, float f2) {
-        for (int i = 0; i < getChildCount(); i++) {
+        float f3;
+        float f4;
+        int i = 0;
+        while (i < getChildCount()) {
             View childAt = getChildAt(i);
-            if ((childAt instanceof StoryReactionWidgetView) && rotatedRectContainsPoint(childAt.getTranslationX(), childAt.getTranslationY(), childAt.getMeasuredWidth(), childAt.getMeasuredHeight(), childAt.getRotation(), f, f2)) {
-                return true;
+            if (childAt instanceof StoryReactionWidgetView) {
+                f3 = f;
+                f4 = f2;
+                if (rotatedRectContainsPoint(childAt.getTranslationX(), childAt.getTranslationY(), childAt.getMeasuredWidth(), childAt.getMeasuredHeight(), childAt.getRotation(), f3, f4)) {
+                    return true;
+                }
+            } else {
+                f3 = f;
+                f4 = f2;
             }
+            i++;
+            f = f3;
+            f2 = f4;
         }
         return false;
     }

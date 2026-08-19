@@ -34,23 +34,23 @@ public final class AiTonesController {
             this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettones, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$request$0((TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
+                    AiTonesController.$r8$lambda$Z5BR4d99930rxakhHqtJTFG0A0Y(this.f$0, (TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
     }
 
-    public void lambda$request$0(TL_aicompose.Tones tones, TLRPC.TL_error tL_error) {
-        this.requestId = -1;
-        this.requestedTime = System.currentTimeMillis();
+    public static void $r8$lambda$Z5BR4d99930rxakhHqtJTFG0A0Y(AiTonesController aiTonesController, TL_aicompose.Tones tones, TLRPC.TL_error tL_error) {
+        aiTonesController.requestId = -1;
+        aiTonesController.requestedTime = System.currentTimeMillis();
         if (tones instanceof TL_aicompose.TL_tones) {
-            MessagesController.getInstance(this.currentAccount).putUsers(tones.users, false);
-            this.tones.clear();
+            MessagesController.getInstance(aiTonesController.currentAccount).putUsers(tones.users, false);
+            aiTonesController.tones.clear();
             TL_aicompose.TL_tones tL_tones = (TL_aicompose.TL_tones) tones;
-            this.tones.addAll(tL_tones.tones);
-            this.hash = tL_tones.hash;
-            save();
-            notifyUpdate();
+            aiTonesController.tones.addAll(tL_tones.tones);
+            aiTonesController.hash = tL_tones.hash;
+            aiTonesController.save();
+            aiTonesController.notifyUpdate();
             return;
         }
         boolean z = tones instanceof TL_aicompose.TL_tonesNotModified;
@@ -68,7 +68,7 @@ public final class AiTonesController {
     }
 
     public void notifyUpdate() {
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.loadedAiComposeTones, this);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.loadedAiComposeTones, this);
     }
 
     public void load() {

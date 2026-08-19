@@ -23,6 +23,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -195,16 +196,29 @@ public class SharedPhotoVideoCell extends FrameLayout {
                 if (messageObject.mediaExists || DownloadController.getInstance(SharedPhotoVideoCell.this.currentAccount).canDownloadMedia(messageObject)) {
                     photoSize = closestPhotoSizeWithSize4 != closestPhotoSizeWithSize3 ? closestPhotoSizeWithSize3 : null;
                     if (messageObject.strippedThumb != null) {
-                        this.imageView.getImageReceiver().setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), "100_100", null, null, messageObject.strippedThumb, closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
-                        return;
-                    } else {
-                        this.imageView.getImageReceiver().setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), "100_100", ImageLocation.getForObject(photoSize, messageObject.photoThumbsObject), "b", closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
+                        ImageReceiver imageReceiver = this.imageView.getImageReceiver();
+                        ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject);
+                        long j = 0;
+                        BitmapDrawable bitmapDrawable = messageObject.strippedThumb;
+                        if (closestPhotoSizeWithSize4 != null) {
+                            j = closestPhotoSizeWithSize4.size;
+                        }
+                        imageReceiver.setImage(forObject, "100_100", null, null, bitmapDrawable, j, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
                         return;
                     }
+                    long j2 = 0;
+                    ImageReceiver imageReceiver2 = this.imageView.getImageReceiver();
+                    ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject);
+                    ImageLocation forObject3 = ImageLocation.getForObject(photoSize, messageObject.photoThumbsObject);
+                    if (closestPhotoSizeWithSize4 != null) {
+                        j2 = closestPhotoSizeWithSize4.size;
+                    }
+                    imageReceiver2.setImage(forObject2, "100_100", forObject3, "b", j2, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
+                    return;
                 }
-                BitmapDrawable bitmapDrawable = messageObject.strippedThumb;
-                if (bitmapDrawable != null) {
-                    this.imageView.setImage((ImageLocation) null, (String) null, (ImageLocation) null, (String) null, bitmapDrawable, (Bitmap) null, (String) null, 0, messageObject);
+                BitmapDrawable bitmapDrawable2 = messageObject.strippedThumb;
+                if (bitmapDrawable2 != null) {
+                    this.imageView.setImage((ImageLocation) null, (String) null, (ImageLocation) null, (String) null, bitmapDrawable2, (Bitmap) null, (String) null, 0, messageObject);
                     return;
                 } else {
                     this.imageView.setImage((ImageLocation) null, (String) null, ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), "b", ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.photo_placeholder_in), (Bitmap) null, (String) null, 0, messageObject);
@@ -267,31 +281,31 @@ public class SharedPhotoVideoCell extends FrameLayout {
             this.photoVideoViews[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    SharedPhotoVideoCell.m1500$r8$lambda$YA7eRDVeo7pdDIbTErpWGZNuI(this.f$0, view);
                 }
             });
             this.photoVideoViews[i2].setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    return this.f$0.lambda$new$1(view);
+                    return SharedPhotoVideoCell.$r8$lambda$0NsnrsVkFwjnq84EDgg4JSswFU8(this.f$0, view);
                 }
             });
         }
     }
 
-    public void lambda$new$0(View view) {
-        if (this.delegate != null) {
+    public static void m1500$r8$lambda$YA7eRDVeo7pdDIbTErpWGZNuI(SharedPhotoVideoCell sharedPhotoVideoCell, View view) {
+        if (sharedPhotoVideoCell.delegate != null) {
             int iIntValue = ((Integer) view.getTag()).intValue();
-            this.delegate.didClickItem(this, this.indeces[iIntValue], this.messageObjects[iIntValue], iIntValue);
+            sharedPhotoVideoCell.delegate.didClickItem(sharedPhotoVideoCell, sharedPhotoVideoCell.indeces[iIntValue], sharedPhotoVideoCell.messageObjects[iIntValue], iIntValue);
         }
     }
 
-    public boolean lambda$new$1(View view) {
-        if (this.delegate == null) {
+    public static boolean $r8$lambda$0NsnrsVkFwjnq84EDgg4JSswFU8(SharedPhotoVideoCell sharedPhotoVideoCell, View view) {
+        if (sharedPhotoVideoCell.delegate == null) {
             return false;
         }
         int iIntValue = ((Integer) view.getTag()).intValue();
-        return this.delegate.didLongClickItem(this, this.indeces[iIntValue], this.messageObjects[iIntValue], iIntValue);
+        return sharedPhotoVideoCell.delegate.didLongClickItem(sharedPhotoVideoCell, sharedPhotoVideoCell.indeces[iIntValue], sharedPhotoVideoCell.messageObjects[iIntValue], iIntValue);
     }
 
     public void updateCheckboxColor() {

@@ -22,7 +22,7 @@ public class BackSpaceButtonView extends FrameLayout {
     private Utilities.Callback onBackspace;
     private final Theme.ResourcesProvider resourcesProvider;
 
-    public static void lambda$new$0(View view) {
+    public static void $r8$lambda$fzY2D_3TtdN909QK9dTb1llnbDo(View view) {
     }
 
     public BackSpaceButtonView(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -65,7 +65,7 @@ public class BackSpaceButtonView extends FrameLayout {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BackSpaceButtonView.lambda$new$0(view);
+                BackSpaceButtonView.$r8$lambda$fzY2D_3TtdN909QK9dTb1llnbDo(view);
             }
         });
         addView(imageView, LayoutHelper.createFrame(36, 36, 17));
@@ -89,23 +89,23 @@ public class BackSpaceButtonView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$postBackspaceRunnable$1(i);
+                BackSpaceButtonView.m2691$r8$lambda$RJgduBNT1ld1wSusTo8wjlfmxM(this.f$0, i);
             }
         }, i);
     }
 
-    public void lambda$postBackspaceRunnable$1(int i) {
-        if (this.backspacePressed) {
-            Utilities.Callback callback = this.onBackspace;
+    public static void m2691$r8$lambda$RJgduBNT1ld1wSusTo8wjlfmxM(BackSpaceButtonView backSpaceButtonView, int i) {
+        if (backSpaceButtonView.backspacePressed) {
+            Utilities.Callback callback = backSpaceButtonView.onBackspace;
             if (callback != null) {
                 callback.run(Boolean.valueOf(i < 300));
                 try {
-                    this.backspaceButton.performHapticFeedback(3);
+                    backSpaceButtonView.backspaceButton.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
             }
-            this.backspaceOnce = true;
-            postBackspaceRunnable(Math.max(50, i - 100));
+            backSpaceButtonView.backspaceOnce = true;
+            backSpaceButtonView.postBackspaceRunnable(Math.max(50, i - 100));
         }
     }
 

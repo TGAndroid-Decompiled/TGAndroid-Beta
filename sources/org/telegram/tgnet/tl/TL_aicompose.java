@@ -56,7 +56,9 @@ public class TL_aicompose {
                 if (inputAiComposeTone instanceof inputAiComposeToneSlug) {
                     return (inputAiComposeTone2 instanceof inputAiComposeToneSlug) && TextUtils.equals(((inputAiComposeToneSlug) inputAiComposeTone).slug, ((inputAiComposeToneSlug) inputAiComposeTone2).slug);
                 }
-                return (inputAiComposeTone instanceof inputAiComposeToneSingleUse) && (inputAiComposeTone2 instanceof inputAiComposeToneSingleUse) && TextUtils.equals(((inputAiComposeToneSingleUse) inputAiComposeTone).custom_prompt, ((inputAiComposeToneSingleUse) inputAiComposeTone2).custom_prompt);
+                if ((inputAiComposeTone instanceof inputAiComposeToneSingleUse) && (inputAiComposeTone2 instanceof inputAiComposeToneSingleUse) && TextUtils.equals(((inputAiComposeToneSingleUse) inputAiComposeTone).custom_prompt, ((inputAiComposeToneSingleUse) inputAiComposeTone2).custom_prompt)) {
+                    return true;
+                }
             }
             return false;
         }

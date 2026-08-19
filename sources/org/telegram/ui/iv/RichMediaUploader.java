@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Iterator;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -138,7 +138,7 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$start$1();
+                    RichMediaUploader.m5001$r8$lambda$T8Lrh8Hjipdhzh1PC4hx0Hh2yU(this.f$0);
                 }
             });
         } else if (this.isAudio) {
@@ -148,44 +148,44 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$start$3();
+                    RichMediaUploader.$r8$lambda$dAsOLEeRI1es0HLb2W9C14Qmlfs(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$start$1() {
-        this.documentThumbPath = generateDocumentThumb();
+    public static void m5001$r8$lambda$T8Lrh8Hjipdhzh1PC4hx0Hh2yU(final RichMediaUploader richMediaUploader) {
+        richMediaUploader.documentThumbPath = richMediaUploader.generateDocumentThumb();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$start$0();
+                RichMediaUploader.$r8$lambda$ThZZTnhsAbALa7PseucvmzJis7o(this.f$0);
             }
         });
     }
 
-    public void lambda$start$0() {
-        if (this.cancelled || this.finished) {
+    public static void $r8$lambda$ThZZTnhsAbALa7PseucvmzJis7o(RichMediaUploader richMediaUploader) {
+        if (richMediaUploader.cancelled || richMediaUploader.finished) {
             return;
         }
-        beginUpload(this.path);
+        richMediaUploader.beginUpload(richMediaUploader.path);
     }
 
-    public void lambda$start$3() {
-        final String strEnsureJpegPath = ensureJpegPath(this.path);
+    public static void $r8$lambda$dAsOLEeRI1es0HLb2W9C14Qmlfs(final RichMediaUploader richMediaUploader) {
+        final String strEnsureJpegPath = richMediaUploader.ensureJpegPath(richMediaUploader.path);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$start$2(strEnsureJpegPath);
+                RichMediaUploader.m5002$r8$lambda$_FOlRap55R31m5jZJEDTmXEPZU(this.f$0, strEnsureJpegPath);
             }
         });
     }
 
-    public void lambda$start$2(String str) {
-        if (this.cancelled || this.finished) {
+    public static void m5002$r8$lambda$_FOlRap55R31m5jZJEDTmXEPZU(RichMediaUploader richMediaUploader, String str) {
+        if (richMediaUploader.cancelled || richMediaUploader.finished) {
             return;
         }
-        beginUpload(str);
+        richMediaUploader.beginUpload(str);
     }
 
     private void beginUpload(String str) {
@@ -253,7 +253,6 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
                 throw th3;
             }
         } catch (Throwable unused) {
-            return str;
         }
     }
 
@@ -376,9 +375,15 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
             TLRPC.Document document2 = this.audioDocument;
             if (document2 != null) {
                 if (z) {
-                    for (TLRPC.DocumentAttribute documentAttribute : document2.attributes) {
-                        if (documentAttribute instanceof TLRPC.TL_documentAttributeFilename) {
-                            tL_inputMediaUploadedDocument2.attributes.add(documentAttribute);
+                    ArrayList<TLRPC.DocumentAttribute> arrayList = document2.attributes;
+                    int size = arrayList.size();
+                    int i = 0;
+                    while (i < size) {
+                        TLRPC.DocumentAttribute documentAttribute = arrayList.get(i);
+                        i++;
+                        TLRPC.DocumentAttribute documentAttribute2 = documentAttribute;
+                        if (documentAttribute2 instanceof TLRPC.TL_documentAttributeFilename) {
+                            tL_inputMediaUploadedDocument2.attributes.add(documentAttribute2);
                         }
                     }
                 } else {
@@ -401,45 +406,46 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
         this.requestToken = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_uploadMedia, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$sendUploadMediaRequest$5(tLObject, tL_error);
+                RichMediaUploader.$r8$lambda$JQO2YzXMTcFusbYRf7PBB4tIXCc(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$sendUploadMediaRequest$5(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$JQO2YzXMTcFusbYRf7PBB4tIXCc(final RichMediaUploader richMediaUploader, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        richMediaUploader.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$sendUploadMediaRequest$4(tLObject);
+                RichMediaUploader.$r8$lambda$lN7smHeata8hQi0KrtqS8eucxKc(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$sendUploadMediaRequest$4(TLObject tLObject) {
+    public static void $r8$lambda$lN7smHeata8hQi0KrtqS8eucxKc(RichMediaUploader richMediaUploader, TLObject tLObject) {
         TLRPC.Document document;
         TLRPC.Photo photo;
-        if (this.cancelled) {
+        if (richMediaUploader.cancelled) {
             return;
         }
-        this.requestToken = 0;
-        if (this.isVideo || this.isAudio || this.isDocument) {
+        richMediaUploader.requestToken = 0;
+        if (richMediaUploader.isVideo || richMediaUploader.isAudio || richMediaUploader.isDocument) {
             if ((tLObject instanceof TLRPC.TL_messageMediaDocument) && (document = ((TLRPC.TL_messageMediaDocument) tLObject).document) != null) {
-                if (this.isDocument) {
-                    finishWithDocument(document);
+                if (richMediaUploader.isDocument) {
+                    richMediaUploader.finishWithDocument(document);
                     return;
-                } else if (this.isAudio) {
-                    finishWithAudio(document);
+                } else if (richMediaUploader.isAudio) {
+                    richMediaUploader.finishWithAudio(document);
                     return;
                 } else {
-                    finishWithVideo(document);
+                    richMediaUploader.finishWithVideo(document);
                     return;
                 }
             }
         } else if ((tLObject instanceof TLRPC.TL_messageMediaPhoto) && (photo = ((TLRPC.TL_messageMediaPhoto) tLObject).photo) != null) {
-            finishWithPhoto(photo);
+            richMediaUploader.finishWithPhoto(photo);
             return;
         }
-        finishWithError();
+        richMediaUploader.finishWithError();
     }
 
     private void finishWithPhoto(TLRPC.Photo photo) {
@@ -498,6 +504,7 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
 
     private String generateDocumentThumb() {
         Bitmap bitmapCreateVideoThumbnail;
+        TLRPC.DocumentAttribute documentAttribute;
         String absolutePath = null;
         if (this.audioDocument != null && !TextUtils.isEmpty(this.path)) {
             try {
@@ -510,16 +517,20 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
                 }
                 if (bitmapCreateVideoThumbnail != null) {
                     try {
-                        Iterator<TLRPC.DocumentAttribute> it = this.audioDocument.attributes.iterator();
+                        ArrayList<TLRPC.DocumentAttribute> arrayList = this.audioDocument.attributes;
+                        int size = arrayList.size();
+                        int i = 0;
                         do {
-                            if (!it.hasNext()) {
+                            if (i >= size) {
                                 TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                                 tL_documentAttributeImageSize.w = bitmapCreateVideoThumbnail.getWidth();
                                 tL_documentAttributeImageSize.h = bitmapCreateVideoThumbnail.getHeight();
                                 this.audioDocument.attributes.add(tL_documentAttributeImageSize);
                                 break;
                             }
-                        } while (!(it.next() instanceof TLRPC.TL_documentAttributeImageSize));
+                            documentAttribute = arrayList.get(i);
+                            i++;
+                        } while (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize));
                         TLRPC.PhotoSize photoSizeScaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmapCreateVideoThumbnail, 320.0f, 320.0f, 80, false);
                         if (photoSizeScaleAndSaveImage != null) {
                             this.audioDocument.thumbs.clear();

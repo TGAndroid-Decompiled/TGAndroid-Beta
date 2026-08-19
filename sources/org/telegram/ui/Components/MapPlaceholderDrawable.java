@@ -63,9 +63,10 @@ public class MapPlaceholderDrawable extends Drawable {
         int i3 = 0;
         int i4 = 0;
         while (i4 < iWidth) {
-            i4++;
-            float f = (iDp * i4) + i;
+            int i5 = i4 + 1;
+            float f = (iDp * i5) + i;
             canvas.drawLine(f, i2, f, getBounds().height() + i2, this.linePaint);
+            i4 = i5;
         }
         while (i3 < iHeight) {
             i3++;

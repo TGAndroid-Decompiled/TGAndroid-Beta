@@ -89,12 +89,12 @@ public class CacheModel {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return CacheModel.lambda$sort$0((CacheModel.FileInfo) obj, (CacheModel.FileInfo) obj2);
+                return CacheModel.$r8$lambda$5Ho1DEdqeZCt_duz_Wk_ub4AxX4((CacheModel.FileInfo) obj, (CacheModel.FileInfo) obj2);
             }
         });
     }
 
-    public static int lambda$sort$0(FileInfo fileInfo, FileInfo fileInfo2) {
+    public static int $r8$lambda$5Ho1DEdqeZCt_duz_Wk_ub4AxX4(FileInfo fileInfo, FileInfo fileInfo2) {
         long j = fileInfo2.size;
         long j2 = fileInfo.size;
         if (j > j2) {
@@ -179,24 +179,33 @@ public class CacheModel {
     }
 
     public void toggleSelect(CacheControlActivity.DialogFileEntities dialogFileEntities) {
-        int i = 0;
         if (!this.selectedDialogs.contains(Long.valueOf(dialogFileEntities.dialogId))) {
-            while (i < dialogFileEntities.entitiesByType.size()) {
-                for (FileInfo fileInfo : ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files) {
+            for (int i = 0; i < dialogFileEntities.entitiesByType.size(); i++) {
+                ArrayList arrayList = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files;
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    FileInfo fileInfo = (FileInfo) obj;
                     if (this.selectedFiles.add(fileInfo)) {
                         this.selectedSize += fileInfo.size;
                     }
                 }
-                i++;
             }
         } else {
-            while (i < dialogFileEntities.entitiesByType.size()) {
-                for (FileInfo fileInfo2 : ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files) {
+            for (int i3 = 0; i3 < dialogFileEntities.entitiesByType.size(); i3++) {
+                ArrayList arrayList2 = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i3)).files;
+                int size2 = arrayList2.size();
+                int i4 = 0;
+                while (i4 < size2) {
+                    Object obj2 = arrayList2.get(i4);
+                    i4++;
+                    FileInfo fileInfo2 = (FileInfo) obj2;
                     if (this.selectedFiles.remove(fileInfo2)) {
                         this.selectedSize -= fileInfo2.size;
                     }
                 }
-                i++;
             }
         }
         checkSelectedDialogs();
@@ -222,9 +231,13 @@ public class CacheModel {
                 int i = 0;
                 while (true) {
                     if (i < dialogFileEntities.entitiesByType.size()) {
-                        Iterator it3 = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files.iterator();
-                        while (it3.hasNext()) {
-                            if (!this.selectedFiles.contains((FileInfo) it3.next())) {
+                        ArrayList arrayList = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files;
+                        int size = arrayList.size();
+                        int i2 = 0;
+                        while (i2 < size) {
+                            Object obj = arrayList.get(i2);
+                            i2++;
+                            if (!this.selectedFiles.contains((FileInfo) obj)) {
                                 break;
                             }
                         }
@@ -255,9 +268,12 @@ public class CacheModel {
     public void setEntities(ArrayList arrayList) {
         this.entities = arrayList;
         this.entitiesByDialogId.clear();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            CacheControlActivity.DialogFileEntities dialogFileEntities = (CacheControlActivity.DialogFileEntities) it.next();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            CacheControlActivity.DialogFileEntities dialogFileEntities = (CacheControlActivity.DialogFileEntities) obj;
             this.entitiesByDialogId.put(dialogFileEntities.dialogId, dialogFileEntities);
         }
     }
@@ -399,7 +415,10 @@ public class CacheModel {
     }
 
     public boolean isEmpty() {
-        return this.media.isEmpty() && this.documents.isEmpty() && this.music.isEmpty() && (this.isDialog || this.entities.isEmpty());
+        if (this.media.isEmpty() && this.documents.isEmpty() && this.music.isEmpty()) {
+            return this.isDialog || this.entities.isEmpty();
+        }
+        return false;
     }
 
     public void onFileDeleted(FileInfo fileInfo) {

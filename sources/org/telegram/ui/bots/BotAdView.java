@@ -42,7 +42,7 @@ public class BotAdView extends FrameLayout {
     public final LinkSpanDrawable.LinksTextView textView;
     public final TextView titleView;
 
-    public static void lambda$new$0(View view) {
+    public static void $r8$lambda$P25H35BgaKK2z3c9Musq0lGku4E(View view) {
     }
 
     public BotAdView(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -109,7 +109,7 @@ public class BotAdView extends FrameLayout {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotAdView.lambda$new$0(view);
+                BotAdView.$r8$lambda$P25H35BgaKK2z3c9Musq0lGku4E(view);
             }
         });
         imageView.setVisibility(8);
@@ -170,30 +170,31 @@ public class BotAdView extends FrameLayout {
         this.textView.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                this.f$0.lambda$set$1(chatActivity, messageObject, clickableSpan);
+                BotAdView.$r8$lambda$S9BNqyvfPAXS4TKUxMYl96TORbs(this.f$0, chatActivity, messageObject, clickableSpan);
             }
         });
         this.removeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotAdView.lambda$set$2(runnable, view);
+                BotAdView.m4800$r8$lambda$puxQK1wOL9Nff1GJAcexXGGAU(runnable, view);
             }
         });
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$set$3(chatActivity, messageObject, str, view);
+                BotAdView.$r8$lambda$pf5881vKpvzId0H2abS4VU4l_Dg(this.f$0, chatActivity, messageObject, str, view);
             }
         });
         this.closeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotAdView.lambda$set$4(runnable2, view);
+                BotAdView.$r8$lambda$Va83yWJilzRQbxEY2IMw9hPpCRQ(runnable2, view);
             }
         });
     }
 
-    public void lambda$set$1(ChatActivity chatActivity, MessageObject messageObject, ClickableSpan clickableSpan) {
+    public static void $r8$lambda$S9BNqyvfPAXS4TKUxMYl96TORbs(BotAdView botAdView, ChatActivity chatActivity, MessageObject messageObject, ClickableSpan clickableSpan) {
+        botAdView.getClass();
         if (chatActivity != null) {
             chatActivity.logSponsoredClicked(messageObject, false, false);
         }
@@ -207,23 +208,24 @@ public class BotAdView extends FrameLayout {
                 return;
             }
         }
-        clickableSpan.onClick(this.textView);
+        clickableSpan.onClick(botAdView.textView);
     }
 
-    public static void lambda$set$2(Runnable runnable, View view) {
+    public static void m4800$r8$lambda$puxQK1wOL9Nff1GJAcexXGGAU(Runnable runnable, View view) {
         if (runnable != null) {
             runnable.run();
         }
     }
 
-    public void lambda$set$3(ChatActivity chatActivity, MessageObject messageObject, String str, View view) {
+    public static void $r8$lambda$pf5881vKpvzId0H2abS4VU4l_Dg(BotAdView botAdView, ChatActivity chatActivity, MessageObject messageObject, String str, View view) {
         if (chatActivity != null) {
+            botAdView.getClass();
             chatActivity.logSponsoredClicked(messageObject, false, false);
         }
-        Browser.openUrl(getContext(), Uri.parse(str), true, false, false, null, null, false, MessagesController.getInstance(UserConfig.selectedAccount).sponsoredLinksInappAllow, false);
+        Browser.openUrl(botAdView.getContext(), Uri.parse(str), true, false, false, null, null, false, MessagesController.getInstance(UserConfig.selectedAccount).sponsoredLinksInappAllow, false);
     }
 
-    public static void lambda$set$4(Runnable runnable, View view) {
+    public static void $r8$lambda$Va83yWJilzRQbxEY2IMw9hPpCRQ(Runnable runnable, View view) {
         if (runnable != null) {
             runnable.run();
         }

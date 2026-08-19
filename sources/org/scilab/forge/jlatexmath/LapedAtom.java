@@ -18,11 +18,13 @@ public class LapedAtom extends Atom {
         char c = this.type;
         if (c == 'l') {
             boxCreateBox.setShift(-boxCreateBox.getWidth());
-        } else if (c == 'r') {
-            boxCreateBox.setShift(0.0f);
-        } else {
-            boxCreateBox.setShift((-boxCreateBox.getWidth()) / 2.0f);
+            return verticalBox;
         }
+        if (c == 'r') {
+            boxCreateBox.setShift(0.0f);
+            return verticalBox;
+        }
+        boxCreateBox.setShift((-boxCreateBox.getWidth()) / 2.0f);
         return verticalBox;
     }
 }

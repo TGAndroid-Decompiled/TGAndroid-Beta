@@ -22,24 +22,24 @@ public abstract class AnimatorUtils {
     public static final Interpolator QUADRATIC_EASE_IN_OUT_INTERPOLATOR = new Interpolator() {
         @Override
         public final float getInterpolation(float f) {
-            return AnimatorUtils.lambda$static$0(f);
+            return AnimatorUtils.$r8$lambda$U8unIFNBgpUICoxvqzSjoUxGuKM(f);
         }
     };
     public static final Interpolator QUADRATIC_OUT_INTERPOLATOR = new Interpolator() {
         @Override
         public final float getInterpolation(float f) {
-            return AnimatorUtils.lambda$static$1(f);
+            return AnimatorUtils.$r8$lambda$JI7rc6j6ef3U4gcSi5NiklRZPkY(f);
         }
     };
 
-    public static float lambda$static$0(float f) {
-        float f2 = 2.0f * f;
-        return f < 0.5f ? f2 * f : ((4.0f - f2) * f) - 1.0f;
-    }
-
-    public static float lambda$static$1(float f) {
+    public static float $r8$lambda$JI7rc6j6ef3U4gcSi5NiklRZPkY(float f) {
         float f2 = 1.0f - f;
         return 1.0f - (f2 * f2);
+    }
+
+    public static float $r8$lambda$U8unIFNBgpUICoxvqzSjoUxGuKM(float f) {
+        float f2 = 2.0f * f;
+        return f < 0.5f ? f2 * f : ((4.0f - f2) * f) - 1.0f;
     }
 
     public static ValueAnimator simpleValueAnimator() {

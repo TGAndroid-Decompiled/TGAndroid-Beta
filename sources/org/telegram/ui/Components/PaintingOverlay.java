@@ -203,7 +203,7 @@ public class PaintingOverlay extends FrameLayout {
                         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                             @Override
                             public final void didSetImage(ImageReceiver imageReceiver2, boolean z4, boolean z5, boolean z6) {
-                                PaintingOverlay.lambda$setEntities$0(imageReceiver2, z4, z5, z6);
+                                PaintingOverlay.$r8$lambda$c7Lu5wMs_GxYiPSrH1J8Mubbub4(imageReceiver2, z4, z5, z6);
                             }
 
                             @Override
@@ -241,10 +241,16 @@ public class PaintingOverlay extends FrameLayout {
                 editTextOutline.setTextSize(0, mediaEntity.fontSize);
                 editTextOutline.setTypeface(mediaEntity.textTypeface.getTypeface());
                 SpannableString spannableString = new SpannableString(Emoji.replaceEmoji(mediaEntity.text, editTextOutline.getPaint().getFontMetricsInt(), false));
-                for (VideoEditedInfo.EmojiEntity emojiEntity : mediaEntity.entities) {
-                    AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(emojiEntity.document_id, editTextOutline.getPaint().getFontMetricsInt());
-                    int i3 = emojiEntity.offset;
-                    spannableString.setSpan(animatedEmojiSpan, i3, emojiEntity.length + i3, 33);
+                ArrayList<VideoEditedInfo.EmojiEntity> arrayList2 = mediaEntity.entities;
+                int size2 = arrayList2.size();
+                int i3 = 0;
+                while (i3 < size2) {
+                    VideoEditedInfo.EmojiEntity emojiEntity = arrayList2.get(i3);
+                    i3++;
+                    VideoEditedInfo.EmojiEntity emojiEntity2 = emojiEntity;
+                    AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(emojiEntity2.document_id, editTextOutline.getPaint().getFontMetricsInt());
+                    int i4 = emojiEntity2.offset;
+                    spannableString.setSpan(animatedEmojiSpan, i4, emojiEntity2.length + i4, 33);
                 }
                 Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannableString.getSpans(0, spannableString.length(), Emoji.EmojiSpan.class);
                 if (emojiSpanArr != null) {
@@ -254,12 +260,12 @@ public class PaintingOverlay extends FrameLayout {
                 }
                 editTextOutline.setText(spannableString);
                 editTextOutline.setGravity(17);
-                int i4 = mediaEntity.textAlign;
-                editTextOutline.setGravity(i4 != 1 ? i4 != 2 ? 19 : 21 : 17);
-                int i5 = Build.VERSION.SDK_INT;
-                int i6 = mediaEntity.textAlign;
-                if (i6 != 1) {
-                    i = (i6 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) ? 3 : 2;
+                int i5 = mediaEntity.textAlign;
+                editTextOutline.setGravity(i5 != 1 ? i5 != 2 ? 19 : 21 : 17);
+                int i6 = Build.VERSION.SDK_INT;
+                int i7 = mediaEntity.textAlign;
+                if (i7 != 1) {
+                    i = (i7 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) ? 3 : 2;
                 } else {
                     i = 4;
                 }
@@ -269,26 +275,26 @@ public class PaintingOverlay extends FrameLayout {
                 editTextOutline.setFocusableInTouchMode(true);
                 editTextOutline.setEnabled(false);
                 editTextOutline.setInputType(editTextOutline.getInputType() | 16384);
-                if (i5 >= 23) {
+                if (i6 >= 23) {
                     editTextOutline.setBreakStrategy(0);
                 }
                 editTextOutline.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-                int i7 = mediaEntity.color;
+                int i8 = mediaEntity.color;
                 byte b2 = mediaEntity.subType;
                 if (b2 == 0) {
-                    editTextOutline.setFrameColor(i7);
-                    i7 = AndroidUtilities.computePerceivedBrightness(mediaEntity.color) >= 0.721f ? -16777216 : -1;
+                    editTextOutline.setFrameColor(i8);
+                    i8 = AndroidUtilities.computePerceivedBrightness(mediaEntity.color) >= 0.721f ? -16777216 : -1;
                 } else if (b2 == 1) {
-                    editTextOutline.setFrameColor(AndroidUtilities.computePerceivedBrightness(i7) >= 0.25f ? -1728053248 : -1711276033);
+                    editTextOutline.setFrameColor(AndroidUtilities.computePerceivedBrightness(i8) >= 0.25f ? -1728053248 : -1711276033);
                 } else if (b2 == 2) {
-                    editTextOutline.setFrameColor(AndroidUtilities.computePerceivedBrightness(i7) >= 0.25f ? -16777216 : -1);
+                    editTextOutline.setFrameColor(AndroidUtilities.computePerceivedBrightness(i8) >= 0.25f ? -16777216 : -1);
                 } else {
                     editTextOutline.setFrameColor(0);
                 }
-                editTextOutline.setTextColor(i7);
-                editTextOutline.setCursorColor(i7);
-                editTextOutline.setHandlesColor(i7);
-                editTextOutline.setHighlightColor(Theme.multAlpha(i7, 0.4f));
+                editTextOutline.setTextColor(i8);
+                editTextOutline.setCursorColor(i8);
+                editTextOutline.setHandlesColor(i8);
+                editTextOutline.setHighlightColor(Theme.multAlpha(i8, 0.4f));
                 mediaEntity.view = editTextOutline;
                 view = editTextOutline;
             } else {
@@ -302,7 +308,7 @@ public class PaintingOverlay extends FrameLayout {
         }
     }
 
-    public static void lambda$setEntities$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void $r8$lambda$c7Lu5wMs_GxYiPSrH1J8Mubbub4(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         RLottieDrawable lottieAnimation;
         if (!z || z2 || (lottieAnimation = imageReceiver.getLottieAnimation()) == null) {
             return;

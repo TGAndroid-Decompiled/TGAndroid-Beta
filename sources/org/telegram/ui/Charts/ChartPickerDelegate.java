@@ -95,14 +95,15 @@ public class ChartPickerDelegate {
             this.a.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$captured$0(valueAnimator);
+                    ChartPickerDelegate.CapturesData.m1583$r8$lambda$ZuHDYXCvGVg7TzhQLVI13QGLMA(this.f$0, valueAnimator);
                 }
             });
             this.a.start();
         }
 
-        public void lambda$captured$0(ValueAnimator valueAnimator) {
-            this.aValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        public static void m1583$r8$lambda$ZuHDYXCvGVg7TzhQLVI13QGLMA(CapturesData capturesData, ValueAnimator valueAnimator) {
+            capturesData.getClass();
+            capturesData.aValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             ChartPickerDelegate.this.view.invalidate();
         }
 
@@ -332,7 +333,7 @@ public class ChartPickerDelegate {
                     this.moveToAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$uncapture$0(f5, f2, f4, f, valueAnimator);
+                            ChartPickerDelegate.$r8$lambda$KnscNgyyAhOKbTTO8_q3PZioF8I(this.f$0, f5, f2, f4, f, valueAnimator);
                         }
                     });
                     this.moveToAnimator.setInterpolator(BaseChartView.INTERPOLATOR);
@@ -361,11 +362,12 @@ public class ChartPickerDelegate {
         return false;
     }
 
-    public void lambda$uncapture$0(float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$KnscNgyyAhOKbTTO8_q3PZioF8I(ChartPickerDelegate chartPickerDelegate, float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
+        chartPickerDelegate.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.pickerStart = f + ((f2 - f) * fFloatValue);
-        this.pickerEnd = f3 + ((f4 - f3) * fFloatValue);
-        this.view.onPickerJumpTo(f2, f4, false);
+        chartPickerDelegate.pickerStart = f + ((f2 - f) * fFloatValue);
+        chartPickerDelegate.pickerEnd = f3 + ((f4 - f3) * fFloatValue);
+        chartPickerDelegate.view.onPickerJumpTo(f2, f4, false);
     }
 
     public void uncapture() {

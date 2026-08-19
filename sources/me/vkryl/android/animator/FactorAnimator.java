@@ -134,7 +134,7 @@ public class FactorAnimator {
         this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$animateTo$0(f2, f3, valueAnimator);
+                FactorAnimator.m343$r8$lambda$akH0WplOASkyE8ranBqIzYcUSA(this.f$0, f2, f3, valueAnimator);
             }
         });
         this.animator.addListener(new AnimatorListenerAdapter() {
@@ -177,10 +177,10 @@ public class FactorAnimator {
         }
     }
 
-    public void lambda$animateTo$0(float f, float f2, ValueAnimator valueAnimator) {
-        if (this.isAnimating) {
+    public static void m343$r8$lambda$akH0WplOASkyE8ranBqIzYcUSA(FactorAnimator factorAnimator, float f, float f2, ValueAnimator valueAnimator) {
+        if (factorAnimator.isAnimating) {
             float fraction = AnimatorUtils.getFraction(valueAnimator);
-            setFactor(f + (f2 * fraction), fraction);
+            factorAnimator.setFactor(f + (f2 * fraction), fraction);
         }
     }
 

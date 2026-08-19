@@ -55,16 +55,19 @@ public class SQLitePreparedStatement {
         for (Object obj : objArr) {
             if (obj == null) {
                 bindNull(this.sqliteStatementHandle, i);
-            } else if (obj instanceof Integer) {
-                bindInt(this.sqliteStatementHandle, i, ((Integer) obj).intValue());
-            } else if (obj instanceof Double) {
-                bindDouble(this.sqliteStatementHandle, i, ((Double) obj).doubleValue());
-            } else if (obj instanceof String) {
-                bindString(this.sqliteStatementHandle, i, (String) obj);
-            } else if (obj instanceof Long) {
-                bindLong(this.sqliteStatementHandle, i, ((Long) obj).longValue());
             } else {
-                throw new IllegalArgumentException();
+                if (obj instanceof Integer) {
+                    bindInt(this.sqliteStatementHandle, i, ((Integer) obj).intValue());
+                } else if (obj instanceof Double) {
+                    bindDouble(this.sqliteStatementHandle, i, ((Double) obj).doubleValue());
+                } else if (obj instanceof String) {
+                    bindString(this.sqliteStatementHandle, i, (String) obj);
+                } else if (obj instanceof Long) {
+                    bindLong(this.sqliteStatementHandle, i, ((Long) obj).longValue());
+                } else {
+                    throw new IllegalArgumentException();
+                }
+                i++;
             }
             i++;
         }

@@ -378,7 +378,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$didReceivedNotification$0(z, valueAnimator2);
+                MessageContainsEmojiButton.$r8$lambda$npMqoLsKjbjExLw5C4ubJUmDm9s(this.f$0, z, valueAnimator2);
             }
         });
         this.loadAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -387,11 +387,12 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
         this.loadAnimator.start();
     }
 
-    public void lambda$didReceivedNotification$0(boolean z, ValueAnimator valueAnimator) {
-        this.loadT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$npMqoLsKjbjExLw5C4ubJUmDm9s(MessageContainsEmojiButton messageContainsEmojiButton, boolean z, ValueAnimator valueAnimator) {
+        messageContainsEmojiButton.getClass();
+        messageContainsEmojiButton.loadT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        messageContainsEmojiButton.invalidate();
         if (z) {
-            requestLayout();
+            messageContainsEmojiButton.requestLayout();
         }
     }
 

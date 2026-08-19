@@ -146,7 +146,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                this.f$0.lambda$new$0(view, i3);
+                SharingLocationsAlert.$r8$lambda$60muj1sC5cT5RVBFGHgk4U7XODQ(this.f$0, view, i3);
             }
         });
         this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
@@ -162,7 +162,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         pickerBottomLayout.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$1(view2);
+                SharingLocationsAlert.m2810$r8$lambda$nlYHrikSIiFwip_42nHbmfAH6g(this.f$0, view2);
             }
         });
         pickerBottomLayout.doneButtonTextView.setTextColor(getThemedColor(Theme.key_dialogTextBlue2));
@@ -171,31 +171,29 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         pickerBottomLayout.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$2(view2);
+                this.f$0.dismiss();
             }
         });
         pickerBottomLayout.doneButtonBadgeTextView.setVisibility(8);
         this.adapter.notifyDataSetChanged();
     }
 
-    public void lambda$new$0(View view, int i) {
+    public static void $r8$lambda$60muj1sC5cT5RVBFGHgk4U7XODQ(SharingLocationsAlert sharingLocationsAlert, View view, int i) {
+        sharingLocationsAlert.getClass();
         int i2 = i - 1;
         if (i2 < 0 || i2 >= LocationController.getLocationsCount()) {
             return;
         }
-        this.delegate.didSelectLocation(getLocation(i2));
-        dismiss();
+        sharingLocationsAlert.delegate.didSelectLocation(sharingLocationsAlert.getLocation(i2));
+        sharingLocationsAlert.dismiss();
     }
 
-    public void lambda$new$1(View view) {
+    public static void m2810$r8$lambda$nlYHrikSIiFwip_42nHbmfAH6g(SharingLocationsAlert sharingLocationsAlert, View view) {
         for (int i = 0; i < 4; i++) {
+            sharingLocationsAlert.getClass();
             LocationController.getInstance(i).removeAllLocationSharings();
         }
-        dismiss();
-    }
-
-    public void lambda$new$2(View view) {
-        dismiss();
+        sharingLocationsAlert.dismiss();
     }
 
     public void updateLayout() {

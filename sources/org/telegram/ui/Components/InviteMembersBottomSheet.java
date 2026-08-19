@@ -151,7 +151,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                this.f$0.lambda$new$0(j, baseFragment, longSparseArray, context, view, i3);
+                InviteMembersBottomSheet.m2390$r8$lambda$60h1CqHYVHgQNlddRTrxNU3fw(this.f$0, j, baseFragment, longSparseArray, context, view, i3);
             }
         });
         this.listView.setItemAnimator(new ItemAnimator());
@@ -180,7 +180,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         fragmentFloatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(context, j, view);
+                InviteMembersBottomSheet.$r8$lambda$DWJph8e5tjxFu99nIZJWSYECYz4(this.f$0, context, j, view);
             }
         });
         fragmentFloatingButton.setButtonVisible(false, false);
@@ -191,57 +191,57 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).rightMargin = AndroidUtilities.dp(4.0f);
     }
 
-    public void lambda$new$0(long j, BaseFragment baseFragment, LongSparseArray longSparseArray, Context context, View view, int i) {
+    public static void m2390$r8$lambda$60h1CqHYVHgQNlddRTrxNU3fw(InviteMembersBottomSheet inviteMembersBottomSheet, long j, BaseFragment baseFragment, LongSparseArray longSparseArray, Context context, View view, int i) {
         String str;
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
         long j2;
-        RecyclerView.Adapter adapter = this.listView.getAdapter();
-        SearchAdapter searchAdapter = this.searchAdapter;
+        RecyclerView.Adapter adapter = inviteMembersBottomSheet.listView.getAdapter();
+        SearchAdapter searchAdapter = inviteMembersBottomSheet.searchAdapter;
         TLObject object = null;
         if (adapter != searchAdapter) {
-            if (i == this.copyLinkRow) {
-                TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
-                TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(j);
+            if (i == inviteMembersBottomSheet.copyLinkRow) {
+                TLRPC.Chat chat = MessagesController.getInstance(inviteMembersBottomSheet.currentAccount).getChat(Long.valueOf(j));
+                TLRPC.ChatFull chatFull = MessagesController.getInstance(inviteMembersBottomSheet.currentAccount).getChatFull(j);
                 if (chat != null) {
                     String publicUsername = ChatObject.getPublicUsername(chat);
                     if (!TextUtils.isEmpty(publicUsername)) {
-                        str = "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + publicUsername;
+                        str = "https://" + MessagesController.getInstance(inviteMembersBottomSheet.currentAccount).linkPrefix + "/" + publicUsername;
                     } else if (chatFull == null && (tL_chatInviteExported = chatFull.exported_invite) != null) {
                         str = tL_chatInviteExported.link;
                     } else {
-                        generateLink();
+                        inviteMembersBottomSheet.generateLink();
                         str = null;
                     }
                 } else if (chatFull == null) {
-                    generateLink();
+                    inviteMembersBottomSheet.generateLink();
                     str = null;
                 } else {
-                    generateLink();
+                    inviteMembersBottomSheet.generateLink();
                     str = null;
                 }
                 if (str == null) {
                     return;
                 }
                 ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", str));
-                lambda$new$0();
+                inviteMembersBottomSheet.dismiss();
                 BulletinFactory.createCopyLinkBulletin(baseFragment).show();
-            } else if (i >= this.contactsStartRow && i < this.contactsEndRow) {
-                object = ((ListAdapter) this.listViewAdapter).getObject(i);
+            } else if (i >= inviteMembersBottomSheet.contactsStartRow && i < inviteMembersBottomSheet.contactsEndRow) {
+                object = ((ListAdapter) inviteMembersBottomSheet.listViewAdapter).getObject(i);
             }
         } else {
             int size = searchAdapter.searchResult.size();
-            int size2 = this.searchAdapter.searchAdapterHelper.getGlobalSearch().size();
-            int size3 = this.searchAdapter.searchAdapterHelper.getLocalServerSearch().size();
+            int size2 = inviteMembersBottomSheet.searchAdapter.searchAdapterHelper.getGlobalSearch().size();
+            int size3 = inviteMembersBottomSheet.searchAdapter.searchAdapterHelper.getLocalServerSearch().size();
             int i2 = i - 1;
             if (i2 >= 0 && i2 < size) {
-                object = (TLObject) this.searchAdapter.searchResult.get(i2);
+                object = (TLObject) inviteMembersBottomSheet.searchAdapter.searchResult.get(i2);
             } else if (i2 >= size && i2 < size3 + size) {
-                object = (TLObject) this.searchAdapter.searchAdapterHelper.getLocalServerSearch().get(i2 - size);
+                object = (TLObject) inviteMembersBottomSheet.searchAdapter.searchAdapterHelper.getLocalServerSearch().get(i2 - size);
             } else if (i2 > size + size3 && i2 <= size2 + size + size3) {
-                object = (TLObject) this.searchAdapter.searchAdapterHelper.getGlobalSearch().get(((i2 - size) - size3) - 1);
+                object = (TLObject) inviteMembersBottomSheet.searchAdapter.searchAdapterHelper.getGlobalSearch().get(((i2 - size) - size3) - 1);
             }
-            if (this.dialogsDelegate != null) {
-                this.searchView.closeSearch();
+            if (inviteMembersBottomSheet.dialogsDelegate != null) {
+                inviteMembersBottomSheet.searchView.closeSearch();
             }
         }
         if (object != null) {
@@ -252,42 +252,42 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             }
             if (longSparseArray == null || longSparseArray.indexOfKey(j2) < 0) {
                 if (j2 != 0) {
-                    if (this.selectedContacts.indexOfKey(j2) >= 0) {
-                        GroupCreateSpan groupCreateSpan = (GroupCreateSpan) this.selectedContacts.get(j2);
-                        this.selectedContacts.remove(j2);
-                        this.spansContainer.removeSpan(groupCreateSpan);
+                    if (inviteMembersBottomSheet.selectedContacts.indexOfKey(j2) >= 0) {
+                        GroupCreateSpan groupCreateSpan = (GroupCreateSpan) inviteMembersBottomSheet.selectedContacts.get(j2);
+                        inviteMembersBottomSheet.selectedContacts.remove(j2);
+                        inviteMembersBottomSheet.spansContainer.removeSpan(groupCreateSpan);
                     } else {
                         GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(context, object);
-                        groupCreateSpan2.setOnClickListener(this.spanClickListener);
-                        this.selectedContacts.put(j2, groupCreateSpan2);
-                        this.spansContainer.addSpan(groupCreateSpan2, true);
+                        groupCreateSpan2.setOnClickListener(inviteMembersBottomSheet.spanClickListener);
+                        inviteMembersBottomSheet.selectedContacts.put(j2, groupCreateSpan2);
+                        inviteMembersBottomSheet.spansContainer.addSpan(groupCreateSpan2, true);
                     }
                 }
-                spansCountChanged(true);
-                AndroidUtilities.updateVisibleRows(this.listView);
+                inviteMembersBottomSheet.spansCountChanged(true);
+                AndroidUtilities.updateVisibleRows(inviteMembersBottomSheet.listView);
             }
         }
     }
 
-    public void lambda$new$2(Context context, long j, View view) {
+    public static void $r8$lambda$DWJph8e5tjxFu99nIZJWSYECYz4(final InviteMembersBottomSheet inviteMembersBottomSheet, Context context, long j, View view) {
         Activity activityFindActivity;
-        if ((this.dialogsDelegate == null && this.selectedContacts.isEmpty()) || (activityFindActivity = AndroidUtilities.findActivity(context)) == null) {
+        if ((inviteMembersBottomSheet.dialogsDelegate == null && inviteMembersBottomSheet.selectedContacts.isEmpty()) || (activityFindActivity = AndroidUtilities.findActivity(context)) == null) {
             return;
         }
-        if (this.dialogsDelegate != null) {
+        if (inviteMembersBottomSheet.dialogsDelegate != null) {
             ArrayList arrayList = new ArrayList();
-            for (int i = 0; i < this.selectedContacts.size(); i++) {
-                arrayList.add(Long.valueOf(this.selectedContacts.keyAt(i)));
+            for (int i = 0; i < inviteMembersBottomSheet.selectedContacts.size(); i++) {
+                arrayList.add(Long.valueOf(inviteMembersBottomSheet.selectedContacts.keyAt(i)));
             }
-            this.dialogsDelegate.didSelectDialogs(arrayList);
-            lambda$new$0();
+            inviteMembersBottomSheet.dialogsDelegate.didSelectDialogs(arrayList);
+            inviteMembersBottomSheet.dismiss();
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(activityFindActivity);
-        builder.setTitle(LocaleController.formatPluralString("AddManyMembersAlertTitle", this.selectedContacts.size(), new Object[0]));
+        builder.setTitle(LocaleController.formatPluralString("AddManyMembersAlertTitle", inviteMembersBottomSheet.selectedContacts.size(), new Object[0]));
         StringBuilder sb = new StringBuilder();
-        for (int i2 = 0; i2 < this.selectedContacts.size(); i2++) {
-            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.selectedContacts.keyAt(i2)));
+        for (int i2 = 0; i2 < inviteMembersBottomSheet.selectedContacts.size(); i2++) {
+            TLRPC.User user = MessagesController.getInstance(inviteMembersBottomSheet.currentAccount).getUser(Long.valueOf(inviteMembersBottomSheet.selectedContacts.keyAt(i2)));
             if (user != null) {
                 if (sb.length() > 0) {
                     sb.append(", ");
@@ -297,10 +297,10 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 sb.append("**");
             }
         }
-        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
-        if (this.selectedContacts.size() > 5) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddManyMembersAlertNamesText", this.selectedContacts.size(), chat.title)));
-            String str = String.format("%d", Integer.valueOf(this.selectedContacts.size()));
+        TLRPC.Chat chat = MessagesController.getInstance(inviteMembersBottomSheet.currentAccount).getChat(Long.valueOf(j));
+        if (inviteMembersBottomSheet.selectedContacts.size() > 5) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddManyMembersAlertNamesText", inviteMembersBottomSheet.selectedContacts.size(), chat.title)));
+            String str = String.format("%d", Integer.valueOf(inviteMembersBottomSheet.selectedContacts.size()));
             int iIndexOf = TextUtils.indexOf(spannableStringBuilder, str);
             if (iIndexOf >= 0) {
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), iIndexOf, str.length() + iIndexOf, 33);
@@ -312,7 +312,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         builder.setPositiveButton(LocaleController.getString(R.string.Add), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
-                this.f$0.lambda$new$1(alertDialog, i3);
+                this.f$0.onAddToGroupDone(0);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -320,11 +320,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         builder.show();
     }
 
-    public void lambda$new$1(AlertDialog alertDialog, int i) {
-        onAddToGroupDone(0);
-    }
-
-    private void onAddToGroupDone(int i) {
+    public void onAddToGroupDone(int i) {
         ArrayList arrayList = new ArrayList();
         for (int i2 = 0; i2 < this.selectedContacts.size(); i2++) {
             arrayList.add(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.selectedContacts.keyAt(i2))));
@@ -333,12 +329,12 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         if (contactsAddActivityDelegate != null) {
             contactsAddActivityDelegate.didSelectUsers(arrayList, i);
         }
-        lambda$new$0();
+        dismiss();
     }
 
     @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
+    public void dismiss() {
+        super.dismiss();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogsNeedReload);
     }
 
@@ -469,7 +465,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$spansCountChanged$3(valueAnimator2);
+                        InviteMembersBottomSheet.$r8$lambda$dfxa6Fc6u18xPr2bFdpzMzshZis(this.f$0, valueAnimator2);
                     }
                 });
                 this.spansEnterAnimator.addListener(new AnimatorListenerAdapter() {
@@ -500,9 +496,10 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         }
     }
 
-    public void lambda$spansCountChanged$3(ValueAnimator valueAnimator) {
-        this.spansEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.containerView.invalidate();
+    public static void $r8$lambda$dfxa6Fc6u18xPr2bFdpzMzshZis(InviteMembersBottomSheet inviteMembersBottomSheet, ValueAnimator valueAnimator) {
+        inviteMembersBottomSheet.getClass();
+        inviteMembersBottomSheet.spansEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        inviteMembersBottomSheet.containerView.invalidate();
     }
 
     private void updateRows() {
@@ -565,7 +562,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         }
     }
 
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         private ListAdapter() {
         }
 
@@ -715,7 +712,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
                 @Override
                 public final void onDataSetChanged(int i) {
-                    this.f$0.lambda$new$0(i);
+                    InviteMembersBottomSheet.SearchAdapter.m2392$r8$lambda$3TSneWtgzbwLU99AoxTzJMSWh0(this.f$0, i);
                 }
 
                 @Override
@@ -725,12 +722,12 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             });
         }
 
-        public void lambda$new$0(int i) {
-            InviteMembersBottomSheet.this.showItemsAnimated(this.currentItemsCount - 1);
-            if (this.searchRunnable == null && !this.searchAdapterHelper.isSearchInProgress() && getItemCount() <= 2) {
+        public static void m2392$r8$lambda$3TSneWtgzbwLU99AoxTzJMSWh0(SearchAdapter searchAdapter, int i) {
+            InviteMembersBottomSheet.this.showItemsAnimated(searchAdapter.currentItemsCount - 1);
+            if (searchAdapter.searchRunnable == null && !searchAdapter.searchAdapterHelper.isSearchInProgress() && searchAdapter.getItemCount() <= 2) {
                 InviteMembersBottomSheet.this.emptyView.showProgress(false, true);
             }
-            notifyDataSetChanged();
+            searchAdapter.notifyDataSetChanged();
         }
 
         @Override
@@ -889,19 +886,19 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateSearchResults$1(arrayList, arrayList2);
+                    InviteMembersBottomSheet.SearchAdapter.m2394$r8$lambda$o2HU2KD49Ho7yJnTX4xVsD2kVw(this.f$0, arrayList, arrayList2);
                 }
             });
         }
 
-        public void lambda$updateSearchResults$1(ArrayList arrayList, ArrayList arrayList2) {
-            this.searchRunnable = null;
-            this.searchResult = arrayList;
-            this.searchResultNames = arrayList2;
-            this.searchAdapterHelper.mergeResults(arrayList);
-            InviteMembersBottomSheet.this.showItemsAnimated(this.currentItemsCount - 1);
-            notifyDataSetChanged();
-            if (this.searchAdapterHelper.isSearchInProgress() || getItemCount() > 2) {
+        public static void m2394$r8$lambda$o2HU2KD49Ho7yJnTX4xVsD2kVw(SearchAdapter searchAdapter, ArrayList arrayList, ArrayList arrayList2) {
+            searchAdapter.searchRunnable = null;
+            searchAdapter.searchResult = arrayList;
+            searchAdapter.searchResultNames = arrayList2;
+            searchAdapter.searchAdapterHelper.mergeResults(arrayList);
+            InviteMembersBottomSheet.this.showItemsAnimated(searchAdapter.currentItemsCount - 1);
+            searchAdapter.notifyDataSetChanged();
+            if (searchAdapter.searchAdapterHelper.isSearchInProgress() || searchAdapter.getItemCount() > 2) {
                 return;
             }
             InviteMembersBottomSheet.this.emptyView.showProgress(false, true);
@@ -929,7 +926,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$searchDialogs$4(str);
+                        InviteMembersBottomSheet.SearchAdapter.$r8$lambda$oQTJao8AoPQU4nFyT_oBs1MIRTc(this.f$0, str);
                     }
                 };
                 this.searchRunnable = runnable;
@@ -944,35 +941,37 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             }
         }
 
-        public void lambda$searchDialogs$4(final String str) {
+        public static void $r8$lambda$oQTJao8AoPQU4nFyT_oBs1MIRTc(final SearchAdapter searchAdapter, final String str) {
+            searchAdapter.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$searchDialogs$3(str);
+                    InviteMembersBottomSheet.SearchAdapter.m2393$r8$lambda$kJ7ixIhHh2e4JaQ_cXNttJmOA(this.f$0, str);
                 }
             });
         }
 
-        public void lambda$searchDialogs$3(final String str) {
-            this.searchAdapterHelper.queryServerSearch(str, true, InviteMembersBottomSheet.this.dialogsDelegate != null, true, InviteMembersBottomSheet.this.dialogsDelegate != null, false, 0L, false, 0, 0);
+        public static void m2393$r8$lambda$kJ7ixIhHh2e4JaQ_cXNttJmOA(final SearchAdapter searchAdapter, final String str) {
+            searchAdapter.searchAdapterHelper.queryServerSearch(str, true, InviteMembersBottomSheet.this.dialogsDelegate != null, true, InviteMembersBottomSheet.this.dialogsDelegate != null, false, 0L, false, 0, 0);
             DispatchQueue dispatchQueue = Utilities.searchQueue;
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$searchDialogs$2(str);
+                    InviteMembersBottomSheet.SearchAdapter.$r8$lambda$C5hGV4f_WxqbXvmxQX7ZLJxcVS4(this.f$0, str);
                 }
             };
-            this.searchRunnable = runnable;
+            searchAdapter.searchRunnable = runnable;
             dispatchQueue.postRunnable(runnable);
         }
 
-        public void lambda$searchDialogs$2(String str) {
+        public static void $r8$lambda$C5hGV4f_WxqbXvmxQX7ZLJxcVS4(SearchAdapter searchAdapter, String str) {
             String lowerCase;
             String publicUsername;
             Object obj;
+            searchAdapter.getClass();
             String lowerCase2 = str.trim().toLowerCase();
             if (lowerCase2.length() == 0) {
-                updateSearchResults(new ArrayList(), new ArrayList());
+                searchAdapter.updateSearchResults(new ArrayList(), new ArrayList());
                 return;
             }
             String translitString = LocaleController.getInstance().getTranslitString(lowerCase2);
@@ -1042,7 +1041,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                     }
                 }
             }
-            updateSearchResults(arrayList, arrayList2);
+            searchAdapter.updateSearchResults(arrayList, arrayList2);
         }
     }
 
@@ -1069,7 +1068,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSearchViewTouched$5(editTextBoldCursor);
+                    InviteMembersBottomSheet.$r8$lambda$ZvdpehcT4RY6ChYyGCLMlHQIwqg(this.f$0, editTextBoldCursor);
                 }
             }, zNeedEnterText ? 200L : 0L);
         } else {
@@ -1085,8 +1084,8 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         }
     }
 
-    public void lambda$onSearchViewTouched$5(final EditTextBoldCursor editTextBoldCursor) {
-        setFocusable(true);
+    public static void $r8$lambda$ZvdpehcT4RY6ChYyGCLMlHQIwqg(InviteMembersBottomSheet inviteMembersBottomSheet, final EditTextBoldCursor editTextBoldCursor) {
+        inviteMembersBottomSheet.setFocusable(true);
         editTextBoldCursor.requestFocus();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1186,7 +1185,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$onMeasure$0(valueAnimator);
+                        InviteMembersBottomSheet.SpansContainer.$r8$lambda$MfQh7cY2v2J_fTb7UA4v3aIMN7A(this.f$0, valueAnimator);
                     }
                 });
                 this.animators.add(valueAnimatorOfInt);
@@ -1195,14 +1194,16 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onMeasure$1(iDp6);
+                        InviteMembersBottomSheet.SpansContainer spansContainer = this.f$0;
+                        InviteMembersBottomSheet.this.spansScrollView.smoothScrollTo(0, iDp6 - InviteMembersBottomSheet.this.maxSize);
                     }
                 });
             } else if (!this.addAnimation && InviteMembersBottomSheet.this.spansScrollView.getScrollY() + InviteMembersBottomSheet.this.spansScrollView.getMeasuredHeight() > iDp6) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onMeasure$2(iDp6);
+                        InviteMembersBottomSheet.SpansContainer spansContainer = this.f$0;
+                        InviteMembersBottomSheet.this.spansScrollView.smoothScrollTo(0, iDp6 - InviteMembersBottomSheet.this.maxSize);
                     }
                 });
             }
@@ -1226,17 +1227,9 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             InviteMembersBottomSheet.this.listView.setTranslationY(0.0f);
         }
 
-        public void lambda$onMeasure$0(ValueAnimator valueAnimator) {
+        public static void $r8$lambda$MfQh7cY2v2J_fTb7UA4v3aIMN7A(SpansContainer spansContainer, ValueAnimator valueAnimator) {
             InviteMembersBottomSheet.this.scrollViewH = ((Integer) valueAnimator.getAnimatedValue()).intValue();
             ((BottomSheet) InviteMembersBottomSheet.this).containerView.invalidate();
-        }
-
-        public void lambda$onMeasure$1(int i) {
-            InviteMembersBottomSheet.this.spansScrollView.smoothScrollTo(0, i - InviteMembersBottomSheet.this.maxSize);
-        }
-
-        public void lambda$onMeasure$2(int i) {
-            InviteMembersBottomSheet.this.spansScrollView.smoothScrollTo(0, i - InviteMembersBottomSheet.this.maxSize);
         }
 
         @Override
@@ -1429,34 +1422,36 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$generateLink$8(tLObject, tL_error);
+                InviteMembersBottomSheet.$r8$lambda$pTcK69kS7pqfGrGxmKbK0qJHYFQ(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$generateLink$8(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$pTcK69kS7pqfGrGxmKbK0qJHYFQ(final InviteMembersBottomSheet inviteMembersBottomSheet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        inviteMembersBottomSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$generateLink$7(tL_error, tLObject);
+                InviteMembersBottomSheet.$r8$lambda$HPhb5555Pw3t2cLui7n7p1s9SmQ(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$generateLink$7(TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void $r8$lambda$HPhb5555Pw3t2cLui7n7p1s9SmQ(InviteMembersBottomSheet inviteMembersBottomSheet, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error == null) {
-            this.invite = (TLRPC.TL_chatInviteExported) tLObject;
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chatId);
+            inviteMembersBottomSheet.getClass();
+            inviteMembersBottomSheet.invite = (TLRPC.TL_chatInviteExported) tLObject;
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(inviteMembersBottomSheet.currentAccount).getChatFull(inviteMembersBottomSheet.chatId);
             if (chatFull != null) {
-                chatFull.exported_invite = this.invite;
+                chatFull.exported_invite = inviteMembersBottomSheet.invite;
             }
-            if (this.invite.link == null) {
+            if (inviteMembersBottomSheet.invite.link == null) {
                 return;
             }
-            ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.invite.link));
-            BulletinFactory.createCopyLinkBulletin(this.parentFragment).show();
-            lambda$new$0();
+            ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", inviteMembersBottomSheet.invite.link));
+            BulletinFactory.createCopyLinkBulletin(inviteMembersBottomSheet.parentFragment).show();
+            inviteMembersBottomSheet.dismiss();
         }
-        this.linkGenerating = false;
+        inviteMembersBottomSheet.linkGenerating = false;
     }
 }

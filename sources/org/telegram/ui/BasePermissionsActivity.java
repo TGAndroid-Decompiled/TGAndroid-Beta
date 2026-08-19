@@ -76,9 +76,9 @@ public abstract class BasePermissionsActivity extends FragmentActivity {
                 showPermissionErrorAlert(R.raw.permission_request_camera, LocaleController.getString(R.string.PermissionNoCameraWithHint));
             }
         } else if (i == 2) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(z ? NotificationCenter.locationPermissionGranted : NotificationCenter.locationPermissionDenied, new Object[0]);
+            NotificationCenter.getGlobalInstance().postNotificationName(z ? NotificationCenter.locationPermissionGranted : NotificationCenter.locationPermissionDenied, new Object[0]);
         } else if (i == 211) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(z ? NotificationCenter.locationPermissionGranted : NotificationCenter.locationPermissionDenied, 1);
+            NotificationCenter.getGlobalInstance().postNotificationName(z ? NotificationCenter.locationPermissionGranted : NotificationCenter.locationPermissionDenied, 1);
         }
         return true;
     }
@@ -87,16 +87,17 @@ public abstract class BasePermissionsActivity extends FragmentActivity {
         return new AlertDialog.Builder(this).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(str)).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                this.f$0.lambda$createPermissionErrorAlert$0(alertDialog, i2);
+                BasePermissionsActivity.$r8$lambda$av5tuPIMEAh1SiRL4GoJpadsOOM(this.f$0, alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create();
     }
 
-    public void lambda$createPermissionErrorAlert$0(AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$av5tuPIMEAh1SiRL4GoJpadsOOM(BasePermissionsActivity basePermissionsActivity, AlertDialog alertDialog, int i) {
+        basePermissionsActivity.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            startActivity(intent);
+            basePermissionsActivity.startActivity(intent);
         } catch (Exception e) {
             FileLog.e(e);
         }

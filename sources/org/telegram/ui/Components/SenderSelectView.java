@@ -30,7 +30,7 @@ public class SenderSelectView extends View {
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            SenderSelectView.lambda$static$1((SenderSelectView) obj, f);
+            SenderSelectView.m2740$r8$lambda$K0kIe8gi8ce3Pl7QoAyAgwuavA((SenderSelectView) obj, f);
         }
     }).setMultiplier(100.0f);
     private AvatarDrawable avatarDrawable;
@@ -44,7 +44,7 @@ public class SenderSelectView extends View {
     private boolean scaleOut;
     private Drawable selectorDrawable;
 
-    public static void lambda$static$1(SenderSelectView senderSelectView, float f) {
+    public static void m2740$r8$lambda$K0kIe8gi8ce3Pl7QoAyAgwuavA(SenderSelectView senderSelectView, float f) {
         senderSelectView.menuProgress = f;
         senderSelectView.invalidate();
     }
@@ -163,13 +163,13 @@ public class SenderSelectView extends View {
                 this.menuSpring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f4, float f5) {
-                        this.f$0.lambda$setProgress$2(z3, f2, f3, dynamicAnimation, f4, f5);
+                        SenderSelectView.$r8$lambda$tvKHM2Ks8u9CXao3tOmjK89FcF4(this.f$0, z3, f2, f3, dynamicAnimation, f4, f5);
                     }
                 });
                 this.menuSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
                     public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z4, float f4, float f5) {
-                        this.f$0.lambda$setProgress$3(dynamicAnimation, z4, f4, f5);
+                        SenderSelectView.$r8$lambda$139Yq8ZuUy7Lp93hTzCnjcroZ7A(this.f$0, dynamicAnimation, z4, f4, f5);
                     }
                 });
                 this.menuSpring.start();
@@ -181,7 +181,7 @@ public class SenderSelectView extends View {
             this.menuAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setProgress$4(valueAnimator2);
+                    SenderSelectView.$r8$lambda$yWkUVg07clSnF4EpobV2H0D4FKU(this.f$0, valueAnimator2);
                 }
             });
             this.menuAnimator.addListener(new AnimatorListenerAdapter() {
@@ -199,32 +199,34 @@ public class SenderSelectView extends View {
         invalidate();
     }
 
-    public void lambda$setProgress$2(boolean z, float f, float f2, DynamicAnimation dynamicAnimation, float f3, float f4) {
+    public static void $r8$lambda$tvKHM2Ks8u9CXao3tOmjK89FcF4(SenderSelectView senderSelectView, boolean z, float f, float f2, DynamicAnimation dynamicAnimation, float f3, float f4) {
+        senderSelectView.getClass();
         if (z) {
-            if (f3 > f / 2.0f || !this.scaleIn) {
+            if (f3 > f / 2.0f || !senderSelectView.scaleIn) {
                 return;
             }
-        } else if (f3 < f2 / 2.0f || !this.scaleOut) {
+        } else if (f3 < f2 / 2.0f || !senderSelectView.scaleOut) {
             return;
         }
-        this.scaleIn = !z;
-        this.scaleOut = z;
+        senderSelectView.scaleIn = !z;
+        senderSelectView.scaleOut = z;
     }
 
-    public void lambda$setProgress$3(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-        this.scaleIn = false;
-        this.scaleOut = false;
+    public static void $r8$lambda$139Yq8ZuUy7Lp93hTzCnjcroZ7A(SenderSelectView senderSelectView, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        senderSelectView.scaleIn = false;
+        senderSelectView.scaleOut = false;
         if (!z) {
             dynamicAnimation.cancel();
         }
-        if (dynamicAnimation == this.menuSpring) {
-            this.menuSpring = null;
+        if (dynamicAnimation == senderSelectView.menuSpring) {
+            senderSelectView.menuSpring = null;
         }
     }
 
-    public void lambda$setProgress$4(ValueAnimator valueAnimator) {
-        this.menuProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$yWkUVg07clSnF4EpobV2H0D4FKU(SenderSelectView senderSelectView, ValueAnimator valueAnimator) {
+        senderSelectView.getClass();
+        senderSelectView.menuProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        senderSelectView.invalidate();
     }
 
     public float getProgress() {

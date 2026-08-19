@@ -41,6 +41,7 @@ public class PlayPauseDrawable extends Drawable {
         float f;
         float f2;
         View view;
+        Canvas canvas2;
         float interpolation;
         long jCurrentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
         long j = jCurrentAnimationTimeMillis - this.lastUpdateTime;
@@ -99,25 +100,27 @@ public class PlayPauseDrawable extends Drawable {
         int i = this.alpha;
         if (i == 255) {
             canvas.save();
+            canvas2 = canvas;
         } else {
-            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, i, 31);
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, i, 31);
         }
-        canvas.translate(bounds.centerX() + (AndroidUtilities.dp(1.0f) * (1.0f - this.progress)), bounds.centerY());
+        canvas2.translate(bounds.centerX() + (AndroidUtilities.dp(1.0f) * (1.0f - this.progress)), bounds.centerY());
         float f5 = this.progress * 500.0f;
         if (f5 < 100.0f) {
             interpolation = CubicBezierInterpolator.EASE_BOTH.getInterpolation(f5 / 100.0f) * (-5.0f);
         } else {
             interpolation = f5 < 484.0f ? (CubicBezierInterpolator.EASE_BOTH.getInterpolation((f5 - 100.0f) / 384.0f) * 95.0f) - 5.0f : 90.0f;
         }
-        canvas.scale((this.size * 1.45f) / AndroidUtilities.dp(28.0f), (this.size * 1.5f) / AndroidUtilities.dp(28.0f));
-        canvas.rotate(interpolation);
+        canvas2.scale((this.size * 1.45f) / AndroidUtilities.dp(28.0f), (this.size * 1.5f) / AndroidUtilities.dp(28.0f));
+        canvas2.rotate(interpolation);
         PathAnimator pathAnimator = Theme.playPauseAnimator;
         if (pathAnimator != null) {
-            pathAnimator.draw(canvas, this.paint, f5);
-            canvas.scale(1.0f, -1.0f);
-            Theme.playPauseAnimator.draw(canvas, this.paint, f5);
+            pathAnimator.draw(canvas2, this.paint, f5);
+            canvas2.scale(1.0f, -1.0f);
+            Theme.playPauseAnimator.draw(canvas2, this.paint, f5);
         }
-        canvas.restore();
+        canvas2.restore();
     }
 
     public void setPause(boolean z) {

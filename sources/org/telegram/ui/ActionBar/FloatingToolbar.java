@@ -71,7 +71,7 @@ public final class FloatingToolbar {
     private static final MenuItem.OnMenuItemClickListener NO_OP_MENUITEM_CLICK_LISTENER = new MenuItem.OnMenuItemClickListener() {
         @Override
         public final boolean onMenuItemClick(MenuItem menuItem) {
-            return FloatingToolbar.lambda$static$0(menuItem);
+            return FloatingToolbar.$r8$lambda$UV4UHvSG7impHUqxEN2IE95BRm0(menuItem);
         }
     };
     public static final List STYLE_BUTTONS;
@@ -101,7 +101,7 @@ public final class FloatingToolbar {
         void removeStyle(int i, int i2, int i3);
     }
 
-    public static boolean lambda$static$0(MenuItem menuItem) {
+    public static boolean $r8$lambda$UV4UHvSG7impHUqxEN2IE95BRm0(MenuItem menuItem) {
         return false;
     }
 
@@ -134,7 +134,7 @@ public final class FloatingToolbar {
         this.quoteShowCallback = callback0Return;
     }
 
-    public static int lambda$new$1(MenuItem menuItem, MenuItem menuItem2) {
+    public static int m1266$r8$lambda$oeoem8jsMsNfzaGiZfcKWwEphE(MenuItem menuItem, MenuItem menuItem2) {
         return menuItem.getOrder() - menuItem2.getOrder();
     }
 
@@ -166,7 +166,7 @@ public final class FloatingToolbar {
         this.mMenuItemComparator = new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return FloatingToolbar.lambda$new$1((MenuItem) obj, (MenuItem) obj2);
+                return FloatingToolbar.m1266$r8$lambda$oeoem8jsMsNfzaGiZfcKWwEphE((MenuItem) obj, (MenuItem) obj2);
             }
         };
         this.mWindowView = view;
@@ -184,9 +184,9 @@ public final class FloatingToolbar {
     public FloatingToolbar setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener onMenuItemClickListener) {
         if (onMenuItemClickListener != null) {
             this.mMenuItemClickListener = onMenuItemClickListener;
-        } else {
-            this.mMenuItemClickListener = NO_OP_MENUITEM_CLICK_LISTENER;
+            return this;
         }
+        this.mMenuItemClickListener = NO_OP_MENUITEM_CLICK_LISTENER;
         return this;
     }
 
@@ -428,7 +428,7 @@ public final class FloatingToolbar {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
-                    this.f$0.lambda$new$0(view3);
+                    this.f$0.onBackPressed();
                 }
             });
             frameLayout.addView(imageButton, LayoutHelper.createFrame(-2, -2, 19));
@@ -451,10 +451,6 @@ public final class FloatingToolbar {
             this.mHideAnimation = FloatingToolbar.createExitAnimation(viewGroup2, 0, new AnonymousClass5(FloatingToolbar.this));
         }
 
-        public void lambda$new$0(View view) {
-            onBackPressed();
-        }
-
         class AnonymousClass4 extends AnimatorListenerAdapter {
             final FloatingToolbar val$this$0;
 
@@ -467,12 +463,12 @@ public final class FloatingToolbar {
                 NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onAnimationEnd$0();
+                        FloatingToolbar.FloatingToolbarPopup.AnonymousClass4.$r8$lambda$cco5EnXFNcOVHG9m7zX5jqw3AJ8(this.f$0);
                     }
                 });
             }
 
-            public void lambda$onAnimationEnd$0() {
+            public static void $r8$lambda$cco5EnXFNcOVHG9m7zX5jqw3AJ8(AnonymousClass4 anonymousClass4) {
                 FloatingToolbarPopup.this.mPopupWindow.dismiss();
                 FloatingToolbarPopup.this.mContentContainer.removeAllViews();
             }
@@ -490,17 +486,13 @@ public final class FloatingToolbar {
                 NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onAnimationEnd$0();
+                        FloatingToolbar.FloatingToolbarPopup.this.mPopupWindow.dismiss();
                     }
                 });
             }
-
-            public void lambda$onAnimationEnd$0() {
-                FloatingToolbarPopup.this.mPopupWindow.dismiss();
-            }
         }
 
-        private void onBackPressed() {
+        public void onBackPressed() {
             if (this.mIsOverflowOpen) {
                 this.mOverflowButtonIcon.setImageDrawable(this.mToOverflow);
                 this.mToOverflow.start();
@@ -518,7 +510,7 @@ public final class FloatingToolbar {
                 this.mOverflowButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$updateOverflowButtonClickListener$1(view);
+                        this.f$0.onBackPressed();
                     }
                 });
                 this.mOverflowButtonIcon.setClickable(false);
@@ -531,17 +523,9 @@ public final class FloatingToolbar {
             this.mOverflowButtonIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateOverflowButtonClickListener$2(view);
+                    this.f$0.onBackPressed();
                 }
             });
-        }
-
-        public void lambda$updateOverflowButtonClickListener$1(View view) {
-            onBackPressed();
-        }
-
-        public void lambda$updateOverflowButtonClickListener$2(View view) {
-            onBackPressed();
         }
 
         public void layoutMenuItems(List list, MenuItem.OnMenuItemClickListener onMenuItemClickListener, int i) {
@@ -992,7 +976,7 @@ public final class FloatingToolbar {
                     if (viewCreateMenuItemButton instanceof LinearLayout) {
                         ((LinearLayout) viewCreateMenuItemButton).setGravity(17);
                     }
-                    viewCreateMenuItemButton.setPaddingRelative((int) ((z ? 1.5d : 1.0d) * ((double) viewCreateMenuItemButton.getPaddingStart())), viewCreateMenuItemButton.getPaddingTop(), (int) (((double) viewCreateMenuItemButton.getPaddingEnd()) * (!zHasNext ? 1.5d : 1.0d)), viewCreateMenuItemButton.getPaddingBottom());
+                    viewCreateMenuItemButton.setPaddingRelative((int) ((z ? 1.5d : 1.0d) * ((double) viewCreateMenuItemButton.getPaddingStart())), viewCreateMenuItemButton.getPaddingTop(), (int) (((double) viewCreateMenuItemButton.getPaddingEnd()) * (zHasNext ? 1.0d : 1.5d)), viewCreateMenuItemButton.getPaddingBottom());
                     viewCreateMenuItemButton.measure(0, 0);
                     int iMin = Math.min(viewCreateMenuItemButton.getMeasuredWidth(), i);
                     boolean z3 = iMin <= i2 - this.mOverflowButtonSize.getWidth();
@@ -1024,7 +1008,7 @@ public final class FloatingToolbar {
                 Collections.sort(list, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return FloatingToolbar.FloatingToolbarPopup.lambda$layoutOverflowPanelItems$3((MenuItem) obj, (MenuItem) obj2);
+                        return FloatingToolbar.FloatingToolbarPopup.$r8$lambda$XSUKhezwtykLqi5URcVn9bL2ahs((MenuItem) obj, (MenuItem) obj2);
                     }
                 });
             }
@@ -1051,7 +1035,7 @@ public final class FloatingToolbar {
             setSize(this.mOverflowPanel, size2);
         }
 
-        public static int lambda$layoutOverflowPanelItems$3(MenuItem menuItem, MenuItem menuItem2) {
+        public static int $r8$lambda$XSUKhezwtykLqi5URcVn9bL2ahs(MenuItem menuItem, MenuItem menuItem2) {
             List list = FloatingToolbar.premiumOptions;
             return (list.contains(Integer.valueOf(menuItem.getItemId())) ? 1 : 0) - (list.contains(Integer.valueOf(menuItem2.getItemId())) ? 1 : 0);
         }
@@ -1165,23 +1149,24 @@ public final class FloatingToolbar {
             overflowPanel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(AdapterView adapterView, View view, int i, long j) {
-                    this.f$0.lambda$createOverflowPanel$4(overflowPanel, adapterView, view, i, j);
+                    FloatingToolbar.FloatingToolbarPopup.$r8$lambda$8oCyUbqeLXvygnXItlA5PaejVkw(this.f$0, overflowPanel, adapterView, view, i, j);
                 }
             });
             return overflowPanel;
         }
 
-        public void lambda$createOverflowPanel$4(OverflowPanel overflowPanel, AdapterView adapterView, View view, int i, long j) {
+        public static void $r8$lambda$8oCyUbqeLXvygnXItlA5PaejVkw(FloatingToolbarPopup floatingToolbarPopup, OverflowPanel overflowPanel, AdapterView adapterView, View view, int i, long j) {
+            floatingToolbarPopup.getClass();
             MenuItem menuItem = (MenuItem) overflowPanel.getAdapter().getItem(i);
             if (FloatingToolbar.this.premiumLockClickListener != null && FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem.getItemId()))) {
-                int i2 = -this.shiftDp;
-                this.shiftDp = i2;
+                int i2 = -floatingToolbarPopup.shiftDp;
+                floatingToolbarPopup.shiftDp = i2;
                 AndroidUtilities.shakeViewSpring(view, i2);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
                 FloatingToolbar.this.premiumLockClickListener.run();
                 return;
             }
-            MenuItem.OnMenuItemClickListener onMenuItemClickListener = this.mOnMenuItemClickListener;
+            MenuItem.OnMenuItemClickListener onMenuItemClickListener = floatingToolbarPopup.mOnMenuItemClickListener;
             if (onMenuItemClickListener != null) {
                 onMenuItemClickListener.onMenuItemClick(menuItem);
             }
@@ -1211,12 +1196,12 @@ public final class FloatingToolbar {
                 FloatingToolbarPopup.this.mContentContainer.post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onAnimationEnd$0();
+                        FloatingToolbar.FloatingToolbarPopup.AnonymousClass14.m1267$r8$lambda$5Su373lkHwAC9hTmvadhNQz8Ig(this.f$0);
                     }
                 });
             }
 
-            public void lambda$onAnimationEnd$0() {
+            public static void m1267$r8$lambda$5Su373lkHwAC9hTmvadhNQz8Ig(AnonymousClass14 anonymousClass14) {
                 FloatingToolbarPopup.this.setPanelsStatesAtRestingPosition();
                 FloatingToolbarPopup.this.setContentAreaAsTouchableSurface();
             }
@@ -1400,7 +1385,6 @@ public final class FloatingToolbar {
         int themedColor;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
-        boolean z4 = false;
         linearLayout.setOrientation(0);
         linearLayout.setMinimumWidth(AndroidUtilities.dp(48.0f));
         linearLayout.setMinimumHeight(AndroidUtilities.dp(z ? 42.0f : 48.0f));
@@ -1444,10 +1428,7 @@ public final class FloatingToolbar {
         imageView.setVisibility(8);
         linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -1, 0.0f, 0, 12, 0, 0, 0));
         if (menuItem != null) {
-            if (this.premiumLockClickListener != null) {
-                z4 = true;
-            }
-            updateMenuItemButton(linearLayout, menuItem, i, z4);
+            updateMenuItemButton(linearLayout, menuItem, i, this.premiumLockClickListener != null);
         }
         return linearLayout;
     }
@@ -1564,9 +1545,10 @@ public final class FloatingToolbar {
                         }
                     }
                 }
-                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    this.downRootView = null;
+                if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                    return zDispatchTouchEvent;
                 }
+                this.downRootView = null;
                 return zDispatchTouchEvent;
             }
 

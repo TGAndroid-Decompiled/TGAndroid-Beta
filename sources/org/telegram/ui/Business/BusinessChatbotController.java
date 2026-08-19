@@ -28,20 +28,22 @@ public class BusinessChatbotController {
     }
 
     public static BusinessChatbotController getInstance(int i) {
-        BusinessChatbotController businessChatbotController = Instance[i];
-        if (businessChatbotController == null) {
-            synchronized (lockObjects[i]) {
-                try {
-                    businessChatbotController = Instance[i];
-                    if (businessChatbotController == null) {
-                        BusinessChatbotController[] businessChatbotControllerArr = Instance;
-                        BusinessChatbotController businessChatbotController2 = new BusinessChatbotController(i);
-                        businessChatbotControllerArr[i] = businessChatbotController2;
-                        businessChatbotController = businessChatbotController2;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        BusinessChatbotController businessChatbotController;
+        BusinessChatbotController businessChatbotController2 = Instance[i];
+        if (businessChatbotController2 != null) {
+            return businessChatbotController2;
+        }
+        synchronized (lockObjects[i]) {
+            try {
+                businessChatbotController = Instance[i];
+                if (businessChatbotController == null) {
+                    BusinessChatbotController[] businessChatbotControllerArr = Instance;
+                    BusinessChatbotController businessChatbotController3 = new BusinessChatbotController(i);
+                    businessChatbotControllerArr[i] = businessChatbotController3;
+                    businessChatbotController = businessChatbotController3;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return businessChatbotController;
@@ -68,7 +70,7 @@ public class BusinessChatbotController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getConnectedBots(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$load$1(tLObject, tL_error);
+                    BusinessChatbotController.$r8$lambda$O1b91JEoRK8MmFOdNHZsGSrLz6U(this.f$0, tLObject, tL_error);
                 }
             });
         } else if (z) {
@@ -76,25 +78,26 @@ public class BusinessChatbotController {
         }
     }
 
-    public void lambda$load$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$O1b91JEoRK8MmFOdNHZsGSrLz6U(final BusinessChatbotController businessChatbotController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        businessChatbotController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$load$0(tLObject);
+                BusinessChatbotController.$r8$lambda$mZYsdZa5WLypcxQMXICc8BElgCg(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$load$0(TLObject tLObject) {
-        this.loading = false;
+    public static void $r8$lambda$mZYsdZa5WLypcxQMXICc8BElgCg(BusinessChatbotController businessChatbotController, TLObject tLObject) {
+        businessChatbotController.loading = false;
         TL_account.connectedBots connectedbots = tLObject instanceof TL_account.connectedBots ? (TL_account.connectedBots) tLObject : null;
-        this.value = connectedbots;
+        businessChatbotController.value = connectedbots;
         if (connectedbots != null) {
-            MessagesController.getInstance(this.currentAccount).putUsers(this.value.users, false);
+            MessagesController.getInstance(businessChatbotController.currentAccount).putUsers(businessChatbotController.value.users, false);
         }
-        this.lastTime = System.currentTimeMillis();
-        this.loaded = true;
-        notifyUpdate();
+        businessChatbotController.lastTime = System.currentTimeMillis();
+        businessChatbotController.loaded = true;
+        businessChatbotController.notifyUpdate();
     }
 
     public void notifyUpdate() {
@@ -104,7 +107,7 @@ public class BusinessChatbotController {
             }
         }
         this.callbacks.clear();
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updatedChatbot, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.updatedChatbot, new Object[0]);
     }
 
     public void invalidate(boolean z) {

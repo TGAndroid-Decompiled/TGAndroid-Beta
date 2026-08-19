@@ -62,7 +62,7 @@ public class FingerprintController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        FingerprintController.lambda$generateNewKey$0(z);
+                        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didGenerateFingerprintKeyPair, Boolean.valueOf(z));
                     }
                 });
             } catch (InvalidAlgorithmParameterException e) {
@@ -74,10 +74,6 @@ public class FingerprintController {
                 FileLog.e(e2);
             }
         }
-    }
-
-    public static void lambda$generateNewKey$0(boolean z) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didGenerateFingerprintKeyPair, Boolean.valueOf(z));
     }
 
     public static void deleteInvalidKey() {

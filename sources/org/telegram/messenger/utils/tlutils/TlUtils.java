@@ -5,7 +5,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.zip.CRC32;
 import org.telegram.messenger.MediaDataController;
@@ -70,9 +69,15 @@ public abstract class TlUtils {
             return ((TL_ephemeral.TL_sendMessage) tLObject).message;
         }
         if (tLObject instanceof TLRPC.TL_messages_sendMultiMedia) {
-            for (TLRPC.TL_inputSingleMedia tL_inputSingleMedia : ((TLRPC.TL_messages_sendMultiMedia) tLObject).multi_media) {
-                if (!TextUtils.isEmpty(tL_inputSingleMedia.message)) {
-                    return tL_inputSingleMedia.message;
+            ArrayList<TLRPC.TL_inputSingleMedia> arrayList = ((TLRPC.TL_messages_sendMultiMedia) tLObject).multi_media;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TLRPC.TL_inputSingleMedia tL_inputSingleMedia = arrayList.get(i);
+                i++;
+                TLRPC.TL_inputSingleMedia tL_inputSingleMedia2 = tL_inputSingleMedia;
+                if (!TextUtils.isEmpty(tL_inputSingleMedia2.message)) {
+                    return tL_inputSingleMedia2.message;
                 }
             }
         }
@@ -149,18 +154,25 @@ public abstract class TlUtils {
         if (tLObject instanceof TLRPC.TL_messages_sendInlineBotResult) {
             return ((TLRPC.TL_messages_sendInlineBotResult) tLObject).random_id;
         }
+        int i = 0;
         long jCalcHash = 0;
         if (tLObject instanceof TLRPC.TL_messages_forwardMessages) {
-            Iterator<Long> it = ((TLRPC.TL_messages_forwardMessages) tLObject).random_id.iterator();
-            while (it.hasNext()) {
-                jCalcHash = MediaDataController.calcHash(jCalcHash, it.next().longValue());
+            ArrayList<Long> arrayList = ((TLRPC.TL_messages_forwardMessages) tLObject).random_id;
+            int size = arrayList.size();
+            while (i < size) {
+                Long l = arrayList.get(i);
+                i++;
+                jCalcHash = MediaDataController.calcHash(jCalcHash, l.longValue());
             }
             return jCalcHash;
         }
         if (tLObject instanceof TLRPC.TL_messages_sendMultiMedia) {
-            Iterator<TLRPC.TL_inputSingleMedia> it2 = ((TLRPC.TL_messages_sendMultiMedia) tLObject).multi_media.iterator();
-            while (it2.hasNext()) {
-                jCalcHash = MediaDataController.calcHash(jCalcHash, it2.next().random_id);
+            ArrayList<TLRPC.TL_inputSingleMedia> arrayList2 = ((TLRPC.TL_messages_sendMultiMedia) tLObject).multi_media;
+            int size2 = arrayList2.size();
+            while (i < size2) {
+                TLRPC.TL_inputSingleMedia tL_inputSingleMedia = arrayList2.get(i);
+                i++;
+                jCalcHash = MediaDataController.calcHash(jCalcHash, tL_inputSingleMedia.random_id);
             }
         }
         return jCalcHash;
@@ -180,12 +192,16 @@ public abstract class TlUtils {
     public static TLRPC.Document getGiftDocument(TL_stars.StarGift starGift) {
         TLRPC.Document document = starGift.sticker;
         ArrayList<TL_stars.StarGiftAttribute> arrayList = starGift.attributes;
-        if (arrayList == null || document != null) {
-            return document;
-        }
-        for (TL_stars.StarGiftAttribute starGiftAttribute : arrayList) {
-            if (starGiftAttribute instanceof TL_stars.starGiftAttributeModel) {
-                return ((TL_stars.starGiftAttributeModel) starGiftAttribute).document;
+        if (arrayList != null && document == null) {
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TL_stars.StarGiftAttribute starGiftAttribute = arrayList.get(i);
+                i++;
+                TL_stars.StarGiftAttribute starGiftAttribute2 = starGiftAttribute;
+                if (starGiftAttribute2 instanceof TL_stars.starGiftAttributeModel) {
+                    return ((TL_stars.starGiftAttributeModel) starGiftAttribute2).document;
+                }
             }
         }
         return document;
@@ -194,12 +210,16 @@ public abstract class TlUtils {
     public static TLRPC.Document getGiftDocumentPattern(TL_stars.StarGift starGift) {
         TLRPC.Document document = starGift.sticker;
         ArrayList<TL_stars.StarGiftAttribute> arrayList = starGift.attributes;
-        if (arrayList == null || document != null) {
-            return document;
-        }
-        for (TL_stars.StarGiftAttribute starGiftAttribute : arrayList) {
-            if (starGiftAttribute instanceof TL_stars.starGiftAttributePattern) {
-                return ((TL_stars.starGiftAttributePattern) starGiftAttribute).document;
+        if (arrayList != null && document == null) {
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TL_stars.StarGiftAttribute starGiftAttribute = arrayList.get(i);
+                i++;
+                TL_stars.StarGiftAttribute starGiftAttribute2 = starGiftAttribute;
+                if (starGiftAttribute2 instanceof TL_stars.starGiftAttributePattern) {
+                    return ((TL_stars.starGiftAttributePattern) starGiftAttribute2).document;
+                }
             }
         }
         return document;
@@ -294,12 +314,8 @@ public abstract class TlUtils {
         j$.util.List.EL.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return TlUtils.lambda$calculateAnswerShuffleHash$0((TLRPC.PollAnswer) obj, (TLRPC.PollAnswer) obj2);
+                return Long.compare(((TLRPC.PollAnswer) obj).shuffle_hash ^ Long.MIN_VALUE, ((TLRPC.PollAnswer) obj2).shuffle_hash ^ Long.MIN_VALUE);
             }
         });
-    }
-
-    public static int lambda$calculateAnswerShuffleHash$0(TLRPC.PollAnswer pollAnswer, TLRPC.PollAnswer pollAnswer2) {
-        return Long.compare(pollAnswer.shuffle_hash ^ Long.MIN_VALUE, pollAnswer2.shuffle_hash ^ Long.MIN_VALUE);
     }
 }

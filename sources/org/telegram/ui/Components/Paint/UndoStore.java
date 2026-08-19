@@ -63,13 +63,13 @@ public class UndoStore {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$notifyOfHistoryChanges$0();
+                UndoStore.$r8$lambda$d8iZ78NI4v8eiJkT3CVRbq0iDt8(this.f$0);
             }
         });
     }
 
-    public void lambda$notifyOfHistoryChanges$0() {
-        UndoStoreDelegate undoStoreDelegate = this.delegate;
+    public static void $r8$lambda$d8iZ78NI4v8eiJkT3CVRbq0iDt8(UndoStore undoStore) {
+        UndoStoreDelegate undoStoreDelegate = undoStore.delegate;
         if (undoStoreDelegate != null) {
             undoStoreDelegate.historyChanged();
         }

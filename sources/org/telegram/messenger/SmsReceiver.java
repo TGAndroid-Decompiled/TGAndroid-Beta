@@ -38,7 +38,7 @@ public class SmsReceiver extends BroadcastReceiver {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            SmsReceiver.lambda$onReceive$0(strReplace);
+                            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didReceiveSmsCode, strReplace);
                         }
                     });
                 }
@@ -46,9 +46,5 @@ public class SmsReceiver extends BroadcastReceiver {
         } catch (Throwable th) {
             FileLog.e(th);
         }
-    }
-
-    public static void lambda$onReceive$0(String str) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveSmsCode, str);
     }
 }

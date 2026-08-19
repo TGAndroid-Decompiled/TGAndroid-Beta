@@ -104,7 +104,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(context, view);
+                QRCodeBottomSheet.$r8$lambda$Q79mwuTVFYOOvUWoCv1PugY2jaw(this.f$0, context, view);
             }
         });
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 80, 16, 15, 16, 3));
@@ -118,7 +118,7 @@ public class QRCodeBottomSheet extends BottomSheet {
             this.button2TextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    QRCodeBottomSheet.lambda$new$1(str2, context, view);
+                    QRCodeBottomSheet.m2677$r8$lambda$hGgDgb2IyX0ylcB_79toVXuOp0(str2, context, view);
                 }
             });
             linearLayout.addView(this.button2TextView, LayoutHelper.createLinear(-1, 48, 80, 16, 3, 16, 16));
@@ -129,21 +129,21 @@ public class QRCodeBottomSheet extends BottomSheet {
         setCustomView(scrollView);
     }
 
-    public void lambda$new$0(Context context, View view) {
-        Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(this.qrCode, "qr_tmp.png", Bitmap.CompressFormat.PNG);
+    public static void $r8$lambda$Q79mwuTVFYOOvUWoCv1PugY2jaw(QRCodeBottomSheet qRCodeBottomSheet, Context context, View view) {
+        Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(qRCodeBottomSheet.qrCode, "qr_tmp.png", Bitmap.CompressFormat.PNG);
         if (bitmapShareUri != null) {
             Intent intent = new Intent("android.intent.action.SEND");
             intent.setType("image/*");
             intent.putExtra("android.intent.extra.STREAM", bitmapShareUri);
             try {
-                AndroidUtilities.findActivity(context).startActivityForResult(Intent.createChooser(intent, getTitleView().getText()), 500);
+                AndroidUtilities.findActivity(context).startActivityForResult(Intent.createChooser(intent, qRCodeBottomSheet.getTitleView().getText()), 500);
             } catch (ActivityNotFoundException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void lambda$new$1(String str, Context context, View view) {
+    public static void m2677$r8$lambda$hGgDgb2IyX0ylcB_79toVXuOp0(String str, Context context, View view) {
         Intent intent = new Intent("android.intent.action.SEND");
         intent.setType("text/plain");
         intent.putExtra("android.intent.extra.TEXT", str);

@@ -103,11 +103,13 @@ public class VideoAds {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
+            if (obj != null && getClass() == obj.getClass()) {
+                VideoAdsLocation videoAdsLocation = (VideoAdsLocation) obj;
+                if (this.currentAccount == videoAdsLocation.currentAccount && this.dialogId == videoAdsLocation.dialogId) {
+                    return true;
+                }
             }
-            VideoAdsLocation videoAdsLocation = (VideoAdsLocation) obj;
-            return this.currentAccount == videoAdsLocation.currentAccount && this.dialogId == videoAdsLocation.dialogId;
+            return false;
         }
 
         public int hashCode() {
@@ -120,15 +122,19 @@ public class VideoAds {
     }
 
     public static VideoAds make(int i, long j, int i2, BulletinFactory bulletinFactory) {
+        BulletinFactory bulletinFactory2;
         VideoAdsLocation videoAdsLocation = new VideoAdsLocation(i, j);
         VideoAds videoAds = cached.get(videoAdsLocation);
         if (videoAds == null || ((videoAds.msg_id != i2 || System.currentTimeMillis() - videoAds.lastTime > 180000) && videoAds.ads.isEmpty())) {
             HashMap<VideoAdsLocation, VideoAds> map = cached;
-            VideoAds videoAds2 = new VideoAds(i, j, i2, bulletinFactory);
+            bulletinFactory2 = bulletinFactory;
+            VideoAds videoAds2 = new VideoAds(i, j, i2, bulletinFactory2);
             map.put(videoAdsLocation, videoAds2);
             videoAds = videoAds2;
+        } else {
+            bulletinFactory2 = bulletinFactory;
         }
-        videoAds.init(bulletinFactory);
+        videoAds.init(bulletinFactory2);
         return videoAds;
     }
 
@@ -156,9 +162,12 @@ public class VideoAds {
     }
 
     public boolean isPopupShown() {
-        PremiumFeatureBottomSheet premiumFeatureBottomSheet;
         ItemOptions itemOptions = this.currentMenu;
-        return (itemOptions != null && itemOptions.isShown()) || ((premiumFeatureBottomSheet = this.premiumSheet) != null && premiumFeatureBottomSheet.isShown());
+        if (itemOptions != null && itemOptions.isShown()) {
+            return true;
+        }
+        PremiumFeatureBottomSheet premiumFeatureBottomSheet = this.premiumSheet;
+        return premiumFeatureBottomSheet != null && premiumFeatureBottomSheet.isShown();
     }
 
     private void init(BulletinFactory bulletinFactory) {
@@ -192,33 +201,34 @@ public class VideoAds {
         this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSponsoredMessages, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$load$1(tLObject, tL_error);
+                VideoAds.$r8$lambda$H_qjD4knkr5WW4hG0ed6arb_1Ug(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$load$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$H_qjD4knkr5WW4hG0ed6arb_1Ug(final VideoAds videoAds, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        videoAds.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$load$0(tLObject);
+                VideoAds.$r8$lambda$LAxqWQUNqASahqYd6LcnJqbkI9Y(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$load$0(TLObject tLObject) {
-        if (this.loading) {
+    public static void $r8$lambda$LAxqWQUNqASahqYd6LcnJqbkI9Y(VideoAds videoAds, TLObject tLObject) {
+        if (videoAds.loading) {
             if (tLObject instanceof TLRPC.TL_messages_sponsoredMessages) {
                 TLRPC.TL_messages_sponsoredMessages tL_messages_sponsoredMessages = (TLRPC.TL_messages_sponsoredMessages) tLObject;
-                MessagesController.getInstance(this.currentAccount).putUsers(tL_messages_sponsoredMessages.users, false);
-                MessagesController.getInstance(this.currentAccount).putChats(tL_messages_sponsoredMessages.chats, false);
-                this.ads.addAll(tL_messages_sponsoredMessages.messages);
-                this.start_delay = tL_messages_sponsoredMessages.start_delay;
-                this.between_delay = tL_messages_sponsoredMessages.between_delay;
+                MessagesController.getInstance(videoAds.currentAccount).putUsers(tL_messages_sponsoredMessages.users, false);
+                MessagesController.getInstance(videoAds.currentAccount).putChats(tL_messages_sponsoredMessages.chats, false);
+                videoAds.ads.addAll(tL_messages_sponsoredMessages.messages);
+                videoAds.start_delay = tL_messages_sponsoredMessages.start_delay;
+                videoAds.between_delay = tL_messages_sponsoredMessages.between_delay;
             }
-            this.loaded = true;
-            this.loading = false;
-            schedule();
+            videoAds.loaded = true;
+            videoAds.loading = false;
+            videoAds.schedule();
         }
     }
 
@@ -302,7 +312,7 @@ public class VideoAds {
         adLayout.buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$show$2(closeDrawable, view);
+                VideoAds.m1137$r8$lambda$YyNckzykbVgqqi_zQ3lSuxQdY(this.f$0, closeDrawable, view);
             }
         });
         final Bulletin bulletinCreate = this.bulletinFactory.create(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
@@ -312,7 +322,7 @@ public class VideoAds {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$3(bulletinCreate, tL_sponsoredMessage);
+                VideoAds.m1140$r8$lambda$hbb6V9uq1nw7voaEGbIp2QC3II(this.f$0, bulletinCreate, tL_sponsoredMessage);
             }
         };
         final long[] jArr = new long[1];
@@ -321,7 +331,7 @@ public class VideoAds {
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$show$4(bulletinCreate, zArr, closeDrawable, jArr2, runnable, jArr, jCurrentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
+                VideoAds.$r8$lambda$EHCCn9A6jHy8lzZ29HEOCMdIG1c(this.f$0, bulletinCreate, zArr, closeDrawable, jArr2, runnable, jArr, jCurrentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
             }
         };
         AndroidUtilities.runOnUIThread(runnable, ((long) tL_sponsoredMessage.min_display_duration) * 1000);
@@ -331,58 +341,59 @@ public class VideoAds {
         bulletin2.setOnHideListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$5(bulletinCreate, zArr2);
+                VideoAds.m1139$r8$lambda$ge71Y8QmhdygbWpyyn5DVpz7XY(this.f$0, bulletinCreate, zArr2);
             }
         });
         adLayout.titleTextView.setRightDrawableOnClick(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$show$17(bulletinCreate, tL_sponsoredMessage, context, resourcesProvider, adLayout, callback, view);
+                VideoAds.m1141$r8$lambda$yNwrCL9AhGpB_dtI8isiV_NRsQ(this.f$0, bulletinCreate, tL_sponsoredMessage, context, resourcesProvider, adLayout, callback, view);
             }
         });
         this.bulletin.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$show$18(tL_sponsoredMessage, view);
+                VideoAds.m1138$r8$lambda$gIoe4VZPcAc8CzhrvkQ38fZyzg(this.f$0, tL_sponsoredMessage, view);
             }
         });
         this.bulletin.show();
         logSponsoredShown(tL_sponsoredMessage);
     }
 
-    public void lambda$show$2(CloseDrawable closeDrawable, View view) {
+    public static void m1137$r8$lambda$YyNckzykbVgqqi_zQ3lSuxQdY(VideoAds videoAds, CloseDrawable closeDrawable, View view) {
+        videoAds.getClass();
         if (closeDrawable.isCrossAvailable()) {
-            Bulletin bulletin = this.bulletin;
+            Bulletin bulletin = videoAds.bulletin;
             if (bulletin != null) {
                 bulletin.hide();
                 return;
             }
             return;
         }
-        if (UserConfig.getInstance(this.currentAccount).isPremium()) {
-            Bulletin bulletin2 = this.bulletin;
+        if (UserConfig.getInstance(videoAds.currentAccount).isPremium()) {
+            Bulletin bulletin2 = videoAds.bulletin;
             if (bulletin2 != null) {
                 bulletin2.hide();
-                this.bulletin = null;
+                videoAds.bulletin = null;
             }
-            MessagesController.getInstance(this.currentAccount).disableAds(true);
-            this.bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+            MessagesController.getInstance(videoAds.currentAccount).disableAds(true);
+            videoAds.bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
             return;
         }
-        showPremium();
+        videoAds.showPremium();
     }
 
-    public void lambda$show$3(Bulletin bulletin, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
-        Bulletin bulletin2 = this.bulletin;
+    public static void m1140$r8$lambda$hbb6V9uq1nw7voaEGbIp2QC3II(VideoAds videoAds, Bulletin bulletin, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
+        Bulletin bulletin2 = videoAds.bulletin;
         if (bulletin2 == null || bulletin2 != bulletin) {
             return;
         }
         bulletin2.setDuration((tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000);
-        this.bulletin.setCanHide(true);
+        videoAds.bulletin.setCanHide(true);
     }
 
-    public void lambda$show$4(Bulletin bulletin, boolean[] zArr, CloseDrawable closeDrawable, long[] jArr, Runnable runnable, long[] jArr2, long j, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Boolean bool) {
-        Bulletin bulletin2 = this.bulletin;
+    public static void $r8$lambda$EHCCn9A6jHy8lzZ29HEOCMdIG1c(VideoAds videoAds, Bulletin bulletin, boolean[] zArr, CloseDrawable closeDrawable, long[] jArr, Runnable runnable, long[] jArr2, long j, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Boolean bool) {
+        Bulletin bulletin2 = videoAds.bulletin;
         if (bulletin2 == null || bulletin2 != bulletin || bool.booleanValue() == zArr[0]) {
             return;
         }
@@ -390,7 +401,7 @@ public class VideoAds {
         zArr[0] = zBooleanValue;
         closeDrawable.setPaused(zBooleanValue);
         if (zArr[0]) {
-            this.bulletin.setCanHide(false);
+            videoAds.bulletin.setCanHide(false);
             jArr[0] = System.currentTimeMillis();
             AndroidUtilities.cancelRunOnUIThread(runnable);
             return;
@@ -401,47 +412,47 @@ public class VideoAds {
         long j2 = (((long) tL_sponsoredMessage.min_display_duration) * 1000) - jCurrentTimeMillis;
         long j3 = (((long) tL_sponsoredMessage.max_display_duration) * 1000) - jCurrentTimeMillis;
         if (j3 <= 0) {
-            Bulletin bulletin3 = this.bulletin;
+            Bulletin bulletin3 = videoAds.bulletin;
             if (bulletin3 != null) {
                 bulletin3.hide();
-                this.bulletin = null;
+                videoAds.bulletin = null;
                 return;
             }
             return;
         }
         if (j2 <= 0) {
-            this.bulletin.setDuration((int) j3);
-            this.bulletin.setCanHide(true);
+            videoAds.bulletin.setDuration((int) j3);
+            videoAds.bulletin.setCanHide(true);
         } else {
             AndroidUtilities.runOnUIThread(runnable, j2);
         }
     }
 
-    public void lambda$show$5(Bulletin bulletin, boolean[] zArr) {
-        Bulletin bulletin2 = this.bulletin;
+    public static void m1139$r8$lambda$ge71Y8QmhdygbWpyyn5DVpz7XY(VideoAds videoAds, Bulletin bulletin, boolean[] zArr) {
+        Bulletin bulletin2 = videoAds.bulletin;
         if (bulletin2 == null || bulletin2 != bulletin || zArr[0]) {
             return;
         }
         zArr[0] = true;
-        ItemOptions itemOptions = this.currentMenu;
+        ItemOptions itemOptions = videoAds.currentMenu;
         if (itemOptions != null) {
             itemOptions.dismiss();
-            this.currentMenu = null;
+            videoAds.currentMenu = null;
         }
-        this.bulletin = null;
-        this.currentBulletinPassedTime = 0L;
-        this.lastTime = System.currentTimeMillis();
-        if (this.waitingPaused) {
-            this.waitingTimeSince = System.currentTimeMillis();
+        videoAds.bulletin = null;
+        videoAds.currentBulletinPassedTime = 0L;
+        videoAds.lastTime = System.currentTimeMillis();
+        if (videoAds.waitingPaused) {
+            videoAds.waitingTimeSince = System.currentTimeMillis();
         }
-        if (!this.ads.isEmpty()) {
-            this.ads.remove(0);
+        if (!videoAds.ads.isEmpty()) {
+            videoAds.ads.remove(0);
         }
-        this.first = false;
-        schedule();
+        videoAds.first = false;
+        videoAds.schedule();
     }
 
-    public void lambda$show$17(Bulletin bulletin, final TLRPC.TL_sponsoredMessage tL_sponsoredMessage, final Context context, Theme.ResourcesProvider resourcesProvider, AdLayout adLayout, final Utilities.Callback callback, View view) {
+    public static void m1141$r8$lambda$yNwrCL9AhGpB_dtI8isiV_NRsQ(final VideoAds videoAds, Bulletin bulletin, final TLRPC.TL_sponsoredMessage tL_sponsoredMessage, final Context context, Theme.ResourcesProvider resourcesProvider, AdLayout adLayout, final Utilities.Callback callback, View view) {
         ViewGroup viewGroup;
         final ItemOptions itemOptionsMakeSwipeback;
         int iDp;
@@ -451,7 +462,7 @@ public class VideoAds {
         int i;
         int i2;
         int i3;
-        Bulletin bulletin2 = this.bulletin;
+        Bulletin bulletin2 = videoAds.bulletin;
         if (bulletin2 == null || bulletin2 != bulletin) {
             return;
         }
@@ -464,7 +475,7 @@ public class VideoAds {
             return;
         }
         final DarkBlueThemeResourcesProvider darkBlueThemeResourcesProvider = new DarkBlueThemeResourcesProvider();
-        final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(viewGroup, darkBlueThemeResourcesProvider, this.bulletin.getLayout(), true, false);
+        final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(viewGroup, darkBlueThemeResourcesProvider, videoAds.bulletin.getLayout(), true, false);
         itemOptionsMakeOptions.setSwipebackGravity(true, true);
         itemOptionsMakeOptions.setScaleOut(true);
         itemOptionsMakeOptions.setDimAlpha(0);
@@ -473,7 +484,7 @@ public class VideoAds {
         if (tL_sponsoredMessage.sponsor_info == null && tL_sponsoredMessage.additional_info == null) {
             String str2 = tL_sponsoredMessage.url;
             if (str2 != null) {
-                if (!str2.startsWith("https://" + MessagesController.getInstance(this.currentAccount).linkPrefix)) {
+                if (!str2.startsWith("https://" + MessagesController.getInstance(videoAds.currentAccount).linkPrefix)) {
                     itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
                     ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(context, true, false, (Theme.ResourcesProvider) darkBlueThemeResourcesProvider);
                     actionBarMenuSubItem.setItemHeight(44);
@@ -518,13 +529,13 @@ public class VideoAds {
                         textView2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
-                                this.f$0.lambda$show$7(itemOptionsMakeOptions, tL_sponsoredMessage, context, view2);
+                                VideoAds.$r8$lambda$G_GJCdUKrDe7QgUTnOkZ99td2Fs(this.f$0, itemOptionsMakeOptions, tL_sponsoredMessage, context, view2);
                             }
                         });
                         textView2.setOnLongClickListener(new View.OnLongClickListener() {
                             @Override
                             public final boolean onLongClick(View view2) {
-                                return VideoAds.lambda$show$8(tL_sponsoredMessage, view2);
+                                return VideoAds.$r8$lambda$iVe8i2C8j2Ec5WZfQBkwOCfuyHY(tL_sponsoredMessage, view2);
                             }
                         });
                         arrayList.add(textView2);
@@ -546,7 +557,7 @@ public class VideoAds {
                         textView3.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
-                                VideoAds.lambda$show$9(tL_sponsoredMessage, view2);
+                                AndroidUtilities.addToClipboard(tL_sponsoredMessage.sponsor_info);
                             }
                         });
                         arrayList.add(textView3);
@@ -562,7 +573,7 @@ public class VideoAds {
                         textView4.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
-                                VideoAds.lambda$show$10(tL_sponsoredMessage, view2);
+                                AndroidUtilities.addToClipboard(tL_sponsoredMessage.additional_info);
                             }
                         });
                         arrayList.add(textView4);
@@ -616,7 +627,7 @@ public class VideoAds {
             itemOptionsMakeSwipeback.addView(new ActionBarPopupWindow.GapView(context, darkBlueThemeResourcesProvider), LayoutHelper.createLinear(-1, 8));
             arrayList = new ArrayList();
             str = tL_sponsoredMessage.url;
-            if (str != null && !TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(this.currentAccount).linkPrefix)) {
+            if (str != null && !TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(videoAds.currentAccount).linkPrefix)) {
                 TextView textView6 = new TextView(context);
                 textView6.setTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, darkBlueThemeResourcesProvider));
                 textView6.setTextSize(1, 14.0f);
@@ -634,13 +645,13 @@ public class VideoAds {
                 textView6.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view3) {
-                        this.f$0.lambda$show$7(itemOptionsMakeOptions, tL_sponsoredMessage, context, view3);
+                        VideoAds.$r8$lambda$G_GJCdUKrDe7QgUTnOkZ99td2Fs(this.f$0, itemOptionsMakeOptions, tL_sponsoredMessage, context, view3);
                     }
                 });
                 textView6.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view3) {
-                        return VideoAds.lambda$show$8(tL_sponsoredMessage, view3);
+                        return VideoAds.$r8$lambda$iVe8i2C8j2Ec5WZfQBkwOCfuyHY(tL_sponsoredMessage, view3);
                     }
                 });
                 arrayList.add(textView6);
@@ -662,7 +673,7 @@ public class VideoAds {
                 textView7.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view3) {
-                        VideoAds.lambda$show$9(tL_sponsoredMessage, view3);
+                        AndroidUtilities.addToClipboard(tL_sponsoredMessage.sponsor_info);
                     }
                 });
                 arrayList.add(textView7);
@@ -678,7 +689,7 @@ public class VideoAds {
                 textView8.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view3) {
-                        VideoAds.lambda$show$10(tL_sponsoredMessage, view3);
+                        AndroidUtilities.addToClipboard(tL_sponsoredMessage.additional_info);
                     }
                 });
                 arrayList.add(textView8);
@@ -704,11 +715,11 @@ public class VideoAds {
                 }
             });
         }
-        if (!UserConfig.getInstance(this.currentAccount).isPremium() && !MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() && !tL_sponsoredMessage.can_report) {
+        if (!UserConfig.getInstance(videoAds.currentAccount).isPremium() && !MessagesController.getInstance(videoAds.currentAccount).premiumFeaturesBlocked() && !tL_sponsoredMessage.can_report) {
             itemOptionsMakeOptions.add(R.drawable.msg_block2, LocaleController.getString(R.string.HideAd), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$show$12(itemOptionsMakeOptions);
+                    VideoAds.$r8$lambda$u_IlIXB8wvcIdVdHdTPwrZcxPSs(this.f$0, itemOptionsMakeOptions);
                 }
             });
         }
@@ -722,15 +733,15 @@ public class VideoAds {
             itemOptionsMakeOptions.add(R.drawable.msg_block2, LocaleController.getString(R.string.ReportAd), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$show$14(context, tL_sponsoredMessage, itemOptionsMakeOptions);
+                    VideoAds.$r8$lambda$FUs1Rq0tJzP7m5XZrSlar6r0ERY(this.f$0, context, tL_sponsoredMessage, itemOptionsMakeOptions);
                 }
             });
-            if (!MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
+            if (!MessagesController.getInstance(videoAds.currentAccount).premiumFeaturesBlocked()) {
                 itemOptionsMakeOptions.addGap();
                 itemOptionsMakeOptions.add(R.drawable.msg_cancel, LocaleController.getString(R.string.RemoveAds), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$show$15(itemOptionsMakeOptions);
+                        VideoAds.$r8$lambda$Ta2CuFEbF150NkRtGS90341eGUA(this.f$0, itemOptionsMakeOptions);
                     }
                 });
             }
@@ -738,57 +749,50 @@ public class VideoAds {
         if (itemOptionsMakeOptions.getItemsCount() <= 0) {
             return;
         }
-        this.currentMenu = itemOptionsMakeOptions;
-        this.currentMenuTranslationY = adLayout.getTranslationY();
+        videoAds.currentMenu = itemOptionsMakeOptions;
+        videoAds.currentMenuTranslationY = adLayout.getTranslationY();
         callback.run(Boolean.TRUE);
         itemOptionsMakeOptions.setOnDismiss(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$16(callback);
+                VideoAds.$r8$lambda$kHamZasQa2SemdyW_3KTDyBqmdA(this.f$0, callback);
             }
         });
         itemOptionsMakeOptions.show();
-        checkPopupShownCallback();
+        videoAds.checkPopupShownCallback();
     }
 
-    public void lambda$show$7(ItemOptions itemOptions, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
+    public static void $r8$lambda$G_GJCdUKrDe7QgUTnOkZ99td2Fs(VideoAds videoAds, ItemOptions itemOptions, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
+        videoAds.getClass();
         itemOptions.dismiss();
-        logSponsoredClicked(tL_sponsoredMessage);
-        Browser.openUrl(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, MessagesController.getInstance(this.currentAccount).sponsoredLinksInappAllow, false);
+        videoAds.logSponsoredClicked(tL_sponsoredMessage);
+        Browser.openUrl(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, MessagesController.getInstance(videoAds.currentAccount).sponsoredLinksInappAllow, false);
     }
 
-    public static boolean lambda$show$8(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
+    public static boolean $r8$lambda$iVe8i2C8j2Ec5WZfQBkwOCfuyHY(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
         AndroidUtilities.addToClipboard(tL_sponsoredMessage.url);
         return true;
     }
 
-    public static void lambda$show$9(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
-        AndroidUtilities.addToClipboard(tL_sponsoredMessage.sponsor_info);
-    }
-
-    public static void lambda$show$10(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
-        AndroidUtilities.addToClipboard(tL_sponsoredMessage.additional_info);
-    }
-
-    public void lambda$show$12(ItemOptions itemOptions) {
-        if (UserConfig.getInstance(this.currentAccount).isPremium()) {
+    public static void $r8$lambda$u_IlIXB8wvcIdVdHdTPwrZcxPSs(VideoAds videoAds, ItemOptions itemOptions) {
+        if (UserConfig.getInstance(videoAds.currentAccount).isPremium()) {
             itemOptions.dismiss();
-            Bulletin bulletin = this.bulletin;
+            Bulletin bulletin = videoAds.bulletin;
             if (bulletin != null) {
                 bulletin.setCanHide(true);
-                this.bulletin.hide();
+                videoAds.bulletin.hide();
             }
-            this.bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
-            MessagesController.getInstance(this.currentAccount).disableAds(true);
+            videoAds.bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+            MessagesController.getInstance(videoAds.currentAccount).disableAds(true);
             return;
         }
-        showPremium();
+        videoAds.showPremium();
     }
 
-    public void lambda$show$14(Context context, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, final ItemOptions itemOptions) {
-        int i = this.currentAccount;
-        long j = this.dialogId;
-        BulletinFactory bulletinFactory = this.bulletinFactory;
+    public static void $r8$lambda$FUs1Rq0tJzP7m5XZrSlar6r0ERY(final VideoAds videoAds, Context context, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, final ItemOptions itemOptions) {
+        int i = videoAds.currentAccount;
+        long j = videoAds.dialogId;
+        BulletinFactory bulletinFactory = videoAds.bulletinFactory;
         DarkBlueThemeResourcesProvider darkBlueThemeResourcesProvider = new DarkBlueThemeResourcesProvider();
         Runnable runnable = new Runnable() {
             @Override
@@ -805,29 +809,30 @@ public class VideoAds {
         });
     }
 
-    public void lambda$show$15(ItemOptions itemOptions) {
-        if (UserConfig.getInstance(this.currentAccount).isPremium()) {
+    public static void $r8$lambda$Ta2CuFEbF150NkRtGS90341eGUA(VideoAds videoAds, ItemOptions itemOptions) {
+        if (UserConfig.getInstance(videoAds.currentAccount).isPremium()) {
             itemOptions.dismiss();
-            Bulletin bulletin = this.bulletin;
+            Bulletin bulletin = videoAds.bulletin;
             if (bulletin != null) {
                 bulletin.setCanHide(true);
-                this.bulletin.hide();
+                videoAds.bulletin.hide();
             }
-            this.bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
-            MessagesController.getInstance(this.currentAccount).disableAds(true);
+            videoAds.bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+            MessagesController.getInstance(videoAds.currentAccount).disableAds(true);
             return;
         }
-        showPremium();
+        videoAds.showPremium();
     }
 
-    public void lambda$show$16(Utilities.Callback callback) {
+    public static void $r8$lambda$kHamZasQa2SemdyW_3KTDyBqmdA(VideoAds videoAds, Utilities.Callback callback) {
+        videoAds.getClass();
         callback.run(Boolean.FALSE);
-        this.currentMenu = null;
-        checkPopupShownCallback();
+        videoAds.currentMenu = null;
+        videoAds.checkPopupShownCallback();
     }
 
-    public void lambda$show$18(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
-        logSponsoredClicked(tL_sponsoredMessage);
+    public static void m1138$r8$lambda$gIoe4VZPcAc8CzhrvkQ38fZyzg(VideoAds videoAds, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
+        videoAds.logSponsoredClicked(tL_sponsoredMessage);
         Browser.openUrl(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, MessagesController.getInstance(UserConfig.selectedAccount).sponsoredLinksInappAllow, false);
     }
 
@@ -1052,7 +1057,7 @@ public class VideoAds {
     public void showPremium() {
         PremiumFeatureBottomSheet premiumFeatureBottomSheet = this.premiumSheet;
         if (premiumFeatureBottomSheet != null) {
-            premiumFeatureBottomSheet.lambda$new$0();
+            premiumFeatureBottomSheet.dismiss();
             this.premiumSheet = null;
         }
         final PremiumFeatureBottomSheet premiumFeatureBottomSheet2 = new PremiumFeatureBottomSheet(new BaseFragment() {
@@ -1076,17 +1081,17 @@ public class VideoAds {
         premiumFeatureBottomSheet2.setOnDismissListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showPremium$19(premiumFeatureBottomSheet2);
+                VideoAds.$r8$lambda$ytWz13xqwNa1zFKqyU1VKNNERUk(this.f$0, premiumFeatureBottomSheet2);
             }
         });
         premiumFeatureBottomSheet2.show();
         checkPopupShownCallback();
     }
 
-    public void lambda$showPremium$19(PremiumFeatureBottomSheet premiumFeatureBottomSheet) {
-        if (premiumFeatureBottomSheet == this.premiumSheet) {
-            this.premiumSheet = null;
-            checkPopupShownCallback();
+    public static void $r8$lambda$ytWz13xqwNa1zFKqyU1VKNNERUk(VideoAds videoAds, PremiumFeatureBottomSheet premiumFeatureBottomSheet) {
+        if (premiumFeatureBottomSheet == videoAds.premiumSheet) {
+            videoAds.premiumSheet = null;
+            videoAds.checkPopupShownCallback();
         }
     }
 

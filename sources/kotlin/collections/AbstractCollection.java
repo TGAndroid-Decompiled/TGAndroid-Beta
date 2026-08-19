@@ -69,7 +69,7 @@ public abstract class AbstractCollection implements Collection {
     }
 
     public String toString() {
-        return CollectionsKt.joinToString$default(this, ", ", "[", "]", 0, null, new Function1() {
+        return CollectionsKt___CollectionsKt.joinToString$default(this, ", ", "[", "]", 0, null, new Function1() {
             @Override
             public final Object invoke(Object obj) {
                 return AbstractCollection.toString$lambda$2(this.f$0, obj);

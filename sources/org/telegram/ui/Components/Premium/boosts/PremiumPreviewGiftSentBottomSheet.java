@@ -116,26 +116,26 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
                 avatarHolderView.drawCycle = false;
                 avatarHolderView.setUser((TLRPC.User) list.get(0));
                 frameLayout2.addView(avatarHolderView, 0, LayoutHelper.createFrame(94, 94, 17));
-            } else {
-                frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
-                int i = 0;
-                for (int i2 = 0; i2 < list.size(); i2++) {
-                    TLRPC.User user = (TLRPC.User) list.get(i2);
-                    AvatarHolderView avatarHolderView2 = new AvatarHolderView(context, 41.5f);
-                    avatarHolderView2.setUser(user);
-                    frameLayout2.addView(avatarHolderView2, 0, LayoutHelper.createFrame(83, 83, 17));
-                    avatarHolderView2.setTranslationX((-i2) * AndroidUtilities.dp(29.0f));
-                    if (i2 == 0 && list.size() > 3) {
-                        avatarHolderView2.iconView.setAlpha(1.0f);
-                        avatarHolderView2.iconView.count = list.size() - 3;
-                    }
-                    i++;
-                    if (i2 == 2) {
-                        break;
-                    }
-                }
-                frameLayout.setTranslationX(AndroidUtilities.dp(14.5f) * (i - 1));
+                return frameLayout;
             }
+            frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+            int i = 0;
+            for (int i2 = 0; i2 < list.size(); i2++) {
+                TLRPC.User user = (TLRPC.User) list.get(i2);
+                AvatarHolderView avatarHolderView2 = new AvatarHolderView(context, 41.5f);
+                avatarHolderView2.setUser(user);
+                frameLayout2.addView(avatarHolderView2, 0, LayoutHelper.createFrame(83, 83, 17));
+                avatarHolderView2.setTranslationX((-i2) * AndroidUtilities.dp(29.0f));
+                if (i2 == 0 && list.size() > 3) {
+                    avatarHolderView2.iconView.setAlpha(1.0f);
+                    avatarHolderView2.iconView.count = list.size() - 3;
+                }
+                i++;
+                if (i2 == 2) {
+                    break;
+                }
+            }
+            frameLayout.setTranslationX(AndroidUtilities.dp(14.5f) * (i - 1));
             return frameLayout;
         }
 
@@ -205,7 +205,7 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         actionBtnCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$init$0(view);
+                this.f$0.dismiss();
             }
         });
         actionBtnCell.setCloseStyle(true);
@@ -215,10 +215,6 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(64.0f));
         this.overrideTitleIcon = AvatarHolderView.createAvatarsContainer(getContext(), this.selectedUsers);
         fixNavigationBar();
-    }
-
-    public void lambda$init$0(View view) {
-        lambda$new$0();
     }
 
     @Override

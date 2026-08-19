@@ -152,7 +152,12 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         NotificationCenter.getGlobalInstance().listen(recyclerListView, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$1((Object[]) obj);
+                AndroidUtilities.forEachViews((RecyclerView) this.f$0.listView, new Consumer() {
+                    @Override
+                    public final void accept(Object obj2) {
+                        ChatAttachAlertQuickRepliesLayout.m1372$r8$lambda$LvFiaOEAzJTrFmm8PU1c7yRW10((View) obj2);
+                    }
+                });
             }
         });
         recyclerListView.setClipToPadding(false);
@@ -188,7 +193,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$new$3(view, i);
+                ChatAttachAlertQuickRepliesLayout.$r8$lambda$TTAw_Vqk7NG4gOhw4AT77gUEuiQ(this.f$0, view, i);
             }
         });
         recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -204,56 +209,48 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         updateEmptyView();
     }
 
-    public void lambda$new$1(Object[] objArr) {
-        AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
-            @Override
-            public final void accept(Object obj) {
-                ChatAttachAlertQuickRepliesLayout.lambda$new$0((View) obj);
-            }
-        });
-    }
-
-    public static void lambda$new$0(View view) {
+    public static void m1372$r8$lambda$LvFiaOEAzJTrFmm8PU1c7yRW10(View view) {
         if (view instanceof QuickRepliesActivity.QuickReplyView) {
             ((QuickRepliesActivity.QuickReplyView) view).invalidateEmojis();
         }
     }
 
-    public void lambda$new$3(View view, int i) {
+    public static void $r8$lambda$TTAw_Vqk7NG4gOhw4AT77gUEuiQ(final ChatAttachAlertQuickRepliesLayout chatAttachAlertQuickRepliesLayout, View view, int i) {
         final Object item;
-        RecyclerView.Adapter adapter = this.listView.getAdapter();
-        ShareSearchAdapter shareSearchAdapter = this.searchAdapter;
+        RecyclerView.Adapter adapter = chatAttachAlertQuickRepliesLayout.listView.getAdapter();
+        ShareSearchAdapter shareSearchAdapter = chatAttachAlertQuickRepliesLayout.searchAdapter;
         if (adapter == shareSearchAdapter) {
             item = shareSearchAdapter.getItem(i);
         } else {
-            int sectionForPosition = this.listAdapter.getSectionForPosition(i);
-            int positionInSectionForPosition = this.listAdapter.getPositionInSectionForPosition(i);
+            int sectionForPosition = chatAttachAlertQuickRepliesLayout.listAdapter.getSectionForPosition(i);
+            int positionInSectionForPosition = chatAttachAlertQuickRepliesLayout.listAdapter.getPositionInSectionForPosition(i);
             if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
                 return;
             } else {
-                item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
+                item = chatAttachAlertQuickRepliesLayout.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
             }
         }
         if (item instanceof QuickRepliesController.QuickReply) {
-            if (!UserConfig.getInstance(this.parentAlert.currentAccount).isPremium()) {
-                if (this.parentAlert.baseFragment != null) {
-                    new PremiumFeatureBottomSheet(this.parentAlert.baseFragment, getContext(), this.parentAlert.currentAccount, true, 31, false, null).show();
+            if (!UserConfig.getInstance(chatAttachAlertQuickRepliesLayout.parentAlert.currentAccount).isPremium()) {
+                if (chatAttachAlertQuickRepliesLayout.parentAlert.baseFragment != null) {
+                    new PremiumFeatureBottomSheet(chatAttachAlertQuickRepliesLayout.parentAlert.baseFragment, chatAttachAlertQuickRepliesLayout.getContext(), chatAttachAlertQuickRepliesLayout.parentAlert.currentAccount, true, 31, false, null).show();
                 }
             } else {
-                ChatAttachAlert chatAttachAlert = this.parentAlert;
+                ChatAttachAlert chatAttachAlert = chatAttachAlertQuickRepliesLayout.parentAlert;
                 AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), ((QuickRepliesController.QuickReply) item).getMessagesCount(), new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$new$2(item, (Long) obj);
+                        ChatAttachAlertQuickRepliesLayout.$r8$lambda$TVxpHpOZycUvxNI7KiNSjDrXCS0(this.f$0, item, (Long) obj);
                     }
                 });
             }
         }
     }
 
-    public void lambda$new$2(Object obj, Long l) {
-        QuickRepliesController.getInstance(UserConfig.selectedAccount).sendQuickReplyTo(this.parentAlert.getDialogId(), (QuickRepliesController.QuickReply) obj);
-        this.parentAlert.lambda$new$0();
+    public static void $r8$lambda$TVxpHpOZycUvxNI7KiNSjDrXCS0(ChatAttachAlertQuickRepliesLayout chatAttachAlertQuickRepliesLayout, Object obj, Long l) {
+        chatAttachAlertQuickRepliesLayout.getClass();
+        QuickRepliesController.getInstance(UserConfig.selectedAccount).sendQuickReplyTo(chatAttachAlertQuickRepliesLayout.parentAlert.getDialogId(), (QuickRepliesController.QuickReply) obj);
+        chatAttachAlertQuickRepliesLayout.parentAlert.dismiss();
     }
 
     public void setupBlurredSearchField(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
@@ -583,7 +580,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$4();
+                ChatAttachAlertQuickRepliesLayout.$r8$lambda$7bFekCh2q97M_jWqRljeeSEn7ns(this.f$0);
             }
 
             @Override
@@ -611,12 +608,12 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$4() {
-        RecyclerListView recyclerListView = this.listView;
+    public static void $r8$lambda$7bFekCh2q97M_jWqRljeeSEn7ns(ChatAttachAlertQuickRepliesLayout chatAttachAlertQuickRepliesLayout) {
+        RecyclerListView recyclerListView = chatAttachAlertQuickRepliesLayout.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
             for (int i = 0; i < childCount; i++) {
-                this.listView.getChildAt(i);
+                chatAttachAlertQuickRepliesLayout.listView.getChildAt(i);
             }
         }
     }

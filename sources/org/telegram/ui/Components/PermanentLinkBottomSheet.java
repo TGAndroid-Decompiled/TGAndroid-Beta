@@ -58,7 +58,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.dismiss();
             }
         });
         int iDp = AndroidUtilities.dp(8.0f);
@@ -89,7 +89,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
 
             @Override
             public final void revokeLink() {
-                this.f$0.lambda$new$1();
+                this.f$0.generateLink(true);
             }
 
             @Override
@@ -126,7 +126,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(chatFull, baseFragment, view);
+                PermanentLinkBottomSheet.$r8$lambda$BV3FF_uhFAOr1yIaURjjJLJF4u4(this.f$0, chatFull, baseFragment, view);
             }
         });
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(90, 90, 1, 0, 33, 0, 0));
@@ -150,22 +150,15 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         updateColors();
     }
 
-    public void lambda$new$0(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$new$1() {
-        generateLink(true);
-    }
-
-    public void lambda$new$2(TLRPC.ChatFull chatFull, BaseFragment baseFragment, View view) {
+    public static void $r8$lambda$BV3FF_uhFAOr1yIaURjjJLJF4u4(PermanentLinkBottomSheet permanentLinkBottomSheet, TLRPC.ChatFull chatFull, BaseFragment baseFragment, View view) {
+        permanentLinkBottomSheet.getClass();
         ManageLinksActivity manageLinksActivity = new ManageLinksActivity(chatFull.id, 0L, 0);
         manageLinksActivity.setInfo(chatFull, chatFull.exported_invite);
         baseFragment.presentFragment(manageLinksActivity);
-        lambda$new$0();
+        permanentLinkBottomSheet.dismiss();
     }
 
-    private void generateLink(final boolean z) {
+    public void generateLink(final boolean z) {
         if (this.linkGenerating) {
             return;
         }
@@ -176,37 +169,39 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$generateLink$4(z, tLObject, tL_error);
+                PermanentLinkBottomSheet.$r8$lambda$L4IM7aTT_1YI_wZaZBnRz_P3ewg(this.f$0, z, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$generateLink$4(final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$L4IM7aTT_1YI_wZaZBnRz_P3ewg(final PermanentLinkBottomSheet permanentLinkBottomSheet, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        permanentLinkBottomSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$generateLink$3(tL_error, tLObject, z);
+                PermanentLinkBottomSheet.$r8$lambda$TEYabkhd4dnso3HpQt2YXxXyvUY(this.f$0, tL_error, tLObject, z);
             }
         });
     }
 
-    public void lambda$generateLink$3(TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
+    public static void $r8$lambda$TEYabkhd4dnso3HpQt2YXxXyvUY(PermanentLinkBottomSheet permanentLinkBottomSheet, TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
         if (tL_error == null) {
-            this.invite = (TLRPC.TL_chatInviteExported) tLObject;
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chatId);
+            permanentLinkBottomSheet.getClass();
+            permanentLinkBottomSheet.invite = (TLRPC.TL_chatInviteExported) tLObject;
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(permanentLinkBottomSheet.currentAccount).getChatFull(permanentLinkBottomSheet.chatId);
             if (chatFull != null) {
-                chatFull.exported_invite = this.invite;
+                chatFull.exported_invite = permanentLinkBottomSheet.invite;
             }
-            this.linkActionView.setLink(this.invite.link);
-            if (z && this.fragment != null) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            permanentLinkBottomSheet.linkActionView.setLink(permanentLinkBottomSheet.invite.link);
+            if (z && permanentLinkBottomSheet.fragment != null) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(permanentLinkBottomSheet.getContext());
                 builder.setMessage(LocaleController.getString(R.string.RevokeAlertNewLink));
                 builder.setTitle(LocaleController.getString(R.string.RevokeLink));
                 builder.setNegativeButton(LocaleController.getString(R.string.OK), null);
-                this.fragment.showDialog(builder.create());
+                permanentLinkBottomSheet.fragment.showDialog(builder.create());
             }
         }
-        this.linkGenerating = false;
+        permanentLinkBottomSheet.linkGenerating = false;
     }
 
     @Override
@@ -215,13 +210,9 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$5();
+                this.f$0.linkIcon.start();
             }
         }, 50L);
-    }
-
-    public void lambda$show$5() {
-        this.linkIcon.start();
     }
 
     @Override
@@ -270,7 +261,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
     }
 
     @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
+    public void dismiss() {
+        super.dismiss();
     }
 }

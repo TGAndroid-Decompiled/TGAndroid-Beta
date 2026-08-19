@@ -145,7 +145,7 @@ public class RoundView extends EntityView {
             float y = view.getY() + (view.getHeight() / 2.0f);
             float fMin = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
             if (f2 < 1.0f) {
-                canvas.saveLayerAlpha(view.getX(), view.getY(), view.getWidth() + view.getX(), view.getHeight() + view.getY(), 128, 31);
+                canvas.saveLayerAlpha(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight(), 128, 31);
                 this.clipPath.rewind();
                 this.clipPath.addCircle(x, y, fMin, Path.Direction.CW);
                 canvas.clipPath(this.clipPath);
@@ -190,7 +190,7 @@ public class RoundView extends EntityView {
     }
 
     @Override
-    protected void updatePosition() {
+    public void updatePosition() {
         Size size = this.baseSize;
         float f = size.width / 2.0f;
         float f2 = size.height / 2.0f;

@@ -169,15 +169,15 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         Disposable disposable2 = (Disposable) this.disposables.put(view, new Disposable() {
             @Override
             public final void dispose() {
-                this.f$0.lambda$drawExactBoundsSize$0(view, disposableStartDitheringInternal);
+                BackgroundGradientDrawable.$r8$lambda$2cyWd59DAvfgw9om12PRg4UQLcw(this.f$0, view, disposableStartDitheringInternal);
             }
         });
         super.draw(canvas);
         return disposable2;
     }
 
-    public void lambda$drawExactBoundsSize$0(View view, Disposable disposable) {
-        this.disposables.remove(view);
+    public static void $r8$lambda$2cyWd59DAvfgw9om12PRg4UQLcw(BackgroundGradientDrawable backgroundGradientDrawable, View view, Disposable disposable) {
+        backgroundGradientDrawable.disposables.remove(view);
         disposable.dispose();
     }
 
@@ -234,15 +234,14 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         final Listener[] listenerArr = {listener};
         final Runnable[] runnableArr = new Runnable[intSizeArr.length];
         this.ditheringRunnables.add(runnableArr);
-        for (int i = 0; i < intSizeArr.length; i++) {
+        for (final int i = 0; i < intSizeArr.length; i++) {
             final IntSize intSize = intSizeArr[i];
             if (intSize.width != 0 && intSize.height != 0) {
                 DispatchQueue dispatchQueue = Utilities.globalQueue;
-                final int i2 = i;
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$startDitheringInternal$2(intSize, runnableArr, i2, listenerArr);
+                        BackgroundGradientDrawable.$r8$lambda$toMy1EfFCGbl_JwZ8KupPdjTsdY(this.f$0, intSize, runnableArr, i, listenerArr);
                     }
                 };
                 runnableArr[i] = runnable;
@@ -252,18 +251,19 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         return new Disposable() {
             @Override
             public final void dispose() {
-                this.f$0.lambda$startDitheringInternal$3(listenerArr, runnableArr, intSizeArr);
+                BackgroundGradientDrawable.$r8$lambda$gGMCWSb4JJsTZd_i7Lpr14rK_YM(this.f$0, listenerArr, runnableArr, intSizeArr);
             }
         };
     }
 
-    public void lambda$startDitheringInternal$2(final IntSize intSize, final Runnable[] runnableArr, final int i, final Listener[] listenerArr) {
+    public static void $r8$lambda$toMy1EfFCGbl_JwZ8KupPdjTsdY(final BackgroundGradientDrawable backgroundGradientDrawable, final IntSize intSize, final Runnable[] runnableArr, final int i, final Listener[] listenerArr) {
+        backgroundGradientDrawable.getClass();
         try {
-            final Bitmap bitmapCreateDitheredGradientBitmap = createDitheredGradientBitmap(getOrientation(), this.colors, intSize.width, intSize.height);
+            final Bitmap bitmapCreateDitheredGradientBitmap = createDitheredGradientBitmap(backgroundGradientDrawable.getOrientation(), backgroundGradientDrawable.colors, intSize.width, intSize.height);
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$startDitheringInternal$1(runnableArr, bitmapCreateDitheredGradientBitmap, intSize, i, listenerArr);
+                    BackgroundGradientDrawable.m2043$r8$lambda$qMFTH1bibwNIf3Ut0Pbft0cNf0(this.f$0, runnableArr, bitmapCreateDitheredGradientBitmap, intSize, i, listenerArr);
                 }
             };
         } finally {
@@ -271,14 +271,14 @@ public class BackgroundGradientDrawable extends GradientDrawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$startDitheringInternal$1(runnableArr, bitmap, intSize, i, listenerArr);
+                    BackgroundGradientDrawable.m2043$r8$lambda$qMFTH1bibwNIf3Ut0Pbft0cNf0(this.f$0, runnableArr, bitmap, intSize, i, listenerArr);
                 }
             });
         }
     }
 
-    public void lambda$startDitheringInternal$1(Runnable[] runnableArr, Bitmap bitmap, IntSize intSize, int i, Listener[] listenerArr) {
-        if (!this.ditheringRunnables.contains(runnableArr)) {
+    public static void m2043$r8$lambda$qMFTH1bibwNIf3Ut0Pbft0cNf0(BackgroundGradientDrawable backgroundGradientDrawable, Runnable[] runnableArr, Bitmap bitmap, IntSize intSize, int i, Listener[] listenerArr) {
+        if (!backgroundGradientDrawable.ditheringRunnables.contains(runnableArr)) {
             if (bitmap != null) {
                 bitmap.recycle();
                 return;
@@ -286,10 +286,10 @@ public class BackgroundGradientDrawable extends GradientDrawable {
             return;
         }
         if (bitmap != null) {
-            this.bitmaps.put(intSize, bitmap);
+            backgroundGradientDrawable.bitmaps.put(intSize, bitmap);
         } else {
-            this.bitmaps.remove(intSize);
-            this.isForExactBounds.remove(intSize);
+            backgroundGradientDrawable.bitmaps.remove(intSize);
+            backgroundGradientDrawable.isForExactBounds.remove(intSize);
         }
         runnableArr[i] = null;
         boolean z = true;
@@ -309,7 +309,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
             }
         }
         if (!z) {
-            this.ditheringRunnables.remove(runnableArr);
+            backgroundGradientDrawable.ditheringRunnables.remove(runnableArr);
         }
         Listener listener = listenerArr[0];
         if (listener != null) {
@@ -322,15 +322,16 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         }
     }
 
-    public void lambda$startDitheringInternal$3(Listener[] listenerArr, Runnable[] runnableArr, IntSize[] intSizeArr) {
+    public static void $r8$lambda$gGMCWSb4JJsTZd_i7Lpr14rK_YM(BackgroundGradientDrawable backgroundGradientDrawable, Listener[] listenerArr, Runnable[] runnableArr, IntSize[] intSizeArr) {
+        backgroundGradientDrawable.getClass();
         listenerArr[0] = null;
-        if (this.ditheringRunnables.contains(runnableArr)) {
+        if (backgroundGradientDrawable.ditheringRunnables.contains(runnableArr)) {
             Utilities.globalQueue.cancelRunnables(runnableArr);
-            this.ditheringRunnables.remove(runnableArr);
+            backgroundGradientDrawable.ditheringRunnables.remove(runnableArr);
         }
         for (IntSize intSize : intSizeArr) {
-            Bitmap bitmap = (Bitmap) this.bitmaps.remove(intSize);
-            this.isForExactBounds.remove(intSize);
+            Bitmap bitmap = (Bitmap) backgroundGradientDrawable.bitmaps.remove(intSize);
+            backgroundGradientDrawable.isForExactBounds.remove(intSize);
             if (bitmap != null) {
                 bitmap.recycle();
             }
@@ -418,53 +419,54 @@ public class BackgroundGradientDrawable extends GradientDrawable {
                 rect.top = 0;
                 rect.right = i3;
                 rect.bottom = i2;
-                return rect;
+                break;
             case 2:
                 rect.left = i;
                 rect.top = 0;
                 rect.right = 0;
                 rect.bottom = i2;
-                return rect;
+                break;
             case 3:
                 rect.left = i;
                 int i4 = i2 / 2;
                 rect.top = i4;
                 rect.right = 0;
                 rect.bottom = i4;
-                return rect;
+                break;
             case 4:
                 rect.left = i;
                 rect.top = i2;
                 rect.right = 0;
                 rect.bottom = 0;
-                return rect;
+                break;
             case 5:
                 int i5 = i / 2;
                 rect.left = i5;
                 rect.top = i2;
                 rect.right = i5;
                 rect.bottom = 0;
-                return rect;
+                break;
             case 6:
                 rect.left = 0;
                 rect.top = i2;
                 rect.right = i;
                 rect.bottom = 0;
-                return rect;
+                break;
             case 7:
                 rect.left = 0;
                 int i6 = i2 / 2;
                 rect.top = i6;
                 rect.right = i;
                 rect.bottom = i6;
-                return rect;
+                break;
             default:
                 rect.left = 0;
                 rect.top = 0;
                 rect.right = i;
                 rect.bottom = i2;
-                return rect;
+                break;
         }
+        return rect;
     }
 
     public static Rect getGradientPoints(int i, int i2, int i3) {

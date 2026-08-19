@@ -17,14 +17,14 @@ public abstract class OnUndeliveredElementKt {
     public static final UndeliveredElementException callUndeliveredElementCatchingException(Function1 function1, Object obj, UndeliveredElementException undeliveredElementException) {
         try {
             function1.invoke(obj);
+            return undeliveredElementException;
         } catch (Throwable th) {
             if (undeliveredElementException != null && undeliveredElementException.getCause() != th) {
                 ExceptionsKt.addSuppressed(undeliveredElementException, th);
-            } else {
-                return new UndeliveredElementException("Exception in undelivered element handler for " + obj, th);
+                return undeliveredElementException;
             }
+            return new UndeliveredElementException("Exception in undelivered element handler for " + obj, th);
         }
-        return undeliveredElementException;
     }
 
     public static final void callUndeliveredElement(Function1 function1, Object obj, CoroutineContext coroutineContext) {

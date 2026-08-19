@@ -25,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -109,7 +108,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         void didStartChatCreation();
     }
 
-    public static boolean lambda$createView$1(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$9jDkFcdWVIDNQSQrylARqKCyd5o(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -159,6 +158,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         imageUpdater.parentFragment = this;
         imageUpdater.setDelegate(this);
         long[] longArray = getArguments().getLongArray("result");
+        int i = 0;
         if (longArray != null) {
             this.selectedContacts = new ArrayList(longArray.length);
             for (long j : longArray) {
@@ -166,8 +166,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
         }
         final ArrayList arrayList = new ArrayList();
-        for (int i = 0; i < this.selectedContacts.size(); i++) {
-            Long l = (Long) this.selectedContacts.get(i);
+        for (int i2 = 0; i2 < this.selectedContacts.size(); i2++) {
+            Long l = (Long) this.selectedContacts.get(i2);
             if (getMessagesController().getUser(l) == null) {
                 arrayList.add(l);
             }
@@ -178,7 +178,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onFragmentCreate$0(arrayList2, arrayList, countDownLatch);
+                    GroupCreateFinalActivity.$r8$lambda$i4DbGTD7n5H9IYRH7hJ6OE4SESQ(this.f$0, arrayList2, arrayList, countDownLatch);
                 }
             });
             try {
@@ -189,17 +189,19 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             if (arrayList.size() != arrayList2.size() || arrayList2.isEmpty()) {
                 return false;
             }
-            Iterator it = arrayList2.iterator();
-            while (it.hasNext()) {
-                getMessagesController().putUser((TLRPC.User) it.next(), true);
+            int size = arrayList2.size();
+            while (i < size) {
+                Object obj = arrayList2.get(i);
+                i++;
+                getMessagesController().putUser((TLRPC.User) obj, true);
             }
         }
         this.ttlPeriod = getUserConfig().getGlobalTTl() * 60;
         return super.onFragmentCreate();
     }
 
-    public void lambda$onFragmentCreate$0(ArrayList arrayList, ArrayList arrayList2, CountDownLatch countDownLatch) {
-        arrayList.addAll(MessagesStorage.getInstance(this.currentAccount).getUsers(arrayList2));
+    public static void $r8$lambda$i4DbGTD7n5H9IYRH7hJ6OE4SESQ(GroupCreateFinalActivity groupCreateFinalActivity, ArrayList arrayList, ArrayList arrayList2, CountDownLatch countDownLatch) {
+        arrayList.addAll(MessagesStorage.getInstance(groupCreateFinalActivity.currentAccount).getUsers(arrayList2));
         countDownLatch.countDown();
     }
 
@@ -503,7 +505,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return GroupCreateFinalActivity.lambda$createView$1(view, motionEvent);
+                return GroupCreateFinalActivity.$r8$lambda$9jDkFcdWVIDNQSQrylARqKCyd5o(view, motionEvent);
             }
         });
         this.shadowDrawable = context.getResources().getDrawable(R.drawable.greydivider_top).mutate();
@@ -569,7 +571,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.avatarOverlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$4(view2);
+                GroupCreateFinalActivity.$r8$lambda$BVPYLPHr5QNpB_vfmjfgkTMLT0o(this.f$0, view2);
             }
         });
         int i2 = R.raw.camera;
@@ -663,7 +665,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
 
             @Override
             public final void onItemClick(View view2, int i4, float f, float f2) {
-                this.f$0.lambda$createView$6(view2, i4, f, f2);
+                GroupCreateFinalActivity.$r8$lambda$nUjzRyh8ZYWMFbLViDLiWSum6ZE(this.f$0, view2, i4, f, f2);
             }
         });
         FragmentFloatingButton fragmentFloatingButton = new FragmentFloatingButton(context, this.resourceProvider);
@@ -673,7 +675,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$7(view2);
+                GroupCreateFinalActivity.m3315$r8$lambda$nY5v_XSg3ZVMvvzX8d57Nnffxc(this.f$0, view2);
             }
         });
         this.floatingButton.setContentDescription(LocaleController.getString(R.string.Done));
@@ -681,49 +683,50 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         return this.fragmentView;
     }
 
-    public void lambda$createView$4(View view) {
-        this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
+    public static void $r8$lambda$BVPYLPHr5QNpB_vfmjfgkTMLT0o(final GroupCreateFinalActivity groupCreateFinalActivity, View view) {
+        groupCreateFinalActivity.imageUpdater.openMenu(groupCreateFinalActivity.avatar != null, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$2();
+                GroupCreateFinalActivity.m3314$r8$lambda$NZQwb6DwRV2weE09GcJONZ9GQw(this.f$0);
             }
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$createView$3(dialogInterface);
+                GroupCreateFinalActivity.$r8$lambda$PS0XsBZS68RCSivc32nbHBzbb7M(this.f$0, dialogInterface);
             }
         }, 0);
-        this.cameraDrawable.setCurrentFrame(0);
-        this.cameraDrawable.setCustomEndFrame(43);
-        this.avatarEditor.playAnimation();
+        groupCreateFinalActivity.cameraDrawable.setCurrentFrame(0);
+        groupCreateFinalActivity.cameraDrawable.setCustomEndFrame(43);
+        groupCreateFinalActivity.avatarEditor.playAnimation();
     }
 
-    public void lambda$createView$2() {
-        this.avatar = null;
-        this.avatarBig = null;
-        this.inputPhoto = null;
-        this.inputVideo = null;
-        this.inputVideoPath = null;
-        this.inputEmojiMarkup = null;
-        this.videoTimestamp = 0.0d;
-        showAvatarProgress(false, true);
-        this.avatarImage.setImage((ImageLocation) null, (String) null, this.avatarDrawable, (Object) null);
-        this.avatarEditor.setAnimation(this.cameraDrawable);
-        this.cameraDrawable.setCurrentFrame(0);
+    public static void m3314$r8$lambda$NZQwb6DwRV2weE09GcJONZ9GQw(GroupCreateFinalActivity groupCreateFinalActivity) {
+        groupCreateFinalActivity.avatar = null;
+        groupCreateFinalActivity.avatarBig = null;
+        groupCreateFinalActivity.inputPhoto = null;
+        groupCreateFinalActivity.inputVideo = null;
+        groupCreateFinalActivity.inputVideoPath = null;
+        groupCreateFinalActivity.inputEmojiMarkup = null;
+        groupCreateFinalActivity.videoTimestamp = 0.0d;
+        groupCreateFinalActivity.showAvatarProgress(false, true);
+        groupCreateFinalActivity.avatarImage.setImage((ImageLocation) null, (String) null, groupCreateFinalActivity.avatarDrawable, (Object) null);
+        groupCreateFinalActivity.avatarEditor.setAnimation(groupCreateFinalActivity.cameraDrawable);
+        groupCreateFinalActivity.cameraDrawable.setCurrentFrame(0);
     }
 
-    public void lambda$createView$3(DialogInterface dialogInterface) {
-        if (!this.imageUpdater.isUploadingImage()) {
-            this.cameraDrawable.setCustomEndFrame(86);
-            this.avatarEditor.playAnimation();
+    public static void $r8$lambda$PS0XsBZS68RCSivc32nbHBzbb7M(GroupCreateFinalActivity groupCreateFinalActivity, DialogInterface dialogInterface) {
+        if (!groupCreateFinalActivity.imageUpdater.isUploadingImage()) {
+            groupCreateFinalActivity.cameraDrawable.setCustomEndFrame(86);
+            groupCreateFinalActivity.avatarEditor.playAnimation();
         } else {
-            this.cameraDrawable.setCurrentFrame(0, false);
+            groupCreateFinalActivity.cameraDrawable.setCurrentFrame(0, false);
         }
     }
 
-    public void lambda$createView$6(View view, int i, float f, float f2) {
+    public static void $r8$lambda$nUjzRyh8ZYWMFbLViDLiWSum6ZE(final GroupCreateFinalActivity groupCreateFinalActivity, View view, int i, float f, float f2) {
+        groupCreateFinalActivity.getClass();
         if (view instanceof TextSettingsCell) {
-            if (!AndroidUtilities.isMapsInstalled(this)) {
+            if (!AndroidUtilities.isMapsInstalled(groupCreateFinalActivity)) {
                 return;
             }
             LocationActivity locationActivity = new LocationActivity(4);
@@ -731,17 +734,17 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
                 @Override
                 public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3, long j) {
-                    this.f$0.lambda$createView$5(messageMedia, i2, z, i3, j);
+                    GroupCreateFinalActivity.$r8$lambda$IpIpbFkgfkm0ybrk0iw0fweulSw(this.f$0, messageMedia, i2, z, i3, j);
                 }
             });
-            presentFragment(locationActivity);
+            groupCreateFinalActivity.presentFragment(locationActivity);
         }
-        if (!(view instanceof TextCell) || this.chatType == 5) {
+        if (!(view instanceof TextCell) || groupCreateFinalActivity.chatType == 5) {
             return;
         }
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+        ActionBarPopupWindow actionBarPopupWindow = groupCreateFinalActivity.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
-            AutoDeletePopupWrapper autoDeletePopupWrapper = new AutoDeletePopupWrapper(getContext(), null, new AutoDeletePopupWrapper.Callback() {
+            AutoDeletePopupWrapper autoDeletePopupWrapper = new AutoDeletePopupWrapper(groupCreateFinalActivity.getContext(), null, new AutoDeletePopupWrapper.Callback() {
                 @Override
                 public void showGlobalAutoDeleteScreen() {
                     AutoDeletePopupWrapper.Callback.CC.$default$showGlobalAutoDeleteScreen(this);
@@ -758,49 +761,49 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                     AndroidUtilities.updateVisibleRows(GroupCreateFinalActivity.this.listView);
                 }
             }, true, 1, null);
-            autoDeletePopupWrapper.lambda$updateItems$7(this.ttlPeriod);
+            autoDeletePopupWrapper.updateItems(groupCreateFinalActivity.ttlPeriod);
             ActionBarPopupWindow actionBarPopupWindow2 = new ActionBarPopupWindow(autoDeletePopupWrapper.windowLayout, -2, -2);
-            this.popupWindow = actionBarPopupWindow2;
+            groupCreateFinalActivity.popupWindow = actionBarPopupWindow2;
             actionBarPopupWindow2.setPauseNotifications(true);
-            this.popupWindow.setDismissAnimationDuration(220);
-            this.popupWindow.setOutsideTouchable(true);
-            this.popupWindow.setClippingEnabled(true);
-            this.popupWindow.setAnimationStyle(R.style.PopupContextAnimation);
-            this.popupWindow.setFocusable(true);
+            groupCreateFinalActivity.popupWindow.setDismissAnimationDuration(220);
+            groupCreateFinalActivity.popupWindow.setOutsideTouchable(true);
+            groupCreateFinalActivity.popupWindow.setClippingEnabled(true);
+            groupCreateFinalActivity.popupWindow.setAnimationStyle(R.style.PopupContextAnimation);
+            groupCreateFinalActivity.popupWindow.setFocusable(true);
             autoDeletePopupWrapper.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
-            this.popupWindow.setInputMethodMode(2);
-            this.popupWindow.getContentView().setFocusableInTouchMode(true);
-            this.popupWindow.showAtLocation(getFragmentView(), 0, (int) (view.getX() + f), (int) (view.getY() + f2 + (autoDeletePopupWrapper.windowLayout.getMeasuredHeight() / 2.0f)));
-            this.popupWindow.dimBehind();
+            groupCreateFinalActivity.popupWindow.setInputMethodMode(2);
+            groupCreateFinalActivity.popupWindow.getContentView().setFocusableInTouchMode(true);
+            groupCreateFinalActivity.popupWindow.showAtLocation(groupCreateFinalActivity.getFragmentView(), 0, (int) (view.getX() + f), (int) (view.getY() + f2 + (autoDeletePopupWrapper.windowLayout.getMeasuredHeight() / 2.0f)));
+            groupCreateFinalActivity.popupWindow.dimBehind();
         }
     }
 
-    public void lambda$createView$5(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
-        this.currentGroupCreateLocation.setLatitude(messageMedia.geo.lat);
-        this.currentGroupCreateLocation.setLongitude(messageMedia.geo._long);
-        this.currentGroupCreateAddress = messageMedia.address;
+    public static void $r8$lambda$IpIpbFkgfkm0ybrk0iw0fweulSw(GroupCreateFinalActivity groupCreateFinalActivity, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+        groupCreateFinalActivity.currentGroupCreateLocation.setLatitude(messageMedia.geo.lat);
+        groupCreateFinalActivity.currentGroupCreateLocation.setLongitude(messageMedia.geo._long);
+        groupCreateFinalActivity.currentGroupCreateAddress = messageMedia.address;
     }
 
-    public void lambda$createView$7(View view) {
-        if (this.donePressed) {
+    public static void m3315$r8$lambda$nY5v_XSg3ZVMvvzX8d57Nnffxc(GroupCreateFinalActivity groupCreateFinalActivity, View view) {
+        if (groupCreateFinalActivity.donePressed) {
             return;
         }
-        if (this.editText.length() == 0) {
-            Vibrator vibrator = (Vibrator) getParentActivity().getSystemService("vibrator");
+        if (groupCreateFinalActivity.editText.length() == 0) {
+            Vibrator vibrator = (Vibrator) groupCreateFinalActivity.getParentActivity().getSystemService("vibrator");
             if (vibrator != null) {
                 vibrator.vibrate(200L);
             }
-            AndroidUtilities.shakeView(this.editText);
+            AndroidUtilities.shakeView(groupCreateFinalActivity.editText);
             return;
         }
-        this.donePressed = true;
-        AndroidUtilities.hideKeyboard(this.editText);
-        this.editText.setEnabled(false);
-        if (this.imageUpdater.isUploadingImage()) {
-            this.createAfterUpload = true;
+        groupCreateFinalActivity.donePressed = true;
+        AndroidUtilities.hideKeyboard(groupCreateFinalActivity.editText);
+        groupCreateFinalActivity.editText.setEnabled(false);
+        if (groupCreateFinalActivity.imageUpdater.isUploadingImage()) {
+            groupCreateFinalActivity.createAfterUpload = true;
         } else {
-            showEditDoneProgress(true);
-            this.reqId = getMessagesController().createChat(this.editText.getText().toString(), this.selectedContacts, null, this.chatType, this.forImport, this.currentGroupCreateLocation, this.currentGroupCreateAddress, this.ttlPeriod, this);
+            groupCreateFinalActivity.showEditDoneProgress(true);
+            groupCreateFinalActivity.reqId = groupCreateFinalActivity.getMessagesController().createChat(groupCreateFinalActivity.editText.getText().toString(), groupCreateFinalActivity.selectedContacts, null, groupCreateFinalActivity.chatType, groupCreateFinalActivity.forImport, groupCreateFinalActivity.currentGroupCreateLocation, groupCreateFinalActivity.currentGroupCreateAddress, groupCreateFinalActivity.ttlPeriod, groupCreateFinalActivity);
         }
     }
 
@@ -827,34 +830,35 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadPhoto$8(inputFile, inputFile2, videoSize, str, d, photoSize2, photoSize);
+                GroupCreateFinalActivity.m3313$r8$lambda$7ZtCZkKbzrE0uJIIUPVrjWSNU(this.f$0, inputFile, inputFile2, videoSize, str, d, photoSize2, photoSize);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$8(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, String str, double d, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+    public static void m3313$r8$lambda$7ZtCZkKbzrE0uJIIUPVrjWSNU(GroupCreateFinalActivity groupCreateFinalActivity, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, String str, double d, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+        groupCreateFinalActivity.getClass();
         if (inputFile != null || inputFile2 != null || videoSize != null) {
-            this.inputPhoto = inputFile;
-            this.inputVideo = inputFile2;
-            this.inputEmojiMarkup = videoSize;
-            this.inputVideoPath = str;
-            this.videoTimestamp = d;
-            if (this.createAfterUpload) {
-                GroupCreateFinalActivityDelegate groupCreateFinalActivityDelegate = this.delegate;
+            groupCreateFinalActivity.inputPhoto = inputFile;
+            groupCreateFinalActivity.inputVideo = inputFile2;
+            groupCreateFinalActivity.inputEmojiMarkup = videoSize;
+            groupCreateFinalActivity.inputVideoPath = str;
+            groupCreateFinalActivity.videoTimestamp = d;
+            if (groupCreateFinalActivity.createAfterUpload) {
+                GroupCreateFinalActivityDelegate groupCreateFinalActivityDelegate = groupCreateFinalActivity.delegate;
                 if (groupCreateFinalActivityDelegate != null) {
                     groupCreateFinalActivityDelegate.didStartChatCreation();
                 }
-                getMessagesController().createChat(this.editText.getText().toString(), this.selectedContacts, null, this.chatType, this.forImport, this.currentGroupCreateLocation, this.currentGroupCreateAddress, this.ttlPeriod, this);
+                groupCreateFinalActivity.getMessagesController().createChat(groupCreateFinalActivity.editText.getText().toString(), groupCreateFinalActivity.selectedContacts, null, groupCreateFinalActivity.chatType, groupCreateFinalActivity.forImport, groupCreateFinalActivity.currentGroupCreateLocation, groupCreateFinalActivity.currentGroupCreateAddress, groupCreateFinalActivity.ttlPeriod, groupCreateFinalActivity);
             }
-            showAvatarProgress(false, true);
-            this.avatarEditor.setImageDrawable(null);
+            groupCreateFinalActivity.showAvatarProgress(false, true);
+            groupCreateFinalActivity.avatarEditor.setImageDrawable(null);
             return;
         }
         TLRPC.FileLocation fileLocation = photoSize.location;
-        this.avatar = fileLocation;
-        this.avatarBig = photoSize2.location;
-        this.avatarImage.setImage(ImageLocation.getForLocal(fileLocation), "50_50", this.avatarDrawable, (Object) null);
-        showAvatarProgress(true, false);
+        groupCreateFinalActivity.avatar = fileLocation;
+        groupCreateFinalActivity.avatarBig = photoSize2.location;
+        groupCreateFinalActivity.avatarImage.setImage(ImageLocation.getForLocal(fileLocation), "50_50", groupCreateFinalActivity.avatarDrawable, (Object) null);
+        groupCreateFinalActivity.showAvatarProgress(true, false);
     }
 
     @Override
@@ -1012,7 +1016,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             if (groupCreateFinalActivityDelegate2 != null) {
                 groupCreateFinalActivityDelegate2.didFinishChatCreation(this, jLongValue);
             } else {
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.closeChats, new Object[0]);
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", jLongValue);
                 bundle.putBoolean("just_created_chat", true);
@@ -1075,34 +1079,37 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 4 || (viewHolder.getItemViewType() == 6 && GroupCreateFinalActivity.this.canToggleTopics);
+            if (viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 4) {
+                return true;
+            }
+            return viewHolder.getItemViewType() == 6 && GroupCreateFinalActivity.this.canToggleTopics;
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View shadowSectionCell;
+            View textCell;
             if (i == 0) {
-                shadowSectionCell = new ShadowSectionCell(this.context);
+                textCell = new ShadowSectionCell(this.context);
             } else if (i == 1) {
                 HeaderCell headerCell = new HeaderCell(this.context);
                 headerCell.setHeight(46);
-                shadowSectionCell = headerCell;
+                textCell = headerCell;
             } else if (i == 2) {
-                shadowSectionCell = new GroupCreateUserCell(this.context, 0, 3, false);
+                textCell = new GroupCreateUserCell(this.context, 0, 3, false);
             } else if (i == 4) {
-                shadowSectionCell = new TextCell(this.context);
+                textCell = new TextCell(this.context);
             } else if (i == 5) {
-                shadowSectionCell = new TextInfoPrivacyCell(this.context);
+                textCell = new TextInfoPrivacyCell(this.context);
             } else if (i == 6) {
-                shadowSectionCell = new TextCell(this.context, 23, false, true, GroupCreateFinalActivity.this.getResourceProvider());
+                textCell = new TextCell(this.context, 23, false, true, GroupCreateFinalActivity.this.getResourceProvider());
             } else if (i != 7) {
-                shadowSectionCell = new TextSettingsCell(this.context);
+                textCell = new TextSettingsCell(this.context);
             } else {
                 View view = new View(this.context);
                 view.setTag(-33024);
-                shadowSectionCell = view;
+                textCell = view;
             }
-            return new RecyclerListView.Holder(shadowSectionCell);
+            return new RecyclerListView.Holder(textCell);
         }
 
         @Override
@@ -1177,7 +1184,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$9();
+                GroupCreateFinalActivity.$r8$lambda$k4pYayw6m8aHUsKI8NH4rjMmSV8(this.f$0);
             }
 
             @Override
@@ -1227,18 +1234,18 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$9() {
-        RecyclerListView recyclerListView = this.listView;
+    public static void $r8$lambda$k4pYayw6m8aHUsKI8NH4rjMmSV8(GroupCreateFinalActivity groupCreateFinalActivity) {
+        RecyclerListView recyclerListView = groupCreateFinalActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
             for (int i = 0; i < childCount; i++) {
-                View childAt = this.listView.getChildAt(i);
+                View childAt = groupCreateFinalActivity.listView.getChildAt(i);
                 if (childAt instanceof GroupCreateUserCell) {
                     ((GroupCreateUserCell) childAt).update(0);
                 }
             }
         }
-        FragmentFloatingButton fragmentFloatingButton = this.floatingButton;
+        FragmentFloatingButton fragmentFloatingButton = groupCreateFinalActivity.floatingButton;
         if (fragmentFloatingButton != null) {
             fragmentFloatingButton.updateColors();
         }

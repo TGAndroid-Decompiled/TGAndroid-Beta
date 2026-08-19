@@ -6,9 +6,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.SparseArray;
+import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
@@ -16230,9 +16230,9 @@ public class TLRPC {
                         tL_chatReactionsSome.reactions.add(tL_reactionEmoji);
                     }
                     chatFull.available_reactions = tL_chatReactionsSome;
-                } else {
-                    chatFull.available_reactions = new TL_chatReactionsNone();
+                    return chatFull;
                 }
+                chatFull.available_reactions = new TL_chatReactionsNone();
             }
             return chatFull;
         }
@@ -16275,7 +16275,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -22114,7 +22114,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -22284,7 +22284,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -22441,7 +22441,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -22575,7 +22575,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -22701,7 +22701,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -22821,7 +22821,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -22908,7 +22908,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -22957,7 +22957,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -23066,7 +23066,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -23168,7 +23168,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -23249,7 +23249,7 @@ public class TLRPC {
             }
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             if (TLObject.hasFlag(this.flags, 8)) {
@@ -23314,7 +23314,7 @@ public class TLRPC {
             }
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             if (TLObject.hasFlag(this.flags, 8)) {
@@ -23372,7 +23372,7 @@ public class TLRPC {
             }
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             if (TLObject.hasFlag(this.flags, 8)) {
@@ -23419,7 +23419,7 @@ public class TLRPC {
             }
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             if (TLObject.hasFlag(this.flags, 8)) {
@@ -23479,7 +23479,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -23561,7 +23561,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -23640,7 +23640,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -23718,7 +23718,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
             this.bot_info = Vector.deserialize(inputSerializedData, new TLRPC$TL_channelFull$$ExternalSyntheticLambda0(), z);
@@ -23788,7 +23788,7 @@ public class TLRPC {
             this.chat_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             TL_chatInviteExported tL_chatInviteExportedTLdeserialize = ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tL_chatInviteExportedTLdeserialize instanceof TL_chatInviteExported) {
+            if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(tL_chatInviteExportedTLdeserialize)) {
                 this.exported_invite = tL_chatInviteExportedTLdeserialize;
             }
         }
@@ -24345,13 +24345,13 @@ public class TLRPC {
                     if (j != 0) {
                         tL_fileLocationToBeDeprecated.volume_id = -j;
                         tL_fileLocationToBeDeprecated.local_id = videoSize.type.charAt(0);
-                    } else {
-                        tL_fileLocationToBeDeprecated.volume_id = -j2;
-                        tL_fileLocationToBeDeprecated.local_id = videoSize.type.charAt(0) + 1000;
+                        return videoSize;
                     }
-                } else {
-                    videoSize.location = new TL_fileLocationUnavailable();
+                    tL_fileLocationToBeDeprecated.volume_id = -j2;
+                    tL_fileLocationToBeDeprecated.local_id = videoSize.type.charAt(0) + 1000;
+                    return videoSize;
                 }
+                videoSize.location = new TL_fileLocationUnavailable();
             }
             return videoSize;
         }
@@ -35236,7 +35236,7 @@ public class TLRPC {
                 this.thumbs = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                     @Override
                     public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                        return this.f$0.lambda$readParams$0(inputSerializedData2, i, z2);
+                        return TLRPC.PhotoSize.TLdeserialize(0L, this.f$0.id, 0L, inputSerializedData2, i, z2);
                     }
                 }, z);
             }
@@ -35244,20 +35244,12 @@ public class TLRPC {
                 this.video_thumbs = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                     @Override
                     public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                        return this.f$0.lambda$readParams$1(inputSerializedData2, i, z2);
+                        return TLRPC.VideoSize.TLdeserialize(0L, this.f$0.id, inputSerializedData2, i, z2);
                     }
                 }, z);
             }
             this.dc_id = inputSerializedData.readInt32(z);
             this.attributes = Vector.deserialize(inputSerializedData, new TLRPC$TL_decryptedMessageMediaDocument$$ExternalSyntheticLambda0(), z);
-        }
-
-        public PhotoSize lambda$readParams$0(InputSerializedData inputSerializedData, int i, boolean z) {
-            return PhotoSize.TLdeserialize(0L, this.id, 0L, inputSerializedData, i, z);
-        }
-
-        public VideoSize lambda$readParams$1(InputSerializedData inputSerializedData, int i, boolean z) {
-            return VideoSize.TLdeserialize(0L, this.id, inputSerializedData, i, z);
         }
 
         @Override
@@ -35297,7 +35289,7 @@ public class TLRPC {
                 this.thumbs = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                     @Override
                     public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                        return this.f$0.lambda$readParams$0(inputSerializedData2, i, z2);
+                        return TLRPC.PhotoSize.TLdeserialize(0L, this.f$0.id, 0L, inputSerializedData2, i, z2);
                     }
                 }, z);
             }
@@ -35305,20 +35297,12 @@ public class TLRPC {
                 this.video_thumbs = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                     @Override
                     public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                        return this.f$0.lambda$readParams$1(inputSerializedData2, i, z2);
+                        return TLRPC.VideoSize.TLdeserialize(0L, this.f$0.id, inputSerializedData2, i, z2);
                     }
                 }, z);
             }
             this.dc_id = inputSerializedData.readInt32(z);
             this.attributes = Vector.deserialize(inputSerializedData, new TLRPC$TL_decryptedMessageMediaDocument$$ExternalSyntheticLambda0(), z);
-        }
-
-        public PhotoSize lambda$readParams$0(InputSerializedData inputSerializedData, int i, boolean z) {
-            return PhotoSize.TLdeserialize(0L, this.id, 0L, inputSerializedData, i, z);
-        }
-
-        public VideoSize lambda$readParams$1(InputSerializedData inputSerializedData, int i, boolean z) {
-            return VideoSize.TLdeserialize(0L, this.id, inputSerializedData, i, z);
         }
 
         @Override
@@ -36149,18 +36133,24 @@ public class TLRPC {
         protected static ArrayList<Integer> deserializeLegacyCorrectAnswers(InputSerializedData inputSerializedData, boolean z) {
             ArrayList<byte[]> arrayListDeserializeByteArray = Vector.deserializeByteArray(inputSerializedData, z);
             ArrayList<Integer> arrayList = new ArrayList<>(arrayListDeserializeByteArray.size());
-            Iterator<byte[]> it = arrayListDeserializeByteArray.iterator();
-            while (it.hasNext()) {
-                arrayList.add(Integer.valueOf(it.next()[0] - 48));
+            int size = arrayListDeserializeByteArray.size();
+            int i = 0;
+            while (i < size) {
+                byte[] bArr = arrayListDeserializeByteArray.get(i);
+                i++;
+                arrayList.add(Integer.valueOf(bArr[0] - 48));
             }
             return arrayList;
         }
 
         protected static void serializeLegacyCorrectAnswers(OutputSerializedData outputSerializedData, ArrayList<Integer> arrayList) {
             ArrayList arrayList2 = new ArrayList(arrayList.size());
-            Iterator<Integer> it = arrayList.iterator();
-            while (it.hasNext()) {
-                arrayList2.add(new byte[]{(byte) (it.next().intValue() + 48)});
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Integer num = arrayList.get(i);
+                i++;
+                arrayList2.add(new byte[]{(byte) (num.intValue() + 48)});
             }
             Vector.serializeByteArray(outputSerializedData, arrayList2);
         }
@@ -38623,7 +38613,7 @@ public class TLRPC {
 
         private static MessageEntity fromJsonConstructor(TLJsonParser tLJsonParser) {
             String string = tLJsonParser.readString("_");
-            string.hashCode();
+            string.getClass();
             switch (string) {
                 case "messageEntityPre":
                     return new TL_messageEntityPre();
@@ -39626,26 +39616,18 @@ public class TLRPC {
             this.sizes = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                 @Override
                 public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                    return this.f$0.lambda$readParams$0(inputSerializedData2, i, z2);
+                    return TLRPC.PhotoSize.TLdeserialize(this.f$0.id, 0L, 0L, inputSerializedData2, i, z2);
                 }
             }, z);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.video_sizes = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                     @Override
                     public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                        return this.f$0.lambda$readParams$1(inputSerializedData2, i, z2);
+                        return TLRPC.VideoSize.TLdeserialize(this.f$0.id, 0L, inputSerializedData2, i, z2);
                     }
                 }, z);
             }
             this.dc_id = inputSerializedData.readInt32(z);
-        }
-
-        public PhotoSize lambda$readParams$0(InputSerializedData inputSerializedData, int i, boolean z) {
-            return PhotoSize.TLdeserialize(this.id, 0L, 0L, inputSerializedData, i, z);
-        }
-
-        public VideoSize lambda$readParams$1(InputSerializedData inputSerializedData, int i, boolean z) {
-            return VideoSize.TLdeserialize(this.id, 0L, inputSerializedData, i, z);
         }
 
         @Override
@@ -50046,7 +50028,7 @@ public class TLRPC {
                 this.thumbs = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                     @Override
                     public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                        return this.f$0.lambda$readParams$0(inputSerializedData2, i, z2);
+                        return TLRPC.PhotoSize.TLdeserialize(0L, 0L, this.f$0.id, inputSerializedData2, i, z2);
                     }
                 }, z);
             }
@@ -50061,10 +50043,6 @@ public class TLRPC {
             }
             this.count = inputSerializedData.readInt32(z);
             this.hash = inputSerializedData.readInt32(z);
-        }
-
-        public PhotoSize lambda$readParams$0(InputSerializedData inputSerializedData, int i, boolean z) {
-            return PhotoSize.TLdeserialize(0L, 0L, this.id, inputSerializedData, i, z);
         }
 
         @Override
@@ -50131,7 +50109,7 @@ public class TLRPC {
                 this.thumbs = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                     @Override
                     public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                        return this.f$0.lambda$readParams$0(inputSerializedData2, i, z2);
+                        return TLRPC.PhotoSize.TLdeserialize(0L, 0L, this.f$0.id, inputSerializedData2, i, z2);
                     }
                 }, z);
             }
@@ -50146,10 +50124,6 @@ public class TLRPC {
             }
             this.count = inputSerializedData.readInt32(z);
             this.hash = inputSerializedData.readInt32(z);
-        }
-
-        public PhotoSize lambda$readParams$0(InputSerializedData inputSerializedData, int i, boolean z) {
-            return PhotoSize.TLdeserialize(0L, 0L, this.id, inputSerializedData, i, z);
         }
 
         @Override
@@ -51670,12 +51644,17 @@ public class TLRPC {
                     if (j != 0) {
                         tL_fileLocationToBeDeprecated.volume_id = -j;
                         tL_fileLocationToBeDeprecated.local_id = photoSize.type.charAt(0);
-                    } else if (j2 != 0) {
+                        return photoSize;
+                    }
+                    if (j2 != 0) {
                         tL_fileLocationToBeDeprecated.volume_id = -j2;
                         tL_fileLocationToBeDeprecated.local_id = photoSize.type.charAt(0) + 1000;
-                    } else if (j3 != 0) {
+                        return photoSize;
+                    }
+                    if (j3 != 0) {
                         tL_fileLocationToBeDeprecated.volume_id = -j3;
                         tL_fileLocationToBeDeprecated.local_id = photoSize.type.charAt(0) + 2000;
+                        return photoSize;
                     }
                 } else {
                     photoSize.location = new TL_fileLocationUnavailable();
@@ -66413,7 +66392,6 @@ public class TLRPC {
 
         public static MessageMedia TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
             TLObject tL_messageMediaInvoice_layer145;
-            TL_messageMediaDocument tL_messageMediaDocument;
             switch (i) {
                 case -2074799289:
                     tL_messageMediaInvoice_layer145 = new TL_messageMediaInvoice_layer145();
@@ -66568,7 +66546,7 @@ public class TLRPC {
             }
             MessageMedia messageMedia = (MessageMedia) TLObject.TLdeserialize(MessageMedia.class, tL_messageMediaInvoice_layer145, inputSerializedData, i, z);
             if (messageMedia != null && messageMedia.video_unused != null) {
-                tL_messageMediaDocument = new TL_messageMediaDocument();
+                TL_messageMediaDocument tL_messageMediaDocument = new TL_messageMediaDocument();
                 if (messageMedia.video_unused instanceof TL_videoEncrypted) {
                     TL_documentEncrypted tL_documentEncrypted = new TL_documentEncrypted();
                     tL_messageMediaDocument.document = tL_documentEncrypted;
@@ -66604,48 +66582,48 @@ public class TLRPC {
                 if (tL_messageMediaDocument.captionLegacy == null) {
                     tL_messageMediaDocument.captionLegacy = "";
                 }
-            } else {
-                if (messageMedia == null || messageMedia.audio_unused == null) {
-                    return messageMedia;
-                }
-                tL_messageMediaDocument = new TL_messageMediaDocument();
-                if (messageMedia.audio_unused instanceof TL_audioEncrypted) {
-                    TL_documentEncrypted tL_documentEncrypted2 = new TL_documentEncrypted();
-                    tL_messageMediaDocument.document = tL_documentEncrypted2;
-                    Audio audio = messageMedia.audio_unused;
-                    tL_documentEncrypted2.key = audio.key;
-                    tL_documentEncrypted2.iv = audio.iv;
-                } else {
-                    tL_messageMediaDocument.document = new TL_document();
-                }
-                tL_messageMediaDocument.flags = 3;
-                Document document2 = tL_messageMediaDocument.document;
-                document2.file_reference = new byte[0];
-                Audio audio2 = messageMedia.audio_unused;
-                document2.id = audio2.id;
-                document2.access_hash = audio2.access_hash;
-                document2.date = audio2.date;
-                String str2 = audio2.mime_type;
-                if (str2 != null) {
-                    document2.mime_type = str2;
-                } else {
-                    document2.mime_type = "audio/ogg";
-                }
-                document2.size = audio2.size;
-                TL_photoSizeEmpty tL_photoSizeEmpty = new TL_photoSizeEmpty();
-                tL_photoSizeEmpty.type = "s";
-                tL_messageMediaDocument.document.thumbs.add(tL_photoSizeEmpty);
-                tL_messageMediaDocument.document.dc_id = messageMedia.audio_unused.dc_id;
-                tL_messageMediaDocument.captionLegacy = messageMedia.captionLegacy;
-                TL_documentAttributeAudio tL_documentAttributeAudio = new TL_documentAttributeAudio();
-                tL_documentAttributeAudio.duration = messageMedia.audio_unused.duration;
-                tL_documentAttributeAudio.voice = true;
-                tL_messageMediaDocument.document.attributes.add(tL_documentAttributeAudio);
-                if (tL_messageMediaDocument.captionLegacy == null) {
-                    tL_messageMediaDocument.captionLegacy = "";
-                }
+                return tL_messageMediaDocument;
             }
-            return tL_messageMediaDocument;
+            if (messageMedia == null || messageMedia.audio_unused == null) {
+                return messageMedia;
+            }
+            TL_messageMediaDocument tL_messageMediaDocument2 = new TL_messageMediaDocument();
+            if (messageMedia.audio_unused instanceof TL_audioEncrypted) {
+                TL_documentEncrypted tL_documentEncrypted2 = new TL_documentEncrypted();
+                tL_messageMediaDocument2.document = tL_documentEncrypted2;
+                Audio audio = messageMedia.audio_unused;
+                tL_documentEncrypted2.key = audio.key;
+                tL_documentEncrypted2.iv = audio.iv;
+            } else {
+                tL_messageMediaDocument2.document = new TL_document();
+            }
+            tL_messageMediaDocument2.flags = 3;
+            Document document2 = tL_messageMediaDocument2.document;
+            document2.file_reference = new byte[0];
+            Audio audio2 = messageMedia.audio_unused;
+            document2.id = audio2.id;
+            document2.access_hash = audio2.access_hash;
+            document2.date = audio2.date;
+            String str2 = audio2.mime_type;
+            if (str2 != null) {
+                document2.mime_type = str2;
+            } else {
+                document2.mime_type = "audio/ogg";
+            }
+            document2.size = audio2.size;
+            TL_photoSizeEmpty tL_photoSizeEmpty = new TL_photoSizeEmpty();
+            tL_photoSizeEmpty.type = "s";
+            tL_messageMediaDocument2.document.thumbs.add(tL_photoSizeEmpty);
+            tL_messageMediaDocument2.document.dc_id = messageMedia.audio_unused.dc_id;
+            tL_messageMediaDocument2.captionLegacy = messageMedia.captionLegacy;
+            TL_documentAttributeAudio tL_documentAttributeAudio = new TL_documentAttributeAudio();
+            tL_documentAttributeAudio.duration = messageMedia.audio_unused.duration;
+            tL_documentAttributeAudio.voice = true;
+            tL_messageMediaDocument2.document.attributes.add(tL_documentAttributeAudio);
+            if (tL_messageMediaDocument2.captionLegacy == null) {
+                tL_messageMediaDocument2.captionLegacy = "";
+            }
+            return tL_messageMediaDocument2;
         }
 
         public Document getDocument() {
@@ -66940,9 +66918,9 @@ public class TLRPC {
             if (message != null && message.from_id == null) {
                 if (message.id < 0 && message.random_id == 0) {
                     message.from_id = new TL_peerUser();
-                } else {
-                    message.from_id = message.peer_id;
+                    return message;
                 }
+                message.from_id = message.peer_id;
             }
             return message;
         }

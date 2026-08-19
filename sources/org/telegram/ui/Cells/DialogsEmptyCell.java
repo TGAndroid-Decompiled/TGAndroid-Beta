@@ -39,7 +39,7 @@ public class DialogsEmptyCell extends LinearLayout {
     private ValueAnimator utyanAnimator;
     private float utyanCollapseProgress;
 
-    public static boolean lambda$new$0(View view, MotionEvent motionEvent) {
+    public static boolean m1485$r8$lambda$ugpKNg6fsNS82BgCbqgLNnBV0(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -52,7 +52,7 @@ public class DialogsEmptyCell extends LinearLayout {
         setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return DialogsEmptyCell.lambda$new$0(view, motionEvent);
+                return DialogsEmptyCell.m1485$r8$lambda$ugpKNg6fsNS82BgCbqgLNnBV0(view, motionEvent);
             }
         });
         RLottieImageView rLottieImageView = new RLottieImageView(context);
@@ -62,7 +62,7 @@ public class DialogsEmptyCell extends LinearLayout {
         rLottieImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                DialogsEmptyCell.$r8$lambda$5F9aEcnZSKZXQ4f12J2yt8LgzqI(this.f$0, view);
             }
         });
         TextView textView = new TextView(context);
@@ -77,7 +77,7 @@ public class DialogsEmptyCell extends LinearLayout {
         textViewSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public final View makeView() {
-                return DialogsEmptyCell.lambda$new$2(context);
+                return DialogsEmptyCell.$r8$lambda$orrQ6KUp7SgjvkysqPE4x0aE658(context);
             }
         });
         textViewSwitcher.setInAnimation(context, R.anim.alpha_in);
@@ -85,15 +85,15 @@ public class DialogsEmptyCell extends LinearLayout {
         addView(textViewSwitcher, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 7.0f, 52.0f, 0.0f));
     }
 
-    public void lambda$new$1(View view) {
-        if (this.imageView.isPlaying()) {
+    public static void $r8$lambda$5F9aEcnZSKZXQ4f12J2yt8LgzqI(DialogsEmptyCell dialogsEmptyCell, View view) {
+        if (dialogsEmptyCell.imageView.isPlaying()) {
             return;
         }
-        this.imageView.setProgress(0.0f);
-        this.imageView.playAnimation();
+        dialogsEmptyCell.imageView.setProgress(0.0f);
+        dialogsEmptyCell.imageView.playAnimation();
     }
 
-    public static View lambda$new$2(Context context) {
+    public static View $r8$lambda$orrQ6KUp7SgjvkysqPE4x0aE658(Context context) {
         TextView textView = new TextView(context);
         textView.setTextColor(Theme.getColor(Theme.key_chats_message));
         textView.setTextSize(1, 14.0f);
@@ -182,7 +182,7 @@ public class DialogsEmptyCell extends LinearLayout {
         this.utyanAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$startUtyanExpandAnimation$3(valueAnimator2);
+                DialogsEmptyCell.$r8$lambda$v1YSkfnRmjhrxkw9PdyP7_xh4Zc(this.f$0, valueAnimator2);
             }
         });
         this.utyanAnimator.addListener(new AnimatorListenerAdapter() {
@@ -199,12 +199,13 @@ public class DialogsEmptyCell extends LinearLayout {
         this.utyanAnimator.start();
     }
 
-    public void lambda$startUtyanExpandAnimation$3(ValueAnimator valueAnimator) {
-        this.utyanCollapseProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        requestLayout();
-        Consumer consumer = this.onUtyanAnimationUpdateListener;
+    public static void $r8$lambda$v1YSkfnRmjhrxkw9PdyP7_xh4Zc(DialogsEmptyCell dialogsEmptyCell, ValueAnimator valueAnimator) {
+        dialogsEmptyCell.getClass();
+        dialogsEmptyCell.utyanCollapseProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        dialogsEmptyCell.requestLayout();
+        Consumer consumer = dialogsEmptyCell.onUtyanAnimationUpdateListener;
         if (consumer != null) {
-            consumer.accept(Float.valueOf(this.utyanCollapseProgress));
+            consumer.accept(Float.valueOf(dialogsEmptyCell.utyanCollapseProgress));
         }
     }
 
@@ -227,7 +228,7 @@ public class DialogsEmptyCell extends LinearLayout {
         this.utyanAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$startUtyanCollapseAnimation$4(valueAnimator2);
+                DialogsEmptyCell.$r8$lambda$xuaoQTE62Pw4hGVHrziwdLj26rw(this.f$0, valueAnimator2);
             }
         });
         this.utyanAnimator.addListener(new AnimatorListenerAdapter() {
@@ -244,12 +245,13 @@ public class DialogsEmptyCell extends LinearLayout {
         this.utyanAnimator.start();
     }
 
-    public void lambda$startUtyanCollapseAnimation$4(ValueAnimator valueAnimator) {
-        this.utyanCollapseProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        requestLayout();
-        Consumer consumer = this.onUtyanAnimationUpdateListener;
+    public static void $r8$lambda$xuaoQTE62Pw4hGVHrziwdLj26rw(DialogsEmptyCell dialogsEmptyCell, ValueAnimator valueAnimator) {
+        dialogsEmptyCell.getClass();
+        dialogsEmptyCell.utyanCollapseProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        dialogsEmptyCell.requestLayout();
+        Consumer consumer = dialogsEmptyCell.onUtyanAnimationUpdateListener;
         if (consumer != null) {
-            consumer.accept(Float.valueOf(this.utyanCollapseProgress));
+            consumer.accept(Float.valueOf(dialogsEmptyCell.utyanCollapseProgress));
         }
     }
 

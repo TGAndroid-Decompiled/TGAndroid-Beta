@@ -46,13 +46,9 @@ public class RingtoneDataStore {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.loadUserRingtones(false);
             }
         });
-    }
-
-    public void lambda$new$0() {
-        loadUserRingtones(false);
     }
 
     public void loadUserRingtones(boolean z) {
@@ -63,7 +59,7 @@ public class RingtoneDataStore {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsavedringtones, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$loadUserRingtones$2(tLObject, tL_error);
+                    RingtoneDataStore.$r8$lambda$QGU0yATPwsS7uQdYgvyA74WZIfw(this.f$0, tLObject, tL_error);
                 }
             });
             return;
@@ -75,23 +71,25 @@ public class RingtoneDataStore {
         checkRingtoneSoundsLoaded();
     }
 
-    public void lambda$loadUserRingtones$2(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$QGU0yATPwsS7uQdYgvyA74WZIfw(final RingtoneDataStore ringtoneDataStore, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        ringtoneDataStore.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadUserRingtones$1(tLObject);
+                RingtoneDataStore.$r8$lambda$bpPC8_j31AJsfapIFY8p3AgihY0(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$loadUserRingtones$1(TLObject tLObject) {
+    public static void $r8$lambda$bpPC8_j31AJsfapIFY8p3AgihY0(RingtoneDataStore ringtoneDataStore, TLObject tLObject) {
+        ringtoneDataStore.getClass();
         if (tLObject != null) {
             if (tLObject instanceof TL_account.TL_savedRingtonesNotModified) {
-                loadFromPrefs(true);
+                ringtoneDataStore.loadFromPrefs(true);
             } else if (tLObject instanceof TL_account.TL_savedRingtones) {
                 TL_account.TL_savedRingtones tL_savedRingtones = (TL_account.TL_savedRingtones) tLObject;
-                saveTones(tL_savedRingtones.ringtones);
-                SharedPreferences.Editor editorEdit = getSharedPreferences().edit();
+                ringtoneDataStore.saveTones(tL_savedRingtones.ringtones);
+                SharedPreferences.Editor editorEdit = ringtoneDataStore.getSharedPreferences().edit();
                 long j = tL_savedRingtones.hash;
                 queryHash = j;
                 SharedPreferences.Editor editorPutLong = editorEdit.putLong("hash", j);
@@ -99,7 +97,7 @@ public class RingtoneDataStore {
                 lastReloadTimeMs = jCurrentTimeMillis;
                 editorPutLong.putLong("lastReload", jCurrentTimeMillis).apply();
             }
-            checkRingtoneSoundsLoaded();
+            ringtoneDataStore.checkRingtoneSoundsLoaded();
         }
     }
 
@@ -131,14 +129,10 @@ public class RingtoneDataStore {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadFromPrefs$3();
+                    NotificationCenter.getInstance(this.f$0.currentAccount).postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                 }
             });
         }
-    }
-
-    public void lambda$loadFromPrefs$3() {
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
     }
 
     private void saveTones(ArrayList arrayList) {
@@ -148,7 +142,13 @@ public class RingtoneDataStore {
             this.loaded = true;
         }
         HashMap map = new HashMap();
-        for (CachedTone cachedTone : this.userRingtones) {
+        ArrayList arrayList2 = this.userRingtones;
+        int size = arrayList2.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList2.get(i);
+            i++;
+            CachedTone cachedTone = (CachedTone) obj;
             if (cachedTone.localUri != null && (document = cachedTone.document) != null) {
                 map.put(Long.valueOf(document.id), cachedTone.localUri);
             }
@@ -158,25 +158,25 @@ public class RingtoneDataStore {
         sharedPreferences.edit().clear().apply();
         SharedPreferences.Editor editorEdit = sharedPreferences.edit();
         editorEdit.putInt("count", arrayList.size());
-        for (int i = 0; i < arrayList.size(); i++) {
-            TLRPC.Document document2 = (TLRPC.Document) arrayList.get(i);
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            TLRPC.Document document2 = (TLRPC.Document) arrayList.get(i2);
             String str = (String) map.get(Long.valueOf(document2.id));
             SerializedData serializedData = new SerializedData(document2.getObjectSize());
             document2.serializeToStream(serializedData);
-            editorEdit.putString("tone_document" + i, Utilities.bytesToHex(serializedData.toByteArray()));
+            editorEdit.putString("tone_document" + i2, Utilities.bytesToHex(serializedData.toByteArray()));
             if (str != null) {
-                editorEdit.putString("tone_local_path" + i, str);
+                editorEdit.putString("tone_local_path" + i2, str);
             }
             CachedTone cachedTone2 = new CachedTone();
             cachedTone2.document = document2;
             cachedTone2.localUri = str;
-            int i2 = this.localIds;
-            this.localIds = i2 + 1;
-            cachedTone2.localId = i2;
+            int i3 = this.localIds;
+            this.localIds = i3 + 1;
+            cachedTone2.localId = i3;
             this.userRingtones.add(cachedTone2);
         }
         editorEdit.apply();
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
     }
 
     public void saveTones() {
@@ -199,7 +199,7 @@ public class RingtoneDataStore {
         }
         editorEdit.putInt("count", i);
         editorEdit.apply();
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
     }
 
     private SharedPreferences getSharedPreferences() {
@@ -255,7 +255,7 @@ public class RingtoneDataStore {
             }
         }
         if (z2) {
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
         }
     }
 
@@ -284,29 +284,28 @@ public class RingtoneDataStore {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkRingtoneSoundsLoaded$5(arrayList);
+                RingtoneDataStore.m1120$r8$lambda$Mdg5w4rlsxgqwUCTRRhNBwi42A(this.f$0, arrayList);
             }
         });
     }
 
-    public void lambda$checkRingtoneSoundsLoaded$5(ArrayList arrayList) {
+    public static void m1120$r8$lambda$Mdg5w4rlsxgqwUCTRRhNBwi42A(final RingtoneDataStore ringtoneDataStore, ArrayList arrayList) {
         final TLRPC.Document document;
         File pathToAttach;
+        ringtoneDataStore.getClass();
         for (int i = 0; i < arrayList.size(); i++) {
             CachedTone cachedTone = (CachedTone) arrayList.get(i);
-            if (cachedTone != null && ((TextUtils.isEmpty(cachedTone.localUri) || !new File(cachedTone.localUri).exists()) && (document = cachedTone.document) != null && ((pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(document)) == null || !pathToAttach.exists()))) {
+            if (cachedTone != null && ((TextUtils.isEmpty(cachedTone.localUri) || !new File(cachedTone.localUri).exists()) && (document = cachedTone.document) != null && ((pathToAttach = FileLoader.getInstance(ringtoneDataStore.currentAccount).getPathToAttach(document)) == null || !pathToAttach.exists()))) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$checkRingtoneSoundsLoaded$4(document);
+                        RingtoneDataStore ringtoneDataStore2 = this.f$0;
+                        TLRPC.Document document2 = document;
+                        FileLoader.getInstance(ringtoneDataStore2.currentAccount).loadFile(document2, document2, 0, 0);
                     }
                 });
             }
         }
-    }
-
-    public void lambda$checkRingtoneSoundsLoaded$4(TLRPC.Document document) {
-        FileLoader.getInstance(this.currentAccount).loadFile(document, document, 0, 0);
     }
 
     public boolean isLoaded() {

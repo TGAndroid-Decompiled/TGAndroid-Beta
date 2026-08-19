@@ -75,13 +75,13 @@ public class MuteDrawable extends Drawable {
                 fCenterX2 = AndroidUtilities.lerp(fCenterX, fCenterX2, f);
                 fCenterY2 = AndroidUtilities.lerp(fCenterY, fCenterY2, f);
             }
-            float f2 = fCenterX;
-            float f3 = fCenterY;
-            float f4 = fCenterX2;
-            float f5 = fCenterY2;
-            canvas.drawLine(f2, f3, f4, f5, this.clipPaint);
+            float f2 = fCenterY2;
+            float f3 = fCenterX;
+            float f4 = fCenterY;
+            float f5 = fCenterX2;
+            canvas.drawLine(f3, f4, f5, f2, this.clipPaint);
             this.strokePaint.setAlpha((int) (Math.min(1.0f, f * 10.0f) * 255.0f));
-            canvas.drawLine(f2, f3, f4, f5, this.strokePaint);
+            canvas.drawLine(f3, f4, f5, f2, this.strokePaint);
         }
         canvas.restore();
     }

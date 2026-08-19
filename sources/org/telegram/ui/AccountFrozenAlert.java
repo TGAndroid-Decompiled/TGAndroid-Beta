@@ -64,7 +64,7 @@ public abstract class AccountFrozenAlert {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                AccountFrozenAlert.lambda$show$0(i, context, bottomSheetArr);
+                AccountFrozenAlert.$r8$lambda$Hem0Woj0iHAo_BNTrUEERkyaAr4(i, context, bottomSheetArr);
             }
         };
         LinearLayout linearLayout = new LinearLayout(context);
@@ -111,7 +111,7 @@ public abstract class AccountFrozenAlert {
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AccountFrozenAlert.lambda$show$2(bottomSheetArr, view);
+                bottomSheetArr[0].dismiss();
             }
         });
         linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 7, 0, 0, 0, 0));
@@ -130,16 +130,12 @@ public abstract class AccountFrozenAlert {
         });
     }
 
-    public static void lambda$show$0(int i, Context context, BottomSheet[] bottomSheetArr) {
+    public static void $r8$lambda$Hem0Woj0iHAo_BNTrUEERkyaAr4(int i, Context context, BottomSheet[] bottomSheetArr) {
         String str = MessagesController.getInstance(i).freezeAppealUrl;
         if (!str.startsWith("http://") && !str.startsWith("https://")) {
             str = "https://" + str;
         }
         Browser.openUrl(context, str);
-        bottomSheetArr[0].lambda$new$0();
-    }
-
-    public static void lambda$show$2(BottomSheet[] bottomSheetArr, View view) {
-        bottomSheetArr[0].lambda$new$0();
+        bottomSheetArr[0].dismiss();
     }
 }

@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.util.Pair;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public abstract class CacheFetcher<Args, R> {
     private HashMap<Pair<Integer, Args>, R> cachedResults;
@@ -60,7 +59,7 @@ public abstract class CacheFetcher<Args, R> {
             getLocal(i, args, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$fetch$1(pair, args, i, (Long) obj, obj2);
+                    CacheFetcher.$r8$lambda$vKB003R5Kta8BpKYwF16lmDbD4c(this.f$0, pair, args, i, (Long) obj, obj2);
                 }
             });
         } else if (callback != null) {
@@ -68,38 +67,47 @@ public abstract class CacheFetcher<Args, R> {
         }
     }
 
-    public void lambda$fetch$1(final Pair pair, final Object obj, final int i, Long l, final Object obj2) {
-        if (shouldRequest(pair)) {
-            if (obj2 != 0 && emitLocal(obj)) {
-                cacheResult(pair, obj2);
-                callCallbacks(pair, obj2, false);
+    public static void $r8$lambda$vKB003R5Kta8BpKYwF16lmDbD4c(final CacheFetcher cacheFetcher, final Pair pair, final Object obj, final int i, Long l, final Object obj2) {
+        if (cacheFetcher.shouldRequest(pair)) {
+            if (obj2 != null && cacheFetcher.emitLocal(obj)) {
+                cacheFetcher.cacheResult(pair, obj2);
+                cacheFetcher.callCallbacks(pair, obj2, false);
             }
-            getRemote(i, obj, l.longValue(), new Utilities.Callback4() {
+            cacheFetcher.getRemote(i, obj, l.longValue(), new Utilities.Callback4() {
                 @Override
                 public final void run(Object obj3, Object obj4, Object obj5, Object obj6) {
-                    this.f$0.lambda$fetch$0(pair, obj2, i, obj, (Boolean) obj3, obj4, (Long) obj5, (Boolean) obj6);
+                    CacheFetcher.m365$r8$lambda$igJR4yzJOQFxj1rf2xX47xcXuQ(this.f$0, pair, obj2, i, obj, (Boolean) obj3, obj4, (Long) obj5, (Boolean) obj6);
                 }
             });
             return;
         }
-        cacheResult(pair, obj2);
-        callCallbacks(pair, obj2, true);
+        cacheFetcher.cacheResult(pair, obj2);
+        cacheFetcher.callCallbacks(pair, obj2, true);
     }
 
-    public void lambda$fetch$0(Pair pair, Object obj, int i, Object obj2, Boolean bool, Object obj3, Long l, Boolean bool2) {
+    public static void m365$r8$lambda$igJR4yzJOQFxj1rf2xX47xcXuQ(CacheFetcher cacheFetcher, Pair pair, Object obj, int i, Object obj2, Boolean bool, Object obj3, Long l, Boolean bool2) {
+        CacheFetcher cacheFetcher2;
+        Object obj4;
+        cacheFetcher.getClass();
         if (bool2.booleanValue()) {
-            saveLastRequested(pair);
+            cacheFetcher.saveLastRequested(pair);
         }
         if (bool.booleanValue()) {
-            cacheResult(pair, obj);
-            callCallbacks(pair, obj, true);
-        } else {
-            if (obj3 != 0) {
-                setLocal(i, obj2, obj3, l.longValue());
-                cacheResult(pair, obj3);
-            }
-            callCallbacks(pair, obj3, true);
+            cacheFetcher.cacheResult(pair, obj);
+            cacheFetcher.callCallbacks(pair, obj, true);
+            return;
         }
+        if (obj3 != null) {
+            CacheFetcher cacheFetcher3 = cacheFetcher;
+            obj4 = obj3;
+            cacheFetcher3.setLocal(i, obj2, obj4, l.longValue());
+            cacheFetcher3.cacheResult(pair, obj4);
+            cacheFetcher2 = cacheFetcher3;
+        } else {
+            cacheFetcher2 = cacheFetcher;
+            obj4 = obj3;
+        }
+        cacheFetcher2.callCallbacks(pair, obj4, true);
     }
 
     private R getCachedResult(Pair<Integer, Args> pair) {
@@ -162,21 +170,20 @@ public abstract class CacheFetcher<Args, R> {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$saveCallback$2(pair, callback);
+                CacheFetcher.$r8$lambda$YYG6dtJSqtyEXKjDlAhxnX0vONg(this.f$0, pair, callback);
             }
         });
     }
 
-    public void lambda$saveCallback$2(Pair pair, Utilities.Callback callback) {
-        if (this.loadingCallbacks == null) {
-            this.loadingCallbacks = new HashMap<>();
+    public static void $r8$lambda$YYG6dtJSqtyEXKjDlAhxnX0vONg(CacheFetcher cacheFetcher, Pair pair, Utilities.Callback callback) {
+        if (cacheFetcher.loadingCallbacks == null) {
+            cacheFetcher.loadingCallbacks = new HashMap<>();
         }
-        ArrayList<Utilities.Callback<R>> arrayList = this.loadingCallbacks.get(pair);
+        ArrayList<Utilities.Callback<R>> arrayList = cacheFetcher.loadingCallbacks.get(pair);
         if (arrayList == null) {
-            HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> map = this.loadingCallbacks;
-            ArrayList<Utilities.Callback<R>> arrayList2 = new ArrayList<>();
-            map.put(pair, arrayList2);
-            arrayList = arrayList2;
+            HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> map = cacheFetcher.loadingCallbacks;
+            arrayList = new ArrayList<>();
+            map.put(pair, arrayList);
         }
         arrayList.add(callback);
     }
@@ -185,26 +192,29 @@ public abstract class CacheFetcher<Args, R> {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$callCallbacks$3(pair, r, z);
+                CacheFetcher.$r8$lambda$pneNqVUnFb75PaQjLCFyQ7yTNYw(this.f$0, pair, r, z);
             }
         });
     }
 
-    public void lambda$callCallbacks$3(Pair pair, Object obj, boolean z) {
+    public static void $r8$lambda$pneNqVUnFb75PaQjLCFyQ7yTNYw(CacheFetcher cacheFetcher, Pair pair, Object obj, boolean z) {
         ArrayList<Utilities.Callback<R>> arrayList;
-        HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> map = this.loadingCallbacks;
+        HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> map = cacheFetcher.loadingCallbacks;
         if (map == null || (arrayList = map.get(pair)) == null) {
             return;
         }
-        Iterator<Utilities.Callback<R>> it = arrayList.iterator();
-        while (it.hasNext()) {
-            it.next().run(obj);
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Utilities.Callback<R> callback = arrayList.get(i);
+            i++;
+            callback.run(obj);
         }
         if (z) {
             arrayList.clear();
         }
         if (z) {
-            this.loadingCallbacks.remove(pair);
+            cacheFetcher.loadingCallbacks.remove(pair);
         }
     }
 }

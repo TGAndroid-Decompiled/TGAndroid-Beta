@@ -70,16 +70,17 @@ public abstract class PipettePickerView extends View {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$animateShow$0(valueAnimator);
+                PipettePickerView.$r8$lambda$SKofo7W1VzmsMKlGdurz36W18z0(this.f$0, valueAnimator);
             }
         });
         duration.start();
         onStartPipette();
     }
 
-    public void lambda$animateShow$0(ValueAnimator valueAnimator) {
-        this.appearProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$SKofo7W1VzmsMKlGdurz36W18z0(PipettePickerView pipettePickerView, ValueAnimator valueAnimator) {
+        pipettePickerView.getClass();
+        pipettePickerView.appearProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        pipettePickerView.invalidate();
     }
 
     public void animateDisappear(final boolean z) {
@@ -92,7 +93,7 @@ public abstract class PipettePickerView extends View {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$animateDisappear$1(valueAnimator);
+                PipettePickerView.$r8$lambda$4JiBxyuwTe_nlj7n5iApwKawiRU(this.f$0, valueAnimator);
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
@@ -110,9 +111,10 @@ public abstract class PipettePickerView extends View {
         duration.start();
     }
 
-    public void lambda$animateDisappear$1(ValueAnimator valueAnimator) {
-        this.appearProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$4JiBxyuwTe_nlj7n5iApwKawiRU(PipettePickerView pipettePickerView, ValueAnimator valueAnimator) {
+        pipettePickerView.getClass();
+        pipettePickerView.appearProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        pipettePickerView.invalidate();
     }
 
     @Override

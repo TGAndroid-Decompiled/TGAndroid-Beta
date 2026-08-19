@@ -84,9 +84,10 @@ public class GeneralAudioInput extends AudioInput {
         short s = (shortBuffer == null || shortBuffer.remaining() <= 0) ? (short) 0 : this.buffer.get();
         decode();
         ShortBuffer shortBuffer2 = this.buffer;
-        if (shortBuffer2 == null || shortBuffer2.remaining() < 1) {
-            this.hasRemaining = false;
+        if (shortBuffer2 != null && shortBuffer2.remaining() >= 1) {
+            return s;
         }
+        this.hasRemaining = false;
         return s;
     }
 

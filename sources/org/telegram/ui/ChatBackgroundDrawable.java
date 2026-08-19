@@ -102,7 +102,7 @@ public class ChatBackgroundDrawable extends Drawable {
             EmojiThemes.loadWallpaperImage(UserConfig.selectedAccount, wallPaper.id, wallPaper, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$new$0(wallPaper, (WallpaperBitmapHolder) obj);
+                    ChatBackgroundDrawable.$r8$lambda$ysiVoAAkqhWDzjalJkkptHUVtm4(this.f$0, wallPaper, (WallpaperBitmapHolder) obj);
                 }
             });
             return;
@@ -131,9 +131,9 @@ public class ChatBackgroundDrawable extends Drawable {
         }
     }
 
-    public void lambda$new$0(TLRPC.WallPaper wallPaper, WallpaperBitmapHolder wallpaperBitmapHolder) {
-        this.motionBackgroundDrawable.setPatternBitmap(wallPaper.settings.intensity, wallpaperBitmapHolder.bitmap);
-        View view = this.parent;
+    public static void $r8$lambda$ysiVoAAkqhWDzjalJkkptHUVtm4(ChatBackgroundDrawable chatBackgroundDrawable, TLRPC.WallPaper wallPaper, WallpaperBitmapHolder wallpaperBitmapHolder) {
+        chatBackgroundDrawable.motionBackgroundDrawable.setPatternBitmap(wallPaper.settings.intensity, wallpaperBitmapHolder.bitmap);
+        View view = chatBackgroundDrawable.parent;
         if (view != null) {
             view.invalidate();
         }

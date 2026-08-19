@@ -137,7 +137,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         balanceCloud.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(context, resourcesProvider, view);
+                GiftOfferSheet.m4089$r8$lambda$_g1lhGoznL16p2rdsrn8e0Yzhw(this.f$0, context, resourcesProvider, view);
             }
         });
         fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
@@ -156,7 +156,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             horizontalRoundTabsLayout.setTabs(arrayList, new MessagesStorage.IntCallback() {
                 @Override
                 public final void run(int i2) {
-                    this.f$0.lambda$new$1(i2);
+                    GiftOfferSheet.m4085$r8$lambda$B9apyVlnlU4FZl2GR1kWoJ2Cc(this.f$0, i2);
                 }
             });
             linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(-1, -2, 18.0f, 0.0f, 18.0f, 18.0f));
@@ -185,7 +185,8 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                this.f$0.lambda$new$2(view, z);
+                GiftOfferSheet giftOfferSheet = this.f$0;
+                giftOfferSheet.starsCountEditOutline.animateSelection(z, !TextUtils.isEmpty(giftOfferSheet.starsCountEditField.getText()));
             }
         });
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
@@ -235,7 +236,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         outlineTextContainerView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$4(context, view);
+                GiftOfferSheet.$r8$lambda$o2roYrR_EAziNYmtgGAdak91tuI(this.f$0, context, view);
             }
         });
         linearLayout2.addView(outlineTextContainerView2, LayoutHelper.createLinear(-1, 58, 18.0f, 18.0f, 18.0f, 0.0f));
@@ -253,7 +254,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$5(i, context, resourcesProvider, j, view);
+                GiftOfferSheet.$r8$lambda$YhklKuXlUbrWXEhowpTv2blyo4c(this.f$0, i, context, resourcesProvider, j, view);
             }
         });
         setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency), false, true, false);
@@ -293,28 +294,26 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         this.adapter.update(false);
     }
 
-    public void lambda$new$0(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
-        if (this.inputAmount.currency == AmountUtils$Currency.STARS) {
+    public static void m4089$r8$lambda$_g1lhGoznL16p2rdsrn8e0Yzhw(GiftOfferSheet giftOfferSheet, Context context, Theme.ResourcesProvider resourcesProvider, View view) {
+        if (giftOfferSheet.inputAmount.currency == AmountUtils$Currency.STARS) {
             new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
         }
     }
 
-    public void lambda$new$1(int i) {
+    public static void m4085$r8$lambda$B9apyVlnlU4FZl2GR1kWoJ2Cc(GiftOfferSheet giftOfferSheet, int i) {
         AmountUtils$Currency amountUtils$Currency;
+        giftOfferSheet.getClass();
         if (i == 0) {
             amountUtils$Currency = AmountUtils$Currency.STARS;
         } else {
             amountUtils$Currency = AmountUtils$Currency.TON;
         }
-        setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency), true, false, true);
-        this.starsCountEditField.setText("");
+        giftOfferSheet.setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency), true, false, true);
+        giftOfferSheet.starsCountEditField.setText("");
     }
 
-    public void lambda$new$2(View view, boolean z) {
-        this.starsCountEditOutline.animateSelection(z, !TextUtils.isEmpty(this.starsCountEditField.getText()));
-    }
-
-    public void lambda$new$4(Context context, View view) {
+    public static void $r8$lambda$o2roYrR_EAziNYmtgGAdak91tuI(final GiftOfferSheet giftOfferSheet, Context context, View view) {
+        giftOfferSheet.getClass();
         String[] strArr = new String[ALLOWED_DURATIONS.length];
         int i = 0;
         int i2 = 0;
@@ -322,7 +321,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             int[] iArr = ALLOWED_DURATIONS;
             if (i < iArr.length) {
                 strArr[i] = LocaleController.formatPluralString("GiftOfferHours", iArr[i] / 3600, new Object[0]);
-                if (iArr[i] == this.selectedDuration) {
+                if (iArr[i] == giftOfferSheet.selectedDuration) {
                     i2 = i;
                 }
                 i++;
@@ -330,7 +329,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
                 AlertsCreator.createCustomPicker(context, LocaleController.getString(R.string.GiftOfferDuration), i2, strArr, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$new$3((Integer) obj);
+                        GiftOfferSheet.m4088$r8$lambda$VH8csTRCIidk7ns0ZoC5CUhkbY(this.f$0, (Integer) obj);
                     }
                 });
                 return;
@@ -338,20 +337,21 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$new$3(Integer num) {
-        setSelectedDuration(ALLOWED_DURATIONS[num.intValue()], true);
+    public static void m4088$r8$lambda$VH8csTRCIidk7ns0ZoC5CUhkbY(GiftOfferSheet giftOfferSheet, Integer num) {
+        giftOfferSheet.getClass();
+        giftOfferSheet.setSelectedDuration(ALLOWED_DURATIONS[num.intValue()], true);
     }
 
-    public void lambda$new$5(int i, Context context, Theme.ResourcesProvider resourcesProvider, long j, View view) {
-        if (this.buttonView.isEnabled()) {
+    public static void $r8$lambda$YhklKuXlUbrWXEhowpTv2blyo4c(GiftOfferSheet giftOfferSheet, int i, Context context, Theme.ResourcesProvider resourcesProvider, long j, View view) {
+        if (giftOfferSheet.buttonView.isEnabled()) {
             if (MessagesController.getInstance(i).isFrozen()) {
                 AccountFrozenAlert.show(i);
                 return;
             }
-            StarsController starsController = StarsController.getInstance(i, this.inputAmount.currency);
+            StarsController starsController = StarsController.getInstance(i, giftOfferSheet.inputAmount.currency);
             AmountUtils$Amount amountUtils$AmountOf = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
-            if (amountUtils$AmountOf == null || amountUtils$AmountOf.asNano() < this.inputAmount.asNano()) {
-                AmountUtils$Amount amountUtils$Amount = this.inputAmount;
+            if (amountUtils$AmountOf == null || amountUtils$AmountOf.asNano() < giftOfferSheet.inputAmount.asNano()) {
+                AmountUtils$Amount amountUtils$Amount = giftOfferSheet.inputAmount;
                 AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
                 if (amountUtils$Currency == AmountUtils$Currency.STARS) {
                     new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount.asDecimal(), 14, null, null, j).show();
@@ -364,7 +364,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
                     return;
                 }
             }
-            openConfirmAlert();
+            giftOfferSheet.openConfirmAlert();
         }
     }
 
@@ -562,13 +562,9 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$6();
+                AndroidUtilities.showKeyboard(this.f$0.starsCountEditField);
             }
         }, 50L);
-    }
-
-    public void lambda$show$6() {
-        AndroidUtilities.showKeyboard(this.starsCountEditField);
     }
 
     @Override
@@ -645,72 +641,70 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setView(linearLayout).setPositiveButton(spannableStringBuilder, new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i4) {
-                this.f$0.lambda$openConfirmAlert$9(sendPaidMessagesStars, z, amountUtils$AmountFromDecimal, nextRandomId, alertDialog, i4);
+                GiftOfferSheet.m4084$r8$lambda$6cSM4IWlYkA69aAfqSlGW1IOEo(this.f$0, sendPaidMessagesStars, z, amountUtils$AmountFromDecimal, nextRandomId, alertDialog, i4);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create().setShowStarsBalance(true).show();
     }
 
-    public void lambda$openConfirmAlert$9(long j, boolean z, AmountUtils$Amount amountUtils$Amount, long j2, final AlertDialog alertDialog, int i) {
-        AmountUtils$Amount amountUtils$AmountFromNano;
+    public static void m4084$r8$lambda$6cSM4IWlYkA69aAfqSlGW1IOEo(final GiftOfferSheet giftOfferSheet, long j, boolean z, AmountUtils$Amount amountUtils$Amount, long j2, final AlertDialog alertDialog, int i) {
         if (j > 0) {
-            int i2 = this.currentAccount;
+            int i2 = giftOfferSheet.currentAccount;
             AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.STARS;
             StarsController starsController = StarsController.getInstance(i2, amountUtils$Currency);
             AmountUtils$Amount amountUtils$AmountOf = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
-            if (z) {
-                amountUtils$AmountFromNano = AmountUtils$Amount.fromDecimal(j, amountUtils$Currency);
-            } else {
-                amountUtils$AmountFromNano = AmountUtils$Amount.fromNano(this.inputAmount.asNano() + amountUtils$Amount.asNano(), amountUtils$Currency);
-            }
-            if (amountUtils$AmountOf == null || amountUtils$AmountOf.asNano() < amountUtils$AmountFromNano.asNano()) {
-                new StarsIntroActivity.StarsNeededSheet(getContext(), this.resourcesProvider, amountUtils$AmountFromNano.asDecimal(), 14, null, null, this.dialogId).show();
+            AmountUtils$Amount amountUtils$AmountFromDecimal = z ? AmountUtils$Amount.fromDecimal(j, amountUtils$Currency) : AmountUtils$Amount.fromNano(giftOfferSheet.inputAmount.asNano() + amountUtils$Amount.asNano(), amountUtils$Currency);
+            if (amountUtils$AmountOf == null || amountUtils$AmountOf.asNano() < amountUtils$AmountFromDecimal.asNano()) {
+                new StarsIntroActivity.StarsNeededSheet(giftOfferSheet.getContext(), giftOfferSheet.resourcesProvider, amountUtils$AmountFromDecimal.asDecimal(), 14, null, null, giftOfferSheet.dialogId).show();
                 return;
             }
+        } else {
+            giftOfferSheet.getClass();
         }
         final Browser.Progress progressMakeButtonLoading = alertDialog.makeButtonLoading(-1);
         progressMakeButtonLoading.init();
         TL_payments.TL_sendStarGiftOffer tL_sendStarGiftOffer = new TL_payments.TL_sendStarGiftOffer();
-        tL_sendStarGiftOffer.price = this.inputAmount.toTl();
-        tL_sendStarGiftOffer.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        tL_sendStarGiftOffer.duration = this.selectedDuration;
-        tL_sendStarGiftOffer.slug = this.giftUnique.slug;
+        tL_sendStarGiftOffer.price = giftOfferSheet.inputAmount.toTl();
+        tL_sendStarGiftOffer.peer = MessagesController.getInstance(giftOfferSheet.currentAccount).getInputPeer(giftOfferSheet.dialogId);
+        tL_sendStarGiftOffer.duration = giftOfferSheet.selectedDuration;
+        tL_sendStarGiftOffer.slug = giftOfferSheet.giftUnique.slug;
         tL_sendStarGiftOffer.random_id = j2;
         if (j > 0) {
             tL_sendStarGiftOffer.flags |= 1;
             tL_sendStarGiftOffer.allow_paid_stars = j;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_sendStarGiftOffer, new Utilities.Callback2() {
+        ConnectionsManager.getInstance(giftOfferSheet.currentAccount).sendRequestTyped(tL_sendStarGiftOffer, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$openConfirmAlert$8(progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                GiftOfferSheet.$r8$lambda$f7mUkJRdgyqjpQ3i_IWaSh5Hy3M(this.f$0, progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$openConfirmAlert$8(final Browser.Progress progress, final AlertDialog alertDialog, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$f7mUkJRdgyqjpQ3i_IWaSh5Hy3M(final GiftOfferSheet giftOfferSheet, final Browser.Progress progress, final AlertDialog alertDialog, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
+        giftOfferSheet.getClass();
         if (updates != null && tL_error == null) {
-            MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
+            MessagesController.getInstance(giftOfferSheet.currentAccount).processUpdates(updates, false);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openConfirmAlert$7(progress, alertDialog, updates, tL_error);
+                GiftOfferSheet.$r8$lambda$zzjXXW4jEgjFkIUOf2WxUfbN6MQ(this.f$0, progress, alertDialog, updates, tL_error);
             }
         });
     }
 
-    public void lambda$openConfirmAlert$7(Browser.Progress progress, AlertDialog alertDialog, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
-        Runnable runnable = this.closeParentSheet;
+    public static void $r8$lambda$zzjXXW4jEgjFkIUOf2WxUfbN6MQ(GiftOfferSheet giftOfferSheet, Browser.Progress progress, AlertDialog alertDialog, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+        Runnable runnable = giftOfferSheet.closeParentSheet;
         if (runnable != null) {
             runnable.run();
         }
         progress.end();
         alertDialog.dismiss();
-        lambda$new$0();
+        giftOfferSheet.dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
             if (updates != null) {
-                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.forward, LocaleController.getString(R.string.GiftOfferSentTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferSentText, this.giftName, DialogObject.getShortName(this.dialogId)))).ignoreDetach().show();
+                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.forward, LocaleController.getString(R.string.GiftOfferSentTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferSentText, giftOfferSheet.giftName, DialogObject.getShortName(giftOfferSheet.dialogId)))).ignoreDetach().show();
             } else {
                 BulletinFactory.of(safeLastFragment).showForError(tL_error);
             }
@@ -720,10 +714,10 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     public static void openOfferAcceptAlert(final BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider, final int i, long j, final int i2, TLRPC.TL_messageActionStarGiftPurchaseOffer tL_messageActionStarGiftPurchaseOffer) {
         TLObject chat;
         String string;
-        int i3;
         SpannableStringBuilder spannableStringBuilderReplaceTags;
+        SpannableStringBuilder spannableStringBuilder;
         boolean z;
-        int i4;
+        int i3;
         AmountUtils$Amount amountUtils$AmountOfSafe = AmountUtils$Amount.ofSafe(tL_messageActionStarGiftPurchaseOffer.price);
         AmountUtils$Amount amountMinusFee = getAmountMinusFee(i, amountUtils$AmountOfSafe);
         TL_stars.StarGift starGift = tL_messageActionStarGiftPurchaseOffer.gift;
@@ -764,49 +758,47 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
                 int iRound = (int) Math.round((1.0d - (amountMinusFee.asDouble() / amountUtils$AmountFromUsd.asDouble())) * 100.0d);
                 spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferAmountLowerHint2, iRound + "%", starGift.title));
                 if (iRound > 10) {
-                    i3 = 1;
+                    spannableStringBuilder = spannableStringBuilderReplaceTags;
                     z = true;
-                } else {
-                    i3 = 1;
                 }
                 TextView textView2 = new TextView(context);
-                textView2.setTextSize(i3, 13.0f);
+                textView2.setTextSize(1, 13.0f);
                 textView2.setGravity(17);
-                textView2.setText(spannableStringBuilderReplaceTags);
+                textView2.setText(spannableStringBuilder);
                 if (z) {
-                    i4 = Theme.key_text_RedRegular;
+                    i3 = Theme.key_text_RedRegular;
                 } else {
-                    i4 = Theme.key_windowBackgroundWhiteGrayText;
+                    i3 = Theme.key_windowBackgroundWhiteGrayText;
                 }
-                textView2.setTextColor(Theme.getColor(i4, resourcesProvider));
+                textView2.setTextColor(Theme.getColor(i3, resourcesProvider));
                 linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 49, 40, 12, 40, 9));
             } else {
                 int iRound2 = (int) Math.round(((amountMinusFee.asDouble() / amountUtils$AmountFromUsd.asDouble()) - 1.0d) * 100.0d);
-                i3 = 1;
                 spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferAmountHigherHint2, iRound2 + "%", starGift.title));
             }
+            spannableStringBuilder = spannableStringBuilderReplaceTags;
             z = false;
             TextView textView3 = new TextView(context);
-            textView3.setTextSize(i3, 13.0f);
+            textView3.setTextSize(1, 13.0f);
             textView3.setGravity(17);
-            textView3.setText(spannableStringBuilderReplaceTags);
+            textView3.setText(spannableStringBuilder);
             if (z) {
-                i4 = Theme.key_text_RedRegular;
+                i3 = Theme.key_text_RedRegular;
             } else {
-                i4 = Theme.key_windowBackgroundWhiteGrayText;
+                i3 = Theme.key_windowBackgroundWhiteGrayText;
             }
-            textView3.setTextColor(Theme.getColor(i4, resourcesProvider));
+            textView3.setTextColor(Theme.getColor(i3, resourcesProvider));
             linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 49, 40, 12, 40, 9));
         }
         new AlertDialog.Builder(context, resourcesProvider).setView(linearLayout).setPositiveButton(StarsIntroActivity.replaceStars(z2, LocaleController.formatString(R.string.GiftOfferSellFor, strAsFormatString2)), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i5) {
-                GiftOfferSheet.lambda$openOfferAcceptAlert$12(i2, i, baseFragment, alertDialog, i5);
+            public final void onClick(AlertDialog alertDialog, int i4) {
+                GiftOfferSheet.$r8$lambda$gwQEkKs_SOAXz1zUreKS8Dm31cc(i2, i, baseFragment, alertDialog, i4);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create().show();
     }
 
-    public static void lambda$openOfferAcceptAlert$12(int i, final int i2, final BaseFragment baseFragment, final AlertDialog alertDialog, int i3) {
+    public static void $r8$lambda$gwQEkKs_SOAXz1zUreKS8Dm31cc(int i, final int i2, final BaseFragment baseFragment, final AlertDialog alertDialog, int i3) {
         final Browser.Progress progressMakeButtonLoading = alertDialog.makeButtonLoading(-1);
         progressMakeButtonLoading.init();
         TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
@@ -814,24 +806,24 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         ConnectionsManager.getInstance(i2).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GiftOfferSheet.lambda$openOfferAcceptAlert$11(i2, baseFragment, progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                GiftOfferSheet.m4087$r8$lambda$IzHiAyep2_oXhadHlpCz1iaQM(i2, baseFragment, progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$openOfferAcceptAlert$11(int i, final BaseFragment baseFragment, final Browser.Progress progress, final AlertDialog alertDialog, TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
+    public static void m4087$r8$lambda$IzHiAyep2_oXhadHlpCz1iaQM(int i, final BaseFragment baseFragment, final Browser.Progress progress, final AlertDialog alertDialog, TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
         if (updates != null && tL_error == null) {
             MessagesController.getInstance(i).processUpdates(updates, false);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GiftOfferSheet.lambda$openOfferAcceptAlert$10(baseFragment, tL_error, progress, alertDialog);
+                GiftOfferSheet.$r8$lambda$aDhcoXcjT1naWqNx4SfyPR0QPMc(baseFragment, tL_error, progress, alertDialog);
             }
         });
     }
 
-    public static void lambda$openOfferAcceptAlert$10(BaseFragment baseFragment, TLRPC.TL_error tL_error, Browser.Progress progress, AlertDialog alertDialog) {
+    public static void $r8$lambda$aDhcoXcjT1naWqNx4SfyPR0QPMc(BaseFragment baseFragment, TLRPC.TL_error tL_error, Browser.Progress progress, AlertDialog alertDialog) {
         if (baseFragment != null && tL_error != null) {
             BulletinFactory.of(baseFragment).showForError(tL_error);
         }

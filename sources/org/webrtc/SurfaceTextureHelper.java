@@ -121,7 +121,7 @@ public class SurfaceTextureHelper {
             setOnFrameAvailableListener(surfaceTexture, new SurfaceTexture.OnFrameAvailableListener() {
                 @Override
                 public final void onFrameAvailable(SurfaceTexture surfaceTexture2) {
-                    this.f$0.lambda$new$0(surfaceTexture2);
+                    SurfaceTextureHelper.$r8$lambda$wg9gnx9IBG7PlX1HI0J0Da3wr0I(this.f$0, surfaceTexture2);
                 }
             }, handler);
         } catch (RuntimeException e) {
@@ -131,12 +131,12 @@ public class SurfaceTextureHelper {
         }
     }
 
-    public void lambda$new$0(SurfaceTexture surfaceTexture) {
-        if (this.hasPendingTexture) {
+    public static void $r8$lambda$wg9gnx9IBG7PlX1HI0J0Da3wr0I(SurfaceTextureHelper surfaceTextureHelper, SurfaceTexture surfaceTexture) {
+        if (surfaceTextureHelper.hasPendingTexture) {
             Logging.d("SurfaceTextureHelper", "A frame is already pending, dropping frame.");
         }
-        this.hasPendingTexture = true;
-        tryDeliverTextureFrame();
+        surfaceTextureHelper.hasPendingTexture = true;
+        surfaceTextureHelper.tryDeliverTextureFrame();
     }
 
     private static void setOnFrameAvailableListener(SurfaceTexture surfaceTexture, SurfaceTexture.OnFrameAvailableListener onFrameAvailableListener, Handler handler) {
@@ -157,14 +157,14 @@ public class SurfaceTextureHelper {
         ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$stopListening$1();
+                SurfaceTextureHelper.$r8$lambda$0en_iRSZDtq_yQu3yzLR0_OtuTg(this.f$0);
             }
         });
     }
 
-    public void lambda$stopListening$1() {
-        this.listener = null;
-        this.pendingListener = null;
+    public static void $r8$lambda$0en_iRSZDtq_yQu3yzLR0_OtuTg(SurfaceTextureHelper surfaceTextureHelper) {
+        surfaceTextureHelper.listener = null;
+        surfaceTextureHelper.pendingListener = null;
     }
 
     public void setTextureSize(final int i, final int i2) {
@@ -178,40 +178,36 @@ public class SurfaceTextureHelper {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setTextureSize$2(i, i2);
+                SurfaceTextureHelper.$r8$lambda$xvHpvqS29Eu1mekNM5tBR35t6vY(this.f$0, i, i2);
             }
         });
     }
 
-    public void lambda$setTextureSize$2(int i, int i2) {
-        this.textureWidth = i;
-        this.textureHeight = i2;
-        tryDeliverTextureFrame();
+    public static void $r8$lambda$xvHpvqS29Eu1mekNM5tBR35t6vY(SurfaceTextureHelper surfaceTextureHelper, int i, int i2) {
+        surfaceTextureHelper.textureWidth = i;
+        surfaceTextureHelper.textureHeight = i2;
+        surfaceTextureHelper.tryDeliverTextureFrame();
     }
 
     public void forceFrame() {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$forceFrame$3();
+                SurfaceTextureHelper.$r8$lambda$mhQH0LOAWm0ZUg0uYNxMbOnH6Hc(this.f$0);
             }
         });
     }
 
-    public void lambda$forceFrame$3() {
-        this.hasPendingTexture = true;
-        tryDeliverTextureFrame();
-    }
-
-    public void lambda$setFrameRotation$4(int i) {
-        this.frameRotation = i;
+    public static void $r8$lambda$mhQH0LOAWm0ZUg0uYNxMbOnH6Hc(SurfaceTextureHelper surfaceTextureHelper) {
+        surfaceTextureHelper.hasPendingTexture = true;
+        surfaceTextureHelper.tryDeliverTextureFrame();
     }
 
     public void setFrameRotation(final int i) {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setFrameRotation$4(i);
+                this.f$0.frameRotation = i;
             }
         });
     }
@@ -228,17 +224,17 @@ public class SurfaceTextureHelper {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$returnTextureFrame$5();
+                SurfaceTextureHelper.$r8$lambda$V8IvvI3m0pk4f_4_K5K1YZi0cMM(this.f$0);
             }
         });
     }
 
-    public void lambda$returnTextureFrame$5() {
-        this.isTextureInUse = false;
-        if (this.isQuitting) {
-            release();
+    public static void $r8$lambda$V8IvvI3m0pk4f_4_K5K1YZi0cMM(SurfaceTextureHelper surfaceTextureHelper) {
+        surfaceTextureHelper.isTextureInUse = false;
+        if (surfaceTextureHelper.isQuitting) {
+            surfaceTextureHelper.release();
         } else {
-            tryDeliverTextureFrame();
+            surfaceTextureHelper.tryDeliverTextureFrame();
         }
     }
 
@@ -251,17 +247,17 @@ public class SurfaceTextureHelper {
         ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$dispose$6();
+                SurfaceTextureHelper.m5088$r8$lambda$jUIwGbGYma12MJWwtNX3pmv6zE(this.f$0);
             }
         });
     }
 
-    public void lambda$dispose$6() {
-        this.isQuitting = true;
-        if (this.isTextureInUse) {
+    public static void m5088$r8$lambda$jUIwGbGYma12MJWwtNX3pmv6zE(SurfaceTextureHelper surfaceTextureHelper) {
+        surfaceTextureHelper.isQuitting = true;
+        if (surfaceTextureHelper.isTextureInUse) {
             return;
         }
-        release();
+        surfaceTextureHelper.release();
     }
 
     @Deprecated

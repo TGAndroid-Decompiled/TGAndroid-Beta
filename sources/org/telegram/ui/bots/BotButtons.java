@@ -224,7 +224,6 @@ public abstract class BotButtons extends FrameLayout {
                 button.textDrawable.draw(canvas);
                 canvas.restore();
             }
-            float f13 = 0.0f;
             if (f9 > 0.0f) {
                 canvas.save();
                 float fLerp5 = AndroidUtilities.lerp(0.75f, 1.0f, f9);
@@ -236,9 +235,8 @@ public abstract class BotButtons extends FrameLayout {
                 circularProgressDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                 button.progress.draw(canvas);
                 canvas.restore();
-                f13 = 0.0f;
             }
-            if (f10 > f13) {
+            if (f10 > 0.0f) {
                 button.flicker.setColors(Theme.multAlpha(button.textColor.set(buttonState.textColor), f6 * f10));
                 button.flicker.draw(canvas, button.bounds, AndroidUtilities.dp(8.0f), this);
             }

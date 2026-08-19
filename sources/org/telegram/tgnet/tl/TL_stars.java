@@ -74,9 +74,15 @@ public class TL_stars {
             if (arrayList == null || arrayList.isEmpty()) {
                 return AmountUtils$Amount.fromNano(0L, amountUtils$Currency);
             }
-            for (StarsAmount starsAmount : this.resell_amount) {
-                if (starsAmount.getCurrency() == amountUtils$Currency) {
-                    return AmountUtils$Amount.of(starsAmount);
+            ArrayList<StarsAmount> arrayList2 = this.resell_amount;
+            int size = arrayList2.size();
+            int i = 0;
+            while (i < size) {
+                StarsAmount starsAmount = arrayList2.get(i);
+                i++;
+                StarsAmount starsAmount2 = starsAmount;
+                if (starsAmount2.getCurrency() == amountUtils$Currency) {
+                    return AmountUtils$Amount.of(starsAmount2);
                 }
             }
             return AmountUtils$Amount.fromNano(0L, amountUtils$Currency);
@@ -151,9 +157,15 @@ public class TL_stars {
             if (document != null) {
                 return document;
             }
-            for (StarGiftAttribute starGiftAttribute : this.attributes) {
-                if (starGiftAttribute instanceof starGiftAttributeModel) {
-                    return ((starGiftAttributeModel) starGiftAttribute).document;
+            ArrayList<StarGiftAttribute> arrayList = this.attributes;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                StarGiftAttribute starGiftAttribute = arrayList.get(i);
+                i++;
+                StarGiftAttribute starGiftAttribute2 = starGiftAttribute;
+                if (starGiftAttribute2 instanceof starGiftAttributeModel) {
+                    return ((starGiftAttributeModel) starGiftAttribute2).document;
                 }
             }
             return null;
@@ -2739,12 +2751,18 @@ public class TL_stars {
 
         public boolean positive() {
             long j = this.amount;
-            return j != 0 ? j > 0 : this.nanos > 0;
+            if (j == 0) {
+                return this.nanos > 0;
+            }
+            return j > 0;
         }
 
         public boolean negative() {
             long j = this.amount;
-            return j != 0 ? j < 0 : this.nanos < 0;
+            if (j == 0) {
+                return this.nanos < 0;
+            }
+            return j < 0;
         }
     }
 

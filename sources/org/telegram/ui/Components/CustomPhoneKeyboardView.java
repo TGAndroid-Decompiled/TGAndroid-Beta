@@ -31,7 +31,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
     private View viewToFindFocus;
     private final View[] views;
 
-    public static void lambda$new$3(View view) {
+    public static void m2250$r8$lambda$6OqSL5_VjNohTkANEHGRrcZr5o(View view) {
     }
 
     @Override
@@ -39,29 +39,29 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         return true;
     }
 
-    public void lambda$new$0() {
-        checkFindEditText();
-        EditText editText = this.editText;
+    public static void m2252$r8$lambda$v7aFgCknfjw2JOhcv_EfIBrUrA(CustomPhoneKeyboardView customPhoneKeyboardView) {
+        customPhoneKeyboardView.checkFindEditText();
+        EditText editText = customPhoneKeyboardView.editText;
         if (editText != null) {
-            if (editText.length() != 0 || this.dispatchBackWhenEmpty) {
+            if (editText.length() != 0 || customPhoneKeyboardView.dispatchBackWhenEmpty) {
                 try {
-                    performHapticFeedback(3, 2);
-                    playSoundEffect(0);
+                    customPhoneKeyboardView.performHapticFeedback(3, 2);
+                    customPhoneKeyboardView.playSoundEffect(0);
                 } catch (Exception unused) {
                 }
-                this.editText.dispatchKeyEvent(new KeyEvent(0, 67));
-                this.editText.dispatchKeyEvent(new KeyEvent(1, 67));
-                if (this.runningLongClick) {
-                    postDelayed(this.onBackButton, 50L);
+                customPhoneKeyboardView.editText.dispatchKeyEvent(new KeyEvent(0, 67));
+                customPhoneKeyboardView.editText.dispatchKeyEvent(new KeyEvent(1, 67));
+                if (customPhoneKeyboardView.runningLongClick) {
+                    customPhoneKeyboardView.postDelayed(customPhoneKeyboardView.onBackButton, 50L);
                 }
             }
         }
     }
 
-    public void lambda$new$1() {
-        this.postedLongClick = false;
-        this.runningLongClick = true;
-        this.onBackButton.run();
+    public static void $r8$lambda$765hNIjiDguL3Su9dVl3kGc0jNk(CustomPhoneKeyboardView customPhoneKeyboardView) {
+        customPhoneKeyboardView.postedLongClick = false;
+        customPhoneKeyboardView.runningLongClick = true;
+        customPhoneKeyboardView.onBackButton.run();
     }
 
     public CustomPhoneKeyboardView(Context context) {
@@ -71,13 +71,13 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         this.onBackButton = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                CustomPhoneKeyboardView.m2252$r8$lambda$v7aFgCknfjw2JOhcv_EfIBrUrA(this.f$0);
             }
         };
         this.detectLongClick = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                CustomPhoneKeyboardView.$r8$lambda$765hNIjiDguL3Su9dVl3kGc0jNk(this.f$0);
             }
         };
         int i = 0;
@@ -122,7 +122,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
                 this.views[i2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$2(strValueOf, view);
+                        CustomPhoneKeyboardView.m2251$r8$lambda$Tn6QkrmAsCDloYYCXomSZPh9Bw(this.f$0, strValueOf, view);
                     }
                 });
                 addView(this.views[i2]);
@@ -151,7 +151,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CustomPhoneKeyboardView.lambda$new$3(view);
+                CustomPhoneKeyboardView.m2250$r8$lambda$6OqSL5_VjNohTkANEHGRrcZr5o(view);
             }
         });
         this.views[11] = imageView;
@@ -170,35 +170,35 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         }
     }
 
-    public void lambda$new$2(String str, View view) {
-        checkFindEditText();
-        if (this.editText == null) {
+    public static void m2251$r8$lambda$Tn6QkrmAsCDloYYCXomSZPh9Bw(CustomPhoneKeyboardView customPhoneKeyboardView, String str, View view) {
+        customPhoneKeyboardView.checkFindEditText();
+        if (customPhoneKeyboardView.editText == null) {
             return;
         }
         try {
-            performHapticFeedback(3, 2);
+            customPhoneKeyboardView.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        EditText editText = this.editText;
+        EditText editText = customPhoneKeyboardView.editText;
         if (editText instanceof EditTextBoldCursor) {
             ((EditTextBoldCursor) editText).setTextWatchersSuppressed(true, false);
         }
-        Editable text = this.editText.getText();
-        int selectionStart = this.editText.getSelectionEnd() == this.editText.length() ? -1 : this.editText.getSelectionStart() + str.length();
-        if (this.editText.getSelectionStart() != -1 && this.editText.getSelectionEnd() != -1) {
-            EditText editText2 = this.editText;
-            editText2.setText(text.replace(editText2.getSelectionStart(), this.editText.getSelectionEnd(), str));
-            EditText editText3 = this.editText;
+        Editable text = customPhoneKeyboardView.editText.getText();
+        int selectionStart = customPhoneKeyboardView.editText.getSelectionEnd() == customPhoneKeyboardView.editText.length() ? -1 : customPhoneKeyboardView.editText.getSelectionStart() + str.length();
+        if (customPhoneKeyboardView.editText.getSelectionStart() != -1 && customPhoneKeyboardView.editText.getSelectionEnd() != -1) {
+            EditText editText2 = customPhoneKeyboardView.editText;
+            editText2.setText(text.replace(editText2.getSelectionStart(), customPhoneKeyboardView.editText.getSelectionEnd(), str));
+            EditText editText3 = customPhoneKeyboardView.editText;
             if (selectionStart == -1) {
                 selectionStart = editText3.length();
             }
             editText3.setSelection(selectionStart);
         } else {
-            this.editText.setText(str);
-            EditText editText4 = this.editText;
+            customPhoneKeyboardView.editText.setText(str);
+            EditText editText4 = customPhoneKeyboardView.editText;
             editText4.setSelection(editText4.length());
         }
-        EditText editText5 = this.editText;
+        EditText editText5 = customPhoneKeyboardView.editText;
         if (editText5 instanceof EditTextBoldCursor) {
             ((EditTextBoldCursor) editText5).setTextWatchersSuppressed(false, true);
         }

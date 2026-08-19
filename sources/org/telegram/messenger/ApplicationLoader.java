@@ -330,7 +330,7 @@ public class ApplicationLoader extends Application {
             ContactsController.getInstance(i2).checkAppAccount();
             DownloadController.getInstance(i2);
         }
-        BillingController.getInstance().lambda$onBillingServiceDisconnected$12();
+        BillingController.getInstance().startConnection();
     }
 
     @Override
@@ -433,12 +433,12 @@ public class ApplicationLoader extends Application {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ApplicationLoader.lambda$initPushServices$0();
+                ApplicationLoader.$r8$lambda$EdRXsD8RsitwzrcDYxwbFEKwcLo();
             }
         }, 1000L);
     }
 
-    public static void lambda$initPushServices$0() {
+    public static void $r8$lambda$EdRXsD8RsitwzrcDYxwbFEKwcLo() {
         if (getPushProvider().hasServices()) {
             getPushProvider().onRequestPushToken();
             return;

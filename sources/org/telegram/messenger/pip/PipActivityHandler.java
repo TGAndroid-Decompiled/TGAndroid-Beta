@@ -2,6 +2,7 @@ package org.telegram.messenger.pip;
 
 import android.app.Activity;
 import android.app.PictureInPictureParams;
+import android.app.PictureInPictureUiState;
 import android.content.BroadcastReceiver;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
@@ -31,6 +32,7 @@ class PipActivityHandler implements IPipActivityHandler {
     private boolean hasFrameListener;
     private boolean isActivityStarted;
     private boolean isInPictureInPictureModeInternal;
+    private boolean isInPictureInPictureStash;
     private PictureInPictureParams pictureInPictureParams;
     private final ArrayList listeners = new ArrayList();
     private final ArrayList animationListeners = new ArrayList();
@@ -169,6 +171,30 @@ class PipActivityHandler implements IPipActivityHandler {
         this.pictureInPictureParams = pictureInPictureParams;
     }
 
+    @Override
+    public void onPictureInPictureUiStateChanged(PictureInPictureUiState pictureInPictureUiState) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 31) {
+            if (i >= 35) {
+                Log.i("PIP_DEBUG", "[Activity] onPictureInPictureUiStateChanged " + pictureInPictureUiState.isStashed() + " " + pictureInPictureUiState.isTransitioningToPip());
+                if (pictureInPictureUiState.isTransitioningToPip() && hasContentForPictureInPictureMode()) {
+                    dispatchStartEnterPip();
+                }
+            } else {
+                Log.i("PIP_DEBUG", "[Activity] onPictureInPictureUiStateChanged " + pictureInPictureUiState.isStashed());
+            }
+            boolean zIsStashed = pictureInPictureUiState.isStashed();
+            if (this.isInPictureInPictureStash != zIsStashed) {
+                this.isInPictureInPictureStash = zIsStashed;
+                if (zIsStashed) {
+                    dispatchStashStartPip();
+                } else {
+                    dispatchStashEndPip();
+                }
+            }
+        }
+    }
+
     private boolean hasContentForPictureInPictureMode() {
         ComponentCallbacks2 componentCallbacks2 = this.activity;
         if (componentCallbacks2 instanceof IPipActivity) {
@@ -187,43 +213,86 @@ class PipActivityHandler implements IPipActivityHandler {
 
     private void dispatchStartEnterPip() {
         this.isInPictureInPictureModeInternal = true;
-        Iterator it = this.listeners.iterator();
-        while (it.hasNext()) {
-            ((IPipActivityListener) it.next()).onStartEnterToPip();
+        int i = 0;
+        this.isInPictureInPictureStash = false;
+        ArrayList arrayList = this.listeners;
+        int size = arrayList.size();
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityListener) obj).onStartEnterToPip();
         }
         dispatchEnterAnimationStart();
     }
 
     private void dispatchCompleteEnterPip() {
         dispatchEnterAnimationEnd();
-        Iterator it = this.listeners.iterator();
-        while (it.hasNext()) {
-            ((IPipActivityListener) it.next()).onCompleteEnterToPip();
+        ArrayList arrayList = this.listeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityListener) obj).onCompleteEnterToPip();
+        }
+    }
+
+    private void dispatchStashStartPip() {
+        ArrayList arrayList = this.listeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityListener) obj).onPipStashStart();
+        }
+    }
+
+    private void dispatchStashEndPip() {
+        ArrayList arrayList = this.listeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityListener) obj).onPipStashEnd();
         }
     }
 
     private void dispatchStartExitPip(boolean z) {
-        Iterator it = this.listeners.iterator();
-        while (it.hasNext()) {
-            ((IPipActivityListener) it.next()).onStartExitFromPip(z);
+        ArrayList arrayList = this.listeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityListener) obj).onStartExitFromPip(z);
         }
         dispatchLeaveAnimationStart();
     }
 
     private void dispatchCompleteExitPip(boolean z) {
         dispatchLeaveAnimationEnd();
+        int i = 0;
         this.isInPictureInPictureModeInternal = false;
-        Iterator it = this.listeners.iterator();
-        while (it.hasNext()) {
-            ((IPipActivityListener) it.next()).onCompleteExitFromPip(z);
+        ArrayList arrayList = this.listeners;
+        int size = arrayList.size();
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityListener) obj).onCompleteExitFromPip(z);
         }
     }
 
     private void dispatchEnterAnimationStart() {
         long jEstimated = this.durationEnter.estimated();
-        Iterator it = this.animationListeners.iterator();
-        while (it.hasNext()) {
-            ((IPipActivityAnimationListener) it.next()).onEnterAnimationStart(jEstimated);
+        ArrayList arrayList = this.animationListeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityAnimationListener) obj).onEnterAnimationStart(jEstimated);
         }
         dispatchTransitionAnimationProgress(0.0f);
         this.durationEnter.start();
@@ -233,18 +302,26 @@ class PipActivityHandler implements IPipActivityHandler {
     private void dispatchEnterAnimationEnd() {
         dispatchTransitionAnimationProgress(1.0f);
         long jEnd = this.durationEnter.end();
-        Iterator it = this.animationListeners.iterator();
-        while (it.hasNext()) {
-            ((IPipActivityAnimationListener) it.next()).onEnterAnimationEnd(jEnd);
+        ArrayList arrayList = this.animationListeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityAnimationListener) obj).onEnterAnimationEnd(jEnd);
         }
         unsubscribeFromFrameUpdates();
     }
 
     private void dispatchLeaveAnimationStart() {
         long jEstimated = this.durationLeave.estimated();
-        Iterator it = this.animationListeners.iterator();
-        while (it.hasNext()) {
-            ((IPipActivityAnimationListener) it.next()).onLeaveAnimationStart(jEstimated);
+        ArrayList arrayList = this.animationListeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityAnimationListener) obj).onLeaveAnimationStart(jEstimated);
         }
         dispatchTransitionAnimationProgress(1.0f);
         this.durationLeave.start();
@@ -254,9 +331,13 @@ class PipActivityHandler implements IPipActivityHandler {
     private void dispatchLeaveAnimationEnd() {
         dispatchTransitionAnimationProgress(0.0f);
         long jEnd = this.durationLeave.end();
-        Iterator it = this.animationListeners.iterator();
-        while (it.hasNext()) {
-            ((IPipActivityAnimationListener) it.next()).onLeaveAnimationEnd(jEnd);
+        ArrayList arrayList = this.animationListeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityAnimationListener) obj).onLeaveAnimationEnd(jEnd);
         }
         unsubscribeFromFrameUpdates();
     }
@@ -266,9 +347,13 @@ class PipActivityHandler implements IPipActivityHandler {
             return;
         }
         this.lastProgress = f;
-        Iterator it = this.animationListeners.iterator();
-        while (it.hasNext()) {
-            ((IPipActivityAnimationListener) it.next()).onTransitionAnimationProgress(f);
+        ArrayList arrayList = this.animationListeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((IPipActivityAnimationListener) obj).onTransitionAnimationProgress(f);
         }
     }
 
@@ -301,9 +386,13 @@ class PipActivityHandler implements IPipActivityHandler {
 
     public void onFrameInternal(long j) {
         if (this.hasFrameListener) {
-            Iterator it = this.animationListeners.iterator();
-            while (it.hasNext()) {
-                ((IPipActivityAnimationListener) it.next()).onTransitionAnimationFrame();
+            ArrayList arrayList = this.animationListeners;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ((IPipActivityAnimationListener) obj).onTransitionAnimationFrame();
             }
             if (this.durationEnter.isStarted()) {
                 dispatchTransitionAnimationProgress(MathUtils.clamp(this.durationEnter.progress() / 0.95f, 0.0f, 1.0f));

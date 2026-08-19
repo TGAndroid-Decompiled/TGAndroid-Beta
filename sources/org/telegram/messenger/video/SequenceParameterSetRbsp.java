@@ -135,6 +135,7 @@ public class SequenceParameterSetRbsp {
     }
 
     private void profile_tier_level(int i, CAVLCReader cAVLCReader) {
+        boolean[] zArr;
         int[] iArr;
         int i2 = i;
         this.general_profile_space = cAVLCReader.readU(2, "general_profile_space");
@@ -143,11 +144,11 @@ public class SequenceParameterSetRbsp {
         this.general_profile_compatibility_flags = cAVLCReader.readNBit(32);
         this.general_constraint_indicator_flags = cAVLCReader.readNBit(48);
         this.general_level_idc = (byte) cAVLCReader.readByte();
-        boolean[] zArr = new boolean[i2];
         boolean[] zArr2 = new boolean[i2];
+        boolean[] zArr3 = new boolean[i2];
         for (int i3 = 0; i3 < i2; i3++) {
-            zArr[i3] = cAVLCReader.readBool("sub_layer_profile_present_flag[" + i3 + "]");
-            zArr2[i3] = cAVLCReader.readBool("sub_layer_level_present_flag[" + i3 + "]");
+            zArr2[i3] = cAVLCReader.readBool("sub_layer_profile_present_flag[" + i3 + "]");
+            zArr3[i3] = cAVLCReader.readBool("sub_layer_level_present_flag[" + i3 + "]");
         }
         if (i2 > 0) {
             int[] iArr2 = new int[8];
@@ -156,43 +157,49 @@ public class SequenceParameterSetRbsp {
             }
         }
         int[] iArr3 = new int[i2];
-        boolean[] zArr3 = new boolean[i2];
+        boolean[] zArr4 = new boolean[i2];
         int[] iArr4 = new int[i2];
-        boolean[][] zArr4 = (boolean[][]) Array.newInstance((Class<?>) Boolean.TYPE, i2, 32);
-        boolean[] zArr5 = new boolean[i2];
+        boolean[][] zArr5 = (boolean[][]) Array.newInstance((Class<?>) Boolean.TYPE, i2, 32);
         boolean[] zArr6 = new boolean[i2];
         boolean[] zArr7 = new boolean[i2];
         boolean[] zArr8 = new boolean[i2];
+        boolean[] zArr9 = new boolean[i2];
         long[] jArr = new long[i2];
         int[] iArr5 = new int[i2];
         int i5 = 0;
         while (i5 < i2) {
-            if (zArr[i5]) {
-                iArr3[i5] = cAVLCReader.readU(2, "sub_layer_profile_space[" + i5 + "]");
-                zArr3[i5] = cAVLCReader.readBool("sub_layer_tier_flag[" + i5 + "]");
+            if (zArr2[i5]) {
+                StringBuilder sb = new StringBuilder();
+                zArr = zArr9;
+                sb.append("sub_layer_profile_space[");
+                sb.append(i5);
+                sb.append("]");
+                iArr3[i5] = cAVLCReader.readU(2, sb.toString());
+                zArr4[i5] = cAVLCReader.readBool("sub_layer_tier_flag[" + i5 + "]");
                 iArr4[i5] = cAVLCReader.readU(5, "sub_layer_profile_idc[" + i5 + "]");
                 int i6 = 0;
-                for (int i7 = 32; i6 < i7; i7 = 32) {
-                    zArr4[i5][i6] = cAVLCReader.readBool("sub_layer_profile_compatibility_flag[" + i5 + "][" + i6 + "]");
+                while (i6 < 32) {
+                    zArr5[i5][i6] = cAVLCReader.readBool("sub_layer_profile_compatibility_flag[" + i5 + "][" + i6 + "]");
                     i6++;
-                    iArr3 = iArr3;
+                    iArr5 = iArr5;
                 }
-                iArr = iArr3;
-                zArr5[i5] = cAVLCReader.readBool("sub_layer_progressive_source_flag[" + i5 + "]");
-                zArr6[i5] = cAVLCReader.readBool("sub_layer_interlaced_source_flag[" + i5 + "]");
-                zArr7[i5] = cAVLCReader.readBool("sub_layer_non_packed_constraint_flag[" + i5 + "]");
-                zArr8[i5] = cAVLCReader.readBool("sub_layer_frame_only_constraint_flag[" + i5 + "]");
+                iArr = iArr5;
+                zArr6[i5] = cAVLCReader.readBool("sub_layer_progressive_source_flag[" + i5 + "]");
+                zArr7[i5] = cAVLCReader.readBool("sub_layer_interlaced_source_flag[" + i5 + "]");
+                zArr8[i5] = cAVLCReader.readBool("sub_layer_non_packed_constraint_flag[" + i5 + "]");
+                zArr[i5] = cAVLCReader.readBool("sub_layer_frame_only_constraint_flag[" + i5 + "]");
                 jArr[i5] = cAVLCReader.readNBit(44);
             } else {
-                iArr = iArr3;
+                zArr = zArr9;
+                iArr = iArr5;
             }
-            if (zArr2[i5]) {
-                iArr5[i5] = cAVLCReader.readU(8, "sub_layer_level_idc[" + i5 + "]");
+            if (zArr3[i5]) {
+                iArr[i5] = cAVLCReader.readU(8, "sub_layer_level_idc[" + i5 + "]");
             }
             i5++;
             i2 = i;
-            zArr = zArr;
-            iArr3 = iArr;
+            zArr9 = zArr;
+            iArr5 = iArr;
         }
     }
 }

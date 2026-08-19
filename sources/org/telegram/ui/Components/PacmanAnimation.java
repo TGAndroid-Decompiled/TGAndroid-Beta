@@ -71,6 +71,8 @@ public class PacmanAnimation {
     }
 
     private void drawGhost(Canvas canvas, int i) {
+        float f;
+        float f2;
         Path path = this.ghostPath;
         if (path == null || this.ghostWalk != this.currentGhostWalk) {
             if (path == null) {
@@ -80,8 +82,10 @@ public class PacmanAnimation {
             boolean z = this.ghostWalk;
             this.currentGhostWalk = z;
             if (z) {
+                f = 35.0f;
                 this.ghostPath.moveTo(0.0f, AndroidUtilities.dp(50.0f));
                 this.ghostPath.lineTo(0.0f, AndroidUtilities.dp(24.0f));
+                f2 = 28.0f;
                 this.rect.set(0.0f, 0.0f, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(24.0f));
                 this.ghostPath.arcTo(this.rect, 180.0f, 180.0f, false);
                 this.ghostPath.lineTo(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(50.0f));
@@ -91,6 +95,8 @@ public class PacmanAnimation {
                 this.ghostPath.lineTo(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(50.0f));
                 this.ghostPath.lineTo(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(43.0f));
             } else {
+                f = 35.0f;
+                f2 = 28.0f;
                 this.ghostPath.moveTo(0.0f, AndroidUtilities.dp(43.0f));
                 this.ghostPath.lineTo(0.0f, AndroidUtilities.dp(24.0f));
                 this.rect.set(0.0f, 0.0f, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(24.0f));
@@ -103,6 +109,9 @@ public class PacmanAnimation {
                 this.ghostPath.lineTo(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(50.0f));
             }
             this.ghostPath.close();
+        } else {
+            f = 35.0f;
+            f2 = 28.0f;
         }
         canvas.drawPath(this.ghostPath, this.edgePaint);
         if (i == 0) {
@@ -114,14 +123,14 @@ public class PacmanAnimation {
         }
         canvas.drawPath(this.ghostPath, this.paint);
         this.paint.setColor(-1);
-        this.rect.set(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(28.0f));
+        this.rect.set(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(f2));
         canvas.drawOval(this.rect, this.paint);
-        this.rect.set(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(28.0f));
+        this.rect.set(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(f2));
         canvas.drawOval(this.rect, this.paint);
         this.paint.setColor(-16777216);
         this.rect.set(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f));
         canvas.drawOval(this.rect, this.paint);
-        this.rect.set(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(35.0f), AndroidUtilities.dp(24.0f));
+        this.rect.set(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(f), AndroidUtilities.dp(24.0f));
         canvas.drawOval(this.rect, this.paint);
     }
 
@@ -135,7 +144,7 @@ public class PacmanAnimation {
         this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         int i4 = iDp2 / 2;
         float f = measuredWidth + i2;
-        canvas.drawRect(0.0f, i - i4, f, i + i4 + 1, this.paint);
+        canvas.drawRect(0.0f, i - i4, f, i4 + i + 1, this.paint);
         this.paint.setColor(-69120);
         float f2 = measuredWidth + iDp;
         this.rect.set(measuredWidth, i3, f2, i3 + iDp);

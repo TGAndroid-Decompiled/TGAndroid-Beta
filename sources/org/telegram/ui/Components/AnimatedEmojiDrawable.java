@@ -19,7 +19,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
@@ -59,7 +58,7 @@ public class AnimatedEmojiDrawable extends Drawable {
     private static final Runnable cleanup = new Runnable() {
         @Override
         public final void run() {
-            AnimatedEmojiDrawable.lambda$static$2();
+            AnimatedEmojiDrawable.$r8$lambda$nzDBvSt6sCG6mQHTRhz9iH2Exwc();
         }
     };
     private static boolean disabledToggleableAnimations;
@@ -92,10 +91,6 @@ public class AnimatedEmojiDrawable extends Drawable {
     @Override
     public int getOpacity() {
         return -2;
-    }
-
-    public static void access$200(AnimatedEmojiDrawable animatedEmojiDrawable) {
-        animatedEmojiDrawable.updateAttachState();
     }
 
     public static AnimatedEmojiDrawable make(int i, int i2, long j) {
@@ -237,7 +232,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                         Runnable runnable = new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$fetchDocument$0();
+                                AnimatedEmojiDrawable.EmojiDocumentFetcher.$r8$lambda$G94HtuJMycanfZN3Z1BpdV1_Kao(this.f$0);
                             }
                         };
                         this.fetchRunnable = runnable;
@@ -249,11 +244,12 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
         }
 
-        public void lambda$fetchDocument$0() {
-            ArrayList arrayList = new ArrayList(this.toFetchDocuments);
-            this.toFetchDocuments.clear();
-            loadFromDatabase(arrayList, this.uiDbCallback == null);
-            this.fetchRunnable = null;
+        public static void $r8$lambda$G94HtuJMycanfZN3Z1BpdV1_Kao(EmojiDocumentFetcher emojiDocumentFetcher) {
+            emojiDocumentFetcher.getClass();
+            ArrayList arrayList = new ArrayList(emojiDocumentFetcher.toFetchDocuments);
+            emojiDocumentFetcher.toFetchDocuments.clear();
+            emojiDocumentFetcher.loadFromDatabase(arrayList, emojiDocumentFetcher.uiDbCallback == null);
+            emojiDocumentFetcher.fetchRunnable = null;
         }
 
         private boolean checkThread() {
@@ -272,15 +268,15 @@ public class AnimatedEmojiDrawable extends Drawable {
                 MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$loadFromDatabase$1(arrayList);
+                        this.f$0.loadFromDatabase(arrayList);
                     }
                 });
             } else {
-                lambda$loadFromDatabase$1(arrayList);
+                loadFromDatabase(arrayList);
             }
         }
 
-        public void lambda$loadFromDatabase$1(ArrayList arrayList) {
+        public void loadFromDatabase(ArrayList arrayList) {
             MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             SQLiteDatabase database = messagesStorage.getDatabase();
             if (database == null) {
@@ -317,7 +313,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
         }
 
-        public void lambda$processDatabaseResult$2(ArrayList arrayList, HashSet hashSet) {
+        public void processDocumentsAndLoadMore(ArrayList arrayList, HashSet hashSet) {
             processDocuments(arrayList);
             if (hashSet.isEmpty()) {
                 return;
@@ -327,22 +323,23 @@ public class AnimatedEmojiDrawable extends Drawable {
 
         private void processDatabaseResult(final ArrayList arrayList, final HashSet hashSet) {
             if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
-                lambda$processDatabaseResult$2(arrayList, hashSet);
+                processDocumentsAndLoadMore(arrayList, hashSet);
             } else {
                 NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$processDatabaseResult$3(arrayList, hashSet);
+                        AnimatedEmojiDrawable.EmojiDocumentFetcher.m2006$r8$lambda$gP9g9kES1clRerox0IvmkVnRn0(this.f$0, arrayList, hashSet);
                     }
                 });
             }
         }
 
-        public void lambda$processDatabaseResult$3(final ArrayList arrayList, final HashSet hashSet) {
+        public static void m2006$r8$lambda$gP9g9kES1clRerox0IvmkVnRn0(final EmojiDocumentFetcher emojiDocumentFetcher, final ArrayList arrayList, final HashSet hashSet) {
+            emojiDocumentFetcher.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processDatabaseResult$2(arrayList, hashSet);
+                    this.f$0.processDocumentsAndLoadMore(arrayList, hashSet);
                 }
             });
         }
@@ -353,35 +350,34 @@ public class AnimatedEmojiDrawable extends Drawable {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getCustomEmojiDocuments, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$loadFromServer$6(arrayList, tLObject, tL_error);
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher emojiDocumentFetcher = this.f$0;
+                    NotificationCenter.getInstance(emojiDocumentFetcher.currentAccount).doOnIdle(new Runnable() {
+                        @Override
+                        public final void run() {
+                            AnimatedEmojiDrawable.EmojiDocumentFetcher.$r8$lambda$DDg6gahI5j3ZNjsd7EJcaqC6ynM(emojiDocumentFetcher, arrayList, tLObject);
+                        }
+                    });
                 }
             });
         }
 
-        public void lambda$loadFromServer$5(final ArrayList arrayList, final TLObject tLObject) {
+        public static void $r8$lambda$DDg6gahI5j3ZNjsd7EJcaqC6ynM(final EmojiDocumentFetcher emojiDocumentFetcher, final ArrayList arrayList, final TLObject tLObject) {
+            emojiDocumentFetcher.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadFromServer$4(arrayList, tLObject);
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher.m2004$r8$lambda$76I8IuDhzjM4RGEcXQZT0ZhNQ0(this.f$0, arrayList, tLObject);
                 }
             });
         }
 
-        public void lambda$loadFromServer$6(final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$loadFromServer$5(arrayList, tLObject);
-                }
-            });
-        }
-
-        public void lambda$loadFromServer$4(ArrayList arrayList, TLObject tLObject) {
+        public static void m2004$r8$lambda$76I8IuDhzjM4RGEcXQZT0ZhNQ0(EmojiDocumentFetcher emojiDocumentFetcher, ArrayList arrayList, TLObject tLObject) {
+            emojiDocumentFetcher.getClass();
             HashSet hashSet = new HashSet(arrayList);
             if (tLObject instanceof Vector) {
                 ArrayList arrayList2 = ((Vector) tLObject).objects;
-                putToStorage(arrayList2);
-                processDocuments(arrayList2);
+                emojiDocumentFetcher.putToStorage(arrayList2);
+                emojiDocumentFetcher.processDocuments(arrayList2);
                 for (int i = 0; i < arrayList2.size(); i++) {
                     if (arrayList2.get(i) instanceof TLRPC.Document) {
                         hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList2.get(i)).id));
@@ -390,7 +386,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 if (hashSet.isEmpty()) {
                     return;
                 }
-                loadFromServer(new ArrayList(hashSet));
+                emojiDocumentFetcher.loadFromServer(new ArrayList(hashSet));
             }
         }
 
@@ -398,15 +394,15 @@ public class AnimatedEmojiDrawable extends Drawable {
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$putToStorage$7(arrayList);
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher.m2003$r8$lambda$OKn0aTSIpSYO7d5RsOVJPoYYo(this.f$0, arrayList);
                 }
             });
         }
 
-        public void lambda$putToStorage$7(ArrayList arrayList) {
+        public static void m2003$r8$lambda$OKn0aTSIpSYO7d5RsOVJPoYYo(EmojiDocumentFetcher emojiDocumentFetcher, ArrayList arrayList) {
             NativeByteBuffer nativeByteBuffer;
             try {
-                SQLitePreparedStatement sQLitePreparedStatementExecuteFast = MessagesStorage.getInstance(this.currentAccount).getDatabase().executeFast("REPLACE INTO animated_emoji VALUES(?, ?)");
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast = MessagesStorage.getInstance(emojiDocumentFetcher.currentAccount).getDatabase().executeFast("REPLACE INTO animated_emoji VALUES(?, ?)");
                 for (int i = 0; i < arrayList.size(); i++) {
                     if (arrayList.get(i) instanceof TLRPC.Document) {
                         TLRPC.Document document = (TLRPC.Document) arrayList.get(i);
@@ -485,9 +481,12 @@ public class AnimatedEmojiDrawable extends Drawable {
                     if (this.emojiDocumentsCache == null) {
                         this.emojiDocumentsCache = new HashMap();
                     }
-                    Iterator it = arrayList.iterator();
-                    while (it.hasNext()) {
-                        TLRPC.Document document = (TLRPC.Document) it.next();
+                    int size = arrayList.size();
+                    int i = 0;
+                    while (i < size) {
+                        Object obj = arrayList.get(i);
+                        i++;
+                        TLRPC.Document document = (TLRPC.Document) obj;
                         this.emojiDocumentsCache.put(Long.valueOf(document.id), document);
                     }
                 } catch (Throwable th) {
@@ -531,14 +530,14 @@ public class AnimatedEmojiDrawable extends Drawable {
         getDocumentFetcher(i2).fetchDocument(j, new ReceivedDocument() {
             @Override
             public final void run(TLRPC.Document document) {
-                this.f$0.lambda$new$0(document);
+                AnimatedEmojiDrawable.$r8$lambda$eePgxEPmbTWE5oir1j9xc1hfvbU(this.f$0, document);
             }
         });
     }
 
-    public void lambda$new$0(TLRPC.Document document) {
-        this.document = document;
-        initDocument(false);
+    public static void $r8$lambda$eePgxEPmbTWE5oir1j9xc1hfvbU(AnimatedEmojiDrawable animatedEmojiDrawable, TLRPC.Document document) {
+        animatedEmojiDrawable.document = document;
+        animatedEmojiDrawable.initDocument(false);
     }
 
     public AnimatedEmojiDrawable(int i, int i2, long j, String str) {
@@ -550,14 +549,14 @@ public class AnimatedEmojiDrawable extends Drawable {
         getDocumentFetcher(i2).fetchDocument(j, new ReceivedDocument() {
             @Override
             public final void run(TLRPC.Document document) {
-                this.f$0.lambda$new$1(document);
+                AnimatedEmojiDrawable.$r8$lambda$69sl9TEjdINH0mDPqa5leD4vMHc(this.f$0, document);
             }
         });
     }
 
-    public void lambda$new$1(TLRPC.Document document) {
-        this.document = document;
-        initDocument(false);
+    public static void $r8$lambda$69sl9TEjdINH0mDPqa5leD4vMHc(AnimatedEmojiDrawable animatedEmojiDrawable, TLRPC.Document document) {
+        animatedEmojiDrawable.document = document;
+        animatedEmojiDrawable.initDocument(false);
     }
 
     public AnimatedEmojiDrawable(int i, int i2, TLRPC.Document document) {
@@ -660,7 +659,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        AnimatedEmojiDrawable.access$200(animatedEmojiDrawable);
+                        animatedEmojiDrawable.updateAttachState();
                     }
                 });
             }
@@ -688,17 +687,27 @@ public class AnimatedEmojiDrawable extends Drawable {
     private void initDocument(boolean z) {
         int i;
         SvgHelper.SvgDrawable svgThumb;
-        ImageLocation forDocument;
         String str;
+        ImageLocation imageLocation;
+        String str2;
+        ImageLocation forDocument;
         int i2;
-        Drawable emojiDrawable;
+        Emoji.EmojiDrawable emojiDrawable;
+        Drawable drawable;
+        int i3;
+        ImageLocation imageLocation2;
+        String str3;
         ImageLocation forDocument2;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
         int iDp;
         TLRPC.Document document = this.document;
         if (document != null) {
             if (this.imageReceiver == null || this.imageReceiverEmojiThumb || z) {
-                int i3 = this.cacheType;
-                if ((i3 == 20 || i3 == 21) && (document instanceof TLRPC.TL_documentEmpty)) {
+                int i8 = this.cacheType;
+                if ((i8 == 20 || i8 == 21) && (document instanceof TLRPC.TL_documentEmpty)) {
                     return;
                 }
                 this.imageReceiverEmojiThumb = false;
@@ -706,136 +715,231 @@ public class AnimatedEmojiDrawable extends Drawable {
                 if (this.colorFilterToSet != null && canOverrideColor()) {
                     this.imageReceiver.setColorFilter(this.colorFilterToSet);
                 }
-                int i4 = this.cacheType;
-                if (i4 != 0) {
-                    if (i4 == 12) {
-                        i4 = 2;
+                int i9 = this.cacheType;
+                if (i9 != 0) {
+                    if (i9 == 12) {
+                        i9 = 2;
                     }
-                    this.imageReceiver.setUniqKeyPrefix(i4 + "_");
+                    this.imageReceiver.setUniqKeyPrefix(i9 + "_");
                 }
                 this.imageReceiver.setVideoThumbIsSame(true);
                 boolean z2 = (SharedConfig.getDevicePerformanceClass() == 0 && this.cacheType == 5) || (((i = this.cacheType) == 2 || i == 25) && !liteModeKeyboard) || (i == 3 && !liteModeReactions);
-                int i5 = this.cacheType;
-                if (i5 == 13 || i5 == 16) {
+                int i10 = this.cacheType;
+                if (i10 == 13 || i10 == 16) {
                     z2 = true;
                 }
-                if (i5 == 24 || i5 == 27) {
+                if (i10 == 24 || i10 == 27) {
                     z2 = false;
                 }
-                String str2 = this.sizedp + "_" + this.sizedp;
+                String str4 = this.sizedp + "_" + this.sizedp;
                 if (this.cacheType == 12) {
-                    str2 = str2 + "_d_nostream";
+                    str4 = str4 + "_d_nostream";
                 }
-                int i6 = this.cacheType;
-                if (i6 != 17 && i6 != 15 && i6 != 14 && i6 != 8 && ((i6 != 1 || SharedConfig.getDevicePerformanceClass() < 2) && this.cacheType != 12)) {
-                    str2 = str2 + "_pcache";
+                int i11 = this.cacheType;
+                if (i11 != 17 && i11 != 15 && i11 != 14 && i11 != 8 && ((i11 != 1 || SharedConfig.getDevicePerformanceClass() < 2) && this.cacheType != 12)) {
+                    str4 = str4 + "_pcache";
                 }
-                int i7 = this.cacheType;
-                if (i7 != 17 && i7 != 0 && i7 != 26 && i7 != 1 && i7 != 14 && i7 != 15 && i7 != 19 && i7 != 20 && i7 != 21) {
-                    str2 = str2 + "_compress";
+                int i12 = this.cacheType;
+                if (i12 != 17 && i12 != 0 && i12 != 26 && i12 != 1 && i12 != 14 && i12 != 15 && i12 != 19 && i12 != 20 && i12 != 21) {
+                    str4 = str4 + "_compress";
                 }
                 if (this.cacheType == 8) {
-                    str2 = str2 + "firstframe";
+                    str4 = str4 + "firstframe";
                 }
                 TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(this.document.thumbs, 90);
                 if ("video/webm".equals(this.document.mime_type)) {
                     forDocument = ImageLocation.getForDocument(this.document);
-                    str2 = str2 + "_g";
+                    str4 = str4 + "_g";
                     svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f, true);
-                } else if ("application/x-tgsticker".equals(this.document.mime_type)) {
-                    StringBuilder sb = new StringBuilder();
-                    if (this.cacheType != 0) {
-                        str = this.cacheType + "_";
-                    } else {
-                        str = "";
-                    }
-                    sb.append(str);
-                    sb.append(this.documentId);
-                    sb.append("@");
-                    sb.append(str2);
-                    String string = sb.toString();
-                    if (SharedConfig.getDevicePerformanceClass() != 0 || (i2 = this.cacheType) == 2 || i2 == 25 || i2 == 22 || !ImageLoader.getInstance().hasLottieMemCache(string)) {
-                        SvgHelper.SvgDrawable svgThumb2 = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, this.cacheType == 22 ? 0.8f : 0.2f);
-                        if (svgThumb2 != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
-                            svgThumb2.overrideWidthAndHeight(512, 512);
-                        }
-                        svgThumb = svgThumb2;
-                    } else {
-                        svgThumb = null;
-                    }
-                    forDocument = ImageLocation.getForDocument(this.document);
                 } else {
-                    svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f, true);
-                    if (svgThumb != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
-                        svgThumb.overrideWidthAndHeight(512, 512);
+                    if ("application/x-tgsticker".equals(this.document.mime_type)) {
+                        StringBuilder sb = new StringBuilder();
+                        if (this.cacheType != 0) {
+                            str2 = this.cacheType + "_";
+                        } else {
+                            str2 = "";
+                        }
+                        sb.append(str2);
+                        sb.append(this.documentId);
+                        sb.append("@");
+                        sb.append(str4);
+                        String string = sb.toString();
+                        if (SharedConfig.getDevicePerformanceClass() != 0 || (i2 = this.cacheType) == 2 || i2 == 25 || i2 == 22 || !ImageLoader.getInstance().hasLottieMemCache(string)) {
+                            SvgHelper.SvgDrawable svgThumb2 = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, this.cacheType == 22 ? 0.8f : 0.2f);
+                            if (svgThumb2 != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                                svgThumb2.overrideWidthAndHeight(512, 512);
+                            }
+                            svgThumb = svgThumb2;
+                        } else {
+                            svgThumb = null;
+                        }
+                        forDocument = ImageLocation.getForDocument(this.document);
+                    } else {
+                        svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f, true);
+                        if (svgThumb != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                            svgThumb.overrideWidthAndHeight(512, 512);
+                        }
+                        str = str4;
+                        imageLocation = null;
                     }
-                    forDocument = null;
+                    int i13 = this.cacheType;
+                    drawable = ((i13 != 20 || i13 == 21) && (emojiDrawable = Emoji.getEmojiDrawable(MessageObject.findAnimatedEmojiEmoticon(this.document, null))) != null) ? emojiDrawable : svgThumb;
+                    if (this.absolutePath != null) {
+                        this.imageReceiver.setImageBitmap(new AnimatedFileDrawable(new File(this.absolutePath), true, 0L, 0, null, null, null, 0L, this.currentAccount, true, 512, 512, null));
+                    } else {
+                        i3 = this.cacheType;
+                        if (i3 == 8) {
+                            ImageReceiver imageReceiver = this.imageReceiver;
+                            TLRPC.Document document2 = this.document;
+                            imageReceiver.setImage(null, null, imageLocation, str, null, null, drawable, document2.size, null, document2, 1);
+                        } else {
+                            imageLocation2 = imageLocation;
+                            if (!z2 || (!liteModeKeyboard && i3 != 14)) {
+                                str3 = str;
+                                forDocument2 = i3 == 16 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
+                                if ("video/webm".equals(this.document.mime_type)) {
+                                    ImageReceiver imageReceiver2 = this.imageReceiver;
+                                    ImageLocation forDocument3 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                                    String str5 = this.sizedp + "_" + this.sizedp;
+                                    TLRPC.Document document3 = this.document;
+                                    imageReceiver2.setImage(null, null, forDocument3, str5, forDocument2, null, drawable, document3.size, null, document3, 1);
+                                } else if (MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                                    TLRPC.Document document4 = this.document;
+                                    this.imageReceiver.setImage(imageLocation2, str3 + "_firstframe", forDocument2, null, drawable, document4.size, null, document4, 1);
+                                } else {
+                                    ImageReceiver imageReceiver3 = this.imageReceiver;
+                                    ImageLocation forDocument4 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                                    String str6 = this.sizedp + "_" + this.sizedp;
+                                    TLRPC.Document document5 = this.document;
+                                    imageReceiver3.setImage(forDocument4, str6, forDocument2, null, drawable, document5.size, null, document5, 1);
+                                }
+                            } else {
+                                ImageLocation forDocument5 = i3 == 17 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
+                                ImageReceiver imageReceiver4 = this.imageReceiver;
+                                ImageLocation forDocument6 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                                String str7 = this.sizedp + "_" + this.sizedp;
+                                TLRPC.Document document6 = this.document;
+                                imageReceiver4.setImage(imageLocation2, str, forDocument6, str7, forDocument5, null, drawable, document6.size, null, document6, 1);
+                            }
+                        }
+                    }
+                    updateAutoRepeat(this.imageReceiver);
+                    i4 = this.cacheType;
+                    if (i4 != 13 || i4 == 16 || i4 == 3 || i4 == 5 || i4 == 4 || i4 == 24) {
+                        this.imageReceiver.setLayerNum(7);
+                    }
+                    i5 = this.cacheType;
+                    if (i5 != 9 || i5 == 21 || i5 == 27) {
+                        this.imageReceiver.setLayerNum(6656);
+                    }
+                    this.imageReceiver.setAspectFit(true);
+                    i6 = this.cacheType;
+                    if (i6 != 12 || i6 == 26 || i6 == 18 || i6 == 8 || i6 == 6 || i6 == 5 || (i6 == 25 && disabledToggleableAnimations)) {
+                        this.imageReceiver.setAllowStartAnimation(false);
+                        this.imageReceiver.setAllowStartLottieAnimation(false);
+                        this.imageReceiver.setAutoRepeat(0);
+                    } else {
+                        this.imageReceiver.setAllowStartLottieAnimation(true);
+                        this.imageReceiver.setAllowStartAnimation(true);
+                        this.imageReceiver.setAutoRepeat(1);
+                    }
+                    this.imageReceiver.setAllowDecodeSingleFrame(true);
+                    i7 = this.cacheType;
+                    if (i7 != 5 || i7 == 6 || i7 == 27) {
+                        iDp = AndroidUtilities.dp(6.0f);
+                    } else {
+                        iDp = i7 == 24 ? AndroidUtilities.dp(14.0f) : 0;
+                    }
+                    this.imageReceiver.setRoundRadius(iDp);
+                    updateAttachState();
+                    invalidate();
                 }
-                int i8 = this.cacheType;
-                if ((i8 != 20 && i8 != 21) || (emojiDrawable = Emoji.getEmojiDrawable(MessageObject.findAnimatedEmojiEmoticon(this.document, null))) == null) {
-                    emojiDrawable = svgThumb;
+                imageLocation = forDocument;
+                str = str4;
+                int i14 = this.cacheType;
+                if (i14 != 20) {
                 }
                 if (this.absolutePath != null) {
                     this.imageReceiver.setImageBitmap(new AnimatedFileDrawable(new File(this.absolutePath), true, 0L, 0, null, null, null, 0L, this.currentAccount, true, 512, 512, null));
                 } else {
-                    int i9 = this.cacheType;
-                    if (i9 == 8) {
-                        ImageReceiver imageReceiver = this.imageReceiver;
-                        TLRPC.Document document2 = this.document;
-                        imageReceiver.setImage(null, null, forDocument, str2, null, null, emojiDrawable, document2.size, null, document2, 1);
-                    } else if (z2 || (!liteModeKeyboard && i9 != 14)) {
-                        forDocument2 = i9 == 16 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
-                        if ("video/webm".equals(this.document.mime_type)) {
-                            ImageReceiver imageReceiver2 = this.imageReceiver;
-                            ImageLocation forDocument3 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
-                            String str3 = this.sizedp + "_" + this.sizedp;
-                            TLRPC.Document document3 = this.document;
-                            imageReceiver2.setImage(null, null, forDocument3, str3, forDocument2, null, emojiDrawable, document3.size, null, document3, 1);
-                        } else if (MessageObject.isAnimatedStickerDocument(this.document, true)) {
-                            TLRPC.Document document4 = this.document;
-                            this.imageReceiver.setImage(forDocument, str2 + "_firstframe", forDocument2, null, emojiDrawable, document4.size, null, document4, 1);
-                        } else {
-                            ImageReceiver imageReceiver3 = this.imageReceiver;
-                            ImageLocation forDocument4 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
-                            String str4 = this.sizedp + "_" + this.sizedp;
-                            TLRPC.Document document5 = this.document;
-                            imageReceiver3.setImage(forDocument4, str4, forDocument2, null, emojiDrawable, document5.size, null, document5, 1);
-                        }
+                    i3 = this.cacheType;
+                    if (i3 == 8) {
+                        ImageReceiver imageReceiver5 = this.imageReceiver;
+                        TLRPC.Document document7 = this.document;
+                        imageReceiver5.setImage(null, null, imageLocation, str, null, null, drawable, document7.size, null, document7, 1);
                     } else {
-                        forDocument2 = i9 == 17 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
-                        ImageReceiver imageReceiver4 = this.imageReceiver;
-                        ImageLocation forDocument5 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
-                        String str5 = this.sizedp + "_" + this.sizedp;
-                        TLRPC.Document document6 = this.document;
-                        imageReceiver4.setImage(forDocument, str2, forDocument5, str5, forDocument2, null, emojiDrawable, document6.size, null, document6, 1);
+                        imageLocation2 = imageLocation;
+                        if (!z2) {
+                            str3 = str;
+                            forDocument2 = i3 == 16 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
+                            if ("video/webm".equals(this.document.mime_type)) {
+                                ImageReceiver imageReceiver6 = this.imageReceiver;
+                                ImageLocation forDocument7 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                                String str8 = this.sizedp + "_" + this.sizedp;
+                                TLRPC.Document document8 = this.document;
+                                imageReceiver6.setImage(null, null, forDocument7, str8, forDocument2, null, drawable, document8.size, null, document8, 1);
+                            } else if (MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                                TLRPC.Document document9 = this.document;
+                                this.imageReceiver.setImage(imageLocation2, str3 + "_firstframe", forDocument2, null, drawable, document9.size, null, document9, 1);
+                            } else {
+                                ImageReceiver imageReceiver7 = this.imageReceiver;
+                                ImageLocation forDocument8 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                                String str9 = this.sizedp + "_" + this.sizedp;
+                                TLRPC.Document document10 = this.document;
+                                imageReceiver7.setImage(forDocument8, str9, forDocument2, null, drawable, document10.size, null, document10, 1);
+                            }
+                        } else {
+                            str3 = str;
+                            forDocument2 = i3 == 16 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
+                            if ("video/webm".equals(this.document.mime_type)) {
+                                ImageReceiver imageReceiver8 = this.imageReceiver;
+                                ImageLocation forDocument9 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                                String str10 = this.sizedp + "_" + this.sizedp;
+                                TLRPC.Document document11 = this.document;
+                                imageReceiver8.setImage(null, null, forDocument9, str10, forDocument2, null, drawable, document11.size, null, document11, 1);
+                            } else if (MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                                TLRPC.Document document12 = this.document;
+                                this.imageReceiver.setImage(imageLocation2, str3 + "_firstframe", forDocument2, null, drawable, document12.size, null, document12, 1);
+                            } else {
+                                ImageReceiver imageReceiver9 = this.imageReceiver;
+                                ImageLocation forDocument10 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                                String str11 = this.sizedp + "_" + this.sizedp;
+                                TLRPC.Document document13 = this.document;
+                                imageReceiver9.setImage(forDocument10, str11, forDocument2, null, drawable, document13.size, null, document13, 1);
+                            }
+                        }
                     }
                 }
                 updateAutoRepeat(this.imageReceiver);
-                int i10 = this.cacheType;
-                if (i10 == 13 || i10 == 16 || i10 == 3 || i10 == 5 || i10 == 4 || i10 == 24) {
+                i4 = this.cacheType;
+                if (i4 != 13) {
+                    this.imageReceiver.setLayerNum(7);
+                } else {
                     this.imageReceiver.setLayerNum(7);
                 }
-                int i11 = this.cacheType;
-                if (i11 == 9 || i11 == 21 || i11 == 27) {
+                i5 = this.cacheType;
+                if (i5 != 9) {
+                    this.imageReceiver.setLayerNum(6656);
+                } else {
                     this.imageReceiver.setLayerNum(6656);
                 }
                 this.imageReceiver.setAspectFit(true);
-                int i12 = this.cacheType;
-                if (i12 == 12 || i12 == 26 || i12 == 18 || i12 == 8 || i12 == 6 || i12 == 5 || (i12 == 25 && disabledToggleableAnimations)) {
+                i6 = this.cacheType;
+                if (i6 != 12) {
                     this.imageReceiver.setAllowStartAnimation(false);
                     this.imageReceiver.setAllowStartLottieAnimation(false);
                     this.imageReceiver.setAutoRepeat(0);
                 } else {
-                    this.imageReceiver.setAllowStartLottieAnimation(true);
-                    this.imageReceiver.setAllowStartAnimation(true);
-                    this.imageReceiver.setAutoRepeat(1);
+                    this.imageReceiver.setAllowStartAnimation(false);
+                    this.imageReceiver.setAllowStartLottieAnimation(false);
+                    this.imageReceiver.setAutoRepeat(0);
                 }
                 this.imageReceiver.setAllowDecodeSingleFrame(true);
-                int i13 = this.cacheType;
-                if (i13 == 5 || i13 == 6 || i13 == 27) {
+                i7 = this.cacheType;
+                if (i7 != 5) {
                     iDp = AndroidUtilities.dp(6.0f);
                 } else {
-                    iDp = i13 == 24 ? AndroidUtilities.dp(14.0f) : 0;
+                    iDp = AndroidUtilities.dp(6.0f);
                 }
                 this.imageReceiver.setRoundRadius(iDp);
                 updateAttachState();
@@ -1074,7 +1178,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         }
     }
 
-    public static void lambda$static$2() {
+    public static void $r8$lambda$nzDBvSt6sCG6mQHTRhz9iH2Exwc() {
         AndroidUtilities.cancelRunOnUIThread(cleanup);
         try {
             if (globalEmojiCache != null) {

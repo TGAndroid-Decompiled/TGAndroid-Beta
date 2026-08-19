@@ -150,15 +150,13 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             return false;
         }
         Object obj = _queue$volatile$FU.get(this);
-        if (obj != null) {
-            if (obj instanceof LockFreeTaskQueueCore) {
-                return ((LockFreeTaskQueueCore) obj).isEmpty();
-            }
-            if (obj != EventLoop_commonKt.CLOSED_EMPTY) {
-                return false;
-            }
+        if (obj == null) {
+            return true;
         }
-        return true;
+        if (obj instanceof LockFreeTaskQueueCore) {
+            return ((LockFreeTaskQueueCore) obj).isEmpty();
+        }
+        return obj == EventLoop_commonKt.CLOSED_EMPTY;
     }
 
     @Override

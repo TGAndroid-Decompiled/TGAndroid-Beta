@@ -373,58 +373,58 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         this.emojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(sizeNotifierFrameLayout, resourcesProvider, view);
+                EditTextEmoji.$r8$lambda$BuNHRsGwIJRmrzwqwjQkbbp551M(this.f$0, sizeNotifierFrameLayout, resourcesProvider, view);
             }
         });
         this.emojiButton.setContentDescription(LocaleController.getString(R.string.Emoji));
     }
 
-    public void lambda$new$0(SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider, View view) {
-        if (!this.emojiButton.isEnabled() || this.emojiButton.getAlpha() < 0.5f) {
+    public static void $r8$lambda$BuNHRsGwIJRmrzwqwjQkbbp551M(EditTextEmoji editTextEmoji, SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider, View view) {
+        if (!editTextEmoji.emojiButton.isEnabled() || editTextEmoji.emojiButton.getAlpha() < 0.5f) {
             return;
         }
-        AdjustPanLayoutHelper adjustPanLayoutHelper = this.adjustPanLayoutHelper;
+        AdjustPanLayoutHelper adjustPanLayoutHelper = editTextEmoji.adjustPanLayoutHelper;
         if (adjustPanLayoutHelper == null || !adjustPanLayoutHelper.animationInProgress()) {
-            if (this.shownFormatButton) {
-                ItemOptions itemOptions = this.formatOptions;
+            if (editTextEmoji.shownFormatButton) {
+                ItemOptions itemOptions = editTextEmoji.formatOptions;
                 if (itemOptions == null) {
-                    this.editText.hideActionMode();
-                    ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(sizeNotifierFrameLayout, resourcesProvider, this.emojiButton, false, false, true);
+                    editTextEmoji.editText.hideActionMode();
+                    ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(sizeNotifierFrameLayout, resourcesProvider, editTextEmoji.emojiButton, false, false, true);
                     itemOptionsMakeOptions.setMaxHeight(AndroidUtilities.dp(280.0f));
-                    final EditTextCaption editTextCaption = this.editText;
+                    final EditTextCaption editTextCaption = editTextEmoji.editText;
                     Objects.requireNonNull(editTextCaption);
                     editTextCaption.extendActionMode(null, new MenuToItemOptions(itemOptionsMakeOptions, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
                             editTextCaption.performMenuAction(((Integer) obj).intValue());
                         }
-                    }, this.editText.getOnPremiumMenuLockClickListener()));
+                    }, editTextEmoji.editText.getOnPremiumMenuLockClickListener()));
                     itemOptionsMakeOptions.forceTop(true);
                     itemOptionsMakeOptions.show();
                     return;
                 }
                 itemOptions.dismiss();
-                this.formatOptions = null;
+                editTextEmoji.formatOptions = null;
                 return;
             }
-            if (!isPopupShowing()) {
-                showPopup(1);
-                boolean zIsFocused = this.editText.isFocused();
-                this.emojiView.onOpen(this.editText.length() > 0, false);
-                this.editText.requestFocus();
+            if (!editTextEmoji.isPopupShowing()) {
+                editTextEmoji.showPopup(1);
+                boolean zIsFocused = editTextEmoji.editText.isFocused();
+                editTextEmoji.emojiView.onOpen(editTextEmoji.editText.length() > 0, false);
+                editTextEmoji.editText.requestFocus();
                 if (zIsFocused) {
                     return;
                 }
-                EditTextCaption editTextCaption2 = this.editText;
+                EditTextCaption editTextCaption2 = editTextEmoji.editText;
                 editTextCaption2.setSelection(editTextCaption2.length());
                 return;
             }
-            if (this.emojiExpanded) {
-                hidePopup(true);
-                this.emojiExpanded = false;
-                onEmojiKeyboardUpdate();
+            if (editTextEmoji.emojiExpanded) {
+                editTextEmoji.hidePopup(true);
+                editTextEmoji.emojiExpanded = false;
+                editTextEmoji.onEmojiKeyboardUpdate();
             }
-            openKeyboardInternal();
+            editTextEmoji.openKeyboardInternal();
         }
     }
 
@@ -636,7 +636,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$hidePopup$1(measuredHeight, valueAnimator);
+                        EditTextEmoji.$r8$lambda$8LhCpvUmLdox9J2jeH7GZMjlWno(this.f$0, measuredHeight, valueAnimator);
                     }
                 });
                 this.isAnimatePopupClosing = true;
@@ -669,17 +669,18 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
     }
 
-    public void lambda$hidePopup$1(int i, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$8LhCpvUmLdox9J2jeH7GZMjlWno(EditTextEmoji editTextEmoji, int i, ValueAnimator valueAnimator) {
         int i2;
+        editTextEmoji.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.emojiView.setTranslationY(fFloatValue);
+        editTextEmoji.emojiView.setTranslationY(fFloatValue);
         float f = i;
         float f2 = 1.0f - (fFloatValue / f);
-        this.emojiViewAlpha = f2;
-        if (i > 0 && ((i2 = this.currentStyle) == 2 || i2 == 3)) {
-            this.emojiView.setAlpha(f2);
+        editTextEmoji.emojiViewAlpha = f2;
+        if (i > 0 && ((i2 = editTextEmoji.currentStyle) == 2 || i2 == 3)) {
+            editTextEmoji.emojiView.setAlpha(f2);
         }
-        bottomPanelTranslationY(fFloatValue - f);
+        editTextEmoji.bottomPanelTranslationY(fFloatValue - f);
     }
 
     public float getEmojiPaddingShown() {
@@ -767,7 +768,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$showPopup$2(valueAnimator);
+                        EditTextEmoji.$r8$lambda$7jQ_zP9v6GXOCX7eMj8lK9XgoDI(this.f$0, valueAnimator);
                     }
                 });
                 valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -815,17 +816,18 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
     }
 
-    public void lambda$showPopup$2(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$7jQ_zP9v6GXOCX7eMj8lK9XgoDI(EditTextEmoji editTextEmoji, ValueAnimator valueAnimator) {
         int i;
+        editTextEmoji.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.emojiView.setTranslationY(fFloatValue);
-        int i2 = this.emojiPadding;
+        editTextEmoji.emojiView.setTranslationY(fFloatValue);
+        int i2 = editTextEmoji.emojiPadding;
         float f = 1.0f - (fFloatValue / i2);
-        this.emojiViewAlpha = f;
-        if (i2 > 0 && ((i = this.currentStyle) == 2 || i == 3)) {
-            this.emojiView.setAlpha(f);
+        editTextEmoji.emojiViewAlpha = f;
+        if (i2 > 0 && ((i = editTextEmoji.currentStyle) == 2 || i == 3)) {
+            editTextEmoji.emojiView.setAlpha(f);
         }
-        bottomPanelTranslationY(fFloatValue);
+        editTextEmoji.bottomPanelTranslationY(fFloatValue);
     }
 
     private void onWindowSizeChanged() {
@@ -846,7 +848,8 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         Context context = getContext();
         boolean zAllowSearch = allowSearch();
         int i = this.currentStyle;
-        EmojiView emojiView2 = new EmojiView(baseFragment, z, false, false, context, zAllowSearch, null, null, (i == 2 || i == 3 || i == 5) ? false : true, this.resourcesProvider, false, this.glassDesignForEmojiView) {
+        boolean z2 = (i == 2 || i == 3 || i == 5) ? false : true;
+        EmojiView emojiView2 = new EmojiView(baseFragment, z, false, false, context, zAllowSearch, null, null, z2, this.resourcesProvider, false, this.glassDesignForEmojiView) {
             private boolean changedExpanded;
             private boolean lastExpanded;
             private int lastHeight;
@@ -860,9 +863,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
 
             @Override
-            protected void onLayout(boolean z2, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z3, int i2, int i3, int i4, int i5) {
                 int i6;
-                super.onLayout(z2, i2, i3, i4, i5);
+                super.onLayout(z3, i2, i3, i4, i5);
                 if (EditTextEmoji.this.allowSearch()) {
                     int i7 = i5 - i3;
                     if (!this.lastExpanded && EditTextEmoji.this.emojiExpanded) {
@@ -1119,7 +1122,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onClearEmojiRecent$0(alertDialog, i);
+                    EditTextEmoji.this.emojiView.clearRecentEmoji();
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1128,10 +1131,6 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             } else {
                 builder.show();
             }
-        }
-
-        public void lambda$onClearEmojiRecent$0(AlertDialog alertDialog, int i) {
-            EditTextEmoji.this.emojiView.clearRecentEmoji();
         }
     }
 

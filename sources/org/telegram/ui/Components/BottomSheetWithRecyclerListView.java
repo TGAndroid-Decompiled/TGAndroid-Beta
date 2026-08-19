@@ -217,11 +217,13 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 }
 
                 private void onMeasureInternal(int i, int i2) {
+                    int i3;
                     EditTextEmoji editTextEmoji;
                     int size = View.MeasureSpec.getSize(i);
                     int size2 = View.MeasureSpec.getSize(i2);
                     setMeasuredDimension(size, size2);
                     EditTextEmoji editTextEmoji2 = BottomSheetWithRecyclerListView.this.editTextEmoji;
+                    int i4 = 0;
                     if (editTextEmoji2 != null && !editTextEmoji2.isWaitingForKeyboardOpen() && AndroidUtilities.dp(20.0f) >= 0 && !BottomSheetWithRecyclerListView.this.editTextEmoji.isPopupShowing() && !BottomSheetWithRecyclerListView.this.editTextEmoji.isAnimatePopupClosing()) {
                         this.ignoreLayout = true;
                         BottomSheetWithRecyclerListView.this.editTextEmoji.hideEmojiView();
@@ -234,10 +236,13 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                             i2 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
                         }
                     }
+                    int i5 = i2;
                     int childCount = getChildCount();
-                    for (int i3 = 0; i3 < childCount; i3++) {
-                        View childAt = getChildAt(i3);
-                        if (childAt != null && childAt.getVisibility() != 8) {
+                    while (i4 < childCount) {
+                        View childAt = getChildAt(i4);
+                        if (childAt == null || childAt.getVisibility() == 8) {
+                            i3 = i;
+                        } else {
                             EditTextEmoji editTextEmoji3 = BottomSheetWithRecyclerListView.this.editTextEmoji;
                             if (editTextEmoji3 != null && editTextEmoji3.isPopupView(childAt)) {
                                 if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
@@ -249,10 +254,14 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                                 } else {
                                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
                                 }
+                                i3 = i;
                             } else {
-                                measureChildWithMargins(childAt, i, 0, i2, 0);
+                                i3 = i;
+                                measureChildWithMargins(childAt, i3, 0, i5, 0);
                             }
                         }
+                        i4++;
+                        i = i3;
                     }
                 }
 
@@ -810,7 +819,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     @Override
-    protected void onContainerViewTranslation() {
+    public void onContainerViewTranslation() {
         onSheetTop(this.lastTop);
         checkBackDrawableInsets();
     }

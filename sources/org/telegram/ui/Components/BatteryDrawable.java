@@ -76,7 +76,7 @@ public class BatteryDrawable extends Drawable {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setFillValue$0(valueAnimator2);
+                BatteryDrawable.$r8$lambda$Ogs7G8iRdKf9wrLopXvdru_uIB8(this.f$0, valueAnimator2);
             }
         });
         this.fillValueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -91,9 +91,10 @@ public class BatteryDrawable extends Drawable {
         this.fillValueAnimator.start();
     }
 
-    public void lambda$setFillValue$0(ValueAnimator valueAnimator) {
-        this.fillValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidateSelf();
+    public static void $r8$lambda$Ogs7G8iRdKf9wrLopXvdru_uIB8(BatteryDrawable batteryDrawable, ValueAnimator valueAnimator) {
+        batteryDrawable.getClass();
+        batteryDrawable.fillValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        batteryDrawable.invalidateSelf();
     }
 
     public void colorFromPaint(Paint paint) {

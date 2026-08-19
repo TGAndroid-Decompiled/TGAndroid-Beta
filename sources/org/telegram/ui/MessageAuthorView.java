@@ -28,7 +28,7 @@ public abstract class MessageAuthorView extends FrameLayout {
     LinkSpanDrawable.LinksTextView titleView;
     public TLRPC.User user;
 
-    public abstract void lambda$updateView$2(long j);
+    public abstract void openUser(long j);
 
     public MessageAuthorView(Context context, final int i, MessageObject messageObject, TLRPC.Chat chat) {
         super(context);
@@ -59,28 +59,30 @@ public abstract class MessageAuthorView extends FrameLayout {
         ConnectionsManager.getInstance(i).sendRequest(tL_channels_getMessageAuthor, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$new$1(i, tLObject, tL_error);
+                MessageAuthorView.m3542$r8$lambda$Klk0joMhrJzkjSfXJ4Xmm0xa6I(this.f$0, i, tLObject, tL_error);
             }
         });
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector), 6, 0));
         setEnabled(false);
     }
 
-    public void lambda$new$1(final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3542$r8$lambda$Klk0joMhrJzkjSfXJ4Xmm0xa6I(final MessageAuthorView messageAuthorView, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        messageAuthorView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0(tLObject, i);
+                MessageAuthorView.$r8$lambda$ipsOxUTmwIPG4c73YwF_yozAnpA(this.f$0, tLObject, i);
             }
         });
     }
 
-    public void lambda$new$0(TLObject tLObject, int i) {
+    public static void $r8$lambda$ipsOxUTmwIPG4c73YwF_yozAnpA(MessageAuthorView messageAuthorView, TLObject tLObject, int i) {
+        messageAuthorView.getClass();
         if (tLObject instanceof TLRPC.User) {
-            this.user = (TLRPC.User) tLObject;
-            MessagesController.getInstance(i).putUser(this.user, false);
+            messageAuthorView.user = (TLRPC.User) tLObject;
+            MessagesController.getInstance(i).putUser(messageAuthorView.user, false);
         }
-        updateView();
+        messageAuthorView.updateView();
     }
 
     @Override
@@ -123,7 +125,7 @@ public abstract class MessageAuthorView extends FrameLayout {
             this.titleView.setText(AndroidUtilities.premiumText(LocaleController.formatString(R.string.MessageAuthorSentBy, UserObject.getUserName(user)), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateView$2(j);
+                    this.f$0.openUser(j);
                 }
             }));
         }

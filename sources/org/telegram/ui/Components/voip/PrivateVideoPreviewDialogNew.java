@@ -269,7 +269,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         this.positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                PrivateVideoPreviewDialogNew.$r8$lambda$RLegXFaKsgMU3GGsBD57VOWsCBI(this.f$0, view);
             }
         });
         addView(this.positiveButton, LayoutHelper.createFrame(52, 52.0f, 81, 0.0f, 0.0f, 0.0f, 80.0f));
@@ -324,7 +324,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             this.titles[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$1(i2, view);
+                    PrivateVideoPreviewDialogNew.$r8$lambda$MBG85S5Kzwmwx6RBBk0DcI9GZus(this.f$0, i2, view);
                 }
             });
         }
@@ -348,7 +348,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$new$2(f, f2, valueAnimator);
+                PrivateVideoPreviewDialogNew.$r8$lambda$u9rHohmza0jyF5FyIewKzGYZwIo(this.f$0, f, f2, valueAnimator);
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -364,7 +364,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$new$3(valueAnimator);
+                PrivateVideoPreviewDialogNew.$r8$lambda$lGQXoL9JY4rq7fqfrWu84XbvE8s(this.f$0, valueAnimator);
             }
         });
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
@@ -409,7 +409,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onScroll$0(x);
+                        PrivateVideoPreviewDialogNew.AnonymousClass1.$r8$lambda$JBoHgmrClHdlhYHuBzdBpFLtNo8(this.f$0, x);
                     }
                 };
                 if (PrivateVideoPreviewDialogNew.this.scrollAnimator != null) {
@@ -422,7 +422,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             return super.onScroll(motionEvent, motionEvent2, f, f2);
         }
 
-        public void lambda$onScroll$0(float f) {
+        public static void $r8$lambda$JBoHgmrClHdlhYHuBzdBpFLtNo8(AnonymousClass1 anonymousClass1, float f) {
             if (f > 0.0f) {
                 if (PrivateVideoPreviewDialogNew.this.realCurrentPage < 2) {
                     PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew = PrivateVideoPreviewDialogNew.this;
@@ -432,42 +432,44 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                 PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew2 = PrivateVideoPreviewDialogNew.this;
                 privateVideoPreviewDialogNew2.setCurrentPage(privateVideoPreviewDialogNew2.realCurrentPage - 1, true);
             }
-            this.lockDragging = false;
+            anonymousClass1.lockDragging = false;
         }
     }
 
-    public void lambda$new$0(View view) {
-        if (this.isDismissed) {
+    public static void $r8$lambda$RLegXFaKsgMU3GGsBD57VOWsCBI(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, View view) {
+        if (privateVideoPreviewDialogNew.isDismissed) {
             return;
         }
-        if (this.realCurrentPage == 0) {
-            ((Activity) getContext()).startActivityForResult(((MediaProjectionManager) getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
+        if (privateVideoPreviewDialogNew.realCurrentPage == 0) {
+            ((Activity) privateVideoPreviewDialogNew.getContext()).startActivityForResult(((MediaProjectionManager) privateVideoPreviewDialogNew.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
         } else {
-            dismiss(false, true);
+            privateVideoPreviewDialogNew.dismiss(false, true);
         }
     }
 
-    public void lambda$new$1(int i, View view) {
-        if (this.scrollAnimator != null || view.getAlpha() == 0.0f) {
+    public static void $r8$lambda$MBG85S5Kzwmwx6RBBk0DcI9GZus(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, int i, View view) {
+        if (privateVideoPreviewDialogNew.scrollAnimator != null || view.getAlpha() == 0.0f) {
             return;
         }
-        setCurrentPage(i, true);
+        privateVideoPreviewDialogNew.setCurrentPage(i, true);
     }
 
-    public void lambda$new$2(float f, float f2, ValueAnimator valueAnimator) {
-        this.openProgress1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+    public static void $r8$lambda$u9rHohmza0jyF5FyIewKzGYZwIo(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, float f, float f2, ValueAnimator valueAnimator) {
+        privateVideoPreviewDialogNew.getClass();
+        privateVideoPreviewDialogNew.openProgress1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float fDp = f + AndroidUtilities.dp(28.0f);
         float fDp2 = f2 + AndroidUtilities.dp(52.0f);
-        float f3 = this.openProgress1;
-        this.openTranslationX = fDp - (fDp * f3);
-        this.openTranslationY = fDp2 - (f3 * fDp2);
-        invalidate();
+        float f3 = privateVideoPreviewDialogNew.openProgress1;
+        privateVideoPreviewDialogNew.openTranslationX = fDp - (fDp * f3);
+        privateVideoPreviewDialogNew.openTranslationY = fDp2 - (f3 * fDp2);
+        privateVideoPreviewDialogNew.invalidate();
     }
 
-    public void lambda$new$3(ValueAnimator valueAnimator) {
-        this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f)) * this.openProgress2));
-        this.positiveButton.requestLayout();
+    public static void $r8$lambda$lGQXoL9JY4rq7fqfrWu84XbvE8s(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, ValueAnimator valueAnimator) {
+        privateVideoPreviewDialogNew.getClass();
+        privateVideoPreviewDialogNew.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        privateVideoPreviewDialogNew.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f)) * privateVideoPreviewDialogNew.openProgress2));
+        privateVideoPreviewDialogNew.positiveButton.requestLayout();
     }
 
     private void showStub(boolean z, boolean z2) {
@@ -544,7 +546,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             this.scrollAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$setCurrentPage$4(valueAnimator);
+                    PrivateVideoPreviewDialogNew.$r8$lambda$HZG_n9vJ9URYhqGO0twk4YJRQ2E(this.f$0, valueAnimator);
                 }
             });
             this.scrollAnimator.addListener(new AnimatorListenerAdapter() {
@@ -572,9 +574,10 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         showStub(true, false);
     }
 
-    public void lambda$setCurrentPage$4(ValueAnimator valueAnimator) {
-        this.pageOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        updateTitlesLayout();
+    public static void $r8$lambda$HZG_n9vJ9URYhqGO0twk4YJRQ2E(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, ValueAnimator valueAnimator) {
+        privateVideoPreviewDialogNew.getClass();
+        privateVideoPreviewDialogNew.pageOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        privateVideoPreviewDialogNew.updateTitlesLayout();
     }
 
     private void createPages(FrameLayout frameLayout) {
@@ -655,7 +658,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$dismiss$5(valueAnimator);
+                    PrivateVideoPreviewDialogNew.$r8$lambda$mSaqhRgFoktgoSDDXthmHRJXKTE(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -689,7 +692,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$dismiss$6(valueAnimator);
+                    PrivateVideoPreviewDialogNew.m2981$r8$lambda$YNA4YQHVAO3gE5tqZaYvDVzSHo(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat2.addListener(new AnimatorListenerAdapter() {
@@ -704,7 +707,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$dismiss$7(valueAnimator);
+                    PrivateVideoPreviewDialogNew.$r8$lambda$QFp1801ceVBAt2E4S6CMNBXYbRU(this.f$0, valueAnimator);
                 }
             });
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
@@ -726,25 +729,28 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         invalidate();
     }
 
-    public void lambda$dismiss$5(ValueAnimator valueAnimator) {
-        this.closeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$mSaqhRgFoktgoSDDXthmHRJXKTE(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, ValueAnimator valueAnimator) {
+        privateVideoPreviewDialogNew.getClass();
+        privateVideoPreviewDialogNew.closeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        privateVideoPreviewDialogNew.invalidate();
     }
 
-    public void lambda$dismiss$6(ValueAnimator valueAnimator) {
-        this.openProgress1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float fDp = this.startLocationX + AndroidUtilities.dp(28.0f);
-        float fDp2 = this.startLocationY + AndroidUtilities.dp(52.0f);
-        float f = this.openProgress1;
-        this.openTranslationX = fDp - (fDp * f);
-        this.openTranslationY = fDp2 - (f * fDp2);
-        invalidate();
+    public static void m2981$r8$lambda$YNA4YQHVAO3gE5tqZaYvDVzSHo(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, ValueAnimator valueAnimator) {
+        privateVideoPreviewDialogNew.getClass();
+        privateVideoPreviewDialogNew.openProgress1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float fDp = privateVideoPreviewDialogNew.startLocationX + AndroidUtilities.dp(28.0f);
+        float fDp2 = privateVideoPreviewDialogNew.startLocationY + AndroidUtilities.dp(52.0f);
+        float f = privateVideoPreviewDialogNew.openProgress1;
+        privateVideoPreviewDialogNew.openTranslationX = fDp - (fDp * f);
+        privateVideoPreviewDialogNew.openTranslationY = fDp2 - (f * fDp2);
+        privateVideoPreviewDialogNew.invalidate();
     }
 
-    public void lambda$dismiss$7(ValueAnimator valueAnimator) {
-        this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f)) * this.openProgress2));
-        this.positiveButton.requestLayout();
+    public static void $r8$lambda$QFp1801ceVBAt2E4S6CMNBXYbRU(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, ValueAnimator valueAnimator) {
+        privateVideoPreviewDialogNew.getClass();
+        privateVideoPreviewDialogNew.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        privateVideoPreviewDialogNew.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f)) * privateVideoPreviewDialogNew.openProgress2));
+        privateVideoPreviewDialogNew.positiveButton.requestLayout();
     }
 
     public void setBottomPadding(int i) {

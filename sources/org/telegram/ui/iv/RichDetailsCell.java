@@ -97,7 +97,7 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$0(view2);
+                RichDetailsCell.$r8$lambda$lbb7UyFLk4IpptdW_FZ1TRn3sYc(this.f$0, view2);
             }
         });
         addView(view, LayoutHelper.createFrame(53, -1, 51));
@@ -111,17 +111,17 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
         richEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
             public final void onSpansChanged() {
-                this.f$0.lambda$new$1();
+                RichDetailsCell.$r8$lambda$_HLRs6uEkgX4dtZqIbYfAQSF308(this.f$0);
             }
         });
         addView(richEditText, LayoutHelper.createFrame(-1, -2.0f, 51, 53.0f, 0.0f, 16.0f, 0.0f));
         updateColors();
     }
 
-    public void lambda$new$0(View view) {
+    public static void $r8$lambda$lbb7UyFLk4IpptdW_FZ1TRn3sYc(RichDetailsCell richDetailsCell, View view) {
         BlockRow blockRow;
-        Delegate delegate = this.delegate;
-        if (delegate == null || (blockRow = this.currentRow) == null) {
+        Delegate delegate = richDetailsCell.delegate;
+        if (delegate == null || (blockRow = richDetailsCell.currentRow) == null) {
             return;
         }
         delegate.onToggle(blockRow);
@@ -217,12 +217,13 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
             RichDetailsCell.this.post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSelectionChanged$0(richEditText, i2, selectionHelper, i);
+                    RichDetailsCell.AnonymousClass3.m4912$r8$lambda$NQEIFl3aWVH0lhGZEPxnTsjUk(this.f$0, richEditText, i2, selectionHelper, i);
                 }
             });
         }
 
-        public void lambda$onSelectionChanged$0(RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2) {
+        public static void m4912$r8$lambda$NQEIFl3aWVH0lhGZEPxnTsjUk(AnonymousClass3 anonymousClass3, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2) {
+            anonymousClass3.getClass();
             if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd() || !articleTextSelectionHelper.selectRangeOf(RichDetailsCell.this, i2, i)) {
                 return;
             }
@@ -232,18 +233,18 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
         }
     }
 
-    public void lambda$new$1() {
+    public static void $r8$lambda$_HLRs6uEkgX4dtZqIbYfAQSF308(RichDetailsCell richDetailsCell) {
         BlockRow blockRow;
-        rememberAutoBoldState();
-        BlockRow blockRow2 = this.currentRow;
+        richDetailsCell.rememberAutoBoldState();
+        BlockRow blockRow2 = richDetailsCell.currentRow;
         if (blockRow2 != null) {
             TL_iv.PageBlock pageBlock = blockRow2.block;
             if (pageBlock instanceof TL_iv.pageBlockDetails) {
-                ((TL_iv.pageBlockDetails) pageBlock).title = RichTextStyle.fromSpannable(this.editText.getText());
+                ((TL_iv.pageBlockDetails) pageBlock).title = RichTextStyle.fromSpannable(richDetailsCell.editText.getText());
             }
         }
-        Delegate delegate = this.delegate;
-        if (delegate == null || (blockRow = this.currentRow) == null) {
+        Delegate delegate = richDetailsCell.delegate;
+        if (delegate == null || (blockRow = richDetailsCell.currentRow) == null) {
             return;
         }
         delegate.onSpansChanged(blockRow);
@@ -307,17 +308,22 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
     public boolean isPressOnText(int i, int i2) {
         int lineForVertical;
         Layout layout = this.editText.getLayout();
-        if (layout == null || this.editText.length() == 0) {
-            return false;
+        if (layout != null && this.editText.length() != 0) {
+            int left = i - (this.editText.getLeft() + this.editText.getPaddingLeft());
+            int top = i2 - (this.editText.getTop() + this.editText.getPaddingTop());
+            if (top >= 0 && top < layout.getHeight() && (lineForVertical = layout.getLineForVertical(top)) >= 0 && lineForVertical < layout.getLineCount()) {
+                int iDp = AndroidUtilities.dp(24.0f);
+                int iMax = Math.max(0, (this.editText.getWidth() - this.editText.getPaddingLeft()) - this.editText.getPaddingRight());
+                float f = iDp;
+                float fMax = Math.max(0.0f, layout.getLineLeft(lineForVertical) - f);
+                float fMin = Math.min(iMax, layout.getLineRight(lineForVertical) + f);
+                float f2 = left;
+                if (f2 >= fMax && f2 <= fMin) {
+                    return true;
+                }
+            }
         }
-        int left = i - (this.editText.getLeft() + this.editText.getPaddingLeft());
-        int top = i2 - (this.editText.getTop() + this.editText.getPaddingTop());
-        if (top < 0 || top >= layout.getHeight() || (lineForVertical = layout.getLineForVertical(top)) < 0 || lineForVertical >= layout.getLineCount()) {
-            return false;
-        }
-        float fDp = AndroidUtilities.dp(24.0f);
-        float f = left;
-        return f >= Math.max(0.0f, layout.getLineLeft(lineForVertical) - fDp) && f <= Math.min((float) Math.max(0, (this.editText.getWidth() - this.editText.getPaddingLeft()) - this.editText.getPaddingRight()), layout.getLineRight(lineForVertical) + fDp);
+        return false;
     }
 
     public boolean isPressOnEmptyEditText(int i, int i2) {
@@ -377,7 +383,10 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
 
             @Override
             public CharSequence getText() {
-                return (RichDetailsCell.this.currentRow == null || !(RichDetailsCell.this.currentRow.block instanceof TL_iv.pageBlockDetails)) ? "" : RichTextStyle.toSpannable(((TL_iv.pageBlockDetails) RichDetailsCell.this.currentRow.block).title);
+                if (RichDetailsCell.this.currentRow != null && (RichDetailsCell.this.currentRow.block instanceof TL_iv.pageBlockDetails)) {
+                    return RichTextStyle.toSpannable(((TL_iv.pageBlockDetails) RichDetailsCell.this.currentRow.block).title);
+                }
+                return "";
             }
         });
     }

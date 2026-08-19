@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
@@ -441,7 +440,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             getMessagesController().getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    this.f$0.lambda$loadStatistic$1((TL_stories.TL_premium_boostsStatus) obj);
+                    BoostsActivity.$r8$lambda$RBc6oB6A0494Oclaf7eJ79oyb9Y(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
                 }
             });
         } else {
@@ -450,28 +449,29 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         }
     }
 
-    public void lambda$loadStatistic$1(final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public static void $r8$lambda$RBc6oB6A0494Oclaf7eJ79oyb9Y(final BoostsActivity boostsActivity, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        boostsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadStatistic$0(tL_premium_boostsStatus);
+                BoostsActivity.m1354$r8$lambda$egbWcQ_PpcqChbRkszTFuN5TMc(this.f$0, tL_premium_boostsStatus);
             }
         });
     }
 
-    public void lambda$loadStatistic$0(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        this.boostsStatus = tL_premium_boostsStatus;
-        loadCanApplyBoosts();
-        this.progressLayout.animate().cancel();
-        this.progressLayout.animate().alpha(0.0f).setDuration(100L).setStartDelay(0L).setListener(new AnimatorListenerAdapter() {
+    public static void m1354$r8$lambda$egbWcQ_PpcqChbRkszTFuN5TMc(BoostsActivity boostsActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        boostsActivity.boostsStatus = tL_premium_boostsStatus;
+        boostsActivity.loadCanApplyBoosts();
+        boostsActivity.progressLayout.animate().cancel();
+        boostsActivity.progressLayout.animate().alpha(0.0f).setDuration(100L).setStartDelay(0L).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 BoostsActivity.this.progressLayout.setVisibility(8);
             }
         });
-        resetHeader(true);
-        updateRows(true);
-        loadUsers(null);
+        boostsActivity.resetHeader(true);
+        boostsActivity.updateRows(true);
+        boostsActivity.loadUsers(null);
     }
 
     private void loadCanApplyBoosts() {
@@ -481,13 +481,9 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         getMessagesController().getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                this.f$0.lambda$loadCanApplyBoosts$2((ChannelBoostsController.CanApplyBoost) obj);
+                this.f$0.canApplyBoost = (ChannelBoostsController.CanApplyBoost) obj;
             }
         });
-    }
-
-    public void lambda$loadCanApplyBoosts$2(ChannelBoostsController.CanApplyBoost canApplyBoost) {
-        this.canApplyBoost = canApplyBoost;
     }
 
     private void loadUsers(Boolean bool) {
@@ -499,64 +495,66 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadUsers$5();
+                    BoostsActivity.$r8$lambda$_bV1Ovp_8Jef1ctwVgC9zwVQaVg(this.f$0);
                 }
             });
         } else if (bool.booleanValue()) {
             loadOnlyGifts(null, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadUsers$6();
+                    BoostsActivity.m1351$r8$lambda$1GqRzFvE_EsK6vcE35EIohDiE(this.f$0);
                 }
             });
         } else {
             loadOnlyBoosts(null, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadUsers$7();
+                    BoostsActivity.$r8$lambda$v5FB1CrVqCijxtKTEj5SbIFfKsg(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$loadUsers$5() {
+    public static void $r8$lambda$_bV1Ovp_8Jef1ctwVgC9zwVQaVg(final BoostsActivity boostsActivity) {
+        boostsActivity.getClass();
         CountDownLatch countDownLatch = new CountDownLatch(2);
-        loadOnlyBoosts(countDownLatch, null);
-        loadOnlyGifts(countDownLatch, null);
+        boostsActivity.loadOnlyBoosts(countDownLatch, null);
+        boostsActivity.loadOnlyGifts(countDownLatch, null);
         try {
             countDownLatch.await();
         } catch (InterruptedException unused) {
         }
-        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
+        NotificationCenter.getInstance(boostsActivity.currentAccount).doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadUsers$4();
+                BoostsActivity.m1352$r8$lambda$QsylhBcLa5kv2jebMnFzOYukB0(this.f$0);
             }
         });
     }
 
-    public void lambda$loadUsers$4() {
+    public static void m1352$r8$lambda$QsylhBcLa5kv2jebMnFzOYukB0(final BoostsActivity boostsActivity) {
+        boostsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadUsers$3();
+                BoostsActivity.$r8$lambda$_mmSA6T7SB8qHk_ns7v8BAgxDuU(this.f$0);
             }
         });
     }
 
-    public void lambda$loadUsers$3() {
-        this.usersLoading = false;
-        updateRows(true);
+    public static void $r8$lambda$_mmSA6T7SB8qHk_ns7v8BAgxDuU(BoostsActivity boostsActivity) {
+        boostsActivity.usersLoading = false;
+        boostsActivity.updateRows(true);
     }
 
-    public void lambda$loadUsers$6() {
-        this.usersLoading = false;
-        updateRows(true);
+    public static void m1351$r8$lambda$1GqRzFvE_EsK6vcE35EIohDiE(BoostsActivity boostsActivity) {
+        boostsActivity.usersLoading = false;
+        boostsActivity.updateRows(true);
     }
 
-    public void lambda$loadUsers$7() {
-        this.usersLoading = false;
-        updateRows(true);
+    public static void $r8$lambda$v5FB1CrVqCijxtKTEj5SbIFfKsg(BoostsActivity boostsActivity) {
+        boostsActivity.usersLoading = false;
+        boostsActivity.updateRows(true);
     }
 
     private void loadOnlyBoosts(final CountDownLatch countDownLatch, final Runnable runnable) {
@@ -567,50 +565,56 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_premium_getBoostsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadOnlyBoosts$9(countDownLatch, runnable, tLObject, tL_error);
+                BoostsActivity.$r8$lambda$nYiFDvUtO1qJs0rfZORNXIw0EqY(this.f$0, countDownLatch, runnable, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public void lambda$loadOnlyBoosts$9(final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$nYiFDvUtO1qJs0rfZORNXIw0EqY(final BoostsActivity boostsActivity, final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        boostsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadOnlyBoosts$8(countDownLatch, tLObject, runnable);
+                BoostsActivity.m1353$r8$lambda$VOpzH1C0C93t57xstJQK6Zvi5g(this.f$0, countDownLatch, tLObject, runnable);
             }
         });
     }
 
-    public void lambda$loadOnlyBoosts$8(CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+    public static void m1353$r8$lambda$VOpzH1C0C93t57xstJQK6Zvi5g(BoostsActivity boostsActivity, CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+        boostsActivity.getClass();
         if (countDownLatch != null) {
             countDownLatch.countDown();
         }
         if (tLObject != null) {
-            this.limitBoosts = 20;
+            boostsActivity.limitBoosts = 20;
             TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject;
             boolean z = false;
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_premium_boostsList.users, false);
-            this.lastBoostsOffset = tL_premium_boostsList.next_offset;
-            this.boosters.addAll(tL_premium_boostsList.boosts);
-            Iterator it = this.boosters.iterator();
+            MessagesController.getInstance(boostsActivity.currentAccount).putUsers(tL_premium_boostsList.users, false);
+            boostsActivity.lastBoostsOffset = tL_premium_boostsList.next_offset;
+            boostsActivity.boosters.addAll(tL_premium_boostsList.boosts);
+            ArrayList arrayList = boostsActivity.boosters;
+            int size = arrayList.size();
             int i = 0;
+            int i2 = 0;
             while (true) {
-                int i2 = 1;
-                if (!it.hasNext()) {
+                int i3 = 1;
+                if (i >= size) {
                     break;
                 }
-                int i3 = ((TL_stories.Boost) it.next()).multiplier;
-                if (i3 > 0) {
-                    i2 = i3;
+                Object obj = arrayList.get(i);
+                i++;
+                int i4 = ((TL_stories.Boost) obj).multiplier;
+                if (i4 > 0) {
+                    i3 = i4;
                 }
-                i += i2;
+                i2 += i3;
             }
-            this.nextBoostRemaining = Math.max(0, tL_premium_boostsList.count - i);
-            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && this.nextBoostRemaining > 0) {
+            boostsActivity.nextBoostRemaining = Math.max(0, tL_premium_boostsList.count - i2);
+            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && boostsActivity.nextBoostRemaining > 0) {
                 z = true;
             }
-            this.hasBoostsNext = z;
-            this.totalBoosts = tL_premium_boostsList.count;
+            boostsActivity.hasBoostsNext = z;
+            boostsActivity.totalBoosts = tL_premium_boostsList.count;
             if (runnable != null) {
                 runnable.run();
             }
@@ -626,50 +630,56 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_premium_getBoostsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadOnlyGifts$11(countDownLatch, runnable, tLObject, tL_error);
+                BoostsActivity.$r8$lambda$QJViKzQEB04toTRzTkswgiJLfkE(this.f$0, countDownLatch, runnable, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public void lambda$loadOnlyGifts$11(final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$QJViKzQEB04toTRzTkswgiJLfkE(final BoostsActivity boostsActivity, final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        boostsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadOnlyGifts$10(countDownLatch, tLObject, runnable);
+                BoostsActivity.$r8$lambda$YveK_pj_5XbE4NYhSeSateiIjXU(this.f$0, countDownLatch, tLObject, runnable);
             }
         });
     }
 
-    public void lambda$loadOnlyGifts$10(CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+    public static void $r8$lambda$YveK_pj_5XbE4NYhSeSateiIjXU(BoostsActivity boostsActivity, CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+        boostsActivity.getClass();
         if (countDownLatch != null) {
             countDownLatch.countDown();
         }
         if (tLObject != null) {
-            this.limitGifts = 20;
+            boostsActivity.limitGifts = 20;
             TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject;
             boolean z = false;
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_premium_boostsList.users, false);
-            this.lastGiftsOffset = tL_premium_boostsList.next_offset;
-            this.gifts.addAll(tL_premium_boostsList.boosts);
-            Iterator it = this.gifts.iterator();
+            MessagesController.getInstance(boostsActivity.currentAccount).putUsers(tL_premium_boostsList.users, false);
+            boostsActivity.lastGiftsOffset = tL_premium_boostsList.next_offset;
+            boostsActivity.gifts.addAll(tL_premium_boostsList.boosts);
+            ArrayList arrayList = boostsActivity.gifts;
+            int size = arrayList.size();
             int i = 0;
+            int i2 = 0;
             while (true) {
-                int i2 = 1;
-                if (!it.hasNext()) {
+                int i3 = 1;
+                if (i >= size) {
                     break;
                 }
-                int i3 = ((TL_stories.Boost) it.next()).multiplier;
-                if (i3 > 0) {
-                    i2 = i3;
+                Object obj = arrayList.get(i);
+                i++;
+                int i4 = ((TL_stories.Boost) obj).multiplier;
+                if (i4 > 0) {
+                    i3 = i4;
                 }
-                i += i2;
+                i2 += i3;
             }
-            this.nextGiftsRemaining = Math.max(0, tL_premium_boostsList.count - i);
-            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && this.nextGiftsRemaining > 0) {
+            boostsActivity.nextGiftsRemaining = Math.max(0, tL_premium_boostsList.count - i2);
+            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && boostsActivity.nextGiftsRemaining > 0) {
                 z = true;
             }
-            this.hasGiftsNext = z;
-            this.totalGifts = tL_premium_boostsList.count;
+            boostsActivity.hasGiftsNext = z;
+            boostsActivity.totalGifts = tL_premium_boostsList.count;
             if (runnable != null) {
                 runnable.run();
             }
@@ -730,7 +740,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         super.onFragmentDestroy();
     }
 
-    private class ItemInternal extends AdapterWithDiffUtils.Item {
+    class ItemInternal extends AdapterWithDiffUtils.Item {
         TL_stories.Boost booster;
         boolean isLast;
         TL_stories.PrepaidGiveaway prepaidGiveaway;
@@ -861,19 +871,19 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             headerButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    BoostsActivity.AnonymousClass5.m1355$r8$lambda$9yNix3pfTtmaRwFH07EZl4b6A0(this.f$0, view);
                 }
             });
             headerButtonView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$2(view);
+                    BoostsActivity.AnonymousClass5.m1356$r8$lambda$IgjlIhIJ0NwaCnGMnBI5HBGMvw(this.f$0, view);
                 }
             });
             headerButtonView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$3(view);
+                    BoostsActivity.AnonymousClass5.$r8$lambda$QdyQf0St96BWAacDQy0mO6yszQk(this.f$0, view);
                 }
             });
             LinearLayout linearLayout = new LinearLayout(getContext());
@@ -886,30 +896,27 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             addView(linearLayout, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 19.0f, 0.0f, 0.0f));
         }
 
-        public void lambda$new$0(View view) {
+        public static void m1355$r8$lambda$9yNix3pfTtmaRwFH07EZl4b6A0(AnonymousClass5 anonymousClass5, View view) {
             BoostsActivity boostsActivity = BoostsActivity.this;
             LimitReachedBottomSheet.openBoostsForUsers(boostsActivity, true, boostsActivity.dialogId, BoostsActivity.this.canApplyBoost, BoostsActivity.this.boostsStatus, null);
         }
 
-        public void lambda$new$2(View view) {
+        public static void m1356$r8$lambda$IgjlIhIJ0NwaCnGMnBI5HBGMvw(final AnonymousClass5 anonymousClass5, View view) {
             BoostsActivity.this.updateDialogVisibility(true);
             BoostsActivity boostsActivity = BoostsActivity.this;
             BoostPagerBottomSheet.show(boostsActivity, boostsActivity.dialogId, ((BaseFragment) BoostsActivity.this).resourceProvider);
             BoostPagerBottomSheet.getInstance().setOnHideListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$new$1(dialogInterface);
+                    BoostsActivity.this.updateDialogVisibility(false);
                 }
             });
         }
 
-        public void lambda$new$1(DialogInterface dialogInterface) {
-            BoostsActivity.this.updateDialogVisibility(false);
-        }
-
-        public void lambda$new$3(View view) {
+        public static void $r8$lambda$QdyQf0St96BWAacDQy0mO6yszQk(AnonymousClass5 anonymousClass5, View view) {
+            anonymousClass5.getClass();
             BoostsActivity boostsActivity = BoostsActivity.this;
-            Context context = getContext();
+            Context context = anonymousClass5.getContext();
             BoostsActivity boostsActivity2 = BoostsActivity.this;
             LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(boostsActivity, context, 31, boostsActivity2.currentAccount, boostsActivity2.getResourceProvider());
             limitReachedBottomSheet.setBoostsStats(BoostsActivity.this.boostsStatus, true);
@@ -966,7 +973,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$createView$12(context, view, i);
+                BoostsActivity.$r8$lambda$Ul0nbs6xmuX4DwkQ17srWMhUu0A(this.f$0, context, view, i);
             }
         });
         createEmptyView(getContext());
@@ -975,20 +982,22 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         return viewCreateView;
     }
 
-    public void lambda$createView$12(Context context, View view, int i) {
+    public static void $r8$lambda$Ul0nbs6xmuX4DwkQ17srWMhUu0A(BoostsActivity boostsActivity, Context context, View view, int i) {
+        BoostsActivity boostsActivity2;
+        boostsActivity.getClass();
         if (view instanceof GiftedUserCell) {
             GiftedUserCell giftedUserCell = (GiftedUserCell) view;
             TL_stories.Boost boost = giftedUserCell.getBoost();
             boolean z = boost.giveaway;
             if (z && boost.stars > 0) {
-                StarsIntroActivity.showBoostsSheet(context, this.currentAccount, this.dialogId, boost, getResourceProvider());
+                StarsIntroActivity.showBoostsSheet(context, boostsActivity.currentAccount, boostsActivity.dialogId, boost, boostsActivity.getResourceProvider());
             } else {
                 boolean z2 = boost.gift;
                 if (((z2 || z) && boost.user_id >= 0) || boost.unclaimed) {
                     TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
                     tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
                     tL_payments_checkedGiftCode.to_id = boost.user_id;
-                    tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-this.currentChat.id);
+                    tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-boostsActivity.currentChat.id);
                     int i2 = boost.date;
                     tL_payments_checkedGiftCode.date = i2;
                     tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
@@ -1001,27 +1010,31 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     } else {
                         tL_payments_checkedGiftCode.boost = boost;
                     }
-                    new GiftInfoBottomSheet(this, false, true, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
+                    boostsActivity2 = boostsActivity;
+                    new GiftInfoBottomSheet(boostsActivity2, false, true, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
                 } else if (z && boost.user_id == -1) {
-                    Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getParentActivity(), getResourceProvider());
+                    Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(boostsActivity.getParentActivity(), boostsActivity.getResourceProvider());
                     lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
                     lottieLayout.textView.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
                     lottieLayout.textView.setSingleLine(false);
                     lottieLayout.textView.setMaxLines(2);
-                    Bulletin.make(this, lottieLayout, 2750).show();
+                    Bulletin.make(boostsActivity, lottieLayout, 2750).show();
                 } else if (!z2 && !z) {
-                    presentFragment(ProfileActivity.of(giftedUserCell.getDialogId()));
+                    boostsActivity.presentFragment(ProfileActivity.of(giftedUserCell.getDialogId()));
                 }
             }
+            boostsActivity2 = boostsActivity;
+        } else {
+            boostsActivity2 = boostsActivity;
         }
         if (view instanceof TextCell) {
-            BoostPagerBottomSheet.show(this, this.dialogId, this.resourceProvider);
+            BoostPagerBottomSheet.show(boostsActivity2, boostsActivity2.dialogId, boostsActivity2.resourceProvider);
         }
         if (view instanceof GiveawayCell) {
-            BoostPagerBottomSheet.show(this, this.resourceProvider, this.dialogId, ((GiveawayCell) view).getPrepaidGiveaway());
+            BoostPagerBottomSheet.show(boostsActivity2, boostsActivity2.resourceProvider, boostsActivity2.dialogId, ((GiveawayCell) view).getPrepaidGiveaway());
         }
-        if (((ItemInternal) this.items.get(i)).viewType == 9) {
-            loadUsers(Boolean.valueOf(this.selectedTab == 1));
+        if (((ItemInternal) boostsActivity2.items.get(i)).viewType == 9) {
+            boostsActivity2.loadUsers(Boolean.valueOf(boostsActivity2.selectedTab == 1));
         }
     }
 }

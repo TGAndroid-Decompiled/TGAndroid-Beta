@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
@@ -175,7 +174,7 @@ public abstract class WearAuthSheet {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return WearAuthSheet.lambda$show$0((Integer) obj, (Integer) obj2);
+                return WearAuthSheet.$r8$lambda$buTLqhwFrVAmtPQch46uwC7EpKk((Integer) obj, (Integer) obj2);
             }
         });
         if (arrayList.isEmpty()) {
@@ -230,20 +229,20 @@ public abstract class WearAuthSheet {
         frameLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WearAuthSheet.lambda$show$2(bottomSheetCreate, frameLayout3, arrayList, iArr, avatarDrawable, backupImageView, view);
+                WearAuthSheet.$r8$lambda$c_qbh0Jp_OD1nqWPUmrx5EQJ8yg(bottomSheetCreate, frameLayout3, arrayList, iArr, avatarDrawable, backupImageView, view);
             }
         });
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WearAuthSheet.lambda$show$5(round, iArr, view);
+                WearAuthSheet.$r8$lambda$B5hgXdvDp8J0vgwWMb33wSz5fCQ(round, iArr, view);
             }
         });
         currentSheet = bottomSheetCreate;
         bottomSheetCreate.show();
     }
 
-    public static int lambda$show$0(Integer num, Integer num2) {
+    public static int $r8$lambda$buTLqhwFrVAmtPQch46uwC7EpKk(Integer num, Integer num2) {
         long j = UserConfig.getInstance(num.intValue()).loginTime;
         long j2 = UserConfig.getInstance(num2.intValue()).loginTime;
         if (j > j2) {
@@ -252,35 +251,47 @@ public abstract class WearAuthSheet {
         return j < j2 ? -1 : 0;
     }
 
-    public static void lambda$show$2(BottomSheet bottomSheet, FrameLayout frameLayout, ArrayList arrayList, final int[] iArr, final AvatarDrawable avatarDrawable, final BackupImageView backupImageView, View view) {
+    public static void $r8$lambda$c_qbh0Jp_OD1nqWPUmrx5EQJ8yg(BottomSheet bottomSheet, FrameLayout frameLayout, ArrayList arrayList, int[] iArr, AvatarDrawable avatarDrawable, BackupImageView backupImageView, View view) {
+        final int[] iArr2;
+        final AvatarDrawable avatarDrawable2;
+        final BackupImageView backupImageView2;
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(bottomSheet.container, bottomSheet.getResourcesProvider(), frameLayout);
-        Iterator it = arrayList.iterator();
-        while (true) {
-            if (it.hasNext()) {
-                final int iIntValue = ((Integer) it.next()).intValue();
-                final TLRPC.User currentUser = UserConfig.getInstance(iIntValue).getCurrentUser();
-                if (currentUser != null) {
-                    itemOptionsMakeOptions.addAccount(iIntValue, iArr[0] == iIntValue, new Runnable() {
-                        @Override
-                        public final void run() {
-                            WearAuthSheet.lambda$show$1(iArr, iIntValue, avatarDrawable, currentUser, backupImageView);
-                        }
-                    });
-                }
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            final int iIntValue = ((Integer) obj).intValue();
+            final TLRPC.User currentUser = UserConfig.getInstance(iIntValue).getCurrentUser();
+            if (currentUser == null) {
+                iArr2 = iArr;
+                avatarDrawable2 = avatarDrawable;
+                backupImageView2 = backupImageView;
             } else {
-                itemOptionsMakeOptions.setDrawScrim(false).setOnTopOfScrim().setDimAlpha(0).setGravity(3).translate(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f)).show();
-                return;
+                iArr2 = iArr;
+                avatarDrawable2 = avatarDrawable;
+                backupImageView2 = backupImageView;
+                itemOptionsMakeOptions.addAccount(iIntValue, iArr[0] == iIntValue, new Runnable() {
+                    @Override
+                    public final void run() {
+                        WearAuthSheet.$r8$lambda$OlMawrInXqaCFdhiTyWaQHdJHeI(iArr2, iIntValue, avatarDrawable2, currentUser, backupImageView2);
+                    }
+                });
             }
+            iArr = iArr2;
+            avatarDrawable = avatarDrawable2;
+            backupImageView = backupImageView2;
         }
+        itemOptionsMakeOptions.setDrawScrim(false).setOnTopOfScrim().setDimAlpha(0).setGravity(3).translate(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f)).show();
     }
 
-    public static void lambda$show$1(int[] iArr, int i, AvatarDrawable avatarDrawable, TLRPC.User user, BackupImageView backupImageView) {
+    public static void $r8$lambda$OlMawrInXqaCFdhiTyWaQHdJHeI(int[] iArr, int i, AvatarDrawable avatarDrawable, TLRPC.User user, BackupImageView backupImageView) {
         iArr[0] = i;
         avatarDrawable.setInfo(user);
         backupImageView.setForUserOrChat(user, avatarDrawable);
     }
 
-    public static void lambda$show$5(final ButtonWithCounterView buttonWithCounterView, final int[] iArr, View view) {
+    public static void $r8$lambda$B5hgXdvDp8J0vgwWMb33wSz5fCQ(final ButtonWithCounterView buttonWithCounterView, final int[] iArr, View view) {
         final AuthSession authSession;
         if (buttonWithCounterView.isLoading() || (authSession = currentSession) == null) {
             return;
@@ -290,12 +301,12 @@ public abstract class WearAuthSheet {
             Wearable.getMessageClient(view.getContext().getApplicationContext()).sendMessage(authSession.originNodeId, "/tg-wear-auth/answer", authSession.acceptAndBuildAnswer()).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    WearAuthSheet.lambda$show$3(authSession, buttonWithCounterView, iArr, (Integer) obj);
+                    WearAuthSheet.$r8$lambda$sT1lps5_P_spk0l9a6EloZJgcVg(authSession, buttonWithCounterView, iArr, (Integer) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    WearAuthSheet.lambda$show$4(buttonWithCounterView, exc);
+                    WearAuthSheet.m4791$r8$lambda$XwbqUKYwf0Syqvg0qWMLNf6Tw(buttonWithCounterView, exc);
                 }
             });
         } catch (Exception e) {
@@ -304,13 +315,13 @@ public abstract class WearAuthSheet {
         }
     }
 
-    public static void lambda$show$3(AuthSession authSession, ButtonWithCounterView buttonWithCounterView, int[] iArr, Integer num) {
+    public static void $r8$lambda$sT1lps5_P_spk0l9a6EloZJgcVg(AuthSession authSession, ButtonWithCounterView buttonWithCounterView, int[] iArr, Integer num) {
         FileLog.d("wear-auth: /answer delivered to " + authSession.originNodeId);
         buttonWithCounterView.setLoading(false);
         showEmojis(iArr[0], authSession.emojis);
     }
 
-    public static void lambda$show$4(ButtonWithCounterView buttonWithCounterView, Exception exc) {
+    public static void m4791$r8$lambda$XwbqUKYwf0Syqvg0qWMLNf6Tw(ButtonWithCounterView buttonWithCounterView, Exception exc) {
         FileLog.e("wear-auth: /answer send failed: " + exc.getMessage());
         buttonWithCounterView.setLoading(false);
     }
@@ -364,12 +375,12 @@ public abstract class WearAuthSheet {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WearAuthSheet.lambda$showEmojis$9(round, i, bottomSheetCreate, view);
+                WearAuthSheet.m4792$r8$lambda$xdTM_WaemPMfWHPpaSnoOgZsnM(round, i, bottomSheetCreate, view);
             }
         });
     }
 
-    public static void lambda$showEmojis$9(final ButtonWithCounterView buttonWithCounterView, final int i, final BottomSheet bottomSheet, final View view) {
+    public static void m4792$r8$lambda$xdTM_WaemPMfWHPpaSnoOgZsnM(final ButtonWithCounterView buttonWithCounterView, final int i, final BottomSheet bottomSheet, final View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -385,12 +396,12 @@ public abstract class WearAuthSheet {
         ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_requestUrlAuth, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                WearAuthSheet.lambda$showEmojis$8(buttonWithCounterView, bottomSheet, i, view, authSession, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
+                WearAuthSheet.$r8$lambda$qyXj0JZQmSIB8o9BZQgtRMdhUnk(buttonWithCounterView, bottomSheet, i, view, authSession, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$showEmojis$8(final ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, int i, View view, final AuthSession authSession, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$qyXj0JZQmSIB8o9BZQgtRMdhUnk(final ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, int i, View view, final AuthSession authSession, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
         buttonWithCounterView.setLoading(false);
         if (!(urlAuthResult instanceof TLRPC.TL_urlAuthResultAccepted)) {
             if (tL_error != null) {
@@ -413,12 +424,12 @@ public abstract class WearAuthSheet {
             Wearable.getMessageClient(view.getContext().getApplicationContext()).sendMessage(authSession.originNodeId, "/tg-wear-auth/token", buildEncryptedTokenWire(authSession, queryParameter, currentDatacenterId, zIsTestBackend)).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    WearAuthSheet.lambda$showEmojis$6(authSession, buttonWithCounterView, (Integer) obj);
+                    WearAuthSheet.$r8$lambda$OcJG_vbyI8TW993hMKLFWF8qEFU(authSession, buttonWithCounterView, (Integer) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    WearAuthSheet.lambda$showEmojis$7(buttonWithCounterView, exc);
+                    WearAuthSheet.$r8$lambda$ezHylZBEz8URlQfWkZle4PuaTos(buttonWithCounterView, exc);
                 }
             });
             bottomSheet.dismiss();
@@ -428,14 +439,14 @@ public abstract class WearAuthSheet {
         }
     }
 
-    public static void lambda$showEmojis$6(AuthSession authSession, ButtonWithCounterView buttonWithCounterView, Integer num) {
+    public static void $r8$lambda$OcJG_vbyI8TW993hMKLFWF8qEFU(AuthSession authSession, ButtonWithCounterView buttonWithCounterView, Integer num) {
         FileLog.d("wear-auth: /token delivered to " + authSession.originNodeId);
         buttonWithCounterView.setLoading(false);
         currentSession = null;
         cancel();
     }
 
-    public static void lambda$showEmojis$7(ButtonWithCounterView buttonWithCounterView, Exception exc) {
+    public static void $r8$lambda$ezHylZBEz8URlQfWkZle4PuaTos(ButtonWithCounterView buttonWithCounterView, Exception exc) {
         FileLog.e("wear-auth: /token send failed: " + exc.getMessage());
         buttonWithCounterView.setLoading(false);
     }

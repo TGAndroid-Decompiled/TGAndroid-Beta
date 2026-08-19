@@ -217,9 +217,6 @@ public class CameraSessionWrapper {
             return false;
         }
         CameraSessionWrapper cameraSessionWrapper = (CameraSessionWrapper) obj;
-        if (cameraSessionWrapper != this) {
-            return cameraSessionWrapper.camera1Session == this.camera1Session && cameraSessionWrapper.camera2Session == this.camera2Session;
-        }
-        return true;
+        return cameraSessionWrapper == this || (cameraSessionWrapper.camera1Session == this.camera1Session && cameraSessionWrapper.camera2Session == this.camera2Session);
     }
 }

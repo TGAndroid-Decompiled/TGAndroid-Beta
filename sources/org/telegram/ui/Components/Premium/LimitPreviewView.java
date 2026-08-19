@@ -389,158 +389,95 @@ public class LimitPreviewView extends LinearLayout {
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         float f;
-        float arrowCenter;
-        float fClamp;
         float f2;
-        float f3;
+        float fClamp;
+        final float f3;
         float measuredWidth;
-        final boolean z2;
-        final boolean z3;
         super.onLayout(z, i, i2, i3, i4);
+        float f4 = 0.5f;
         if (this.animateIncrease || this.animate || (!this.wasAnimation && this.limitIcon != null && this.animationCanPlay && !this.premiumLocked)) {
             int iDp = AndroidUtilities.dp(14.0f);
-            final boolean z4 = this.animate || this.animateIncrease;
+            boolean z2 = this.animate || this.animateIncrease;
             this.animateIncrease = false;
             this.animate = false;
-            float translationX = z4 ? this.limitIcon.getTranslationX() : 0.0f;
-            float f4 = iDp;
+            float translationX = z2 ? this.limitIcon.getTranslationX() : 0.0f;
+            float f5 = iDp;
             int i5 = iDp * 2;
-            float fMax = (Math.max(this.width1, (getMeasuredWidth() - i5) * this.position) + f4) - (this.limitIcon.getMeasuredWidth() / 2.0f);
+            float fMax = (Math.max(this.width1, (getMeasuredWidth() - i5) * this.position) + f5) - (this.limitIcon.getMeasuredWidth() / 2.0f);
             if (this.isSimpleStyle) {
-                arrowCenter = this.limitIcon.getArrowCenter();
-                measuredWidth = Utilities.clamp(fMax, (getMeasuredWidth() - iDp) - this.limitIcon.getMeasuredWidth(), f4);
+                float arrowCenter = this.limitIcon.getArrowCenter();
+                measuredWidth = Utilities.clamp(fMax, (getMeasuredWidth() - iDp) - this.limitIcon.getMeasuredWidth(), f5);
                 int i6 = this.width1;
                 if (i6 <= 0) {
+                    f3 = measuredWidth;
                     f2 = arrowCenter;
                     fClamp = 0.0f;
-                } else if (i6 < getMeasuredWidth() - i5) {
-                    fClamp = Utilities.clamp((this.width1 - (measuredWidth - f4)) / this.limitIcon.getMeasuredWidth(), 1.0f, 0.0f);
+                } else if (i6 >= getMeasuredWidth() - i5) {
+                    f = arrowCenter;
+                    f3 = measuredWidth;
+                    f2 = f;
+                    fClamp = 1.0f;
+                } else {
+                    fClamp = Utilities.clamp((this.width1 - (measuredWidth - f5)) / this.limitIcon.getMeasuredWidth(), 1.0f, 0.0f);
+                    f3 = measuredWidth;
                     f2 = arrowCenter;
                 }
-                f3 = measuredWidth;
-                z2 = this.animateArrowFadeIn;
-                z3 = this.animateArrowFadeOut;
-                if (!z2 && !z3) {
-                    this.limitIcon.setAlpha(1.0f);
-                }
-                this.limitIcon.setTranslationX(translationX);
-                CounterView counterView = this.limitIcon;
-                counterView.setPivotX(counterView.getMeasuredWidth() / 2.0f);
-                CounterView counterView2 = this.limitIcon;
-                counterView2.setPivotY(counterView2.getMeasuredHeight());
-                if (!z4) {
-                    this.limitIcon.setScaleX(0.0f);
-                    this.limitIcon.setScaleY(0.0f);
-                    this.limitIcon.createAnimationLayouts();
-                }
-                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.arrowAnimator = valueAnimatorOfFloat;
-                final float f5 = this.width1;
-                if (z4) {
-                    this.width1 = this.animateIncreaseWidth;
-                }
-                final boolean z5 = !this.animatingRotation;
-                this.animatingRotation = true;
-                final float f6 = translationX;
-                final float f7 = f3;
-                final float f8 = f2;
-                final float f9 = fClamp;
-                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$onLayout$0(z5, f6, f7, f8, f9, z4, f5, z2, z3, valueAnimator);
-                    }
-                });
-                this.arrowAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        if (z5) {
-                            LimitPreviewView.this.animatingRotation = false;
-                        }
-                        if (LimitPreviewView.this.animateStarRatingRunnable != null) {
-                            AndroidUtilities.cancelRunOnUIThread(LimitPreviewView.this.animateStarRatingRunnable);
-                            LimitPreviewView.this.animateStarRatingRunnable.run();
-                        }
-                    }
-                });
-                this.arrowAnimator.setInterpolator(new OvershootInterpolator());
-                if (this.animateIncrease) {
-                    ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$onLayout$1(valueAnimator);
-                        }
-                    });
-                    valueAnimatorOfFloat2.setDuration(500L);
-                    valueAnimatorOfFloat2.start();
-                    this.arrowAnimator.setDuration(600L);
-                } else if (z3) {
-                    this.arrowAnimator.setInterpolator(CubicBezierInterpolator.EASE_IN);
-                    this.arrowAnimator.setDuration(320L);
-                } else if (z2) {
-                    this.arrowAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                    this.arrowAnimator.setDuration(500L);
+            } else {
+                if (fMax < f5) {
+                    f = 0.0f;
+                    f4 = 0.0f;
                 } else {
-                    this.arrowAnimator.setDuration(1000L);
-                    this.arrowAnimator.setStartDelay(200L);
+                    f5 = fMax;
+                    f = 0.5f;
                 }
-                this.arrowAnimator.start();
-                this.wasAnimation = true;
-                return;
+                if (f5 > (getMeasuredWidth() - iDp) - this.limitIcon.getMeasuredWidth()) {
+                    measuredWidth = (getMeasuredWidth() - iDp) - this.limitIcon.getMeasuredWidth();
+                    f3 = measuredWidth;
+                    f2 = f;
+                    fClamp = 1.0f;
+                } else {
+                    f2 = f;
+                    fClamp = f4;
+                    f3 = f5;
+                }
             }
-            if (fMax < f4) {
-                f = 0.0f;
-                arrowCenter = 0.0f;
-            } else {
-                f4 = fMax;
-                f = 0.5f;
-                arrowCenter = 0.5f;
-            }
-            if (f4 > (getMeasuredWidth() - iDp) - this.limitIcon.getMeasuredWidth()) {
-                measuredWidth = (getMeasuredWidth() - iDp) - this.limitIcon.getMeasuredWidth();
-            } else {
-                fClamp = f;
-                f2 = arrowCenter;
-                f3 = f4;
-            }
-            z2 = this.animateArrowFadeIn;
-            z3 = this.animateArrowFadeOut;
-            if (!z2) {
+            final boolean z3 = this.animateArrowFadeIn;
+            final boolean z4 = this.animateArrowFadeOut;
+            if (!z3 && !z4) {
                 this.limitIcon.setAlpha(1.0f);
             }
             this.limitIcon.setTranslationX(translationX);
-            CounterView counterView3 = this.limitIcon;
-            counterView3.setPivotX(counterView3.getMeasuredWidth() / 2.0f);
-            CounterView counterView4 = this.limitIcon;
-            counterView4.setPivotY(counterView4.getMeasuredHeight());
-            if (!z4) {
+            CounterView counterView = this.limitIcon;
+            counterView.setPivotX(counterView.getMeasuredWidth() / 2.0f);
+            CounterView counterView2 = this.limitIcon;
+            counterView2.setPivotY(counterView2.getMeasuredHeight());
+            if (!z2) {
                 this.limitIcon.setScaleX(0.0f);
                 this.limitIcon.setScaleY(0.0f);
                 this.limitIcon.createAnimationLayouts();
             }
-            ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.arrowAnimator = valueAnimatorOfFloat3;
-            final float f10 = this.width1;
-            if (z4) {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.arrowAnimator = valueAnimatorOfFloat;
+            final float f6 = this.width1;
+            if (z2) {
                 this.width1 = this.animateIncreaseWidth;
             }
-            final boolean z6 = !this.animatingRotation;
+            final boolean z5 = !this.animatingRotation;
             this.animatingRotation = true;
-            final float f11 = translationX;
-            final float f12 = f3;
-            final float f13 = f2;
-            final float f14 = fClamp;
-            valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            final float f7 = fClamp;
+            final float f8 = translationX;
+            final boolean z6 = z2;
+            final float f9 = f2;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onLayout$0(z6, f11, f12, f13, f14, z4, f10, z2, z3, valueAnimator);
+                    LimitPreviewView.m2577$r8$lambda$93f7gEB1YqhVT1TebQ3xJwA08(this.f$0, z5, f8, f3, f9, f7, z6, f6, z3, z4, valueAnimator);
                 }
             });
             this.arrowAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    if (z6) {
+                    if (z5) {
                         LimitPreviewView.this.animatingRotation = false;
                     }
                     if (LimitPreviewView.this.animateStarRatingRunnable != null) {
@@ -551,93 +488,20 @@ public class LimitPreviewView extends LinearLayout {
             });
             this.arrowAnimator.setInterpolator(new OvershootInterpolator());
             if (this.animateIncrease) {
-                ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                valueAnimatorOfFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$onLayout$1(valueAnimator);
+                        LimitPreviewView.$r8$lambda$tL6ZQzAf2DtDVOI5Wu9O19FB0mc(this.f$0, valueAnimator);
                     }
                 });
-                valueAnimatorOfFloat4.setDuration(500L);
-                valueAnimatorOfFloat4.start();
+                valueAnimatorOfFloat2.setDuration(500L);
+                valueAnimatorOfFloat2.start();
                 this.arrowAnimator.setDuration(600L);
-            } else if (z3) {
+            } else if (z4) {
                 this.arrowAnimator.setInterpolator(CubicBezierInterpolator.EASE_IN);
                 this.arrowAnimator.setDuration(320L);
-            } else if (z2) {
-                this.arrowAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                this.arrowAnimator.setDuration(500L);
-            } else {
-                this.arrowAnimator.setDuration(1000L);
-                this.arrowAnimator.setStartDelay(200L);
-            }
-            this.arrowAnimator.start();
-            this.wasAnimation = true;
-            return;
-            f2 = arrowCenter;
-            fClamp = 1.0f;
-            f3 = measuredWidth;
-            z2 = this.animateArrowFadeIn;
-            z3 = this.animateArrowFadeOut;
-            if (!z2) {
-                this.limitIcon.setAlpha(1.0f);
-            }
-            this.limitIcon.setTranslationX(translationX);
-            CounterView counterView5 = this.limitIcon;
-            counterView5.setPivotX(counterView5.getMeasuredWidth() / 2.0f);
-            CounterView counterView6 = this.limitIcon;
-            counterView6.setPivotY(counterView6.getMeasuredHeight());
-            if (!z4) {
-                this.limitIcon.setScaleX(0.0f);
-                this.limitIcon.setScaleY(0.0f);
-                this.limitIcon.createAnimationLayouts();
-            }
-            ValueAnimator valueAnimatorOfFloat5 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.arrowAnimator = valueAnimatorOfFloat5;
-            final float f15 = this.width1;
-            if (z4) {
-                this.width1 = this.animateIncreaseWidth;
-            }
-            final boolean z7 = !this.animatingRotation;
-            this.animatingRotation = true;
-            final float f16 = translationX;
-            final float f17 = f3;
-            final float f18 = f2;
-            final float f19 = fClamp;
-            valueAnimatorOfFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onLayout$0(z7, f16, f17, f18, f19, z4, f15, z2, z3, valueAnimator);
-                }
-            });
-            this.arrowAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (z7) {
-                        LimitPreviewView.this.animatingRotation = false;
-                    }
-                    if (LimitPreviewView.this.animateStarRatingRunnable != null) {
-                        AndroidUtilities.cancelRunOnUIThread(LimitPreviewView.this.animateStarRatingRunnable);
-                        LimitPreviewView.this.animateStarRatingRunnable.run();
-                    }
-                }
-            });
-            this.arrowAnimator.setInterpolator(new OvershootInterpolator());
-            if (this.animateIncrease) {
-                ValueAnimator valueAnimatorOfFloat6 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                valueAnimatorOfFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$onLayout$1(valueAnimator);
-                    }
-                });
-                valueAnimatorOfFloat6.setDuration(500L);
-                valueAnimatorOfFloat6.start();
-                this.arrowAnimator.setDuration(600L);
             } else if (z3) {
-                this.arrowAnimator.setInterpolator(CubicBezierInterpolator.EASE_IN);
-                this.arrowAnimator.setDuration(320L);
-            } else if (z2) {
                 this.arrowAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.arrowAnimator.setDuration(500L);
             } else {
@@ -660,11 +524,11 @@ public class LimitPreviewView extends LinearLayout {
         if (this.premiumLocked) {
             int iDp2 = AndroidUtilities.dp(14.0f);
             float measuredWidth2 = (iDp2 + ((getMeasuredWidth() - (iDp2 * 2)) * 0.5f)) - (this.limitIcon.getMeasuredWidth() / 2.0f);
-            boolean z8 = this.wasAnimation;
-            if (!z8 && this.animationCanPlay) {
+            boolean z7 = this.wasAnimation;
+            if (!z7 && this.animationCanPlay) {
                 this.wasAnimation = true;
                 this.limitIcon.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(new OvershootInterpolator()).start();
-            } else if (!z8) {
+            } else if (!z7) {
                 this.limitIcon.setAlpha(0.0f);
                 this.limitIcon.setScaleX(0.0f);
                 this.limitIcon.setScaleY(0.0f);
@@ -676,57 +540,59 @@ public class LimitPreviewView extends LinearLayout {
             this.limitIcon.setTranslationX(measuredWidth2);
             return;
         }
-        CounterView counterView7 = this.limitIcon;
-        if (counterView7 != null) {
-            counterView7.setAlpha(0.0f);
+        CounterView counterView3 = this.limitIcon;
+        if (counterView3 != null) {
+            counterView3.setAlpha(0.0f);
         }
     }
 
-    public void lambda$onLayout$0(boolean z, float f, float f2, float f3, float f4, boolean z2, float f5, boolean z3, boolean z4, ValueAnimator valueAnimator) {
+    public static void m2577$r8$lambda$93f7gEB1YqhVT1TebQ3xJwA08(LimitPreviewView limitPreviewView, boolean z, float f, float f2, float f3, float f4, boolean z2, float f5, boolean z3, boolean z4, ValueAnimator valueAnimator) {
+        limitPreviewView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float fMin = Math.min(1.0f, fFloatValue);
         if (fFloatValue > 1.0f && z) {
-            if (!this.wasHaptic) {
-                this.wasHaptic = true;
+            if (!limitPreviewView.wasHaptic) {
+                limitPreviewView.wasHaptic = true;
                 try {
-                    this.limitIcon.performHapticFeedback(3);
+                    limitPreviewView.limitIcon.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
             }
-            this.limitIcon.setRotation(this.limitIconRotation + ((fFloatValue - 1.0f) * 60.0f));
-        } else if (!this.animatingRotation) {
-            this.limitIcon.setRotation(this.limitIconRotation);
+            limitPreviewView.limitIcon.setRotation(limitPreviewView.limitIconRotation + ((fFloatValue - 1.0f) * 60.0f));
+        } else if (!limitPreviewView.animatingRotation) {
+            limitPreviewView.limitIcon.setRotation(limitPreviewView.limitIconRotation);
         }
-        if (valueAnimator == this.arrowAnimator) {
-            this.limitIcon.setTranslationX(AndroidUtilities.lerp(f, f2, fMin));
+        if (valueAnimator == limitPreviewView.arrowAnimator) {
+            limitPreviewView.limitIcon.setTranslationX(AndroidUtilities.lerp(f, f2, fMin));
             float fLerp = AndroidUtilities.lerp(f3, f4, fMin);
-            this.limitIcon.setArrowCenter(fLerp);
-            CounterView counterView = this.limitIcon;
+            limitPreviewView.limitIcon.setArrowCenter(fLerp);
+            CounterView counterView = limitPreviewView.limitIcon;
             counterView.setPivotX(counterView.getMeasuredWidth() * fLerp);
         }
         float fMin2 = Math.min(1.0f, 2.0f * fMin);
         if (!z2) {
-            this.limitIcon.setScaleX(fMin2);
-            this.limitIcon.setScaleY(fMin2);
+            limitPreviewView.limitIcon.setScaleX(fMin2);
+            limitPreviewView.limitIcon.setScaleY(fMin2);
         } else {
-            this.width1 = (int) AndroidUtilities.lerp(this.animateIncreaseWidth, f5, fMin);
-            this.limitsContainer.invalidate();
+            limitPreviewView.width1 = (int) AndroidUtilities.lerp(limitPreviewView.animateIncreaseWidth, f5, fMin);
+            limitPreviewView.limitsContainer.invalidate();
         }
         if (z3) {
-            this.limitIcon.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, fFloatValue));
-            this.limitIcon.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, fFloatValue));
-            this.limitIcon.setAlpha(fFloatValue);
+            limitPreviewView.limitIcon.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, fFloatValue));
+            limitPreviewView.limitIcon.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, fFloatValue));
+            limitPreviewView.limitIcon.setAlpha(fFloatValue);
         } else if (z4) {
             float f6 = 1.0f - fFloatValue;
-            this.limitIcon.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, f6));
-            this.limitIcon.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, f6));
-            this.limitIcon.setAlpha(f6);
+            limitPreviewView.limitIcon.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, f6));
+            limitPreviewView.limitIcon.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, f6));
+            limitPreviewView.limitIcon.setAlpha(f6);
         }
     }
 
-    public void lambda$onLayout$1(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$tL6ZQzAf2DtDVOI5Wu9O19FB0mc(LimitPreviewView limitPreviewView, ValueAnimator valueAnimator) {
+        limitPreviewView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.limitIconRotation = fFloatValue < 0.5f ? (fFloatValue / 0.5f) * (-7.0f) : (1.0f - ((fFloatValue - 0.5f) / 0.5f)) * (-7.0f);
+        limitPreviewView.limitIconRotation = fFloatValue < 0.5f ? (fFloatValue / 0.5f) * (-7.0f) : (1.0f - ((fFloatValue - 0.5f) / 0.5f)) * (-7.0f);
     }
 
     private void setArrowX(float f) {
@@ -943,7 +809,7 @@ public class LimitPreviewView extends LinearLayout {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$animateStarRating$2(tl_starsRating2);
+                    LimitPreviewView.m2579$r8$lambda$_CuaWokFkxFoRhtFqFhgtRIXDM(this.f$0, tl_starsRating2);
                 }
             };
             this.animateStarRatingRunnable = runnable;
@@ -975,7 +841,7 @@ public class LimitPreviewView extends LinearLayout {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$animateStarRating$3(tl_starsRating2);
+                    LimitPreviewView.m2578$r8$lambda$EZXAzRQXnjrCHXaeJ59FJVwKAc(this.f$0, tl_starsRating2);
                 }
             };
             this.animateStarRatingRunnable = runnable2;
@@ -983,111 +849,111 @@ public class LimitPreviewView extends LinearLayout {
         }
     }
 
-    public void lambda$animateStarRating$2(TL_stars.Tl_starsRating tl_starsRating) {
-        this.animateStarRatingRunnable = null;
-        if (isAttachedToWindow()) {
-            ValueAnimator valueAnimator = this.arrowAnimator;
+    public static void m2579$r8$lambda$_CuaWokFkxFoRhtFqFhgtRIXDM(LimitPreviewView limitPreviewView, TL_stars.Tl_starsRating tl_starsRating) {
+        limitPreviewView.animateStarRatingRunnable = null;
+        if (limitPreviewView.isAttachedToWindow()) {
+            ValueAnimator valueAnimator = limitPreviewView.arrowAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.isRatingNegative = false;
-            this.ratingPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
+            limitPreviewView.isRatingNegative = false;
+            limitPreviewView.ratingPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, limitPreviewView.resourcesProvider));
             long j = tl_starsRating.stars;
             if (j <= 0) {
-                this.percent = 0.0f;
-                this.defaultText.setText("");
-                this.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
-                this.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, this.resourcesProvider));
-                this.isRatingNegative = true;
+                limitPreviewView.percent = 0.0f;
+                limitPreviewView.defaultText.setText("");
+                limitPreviewView.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
+                limitPreviewView.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, limitPreviewView.resourcesProvider));
+                limitPreviewView.isRatingNegative = true;
             } else {
                 long j2 = tl_starsRating.next_level_stars;
                 if (j2 == 0) {
-                    this.percent = 1.0f;
-                    AnimatedTextView animatedTextView = this.defaultText;
+                    limitPreviewView.percent = 1.0f;
+                    AnimatedTextView animatedTextView = limitPreviewView.defaultText;
                     int i = R.string.StarRatingLevel;
                     animatedTextView.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level - 1)));
-                    this.premiumCount.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level)));
+                    limitPreviewView.premiumCount.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level)));
                 } else {
                     long j3 = tl_starsRating.current_level_stars;
-                    this.percent = MathUtils.clamp((j - j3) / (j2 - j3), 0.0f, 1.0f);
-                    AnimatedTextView animatedTextView2 = this.defaultText;
+                    limitPreviewView.percent = MathUtils.clamp((j - j3) / (j2 - j3), 0.0f, 1.0f);
+                    AnimatedTextView animatedTextView2 = limitPreviewView.defaultText;
                     int i2 = R.string.StarRatingLevel;
                     animatedTextView2.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level)));
-                    this.premiumCount.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level + 1)));
+                    limitPreviewView.premiumCount.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level + 1)));
                 }
             }
-            setArrowX(0.0f);
-            this.limitIcon.setScaleX(0.6f);
-            this.limitIcon.setScaleY(0.6f);
-            this.limitIcon.setAlpha(0.0f);
-            this.animate = true;
-            this.animateArrowFadeIn = true;
-            this.animateArrowFadeOut = false;
-            this.animateBackgroundFade = false;
-            this.animateIncreaseWidth = this.width1;
-            this.limitsContainer.requestLayout();
-            requestLayout();
-            ViewPropertyAnimator duration = this.defaultText.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(320L);
+            limitPreviewView.setArrowX(0.0f);
+            limitPreviewView.limitIcon.setScaleX(0.6f);
+            limitPreviewView.limitIcon.setScaleY(0.6f);
+            limitPreviewView.limitIcon.setAlpha(0.0f);
+            limitPreviewView.animate = true;
+            limitPreviewView.animateArrowFadeIn = true;
+            limitPreviewView.animateArrowFadeOut = false;
+            limitPreviewView.animateBackgroundFade = false;
+            limitPreviewView.animateIncreaseWidth = limitPreviewView.width1;
+            limitPreviewView.limitsContainer.requestLayout();
+            limitPreviewView.requestLayout();
+            ViewPropertyAnimator duration = limitPreviewView.defaultText.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(320L);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             duration.setInterpolator(cubicBezierInterpolator).start();
-            this.premiumCount.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator).start();
-            this.premiumCount.setTextColor(this.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-            this.defaultText.setTextColor(-1);
-            setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, true, false);
+            limitPreviewView.premiumCount.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator).start();
+            limitPreviewView.premiumCount.setTextColor(limitPreviewView.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, limitPreviewView.resourcesProvider));
+            limitPreviewView.defaultText.setTextColor(-1);
+            limitPreviewView.setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, true, false);
         }
     }
 
-    public void lambda$animateStarRating$3(TL_stars.Tl_starsRating tl_starsRating) {
-        this.animateStarRatingRunnable = null;
-        if (isAttachedToWindow()) {
-            ValueAnimator valueAnimator = this.arrowAnimator;
+    public static void m2578$r8$lambda$EZXAzRQXnjrCHXaeJ59FJVwKAc(LimitPreviewView limitPreviewView, TL_stars.Tl_starsRating tl_starsRating) {
+        limitPreviewView.animateStarRatingRunnable = null;
+        if (limitPreviewView.isAttachedToWindow()) {
+            ValueAnimator valueAnimator = limitPreviewView.arrowAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.isRatingNegative = false;
-            this.ratingPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
+            limitPreviewView.isRatingNegative = false;
+            limitPreviewView.ratingPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, limitPreviewView.resourcesProvider));
             long j = tl_starsRating.stars;
             if (j <= 0) {
-                this.percent = 0.5f;
-                this.defaultText.setText("");
-                this.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
-                this.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, this.resourcesProvider));
-                this.isRatingNegative = true;
+                limitPreviewView.percent = 0.5f;
+                limitPreviewView.defaultText.setText("");
+                limitPreviewView.premiumCount.setText(LocaleController.getString(R.string.StarRatingLevelNegative));
+                limitPreviewView.ratingPaint.setColor(Theme.getColor(Theme.key_color_red, limitPreviewView.resourcesProvider));
+                limitPreviewView.isRatingNegative = true;
             } else {
                 long j2 = tl_starsRating.next_level_stars;
                 if (j2 == 0) {
-                    this.percent = 1.0f;
-                    AnimatedTextView animatedTextView = this.defaultText;
+                    limitPreviewView.percent = 1.0f;
+                    AnimatedTextView animatedTextView = limitPreviewView.defaultText;
                     int i = R.string.StarRatingLevel;
                     animatedTextView.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level - 1)));
-                    this.premiumCount.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level)));
+                    limitPreviewView.premiumCount.setText(LocaleController.formatString(i, Integer.valueOf(tl_starsRating.level)));
                 } else {
                     long j3 = tl_starsRating.current_level_stars;
-                    this.percent = MathUtils.clamp((j - j3) / (j2 - j3), 0.0f, 1.0f);
-                    AnimatedTextView animatedTextView2 = this.defaultText;
+                    limitPreviewView.percent = MathUtils.clamp((j - j3) / (j2 - j3), 0.0f, 1.0f);
+                    AnimatedTextView animatedTextView2 = limitPreviewView.defaultText;
                     int i2 = R.string.StarRatingLevel;
                     animatedTextView2.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level)));
-                    this.premiumCount.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level + 1)));
+                    limitPreviewView.premiumCount.setText(LocaleController.formatString(i2, Integer.valueOf(tl_starsRating.level + 1)));
                 }
             }
-            setArrowX(1.0f);
-            this.limitIcon.setScaleX(0.6f);
-            this.limitIcon.setScaleY(0.6f);
-            this.limitIcon.setAlpha(0.0f);
-            this.animate = true;
-            this.animateArrowFadeIn = true;
-            this.animateArrowFadeOut = false;
-            this.animateBackgroundFade = false;
-            this.animateIncreaseWidth = this.width1;
-            this.limitsContainer.requestLayout();
-            requestLayout();
-            ViewPropertyAnimator duration = this.defaultText.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(320L);
+            limitPreviewView.setArrowX(1.0f);
+            limitPreviewView.limitIcon.setScaleX(0.6f);
+            limitPreviewView.limitIcon.setScaleY(0.6f);
+            limitPreviewView.limitIcon.setAlpha(0.0f);
+            limitPreviewView.animate = true;
+            limitPreviewView.animateArrowFadeIn = true;
+            limitPreviewView.animateArrowFadeOut = false;
+            limitPreviewView.animateBackgroundFade = false;
+            limitPreviewView.animateIncreaseWidth = limitPreviewView.width1;
+            limitPreviewView.limitsContainer.requestLayout();
+            limitPreviewView.requestLayout();
+            ViewPropertyAnimator duration = limitPreviewView.defaultText.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(320L);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             duration.setInterpolator(cubicBezierInterpolator).start();
-            this.premiumCount.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator).start();
-            this.premiumCount.setTextColor(this.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-            this.defaultText.setTextColor(-1);
-            setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, true, false);
+            limitPreviewView.premiumCount.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator).start();
+            limitPreviewView.premiumCount.setTextColor(limitPreviewView.isRatingNegative ? -1 : Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, limitPreviewView.resourcesProvider));
+            limitPreviewView.defaultText.setTextColor(-1);
+            limitPreviewView.setIconValue((int) tl_starsRating.stars, (int) tl_starsRating.next_level_stars, true, false);
         }
     }
 
@@ -1233,11 +1099,12 @@ public class LimitPreviewView extends LinearLayout {
                     invalidate();
                 }
             }
+            int i = measuredHeight;
             if (LimitPreviewView.this.hasDarkGradientProvider()) {
                 canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.dstOutPaint, 31);
             }
             float measuredWidth = (getMeasuredWidth() - this.textWidth) / 2.0f;
-            float height = (measuredHeight - this.textLayout.getHeight()) / 2.0f;
+            float height = (i - this.textLayout.getHeight()) / 2.0f;
             if (!this.animationInProgress) {
                 if (this.textLayout != null) {
                     canvas.save();
@@ -1254,26 +1121,26 @@ public class LimitPreviewView extends LinearLayout {
                     this.animatedStableLayout.draw(canvas);
                     canvas.restore();
                 }
-                for (int i = 0; i < this.animatedLayouts.size(); i++) {
-                    AnimatedLayout animatedLayout = (AnimatedLayout) this.animatedLayouts.get(i);
+                for (int i2 = 0; i2 < this.animatedLayouts.size(); i2++) {
+                    AnimatedLayout animatedLayout = (AnimatedLayout) this.animatedLayouts.get(i2);
                     canvas.save();
                     if (animatedLayout.replace) {
-                        canvas.translate(animatedLayout.x + measuredWidth, ((measuredHeight * animatedLayout.progress) + height) - ((1 - animatedLayout.staticLayouts.size()) * measuredHeight));
-                        for (int i2 = 0; i2 < animatedLayout.staticLayouts.size(); i2++) {
-                            canvas.translate(0.0f, -measuredHeight);
-                            ((StaticLayout) animatedLayout.staticLayouts.get(i2)).draw(canvas);
-                        }
-                    } else if (animatedLayout.direction) {
-                        canvas.translate(animatedLayout.x + measuredWidth, (height - ((measuredHeight * 10) * animatedLayout.progress)) + ((10 - animatedLayout.staticLayouts.size()) * measuredHeight));
+                        canvas.translate(animatedLayout.x + measuredWidth, ((i * animatedLayout.progress) + height) - ((1 - animatedLayout.staticLayouts.size()) * i));
                         for (int i3 = 0; i3 < animatedLayout.staticLayouts.size(); i3++) {
-                            canvas.translate(0.0f, measuredHeight);
+                            canvas.translate(0.0f, -i);
                             ((StaticLayout) animatedLayout.staticLayouts.get(i3)).draw(canvas);
                         }
-                    } else {
-                        canvas.translate(animatedLayout.x + measuredWidth, (((measuredHeight * 10) * animatedLayout.progress) + height) - ((10 - animatedLayout.staticLayouts.size()) * measuredHeight));
+                    } else if (animatedLayout.direction) {
+                        canvas.translate(animatedLayout.x + measuredWidth, (height - ((i * 10) * animatedLayout.progress)) + ((10 - animatedLayout.staticLayouts.size()) * i));
                         for (int i4 = 0; i4 < animatedLayout.staticLayouts.size(); i4++) {
-                            canvas.translate(0.0f, -measuredHeight);
+                            canvas.translate(0.0f, i);
                             ((StaticLayout) animatedLayout.staticLayouts.get(i4)).draw(canvas);
+                        }
+                    } else {
+                        canvas.translate(animatedLayout.x + measuredWidth, (((i * 10) * animatedLayout.progress) + height) - ((10 - animatedLayout.staticLayouts.size()) * i));
+                        for (int i5 = 0; i5 < animatedLayout.staticLayouts.size(); i5++) {
+                            canvas.translate(0.0f, -i);
+                            ((StaticLayout) animatedLayout.staticLayouts.get(i5)).draw(canvas);
                         }
                     }
                     canvas.restore();
@@ -1327,7 +1194,7 @@ public class LimitPreviewView extends LinearLayout {
                     spannableStringBuilder.setSpan(new EmptyStubSpan(), i2, i2 + 1, 0);
                 }
             }
-            this.animatedStableLayout = new StaticLayout(spannableStringBuilder, this.textPaint, AndroidUtilities.dp(12.0f) + ((int) this.textWidth), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.animatedStableLayout = new StaticLayout(spannableStringBuilder, this.textPaint, ((int) this.textWidth) + AndroidUtilities.dp(12.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             for (int i4 = 0; i4 < this.animatedLayouts.size(); i4++) {
                 this.animationInProgress = true;
                 final AnimatedLayout animatedLayout2 = (AnimatedLayout) this.animatedLayouts.get(i4);
@@ -1336,7 +1203,7 @@ public class LimitPreviewView extends LinearLayout {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$createAnimationLayouts$0(animatedLayout2, valueAnimator);
+                        LimitPreviewView.CounterView.$r8$lambda$Mj2VMU18w4QfPCJEvHW4fBcAAyA(this.f$0, animatedLayout2, valueAnimator);
                     }
                 });
                 animatedLayout2.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1353,9 +1220,10 @@ public class LimitPreviewView extends LinearLayout {
             }
         }
 
-        public void lambda$createAnimationLayouts$0(AnimatedLayout animatedLayout, ValueAnimator valueAnimator) {
+        public static void $r8$lambda$Mj2VMU18w4QfPCJEvHW4fBcAAyA(CounterView counterView, AnimatedLayout animatedLayout, ValueAnimator valueAnimator) {
+            counterView.getClass();
             animatedLayout.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+            counterView.invalidate();
         }
 
         void createAnimationLayoutsDiff(CharSequence charSequence) {
@@ -1395,7 +1263,7 @@ public class LimitPreviewView extends LinearLayout {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$createAnimationLayoutsDiff$1(animatedLayout2, valueAnimator);
+                        LimitPreviewView.CounterView.$r8$lambda$If9wipavzZiQSylvd13Gtl5GUvI(this.f$0, animatedLayout2, valueAnimator);
                     }
                 });
                 animatedLayout2.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1412,9 +1280,10 @@ public class LimitPreviewView extends LinearLayout {
             }
         }
 
-        public void lambda$createAnimationLayoutsDiff$1(AnimatedLayout animatedLayout, ValueAnimator valueAnimator) {
+        public static void $r8$lambda$If9wipavzZiQSylvd13Gtl5GUvI(CounterView counterView, AnimatedLayout animatedLayout, ValueAnimator valueAnimator) {
+            counterView.getClass();
             animatedLayout.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+            counterView.invalidate();
         }
 
         public void checkAnimationComplete() {

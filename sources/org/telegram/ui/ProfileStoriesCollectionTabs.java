@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -103,21 +102,21 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
         tabsViewCreateTabsView.setPreTabClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                return this.f$0.lambda$new$0(delegate, (Integer) obj, (Integer) obj2);
+                return ProfileStoriesCollectionTabs.m3934$r8$lambda$jugj49GTYchGqFg_rZSVDI7n38(this.f$0, delegate, (Integer) obj, (Integer) obj2);
             }
         });
         tabsViewCreateTabsView.setOnTabLongClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                return this.f$0.lambda$new$1(delegate, (Integer) obj, (View) obj2);
+                return ProfileStoriesCollectionTabs.$r8$lambda$iIn89rVPExoQELe6HNJwIo4tUPM(this.f$0, delegate, (Integer) obj, (View) obj2);
             }
         });
         addView(tabsViewCreateTabsView, LayoutHelper.createFrame(-1, 42, 48));
         setVisibility(!storiesCollections.collections.isEmpty(), false, true);
     }
 
-    public Boolean lambda$new$0(Delegate delegate, Integer num, Integer num2) {
-        if (this.reorderingCollections) {
+    public static Boolean m3934$r8$lambda$jugj49GTYchGqFg_rZSVDI7n38(ProfileStoriesCollectionTabs profileStoriesCollectionTabs, Delegate delegate, Integer num, Integer num2) {
+        if (profileStoriesCollectionTabs.reorderingCollections) {
             return Boolean.TRUE;
         }
         if (num.intValue() == -1) {
@@ -129,8 +128,9 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
         return Boolean.FALSE;
     }
 
-    public Boolean lambda$new$1(Delegate delegate, Integer num, View view) {
-        if (num.intValue() == -1 || num.intValue() == 0 || this.reorderingCollections) {
+    public static Boolean $r8$lambda$iIn89rVPExoQELe6HNJwIo4tUPM(ProfileStoriesCollectionTabs profileStoriesCollectionTabs, Delegate delegate, Integer num, View view) {
+        profileStoriesCollectionTabs.getClass();
+        if (num.intValue() == -1 || num.intValue() == 0 || profileStoriesCollectionTabs.reorderingCollections) {
             return Boolean.FALSE;
         }
         if (delegate != null) {
@@ -144,7 +144,7 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setInitialTabId$2(i);
+                    this.f$0.scrollToAlbumId(i);
                 }
             }, 500L);
         } else {
@@ -191,7 +191,7 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$didReceivedNotification$3(i4);
+                            this.f$0.scrollToAlbumId(i4);
                         }
                     }, 500L);
                     this.initialAlbumId = 0;
@@ -210,7 +210,7 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
         this.tabsView.selectTabWithId(i, f);
     }
 
-    public void lambda$setInitialTabId$2(int i) {
+    public void scrollToAlbumId(int i) {
         this.tabsView.scrollToTab(i, this.adapter.getItemPosition(i));
     }
 
@@ -242,7 +242,7 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileStoriesCollectionTabs.lambda$setReorderingAlbums$4(safeLastFragment);
+                        ((ProfileActivity) safeLastFragment).scrollToSharedMedia(true);
                     }
                 });
             }
@@ -256,10 +256,6 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
         this.viewPager.fillTabs(true);
         int itemPosition = this.adapter.getItemPosition(itemId);
         this.tabsView.selectTab(itemPosition, itemPosition, 0.0f);
-    }
-
-    public static void lambda$setReorderingAlbums$4(BaseFragment baseFragment) {
-        ((ProfileActivity) baseFragment).scrollToSharedMedia(true);
     }
 
     private void setVisibility(boolean z, boolean z2, boolean z3) {
@@ -283,7 +279,7 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
                 this.visibilityAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setVisibility$5(valueAnimator2);
+                        ProfileStoriesCollectionTabs.$r8$lambda$KixG3VjeET89lijEJDg_qjQ1W18(this.f$0, valueAnimator2);
                     }
                 });
                 this.visibilityAnimator.start();
@@ -291,10 +287,11 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
         }
     }
 
-    public void lambda$setVisibility$5(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$KixG3VjeET89lijEJDg_qjQ1W18(ProfileStoriesCollectionTabs profileStoriesCollectionTabs, ValueAnimator valueAnimator) {
+        profileStoriesCollectionTabs.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.visibilityFactor = fFloatValue;
-        onVisibilityChange(fFloatValue);
+        profileStoriesCollectionTabs.visibilityFactor = fFloatValue;
+        profileStoriesCollectionTabs.onVisibilityChange(fFloatValue);
     }
 
     protected void onVisibilityChange(float f) {
@@ -354,9 +351,12 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
         @Override
         public void applyReorder(ArrayList arrayList) {
             ArrayList arrayList2 = new ArrayList();
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                Integer num = (Integer) it.next();
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                Integer num = (Integer) obj;
                 int iIntValue = num.intValue();
                 if (iIntValue != -1 && iIntValue != -2 && iIntValue != 0) {
                     arrayList2.add(num);

@@ -46,9 +46,9 @@ public class RaiseAtom extends Atom {
         int i2 = this.dunit;
         if (i2 == -1) {
             horizontalBox.setDepth(0.0f);
-        } else {
-            horizontalBox.setDepth(this.d * SpaceAtom.getFactor(i2, teXEnvironment));
+            return horizontalBox;
         }
+        horizontalBox.setDepth(this.d * SpaceAtom.getFactor(i2, teXEnvironment));
         return horizontalBox;
     }
 }

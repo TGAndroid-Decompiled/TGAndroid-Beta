@@ -45,7 +45,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         AnimatedFloat animatedFloat = new AnimatedFloat(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                HorizontalRoundTabsLayout.m2370$r8$lambda$SxhGe3ZCfrAJDDcL0gqo_rvVw(this.f$0);
             }
         });
         this.selectorStartX = animatedFloat;
@@ -53,7 +53,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         AnimatedFloat animatedFloat2 = new AnimatedFloat(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                HorizontalRoundTabsLayout.$r8$lambda$oMZcTp1TP9zLXzfr9Ax9ob7BDjA(this.f$0);
             }
         });
         this.selectorEndX = animatedFloat2;
@@ -62,19 +62,19 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         setHorizontalScrollBarEnabled(false);
     }
 
-    public void lambda$new$0() {
-        invalidate();
-        this.linearLayout.invalidate();
-        for (int i = 0; i < this.linearLayout.getChildCount(); i++) {
-            this.linearLayout.getChildAt(i).invalidate();
+    public static void m2370$r8$lambda$SxhGe3ZCfrAJDDcL0gqo_rvVw(HorizontalRoundTabsLayout horizontalRoundTabsLayout) {
+        horizontalRoundTabsLayout.invalidate();
+        horizontalRoundTabsLayout.linearLayout.invalidate();
+        for (int i = 0; i < horizontalRoundTabsLayout.linearLayout.getChildCount(); i++) {
+            horizontalRoundTabsLayout.linearLayout.getChildAt(i).invalidate();
         }
     }
 
-    public void lambda$new$1() {
-        invalidate();
-        this.linearLayout.invalidate();
-        for (int i = 0; i < this.linearLayout.getChildCount(); i++) {
-            this.linearLayout.getChildAt(i).invalidate();
+    public static void $r8$lambda$oMZcTp1TP9zLXzfr9Ax9ob7BDjA(HorizontalRoundTabsLayout horizontalRoundTabsLayout) {
+        horizontalRoundTabsLayout.invalidate();
+        horizontalRoundTabsLayout.linearLayout.invalidate();
+        for (int i = 0; i < horizontalRoundTabsLayout.linearLayout.getChildCount(); i++) {
+            horizontalRoundTabsLayout.linearLayout.getChildAt(i).invalidate();
         }
     }
 
@@ -90,7 +90,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
             roundTabView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$setTabs$2(i, intCallback, view);
+                    HorizontalRoundTabsLayout.m2371$r8$lambda$ltceM5IWCb_WYnmqMs3PCSkr3A(this.f$0, i, intCallback, view);
                 }
             });
             roundTabView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f));
@@ -103,12 +103,12 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         }
     }
 
-    public void lambda$setTabs$2(int i, MessagesStorage.IntCallback intCallback, View view) {
-        this.selectedIndex = i;
-        this.selectorStartX.set(view.getLeft(), false);
-        this.selectorEndX.set(view.getRight(), false);
+    public static void m2371$r8$lambda$ltceM5IWCb_WYnmqMs3PCSkr3A(HorizontalRoundTabsLayout horizontalRoundTabsLayout, int i, MessagesStorage.IntCallback intCallback, View view) {
+        horizontalRoundTabsLayout.selectedIndex = i;
+        horizontalRoundTabsLayout.selectorStartX.set(view.getLeft(), false);
+        horizontalRoundTabsLayout.selectorEndX.set(view.getRight(), false);
         intCallback.run(i);
-        invalidate();
+        horizontalRoundTabsLayout.invalidate();
     }
 
     public void setSelectedIndex(int i, boolean z) {

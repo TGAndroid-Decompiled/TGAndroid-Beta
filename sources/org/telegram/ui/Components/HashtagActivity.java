@@ -281,7 +281,7 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void onTabProgress(float f) {
+            public void onTabProgress(float f) {
             }
 
             @Override
@@ -338,7 +338,7 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         this.storiesView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$0(view2);
+                HashtagActivity.$r8$lambda$IY1wmhXvyQbc4zldrYMRdtrBB_E(this.f$0, view2);
             }
         });
         updateStoriesVisible(this.storiesView.set(this.storiesList), false);
@@ -348,9 +348,9 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view) {
-        transit(!this.storiesVisible, true);
-        this.storiesView.transition(this.storiesVisible);
+    public static void $r8$lambda$IY1wmhXvyQbc4zldrYMRdtrBB_E(HashtagActivity hashtagActivity, View view) {
+        hashtagActivity.transit(!hashtagActivity.storiesVisible, true);
+        hashtagActivity.storiesView.transition(hashtagActivity.storiesVisible);
     }
 
     private void updateStoriesVisible(final boolean z, boolean z2) {
@@ -370,7 +370,7 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         ViewPropertyAnimator duration = this.storiesView.animate().translationY(z ? 0.0f : -AndroidUtilities.dp(48.0f)).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateStoriesVisible$1(z);
+                HashtagActivity.$r8$lambda$GLQPBFBN7q_i4Pt0IeAmxM4mCuQ(this.f$0, z);
             }
         }).setDuration(320L);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -398,11 +398,12 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         this.contentViewAnimator.start();
     }
 
-    public void lambda$updateStoriesVisible$1(boolean z) {
+    public static void $r8$lambda$GLQPBFBN7q_i4Pt0IeAmxM4mCuQ(HashtagActivity hashtagActivity, boolean z) {
         if (z) {
-            return;
+            hashtagActivity.getClass();
+        } else {
+            hashtagActivity.storiesView.setVisibility(8);
         }
-        this.storiesView.setVisibility(8);
     }
 
     private void transit(final boolean z, boolean z2) {

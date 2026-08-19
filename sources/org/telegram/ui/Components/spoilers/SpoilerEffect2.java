@@ -44,7 +44,7 @@ public class SpoilerEffect2 {
     private final Runnable checkDestroy = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$0();
+            SpoilerEffect2.$r8$lambda$dCldKsXoPG3fgP8xhGGc9bzOs0o(this.f$0);
         }
     };
 
@@ -186,9 +186,9 @@ public class SpoilerEffect2 {
         }
     }
 
-    public void lambda$new$0() {
-        if (this.holders.isEmpty()) {
-            destroy();
+    public static void $r8$lambda$dCldKsXoPG3fgP8xhGGc9bzOs0o(SpoilerEffect2 spoilerEffect2) {
+        if (spoilerEffect2.holders.isEmpty()) {
+            spoilerEffect2.destroy();
         }
     }
 

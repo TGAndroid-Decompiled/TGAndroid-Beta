@@ -96,7 +96,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     int uploadRow;
     ArrayList uploadingTones;
 
-    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$ErfWyB3apZ72fvBrQqjwr6le79s(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -235,7 +235,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.selectedTonesCountTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return NotificationsSoundActivity.lambda$createView$0(view, motionEvent);
+                return NotificationsSoundActivity.$r8$lambda$ErfWyB3apZ72fvBrQqjwr6le79s(view, motionEvent);
             }
         });
         actionBarMenuCreateActionMode.addItemWithWidth(2, R.drawable.msg_forward, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.ShareFile));
@@ -258,13 +258,13 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$createView$1(context, view, i2);
+                NotificationsSoundActivity.$r8$lambda$ZjyOfSVRnP4ySiWOK1zpLbhSdHk(this.f$0, context, view, i2);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                return this.f$0.lambda$createView$2(view, i2);
+                return NotificationsSoundActivity.$r8$lambda$OyBQ6eaRNFFefqoXyJL0kZsqO4U(this.f$0, view, i2);
             }
         });
         loadTones();
@@ -275,7 +275,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
         final Context val$context;
 
-        public static void lambda$deleteSelectedMessages$2(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m3580$r8$lambda$ugWLPNTPhGiocKqwuTFr7BFCY(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         AnonymousClass1(Context context) {
@@ -306,7 +306,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        this.f$0.lambda$onItemClick$1(alertDialog, i2);
+                        NotificationsSoundActivity.AnonymousClass1.$r8$lambda$IUbUO7T3XRyhEZci6MRB2vj1aN4(this.f$0, alertDialog, i2);
                     }
                 });
                 TextView textView = (TextView) builder.show().getButton(-1);
@@ -346,8 +346,8 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             }
         }
 
-        public void lambda$onItemClick$1(AlertDialog alertDialog, int i) {
-            deleteSelectedMessages();
+        public static void $r8$lambda$IUbUO7T3XRyhEZci6MRB2vj1aN4(AnonymousClass1 anonymousClass1, AlertDialog alertDialog, int i) {
+            anonymousClass1.deleteSelectedMessages();
             alertDialog.dismiss();
         }
 
@@ -391,7 +391,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 NotificationsSoundActivity.this.getConnectionsManager().sendRequest(saveringtone, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        NotificationsSoundActivity.AnonymousClass1.lambda$deleteSelectedMessages$2(tLObject, tL_error);
+                        NotificationsSoundActivity.AnonymousClass1.m3580$r8$lambda$ugWLPNTPhGiocKqwuTFr7BFCY(tLObject, tL_error);
                     }
                 });
             }
@@ -401,38 +401,45 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         }
     }
 
-    public void lambda$createView$1(Context context, View view, int i) {
+    public static void $r8$lambda$ZjyOfSVRnP4ySiWOK1zpLbhSdHk(NotificationsSoundActivity notificationsSoundActivity, Context context, View view, int i) {
+        NotificationsSoundActivity notificationsSoundActivity2;
+        Context context2;
         File pathToAttach;
-        if (i == this.uploadRow) {
-            ChatAttachAlert chatAttachAlert = new ChatAttachAlert(context, this, false, false, true, this.resourcesProvider);
-            this.chatAttachAlert = chatAttachAlert;
+        if (i == notificationsSoundActivity.uploadRow) {
+            notificationsSoundActivity2 = notificationsSoundActivity;
+            context2 = context;
+            ChatAttachAlert chatAttachAlert = new ChatAttachAlert(context2, notificationsSoundActivity2, false, false, true, notificationsSoundActivity.resourcesProvider);
+            notificationsSoundActivity2.chatAttachAlert = chatAttachAlert;
             chatAttachAlert.setSoundPicker();
-            this.chatAttachAlert.init();
-            this.chatAttachAlert.show();
+            notificationsSoundActivity2.chatAttachAlert.init();
+            notificationsSoundActivity2.chatAttachAlert.show();
+        } else {
+            notificationsSoundActivity2 = notificationsSoundActivity;
+            context2 = context;
         }
         if (view instanceof ToneCell) {
             ToneCell toneCell = (ToneCell) view;
-            if (this.actionBar.isActionModeShowed() || toneCell.tone == null) {
-                checkSelection(toneCell.tone);
+            if (notificationsSoundActivity2.actionBar.isActionModeShowed() || toneCell.tone == null) {
+                notificationsSoundActivity2.checkSelection(toneCell.tone);
                 return;
             }
-            Ringtone ringtone = this.lastPlayedRingtone;
+            Ringtone ringtone = notificationsSoundActivity2.lastPlayedRingtone;
             if (ringtone != null) {
                 ringtone.stop();
             }
             try {
                 Tone tone = toneCell.tone;
                 if (tone.isSystemDefault) {
-                    Ringtone ringtone2 = RingtoneManager.getRingtone(context.getApplicationContext(), RingtoneManager.getDefaultUri(2));
+                    Ringtone ringtone2 = RingtoneManager.getRingtone(context2.getApplicationContext(), RingtoneManager.getDefaultUri(2));
                     ringtone2.setStreamType(4);
-                    this.lastPlayedRingtone = ringtone2;
+                    notificationsSoundActivity2.lastPlayedRingtone = ringtone2;
                     ringtone2.play();
                 } else {
                     String str = tone.uri;
                     if (str != null && !tone.fromServer) {
-                        Ringtone ringtone3 = RingtoneManager.getRingtone(context.getApplicationContext(), Uri.parse(toneCell.tone.uri));
+                        Ringtone ringtone3 = RingtoneManager.getRingtone(context2.getApplicationContext(), Uri.parse(toneCell.tone.uri));
                         ringtone3.setStreamType(4);
-                        this.lastPlayedRingtone = ringtone3;
+                        notificationsSoundActivity2.lastPlayedRingtone = ringtone3;
                         ringtone3.play();
                     } else if (tone.fromServer) {
                         if (TextUtils.isEmpty(str)) {
@@ -444,15 +451,15 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                             }
                         }
                         if (pathToAttach == null) {
-                            pathToAttach = getFileLoader().getPathToAttach(toneCell.tone.document);
+                            pathToAttach = notificationsSoundActivity2.getFileLoader().getPathToAttach(toneCell.tone.document);
                         }
                         if (pathToAttach != null && pathToAttach.exists()) {
-                            Ringtone ringtone4 = RingtoneManager.getRingtone(context.getApplicationContext(), Uri.parse(pathToAttach.toString()));
+                            Ringtone ringtone4 = RingtoneManager.getRingtone(context2.getApplicationContext(), Uri.parse(pathToAttach.toString()));
                             ringtone4.setStreamType(4);
-                            this.lastPlayedRingtone = ringtone4;
+                            notificationsSoundActivity2.lastPlayedRingtone = ringtone4;
                             ringtone4.play();
                         } else {
-                            FileLoader fileLoader = getFileLoader();
+                            FileLoader fileLoader = notificationsSoundActivity2.getFileLoader();
                             TLRPC.Document document = toneCell.tone.document;
                             fileLoader.loadFile(document, document, 3, 0);
                         }
@@ -461,18 +468,19 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            this.startSelectedTone = null;
-            this.selectedTone = toneCell.tone;
-            this.selectedToneChanged = true;
-            Adapter adapter = this.adapter;
+            notificationsSoundActivity2.startSelectedTone = null;
+            notificationsSoundActivity2.selectedTone = toneCell.tone;
+            notificationsSoundActivity2.selectedToneChanged = true;
+            Adapter adapter = notificationsSoundActivity2.adapter;
             adapter.notifyItemRangeChanged(0, adapter.getItemCount());
         }
     }
 
-    public boolean lambda$createView$2(View view, int i) {
+    public static boolean $r8$lambda$OyBQ6eaRNFFefqoXyJL0kZsqO4U(NotificationsSoundActivity notificationsSoundActivity, View view, int i) {
+        notificationsSoundActivity.getClass();
         if (view instanceof ToneCell) {
             ToneCell toneCell = (ToneCell) view;
-            checkSelection(toneCell.tone);
+            notificationsSoundActivity.checkSelection(toneCell.tone);
             toneCell.performHapticFeedback(0);
         }
         return false;
@@ -652,10 +660,10 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         for (int i3 = 0; i3 < arrayList.size(); i3++) {
             getMediaDataController().uploadRingtone((String) arrayList.get(i3));
         }
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+        getNotificationCenter().postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
     }
 
-    private class Adapter extends RecyclerListView.SelectionAdapter {
+    class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
         }
 
@@ -807,7 +815,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         }
     }
 
-    private static class ToneCell extends FrameLayout {
+    static class ToneCell extends FrameLayout {
         private CheckBox2 checkBox;
         private boolean needDivider;
         private RadioButton radioButton;
@@ -1013,7 +1021,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             getNotificationsController().updateServerNotificationsSettings(this.dialogId, this.topicId);
         } else {
             getNotificationsController().updateServerNotificationsSettings(this.currentType);
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
+            getNotificationCenter().postNotificationName(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
         }
     }
 
@@ -1045,7 +1053,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 }
                 if (this.chatAttachAlert.getDocumentLayout().isRingtone(new File(path))) {
                     getMediaDataController().uploadRingtone(path);
-                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+                    getNotificationCenter().postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                 } else {
                     z = false;
                 }
@@ -1061,7 +1069,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 }
                 if (this.chatAttachAlert.getDocumentLayout().isRingtone(new File(string))) {
                     getMediaDataController().uploadRingtone(string);
-                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+                    getNotificationCenter().postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                     z2 = true;
                 }
             }
@@ -1070,11 +1078,11 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             z = false;
         }
         if (z) {
-            this.chatAttachAlert.lambda$new$0();
+            this.chatAttachAlert.dismiss();
         }
     }
 
-    private static class Tone {
+    static class Tone {
         TLRPC.Document document;
         public boolean fromServer;
         boolean isSystemDefault;

@@ -8,6 +8,7 @@ import android.graphics.RectF;
 import android.util.Log;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
+import com.google.android.exoplayer2.Player;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -111,13 +112,14 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.doOnPreDraw(this.pictureInPictureView, Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                this.f$0.lambda$performPreAttach$0(z);
+                PipSourceHandlerState2.$r8$lambda$OJ6TCd9j1ASPOaXttSCtHNB46v0(this.f$0, z);
             }
         }, 300L));
         Log.i("PIP_DEBUG", "[HANDLER] pre attach end");
     }
 
-    public void lambda$performPreAttach$0(boolean z) {
+    public static void $r8$lambda$OJ6TCd9j1ASPOaXttSCtHNB46v0(final PipSourceHandlerState2 pipSourceHandlerState2, boolean z) {
+        pipSourceHandlerState2.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -136,7 +138,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         this.source.delegate.pipHidePrimaryWindowView(Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                this.f$0.lambda$performAttach$1(z);
+                PipSourceHandlerState2.$r8$lambda$_0s5XHU7H0igMoPANFvvW2kjXXo(this.f$0, z);
             }
         }, 400L));
         this.state = 2;
@@ -146,8 +148,8 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         performPreDetach1();
     }
 
-    public void lambda$performAttach$1(boolean z) {
-        this.pipSourcePlaceholder.stopPlaceholderForActivity();
+    public static void $r8$lambda$_0s5XHU7H0igMoPANFvvW2kjXXo(PipSourceHandlerState2 pipSourceHandlerState2, boolean z) {
+        pipSourceHandlerState2.pipSourcePlaceholder.stopPlaceholderForActivity();
         Log.i("PIP_DEBUG", "[HANDLER] on new source render first frame " + z);
     }
 
@@ -164,13 +166,14 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.doOnPreDraw(this.pictureInPictureWrapperView, Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                this.f$0.lambda$performPreDetach1$2(z);
+                PipSourceHandlerState2.$r8$lambda$n8ccvq7nV2IkZ9Vzn9O72rIal2c(this.f$0, z);
             }
         }, 300L));
         Log.i("PIP_DEBUG", "[HANDLER] pre detach 1");
     }
 
-    public void lambda$performPreDetach1$2(boolean z) {
+    public static void $r8$lambda$n8ccvq7nV2IkZ9Vzn9O72rIal2c(final PipSourceHandlerState2 pipSourceHandlerState2, boolean z) {
+        pipSourceHandlerState2.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -187,7 +190,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         this.source.delegate.pipShowPrimaryWindowView(Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                this.f$0.lambda$performPreDetach2$3(z);
+                PipSourceHandlerState2.$r8$lambda$ZySLOLIvyuM3KbeOOCEW108V4hQ(this.f$0, z);
             }
         }, 400L));
         this.pictureInPictureWrapperView.invalidate();
@@ -195,15 +198,16 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.doOnPreDraw(this.source.contentView, Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                this.f$0.lambda$performPreDetach2$4(z);
+                PipSourceHandlerState2.m1116$r8$lambda$5ZF6tf4lCT3nStrKGYxbw_Tsic(this.f$0, z);
             }
         }, 300L));
         Log.i("PIP_DEBUG", "[HANDLER] pre detach 2");
     }
 
-    public void lambda$performPreDetach2$3(boolean z) {
+    public static void $r8$lambda$ZySLOLIvyuM3KbeOOCEW108V4hQ(PipSourceHandlerState2 pipSourceHandlerState2, boolean z) {
+        pipSourceHandlerState2.getClass();
         Log.i("PIP_DEBUG", "[HANDLER] on old source render first frame " + z);
-        final PipSourcePlaceholder pipSourcePlaceholder = this.pipSourcePlaceholder;
+        final PipSourcePlaceholder pipSourcePlaceholder = pipSourceHandlerState2.pipSourcePlaceholder;
         Objects.requireNonNull(pipSourcePlaceholder);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -213,7 +217,8 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         });
     }
 
-    public void lambda$performPreDetach2$4(boolean z) {
+    public static void m1116$r8$lambda$5ZF6tf4lCT3nStrKGYxbw_Tsic(final PipSourceHandlerState2 pipSourceHandlerState2, boolean z) {
+        pipSourceHandlerState2.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -295,6 +300,26 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
 
     public boolean isAttachedToPip() {
         return this.state != 0;
+    }
+
+    @Override
+    public void onPipStashStart() {
+        Player player;
+        PipSource pipSource = this.source;
+        if (pipSource == null || (player = pipSource.getPlayer()) == null) {
+            return;
+        }
+        player.pause();
+    }
+
+    @Override
+    public void onPipStashEnd() {
+        Player player;
+        PipSource pipSource = this.source;
+        if (pipSource == null || (player = pipSource.getPlayer()) == null) {
+            return;
+        }
+        player.play();
     }
 
     @Override

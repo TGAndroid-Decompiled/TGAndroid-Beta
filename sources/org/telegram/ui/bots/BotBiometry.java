@@ -123,30 +123,31 @@ public class BotBiometry {
         prompt(str, true, null, new Utilities.Callback3() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3) {
-                this.f$0.lambda$requestToken$0(callback2, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2, (BiometricPrompt.CryptoObject) obj3);
+                BotBiometry.m4801$r8$lambda$EUiNC6veRuZ30C5i6xyfQO7WVk(this.f$0, callback2, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2, (BiometricPrompt.CryptoObject) obj3);
             }
         });
     }
 
-    public void lambda$requestToken$0(Utilities.Callback2 callback2, Boolean bool, BiometricPrompt.AuthenticationResult authenticationResult, BiometricPrompt.CryptoObject cryptoObject) {
+    public static void m4801$r8$lambda$EUiNC6veRuZ30C5i6xyfQO7WVk(BotBiometry botBiometry, Utilities.Callback2 callback2, Boolean bool, BiometricPrompt.AuthenticationResult authenticationResult, BiometricPrompt.CryptoObject cryptoObject) {
         String str;
+        botBiometry.getClass();
         String str2 = null;
         if (authenticationResult != null) {
             try {
                 int i = Build.VERSION.SDK_INT;
                 if (i < 23) {
-                    str = this.encrypted_token;
+                    str = botBiometry.encrypted_token;
                 } else {
                     if (i >= 30) {
-                        cryptoObject = makeCryptoObject(true);
+                        cryptoObject = botBiometry.makeCryptoObject(true);
                     }
                     if (cryptoObject != null) {
-                        if (!TextUtils.isEmpty(this.encrypted_token)) {
-                            str = new String(cryptoObject.getCipher().doFinal(Utilities.hexToBytes(this.encrypted_token)), StandardCharsets.UTF_8);
+                        if (!TextUtils.isEmpty(botBiometry.encrypted_token)) {
+                            str2 = new String(cryptoObject.getCipher().doFinal(Utilities.hexToBytes(botBiometry.encrypted_token)), StandardCharsets.UTF_8);
                         } else {
-                            str = this.encrypted_token;
+                            str = botBiometry.encrypted_token;
                         }
-                    } else if (!TextUtils.isEmpty(this.encrypted_token)) {
+                    } else if (!TextUtils.isEmpty(botBiometry.encrypted_token)) {
                         throw new RuntimeException("No cryptoObject found");
                     }
                 }
@@ -163,35 +164,36 @@ public class BotBiometry {
         prompt(str, false, str2, new Utilities.Callback3() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3) {
-                this.f$0.lambda$updateToken$1(str2, callback, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2, (BiometricPrompt.CryptoObject) obj3);
+                BotBiometry.$r8$lambda$TtyQtcxAU6p2Iix7SFwQQrnuWks(this.f$0, str2, callback, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2, (BiometricPrompt.CryptoObject) obj3);
             }
         });
     }
 
-    public void lambda$updateToken$1(String str, Utilities.Callback callback, Boolean bool, BiometricPrompt.AuthenticationResult authenticationResult, BiometricPrompt.CryptoObject cryptoObject) {
+    public static void $r8$lambda$TtyQtcxAU6p2Iix7SFwQQrnuWks(BotBiometry botBiometry, String str, Utilities.Callback callback, Boolean bool, BiometricPrompt.AuthenticationResult authenticationResult, BiometricPrompt.CryptoObject cryptoObject) {
+        botBiometry.getClass();
         if (authenticationResult != null) {
             try {
                 if (TextUtils.isEmpty(str)) {
-                    this.encrypted_token = null;
-                    this.iv = null;
+                    botBiometry.encrypted_token = null;
+                    botBiometry.iv = null;
                 } else {
                     int i = Build.VERSION.SDK_INT;
                     if (i < 23) {
-                        this.encrypted_token = str;
-                        this.iv = null;
+                        botBiometry.encrypted_token = str;
+                        botBiometry.iv = null;
                     } else {
                         if (i >= 30) {
-                            cryptoObject = makeCryptoObject(false);
+                            cryptoObject = botBiometry.makeCryptoObject(false);
                         }
                         if (cryptoObject != null) {
-                            this.encrypted_token = Utilities.bytesToHex(cryptoObject.getCipher().doFinal(str.getBytes(StandardCharsets.UTF_8)));
-                            this.iv = Utilities.bytesToHex(cryptoObject.getCipher().getIV());
+                            botBiometry.encrypted_token = Utilities.bytesToHex(cryptoObject.getCipher().doFinal(str.getBytes(StandardCharsets.UTF_8)));
+                            botBiometry.iv = Utilities.bytesToHex(cryptoObject.getCipher().getIV());
                         } else {
                             throw new RuntimeException("No cryptoObject found");
                         }
                     }
                 }
-                save();
+                botBiometry.save();
             } catch (Exception e) {
                 FileLog.e(e);
                 bool = Boolean.FALSE;
@@ -407,8 +409,9 @@ public class BotBiometry {
         if (callback == null) {
             return;
         }
+        int i2 = 0;
         SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + i, 0);
-        final ArrayList<Long> arrayList = new ArrayList();
+        final ArrayList arrayList = new ArrayList();
         Iterator<Map.Entry<String, ?>> it = sharedPreferences.getAll().entrySet().iterator();
         while (it.hasNext()) {
             String key = it.next().getKey();
@@ -421,7 +424,11 @@ public class BotBiometry {
             }
         }
         final HashMap map = new HashMap();
-        for (Long l : arrayList) {
+        int size = arrayList.size();
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            Long l = (Long) obj;
             BotBiometry botBiometry = get(context, i, l.longValue());
             if (botBiometry.access_granted && botBiometry.access_requested) {
                 map.put(l, Boolean.valueOf(!botBiometry.disabled));
@@ -433,23 +440,23 @@ public class BotBiometry {
             MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    BotBiometry.lambda$getBots$4(i, arrayList, map, callback);
+                    BotBiometry.m4802$r8$lambda$RJKoBZmwFpKggQ70qGwMAC69F4(i, arrayList, map, callback);
                 }
             });
         }
     }
 
-    public static void lambda$getBots$4(int i, ArrayList arrayList, final HashMap map, final Utilities.Callback callback) {
+    public static void m4802$r8$lambda$RJKoBZmwFpKggQ70qGwMAC69F4(int i, ArrayList arrayList, final HashMap map, final Utilities.Callback callback) {
         final ArrayList<TLRPC.User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotBiometry.lambda$getBots$3(users, map, callback);
+                BotBiometry.$r8$lambda$x4rPWn7Xb2qBrXzfzOciQf9ogj0(users, map, callback);
             }
         });
     }
 
-    public static void lambda$getBots$3(ArrayList arrayList, HashMap map, Utilities.Callback callback) {
+    public static void $r8$lambda$x4rPWn7Xb2qBrXzfzOciQf9ogj0(ArrayList arrayList, HashMap map, Utilities.Callback callback) {
         ArrayList arrayList2 = new ArrayList();
         for (int i = 0; i < arrayList.size(); i++) {
             TLRPC.User user = (TLRPC.User) arrayList.get(i);

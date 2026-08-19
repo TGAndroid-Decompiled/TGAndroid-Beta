@@ -194,7 +194,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
         boostViaGiftsBottomSheet.setOnCloseClick(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.dismiss();
             }
         });
         boostViaGiftsBottomSheet.setActionListener(new BoostViaGiftsBottomSheet.ActionListener() {
@@ -243,7 +243,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
         selectorBottomSheet.setOnCloseClick(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openCrafting$8();
+                this.f$0.onBackPressed();
             }
         });
         loadData(z2);
@@ -321,7 +321,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
     }
 
     @Override
-    public void lambda$openCrafting$8() {
+    public void onBackPressed() {
         if (this.viewPager.getCurrentPosition() > 0) {
             if (this.rightSheet.hasChanges()) {
                 return;
@@ -330,7 +330,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
             this.viewPager.scrollToPosition(0);
             return;
         }
-        super.lambda$openCrafting$8();
+        super.onBackPressed();
     }
 
     private boolean isLightStatusBar() {

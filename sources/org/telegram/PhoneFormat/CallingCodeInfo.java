@@ -1,7 +1,6 @@
 package org.telegram.PhoneFormat;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class CallingCodeInfo {
     public ArrayList countries = new ArrayList();
@@ -11,7 +10,13 @@ public class CallingCodeInfo {
     public ArrayList ruleSets = new ArrayList();
 
     String matchingAccessCode(String str) {
-        for (String str2 : this.intlPrefixes) {
+        ArrayList arrayList = this.intlPrefixes;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            String str2 = (String) obj;
             if (str.startsWith(str2)) {
                 return str2;
             }
@@ -20,7 +25,13 @@ public class CallingCodeInfo {
     }
 
     String matchingTrunkCode(String str) {
-        for (String str2 : this.trunkPrefixes) {
+        ArrayList arrayList = this.trunkPrefixes;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            String str2 = (String) obj;
             if (str.startsWith(str2)) {
                 return str2;
             }
@@ -46,16 +57,24 @@ public class CallingCodeInfo {
                 str2 = null;
             }
         }
-        Iterator it = this.ruleSets.iterator();
-        while (it.hasNext()) {
-            String str4 = ((RuleSet) it.next()).format(strSubstring, str2, str3, true);
+        ArrayList arrayList = this.ruleSets;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            String str4 = ((RuleSet) obj).format(strSubstring, str2, str3, true);
             if (str4 != null) {
                 return str4;
             }
         }
-        Iterator it2 = this.ruleSets.iterator();
-        while (it2.hasNext()) {
-            String str5 = ((RuleSet) it2.next()).format(strSubstring, str2, str3, false);
+        ArrayList arrayList2 = this.ruleSets;
+        int size2 = arrayList2.size();
+        int i2 = 0;
+        while (i2 < size2) {
+            Object obj2 = arrayList2.get(i2);
+            i2++;
+            String str5 = ((RuleSet) obj2).format(strSubstring, str2, str3, false);
             if (str5 != null) {
                 return str5;
             }

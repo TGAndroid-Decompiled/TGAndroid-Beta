@@ -59,7 +59,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
     private boolean isOpenAnimationEnd;
     private LinearLayout topView;
 
-    public static void lambda$new$5() {
+    public static void $r8$lambda$2XCcAruOv5QszSEYM9slNEERuNA() {
     }
 
     @Override
@@ -86,7 +86,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
         balanceCloud.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StakedDiceSheet.lambda$new$0(context, resourcesProvider, view);
+                new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
             }
         });
         TLRPC.EmojiGameInfo emojiGameInfo = MessagesController.getInstance(i).stakeDiceInfo;
@@ -149,7 +149,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             Utilities.Callback2Return callback2Return = new Utilities.Callback2Return() {
                 @Override
                 public final Object run(Object obj, Object obj2) {
-                    return StakedDiceSheet.lambda$new$1(context, iArr, resourcesProvider, tableView, (Integer) obj, (Float) obj2);
+                    return StakedDiceSheet.m4064$r8$lambda$Avzvs7HEBCdkCHlzfUQfHJlva8(context, iArr, resourcesProvider, tableView, (Integer) obj, (Float) obj2);
                 }
             };
             if (tL_emojiGameDiceInfo.params.size() == 7) {
@@ -198,7 +198,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public final void onFocusChange(View view, boolean z) {
-                    StakedDiceSheet.lambda$new$2(outlineTextContainerView, editTextBoldCursor, view, z);
+                    outlineTextContainerView.animateSelection(z, !TextUtils.isEmpty(editTextBoldCursor.getText()));
                 }
             });
             LinearLayout linearLayout4 = new LinearLayout(context);
@@ -222,15 +222,16 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             textView.setText("≈" + BillingController.getInstance().formatCurrency((long) ((j / 1.0E9d) * MessagesController.getInstance(i).config.tonUsdRate.get() * 100.0d), "USD", 2));
             final int[] iArr2 = {2};
             outlineTextContainerView.animateSelection(false, TextUtils.isEmpty(editTextBoldCursor.getText()) ^ true);
+            int i4 = 3;
             editTextBoldCursor.addTextChangedListener(new TextWatcher() {
                 private boolean ignore;
 
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+                public void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+                public void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
                 }
 
                 @Override
@@ -251,9 +252,9 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
                                 editTextBoldCursor3.setSelection(editTextBoldCursor3.getText().length());
                                 OutlineTextContainerView outlineTextContainerView2 = outlineTextContainerView;
                                 int[] iArr3 = iArr2;
-                                int i4 = -iArr3[0];
-                                iArr3[0] = i4;
-                                AndroidUtilities.shakeViewSpring(outlineTextContainerView2, i4);
+                                int i5 = -iArr3[0];
+                                iArr3[0] = i5;
+                                AndroidUtilities.shakeViewSpring(outlineTextContainerView2, i5);
                             } else if (d > 0.0d && d < MessagesController.getInstance(i).tonStakeddiceStakeAmountMin / 1.0E9d) {
                                 this.ignore = true;
                                 EditTextBoldCursor editTextBoldCursor4 = editTextBoldCursor;
@@ -263,9 +264,9 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
                                 editTextBoldCursor5.setSelection(editTextBoldCursor5.getText().length());
                                 OutlineTextContainerView outlineTextContainerView3 = outlineTextContainerView;
                                 int[] iArr4 = iArr2;
-                                int i5 = -iArr4[0];
-                                iArr4[0] = i5;
-                                AndroidUtilities.shakeViewSpring(outlineTextContainerView3, i5);
+                                int i6 = -iArr4[0];
+                                iArr4[0] = i6;
+                                AndroidUtilities.shakeViewSpring(outlineTextContainerView3, i6);
                             }
                         } catch (Exception unused) {
                             this.ignore = true;
@@ -290,22 +291,26 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             Utilities.CallbackReturn callbackReturn = new Utilities.CallbackReturn() {
                 @Override
                 public final Object run(Object obj) {
-                    return StakedDiceSheet.lambda$new$4(context, resourcesProvider, editTextBoldCursor, (Long) obj);
+                    return StakedDiceSheet.m4065$r8$lambda$U3QzNjIEL4Nod70FOH84Lt4RXk(context, resourcesProvider, editTextBoldCursor, (Long) obj);
                 }
             };
             long[] jArr = MessagesController.getInstance(i).tonStakediceStakeSuggestedAmounts;
-            for (int i4 = 0; i4 < Utilities.divCeil(jArr.length, 3); i4++) {
+            int i5 = 0;
+            while (i5 < Utilities.divCeil(jArr.length, i4)) {
                 LinearLayout linearLayout5 = new LinearLayout(context);
                 linearLayout5.setOrientation(0);
-                int i5 = 0;
+                int i6 = 0;
                 while (true) {
-                    int i6 = i4 * 3;
-                    if (i5 < Math.min(3, jArr.length - i6)) {
-                        linearLayout5.addView((View) callbackReturn.run(Long.valueOf(jArr[i6 + i5])), LayoutHelper.createLinear(0, 26, 1.0f, 112, 0, 0, i5 == 2 ? 0 : 6, 0));
-                        i5++;
+                    int i7 = i5 * 3;
+                    if (i6 < Math.min(i4, jArr.length - i7)) {
+                        linearLayout5.addView((View) callbackReturn.run(Long.valueOf(jArr[i7 + i6])), LayoutHelper.createLinear(0, 26, 1.0f, 112, 0, 0, i6 == 2 ? 0 : 6, 0));
+                        i6++;
+                        i4 = 3;
                     }
                 }
                 this.editView.addView(linearLayout5, LayoutHelper.createLinear(-1, -2, 0.0f, 7.0f, 0.0f, 0.0f));
+                i5++;
+                i4 = 3;
             }
             ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
             SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder("🎲");
@@ -317,26 +322,22 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$6(editTextBoldCursor, i, outlineTextContainerView, iArr2, context, resourcesProvider, callback, view);
+                    StakedDiceSheet.$r8$lambda$HSdzoQwWTn8d3fxJFrqvkYCT0kg(this.f$0, editTextBoldCursor, i, outlineTextContainerView, iArr2, context, resourcesProvider, callback, view);
                 }
             });
             FrameLayout frameLayout = new FrameLayout(context);
             frameLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87, 16, 0, 16, 10));
             ViewGroup viewGroup = this.containerView;
-            int i7 = this.backgroundPaddingLeft;
-            viewGroup.addView(frameLayout, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i7, 0, i7, 0));
-            RecyclerListView recyclerListView = this.recyclerListView;
             int i8 = this.backgroundPaddingLeft;
-            recyclerListView.setPadding(i8, 0, i8, AndroidUtilities.dp(68.0f));
+            viewGroup.addView(frameLayout, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i8, 0, i8, 0));
+            RecyclerListView recyclerListView = this.recyclerListView;
+            int i9 = this.backgroundPaddingLeft;
+            recyclerListView.setPadding(i9, 0, i9, AndroidUtilities.dp(68.0f));
             this.adapter.update(false);
         }
     }
 
-    public static void lambda$new$0(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
-        new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
-    }
-
-    public static TableView.TableRowContent lambda$new$1(Context context, int[] iArr, Theme.ResourcesProvider resourcesProvider, TableView tableView, Integer num, Float f) {
+    public static TableView.TableRowContent m4064$r8$lambda$Avzvs7HEBCdkCHlzfUQfHJlva8(Context context, int[] iArr, Theme.ResourcesProvider resourcesProvider, TableView tableView, Integer num, Float f) {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -366,11 +367,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
         return new TableView.TableRowContent(tableView, linearLayout, false);
     }
 
-    public static void lambda$new$2(OutlineTextContainerView outlineTextContainerView, EditTextBoldCursor editTextBoldCursor, View view, boolean z) {
-        outlineTextContainerView.animateSelection(z, !TextUtils.isEmpty(editTextBoldCursor.getText()));
-    }
-
-    public static View lambda$new$4(Context context, Theme.ResourcesProvider resourcesProvider, final EditTextBoldCursor editTextBoldCursor, final Long l) {
+    public static View m4065$r8$lambda$U3QzNjIEL4Nod70FOH84Lt4RXk(Context context, Theme.ResourcesProvider resourcesProvider, final EditTextBoldCursor editTextBoldCursor, final Long l) {
         TextView textView = new TextView(context);
         textView.setGravity(17);
         textView.setTextSize(1, 13.0f);
@@ -383,18 +380,19 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StakedDiceSheet.lambda$new$3(editTextBoldCursor, l, view);
+                StakedDiceSheet.$r8$lambda$zzvBunEOVdmRliQ0b4YCyQVjPHw(editTextBoldCursor, l, view);
             }
         });
         return textView;
     }
 
-    public static void lambda$new$3(EditTextBoldCursor editTextBoldCursor, Long l, View view) {
+    public static void $r8$lambda$zzvBunEOVdmRliQ0b4YCyQVjPHw(EditTextBoldCursor editTextBoldCursor, Long l, View view) {
         editTextBoldCursor.setText(StarsIntroActivity.formatTON(l.longValue()));
         editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
     }
 
-    public void lambda$new$6(EditTextBoldCursor editTextBoldCursor, int i, OutlineTextContainerView outlineTextContainerView, int[] iArr, Context context, Theme.ResourcesProvider resourcesProvider, Utilities.Callback callback, View view) {
+    public static void $r8$lambda$HSdzoQwWTn8d3fxJFrqvkYCT0kg(StakedDiceSheet stakedDiceSheet, EditTextBoldCursor editTextBoldCursor, int i, OutlineTextContainerView outlineTextContainerView, int[] iArr, Context context, Theme.ResourcesProvider resourcesProvider, Utilities.Callback callback, View view) {
+        stakedDiceSheet.getClass();
         Editable text = editTextBoldCursor.getText();
         try {
             double d = TextUtils.isEmpty(text) ? 0.0d : Double.parseDouble(text.toString());
@@ -411,13 +409,13 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
                     new TONIntroActivity.StarsNeededSheet(context, resourcesProvider, AmountUtils$Amount.fromNano((long) (d * 1.0E9d), AmountUtils$Currency.TON), true, new Runnable() {
                         @Override
                         public final void run() {
-                            StakedDiceSheet.lambda$new$5();
+                            StakedDiceSheet.$r8$lambda$2XCcAruOv5QszSEYM9slNEERuNA();
                         }
                     });
                     return;
                 } else {
                     callback.run(Long.valueOf((long) (d * 1.0E9d)));
-                    lambda$new$0();
+                    stakedDiceSheet.dismiss();
                     return;
                 }
             }
@@ -524,7 +522,8 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             spannableStringBuilder.append((CharSequence) "  ").append(ButtonSpan.make(LocaleController.getString(R.string.StakeDiceToastChange), new Runnable() {
                 @Override
                 public final void run() {
-                    StakedDiceSheet.lambda$showStakeToast$7(safeLastFragment, callback);
+                    BaseFragment baseFragment2 = safeLastFragment;
+                    new StakedDiceSheet(baseFragment2.getContext(), baseFragment2.getCurrentAccount(), baseFragment2.getResourceProvider(), callback).show();
                 }
             }, safeLastFragment.getResourceProvider()));
             AndroidUtilities.removeFromParent(lottieLayout.textView);
@@ -544,18 +543,10 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             lottieLayout.setButton(new Bulletin.UndoButton(safeLastFragment.getContext(), true, safeLastFragment.getResourceProvider()).setText(LocaleController.getString(R.string.StakeDiceToastButton)).setUndoAction(new Runnable() {
                 @Override
                 public final void run() {
-                    StakedDiceSheet.lambda$showStakeToast$8(callback, j2);
+                    callback.run(Long.valueOf(j2));
                 }
             }));
             BulletinFactory.of(safeLastFragment).create(lottieLayout, 2750).show();
         }
-    }
-
-    public static void lambda$showStakeToast$7(BaseFragment baseFragment, Utilities.Callback callback) {
-        new StakedDiceSheet(baseFragment.getContext(), baseFragment.getCurrentAccount(), baseFragment.getResourceProvider(), callback).show();
-    }
-
-    public static void lambda$showStakeToast$8(Utilities.Callback callback, long j) {
-        callback.run(Long.valueOf(j));
     }
 }

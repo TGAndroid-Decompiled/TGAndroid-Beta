@@ -32,7 +32,7 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
     private Runnable searchRunnable;
     private int totalCount;
 
-    protected abstract void scrollToTop(boolean z);
+    public abstract void scrollToTop(boolean z);
 
     public HashtagsSearchAdapter(RecyclerListView recyclerListView, Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
         super(recyclerListView, context, i, 0, null, resourcesProvider);
@@ -73,13 +73,9 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$fillItems$0();
+                this.f$0.scrollToTop(true);
             }
         });
-    }
-
-    public void lambda$fillItems$0() {
-        scrollToTop(true);
     }
 
     public void setInitialData(String str, ArrayList arrayList, int i, int i2) {
@@ -117,89 +113,90 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$search$3(i, hashtag);
+                HashtagsSearchAdapter.m2368$r8$lambda$HUrBpdTFncWWyEi2Yg2z3xmHlk(this.f$0, i, hashtag);
             }
         };
         this.searchRunnable = runnable;
         AndroidUtilities.runOnUIThread(runnable, 300L);
     }
 
-    public void lambda$search$3(final int i, String str) {
-        if (i != this.searchId) {
+    public static void m2368$r8$lambda$HUrBpdTFncWWyEi2Yg2z3xmHlk(final HashtagsSearchAdapter hashtagsSearchAdapter, final int i, String str) {
+        if (i != hashtagsSearchAdapter.searchId) {
             return;
         }
         StringBuilder sb = new StringBuilder();
-        sb.append(this.cashtag[0] ? "$" : "#");
-        sb.append(this.hashtagQuery);
+        sb.append(hashtagsSearchAdapter.cashtag[0] ? "$" : "#");
+        sb.append(hashtagsSearchAdapter.hashtagQuery);
         final String string = sb.toString();
-        StoriesController.SearchStoriesList searchStoriesList = this.list;
+        StoriesController.SearchStoriesList searchStoriesList = hashtagsSearchAdapter.list;
         if (searchStoriesList == null || !TextUtils.equals(searchStoriesList.query, string)) {
-            this.list = new StoriesController.SearchStoriesList(this.currentAccount, null, string);
+            hashtagsSearchAdapter.list = new StoriesController.SearchStoriesList(hashtagsSearchAdapter.currentAccount, null, string);
         }
-        if (this.list.getLoadedCount() <= 0) {
-            this.list.load(true, 4);
+        if (hashtagsSearchAdapter.list.getLoadedCount() <= 0) {
+            hashtagsSearchAdapter.list.load(true, 4);
         }
-        this.hasList = true;
+        hashtagsSearchAdapter.hasList = true;
         TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
         tL_channels_searchPosts.flags |= 1;
-        this.hashtagQuery = str;
+        hashtagsSearchAdapter.hashtagQuery = str;
         tL_channels_searchPosts.hashtag = str;
         tL_channels_searchPosts.limit = 10;
-        if (!this.messages.isEmpty()) {
-            ArrayList arrayList = this.messages;
+        if (!hashtagsSearchAdapter.messages.isEmpty()) {
+            ArrayList arrayList = hashtagsSearchAdapter.messages;
             MessageObject messageObject = (MessageObject) arrayList.get(arrayList.size() - 1);
-            tL_channels_searchPosts.offset_rate = this.lastRate;
-            tL_channels_searchPosts.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.messageOwner.peer_id);
+            tL_channels_searchPosts.offset_rate = hashtagsSearchAdapter.lastRate;
+            tL_channels_searchPosts.offset_peer = MessagesController.getInstance(hashtagsSearchAdapter.currentAccount).getInputPeer(messageObject.messageOwner.peer_id);
         } else {
             tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
         }
-        this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
+        hashtagsSearchAdapter.reqId = ConnectionsManager.getInstance(hashtagsSearchAdapter.currentAccount).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$search$2(i, string, tLObject, tL_error);
+                HashtagsSearchAdapter.$r8$lambda$Xnn3pljL4q2uf9Fnkn6R8y7R_uU(this.f$0, i, string, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$search$2(final int i, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$Xnn3pljL4q2uf9Fnkn6R8y7R_uU(final HashtagsSearchAdapter hashtagsSearchAdapter, final int i, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        hashtagsSearchAdapter.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$search$1(i, tLObject, str);
+                HashtagsSearchAdapter.$r8$lambda$JNJvzFIeEZoZDRY5oBboHcFbvG0(this.f$0, i, tLObject, str);
             }
         });
     }
 
-    public void lambda$search$1(int i, TLObject tLObject, String str) {
-        if (i != this.searchId) {
+    public static void $r8$lambda$JNJvzFIeEZoZDRY5oBboHcFbvG0(HashtagsSearchAdapter hashtagsSearchAdapter, int i, TLObject tLObject, String str) {
+        if (i != hashtagsSearchAdapter.searchId) {
             return;
         }
-        boolean zIsEmpty = this.messages.isEmpty();
-        this.loading = false;
+        boolean zIsEmpty = hashtagsSearchAdapter.messages.isEmpty();
+        hashtagsSearchAdapter.loading = false;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             if (messages_messages instanceof TLRPC.TL_messages_messages) {
-                this.totalCount = ((TLRPC.TL_messages_messages) messages_messages).messages.size();
+                hashtagsSearchAdapter.totalCount = ((TLRPC.TL_messages_messages) messages_messages).messages.size();
             } else if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                this.totalCount = ((TLRPC.TL_messages_messagesSlice) messages_messages).count;
+                hashtagsSearchAdapter.totalCount = ((TLRPC.TL_messages_messagesSlice) messages_messages).count;
             }
-            this.lastRate = messages_messages.next_rate;
-            MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(messages_messages.chats, false);
+            hashtagsSearchAdapter.lastRate = messages_messages.next_rate;
+            MessagesController.getInstance(hashtagsSearchAdapter.currentAccount).putUsers(messages_messages.users, false);
+            MessagesController.getInstance(hashtagsSearchAdapter.currentAccount).putChats(messages_messages.chats, false);
             for (int i2 = 0; i2 < messages_messages.messages.size(); i2++) {
-                MessageObject messageObject = new MessageObject(this.currentAccount, messages_messages.messages.get(i2), false, true);
+                MessageObject messageObject = new MessageObject(hashtagsSearchAdapter.currentAccount, messages_messages.messages.get(i2), false, true);
                 messageObject.setQuery(str);
-                this.messages.add(messageObject);
+                hashtagsSearchAdapter.messages.add(messageObject);
             }
-            this.endReached = this.messages.size() >= this.totalCount;
-            checkBottom();
+            hashtagsSearchAdapter.endReached = hashtagsSearchAdapter.messages.size() >= hashtagsSearchAdapter.totalCount;
+            hashtagsSearchAdapter.checkBottom();
         } else {
-            this.endReached = true;
-            this.totalCount = this.messages.size();
+            hashtagsSearchAdapter.endReached = true;
+            hashtagsSearchAdapter.totalCount = hashtagsSearchAdapter.messages.size();
         }
-        update(true);
+        hashtagsSearchAdapter.update(true);
         if (zIsEmpty) {
-            scrollToTop(false);
+            hashtagsSearchAdapter.scrollToTop(false);
         }
     }
 

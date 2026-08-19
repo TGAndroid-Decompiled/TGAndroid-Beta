@@ -84,7 +84,7 @@ public class TrendingStickersAlert extends BottomSheet {
     }
 
     public void setHeavyOperationsEnabled(boolean z) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(z ? NotificationCenter.startAllHeavyOperations : NotificationCenter.stopAllHeavyOperations, 2);
+        NotificationCenter.getGlobalInstance().postNotificationName(z ? NotificationCenter.startAllHeavyOperations : NotificationCenter.stopAllHeavyOperations, 2);
     }
 
     public TrendingStickersLayout getLayout() {
@@ -266,17 +266,21 @@ public class TrendingStickersAlert extends BottomSheet {
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
+            Canvas canvas2;
             float fraction = getFraction();
             setStatusBarVisible(fraction == 0.0f && !TrendingStickersAlert.this.isDismissed(), true);
             updateLightStatusBar(this.statusBarAlpha > 0.5f);
             if (this.statusBarAlpha > 0.0f) {
                 this.paint.setColor(TrendingStickersAlert.this.getThemedColor(Theme.key_dialogBackground));
                 int iMax = (int) Math.max(0.0f, TrendingStickersAlert.this.scrollOffsetY + (TrendingStickersAlert.this.topOffset * (1.0f - getFraction())) + AndroidUtilities.dp(24.0f) + TrendingStickersAlert.this.layout.getTranslationY() + (AndroidUtilities.statusBarHeight - TrendingStickersAlert.this.topOffset));
-                canvas.drawRect(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, AndroidUtilities.lerp(iMax, -AndroidUtilities.statusBarHeight, this.statusBarAlpha), getMeasuredWidth() - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, iMax, this.paint);
+                canvas2 = canvas;
+                canvas2.drawRect(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, AndroidUtilities.lerp(iMax, -AndroidUtilities.statusBarHeight, this.statusBarAlpha), getMeasuredWidth() - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, iMax, this.paint);
+            } else {
+                canvas2 = canvas;
             }
-            super.dispatchDraw(canvas);
-            canvas.save();
-            canvas.translate(0.0f, (TrendingStickersAlert.this.layout.getTranslationY() + AndroidUtilities.statusBarHeight) - TrendingStickersAlert.this.topOffset);
+            super.dispatchDraw(canvas2);
+            canvas2.save();
+            canvas2.translate(0.0f, (TrendingStickersAlert.this.layout.getTranslationY() + AndroidUtilities.statusBarHeight) - TrendingStickersAlert.this.topOffset);
             int iDp = AndroidUtilities.dp(36.0f);
             int iDp2 = AndroidUtilities.dp(4.0f);
             int i = (int) (iDp2 * 2.0f * (1.0f - fraction));
@@ -284,8 +288,8 @@ public class TrendingStickersAlert extends BottomSheet {
             int themedColor = TrendingStickersAlert.this.getThemedColor(Theme.key_sheet_scrollUp);
             TrendingStickersAlert.this.shapeDrawable.setColor(ColorUtils.setAlphaComponent(themedColor, (int) (Color.alpha(themedColor) * fraction)));
             TrendingStickersAlert.this.shapeDrawable.setBounds((getWidth() - iDp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i, (getWidth() + iDp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i + iDp2);
-            TrendingStickersAlert.this.shapeDrawable.draw(canvas);
-            canvas.restore();
+            TrendingStickersAlert.this.shapeDrawable.draw(canvas2);
+            canvas2.restore();
         }
 
         @Override
@@ -318,7 +322,7 @@ public class TrendingStickersAlert extends BottomSheet {
                         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                                this.f$0.lambda$setStatusBarVisible$0(valueAnimator3);
+                                TrendingStickersAlert.AlertContainerView.$r8$lambda$rmxsh33i55heNTAadtBTxYLUCyk(this.f$0, valueAnimator3);
                             }
                         });
                         this.statusBarAnimator.setDuration(200L);
@@ -333,9 +337,10 @@ public class TrendingStickersAlert extends BottomSheet {
             }
         }
 
-        public void lambda$setStatusBarVisible$0(ValueAnimator valueAnimator) {
-            this.statusBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+        public static void $r8$lambda$rmxsh33i55heNTAadtBTxYLUCyk(AlertContainerView alertContainerView, ValueAnimator valueAnimator) {
+            alertContainerView.getClass();
+            alertContainerView.statusBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            alertContainerView.invalidate();
         }
     }
 }

@@ -428,12 +428,12 @@ public abstract class MaskPaintView extends FrameLayout {
         this.queue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MaskPaintView.lambda$shutdown$0();
+                MaskPaintView.$r8$lambda$cXRL7e_YItIUpm3UBcEWZiwtjVc();
             }
         });
     }
 
-    public static void lambda$shutdown$0() {
+    public static void $r8$lambda$cXRL7e_YItIUpm3UBcEWZiwtjVc() {
         Looper looperMyLooper = Looper.myLooper();
         if (looperMyLooper != null) {
             looperMyLooper.quit();

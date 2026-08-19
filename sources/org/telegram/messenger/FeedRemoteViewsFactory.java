@@ -129,7 +129,7 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onDataSetChanged$0();
+                FeedRemoteViewsFactory.$r8$lambda$xDSQDzYXaikYM_m7VQOCMfhrlVE(this.f$0);
             }
         });
         try {
@@ -139,12 +139,12 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
         }
     }
 
-    public void lambda$onDataSetChanged$0() {
-        this.accountInstance.getNotificationCenter().addObserver(this, NotificationCenter.messagesDidLoad);
-        if (this.classGuid == 0) {
-            this.classGuid = ConnectionsManager.generateClassGuid();
+    public static void $r8$lambda$xDSQDzYXaikYM_m7VQOCMfhrlVE(FeedRemoteViewsFactory feedRemoteViewsFactory) {
+        feedRemoteViewsFactory.accountInstance.getNotificationCenter().addObserver(feedRemoteViewsFactory, NotificationCenter.messagesDidLoad);
+        if (feedRemoteViewsFactory.classGuid == 0) {
+            feedRemoteViewsFactory.classGuid = ConnectionsManager.generateClassGuid();
         }
-        this.accountInstance.getMessagesController().loadMessages(this.dialogId, 0L, false, 20, 0, 0, true, 0, this.classGuid, 0, 0, 0, 0L, 0, 1, false);
+        feedRemoteViewsFactory.accountInstance.getMessagesController().loadMessages(feedRemoteViewsFactory.dialogId, 0L, false, 20, 0, 0, true, 0, feedRemoteViewsFactory.classGuid, 0, 0, 0, 0L, 0, 1, false);
     }
 
     @Override

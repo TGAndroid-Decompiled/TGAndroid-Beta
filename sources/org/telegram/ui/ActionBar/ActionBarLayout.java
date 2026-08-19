@@ -519,19 +519,23 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
 
         private void drawInsets(Canvas canvas, int i, boolean z) {
+            Canvas canvas2;
             int paddingLeft = getPaddingLeft();
             int paddingRight = getPaddingRight();
             int paddingBottom = getPaddingBottom();
             Paint paintFillingPaint = Theme.fillingPaint(i);
-            if (paddingLeft > 0 && this.edgeToEdgeSupportMode != EdgeToEdgeSupportMode.FULL) {
-                canvas.drawRect(0.0f, 0.0f, paddingLeft + 1, getHeight(), paintFillingPaint);
+            if (paddingLeft <= 0 || this.edgeToEdgeSupportMode == EdgeToEdgeSupportMode.FULL) {
+                canvas2 = canvas;
+            } else {
+                canvas2 = canvas;
+                canvas2.drawRect(0.0f, 0.0f, paddingLeft + 1, getHeight(), paintFillingPaint);
             }
             if (paddingRight > 0 && this.edgeToEdgeSupportMode != EdgeToEdgeSupportMode.FULL) {
-                canvas.drawRect(getWidth() - (paddingRight + 1), 0.0f, getWidth(), getHeight(), paintFillingPaint);
+                canvas2.drawRect(getWidth() - (paddingRight + 1), 0.0f, getWidth(), getHeight(), paintFillingPaint);
             }
             if (paddingBottom > 0) {
                 if (this.edgeToEdgeSupportMode == EdgeToEdgeSupportMode.NONE || z) {
-                    canvas.drawRect(0.0f, getHeight() - (paddingBottom + 1), getWidth(), getHeight(), paintFillingPaint);
+                    canvas2.drawRect(0.0f, getHeight() - (paddingBottom + 1), getWidth(), getHeight(), paintFillingPaint);
                 }
             }
         }
@@ -659,6 +663,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             if (this.fragmentPanTranslationOffset != 0) {
                 int i = Theme.key_windowBackgroundWhite;
                 if (this.backgroundColor != Theme.getColor(i)) {
@@ -667,9 +672,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     this.backgroundColor = color;
                     paint.setColor(color);
                 }
-                canvas.drawRect(0.0f, (getMeasuredHeight() - this.fragmentPanTranslationOffset) - 3, getMeasuredWidth(), getMeasuredHeight(), this.backgroundPaint);
+                canvas2 = canvas;
+                canvas2.drawRect(0.0f, (getMeasuredHeight() - this.fragmentPanTranslationOffset) - 3, getMeasuredWidth(), getMeasuredHeight(), this.backgroundPaint);
+            } else {
+                canvas2 = canvas;
             }
-            super.onDraw(canvas);
+            super.onDraw(canvas2);
         }
 
         public void setShouldHandleBottomInsets(EdgeToEdgeSupportMode edgeToEdgeSupportMode) {
@@ -755,7 +763,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.debugBlackScreenRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$9();
+                ActionBarLayout.m1224$r8$lambda$P9NMVBFozNo1lFmeoHq0CL3nSE(this.f$0);
             }
         };
         Insets insets = Insets.NONE;
@@ -1173,22 +1181,26 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        if (this.bottomSheetTabs != null && getBottomTabsHeight(true) > 0) {
-            canvas.drawRect(0.0f, getHeight() - (this.systemAndDisplayInsets.bottom + this.bottomSheetTabs.getMeasuredHeight()), getWidth(), getHeight(), this.bottomSheetTabs.getBackgroundPaint());
+        Canvas canvas2;
+        if (this.bottomSheetTabs == null || getBottomTabsHeight(true) <= 0) {
+            canvas2 = canvas;
+        } else {
+            canvas2 = canvas;
+            canvas2.drawRect(0.0f, getHeight() - (this.systemAndDisplayInsets.bottom + this.bottomSheetTabs.getMeasuredHeight()), getWidth(), getHeight(), this.bottomSheetTabs.getBackgroundPaint());
         }
         this.withShadow = true;
         if (this.isLayersLayout) {
-            canvas.save();
+            canvas2.save();
             float fDp = AndroidUtilities.dp(24.0f);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             this.clipPath.rewind();
             this.clipPath.addRoundRect(rectF, fDp, fDp, Path.Direction.CW);
-            canvas.clipPath(this.clipPath);
+            canvas2.clipPath(this.clipPath);
         }
-        super.dispatchDraw(canvas);
+        super.dispatchDraw(canvas2);
         if (this.isLayersLayout) {
-            canvas.restore();
+            canvas2.restore();
         }
     }
 
@@ -1196,13 +1208,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     protected boolean drawChild(Canvas canvas, View view, long j) {
         int iMax;
         int i;
+        Canvas canvas2;
         int i2;
         LayoutContainer layoutContainer;
         int i3;
         int i4;
         int iClamp;
         int i5;
-        int i6;
         WindowInsets rootWindowInsets;
         RoundedCorner roundedCorner;
         RoundedCorner roundedCorner2;
@@ -1219,6 +1231,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         float radius4;
         float radius5;
         float radius6;
+        float f2;
         float fMin;
         float fClamp;
         float fDp;
@@ -1244,8 +1257,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 i = paddingRight;
             }
             int iSave = canvas.save();
-            if (view == this.bottomSheetTabs && (clipTools = this.bottomSheetTabsClip) != null) {
+            if (view != this.bottomSheetTabs || (clipTools = this.bottomSheetTabsClip) == null) {
+                canvas2 = canvas;
+            } else {
                 clipTools.clip(canvas, this.withShadow, this.isKeyboardVisible, getWidth(), getHeight() + ((int) getY()), 1.0f);
+                canvas2 = canvas;
                 this.withShadow = false;
             }
             i2 = Build.VERSION.SDK_INT;
@@ -1258,20 +1274,22 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         rectF.set(f, 0.0f, paddingRight + getWidth(), getHeight());
                         if (newBackTransitions()) {
                             if (this.predictiveBackInProgress) {
+                                f2 = 56.0f;
                                 fMin = AndroidUtilities.lerp(1.0f, AndroidUtilities.lerp(0.9f, 0.85f, 1.0f - this.containerView.getAlpha()), Utilities.clamp01(f / AndroidUtilities.dpf2(56.0f)));
                             } else {
+                                f2 = 56.0f;
                                 fMin = 1.0f - Math.min(0.25f, (0.05f * f) / AndroidUtilities.dpf2(56.0f));
                             }
-                            if (paddingRight > AndroidUtilities.dp(56.0f) || this.animationInProgress || !this.predictiveBackInProgress) {
-                                fClamp = Utilities.clamp(paddingRight, AndroidUtilities.dp(56.0f), 0);
+                            if (paddingRight > AndroidUtilities.dp(f2) || this.animationInProgress || !this.predictiveBackInProgress) {
+                                fClamp = Utilities.clamp(paddingRight, AndroidUtilities.dp(f2), 0);
                             } else {
                                 fClamp = f;
                             }
                             if (this.predictiveBackInProgress || this.predictiveBackLeft) {
-                                canvas.translate(-fClamp, 0.0f);
+                                canvas2.translate(-fClamp, 0.0f);
                                 iMax = (int) (iMax + fClamp);
                             } else {
-                                canvas.translate(-fClamp, 0.0f);
+                                canvas2.translate(-fClamp, 0.0f);
                                 rectF.set(f, 0.0f, getWidth() + paddingRight, getHeight());
                                 iMax = (int) (iMax + fClamp);
                             }
@@ -1285,7 +1303,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                             } else {
                                 fCenterY = rectF.centerY();
                             }
-                            canvas.scale(fMin, fMin, fDp, fCenterY);
+                            canvas2.scale(fMin, fMin, fDp, fCenterY);
                         }
                         roundedCorner3 = rootWindowInsets2.getRoundedCorner(0);
                         roundedCorner4 = rootWindowInsets2.getRoundedCorner(1);
@@ -1333,7 +1351,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         }
                         this.clipPath.rewind();
                         this.clipPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
-                        canvas.clipPath(this.clipPath);
+                        canvas2.clipPath(this.clipPath);
                     }
                 } else if (view == this.containerViewBack && (rootWindowInsets = getRootWindowInsets()) != null) {
                     roundedCorner = rootWindowInsets.getRoundedCorner(0);
@@ -1354,20 +1372,20 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     }
                 }
             }
-            int iSave2 = canvas.save();
+            int iSave2 = canvas2.save();
             if (!isTransitionAnimationInProgress() && !this.inPreviewMode) {
-                canvas.clipRect(i, 0, iMax, getHeight());
+                canvas2.clipRect(i, 0, iMax, getHeight());
             }
             if ((!this.inPreviewMode || this.transitionAnimationPreviewMode) && view == (layoutContainer = this.containerView)) {
-                drawPreviewDrawables(canvas, layoutContainer);
+                drawPreviewDrawables(canvas2, layoutContainer);
             }
             boolean zDrawChild = super.drawChild(canvas, view, j);
-            canvas.restoreToCount(iSave2);
+            canvas2.restoreToCount(iSave2);
             if (paddingRight == 0) {
                 i3 = -1;
                 if (this.overrideWidthOffset != -1) {
                 }
-                canvas.restoreToCount(iSave);
+                canvas2.restoreToCount(iSave);
                 return zDrawChild;
             }
             i3 = -1;
@@ -1379,34 +1397,37 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 iClamp = MathUtils.clamp((i4 * 255) / AndroidUtilities.dp(20.0f), 0, 255);
                 if (iClamp > 0) {
                     if (getBottomTabsHeight(false) == 0) {
-                        i6 = ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).bottomMargin;
-                        i5 = 31;
+                        i5 = ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).bottomMargin;
                     } else {
-                        i5 = 31;
-                        i6 = 0;
+                        i5 = 0;
                     }
-                    if (i2 >= i5 || this.isSheet) {
+                    if (i2 >= 31 || this.isSheet) {
                         Drawable drawable = layerShadowDrawable;
-                        drawable.setBounds(paddingRight - drawable.getIntrinsicWidth(), view.getTop(), paddingRight, view.getBottom() + i6);
+                        drawable.setBounds(paddingRight - drawable.getIntrinsicWidth(), view.getTop(), paddingRight, view.getBottom() + i5);
                         layerShadowDrawable.setAlpha(iClamp);
-                        layerShadowDrawable.draw(canvas);
+                        layerShadowDrawable.draw(canvas2);
                     }
                 }
             } else if (view == this.containerViewBack) {
                 scrimPaint.setColor(Color.argb((int) (MathUtils.clamp(i4 / width, 0.0f, 0.8f) * 120.0f), 0, 0, 0));
                 if (this.overrideWidthOffset != -1) {
-                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight() * 1.5f, scrimPaint);
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight() * 1.5f, scrimPaint);
+                    canvas2 = canvas;
                 } else {
-                    canvas.drawRect(i, 0.0f, iMax, getHeight() * 1.5f, scrimPaint);
+                    canvas2 = canvas;
+                    canvas2.drawRect(i, 0.0f, iMax, getHeight() * 1.5f, scrimPaint);
                 }
             }
-            canvas.restoreToCount(iSave);
+            canvas2.restoreToCount(iSave);
             return zDrawChild;
         }
         i = paddingLeft;
         iMax = paddingLeft2;
         int iSave3 = canvas.save();
-        if (view == this.bottomSheetTabs) {
+        if (view != this.bottomSheetTabs) {
+            canvas2 = canvas;
+        } else {
+            canvas2 = canvas;
         }
         i2 = Build.VERSION.SDK_INT;
         if (i2 >= 31) {
@@ -1418,20 +1439,22 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     rectF.set(f, 0.0f, paddingRight + getWidth(), getHeight());
                     if (newBackTransitions()) {
                         if (this.predictiveBackInProgress) {
+                            f2 = 56.0f;
                             fMin = AndroidUtilities.lerp(1.0f, AndroidUtilities.lerp(0.9f, 0.85f, 1.0f - this.containerView.getAlpha()), Utilities.clamp01(f / AndroidUtilities.dpf2(56.0f)));
                         } else {
+                            f2 = 56.0f;
                             fMin = 1.0f - Math.min(0.25f, (0.05f * f) / AndroidUtilities.dpf2(56.0f));
                         }
-                        if (paddingRight > AndroidUtilities.dp(56.0f)) {
-                            fClamp = Utilities.clamp(paddingRight, AndroidUtilities.dp(56.0f), 0);
+                        if (paddingRight > AndroidUtilities.dp(f2)) {
+                            fClamp = Utilities.clamp(paddingRight, AndroidUtilities.dp(f2), 0);
                         } else {
-                            fClamp = Utilities.clamp(paddingRight, AndroidUtilities.dp(56.0f), 0);
+                            fClamp = Utilities.clamp(paddingRight, AndroidUtilities.dp(f2), 0);
                         }
                         if (this.predictiveBackInProgress) {
-                            canvas.translate(-fClamp, 0.0f);
+                            canvas2.translate(-fClamp, 0.0f);
                             iMax = (int) (iMax + fClamp);
                         } else {
-                            canvas.translate(-fClamp, 0.0f);
+                            canvas2.translate(-fClamp, 0.0f);
                             iMax = (int) (iMax + fClamp);
                         }
                         if (this.predictiveBackLeft) {
@@ -1444,7 +1467,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         } else {
                             fCenterY = rectF.centerY();
                         }
-                        canvas.scale(fMin, fMin, fDp, fCenterY);
+                        canvas2.scale(fMin, fMin, fDp, fCenterY);
                     }
                     roundedCorner3 = rootWindowInsets2.getRoundedCorner(0);
                     roundedCorner4 = rootWindowInsets2.getRoundedCorner(1);
@@ -1492,7 +1515,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     }
                     this.clipPath.rewind();
                     this.clipPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
-                    canvas.clipPath(this.clipPath);
+                    canvas2.clipPath(this.clipPath);
                 }
             } else if (view == this.containerViewBack) {
                 roundedCorner = rootWindowInsets.getRoundedCorner(0);
@@ -1513,22 +1536,22 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 }
             }
         }
-        int iSave4 = canvas.save();
+        int iSave4 = canvas2.save();
         if (!isTransitionAnimationInProgress()) {
-            canvas.clipRect(i, 0, iMax, getHeight());
+            canvas2.clipRect(i, 0, iMax, getHeight());
         }
         if (!this.inPreviewMode) {
-            drawPreviewDrawables(canvas, layoutContainer);
+            drawPreviewDrawables(canvas2, layoutContainer);
         } else {
-            drawPreviewDrawables(canvas, layoutContainer);
+            drawPreviewDrawables(canvas2, layoutContainer);
         }
         boolean zDrawChild2 = super.drawChild(canvas, view, j);
-        canvas.restoreToCount(iSave4);
+        canvas2.restoreToCount(iSave4);
         if (paddingRight == 0) {
             i3 = -1;
             if (this.overrideWidthOffset != -1) {
             }
-            canvas.restoreToCount(iSave3);
+            canvas2.restoreToCount(iSave3);
             return zDrawChild2;
         }
         i3 = -1;
@@ -1540,33 +1563,33 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             iClamp = MathUtils.clamp((i4 * 255) / AndroidUtilities.dp(20.0f), 0, 255);
             if (iClamp > 0) {
                 if (getBottomTabsHeight(false) == 0) {
-                    i6 = ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).bottomMargin;
-                    i5 = 31;
+                    i5 = ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).bottomMargin;
                 } else {
-                    i5 = 31;
-                    i6 = 0;
+                    i5 = 0;
                 }
-                if (i2 >= i5) {
+                if (i2 >= 31) {
                     Drawable drawable2 = layerShadowDrawable;
-                    drawable2.setBounds(paddingRight - drawable2.getIntrinsicWidth(), view.getTop(), paddingRight, view.getBottom() + i6);
+                    drawable2.setBounds(paddingRight - drawable2.getIntrinsicWidth(), view.getTop(), paddingRight, view.getBottom() + i5);
                     layerShadowDrawable.setAlpha(iClamp);
-                    layerShadowDrawable.draw(canvas);
+                    layerShadowDrawable.draw(canvas2);
                 } else {
                     Drawable drawable3 = layerShadowDrawable;
-                    drawable3.setBounds(paddingRight - drawable3.getIntrinsicWidth(), view.getTop(), paddingRight, view.getBottom() + i6);
+                    drawable3.setBounds(paddingRight - drawable3.getIntrinsicWidth(), view.getTop(), paddingRight, view.getBottom() + i5);
                     layerShadowDrawable.setAlpha(iClamp);
-                    layerShadowDrawable.draw(canvas);
+                    layerShadowDrawable.draw(canvas2);
                 }
             }
         } else if (view == this.containerViewBack) {
             scrimPaint.setColor(Color.argb((int) (MathUtils.clamp(i4 / width, 0.0f, 0.8f) * 120.0f), 0, 0, 0));
             if (this.overrideWidthOffset != -1) {
-                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight() * 1.5f, scrimPaint);
+                canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight() * 1.5f, scrimPaint);
+                canvas2 = canvas;
             } else {
-                canvas.drawRect(i, 0.0f, iMax, getHeight() * 1.5f, scrimPaint);
+                canvas2 = canvas;
+                canvas2.drawRect(i, 0.0f, iMax, getHeight() * 1.5f, scrimPaint);
             }
         }
-        canvas.restoreToCount(iSave3);
+        canvas2.restoreToCount(iSave3);
         return zDrawChild2;
     }
 
@@ -1904,13 +1927,15 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         float x = this.containerView.getX();
         AnimatorSet animatorSet = new AnimatorSet();
         boolean zShouldOverrideSlideTransition = baseFragment.shouldOverrideSlideTransition(false, z);
+        Property property = View.TRANSLATION_X;
         if (!z) {
             x = Math.abs(this.containerView.getMeasuredWidth() - x);
             int iMax = Math.max((int) ((200.0f / this.containerView.getMeasuredWidth()) * x), newBackTransitions() ? 380 : 50);
             if (!zShouldOverrideSlideTransition) {
                 LayoutContainer layoutContainer = this.containerView;
+                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(layoutContainer, (Property<LayoutContainer, Float>) property, layoutContainer.getMeasuredWidth() + (this.predictiveBackInProgress ? AndroidUtilities.dp(56.0f) : 0));
                 long j = iMax;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(layoutContainer, (Property<LayoutContainer, Float>) View.TRANSLATION_X, layoutContainer.getMeasuredWidth() + (this.predictiveBackInProgress ? AndroidUtilities.dp(56.0f) : 0)).setDuration(j), ObjectAnimator.ofFloat(this, "innerTranslationX", this.containerView.getMeasuredWidth()).setDuration(j));
+                animatorSet.playTogether(objectAnimatorOfFloat.setDuration(j), ObjectAnimator.ofFloat(this, "innerTranslationX", this.containerView.getMeasuredWidth()).setDuration(j));
                 if (newBackTransitions()) {
                     animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 }
@@ -1918,8 +1943,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         } else {
             int iMax2 = Math.max((int) ((320.0f / this.containerView.getMeasuredWidth()) * x), newBackTransitions() ? 320 : 120);
             if (!zShouldOverrideSlideTransition) {
+                ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this.containerView, (Property<LayoutContainer, Float>) property, 0.0f);
                 long j2 = iMax2;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<LayoutContainer, Float>) View.TRANSLATION_X, 0.0f).setDuration(j2), ObjectAnimator.ofFloat(this, "innerTranslationX", 0.0f).setDuration(j2));
+                animatorSet.playTogether(objectAnimatorOfFloat2.setDuration(j2), ObjectAnimator.ofFloat(this, "innerTranslationX", 0.0f).setDuration(j2));
                 if (newBackTransitions()) {
                     animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 }
@@ -2450,7 +2476,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.onOpenAnimationEndRunnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ActionBarLayout.lambda$presentFragment$0(baseFragment, baseFragment2);
+                        ActionBarLayout.$r8$lambda$ih0U8e7NecRRfqF8RPyn2Odmnik(baseFragment, baseFragment2);
                     }
                 };
                 ArrayList arrayList = new ArrayList();
@@ -2488,29 +2514,29 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.onOpenAnimationEndRunnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$presentFragment$1(z4, actionBarPopupWindowLayout, z, baseFragment3, baseFragment2);
+                        ActionBarLayout.m1227$r8$lambda$sJ3DWoR_DF9PP3YJucIksznII(this.f$0, z4, actionBarPopupWindowLayout, z, baseFragment3, baseFragment2);
                     }
                 };
                 boolean zNeedDelayOpenAnimation = baseFragment2.needDelayOpenAnimation();
                 final boolean z7 = !zNeedDelayOpenAnimation;
                 if (!zNeedDelayOpenAnimation) {
-                    if (baseFragment != null) {
-                        baseFragment.onTransitionAnimationStart(false, false);
+                    if (baseFragment3 != null) {
+                        baseFragment3.onTransitionAnimationStart(false, false);
                     }
                     baseFragment2.onTransitionAnimationStart(true, false);
                 }
                 this.delayedAnimationResumed = false;
-                this.oldFragment = baseFragment;
+                this.oldFragment = baseFragment3;
                 this.newFragment = baseFragment2;
                 AnimatorSet animatorSetOnCustomTransitionAnimation = !z4 ? baseFragment2.onCustomTransitionAnimation(true, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$presentFragment$2();
+                        this.f$0.onAnimationEndCheck(false);
                     }
                 }) : null;
                 if (animatorSetOnCustomTransitionAnimation != null) {
-                    if (!z4 && ((this.containerView.isKeyboardVisible || this.containerViewBack.isKeyboardVisible) && baseFragment != null)) {
-                        baseFragment.saveKeyboardPositionBeforeTransition();
+                    if (!z4 && ((this.containerView.isKeyboardVisible || this.containerViewBack.isKeyboardVisible) && baseFragment3 != null)) {
+                        baseFragment3.saveKeyboardPositionBeforeTransition();
                     }
                     this.currentAnimation = animatorSetOnCustomTransitionAnimation;
                 } else {
@@ -2525,10 +2551,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         this.containerView.setScaleY(1.0f);
                     }
                     if (this.containerView.isKeyboardVisible || this.containerViewBack.isKeyboardVisible) {
-                        if (baseFragment != null && !z4) {
-                            baseFragment.saveKeyboardPositionBeforeTransition();
+                        if (baseFragment3 != null && !z4) {
+                            baseFragment3.saveKeyboardPositionBeforeTransition();
                         }
-                        final BaseFragment baseFragment4 = baseFragment;
                         this.waitingForKeyboardCloseRunnable = new Runnable() {
                             @Override
                             public void run() {
@@ -2549,9 +2574,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                                     }
                                     return;
                                 }
-                                BaseFragment baseFragment5 = baseFragment4;
-                                if (baseFragment5 != null) {
-                                    baseFragment5.onTransitionAnimationStart(false, false);
+                                BaseFragment baseFragment4 = baseFragment3;
+                                if (baseFragment4 != null) {
+                                    baseFragment4.onTransitionAnimationStart(false, false);
                                 }
                                 baseFragment2.onTransitionAnimationStart(true, false);
                                 ActionBarLayout.this.startLayoutAnimation(true, true, z4);
@@ -2565,9 +2590,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                                         return;
                                     }
                                     ActionBarLayout.this.delayedOpenAnimationRunnable = null;
-                                    BaseFragment baseFragment5 = baseFragment;
-                                    if (baseFragment5 != null) {
-                                        baseFragment5.onTransitionAnimationStart(false, false);
+                                    BaseFragment baseFragment4 = baseFragment3;
+                                    if (baseFragment4 != null) {
+                                        baseFragment4.onTransitionAnimationStart(false, false);
                                     }
                                     baseFragment2.onTransitionAnimationStart(true, false);
                                     ActionBarLayout.this.startLayoutAnimation(true, true, z4);
@@ -2591,28 +2616,27 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         AndroidUtilities.runOnUIThread(runnable2, 200L);
                     } else {
                         startLayoutAnimation(true, true, z4);
-                        return true;
                     }
                 }
             }
-            return true;
+        } else {
+            View view3 = this.backgroundView;
+            if (view3 != null) {
+                view3.setAlpha(1.0f);
+                this.backgroundView.setVisibility(0);
+            }
+            if (baseFragment != null) {
+                baseFragment.onTransitionAnimationStart(false, false);
+                baseFragment.onTransitionAnimationEnd(false, false);
+            }
+            baseFragment2.onTransitionAnimationStart(true, false);
+            baseFragment2.onTransitionAnimationEnd(true, false);
+            baseFragment2.onBecomeFullyVisible();
         }
-        View view3 = this.backgroundView;
-        if (view3 != null) {
-            view3.setAlpha(1.0f);
-            this.backgroundView.setVisibility(0);
-        }
-        if (baseFragment != null) {
-            baseFragment.onTransitionAnimationStart(false, false);
-            baseFragment.onTransitionAnimationEnd(false, false);
-        }
-        baseFragment2.onTransitionAnimationStart(true, false);
-        baseFragment2.onTransitionAnimationEnd(true, false);
-        baseFragment2.onBecomeFullyVisible();
         return true;
     }
 
-    public static void lambda$presentFragment$0(BaseFragment baseFragment, BaseFragment baseFragment2) {
+    public static void $r8$lambda$ih0U8e7NecRRfqF8RPyn2Odmnik(BaseFragment baseFragment, BaseFragment baseFragment2) {
         if (baseFragment != null) {
             baseFragment.onTransitionAnimationEnd(false, false);
         }
@@ -2620,30 +2644,29 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         baseFragment2.onBecomeFullyVisible();
     }
 
-    public void lambda$presentFragment$1(boolean z, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, boolean z2, BaseFragment baseFragment, BaseFragment baseFragment2) {
+    public static void m1227$r8$lambda$sJ3DWoR_DF9PP3YJucIksznII(ActionBarLayout actionBarLayout, boolean z, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, boolean z2, BaseFragment baseFragment, BaseFragment baseFragment2) {
         if (z) {
-            this.inPreviewMode = true;
-            this.previewMenu = actionBarPopupWindowLayout;
-            this.transitionAnimationPreviewMode = false;
-            this.containerView.setScaleX(1.0f);
-            this.containerView.setScaleY(1.0f);
+            actionBarLayout.inPreviewMode = true;
+            actionBarLayout.previewMenu = actionBarPopupWindowLayout;
+            actionBarLayout.transitionAnimationPreviewMode = false;
+            actionBarLayout.containerView.setScaleX(1.0f);
+            actionBarLayout.containerView.setScaleY(1.0f);
         } else {
-            presentFragmentInternalRemoveOld(z2, baseFragment);
-            this.containerView.setTranslationX(0.0f);
+            actionBarLayout.presentFragmentInternalRemoveOld(z2, baseFragment);
+            actionBarLayout.containerView.setTranslationX(0.0f);
         }
         if (baseFragment != null) {
             baseFragment.onTransitionAnimationEnd(false, false);
         }
         baseFragment2.onTransitionAnimationEnd(true, false);
         baseFragment2.onBecomeFullyVisible();
-    }
-
-    public void lambda$presentFragment$2() {
-        onAnimationEndCheck(false);
     }
 
     private boolean shouldOpenFragmentOverlay(Dialog dialog) {
-        return dialog != null && dialog.isShowing() && ((dialog instanceof ChatAttachAlert) || (dialog instanceof BotWebViewSheet));
+        if (dialog == null || !dialog.isShowing()) {
+            return false;
+        }
+        return (dialog instanceof ChatAttachAlert) || (dialog instanceof BotWebViewSheet);
     }
 
     @Override
@@ -2975,14 +2998,14 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     this.onCloseAnimationEndRunnable = new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$closeLastFragment$3(baseFragment2, baseFragment);
+                            ActionBarLayout.$r8$lambda$rVr9rDr_aoIyMUhaINoXFMCHFtc(this.f$0, baseFragment2, baseFragment);
                         }
                     };
                     if (!this.inPreviewMode && !this.transitionAnimationPreviewMode) {
                         animatorSetOnCustomTransitionAnimation = baseFragment2.onCustomTransitionAnimation(false, new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$closeLastFragment$4();
+                                this.f$0.onAnimationEndCheck(false);
                             }
                         });
                     }
@@ -3023,7 +3046,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.onCloseAnimationEndRunnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$closeLastFragment$5(baseFragment2);
+                        ActionBarLayout.$r8$lambda$I0NoJTYOEbvWY3vyx8PzUDZtAv4(this.f$0, baseFragment2);
                     }
                 };
                 ArrayList arrayList = new ArrayList();
@@ -3064,36 +3087,32 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
     }
 
-    public void lambda$closeLastFragment$3(BaseFragment baseFragment, BaseFragment baseFragment2) {
+    public static void $r8$lambda$rVr9rDr_aoIyMUhaINoXFMCHFtc(ActionBarLayout actionBarLayout, BaseFragment baseFragment, BaseFragment baseFragment2) {
         ViewGroup viewGroup;
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.previewMenu;
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = actionBarLayout.previewMenu;
         if (actionBarPopupWindowLayout != null && (viewGroup = (ViewGroup) actionBarPopupWindowLayout.getParent()) != null) {
-            viewGroup.removeView(this.previewMenu);
+            viewGroup.removeView(actionBarLayout.previewMenu);
         }
-        if (this.inPreviewMode || this.transitionAnimationPreviewMode) {
-            this.containerViewBack.setScaleX(1.0f);
-            this.containerViewBack.setScaleY(1.0f);
-            this.inPreviewMode = false;
-            this.previewMenu = null;
-            this.transitionAnimationPreviewMode = false;
+        if (actionBarLayout.inPreviewMode || actionBarLayout.transitionAnimationPreviewMode) {
+            actionBarLayout.containerViewBack.setScaleX(1.0f);
+            actionBarLayout.containerViewBack.setScaleY(1.0f);
+            actionBarLayout.inPreviewMode = false;
+            actionBarLayout.previewMenu = null;
+            actionBarLayout.transitionAnimationPreviewMode = false;
         } else {
-            this.containerViewBack.setTranslationX(0.0f);
+            actionBarLayout.containerViewBack.setTranslationX(0.0f);
         }
-        closeLastFragmentInternalRemoveOld(baseFragment);
+        actionBarLayout.closeLastFragmentInternalRemoveOld(baseFragment);
         baseFragment.setRemovingFromStack(false);
         baseFragment.onTransitionAnimationEnd(false, true);
         baseFragment2.onTransitionAnimationEnd(true, true);
         baseFragment2.onBecomeFullyVisible();
     }
 
-    public void lambda$closeLastFragment$4() {
-        onAnimationEndCheck(false);
-    }
-
-    public void lambda$closeLastFragment$5(BaseFragment baseFragment) {
-        removeFragmentFromStackInternal(baseFragment, false);
-        setVisibility(8);
-        View view = this.backgroundView;
+    public static void $r8$lambda$I0NoJTYOEbvWY3vyx8PzUDZtAv4(ActionBarLayout actionBarLayout, BaseFragment baseFragment) {
+        actionBarLayout.removeFragmentFromStackInternal(baseFragment, false);
+        actionBarLayout.setVisibility(8);
+        View view = actionBarLayout.backgroundView;
         if (view != null) {
             view.setVisibility(8);
         }
@@ -3231,20 +3250,17 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             view.animate().alpha(0.0f).setDuration(180L).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$removeAllFragments$6();
+                    this.f$0.backgroundView.setVisibility(8);
                 }
             }).start();
         }
     }
 
-    public void lambda$removeAllFragments$6() {
-        this.backgroundView.setVisibility(8);
-    }
-
     public void setThemeAnimationValue(float f) {
         this.themeAnimationValue = f;
         int size = this.themeAnimatorDescriptions.size();
-        for (int i = 0; i < size; i++) {
+        int i = 0;
+        while (i < size) {
             ArrayList arrayList = (ArrayList) this.themeAnimatorDescriptions.get(i);
             int[] iArr = (int[]) this.animateStartColors.get(i);
             int[] iArr2 = (int[]) this.animateEndColors.get(i);
@@ -3265,9 +3281,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 themeDescription.setAnimatedColor(iArgb);
                 themeDescription.setColor(iArgb, false, false);
                 i2++;
-                iArr = iArr;
+                i = i;
                 size = i3;
             }
+            i++;
         }
         int size3 = this.themeAnimatorDelegate.size();
         for (int i4 = 0; i4 < size3; i4++) {
@@ -3355,7 +3372,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$animateThemedValues$7(size, themeAnimationSettings, runnable);
+                ActionBarLayout.m1226$r8$lambda$i1dfGW4gvrOfWHEPiZgmecrKs(this.f$0, size, themeAnimationSettings, runnable);
             }
         };
         if (size >= 1 && themeAnimationSettings.applyTheme && themeAnimationSettings.applyTrulyTheme) {
@@ -3381,69 +3398,70 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         runnable2.run();
     }
 
-    public void lambda$animateThemedValues$7(int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) {
+    public static void m1226$r8$lambda$i1dfGW4gvrOfWHEPiZgmecrKs(ActionBarLayout actionBarLayout, int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) {
         BaseFragment lastFragment;
         Runnable runnable2;
         boolean z = false;
         for (int i2 = 0; i2 < i; i2++) {
             if (i2 == 0) {
-                lastFragment = getLastFragment();
+                lastFragment = actionBarLayout.getLastFragment();
             } else {
-                if ((this.inPreviewMode || this.transitionAnimationPreviewMode) && this.fragmentsStack.size() > 1) {
-                    List list = this.fragmentsStack;
+                if ((actionBarLayout.inPreviewMode || actionBarLayout.transitionAnimationPreviewMode) && actionBarLayout.fragmentsStack.size() > 1) {
+                    List list = actionBarLayout.fragmentsStack;
                     lastFragment = (BaseFragment) list.get(list.size() - 2);
                 }
             }
             if (lastFragment != null) {
                 if (themeAnimationSettings.resourcesProvider != null) {
-                    if (this.messageDrawableOutStart == null) {
-                        MessageDrawable messageDrawable = new MessageDrawable(0, true, false, this.startColorsProvider);
-                        this.messageDrawableOutStart = messageDrawable;
+                    if (actionBarLayout.messageDrawableOutStart == null) {
+                        MessageDrawable messageDrawable = new MessageDrawable(0, true, false, actionBarLayout.startColorsProvider);
+                        actionBarLayout.messageDrawableOutStart = messageDrawable;
                         messageDrawable.isCrossfadeBackground = true;
-                        MessageDrawable messageDrawable2 = new MessageDrawable(1, true, false, this.startColorsProvider);
-                        this.messageDrawableOutMediaStart = messageDrawable2;
+                        MessageDrawable messageDrawable2 = new MessageDrawable(1, true, false, actionBarLayout.startColorsProvider);
+                        actionBarLayout.messageDrawableOutMediaStart = messageDrawable2;
                         messageDrawable2.isCrossfadeBackground = true;
                     }
-                    this.startColorsProvider.saveColors(themeAnimationSettings.resourcesProvider);
+                    actionBarLayout.startColorsProvider.saveColors(themeAnimationSettings.resourcesProvider);
                 }
                 ArrayList<ThemeDescription> themeDescriptions = lastFragment.getThemeDescriptions();
-                addStartDescriptions(themeDescriptions);
+                actionBarLayout.addStartDescriptions(themeDescriptions);
                 Dialog dialog = lastFragment.visibleDialog;
                 if (dialog instanceof BottomSheet) {
-                    addStartDescriptions(((BottomSheet) dialog).getThemeDescriptions());
+                    actionBarLayout.addStartDescriptions(((BottomSheet) dialog).getThemeDescriptions());
                 } else if (dialog instanceof AlertDialog) {
-                    addStartDescriptions(((AlertDialog) dialog).getThemeDescriptions());
+                    actionBarLayout.addStartDescriptions(((AlertDialog) dialog).getThemeDescriptions());
                 }
                 if (i2 == 0 && (runnable2 = themeAnimationSettings.afterStartDescriptionsAddedRunnable) != null) {
                     runnable2.run();
                 }
-                addEndDescriptions(themeDescriptions);
+                actionBarLayout.addEndDescriptions(themeDescriptions);
                 Dialog dialog2 = lastFragment.visibleDialog;
                 if (dialog2 instanceof BottomSheet) {
-                    addEndDescriptions(((BottomSheet) dialog2).getThemeDescriptions());
+                    actionBarLayout.addEndDescriptions(((BottomSheet) dialog2).getThemeDescriptions());
                 } else if (dialog2 instanceof AlertDialog) {
-                    addEndDescriptions(((AlertDialog) dialog2).getThemeDescriptions());
+                    actionBarLayout.addEndDescriptions(((AlertDialog) dialog2).getThemeDescriptions());
                 }
                 z = true;
             }
         }
+        actionBarLayout.getClass();
         if (z) {
             if (!themeAnimationSettings.onlyTopFragment) {
-                int size = this.fragmentsStack.size() - ((this.inPreviewMode || this.transitionAnimationPreviewMode) ? 2 : 1);
+                int size = actionBarLayout.fragmentsStack.size() - ((actionBarLayout.inPreviewMode || actionBarLayout.transitionAnimationPreviewMode) ? 2 : 1);
                 for (int i3 = 0; i3 < size; i3++) {
-                    BaseFragment baseFragment = (BaseFragment) this.fragmentsStack.get(i3);
+                    BaseFragment baseFragment = (BaseFragment) actionBarLayout.fragmentsStack.get(i3);
                     baseFragment.clearViews();
-                    baseFragment.setParentLayout(this);
+                    baseFragment.setParentLayout(actionBarLayout);
                 }
             }
             if (themeAnimationSettings.instant) {
-                setThemeAnimationValue(1.0f);
-                this.themeAnimatorDescriptions.clear();
-                this.animateStartColors.clear();
-                this.animateEndColors.clear();
-                this.themeAnimatorDelegate.clear();
-                this.presentingFragmentDescriptions = null;
-                this.animationProgressListener = null;
+                actionBarLayout.setThemeAnimationValue(1.0f);
+                actionBarLayout.themeAnimatorDescriptions.clear();
+                actionBarLayout.animateStartColors.clear();
+                actionBarLayout.animateEndColors.clear();
+                actionBarLayout.themeAnimatorDelegate.clear();
+                actionBarLayout.presentingFragmentDescriptions = null;
+                actionBarLayout.animationProgressListener = null;
                 Runnable runnable3 = themeAnimationSettings.afterAnimationRunnable;
                 if (runnable3 != null) {
                     runnable3.run();
@@ -3455,19 +3473,19 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 return;
             }
             Theme.setAnimatingColor(true);
-            setThemeAnimationValue(0.0f);
+            actionBarLayout.setThemeAnimationValue(0.0f);
             Runnable runnable4 = themeAnimationSettings.beforeAnimationRunnable;
             if (runnable4 != null) {
                 runnable4.run();
             }
             INavigationLayout.ThemeAnimationSettings.onAnimationProgress onanimationprogress = themeAnimationSettings.animationProgress;
-            this.animationProgressListener = onanimationprogress;
+            actionBarLayout.animationProgressListener = onanimationprogress;
             if (onanimationprogress != null) {
                 onanimationprogress.setProgress(0.0f);
             }
-            this.notificationsLocker.lock();
+            actionBarLayout.notificationsLocker.lock();
             AnimatorSet animatorSet = new AnimatorSet();
-            this.themeAnimatorSet = animatorSet;
+            actionBarLayout.themeAnimatorSet = animatorSet;
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -3479,9 +3497,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         ActionBarLayout.this.themeAnimatorDelegate.clear();
                         Theme.setAnimatingColor(false);
                         ActionBarLayout.this.presentingFragmentDescriptions = null;
-                        ActionBarLayout actionBarLayout = ActionBarLayout.this;
-                        actionBarLayout.animationProgressListener = null;
-                        actionBarLayout.themeAnimatorSet = null;
+                        ActionBarLayout actionBarLayout2 = ActionBarLayout.this;
+                        actionBarLayout2.animationProgressListener = null;
+                        actionBarLayout2.themeAnimatorSet = null;
                         Runnable runnable5 = themeAnimationSettings.afterAnimationRunnable;
                         if (runnable5 != null) {
                             runnable5.run();
@@ -3498,9 +3516,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         ActionBarLayout.this.themeAnimatorDelegate.clear();
                         Theme.setAnimatingColor(false);
                         ActionBarLayout.this.presentingFragmentDescriptions = null;
-                        ActionBarLayout actionBarLayout = ActionBarLayout.this;
-                        actionBarLayout.animationProgressListener = null;
-                        actionBarLayout.themeAnimatorSet = null;
+                        ActionBarLayout actionBarLayout2 = ActionBarLayout.this;
+                        actionBarLayout2.animationProgressListener = null;
+                        actionBarLayout2.themeAnimatorSet = null;
                         Runnable runnable5 = themeAnimationSettings.afterAnimationRunnable;
                         if (runnable5 != null) {
                             runnable5.run();
@@ -3508,9 +3526,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     }
                 }
             });
-            this.themeAnimatorSet.playTogether(ObjectAnimator.ofFloat(this, "themeAnimationValue", 0.0f, 1.0f));
-            this.themeAnimatorSet.setDuration(themeAnimationSettings.duration);
-            this.themeAnimatorSet.start();
+            actionBarLayout.themeAnimatorSet.playTogether(ObjectAnimator.ofFloat(actionBarLayout, "themeAnimationValue", 0.0f, 1.0f));
+            actionBarLayout.themeAnimatorSet.setDuration(themeAnimationSettings.duration);
+            actionBarLayout.themeAnimatorSet.start();
         }
         if (runnable != null) {
             runnable.run();
@@ -3727,13 +3745,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     public boolean extendActionMode(Menu menu) {
-        if (!this.fragmentsStack.isEmpty()) {
-            List list = this.fragmentsStack;
-            if (((BaseFragment) list.get(list.size() - 1)).extendActionMode(menu)) {
-                return true;
-            }
+        if (this.fragmentsStack.isEmpty()) {
+            return false;
         }
-        return false;
+        List list = this.fragmentsStack;
+        return ((BaseFragment) list.get(list.size() - 1)).extendActionMode(menu);
     }
 
     @Override
@@ -3755,7 +3771,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             observeDebugItemsFromView(arrayList, lastFragment.getFragmentView());
             return arrayList;
         }
-        return Collections.emptyList();
+        return Collections.EMPTY_LIST;
     }
 
     private void observeDebugItemsFromView(List list, View view) {
@@ -3793,12 +3809,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         return null;
     }
 
-    public void lambda$new$9() {
-        if (this.attached && getLastFragment() != null && this.containerView.getChildCount() == 0) {
+    public static void m1224$r8$lambda$P9NMVBFozNo1lFmeoHq0CL3nSE(ActionBarLayout actionBarLayout) {
+        if (actionBarLayout.attached && actionBarLayout.getLastFragment() != null && actionBarLayout.containerView.getChildCount() == 0) {
             if (BuildVars.DEBUG_VERSION) {
-                FileLog.e(new RuntimeException(TextUtils.join(", ", this.lastActions)));
+                FileLog.e(new RuntimeException(TextUtils.join(", ", actionBarLayout.lastActions)));
             }
-            rebuildAllFragmentViews(true, true);
+            actionBarLayout.rebuildAllFragmentViews(true, true);
         }
     }
 

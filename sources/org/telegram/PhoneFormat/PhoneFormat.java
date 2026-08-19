@@ -23,18 +23,20 @@ public class PhoneFormat {
     private boolean initialzed = false;
 
     public static PhoneFormat getInstance() {
-        PhoneFormat phoneFormat = Instance;
-        if (phoneFormat == null) {
-            synchronized (PhoneFormat.class) {
-                try {
-                    phoneFormat = Instance;
-                    if (phoneFormat == null) {
-                        phoneFormat = new PhoneFormat();
-                        Instance = phoneFormat;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        PhoneFormat phoneFormat;
+        PhoneFormat phoneFormat2 = Instance;
+        if (phoneFormat2 != null) {
+            return phoneFormat2;
+        }
+        synchronized (PhoneFormat.class) {
+            try {
+                phoneFormat = Instance;
+                if (phoneFormat == null) {
+                    phoneFormat = new PhoneFormat();
+                    Instance = phoneFormat;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return phoneFormat;
@@ -211,37 +213,36 @@ public class PhoneFormat {
     }
 
     public String format(String str) {
-        if (!this.initialzed) {
-            return str;
-        }
-        try {
-            String strStrip = strip(str);
-            if (strStrip.startsWith("+")) {
-                String strSubstring = strStrip.substring(1);
-                CallingCodeInfo callingCodeInfoFindCallingCodeInfo = findCallingCodeInfo(strSubstring);
-                if (callingCodeInfoFindCallingCodeInfo == null) {
-                    return str;
+        if (this.initialzed) {
+            try {
+                String strStrip = strip(str);
+                if (strStrip.startsWith("+")) {
+                    String strSubstring = strStrip.substring(1);
+                    CallingCodeInfo callingCodeInfoFindCallingCodeInfo = findCallingCodeInfo(strSubstring);
+                    if (callingCodeInfoFindCallingCodeInfo != null) {
+                        return "+" + callingCodeInfoFindCallingCodeInfo.format(strSubstring);
+                    }
+                } else {
+                    CallingCodeInfo callingCodeInfo = callingCodeInfo(this.defaultCallingCode);
+                    if (callingCodeInfo != null) {
+                        String strMatchingAccessCode = callingCodeInfo.matchingAccessCode(strStrip);
+                        if (strMatchingAccessCode != null) {
+                            String strSubstring2 = strStrip.substring(strMatchingAccessCode.length());
+                            CallingCodeInfo callingCodeInfoFindCallingCodeInfo2 = findCallingCodeInfo(strSubstring2);
+                            if (callingCodeInfoFindCallingCodeInfo2 != null) {
+                                strSubstring2 = callingCodeInfoFindCallingCodeInfo2.format(strSubstring2);
+                            }
+                            return strSubstring2.length() == 0 ? strMatchingAccessCode : String.format("%s %s", strMatchingAccessCode, strSubstring2);
+                        }
+                        return callingCodeInfo.format(strStrip);
+                    }
                 }
-                return "+" + callingCodeInfoFindCallingCodeInfo.format(strSubstring);
-            }
-            CallingCodeInfo callingCodeInfo = callingCodeInfo(this.defaultCallingCode);
-            if (callingCodeInfo == null) {
+            } catch (Exception e) {
+                FileLog.e(e);
                 return str;
             }
-            String strMatchingAccessCode = callingCodeInfo.matchingAccessCode(strStrip);
-            if (strMatchingAccessCode != null) {
-                String strSubstring2 = strStrip.substring(strMatchingAccessCode.length());
-                CallingCodeInfo callingCodeInfoFindCallingCodeInfo2 = findCallingCodeInfo(strSubstring2);
-                if (callingCodeInfoFindCallingCodeInfo2 != null) {
-                    strSubstring2 = callingCodeInfoFindCallingCodeInfo2.format(strSubstring2);
-                }
-                return strSubstring2.length() == 0 ? strMatchingAccessCode : String.format("%s %s", strMatchingAccessCode, strSubstring2);
-            }
-            return callingCodeInfo.format(strStrip);
-        } catch (Exception e) {
-            FileLog.e(e);
-            return str;
         }
+        return str;
     }
 
     int value32(int i) {
@@ -282,7 +283,7 @@ public class PhoneFormat {
 
     public CallingCodeInfo callingCodeInfo(String str) {
         Integer num;
-        ?? r2;
+        ?? r0;
         PhoneFormat phoneFormat = this;
         CallingCodeInfo callingCodeInfo = (CallingCodeInfo) phoneFormat.callingCodeData.get(str);
         if (callingCodeInfo != null || (num = (Integer) phoneFormat.callingCodeOffsets.get(str)) == null) {
@@ -346,27 +347,25 @@ public class PhoneFormat {
                 phoneRule.format = strValueString3;
                 int iIndexOf = strValueString3.indexOf("[[");
                 if (iIndexOf != -1) {
-                    r2 = 1;
                     phoneRule.format = String.format("%s%s", phoneRule.format.substring(0, iIndexOf), phoneRule.format.substring(phoneRule.format.indexOf("]]") + 2));
-                } else {
-                    r2 = 1;
                 }
                 arrayList4.add(phoneRule);
                 if (phoneRule.hasIntlPrefix) {
-                    ruleSet.hasRuleWithIntlPrefix = r2;
+                    r0 = 1;
+                    ruleSet.hasRuleWithIntlPrefix = true;
+                } else {
+                    r0 = 1;
                 }
                 if (phoneRule.hasTrunkPrefix) {
-                    ruleSet.hasRuleWithTrunkPrefix = r2;
+                    ruleSet.hasRuleWithTrunkPrefix = r0;
                 }
-                i4 += r2;
+                i4 += r0;
                 phoneFormat = this;
-                bArr = bArr;
             }
             ruleSet.rules = arrayList4;
             arrayList3.add(ruleSet);
             i3++;
             phoneFormat = this;
-            bArr = bArr;
         }
         callingCodeInfo2.ruleSets = arrayList3;
         return callingCodeInfo2;

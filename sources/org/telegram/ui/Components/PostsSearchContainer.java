@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
@@ -261,7 +260,7 @@ public class PostsSearchContainer extends FrameLayout {
                 this.reqId = connectionsManager.sendRequest(tL_channels_searchPosts, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$load$4(messagesController, zIsEmpty, tL_channels_searchPosts, z, j2, connectionsManager, tLObject, tL_error);
+                        PostsSearchContainer.$r8$lambda$RROXpshrmXSTVVN2X8UYgCSNeb8(this.f$0, messagesController, zIsEmpty, tL_channels_searchPosts, z, j2, connectionsManager, tLObject, tL_error);
                     }
                 }, 1024);
                 updateEmptyView();
@@ -270,32 +269,37 @@ public class PostsSearchContainer extends FrameLayout {
         }
     }
 
-    public void lambda$load$4(final MessagesController messagesController, final boolean z, final TLRPC.TL_channels_searchPosts tL_channels_searchPosts, final boolean z2, final long j, final ConnectionsManager connectionsManager, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$RROXpshrmXSTVVN2X8UYgCSNeb8(final PostsSearchContainer postsSearchContainer, final MessagesController messagesController, final boolean z, final TLRPC.TL_channels_searchPosts tL_channels_searchPosts, final boolean z2, final long j, final ConnectionsManager connectionsManager, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        postsSearchContainer.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$load$3(tLObject, messagesController, z, tL_channels_searchPosts, z2, j, tL_error, connectionsManager);
+                PostsSearchContainer.m2573$r8$lambda$s3w1T9G7ZRwLy1PGwj6qnFB2Q(this.f$0, tLObject, messagesController, z, tL_channels_searchPosts, z2, j, tL_error, connectionsManager);
             }
         });
     }
 
-    public void lambda$load$3(TLObject tLObject, MessagesController messagesController, final boolean z, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z2, final long j, TLRPC.TL_error tL_error, ConnectionsManager connectionsManager) {
-        this.reqId = -1;
-        this.loading = false;
-        this.emptyButton.setLoading(false);
+    public static void m2573$r8$lambda$s3w1T9G7ZRwLy1PGwj6qnFB2Q(final PostsSearchContainer postsSearchContainer, TLObject tLObject, MessagesController messagesController, final boolean z, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z2, final long j, TLRPC.TL_error tL_error, ConnectionsManager connectionsManager) {
+        postsSearchContainer.reqId = -1;
+        postsSearchContainer.loading = false;
+        postsSearchContainer.emptyButton.setLoading(false);
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             messagesController.putUsers(messages_messages.users, false);
             messagesController.putChats(messages_messages.chats, false);
             TLRPC.SearchPostsFlood searchPostsFlood = messages_messages.search_flood;
             if (searchPostsFlood != null) {
-                this.flood = searchPostsFlood;
+                postsSearchContainer.flood = searchPostsFlood;
             }
-            final ArrayList arrayList = z ? this.newsMessages : this.messages;
+            final ArrayList arrayList = z ? postsSearchContainer.newsMessages : postsSearchContainer.messages;
             boolean zIsEmpty = arrayList.isEmpty();
-            Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
-            while (it.hasNext()) {
-                MessageObject messageObject = new MessageObject(this.currentAccount, it.next(), false, false);
+            ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
+            int size = arrayList2.size();
+            int i = 0;
+            while (i < size) {
+                TLRPC.Message message = arrayList2.get(i);
+                i++;
+                MessageObject messageObject = new MessageObject(postsSearchContainer.currentAccount, message, false, false);
                 if (!z) {
                     messageObject.setQuery(tL_channels_searchPosts.query);
                 }
@@ -303,36 +307,36 @@ public class PostsSearchContainer extends FrameLayout {
             }
             if (!z) {
                 if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                    this.lastRate = messages_messages.next_rate;
-                    this.endReached = (messages_messages.flags & 1) == 0;
+                    postsSearchContainer.lastRate = messages_messages.next_rate;
+                    postsSearchContainer.endReached = (messages_messages.flags & 1) == 0;
                 } else if ((messages_messages instanceof TLRPC.TL_messages_messages) || (messages_messages instanceof TLRPC.TL_messages_channelMessages)) {
-                    this.lastRate = 0;
-                    this.endReached = true;
+                    postsSearchContainer.lastRate = 0;
+                    postsSearchContainer.endReached = true;
                 }
             } else if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                this.newsMessagesLastRate = messages_messages.next_rate;
-                this.newsMessagesEndReached = (messages_messages.flags & 1) == 0;
+                postsSearchContainer.newsMessagesLastRate = messages_messages.next_rate;
+                postsSearchContainer.newsMessagesEndReached = (messages_messages.flags & 1) == 0;
             } else if ((messages_messages instanceof TLRPC.TL_messages_messages) || (messages_messages instanceof TLRPC.TL_messages_channelMessages)) {
-                this.newsMessagesLastRate = 0;
-                this.newsMessagesEndReached = true;
+                postsSearchContainer.newsMessagesLastRate = 0;
+                postsSearchContainer.newsMessagesEndReached = true;
             }
-            updateEmptyView();
+            postsSearchContainer.updateEmptyView();
             if (zIsEmpty) {
-                this.listView.scrollToPosition(0);
+                postsSearchContainer.listView.scrollToPosition(0);
             }
-            this.listView.adapter.update(true);
-            if (!arrayList.isEmpty() && (!z ? !this.endReached : !this.newsMessagesEndReached)) {
+            postsSearchContainer.listView.adapter.update(true);
+            if (!arrayList.isEmpty() && (!z ? !postsSearchContainer.endReached : !postsSearchContainer.newsMessagesEndReached)) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$load$0(z, arrayList);
+                        PostsSearchContainer.m2569$r8$lambda$MEpgZr0vLNHivZGMkBI490dmvo(this.f$0, z, arrayList);
                     }
                 });
             }
             if (!z2 || j <= 0 || z) {
                 return;
             }
-            BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.stars_topup, AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("SearchPaidStars", (int) j))).show();
+            BulletinFactory.of(postsSearchContainer.fragment).createSimpleBulletin(R.raw.stars_topup, AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("SearchPaidStars", (int) j))).show();
             return;
         }
         if (tL_error != null && tL_error.text.startsWith("FLOOD_WAIT_") && tL_error.text.contains("_OR_STARS_")) {
@@ -340,50 +344,53 @@ public class PostsSearchContainer extends FrameLayout {
             if (matcher == null || !matcher.matches()) {
                 return;
             }
-            int i = Integer.parseInt(matcher.group(1));
-            int i2 = Integer.parseInt(matcher.group(2));
-            TLRPC.SearchPostsFlood searchPostsFlood2 = this.flood;
+            int i2 = Integer.parseInt(matcher.group(1));
+            int i3 = Integer.parseInt(matcher.group(2));
+            TLRPC.SearchPostsFlood searchPostsFlood2 = postsSearchContainer.flood;
             if (searchPostsFlood2 != null) {
                 searchPostsFlood2.flags = 2 | searchPostsFlood2.flags;
-                searchPostsFlood2.wait_till = connectionsManager.getCurrentTime() + i;
-                this.flood.stars_amount = i2;
+                searchPostsFlood2.wait_till = connectionsManager.getCurrentTime() + i2;
+                postsSearchContainer.flood.stars_amount = i3;
             }
-            updateEmptyView();
-            this.listView.adapter.update(true);
+            postsSearchContainer.updateEmptyView();
+            postsSearchContainer.listView.adapter.update(true);
             return;
         }
         if (tL_error != null && "PREMIUM_ACCOUNT_REQUIRED".equalsIgnoreCase(tL_error.text)) {
-            updateEmptyView();
-            this.listView.adapter.update(true);
+            postsSearchContainer.updateEmptyView();
+            postsSearchContainer.listView.adapter.update(true);
         } else {
             if (tL_error == null || !"BALANCE_TOO_LOW".equalsIgnoreCase(tL_error.text)) {
                 return;
             }
-            updateEmptyView();
-            this.listView.adapter.update(true);
-            StarsController.getInstance(this.currentAccount).getBalance(true, new Runnable() {
+            postsSearchContainer.updateEmptyView();
+            postsSearchContainer.listView.adapter.update(true);
+            StarsController.getInstance(postsSearchContainer.currentAccount).getBalance(true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$load$2(j);
+                    PostsSearchContainer.m2571$r8$lambda$kkOD8sxeGrb4XuNQh_D1fhhLI(this.f$0, j);
                 }
             }, true);
         }
     }
 
-    public void lambda$load$0(boolean z, ArrayList arrayList) {
+    public static void m2569$r8$lambda$MEpgZr0vLNHivZGMkBI490dmvo(PostsSearchContainer postsSearchContainer, boolean z, ArrayList arrayList) {
         if (z) {
-            arrayList = this.newsMessages;
+            arrayList = postsSearchContainer.newsMessages;
+        } else {
+            postsSearchContainer.getClass();
         }
         if (arrayList.isEmpty()) {
             return;
         }
-        if (!this.listView.canScrollVertically(1) || isLoadingVisible()) {
-            load(false);
+        if (!postsSearchContainer.listView.canScrollVertically(1) || postsSearchContainer.isLoadingVisible()) {
+            postsSearchContainer.load(false);
         }
     }
 
-    public void lambda$load$2(long j) {
+    public static void m2571$r8$lambda$kkOD8sxeGrb4XuNQh_D1fhhLI(final PostsSearchContainer postsSearchContainer, long j) {
         Theme.ResourcesProvider darkThemeResourceProvider;
+        postsSearchContainer.getClass();
         Activity activity = AndroidUtilities.getActivity();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (PhotoViewer.getInstance().isVisible() || (safeLastFragment != null && safeLastFragment.hasShownSheet())) {
@@ -394,13 +401,9 @@ public class PostsSearchContainer extends FrameLayout {
         new StarsIntroActivity.StarsNeededSheet(activity, darkThemeResourceProvider, j, 15, "", new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$load$1();
+                this.f$0.load(true);
             }
         }, 0L).show();
-    }
-
-    public void lambda$load$1() {
-        load(true);
     }
 
     private void cancel() {
@@ -453,30 +456,31 @@ public class PostsSearchContainer extends FrameLayout {
         this.floodLoadingRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_checkSearchPostsFlood, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadFlood$6(tLObject, tL_error);
+                PostsSearchContainer.$r8$lambda$zG5mNOnbswqYF7j5rtXVBgB_34U(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$loadFlood$6(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$zG5mNOnbswqYF7j5rtXVBgB_34U(final PostsSearchContainer postsSearchContainer, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        postsSearchContainer.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadFlood$5(tLObject);
+                PostsSearchContainer.m2568$r8$lambda$L8fxL6UrNAhNWTVneI_3mmmVlk(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$loadFlood$5(TLObject tLObject) {
-        this.floodLoading = false;
+    public static void m2568$r8$lambda$L8fxL6UrNAhNWTVneI_3mmmVlk(PostsSearchContainer postsSearchContainer, TLObject tLObject) {
+        postsSearchContainer.floodLoading = false;
         if (tLObject instanceof TLRPC.SearchPostsFlood) {
             TLRPC.SearchPostsFlood searchPostsFlood = (TLRPC.SearchPostsFlood) tLObject;
-            this.flood = searchPostsFlood;
+            postsSearchContainer.flood = searchPostsFlood;
             if (searchPostsFlood.query_is_free) {
-                load(false);
+                postsSearchContainer.load(false);
             } else {
-                updateEmptyView();
-                this.listView.adapter.update(true);
+                postsSearchContainer.updateEmptyView();
+                postsSearchContainer.listView.adapter.update(true);
             }
         }
     }
@@ -496,6 +500,7 @@ public class PostsSearchContainer extends FrameLayout {
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        int i = 0;
         if (this.flood == null) {
             arrayList.add(UItem.asFlicker(-1, 7));
             arrayList.add(UItem.asFlicker(-2, 7));
@@ -508,17 +513,23 @@ public class PostsSearchContainer extends FrameLayout {
             if (!this.newsMessages.isEmpty()) {
                 arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.SearchPostsHeaderNews)));
             }
-            Iterator it = this.newsMessages.iterator();
-            while (it.hasNext()) {
-                arrayList.add(UItem.asSearchMessage((MessageObject) it.next()));
+            ArrayList arrayList2 = this.newsMessages;
+            int size = arrayList2.size();
+            while (i < size) {
+                Object obj = arrayList2.get(i);
+                i++;
+                arrayList.add(UItem.asSearchMessage((MessageObject) obj));
             }
         } else {
             if (!this.messages.isEmpty()) {
                 arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.SearchPostsHeaderFound)));
             }
-            Iterator it2 = this.messages.iterator();
-            while (it2.hasNext()) {
-                arrayList.add(UItem.asSearchMessage((MessageObject) it2.next()));
+            ArrayList arrayList3 = this.messages;
+            int size2 = arrayList3.size();
+            while (i < size2) {
+                Object obj2 = arrayList3.get(i);
+                i++;
+                arrayList.add(UItem.asSearchMessage((MessageObject) obj2));
             }
         }
         if (this.loading || ((this.floodLoading && !this.wasEmptyOnFloodLoad) || (!zIsEmpty && !this.messages.isEmpty() && !this.endReached))) {
@@ -561,7 +572,7 @@ public class PostsSearchContainer extends FrameLayout {
             this.emptyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateEmptyView$7(view);
+                    this.f$0.fragment.presentFragment(new PremiumPreviewFragment("search"));
                 }
             });
             this.emptyUnderButtonTextView.setVisibility(0);
@@ -618,7 +629,7 @@ public class PostsSearchContainer extends FrameLayout {
             this.emptyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateEmptyView$8(view);
+                    PostsSearchContainer.m2572$r8$lambda$prPZhyp_7cNk_LwVwVg47QU79U(this.f$0, view);
                 }
             });
             AndroidUtilities.runOnUIThread(this.updateEmptyViewRunnable, 1000L);
@@ -658,7 +669,7 @@ public class PostsSearchContainer extends FrameLayout {
             this.emptyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateEmptyView$9(view);
+                    PostsSearchContainer.$r8$lambda$HGpOFMBRCH7ZJRTOF74gL8TS0Ws(this.f$0, view);
                 }
             });
             if (this.flood != null) {
@@ -693,18 +704,14 @@ public class PostsSearchContainer extends FrameLayout {
         this.emptyUnderButtonTextView.setVisibility(8);
     }
 
-    public void lambda$updateEmptyView$7(View view) {
-        this.fragment.presentFragment(new PremiumPreviewFragment("search"));
+    public static void m2572$r8$lambda$prPZhyp_7cNk_LwVwVg47QU79U(PostsSearchContainer postsSearchContainer, View view) {
+        postsSearchContainer.emptyButton.setLoading(true);
+        postsSearchContainer.load(true);
     }
 
-    public void lambda$updateEmptyView$8(View view) {
-        this.emptyButton.setLoading(true);
-        load(true);
-    }
-
-    public void lambda$updateEmptyView$9(View view) {
-        this.emptyButton.setLoading(true);
-        load(false);
+    public static void $r8$lambda$HGpOFMBRCH7ZJRTOF74gL8TS0Ws(PostsSearchContainer postsSearchContainer, View view) {
+        postsSearchContainer.emptyButton.setLoading(true);
+        postsSearchContainer.load(false);
     }
 
     public void setKeyboardHeight(int i) {

@@ -150,7 +150,7 @@ public class VoIpSwitchLayout extends FrameLayout {
 
     public void setType(Type type, boolean z, boolean z2) {
         boolean z3;
-        boolean z4;
+        boolean z4 = false;
         if (this.type == type && z == this.voIpButtonView.isSelectedState) {
             if (getVisibility() != 0) {
                 setVisibility(0);
@@ -192,7 +192,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                             attachNewButton(R.raw.bt_to_speaker, iDp, z, type);
                             z3 = true;
                         } else if (type3 != Type.BLUETOOTH) {
-                            lambda$setType$2(iDp);
+                            attachBtToSpeaker(iDp);
                         }
                     } else {
                         z3 = z == this.voIpButtonView.isSelectedState;
@@ -201,7 +201,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                         rLottieDrawable.setOnAnimationEndListener(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$setType$3(iDp);
+                                VoIpSwitchLayout.m3005$r8$lambda$_YKZF8lJ5R1Qs_sORWrR9dvjgc(this.f$0, iDp);
                             }
                         });
                         rLottieDrawable.start();
@@ -213,7 +213,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                             attachNewButton(R.raw.speaker_to_bt, iDp, z, type);
                             z3 = true;
                         } else if (type4 != Type.SPEAKER) {
-                            lambda$setType$0(iDp);
+                            attachSpeakerToBt(iDp);
                         }
                     } else {
                         z3 = z == this.voIpButtonView.isSelectedState;
@@ -222,7 +222,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                         rLottieDrawable2.setOnAnimationEndListener(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$setType$1(iDp);
+                                VoIpSwitchLayout.$r8$lambda$JZ1cT82p8BnKKERcqKeCv0YrUsc(this.f$0, iDp);
                             }
                         });
                         rLottieDrawable2.start();
@@ -238,9 +238,7 @@ public class VoIpSwitchLayout extends FrameLayout {
             }
             if (!z3) {
                 VoIpButtonView voIpButtonView4 = this.voIpButtonView;
-                if (this.type != null || z2) {
-                    z4 = false;
-                } else {
+                if (this.type != null && !z2) {
                     z4 = true;
                 }
                 voIpButtonView4.setSelectedState(z, z4, type);
@@ -252,9 +250,7 @@ public class VoIpSwitchLayout extends FrameLayout {
         if (!z3) {
             VoIpButtonView voIpButtonView5 = this.voIpButtonView;
             if (this.type != null) {
-                z4 = false;
-            } else {
-                z4 = false;
+                z4 = true;
             }
             voIpButtonView5.setSelectedState(z, z4, type);
         }
@@ -262,25 +258,27 @@ public class VoIpSwitchLayout extends FrameLayout {
         this.type = type;
     }
 
-    public void lambda$setType$1(final int i) {
+    public static void $r8$lambda$JZ1cT82p8BnKKERcqKeCv0YrUsc(final VoIpSwitchLayout voIpSwitchLayout, final int i) {
+        voIpSwitchLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setType$0(i);
+                this.f$0.attachSpeakerToBt(i);
             }
         });
     }
 
-    public void lambda$setType$3(final int i) {
+    public static void m3005$r8$lambda$_YKZF8lJ5R1Qs_sORWrR9dvjgc(final VoIpSwitchLayout voIpSwitchLayout, final int i) {
+        voIpSwitchLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setType$2(i);
+                this.f$0.attachBtToSpeaker(i);
             }
         });
     }
 
-    public void lambda$setType$0(int i) {
+    public void attachSpeakerToBt(int i) {
         VoIpButtonView voIpButtonView = this.voIpButtonView;
         int i2 = R.raw.speaker_to_bt;
         voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
@@ -288,7 +286,7 @@ public class VoIpSwitchLayout extends FrameLayout {
         this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 
-    public void lambda$setType$2(int i) {
+    public void attachBtToSpeaker(int i) {
         VoIpButtonView voIpButtonView = this.voIpButtonView;
         int i2 = R.raw.bt_to_speaker;
         voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
@@ -340,7 +338,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                     valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                            this.f$0.lambda$setSelectedState$0(valueAnimator3);
+                            VoIpSwitchLayout.VoIpButtonView.m3006$r8$lambda$0Dj_SqmMUUpru5LtmlpbNOIVwc(this.f$0, valueAnimator3);
                         }
                     });
                     this.animator.setDuration(200L);
@@ -362,7 +360,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                         valueAnimatorOfInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                                this.f$0.lambda$setSelectedState$1(valueAnimator4);
+                                VoIpSwitchLayout.VoIpButtonView.m3008$r8$lambda$lliQ3V_1TW7lBvdzvaDB0vqZl0(this.f$0, valueAnimator4);
                             }
                         });
                         this.animator.addListener(new AnimatorListenerAdapter() {
@@ -381,7 +379,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                         valueAnimatorOfInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                                this.f$0.lambda$setSelectedState$2(valueAnimator4);
+                                VoIpSwitchLayout.VoIpButtonView.m3007$r8$lambda$amuTGMSctaaJ9GKOzGhs_MJ5zo(this.f$0, valueAnimator4);
                             }
                         });
                         this.animator.setDuration(200L);
@@ -412,19 +410,22 @@ public class VoIpSwitchLayout extends FrameLayout {
             invalidate();
         }
 
-        public void lambda$setSelectedState$0(ValueAnimator valueAnimator) {
-            this.singleIconBackgroundAlphaPercent = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-            invalidate();
+        public static void m3006$r8$lambda$0Dj_SqmMUUpru5LtmlpbNOIVwc(VoIpButtonView voIpButtonView, ValueAnimator valueAnimator) {
+            voIpButtonView.getClass();
+            voIpButtonView.singleIconBackgroundAlphaPercent = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+            voIpButtonView.invalidate();
         }
 
-        public void lambda$setSelectedState$1(ValueAnimator valueAnimator) {
-            this.selectedRadius = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-            invalidate();
+        public static void m3008$r8$lambda$lliQ3V_1TW7lBvdzvaDB0vqZl0(VoIpButtonView voIpButtonView, ValueAnimator valueAnimator) {
+            voIpButtonView.getClass();
+            voIpButtonView.selectedRadius = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+            voIpButtonView.invalidate();
         }
 
-        public void lambda$setSelectedState$2(ValueAnimator valueAnimator) {
-            this.unselectedRadius = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-            invalidate();
+        public static void m3007$r8$lambda$amuTGMSctaaJ9GKOzGhs_MJ5zo(VoIpButtonView voIpButtonView, ValueAnimator valueAnimator) {
+            voIpButtonView.getClass();
+            voIpButtonView.unselectedRadius = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+            voIpButtonView.invalidate();
         }
 
         public void setOnBtnClickedListener(OnBtnClickedListener onBtnClickedListener) {
@@ -468,16 +469,17 @@ public class VoIpSwitchLayout extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setPressedBtn$3(valueAnimator2);
+                    VoIpSwitchLayout.VoIpButtonView.$r8$lambda$GkSpuHUy_D0sU8qwY00R0yn1nT4(this.f$0, valueAnimator2);
                 }
             });
             this.pressedScaleAnimator.setDuration(150L);
             this.pressedScaleAnimator.start();
         }
 
-        public void lambda$setPressedBtn$3(ValueAnimator valueAnimator) {
-            this.pressedScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+        public static void $r8$lambda$GkSpuHUy_D0sU8qwY00R0yn1nT4(VoIpButtonView voIpButtonView, ValueAnimator valueAnimator) {
+            voIpButtonView.getClass();
+            voIpButtonView.pressedScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            voIpButtonView.invalidate();
         }
 
         @Override

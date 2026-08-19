@@ -38,6 +38,7 @@ public abstract class SearchField extends FrameLayout {
     }
 
     public SearchField(Context context, boolean z, float f, Theme.ResourcesProvider resourcesProvider) {
+        float f2;
         FrameLayout.LayoutParams layoutParamsCreateFrame;
         FrameLayout.LayoutParams layoutParamsCreateFrame2;
         FrameLayout.LayoutParams layoutParamsCreateFrame3;
@@ -49,8 +50,10 @@ public abstract class SearchField extends FrameLayout {
         view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), getThemedColor(Theme.key_dialogSearchBackground)));
         if (z) {
             layoutParamsCreateFrame = LayoutHelper.createFrameRelatively(-1.0f, 36.0f, 8388659, f, 11.0f, f, 0.0f);
+            f2 = f;
         } else {
-            layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 36.0f, 51, f, 11.0f, f, 0.0f);
+            f2 = f;
+            layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 36.0f, 51, f2, 11.0f, f2, 0.0f);
         }
         addView(this.searchBackground, layoutParamsCreateFrame);
         ImageView imageView = new ImageView(context);
@@ -60,9 +63,9 @@ public abstract class SearchField extends FrameLayout {
         this.searchIconImageView.setImageResource(R.drawable.smiles_inputsearch);
         this.searchIconImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogSearchIcon), PorterDuff.Mode.MULTIPLY));
         if (z) {
-            layoutParamsCreateFrame2 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388659, f + 2.0f, 11.0f, 0.0f, 0.0f);
+            layoutParamsCreateFrame2 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388659, f2 + 2.0f, 11.0f, 0.0f, 0.0f);
         } else {
-            layoutParamsCreateFrame2 = LayoutHelper.createFrame(36, 36.0f, 51, f + 2.0f, 11.0f, 0.0f, 0.0f);
+            layoutParamsCreateFrame2 = LayoutHelper.createFrame(36, 36.0f, 51, f2 + 2.0f, 11.0f, 0.0f, 0.0f);
         }
         addView(this.searchIconImageView, layoutParamsCreateFrame2);
         ImageView imageView2 = new ImageView(context);
@@ -82,15 +85,15 @@ public abstract class SearchField extends FrameLayout {
         this.clearSearchImageView.setScaleY(0.1f);
         this.clearSearchImageView.setAlpha(0.0f);
         if (z) {
-            layoutParamsCreateFrame3 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388661, f, 11.0f, f, 0.0f);
+            layoutParamsCreateFrame3 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388661, f2, 11.0f, f2, 0.0f);
         } else {
-            layoutParamsCreateFrame3 = LayoutHelper.createFrame(36, 36.0f, 53, f, 11.0f, f, 0.0f);
+            layoutParamsCreateFrame3 = LayoutHelper.createFrame(36, 36.0f, 53, f2, 11.0f, f2, 0.0f);
         }
         addView(this.clearSearchImageView, layoutParamsCreateFrame3);
         this.clearSearchImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$0(view2);
+                SearchField.m2719$r8$lambda$Go1mn5pfejzLu9c3Ox330EJkZo(this.f$0, view2);
             }
         });
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
@@ -126,11 +129,11 @@ public abstract class SearchField extends FrameLayout {
         this.searchEditText.setCursorSize(AndroidUtilities.dp(20.0f));
         this.searchEditText.setCursorWidth(1.5f);
         if (z) {
-            float f2 = f + 2.0f;
-            layoutParamsCreateFrame4 = LayoutHelper.createFrameRelatively(-1.0f, 40.0f, 8388659, f2 + 38.0f, 9.0f, f2 + 30.0f, 0.0f);
+            float f3 = 2.0f + f2;
+            layoutParamsCreateFrame4 = LayoutHelper.createFrameRelatively(-1.0f, 40.0f, 8388659, f3 + 38.0f, 9.0f, f3 + 30.0f, 0.0f);
         } else {
-            float f3 = f + 2.0f;
-            layoutParamsCreateFrame4 = LayoutHelper.createFrame(-1, 40.0f, 51, f3 + 38.0f, 9.0f, f3 + 30.0f, 0.0f);
+            float f4 = 2.0f + f2;
+            layoutParamsCreateFrame4 = LayoutHelper.createFrame(-1, 40.0f, 51, f4 + 38.0f, 9.0f, f4 + 30.0f, 0.0f);
         }
         addView(this.searchEditText, layoutParamsCreateFrame4);
         this.searchEditText.addTextChangedListener(new TextWatcher() {
@@ -155,25 +158,26 @@ public abstract class SearchField extends FrameLayout {
         this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                return this.f$0.lambda$new$1(textView, i, keyEvent);
+                return SearchField.m2720$r8$lambda$m9Nbora4R9xhAOQ4kZ91TTiwA0(this.f$0, textView, i, keyEvent);
             }
         });
     }
 
-    public void lambda$new$0(View view) {
-        this.searchEditText.setText("");
-        AndroidUtilities.showKeyboard(this.searchEditText);
+    public static void m2719$r8$lambda$Go1mn5pfejzLu9c3Ox330EJkZo(SearchField searchField, View view) {
+        searchField.searchEditText.setText("");
+        AndroidUtilities.showKeyboard(searchField.searchEditText);
     }
 
-    public boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m2720$r8$lambda$m9Nbora4R9xhAOQ4kZ91TTiwA0(SearchField searchField, TextView textView, int i, KeyEvent keyEvent) {
+        searchField.getClass();
         if (keyEvent == null) {
             return false;
         }
         if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
             return false;
         }
-        this.searchEditText.hideActionMode();
-        AndroidUtilities.hideKeyboard(this.searchEditText);
+        searchField.searchEditText.hideActionMode();
+        AndroidUtilities.hideKeyboard(searchField.searchEditText);
         return false;
     }
 

@@ -15,7 +15,7 @@ import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class ChartHorizontalLinesData {
     public int alpha;
-    public int fixedAlpha = 255;
+    public int fixedAlpha;
     private DecimalFormat formatterTON;
     private StaticLayout[] layouts;
     private StaticLayout[] layouts2;
@@ -30,16 +30,17 @@ public class ChartHorizontalLinesData {
         long jMax;
         boolean z2;
         int i3;
-        int i4;
         ChartHorizontalLinesData chartHorizontalLinesData;
         float f3;
         long j4;
-        int i5;
-        int iMax;
+        int i4;
         boolean z3;
-        int i6;
+        int i5;
         float f4;
         long j5;
+        int iMax;
+        ?? obj = new Object();
+        obj.fixedAlpha = 255;
         if (!z) {
             long jRound = j > 100 ? round(j) : j;
             long jMax2 = Math.max(1L, (long) Math.ceil(jRound / 5.0d));
@@ -48,87 +49,84 @@ public class ChartHorizontalLinesData {
             } else {
                 long j6 = jRound / 2;
                 if (j6 < 6) {
-                    iMax = (int) (j6 + 1);
-                    if (jRound % 2 != 0) {
-                        iMax++;
-                    }
+                    i4 = (int) (j6 + 1);
+                    iMax = jRound % 2 != 0 ? i4 + 1 : iMax;
                 } else {
-                    i5 = 6;
+                    i4 = 6;
                 }
-                this.values = new long[i5];
-                this.valuesStr = new CharSequence[i5];
-                this.layouts = new StaticLayout[i5];
+                obj.values = new long[i4];
+                obj.valuesStr = new CharSequence[i4];
+                obj.layouts = new StaticLayout[i4];
                 if (f > 0.0f) {
-                    this.valuesStr2 = new CharSequence[i5];
-                    this.layouts2 = new StaticLayout[i5];
+                    obj.valuesStr2 = new CharSequence[i4];
+                    obj.layouts2 = new StaticLayout[i4];
                 }
                 if (jMax2 / f < 1.0f) {
                     z3 = true;
                 } else {
                     z3 = false;
                 }
-                i6 = 1;
-                while (i6 < i5) {
-                    long j7 = ((long) i6) * jMax2;
-                    this.values[i6] = j7;
+                i5 = 1;
+                while (i5 < i4) {
+                    long j7 = ((long) i5) * jMax2;
+                    obj.values[i5] = j7;
                     long j8 = jMax2;
-                    this.valuesStr[i6] = format(0, textPaint, j7, i);
+                    obj.valuesStr[i5] = obj.format(0, textPaint, j7, i);
                     if (f > 0.0f) {
-                        f4 = this.values[i6] / f;
+                        f4 = obj.values[i5] / f;
                         if (z3) {
                             j5 = (long) f4;
                             if (f4 - j5 >= 0.01f || i == 1 || i == 2) {
-                                this.valuesStr2[i6] = format(1, textPaint2, j5, i);
+                                obj.valuesStr2[i5] = obj.format(1, textPaint2, j5, i);
                             } else {
-                                this.valuesStr2[i6] = "";
+                                obj.valuesStr2[i5] = "";
                             }
                         } else {
-                            this.valuesStr2[i6] = format(1, textPaint2, (long) f4, i);
+                            obj.valuesStr2[i5] = obj.format(1, textPaint2, (long) f4, i);
                         }
                     }
-                    i6++;
+                    i5++;
                     jMax2 = j8;
                 }
                 return;
             }
-            i5 = iMax;
-            this.values = new long[i5];
-            this.valuesStr = new CharSequence[i5];
-            this.layouts = new StaticLayout[i5];
+            i4 = iMax;
+            obj.values = new long[i4];
+            obj.valuesStr = new CharSequence[i4];
+            obj.layouts = new StaticLayout[i4];
             if (f > 0.0f) {
-                this.valuesStr2 = new CharSequence[i5];
-                this.layouts2 = new StaticLayout[i5];
+                obj.valuesStr2 = new CharSequence[i4];
+                obj.layouts2 = new StaticLayout[i4];
             }
             if (jMax2 / f < 1.0f) {
                 z3 = true;
             } else {
                 z3 = false;
             }
-            i6 = 1;
-            while (i6 < i5) {
-                long j9 = ((long) i6) * jMax2;
-                this.values[i6] = j9;
+            i5 = 1;
+            while (i5 < i4) {
+                long j9 = ((long) i5) * jMax2;
+                obj.values[i5] = j9;
                 long j10 = jMax2;
-                this.valuesStr[i6] = format(0, textPaint, j9, i);
+                obj.valuesStr[i5] = obj.format(0, textPaint, j9, i);
                 if (f > 0.0f) {
-                    f4 = this.values[i6] / f;
+                    f4 = obj.values[i5] / f;
                     if (z3) {
                         j5 = (long) f4;
                         if (f4 - j5 >= 0.01f) {
-                            this.valuesStr2[i6] = format(1, textPaint2, j5, i);
+                            obj.valuesStr2[i5] = obj.format(1, textPaint2, j5, i);
                         } else {
-                            this.valuesStr2[i6] = format(1, textPaint2, j5, i);
+                            obj.valuesStr2[i5] = obj.format(1, textPaint2, j5, i);
                         }
                     } else {
-                        this.valuesStr2[i6] = format(1, textPaint2, (long) f4, i);
+                        obj.valuesStr2[i5] = obj.format(1, textPaint2, (long) f4, i);
                     }
                 }
-                i6++;
+                i5++;
                 jMax2 = j10;
             }
             return;
         }
-        ChartHorizontalLinesData chartHorizontalLinesData2 = this;
         long j11 = j - j2;
         if (j11 == 0) {
             j3 = j2 - 1;
@@ -152,12 +150,12 @@ public class ChartHorizontalLinesData {
                         i2 = 6;
                     }
                 }
-                chartHorizontalLinesData2.values = new long[i2];
-                chartHorizontalLinesData2.valuesStr = new CharSequence[i2];
-                chartHorizontalLinesData2.layouts = new StaticLayout[i2];
+                obj.values = new long[i2];
+                obj.valuesStr = new CharSequence[i2];
+                obj.layouts = new StaticLayout[i2];
                 if (f > 0.0f) {
-                    chartHorizontalLinesData2.valuesStr2 = new CharSequence[i2];
-                    chartHorizontalLinesData2.layouts2 = new StaticLayout[i2];
+                    obj.valuesStr2 = new CharSequence[i2];
+                    obj.layouts2 = new StaticLayout[i2];
                 }
                 if (f2 / f < 1.0f) {
                     z2 = true;
@@ -165,42 +163,38 @@ public class ChartHorizontalLinesData {
                     z2 = false;
                 }
                 i3 = 0;
+                chartHorizontalLinesData = obj;
                 while (i3 < i2) {
-                    long j13 = j3 + ((long) (i3 * f2));
-                    chartHorizontalLinesData2.values[i3] = j13;
-                    i4 = i3;
-                    chartHorizontalLinesData = chartHorizontalLinesData2;
-                    chartHorizontalLinesData2.valuesStr[i4] = format(0, textPaint, j13, i);
+                    long j13 = ((long) (i3 * f2)) + j3;
+                    chartHorizontalLinesData.values[i3] = j13;
+                    chartHorizontalLinesData.valuesStr[i3] = chartHorizontalLinesData.format(0, textPaint, j13, i);
                     if (f > 0.0f) {
-                        f3 = chartHorizontalLinesData.values[i4] / f;
+                        f3 = chartHorizontalLinesData.values[i3] / f;
                         if (z2) {
                             j4 = (long) f3;
-                            if (f3 - j4 < 0.01f && i != 1) {
-                                if (i != 2) {
-                                    chartHorizontalLinesData.valuesStr2[i4] = "";
-                                }
+                            if (f3 - j4 >= 0.01f || i == 1 || i == 2) {
+                                chartHorizontalLinesData.valuesStr2[i3] = chartHorizontalLinesData.format(1, textPaint2, j4, i);
+                            } else {
+                                chartHorizontalLinesData.valuesStr2[i3] = "";
                             }
-                            chartHorizontalLinesData.valuesStr2[i4] = format(1, textPaint2, j4, i);
                         } else {
-                            chartHorizontalLinesData.valuesStr2[i4] = format(1, textPaint2, (long) f3, i);
+                            chartHorizontalLinesData.valuesStr2[i3] = chartHorizontalLinesData.format(1, textPaint2, (long) f3, i);
                         }
-                        i3 = i4 + 1;
-                        chartHorizontalLinesData2 = chartHorizontalLinesData;
                     }
-                    i3 = i4 + 1;
-                    chartHorizontalLinesData2 = chartHorizontalLinesData;
+                    i3++;
+                    chartHorizontalLinesData = this;
                 }
             }
             j3 = j2;
             i2 = (int) jMax;
         }
         f2 = 1.0f;
-        chartHorizontalLinesData2.values = new long[i2];
-        chartHorizontalLinesData2.valuesStr = new CharSequence[i2];
-        chartHorizontalLinesData2.layouts = new StaticLayout[i2];
+        obj.values = new long[i2];
+        obj.valuesStr = new CharSequence[i2];
+        obj.layouts = new StaticLayout[i2];
         if (f > 0.0f) {
-            chartHorizontalLinesData2.valuesStr2 = new CharSequence[i2];
-            chartHorizontalLinesData2.layouts2 = new StaticLayout[i2];
+            obj.valuesStr2 = new CharSequence[i2];
+            obj.layouts2 = new StaticLayout[i2];
         }
         if (f2 / f < 1.0f) {
             z2 = true;
@@ -208,27 +202,26 @@ public class ChartHorizontalLinesData {
             z2 = false;
         }
         i3 = 0;
+        chartHorizontalLinesData = obj;
         while (i3 < i2) {
-            long j14 = j3 + ((long) (i3 * f2));
-            chartHorizontalLinesData2.values[i3] = j14;
-            i4 = i3;
-            chartHorizontalLinesData = chartHorizontalLinesData2;
-            chartHorizontalLinesData2.valuesStr[i4] = format(0, textPaint, j14, i);
+            long j14 = ((long) (i3 * f2)) + j3;
+            chartHorizontalLinesData.values[i3] = j14;
+            chartHorizontalLinesData.valuesStr[i3] = chartHorizontalLinesData.format(0, textPaint, j14, i);
             if (f > 0.0f) {
-                f3 = chartHorizontalLinesData.values[i4] / f;
+                f3 = chartHorizontalLinesData.values[i3] / f;
                 if (z2) {
                     j4 = (long) f3;
-                    if (f3 - j4 < 0.01f) {
+                    if (f3 - j4 >= 0.01f) {
+                        chartHorizontalLinesData.valuesStr2[i3] = chartHorizontalLinesData.format(1, textPaint2, j4, i);
+                    } else {
+                        chartHorizontalLinesData.valuesStr2[i3] = chartHorizontalLinesData.format(1, textPaint2, j4, i);
                     }
-                    chartHorizontalLinesData.valuesStr2[i4] = format(1, textPaint2, j4, i);
                 } else {
-                    chartHorizontalLinesData.valuesStr2[i4] = format(1, textPaint2, (long) f3, i);
+                    chartHorizontalLinesData.valuesStr2[i3] = chartHorizontalLinesData.format(1, textPaint2, (long) f3, i);
                 }
-                i3 = i4 + 1;
-                chartHorizontalLinesData2 = chartHorizontalLinesData;
             }
-            i3 = i4 + 1;
-            chartHorizontalLinesData2 = chartHorizontalLinesData;
+            i3++;
+            chartHorizontalLinesData = this;
         }
     }
 
@@ -270,15 +263,20 @@ public class ChartHorizontalLinesData {
     }
 
     public void drawText(Canvas canvas, int i, int i2, float f, float f2, TextPaint textPaint) {
+        TextPaint textPaint2;
         StaticLayout staticLayout = (i == 0 ? this.layouts : this.layouts2)[i2];
         if (staticLayout == null) {
             CharSequence charSequence = (i == 0 ? this.valuesStr : this.valuesStr2)[i2];
             StaticLayout[] staticLayoutArr = i == 0 ? this.layouts : this.layouts2;
-            staticLayout = new StaticLayout(charSequence, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            staticLayoutArr[i2] = staticLayout;
+            textPaint2 = textPaint;
+            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint2, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            staticLayoutArr[i2] = staticLayout2;
+            staticLayout = staticLayout2;
+        } else {
+            textPaint2 = textPaint;
         }
         canvas.save();
-        canvas.translate(f, f2 + textPaint.ascent());
+        canvas.translate(f, f2 + textPaint2.ascent());
         staticLayout.draw(canvas);
         canvas.restore();
     }

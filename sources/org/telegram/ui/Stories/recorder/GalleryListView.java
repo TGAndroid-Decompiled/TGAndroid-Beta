@@ -178,7 +178,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         recyclerListView.setItemSelectorColorProvider(new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                return GalleryListView.lambda$new$0((Integer) obj);
+                return GalleryListView.m4496$r8$lambda$hAV_pIipD4Pa7H1B5IHRHUEIM((Integer) obj);
             }
         });
         Adapter adapter = new Adapter();
@@ -219,13 +219,13 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$1(view, i2);
+                GalleryListView.m4494$r8$lambda$a3WsMhdqvAigkNfonHvbBHPiqI(this.f$0, view, i2);
             }
         });
         recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                return this.f$0.lambda$new$2(view, i2);
+                return GalleryListView.m4495$r8$lambda$apkF4A67bFIt27trYh_odJudp4(this.f$0, view, i2);
             }
         });
         recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -273,7 +273,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         actionBarMenuItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$3(view);
+                this.f$0.dropDownContainer.toggleSubMenu();
             }
         });
         TextView textView = new TextView(context);
@@ -368,7 +368,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         this.keyboardNotifier = new KeyboardNotifier(this, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$4((Integer) obj);
+                this.f$0.searchEmptyView.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).start();
             }
         });
         frameLayout.addView(stickerEmptyView, LayoutHelper.createFrame(-1, -1, 119));
@@ -380,12 +380,18 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         recyclerListView2.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$5(view, i2);
+                GalleryListView.m4492$r8$lambda$CGTSaKpFTocqzb4mNOYkeFAM2E(this.f$0, view, i2);
             }
         });
         arrayList.clear();
         if (!z) {
-            for (StoryEntry storyEntry : MessagesController.getInstance(i).getStoriesController().getDraftsController().drafts) {
+            ArrayList arrayList2 = MessagesController.getInstance(i).getStoriesController().getDraftsController().drafts;
+            int size = arrayList2.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList2.get(i2);
+                i2++;
+                StoryEntry storyEntry = (StoryEntry) obj;
                 if (!storyEntry.isEdit && !storyEntry.isError) {
                     this.drafts.add(storyEntry);
                 }
@@ -410,7 +416,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 round.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$6(view);
+                        GalleryListView.$r8$lambda$urItoZuaELpxCukBK6VyPLm032Q(this.f$0, view);
                     }
                 });
             }
@@ -426,7 +432,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             round2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$7(view);
+                    GalleryListView.m4497$r8$lambda$xwcTpau67eJieG40XCykcSsCxA(this.f$0, view);
                 }
             });
         } else {
@@ -443,7 +449,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$8(view);
+                    this.f$0.selectMultiple(false);
                 }
             });
             imageView.setAlpha(0.0f);
@@ -454,8 +460,8 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         if (albumEntry != null && (albumEntry != draftsAlbum || this.drafts.size() > 0)) {
             this.selectedAlbum = albumEntry;
         } else {
-            ArrayList arrayList2 = this.dropDownAlbums;
-            if (arrayList2 == null || arrayList2.isEmpty()) {
+            ArrayList arrayList3 = this.dropDownAlbums;
+            if (arrayList3 == null || arrayList3.isEmpty()) {
                 this.selectedAlbum = MediaController.allMediaAlbumEntry;
             } else {
                 this.selectedAlbum = (MediaController.AlbumEntry) this.dropDownAlbums.get(0);
@@ -473,104 +479,142 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         }
     }
 
-    public static Integer lambda$new$0(Integer num) {
+    public static Integer m4496$r8$lambda$hAV_pIipD4Pa7H1B5IHRHUEIM(Integer num) {
         return 0;
     }
 
-    public void lambda$new$1(View view, int i) {
-        if (i < 2 || this.onSelectListener == null || !(view instanceof Cell)) {
+    public static void m4494$r8$lambda$a3WsMhdqvAigkNfonHvbBHPiqI(GalleryListView galleryListView, View view, int i) {
+        if (i < 2) {
+            galleryListView.getClass();
+            return;
+        }
+        if (galleryListView.onSelectListener == null || !(view instanceof Cell)) {
             return;
         }
         Cell cell = (Cell) view;
         int size = i - 2;
         Bitmap bitmapPrepareBlurredThumb = null;
-        if (this.containsDraftFolder) {
+        if (galleryListView.containsDraftFolder) {
             if (size == 0) {
-                selectAlbum(draftsAlbum, true);
+                galleryListView.selectAlbum(draftsAlbum, true);
                 return;
             }
             size = i - 3;
-        } else if (this.containsDrafts) {
-            if (size >= 0 && size < this.drafts.size()) {
-                StoryEntry storyEntry = (StoryEntry) this.drafts.get(size);
-                this.onSelectListener.run(storyEntry, storyEntry.isVideo ? prepareBlurredThumb(cell) : null);
+        } else if (galleryListView.containsDrafts) {
+            if (size >= 0 && size < galleryListView.drafts.size()) {
+                StoryEntry storyEntry = (StoryEntry) galleryListView.drafts.get(size);
+                galleryListView.onSelectListener.run(storyEntry, storyEntry.isVideo ? galleryListView.prepareBlurredThumb(cell) : null);
                 return;
             }
-            size -= this.drafts.size();
+            size -= galleryListView.drafts.size();
         }
-        if (size < 0 || size >= this.photos.size()) {
+        if (size < 0 || size >= galleryListView.photos.size()) {
             return;
         }
-        MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) this.photos.get(size);
-        if (isMultiple()) {
-            if (this.selectedPhotos.contains(photoEntry)) {
-                this.selectedPhotos.remove(photoEntry);
-            } else {
-                if (this.selectedPhotos.size() + 1 > this.maxCount) {
-                    int i2 = -this.shiftDp;
-                    this.shiftDp = i2;
-                    AndroidUtilities.shakeViewSpring(cell, i2);
-                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                    return;
-                }
-                this.selectedPhotos.add(photoEntry);
+        MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) galleryListView.photos.get(size);
+        if (!galleryListView.isMultiple()) {
+            Utilities.Callback2 callback2 = galleryListView.onSelectListener;
+            if (photoEntry.isVideo && !photoEntry.isLivePhoto()) {
+                bitmapPrepareBlurredThumb = galleryListView.prepareBlurredThumb(cell);
             }
-            AndroidUtilities.updateVisibleRows(this.listView);
-            updateSelectButtonVisible();
+            callback2.run(photoEntry, bitmapPrepareBlurredThumb);
             return;
         }
-        Utilities.Callback2 callback2 = this.onSelectListener;
-        if (photoEntry.isVideo && !photoEntry.isLivePhoto()) {
-            bitmapPrepareBlurredThumb = prepareBlurredThumb(cell);
+        if (galleryListView.selectedPhotos.contains(photoEntry)) {
+            galleryListView.selectedPhotos.remove(photoEntry);
+        } else {
+            if (galleryListView.selectedPhotos.size() + 1 > galleryListView.maxCount) {
+                int i2 = -galleryListView.shiftDp;
+                galleryListView.shiftDp = i2;
+                AndroidUtilities.shakeViewSpring(cell, i2);
+                BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                return;
+            }
+            galleryListView.selectedPhotos.add(photoEntry);
         }
-        callback2.run(photoEntry, bitmapPrepareBlurredThumb);
+        AndroidUtilities.updateVisibleRows(galleryListView.listView);
+        galleryListView.updateSelectButtonVisible();
     }
 
-    public boolean lambda$new$2(View view, int i) {
+    public static boolean m4495$r8$lambda$apkF4A67bFIt27trYh_odJudp4(GalleryListView galleryListView, View view, int i) {
+        MediaController.PhotoEntry photoEntry;
         boolean z = false;
-        if (i >= 2 && this.onSelectListener != null && (view instanceof Cell)) {
+        if (i < 2) {
+            galleryListView.getClass();
+            return false;
+        }
+        if (galleryListView.onSelectListener != null && (view instanceof Cell)) {
             int size = i - 2;
-            if (this.containsDraftFolder) {
-                if (size == 0) {
-                    return false;
+            if (galleryListView.containsDraftFolder) {
+                if (size != 0) {
+                    size = i - 3;
+                    if (size >= 0 && size < galleryListView.photos.size()) {
+                        photoEntry = (MediaController.PhotoEntry) galleryListView.photos.get(size);
+                        if (galleryListView.selectedPhotos.isEmpty() && !galleryListView.multipleOnClick) {
+                            z = true;
+                            if (galleryListView.selectedPhotos.contains(photoEntry)) {
+                                galleryListView.selectedPhotos.remove(photoEntry);
+                            } else {
+                                if (galleryListView.selectedPhotos.size() + 1 > galleryListView.maxCount) {
+                                    int i2 = -galleryListView.shiftDp;
+                                    galleryListView.shiftDp = i2;
+                                    AndroidUtilities.shakeViewSpring(view, i2);
+                                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                                    return true;
+                                }
+                                galleryListView.selectedPhotos.add(photoEntry);
+                            }
+                            AndroidUtilities.updateVisibleRows(galleryListView.listView);
+                            galleryListView.updateSelectButtonVisible();
+                        }
+                    }
                 }
-                size = i - 3;
-            } else if (this.containsDrafts) {
-                if (size >= 0 && size < this.drafts.size()) {
-                    return false;
+            } else if (galleryListView.containsDrafts) {
+                if (size < 0 || size >= galleryListView.drafts.size()) {
+                    size -= galleryListView.drafts.size();
+                    if (size >= 0) {
+                        photoEntry = (MediaController.PhotoEntry) galleryListView.photos.get(size);
+                        if (galleryListView.selectedPhotos.isEmpty()) {
+                            z = true;
+                            if (galleryListView.selectedPhotos.contains(photoEntry)) {
+                                galleryListView.selectedPhotos.remove(photoEntry);
+                            } else {
+                                if (galleryListView.selectedPhotos.size() + 1 > galleryListView.maxCount) {
+                                    int i3 = -galleryListView.shiftDp;
+                                    galleryListView.shiftDp = i3;
+                                    AndroidUtilities.shakeViewSpring(view, i3);
+                                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                                    return true;
+                                }
+                                galleryListView.selectedPhotos.add(photoEntry);
+                            }
+                            AndroidUtilities.updateVisibleRows(galleryListView.listView);
+                            galleryListView.updateSelectButtonVisible();
+                        }
+                    }
                 }
-                size -= this.drafts.size();
-            }
-            if (size >= 0 && size < this.photos.size()) {
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) this.photos.get(size);
-                if (this.selectedPhotos.isEmpty() && !this.multipleOnClick) {
+            } else if (size >= 0) {
+                photoEntry = (MediaController.PhotoEntry) galleryListView.photos.get(size);
+                if (galleryListView.selectedPhotos.isEmpty()) {
                     z = true;
-                    if (this.selectedPhotos.contains(photoEntry)) {
-                        this.selectedPhotos.remove(photoEntry);
+                    if (galleryListView.selectedPhotos.contains(photoEntry)) {
+                        galleryListView.selectedPhotos.remove(photoEntry);
                     } else {
-                        if (this.selectedPhotos.size() + 1 > this.maxCount) {
-                            int i2 = -this.shiftDp;
-                            this.shiftDp = i2;
-                            AndroidUtilities.shakeViewSpring(view, i2);
+                        if (galleryListView.selectedPhotos.size() + 1 > galleryListView.maxCount) {
+                            int i4 = -galleryListView.shiftDp;
+                            galleryListView.shiftDp = i4;
+                            AndroidUtilities.shakeViewSpring(view, i4);
                             BotWebViewVibrationEffect.APP_ERROR.vibrate();
                             return true;
                         }
-                        this.selectedPhotos.add(photoEntry);
+                        galleryListView.selectedPhotos.add(photoEntry);
                     }
-                    AndroidUtilities.updateVisibleRows(this.listView);
-                    updateSelectButtonVisible();
+                    AndroidUtilities.updateVisibleRows(galleryListView.listView);
+                    galleryListView.updateSelectButtonVisible();
                 }
             }
         }
         return z;
-    }
-
-    public void lambda$new$3(View view) {
-        this.dropDownContainer.toggleSubMenu();
-    }
-
-    public void lambda$new$4(Integer num) {
-        this.searchEmptyView.animate().translationY(((-num.intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).start();
     }
 
     class AnonymousClass12 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
@@ -610,7 +654,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onSearchCollapse$0(valueAnimator);
+                    GalleryListView.this.invalidate();
                 }
             });
             arrayList.add(valueAnimatorOfFloat);
@@ -630,10 +674,6 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 }
             });
             this.animatorSet.start();
-        }
-
-        public void lambda$onSearchCollapse$0(ValueAnimator valueAnimator) {
-            GalleryListView.this.invalidate();
         }
 
         @Override
@@ -669,7 +709,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onSearchExpand$1(valueAnimator);
+                    GalleryListView.this.invalidate();
                 }
             });
             arrayList.add(valueAnimatorOfFloat);
@@ -688,44 +728,36 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             this.animatorSet.start();
         }
 
-        public void lambda$onSearchExpand$1(ValueAnimator valueAnimator) {
-            GalleryListView.this.invalidate();
-        }
-
         @Override
         public void onTextChanged(EditText editText) {
             GalleryListView.this.searchAdapterImages.load(editText.getText().toString());
         }
     }
 
-    public void lambda$new$5(View view, int i) {
+    public static void m4492$r8$lambda$CGTSaKpFTocqzb4mNOYkeFAM2E(GalleryListView galleryListView, View view, int i) {
         Utilities.Callback2 callback2;
-        ActionBarMenuItem actionBarMenuItem = this.searchItem;
+        ActionBarMenuItem actionBarMenuItem = galleryListView.searchItem;
         if (actionBarMenuItem != null) {
             AndroidUtilities.hideKeyboard(actionBarMenuItem.getSearchContainer());
         }
-        if (i < 0 || i >= this.searchAdapterImages.results.size() || (callback2 = this.onSelectListener) == null) {
+        if (i < 0 || i >= galleryListView.searchAdapterImages.results.size() || (callback2 = galleryListView.onSelectListener) == null) {
             return;
         }
-        callback2.run(this.searchAdapterImages.results.get(i), null);
+        callback2.run(galleryListView.searchAdapterImages.results.get(i), null);
     }
 
-    public void lambda$new$6(View view) {
-        if (this.buttonsLayout.getAlpha() < 0.25f) {
+    public static void $r8$lambda$urItoZuaELpxCukBK6VyPLm032Q(GalleryListView galleryListView, View view) {
+        if (galleryListView.buttonsLayout.getAlpha() < 0.25f) {
             return;
         }
-        selectMultiple(false);
+        galleryListView.selectMultiple(false);
     }
 
-    public void lambda$new$7(View view) {
-        if (this.buttonsLayout.getAlpha() < 0.25f) {
+    public static void m4497$r8$lambda$xwcTpau67eJieG40XCykcSsCxA(GalleryListView galleryListView, View view) {
+        if (galleryListView.buttonsLayout.getAlpha() < 0.25f) {
             return;
         }
-        selectMultiple(true);
-    }
-
-    public void lambda$new$8(View view) {
-        selectMultiple(false);
+        galleryListView.selectMultiple(true);
     }
 
     public void setMultipleOnClick(boolean z) {
@@ -775,16 +807,22 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         return true;
     }
 
-    private void selectMultiple(boolean z) {
+    public void selectMultiple(boolean z) {
         if (this.onSelectMultipleListener == null || this.selectedPhotos.isEmpty()) {
             return;
         }
+        int i = 0;
         if (this.selectedPhotos.size() == 1) {
             this.onSelectListener.run((MediaController.PhotoEntry) this.selectedPhotos.get(0), null);
             return;
         }
         ArrayList arrayList = new ArrayList();
-        for (MediaController.PhotoEntry photoEntry : this.selectedPhotos) {
+        ArrayList arrayList2 = this.selectedPhotos;
+        int size = arrayList2.size();
+        while (i < size) {
+            Object obj = arrayList2.get(i);
+            i++;
+            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
             arrayList.add((!photoEntry.isVideo || photoEntry.isLivePhoto()) ? null : prepareBlurredThumb(findCell(photoEntry)));
         }
         this.onSelectMultipleListener.run(Boolean.valueOf(z), new ArrayList(this.selectedPhotos), arrayList);
@@ -944,7 +982,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         Collections.sort(arrayList2, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return GalleryListView.lambda$updateAlbumsDropDown$9(arrayList, (MediaController.AlbumEntry) obj, (MediaController.AlbumEntry) obj2);
+                return GalleryListView.$r8$lambda$loNHKpXmiTQFIt6B9vuy9b9fjLQ(arrayList, (MediaController.AlbumEntry) obj, (MediaController.AlbumEntry) obj2);
             }
         });
         if (!this.drafts.isEmpty()) {
@@ -971,13 +1009,13 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             albumButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateAlbumsDropDown$10(albumEntry, view);
+                    GalleryListView.m4493$r8$lambda$DeqbRmWZXqyf8_QICAVqgYKYM(this.f$0, albumEntry, view);
                 }
             });
         }
     }
 
-    public static int lambda$updateAlbumsDropDown$9(ArrayList arrayList, MediaController.AlbumEntry albumEntry, MediaController.AlbumEntry albumEntry2) {
+    public static int $r8$lambda$loNHKpXmiTQFIt6B9vuy9b9fjLQ(ArrayList arrayList, MediaController.AlbumEntry albumEntry, MediaController.AlbumEntry albumEntry2) {
         int iIndexOf;
         int iIndexOf2;
         int i = albumEntry.bucketId;
@@ -990,9 +1028,9 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         return 1;
     }
 
-    public void lambda$updateAlbumsDropDown$10(MediaController.AlbumEntry albumEntry, View view) {
-        selectAlbum(albumEntry, false);
-        this.dropDownContainer.closeSubMenu();
+    public static void m4493$r8$lambda$DeqbRmWZXqyf8_QICAVqgYKYM(GalleryListView galleryListView, MediaController.AlbumEntry albumEntry, View view) {
+        galleryListView.selectAlbum(albumEntry, false);
+        galleryListView.dropDownContainer.closeSubMenu();
     }
 
     public void selectAlbum(MediaController.AlbumEntry albumEntry, boolean z) {
@@ -1085,7 +1123,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             this.unload = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0();
+                    this.f$0.loadBitmap(null);
                 }
             };
             this.clipPath = new Path();
@@ -1140,10 +1178,6 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             AndroidUtilities.runOnUIThread(this.unload, 250L);
-        }
-
-        public void lambda$new$0() {
-            loadBitmap(null);
         }
 
         public void set(StoryEntry storyEntry, int i) {
@@ -1235,7 +1269,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 this.checkBox.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.7f).scaleY(z ? 1.0f : 0.7f).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setCheckbox$1(z);
+                        GalleryListView.Cell.$r8$lambda$djyHlxKzUEr9cxym1gQawI3susQ(this.f$0, z);
                     }
                 }).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).start();
             }
@@ -1247,11 +1281,12 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             }
         }
 
-        public void lambda$setCheckbox$1(boolean z) {
+        public static void $r8$lambda$djyHlxKzUEr9cxym1gQawI3susQ(Cell cell, boolean z) {
             if (z) {
-                return;
+                cell.getClass();
+            } else {
+                cell.checkBoxContainer.setVisibility(8);
             }
-            this.checkBoxContainer.setVisibility(8);
         }
 
         private static Bitmap getBitmap(String str) {
@@ -1387,7 +1422,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             return new Pair(bitmapDecodeFile, iArr);
         }
 
-        private void loadBitmap(final Object obj) {
+        public void loadBitmap(final Object obj) {
             final String strKey;
             if (obj == null) {
                 releaseBitmap(this.currentKey);
@@ -1440,25 +1475,26 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadBitmap$3(obj, strKey);
+                    GalleryListView.Cell.$r8$lambda$_7dMz2ydq9aw3dMFIaBmuW4r2oo(this.f$0, obj, strKey);
                 }
             };
             this.loadingBitmap = runnable;
             queue.postRunnable(runnable);
         }
 
-        public void lambda$loadBitmap$3(Object obj, final String str) {
-            final Pair thumbnail = getThumbnail(obj);
+        public static void $r8$lambda$_7dMz2ydq9aw3dMFIaBmuW4r2oo(final Cell cell, Object obj, final String str) {
+            final Pair thumbnail = cell.getThumbnail(obj);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadBitmap$2(str, thumbnail);
+                    GalleryListView.Cell.m4501$r8$lambda$TCRvr1gvx9HPeuwmGvtXOUcKvQ(this.f$0, str, thumbnail);
                 }
             });
         }
 
-        public void lambda$loadBitmap$2(String str, Pair pair) {
-            afterLoad(str, (Bitmap) pair.first, (int[]) pair.second);
+        public static void m4501$r8$lambda$TCRvr1gvx9HPeuwmGvtXOUcKvQ(Cell cell, String str, Pair pair) {
+            cell.getClass();
+            cell.afterLoad(str, (Bitmap) pair.first, (int[]) pair.second);
         }
 
         private void afterLoad(String str, Bitmap bitmap, int[] iArr) {
@@ -1735,13 +1771,13 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 cell.accessibilityClick = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onBindViewHolder$0(cell);
+                        GalleryListView.Adapter.m4499$r8$lambda$hbmyvvmFyTNXCfIAv27hg0IUK4(this.f$0, cell);
                     }
                 };
                 cell.accessibilityLongClick = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onBindViewHolder$1(cell);
+                        GalleryListView.Adapter.$r8$lambda$jtTmvJRlTE_bQhczXBweajrZHqc(this.f$0, cell);
                     }
                 };
                 int size = i - 2;
@@ -1772,28 +1808,28 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                     cell.checkBoxContainer.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onBindViewHolder$2(photoEntry, cell, view);
+                            GalleryListView.Adapter.$r8$lambda$BQ5Nfqo1h2A3r3I69wlwOEICoew(this.f$0, photoEntry, cell, view);
                         }
                     });
                 }
             }
         }
 
-        public void lambda$onBindViewHolder$0(Cell cell) {
+        public static void m4499$r8$lambda$hbmyvvmFyTNXCfIAv27hg0IUK4(Adapter adapter, Cell cell) {
             int childAdapterPosition = GalleryListView.this.listView.getChildAdapterPosition(cell);
             if (childAdapterPosition != -1) {
                 GalleryListView.this.listView.clickItem(cell, childAdapterPosition);
             }
         }
 
-        public void lambda$onBindViewHolder$1(Cell cell) {
+        public static void $r8$lambda$jtTmvJRlTE_bQhczXBweajrZHqc(Adapter adapter, Cell cell) {
             int childAdapterPosition = GalleryListView.this.listView.getChildAdapterPosition(cell);
             if (childAdapterPosition != -1) {
                 GalleryListView.this.listView.longClickItem(cell, childAdapterPosition);
             }
         }
 
-        public void lambda$onBindViewHolder$2(MediaController.PhotoEntry photoEntry, Cell cell, View view) {
+        public static void $r8$lambda$BQ5Nfqo1h2A3r3I69wlwOEICoew(Adapter adapter, MediaController.PhotoEntry photoEntry, Cell cell, View view) {
             if (!GalleryListView.this.selectedPhotos.contains(photoEntry)) {
                 if (GalleryListView.this.selectedPhotos.size() + 1 > GalleryListView.this.maxCount) {
                     GalleryListView galleryListView = GalleryListView.this;
@@ -1970,7 +2006,13 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
     public void updateDrafts() {
         this.drafts.clear();
         if (!this.onlyPhotos) {
-            for (StoryEntry storyEntry : MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().drafts) {
+            ArrayList arrayList = MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().drafts;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                StoryEntry storyEntry = (StoryEntry) obj;
                 if (!storyEntry.isEdit && !storyEntry.isError) {
                     this.drafts.add(storyEntry);
                 }
@@ -2112,7 +2154,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 this.currentReqId = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$loadInternal$1(messagesController, tLObject, tL_error);
+                        GalleryListView.SearchAdapter.m4503$r8$lambda$WPR6tKYcnM8008bBkCaGEGnL9Y(this.f$0, messagesController, tLObject, tL_error);
                     }
                 });
             } else {
@@ -2134,66 +2176,69 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 this.currentReqId = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$loadInternal$3(zIsEmpty, tLObject, tL_error);
+                        GalleryListView.SearchAdapter.m4502$r8$lambda$BM4SAfJY7pLCeWc9RBL59E2DWQ(this.f$0, zIsEmpty, tLObject, tL_error);
                     }
                 });
             }
         }
 
-        public void lambda$loadInternal$1(final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4503$r8$lambda$WPR6tKYcnM8008bBkCaGEGnL9Y(final SearchAdapter searchAdapter, final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            searchAdapter.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadInternal$0(tLObject, messagesController);
+                    GalleryListView.SearchAdapter.$r8$lambda$j_zera_FcbQ1H6WLFBTpEr3jOf8(this.f$0, tLObject, messagesController);
                 }
             });
         }
 
-        public void lambda$loadInternal$0(TLObject tLObject, MessagesController messagesController) {
-            this.triedResolvingBot = true;
-            this.loading = false;
+        public static void $r8$lambda$j_zera_FcbQ1H6WLFBTpEr3jOf8(SearchAdapter searchAdapter, TLObject tLObject, MessagesController messagesController) {
+            searchAdapter.triedResolvingBot = true;
+            searchAdapter.loading = false;
             if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
                 TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
                 messagesController.putUsers(tL_contacts_resolvedPeer.users, false);
                 messagesController.putChats(tL_contacts_resolvedPeer.chats, false);
                 MessagesStorage.getInstance(GalleryListView.this.currentAccount).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
-                loadInternal();
+                searchAdapter.loadInternal();
             }
         }
 
-        public void lambda$loadInternal$3(final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4502$r8$lambda$BM4SAfJY7pLCeWc9RBL59E2DWQ(final SearchAdapter searchAdapter, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            searchAdapter.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadInternal$2(tLObject, z);
+                    GalleryListView.SearchAdapter.$r8$lambda$ZMRu6P_EXiJat8geFFHyU6ebArY(this.f$0, tLObject, z);
                 }
             });
         }
 
-        public void lambda$loadInternal$2(TLObject tLObject, boolean z) {
+        public static void $r8$lambda$ZMRu6P_EXiJat8geFFHyU6ebArY(SearchAdapter searchAdapter, TLObject tLObject, boolean z) {
+            searchAdapter.getClass();
             if (tLObject instanceof TLRPC.messages_BotResults) {
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
-                this.lastOffset = messages_botresults.next_offset;
+                searchAdapter.lastOffset = messages_botresults.next_offset;
                 if (z) {
-                    this.results.clear();
+                    searchAdapter.results.clear();
                 }
                 for (int i = 0; i < messages_botresults.results.size(); i++) {
                     TLRPC.BotInlineResult botInlineResult = messages_botresults.results.get(i);
                     TLRPC.Document document = botInlineResult.document;
                     if (document != null) {
-                        this.results.add(document);
+                        searchAdapter.results.add(document);
                     } else {
                         TLRPC.Photo photo = botInlineResult.photo;
                         if (photo != null) {
-                            this.results.add(photo);
+                            searchAdapter.results.add(photo);
                         } else if (botInlineResult.content != null) {
-                            this.results.add(botInlineResult);
+                            searchAdapter.results.add(botInlineResult);
                         }
                     }
                 }
-                this.loading = false;
-                onLoadingUpdate(false);
-                notifyDataSetChanged();
+                searchAdapter.loading = false;
+                searchAdapter.onLoadingUpdate(false);
+                searchAdapter.notifyDataSetChanged();
             }
         }
     }

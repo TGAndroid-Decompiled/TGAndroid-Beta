@@ -116,7 +116,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         this.avatarsImageView.setDelegate(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.updateAvatars(true);
             }
         });
         updateAvatars(false);
@@ -250,7 +250,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$1(view2);
+                this.f$0.showAlert(false);
             }
         });
         this.alertContainer.setClipChildren(false);
@@ -294,12 +294,12 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             this.micRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallPip.AnonymousClass3.lambda$$0();
+                    GroupCallPip.AnonymousClass3.$r8$lambda$mg6HLiI7KXGgamRg3qp8i90PRYE();
                 }
             };
         }
 
-        public static void lambda$$0() {
+        public static void $r8$lambda$mg6HLiI7KXGgamRg3qp8i90PRYE() {
             if (VoIPService.getSharedInstance() == null || !VoIPService.getSharedInstance().isMicMute()) {
                 return;
             }
@@ -601,14 +601,6 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    public void lambda$new$0() {
-        updateAvatars(true);
-    }
-
-    public void lambda$new$1(View view) {
-        showAlert(false);
-    }
-
     public static boolean isShowing() {
         VoIPService sharedInstance;
         if (!RTMPStreamPipOverlay.isVisible() && instance == null) {
@@ -766,7 +758,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupCallPip.lambda$remove$2();
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
             }
         }, 370L);
         long j = currentFrame + 530;
@@ -807,10 +799,6 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         this.iconView.playAnimation();
     }
 
-    public static void lambda$remove$2() {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
-    }
-
     class AnonymousClass9 extends AnimatorListenerAdapter {
         final View val$alert;
         final WindowManager val$windowManager;
@@ -837,12 +825,12 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             notificationCenter.doOnIdle(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallPip.AnonymousClass9.lambda$onAnimationEnd$0(view, view2, windowManager, view3, view4);
+                    GroupCallPip.AnonymousClass9.$r8$lambda$ReVuHfSmyrmXgr5wuhGaW32XCbI(view, view2, windowManager, view3, view4);
                 }
             });
         }
 
-        public static void lambda$onAnimationEnd$0(View view, View view2, WindowManager windowManager, View view3, View view4) {
+        public static void $r8$lambda$ReVuHfSmyrmXgr5wuhGaW32XCbI(View view, View view2, WindowManager windowManager, View view3, View view4) {
             view.setVisibility(8);
             view2.setVisibility(8);
             windowManager.removeView(view);
@@ -852,7 +840,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    private void updateAvatars(boolean z) {
+    public void updateAvatars(boolean z) {
         AvatarsImageView avatarsImageView = this.avatarsImageView;
         if (avatarsImageView.avatarsDrawable.transitionProgressAnimator == null) {
             VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -970,7 +958,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             }).start();
             instance.onDestroy();
             instance = null;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
         }
     }
 
@@ -1075,7 +1063,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$pinnedToCenter$3(valueAnimator2);
+                GroupCallPip.$r8$lambda$CdVOnqvZdoksuNHfZLk7VgkgSvY(this.f$0, valueAnimator2);
             }
         });
         this.pinAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1102,17 +1090,17 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         this.pinAnimator.start();
     }
 
-    public void lambda$pinnedToCenter$3(ValueAnimator valueAnimator) {
-        if (this.removed) {
+    public static void $r8$lambda$CdVOnqvZdoksuNHfZLk7VgkgSvY(GroupCallPip groupCallPip, ValueAnimator valueAnimator) {
+        if (groupCallPip.removed) {
             return;
         }
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.pinnedProgress = fFloatValue;
-        this.button.setPinnedProgress(fFloatValue);
-        this.windowView.setScaleX(1.0f - (this.pinnedProgress * 0.6f));
-        this.windowView.setScaleY(1.0f - (this.pinnedProgress * 0.6f));
-        if (this.moving) {
-            updateButtonPosition();
+        groupCallPip.pinnedProgress = fFloatValue;
+        groupCallPip.button.setPinnedProgress(fFloatValue);
+        groupCallPip.windowView.setScaleX(1.0f - (groupCallPip.pinnedProgress * 0.6f));
+        groupCallPip.windowView.setScaleY(1.0f - (groupCallPip.pinnedProgress * 0.6f));
+        if (groupCallPip.moving) {
+            groupCallPip.updateButtonPosition();
         }
     }
 

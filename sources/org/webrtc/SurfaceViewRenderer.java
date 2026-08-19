@@ -207,16 +207,16 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         postOrRun(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onFrameResolutionChanged$0(i4, i);
+                SurfaceViewRenderer.m5089$r8$lambda$EDi_GeCMRrAQW8S3IJU49ulMqI(this.f$0, i4, i);
             }
         });
     }
 
-    public void lambda$onFrameResolutionChanged$0(int i, int i2) {
-        this.rotatedFrameWidth = i;
-        this.rotatedFrameHeight = i2;
-        updateSurfaceSize();
-        requestLayout();
+    public static void m5089$r8$lambda$EDi_GeCMRrAQW8S3IJU49ulMqI(SurfaceViewRenderer surfaceViewRenderer, int i, int i2) {
+        surfaceViewRenderer.rotatedFrameWidth = i;
+        surfaceViewRenderer.rotatedFrameHeight = i2;
+        surfaceViewRenderer.updateSurfaceSize();
+        surfaceViewRenderer.requestLayout();
     }
 
     private void postOrRun(Runnable runnable) {

@@ -442,27 +442,29 @@ public class HevcDecoderConfigurationRecord {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
-            }
-            Array array = (Array) obj;
-            if (this.array_completeness != array.array_completeness || this.nal_unit_type != array.nal_unit_type || this.reserved != array.reserved) {
-                return false;
-            }
-            ListIterator<byte[]> listIterator = this.nalUnits.listIterator();
-            ListIterator<byte[]> listIterator2 = array.nalUnits.listIterator();
-            while (listIterator.hasNext() && listIterator2.hasNext()) {
-                byte[] next = listIterator.next();
-                byte[] next2 = listIterator2.next();
-                if (next == null) {
-                    if (next2 != null) {
-                        return false;
-                    }
-                } else if (!Arrays.equals(next, next2)) {
+            if (obj != null && getClass() == obj.getClass()) {
+                Array array = (Array) obj;
+                if (this.array_completeness != array.array_completeness || this.nal_unit_type != array.nal_unit_type || this.reserved != array.reserved) {
                     return false;
                 }
+                ListIterator<byte[]> listIterator = this.nalUnits.listIterator();
+                ListIterator<byte[]> listIterator2 = array.nalUnits.listIterator();
+                while (listIterator.hasNext() && listIterator2.hasNext()) {
+                    byte[] next = listIterator.next();
+                    byte[] next2 = listIterator2.next();
+                    if (next == null) {
+                        if (next2 != null) {
+                            return false;
+                        }
+                    } else if (!Arrays.equals(next, next2)) {
+                        return false;
+                    }
+                }
+                if (!listIterator.hasNext() && !listIterator2.hasNext()) {
+                    return true;
+                }
             }
-            return (listIterator.hasNext() || listIterator2.hasNext()) ? false : true;
+            return false;
         }
 
         public int hashCode() {
@@ -531,25 +533,34 @@ public class HevcDecoderConfigurationRecord {
         array.array_completeness = true;
         array.nal_unit_type = 32;
         array.nalUnits = new ArrayList();
-        Iterator<ByteBuffer> it = arrayList3.iterator();
-        while (it.hasNext()) {
-            array.nalUnits.add(it.next().array());
+        int size = arrayList3.size();
+        int i = 0;
+        while (i < size) {
+            ByteBuffer byteBuffer = arrayList3.get(i);
+            i++;
+            array.nalUnits.add(byteBuffer.array());
         }
         Array array2 = new Array();
         array2.array_completeness = true;
         array2.nal_unit_type = 33;
         array2.nalUnits = new ArrayList();
-        Iterator<ByteBuffer> it2 = arrayList.iterator();
-        while (it2.hasNext()) {
-            array2.nalUnits.add(it2.next().array());
+        int size2 = arrayList.size();
+        int i2 = 0;
+        while (i2 < size2) {
+            ByteBuffer byteBuffer2 = arrayList.get(i2);
+            i2++;
+            array2.nalUnits.add(byteBuffer2.array());
         }
         Array array3 = new Array();
         array3.array_completeness = true;
         array3.nal_unit_type = 34;
         array3.nalUnits = new ArrayList();
-        Iterator<ByteBuffer> it3 = arrayList2.iterator();
-        while (it3.hasNext()) {
-            array3.nalUnits.add(it3.next().array());
+        int size3 = arrayList2.size();
+        int i3 = 0;
+        while (i3 < size3) {
+            ByteBuffer byteBuffer3 = arrayList2.get(i3);
+            i3++;
+            array3.nalUnits.add(byteBuffer3.array());
         }
         hevcConfigurationBox.getArrays().addAll(Arrays.asList(array, array2, array3));
         visualSampleEntry.addBox(hevcConfigurationBox);

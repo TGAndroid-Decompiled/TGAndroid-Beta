@@ -60,14 +60,14 @@ public class ChromecastFileServer extends NanoHTTPD {
         this.assetDataSourceFactory = new DataSource.Factory() {
             @Override
             public final DataSource createDataSource() {
-                return ChromecastFileServer.lambda$new$0();
+                return ChromecastFileServer.$r8$lambda$c82v5Wmfp8Lb7nt2OzxOZO4a2yk();
             }
         };
         this.fileDataSourceFactory = new FileDataSource.Factory();
         this.mediaDataSourceFactory = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
-    public static DataSource lambda$new$0() {
+    public static DataSource $r8$lambda$c82v5Wmfp8Lb7nt2OzxOZO4a2yk() {
         return new AssetDataSource(ApplicationLoader.applicationContext);
     }
 
@@ -327,6 +327,7 @@ public class ChromecastFileServer extends NanoHTTPD {
                         }
                     }
                 }
+                return ipAddress;
             } catch (SocketException e) {
                 FileLog.e(e);
             }
@@ -334,7 +335,7 @@ public class ChromecastFileServer extends NanoHTTPD {
         return ipAddress;
     }
 
-    private static class DataSourceInputStream extends InputStream {
+    private static class DataSourceInputStream extends InputStream implements AutoCloseable {
         private long availableBytes;
         private final DataSource dataSource;
         private final byte[] tmpByte = new byte[1];

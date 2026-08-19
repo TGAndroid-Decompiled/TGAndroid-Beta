@@ -46,6 +46,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
@@ -599,22 +600,27 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             char c;
             String[] strArr;
             char c2;
-            String str;
+            Object obj;
             boolean z;
             int i;
             String[] strArr2;
-            boolean z2;
+            char c3;
+            char c4;
+            String[] strArr3;
+            String[] strArr4;
+            String str;
             String str2;
             String str3;
             String strExtractFunction;
             String strGroup;
+            String[] strArr5;
             String str4;
-            String str5;
+            boolean z2;
             boolean z3;
-            boolean z4;
-            String str6;
+            String str5;
+            Object objDecode;
             String strDownloadUrlContent = WebPlayerView.this.downloadUrlContent(this, "https://www.youtube.com/embed/" + this.videoId);
-            String[] strArr3 = null;
+            String[] strArr6 = null;
             if (isCancelled()) {
                 return null;
             }
@@ -628,21 +634,26 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 while (true) {
                     int i2 = 2;
                     if (i >= 5) {
+                        strArr2 = strArr6;
+                        c3 = 0;
+                        c4 = 1;
                         break;
                     }
                     String strDownloadUrlContent2 = WebPlayerView.this.downloadUrlContent(this, "https://www.youtube.com/get_video_info?" + string + strArr[i]);
                     if (isCancelled()) {
-                        return strArr3;
+                        return strArr6;
                     }
                     if (strDownloadUrlContent2 != null) {
                         String[] strArrSplit = strDownloadUrlContent2.split("&");
-                        Object objDecode = strArr3;
-                        String str7 = str;
+                        Object objDecode2 = strArr6;
+                        Object obj2 = obj;
                         int i3 = 0;
+                        z2 = false;
                         z3 = false;
-                        z4 = false;
-                        boolean z5 = z;
+                        boolean z4 = z;
+                        String[] strArr7 = strArr6;
                         while (i3 < strArrSplit.length) {
+                            String[] strArr8 = strArr7;
                             if (strArrSplit[i3].startsWith("dashmpd")) {
                                 String[] strArrSplit2 = strArrSplit[i3].split("=");
                                 if (strArrSplit2.length == i2) {
@@ -652,113 +663,136 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                                         FileLog.e(e);
                                     }
                                 }
-                                str6 = string;
-                                z4 = true;
-                            } else if (strArrSplit[i3].startsWith("url_encoded_fmt_stream_map")) {
-                                String[] strArrSplit3 = strArrSplit[i3].split("=");
-                                if (strArrSplit3.length != i2) {
-                                    str6 = string;
-                                    break;
-                                    break;
-                                }
-                                try {
-                                    String[] strArrSplit4 = URLDecoder.decode(strArrSplit3[c], "UTF-8").split("[&,]");
-                                    String strDecode = null;
-                                    int i4 = 0;
-                                    boolean z6 = false;
-                                    while (true) {
-                                        if (i4 >= strArrSplit4.length) {
-                                            str6 = string;
-                                            break;
-                                        }
-                                        String[] strArrSplit5 = strArrSplit4[i4].split("=");
-                                        String[] strArr4 = strArrSplit4;
-                                        str6 = string;
-                                        try {
-                                            if (strArrSplit5[0].startsWith("type")) {
-                                                if (URLDecoder.decode(strArrSplit5[1], "UTF-8").contains("video/mp4")) {
-                                                    z6 = true;
-                                                }
-                                            } else if (strArrSplit5[0].startsWith("url")) {
-                                                strDecode = URLDecoder.decode(strArrSplit5[1], "UTF-8");
-                                            } else if (strArrSplit5[0].startsWith("itag")) {
-                                                strDecode = null;
-                                                z6 = false;
-                                            }
-                                            if (z6 && strDecode != null) {
-                                                str7 = strDecode;
-                                                break;
-                                            }
-                                            i4++;
-                                            strArrSplit4 = strArr4;
-                                            string = str6;
-                                        } catch (Exception e2) {
-                                            e = e2;
-                                            FileLog.e(e);
-                                        }
-                                    }
-                                } catch (Exception e3) {
-                                    e = e3;
-                                    str6 = string;
-                                }
+                                z3 = true;
                             } else {
-                                str6 = string;
-                                if (strArrSplit[i3].startsWith("use_cipher_signature")) {
-                                    String[] strArrSplit6 = strArrSplit[i3].split("=");
-                                    if (strArrSplit6.length == 2 && strArrSplit6[1].toLowerCase().equals("true")) {
-                                        z5 = true;
-                                    }
-                                } else if (strArrSplit[i3].startsWith("hlsvp")) {
-                                    String[] strArrSplit7 = strArrSplit[i3].split("=");
-                                    if (strArrSplit7.length == 2) {
+                                if (strArrSplit[i3].startsWith("url_encoded_fmt_stream_map")) {
+                                    String[] strArrSplit3 = strArrSplit[i3].split("=");
+                                    if (strArrSplit3.length == i2) {
                                         try {
-                                            objDecode = URLDecoder.decode(strArrSplit7[1], "UTF-8");
+                                            String[] strArrSplit4 = URLDecoder.decode(strArrSplit3[c], "UTF-8").split("[&,]");
+                                            Object obj3 = strArr8;
+                                            int i4 = 0;
+                                            boolean z5 = false;
+                                            while (true) {
+                                                try {
+                                                    if (i4 >= strArrSplit4.length) {
+                                                        string = string;
+                                                        break;
+                                                    }
+                                                    String[] strArrSplit5 = strArrSplit4[i4].split("=");
+                                                    String[] strArr9 = strArrSplit4;
+                                                    string = string;
+                                                    try {
+                                                        if (strArrSplit5[0].startsWith("type")) {
+                                                            if (URLDecoder.decode(strArrSplit5[1], "UTF-8").contains("video/mp4")) {
+                                                                objDecode = obj3;
+                                                                z5 = true;
+                                                                objDecode = obj3;
+                                                            }
+                                                        } else if (strArrSplit5[0].startsWith("url")) {
+                                                            objDecode = URLDecoder.decode(strArrSplit5[1], "UTF-8");
+                                                        } else if (strArrSplit5[0].startsWith("itag")) {
+                                                            objDecode = obj3;
+                                                            objDecode = strArr8;
+                                                            z5 = false;
+                                                        }
+                                                        if (z5 && objDecode != null) {
+                                                            obj2 = objDecode;
+                                                            break;
+                                                        }
+                                                        i4++;
+                                                        strArrSplit4 = strArr9;
+                                                        string = string;
+                                                        obj3 = objDecode;
+                                                    } catch (Exception e2) {
+                                                        e = e2;
+                                                        FileLog.e(e);
+                                                    }
+                                                } catch (Exception e3) {
+                                                    e = e3;
+                                                    string = string;
+                                                }
+                                            }
                                         } catch (Exception e4) {
-                                            FileLog.e(e4);
+                                            e = e4;
+                                            string = string;
                                         }
                                     }
-                                } else if (strArrSplit[i3].startsWith("livestream")) {
-                                    String[] strArrSplit8 = strArrSplit[i3].split("=");
-                                    if (strArrSplit8.length == 2 && strArrSplit8[1].toLowerCase().equals("1")) {
-                                        z3 = true;
+                                } else {
+                                    string = string;
+                                    if (strArrSplit[i3].startsWith("use_cipher_signature")) {
+                                        String[] strArrSplit6 = strArrSplit[i3].split("=");
+                                        if (strArrSplit6.length == 2 && strArrSplit6[1].toLowerCase().equals("true")) {
+                                            z4 = true;
+                                        }
+                                    } else if (strArrSplit[i3].startsWith("hlsvp")) {
+                                        String[] strArrSplit7 = strArrSplit[i3].split("=");
+                                        if (strArrSplit7.length == 2) {
+                                            try {
+                                                objDecode2 = URLDecoder.decode(strArrSplit7[1], "UTF-8");
+                                            } catch (Exception e5) {
+                                                FileLog.e(e5);
+                                            }
+                                        }
+                                    } else if (strArrSplit[i3].startsWith("livestream")) {
+                                        String[] strArrSplit8 = strArrSplit[i3].split("=");
+                                        if (strArrSplit8.length == 2 && strArrSplit8[1].toLowerCase().equals("1")) {
+                                            z2 = true;
+                                        }
                                     }
                                 }
+                                i3++;
+                                strArr7 = strArr8;
+                                string = string;
+                                c = 1;
+                                c2 = 0;
+                                i2 = 2;
+                                obj2 = obj2;
+                                objDecode2 = objDecode2;
                             }
                             i3++;
-                            string = str6;
+                            strArr7 = strArr8;
+                            string = string;
                             c = 1;
                             c2 = 0;
                             i2 = 2;
+                            obj2 = obj2;
+                            objDecode2 = objDecode2;
                         }
-                        str4 = string;
-                        z = z5;
-                        str = str7;
-                        str5 = objDecode;
+                        strArr2 = strArr7;
+                        z = z4;
+                        obj = obj2;
+                        str5 = objDecode2;
                     } else {
-                        str4 = string;
-                        str5 = 0;
+                        strArr2 = strArr6;
+                        z2 = false;
                         z3 = false;
-                        z4 = false;
+                        str5 = strArr6;
+                        obj = obj;
+                    }
+                    String str6 = string;
+                    c3 = 0;
+                    c4 = 1;
+                    if (z2) {
+                        if (str5 == 0 || z || str5.contains("/s/")) {
+                            return strArr2;
+                        }
+                        String[] strArr10 = this.result;
+                        strArr10[0] = str5;
+                        strArr10[1] = "hls";
                     }
                     if (z3) {
-                        if (str5 == 0 || z || str5.contains("/s/")) {
-                            return null;
-                        }
-                        String[] strArr5 = this.result;
-                        strArr5[0] = str5;
-                        strArr5[1] = "hls";
-                    }
-                    if (z4) {
                         break;
                     }
                     i++;
-                    string = str4;
-                    strArr3 = null;
+                    strArr6 = strArr2;
+                    string = str6;
                     c = 1;
                     c2 = 0;
+                    obj = obj;
                 }
-            } catch (Exception e5) {
-                FileLog.e(e5);
+            } catch (Exception e6) {
+                FileLog.e(e6);
             }
             if (strDownloadUrlContent != null) {
                 Matcher matcher = WebPlayerView.stsPattern.matcher(strDownloadUrlContent);
@@ -772,70 +806,81 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             this.result[1] = "dash";
             strArr = new String[]{"", "&el=leanback", "&el=embedded", "&el=detailpage", "&el=vevo"};
             c2 = 0;
-            str = null;
+            obj = null;
             z = false;
             i = 0;
-            String[] strArr6 = this.result;
-            if (strArr6[0] == null && str != null) {
-                strArr6[0] = str;
-                strArr6[1] = "other";
+            String[] strArr11 = this.result;
+            if (strArr11[c3] == 0 && obj != null) {
+                strArr11[c3] = obj;
+                strArr11[c4] = "other";
             }
-            String str8 = strArr6[0];
-            if (str8 == null || (!(z || str8.contains("/s/")) || strDownloadUrlContent == null)) {
-                strArr2 = null;
-                z2 = z;
+            String str7 = strArr11[c3];
+            if (str7 == 0 || (!(z || str7.contains("/s/")) || strDownloadUrlContent == null)) {
+                strArr3 = strArr2;
             } else {
-                int iIndexOf = this.result[0].indexOf("/s/");
-                int iIndexOf2 = this.result[0].indexOf(47, iIndexOf + 10);
+                int iIndexOf = this.result[c3].indexOf("/s/");
+                int iIndexOf2 = this.result[c3].indexOf(47, iIndexOf + 10);
                 if (iIndexOf == -1) {
-                    strArr2 = null;
-                    z2 = true;
+                    str2 = str;
+                    strArr4 = strArr2;
+                    z = true;
+                    strArr3 = strArr4;
                 } else {
                     if (iIndexOf2 == -1) {
-                        iIndexOf2 = this.result[0].length();
+                        iIndexOf2 = this.result[c3].length();
                     }
-                    this.sig = this.result[0].substring(iIndexOf, iIndexOf2);
+                    this.sig = this.result[c3].substring(iIndexOf, iIndexOf2);
                     Matcher matcher2 = WebPlayerView.jsPattern.matcher(strDownloadUrlContent);
                     if (matcher2.find()) {
                         try {
                             Object objNextValue = new JSONTokener(matcher2.group(1)).nextValue();
                             if (objNextValue instanceof String) {
-                                str2 = (String) objNextValue;
+                                str = (String) objNextValue;
                             } else {
-                                str2 = null;
+                                str2 = strArr2;
                             }
-                        } catch (Exception e6) {
-                            FileLog.e(e6);
+                        } catch (Exception e7) {
+                            FileLog.e(e7);
                         }
                     } else {
-                        str2 = null;
+                        str2 = strArr2;
                     }
-                    if (str2 != null) {
+                    if (str2 != 0) {
+                        str2 = str;
                         Matcher matcher3 = WebPlayerView.playerIdPattern.matcher(str2);
                         if (matcher3.find()) {
                             str3 = matcher3.group(1) + matcher3.group(2);
                         } else {
-                            str3 = null;
+                            str3 = strArr2;
                         }
                         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("youtubecode", 0);
-                        if (str3 != null) {
-                            strExtractFunction = sharedPreferences.getString(str3, null);
-                            strGroup = sharedPreferences.getString(str3 + "n", null);
+                        if (str3 != 0) {
+                            String str8 = strArr2;
+                            String string2 = sharedPreferences.getString(str3, str8);
+                            strGroup = sharedPreferences.getString(str3 + "n", str8);
+                            strExtractFunction = string2;
                         } else {
                             strExtractFunction = null;
                             strGroup = null;
                         }
                         if (strExtractFunction == null) {
                             if (str2.startsWith("//")) {
-                                str2 = "https:" + str2;
+                                str4 = "https:" + str2;
                             } else if (str2.startsWith("/")) {
-                                str2 = "https://www.youtube.com" + str2;
+                                str4 = str2;
+                                str4 = "https://www.youtube.com" + str2;
                             }
-                            String strDownloadUrlContent3 = WebPlayerView.this.downloadUrlContent(this, str2);
+                            str4 = str2;
+                            String strDownloadUrlContent3 = WebPlayerView.this.downloadUrlContent(this, str4);
                             if (isCancelled()) {
                                 return null;
                             }
-                            strArr2 = null;
+                            strArr5 = null;
+                            strArr5 = null;
+                            strArr5 = null;
+                            strArr5 = null;
+                            strArr5 = null;
+                            strArr5 = null;
                             if (strDownloadUrlContent3 != null) {
                                 Matcher matcher4 = WebPlayerView.sigPattern.matcher(strDownloadUrlContent3);
                                 if (!matcher4.find()) {
@@ -849,66 +894,77 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                                 if (strGroup != null) {
                                     try {
                                         strExtractFunction = new JSExtractor(strDownloadUrlContent3).extractFunction(strGroup);
-                                        if (!TextUtils.isEmpty(strExtractFunction) && str3 != null) {
+                                        if (!TextUtils.isEmpty(strExtractFunction) && str3 != 0) {
                                             sharedPreferences.edit().putString(str3, strExtractFunction).putString(str3 + "n", strGroup).commit();
                                         }
-                                    } catch (Exception e7) {
-                                        FileLog.e(e7);
+                                    } catch (Exception e8) {
+                                        FileLog.e(e8);
                                     }
                                 }
                             }
+                            strArr4 = strArr5;
                             if (!TextUtils.isEmpty(strExtractFunction)) {
                                 final String str9 = strExtractFunction + strGroup + "('" + this.sig.substring(3) + "');";
                                 try {
                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                         @Override
                                         public final void run() {
-                                            this.f$0.lambda$doInBackground$1(str9);
+                                            WebPlayerView.YoutubeVideoTask youtubeVideoTask = this.f$0;
+                                            WebPlayerView.this.webView.evaluateJavascript(str9, new ValueCallback() {
+                                                @Override
+                                                public final void onReceiveValue(Object obj4) {
+                                                    WebPlayerView.YoutubeVideoTask.$r8$lambda$HyzYrTZ2X8RJqraZQpJZ0rtpJvo(youtubeVideoTask, (String) obj4);
+                                                }
+                                            });
                                         }
                                     });
                                     this.countDownLatch.await();
-                                    z2 = false;
-                                } catch (Exception e8) {
-                                    FileLog.e(e8);
-                                    z2 = true;
+                                    z = false;
+                                    strArr3 = strArr5;
+                                } catch (Exception e9) {
+                                    FileLog.e(e9);
+                                    strArr4 = strArr5;
+                                    z = true;
+                                    strArr3 = strArr4;
                                 }
                             }
                         } else {
-                            strArr2 = null;
+                            strArr5 = null;
                         }
+                        strArr4 = strArr5;
                         if (!TextUtils.isEmpty(strExtractFunction)) {
                             final String str10 = strExtractFunction + strGroup + "('" + this.sig.substring(3) + "');";
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    this.f$0.lambda$doInBackground$1(str10);
+                                    WebPlayerView.YoutubeVideoTask youtubeVideoTask = this.f$0;
+                                    WebPlayerView.this.webView.evaluateJavascript(str10, new ValueCallback() {
+                                        @Override
+                                        public final void onReceiveValue(Object obj4) {
+                                            WebPlayerView.YoutubeVideoTask.$r8$lambda$HyzYrTZ2X8RJqraZQpJZ0rtpJvo(youtubeVideoTask, (String) obj4);
+                                        }
+                                    });
                                 }
                             });
                             this.countDownLatch.await();
-                            z2 = false;
+                            z = false;
+                            strArr3 = strArr5;
                         }
                     } else {
-                        strArr2 = null;
+                        str2 = str;
+                        strArr4 = strArr2;
                     }
-                    z2 = true;
+                    z = true;
+                    strArr3 = strArr4;
                 }
             }
-            return (isCancelled() || z2) ? strArr2 : this.result;
+            return (isCancelled() || z) ? strArr3 : this.result;
         }
 
-        public void lambda$doInBackground$1(String str) {
-            WebPlayerView.this.webView.evaluateJavascript(str, new ValueCallback() {
-                @Override
-                public final void onReceiveValue(Object obj) {
-                    this.f$0.lambda$doInBackground$0((String) obj);
-                }
-            });
-        }
-
-        public void lambda$doInBackground$0(String str) {
-            String[] strArr = this.result;
-            strArr[0] = strArr[0].replace(this.sig, "/signature/" + str.substring(1, str.length() - 1));
-            this.countDownLatch.countDown();
+        public static void $r8$lambda$HyzYrTZ2X8RJqraZQpJZ0rtpJvo(YoutubeVideoTask youtubeVideoTask, String str) {
+            String[] strArr = youtubeVideoTask.result;
+            strArr[0] = strArr[0].replace(youtubeVideoTask.sig, "/signature/" + str.substring(1, str.length() - 1));
+            youtubeVideoTask.countDownLatch.countDown();
         }
 
         public void onInterfaceResult(String str) {
@@ -1252,17 +1308,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private boolean progressPressed;
         private TextPaint textPaint;
 
-        public void lambda$new$0() {
-            show(false, true);
-        }
-
         public ControlsView(Context context) {
             super(context);
             this.isVisible = true;
             this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0();
+                    this.f$0.show(false, true);
                 }
             };
             setWillNotDraw(false);
@@ -1318,11 +1370,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            if (this.isVisible) {
+            boolean z3 = this.isVisible;
+            Property property = View.ALPHA;
+            if (z3) {
                 if (z2) {
                     AnimatorSet animatorSet2 = new AnimatorSet();
                     this.currentAnimation = animatorSet2;
-                    animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<ControlsView, Float>) View.ALPHA, 1.0f));
+                    animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<ControlsView, Float>) property, 1.0f));
                     this.currentAnimation.setDuration(150L);
                     this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                         @Override
@@ -1337,7 +1391,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             } else if (z2) {
                 AnimatorSet animatorSet3 = new AnimatorSet();
                 this.currentAnimation = animatorSet3;
-                animatorSet3.playTogether(ObjectAnimator.ofFloat(this, (Property<ControlsView, Float>) View.ALPHA, 0.0f));
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(this, (Property<ControlsView, Float>) property, 0.0f));
                 this.currentAnimation.setDuration(150L);
                 this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -1511,7 +1565,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     if (i4 != 0 && (i5 = this.duration) != 0) {
                         float f2 = i2;
                         float f3 = i;
-                        float f4 = ((iDp3 - i2) * (i4 / i5)) + f2;
+                        float f4 = f2 + ((iDp3 - i2) * (i4 / i5));
                         float fDp = AndroidUtilities.dp(3.0f) + i;
                         if (WebPlayerView.this.inFullscreen) {
                             paint = this.progressBufferedPaint;
@@ -1545,7 +1599,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 if (i4 != 0) {
                     float f5 = i2;
                     float f6 = i;
-                    float f7 = ((iDp3 - i2) * (i4 / i5)) + f5;
+                    float f7 = f5 + ((iDp3 - i2) * (i4 / i5));
                     float fDp2 = AndroidUtilities.dp(3.0f) + i;
                     if (WebPlayerView.this.inFullscreen) {
                         paint = this.progressBufferedPaint;
@@ -1622,15 +1676,11 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onPreDraw$0();
+                            WebPlayerView.this.delegate.onInlineSurfaceTextureReady();
                         }
                     });
                     WebPlayerView.this.waitingForFirstTextureUpload = 0;
                     return true;
-                }
-
-                public void lambda$onPreDraw$0() {
-                    WebPlayerView.this.delegate.onInlineSurfaceTextureReady();
                 }
             }
 
@@ -1728,7 +1778,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         webView.addJavascriptInterface(new JavaScriptInterface(new CallJavaResultInterface() {
             @Override
             public final void jsCallFinished(String str) {
-                this.f$0.lambda$new$0(str);
+                WebPlayerView.$r8$lambda$3AFhZiv1RmNiy8Dcl9oWYanpAY8(this.f$0, str);
             }
         }), this.interfaceName);
         WebSettings settings = this.webView.getSettings();
@@ -1778,7 +1828,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         this.fullscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                WebPlayerView.m2942$r8$lambda$tD6hV8maxsB7YUSKl_k2WHAQZs(this.f$0, view);
             }
         });
         ImageView imageView3 = new ImageView(context);
@@ -1788,7 +1838,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         this.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                WebPlayerView.$r8$lambda$vPGLjKnciaWV01rF7R8Vj3TlJt4(this.f$0, view);
             }
         });
         if (z) {
@@ -1799,7 +1849,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             this.inlineButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$3(view);
+                    WebPlayerView.m2941$r8$lambda$AnZJdEi4MV_49Wo2YQxIoyWGXg(this.f$0, view);
                 }
             });
         }
@@ -1812,7 +1862,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             this.shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$4(view);
+                    WebPlayerView.$r8$lambda$siwQUUxdnXIhLNkBV3nb9yGkt0M(this.f$0, view);
                 }
             });
         }
@@ -1822,95 +1872,95 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         updateShareButton();
     }
 
-    public void lambda$new$0(String str) {
-        AsyncTask asyncTask = this.currentTask;
+    public static void $r8$lambda$3AFhZiv1RmNiy8Dcl9oWYanpAY8(WebPlayerView webPlayerView, String str) {
+        AsyncTask asyncTask = webPlayerView.currentTask;
         if (asyncTask == null || asyncTask.isCancelled()) {
             return;
         }
-        AsyncTask asyncTask2 = this.currentTask;
+        AsyncTask asyncTask2 = webPlayerView.currentTask;
         if (asyncTask2 instanceof YoutubeVideoTask) {
             ((YoutubeVideoTask) asyncTask2).onInterfaceResult(str);
         }
     }
 
-    public void lambda$new$1(View view) {
-        if (!this.initied || this.changingTextureView || this.switchingInlineMode || !this.firstFrameRendered) {
+    public static void m2942$r8$lambda$tD6hV8maxsB7YUSKl_k2WHAQZs(WebPlayerView webPlayerView, View view) {
+        if (!webPlayerView.initied || webPlayerView.changingTextureView || webPlayerView.switchingInlineMode || !webPlayerView.firstFrameRendered) {
             return;
         }
-        this.inFullscreen = !this.inFullscreen;
-        updateFullscreenState(true);
+        webPlayerView.inFullscreen = !webPlayerView.inFullscreen;
+        webPlayerView.updateFullscreenState(true);
     }
 
-    public void lambda$new$2(View view) {
-        if (!this.initied || this.playVideoUrl == null) {
+    public static void $r8$lambda$vPGLjKnciaWV01rF7R8Vj3TlJt4(WebPlayerView webPlayerView, View view) {
+        if (!webPlayerView.initied || webPlayerView.playVideoUrl == null) {
             return;
         }
-        if (!this.videoPlayer.isPlayerPrepared()) {
-            preparePlayer();
+        if (!webPlayerView.videoPlayer.isPlayerPrepared()) {
+            webPlayerView.preparePlayer();
         }
-        if (this.videoPlayer.isPlaying()) {
-            this.videoPlayer.pause();
+        if (webPlayerView.videoPlayer.isPlaying()) {
+            webPlayerView.videoPlayer.pause();
         } else {
-            this.isCompleted = false;
-            this.videoPlayer.play();
+            webPlayerView.isCompleted = false;
+            webPlayerView.videoPlayer.play();
         }
-        updatePlayButton();
+        webPlayerView.updatePlayButton();
     }
 
-    public void lambda$new$3(View view) {
-        if (this.textureView == null || !this.delegate.checkInlinePermissions() || this.changingTextureView || this.switchingInlineMode || !this.firstFrameRendered) {
+    public static void m2941$r8$lambda$AnZJdEi4MV_49Wo2YQxIoyWGXg(WebPlayerView webPlayerView, View view) {
+        if (webPlayerView.textureView == null || !webPlayerView.delegate.checkInlinePermissions() || webPlayerView.changingTextureView || webPlayerView.switchingInlineMode || !webPlayerView.firstFrameRendered) {
             return;
         }
-        this.switchingInlineMode = true;
-        if (!this.isInline) {
-            this.inFullscreen = false;
-            this.delegate.prepareToSwitchInlineMode(true, this.switchToInlineRunnable, this.aspectRatioFrameLayout.getAspectRatio(), this.allowInlineAnimation);
+        webPlayerView.switchingInlineMode = true;
+        if (!webPlayerView.isInline) {
+            webPlayerView.inFullscreen = false;
+            webPlayerView.delegate.prepareToSwitchInlineMode(true, webPlayerView.switchToInlineRunnable, webPlayerView.aspectRatioFrameLayout.getAspectRatio(), webPlayerView.allowInlineAnimation);
             return;
         }
-        ViewGroup viewGroup = (ViewGroup) this.aspectRatioFrameLayout.getParent();
-        if (viewGroup != this) {
+        ViewGroup viewGroup = (ViewGroup) webPlayerView.aspectRatioFrameLayout.getParent();
+        if (viewGroup != webPlayerView) {
             if (viewGroup != null) {
-                viewGroup.removeView(this.aspectRatioFrameLayout);
+                viewGroup.removeView(webPlayerView.aspectRatioFrameLayout);
             }
-            addView(this.aspectRatioFrameLayout, 0, LayoutHelper.createFrame(-1, -1, 17));
-            this.aspectRatioFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight() - AndroidUtilities.dp(10.0f), 1073741824));
+            webPlayerView.addView(webPlayerView.aspectRatioFrameLayout, 0, LayoutHelper.createFrame(-1, -1, 17));
+            webPlayerView.aspectRatioFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(webPlayerView.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(webPlayerView.getMeasuredHeight() - AndroidUtilities.dp(10.0f), 1073741824));
         }
-        Bitmap bitmap = this.currentBitmap;
+        Bitmap bitmap = webPlayerView.currentBitmap;
         if (bitmap != null) {
             bitmap.recycle();
-            this.currentBitmap = null;
+            webPlayerView.currentBitmap = null;
         }
-        this.changingTextureView = true;
-        this.isInline = false;
-        updatePlayButton();
-        updateShareButton();
-        updateFullscreenButton();
-        updateInlineButton();
-        this.textureView.setVisibility(4);
-        ViewGroup viewGroup2 = this.textureViewContainer;
+        webPlayerView.changingTextureView = true;
+        webPlayerView.isInline = false;
+        webPlayerView.updatePlayButton();
+        webPlayerView.updateShareButton();
+        webPlayerView.updateFullscreenButton();
+        webPlayerView.updateInlineButton();
+        webPlayerView.textureView.setVisibility(4);
+        ViewGroup viewGroup2 = webPlayerView.textureViewContainer;
         if (viewGroup2 != null) {
-            viewGroup2.addView(this.textureView);
+            viewGroup2.addView(webPlayerView.textureView);
         } else {
-            this.aspectRatioFrameLayout.addView(this.textureView);
+            webPlayerView.aspectRatioFrameLayout.addView(webPlayerView.textureView);
         }
-        ViewGroup viewGroup3 = (ViewGroup) this.controlsView.getParent();
-        if (viewGroup3 != this) {
+        ViewGroup viewGroup3 = (ViewGroup) webPlayerView.controlsView.getParent();
+        if (viewGroup3 != webPlayerView) {
             if (viewGroup3 != null) {
-                viewGroup3.removeView(this.controlsView);
+                viewGroup3.removeView(webPlayerView.controlsView);
             }
-            ViewGroup viewGroup4 = this.textureViewContainer;
+            ViewGroup viewGroup4 = webPlayerView.textureViewContainer;
             if (viewGroup4 != null) {
-                viewGroup4.addView(this.controlsView);
+                viewGroup4.addView(webPlayerView.controlsView);
             } else {
-                addView(this.controlsView, 1);
+                webPlayerView.addView(webPlayerView.controlsView, 1);
             }
         }
-        this.controlsView.show(false, false);
-        this.delegate.prepareToSwitchInlineMode(false, null, this.aspectRatioFrameLayout.getAspectRatio(), this.allowInlineAnimation);
+        webPlayerView.controlsView.show(false, false);
+        webPlayerView.delegate.prepareToSwitchInlineMode(false, null, webPlayerView.aspectRatioFrameLayout.getAspectRatio(), webPlayerView.allowInlineAnimation);
     }
 
-    public void lambda$new$4(View view) {
-        WebPlayerViewDelegate webPlayerViewDelegate = this.delegate;
+    public static void $r8$lambda$siwQUUxdnXIhLNkBV3nb9yGkt0M(WebPlayerView webPlayerView, View view) {
+        WebPlayerViewDelegate webPlayerViewDelegate = webPlayerView.delegate;
         if (webPlayerViewDelegate != null) {
             webPlayerViewDelegate.onSharePressed();
         }
@@ -2115,41 +2165,43 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onAudioFocusChange$5(i);
+                WebPlayerView.$r8$lambda$fhc0aErZzf0uDm4evY4OwZZySUU(this.f$0, i);
             }
         });
     }
 
-    public void lambda$onAudioFocusChange$5(int i) {
+    public static void $r8$lambda$fhc0aErZzf0uDm4evY4OwZZySUU(WebPlayerView webPlayerView, int i) {
         if (i == -1) {
-            if (this.videoPlayer.isPlaying()) {
-                this.videoPlayer.pause();
-                updatePlayButton();
+            if (webPlayerView.videoPlayer.isPlaying()) {
+                webPlayerView.videoPlayer.pause();
+                webPlayerView.updatePlayButton();
             }
-            this.hasAudioFocus = false;
-            this.audioFocus = 0;
+            webPlayerView.hasAudioFocus = false;
+            webPlayerView.audioFocus = 0;
             return;
         }
         if (i == 1) {
-            this.audioFocus = 2;
-            if (this.resumeAudioOnFocusGain) {
-                this.resumeAudioOnFocusGain = false;
-                this.videoPlayer.play();
+            webPlayerView.audioFocus = 2;
+            if (webPlayerView.resumeAudioOnFocusGain) {
+                webPlayerView.resumeAudioOnFocusGain = false;
+                webPlayerView.videoPlayer.play();
                 return;
             }
             return;
         }
         if (i == -3) {
-            this.audioFocus = 1;
+            webPlayerView.audioFocus = 1;
             return;
         }
-        if (i == -2) {
-            this.audioFocus = 0;
-            if (this.videoPlayer.isPlaying()) {
-                this.resumeAudioOnFocusGain = true;
-                this.videoPlayer.pause();
-                updatePlayButton();
-            }
+        if (i != -2) {
+            webPlayerView.getClass();
+            return;
+        }
+        webPlayerView.audioFocus = 0;
+        if (webPlayerView.videoPlayer.isPlaying()) {
+            webPlayerView.resumeAudioOnFocusGain = true;
+            webPlayerView.videoPlayer.pause();
+            webPlayerView.updatePlayButton();
         }
     }
 
@@ -2402,6 +2454,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         String str7;
         String str8;
         AsyncTask asyncTask;
+        char c;
         AnimatorSet animatorSet;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         Matcher matcher;
@@ -2553,12 +2606,14 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             updateInlineButton();
             updatePlayButton();
             if (photo != null) {
+                c = 2;
                 closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 80, true);
                 if (closestPhotoSizeWithSize != null) {
                     this.controlsView.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), "80_80_b", 0L, null, obj, 1);
                     this.drawImage = true;
                 }
             } else {
+                c = 2;
                 this.drawImage = false;
             }
             animatorSet = this.progressAnimation;
@@ -2584,28 +2639,58 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             } else {
                 if (str4 != null) {
                     YoutubeVideoTask youtubeVideoTask = new YoutubeVideoTask(str4);
-                    youtubeVideoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                    Executor executor = AsyncTask.THREAD_POOL_EXECUTOR;
+                    Void[] voidArr = new Void[3];
+                    voidArr[0] = null;
+                    voidArr[1] = null;
+                    voidArr[c] = null;
+                    youtubeVideoTask.executeOnExecutor(executor, voidArr);
                     this.currentTask = youtubeVideoTask;
                 } else if (str8 != null) {
                     VimeoVideoTask vimeoVideoTask = new VimeoVideoTask(str8);
-                    vimeoVideoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                    Executor executor2 = AsyncTask.THREAD_POOL_EXECUTOR;
+                    Void[] voidArr2 = new Void[3];
+                    voidArr2[0] = null;
+                    voidArr2[1] = null;
+                    voidArr2[c] = null;
+                    vimeoVideoTask.executeOnExecutor(executor2, voidArr2);
                     this.currentTask = vimeoVideoTask;
                 } else if (coubId != null) {
                     CoubVideoTask coubVideoTask = new CoubVideoTask(coubId);
-                    coubVideoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                    Executor executor3 = AsyncTask.THREAD_POOL_EXECUTOR;
+                    Void[] voidArr3 = new Void[3];
+                    voidArr3[0] = null;
+                    voidArr3[1] = null;
+                    voidArr3[c] = null;
+                    coubVideoTask.executeOnExecutor(executor3, voidArr3);
                     this.currentTask = coubVideoTask;
                     this.isStream = true;
                 } else if (str7 != null) {
                     AparatVideoTask aparatVideoTask = new AparatVideoTask(str7);
-                    aparatVideoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                    Executor executor4 = AsyncTask.THREAD_POOL_EXECUTOR;
+                    Void[] voidArr4 = new Void[3];
+                    voidArr4[0] = null;
+                    voidArr4[1] = null;
+                    voidArr4[c] = null;
+                    aparatVideoTask.executeOnExecutor(executor4, voidArr4);
                     this.currentTask = aparatVideoTask;
                 } else if (str6 != null) {
                     TwitchClipVideoTask twitchClipVideoTask = new TwitchClipVideoTask(str, str6);
-                    twitchClipVideoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                    Executor executor5 = AsyncTask.THREAD_POOL_EXECUTOR;
+                    Void[] voidArr5 = new Void[3];
+                    voidArr5[0] = null;
+                    voidArr5[1] = null;
+                    voidArr5[c] = null;
+                    twitchClipVideoTask.executeOnExecutor(executor5, voidArr5);
                     this.currentTask = twitchClipVideoTask;
                 } else if (str5 != null) {
                     TwitchStreamVideoTask twitchStreamVideoTask = new TwitchStreamVideoTask(str, str5);
-                    twitchStreamVideoTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                    Executor executor6 = AsyncTask.THREAD_POOL_EXECUTOR;
+                    Void[] voidArr6 = new Void[3];
+                    voidArr6[0] = null;
+                    voidArr6[1] = null;
+                    voidArr6[c] = null;
+                    twitchStreamVideoTask.executeOnExecutor(executor6, voidArr6);
                     this.currentTask = twitchStreamVideoTask;
                     this.isStream = true;
                 }
@@ -2643,12 +2728,14 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         updateInlineButton();
         updatePlayButton();
         if (photo != null) {
+            c = 2;
             closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 80, true);
             if (closestPhotoSizeWithSize != null) {
                 this.controlsView.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), "80_80_b", 0L, null, obj, 1);
                 this.drawImage = true;
             }
         } else {
+            c = 2;
             this.drawImage = false;
         }
         animatorSet = this.progressAnimation;
@@ -2674,28 +2761,58 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         } else {
             if (str4 != null) {
                 YoutubeVideoTask youtubeVideoTask2 = new YoutubeVideoTask(str4);
-                youtubeVideoTask2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                Executor executor7 = AsyncTask.THREAD_POOL_EXECUTOR;
+                Void[] voidArr7 = new Void[3];
+                voidArr7[0] = null;
+                voidArr7[1] = null;
+                voidArr7[c] = null;
+                youtubeVideoTask2.executeOnExecutor(executor7, voidArr7);
                 this.currentTask = youtubeVideoTask2;
             } else if (str8 != null) {
                 VimeoVideoTask vimeoVideoTask2 = new VimeoVideoTask(str8);
-                vimeoVideoTask2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                Executor executor8 = AsyncTask.THREAD_POOL_EXECUTOR;
+                Void[] voidArr8 = new Void[3];
+                voidArr8[0] = null;
+                voidArr8[1] = null;
+                voidArr8[c] = null;
+                vimeoVideoTask2.executeOnExecutor(executor8, voidArr8);
                 this.currentTask = vimeoVideoTask2;
             } else if (coubId != null) {
                 CoubVideoTask coubVideoTask2 = new CoubVideoTask(coubId);
-                coubVideoTask2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                Executor executor9 = AsyncTask.THREAD_POOL_EXECUTOR;
+                Void[] voidArr9 = new Void[3];
+                voidArr9[0] = null;
+                voidArr9[1] = null;
+                voidArr9[c] = null;
+                coubVideoTask2.executeOnExecutor(executor9, voidArr9);
                 this.currentTask = coubVideoTask2;
                 this.isStream = true;
             } else if (str7 != null) {
                 AparatVideoTask aparatVideoTask2 = new AparatVideoTask(str7);
-                aparatVideoTask2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                Executor executor10 = AsyncTask.THREAD_POOL_EXECUTOR;
+                Void[] voidArr10 = new Void[3];
+                voidArr10[0] = null;
+                voidArr10[1] = null;
+                voidArr10[c] = null;
+                aparatVideoTask2.executeOnExecutor(executor10, voidArr10);
                 this.currentTask = aparatVideoTask2;
             } else if (str6 != null) {
                 TwitchClipVideoTask twitchClipVideoTask2 = new TwitchClipVideoTask(str, str6);
-                twitchClipVideoTask2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                Executor executor11 = AsyncTask.THREAD_POOL_EXECUTOR;
+                Void[] voidArr11 = new Void[3];
+                voidArr11[0] = null;
+                voidArr11[1] = null;
+                voidArr11[c] = null;
+                twitchClipVideoTask2.executeOnExecutor(executor11, voidArr11);
                 this.currentTask = twitchClipVideoTask2;
             } else if (str5 != null) {
                 TwitchStreamVideoTask twitchStreamVideoTask2 = new TwitchStreamVideoTask(str, str5);
-                twitchStreamVideoTask2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+                Executor executor12 = AsyncTask.THREAD_POOL_EXECUTOR;
+                Void[] voidArr12 = new Void[3];
+                voidArr12[0] = null;
+                voidArr12[1] = null;
+                voidArr12[c] = null;
+                twitchStreamVideoTask2.executeOnExecutor(executor12, voidArr12);
                 this.currentTask = twitchStreamVideoTask2;
                 this.isStream = true;
             }

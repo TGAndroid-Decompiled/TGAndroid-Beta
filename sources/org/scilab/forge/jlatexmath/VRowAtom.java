@@ -105,11 +105,11 @@ public class VRowAtom extends Atom {
             depth = verticalBox.getSize() != 0 ? verticalBox.children.getFirst().getHeight() : 0.0f;
             verticalBox.setHeight(depth);
             verticalBox.setDepth((verticalBox.getDepth() + verticalBox.getHeight()) - depth);
-        } else {
-            depth = verticalBox.getSize() != 0 ? verticalBox.children.getLast().getDepth() : 0.0f;
-            verticalBox.setHeight((verticalBox.getDepth() + verticalBox.getHeight()) - depth);
-            verticalBox.setDepth(depth);
+            return verticalBox;
         }
+        depth = verticalBox.getSize() != 0 ? verticalBox.children.getLast().getDepth() : 0.0f;
+        verticalBox.setHeight((verticalBox.getDepth() + verticalBox.getHeight()) - depth);
+        verticalBox.setDepth(depth);
         return verticalBox;
     }
 }

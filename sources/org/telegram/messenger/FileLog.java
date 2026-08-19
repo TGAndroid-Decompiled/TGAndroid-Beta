@@ -58,18 +58,20 @@ public class FileLog {
     private File tlRequestsFile = null;
 
     public static FileLog getInstance() {
-        FileLog fileLog = Instance;
-        if (fileLog == null) {
-            synchronized (FileLog.class) {
-                try {
-                    fileLog = Instance;
-                    if (fileLog == null) {
-                        fileLog = new FileLog();
-                        Instance = fileLog;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        FileLog fileLog;
+        FileLog fileLog2 = Instance;
+        if (fileLog2 != null) {
+            return fileLog2;
+        }
+        synchronized (FileLog.class) {
+            try {
+                fileLog = Instance;
+                if (fileLog == null) {
+                    fileLog = new FileLog();
+                    Instance = fileLog;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return fileLog;
@@ -101,7 +103,7 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$dumpResponseAndRequest$0(j, j2, i2, i, jCurrentTimeMillis, str, str3, tL_error);
+                        FileLog.m447$r8$lambda$TbpBHKbdIrkiw9Ph1QNW6DiAvI(j, j2, i2, i, jCurrentTimeMillis, str, str3, tL_error);
                     }
                 });
             } catch (Throwable th) {
@@ -110,7 +112,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$dumpResponseAndRequest$0(long j, long j2, int i, int i2, long j3, String str, String str2, TLRPC.TL_error tL_error) {
+    public static void m447$r8$lambda$TbpBHKbdIrkiw9Ph1QNW6DiAvI(long j, long j2, int i, int i2, long j3, String str, String str2, TLRPC.TL_error tL_error) {
         try {
             String str3 = "requestMsgId=" + j + " requestingTime=" + (System.currentTimeMillis() - j2) + " request_token=" + i + " account=" + i2;
             getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j3) + " " + str3);
@@ -125,12 +127,12 @@ public class FileLog {
                 Log.e("MTProto", str);
                 Log.e("MTProto", str2);
                 Log.e("MTProto", " ");
-            } else {
-                Log.d("MTProto", str3);
-                Log.d("MTProto", str);
-                Log.d("MTProto", str2);
-                Log.d("MTProto", " ");
+                return;
             }
+            Log.d("MTProto", str3);
+            Log.d("MTProto", str);
+            Log.d("MTProto", str2);
+            Log.d("MTProto", " ");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -151,7 +153,7 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$dumpUnparsedMessage$1(jCurrentTimeMillis, j, i, string);
+                        FileLog.m450$r8$lambda$zqRYPgC_YdSVtSz1dAmPwy_uUw(jCurrentTimeMillis, j, i, string);
                     }
                 });
             } catch (Throwable unused) {
@@ -159,7 +161,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$dumpUnparsedMessage$1(long j, long j2, int i, String str) {
+    public static void m450$r8$lambda$zqRYPgC_YdSVtSz1dAmPwy_uUw(long j, long j2, int i, String str) {
         try {
             getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j) + " msgId=" + j2 + " account=" + i);
             getInstance().tlStreamWriter.write("\n");
@@ -378,14 +380,14 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$e$2(str, th);
+                        FileLog.$r8$lambda$0ztTDayoCBQbqNUyey4KiVh2OWE(str, th);
                     }
                 });
             }
         }
     }
 
-    public static void lambda$e$2(String str, Throwable th) {
+    public static void $r8$lambda$0ztTDayoCBQbqNUyey4KiVh2OWE(String str, Throwable th) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
             getInstance().streamWriter.write(th.toString());
@@ -407,14 +409,14 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$e$3(str);
+                        FileLog.$r8$lambda$Fp_tthXxEDYM8ruhhhIZvuLpt48(str);
                     }
                 });
             }
         }
     }
 
-    public static void lambda$e$3(String str) {
+    public static void $r8$lambda$Fp_tthXxEDYM8ruhhhIZvuLpt48(String str) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
@@ -452,7 +454,7 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$e$4(th);
+                        FileLog.$r8$lambda$dl4NO88LqoO42afmmxifdeuAxfg(th);
                     }
                 });
             } else {
@@ -461,7 +463,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$e$4(Throwable th) {
+    public static void $r8$lambda$dl4NO88LqoO42afmmxifdeuAxfg(Throwable th) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th + "\n");
             for (StackTraceElement stackTraceElement : th.getStackTrace()) {
@@ -534,7 +536,7 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$fatal$5(th);
+                        FileLog.m446$r8$lambda$Cka7Jn8J8_XFnXWLJvFPiIg4A4(th);
                     }
                 });
                 return;
@@ -546,7 +548,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$fatal$5(Throwable th) {
+    public static void m446$r8$lambda$Cka7Jn8J8_XFnXWLJvFPiIg4A4(Throwable th) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: " + th + "\n");
             for (StackTraceElement stackTraceElement : th.getStackTrace()) {
@@ -580,14 +582,14 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$d$6(str);
+                        FileLog.m449$r8$lambda$bYZ1YvZDkuzSWHS46PDhtH0hTE(str);
                     }
                 });
             }
         }
     }
 
-    public static void lambda$d$6(String str) {
+    public static void m449$r8$lambda$bYZ1YvZDkuzSWHS46PDhtH0hTE(String str) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " D/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
@@ -607,14 +609,14 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$w$7(str);
+                        FileLog.m448$r8$lambda$W1fml6687f73UJ9cxSD3wMPIB4(str);
                     }
                 });
             }
         }
     }
 
-    public static void lambda$w$7(String str) {
+    public static void m448$r8$lambda$W1fml6687f73UJ9cxSD3wMPIB4(String str) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
@@ -652,18 +654,18 @@ public class FileLog {
             new Thread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$1(runnable);
+                    FileLog.ANRDetector.m451$r8$lambda$_BnewbbfzQ78PVhPUWgvar4WoM(this.f$0, runnable);
                 }
             }).start();
         }
 
-        public void lambda$new$1(Runnable runnable) {
+        public static void m451$r8$lambda$_BnewbbfzQ78PVhPUWgvar4WoM(final ANRDetector aNRDetector, Runnable runnable) {
             while (true) {
-                this.isUIThreadResponsive = false;
-                this.mainHandler.post(new Runnable() {
+                aNRDetector.isUIThreadResponsive = false;
+                aNRDetector.mainHandler.post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$0();
+                        this.f$0.isUIThreadResponsive = true;
                     }
                 });
                 try {
@@ -671,14 +673,10 @@ public class FileLog {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (!this.isUIThreadResponsive) {
+                if (!aNRDetector.isUIThreadResponsive) {
                     runnable.run();
                 }
             }
-        }
-
-        public void lambda$new$0() {
-            this.isUIThreadResponsive = true;
         }
     }
 }

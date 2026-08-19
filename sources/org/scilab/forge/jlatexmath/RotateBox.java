@@ -120,54 +120,53 @@ public class RotateBox extends Box {
             case 0:
                 r0.x = 0.0f;
                 r0.y = -box.depth;
-                return r0;
+                break;
             case 1:
                 r0.x = box.width / 2.0f;
                 r0.y = -box.depth;
-                return r0;
+                break;
             case 2:
                 r0.x = box.width;
                 r0.y = -box.depth;
-                return r0;
+                break;
             case 3:
                 r0.x = 0.0f;
                 r0.y = box.height;
-                return r0;
+                break;
             case 4:
                 r0.x = box.width / 2.0f;
                 r0.y = box.height;
-                return r0;
+                break;
             case 5:
                 r0.x = box.width;
                 r0.y = box.height;
-                return r0;
+                break;
             case 6:
                 r0.x = 0.0f;
                 r0.y = 0.0f;
-                return r0;
+                break;
             case 7:
                 r0.x = box.width;
                 r0.y = 0.0f;
-                return r0;
+                break;
             case 8:
                 r0.x = box.width / 2.0f;
                 r0.y = 0.0f;
-                return r0;
+                break;
             case 9:
                 r0.x = 0.0f;
                 r0.y = (box.height - box.depth) / 2.0f;
-                return r0;
+                break;
             case 10:
                 r0.x = box.width / 2.0f;
                 r0.y = (box.height - box.depth) / 2.0f;
-                return r0;
+                break;
             case 11:
                 r0.x = box.width;
                 r0.y = (box.height - box.depth) / 2.0f;
-                return r0;
-            default:
-                return r0;
+                break;
         }
+        return r0;
     }
 
     @Override

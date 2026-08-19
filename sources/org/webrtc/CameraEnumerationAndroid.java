@@ -105,10 +105,7 @@ public class CameraEnumerationAndroid {
             private static final int MIN_FPS_THRESHOLD = 8000;
 
             private int progressivePenalty(int i2, int i3, int i4, int i5) {
-                if (i2 < i3) {
-                    return i2 * i4;
-                }
-                return ((i2 - i3) * i5) + (i4 * i3);
+                return i2 < i3 ? i2 * i4 : (i4 * i3) + ((i2 - i3) * i5);
             }
 
             {

@@ -135,7 +135,7 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringsJVMKt {
         if ((i & 2) != 0) {
             str3 = str;
         }
-        return StringsKt.substringAfter(str, str2, str3);
+        return substringAfter(str, str2, str3);
     }
 
     public static String substringAfter(String str, String delimiter, String missingDelimiterValue) {
@@ -155,7 +155,7 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringsJVMKt {
         if ((i & 2) != 0) {
             str2 = str;
         }
-        return StringsKt.substringAfterLast(str, c, str2);
+        return substringAfterLast(str, c, str2);
     }
 
     public static String substringAfterLast(String str, char c, String missingDelimiterValue) {
@@ -244,30 +244,43 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringsJVMKt {
             if ((step <= 0 || first > last) && (step >= 0 || last > first)) {
                 return -1;
             }
+            int i3 = first;
             while (true) {
                 String str = (String) charSequence2;
-                if (StringsKt__StringsJVMKt.regionMatches(str, 0, (String) charSequence, first, str.length(), z)) {
-                    return first;
+                boolean z3 = z;
+                if (StringsKt__StringsJVMKt.regionMatches(str, 0, (String) charSequence, i3, str.length(), z3)) {
+                    return i3;
                 }
-                if (first == last) {
+                if (i3 == last) {
                     return -1;
                 }
-                first += step;
+                i3 += step;
+                z = z3;
             }
         } else {
+            boolean z4 = z;
             int first2 = intProgressionDownTo.getFirst();
             int last2 = intProgressionDownTo.getLast();
             int step2 = intProgressionDownTo.getStep();
             if ((step2 <= 0 || first2 > last2) && (step2 >= 0 || last2 > first2)) {
                 return -1;
             }
-            while (!regionMatchesImpl(charSequence2, 0, charSequence, first2, charSequence2.length(), z)) {
-                if (first2 == last2) {
+            int i4 = first2;
+            while (true) {
+                boolean z5 = z4;
+                CharSequence charSequence3 = charSequence;
+                CharSequence charSequence4 = charSequence2;
+                z4 = z5;
+                if (regionMatchesImpl(charSequence4, 0, charSequence3, i4, charSequence2.length(), z5)) {
+                    return i4;
+                }
+                if (i4 == last2) {
                     return -1;
                 }
-                first2 += step2;
+                i4 += step2;
+                charSequence2 = charSequence4;
+                charSequence = charSequence3;
             }
-            return first2;
         }
     }
 
@@ -341,13 +354,9 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringsJVMKt {
         Intrinsics.checkNotNullParameter(charSequence, "<this>");
         Intrinsics.checkNotNullParameter(other, "other");
         if (other instanceof String) {
-            if (indexOf$default(charSequence, (String) other, 0, z, 2, (Object) null) < 0) {
-                return false;
-            }
-        } else if (indexOf$StringsKt__StringsKt$default(charSequence, other, 0, charSequence.length(), z, false, 16, null) < 0) {
-            return false;
+            return indexOf$default(charSequence, (String) other, 0, z, 2, (Object) null) >= 0;
         }
-        return true;
+        return indexOf$StringsKt__StringsKt$default(charSequence, other, 0, charSequence.length(), z, false, 16, null) >= 0;
     }
 
     static Sequence rangesDelimitedBy$StringsKt__StringsKt$default(CharSequence charSequence, char[] cArr, int i, boolean z, int i2, int i3, Object obj) {

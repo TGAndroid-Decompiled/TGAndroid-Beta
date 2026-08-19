@@ -169,7 +169,7 @@ public class AddressBarList extends FrameLayout {
         this.bookmarksList = new BookmarksList(i, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.listView.adapter.update(true);
             }
         });
         this.space = new View(context) {
@@ -184,22 +184,18 @@ public class AddressBarList extends FrameLayout {
         setImportantForAccessibility(4);
     }
 
-    public void lambda$new$0() {
-        this.listView.adapter.update(true);
-    }
-
     public void clearRecentSearches(View view) {
         new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.WebRecentClearTitle)).setMessage(LocaleController.getString(R.string.WebRecentClearText)).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$clearRecentSearches$1(alertDialog, i);
+                AddressBarList.$r8$lambda$TtOs0I5Kdv2a3yBWwbVCj04LQtk(this.f$0, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
     }
 
-    public void lambda$clearRecentSearches$1(AlertDialog alertDialog, int i) {
-        clearRecentSearches(getContext());
-        this.listView.adapter.update(true);
+    public static void $r8$lambda$TtOs0I5Kdv2a3yBWwbVCj04LQtk(AddressBarList addressBarList, AlertDialog alertDialog, int i) {
+        clearRecentSearches(addressBarList.getContext());
+        addressBarList.listView.adapter.update(true);
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -218,7 +214,7 @@ public class AddressBarList extends FrameLayout {
             arrayList.add(Address2View.Factory.as(1, str, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$fillItems$2(str, view);
+                    AddressBarList.$r8$lambda$YpiGxkAnpjQUmTwsml7BUKmG9Gg(this.f$0, str, view);
                 }
             }, i == 0, i == this.suggestions.size() - 1, this));
             i++;
@@ -236,7 +232,7 @@ public class AddressBarList extends FrameLayout {
                 arrayList.add(Address2View.Factory.as(0, str2, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$fillItems$3(str2, view);
+                        AddressBarList.m5022$r8$lambda$stNWdARcmIlhL7aOAk6QpqvU(this.f$0, str2, view);
                     }
                 }, i2 == 0, i2 == recentSearches.size() - 1, this));
                 i2++;
@@ -261,15 +257,15 @@ public class AddressBarList extends FrameLayout {
         arrayList.add(UItem.asFlicker(arrayList.size(), 32));
     }
 
-    public void lambda$fillItems$2(String str, View view) {
-        Utilities.Callback callback = this.onQueryInsertClick;
+    public static void $r8$lambda$YpiGxkAnpjQUmTwsml7BUKmG9Gg(AddressBarList addressBarList, String str, View view) {
+        Utilities.Callback callback = addressBarList.onQueryInsertClick;
         if (callback != null) {
             callback.run(str);
         }
     }
 
-    public void lambda$fillItems$3(String str, View view) {
-        Utilities.Callback callback = this.onQueryInsertClick;
+    public static void m5022$r8$lambda$stNWdARcmIlhL7aOAk6QpqvU(AddressBarList addressBarList, String str, View view) {
+        Utilities.Callback callback = addressBarList.onQueryInsertClick;
         if (callback != null) {
             callback.run(str);
         }
@@ -284,13 +280,14 @@ public class AddressBarList extends FrameLayout {
             }
         }
         CharSequence charSequence = messageObject.messageText;
-        if (charSequence != null && charSequence.length() > 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(messageObject.messageText);
-            for (URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
-                String url = uRLSpan.getURL();
-                if (url != null && !url.startsWith("@") && !url.startsWith("#") && !url.startsWith("$")) {
-                    return url;
-                }
+        if (charSequence == null || charSequence.length() <= 0) {
+            return null;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(messageObject.messageText);
+        for (URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
+            String url = uRLSpan.getURL();
+            if (url != null && !url.startsWith("@") && !url.startsWith("#") && !url.startsWith("$")) {
+                return url;
             }
         }
         return null;
@@ -408,7 +405,7 @@ public class AddressBarList extends FrameLayout {
         this.currentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$setCurrent$4(runnable, view);
+                AddressBarList.$r8$lambda$YSiTCFOjsMYnhC4NSL3EwrnOBBU(this.f$0, runnable, view);
             }
         });
         this.currentCopyView.setOnClickListener(onClickListener);
@@ -418,12 +415,12 @@ public class AddressBarList extends FrameLayout {
         this.listView.scrollToPosition(0);
     }
 
-    public void lambda$setCurrent$4(Runnable runnable, View view) {
-        this.hideCurrent = true;
+    public static void $r8$lambda$YSiTCFOjsMYnhC4NSL3EwrnOBBU(AddressBarList addressBarList, Runnable runnable, View view) {
+        addressBarList.hideCurrent = true;
         if (runnable != null) {
             runnable.run();
         }
-        this.listView.adapter.update(true);
+        addressBarList.listView.adapter.update(true);
     }
 
     public void setInput(String str) {
@@ -445,26 +442,27 @@ public class AddressBarList extends FrameLayout {
         this.lastTask = new HttpGetTask(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$setInput$6(z, (String) obj);
+                AddressBarList.m5019$r8$lambda$BBrE1eH0RTg_UqaYETTgoD4liM(this.f$0, z, (String) obj);
             }
         }).execute(SearchEngine.getCurrent().getAutocompleteURL(str));
     }
 
-    public void lambda$setInput$6(final boolean z, final String str) {
+    public static void m5019$r8$lambda$BBrE1eH0RTg_UqaYETTgoD4liM(final AddressBarList addressBarList, final boolean z, final String str) {
+        addressBarList.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setInput$5(str, z);
+                AddressBarList.$r8$lambda$jiACZx8TMSkFPdxybqDOf4xwq64(this.f$0, str, z);
             }
         });
     }
 
-    public void lambda$setInput$5(String str, boolean z) {
-        this.suggestions.clear();
-        this.suggestions.addAll(SearchEngine.getCurrent().extractSuggestions(str));
-        this.listView.adapter.update(true);
-        if (z != (!this.suggestions.isEmpty())) {
-            this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
+    public static void $r8$lambda$jiACZx8TMSkFPdxybqDOf4xwq64(AddressBarList addressBarList, String str, boolean z) {
+        addressBarList.suggestions.clear();
+        addressBarList.suggestions.addAll(SearchEngine.getCurrent().extractSuggestions(str));
+        addressBarList.listView.adapter.update(true);
+        if (z != (!addressBarList.suggestions.isEmpty())) {
+            addressBarList.listView.layoutManager.scrollToPositionWithOffset(0, 0);
         }
     }
 
@@ -893,7 +891,7 @@ public class AddressBarList extends FrameLayout {
                     MessageObject messageObject = (MessageObject) obj;
                     boolean z2 = uItem.accent;
                     CharSequence charSequence = uItem.subtext;
-                    bookmarkView.set(messageObject, z2, charSequence == null ? null : charSequence.toString(), uItem.checked, z);
+                    bookmarkView.set(messageObject, z2, charSequence != null ? charSequence.toString() : null, uItem.checked, z);
                     return;
                 }
                 if (obj instanceof BrowserHistory.Entry) {
@@ -953,15 +951,16 @@ public class AddressBarList extends FrameLayout {
     }
 
     public static ArrayList getRecentSearches(Context context) {
+        int i = 0;
         SharedPreferences sharedPreferences = context.getSharedPreferences("webhistory", 0);
         ArrayList arrayList = new ArrayList();
         String string = sharedPreferences.getString("queries_json", null);
         if (string != null) {
             try {
-                ArrayList<QueryEntry> arrayList2 = new ArrayList();
+                ArrayList arrayList2 = new ArrayList();
                 JSONArray jSONArray = new JSONArray(string);
-                for (int i = 0; i < jSONArray.length(); i++) {
-                    JSONObject jSONObject = jSONArray.getJSONObject(i);
+                for (int i2 = 0; i2 < jSONArray.length(); i2++) {
+                    JSONObject jSONObject = jSONArray.getJSONObject(i2);
                     QueryEntry queryEntry = new QueryEntry(jSONObject.optString("name"), jSONObject.optLong("usage", System.currentTimeMillis()));
                     queryEntry.rank = jSONObject.optDouble("rank", 0.0d);
                     arrayList2.add(queryEntry);
@@ -969,10 +968,14 @@ public class AddressBarList extends FrameLayout {
                 Collections.sort(arrayList2, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return AddressBarList.lambda$getRecentSearches$7((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
+                        return AddressBarList.$r8$lambda$A9HCdiFsN75Rds5ZIjcYL6l3kAw((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
                     }
                 });
-                for (QueryEntry queryEntry2 : arrayList2) {
+                int size = arrayList2.size();
+                while (i < size) {
+                    Object obj = arrayList2.get(i);
+                    i++;
+                    QueryEntry queryEntry2 = (QueryEntry) obj;
                     if (arrayList.size() >= 20) {
                         break;
                     }
@@ -984,7 +987,7 @@ public class AddressBarList extends FrameLayout {
         return arrayList;
     }
 
-    public static int lambda$getRecentSearches$7(QueryEntry queryEntry, QueryEntry queryEntry2) {
+    public static int $r8$lambda$A9HCdiFsN75Rds5ZIjcYL6l3kAw(QueryEntry queryEntry, QueryEntry queryEntry2) {
         return (int) (queryEntry2.rank - queryEntry.rank);
     }
 
@@ -1005,7 +1008,7 @@ public class AddressBarList extends FrameLayout {
                 Collections.sort(arrayList, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return AddressBarList.lambda$pushRecentSearch$8((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
+                        return AddressBarList.m5021$r8$lambda$M1RWMsq_khurYUX4HFPRF86Yew((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
                     }
                 });
             } catch (Exception e) {
@@ -1044,7 +1047,7 @@ public class AddressBarList extends FrameLayout {
         sharedPreferences.edit().putString("queries_json", jSONArray2.toString()).apply();
     }
 
-    public static int lambda$pushRecentSearch$8(QueryEntry queryEntry, QueryEntry queryEntry2) {
+    public static int m5021$r8$lambda$M1RWMsq_khurYUX4HFPRF86Yew(QueryEntry queryEntry, QueryEntry queryEntry2) {
         return (int) (queryEntry2.rank - queryEntry.rank);
     }
 

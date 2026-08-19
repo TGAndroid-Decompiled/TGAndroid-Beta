@@ -301,7 +301,7 @@ public class ProfileGalleryBlurView extends View {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$doBlur$0();
+                    ProfileGalleryBlurView.m2669$r8$lambda$X24vuvHmmeB_uW3gim9woyEsg(this.f$0);
                 }
             });
         } else {
@@ -309,9 +309,9 @@ public class ProfileGalleryBlurView extends View {
         }
     }
 
-    public void lambda$doBlur$0() {
-        captureNextFrame();
-        ProfileMetaballView.profileBlurQueue.postRunnable(this.blurTask);
+    public static void m2669$r8$lambda$X24vuvHmmeB_uW3gim9woyEsg(ProfileGalleryBlurView profileGalleryBlurView) {
+        profileGalleryBlurView.captureNextFrame();
+        ProfileMetaballView.profileBlurQueue.postRunnable(profileGalleryBlurView.blurTask);
     }
 
     private int indexOf(ProfileMetaballView.BlurBitmapHolder blurBitmapHolder) {
@@ -432,88 +432,96 @@ public class ProfileGalleryBlurView extends View {
     }
 
     public void draw(Canvas canvas, ProfileActivity.AvatarImageView avatarImageView, float f, float f2, boolean z, float f3, float f4) {
+        ProfileGalleryBlurView profileGalleryBlurView;
+        float f5;
+        char c;
+        Canvas canvas2 = canvas;
         ProfileGalleryView profileGalleryView = this.view;
-        if (profileGalleryView == null || !profileGalleryView.isAttachedToWindow() || this.view.getVisibility() == 8) {
-            return;
-        }
-        if (this.usingRenderNode && Build.VERSION.SDK_INT >= 31) {
-            if (canvas.isHardwareAccelerated()) {
+        if (profileGalleryView != null && profileGalleryView.isAttachedToWindow() && this.view.getVisibility() != 8) {
+            if (!this.usingRenderNode || Build.VERSION.SDK_INT < 31) {
+                profileGalleryBlurView = this;
+            } else if (canvas2.isHardwareAccelerated()) {
                 if (avatarImageView == null && getVisibility() == 0 && getAlpha() > 0.0f) {
-                    drawRenderNode(canvas, f);
+                    drawRenderNode(canvas2, f);
                     return;
-                } else {
-                    if (avatarImageView != null) {
-                        drawOpeningRenderNode(avatarImageView, canvas, f, f2, f3, f4);
-                        return;
-                    }
+                } else if (avatarImageView != null) {
+                    drawOpeningRenderNode(avatarImageView, canvas2, f, f2, f3, f4);
                     return;
                 }
+            } else {
+                profileGalleryBlurView = this;
+                if (avatarImageView != null || AndroidUtilities.makingGlobalBlurBitmap) {
+                    return;
+                }
+                profileGalleryBlurView.usingRenderNode = false;
+                profileGalleryBlurView.setLayerType(1, profileGalleryBlurView.paints[0]);
+                profileGalleryBlurView.setLayerType(1, profileGalleryBlurView.paints[1]);
             }
-            if (avatarImageView != null || AndroidUtilities.makingGlobalBlurBitmap) {
+            ProfileActionsView profileActionsView = profileGalleryBlurView.actionsView;
+            if (profileActionsView != null) {
+                profileActionsView.drawingBlur(false);
+            }
+            ProfileMusicView profileMusicView = profileGalleryBlurView.musicView;
+            if (profileMusicView != null) {
+                profileMusicView.drawingBlur(false);
+            }
+            if (profileGalleryBlurView.needNewFrame || profileGalleryBlurView.sizeChanged || profileGalleryBlurView.loopInvalidate || (profileGalleryBlurView.paints[0].getShader() == null && profileGalleryBlurView.paints[1].getShader() == null && !profileGalleryBlurView.isBluring)) {
+                boolean zCaptureNextFrame = profileGalleryBlurView.captureNextFrame();
+                if (!profileGalleryBlurView.isBluring && zCaptureNextFrame) {
+                    profileGalleryBlurView.isBluring = true;
+                    DispatchQueue dispatchQueue = ProfileMetaballView.profileBlurQueue;
+                    dispatchQueue.cancelRunnable(profileGalleryBlurView.blurTask);
+                    dispatchQueue.postRunnable(profileGalleryBlurView.blurTask);
+                }
+            }
+            if (profileGalleryBlurView.paints[0].getShader() == null && profileGalleryBlurView.paints[1].getShader() == null) {
                 return;
             }
-            this.usingRenderNode = false;
-            setLayerType(1, this.paints[0]);
-            setLayerType(1, this.paints[1]);
-        }
-        ProfileActionsView profileActionsView = this.actionsView;
-        if (profileActionsView != null) {
-            profileActionsView.drawingBlur(false);
-        }
-        ProfileMusicView profileMusicView = this.musicView;
-        if (profileMusicView != null) {
-            profileMusicView.drawingBlur(false);
-        }
-        if (this.needNewFrame || this.sizeChanged || this.loopInvalidate || (this.paints[0].getShader() == null && this.paints[1].getShader() == null && !this.isBluring)) {
-            boolean zCaptureNextFrame = captureNextFrame();
-            if (!this.isBluring && zCaptureNextFrame) {
-                this.isBluring = true;
-                DispatchQueue dispatchQueue = ProfileMetaballView.profileBlurQueue;
-                dispatchQueue.cancelRunnable(this.blurTask);
-                dispatchQueue.postRunnable(this.blurTask);
-            }
-        }
-        if (this.paints[0].getShader() == null && this.paints[1].getShader() == null) {
-            return;
-        }
-        synchronized (this.lock) {
-            try {
-                float f5 = f / this.frameWidth;
-                if (z) {
-                    canvas.translate(0.0f, (-f5) * this.frameHeight);
+            synchronized (profileGalleryBlurView.lock) {
+                try {
+                    float f6 = f / profileGalleryBlurView.frameWidth;
+                    if (z) {
+                        canvas2.translate(0.0f, (-f6) * profileGalleryBlurView.frameHeight);
+                    }
+                    canvas2.scale(f6, f6);
+                    float f7 = profileGalleryBlurView.actionSize / f6;
+                    if (profileGalleryBlurView.paints[0].getShader() != null) {
+                        canvas2.save();
+                        canvas2.translate((-profileGalleryBlurView.offset) / f6, 0.0f);
+                        canvas2.save();
+                        canvas2.scale(1.0f, 2.0f, 0.0f, profileGalleryBlurView.frameHeight);
+                        float f8 = profileGalleryBlurView.frameHeight;
+                        f5 = 1.0f;
+                        c = 1;
+                        canvas2.drawRect(0.0f, f8, profileGalleryBlurView.frameWidth, f8 + f7, profileGalleryBlurView.paints[0]);
+                        canvas.restore();
+                        profileGalleryBlurView.paints[0].setAlpha((int) (f4 * 255.0f));
+                        float f9 = profileGalleryBlurView.frameHeight;
+                        canvas2 = canvas;
+                        canvas2.drawRect(0.0f, f9 * f3, profileGalleryBlurView.frameWidth, f9, profileGalleryBlurView.paints[0]);
+                        profileGalleryBlurView.paints[0].setAlpha(255);
+                        canvas2.restore();
+                    } else {
+                        f5 = 1.0f;
+                        c = 1;
+                    }
+                    if (profileGalleryBlurView.offset != 0 && profileGalleryBlurView.paints[c].getShader() != null) {
+                        canvas2.save();
+                        canvas2.translate(((-profileGalleryBlurView.offset) + f) / f6, 0.0f);
+                        canvas2.save();
+                        canvas2.scale(f5, 2.0f, 0.0f, profileGalleryBlurView.frameHeight);
+                        float f10 = profileGalleryBlurView.frameHeight;
+                        canvas2.drawRect(0.0f, f10, profileGalleryBlurView.frameWidth, f10 + f7, profileGalleryBlurView.paints[c]);
+                        canvas.restore();
+                        profileGalleryBlurView.paints[c].setAlpha((int) (f4 * 255.0f));
+                        float f11 = profileGalleryBlurView.frameHeight;
+                        canvas.drawRect(0.0f, f11 * f3, profileGalleryBlurView.frameWidth, f11, profileGalleryBlurView.paints[c]);
+                        profileGalleryBlurView.paints[c].setAlpha(255);
+                        canvas.restore();
+                    }
+                } catch (Throwable th) {
+                    throw th;
                 }
-                canvas.scale(f5, f5);
-                float f6 = this.actionSize / f5;
-                if (this.paints[0].getShader() != null) {
-                    canvas.save();
-                    canvas.translate((-this.offset) / f5, 0.0f);
-                    canvas.save();
-                    canvas.scale(1.0f, 2.0f, 0.0f, this.frameHeight);
-                    float f7 = this.frameHeight;
-                    canvas.drawRect(0.0f, f7, this.frameWidth, f7 + f6, this.paints[0]);
-                    canvas.restore();
-                    this.paints[0].setAlpha((int) (f4 * 255.0f));
-                    float f8 = this.frameHeight;
-                    canvas.drawRect(0.0f, f8 * f3, this.frameWidth, f8, this.paints[0]);
-                    this.paints[0].setAlpha(255);
-                    canvas.restore();
-                }
-                if (this.offset != 0 && this.paints[1].getShader() != null) {
-                    canvas.save();
-                    canvas.translate(((-this.offset) + f) / f5, 0.0f);
-                    canvas.save();
-                    canvas.scale(1.0f, 2.0f, 0.0f, this.frameHeight);
-                    float f9 = this.frameHeight;
-                    canvas.drawRect(0.0f, f9, this.frameWidth, f9 + f6, this.paints[1]);
-                    canvas.restore();
-                    this.paints[1].setAlpha((int) (f4 * 255.0f));
-                    float f10 = this.frameHeight;
-                    canvas.drawRect(0.0f, f10 * f3, this.frameWidth, f10, this.paints[1]);
-                    this.paints[1].setAlpha(255);
-                    canvas.restore();
-                }
-            } catch (Throwable th) {
-                throw th;
             }
         }
     }

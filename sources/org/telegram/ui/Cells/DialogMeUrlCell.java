@@ -89,6 +89,7 @@ public class DialogMeUrlCell extends BaseCell {
         String userName;
         int measuredWidth;
         int iDp;
+        int i;
         int measuredWidth2;
         TextPaint textPaint = Theme.dialogs_namePaint[0];
         TextPaint textPaint2 = Theme.dialogs_messagePaint[0];
@@ -205,9 +206,17 @@ public class DialogMeUrlCell extends BaseCell {
         }
         int iMax = Math.max(AndroidUtilities.dp(12.0f), iDp2);
         try {
-            this.nameLayout = new StaticLayout(TextUtils.ellipsize(userName.replace('\n', ' '), textPaint, iMax - AndroidUtilities.dp(12.0f), TextUtils.TruncateAt.END), textPaint, iMax, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        } catch (Exception e) {
-            FileLog.e(e);
+            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(userName.replace('\n', ' '), textPaint, iMax - AndroidUtilities.dp(12.0f), TextUtils.TruncateAt.END), textPaint, iMax, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            i = iMax;
+            try {
+                this.nameLayout = staticLayout;
+            } catch (Exception e) {
+                e = e;
+                FileLog.e(e);
+            }
+        } catch (Exception e2) {
+            e = e2;
+            i = iMax;
         }
         int measuredWidth3 = getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline + 16);
         if (!LocaleController.isRTL) {
@@ -221,26 +230,26 @@ public class DialogMeUrlCell extends BaseCell {
         int iMax2 = Math.max(AndroidUtilities.dp(12.0f), measuredWidth3);
         try {
             this.messageLayout = new StaticLayout(TextUtils.ellipsize(str3, textPaint2, iMax2 - AndroidUtilities.dp(12.0f), TextUtils.TruncateAt.END), textPaint2, iMax2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        } catch (Exception e2) {
-            FileLog.e(e2);
+        } catch (Exception e3) {
+            FileLog.e(e3);
         }
         if (LocaleController.isRTL) {
-            StaticLayout staticLayout = this.nameLayout;
-            if (staticLayout != null && staticLayout.getLineCount() > 0) {
+            StaticLayout staticLayout2 = this.nameLayout;
+            if (staticLayout2 != null && staticLayout2.getLineCount() > 0) {
                 float lineLeft = this.nameLayout.getLineLeft(0);
                 double dCeil = Math.ceil(this.nameLayout.getLineWidth(0));
                 if (this.drawVerified) {
-                    this.nameMuteLeft = (int) (((((double) this.nameLeft) + (((double) iMax) - dCeil)) - ((double) AndroidUtilities.dp(6.0f))) - ((double) Theme.dialogs_verifiedDrawable.getIntrinsicWidth()));
+                    this.nameMuteLeft = (int) (((((double) this.nameLeft) + (((double) i) - dCeil)) - ((double) AndroidUtilities.dp(6.0f))) - ((double) Theme.dialogs_verifiedDrawable.getIntrinsicWidth()));
                 }
                 if (lineLeft == 0.0f) {
-                    double d = iMax;
+                    double d = i;
                     if (dCeil < d) {
                         this.nameLeft = (int) (((double) this.nameLeft) + (d - dCeil));
                     }
                 }
             }
-            StaticLayout staticLayout2 = this.messageLayout;
-            if (staticLayout2 == null || staticLayout2.getLineCount() <= 0 || this.messageLayout.getLineLeft(0) != 0.0f) {
+            StaticLayout staticLayout3 = this.messageLayout;
+            if (staticLayout3 == null || staticLayout3.getLineCount() <= 0 || this.messageLayout.getLineLeft(0) != 0.0f) {
                 return;
             }
             double dCeil2 = Math.ceil(this.messageLayout.getLineWidth(0));
@@ -251,12 +260,12 @@ public class DialogMeUrlCell extends BaseCell {
             }
             return;
         }
-        StaticLayout staticLayout3 = this.nameLayout;
-        if (staticLayout3 != null && staticLayout3.getLineCount() > 0) {
+        StaticLayout staticLayout4 = this.nameLayout;
+        if (staticLayout4 != null && staticLayout4.getLineCount() > 0) {
             float lineRight = this.nameLayout.getLineRight(0);
-            if (lineRight == iMax) {
+            if (lineRight == i) {
                 double dCeil3 = Math.ceil(this.nameLayout.getLineWidth(0));
-                double d3 = iMax;
+                double d3 = i;
                 if (dCeil3 < d3) {
                     this.nameLeft = (int) (((double) this.nameLeft) - (d3 - dCeil3));
                 }
@@ -265,8 +274,8 @@ public class DialogMeUrlCell extends BaseCell {
                 this.nameMuteLeft = (int) (this.nameLeft + lineRight + AndroidUtilities.dp(6.0f));
             }
         }
-        StaticLayout staticLayout4 = this.messageLayout;
-        if (staticLayout4 == null || staticLayout4.getLineCount() <= 0 || this.messageLayout.getLineRight(0) != iMax2) {
+        StaticLayout staticLayout5 = this.messageLayout;
+        if (staticLayout5 == null || staticLayout5.getLineCount() <= 0 || this.messageLayout.getLineRight(0) != iMax2) {
             return;
         }
         double dCeil4 = Math.ceil(this.messageLayout.getLineWidth(0));
@@ -285,42 +294,46 @@ public class DialogMeUrlCell extends BaseCell {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Canvas canvas2;
         if (this.isSelected) {
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), Theme.dialogs_tabletSeletedPaint);
+            canvas2 = canvas;
+        } else {
+            canvas2 = canvas;
         }
         if (this.drawNameLock) {
             BaseCell.setDrawableBounds(Theme.dialogs_lockDrawable, this.nameLockLeft, this.nameLockTop);
-            Theme.dialogs_lockDrawable.draw(canvas);
+            Theme.dialogs_lockDrawable.draw(canvas2);
         }
         if (this.nameLayout != null) {
-            canvas.save();
-            canvas.translate(this.nameLeft, AndroidUtilities.dp(13.0f));
-            this.nameLayout.draw(canvas);
-            canvas.restore();
+            canvas2.save();
+            canvas2.translate(this.nameLeft, AndroidUtilities.dp(13.0f));
+            this.nameLayout.draw(canvas2);
+            canvas2.restore();
         }
         if (this.messageLayout != null) {
-            canvas.save();
-            canvas.translate(this.messageLeft, this.messageTop);
+            canvas2.save();
+            canvas2.translate(this.messageLeft, this.messageTop);
             try {
-                this.messageLayout.draw(canvas);
+                this.messageLayout.draw(canvas2);
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            canvas.restore();
+            canvas2.restore();
         }
         if (this.drawVerified) {
             BaseCell.setDrawableBounds(Theme.dialogs_verifiedDrawable, this.nameMuteLeft, AndroidUtilities.dp(16.5f));
             BaseCell.setDrawableBounds(Theme.dialogs_verifiedCheckDrawable, this.nameMuteLeft, AndroidUtilities.dp(16.5f));
-            Theme.dialogs_verifiedDrawable.draw(canvas);
-            Theme.dialogs_verifiedCheckDrawable.draw(canvas);
+            Theme.dialogs_verifiedDrawable.draw(canvas2);
+            Theme.dialogs_verifiedCheckDrawable.draw(canvas2);
         }
         if (this.useSeparator) {
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas2.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {
-                canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas2.drawLine(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
-        this.avatarImage.draw(canvas);
+        this.avatarImage.draw(canvas2);
     }
 }

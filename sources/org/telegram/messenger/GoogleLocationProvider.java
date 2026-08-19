@@ -38,12 +38,12 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         this.locationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener() {
             @Override
             public final void onComplete(Task task) {
-                GoogleLocationProvider.lambda$getLastLocation$0(consumer, task);
+                GoogleLocationProvider.m478$r8$lambda$pgimAzDDNnR94RGDhgpM2y3jLE(consumer, task);
             }
         });
     }
 
-    public static void lambda$getLastLocation$0(Consumer consumer, Task task) {
+    public static void m478$r8$lambda$pgimAzDDNnR94RGDhgpM2y3jLE(Consumer consumer, Task task) {
         if (task.getException() != null) {
             return;
         }
@@ -75,12 +75,12 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         this.settingsClient.checkLocationSettings(new LocationSettingsRequest.Builder().addLocationRequest(((GoogleLocationRequest) iLocationRequest).request).build()).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public final void onComplete(Task task) {
-                GoogleLocationProvider.lambda$checkLocationSettings$1(consumer, task);
+                GoogleLocationProvider.$r8$lambda$sOg18UH3CaGba6Zw0P6W33BoWok(consumer, task);
             }
         });
     }
 
-    public static void lambda$checkLocationSettings$1(Consumer consumer, Task task) {
+    public static void $r8$lambda$sOg18UH3CaGba6Zw0P6W33BoWok(Consumer consumer, Task task) {
         try {
             task.getResult(ApiException.class);
             consumer.accept(0);

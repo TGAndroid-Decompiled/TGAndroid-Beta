@@ -84,7 +84,12 @@ public class AnimatedStatusView extends View {
 
     private void detach() {
         if (!this.animations.isEmpty()) {
-            for (Object obj : this.animations) {
+            ArrayList arrayList = this.animations;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
                 if (obj instanceof ImageReceiver) {
                     ((ImageReceiver) obj).onDetachedFromWindow();
                 } else if (obj instanceof AnimatedEmojiEffect) {

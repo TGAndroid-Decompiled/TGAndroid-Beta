@@ -97,7 +97,8 @@ public final class FloatingActionMode extends ActionMode {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public final boolean onMenuItemClick(MenuItem menuItem) {
-                return this.f$0.lambda$new$0(menuItem);
+                FloatingActionMode floatingActionMode = this.f$0;
+                return floatingActionMode.mCallback.onActionItemClicked(floatingActionMode, menuItem);
             }
         });
         this.mContentRect = new Rect();
@@ -117,19 +118,12 @@ public final class FloatingActionMode extends ActionMode {
         setFloatingToolbar(floatingToolbar);
     }
 
-    public boolean lambda$new$0(MenuItem menuItem) {
-        return this.mCallback.onActionItemClicked(this, menuItem);
-    }
-
-    public boolean lambda$setFloatingToolbar$1(MenuItem menuItem) {
-        return this.mCallback.onActionItemClicked(this, menuItem);
-    }
-
     private void setFloatingToolbar(FloatingToolbar floatingToolbar) {
         FloatingToolbar onMenuItemClickListener = floatingToolbar.setMenu(this.mMenu).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public final boolean onMenuItemClick(MenuItem menuItem) {
-                return this.f$0.lambda$setFloatingToolbar$1(menuItem);
+                FloatingActionMode floatingActionMode = this.f$0;
+                return floatingActionMode.mCallback.onActionItemClicked(floatingActionMode, menuItem);
             }
         });
         this.mFloatingToolbar = onMenuItemClickListener;

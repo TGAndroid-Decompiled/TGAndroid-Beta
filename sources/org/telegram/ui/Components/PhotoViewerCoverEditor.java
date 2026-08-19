@@ -62,37 +62,34 @@ public class PhotoViewerCoverEditor extends FrameLayout {
         editCoverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(context, resourcesProvider, view);
+                PhotoViewerCoverEditor.$r8$lambda$kgNoaoyXofcOM8WB0XqmSoHuVYo(this.f$0, context, resourcesProvider, view);
             }
         });
         addView(this.openGalleryButton, LayoutHelper.createFrame(-1, 32.0f, 87, 60.0f, 0.0f, 60.0f, 134.0f));
         this.timelineView.setDelegate(new AnonymousClass2());
     }
 
-    public void lambda$new$1(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
-        if (this.gallerySheet == null) {
-            GallerySheet gallerySheet = new GallerySheet(context, resourcesProvider, LocaleController.getString(R.string.VideoChooseCover), true, this.aspectRatio);
-            this.gallerySheet = gallerySheet;
+    public static void $r8$lambda$kgNoaoyXofcOM8WB0XqmSoHuVYo(final PhotoViewerCoverEditor photoViewerCoverEditor, Context context, Theme.ResourcesProvider resourcesProvider, View view) {
+        if (photoViewerCoverEditor.gallerySheet == null) {
+            GallerySheet gallerySheet = new GallerySheet(context, resourcesProvider, LocaleController.getString(R.string.VideoChooseCover), true, photoViewerCoverEditor.aspectRatio);
+            photoViewerCoverEditor.gallerySheet = gallerySheet;
             gallerySheet.setOnDismissListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0();
+                    this.f$0.gallerySheet = null;
                 }
             });
-            this.gallerySheet.setOnGalleryImage(this.onGalleryListener);
+            photoViewerCoverEditor.gallerySheet.setOnGalleryImage(photoViewerCoverEditor.onGalleryListener);
         }
-        this.gallerySheet.show();
-    }
-
-    public void lambda$new$0() {
-        this.gallerySheet = null;
+        photoViewerCoverEditor.gallerySheet.show();
     }
 
     class AnonymousClass2 implements TimelineView.TimelineDelegate {
         private Runnable betterSeek = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$$0();
+                PhotoViewerCoverEditor.AnonymousClass2 anonymousClass2 = this.f$0;
+                PhotoViewerCoverEditor.this.videoPlayer.seekTo(PhotoViewerCoverEditor.this.time, false);
             }
         };
 
@@ -199,10 +196,6 @@ public class PhotoViewerCoverEditor extends FrameLayout {
         AnonymousClass2() {
         }
 
-        public void lambda$$0() {
-            PhotoViewerCoverEditor.this.videoPlayer.seekTo(PhotoViewerCoverEditor.this.time, false);
-        }
-
         @Override
         public void onVideoLeftChange(boolean z, float f) {
             if (PhotoViewerCoverEditor.this.videoPlayer == null) {
@@ -250,7 +243,7 @@ public class PhotoViewerCoverEditor extends FrameLayout {
     public void closeGallery() {
         GallerySheet gallerySheet = this.gallerySheet;
         if (gallerySheet != null) {
-            gallerySheet.lambda$new$0();
+            gallerySheet.dismiss();
             this.gallerySheet = null;
         }
     }

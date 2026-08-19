@@ -175,7 +175,7 @@ public class PreviewButtons extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$appear$0(valueAnimator2);
+                    PreviewButtons.$r8$lambda$uYCx0sJmNoLWHUcTtdSx8XLuaNw(this.f$0, valueAnimator2);
                 }
             });
             if (this.appearing) {
@@ -192,9 +192,10 @@ public class PreviewButtons extends FrameLayout {
         updateAppearT();
     }
 
-    public void lambda$appear$0(ValueAnimator valueAnimator) {
-        this.appearT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        updateAppearT();
+    public static void $r8$lambda$uYCx0sJmNoLWHUcTtdSx8XLuaNw(PreviewButtons previewButtons, ValueAnimator valueAnimator) {
+        previewButtons.getClass();
+        previewButtons.appearT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        previewButtons.updateAppearT();
     }
 
     private void updateAppearT() {
@@ -270,12 +271,12 @@ public class PreviewButtons extends FrameLayout {
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    PreviewButtons.ShareButtonView.m4549$r8$lambda$kNWOefqax4KpCRrV9EFj9AC7OM(this.f$0, view);
                 }
             });
         }
 
-        public void lambda$new$0(View view) {
+        public static void m4549$r8$lambda$kNWOefqax4KpCRrV9EFj9AC7OM(ShareButtonView shareButtonView, View view) {
             if (!PreviewButtons.this.appearing || PreviewButtons.this.onClickListener == null) {
                 return;
             }
@@ -338,7 +339,7 @@ public class PreviewButtons extends FrameLayout {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            this.f$0.lambda$setPressed$1(valueAnimator2);
+                            PreviewButtons.ShareButtonView.$r8$lambda$pQGkthRlZddhm3uQx96bemXWEMA(this.f$0, valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
@@ -355,9 +356,10 @@ public class PreviewButtons extends FrameLayout {
             }
         }
 
-        public void lambda$setPressed$1(ValueAnimator valueAnimator) {
-            this.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+        public static void $r8$lambda$pQGkthRlZddhm3uQx96bemXWEMA(ShareButtonView shareButtonView, ValueAnimator valueAnimator) {
+            shareButtonView.getClass();
+            shareButtonView.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            shareButtonView.invalidate();
         }
 
         @Override
@@ -380,12 +382,12 @@ public class PreviewButtons extends FrameLayout {
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(i, view);
+                    PreviewButtons.ButtonView.m4548$r8$lambda$WOftaA4x1I8qtFMw7cFnCLuWlQ(this.f$0, i, view);
                 }
             });
         }
 
-        public void lambda$new$0(int i, View view) {
+        public static void m4548$r8$lambda$WOftaA4x1I8qtFMw7cFnCLuWlQ(ButtonView buttonView, int i, View view) {
             if (!PreviewButtons.this.appearing || PreviewButtons.this.onClickListener == null) {
                 return;
             }

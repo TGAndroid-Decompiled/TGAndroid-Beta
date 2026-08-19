@@ -313,13 +313,13 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         Collections.sort(arrayList3, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return OpeningHoursActivity.lambda$adaptWeeklyOpen$0((TL_account.TL_businessWeeklyOpen) obj, (TL_account.TL_businessWeeklyOpen) obj2);
+                return OpeningHoursActivity.m1392$r8$lambda$e8LPlc3wpOcbipb8BSgQa5RZ4c((TL_account.TL_businessWeeklyOpen) obj, (TL_account.TL_businessWeeklyOpen) obj2);
             }
         });
         return arrayList3;
     }
 
-    public static int lambda$adaptWeeklyOpen$0(TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen, TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2) {
+    public static int m1392$r8$lambda$e8LPlc3wpOcbipb8BSgQa5RZ4c(TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen, TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2) {
         return tL_businessWeeklyOpen.start_minute - tL_businessWeeklyOpen2.start_minute;
     }
 
@@ -468,39 +468,41 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         getConnectionsManager().sendRequest(updatebusinessworkhours, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$processDone$2(tLObject, tL_error);
+                OpeningHoursActivity.$r8$lambda$3isW3ifjsjw1qx1oPEfKAkqa4Yo(this.f$0, tLObject, tL_error);
             }
         });
         getMessagesStorage().updateUserInfo(userFull, false);
     }
 
-    public void lambda$processDone$2(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$3isW3ifjsjw1qx1oPEfKAkqa4Yo(final OpeningHoursActivity openingHoursActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        openingHoursActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processDone$1(tL_error, tLObject);
+                OpeningHoursActivity.m1391$r8$lambda$RajLrQn80CHNvZkSsV72oNMisg(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$processDone$1(TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m1391$r8$lambda$RajLrQn80CHNvZkSsV72oNMisg(OpeningHoursActivity openingHoursActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
-            this.doneButtonDrawable.animateToProgress(0.0f);
+            openingHoursActivity.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);
-        } else {
-            if (tLObject instanceof TLRPC.TL_boolFalse) {
-                if (getContext() == null) {
-                    return;
-                }
-                this.doneButtonDrawable.animateToProgress(0.0f);
-                BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
-                return;
-            }
-            if (this.isFinished || this.finishing) {
-                return;
-            }
-            finishFragment();
+            return;
         }
+        openingHoursActivity.getClass();
+        if (tLObject instanceof TLRPC.TL_boolFalse) {
+            if (openingHoursActivity.getContext() == null) {
+                return;
+            }
+            openingHoursActivity.doneButtonDrawable.animateToProgress(0.0f);
+            BulletinFactory.of(openingHoursActivity).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+            return;
+        }
+        if (openingHoursActivity.isFinished || openingHoursActivity.finishing) {
+            return;
+        }
+        openingHoursActivity.finishFragment();
     }
 
     public static class Period {
@@ -530,18 +532,20 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
     }
 
     public static boolean is24x7(TL_account.TL_businessWorkHours tL_businessWorkHours) {
-        if (tL_businessWorkHours == null || tL_businessWorkHours.weekly_open.isEmpty()) {
-            return false;
-        }
-        int i = 0;
-        for (int i2 = 0; i2 < tL_businessWorkHours.weekly_open.size(); i2++) {
-            TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen = tL_businessWorkHours.weekly_open.get(i2);
-            if (tL_businessWeeklyOpen.start_minute > i + 1) {
-                return false;
+        if (tL_businessWorkHours != null && !tL_businessWorkHours.weekly_open.isEmpty()) {
+            int i = 0;
+            for (int i2 = 0; i2 < tL_businessWorkHours.weekly_open.size(); i2++) {
+                TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen = tL_businessWorkHours.weekly_open.get(i2);
+                if (tL_businessWeeklyOpen.start_minute > i + 1) {
+                    return false;
+                }
+                i = tL_businessWeeklyOpen.end_minute;
             }
-            i = tL_businessWeeklyOpen.end_minute;
+            if (i >= 10079) {
+                return true;
+            }
         }
-        return i >= 10079;
+        return false;
     }
 
     public static boolean isFull(ArrayList arrayList) {
@@ -630,7 +634,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             presentFragment(new TimezoneSelector().setValue(this.timezoneId).whenSelected(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onClick$3(view, (String) obj);
+                    OpeningHoursActivity.$r8$lambda$vLsdgdtD8U6Yn7KfGlYyOsn1s24(this.f$0, view, (String) obj);
                 }
             }));
             return;
@@ -673,30 +677,32 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         presentFragment(new OpeningHoursDayActivity(charSequence, arrayListArr[i10], iMax, i9, maxPeriodsFor(i10)).onApplied(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onClick$4();
+                OpeningHoursActivity.$r8$lambda$f3Q3a1G9bipddOoqNCkaJIiNeY0(this.f$0);
             }
         }).onDone(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onClick$5(uItem);
+                OpeningHoursActivity.m1390$r8$lambda$LLuwiBV7Nwzy7aoFu9A7bfKPN4(this.f$0, uItem);
             }
         }));
     }
 
-    public void lambda$onClick$3(View view, String str) {
-        TimezonesController timezonesController = TimezonesController.getInstance(this.currentAccount);
-        this.timezoneId = str;
+    public static void $r8$lambda$vLsdgdtD8U6Yn7KfGlYyOsn1s24(OpeningHoursActivity openingHoursActivity, View view, String str) {
+        openingHoursActivity.getClass();
+        TimezonesController timezonesController = TimezonesController.getInstance(openingHoursActivity.currentAccount);
+        openingHoursActivity.timezoneId = str;
         ((TextCell) view).setValue(timezonesController.getTimezoneName(str, false), true);
-        checkDone(true);
+        openingHoursActivity.checkDone(true);
     }
 
-    public void lambda$onClick$4() {
-        this.listView.adapter.update(true);
-        checkDone(true);
+    public static void $r8$lambda$f3Q3a1G9bipddOoqNCkaJIiNeY0(OpeningHoursActivity openingHoursActivity) {
+        openingHoursActivity.listView.adapter.update(true);
+        openingHoursActivity.checkDone(true);
     }
 
-    public void lambda$onClick$5(UItem uItem) {
-        adaptPrevDay(uItem.id);
+    public static void m1390$r8$lambda$LLuwiBV7Nwzy7aoFu9A7bfKPN4(OpeningHoursActivity openingHoursActivity, UItem uItem) {
+        openingHoursActivity.getClass();
+        openingHoursActivity.adaptPrevDay(uItem.id);
     }
 
     private void adaptPrevDay(int i) {

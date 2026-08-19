@@ -218,7 +218,7 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setLoading$0(valueAnimator2);
+                    PremiumButtonView.$r8$lambda$MyHMbP_TnK0zalz814PRP5AOafY(this.f$0, valueAnimator2);
                 }
             });
             this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -238,10 +238,11 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
         }
     }
 
-    public void lambda$setLoading$0(ValueAnimator valueAnimator) {
-        this.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.buttonTextView.invalidate();
-        AnimatedTextView animatedTextView = this.overlayTextView;
+    public static void $r8$lambda$MyHMbP_TnK0zalz814PRP5AOafY(PremiumButtonView premiumButtonView, ValueAnimator valueAnimator) {
+        premiumButtonView.getClass();
+        premiumButtonView.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        premiumButtonView.buttonTextView.invalidate();
+        AnimatedTextView animatedTextView = premiumButtonView.overlayTextView;
         if (animatedTextView != null) {
             animatedTextView.invalidate();
         }
@@ -379,16 +380,16 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
         cellFlickerDrawable.setOnRestartCallback(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setIcon$1();
+                PremiumButtonView.m2587$r8$lambda$zRkv0O1Cyq7obwNcXr8cmU0hCk(this.f$0);
             }
         });
         invalidate();
         this.iconView.setVisibility(0);
     }
 
-    public void lambda$setIcon$1() {
-        this.iconView.getAnimatedDrawable().setCurrentFrame(0, true);
-        this.iconView.playAnimation();
+    public static void m2587$r8$lambda$zRkv0O1Cyq7obwNcXr8cmU0hCk(PremiumButtonView premiumButtonView) {
+        premiumButtonView.iconView.getAnimatedDrawable().setCurrentFrame(0, true);
+        premiumButtonView.iconView.playAnimation();
     }
 
     public void hideIcon() {

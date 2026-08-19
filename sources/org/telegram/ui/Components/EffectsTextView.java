@@ -94,7 +94,7 @@ public class EffectsTextView extends SpoilersTextView {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onTouchEvent$0(linkSpanDrawable, clickableSpanHit);
+                        EffectsTextView.m2275$r8$lambda$Zq6iuDs0cx2GuoUClykYZZ1CBs(this.f$0, linkSpanDrawable, clickableSpanHit);
                     }
                 }, ViewConfiguration.getLongPressTimeout());
                 return true;
@@ -122,14 +122,14 @@ public class EffectsTextView extends SpoilersTextView {
         return this.pressedLink != null || super.onTouchEvent(motionEvent);
     }
 
-    public void lambda$onTouchEvent$0(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
-        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onLongPressListener;
-        if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
+    public static void m2275$r8$lambda$Zq6iuDs0cx2GuoUClykYZZ1CBs(EffectsTextView effectsTextView, LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = effectsTextView.onLongPressListener;
+        if (onLinkPress == null || effectsTextView.pressedLink != linkSpanDrawable) {
             return;
         }
         onLinkPress.run(clickableSpan);
-        this.pressedLink = null;
-        this.links.clear();
+        effectsTextView.pressedLink = null;
+        effectsTextView.links.clear();
     }
 
     @Override

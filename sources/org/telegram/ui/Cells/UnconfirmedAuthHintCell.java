@@ -48,7 +48,7 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
     private final TextView titleTextView;
     private final TextViewWithLoading yesButton;
 
-    public static void lambda$set$1(ArrayList arrayList) {
+    public static void m1517$r8$lambda$BxLL04nNHETLUQ16lksruDUVQc(ArrayList arrayList) {
     }
 
     public UnconfirmedAuthHintCell(Context context) {
@@ -135,24 +135,24 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         this.yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UnconfirmedAuthHintCell.lambda$set$2(baseFragment, z, i, arrayList, view);
+                UnconfirmedAuthHintCell.$r8$lambda$ZEICsbdb9MQnlCJ70APeGLR_RYQ(baseFragment, z, i, arrayList, view);
             }
         });
         this.noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$set$4(i, arrayList, view);
+                UnconfirmedAuthHintCell.$r8$lambda$Wbi6klv8qNLjst2cn7KK7XY8ba8(this.f$0, i, arrayList, view);
             }
         });
     }
 
-    public static void lambda$set$2(final BaseFragment baseFragment, boolean z, int i, ArrayList arrayList, View view) {
+    public static void $r8$lambda$ZEICsbdb9MQnlCJ70APeGLR_RYQ(final BaseFragment baseFragment, boolean z, int i, ArrayList arrayList, View view) {
         String string = LocaleController.getString(R.string.UnconfirmedAuthConfirmedMessage);
         int i2 = Theme.key_undo_cancelColor;
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(string, i2, 0, new Runnable() {
             @Override
             public final void run() {
-                UnconfirmedAuthHintCell.lambda$set$0(baseFragment);
+                UnconfirmedAuthHintCell.$r8$lambda$aR9eE_PuztcHAvmgfUDXWLIRfig(baseFragment);
             }
         });
         SpannableString spannableString = new SpannableString(">");
@@ -166,32 +166,33 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         MessagesController.getInstance(i).getUnconfirmedAuthController().confirm(arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                UnconfirmedAuthHintCell.lambda$set$1((ArrayList) obj);
+                UnconfirmedAuthHintCell.m1517$r8$lambda$BxLL04nNHETLUQ16lksruDUVQc((ArrayList) obj);
             }
         });
         MessagesController.getInstance(i).getUnconfirmedAuthController().cleanup();
     }
 
-    public static void lambda$set$0(BaseFragment baseFragment) {
+    public static void $r8$lambda$aR9eE_PuztcHAvmgfUDXWLIRfig(BaseFragment baseFragment) {
         Bulletin.hideVisible();
         baseFragment.presentFragment(new SessionsActivity(0));
     }
 
-    public void lambda$set$4(final int i, ArrayList arrayList, View view) {
-        this.noButton.setLoading(true);
+    public static void $r8$lambda$Wbi6klv8qNLjst2cn7KK7XY8ba8(final UnconfirmedAuthHintCell unconfirmedAuthHintCell, final int i, ArrayList arrayList, View view) {
+        unconfirmedAuthHintCell.noButton.setLoading(true);
         MessagesController.getInstance(i).getUnconfirmedAuthController().deny(arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$set$3(i, (ArrayList) obj);
+                UnconfirmedAuthHintCell.m1516$r8$lambda$1BUkAiR1j7HMXFvSH7w9Sv39rc(this.f$0, i, (ArrayList) obj);
             }
         });
     }
 
-    public void lambda$set$3(int i, ArrayList arrayList) {
+    public static void m1516$r8$lambda$1BUkAiR1j7HMXFvSH7w9Sv39rc(UnconfirmedAuthHintCell unconfirmedAuthHintCell, int i, ArrayList arrayList) {
+        unconfirmedAuthHintCell.getClass();
         if (LaunchActivity.isActive) {
-            showLoginPreventedSheet(arrayList);
+            unconfirmedAuthHintCell.showLoginPreventedSheet(arrayList);
         }
-        this.noButton.setLoading(false);
+        unconfirmedAuthHintCell.noButton.setLoading(false);
         MessagesController.getInstance(i).getUnconfirmedAuthController().cleanup();
     }
 
@@ -208,7 +209,7 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         this.noButton.setBackground(Theme.createSelectorDrawable(Theme.multAlpha(Theme.getColor(i2), Theme.isCurrentThemeDark() ? 0.3f : 0.15f), 7, AndroidUtilities.dp(8.0f)));
     }
 
-    private static class TextViewWithLoading extends TextView {
+    static class TextViewWithLoading extends TextView {
         private boolean loading;
         private final AnimatedFloat loadingT;
         private CircularProgressDrawable progressDrawable;
@@ -242,15 +243,19 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             float f = this.loadingT.set(this.loading);
             if (f > 0.0f) {
                 if (f < 1.0f) {
-                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - f) * 255.0f), 31);
+                    canvas2 = canvas;
+                    canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - f) * 255.0f), 31);
                     float f2 = 1.0f - (0.2f * f);
-                    canvas.scale(f2, f2, getWidth() / 2.0f, getHeight() / 2.0f);
-                    canvas.translate(0.0f, AndroidUtilities.dp(-12.0f) * f);
-                    super.onDraw(canvas);
-                    canvas.restore();
+                    canvas2.scale(f2, f2, getWidth() / 2.0f, getHeight() / 2.0f);
+                    canvas2.translate(0.0f, AndroidUtilities.dp(-12.0f) * f);
+                    super.onDraw(canvas2);
+                    canvas2.restore();
+                } else {
+                    canvas2 = canvas;
                 }
                 if (this.progressDrawable == null) {
                     CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(2.0f), getCurrentTextColor());
@@ -261,7 +266,7 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
                 float f3 = 1.0f - f;
                 this.progressDrawable.setBounds(getWidth() / 2, (getHeight() / 2) + ((int) (AndroidUtilities.dp(12.0f) * f3)), getWidth() / 2, (getHeight() / 2) + ((int) (f3 * AndroidUtilities.dp(12.0f))));
                 this.progressDrawable.setAlpha((int) (f * 255.0f));
-                this.progressDrawable.draw(canvas);
+                this.progressDrawable.draw(canvas2);
                 invalidate();
                 return;
             }
@@ -344,28 +349,28 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         round.setTimer(5, new Runnable() {
             @Override
             public final void run() {
-                UnconfirmedAuthHintCell.lambda$showLoginPreventedSheet$5(bottomSheetShow);
+                UnconfirmedAuthHintCell.m1519$r8$lambda$sjRWXBHKvFpazvxwtiyIFnxmFs(bottomSheetShow);
             }
         });
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UnconfirmedAuthHintCell.lambda$showLoginPreventedSheet$6(round, bottomSheetShow, view);
+                UnconfirmedAuthHintCell.m1518$r8$lambda$FmPsg7Mq8dur9rHWnNTbvXVYpo(round, bottomSheetShow, view);
             }
         });
     }
 
-    public static void lambda$showLoginPreventedSheet$5(BottomSheet bottomSheet) {
+    public static void m1519$r8$lambda$sjRWXBHKvFpazvxwtiyIFnxmFs(BottomSheet bottomSheet) {
         bottomSheet.setCanDismissWithSwipe(true);
         bottomSheet.setCanDismissWithTouchOutside(true);
     }
 
-    public static void lambda$showLoginPreventedSheet$6(ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, View view) {
+    public static void m1518$r8$lambda$FmPsg7Mq8dur9rHWnNTbvXVYpo(ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, View view) {
         if (buttonWithCounterView.isTimerActive()) {
             AndroidUtilities.shakeViewSpring(buttonWithCounterView, 3.0f);
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
         } else {
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
         }
     }
 

@@ -68,7 +68,7 @@ public class ProximitySheet extends FrameLayout {
         boolean run(boolean z, int i);
     }
 
-    public static boolean lambda$new$0(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$PRHImrHr_Zeyhb6grvjVFDIYOKc(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -159,7 +159,7 @@ public class ProximitySheet extends FrameLayout {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return ProximitySheet.lambda$new$0(view, motionEvent);
+                return ProximitySheet.$r8$lambda$PRHImrHr_Zeyhb6grvjVFDIYOKc(view, motionEvent);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -179,7 +179,7 @@ public class ProximitySheet extends FrameLayout {
         this.kmPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i) {
-                return this.f$0.lambda$new$1(i);
+                return ProximitySheet.m2670$r8$lambda$vaBtl43X7tr72GGTyl6V9hROOs(this.f$0, i);
             }
         });
         this.kmPicker.setMinValue(0);
@@ -189,7 +189,7 @@ public class ProximitySheet extends FrameLayout {
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
             @Override
             public final void onValueChange(NumberPicker numberPicker3, int i, int i2) {
-                this.f$0.lambda$new$2(numberPicker3, i, i2);
+                ProximitySheet.m2671$r8$lambda$wPdvT0rDpRyWg9bXdSZ3Fc7t0(this.f$0, numberPicker3, i, i2);
             }
         };
         this.kmPicker.setOnValueChangedListener(onValueChangeListener);
@@ -201,7 +201,7 @@ public class ProximitySheet extends FrameLayout {
         this.mPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i) {
-                return this.f$0.lambda$new$3(i);
+                return ProximitySheet.$r8$lambda$LqzUzoXN6c_ZgxM8jXFtWxgM2Gg(this.f$0, i);
             }
         });
         this.mPicker.setOnValueChangedListener(onValueChangeListener);
@@ -219,7 +219,7 @@ public class ProximitySheet extends FrameLayout {
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$4(onradiuspickerchange2, view);
+                ProximitySheet.$r8$lambda$aCDHWzHyaYWDzxi4c_wlDoelEjU(this.f$0, onradiuspickerchange2, view);
             }
         });
         this.infoTextView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
@@ -233,20 +233,21 @@ public class ProximitySheet extends FrameLayout {
         this.containerView.addView(this.customView, LayoutHelper.createFrame(-1, -2, 51));
     }
 
-    public String lambda$new$1(int i) {
-        return this.useImperialSystem ? LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i)) : LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i));
+    public static String m2670$r8$lambda$vaBtl43X7tr72GGTyl6V9hROOs(ProximitySheet proximitySheet, int i) {
+        return proximitySheet.useImperialSystem ? LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i)) : LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i));
     }
 
-    public void lambda$new$2(NumberPicker numberPicker, int i, int i2) {
+    public static void m2671$r8$lambda$wPdvT0rDpRyWg9bXdSZ3Fc7t0(ProximitySheet proximitySheet, NumberPicker numberPicker, int i, int i2) {
+        proximitySheet.getClass();
         try {
-            performHapticFeedback(3, 2);
+            proximitySheet.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        updateText(true, true);
+        proximitySheet.updateText(true, true);
     }
 
-    public String lambda$new$3(int i) {
-        if (this.useImperialSystem) {
+    public static String $r8$lambda$LqzUzoXN6c_ZgxM8jXFtWxgM2Gg(ProximitySheet proximitySheet, int i) {
+        if (proximitySheet.useImperialSystem) {
             if (i == 1) {
                 return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
             }
@@ -264,9 +265,9 @@ public class ProximitySheet extends FrameLayout {
         return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i * 100));
     }
 
-    public void lambda$new$4(onRadiusPickerChange onradiuspickerchange, View view) {
-        if (this.buttonTextView.getTag() == null && onradiuspickerchange.run(true, (int) Math.max(1.0f, getValue()))) {
-            dismiss();
+    public static void $r8$lambda$aCDHWzHyaYWDzxi4c_wlDoelEjU(ProximitySheet proximitySheet, onRadiusPickerChange onradiuspickerchange, View view) {
+        if (proximitySheet.buttonTextView.getTag() == null && onradiuspickerchange.run(true, (int) Math.max(1.0f, proximitySheet.getValue()))) {
+            proximitySheet.dismiss();
         }
     }
 
@@ -352,10 +353,10 @@ public class ProximitySheet extends FrameLayout {
                 if (ProximitySheet.this.currentAnimation != null && ProximitySheet.this.currentAnimation.equals(animator)) {
                     ProximitySheet.this.currentAnimation = null;
                 }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
             }
         });
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
         this.currentAnimation.start();
     }
 
@@ -579,7 +580,7 @@ public class ProximitySheet extends FrameLayout {
                         ProximitySheet.this.setLayerType(0, null);
                     }
                 }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
             }
 
             @Override
@@ -591,7 +592,7 @@ public class ProximitySheet extends FrameLayout {
                 ProximitySheet.this.currentSheetAnimationType = 0;
             }
         });
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
         this.currentSheetAnimation.start();
     }
 
@@ -623,7 +624,7 @@ public class ProximitySheet extends FrameLayout {
         }
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.currentSheetAnimation.addListener(new AnonymousClass6());
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
         this.currentSheetAnimation.start();
     }
 
@@ -639,14 +640,15 @@ public class ProximitySheet extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onAnimationEnd$0();
+                        ProximitySheet.AnonymousClass6.m2672$r8$lambda$j8w1UjXHqA9fqvMaTIeip71P_s(this.f$0);
                     }
                 });
             }
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
         }
 
-        public void lambda$onAnimationEnd$0() {
+        public static void m2672$r8$lambda$j8w1UjXHqA9fqvMaTIeip71P_s(AnonymousClass6 anonymousClass6) {
+            anonymousClass6.getClass();
             try {
                 ProximitySheet.this.dismissInternal();
             } catch (Exception e) {

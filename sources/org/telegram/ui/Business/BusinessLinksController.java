@@ -36,20 +36,22 @@ public class BusinessLinksController {
     }
 
     public static BusinessLinksController getInstance(int i) {
-        BusinessLinksController businessLinksController = Instance[i];
-        if (businessLinksController == null) {
-            synchronized (lockObjects[i]) {
-                try {
-                    businessLinksController = Instance[i];
-                    if (businessLinksController == null) {
-                        BusinessLinksController[] businessLinksControllerArr = Instance;
-                        BusinessLinksController businessLinksController2 = new BusinessLinksController(i);
-                        businessLinksControllerArr[i] = businessLinksController2;
-                        businessLinksController = businessLinksController2;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        BusinessLinksController businessLinksController;
+        BusinessLinksController businessLinksController2 = Instance[i];
+        if (businessLinksController2 != null) {
+            return businessLinksController2;
+        }
+        synchronized (lockObjects[i]) {
+            try {
+                businessLinksController = Instance[i];
+                if (businessLinksController == null) {
+                    BusinessLinksController[] businessLinksControllerArr = Instance;
+                    BusinessLinksController businessLinksController3 = new BusinessLinksController(i);
+                    businessLinksControllerArr[i] = businessLinksController3;
+                    businessLinksController = businessLinksController3;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return businessLinksController;
@@ -86,21 +88,22 @@ public class BusinessLinksController {
                 messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$load$1(messagesStorage, z2);
+                        BusinessLinksController.$r8$lambda$j7UYbLhU__0KPLLviNomhzQlpEI(this.f$0, messagesStorage, z2);
                     }
                 });
             } else {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getBusinessChatLinks(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$load$3(tLObject, tL_error);
+                        BusinessLinksController.$r8$lambda$jzTnnLvt4YUVZBErvCxFr9ZrOcM(this.f$0, tLObject, tL_error);
                     }
                 });
             }
         }
     }
 
-    public void lambda$load$1(MessagesStorage messagesStorage, final boolean z) {
+    public static void $r8$lambda$j7UYbLhU__0KPLLviNomhzQlpEI(final BusinessLinksController businessLinksController, MessagesStorage messagesStorage, final boolean z) {
+        businessLinksController.getClass();
         final ArrayList arrayList = new ArrayList();
         final ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
         final ArrayList<TLRPC.Chat> arrayList3 = new ArrayList<>();
@@ -141,7 +144,7 @@ public class BusinessLinksController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$load$0(arrayList, arrayList2, arrayList3, z);
+                        BusinessLinksController.m1368$r8$lambda$MneD0Kbi_yJhWm2SOIgSq0NhOc(this.f$0, arrayList, arrayList2, arrayList3, z);
                     }
                 });
             }
@@ -149,51 +152,54 @@ public class BusinessLinksController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$load$0(arrayList, arrayList2, arrayList3, z);
+                    BusinessLinksController.m1368$r8$lambda$MneD0Kbi_yJhWm2SOIgSq0NhOc(this.f$0, arrayList, arrayList2, arrayList3, z);
                 }
             });
         } catch (Throwable th) {
             if (sQLiteCursorQueryFinalized != null) {
                 sQLiteCursorQueryFinalized.dispose();
+                throw th;
             }
             throw th;
         }
     }
 
-    public void lambda$load$0(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, boolean z) {
-        this.links.clear();
-        this.links.addAll(arrayList);
-        MessagesController.getInstance(this.currentAccount).putUsers(arrayList2, true);
-        MessagesController.getInstance(this.currentAccount).putChats(arrayList3, true);
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
-        this.loading = false;
-        load(false, z);
+    public static void m1368$r8$lambda$MneD0Kbi_yJhWm2SOIgSq0NhOc(BusinessLinksController businessLinksController, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, boolean z) {
+        businessLinksController.links.clear();
+        businessLinksController.links.addAll(arrayList);
+        MessagesController.getInstance(businessLinksController.currentAccount).putUsers(arrayList2, true);
+        MessagesController.getInstance(businessLinksController.currentAccount).putChats(arrayList3, true);
+        NotificationCenter.getInstance(businessLinksController.currentAccount).postNotificationName(NotificationCenter.quickRepliesUpdated, new Object[0]);
+        businessLinksController.loading = false;
+        businessLinksController.load(false, z);
     }
 
-    public void lambda$load$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$jzTnnLvt4YUVZBErvCxFr9ZrOcM(final BusinessLinksController businessLinksController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        businessLinksController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$load$2(tLObject);
+                BusinessLinksController.m1369$r8$lambda$bsgrNQlRxtwTTvrtHqg5HBAg8(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$load$2(TLObject tLObject) {
+    public static void m1369$r8$lambda$bsgrNQlRxtwTTvrtHqg5HBAg8(BusinessLinksController businessLinksController, TLObject tLObject) {
+        businessLinksController.getClass();
         if (tLObject instanceof TL_account.businessChatLinks) {
             TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject;
-            this.links.clear();
-            this.links.addAll(businesschatlinks.links);
-            MessagesController.getInstance(this.currentAccount).putUsers(businesschatlinks.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(businesschatlinks.chats, false);
-            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(businesschatlinks.users, businesschatlinks.chats, true, true);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
-            saveToCache();
+            businessLinksController.links.clear();
+            businessLinksController.links.addAll(businesschatlinks.links);
+            MessagesController.getInstance(businessLinksController.currentAccount).putUsers(businesschatlinks.users, false);
+            MessagesController.getInstance(businessLinksController.currentAccount).putChats(businesschatlinks.chats, false);
+            MessagesStorage.getInstance(businessLinksController.currentAccount).putUsersAndChats(businesschatlinks.users, businesschatlinks.chats, true, true);
+            NotificationCenter.getInstance(businessLinksController.currentAccount).postNotificationName(NotificationCenter.businessLinksUpdated, new Object[0]);
+            businessLinksController.saveToCache();
         } else {
             FileLog.e(new RuntimeException("Unexpected response from server!"));
         }
-        this.loading = false;
-        this.loaded = true;
+        businessLinksController.loading = false;
+        businessLinksController.loaded = true;
     }
 
     public void createEmptyLink() {
@@ -204,27 +210,29 @@ public class BusinessLinksController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(createbusinesschatlink, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$createEmptyLink$5(tLObject, tL_error);
+                BusinessLinksController.$r8$lambda$L4WDLcoljIWLTYyn73mkbOJ2itU(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$createEmptyLink$5(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$L4WDLcoljIWLTYyn73mkbOJ2itU(final BusinessLinksController businessLinksController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        businessLinksController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createEmptyLink$4(tLObject);
+                BusinessLinksController.$r8$lambda$FqMudxMXnXa3TEFaITNov83xXPw(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$createEmptyLink$4(TLObject tLObject) {
+    public static void $r8$lambda$FqMudxMXnXa3TEFaITNov83xXPw(BusinessLinksController businessLinksController, TLObject tLObject) {
+        businessLinksController.getClass();
         if (tLObject instanceof TL_account.TL_businessChatLink) {
             TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject;
-            this.links.add(tL_businessChatLink);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinkCreated, tL_businessChatLink);
-            saveToCache();
+            businessLinksController.links.add(tL_businessChatLink);
+            NotificationCenter.getInstance(businessLinksController.currentAccount).postNotificationName(NotificationCenter.businessLinksUpdated, new Object[0]);
+            NotificationCenter.getInstance(businessLinksController.currentAccount).postNotificationName(NotificationCenter.businessLinkCreated, tL_businessChatLink);
+            businessLinksController.saveToCache();
         }
     }
 
@@ -233,53 +241,56 @@ public class BusinessLinksController {
         if (tL_businessChatLinkFindLink != null) {
             final int iIndexOf = this.links.indexOf(tL_businessChatLinkFindLink);
             this.links.remove(tL_businessChatLinkFindLink);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.businessLinksUpdated, new Object[0]);
             BulletinFactory.of(baseFragment).createUndoBulletin(LocaleController.getString(R.string.BusinessLinkDeleted), true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$deleteLinkUndoable$6(iIndexOf, tL_businessChatLinkFindLink);
+                    BusinessLinksController.m1370$r8$lambda$ohgflHdA_TOBDCphug8nzdbLpo(this.f$0, iIndexOf, tL_businessChatLinkFindLink);
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$deleteLinkUndoable$9(str, tL_businessChatLinkFindLink);
+                    BusinessLinksController.$r8$lambda$72scG8Y468lh5T6A8jSPlozKRfw(this.f$0, str, tL_businessChatLinkFindLink);
                 }
             }).show();
         }
     }
 
-    public void lambda$deleteLinkUndoable$6(int i, TL_account.TL_businessChatLink tL_businessChatLink) {
-        this.links.add(i, tL_businessChatLink);
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+    public static void m1370$r8$lambda$ohgflHdA_TOBDCphug8nzdbLpo(BusinessLinksController businessLinksController, int i, TL_account.TL_businessChatLink tL_businessChatLink) {
+        businessLinksController.links.add(i, tL_businessChatLink);
+        NotificationCenter.getInstance(businessLinksController.currentAccount).postNotificationName(NotificationCenter.businessLinksUpdated, new Object[0]);
     }
 
-    public void lambda$deleteLinkUndoable$9(String str, final TL_account.TL_businessChatLink tL_businessChatLink) {
+    public static void $r8$lambda$72scG8Y468lh5T6A8jSPlozKRfw(final BusinessLinksController businessLinksController, String str, final TL_account.TL_businessChatLink tL_businessChatLink) {
+        businessLinksController.getClass();
         TL_account.deleteBusinessChatLink deletebusinesschatlink = new TL_account.deleteBusinessChatLink();
         deletebusinesschatlink.slug = str;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(deletebusinesschatlink, new RequestDelegate() {
+        ConnectionsManager.getInstance(businessLinksController.currentAccount).sendRequest(deletebusinesschatlink, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$deleteLinkUndoable$8(tL_businessChatLink, tLObject, tL_error);
+                BusinessLinksController.$r8$lambda$NxGLnAimz403yBYkl3nUQGYJ92I(this.f$0, tL_businessChatLink, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$deleteLinkUndoable$8(final TL_account.TL_businessChatLink tL_businessChatLink, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$NxGLnAimz403yBYkl3nUQGYJ92I(final BusinessLinksController businessLinksController, final TL_account.TL_businessChatLink tL_businessChatLink, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        businessLinksController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteLinkUndoable$7(tLObject, tL_businessChatLink);
+                BusinessLinksController.$r8$lambda$lqS1QggZnXLFV2xrEgOiUu4HtG8(this.f$0, tLObject, tL_businessChatLink);
             }
         });
     }
 
-    public void lambda$deleteLinkUndoable$7(TLObject tLObject, TL_account.TL_businessChatLink tL_businessChatLink) {
+    public static void $r8$lambda$lqS1QggZnXLFV2xrEgOiUu4HtG8(BusinessLinksController businessLinksController, TLObject tLObject, TL_account.TL_businessChatLink tL_businessChatLink) {
+        businessLinksController.getClass();
         if (tLObject instanceof TLRPC.TL_boolTrue) {
-            if (this.links.contains(tL_businessChatLink)) {
-                this.links.remove(tL_businessChatLink);
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+            if (businessLinksController.links.contains(tL_businessChatLink)) {
+                businessLinksController.links.remove(tL_businessChatLink);
+                NotificationCenter.getInstance(businessLinksController.currentAccount).postNotificationName(NotificationCenter.businessLinksUpdated, new Object[0]);
             }
-            saveToCache();
+            businessLinksController.saveToCache();
             return;
         }
         FileLog.e(new RuntimeException("Unexpected response from server!"));
@@ -315,12 +326,12 @@ public class BusinessLinksController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                BusinessLinksController.lambda$saveToCache$10(messagesStorage, arrayList);
+                BusinessLinksController.$r8$lambda$gVJNAGu2jWJMqiCxyRgbyRcVKGQ(messagesStorage, arrayList);
             }
         });
     }
 
-    public static void lambda$saveToCache$10(MessagesStorage messagesStorage, ArrayList arrayList) {
+    public static void $r8$lambda$gVJNAGu2jWJMqiCxyRgbyRcVKGQ(MessagesStorage messagesStorage, ArrayList arrayList) {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             SQLiteDatabase database = messagesStorage.getDatabase();
@@ -357,31 +368,33 @@ public class BusinessLinksController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(editbusinesschatlink, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$editLink$12(tL_businessChatLink, runnable, tLObject, tL_error);
+                BusinessLinksController.$r8$lambda$1qVQ9ynJiR5FFqAfjzo0QRgSYtU(this.f$0, tL_businessChatLink, runnable, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$editLink$12(final TL_account.TL_businessChatLink tL_businessChatLink, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$1qVQ9ynJiR5FFqAfjzo0QRgSYtU(final BusinessLinksController businessLinksController, final TL_account.TL_businessChatLink tL_businessChatLink, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        businessLinksController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$editLink$11(tLObject, tL_businessChatLink, runnable);
+                BusinessLinksController.m1367$r8$lambda$8usVRAY8VhEnR5SGzDnV3jydWI(this.f$0, tLObject, tL_businessChatLink, runnable);
             }
         });
     }
 
-    public void lambda$editLink$11(TLObject tLObject, TL_account.TL_businessChatLink tL_businessChatLink, Runnable runnable) {
+    public static void m1367$r8$lambda$8usVRAY8VhEnR5SGzDnV3jydWI(BusinessLinksController businessLinksController, TLObject tLObject, TL_account.TL_businessChatLink tL_businessChatLink, Runnable runnable) {
+        businessLinksController.getClass();
         if (tLObject instanceof TL_account.TL_businessChatLink) {
             TL_account.TL_businessChatLink tL_businessChatLink2 = (TL_account.TL_businessChatLink) tLObject;
-            int iIndexOf = this.links.indexOf(tL_businessChatLink);
+            int iIndexOf = businessLinksController.links.indexOf(tL_businessChatLink);
             if (iIndexOf != -1) {
-                this.links.set(iIndexOf, tL_businessChatLink2);
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                businessLinksController.links.set(iIndexOf, tL_businessChatLink2);
+                NotificationCenter.getInstance(businessLinksController.currentAccount).postNotificationName(NotificationCenter.businessLinksUpdated, new Object[0]);
                 if (runnable != null) {
                     runnable.run();
                 }
-                saveToCache();
+                businessLinksController.saveToCache();
             }
         }
     }

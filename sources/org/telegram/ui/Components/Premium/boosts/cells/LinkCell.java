@@ -44,7 +44,7 @@ public class LinkCell extends FrameLayout {
         this.linkContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                AndroidUtilities.addToClipboard(this.f$0.link);
             }
         });
         ImageView imageView = new ImageView(getContext());
@@ -57,17 +57,9 @@ public class LinkCell extends FrameLayout {
         this.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                AndroidUtilities.addToClipboard(this.f$0.link);
             }
         });
-    }
-
-    public void lambda$new$0(View view) {
-        AndroidUtilities.addToClipboard(this.link);
-    }
-
-    public void lambda$new$1(View view) {
-        AndroidUtilities.addToClipboard(this.link);
     }
 
     public void setSlug(String str) {

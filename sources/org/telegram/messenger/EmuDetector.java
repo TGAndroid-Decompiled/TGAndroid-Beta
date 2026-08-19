@@ -169,7 +169,10 @@ public class EmuDetector {
     }
 
     private boolean checkAdvanced() {
-        return checkTelephony() || checkFiles(GENY_FILES, EmulatorTypes.GENY) || checkFiles(ANDY_FILES, EmulatorTypes.ANDY) || checkFiles(NOX_FILES, EmulatorTypes.NOX) || checkFiles(BLUE_FILES, EmulatorTypes.BLUE) || checkQEmuDrivers() || checkFiles(PIPES, EmulatorTypes.PIPES) || checkIp() || (checkQEmuProps() && checkFiles(X86_FILES, EmulatorTypes.X86));
+        if (checkTelephony() || checkFiles(GENY_FILES, EmulatorTypes.GENY) || checkFiles(ANDY_FILES, EmulatorTypes.ANDY) || checkFiles(NOX_FILES, EmulatorTypes.NOX) || checkFiles(BLUE_FILES, EmulatorTypes.BLUE) || checkQEmuDrivers() || checkFiles(PIPES, EmulatorTypes.PIPES) || checkIp()) {
+            return true;
+        }
+        return checkQEmuProps() && checkFiles(X86_FILES, EmulatorTypes.X86);
     }
 
     private boolean checkPackageName() {
@@ -187,7 +190,10 @@ public class EmuDetector {
     }
 
     private boolean checkTelephony() {
-        return ContextCompat.checkSelfPermission(this.mContext, "android.permission.READ_PHONE_STATE") == 0 && this.isTelephony && isSupportTelePhony() && (checkPhoneNumber() || checkDeviceId() || checkImsi() || checkOperatorNameAndroid());
+        if (ContextCompat.checkSelfPermission(this.mContext, "android.permission.READ_PHONE_STATE") == 0 && this.isTelephony && isSupportTelePhony()) {
+            return checkPhoneNumber() || checkDeviceId() || checkImsi() || checkOperatorNameAndroid();
+        }
+        return false;
     }
 
     private boolean checkPhoneNumber() {

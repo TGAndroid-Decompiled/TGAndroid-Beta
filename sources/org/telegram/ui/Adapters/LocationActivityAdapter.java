@@ -61,7 +61,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     public TLRPC.TL_messageMediaVenue street;
     private Runnable updateRunnable;
 
-    protected void onDirectionClick() {
+    public void onDirectionClick() {
     }
 
     public void setAddressNameOverride(String str) {
@@ -326,23 +326,27 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
         int size = 2;
         int i2 = 6;
         if (i != 6 && i != 5 && i != 4 && !this.biz) {
-            int size2 = 1;
+            int size2 = 0;
             if (this.currentMessageObject != null) {
                 if (!this.currentLiveLocations.isEmpty()) {
                     size2 = this.currentLiveLocations.size() + 3;
-                } else if (this.fromStories) {
-                    size2 = 0;
+                } else if (!this.fromStories) {
+                    size2 = 1;
                 }
                 size = 2 + size2;
             } else if (i == 2) {
                 LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
-                size = this.currentLiveLocations.size() + 2 + ((sharingLocationInfo == null || sharingLocationInfo.period == Integer.MAX_VALUE) ? 0 : 1);
+                int size3 = this.currentLiveLocations.size() + 2;
+                if (sharingLocationInfo != null && sharingLocationInfo.period != Integer.MAX_VALUE) {
+                    size2 = 1;
+                }
+                size = size3 + size2;
             } else if (this.searching || !this.searched || this.places.isEmpty()) {
                 int i3 = this.locationType;
                 if (i3 == 0) {
                     i2 = 5;
                 } else if (i3 == 7) {
-                    i2 = (this.street == null ? 0 : 1) + 5;
+                    i2 = (this.street != null ? 1 : 0) + 5;
                 }
                 boolean z = this.myLocationDenied;
                 size = i2 + ((((z || (!this.searching && this.searched)) ? 0 : 2) + (this.needEmptyView ? 1 : 0)) - (z ? 2 : 0));
@@ -351,10 +355,6 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             }
         }
         return (this.sharedMediaLayout == null || !this.sharedMediaLayoutVisible) ? size : size + 1;
-    }
-
-    public void lambda$onCreateViewHolder$0(View view) {
-        onDirectionClick();
     }
 
     @Override
@@ -407,7 +407,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 locationDirectionCell.setOnButtonClick(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$onCreateViewHolder$0(view);
+                        this.f$0.onDirectionClick();
                     }
                 });
                 headerCell = locationDirectionCell;
@@ -571,12 +571,12 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             if (location != null) {
                 tL_geoPoint.lat = location.getLatitude();
                 tL_messageMediaVenue.geo._long = this.customLocation.getLongitude();
-            } else {
-                Location location2 = this.gpsLocation;
-                if (location2 != null) {
-                    tL_geoPoint.lat = location2.getLatitude();
-                    tL_messageMediaVenue.geo._long = this.gpsLocation.getLongitude();
-                }
+                return tL_messageMediaVenue;
+            }
+            Location location2 = this.gpsLocation;
+            if (location2 != null) {
+                tL_geoPoint.lat = location2.getLatitude();
+                tL_messageMediaVenue.geo._long = this.gpsLocation.getLongitude();
             }
             return tL_messageMediaVenue;
         }

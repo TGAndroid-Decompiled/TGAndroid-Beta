@@ -111,7 +111,7 @@ public class RLottieImageView extends ImageView {
     }
 
     public void setAnimation(TLRPC.Document document, final int i, final int i2) {
-        ImageLocation forPath;
+        ImageLocation forDocument;
         String str;
         ImageReceiver imageReceiver = this.imageReceiver;
         if (imageReceiver != null) {
@@ -134,19 +134,19 @@ public class RLottieImageView extends ImageView {
         imageReceiver2.setAllowLoadingOnAttachedOnly(true);
         String str2 = document.localThumbPath;
         if (str2 != null) {
-            forPath = ImageLocation.getForPath(str2);
             str = i + "_" + i2;
+            forDocument = ImageLocation.getForPath(str2);
         } else {
-            forPath = null;
+            forDocument = null;
             str = null;
         }
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
         if (this.onlyLastFrame) {
-            this.imageReceiver.setImage(ImageLocation.getForDocument(document), i + "_" + i2 + "_lastframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), i + "_" + i2, forPath, str, null, 0L, null, document, 1);
+            this.imageReceiver.setImage(ImageLocation.getForDocument(document), i + "_" + i2 + "_lastframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), i + "_" + i2, forDocument, str, null, 0L, null, document, 1);
         } else {
             if ("video/webm".equals(document.mime_type)) {
                 ImageReceiver imageReceiver3 = this.imageReceiver;
-                ImageLocation forDocument = ImageLocation.getForDocument(document);
+                ImageLocation forDocument2 = ImageLocation.getForDocument(document);
                 StringBuilder sb = new StringBuilder();
                 sb.append(i);
                 sb.append("_");
@@ -154,20 +154,24 @@ public class RLottieImageView extends ImageView {
                 sb.append(this.cached ? "_pcache" : "");
                 sb.append("_");
                 sb.append("g");
-                imageReceiver3.setImage(forDocument, sb.toString(), forPath != null ? forPath : ImageLocation.getForDocument(closestPhotoSizeWithSize, document), str, null, document.size, null, document, 1);
+                String string = sb.toString();
+                if (forDocument == null) {
+                    forDocument = ImageLocation.getForDocument(closestPhotoSizeWithSize, document);
+                }
+                imageReceiver3.setImage(forDocument2, string, forDocument, str, null, document.size, null, document, 1);
             } else {
                 SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
                 if (svgThumb != null) {
                     svgThumb.overrideWidthAndHeight(512, 512);
                 }
                 ImageReceiver imageReceiver4 = this.imageReceiver;
-                ImageLocation forDocument2 = ImageLocation.getForDocument(document);
+                ImageLocation forDocument3 = ImageLocation.getForDocument(document);
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(i);
                 sb2.append("_");
                 sb2.append(i2);
                 sb2.append(this.cached ? "_pcache" : "");
-                imageReceiver4.setImage(forDocument2, sb2.toString(), ImageLocation.getForDocument(closestPhotoSizeWithSize, document), i + "_" + i2, forPath, str, svgThumb, 0L, null, document, 1);
+                imageReceiver4.setImage(forDocument3, sb2.toString(), ImageLocation.getForDocument(closestPhotoSizeWithSize, document), i + "_" + i2, forDocument, str, svgThumb, 0L, null, document, 1);
             }
         }
         this.imageReceiver.setAspectFit(true);

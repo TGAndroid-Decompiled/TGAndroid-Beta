@@ -96,7 +96,7 @@ public class SearchStateDrawable extends Drawable {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setIconState$0(i, z);
+                        SearchStateDrawable.m2721$r8$lambda$vUNpdGSxmtEg60zra0aT28JE(this.f$0, i, z);
                     }
                 };
                 this.delaySetProgress = runnable;
@@ -141,9 +141,9 @@ public class SearchStateDrawable extends Drawable {
         invalidateSelf();
     }
 
-    public void lambda$setIconState$0(int i, boolean z) {
-        this.delaySetProgress = null;
-        setIconState(i, z, true);
+    public static void m2721$r8$lambda$vUNpdGSxmtEg60zra0aT28JE(SearchStateDrawable searchStateDrawable, int i, boolean z) {
+        searchStateDrawable.delaySetProgress = null;
+        searchStateDrawable.setIconState(i, z, true);
     }
 
     public void setColor(int i) {
@@ -154,73 +154,80 @@ public class SearchStateDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
+        Canvas canvas2;
         float f;
         float f2;
         float f3;
         float f4;
         float f5;
+        char c;
         float f6;
         float f7;
-        int i;
         float f8;
+        Canvas canvas3;
         Rect bounds = getBounds();
         this.mn = Math.min(bounds.width(), bounds.height());
         this.cx = bounds.centerX();
         this.cy = bounds.centerY();
-        int i2 = this.alpha;
-        if (i2 < 255) {
-            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, i2, 31);
+        int i = this.alpha;
+        if (i < 255) {
+            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, i, 31);
+            canvas2 = canvas;
+        } else {
+            canvas2 = canvas;
         }
         float f9 = this.progress.set(this.waitingForProgressToEnd ? 0.0f : 1.0f);
-        int i3 = this.toState;
-        int i4 = this.fromState;
-        if (i3 == 0) {
-            f = i4 == 0 ? 1.0f : f9;
+        int i2 = this.toState;
+        int i3 = this.fromState;
+        if (i2 == 0) {
+            f = i3 == 0 ? 1.0f : f9;
         } else {
-            f = i4 == 0 ? 1.0f - f9 : 0.0f;
+            f = i3 == 0 ? 1.0f - f9 : 0.0f;
         }
-        if (i3 == 1) {
+        if (i2 == 1) {
             f2 = this.fromState == 1 ? 1.0f : f9;
         } else {
             f2 = this.fromState == 1 ? 1.0f - f9 : 0.0f;
         }
-        if (i3 == 2) {
+        if (i2 == 2) {
             f3 = this.fromState == 2 ? 1.0f : f9;
         } else {
             f3 = this.fromState == 2 ? 1.0f - f9 : 0.0f;
         }
         if (f > 0.0f) {
-            drawCircle(canvas, AndroidUtilities.lerp(x(0.25f), x(0.444f), f), AndroidUtilities.lerp(y(0.5f), y(0.444f), f), AndroidUtilities.lerp(0.0f, w(0.208f), f));
+            f4 = 1.0f;
+            drawCircle(canvas2, AndroidUtilities.lerp(x(0.25f), x(0.444f), f), AndroidUtilities.lerp(y(0.5f), y(0.444f), f), AndroidUtilities.lerp(0.0f, w(0.208f), f));
+        } else {
+            f4 = 1.0f;
         }
         if (f > 0.0f || f2 > 0.0f) {
-            canvas.save();
-            canvas.rotate(f * 45.0f, this.cx, this.cy);
-            f4 = 0.75f;
-            f5 = 0.5f;
+            canvas2.save();
+            f5 = 45.0f;
+            c = 1;
+            canvas2.rotate(f * 45.0f, this.cx, this.cy);
             f6 = 0.2409f;
-            f7 = f3;
-            i = 2;
-            drawLine(canvas, lerp3(x(0.914f), x(0.7638f), this.fromState == 2 ? x(0.75f) : x(0.2409f), f, f2, f7), y(0.5f), lerp3(x(0.658f), x(0.2409f), this.fromState == 2 ? x(0.75f) : x(0.2409f), f, f2, f7), y(0.5f));
-            canvas.restore();
-            f8 = 0.0f;
+            f7 = 0.75f;
+            f8 = f3;
+            canvas3 = canvas2;
+            drawLine(canvas3, lerp3(x(0.914f), x(0.7638f), this.fromState == 2 ? x(0.75f) : x(0.2409f), f, f2, f3), y(0.5f), lerp3(x(0.658f), x(0.2409f), this.fromState == 2 ? x(0.75f) : x(0.2409f), f, f2, f3), y(0.5f));
+            canvas3.restore();
         } else {
-            f7 = f3;
-            f8 = 0.0f;
-            f5 = 0.5f;
-            f4 = 0.75f;
-            i = 2;
+            f8 = f3;
+            canvas3 = canvas2;
             f6 = 0.2409f;
+            f7 = 0.75f;
+            f5 = 45.0f;
+            c = 1;
         }
-        if (f2 > f8) {
-            float fLerp = this.fromState == i ? AndroidUtilities.lerp(x(f4), x(f6), f2) : x(f6);
-            canvas.save();
-            canvas.rotate(f * 45.0f, this.cx, this.cy);
-            drawLines(canvas, fLerp + (x(0.2452f) * f2), AndroidUtilities.lerp(y(f5), y(0.25f), f2), fLerp, y(f5), fLerp + (x(0.2452f) * f2), AndroidUtilities.lerp(y(f5), y(f4), f2));
+        if (f2 > 0.0f) {
+            float fLerp = this.fromState == 2 ? AndroidUtilities.lerp(x(f7), x(f6), f2) : x(f6);
+            canvas3.save();
+            canvas3.rotate(f * f5, this.cx, this.cy);
+            drawLines(canvas3, (x(0.2452f) * f2) + fLerp, AndroidUtilities.lerp(y(0.5f), y(0.25f), f2), fLerp, y(0.5f), (x(0.2452f) * f2) + fLerp, AndroidUtilities.lerp(y(0.5f), y(f7), f2));
             canvas.restore();
         }
-        float f10 = f7;
-        if (f10 > 0.0f) {
-            if (this.progressStart < 0 && f10 > 0.8f) {
+        if (f8 > 0.0f) {
+            if (this.progressStart < 0 && f8 > 0.8f) {
                 this.progressStart = System.currentTimeMillis();
                 this.wereNotWaitingForProgressToEnd = this.waitingForProgressToEnd;
             }
@@ -228,15 +235,15 @@ public class SearchStateDrawable extends Drawable {
                 CircularProgressDrawable.getSegments((System.currentTimeMillis() - this.progressStart) % 5400.0f, this.progressSegments);
                 float[] fArr = this.progressSegments;
                 float fLerp2 = fArr[0];
-                float fMin = fArr[1];
-                if (getIconState() != i && !this.waitingForProgressToEnd) {
+                float fMin = fArr[c];
+                if (getIconState() != 2 && !this.waitingForProgressToEnd) {
                     float fMax = Math.max(0.0f, (((float) Math.floor((fLerp2 - 180.0f) / 360.0f)) * 360.0f) + 180.0f);
                     fMin = Math.min(fMin, this.progressAngleTo + fMax);
-                    fLerp2 = AndroidUtilities.lerp(fMin, Math.min(fLerp2, fMax + this.progressAngleTo), f10);
+                    fLerp2 = AndroidUtilities.lerp(fMin, Math.min(fLerp2, fMax + this.progressAngleTo), f8);
                 }
-                float f11 = this.progressAngleTo;
-                float f12 = this.progressAngleFrom;
-                boolean zContainsAngle = containsAngle(f11, f12 + fLerp2, f12 + fMin);
+                float f10 = this.progressAngleTo;
+                float f11 = this.progressAngleFrom;
+                boolean zContainsAngle = containsAngle(f10, f11 + fLerp2, f11 + fMin);
                 boolean z = this.waitingForProgressToEnd;
                 if (z && !this.wereNotWaitingForProgressToEnd) {
                     this.wereNotWaitingForProgressToEnd = z;
@@ -248,7 +255,7 @@ public class SearchStateDrawable extends Drawable {
                 if (z && zContainsAngle && !this.progressStartedWithOverTo) {
                     this.waitingForProgressToEnd = false;
                 }
-                this.progressRect.set(x(0.25f), y(0.25f), x(f4), y(f4));
+                this.progressRect.set(x(0.25f), y(0.25f), x(f7), y(f7));
                 canvas.drawArc(this.progressRect, this.progressAngleFrom + fLerp2, fMin - fLerp2, false, this.paint);
                 invalidateSelf();
             }
@@ -256,7 +263,7 @@ public class SearchStateDrawable extends Drawable {
         if (this.alpha < 255) {
             canvas.restore();
         }
-        if (f9 < 1.0f) {
+        if (f9 < f4) {
             invalidateSelf();
         }
     }

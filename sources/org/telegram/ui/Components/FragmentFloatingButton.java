@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
@@ -115,6 +114,7 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
 
     @Override
     public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        int i2 = 0;
         if (i == 0) {
             setAnimatedVisibility(this, f);
             setClickable(f >= 0.99f);
@@ -125,9 +125,11 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
             setAnimatedVisibility(this.imageView, f3);
             ArrayList arrayList = this.additionalContentViews;
             if (arrayList != null) {
-                Iterator it = arrayList.iterator();
-                while (it.hasNext()) {
-                    setAnimatedVisibility((View) it.next(), f3);
+                int size = arrayList.size();
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    setAnimatedVisibility((View) obj, f3);
                 }
             }
         }

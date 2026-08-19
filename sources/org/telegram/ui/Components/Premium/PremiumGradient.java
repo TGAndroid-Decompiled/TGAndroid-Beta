@@ -278,7 +278,7 @@ public class PremiumGradient {
                 float f13 = this.x1 * 100.0f;
                 float f14 = this.y1 * 100.0f;
                 float f15 = this.x2 * 100.0f;
-                float f16 = 100.0f * this.y2;
+                float f16 = this.y2 * 100.0f;
                 int[] iArr6 = this.colors;
                 this.shader = new LinearGradient(f13, f14, f15, f16, new int[]{iArr6[0], iArr6[1], iArr6[2], iArr6[3], iArr6[4]}, new float[]{0.0f, 0.425f, 0.655f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
             }

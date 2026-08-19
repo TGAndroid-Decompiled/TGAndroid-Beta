@@ -13,6 +13,6 @@ public abstract class EventLoop_commonKt {
         if (j >= 9223372036854L) {
             return Long.MAX_VALUE;
         }
-        return 1000000 * j;
+        return j * 1000000;
     }
 }

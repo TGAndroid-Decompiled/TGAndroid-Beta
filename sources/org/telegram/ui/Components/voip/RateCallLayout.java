@@ -47,13 +47,13 @@ public class RateCallLayout extends FrameLayout {
             this.startsViews[i].setAllStarsProvider(new StarContainer.AllStarsProvider() {
                 @Override
                 public final RateCallLayout.StarContainer[] getAllStartsViews() {
-                    return this.f$0.lambda$new$0();
+                    return this.f$0.startsViews;
                 }
             });
             this.startsViews[i].setOnSelectedStar(new StarContainer.OnSelectedStar() {
                 @Override
                 public final void onSelected(float f, float f2, int i2) {
-                    this.f$0.lambda$new$3(context, f, f2, i2);
+                    RateCallLayout.$r8$lambda$VKs0wbyGt6zcAgetbnEmaAEVPzY(this.f$0, context, f, f2, i2);
                 }
             }, i);
             this.starsContainer.addView(this.startsViews[i], LayoutHelper.createFrame(-2, -2.0f, 51, i * 41, 0.0f, 0.0f, 0.0f));
@@ -62,46 +62,40 @@ public class RateCallLayout extends FrameLayout {
         addView(this.starsContainer, LayoutHelper.createFrame(201, 100.0f, 49, 0.0f, 90.0f, 0.0f, 0.0f));
     }
 
-    public StarContainer[] lambda$new$0() {
-        return this.startsViews;
-    }
-
-    public void lambda$new$3(Context context, float f, float f2, int i) {
+    public static void $r8$lambda$VKs0wbyGt6zcAgetbnEmaAEVPzY(final RateCallLayout rateCallLayout, Context context, float f, float f2, int i) {
         if (i >= 4) {
+            rateCallLayout.getClass();
             final RLottieImageView rLottieImageView = new RLottieImageView(context);
             int iDp = AndroidUtilities.dp(133.0f);
             rLottieImageView.setAnimation(R.raw.rate, 133, 133);
             int[] iArr = new int[2];
-            getLocationOnScreen(iArr);
+            rateCallLayout.getLocationOnScreen(iArr);
             int i2 = iArr[0];
             int i3 = iArr[1];
-            addView(rLottieImageView, LayoutHelper.createFrame(133, 133.0f));
+            rateCallLayout.addView(rLottieImageView, LayoutHelper.createFrame(133, 133.0f));
             float f3 = iDp / 2.0f;
             rLottieImageView.setTranslationX((f - i2) - f3);
             rLottieImageView.setTranslationY((f2 - i3) - f3);
             rLottieImageView.setOnAnimationEndListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$2(rLottieImageView);
+                    RateCallLayout.$r8$lambda$oqEl9AXQEfMLyiMz4UXlYgzeBXY(this.f$0, rLottieImageView);
                 }
             });
             rLottieImageView.playAnimation();
         }
-        OnRateSelected onRateSelected = this.onRateSelected;
+        OnRateSelected onRateSelected = rateCallLayout.onRateSelected;
         if (onRateSelected != null) {
             onRateSelected.onRateSelected(i);
         }
     }
 
-    public void lambda$new$1(RLottieImageView rLottieImageView) {
-        removeView(rLottieImageView);
-    }
-
-    public void lambda$new$2(final RLottieImageView rLottieImageView) {
+    public static void $r8$lambda$oqEl9AXQEfMLyiMz4UXlYgzeBXY(final RateCallLayout rateCallLayout, final RLottieImageView rLottieImageView) {
+        rateCallLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1(rLottieImageView);
+                this.f$0.removeView(rLottieImageView);
             }
         });
     }
@@ -111,16 +105,29 @@ public class RateCallLayout extends FrameLayout {
         this.rateCallContainer.setVisibility(0);
         this.starsContainer.setVisibility(0);
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.SCALE_X, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.SCALE_Y, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(24.0f), 0.0f));
+        float f = 0.0f;
+        Property property = View.ALPHA;
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) property, 0.0f, 1.0f);
+        Property property2 = View.SCALE_X;
+        ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) property2, 0.7f, 1.0f);
+        Property property3 = View.SCALE_Y;
+        ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) property3, 0.7f, 1.0f);
+        RateCallContainer rateCallContainer = this.rateCallContainer;
+        float[] fArr = {AndroidUtilities.dp(24.0f), 0.0f};
+        Property property4 = View.TRANSLATION_Y;
+        animatorSet.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, ObjectAnimator.ofFloat(rateCallContainer, (Property<RateCallContainer, Float>) property4, fArr));
         animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
         animatorSet.setDuration(250L);
-        for (int i = 0; i < this.startsViews.length; i++) {
+        int i = 0;
+        while (i < this.startsViews.length) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.startsViews[i].setAlpha(0.0f);
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.SCALE_X, 0.3f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.SCALE_Y, 0.3f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(30.0f), 0.0f));
+            this.startsViews[i].setAlpha(f);
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) property2, 0.3f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) property3, 0.3f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) property4, AndroidUtilities.dp(30.0f), 0.0f));
             animatorSet2.setDuration(250L);
             animatorSet2.setStartDelay(((long) i) * 16);
             animatorSet2.start();
+            i++;
+            f = 0.0f;
         }
         animatorSet.start();
     }

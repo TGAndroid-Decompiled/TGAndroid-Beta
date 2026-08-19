@@ -89,10 +89,6 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
     }
 
-    public static void access$700(CountrySelectBottomSheet countrySelectBottomSheet, View view) {
-        countrySelectBottomSheet.onSpanClick(view);
-    }
-
     public CountrySelectBottomSheet(Context context, final Theme.ResourcesProvider resourcesProvider) {
         super(context, null, true, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -130,7 +126,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                CountrySelectBottomSheet.$r8$lambda$dFfKQZ88tzRd1CGAQF_yCeuElnc(this.f$0, view);
             }
         });
         TextView textView = new TextView(context) {
@@ -156,7 +152,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                CountrySelectBottomSheet.$r8$lambda$znhktN5OCZ0cL8t3qqSkFzS7ELg(this.f$0, view);
             }
         });
         FragmentSearchField fragmentSearchField = new FragmentSearchField(context, resourcesProvider);
@@ -185,7 +181,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         fragmentSpansContainer.setDelegate(new FragmentSpansContainer.Delegate() {
             @Override
             public final void onAfterMeasure(int i3) {
-                this.f$0.lambda$new$3(i3);
+                CountrySelectBottomSheet.$r8$lambda$OAvC1fYSE1u00PJsBojVS4JpmTQ(this.f$0, i3);
             }
         });
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -221,7 +217,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         graySectionCell.setText(LocaleController.getString(R.string.SearchCountriesTitle), LocaleController.getString(R.string.DeselectAll), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$4(view);
+                CountrySelectBottomSheet.$r8$lambda$5rLB7r47U46DkC0pEzvp3cfZH3E(this.f$0, view);
             }
         });
         frameLayout.addView(graySectionCell, LayoutHelper.createFrame(-1, 32, 48));
@@ -291,7 +287,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
                 groupCreateSpan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        CountrySelectBottomSheet.access$700(countrySelectBottomSheet, view2);
+                        countrySelectBottomSheet.onSpanClick(view2);
                     }
                 });
                 CountrySelectBottomSheet.this.spansContainer.addSpan(groupCreateSpan);
@@ -306,48 +302,45 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         }
     }
 
-    public void lambda$new$0(View view) {
-        Listener listener = this.listener;
+    public static void $r8$lambda$dFfKQZ88tzRd1CGAQF_yCeuElnc(CountrySelectBottomSheet countrySelectBottomSheet, View view) {
+        Listener listener = countrySelectBottomSheet.listener;
         if (listener != null) {
-            listener.onCountrySelected(new ArrayList(this.selectedCountries.keySet()));
+            listener.onCountrySelected(new ArrayList(countrySelectBottomSheet.selectedCountries.keySet()));
         }
-        lambda$new$0();
+        countrySelectBottomSheet.dismiss();
     }
 
-    public void lambda$new$1(View view) {
-        Listener listener = this.listener;
+    public static void $r8$lambda$znhktN5OCZ0cL8t3qqSkFzS7ELg(CountrySelectBottomSheet countrySelectBottomSheet, View view) {
+        Listener listener = countrySelectBottomSheet.listener;
         if (listener != null) {
-            listener.onCountrySelected(new ArrayList(this.selectedCountries.keySet()));
+            listener.onCountrySelected(new ArrayList(countrySelectBottomSheet.selectedCountries.keySet()));
         }
-        lambda$new$0();
+        countrySelectBottomSheet.dismiss();
     }
 
-    public void lambda$new$3(int i) {
+    public static void $r8$lambda$OAvC1fYSE1u00PJsBojVS4JpmTQ(final CountrySelectBottomSheet countrySelectBottomSheet, int i) {
+        countrySelectBottomSheet.getClass();
         int iMin = Math.min(i, AndroidUtilities.dp(144.0f));
         if (i > 0) {
             iMin -= AndroidUtilities.dp(8.0f);
         }
-        if (this.selectedCountriesHeight != iMin) {
-            this.selectedCountriesHeight = iMin;
-            this.animatorSelectorContainerHeight.animateTo(iMin);
-            this.spansContainer.postOnAnimation(new Runnable() {
+        if (countrySelectBottomSheet.selectedCountriesHeight != iMin) {
+            countrySelectBottomSheet.selectedCountriesHeight = iMin;
+            countrySelectBottomSheet.animatorSelectorContainerHeight.animateTo(iMin);
+            countrySelectBottomSheet.spansContainer.postOnAnimation(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$2();
+                    this.f$0.adapter.update(true);
                 }
             });
         }
     }
 
-    public void lambda$new$2() {
-        this.adapter.update(true);
-    }
-
-    public void lambda$new$4(View view) {
-        this.selectedCountries.clear();
-        this.spansContainer.removeAllSpans(true);
-        this.adapter.update(true);
-        checkUi_buttonCounter();
+    public static void $r8$lambda$5rLB7r47U46DkC0pEzvp3cfZH3E(CountrySelectBottomSheet countrySelectBottomSheet, View view) {
+        countrySelectBottomSheet.selectedCountries.clear();
+        countrySelectBottomSheet.spansContainer.removeAllSpans(true);
+        countrySelectBottomSheet.adapter.update(true);
+        countrySelectBottomSheet.checkUi_buttonCounter();
     }
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
@@ -371,48 +364,44 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         BoostRepository.loadCountriesForPolls(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$loadCountries$6((Pair) obj);
+                CountrySelectBottomSheet.$r8$lambda$QF9rXduLlQ2yY6qWVzC3x0SWzKY(this.f$0, (Pair) obj);
             }
         });
     }
 
-    public void lambda$loadCountries$6(Pair pair) {
-        this.countriesMap.putAll((Map) pair.first);
-        this.countriesLetters.addAll((Collection) pair.second);
-        j$.util.Map.EL.forEach(this.countriesMap, new BiConsumer() {
+    public static void $r8$lambda$QF9rXduLlQ2yY6qWVzC3x0SWzKY(final CountrySelectBottomSheet countrySelectBottomSheet, Pair pair) {
+        countrySelectBottomSheet.countriesMap.putAll((Map) pair.first);
+        countrySelectBottomSheet.countriesLetters.addAll((Collection) pair.second);
+        j$.util.Map.EL.forEach(countrySelectBottomSheet.countriesMap, new BiConsumer() {
             @Override
             public final void accept(Object obj, Object obj2) {
-                this.f$0.lambda$loadCountries$5((String) obj, (List) obj2);
+                this.f$0.countriesList.addAll((List) obj2);
             }
 
             public BiConsumer andThen(BiConsumer biConsumer) {
                 return BiConsumer$CC.$default$andThen(this, biConsumer);
             }
         });
-        Set set = this.countriesToSelect;
+        Set set = countrySelectBottomSheet.countriesToSelect;
         if (set != null) {
             Iterator it = set.iterator();
             while (it.hasNext()) {
-                TLRPC.TL_help_country tL_help_countryFindCountry = findCountry((String) it.next());
+                TLRPC.TL_help_country tL_help_countryFindCountry = countrySelectBottomSheet.findCountry((String) it.next());
                 if (tL_help_countryFindCountry != null) {
-                    GroupCreateSpan groupCreateSpan = new GroupCreateSpan(getContext(), tL_help_countryFindCountry);
+                    GroupCreateSpan groupCreateSpan = new GroupCreateSpan(countrySelectBottomSheet.getContext(), tL_help_countryFindCountry);
                     groupCreateSpan.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
                             this.f$0.onSpanClick(view);
                         }
                     });
-                    this.spansContainer.addSpan(groupCreateSpan);
-                    this.selectedCountries.put(tL_help_countryFindCountry.iso2, groupCreateSpan);
+                    countrySelectBottomSheet.spansContainer.addSpan(groupCreateSpan);
+                    countrySelectBottomSheet.selectedCountries.put(tL_help_countryFindCountry.iso2, groupCreateSpan);
                 }
             }
         }
-        this.adapter.update(true);
-        checkUi_buttonCounter();
-    }
-
-    public void lambda$loadCountries$5(String str, List list) {
-        this.countriesList.addAll(list);
+        countrySelectBottomSheet.adapter.update(true);
+        countrySelectBottomSheet.checkUi_buttonCounter();
     }
 
     public void prepare(List list) {

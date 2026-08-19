@@ -10,7 +10,6 @@ import android.text.style.URLSpan;
 import android.util.LongSparseArray;
 import android.util.SparseBooleanArray;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -87,18 +86,20 @@ public class MessagePreviewParams {
             if (sparseBooleanArray != null) {
                 this.selectedIds = sparseBooleanArray;
             }
-            int i2 = 0;
-            int i3 = 0;
-            while (i3 < arrayList.size()) {
-                MessageObject messageObject = arrayList.get(i3);
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                MessageObject messageObject = arrayList.get(i2);
                 if (i == 0 && sparseBooleanArray == null) {
                     this.selectedIds.put(messageObject.getId(), true);
                 }
                 MessageObject previewMessage = MessagePreviewParams.this.toPreviewMessage(messageObject, bool, i);
                 if (!this.hasSpoilers) {
-                    Iterator<TLRPC.MessageEntity> it = previewMessage.messageOwner.entities.iterator();
-                    while (it.hasNext()) {
-                        if (it.next() instanceof TLRPC.TL_messageEntitySpoiler) {
+                    ArrayList<TLRPC.MessageEntity> arrayList2 = previewMessage.messageOwner.entities;
+                    int size = arrayList2.size();
+                    int i3 = 0;
+                    while (i3 < size) {
+                        TLRPC.MessageEntity messageEntity = arrayList2.get(i3);
+                        i3++;
+                        if (messageEntity instanceof TLRPC.TL_messageEntitySpoiler) {
                             this.hasSpoilers = true;
                             break;
                         }
@@ -113,7 +114,7 @@ public class MessagePreviewParams {
                     }
                     groupedMessages.messages.add(previewMessage);
                 }
-                this.previewMessages.add(i2, previewMessage);
+                this.previewMessages.add(0, previewMessage);
                 if (messageObject.isPoll()) {
                     TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media;
                     PreviewMediaPoll previewMediaPoll = new PreviewMediaPoll();
@@ -126,8 +127,8 @@ public class MessagePreviewParams {
                     previewMediaPoll.totalVotersCached = i4;
                     previewMessage.messageOwner.media = previewMediaPoll;
                     if (messageObject.canUnvote()) {
-                        int size = tL_messageMediaPoll.results.results.size();
-                        for (int i5 = 0; i5 < size; i5++) {
+                        int size2 = tL_messageMediaPoll.results.results.size();
+                        for (int i5 = 0; i5 < size2; i5++) {
                             TLRPC.PollAnswerVoters pollAnswerVoters = tL_messageMediaPoll.results.results.get(i5);
                             if (pollAnswerVoters.chosen) {
                                 TLRPC.PollAnswerVoters pollAnswerVoters2 = new TLRPC.PollAnswerVoters();
@@ -144,8 +145,6 @@ public class MessagePreviewParams {
                         }
                     }
                 }
-                i3++;
-                i2 = 0;
             }
             for (int i6 = 0; i6 < this.groupedMessagesMap.size(); i6++) {
                 this.groupedMessagesMap.valueAt(i6).calculate();
@@ -208,13 +207,14 @@ public class MessagePreviewParams {
     }
 
     public void updateReply(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, long j, ChatActivity.ReplyQuote replyQuote) {
+        MessageObject messageObject2;
         ChatActivity.ReplyQuote replyQuote2;
         int i;
-        MessageObject messageObject2 = messageObject;
-        if (this.isSecret || messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21 || i == 18 || i == 25 || i == 16) {
+        if (this.isSecret || messageObject == null || (i = messageObject.type) == 10 || i == 11 || i == 22 || i == 21 || i == 18 || i == 25 || i == 16) {
             messageObject2 = null;
             replyQuote2 = null;
         } else {
+            messageObject2 = messageObject;
             replyQuote2 = replyQuote;
         }
         this.hasSecretMessages = messageObject2 != null && (messageObject2.isVoiceOnce() || messageObject2.isRoundOnce() || messageObject2.type == 30);
@@ -222,10 +222,11 @@ public class MessagePreviewParams {
             if (groupedMessages != null) {
                 this.replyMessage = new Messages(null, 1, groupedMessages.messages, j, null);
             } else {
-                if (messageObject2 == null) {
-                    messageObject2 = replyQuote2.message;
+                MessageObject messageObject3 = messageObject2;
+                if (messageObject3 == null) {
+                    messageObject3 = replyQuote2.message;
                 }
-                this.replyMessage = new Messages(this, null, 1, messageObject2, j);
+                this.replyMessage = new Messages(this, null, 1, messageObject3, j);
             }
             if (!this.replyMessage.messages.isEmpty()) {
                 this.quote = replyQuote2;
@@ -401,19 +402,14 @@ public class MessagePreviewParams {
         }
         Uri uri = Uri.parse(str);
         Uri uri2 = Uri.parse(str2);
-        if (uri == uri2) {
-            return true;
-        }
-        if (uri != null && uri2 != null && uri.getHost() != null && uri.getHost().equalsIgnoreCase(uri2.getHost()) && uri.getPort() == uri2.getPort() && normalizePath(uri.getPath()).equals(normalizePath(uri2.getPath()))) {
-            if (uri.getQuery() == null) {
-                if (uri2.getQuery() == null) {
-                    return true;
+        if (uri != uri2) {
+            if (uri != null && uri2 != null && uri.getHost() != null && uri.getHost().equalsIgnoreCase(uri2.getHost()) && uri.getPort() == uri2.getPort() && normalizePath(uri.getPath()).equals(normalizePath(uri2.getPath()))) {
+                if (uri.getQuery() == null) {
                 }
-            } else if (uri.getQuery().equals(uri2.getQuery())) {
-                return true;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     private static String normalizePath(String str) {
@@ -598,13 +594,19 @@ public class MessagePreviewParams {
     }
 
     public boolean isEmpty() {
-        Messages messages;
-        Messages messages2;
         ArrayList<MessageObject> arrayList;
         ArrayList<MessageObject> arrayList2;
         ArrayList<MessageObject> arrayList3;
-        Messages messages3 = this.forwardMessages;
-        return (messages3 == null || (arrayList3 = messages3.messages) == null || arrayList3.isEmpty()) && ((messages = this.replyMessage) == null || (arrayList2 = messages.messages) == null || arrayList2.isEmpty()) && ((messages2 = this.linkMessage) == null || (arrayList = messages2.messages) == null || arrayList.isEmpty());
+        Messages messages = this.forwardMessages;
+        if (messages != null && (arrayList3 = messages.messages) != null && !arrayList3.isEmpty()) {
+            return false;
+        }
+        Messages messages2 = this.replyMessage;
+        if (messages2 != null && (arrayList2 = messages2.messages) != null && !arrayList2.isEmpty()) {
+            return false;
+        }
+        Messages messages3 = this.linkMessage;
+        return messages3 == null || (arrayList = messages3.messages) == null || arrayList.isEmpty();
     }
 
     public void attach(MessagePreviewView messagePreviewView) {

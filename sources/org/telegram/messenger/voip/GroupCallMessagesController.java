@@ -50,7 +50,7 @@ public class GroupCallMessagesController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processUpdate$0(j, groupCallMessage);
+                this.f$0.pushMessageToList(j, groupCallMessage);
             }
         });
     }
@@ -65,25 +65,39 @@ public class GroupCallMessagesController extends BaseController {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processUpdate$3(j, peerDialogId, bArr);
+                GroupCallMessagesController.$r8$lambda$Q4vnQYOfFG5iwiYH_2sYduKwWtY(this.f$0, j, peerDialogId, bArr);
             }
         });
     }
 
-    public void lambda$processUpdate$3(final long j, long j2, byte[] bArr) {
+    public static void $r8$lambda$Q4vnQYOfFG5iwiYH_2sYduKwWtY(final GroupCallMessagesController groupCallMessagesController, final long j, long j2, byte[] bArr) {
+        long j3;
         TLRPC.TL_groupCallMessage tL_groupCallMessageTLJsonDeserialize;
+        groupCallMessagesController.getClass();
         try {
-            byte[] bArrGroupCallMessageDecrypt = groupCallMessageDecrypt(j, j2, bArr);
-            tL_groupCallMessageTLJsonDeserialize = bArrGroupCallMessageDecrypt != null ? TLRPC.TL_groupCallMessage.TLJsonDeserialize(new TLJsonParser(new JSONObject(new String(bArrGroupCallMessageDecrypt)))) : null;
-        } catch (Exception e) {
-            FileLog.e(e);
+            byte[] bArrGroupCallMessageDecrypt = groupCallMessagesController.groupCallMessageDecrypt(j, j2, bArr);
+            j3 = j2;
+            if (bArrGroupCallMessageDecrypt != null) {
+                try {
+                    tL_groupCallMessageTLJsonDeserialize = TLRPC.TL_groupCallMessage.TLJsonDeserialize(new TLJsonParser(new JSONObject(new String(bArrGroupCallMessageDecrypt))));
+                } catch (Exception e) {
+                    e = e;
+                    FileLog.e(e);
+                    tL_groupCallMessageTLJsonDeserialize = null;
+                }
+            } else {
+                tL_groupCallMessageTLJsonDeserialize = null;
+            }
+        } catch (Exception e2) {
+            e = e2;
+            j3 = j2;
         }
         if (tL_groupCallMessageTLJsonDeserialize != null) {
-            final GroupCallMessage groupCallMessage = new GroupCallMessage(this.currentAccount, j2, tL_groupCallMessageTLJsonDeserialize.random_id, tL_groupCallMessageTLJsonDeserialize.message);
+            final GroupCallMessage groupCallMessage = new GroupCallMessage(groupCallMessagesController.currentAccount, j3, tL_groupCallMessageTLJsonDeserialize.random_id, tL_groupCallMessageTLJsonDeserialize.message);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processUpdate$1(j, groupCallMessage);
+                    this.f$0.pushMessageToList(j, groupCallMessage);
                 }
             });
             return;
@@ -92,11 +106,11 @@ public class GroupCallMessagesController extends BaseController {
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         tL_groupCallMessage.message = tL_textWithEntities;
         tL_textWithEntities.text = LocaleController.getString(R.string.GroupCalMessageDecryptionError);
-        final GroupCallMessage groupCallMessage2 = new GroupCallMessage(this.currentAccount, j2, 0L, tL_groupCallMessage.message);
+        final GroupCallMessage groupCallMessage2 = new GroupCallMessage(groupCallMessagesController.currentAccount, j3, 0L, tL_groupCallMessage.message);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processUpdate$2(j, groupCallMessage2);
+                this.f$0.pushMessageToList(j, groupCallMessage2);
             }
         });
     }
@@ -140,29 +154,30 @@ public class GroupCallMessagesController extends BaseController {
         TLObject tLObject2 = tLObject;
         final GroupCallMessage groupCallMessage = new GroupCallMessage(this.currentAccount, j, nextRandomId, tL_textWithEntities);
         groupCallMessage.setIsOut(true);
-        lambda$processUpdate$2(j2, groupCallMessage);
+        pushMessageToList(j2, groupCallMessage);
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                GroupCallMessagesController.lambda$sendCallMessage$4(groupCallMessage);
+                GroupCallMessagesController.m1158$r8$lambda$BoiMzYkL9iUych8eS3PH9Yfbqk(groupCallMessage);
             }
         };
         AndroidUtilities.runOnUIThread(runnable, 1000L);
         getConnectionsManager().sendRequest(tLObject2, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$sendCallMessage$5(runnable, groupCallMessage, tLObject3, tL_error);
+                GroupCallMessagesController.$r8$lambda$VzzBboZA8u_uNA8V1CQXkhktdSw(this.f$0, runnable, groupCallMessage, tLObject3, tL_error);
             }
         });
         return true;
     }
 
-    public static void lambda$sendCallMessage$4(GroupCallMessage groupCallMessage) {
+    public static void m1158$r8$lambda$BoiMzYkL9iUych8eS3PH9Yfbqk(GroupCallMessage groupCallMessage) {
         groupCallMessage.setIsSendDelayed(true);
         groupCallMessage.notifyStateUpdate();
     }
 
-    public void lambda$sendCallMessage$5(Runnable runnable, final GroupCallMessage groupCallMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$VzzBboZA8u_uNA8V1CQXkhktdSw(GroupCallMessagesController groupCallMessagesController, Runnable runnable, final GroupCallMessage groupCallMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
+        groupCallMessagesController.getClass();
         AndroidUtilities.cancelRunOnUIThread(runnable);
         groupCallMessage.setIsSendDelayed(false);
         if (tLObject instanceof TLRPC.Bool) {
@@ -173,7 +188,7 @@ public class GroupCallMessagesController extends BaseController {
             }
         } else if (tLObject instanceof TLRPC.Updates) {
             groupCallMessage.setIsSendConfirmed(true);
-            getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+            groupCallMessagesController.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -208,7 +223,7 @@ public class GroupCallMessagesController extends BaseController {
         }
     }
 
-    public void lambda$processUpdate$2(final long j, GroupCallMessage groupCallMessage) {
+    public void pushMessageToList(final long j, GroupCallMessage groupCallMessage) {
         MessagesList messagesList = this.callMessagesList.get(j);
         if (messagesList == null) {
             messagesList = new MessagesList();
@@ -232,13 +247,13 @@ public class GroupCallMessagesController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$pushMessageToList$6(j);
+                    this.f$0.popMessageFromList(j);
                 }
             }, getAppGlobalConfig().groupCallMessageTtl.get(TimeUnit.MILLISECONDS));
         }
     }
 
-    public void lambda$pushMessageToList$6(long j) {
+    public void popMessageFromList(long j) {
         MessagesList messagesList = this.callMessagesList.get(j);
         if (messagesList == null) {
             return;
@@ -312,20 +327,22 @@ public class GroupCallMessagesController extends BaseController {
     }
 
     public static GroupCallMessagesController getInstance(int i) {
-        GroupCallMessagesController groupCallMessagesController = Instance[i];
-        if (groupCallMessagesController == null) {
-            synchronized (GroupCallMessagesController.class) {
-                try {
-                    groupCallMessagesController = Instance[i];
-                    if (groupCallMessagesController == null) {
-                        GroupCallMessagesController[] groupCallMessagesControllerArr = Instance;
-                        GroupCallMessagesController groupCallMessagesController2 = new GroupCallMessagesController(i);
-                        groupCallMessagesControllerArr[i] = groupCallMessagesController2;
-                        groupCallMessagesController = groupCallMessagesController2;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        GroupCallMessagesController groupCallMessagesController;
+        GroupCallMessagesController groupCallMessagesController2 = Instance[i];
+        if (groupCallMessagesController2 != null) {
+            return groupCallMessagesController2;
+        }
+        synchronized (GroupCallMessagesController.class) {
+            try {
+                groupCallMessagesController = Instance[i];
+                if (groupCallMessagesController == null) {
+                    GroupCallMessagesController[] groupCallMessagesControllerArr = Instance;
+                    GroupCallMessagesController groupCallMessagesController3 = new GroupCallMessagesController(i);
+                    groupCallMessagesControllerArr[i] = groupCallMessagesController3;
+                    groupCallMessagesController = groupCallMessagesController3;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return groupCallMessagesController;

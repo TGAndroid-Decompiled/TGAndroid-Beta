@@ -31,7 +31,7 @@ public class Parser {
         this.postProcessors = builder.postProcessors;
         List list = builder.delimiterProcessors;
         this.delimiterProcessors = list;
-        inlineParserFactory.create(new InlineParserContextImpl(list, Collections.emptyMap()));
+        inlineParserFactory.create(new InlineParserContextImpl(list, Collections.EMPTY_MAP));
     }
 
     public static Builder builder() {

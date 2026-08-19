@@ -125,7 +125,6 @@ public class DocumentObject {
     public static SvgHelper.SvgDrawable getSvgThumb(TLRPC.Document document, int i, float f, float f2, Theme.ResourcesProvider resourcesProvider) {
         int i2;
         int i3;
-        SvgHelper.SvgDrawable drawableByPath = null;
         if (document == null) {
             return null;
         }
@@ -149,16 +148,18 @@ public class DocumentObject {
                     }
                     i5++;
                 }
-                if (i2 != 0 && i3 != 0 && (drawableByPath = SvgHelper.getDrawableByPath(((TLRPC.TL_photoPathSize) photoSize).svgPath, (int) (i2 * f2), (int) (i3 * f2))) != null) {
-                    drawableByPath.setupGradient(i, resourcesProvider, f, false);
+                if (i2 == 0 || i3 == 0) {
+                    break;
                     break;
                 }
-                break;
-                break;
-                break;
+                SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(((TLRPC.TL_photoPathSize) photoSize).svgPath, (int) (i2 * f2), (int) (i3 * f2));
+                if (drawableByPath != null) {
+                    drawableByPath.setupGradient(i, resourcesProvider, f, false);
+                }
+                return drawableByPath;
             }
         }
-        return drawableByPath;
+        return null;
     }
 
     public static SvgHelper.SvgDrawable getSvgThumb(int i, int i2, float f) {

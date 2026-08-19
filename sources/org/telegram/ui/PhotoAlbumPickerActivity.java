@@ -103,11 +103,11 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         void startPhotoSelectActivity();
     }
 
-    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$4MoU0zFzx1jCCJMBFAoZICFPUz4(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static boolean lambda$createView$1(View view, MotionEvent motionEvent) {
+    public static boolean m3658$r8$lambda$YZz6451RuRRNMrM7rWGGWTCB5g(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -186,9 +186,11 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
 
             @Override
             protected void onMeasure(int i3, int i4) {
+                int i5;
                 int size = View.MeasureSpec.getSize(i3);
                 int size2 = View.MeasureSpec.getSize(i4);
                 setMeasuredDimension(size, size2);
+                int i6 = 0;
                 if (AndroidUtilities.dp(20.0f) >= 0) {
                     if (!AndroidUtilities.isInMultiwindow) {
                         size2 -= PhotoAlbumPickerActivity.this.commentTextView.getEmojiPadding();
@@ -199,24 +201,29 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                     PhotoAlbumPickerActivity.this.commentTextView.hideEmojiView();
                     this.ignoreLayout = false;
                 }
+                int i7 = i4;
                 int childCount = getChildCount();
-                for (int i5 = 0; i5 < childCount; i5++) {
-                    View childAt = getChildAt(i5);
-                    if (childAt != null && childAt.getVisibility() != 8) {
-                        if (PhotoAlbumPickerActivity.this.commentTextView != null && PhotoAlbumPickerActivity.this.commentTextView.isPopupView(childAt)) {
-                            if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
-                                if (AndroidUtilities.isTablet()) {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (size2 - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
-                                } else {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - AndroidUtilities.statusBarHeight) + getPaddingTop(), 1073741824));
-                                }
+                while (i6 < childCount) {
+                    View childAt = getChildAt(i6);
+                    if (childAt == null || childAt.getVisibility() == 8) {
+                        i5 = i3;
+                    } else if (PhotoAlbumPickerActivity.this.commentTextView != null && PhotoAlbumPickerActivity.this.commentTextView.isPopupView(childAt)) {
+                        if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
+                            if (AndroidUtilities.isTablet()) {
+                                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (size2 - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
                             } else {
-                                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
+                                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - AndroidUtilities.statusBarHeight) + getPaddingTop(), 1073741824));
                             }
                         } else {
-                            measureChildWithMargins(childAt, i3, 0, i4, 0);
+                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
                         }
+                        i5 = i3;
+                    } else {
+                        i5 = i3;
+                        measureChildWithMargins(childAt, i5, 0, i7, 0);
                     }
+                    i6++;
+                    i3 = i5;
                 }
             }
 
@@ -378,7 +385,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.emptyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return PhotoAlbumPickerActivity.lambda$createView$0(view, motionEvent);
+                return PhotoAlbumPickerActivity.$r8$lambda$4MoU0zFzx1jCCJMBFAoZICFPUz4(view, motionEvent);
             }
         });
         FrameLayout frameLayout = new FrameLayout(context);
@@ -402,7 +409,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.frameLayout2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                return PhotoAlbumPickerActivity.lambda$createView$1(view2, motionEvent);
+                return PhotoAlbumPickerActivity.m3658$r8$lambda$YZz6451RuRRNMrM7rWGGWTCB5g(view2, motionEvent);
             }
         });
         EditTextEmoji editTextEmoji = this.commentTextView;
@@ -456,13 +463,13 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$3(view2);
+                PhotoAlbumPickerActivity.$r8$lambda$OJso9K_Fx3kjM1DZSxQxvvuztk8(this.f$0, view2);
             }
         });
         this.writeButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view2) {
-                return this.f$0.lambda$createView$7(view2);
+                return PhotoAlbumPickerActivity.$r8$lambda$Q0skWOTMdDnP1mGosM40jFXKo0w(this.f$0, view2);
             }
         });
         this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
@@ -506,36 +513,36 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         return this.fragmentView;
     }
 
-    public void lambda$createView$3(View view) {
-        ChatActivity chatActivity = this.chatActivity;
+    public static void $r8$lambda$OJso9K_Fx3kjM1DZSxQxvvuztk8(final PhotoAlbumPickerActivity photoAlbumPickerActivity, View view) {
+        ChatActivity chatActivity = photoAlbumPickerActivity.chatActivity;
         if (chatActivity != null && chatActivity.isInScheduleMode()) {
-            AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+            AlertsCreator.createScheduleDatePickerDialog(photoAlbumPickerActivity.getParentActivity(), photoAlbumPickerActivity.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
-                    this.f$0.lambda$createView$2(z, i, i2);
+                    PhotoAlbumPickerActivity.m3657$r8$lambda$86u_s2wPS37UEewUTgHw3KO4as(this.f$0, z, i, i2);
                 }
             });
         } else {
-            sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
-            finishFragment();
+            photoAlbumPickerActivity.sendSelectedPhotos(photoAlbumPickerActivity.selectedPhotos, photoAlbumPickerActivity.selectedPhotosOrder, true, 0);
+            photoAlbumPickerActivity.finishFragment();
         }
     }
 
-    public void lambda$createView$2(boolean z, int i, int i2) {
-        sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, z, i);
-        finishFragment();
+    public static void m3657$r8$lambda$86u_s2wPS37UEewUTgHw3KO4as(PhotoAlbumPickerActivity photoAlbumPickerActivity, boolean z, int i, int i2) {
+        photoAlbumPickerActivity.sendSelectedPhotos(photoAlbumPickerActivity.selectedPhotos, photoAlbumPickerActivity.selectedPhotosOrder, z, i);
+        photoAlbumPickerActivity.finishFragment();
     }
 
-    public boolean lambda$createView$7(View view) {
-        ChatActivity chatActivity = this.chatActivity;
-        if (chatActivity != null && this.maxSelectedPhotos != 1) {
+    public static boolean $r8$lambda$Q0skWOTMdDnP1mGosM40jFXKo0w(final PhotoAlbumPickerActivity photoAlbumPickerActivity, View view) {
+        ChatActivity chatActivity = photoAlbumPickerActivity.chatActivity;
+        if (chatActivity != null && photoAlbumPickerActivity.maxSelectedPhotos != 1) {
             chatActivity.getCurrentChat();
-            TLRPC.User currentUser = this.chatActivity.getCurrentUser();
-            if (this.sendPopupLayout == null) {
-                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getParentActivity());
-                this.sendPopupLayout = actionBarPopupWindowLayout;
+            TLRPC.User currentUser = photoAlbumPickerActivity.chatActivity.getCurrentUser();
+            if (photoAlbumPickerActivity.sendPopupLayout == null) {
+                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(photoAlbumPickerActivity.getParentActivity());
+                photoAlbumPickerActivity.sendPopupLayout = actionBarPopupWindowLayout;
                 actionBarPopupWindowLayout.setAnimationEnabled(false);
-                this.sendPopupLayout.setOnTouchListener(new View.OnTouchListener() {
+                photoAlbumPickerActivity.sendPopupLayout.setOnTouchListener(new View.OnTouchListener() {
                     private Rect popupRect = new Rect();
 
                     @Override
@@ -551,55 +558,55 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                         return false;
                     }
                 });
-                this.sendPopupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
+                photoAlbumPickerActivity.sendPopupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                     @Override
                     public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                        this.f$0.lambda$createView$4(keyEvent);
+                        PhotoAlbumPickerActivity.$r8$lambda$hT2U3geZEmc6P9LrnUB3e9TXRlo(this.f$0, keyEvent);
                     }
                 });
-                this.sendPopupLayout.setShownFromBottom(false);
-                this.itemCells = new ActionBarMenuSubItem[2];
+                photoAlbumPickerActivity.sendPopupLayout.setShownFromBottom(false);
+                photoAlbumPickerActivity.itemCells = new ActionBarMenuSubItem[2];
                 final int i = 0;
                 while (i < 2) {
-                    if ((i != 0 || this.chatActivity.canScheduleMessage()) && (i != 1 || !UserObject.isUserSelf(currentUser))) {
-                        this.itemCells[i] = new ActionBarMenuSubItem(getParentActivity(), i == 0, i == 1);
+                    if ((i != 0 || photoAlbumPickerActivity.chatActivity.canScheduleMessage()) && (i != 1 || !UserObject.isUserSelf(currentUser))) {
+                        photoAlbumPickerActivity.itemCells[i] = new ActionBarMenuSubItem(photoAlbumPickerActivity.getParentActivity(), i == 0, i == 1);
                         if (i == 0) {
                             if (UserObject.isUserSelf(currentUser)) {
-                                this.itemCells[i].setTextAndIcon(LocaleController.getString(R.string.SetReminder), R.drawable.msg_calendar2);
+                                photoAlbumPickerActivity.itemCells[i].setTextAndIcon(LocaleController.getString(R.string.SetReminder), R.drawable.msg_calendar2);
                             } else {
-                                this.itemCells[i].setTextAndIcon(LocaleController.getString(R.string.ScheduleMessage), R.drawable.msg_calendar2);
+                                photoAlbumPickerActivity.itemCells[i].setTextAndIcon(LocaleController.getString(R.string.ScheduleMessage), R.drawable.msg_calendar2);
                             }
                         } else {
-                            this.itemCells[i].setTextAndIcon(LocaleController.getString(R.string.SendWithoutSound), R.drawable.input_notify_off);
+                            photoAlbumPickerActivity.itemCells[i].setTextAndIcon(LocaleController.getString(R.string.SendWithoutSound), R.drawable.input_notify_off);
                         }
-                        this.itemCells[i].setMinimumWidth(AndroidUtilities.dp(196.0f));
-                        this.sendPopupLayout.addView((View) this.itemCells[i], LayoutHelper.createLinear(-1, 48));
-                        this.itemCells[i].setOnClickListener(new View.OnClickListener() {
+                        photoAlbumPickerActivity.itemCells[i].setMinimumWidth(AndroidUtilities.dp(196.0f));
+                        photoAlbumPickerActivity.sendPopupLayout.addView((View) photoAlbumPickerActivity.itemCells[i], LayoutHelper.createLinear(-1, 48));
+                        photoAlbumPickerActivity.itemCells[i].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
-                                this.f$0.lambda$createView$6(i, view2);
+                                PhotoAlbumPickerActivity.$r8$lambda$QFBjUajk44hAcH__LqDWYxziM0Q(this.f$0, i, view2);
                             }
                         });
                     }
                     i++;
                 }
-                this.sendPopupLayout.setupRadialSelectors(Theme.getColor(Theme.key_dialogButtonSelector));
-                ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.sendPopupLayout, -2, -2);
-                this.sendPopupWindow = actionBarPopupWindow;
+                photoAlbumPickerActivity.sendPopupLayout.setupRadialSelectors(Theme.getColor(Theme.key_dialogButtonSelector));
+                ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(photoAlbumPickerActivity.sendPopupLayout, -2, -2);
+                photoAlbumPickerActivity.sendPopupWindow = actionBarPopupWindow;
                 actionBarPopupWindow.setAnimationEnabled(false);
-                this.sendPopupWindow.setAnimationStyle(R.style.PopupContextAnimation2);
-                this.sendPopupWindow.setOutsideTouchable(true);
-                this.sendPopupWindow.setClippingEnabled(true);
-                this.sendPopupWindow.setInputMethodMode(2);
-                this.sendPopupWindow.setSoftInputMode(0);
-                this.sendPopupWindow.getContentView().setFocusableInTouchMode(true);
+                photoAlbumPickerActivity.sendPopupWindow.setAnimationStyle(R.style.PopupContextAnimation2);
+                photoAlbumPickerActivity.sendPopupWindow.setOutsideTouchable(true);
+                photoAlbumPickerActivity.sendPopupWindow.setClippingEnabled(true);
+                photoAlbumPickerActivity.sendPopupWindow.setInputMethodMode(2);
+                photoAlbumPickerActivity.sendPopupWindow.setSoftInputMode(0);
+                photoAlbumPickerActivity.sendPopupWindow.getContentView().setFocusableInTouchMode(true);
             }
-            this.sendPopupLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
-            this.sendPopupWindow.setFocusable(true);
+            photoAlbumPickerActivity.sendPopupLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
+            photoAlbumPickerActivity.sendPopupWindow.setFocusable(true);
             int[] iArr = new int[2];
             view.getLocationInWindow(iArr);
-            this.sendPopupWindow.showAtLocation(view, 51, ((iArr[0] + view.getMeasuredWidth()) - this.sendPopupLayout.getMeasuredWidth()) + AndroidUtilities.dp(8.0f), (iArr[1] - this.sendPopupLayout.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
-            this.sendPopupWindow.dimBehind();
+            photoAlbumPickerActivity.sendPopupWindow.showAtLocation(view, 51, ((iArr[0] + view.getMeasuredWidth()) - photoAlbumPickerActivity.sendPopupLayout.getMeasuredWidth()) + AndroidUtilities.dp(8.0f), (iArr[1] - photoAlbumPickerActivity.sendPopupLayout.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
+            photoAlbumPickerActivity.sendPopupWindow.dimBehind();
             try {
                 view.performHapticFeedback(3, 2);
             } catch (Exception unused) {
@@ -608,34 +615,35 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         return false;
     }
 
-    public void lambda$createView$4(KeyEvent keyEvent) {
+    public static void $r8$lambda$hT2U3geZEmc6P9LrnUB3e9TXRlo(PhotoAlbumPickerActivity photoAlbumPickerActivity, KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
-            this.sendPopupWindow.dismiss();
+        photoAlbumPickerActivity.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = photoAlbumPickerActivity.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
+            photoAlbumPickerActivity.sendPopupWindow.dismiss();
         }
     }
 
-    public void lambda$createView$6(int i, View view) {
-        ActionBarPopupWindow actionBarPopupWindow = this.sendPopupWindow;
+    public static void $r8$lambda$QFBjUajk44hAcH__LqDWYxziM0Q(final PhotoAlbumPickerActivity photoAlbumPickerActivity, int i, View view) {
+        ActionBarPopupWindow actionBarPopupWindow = photoAlbumPickerActivity.sendPopupWindow;
         if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
-            this.sendPopupWindow.dismiss();
+            photoAlbumPickerActivity.sendPopupWindow.dismiss();
         }
         if (i == 0) {
-            AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+            AlertsCreator.createScheduleDatePickerDialog(photoAlbumPickerActivity.getParentActivity(), photoAlbumPickerActivity.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i2, int i3) {
-                    this.f$0.lambda$createView$5(z, i2, i3);
+                    PhotoAlbumPickerActivity.$r8$lambda$cgHDXjrBz_G_xkgNKn03xLyraUM(this.f$0, z, i2, i3);
                 }
             });
         } else {
-            sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
-            finishFragment();
+            photoAlbumPickerActivity.sendSelectedPhotos(photoAlbumPickerActivity.selectedPhotos, photoAlbumPickerActivity.selectedPhotosOrder, true, 0);
+            photoAlbumPickerActivity.finishFragment();
         }
     }
 
-    public void lambda$createView$5(boolean z, int i, int i2) {
-        sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, z, i);
-        finishFragment();
+    public static void $r8$lambda$cgHDXjrBz_G_xkgNKn03xLyraUM(PhotoAlbumPickerActivity photoAlbumPickerActivity, boolean z, int i, int i2) {
+        photoAlbumPickerActivity.sendSelectedPhotos(photoAlbumPickerActivity.selectedPhotos, photoAlbumPickerActivity.selectedPhotosOrder, z, i);
+        photoAlbumPickerActivity.finishFragment();
     }
 
     @Override
@@ -991,14 +999,10 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             photoPickerAlbumsCell.setDelegate(new PhotoPickerAlbumsCell.PhotoPickerAlbumsCellDelegate() {
                 @Override
                 public final void didSelectAlbum(MediaController.AlbumEntry albumEntry) {
-                    this.f$0.lambda$onCreateViewHolder$0(albumEntry);
+                    PhotoAlbumPickerActivity.this.openPhotoPicker(albumEntry, 0);
                 }
             });
             return new RecyclerListView.Holder(photoPickerAlbumsCell);
-        }
-
-        public void lambda$onCreateViewHolder$0(MediaController.AlbumEntry albumEntry) {
-            PhotoAlbumPickerActivity.this.openPhotoPicker(albumEntry, 0);
         }
 
         @Override

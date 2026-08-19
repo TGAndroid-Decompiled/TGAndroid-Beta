@@ -54,14 +54,14 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         BoostRepository.loadParticipantsCount(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$0((HashMap) obj);
+                BoostAdapter.m2660$r8$lambda$lcFDLfyq3_4twOSLqgXFGbGA5o(this.f$0, (HashMap) obj);
             }
         });
     }
 
-    public void lambda$new$0(HashMap map) {
-        this.chatsParticipantsCount.clear();
-        this.chatsParticipantsCount.putAll(map);
+    public static void m2660$r8$lambda$lcFDLfyq3_4twOSLqgXFGbGA5o(BoostAdapter boostAdapter, HashMap map) {
+        boostAdapter.chatsParticipantsCount.clear();
+        boostAdapter.chatsParticipantsCount.putAll(map);
     }
 
     public void setItems(TLRPC.Chat chat, List list, RecyclerListView recyclerListView, SlideChooseView.Callback callback, ChatCell.ChatDeleteListener chatDeleteListener, EnterPrizeCell.AfterTextChangedListener afterTextChangedListener) {
@@ -218,6 +218,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             this.headerCell = headerCell;
             headerCell.setBoostViaGifsText(this.currentChat);
             this.headerCell.setStars(item.boolValue);
+            return;
         }
         if (itemViewType == 2) {
             ((BoostTypeCell) viewHolder.itemView).setType(item.subType, item.intValue, (TLRPC.User) item.user, item.selectable);

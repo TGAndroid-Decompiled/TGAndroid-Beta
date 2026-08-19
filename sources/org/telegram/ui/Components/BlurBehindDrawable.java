@@ -59,6 +59,7 @@ public class BlurBehindDrawable {
     public void draw(Canvas canvas) {
         float f;
         float f2;
+        Canvas canvas2;
         View view = this.parentView;
         if (view != null) {
             if (view.getMeasuredHeight() == 0 && this.parentView.getMeasuredWidth() == 0) {
@@ -111,29 +112,31 @@ public class BlurBehindDrawable {
             }
             if (f5 == 1.0f) {
                 canvas.save();
+                canvas2 = canvas;
             } else {
-                canvas.saveLayerAlpha(0.0f, 0.0f, this.parentView.getMeasuredWidth(), this.parentView.getMeasuredHeight(), (int) (f5 * 255.0f), 31);
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, this.parentView.getMeasuredWidth(), this.parentView.getMeasuredHeight(), (int) (f5 * 255.0f), 31);
             }
             if (bitmapArr != null) {
                 this.emptyPaint.setAlpha((int) (f5 * 255.0f));
                 if (this.type == 1) {
-                    canvas.translate(0.0f, this.panTranslationY);
+                    canvas2.translate(0.0f, this.panTranslationY);
                 }
-                canvas.save();
-                canvas.scale(this.parentView.getMeasuredWidth() / bitmapArr[1].getWidth(), this.parentView.getMeasuredHeight() / bitmapArr[1].getHeight());
-                canvas.drawBitmap(bitmapArr[1], 0.0f, 0.0f, this.emptyPaint);
-                canvas.restore();
-                canvas.save();
+                canvas2.save();
+                canvas2.scale(this.parentView.getMeasuredWidth() / bitmapArr[1].getWidth(), this.parentView.getMeasuredHeight() / bitmapArr[1].getHeight());
+                canvas2.drawBitmap(bitmapArr[1], 0.0f, 0.0f, this.emptyPaint);
+                canvas2.restore();
+                canvas2.save();
                 if (this.type == 0) {
-                    canvas.translate(0.0f, this.panTranslationY);
+                    canvas2.translate(0.0f, this.panTranslationY);
                 }
-                canvas.scale(this.parentView.getMeasuredWidth() / bitmapArr[0].getWidth(), this.toolbarH / bitmapArr[0].getHeight());
-                canvas.drawBitmap(bitmapArr[0], 0.0f, 0.0f, this.emptyPaint);
-                canvas.restore();
+                canvas2.scale(this.parentView.getMeasuredWidth() / bitmapArr[0].getWidth(), this.toolbarH / bitmapArr[0].getHeight());
+                canvas2.drawBitmap(bitmapArr[0], 0.0f, 0.0f, this.emptyPaint);
+                canvas2.restore();
                 this.wasDraw = true;
-                canvas.drawColor(436207616);
+                canvas2.drawColor(436207616);
             }
-            canvas.restore();
+            canvas2.restore();
             if (!this.show || this.processingNextFrame) {
                 return;
             }
@@ -161,7 +164,7 @@ public class BlurBehindDrawable {
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    this.f$0.lambda$draw$0();
+                                    BlurBehindDrawable.m2045$r8$lambda$XKdQ65xAo6OpibVcjPecf1TO_M(this.f$0);
                                 }
                             });
                             return;
@@ -210,9 +213,9 @@ public class BlurBehindDrawable {
         }
     }
 
-    public void lambda$draw$0() {
-        this.error = true;
-        this.parentView.invalidate();
+    public static void m2045$r8$lambda$XKdQ65xAo6OpibVcjPecf1TO_M(BlurBehindDrawable blurBehindDrawable) {
+        blurBehindDrawable.error = true;
+        blurBehindDrawable.parentView.invalidate();
     }
 
     public void invalidate() {
@@ -224,7 +227,10 @@ public class BlurBehindDrawable {
     }
 
     public boolean isFullyDrawing() {
-        return !this.skipDraw && this.wasDraw && (this.blurAlpha == 1.0f || !this.animateAlpha) && this.show && this.parentView.getAlpha() == 1.0f;
+        if (this.skipDraw || !this.wasDraw) {
+            return false;
+        }
+        return (this.blurAlpha == 1.0f || !this.animateAlpha) && this.show && this.parentView.getAlpha() == 1.0f;
     }
 
     public void checkSizes() {
@@ -371,13 +377,13 @@ public class BlurBehindDrawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$run$0();
+                    BlurBehindDrawable.BlurBackgroundTask.$r8$lambda$6YsYc_bGOZr5O7Zc7yOqOW4CKoE(this.f$0);
                 }
             });
         }
 
-        public void lambda$run$0() {
-            if (this.canceled) {
+        public static void $r8$lambda$6YsYc_bGOZr5O7Zc7yOqOW4CKoE(BlurBackgroundTask blurBackgroundTask) {
+            if (blurBackgroundTask.canceled) {
                 return;
             }
             Bitmap[] bitmapArr = BlurBehindDrawable.this.renderingBitmap;

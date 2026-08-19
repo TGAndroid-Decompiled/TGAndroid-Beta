@@ -131,9 +131,11 @@ public class LinkSpanDrawable {
     }
 
     public boolean draw(Canvas canvas) {
+        long j;
+        boolean z;
         float f;
         int iDp = this.isLite ? 0 : AndroidUtilities.dp(4.0f);
-        boolean z = this.cornerRadius != iDp;
+        boolean z2 = this.cornerRadius != iDp;
         if (this.mSelectionPaint == null) {
             Paint paint = new Paint(1);
             this.mSelectionPaint = paint;
@@ -148,7 +150,7 @@ public class LinkSpanDrawable {
             this.mRipplePaint.setColor(this.color);
             this.mRippleAlpha = Color.alpha(this.color);
         }
-        if (z) {
+        if (z2) {
             this.cornerRadius = iDp;
             if (iDp <= 0) {
                 this.mSelectionPaint.setPathEffect(null);
@@ -189,14 +191,18 @@ public class LinkSpanDrawable {
             this.mStart = jElapsedRealtime;
         }
         float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(Math.min(1.0f, (jElapsedRealtime - this.mStart) / this.mDuration));
-        long j = this.mReleaseStart;
-        float fMin = j < 0 ? 0.0f : Math.min(1.0f, Math.max(0.0f, ((jElapsedRealtime - 75) - j) / 100.0f));
+        long j2 = this.mReleaseStart;
+        float fMin = j2 < 0 ? 0.0f : Math.min(1.0f, Math.max(0.0f, ((jElapsedRealtime - 75) - j2) / 100.0f));
         if (this.mSupportsLongPress) {
-            long j2 = jElapsedRealtime - this.mStart;
-            long j3 = this.mDuration * 2;
-            float fMax = Math.max(0.0f, (j2 - j3) / (this.mLongPressDuration - j3));
-            f = (fMax > 1.0f ? 1.0f - (((jElapsedRealtime - this.mStart) - this.mLongPressDuration) / this.mDuration) : fMax * 0.5f) * (1.0f - fMin);
+            long j3 = jElapsedRealtime - this.mStart;
+            long j4 = this.mDuration * 2;
+            j = jElapsedRealtime;
+            z = true;
+            float fMax = Math.max(0.0f, (j3 - j4) / (this.mLongPressDuration - j4));
+            f = (fMax > 1.0f ? 1.0f - (((j - this.mStart) - this.mLongPressDuration) / this.mDuration) : fMax * 0.5f) * (1.0f - fMin);
         } else {
+            j = jElapsedRealtime;
+            z = true;
             f = 1.0f;
         }
         float f2 = 1.0f - fMin;
@@ -224,7 +230,10 @@ public class LinkSpanDrawable {
                 canvas.drawPath((Path) this.mPathes.get(i5), this.mRipplePaint);
             }
         }
-        return interpolation < 1.0f || this.mReleaseStart >= 0 || (this.mSupportsLongPress && jElapsedRealtime - this.mStart < this.mLongPressDuration + this.mDuration);
+        if (interpolation < 1.0f || this.mReleaseStart >= 0 || (this.mSupportsLongPress && j - this.mStart < this.mLongPressDuration + this.mDuration)) {
+            return z;
+        }
+        return false;
     }
 
     public static class LinkCollector {
@@ -326,14 +335,10 @@ public class LinkSpanDrawable {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$removeLink$0(linkSpanDrawable);
+                        this.f$0.removeLink(linkSpanDrawable, false);
                     }
                 }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 175));
             }
-        }
-
-        public void lambda$removeLink$0(LinkSpanDrawable linkSpanDrawable) {
-            removeLink(linkSpanDrawable, false);
         }
 
         private void removeLink(int i, boolean z) {
@@ -349,7 +354,7 @@ public class LinkSpanDrawable {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$removeLink$1(linkSpanDrawable);
+                            this.f$0.removeLink(linkSpanDrawable, false);
                         }
                     }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 175));
                     return;
@@ -360,10 +365,6 @@ public class LinkSpanDrawable {
             ((LinkSpanDrawable) pair2.first).reset();
             this.mLinksCount = this.mLinks.size();
             invalidate(pair2.second);
-        }
-
-        public void lambda$removeLink$1(LinkSpanDrawable linkSpanDrawable) {
-            removeLink(linkSpanDrawable, false);
         }
 
         public void removeLoading(LoadingDrawable loadingDrawable, boolean z) {
@@ -392,7 +393,7 @@ public class LinkSpanDrawable {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$removeLoadingAt$2(loadingDrawable);
+                            this.f$0.removeLoading(loadingDrawable, false);
                         }
                     }, loadingDrawable.timeToDisappear());
                     return;
@@ -405,10 +406,6 @@ public class LinkSpanDrawable {
             loadingDrawable.resetDisappear();
             this.mLoadingCount = this.mLoading.size();
             invalidate(pair.second);
-        }
-
-        public void lambda$removeLoadingAt$2(LoadingDrawable loadingDrawable) {
-            removeLoading(loadingDrawable, false);
         }
 
         public void clear() {
@@ -701,7 +698,7 @@ public class LinkSpanDrawable {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onTouchEvent$0(linkSpanDrawable, clickableSpanHit);
+                            LinkSpanDrawable.LinksTextView.m2425$r8$lambda$1fTHCSw5YqsMzd3_Yak0CsZC3k(this.f$0, linkSpanDrawable, clickableSpanHit);
                         }
                     }, ViewConfiguration.getLongPressTimeout());
                     return true;
@@ -729,18 +726,19 @@ public class LinkSpanDrawable {
             return this.pressedLink != null || super.onTouchEvent(motionEvent);
         }
 
-        public void lambda$onTouchEvent$0(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
-            OnLinkPress onLinkPress = this.onLongPressListener;
-            if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
+        public static void m2425$r8$lambda$1fTHCSw5YqsMzd3_Yak0CsZC3k(LinksTextView linksTextView, LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+            OnLinkPress onLinkPress = linksTextView.onLongPressListener;
+            if (onLinkPress == null || linksTextView.pressedLink != linkSpanDrawable) {
                 return;
             }
             onLinkPress.run(clickableSpan);
-            this.pressedLink = null;
-            this.links.clear();
+            linksTextView.pressedLink = null;
+            linksTextView.links.clear();
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             boolean z;
             boolean z2 = false;
             if (!this.isCustomLinkCollector) {
@@ -767,6 +765,7 @@ public class LinkSpanDrawable {
                         z = true;
                     } catch (Exception e) {
                         e = e;
+                        canvas2 = canvas;
                         z2 = true;
                         if (!this.loggedError) {
                             FileLog.e((Throwable) e, true);
@@ -774,32 +773,53 @@ public class LinkSpanDrawable {
                         this.loggedError = true;
                         z = z2;
                         if (z) {
-                            canvas.restore();
+                            canvas2.restore();
                         }
                     }
                 }
                 try {
-                    this.stack = AnimatedEmojiSpan.update(emojiCacheType(), this, this.stack, getLayout());
-                    if (this.emojiColorIsLink && (this.emojiColorFilter == null || this.emojiColorFilterColor != getPaint().linkColor)) {
-                        int i = getPaint().linkColor;
-                        this.emojiColorFilterColor = i;
-                        this.emojiColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
+                    int iEmojiCacheType = emojiCacheType();
+                    AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.stack;
+                    try {
+                        Layout[] layoutArr = new Layout[1];
+                        try {
+                            layoutArr[0] = getLayout();
+                            this.stack = AnimatedEmojiSpan.update(iEmojiCacheType, this, emojiGroupedSpans, layoutArr);
+                            if (this.emojiColorIsLink && (this.emojiColorFilter == null || this.emojiColorFilterColor != getPaint().linkColor)) {
+                                int i = getPaint().linkColor;
+                                this.emojiColorFilterColor = i;
+                                this.emojiColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
+                            }
+                            canvas2 = canvas;
+                            try {
+                                AnimatedEmojiSpan.drawAnimatedEmojis(canvas2, layout, this.stack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.emojiColorFilter);
+                            } catch (Exception e2) {
+                                e = e2;
+                                z2 = z;
+                                if (!this.loggedError) {
+                                    FileLog.e((Throwable) e, true);
+                                }
+                                this.loggedError = true;
+                                z = z2;
+                            }
+                        } catch (Exception e3) {
+                            canvas2 = canvas;
+                            e = e3;
+                        }
+                    } catch (Exception e4) {
+                        e = e4;
+                        canvas2 = canvas;
                     }
-                    AnimatedEmojiSpan.drawAnimatedEmojis(canvas, layout, this.stack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.emojiColorFilter);
-                } catch (Exception e2) {
-                    e = e2;
-                    z2 = z;
-                    if (!this.loggedError) {
-                        FileLog.e((Throwable) e, true);
-                    }
-                    this.loggedError = true;
-                    z = z2;
+                } catch (Exception e5) {
+                    e = e5;
+                    canvas2 = canvas;
                 }
-            } catch (Exception e3) {
-                e = e3;
+            } catch (Exception e6) {
+                e = e6;
+                canvas2 = canvas;
             }
             if (z) {
-                canvas.restore();
+                canvas2.restore();
             }
         }
 
@@ -994,7 +1014,7 @@ public class LinkSpanDrawable {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onTouchEvent$0(linkSpanDrawable);
+                            LinkSpanDrawable.ClickableSmallTextView.m2422$r8$lambda$OqYR9hwV6iW96fIUjMgxbb1w8w(this.f$0, linkSpanDrawable);
                         }
                     }, ViewConfiguration.getLongPressTimeout());
                     return true;
@@ -1016,11 +1036,11 @@ public class LinkSpanDrawable {
             return this.pressedLink != null || super.onTouchEvent(motionEvent);
         }
 
-        public void lambda$onTouchEvent$0(LinkSpanDrawable linkSpanDrawable) {
-            if (this.pressedLink == linkSpanDrawable) {
-                performLongClick();
-                this.pressedLink = null;
-                this.links.clear();
+        public static void m2422$r8$lambda$OqYR9hwV6iW96fIUjMgxbb1w8w(ClickableSmallTextView clickableSmallTextView, LinkSpanDrawable linkSpanDrawable) {
+            if (clickableSmallTextView.pressedLink == linkSpanDrawable) {
+                clickableSmallTextView.performLongClick();
+                clickableSmallTextView.pressedLink = null;
+                clickableSmallTextView.links.clear();
             }
         }
     }

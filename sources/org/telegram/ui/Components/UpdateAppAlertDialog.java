@@ -183,7 +183,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$new$0(downloadedUpdateFile, view2);
+                    UpdateAppAlertDialog.$r8$lambda$nXsl3NE98bpqUZNx9bOKzQYTORw(this.f$0, downloadedUpdateFile, view2);
                 }
             });
         } else {
@@ -191,7 +191,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$new$1(view2);
+                    UpdateAppAlertDialog.$r8$lambda$KYynxmihc1M2KRz7xcx74z0AjEU(this.f$0, view2);
                 }
             });
         }
@@ -201,28 +201,29 @@ public class UpdateAppAlertDialog extends BottomSheet {
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$2(view2);
+                this.f$0.dismiss();
             }
         });
         frameLayout.addView(buttonWithCounterView2, LayoutHelper.createFrame(-1, 48.0f, 87, 20.0f, 4.0f, 20.0f, 8.0f));
     }
 
-    public void lambda$new$0(File file, View view) {
-        Activity activityFindActivity;
-        if (file == null || (activityFindActivity = AndroidUtilities.findActivity(getContext())) == null) {
+    public static void $r8$lambda$nXsl3NE98bpqUZNx9bOKzQYTORw(UpdateAppAlertDialog updateAppAlertDialog, File file, View view) {
+        if (file == null) {
+            updateAppAlertDialog.getClass();
+            return;
+        }
+        Activity activityFindActivity = AndroidUtilities.findActivity(updateAppAlertDialog.getContext());
+        if (activityFindActivity == null) {
             return;
         }
         AndroidUtilities.openForView(file, "Telegram.apk", "application/vnd.android.package-archive", activityFindActivity, null, false);
-        dismiss();
+        updateAppAlertDialog.dismiss();
     }
 
-    public void lambda$new$1(View view) {
+    public static void $r8$lambda$KYynxmihc1M2KRz7xcx74z0AjEU(UpdateAppAlertDialog updateAppAlertDialog, View view) {
+        updateAppAlertDialog.getClass();
         ApplicationLoader.applicationLoaderInstance.downloadUpdate();
-        dismiss();
-    }
-
-    public void lambda$new$2(View view) {
-        dismiss();
+        updateAppAlertDialog.dismiss();
     }
 
     private void runShadowAnimation(int i, final boolean z) {

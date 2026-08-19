@@ -57,7 +57,7 @@ public final class LockFreeTaskQueueCore {
             if ((1152921504606846976L & j) != 0) {
                 return false;
             }
-        } while (!atomicLongFieldUpdater.compareAndSet(this, j, j | 2305843009213693952L));
+        } while (!atomicLongFieldUpdater.compareAndSet(this, j, 2305843009213693952L | j));
         return true;
     }
 
@@ -164,7 +164,7 @@ public final class LockFreeTaskQueueCore {
             if ((j & 1152921504606846976L) != 0) {
                 return j;
             }
-            j2 = j | 1152921504606846976L;
+            j2 = 1152921504606846976L | j;
         } while (!atomicLongFieldUpdater.compareAndSet(this, j, j2));
         return j2;
     }

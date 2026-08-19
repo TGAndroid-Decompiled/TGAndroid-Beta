@@ -201,14 +201,14 @@ public class LinkReferenceDefinitionParser {
         if (this.titleDelimiter != 0) {
             this.state = State.TITLE;
             this.title = new StringBuilder();
-            iSkipSpaceTab++;
-            if (iSkipSpaceTab == charSequence.length()) {
+            int i2 = iSkipSpaceTab + 1;
+            if (i2 == charSequence.length()) {
                 this.title.append('\n');
             }
-        } else {
-            finishReference();
-            this.state = State.START_DEFINITION;
+            return i2;
         }
+        finishReference();
+        this.state = State.START_DEFINITION;
         return iSkipSpaceTab;
     }
 

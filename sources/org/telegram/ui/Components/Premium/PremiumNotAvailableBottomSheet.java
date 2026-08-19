@@ -47,7 +47,7 @@ public class PremiumNotAvailableBottomSheet extends BottomSheet {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PremiumNotAvailableBottomSheet.lambda$new$0(view);
+                PremiumNotAvailableBottomSheet.$r8$lambda$txcDGP6h515KnUS4SmifJGMaQKM(view);
             }
         });
         FrameLayout frameLayout = new FrameLayout(parentActivity);
@@ -61,7 +61,7 @@ public class PremiumNotAvailableBottomSheet extends BottomSheet {
         setCustomView(scrollView);
     }
 
-    public static void lambda$new$0(View view) {
+    public static void $r8$lambda$txcDGP6h515KnUS4SmifJGMaQKM(View view) {
         try {
             view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=org.telegram.messenger")));
         } catch (ActivityNotFoundException e) {

@@ -152,22 +152,24 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             usersSelectActivity.setDelegate(new UsersSelectActivity.FilterUsersActivityDelegate() {
                 @Override
                 public final void didSelectChats(ArrayList arrayList, int i) {
-                    this.f$0.lambda$run$1(arrayList, i);
+                    AutoDeleteMessagesActivity.AnonymousClass2.$r8$lambda$JYU_t0RW1tD3T6UIrI6n8VEZGgw(this.f$0, arrayList, i);
                 }
             });
             AutoDeleteMessagesActivity.this.presentFragment(usersSelectActivity);
         }
 
-        public void lambda$run$1(final ArrayList arrayList, int i) {
+        public static void $r8$lambda$JYU_t0RW1tD3T6UIrI6n8VEZGgw(final AnonymousClass2 anonymousClass2, final ArrayList arrayList, int i) {
+            anonymousClass2.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$run$0(arrayList);
+                    AutoDeleteMessagesActivity.AnonymousClass2.m1345$r8$lambda$s7SvMV_DYjxhRNn1KfmL1wxAQ(this.f$0, arrayList);
                 }
             }, 100L);
         }
 
-        public void lambda$run$0(ArrayList arrayList) {
+        public static void m1345$r8$lambda$s7SvMV_DYjxhRNn1KfmL1wxAQ(AnonymousClass2 anonymousClass2, ArrayList arrayList) {
+            anonymousClass2.getClass();
             if (arrayList.isEmpty()) {
                 return;
             }
@@ -188,7 +190,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             ((RadioCellInternal) this.arrayList.get(i)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateItems$2(view);
+                    AutoDeleteMessagesActivity.$r8$lambda$3TA4oINobzzVm0IF7AwpD1XFii4(this.f$0, view);
                 }
             });
         }
@@ -203,24 +205,20 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$didSelectDate$0(i);
+                    AutoDeleteMessagesActivity.this.selectDate(i, true);
                 }
             }, 50L);
         }
-
-        public void lambda$didSelectDate$0(int i) {
-            AutoDeleteMessagesActivity.this.selectDate(i, true);
-        }
     }
 
-    public void lambda$updateItems$2(final View view) {
-        if (view == this.customTimeButton) {
-            AlertsCreator.createAutoDeleteDatePickerDialog(getContext(), 1, null, new AnonymousClass3());
+    public static void $r8$lambda$3TA4oINobzzVm0IF7AwpD1XFii4(final AutoDeleteMessagesActivity autoDeleteMessagesActivity, final View view) {
+        if (view == autoDeleteMessagesActivity.customTimeButton) {
+            AlertsCreator.createAutoDeleteDatePickerDialog(autoDeleteMessagesActivity.getContext(), 1, null, autoDeleteMessagesActivity.new AnonymousClass3());
             return;
         }
         int i = ((RadioCellInternal) view).time;
-        if (getSelectedTime() == 0 && i > 0) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        if (autoDeleteMessagesActivity.getSelectedTime() == 0 && i > 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(autoDeleteMessagesActivity.getContext());
             builder.setTitle(LocaleController.getString(R.string.MessageLifetime));
             builder.setMessage(LocaleController.formatString("AutoDeleteConfirmMessage", R.string.AutoDeleteConfirmMessage, LocaleController.formatTTLString(i * 60)));
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -232,18 +230,19 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             builder.setPositiveButton(LocaleController.getString(R.string.Enable), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    this.f$0.lambda$updateItems$1(view, alertDialog, i2);
+                    AutoDeleteMessagesActivity.$r8$lambda$cHFMImCrx51TXzpC0eWB8V7bdI0(this.f$0, view, alertDialog, i2);
                 }
             });
             builder.show();
             return;
         }
-        selectRadioButton(view, true);
+        autoDeleteMessagesActivity.selectRadioButton(view, true);
     }
 
-    public void lambda$updateItems$1(View view, AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$cHFMImCrx51TXzpC0eWB8V7bdI0(AutoDeleteMessagesActivity autoDeleteMessagesActivity, View view, AlertDialog alertDialog, int i) {
+        autoDeleteMessagesActivity.getClass();
         alertDialog.dismiss();
-        selectRadioButton(view, true);
+        autoDeleteMessagesActivity.selectRadioButton(view, true);
     }
 
     public int getSelectedTime() {
@@ -312,7 +311,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         BulletinFactory.of(this).createSimpleBulletin(R.raw.fire_on, AndroidUtilities.replaceTags(LocaleController.formatString("AutoDeleteGlobalTimerEnabled", R.string.AutoDeleteGlobalTimerEnabled, LocaleController.formatTTLString(i * 60)))).show();
     }
 
-    private class RadioCellInternal extends RadioCell {
+    class RadioCellInternal extends RadioCell {
         boolean custom;
         int time;
 
@@ -336,7 +335,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
                         }
                     });
                     getUserConfig().setGlobalTtl(this.startFromTtl);
-                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateGlobalAutoDeleteTimer, new Object[0]);
+                    NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didUpdateGlobalAutoDeleteTimer, new Object[0]);
                     return;
                 }
                 return;

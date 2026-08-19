@@ -69,18 +69,18 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         getMessagesController().fetchJoinedCommunities(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$onFragmentCreate$0((ArrayList) obj);
+                CommunityCreateActivity.$r8$lambda$CXHzNj6tVaV5F66iLVvIw4Cf40A(this.f$0, (ArrayList) obj);
             }
         }, this.classGuid);
         this.observersGroup = getNotificationCenter().createObserversGroup(this).add(NotificationCenter.chatInfoDidLoad);
         return super.onFragmentCreate();
     }
 
-    public void lambda$onFragmentCreate$0(ArrayList arrayList) {
-        ArrayList arrayList2 = this.joinedCommunities;
+    public static void $r8$lambda$CXHzNj6tVaV5F66iLVvIw4Cf40A(CommunityCreateActivity communityCreateActivity, ArrayList arrayList) {
+        ArrayList arrayList2 = communityCreateActivity.joinedCommunities;
         boolean z = arrayList2 == null || arrayList2.isEmpty();
-        this.joinedCommunities = arrayList;
-        UniversalRecyclerView universalRecyclerView = this.listView;
+        communityCreateActivity.joinedCommunities = arrayList;
+        UniversalRecyclerView universalRecyclerView = communityCreateActivity.listView;
         if (universalRecyclerView != null) {
             universalRecyclerView.adapter.update(z);
         }
@@ -170,13 +170,19 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
             return;
         }
         arrayList.add(UItem.asHeader(3, LocaleController.getString(R.string.CommunityAddToExistingCommunity)));
-        for (TLRPC.Chat chat : this.joinedCommunities) {
+        ArrayList arrayList3 = this.joinedCommunities;
+        int size = arrayList3.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList3.get(i);
+            i++;
+            TLRPC.Chat chat = (TLRPC.Chat) obj;
             TLRPC.ChatFull chatFull = getMessagesController().getChatFull(chat.id);
             UItem uItemAsProfileCell = UItem.asProfileCell(chat);
             uItemAsProfileCell.id = SessionDetails$$ExternalSyntheticBackport0.m(chat.id);
             if (chatFull != null) {
-                ArrayList<TL_communities.CommunityPeer> arrayList3 = chatFull.linked_peers;
-                string = LocaleController.formatPluralString("Chats", arrayList3 != null ? arrayList3.size() : 0, new Object[0]);
+                ArrayList<TL_communities.CommunityPeer> arrayList4 = chatFull.linked_peers;
+                string = LocaleController.formatPluralString("Chats", arrayList4 != null ? arrayList4.size() : 0, new Object[0]);
             } else {
                 string = LocaleController.getString(R.string.Loading);
             }
@@ -186,43 +192,49 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
     }
 
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
+        CommunityCreateActivity communityCreateActivity;
         if (uItem.id == 1) {
-            AlertsCreator.createSimpleTextInputAlert(getContext(), this, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), this.resourceProvider, new MessagesStorage.StringCallback() {
+            communityCreateActivity = this;
+            AlertsCreator.createSimpleTextInputAlert(getContext(), communityCreateActivity, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), this.resourceProvider, new MessagesStorage.StringCallback() {
                 @Override
                 public final void run(String str) {
-                    this.f$0.lambda$onClick$2(str);
+                    CommunityCreateActivity.$r8$lambda$MojKJ3avD5jL8738eah4iO27dbc(this.f$0, str);
                 }
             });
+        } else {
+            communityCreateActivity = this;
         }
         Object obj = uItem.object;
         if (obj instanceof TLRPC.Chat) {
             final TLRPC.Chat chat = (TLRPC.Chat) obj;
-            getMessagesController().getChat(Long.valueOf(-this.dialogId));
-            showDialog(new CommunityAddOptionsSheet(getContext(), chat, this.dialogId, new Utilities.Callback() {
+            getMessagesController().getChat(Long.valueOf(-communityCreateActivity.dialogId));
+            showDialog(new CommunityAddOptionsSheet(getContext(), chat, communityCreateActivity.dialogId, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj2) {
-                    this.f$0.lambda$onClick$3(chat, (Boolean) obj2);
+                    CommunityCreateActivity.$r8$lambda$1rCwOsGBx2nerhnOHbJAR90r2IA(this.f$0, chat, (Boolean) obj2);
                 }
             }));
         }
     }
 
-    public void lambda$onClick$2(final String str) {
-        getMessagesController().getChat(Long.valueOf(-this.dialogId));
-        showDialog(new CommunityAddOptionsSheet(getContext(), null, this.dialogId, new Utilities.Callback() {
+    public static void $r8$lambda$MojKJ3avD5jL8738eah4iO27dbc(final CommunityCreateActivity communityCreateActivity, final String str) {
+        communityCreateActivity.getMessagesController().getChat(Long.valueOf(-communityCreateActivity.dialogId));
+        communityCreateActivity.showDialog(new CommunityAddOptionsSheet(communityCreateActivity.getContext(), null, communityCreateActivity.dialogId, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$onClick$1(str, (Boolean) obj);
+                CommunityCreateActivity.m4857$r8$lambda$8AKimRmoDNGY8VgGR5Np72m8l4(this.f$0, str, (Boolean) obj);
             }
         }));
     }
 
-    public void lambda$onClick$1(String str, Boolean bool) {
-        createNewCommunity(str, bool.booleanValue());
+    public static void m4857$r8$lambda$8AKimRmoDNGY8VgGR5Np72m8l4(CommunityCreateActivity communityCreateActivity, String str, Boolean bool) {
+        communityCreateActivity.getClass();
+        communityCreateActivity.createNewCommunity(str, bool.booleanValue());
     }
 
-    public void lambda$onClick$3(TLRPC.Chat chat, Boolean bool) {
-        linkToCommunity(chat.id, bool.booleanValue());
+    public static void $r8$lambda$1rCwOsGBx2nerhnOHbJAR90r2IA(CommunityCreateActivity communityCreateActivity, TLRPC.Chat chat, Boolean bool) {
+        communityCreateActivity.getClass();
+        communityCreateActivity.linkToCommunity(chat.id, bool.booleanValue());
     }
 
     private void createNewCommunity(final String str, final boolean z) {
@@ -232,7 +244,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
             getMessagesController().convertToMegaGroup(getParentActivity(), -this.dialogId, this, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j) {
-                    this.f$0.lambda$createNewCommunity$4(alertDialog, str, z, j);
+                    CommunityCreateActivity.m4858$r8$lambda$SxllwebjK9no8nlH4Gm7rpsAi8(this.f$0, alertDialog, str, z, j);
                 }
             });
             return;
@@ -240,26 +252,28 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         getMessagesController().createCommunity(str, this.dialogId, z, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$createNewCommunity$5((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                CommunityCreateActivity.m4860$r8$lambda$v923dn0izPmJr450BaI3jYSkkk(this.f$0, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$createNewCommunity$4(AlertDialog alertDialog, String str, boolean z, long j) {
+    public static void m4858$r8$lambda$SxllwebjK9no8nlH4Gm7rpsAi8(CommunityCreateActivity communityCreateActivity, AlertDialog alertDialog, String str, boolean z, long j) {
+        communityCreateActivity.getClass();
         alertDialog.dismiss();
         if (j == 0) {
             return;
         }
-        this.dialogId = -j;
-        this.currentChat = getMessagesController().getChat(Long.valueOf(j));
-        createNewCommunity(str, z);
+        communityCreateActivity.dialogId = -j;
+        communityCreateActivity.currentChat = communityCreateActivity.getMessagesController().getChat(Long.valueOf(j));
+        communityCreateActivity.createNewCommunity(str, z);
     }
 
-    public void lambda$createNewCommunity$5(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void m4860$r8$lambda$v923dn0izPmJr450BaI3jYSkkk(CommunityCreateActivity communityCreateActivity, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            BulletinFactory.of(this).showForError(tL_error);
+            communityCreateActivity.getClass();
+            BulletinFactory.of(communityCreateActivity).showForError(tL_error);
         } else {
-            CommunityUtils.onCommunityLinkSuccess(this, this.dialogId, 0);
+            CommunityUtils.onCommunityLinkSuccess(communityCreateActivity, communityCreateActivity.dialogId, 0);
         }
     }
 
@@ -270,7 +284,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
             getMessagesController().convertToMegaGroup(getParentActivity(), -this.dialogId, this, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j2) {
-                    this.f$0.lambda$linkToCommunity$6(alertDialog, j, z, j2);
+                    CommunityCreateActivity.$r8$lambda$MG6Ydo5tRxctomN_GXmwPCU_LSA(this.f$0, alertDialog, j, z, j2);
                 }
             });
             return;
@@ -278,14 +292,15 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         CommunityUtils.linkToCommunityWithoutConvert(this, this.currentAccount, -this.dialogId, j, z);
     }
 
-    public void lambda$linkToCommunity$6(AlertDialog alertDialog, long j, boolean z, long j2) {
+    public static void $r8$lambda$MG6Ydo5tRxctomN_GXmwPCU_LSA(CommunityCreateActivity communityCreateActivity, AlertDialog alertDialog, long j, boolean z, long j2) {
+        communityCreateActivity.getClass();
         alertDialog.dismiss();
         if (j2 == 0) {
             return;
         }
-        this.dialogId = -j2;
-        this.currentChat = getMessagesController().getChat(Long.valueOf(j2));
-        linkToCommunity(j, z);
+        communityCreateActivity.dialogId = -j2;
+        communityCreateActivity.currentChat = communityCreateActivity.getMessagesController().getChat(Long.valueOf(j2));
+        communityCreateActivity.linkToCommunity(j, z);
     }
 
     @Override

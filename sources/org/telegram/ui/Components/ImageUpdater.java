@@ -263,7 +263,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         builder.setItems((CharSequence[]) arrayList.toArray(new CharSequence[0]), iArr, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
-                this.f$0.lambda$openMenu$0(arrayList3, runnable, dialogInterface, i3);
+                ImageUpdater.$r8$lambda$gG5PjXL7Dz2NCTbg2IJoUSNC4TM(this.f$0, arrayList3, runnable, dialogInterface, i3);
             }
         });
         BottomSheet bottomSheetCreate = builder.create();
@@ -274,25 +274,26 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    public void lambda$openMenu$0(ArrayList arrayList, Runnable runnable, DialogInterface dialogInterface, int i) {
+    public static void $r8$lambda$gG5PjXL7Dz2NCTbg2IJoUSNC4TM(ImageUpdater imageUpdater, ArrayList arrayList, Runnable runnable, DialogInterface dialogInterface, int i) {
+        imageUpdater.getClass();
         int iIntValue = ((Integer) arrayList.get(i)).intValue();
         if (iIntValue == 0) {
-            openCamera();
+            imageUpdater.openCamera();
             return;
         }
         if (iIntValue == 1) {
-            openGallery();
+            imageUpdater.openGallery();
             return;
         }
         if (iIntValue == 2) {
-            openSearch();
+            imageUpdater.openSearch();
         } else if (iIntValue == 3) {
             runnable.run();
         } else {
             if (iIntValue != 4) {
                 return;
             }
-            openVideoCamera();
+            imageUpdater.openVideoCamera();
         }
     }
 
@@ -779,14 +780,15 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$startCrop$1(str, uri);
+                ImageUpdater.$r8$lambda$yimo8f9g3VrhL8XaetKKc6Br8SA(this.f$0, str, uri);
             }
         });
     }
 
-    public void lambda$startCrop$1(String str, Uri uri) {
+    public static void $r8$lambda$yimo8f9g3VrhL8XaetKKc6Br8SA(ImageUpdater imageUpdater, String str, Uri uri) {
+        imageUpdater.getClass();
         try {
-            LaunchActivity launchActivity = (LaunchActivity) this.parentFragment.getParentActivity();
+            LaunchActivity launchActivity = (LaunchActivity) imageUpdater.parentFragment.getParentActivity();
             if (launchActivity == null) {
                 return;
             }
@@ -797,11 +799,11 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 bundle.putParcelable("photoUri", uri);
             }
             PhotoCropActivity photoCropActivity = new PhotoCropActivity(bundle);
-            photoCropActivity.setDelegate(this);
-            launchActivity.lambda$runLinkRequest$100(photoCropActivity);
+            photoCropActivity.setDelegate(imageUpdater);
+            launchActivity.presentFragment(photoCropActivity);
         } catch (Exception e) {
             FileLog.e(e);
-            processBitmap(false, ImageLoader.loadBitmap(str, uri, 800.0f, 800.0f, true), null);
+            imageUpdater.processBitmap(false, ImageLoader.loadBitmap(str, uri, 800.0f, 800.0f, true), null);
         }
     }
 

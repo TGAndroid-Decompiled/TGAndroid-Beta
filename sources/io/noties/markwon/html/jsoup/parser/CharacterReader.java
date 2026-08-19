@@ -360,7 +360,10 @@ public final class CharacterReader {
             return false;
         }
         char c = this.charBuf[this.bufPos];
-        return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || Character.isLetter(c);
+        if (c < 'A' || c > 'Z') {
+            return (c >= 'a' && c <= 'z') || Character.isLetter(c);
+        }
+        return true;
     }
 
     boolean matchesDigit() {

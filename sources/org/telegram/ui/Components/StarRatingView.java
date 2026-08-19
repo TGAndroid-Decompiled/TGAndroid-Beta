@@ -114,15 +114,15 @@ public class StarRatingView extends View {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onUpdateVisibilityFactor$0();
+                StarRatingView.$r8$lambda$RcVHJZOxN3Tw4enyS_xxWdakVB0(this.f$0);
             }
         });
     }
 
-    public void lambda$onUpdateVisibilityFactor$0() {
-        Delegate delegate = this.delegate;
+    public static void $r8$lambda$RcVHJZOxN3Tw4enyS_xxWdakVB0(StarRatingView starRatingView) {
+        Delegate delegate = starRatingView.delegate;
         if (delegate != null) {
-            delegate.onUpdateState(getVisibilityFactor());
+            delegate.onUpdateState(starRatingView.getVisibilityFactor());
         }
     }
 

@@ -241,6 +241,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
 
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            boolean z;
             if (ScrollSlidingTextTabStrip.this.delegate == null || !ScrollSlidingTextTabStrip.this.reordering) {
                 return super.dispatchTouchEvent(motionEvent);
             }
@@ -255,103 +256,116 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
                     this.sy = motionEvent.getY();
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
-            } else if (motionEvent.getAction() == 2) {
-                if (ScrollSlidingTextTabStrip.this.dragging != null) {
-                    ScrollSlidingTextTabStrip.this.dragging.setTranslationX(motionEvent.getX() - this.sx);
-                    int iIndexOfChild = indexOfChild(ScrollSlidingTextTabStrip.this.dragging);
-                    if (ScrollSlidingTextTabStrip.this.currentPosition == iIndexOfChild) {
-                        ScrollSlidingTextTabStrip.this.invalidate();
-                    }
-                    if (motionEvent.getX() < AndroidUtilities.dp(16.0f)) {
-                        ScrollSlidingTextTabStrip.this.scrollBy(-AndroidUtilities.dp(1.0f), 0);
-                    } else if (motionEvent.getX() >= getWidth() - AndroidUtilities.dp(16.0f)) {
-                        ScrollSlidingTextTabStrip.this.scrollBy(AndroidUtilities.dp(1.0f), 0);
-                    }
-                    int iFindPosition = findPosition(ScrollSlidingTextTabStrip.this.dragging.getX() + (ScrollSlidingTextTabStrip.this.dragging.getWidth() / 2.0f), ScrollSlidingTextTabStrip.this.dragging.getWidth());
-                    if (iFindPosition != iIndexOfChild && ScrollSlidingTextTabStrip.this.delegate.canReorder(ScrollSlidingTextTabStrip.this.positionToId.get(iFindPosition))) {
-                        View childAt = getChildAt(iFindPosition);
-                        if (childAt.getLeft() > ScrollSlidingTextTabStrip.this.dragging.getLeft()) {
-                            this.sx += ((childAt.getLeft() + childAt.getWidth()) - ScrollSlidingTextTabStrip.this.dragging.getWidth()) - ScrollSlidingTextTabStrip.this.dragging.getLeft();
-                        } else {
-                            this.sx += childAt.getLeft() - ScrollSlidingTextTabStrip.this.dragging.getLeft();
-                        }
+            } else {
+                if (motionEvent.getAction() == 2) {
+                    if (ScrollSlidingTextTabStrip.this.dragging != null) {
                         ScrollSlidingTextTabStrip.this.dragging.setTranslationX(motionEvent.getX() - this.sx);
-                        ViewGroup.LayoutParams layoutParams = ScrollSlidingTextTabStrip.this.dragging.getLayoutParams();
-                        ViewGroup.LayoutParams layoutParams2 = childAt.getLayoutParams();
-                        int left = ScrollSlidingTextTabStrip.this.dragging.getLeft();
-                        int left2 = childAt.getLeft();
+                        int iIndexOfChild = indexOfChild(ScrollSlidingTextTabStrip.this.dragging);
                         if (ScrollSlidingTextTabStrip.this.currentPosition == iIndexOfChild) {
-                            ScrollSlidingTextTabStrip.this.currentPosition = iFindPosition;
-                        } else if (ScrollSlidingTextTabStrip.this.currentPosition == iFindPosition) {
-                            ScrollSlidingTextTabStrip.this.currentPosition = iIndexOfChild;
+                            ScrollSlidingTextTabStrip.this.invalidate();
                         }
-                        if (ScrollSlidingTextTabStrip.this.previousPosition == iIndexOfChild) {
-                            ScrollSlidingTextTabStrip.this.previousPosition = iFindPosition;
-                        } else if (ScrollSlidingTextTabStrip.this.previousPosition == iFindPosition) {
-                            ScrollSlidingTextTabStrip.this.previousPosition = iIndexOfChild;
+                        if (motionEvent.getX() < AndroidUtilities.dp(16.0f)) {
+                            ScrollSlidingTextTabStrip.this.scrollBy(-AndroidUtilities.dp(1.0f), 0);
+                        } else if (motionEvent.getX() >= getWidth() - AndroidUtilities.dp(16.0f)) {
+                            ScrollSlidingTextTabStrip.this.scrollBy(AndroidUtilities.dp(1.0f), 0);
                         }
-                        ScrollSlidingTextTabStrip.this.prevLayoutWidth = -1;
-                        int i = ScrollSlidingTextTabStrip.this.positionToId.get(iIndexOfChild);
-                        int i2 = ScrollSlidingTextTabStrip.this.positionToId.get(iFindPosition);
-                        ScrollSlidingTextTabStrip.this.positionToId.put(iIndexOfChild, i2);
-                        ScrollSlidingTextTabStrip.this.idToPosition.put(i2, iIndexOfChild);
-                        ScrollSlidingTextTabStrip.this.positionToId.put(iFindPosition, i);
-                        ScrollSlidingTextTabStrip.this.idToPosition.put(i, iFindPosition);
-                        ScrollSlidingTextTabStrip.this.tabsContainer.removeViewAt(Math.max(iIndexOfChild, iFindPosition));
-                        ScrollSlidingTextTabStrip.this.tabsContainer.removeViewAt(Math.min(iIndexOfChild, iFindPosition));
-                        ScrollSlidingTextTabStrip.this.tabsContainer.addView(iIndexOfChild < iFindPosition ? childAt : ScrollSlidingTextTabStrip.this.dragging, Math.min(iIndexOfChild, iFindPosition), iIndexOfChild < iFindPosition ? layoutParams2 : layoutParams);
-                        LinearLayout linearLayout = ScrollSlidingTextTabStrip.this.tabsContainer;
-                        View view = iIndexOfChild < iFindPosition ? ScrollSlidingTextTabStrip.this.dragging : childAt;
-                        int iMax = Math.max(iIndexOfChild, iFindPosition);
-                        if (iIndexOfChild >= iFindPosition) {
-                            layoutParams = layoutParams2;
-                        }
-                        linearLayout.addView(view, iMax, layoutParams);
-                        childAt.setTranslationX(left2 - left);
-                        childAt.animate().translationX(0.0f).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                this.f$0.lambda$dispatchTouchEvent$0(valueAnimator);
+                        int iFindPosition = findPosition(ScrollSlidingTextTabStrip.this.dragging.getX() + (ScrollSlidingTextTabStrip.this.dragging.getWidth() / 2.0f), ScrollSlidingTextTabStrip.this.dragging.getWidth());
+                        if (iFindPosition != iIndexOfChild && ScrollSlidingTextTabStrip.this.delegate.canReorder(ScrollSlidingTextTabStrip.this.positionToId.get(iFindPosition))) {
+                            View childAt = getChildAt(iFindPosition);
+                            if (childAt.getLeft() > ScrollSlidingTextTabStrip.this.dragging.getLeft()) {
+                                this.sx += ((childAt.getLeft() + childAt.getWidth()) - ScrollSlidingTextTabStrip.this.dragging.getWidth()) - ScrollSlidingTextTabStrip.this.dragging.getLeft();
+                            } else {
+                                this.sx += childAt.getLeft() - ScrollSlidingTextTabStrip.this.dragging.getLeft();
                             }
-                        }).start();
+                            ScrollSlidingTextTabStrip.this.dragging.setTranslationX(motionEvent.getX() - this.sx);
+                            ViewGroup.LayoutParams layoutParams = ScrollSlidingTextTabStrip.this.dragging.getLayoutParams();
+                            ViewGroup.LayoutParams layoutParams2 = childAt.getLayoutParams();
+                            int left = ScrollSlidingTextTabStrip.this.dragging.getLeft();
+                            int left2 = childAt.getLeft();
+                            if (ScrollSlidingTextTabStrip.this.currentPosition == iIndexOfChild) {
+                                ScrollSlidingTextTabStrip.this.currentPosition = iFindPosition;
+                            } else if (ScrollSlidingTextTabStrip.this.currentPosition == iFindPosition) {
+                                ScrollSlidingTextTabStrip.this.currentPosition = iIndexOfChild;
+                            }
+                            if (ScrollSlidingTextTabStrip.this.previousPosition == iIndexOfChild) {
+                                ScrollSlidingTextTabStrip.this.previousPosition = iFindPosition;
+                            } else if (ScrollSlidingTextTabStrip.this.previousPosition == iFindPosition) {
+                                ScrollSlidingTextTabStrip.this.previousPosition = iIndexOfChild;
+                            }
+                            ScrollSlidingTextTabStrip.this.prevLayoutWidth = -1;
+                            int i = ScrollSlidingTextTabStrip.this.positionToId.get(iIndexOfChild);
+                            int i2 = ScrollSlidingTextTabStrip.this.positionToId.get(iFindPosition);
+                            ScrollSlidingTextTabStrip.this.positionToId.put(iIndexOfChild, i2);
+                            ScrollSlidingTextTabStrip.this.idToPosition.put(i2, iIndexOfChild);
+                            ScrollSlidingTextTabStrip.this.positionToId.put(iFindPosition, i);
+                            ScrollSlidingTextTabStrip.this.idToPosition.put(i, iFindPosition);
+                            ScrollSlidingTextTabStrip.this.tabsContainer.removeViewAt(Math.max(iIndexOfChild, iFindPosition));
+                            ScrollSlidingTextTabStrip.this.tabsContainer.removeViewAt(Math.min(iIndexOfChild, iFindPosition));
+                            z = false;
+                            ScrollSlidingTextTabStrip.this.tabsContainer.addView(iIndexOfChild < iFindPosition ? childAt : ScrollSlidingTextTabStrip.this.dragging, Math.min(iIndexOfChild, iFindPosition), iIndexOfChild < iFindPosition ? layoutParams2 : layoutParams);
+                            LinearLayout linearLayout = ScrollSlidingTextTabStrip.this.tabsContainer;
+                            View view = iIndexOfChild < iFindPosition ? ScrollSlidingTextTabStrip.this.dragging : childAt;
+                            int iMax = Math.max(iIndexOfChild, iFindPosition);
+                            if (iIndexOfChild >= iFindPosition) {
+                                layoutParams = layoutParams2;
+                            }
+                            linearLayout.addView(view, iMax, layoutParams);
+                            childAt.setTranslationX(left2 - left);
+                            childAt.animate().translationX(0.0f).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                    ScrollSlidingTextTabStrip.AnonymousClass2.$r8$lambda$SDsxoeuSWQ4iZ7JSPgwtDbYgf88(this.f$0, valueAnimator);
+                                }
+                            }).start();
+                        }
+                    }
+                } else {
+                    z = false;
+                    if (motionEvent.getAction() == 1) {
+                        if (ScrollSlidingTextTabStrip.this.dragging != null) {
+                            ScrollSlidingTextTabStrip.this.dragging.animate().translationX(0.0f).translationY(0.0f).setDuration(320L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                    ScrollSlidingTextTabStrip.AnonymousClass2.$r8$lambda$7gRv0kpZjjtJcGSgW_NN5onir0k(this.f$0, valueAnimator);
+                                }
+                            }).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+                        }
+                        ScrollSlidingTextTabStrip.this.dragging = null;
+                    } else if (motionEvent.getAction() == 3) {
+                        if (ScrollSlidingTextTabStrip.this.dragging != null) {
+                            ScrollSlidingTextTabStrip.this.dragging.animate().translationX(0.0f).translationY(0.0f).setDuration(320L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                    ScrollSlidingTextTabStrip.AnonymousClass2.$r8$lambda$EtMfRuDX2lOg0D5PtHPa33P9Zpc(this.f$0, valueAnimator);
+                                }
+                            }).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+                        }
+                        ScrollSlidingTextTabStrip.this.dragging = null;
                     }
                 }
-            } else if (motionEvent.getAction() == 1) {
-                if (ScrollSlidingTextTabStrip.this.dragging != null) {
-                    ScrollSlidingTextTabStrip.this.dragging.animate().translationX(0.0f).translationY(0.0f).setDuration(320L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$dispatchTouchEvent$1(valueAnimator);
-                        }
-                    }).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+                if (ScrollSlidingTextTabStrip.this.dragging == null || super.dispatchTouchEvent(motionEvent)) {
+                    return true;
                 }
-                ScrollSlidingTextTabStrip.this.dragging = null;
-            } else if (motionEvent.getAction() == 3) {
-                if (ScrollSlidingTextTabStrip.this.dragging != null) {
-                    ScrollSlidingTextTabStrip.this.dragging.animate().translationX(0.0f).translationY(0.0f).setDuration(320L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$dispatchTouchEvent$2(valueAnimator);
-                        }
-                    }).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
-                }
-                ScrollSlidingTextTabStrip.this.dragging = null;
+                return z;
             }
-            return ScrollSlidingTextTabStrip.this.dragging != null || super.dispatchTouchEvent(motionEvent);
+            z = false;
+            if (ScrollSlidingTextTabStrip.this.dragging == null) {
+            }
+            return true;
         }
 
-        public void lambda$dispatchTouchEvent$0(ValueAnimator valueAnimator) {
-            invalidate();
+        public static void $r8$lambda$SDsxoeuSWQ4iZ7JSPgwtDbYgf88(AnonymousClass2 anonymousClass2, ValueAnimator valueAnimator) {
+            anonymousClass2.invalidate();
             ScrollSlidingTextTabStrip.this.invalidate();
         }
 
-        public void lambda$dispatchTouchEvent$1(ValueAnimator valueAnimator) {
-            invalidate();
+        public static void $r8$lambda$7gRv0kpZjjtJcGSgW_NN5onir0k(AnonymousClass2 anonymousClass2, ValueAnimator valueAnimator) {
+            anonymousClass2.invalidate();
             ScrollSlidingTextTabStrip.this.invalidate();
         }
 
-        public void lambda$dispatchTouchEvent$2(ValueAnimator valueAnimator) {
-            invalidate();
+        public static void $r8$lambda$EtMfRuDX2lOg0D5PtHPa33P9Zpc(AnonymousClass2 anonymousClass2, ValueAnimator valueAnimator) {
+            anonymousClass2.invalidate();
             ScrollSlidingTextTabStrip.this.invalidate();
         }
     }
@@ -525,6 +539,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
 
                 @Override
                 protected void onDraw(Canvas canvas) {
+                    Canvas canvas2;
                     float f = this.reorderingAlpha.set(ScrollSlidingTextTabStrip.this.reordering);
                     if (ScrollSlidingTextTabStrip.this.delegate != null && ScrollSlidingTextTabStrip.this.delegate.canReorder(i)) {
                         if (f > 0.0f) {
@@ -542,11 +557,14 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
                         return;
                     }
                     if (f > 0.0f) {
-                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (AndroidUtilities.lerp(1.0f, 0.5f, f) * 255.0f));
+                        canvas2 = canvas;
+                        canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (AndroidUtilities.lerp(1.0f, 0.5f, f) * 255.0f));
+                    } else {
+                        canvas2 = canvas;
                     }
-                    super.onDraw(canvas);
+                    super.onDraw(canvas2);
                     if (f > 0.0f) {
-                        canvas.restore();
+                        canvas2.restore();
                     }
                 }
             };
@@ -560,13 +578,14 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$addTextTab$0(i, view);
+                    ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = this.f$0;
+                    scrollSlidingTextTabStrip.scrollTo(i, scrollSlidingTextTabStrip.tabsContainer.indexOfChild(view), view);
                 }
             });
             textView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    return this.f$0.lambda$addTextTab$1(i, view);
+                    return ScrollSlidingTextTabStrip.$r8$lambda$CUn5Op6sW2SDmfMmwaiB6sH9hYY(this.f$0, i, view);
                 }
             });
             NotificationCenter.listenEmojiLoading(textView);
@@ -580,13 +599,9 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
         updateColors();
     }
 
-    public void lambda$addTextTab$0(int i, View view) {
-        scrollTo(i, this.tabsContainer.indexOfChild(view), view);
-    }
-
-    public boolean lambda$addTextTab$1(int i, View view) {
+    public static boolean $r8$lambda$CUn5Op6sW2SDmfMmwaiB6sH9hYY(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, int i, View view) {
         ScrollSlidingTabStripDelegate scrollSlidingTabStripDelegate;
-        return (this.reordering || (scrollSlidingTabStripDelegate = this.delegate) == null || !scrollSlidingTabStripDelegate.showOptions(i, view)) ? false : true;
+        return (scrollSlidingTextTabStrip.reordering || (scrollSlidingTabStripDelegate = scrollSlidingTextTabStrip.delegate) == null || !scrollSlidingTabStripDelegate.showOptions(i, view)) ? false : true;
     }
 
     public void scrollTo(int i, int i2, View view) {
@@ -872,7 +887,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
                         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                this.f$0.lambda$onLayout$2(i10, i11, valueAnimator);
+                                ScrollSlidingTextTabStrip.$r8$lambda$jwDBZoPfRfbxP7BSU3rQ01D2V9I(this.f$0, i10, i11, valueAnimator);
                             }
                         });
                         valueAnimatorOfFloat.setDuration(200L);
@@ -887,12 +902,13 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
         checkBoundsAndClipping();
     }
 
-    public void lambda$onLayout$2(int i, int i2, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$jwDBZoPfRfbxP7BSU3rQ01D2V9I(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, int i, int i2, ValueAnimator valueAnimator) {
+        scrollSlidingTextTabStrip.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.indicatorXAnimationDx = i * fFloatValue;
-        this.indicatorWidthAnimationDx = i2 * fFloatValue;
-        this.tabsContainer.invalidate();
-        invalidate();
+        scrollSlidingTextTabStrip.indicatorXAnimationDx = i * fFloatValue;
+        scrollSlidingTextTabStrip.indicatorWidthAnimationDx = i2 * fFloatValue;
+        scrollSlidingTextTabStrip.tabsContainer.invalidate();
+        scrollSlidingTextTabStrip.invalidate();
     }
 
     public int getCurrentPosition() {

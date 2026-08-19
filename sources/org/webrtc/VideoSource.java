@@ -108,7 +108,7 @@ public class VideoSource extends MediaSource {
                     videoProcessor.setSink(new VideoSink() {
                         @Override
                         public final void onFrame(VideoFrame videoFrame) {
-                            this.f$0.lambda$setVideoProcessor$1(videoFrame);
+                            VideoSource.$r8$lambda$alSLwIDfjL1u6pBZwqqvarucaB4(this.f$0, videoFrame);
                         }
 
                         @Override
@@ -126,15 +126,12 @@ public class VideoSource extends MediaSource {
         }
     }
 
-    public void lambda$setVideoProcessor$0(VideoFrame videoFrame) {
-        this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrame);
-    }
-
-    public void lambda$setVideoProcessor$1(final VideoFrame videoFrame) {
-        runWithReference(new Runnable() {
+    public static void $r8$lambda$alSLwIDfjL1u6pBZwqqvarucaB4(final VideoSource videoSource, final VideoFrame videoFrame) {
+        videoSource.getClass();
+        videoSource.runWithReference(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setVideoProcessor$0(videoFrame);
+                this.f$0.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrame);
             }
         });
     }

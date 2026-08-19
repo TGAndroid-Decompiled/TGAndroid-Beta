@@ -32,24 +32,24 @@ public class LocationSharingService extends Service implements NotificationCente
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onCreate$1();
+                LocationSharingService.$r8$lambda$0W_MUm9liG2v2He2nHfKI2BUn1w(this.f$0);
             }
         };
         this.runnable = runnable;
         this.handler.postDelayed(runnable, 1000L);
     }
 
-    public void lambda$onCreate$1() {
-        this.handler.postDelayed(this.runnable, 1000L);
+    public static void $r8$lambda$0W_MUm9liG2v2He2nHfKI2BUn1w(LocationSharingService locationSharingService) {
+        locationSharingService.handler.postDelayed(locationSharingService.runnable, 1000L);
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                LocationSharingService.lambda$onCreate$0();
+                LocationSharingService.m510$r8$lambda$jDpuTonJalawPNBnRWljHyRr88();
             }
         });
     }
 
-    public static void lambda$onCreate$0() {
+    public static void m510$r8$lambda$jDpuTonJalawPNBnRWljHyRr88() {
         for (int i = 0; i < 4; i++) {
             LocationController.getInstance(i).update();
         }
@@ -76,16 +76,16 @@ public class LocationSharingService extends Service implements NotificationCente
         handler.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didReceivedNotification$2();
+                LocationSharingService.$r8$lambda$3uEqpDLAL9Va82rzbvQVfISHKWk(this.f$0);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$2() {
-        if (getInfos().isEmpty()) {
-            stopSelf();
+    public static void $r8$lambda$3uEqpDLAL9Va82rzbvQVfISHKWk(LocationSharingService locationSharingService) {
+        if (locationSharingService.getInfos().isEmpty()) {
+            locationSharingService.stopSelf();
         } else {
-            updateNotification(true);
+            locationSharingService.updateNotification(true);
         }
     }
 

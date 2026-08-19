@@ -91,7 +91,8 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             this.enableReactionsCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$createView$0(view);
+                    ChatReactionsEditActivity chatReactionsEditActivity = this.f$0;
+                    chatReactionsEditActivity.setCheckedEnableReactionCell(chatReactionsEditActivity.enableReactionsCell.isChecked() ? 2 : 1, true);
                 }
             });
             linearLayout.addView(this.enableReactionsCell, LayoutHelper.createLinear(-1, -2));
@@ -121,19 +122,19 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         this.allReactions.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$2(view);
+                ChatReactionsEditActivity.$r8$lambda$HmJkzoUHdA3_XGwj6lyV3nP51a8(this.f$0, view);
             }
         });
         this.someReactions.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$4(view);
+                ChatReactionsEditActivity.m1870$r8$lambda$BQBjVZd855ZrdewemEcL6dcKOk(this.f$0, view);
             }
         });
         this.disableReactions.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$6(view);
+                ChatReactionsEditActivity.$r8$lambda$vccgXBG7GjL8eQkld3V82Km80mk(this.f$0, view);
             }
         });
         int i = Theme.key_windowBackgroundWhite;
@@ -237,7 +238,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                this.f$0.lambda$createView$7(view, i3);
+                ChatReactionsEditActivity.$r8$lambda$4sZG0I1XLisVJM77fyeF_q7tCfE(this.f$0, view, i3);
             }
         });
         linearLayout.addView(this.listView, LayoutHelper.createLinear(-1, 0, 1.0f));
@@ -249,74 +250,61 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         return this.contentView;
     }
 
-    public void lambda$createView$0(View view) {
-        setCheckedEnableReactionCell(this.enableReactionsCell.isChecked() ? 2 : 1, true);
-    }
-
-    public void lambda$createView$1() {
-        setCheckedEnableReactionCell(0, true);
-    }
-
-    public void lambda$createView$2(View view) {
+    public static void $r8$lambda$HmJkzoUHdA3_XGwj6lyV3nP51a8(final ChatReactionsEditActivity chatReactionsEditActivity, View view) {
+        chatReactionsEditActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$1();
+                this.f$0.setCheckedEnableReactionCell(0, true);
             }
         });
     }
 
-    public void lambda$createView$3() {
-        setCheckedEnableReactionCell(1, true);
-    }
-
-    public void lambda$createView$4(View view) {
+    public static void m1870$r8$lambda$BQBjVZd855ZrdewemEcL6dcKOk(final ChatReactionsEditActivity chatReactionsEditActivity, View view) {
+        chatReactionsEditActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$3();
+                this.f$0.setCheckedEnableReactionCell(1, true);
             }
         });
     }
 
-    public void lambda$createView$5() {
-        setCheckedEnableReactionCell(2, true);
-    }
-
-    public void lambda$createView$6(View view) {
+    public static void $r8$lambda$vccgXBG7GjL8eQkld3V82Km80mk(final ChatReactionsEditActivity chatReactionsEditActivity, View view) {
+        chatReactionsEditActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$5();
+                this.f$0.setCheckedEnableReactionCell(2, true);
             }
         });
     }
 
-    public void lambda$createView$7(View view, int i) {
-        boolean z = this.isChannel;
+    public static void $r8$lambda$4sZG0I1XLisVJM77fyeF_q7tCfE(ChatReactionsEditActivity chatReactionsEditActivity, View view, int i) {
+        boolean z = chatReactionsEditActivity.isChannel;
         if (i <= (z ? 1 : 2)) {
             return;
         }
         AvailableReactionCell availableReactionCell = (AvailableReactionCell) view;
-        TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) this.availableReactions.get(i - (z ? 2 : 3));
-        boolean zContains = this.chatReactions.contains(tL_availableReaction.reaction);
+        TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) chatReactionsEditActivity.availableReactions.get(i - (z ? 2 : 3));
+        boolean zContains = chatReactionsEditActivity.chatReactions.contains(tL_availableReaction.reaction);
         boolean z2 = !zContains;
         if (!zContains) {
-            this.chatReactions.add(tL_availableReaction.reaction);
+            chatReactionsEditActivity.chatReactions.add(tL_availableReaction.reaction);
         } else {
-            this.chatReactions.remove(tL_availableReaction.reaction);
-            if (this.chatReactions.isEmpty()) {
-                RecyclerView.Adapter adapter = this.listAdapter;
+            chatReactionsEditActivity.chatReactions.remove(tL_availableReaction.reaction);
+            if (chatReactionsEditActivity.chatReactions.isEmpty()) {
+                RecyclerView.Adapter adapter = chatReactionsEditActivity.listAdapter;
                 if (adapter != null) {
-                    adapter.notifyItemRangeRemoved(this.isChannel ? 1 : 2, this.availableReactions.size() + 1);
+                    adapter.notifyItemRangeRemoved(chatReactionsEditActivity.isChannel ? 1 : 2, chatReactionsEditActivity.availableReactions.size() + 1);
                 }
-                setCheckedEnableReactionCell(2, true);
+                chatReactionsEditActivity.setCheckedEnableReactionCell(2, true);
             }
         }
         availableReactionCell.setChecked(z2, true);
     }
 
-    private void setCheckedEnableReactionCell(int i, boolean z) {
+    public void setCheckedEnableReactionCell(int i, boolean z) {
         RecyclerView.Adapter adapter;
         if (this.selectedType == i) {
             return;
@@ -341,7 +329,13 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         if (i == 1) {
             if (z) {
                 this.chatReactions.clear();
-                for (TLRPC.TL_availableReaction tL_availableReaction : this.availableReactions) {
+                ArrayList arrayList = this.availableReactions;
+                int size = arrayList.size();
+                int i3 = 0;
+                while (i3 < size) {
+                    Object obj = arrayList.get(i3);
+                    i3++;
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) obj;
                     if (tL_availableReaction.reaction.equals("👍") || tL_availableReaction.reaction.equals("👎")) {
                         this.chatReactions.add(tL_availableReaction.reaction);
                     }

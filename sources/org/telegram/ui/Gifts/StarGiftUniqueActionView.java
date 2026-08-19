@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
@@ -26,6 +27,7 @@ public class StarGiftUniqueActionView extends View {
         StarGiftUniqueActionLayout starGiftUniqueActionLayout = new StarGiftUniqueActionLayout(i, this, resourcesProvider);
         this.layout = starGiftUniqueActionLayout;
         starGiftUniqueActionLayout.getMessageDrawable().setCallback(this);
+        NotificationCenter.listenEmojiLoading(this);
     }
 
     @Override

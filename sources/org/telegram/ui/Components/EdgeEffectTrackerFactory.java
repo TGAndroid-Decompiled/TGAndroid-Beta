@@ -5,7 +5,6 @@ import android.os.Build;
 import android.widget.EdgeEffect;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFactory {
     private final TrackingEdgeEffect[] edgeEffects = new TrackingEdgeEffect[4];
@@ -41,9 +40,13 @@ public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFacto
     }
 
     public void onEdgeEffectVisibilityChange(int i, boolean z) {
-        Iterator it = this.listeners.iterator();
-        while (it.hasNext()) {
-            ((OnEdgeEffectListener) it.next()).onEdgeEffectVisibilityChange(i, z);
+        ArrayList arrayList = this.listeners;
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            ((OnEdgeEffectListener) obj).onEdgeEffectVisibilityChange(i, z);
         }
     }
 
@@ -68,7 +71,10 @@ public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFacto
         }
 
         public boolean isVisible() {
-            return !isFinished() && (Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f);
+            if (isFinished()) {
+                return false;
+            }
+            return Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f;
         }
 
         public void checkEdgeVisibility() {

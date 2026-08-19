@@ -77,7 +77,7 @@ public class ChromecastMedia {
         public MediaMetadata buildMetadata() {
             int i = 3;
             String str = this.mimeType;
-            str.hashCode();
+            str.getClass();
             switch (str) {
                 case "image/jpeg":
                 case "image/png":

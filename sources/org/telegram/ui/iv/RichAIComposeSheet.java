@@ -76,7 +76,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.dismiss();
             }
         });
         frameLayout.addView(imageView, LayoutHelper.createFrame(48, 48.0f, 53, 0.0f, 10.0f, 12.0f, 0.0f));
@@ -122,7 +122,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.onButtonClick();
             }
         });
         this.containerView.addView(round, LayoutHelper.createFrame(-1, 48.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
@@ -142,27 +142,15 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         updateButtonEnabled();
     }
 
-    public void lambda$new$0(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$new$1(View view) {
-        onButtonClick();
-    }
-
     @Override
     public void show() {
         super.show();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$2();
+                AndroidUtilities.showKeyboard(this.f$0.promptCell.editText);
             }
         }, 200L);
-    }
-
-    public void lambda$show$2() {
-        AndroidUtilities.showKeyboard(this.promptCell.editText);
     }
 
     @Override
@@ -198,7 +186,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    private void onButtonClick() {
+    public void onButtonClick() {
         if (this.loading) {
             return;
         }
@@ -208,7 +196,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
             if (callback != null) {
                 callback.run(richMessage);
             }
-            lambda$new$0();
+            dismiss();
             return;
         }
         String strTrim = this.promptCell.editText.getText().toString().trim();
@@ -224,29 +212,30 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_composeRichMessageWithAI, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$onButtonClick$4(tLObject, tL_error);
+                RichAIComposeSheet.$r8$lambda$fDMhlMgdpjvnZaxVWsYB8uNH5x8(this.f$0, tLObject, tL_error);
             }
         });
         AndroidUtilities.hideKeyboard(this.promptCell.editText);
     }
 
-    public void lambda$onButtonClick$4(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$fDMhlMgdpjvnZaxVWsYB8uNH5x8(final RichAIComposeSheet richAIComposeSheet, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        richAIComposeSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onButtonClick$3(tLObject);
+                RichAIComposeSheet.$r8$lambda$5b3CKZgzvXwcPykxdVUjRvuOVmc(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$onButtonClick$3(TLObject tLObject) {
-        this.loading = false;
-        this.reqId = 0;
-        this.button.setLoading(false);
+    public static void $r8$lambda$5b3CKZgzvXwcPykxdVUjRvuOVmc(RichAIComposeSheet richAIComposeSheet, TLObject tLObject) {
+        richAIComposeSheet.loading = false;
+        richAIComposeSheet.reqId = 0;
+        richAIComposeSheet.button.setLoading(false);
         if (tLObject instanceof TLRPC.TL_composedRichMessageWithAI) {
-            showResult(((TLRPC.TL_composedRichMessageWithAI) tLObject).result);
+            richAIComposeSheet.showResult(((TLRPC.TL_composedRichMessageWithAI) tLObject).result);
         } else {
-            AndroidUtilities.shakeViewSpring(this.button, 4.0f);
+            AndroidUtilities.shakeViewSpring(richAIComposeSheet.button, 4.0f);
         }
     }
 
@@ -278,12 +267,12 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    public void lambda$new$0() {
+    public void dismiss() {
         if (this.reqId != 0) {
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
             this.reqId = 0;
         }
         AndroidUtilities.hideKeyboard(this.promptCell.editText);
-        super.lambda$new$0();
+        super.dismiss();
     }
 }

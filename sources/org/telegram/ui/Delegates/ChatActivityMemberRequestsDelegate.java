@@ -57,7 +57,7 @@ public class ChatActivityMemberRequestsDelegate {
             this.root.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$getView$0(view);
+                    this.f$0.showBottomSheet();
                 }
             });
             LinearLayout linearLayout = new LinearLayout(this.fragment.getParentActivity());
@@ -94,7 +94,7 @@ public class ChatActivityMemberRequestsDelegate {
             this.closeView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$getView$1(view);
+                    ChatActivityMemberRequestsDelegate.m3042$r8$lambda$v3BL8H_wviE3TA4avi8CBc5w3A(this.f$0, view);
                 }
             });
             this.root.addView(this.closeView, LayoutHelper.createFrame(36, -1.0f, 53, 0.0f, 0.0f, 4.0f, 0.0f));
@@ -106,14 +106,10 @@ public class ChatActivityMemberRequestsDelegate {
         return this.root;
     }
 
-    public void lambda$getView$0(View view) {
-        showBottomSheet();
-    }
-
-    public void lambda$getView$1(View view) {
-        this.fragment.getMessagesController().setChatPendingRequestsOnClose(this.currentChat.id, this.pendingRequestsCount);
-        this.closePendingRequestsCount = this.pendingRequestsCount;
-        animatePendingRequests(false, true);
+    public static void m3042$r8$lambda$v3BL8H_wviE3TA4avi8CBc5w3A(ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate, View view) {
+        chatActivityMemberRequestsDelegate.fragment.getMessagesController().setChatPendingRequestsOnClose(chatActivityMemberRequestsDelegate.currentChat.id, chatActivityMemberRequestsDelegate.pendingRequestsCount);
+        chatActivityMemberRequestsDelegate.closePendingRequestsCount = chatActivityMemberRequestsDelegate.pendingRequestsCount;
+        chatActivityMemberRequestsDelegate.animatePendingRequests(false, true);
     }
 
     public void setChatInfo(TLRPC.ChatFull chatFull, boolean z) {
@@ -131,15 +127,15 @@ public class ChatActivityMemberRequestsDelegate {
         showBottomSheet();
     }
 
-    private void showBottomSheet() {
+    public void showBottomSheet() {
         if (this.bottomSheet == null) {
             this.bottomSheet = new MemberRequestsBottomSheet(this.fragment, this.currentChat.id) {
                 @Override
-                public void lambda$new$0() {
+                public void dismiss() {
                     if (ChatActivityMemberRequestsDelegate.this.bottomSheet != null && !ChatActivityMemberRequestsDelegate.this.bottomSheet.isNeedRestoreDialog()) {
                         ChatActivityMemberRequestsDelegate.this.bottomSheet = null;
                     }
-                    super.lambda$new$0();
+                    super.dismiss();
                 }
             };
         }

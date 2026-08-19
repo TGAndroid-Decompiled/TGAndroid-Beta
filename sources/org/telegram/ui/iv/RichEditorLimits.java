@@ -1,7 +1,6 @@
 package org.telegram.ui.iv;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AppGlobalConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
@@ -124,9 +123,13 @@ public class RichEditorLimits {
         if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
             ArrayList<TL_keyboard.PageButton> arrayList2 = ((TL_iv.pageBlockButtonRow) pageBlock).buttons;
             if (arrayList2 != null) {
-                for (TL_keyboard.PageButton pageButton : arrayList2) {
-                    if (pageButton != null) {
-                        addText(pageButton.text, i + 1, richEditorLimits);
+                int size = arrayList2.size();
+                while (i2 < size) {
+                    TL_keyboard.PageButton pageButton = arrayList2.get(i2);
+                    i2++;
+                    TL_keyboard.PageButton pageButton2 = pageButton;
+                    if (pageButton2 != null) {
+                        addText(pageButton2.text, i + 1, richEditorLimits);
                     }
                 }
                 return;
@@ -208,14 +211,18 @@ public class RichEditorLimits {
     }
 
     private static int richTextDepth(TL_iv.RichText richText) {
-        int iMax = 0;
+        int i = 0;
         if (richText == null || (richText instanceof TL_iv.textEmpty) || (richText instanceof TL_iv.textPlain) || (richText instanceof TL_iv.textCustomEmoji)) {
             return 0;
         }
         if (richText instanceof TL_iv.textConcat) {
-            Iterator<TL_iv.RichText> it = ((TL_iv.textConcat) richText).texts.iterator();
-            while (it.hasNext()) {
-                iMax = Math.max(iMax, richTextDepth(it.next()));
+            ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
+            int size = arrayList.size();
+            int iMax = 0;
+            while (i < size) {
+                TL_iv.RichText richText2 = arrayList.get(i);
+                i++;
+                iMax = Math.max(iMax, richTextDepth(richText2));
             }
             return iMax;
         }

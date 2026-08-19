@@ -20,7 +20,7 @@ import org.telegram.ui.ActionBar.Theme;
 public abstract class GigagroupConvertAlert extends BottomSheet {
     protected abstract void onCancel();
 
-    protected abstract void onCovert();
+    public abstract void onCovert();
 
     public static class BottomSheetCell extends FrameLayout {
         private View background;
@@ -113,7 +113,7 @@ public abstract class GigagroupConvertAlert extends BottomSheet {
                 bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$1(context, baseFragment, view);
+                        GigagroupConvertAlert.$r8$lambda$K7ycK12maVYyiqQ7YMlcTFVuNYo(this.f$0, context, baseFragment, view);
                     }
                 });
                 linearLayout.addView(bottomSheetCell, LayoutHelper.createLinear(-1, 50, 51, 0, 29, 0, 0));
@@ -126,7 +126,7 @@ public abstract class GigagroupConvertAlert extends BottomSheet {
                 textView3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$2(view);
+                        GigagroupConvertAlert.$r8$lambda$q5NXt1Fw2oR7OoC4vjOz3OKPQdw(this.f$0, view);
                     }
                 });
                 return;
@@ -134,27 +134,23 @@ public abstract class GigagroupConvertAlert extends BottomSheet {
         }
     }
 
-    public void lambda$new$1(Context context, BaseFragment baseFragment, View view) {
-        dismiss();
+    public static void $r8$lambda$K7ycK12maVYyiqQ7YMlcTFVuNYo(final GigagroupConvertAlert gigagroupConvertAlert, Context context, BaseFragment baseFragment, View view) {
+        gigagroupConvertAlert.dismiss();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(LocaleController.getString(R.string.GigagroupConvertAlertTitle));
         builder.setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GigagroupConvertAlertText)));
         builder.setPositiveButton(LocaleController.getString(R.string.GigagroupConvertAlertConver), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$new$0(alertDialog, i);
+                this.f$0.onCovert();
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         baseFragment.showDialog(builder.create());
     }
 
-    public void lambda$new$0(AlertDialog alertDialog, int i) {
-        onCovert();
-    }
-
-    public void lambda$new$2(View view) {
-        onCancel();
-        dismiss();
+    public static void $r8$lambda$q5NXt1Fw2oR7OoC4vjOz3OKPQdw(GigagroupConvertAlert gigagroupConvertAlert, View view) {
+        gigagroupConvertAlert.onCancel();
+        gigagroupConvertAlert.dismiss();
     }
 }

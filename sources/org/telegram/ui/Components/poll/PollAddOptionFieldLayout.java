@@ -125,7 +125,13 @@ public class PollAddOptionFieldLayout extends FrameLayout implements ViewTreeObs
         pollAttachButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(baseFragment, view);
+                PollAddOptionFieldLayout pollAddOptionFieldLayout = this.f$0;
+                ChatAttachAlertPollLayout.openPollAttachMenu(baseFragment, ChatAttachAlertPollLayout.getStartLayoutForMedia(pollAddOptionFieldLayout.attachedMedia), ChatAttachAlertPollLayout.getAllowedLayoutsForIndex(0), new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        PollAddOptionFieldLayout.$r8$lambda$o9TNAw2RJNmvjEeLYoKixYDc_eA(pollAddOptionFieldLayout, (PollAttachedMedia) obj);
+                    }
+                }, null);
             }
         });
         ScaleStateListAnimator.apply(pollAttachButton);
@@ -169,13 +175,9 @@ public class PollAddOptionFieldLayout extends FrameLayout implements ViewTreeObs
             postOnAnimation(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSizeChanged$0();
+                    PollAddOptionFieldLayout.this.updateCell();
                 }
             });
-        }
-
-        public void lambda$onSizeChanged$0() {
-            PollAddOptionFieldLayout.this.updateCell();
         }
 
         @Override
@@ -186,28 +188,15 @@ public class PollAddOptionFieldLayout extends FrameLayout implements ViewTreeObs
         }
     }
 
-    public void lambda$new$2(BaseFragment baseFragment, View view) {
-        ChatAttachAlertPollLayout.openPollAttachMenu(baseFragment, ChatAttachAlertPollLayout.getStartLayoutForMedia(this.attachedMedia), ChatAttachAlertPollLayout.getAllowedLayoutsForIndex(0), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                this.f$0.lambda$new$1((PollAttachedMedia) obj);
-            }
-        }, null);
-    }
-
-    public void lambda$new$1(PollAttachedMedia pollAttachedMedia) {
-        this.attachedMedia = pollAttachedMedia;
-        this.attachButton.setAttachedMedia(pollAttachedMedia, true);
+    public static void $r8$lambda$o9TNAw2RJNmvjEeLYoKixYDc_eA(final PollAddOptionFieldLayout pollAddOptionFieldLayout, PollAttachedMedia pollAttachedMedia) {
+        pollAddOptionFieldLayout.attachedMedia = pollAttachedMedia;
+        pollAddOptionFieldLayout.attachButton.setAttachedMedia(pollAttachedMedia, true);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                AndroidUtilities.showKeyboard(this.f$0.textView);
             }
         }, 200L);
-    }
-
-    public void lambda$new$0() {
-        AndroidUtilities.showKeyboard(this.textView);
     }
 
     public void drawInCell(Canvas canvas) {

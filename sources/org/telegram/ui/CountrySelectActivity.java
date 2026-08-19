@@ -177,7 +177,7 @@ public class CountrySelectActivity extends BaseFragment {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$createView$0(view, i2);
+                CountrySelectActivity.m3034$r8$lambda$eXzLmdgisnCW26jJi69v3oZTk0(this.f$0, view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -191,25 +191,25 @@ public class CountrySelectActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view, int i) {
+    public static void m3034$r8$lambda$eXzLmdgisnCW26jJi69v3oZTk0(CountrySelectActivity countrySelectActivity, View view, int i) {
         Country item;
         CountrySelectActivityDelegate countrySelectActivityDelegate;
-        if (this.searching && this.searchWas) {
-            item = this.searchListViewAdapter.getItem(i);
+        if (countrySelectActivity.searching && countrySelectActivity.searchWas) {
+            item = countrySelectActivity.searchListViewAdapter.getItem(i);
         } else {
-            int sectionForPosition = this.listViewAdapter.getSectionForPosition(i);
-            int positionInSectionForPosition = this.listViewAdapter.getPositionInSectionForPosition(i);
+            int sectionForPosition = countrySelectActivity.listViewAdapter.getSectionForPosition(i);
+            int positionInSectionForPosition = countrySelectActivity.listViewAdapter.getPositionInSectionForPosition(i);
             if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
                 return;
             } else {
-                item = this.listViewAdapter.getItem(sectionForPosition, positionInSectionForPosition);
+                item = countrySelectActivity.listViewAdapter.getItem(sectionForPosition, positionInSectionForPosition);
             }
         }
         if (i < 0) {
             return;
         }
-        finishFragment();
-        if (item == null || (countrySelectActivityDelegate = this.delegate) == null) {
+        countrySelectActivity.finishFragment();
+        if (item == null || (countrySelectActivityDelegate = countrySelectActivity.delegate) == null) {
             return;
         }
         countrySelectActivityDelegate.didSelectCountry(item);
@@ -238,11 +238,13 @@ public class CountrySelectActivity extends BaseFragment {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
+            if (obj != null && getClass() == obj.getClass()) {
+                Country country = (Country) obj;
+                if (Objects.equals(this.name, country.name) && Objects.equals(this.code, country.code)) {
+                    return true;
+                }
             }
-            Country country = (Country) obj;
-            return Objects.equals(this.name, country.name) && Objects.equals(this.code, country.code);
+            return false;
         }
 
         public int hashCode() {
@@ -320,14 +322,10 @@ public class CountrySelectActivity extends BaseFragment {
                 Collections.sort((ArrayList) it.next(), new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return CountrySelectActivity.CountryAdapter.lambda$new$0(boostRepository$$ExternalSyntheticLambda24, (CountrySelectActivity.Country) obj, (CountrySelectActivity.Country) obj2);
+                        return boostRepository$$ExternalSyntheticLambda24.compare(((CountrySelectActivity.Country) obj).name, ((CountrySelectActivity.Country) obj2).name);
                     }
                 });
             }
-        }
-
-        public static int lambda$new$0(Comparator comparator, Country country, Country country2) {
-            return comparator.compare(country.name, country2.name);
         }
 
         public HashMap getCountries() {
@@ -470,20 +468,21 @@ public class CountrySelectActivity extends BaseFragment {
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processSearch$0(str);
+                    CountrySelectActivity.CountrySearchAdapter.$r8$lambda$TWRaxYNKskF834hblhudYZek6gw(this.f$0, str);
                 }
             });
         }
 
-        public void lambda$processSearch$0(String str) {
+        public static void $r8$lambda$TWRaxYNKskF834hblhudYZek6gw(CountrySearchAdapter countrySearchAdapter, String str) {
+            countrySearchAdapter.getClass();
             String lowerCase = str.trim().toLowerCase();
             if (lowerCase.length() == 0) {
-                updateSearchResults(new ArrayList());
+                countrySearchAdapter.updateSearchResults(new ArrayList());
                 return;
             }
             String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
             ArrayList arrayList = new ArrayList();
-            for (Country country : this.countryList) {
+            for (Country country : countrySearchAdapter.countryList) {
                 String str2 = country.name;
                 if (str2 == null) {
                     str2 = "";
@@ -513,26 +512,26 @@ public class CountrySelectActivity extends BaseFragment {
                 }
                 arrayList.add(country);
             }
-            updateSearchResults(arrayList);
+            countrySearchAdapter.updateSearchResults(arrayList);
         }
 
         private void updateSearchResults(final ArrayList arrayList) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateSearchResults$1(arrayList);
+                    CountrySelectActivity.CountrySearchAdapter.$r8$lambda$zxS2AknKGEFqWpT4N9PKdZNvI2g(this.f$0, arrayList);
                 }
             });
         }
 
-        public void lambda$updateSearchResults$1(ArrayList arrayList) {
+        public static void $r8$lambda$zxS2AknKGEFqWpT4N9PKdZNvI2g(CountrySearchAdapter countrySearchAdapter, ArrayList arrayList) {
             if (CountrySelectActivity.this.searching) {
-                this.searchResult = arrayList;
+                countrySearchAdapter.searchResult = arrayList;
                 if (CountrySelectActivity.this.searchWas && CountrySelectActivity.this.listView != null && CountrySelectActivity.this.listView.getAdapter() != CountrySelectActivity.this.searchListViewAdapter) {
                     CountrySelectActivity.this.listView.setAdapter(CountrySelectActivity.this.searchListViewAdapter);
                     CountrySelectActivity.this.listView.setFastScrollVisible(false);
                 }
-                notifyDataSetChanged();
+                countrySearchAdapter.notifyDataSetChanged();
             }
         }
 
@@ -589,12 +588,12 @@ public class CountrySelectActivity extends BaseFragment {
             this.listener = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
                 public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                    CountrySelectActivity.AnonymousClass4.lambda$$0(textSettingsCell, i, i2, objArr);
+                    CountrySelectActivity.AnonymousClass4.$r8$lambda$0DoFj1EMwzi9gkncDjaoCqlCJDY(textSettingsCell, i, i2, objArr);
                 }
             };
         }
 
-        public static void lambda$$0(TextSettingsCell textSettingsCell, int i, int i2, Object[] objArr) {
+        public static void $r8$lambda$0DoFj1EMwzi9gkncDjaoCqlCJDY(TextSettingsCell textSettingsCell, int i, int i2, Object[] objArr) {
             if (i == NotificationCenter.emojiLoaded) {
                 textSettingsCell.getTextView().invalidate();
             }

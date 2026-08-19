@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
@@ -229,7 +228,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         this.iBlur3Capture = new IBlur3Capture() {
             @Override
             public final void capture(Canvas canvas, RectF rectF2) {
-                this.f$0.lambda$new$0(canvas, rectF2);
+                SelectAudioAlert.$r8$lambda$9KM64EGm08QDvBQmvyAE9Il8Unc(this.f$0, canvas, rectF2);
             }
 
             @Override
@@ -342,56 +341,57 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i4) {
-                this.f$0.lambda$new$1(callback, resourcesProvider, view, i4);
+                SelectAudioAlert.$r8$lambda$fWlcXHGVkTVrAnhoST9pmesoVdw(this.f$0, callback, resourcesProvider, view, i4);
             }
         });
     }
 
-    public void lambda$new$0(Canvas canvas, RectF rectF) {
-        RecyclerListView recyclerListView = this.recyclerListView;
-        Blur3Utils.captureRelativeParent(recyclerListView, canvas, rectF, recyclerListView, getContainerView(), 255);
+    public static void $r8$lambda$9KM64EGm08QDvBQmvyAE9Il8Unc(SelectAudioAlert selectAudioAlert, Canvas canvas, RectF rectF) {
+        RecyclerListView recyclerListView = selectAudioAlert.recyclerListView;
+        Blur3Utils.captureRelativeParent(recyclerListView, canvas, rectF, recyclerListView, selectAudioAlert.getContainerView(), 255);
     }
 
-    public void lambda$new$1(Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider, View view, int i) {
+    public static void $r8$lambda$fWlcXHGVkTVrAnhoST9pmesoVdw(SelectAudioAlert selectAudioAlert, Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider, View view, int i) {
+        selectAudioAlert.getClass();
         if (view instanceof SharedAudioCell) {
             MessageObject message = ((SharedAudioCell) view).getMessage();
             if (message == null) {
                 return;
             }
-            DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-            if (this.downloadingMessageObject != null) {
-                FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.downloadingMessageObject.getDocument());
-                this.downloadingMessageObject = null;
+            DownloadController.getInstance(selectAudioAlert.currentAccount).removeLoadingFileObserver(selectAudioAlert);
+            if (selectAudioAlert.downloadingMessageObject != null) {
+                FileLoader.getInstance(selectAudioAlert.currentAccount).cancelLoadFile(selectAudioAlert.downloadingMessageObject.getDocument());
+                selectAudioAlert.downloadingMessageObject = null;
             }
             if (!message.attachPathExists && !message.mediaExists) {
                 String fileName = message.getFileName();
                 if (TextUtils.isEmpty(fileName)) {
                     return;
                 }
-                this.downloadingMessageObject = message;
-                DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(fileName, message, this);
-                FileLoader.getInstance(this.currentAccount).loadFile(message.getDocument(), message, 1, 0);
+                selectAudioAlert.downloadingMessageObject = message;
+                DownloadController.getInstance(selectAudioAlert.currentAccount).addLoadingFileObserver(fileName, message, selectAudioAlert);
+                FileLoader.getInstance(selectAudioAlert.currentAccount).loadFile(message.getDocument(), message, 1, 0);
                 return;
             }
-            done(message);
+            selectAudioAlert.done(message);
             return;
         }
-        UItem item = this.adapter.getItem(i - 1);
+        UItem item = selectAudioAlert.adapter.getItem(i - 1);
         if (item != null && item.id == 1) {
-            new SelectAudioAlert(getContext(), true, this, callback, resourcesProvider).show();
+            new SelectAudioAlert(selectAudioAlert.getContext(), true, selectAudioAlert, callback, resourcesProvider).show();
             return;
         }
         if (item != null && item.id == 2) {
-            this.savedMusicList.load();
+            selectAudioAlert.savedMusicList.load();
             return;
         }
         if (item != null && item.id == 3) {
-            loadSharedAudio();
+            selectAudioAlert.loadSharedAudio();
         } else {
             if (item == null || item.id != 4) {
                 return;
             }
-            loadGlobalAudio();
+            selectAudioAlert.loadGlobalAudio();
         }
     }
 
@@ -446,9 +446,9 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         this.onAudioSelected.run(messageObject);
         SelectAudioAlert selectAudioAlert = this.parentAlert;
         if (selectAudioAlert != null) {
-            selectAudioAlert.lambda$new$0();
+            selectAudioAlert.dismiss();
         }
-        lambda$new$0();
+        dismiss();
     }
 
     public SelectAudioAlert withoutSavedMusic() {
@@ -459,8 +459,8 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
     }
 
     @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
+    public void dismiss() {
+        super.dismiss();
         if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
             MediaController.getInstance().cleanupPlayer(true, true);
         }
@@ -500,93 +500,109 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        SelectAudioAlert selectAudioAlert;
+        ArrayList arrayList2;
         universalAdapter.itemsOffset = 1;
         int iDp = AndroidUtilities.dp(64.0f);
         arrayList.add(UItem.asSpace(AndroidUtilities.dp(64.0f)));
         if (this.local || this.withoutSavedMusic) {
-            iDp += addSection(true, arrayList, LocaleController.getString(R.string.AudioSearchLocal), this.localAudio, false, false, -1);
+            selectAudioAlert = this;
+            arrayList2 = arrayList;
+            iDp += selectAudioAlert.addSection(true, arrayList2, LocaleController.getString(R.string.AudioSearchLocal), this.localAudio, false, false, -1);
+        } else {
+            selectAudioAlert = this;
+            arrayList2 = arrayList;
         }
-        if (!this.local) {
-            if (TextUtils.isEmpty(this.query) && !this.withoutSavedMusic) {
+        if (!selectAudioAlert.local) {
+            if (TextUtils.isEmpty(selectAudioAlert.query) && !selectAudioAlert.withoutSavedMusic) {
                 universalAdapter.whiteSectionStart();
-                arrayList.add(UItem.asButton(1, R.drawable.msg2_folder, LocaleController.getString(R.string.StoryMusicSelectFromFiles)).accent());
+                arrayList2.add(UItem.asButton(1, R.drawable.msg2_folder, LocaleController.getString(R.string.StoryMusicSelectFromFiles)).accent());
                 universalAdapter.whiteSectionEnd();
                 iDp += AndroidUtilities.dp(50.0f);
             }
-            if (!this.withoutSavedMusic && this.savedMusicList != null) {
+            if (!selectAudioAlert.withoutSavedMusic && selectAudioAlert.savedMusicList != null) {
                 String string = LocaleController.getString(R.string.AudioSearchProfile);
-                MessagesController.SavedMusicList savedMusicList = this.savedMusicList;
-                iDp += addSection(true, arrayList, string, savedMusicList.list, savedMusicList.loading, !savedMusicList.endReached, 2);
+                MessagesController.SavedMusicList savedMusicList = selectAudioAlert.savedMusicList;
+                iDp += selectAudioAlert.addSection(true, arrayList2, string, savedMusicList.list, savedMusicList.loading, !savedMusicList.endReached, 2);
             }
-            iDp = iDp + addSection(false, arrayList, LocaleController.getString(R.string.AudioSearchChats), this.sharedAudio, this.willLoadSharedAudio || this.loadingSharedAudio, this.sharedAudioHasMore, 3) + addSection(false, arrayList, LocaleController.getString(R.string.AudioSearchGlobal), this.globalAudio, this.willLoadGlobalAudio || this.loadingGlobalAudio, this.globalAudioHasMore, 4);
+            iDp = iDp + selectAudioAlert.addSection(false, arrayList2, LocaleController.getString(R.string.AudioSearchChats), selectAudioAlert.sharedAudio, selectAudioAlert.willLoadSharedAudio || selectAudioAlert.loadingSharedAudio, selectAudioAlert.sharedAudioHasMore, 3) + selectAudioAlert.addSection(false, arrayList2, LocaleController.getString(R.string.AudioSearchGlobal), selectAudioAlert.globalAudio, selectAudioAlert.willLoadGlobalAudio || selectAudioAlert.loadingGlobalAudio, selectAudioAlert.globalAudioHasMore, 4);
         }
-        if (arrayList.size() <= ((this.local || !TextUtils.isEmpty(this.query) || this.withoutSavedMusic) ? 1 : 2)) {
-            if (TextUtils.isEmpty(this.query)) {
-                arrayList.add(ChatAttachAlertAudioLayout.EmptyView.Factory.as(LocaleController.getString(R.string.NoAudioFound), LocaleController.getString(R.string.NoAudioFilesInfo)));
+        if (arrayList2.size() <= ((selectAudioAlert.local || !TextUtils.isEmpty(selectAudioAlert.query) || selectAudioAlert.withoutSavedMusic) ? 1 : 2)) {
+            if (TextUtils.isEmpty(selectAudioAlert.query)) {
+                arrayList2.add(ChatAttachAlertAudioLayout.EmptyView.Factory.as(LocaleController.getString(R.string.NoAudioFound), LocaleController.getString(R.string.NoAudioFilesInfo)));
             } else {
-                arrayList.add(ChatAttachAlertAudioLayout.EmptyView.Factory.as(LocaleController.getString(R.string.NoAudioFound), AndroidUtilities.replaceTags(LocaleController.formatString(this.query.length() >= 3 ? R.string.NoAudioFoundInfo2 : R.string.NoAudioFoundInfo, this.query))));
+                arrayList2.add(ChatAttachAlertAudioLayout.EmptyView.Factory.as(LocaleController.getString(R.string.NoAudioFound), AndroidUtilities.replaceTags(LocaleController.formatString(selectAudioAlert.query.length() >= 3 ? R.string.NoAudioFoundInfo2 : R.string.NoAudioFoundInfo, selectAudioAlert.query))));
             }
         }
-        arrayList.add(UItem.asShadow(null));
-        arrayList.add(UItem.asSpace(Math.max(0, (((AndroidUtilities.displaySize.y - (iDp + AndroidUtilities.dp(12.0f))) - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) + AndroidUtilities.dp(24.0f))));
+        arrayList2.add(UItem.asShadow(null));
+        arrayList2.add(UItem.asSpace(Math.max(0, (((AndroidUtilities.displaySize.y - (iDp + AndroidUtilities.dp(12.0f))) - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) + AndroidUtilities.dp(24.0f))));
     }
 
     private int addSection(boolean z, ArrayList arrayList, String str, ArrayList arrayList2, boolean z2, boolean z3, int i) {
-        int iDp = 0;
-        if (arrayList2 != null && (!arrayList2.isEmpty() || z2)) {
-            ArrayList arrayList3 = new ArrayList();
-            String str2 = this.query;
-            String lowerCase = str2 == null ? null : str2.toLowerCase();
-            String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
-            Iterator it = arrayList2.iterator();
-            while (it.hasNext()) {
-                MessageObject messageObject = (MessageObject) it.next();
-                if (!z) {
+        int iDp;
+        int i2 = 0;
+        if (arrayList2 == null || (arrayList2.isEmpty() && !z2)) {
+            return 0;
+        }
+        ArrayList arrayList3 = new ArrayList();
+        String str2 = this.query;
+        String lowerCase = str2 == null ? null : str2.toLowerCase();
+        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+        int size = arrayList2.size();
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList2.get(i3);
+            i3++;
+            MessageObject messageObject = (MessageObject) obj;
+            if (!z) {
+                messageObject.setQuery(this.query);
+                arrayList3.add(messageObject);
+            } else if (TextUtils.isEmpty(lowerCase) || arrayList2 == this.sharedAudio) {
+                messageObject.setQuery(null);
+                arrayList3.add(messageObject);
+            } else {
+                String musicTitle = messageObject.getMusicTitle();
+                String musicAuthor = messageObject.getMusicAuthor();
+                if (matches(lowerCase, strTranslitSafe, musicTitle) || matches(lowerCase, strTranslitSafe, musicAuthor)) {
                     messageObject.setQuery(this.query);
                     arrayList3.add(messageObject);
-                } else if (TextUtils.isEmpty(lowerCase) || arrayList2 == this.sharedAudio) {
-                    messageObject.setQuery(null);
-                    arrayList3.add(messageObject);
-                } else {
-                    String musicTitle = messageObject.getMusicTitle();
-                    String musicAuthor = messageObject.getMusicAuthor();
-                    if (matches(lowerCase, strTranslitSafe, musicTitle) || matches(lowerCase, strTranslitSafe, musicAuthor)) {
-                        messageObject.setQuery(this.query);
-                        arrayList3.add(messageObject);
-                    }
                 }
             }
-            if (arrayList3.isEmpty() && !z2) {
-                return 0;
-            }
-            if (!arrayList.isEmpty() && arrayList.size() > 1) {
-                arrayList.add(UItem.asShadow(null));
-                iDp = AndroidUtilities.dp(12.0f);
-            }
-            this.adapter.whiteSectionStart();
-            arrayList.add(UItem.asHeader(str));
-            Iterator it2 = arrayList3.iterator();
-            while (it2.hasNext()) {
-                arrayList.add(SharedAudioCell.Factory.as((MessageObject) it2.next(), new Utilities.CallbackReturn() {
-                    @Override
-                    public final Object run(Object obj) {
-                        return Boolean.valueOf(this.f$0.needPlayMessage((MessageObject) obj));
-                    }
-                }));
-                iDp += AndroidUtilities.dp(56.0f);
-            }
-            if (z2) {
-                arrayList.add(UItem.asFlicker(4));
-                arrayList.add(UItem.asFlicker(4));
-                arrayList.add(UItem.asFlicker(4));
-                iDp += AndroidUtilities.dp(56.0f) * 3;
-            }
-            if (z3 && !z2) {
-                arrayList.add(UItem.asButton(i, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
-                iDp += AndroidUtilities.dp(50.0f);
-            }
-            this.adapter.whiteSectionEnd();
         }
+        if (arrayList3.isEmpty() && !z2) {
+            return 0;
+        }
+        if (arrayList.isEmpty() || arrayList.size() <= 1) {
+            iDp = 0;
+        } else {
+            arrayList.add(UItem.asShadow(null));
+            iDp = AndroidUtilities.dp(12.0f);
+        }
+        this.adapter.whiteSectionStart();
+        arrayList.add(UItem.asHeader(str));
+        int size2 = arrayList3.size();
+        while (i2 < size2) {
+            Object obj2 = arrayList3.get(i2);
+            i2++;
+            arrayList.add(SharedAudioCell.Factory.as((MessageObject) obj2, new Utilities.CallbackReturn() {
+                @Override
+                public final Object run(Object obj3) {
+                    return Boolean.valueOf(this.f$0.needPlayMessage((MessageObject) obj3));
+                }
+            }));
+            iDp += AndroidUtilities.dp(56.0f);
+        }
+        if (z2) {
+            arrayList.add(UItem.asFlicker(4));
+            arrayList.add(UItem.asFlicker(4));
+            arrayList.add(UItem.asFlicker(4));
+            iDp += AndroidUtilities.dp(56.0f) * 3;
+        }
+        if (z3 && !z2) {
+            arrayList.add(UItem.asButton(i, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
+            iDp += AndroidUtilities.dp(50.0f);
+        }
+        this.adapter.whiteSectionEnd();
         return iDp;
     }
 
@@ -663,44 +679,49 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
             this.loadingSharedAudioRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$loadSharedAudio$3(tLObject, tL_error);
+                    SelectAudioAlert.$r8$lambda$CxAdVlH8NI4wnyX9hYcFKNXcfCw(this.f$0, tLObject, tL_error);
                 }
             });
             this.adapter.update(true);
         }
     }
 
-    public void lambda$loadSharedAudio$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$CxAdVlH8NI4wnyX9hYcFKNXcfCw(final SelectAudioAlert selectAudioAlert, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        selectAudioAlert.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadSharedAudio$2(tLObject);
+                SelectAudioAlert.m4568$r8$lambda$r8O6CqM005fY5SLqz3ixK1cIBc(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$loadSharedAudio$2(TLObject tLObject) {
+    public static void m4568$r8$lambda$r8O6CqM005fY5SLqz3ixK1cIBc(SelectAudioAlert selectAudioAlert, TLObject tLObject) {
         boolean z = false;
-        this.willLoadSharedAudio = false;
-        this.loadingSharedAudio = false;
+        selectAudioAlert.willLoadSharedAudio = false;
+        selectAudioAlert.loadingSharedAudio = false;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(messages_messages.chats, false);
-            Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
-            while (it.hasNext()) {
-                this.sharedAudio.add(new MessageObject(this.currentAccount, it.next(), false, true));
+            MessagesController.getInstance(selectAudioAlert.currentAccount).putUsers(messages_messages.users, false);
+            MessagesController.getInstance(selectAudioAlert.currentAccount).putChats(messages_messages.chats, false);
+            ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TLRPC.Message message = arrayList.get(i);
+                i++;
+                selectAudioAlert.sharedAudio.add(new MessageObject(selectAudioAlert.currentAccount, message, false, true));
             }
-            if ((messages_messages instanceof TLRPC.TL_messages_messagesSlice) && this.sharedAudio.size() < messages_messages.count) {
+            if ((messages_messages instanceof TLRPC.TL_messages_messagesSlice) && selectAudioAlert.sharedAudio.size() < messages_messages.count) {
                 z = true;
             }
-            this.sharedAudioHasMore = z;
-            this.nextSearchRate = messages_messages.next_rate;
+            selectAudioAlert.sharedAudioHasMore = z;
+            selectAudioAlert.nextSearchRate = messages_messages.next_rate;
         } else {
-            this.sharedAudioHasMore = false;
-            this.nextSearchRate = 0;
+            selectAudioAlert.sharedAudioHasMore = false;
+            selectAudioAlert.nextSearchRate = 0;
         }
-        this.adapter.update(true);
+        selectAudioAlert.adapter.update(true);
     }
 
     public void cancelLoadingGlobalAudio() {
@@ -749,7 +770,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
                 MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str2, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        this.f$0.lambda$loadGlobalAudio$4((Long) obj);
+                        SelectAudioAlert.$r8$lambda$zXizBx31oUnyFrQJqkDfszX7lcw(this.f$0, (Long) obj);
                     }
                 });
                 return;
@@ -770,43 +791,49 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
             this.loadingGlobalAudioRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_getInlineBotResults, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$loadGlobalAudio$5((TLRPC.messages_BotResults) obj, (TLRPC.TL_error) obj2);
+                    SelectAudioAlert.$r8$lambda$NJpHeD5XhNKGwM9MZeLZloM2e90(this.f$0, (TLRPC.messages_BotResults) obj, (TLRPC.TL_error) obj2);
                 }
             });
             this.adapter.update(true);
         }
     }
 
-    public void lambda$loadGlobalAudio$4(Long l) {
-        this.resolvingGlobalAudioBot = false;
-        TLRPC.User user = l == null ? null : MessagesController.getInstance(this.currentAccount).getUser(l);
-        this.globalAudioBot = user;
-        this.failedToResolveGlobalAudioBot = user == null;
+    public static void $r8$lambda$zXizBx31oUnyFrQJqkDfszX7lcw(SelectAudioAlert selectAudioAlert, Long l) {
+        selectAudioAlert.resolvingGlobalAudioBot = false;
+        TLRPC.User user = l == null ? null : MessagesController.getInstance(selectAudioAlert.currentAccount).getUser(l);
+        selectAudioAlert.globalAudioBot = user;
+        selectAudioAlert.failedToResolveGlobalAudioBot = user == null;
         if (user != null) {
-            loadGlobalAudio();
+            selectAudioAlert.loadGlobalAudio();
         }
     }
 
-    public void lambda$loadGlobalAudio$5(TLRPC.messages_BotResults messages_botresults, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$NJpHeD5XhNKGwM9MZeLZloM2e90(SelectAudioAlert selectAudioAlert, TLRPC.messages_BotResults messages_botresults, TLRPC.TL_error tL_error) {
         boolean z = false;
-        this.loadingGlobalAudio = false;
-        this.willLoadGlobalAudio = false;
+        selectAudioAlert.loadingGlobalAudio = false;
+        selectAudioAlert.willLoadGlobalAudio = false;
         if (messages_botresults != null) {
-            MessagesController.getInstance(this.currentAccount).putUsers(messages_botresults.users, false);
-            for (TLRPC.BotInlineResult botInlineResult : messages_botresults.results) {
-                if (botInlineResult instanceof TLRPC.TL_botInlineMediaResult) {
-                    TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) botInlineResult;
+            MessagesController.getInstance(selectAudioAlert.currentAccount).putUsers(messages_botresults.users, false);
+            ArrayList<TLRPC.BotInlineResult> arrayList = messages_botresults.results;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TLRPC.BotInlineResult botInlineResult = arrayList.get(i);
+                i++;
+                TLRPC.BotInlineResult botInlineResult2 = botInlineResult;
+                if (botInlineResult2 instanceof TLRPC.TL_botInlineMediaResult) {
+                    TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) botInlineResult2;
                     if (tL_botInlineMediaResult.document != null) {
                         TLRPC.TL_message tL_message = new TLRPC.TL_message();
                         tL_message.out = true;
-                        int i = this.globalAudioId;
-                        this.globalAudioId = i - 1;
-                        tL_message.id = i;
+                        int i2 = selectAudioAlert.globalAudioId;
+                        selectAudioAlert.globalAudioId = i2 - 1;
+                        tL_message.id = i2;
                         tL_message.peer_id = new TLRPC.TL_peerUser();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                         tL_message.from_id = tL_peerUser;
                         TLRPC.Peer peer = tL_message.peer_id;
-                        long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+                        long clientUserId = UserConfig.getInstance(selectAudioAlert.currentAccount).getClientUserId();
                         tL_peerUser.user_id = clientUserId;
                         peer.user_id = clientUserId;
                         tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -816,19 +843,19 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
                         tL_messageMediaDocument.flags |= 3;
                         tL_messageMediaDocument.document = tL_botInlineMediaResult.document;
                         tL_message.flags |= 768;
-                        this.globalAudio.add(new MessageObject(this.currentAccount, tL_message, false, true));
+                        selectAudioAlert.globalAudio.add(new MessageObject(selectAudioAlert.currentAccount, tL_message, false, true));
                     }
                 }
             }
-            this.globalAudioOffset = messages_botresults.next_offset;
-            if (!this.globalAudio.isEmpty() && !TextUtils.isEmpty(this.globalAudioOffset)) {
+            selectAudioAlert.globalAudioOffset = messages_botresults.next_offset;
+            if (!selectAudioAlert.globalAudio.isEmpty() && !TextUtils.isEmpty(selectAudioAlert.globalAudioOffset)) {
                 z = true;
             }
-            this.globalAudioHasMore = z;
-            this.adapter.update(true);
+            selectAudioAlert.globalAudioHasMore = z;
+            selectAudioAlert.adapter.update(true);
             return;
         }
-        this.adapter.update(true);
+        selectAudioAlert.adapter.update(true);
     }
 
     private void loadLocalAudio() {
@@ -837,13 +864,14 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadLocalAudio$7();
+                    SelectAudioAlert.$r8$lambda$xHMIUEwFrqyq2mohV4NBi3g7BuI(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$loadLocalAudio$7() {
+    public static void $r8$lambda$xHMIUEwFrqyq2mohV4NBi3g7BuI(final SelectAudioAlert selectAudioAlert) {
+        selectAudioAlert.getClass();
         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
         final ArrayList arrayList = new ArrayList();
         try {
@@ -866,7 +894,7 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
                     TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                     tL_message.from_id = tL_peerUser;
                     TLRPC.Peer peer = tL_message.peer_id;
-                    long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+                    long clientUserId = UserConfig.getInstance(selectAudioAlert.currentAccount).getClientUserId();
                     tL_peerUser.user_id = clientUserId;
                     peer.user_id = clientUserId;
                     tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -901,19 +929,21 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
                     TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                     tL_documentAttributeFilename.file_name = file.getName();
                     tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                    MessageObject messageObject = new MessageObject(this.currentAccount, tL_message, false, true);
+                    MessageObject messageObject = new MessageObject(selectAudioAlert.currentAccount, tL_message, false, true);
                     audioEntry.messageObject = messageObject;
                     arrayList.add(messageObject);
                     i--;
                 } catch (Throwable th) {
-                    if (cursorQuery != null) {
-                        try {
-                            cursorQuery.close();
-                        } catch (Throwable th2) {
-                            th.addSuppressed(th2);
-                        }
+                    if (cursorQuery == null) {
+                        throw th;
                     }
-                    throw th;
+                    try {
+                        cursorQuery.close();
+                        throw th;
+                    } catch (Throwable th2) {
+                        th.addSuppressed(th2);
+                        throw th;
+                    }
                 }
             }
             cursorQuery.close();
@@ -923,15 +953,15 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadLocalAudio$6(arrayList);
+                SelectAudioAlert.m4567$r8$lambda$qX0JpFkuCzsLqj1XjRgCu5RRgk(this.f$0, arrayList);
             }
         });
     }
 
-    public void lambda$loadLocalAudio$6(ArrayList arrayList) {
-        this.loadingLocalAudio = false;
-        this.localAudio.addAll(arrayList);
-        this.adapter.update(true);
+    public static void m4567$r8$lambda$qX0JpFkuCzsLqj1XjRgCu5RRgk(SelectAudioAlert selectAudioAlert, ArrayList arrayList) {
+        selectAudioAlert.loadingLocalAudio = false;
+        selectAudioAlert.localAudio.addAll(arrayList);
+        selectAudioAlert.adapter.update(true);
     }
 
     @Override

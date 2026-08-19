@@ -13,12 +13,12 @@ public class AppStartReceiver extends BroadcastReceiver {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AppStartReceiver.lambda$onReceive$0();
+                AppStartReceiver.$r8$lambda$7gvKcWEaIWxxezhCcVhOtGEPMng();
             }
         });
     }
 
-    public static void lambda$onReceive$0() {
+    public static void $r8$lambda$7gvKcWEaIWxxezhCcVhOtGEPMng() {
         SharedConfig.loadConfig();
         if (SharedConfig.passcodeHash.length() > 0) {
             SharedConfig.appLocked = true;

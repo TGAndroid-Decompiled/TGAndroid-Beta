@@ -51,7 +51,7 @@ public class UpdateLayout extends IUpdateLayout {
         this.updateLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createUpdateUI$0(i, view);
+                UpdateLayout.$r8$lambda$2imozFpAAI8Z7F04rd5cPfNChgo(this.f$0, i, view);
             }
         });
         AnimatedTextView animatedTextView = new AnimatedTextView(this.activity, true, true, true) {
@@ -81,17 +81,17 @@ public class UpdateLayout extends IUpdateLayout {
         this.updateLayoutIcon.setAsMini();
     }
 
-    public void lambda$createUpdateUI$0(int i, View view) {
-        if (this.updateLayoutIcon.getIcon() == 2) {
+    public static void $r8$lambda$2imozFpAAI8Z7F04rd5cPfNChgo(UpdateLayout updateLayout, int i, View view) {
+        if (updateLayout.updateLayoutIcon.getIcon() == 2) {
             ApplicationLoader.applicationLoaderInstance.downloadUpdate();
-            updateAppUpdateViews(i, true);
-        } else if (this.updateLayoutIcon.getIcon() == 3) {
+            updateLayout.updateAppUpdateViews(i, true);
+        } else if (updateLayout.updateLayoutIcon.getIcon() == 3) {
             ApplicationLoader.applicationLoaderInstance.cancelDownloadingUpdate();
-            updateAppUpdateViews(i, true);
+            updateLayout.updateAppUpdateViews(i, true);
         } else {
             File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
             if (downloadedUpdateFile != null) {
-                AndroidUtilities.openForView(downloadedUpdateFile, "Telegram.apk", "application/vnd.android.package-archive", this.activity, null, false);
+                AndroidUtilities.openForView(downloadedUpdateFile, "Telegram.apk", "application/vnd.android.package-archive", updateLayout.activity, null, false);
             }
         }
     }

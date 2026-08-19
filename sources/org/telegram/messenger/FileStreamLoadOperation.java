@@ -36,7 +36,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
 
     @Override
     public Map getResponseHeaders() {
-        return Collections.emptyMap();
+        return Collections.EMPTY_MAP;
     }
 
     public FileStreamLoadOperation() {
@@ -132,100 +132,176 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
 
     @Override
     public int read(byte[] bArr, int i, int i2) throws IOException {
+        Exception exc;
+        InterruptedException interruptedException;
+        Exception e;
+        InterruptedException e2;
+        FileStreamLoadOperation fileStreamLoadOperation;
+        File currentFileFast;
         RandomAccessFile randomAccessFile;
+        long length;
+        long j;
+        FileLoadOperation fileLoadOperationLoadStreamFile;
+        FileLoadOperation fileLoadOperation;
+        CountDownLatch countDownLatch;
+        RandomAccessFile randomAccessFile2;
         if (i2 == 0) {
             return 0;
         }
-        long j = this.bytesRemaining;
-        if (j == 0) {
+        long j2 = this.bytesRemaining;
+        if (j2 == 0) {
             return -1;
         }
-        if (j < i2) {
-            i2 = (int) j;
+        if (j2 < i2) {
+            i2 = (int) j2;
         }
         int i3 = 0;
         while (true) {
-            if (i3 != 0) {
-                randomAccessFile = this.file;
-                if (randomAccessFile != null) {
-                    break;
-                    break;
-                }
-            } else {
-                try {
-                    if (!this.opened) {
-                        randomAccessFile = this.file;
-                        if (randomAccessFile != null) {
-                            break;
+            try {
+                if (i3 == 0) {
+                    try {
+                        if (!this.opened) {
                         }
+                        i3 = (int) this.loadOperation.getDownloadedLengthFromOffset(this.currentOffset, i2)[0];
+                        if (i3 == 0) {
+                            this.countDownLatch = new CountDownLatch(1);
+                            fileStreamLoadOperation = this;
+                            try {
+                                fileLoadOperationLoadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(fileStreamLoadOperation, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
+                                fileLoadOperation = fileStreamLoadOperation.loadOperation;
+                                if (fileLoadOperation != fileLoadOperationLoadStreamFile) {
+                                    fileLoadOperation.removeStreamListener(this);
+                                    fileStreamLoadOperation.loadOperation = fileLoadOperationLoadStreamFile;
+                                }
+                                countDownLatch = fileStreamLoadOperation.countDownLatch;
+                                if (countDownLatch != null) {
+                                    countDownLatch.await();
+                                    fileStreamLoadOperation.countDownLatch = null;
+                                }
+                            } catch (InterruptedException e3) {
+                                e2 = e3;
+                                interruptedException = e2;
+                                FileLog.e(interruptedException);
+                                return -3;
+                            } catch (Exception e4) {
+                                e = e4;
+                                exc = e;
+                                throw new IOException(exc);
+                            }
+                        } else {
+                            fileStreamLoadOperation = this;
+                        }
+                        currentFileFast = fileStreamLoadOperation.loadOperation.getCurrentFileFast();
+                        if (fileStreamLoadOperation.file != null || !Objects.equals(fileStreamLoadOperation.currentFile, currentFileFast)) {
+                            if (BuildVars.LOGS_ENABLED) {
+                                FileLog.d("check stream file " + currentFileFast);
+                            }
+                            randomAccessFile = fileStreamLoadOperation.file;
+                            if (randomAccessFile != null) {
+                                try {
+                                    randomAccessFile.close();
+                                } catch (Exception unused) {
+                                }
+                            }
+                            fileStreamLoadOperation.currentFile = currentFileFast;
+                            if (currentFileFast != null) {
+                                try {
+                                    RandomAccessFile randomAccessFile3 = new RandomAccessFile(fileStreamLoadOperation.currentFile, "r");
+                                    fileStreamLoadOperation.file = randomAccessFile3;
+                                    randomAccessFile3.seek(fileStreamLoadOperation.currentOffset);
+                                    if (fileStreamLoadOperation.loadOperation.isFinished()) {
+                                        fileStreamLoadOperation.isNetwork = false;
+                                        length = fileStreamLoadOperation.currentFile.length() - fileStreamLoadOperation.currentOffset;
+                                        fileStreamLoadOperation.bytesRemaining = length;
+                                        j = fileStreamLoadOperation.requestedLength;
+                                        if (j != -1) {
+                                            fileStreamLoadOperation.bytesRemaining = Math.min(length, j - fileStreamLoadOperation.bytesTransferred);
+                                        }
+                                    }
+                                } catch (Throwable unused2) {
+                                    if (fileStreamLoadOperation.loadOperation.isFinished() && !fileStreamLoadOperation.currentFile.exists()) {
+                                        FileLoader.getInstance(fileStreamLoadOperation.currentAccount).cancelLoadFile(fileStreamLoadOperation.loadOperation.getFileName());
+                                        FileLoadOperation fileLoadOperationLoadStreamFile2 = FileLoader.getInstance(fileStreamLoadOperation.currentAccount).loadStreamFile(fileStreamLoadOperation, fileStreamLoadOperation.document, null, fileStreamLoadOperation.parentObject, fileStreamLoadOperation.currentOffset, false, getCurrentPriority());
+                                        FileLoadOperation fileLoadOperation2 = fileStreamLoadOperation.loadOperation;
+                                        if (fileLoadOperation2 != fileLoadOperationLoadStreamFile2) {
+                                            fileLoadOperation2.removeStreamListener(this);
+                                            fileStreamLoadOperation.loadOperation = fileLoadOperationLoadStreamFile2;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } catch (InterruptedException e5) {
+                        interruptedException = e5;
+                        FileLog.e(interruptedException);
+                        return -3;
+                    } catch (Exception e6) {
+                        exc = e6;
+                        throw new IOException(exc);
                     }
-                } catch (InterruptedException e) {
-                    FileLog.e(e);
-                    return -3;
-                } catch (Exception e2) {
-                    throw new IOException(e2);
                 }
-            }
-            i3 = (int) this.loadOperation.getDownloadedLengthFromOffset(this.currentOffset, i2)[0];
-            if (i3 == 0) {
-                this.countDownLatch = new CountDownLatch(1);
-                FileLoadOperation fileLoadOperationLoadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
-                FileLoadOperation fileLoadOperation = this.loadOperation;
-                if (fileLoadOperation != fileLoadOperationLoadStreamFile) {
-                    fileLoadOperation.removeStreamListener(this);
-                    this.loadOperation = fileLoadOperationLoadStreamFile;
+                i3 = (int) this.loadOperation.getDownloadedLengthFromOffset(this.currentOffset, i2)[0];
+                if (i3 == 0) {
+                    this.countDownLatch = new CountDownLatch(1);
+                    fileStreamLoadOperation = this;
+                    fileLoadOperationLoadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(fileStreamLoadOperation, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
+                    fileLoadOperation = fileStreamLoadOperation.loadOperation;
+                    if (fileLoadOperation != fileLoadOperationLoadStreamFile) {
+                        fileLoadOperation.removeStreamListener(this);
+                        fileStreamLoadOperation.loadOperation = fileLoadOperationLoadStreamFile;
+                    }
+                    countDownLatch = fileStreamLoadOperation.countDownLatch;
+                    if (countDownLatch != null) {
+                        countDownLatch.await();
+                        fileStreamLoadOperation.countDownLatch = null;
+                    }
+                } else {
+                    fileStreamLoadOperation = this;
                 }
-                CountDownLatch countDownLatch = this.countDownLatch;
-                if (countDownLatch != null) {
-                    countDownLatch.await();
-                    this.countDownLatch = null;
+                currentFileFast = fileStreamLoadOperation.loadOperation.getCurrentFileFast();
+                if (fileStreamLoadOperation.file != null) {
                 }
-            }
-            File currentFileFast = this.loadOperation.getCurrentFileFast();
-            if (this.file == null || !Objects.equals(this.currentFile, currentFileFast)) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("check stream file " + currentFileFast);
                 }
-                RandomAccessFile randomAccessFile2 = this.file;
-                if (randomAccessFile2 != null) {
-                    try {
-                        randomAccessFile2.close();
-                    } catch (Exception unused) {
-                    }
+                randomAccessFile = fileStreamLoadOperation.file;
+                if (randomAccessFile != null) {
+                    randomAccessFile.close();
                 }
-                this.currentFile = currentFileFast;
+                fileStreamLoadOperation.currentFile = currentFileFast;
                 if (currentFileFast != null) {
-                    try {
-                        RandomAccessFile randomAccessFile3 = new RandomAccessFile(this.currentFile, "r");
-                        this.file = randomAccessFile3;
-                        randomAccessFile3.seek(this.currentOffset);
-                        if (this.loadOperation.isFinished()) {
-                            this.isNetwork = false;
-                            long length = this.currentFile.length() - this.currentOffset;
-                            this.bytesRemaining = length;
-                            long j2 = this.requestedLength;
-                            if (j2 != -1) {
-                                this.bytesRemaining = Math.min(length, j2 - this.bytesTransferred);
-                            }
-                        }
-                    } catch (Throwable unused2) {
-                        if (this.loadOperation.isFinished() && !this.currentFile.exists()) {
-                            FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.loadOperation.getFileName());
-                            FileLoadOperation fileLoadOperationLoadStreamFile2 = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
-                            FileLoadOperation fileLoadOperation2 = this.loadOperation;
-                            if (fileLoadOperation2 != fileLoadOperationLoadStreamFile2) {
-                                fileLoadOperation2.removeStreamListener(this);
-                                this.loadOperation = fileLoadOperationLoadStreamFile2;
-                            }
+                    RandomAccessFile randomAccessFile4 = new RandomAccessFile(fileStreamLoadOperation.currentFile, "r");
+                    fileStreamLoadOperation.file = randomAccessFile4;
+                    randomAccessFile4.seek(fileStreamLoadOperation.currentOffset);
+                    if (fileStreamLoadOperation.loadOperation.isFinished()) {
+                        fileStreamLoadOperation.isNetwork = false;
+                        length = fileStreamLoadOperation.currentFile.length() - fileStreamLoadOperation.currentOffset;
+                        fileStreamLoadOperation.bytesRemaining = length;
+                        j = fileStreamLoadOperation.requestedLength;
+                        if (j != -1) {
+                            fileStreamLoadOperation.bytesRemaining = Math.min(length, j - fileStreamLoadOperation.bytesTransferred);
                         }
                     }
                 }
+            } catch (InterruptedException e7) {
+                e2 = e7;
+                interruptedException = e2;
+                FileLog.e(interruptedException);
+                return -3;
+            } catch (Exception e8) {
+                e = e8;
+                exc = e;
+                throw new IOException(exc);
+            }
+            randomAccessFile2 = this.file;
+            if (randomAccessFile2 != null) {
+                break;
             }
         }
         if (!this.opened) {
             return 0;
         }
-        int i4 = randomAccessFile.read(bArr, i, i3);
+        int i4 = randomAccessFile2.read(bArr, i, i3);
         if (i4 > 0) {
             long j3 = i4;
             this.currentOffset += j3;

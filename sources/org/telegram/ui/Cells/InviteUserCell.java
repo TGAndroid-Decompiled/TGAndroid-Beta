@@ -80,13 +80,9 @@ public class InviteUserCell extends FrameLayout {
         progressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.performClick();
             }
         });
-    }
-
-    public void lambda$new$0(View view) {
-        performClick();
     }
 
     public void setUser(ContactsController.Contact contact, CharSequence charSequence) {

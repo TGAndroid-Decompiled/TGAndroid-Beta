@@ -63,7 +63,7 @@ public class VoIpCoverView extends View {
             valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onConnected$0(valueAnimator);
+                    VoIpCoverView.m3002$r8$lambda$URxPMLYSrznpmU7xLUEWevhh9k(this.f$0, valueAnimator);
                 }
             });
             this.positionAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
@@ -72,14 +72,15 @@ public class VoIpCoverView extends View {
         }
     }
 
-    public void lambda$onConnected$0(ValueAnimator valueAnimator) {
+    public static void m3002$r8$lambda$URxPMLYSrznpmU7xLUEWevhh9k(VoIpCoverView voIpCoverView, ValueAnimator valueAnimator) {
+        voIpCoverView.getClass();
         int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        this.diffX1 = iIntValue;
-        this.diffX2 = iIntValue;
-        this.diffX3 = iIntValue;
-        this.diffX4 = iIntValue;
-        this.diffX5 = iIntValue;
-        invalidate();
+        voIpCoverView.diffX1 = iIntValue;
+        voIpCoverView.diffX2 = iIntValue;
+        voIpCoverView.diffX3 = iIntValue;
+        voIpCoverView.diffX4 = iIntValue;
+        voIpCoverView.diffX5 = iIntValue;
+        voIpCoverView.invalidate();
     }
 
     public void onEmojiExpanded(boolean z) {
@@ -90,7 +91,7 @@ public class VoIpCoverView extends View {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onEmojiExpanded$1(valueAnimator);
+                    VoIpCoverView.$r8$lambda$axlp90befnQ4wCZtAiOQnqCwvmE(this.f$0, valueAnimator);
                 }
             });
             this.positionAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -99,19 +100,20 @@ public class VoIpCoverView extends View {
         }
     }
 
-    public void lambda$onEmojiExpanded$1(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$axlp90befnQ4wCZtAiOQnqCwvmE(VoIpCoverView voIpCoverView, ValueAnimator valueAnimator) {
+        voIpCoverView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.diffX1 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(56.0f), fFloatValue);
-        this.diffX2 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(36.0f), fFloatValue);
-        this.diffX3 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(60.0f), fFloatValue);
-        this.diffX4 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(36.0f), fFloatValue);
-        this.diffX5 = AndroidUtilities.lerp(this.connectedDiffX, AndroidUtilities.dp(64.0f), fFloatValue);
-        this.diffY1 = AndroidUtilities.lerp(0, AndroidUtilities.dp(50.0f), fFloatValue);
-        this.diffY2 = AndroidUtilities.lerp(0, AndroidUtilities.dp(20.0f), fFloatValue);
-        this.diffY3 = AndroidUtilities.lerp(0, 0, fFloatValue);
-        this.diffY4 = AndroidUtilities.lerp(0, AndroidUtilities.dp(-20.0f), fFloatValue);
-        this.diffY5 = AndroidUtilities.lerp(0, AndroidUtilities.dp(-40.0f), fFloatValue);
-        invalidate();
+        voIpCoverView.diffX1 = AndroidUtilities.lerp(voIpCoverView.connectedDiffX, AndroidUtilities.dp(56.0f), fFloatValue);
+        voIpCoverView.diffX2 = AndroidUtilities.lerp(voIpCoverView.connectedDiffX, AndroidUtilities.dp(36.0f), fFloatValue);
+        voIpCoverView.diffX3 = AndroidUtilities.lerp(voIpCoverView.connectedDiffX, AndroidUtilities.dp(60.0f), fFloatValue);
+        voIpCoverView.diffX4 = AndroidUtilities.lerp(voIpCoverView.connectedDiffX, AndroidUtilities.dp(36.0f), fFloatValue);
+        voIpCoverView.diffX5 = AndroidUtilities.lerp(voIpCoverView.connectedDiffX, AndroidUtilities.dp(64.0f), fFloatValue);
+        voIpCoverView.diffY1 = AndroidUtilities.lerp(0, AndroidUtilities.dp(50.0f), fFloatValue);
+        voIpCoverView.diffY2 = AndroidUtilities.lerp(0, AndroidUtilities.dp(20.0f), fFloatValue);
+        voIpCoverView.diffY3 = AndroidUtilities.lerp(0, 0, fFloatValue);
+        voIpCoverView.diffY4 = AndroidUtilities.lerp(0, AndroidUtilities.dp(-20.0f), fFloatValue);
+        voIpCoverView.diffY5 = AndroidUtilities.lerp(0, AndroidUtilities.dp(-40.0f), fFloatValue);
+        voIpCoverView.invalidate();
     }
 
     @Override

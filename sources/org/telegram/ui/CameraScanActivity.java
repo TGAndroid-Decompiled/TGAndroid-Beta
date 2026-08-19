@@ -166,7 +166,7 @@ public class CameraScanActivity extends BaseFragment {
         boolean processQr(String str, Runnable runnable);
     }
 
-    public static boolean lambda$createView$1(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$4cb0ykEfSywGHVBhUUdlyxjpdNo(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -197,12 +197,12 @@ public class CameraScanActivity extends BaseFragment {
                 @Override
                 public void finishFragment() {
                     setFinishing(true);
-                    AnonymousClass1.this.lambda$new$0();
+                    AnonymousClass1.this.dismiss();
                 }
 
                 @Override
                 public void removeSelfFromStack() {
-                    AnonymousClass1.this.lambda$new$0();
+                    AnonymousClass1.this.dismiss();
                 }
             };
             this.fragment = cameraScanActivity;
@@ -223,28 +223,24 @@ public class CameraScanActivity extends BaseFragment {
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$new$0(dialogInterface);
+                    this.f$0.fragment.onFragmentDestroy();
                 }
             });
         }
 
-        public void lambda$new$0(DialogInterface dialogInterface) {
-            this.fragment.onFragmentDestroy();
-        }
-
         @Override
-        public void lambda$openCrafting$8() {
+        public void onBackPressed() {
             INavigationLayout iNavigationLayout = this.val$actionBarLayout[0];
             if (iNavigationLayout == null || iNavigationLayout.getFragmentStack().size() <= 1) {
-                super.lambda$openCrafting$8();
+                super.onBackPressed();
             } else {
                 this.val$actionBarLayout[0].onBackPressed();
             }
         }
 
         @Override
-        public void lambda$new$0() {
-            super.lambda$new$0();
+        public void dismiss() {
+            super.dismiss();
             this.val$actionBarLayout[0] = null;
             this.val$cameraDelegate.onDismiss();
         }
@@ -292,7 +288,7 @@ public class CameraScanActivity extends BaseFragment {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0();
+                    CameraScanActivity.m1462$r8$lambda$h0QM4TZIC8uAZSqpiFdZwBukWY(this.f$0);
                 }
             });
         }
@@ -306,9 +302,10 @@ public class CameraScanActivity extends BaseFragment {
         }
     }
 
-    public void lambda$new$0() {
-        this.qrReader = new QRCodeReader();
-        this.visionQrReader = new BarcodeDetector.Builder(ApplicationLoader.applicationContext).setBarcodeFormats(256).build();
+    public static void m1462$r8$lambda$h0QM4TZIC8uAZSqpiFdZwBukWY(CameraScanActivity cameraScanActivity) {
+        cameraScanActivity.getClass();
+        cameraScanActivity.qrReader = new QRCodeReader();
+        cameraScanActivity.visionQrReader = new BarcodeDetector.Builder(ApplicationLoader.applicationContext).setBarcodeFormats(256).build();
     }
 
     @Override
@@ -518,7 +515,7 @@ public class CameraScanActivity extends BaseFragment {
         viewGroup.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return CameraScanActivity.lambda$createView$1(view, motionEvent);
+                return CameraScanActivity.$r8$lambda$4cb0ykEfSywGHVBhUUdlyxjpdNo(view, motionEvent);
             }
         });
         this.fragmentView = viewGroup;
@@ -713,7 +710,7 @@ public class CameraScanActivity extends BaseFragment {
                 this.galleryButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$createView$2(view);
+                        CameraScanActivity.m1465$r8$lambda$rr899fBIYgVLsDftE9ozgr2T1Q(this.f$0, view);
                     }
                 });
             }
@@ -726,7 +723,7 @@ public class CameraScanActivity extends BaseFragment {
             this.flashButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$createView$4(view);
+                    CameraScanActivity.$r8$lambda$8a7Es0htmzbVDGdrKbSxAh7bxXM(this.f$0, view);
                 }
             });
         }
@@ -735,11 +732,11 @@ public class CameraScanActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$2(View view) {
-        if (getParentActivity() == null) {
+    public static void m1465$r8$lambda$rr899fBIYgVLsDftE9ozgr2T1Q(CameraScanActivity cameraScanActivity, View view) {
+        if (cameraScanActivity.getParentActivity() == null) {
             return;
         }
-        Activity parentActivity = getParentActivity();
+        Activity parentActivity = cameraScanActivity.getParentActivity();
         int i = Build.VERSION.SDK_INT;
         if (i >= 33) {
             if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
@@ -787,50 +784,46 @@ public class CameraScanActivity extends BaseFragment {
                 }
             }
         });
-        presentFragment(photoAlbumPickerActivity);
+        cameraScanActivity.presentFragment(photoAlbumPickerActivity);
     }
 
-    public void lambda$createView$4(View view) {
+    public static void $r8$lambda$8a7Es0htmzbVDGdrKbSxAh7bxXM(final CameraScanActivity cameraScanActivity, View view) {
         CameraSessionWrapper cameraSession;
-        CameraView cameraView = this.cameraView;
+        CameraView cameraView = cameraScanActivity.cameraView;
         if (cameraView == null || (cameraSession = cameraView.getCameraSession()) == null) {
             return;
         }
-        ShapeDrawable shapeDrawable = (ShapeDrawable) this.flashButton.getBackground();
-        AnimatorSet animatorSet = this.flashAnimator;
+        ShapeDrawable shapeDrawable = (ShapeDrawable) cameraScanActivity.flashButton.getBackground();
+        AnimatorSet animatorSet = cameraScanActivity.flashAnimator;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.flashAnimator = null;
+            cameraScanActivity.flashAnimator = null;
         }
-        this.flashAnimator = new AnimatorSet();
-        ObjectAnimator objectAnimatorOfInt = ObjectAnimator.ofInt(shapeDrawable, (Property<ShapeDrawable, Integer>) AnimationProperties.SHAPE_DRAWABLE_ALPHA, this.flashButton.getTag() == null ? 68 : 34);
+        cameraScanActivity.flashAnimator = new AnimatorSet();
+        ObjectAnimator objectAnimatorOfInt = ObjectAnimator.ofInt(shapeDrawable, (Property<ShapeDrawable, Integer>) AnimationProperties.SHAPE_DRAWABLE_ALPHA, cameraScanActivity.flashButton.getTag() == null ? 68 : 34);
         objectAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$createView$3(valueAnimator);
+                this.f$0.flashButton.invalidate();
             }
         });
-        this.flashAnimator.playTogether(objectAnimatorOfInt);
-        this.flashAnimator.setDuration(200L);
-        this.flashAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.flashAnimator.addListener(new AnimatorListenerAdapter() {
+        cameraScanActivity.flashAnimator.playTogether(objectAnimatorOfInt);
+        cameraScanActivity.flashAnimator.setDuration(200L);
+        cameraScanActivity.flashAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        cameraScanActivity.flashAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 CameraScanActivity.this.flashAnimator = null;
             }
         });
-        this.flashAnimator.start();
-        if (this.flashButton.getTag() == null) {
-            this.flashButton.setTag(1);
+        cameraScanActivity.flashAnimator.start();
+        if (cameraScanActivity.flashButton.getTag() == null) {
+            cameraScanActivity.flashButton.setTag(1);
             cameraSession.setCurrentFlashMode("torch");
         } else {
-            this.flashButton.setTag(null);
+            cameraScanActivity.flashButton.setTag(null);
             cameraSession.setCurrentFlashMode("off");
         }
-    }
-
-    public void lambda$createView$3(ValueAnimator valueAnimator) {
-        this.flashButton.invalidate();
     }
 
     public void updateRecognized() {
@@ -847,7 +840,7 @@ public class CameraScanActivity extends BaseFragment {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$updateRecognized$5(valueAnimator2);
+                    CameraScanActivity.m1459$r8$lambda$TIFzzFu1HPT7gozYw92dZNJJTg(this.f$0, valueAnimator2);
                 }
             });
             this.recognizedAnimator.setDuration((long) (Math.abs(this.recognizedT - this.newRecognizedT) * 300.0f));
@@ -862,7 +855,7 @@ public class CameraScanActivity extends BaseFragment {
             springAnimation2.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f3, float f4) {
-                    this.f$0.lambda$updateRecognized$6(dynamicAnimation, f3, f4);
+                    CameraScanActivity.m1458$r8$lambda$S4ha81UG7eqFRAZn6mHcsRXYk8(this.f$0, dynamicAnimation, f3, f4);
                 }
             });
             this.useRecognizedBoundsAnimator.setSpring(new SpringForce(500.0f));
@@ -872,25 +865,26 @@ public class CameraScanActivity extends BaseFragment {
         }
     }
 
-    public void lambda$updateRecognized$5(ValueAnimator valueAnimator) {
+    public static void m1459$r8$lambda$TIFzzFu1HPT7gozYw92dZNJJTg(CameraScanActivity cameraScanActivity, ValueAnimator valueAnimator) {
+        cameraScanActivity.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.recognizedT = fFloatValue;
-        this.titleTextView.setAlpha(1.0f - fFloatValue);
-        if (this.currentType == 3) {
-            this.descriptionText.setAlpha(1.0f - this.recognizedT);
+        cameraScanActivity.recognizedT = fFloatValue;
+        cameraScanActivity.titleTextView.setAlpha(1.0f - fFloatValue);
+        if (cameraScanActivity.currentType == 3) {
+            cameraScanActivity.descriptionText.setAlpha(1.0f - cameraScanActivity.recognizedT);
         }
-        this.flashButton.setAlpha(1.0f - this.recognizedT);
-        this.backShadowAlpha = (this.recognizedT * 0.25f) + 0.5f;
-        this.fragmentView.invalidate();
+        cameraScanActivity.flashButton.setAlpha(1.0f - cameraScanActivity.recognizedT);
+        cameraScanActivity.backShadowAlpha = (cameraScanActivity.recognizedT * 0.25f) + 0.5f;
+        cameraScanActivity.fragmentView.invalidate();
     }
 
-    public void lambda$updateRecognized$6(DynamicAnimation dynamicAnimation, float f, float f2) {
+    public static void m1458$r8$lambda$S4ha81UG7eqFRAZn6mHcsRXYk8(CameraScanActivity cameraScanActivity, DynamicAnimation dynamicAnimation, float f, float f2) {
         float f3 = f / 500.0f;
-        if (!this.recognized) {
+        if (!cameraScanActivity.recognized) {
             f3 = 1.0f - f3;
         }
-        this.useRecognizedBounds = f3;
-        this.fragmentView.invalidate();
+        cameraScanActivity.useRecognizedBounds = f3;
+        cameraScanActivity.fragmentView.invalidate();
     }
 
     public void initCameraView() {
@@ -906,7 +900,7 @@ public class CameraScanActivity extends BaseFragment {
         this.cameraView.setDelegate(new CameraView.CameraViewDelegate() {
             @Override
             public final void onCameraInit() {
-                this.f$0.lambda$initCameraView$9();
+                CameraScanActivity.$r8$lambda$S8FhOcLEZe1XSlcy9av3BHKEonY(this.f$0);
             }
         });
         ((ViewGroup) this.fragmentView).addView(this.cameraView, 0, LayoutHelper.createFrame(-1, -1.0f));
@@ -916,45 +910,45 @@ public class CameraScanActivity extends BaseFragment {
         this.cameraView.addView(textView);
     }
 
-    public void lambda$initCameraView$9() {
-        startRecognizing();
-        if (isQr()) {
-            SpringAnimation springAnimation = this.qrAppearing;
+    public static void $r8$lambda$S8FhOcLEZe1XSlcy9av3BHKEonY(final CameraScanActivity cameraScanActivity) {
+        cameraScanActivity.startRecognizing();
+        if (cameraScanActivity.isQr()) {
+            SpringAnimation springAnimation = cameraScanActivity.qrAppearing;
             if (springAnimation != null) {
                 springAnimation.cancel();
-                this.qrAppearing = null;
+                cameraScanActivity.qrAppearing = null;
             }
             SpringAnimation springAnimation2 = new SpringAnimation(new FloatValueHolder(0.0f));
-            this.qrAppearing = springAnimation2;
+            cameraScanActivity.qrAppearing = springAnimation2;
             springAnimation2.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    this.f$0.lambda$initCameraView$7(dynamicAnimation, f, f2);
+                    CameraScanActivity.$r8$lambda$EHU3XF3H6dq4_UVVKOVIAVbV6Qw(this.f$0, dynamicAnimation, f, f2);
                 }
             });
-            this.qrAppearing.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+            cameraScanActivity.qrAppearing.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                    this.f$0.lambda$initCameraView$8(dynamicAnimation, z, f, f2);
+                    CameraScanActivity.$r8$lambda$rxINKGFW7w_Si7h6PWDiOd6_cmc(this.f$0, dynamicAnimation, z, f, f2);
                 }
             });
-            this.qrAppearing.setSpring(new SpringForce(500.0f));
-            this.qrAppearing.getSpring().setDampingRatio(0.8f);
-            this.qrAppearing.getSpring().setStiffness(250.0f);
-            this.qrAppearing.start();
+            cameraScanActivity.qrAppearing.setSpring(new SpringForce(500.0f));
+            cameraScanActivity.qrAppearing.getSpring().setDampingRatio(0.8f);
+            cameraScanActivity.qrAppearing.getSpring().setStiffness(250.0f);
+            cameraScanActivity.qrAppearing.start();
         }
     }
 
-    public void lambda$initCameraView$7(DynamicAnimation dynamicAnimation, float f, float f2) {
-        this.qrAppearingValue = f / 500.0f;
-        this.fragmentView.invalidate();
+    public static void $r8$lambda$EHU3XF3H6dq4_UVVKOVIAVbV6Qw(CameraScanActivity cameraScanActivity, DynamicAnimation dynamicAnimation, float f, float f2) {
+        cameraScanActivity.qrAppearingValue = f / 500.0f;
+        cameraScanActivity.fragmentView.invalidate();
     }
 
-    public void lambda$initCameraView$8(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-        SpringAnimation springAnimation = this.qrAppearing;
+    public static void $r8$lambda$rxINKGFW7w_Si7h6PWDiOd6_cmc(CameraScanActivity cameraScanActivity, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        SpringAnimation springAnimation = cameraScanActivity.qrAppearing;
         if (springAnimation != null) {
             springAnimation.cancel();
-            this.qrAppearing = null;
+            cameraScanActivity.qrAppearing = null;
         }
     }
 
@@ -1074,16 +1068,21 @@ public class CameraScanActivity extends BaseFragment {
         }
         try {
             Point realScreenSize = AndroidUtilities.getRealScreenSize();
-            QrResult qrResultTryReadQr = tryReadQr(null, null, 0, 0, 0, ImageLoader.loadBitmap(null, intent.getData(), realScreenSize.x, realScreenSize.y, true));
-            if (qrResultTryReadQr != null) {
-                CameraScanActivityDelegate cameraScanActivityDelegate = this.delegate;
-                if (cameraScanActivityDelegate != null) {
-                    cameraScanActivityDelegate.didFindQr(qrResultTryReadQr.text);
+            try {
+                QrResult qrResultTryReadQr = tryReadQr(null, null, 0, 0, 0, ImageLoader.loadBitmap(null, intent.getData(), realScreenSize.x, realScreenSize.y, true));
+                if (qrResultTryReadQr != null) {
+                    CameraScanActivityDelegate cameraScanActivityDelegate = this.delegate;
+                    if (cameraScanActivityDelegate != null) {
+                        cameraScanActivityDelegate.didFindQr(qrResultTryReadQr.text);
+                    }
+                    finishFragment();
                 }
-                finishFragment();
+            } catch (Throwable th) {
+                th = th;
+                FileLog.e(th);
             }
-        } catch (Throwable th) {
-            FileLog.e(th);
+        } catch (Throwable th2) {
+            th = th2;
         }
     }
 
@@ -1112,12 +1111,13 @@ public class CameraScanActivity extends BaseFragment {
             CameraScanActivity.this.handler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$run$0();
+                    CameraScanActivity.AnonymousClass7.$r8$lambda$lsRoL9plAEzKJ8LEs6HlmTSrMFY(this.f$0);
                 }
             });
         }
 
-        public void lambda$run$0() {
+        public static void $r8$lambda$lsRoL9plAEzKJ8LEs6HlmTSrMFY(AnonymousClass7 anonymousClass7) {
+            anonymousClass7.getClass();
             try {
                 CameraScanActivity.this.cameraView.focusToPoint(CameraScanActivity.this.cameraView.getWidth() / 2, CameraScanActivity.this.cameraView.getHeight() / 2, false);
             } catch (Exception unused) {
@@ -1139,19 +1139,20 @@ public class CameraScanActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onNoQrFound$10();
+                CameraScanActivity.m1457$r8$lambda$K24kVPbUB68Ughq4vJ62nS1yJw(this.f$0);
             }
         });
     }
 
-    public void lambda$onNoQrFound$10() {
-        if (this.recognizedMrzView.getTag() != null) {
-            this.recognizedMrzView.setTag(null);
-            this.recognizedMrzView.animate().setDuration(200L).alpha(0.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+    public static void m1457$r8$lambda$K24kVPbUB68Ughq4vJ62nS1yJw(CameraScanActivity cameraScanActivity) {
+        if (cameraScanActivity.recognizedMrzView.getTag() != null) {
+            cameraScanActivity.recognizedMrzView.setTag(null);
+            cameraScanActivity.recognizedMrzView.animate().setDuration(200L).alpha(0.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
         }
     }
 
     public void processShot(Bitmap bitmap) {
+        CameraScanActivity cameraScanActivity;
         if (this.cameraView == null) {
             return;
         }
@@ -1160,107 +1161,115 @@ public class CameraScanActivity extends BaseFragment {
             Size previewSize = this.cameraView.getPreviewSize();
             if (this.currentType == 0) {
                 final MrzRecognizer.Result resultRecognize = MrzRecognizer.recognize(bitmap, false);
-                if (resultRecognize != null && !TextUtils.isEmpty(resultRecognize.firstName) && !TextUtils.isEmpty(resultRecognize.lastName) && !TextUtils.isEmpty(resultRecognize.number) && resultRecognize.birthDay != 0 && ((resultRecognize.expiryDay != 0 || resultRecognize.doesNotExpire) && resultRecognize.gender != 0)) {
-                    this.recognized = true;
-                    CameraController.getInstance().stopPreview(this.cameraView.getCameraSession());
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$processShot$11(resultRecognize);
-                        }
-                    });
-                    return;
-                }
-            } else {
-                int iMin = (int) (Math.min(previewSize.getWidth(), previewSize.getHeight()) / 1.5f);
-                final QrResult qrResultTryReadQr = tryReadQr(null, previewSize, (previewSize.getWidth() - iMin) / 2, (previewSize.getHeight() - iMin) / 2, iMin, bitmap);
-                boolean z = this.recognized;
-                if (z) {
-                    this.recognizeIndex++;
-                }
-                if (qrResultTryReadQr != null) {
-                    this.recognizeFailed = 0;
-                    String str = qrResultTryReadQr.text;
-                    this.recognizedText = str;
-                    if (!z) {
+                if (resultRecognize != null && !TextUtils.isEmpty(resultRecognize.firstName) && !TextUtils.isEmpty(resultRecognize.lastName) && !TextUtils.isEmpty(resultRecognize.number) && resultRecognize.birthDay != 0 && (resultRecognize.expiryDay != 0 || resultRecognize.doesNotExpire)) {
+                    if (resultRecognize.gender != 0) {
                         this.recognized = true;
-                        this.qrLoading = this.delegate.processQr(str, new Runnable() {
-                            @Override
-                            public final void run() {
-                                this.f$0.lambda$processShot$13();
-                            }
-                        });
-                        this.recognizedStart = SystemClock.elapsedRealtime();
-                        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(this));
-                    }
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$processShot$14(qrResultTryReadQr);
-                        }
-                    });
-                } else if (z) {
-                    int i = this.recognizeFailed + 1;
-                    this.recognizeFailed = i;
-                    if (i > 4 && !this.qrLoading) {
-                        this.recognized = false;
-                        this.recognizeIndex = 0;
-                        this.recognizedText = null;
-                        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(this));
-                        AndroidUtilities.runOnUIThread(this.requestShot, 500L);
-                        return;
-                    }
-                }
-                if (((this.recognizeIndex == 0 && qrResultTryReadQr != null && qrResultTryReadQr.bounds == null && !this.qrLoading) || (SystemClock.elapsedRealtime() - this.recognizedStart > 1000 && !this.qrLoading)) && this.recognizedText != null) {
-                    CameraView cameraView = this.cameraView;
-                    if (cameraView != null && cameraView.getCameraSession() != null && this.currentType != 3) {
                         CameraController.getInstance().stopPreview(this.cameraView.getCameraSession());
-                    }
-                    final String str2 = this.recognizedText;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$processShot$15(str2);
-                        }
-                    });
-                    if (this.currentType == 3) {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$processShot$16();
+                                CameraScanActivity.m1456$r8$lambda$7e2VrgBhv3s7crdzBcz_tEvZzo(this.f$0, resultRecognize);
                             }
                         });
+                        return;
                     }
-                } else if (this.recognized) {
-                    this.handler.postDelayed(new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$processShot$17();
+                }
+                cameraScanActivity = this;
+            } else {
+                int iMin = (int) (Math.min(previewSize.getWidth(), previewSize.getHeight()) / 1.5f);
+                cameraScanActivity = this;
+                try {
+                    final QrResult qrResultTryReadQr = cameraScanActivity.tryReadQr(null, previewSize, (previewSize.getWidth() - iMin) / 2, (previewSize.getHeight() - iMin) / 2, iMin, bitmap);
+                    boolean z = cameraScanActivity.recognized;
+                    if (z) {
+                        cameraScanActivity.recognizeIndex++;
+                    }
+                    if (qrResultTryReadQr != null) {
+                        cameraScanActivity.recognizeFailed = 0;
+                        String str = qrResultTryReadQr.text;
+                        cameraScanActivity.recognizedText = str;
+                        if (!z) {
+                            cameraScanActivity.recognized = true;
+                            cameraScanActivity.qrLoading = cameraScanActivity.delegate.processQr(str, new Runnable() {
+                                @Override
+                                public final void run() {
+                                    CameraScanActivity.$r8$lambda$Kzpbpcz8FWOxOAVlxP3GcKIGA_A(this.f$0);
+                                }
+                            });
+                            cameraScanActivity.recognizedStart = SystemClock.elapsedRealtime();
+                            AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(this));
                         }
-                    }, Math.max(16L, ((long) (1000 / this.sps)) - ((long) this.averageProcessTime)));
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                CameraScanActivity.$r8$lambda$2PJ8WkMsStlSIod_fEopanpFo28(this.f$0, qrResultTryReadQr);
+                            }
+                        });
+                    } else if (z) {
+                        int i = cameraScanActivity.recognizeFailed + 1;
+                        cameraScanActivity.recognizeFailed = i;
+                        if (i > 4 && !cameraScanActivity.qrLoading) {
+                            cameraScanActivity.recognized = false;
+                            cameraScanActivity.recognizeIndex = 0;
+                            cameraScanActivity.recognizedText = null;
+                            AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(this));
+                            AndroidUtilities.runOnUIThread(cameraScanActivity.requestShot, 500L);
+                            return;
+                        }
+                    }
+                    if (((cameraScanActivity.recognizeIndex == 0 && qrResultTryReadQr != null && qrResultTryReadQr.bounds == null && !cameraScanActivity.qrLoading) || (SystemClock.elapsedRealtime() - cameraScanActivity.recognizedStart > 1000 && !cameraScanActivity.qrLoading)) && cameraScanActivity.recognizedText != null) {
+                        CameraView cameraView = cameraScanActivity.cameraView;
+                        if (cameraView != null && cameraView.getCameraSession() != null && cameraScanActivity.currentType != 3) {
+                            CameraController.getInstance().stopPreview(cameraScanActivity.cameraView.getCameraSession());
+                        }
+                        final String str2 = cameraScanActivity.recognizedText;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                CameraScanActivity.$r8$lambda$XGxAf7RFbwCs5NKAkL_QlDtiUjY(this.f$0, str2);
+                            }
+                        });
+                        if (cameraScanActivity.currentType == 3) {
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    CameraScanActivity.$r8$lambda$AaDHHbGd0ZIKDTseA2j5oMlTDDM(this.f$0);
+                                }
+                            });
+                        }
+                    } else if (cameraScanActivity.recognized) {
+                        cameraScanActivity.handler.postDelayed(new Runnable() {
+                            @Override
+                            public final void run() {
+                                CameraScanActivity.m1464$r8$lambda$hi5uJMwEBzVe3rU21g6HRqqt8(this.f$0);
+                            }
+                        }, Math.max(16L, ((long) (1000 / cameraScanActivity.sps)) - ((long) cameraScanActivity.averageProcessTime)));
+                    }
+                } catch (Throwable unused) {
+                    onNoQrFound();
                 }
             }
-        } catch (Throwable unused) {
-            onNoQrFound();
+        } catch (Throwable unused2) {
+            cameraScanActivity = this;
         }
         long jElapsedRealtime2 = SystemClock.elapsedRealtime() - jElapsedRealtime;
-        float f = this.averageProcessTime;
-        long j = this.processTimesCount;
+        float f = cameraScanActivity.averageProcessTime;
+        long j = cameraScanActivity.processTimesCount;
         float f2 = (f * j) + jElapsedRealtime2;
         long j2 = j + 1;
-        this.processTimesCount = j2;
-        this.averageProcessTime = f2 / j2;
-        this.processTimesCount = Math.max(j2, 30L);
-        if (this.recognized) {
+        cameraScanActivity.processTimesCount = j2;
+        cameraScanActivity.averageProcessTime = f2 / j2;
+        cameraScanActivity.processTimesCount = Math.max(j2, 30L);
+        if (cameraScanActivity.recognized) {
             return;
         }
-        AndroidUtilities.runOnUIThread(this.requestShot, 500L);
+        AndroidUtilities.runOnUIThread(cameraScanActivity.requestShot, 500L);
     }
 
-    public void lambda$processShot$11(MrzRecognizer.Result result) {
-        this.recognizedMrzView.setText(result.rawMRZ);
-        this.recognizedMrzView.animate().setDuration(200L).alpha(1.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
-        CameraScanActivityDelegate cameraScanActivityDelegate = this.delegate;
+    public static void m1456$r8$lambda$7e2VrgBhv3s7crdzBcz_tEvZzo(final CameraScanActivity cameraScanActivity, MrzRecognizer.Result result) {
+        cameraScanActivity.recognizedMrzView.setText(result.rawMRZ);
+        cameraScanActivity.recognizedMrzView.animate().setDuration(200L).alpha(1.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+        CameraScanActivityDelegate cameraScanActivityDelegate = cameraScanActivity.delegate;
         if (cameraScanActivityDelegate != null) {
             cameraScanActivityDelegate.didFindMrzInfo(result);
         }
@@ -1272,58 +1281,59 @@ public class CameraScanActivity extends BaseFragment {
         }, 1200L);
     }
 
-    public void lambda$processShot$13() {
-        CameraView cameraView = this.cameraView;
+    public static void $r8$lambda$Kzpbpcz8FWOxOAVlxP3GcKIGA_A(final CameraScanActivity cameraScanActivity) {
+        CameraView cameraView = cameraScanActivity.cameraView;
         if (cameraView != null && cameraView.getCameraSession() != null) {
-            CameraController.getInstance().stopPreview(this.cameraView.getCameraSession());
+            CameraController.getInstance().stopPreview(cameraScanActivity.cameraView.getCameraSession());
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processShot$12();
+                CameraScanActivity.m1461$r8$lambda$do9LWYVPUOV9hf_q2gPoXio4n8(this.f$0);
             }
         });
     }
 
-    public void lambda$processShot$12() {
-        CameraScanActivityDelegate cameraScanActivityDelegate = this.delegate;
+    public static void m1461$r8$lambda$do9LWYVPUOV9hf_q2gPoXio4n8(CameraScanActivity cameraScanActivity) {
+        CameraScanActivityDelegate cameraScanActivityDelegate = cameraScanActivity.delegate;
         if (cameraScanActivityDelegate != null) {
-            cameraScanActivityDelegate.didFindQr(this.recognizedText);
+            cameraScanActivityDelegate.didFindQr(cameraScanActivity.recognizedText);
         }
-        finishFragment();
+        cameraScanActivity.finishFragment();
     }
 
-    public void lambda$processShot$14(QrResult qrResult) {
-        updateRecognizedBounds(qrResult.bounds, qrResult.cornerPoints);
+    public static void $r8$lambda$2PJ8WkMsStlSIod_fEopanpFo28(CameraScanActivity cameraScanActivity, QrResult qrResult) {
+        cameraScanActivity.getClass();
+        cameraScanActivity.updateRecognizedBounds(qrResult.bounds, qrResult.cornerPoints);
     }
 
-    public void lambda$processShot$15(String str) {
-        CameraScanActivityDelegate cameraScanActivityDelegate = this.delegate;
+    public static void $r8$lambda$XGxAf7RFbwCs5NKAkL_QlDtiUjY(CameraScanActivity cameraScanActivity, String str) {
+        CameraScanActivityDelegate cameraScanActivityDelegate = cameraScanActivity.delegate;
         if (cameraScanActivityDelegate != null) {
             cameraScanActivityDelegate.didFindQr(str);
         }
-        if (this.currentType != 3) {
-            finishFragment();
+        if (cameraScanActivity.currentType != 3) {
+            cameraScanActivity.finishFragment();
         }
     }
 
-    public void lambda$processShot$16() {
-        if (isFinishing()) {
+    public static void $r8$lambda$AaDHHbGd0ZIKDTseA2j5oMlTDDM(CameraScanActivity cameraScanActivity) {
+        if (cameraScanActivity.isFinishing()) {
             return;
         }
-        this.recognizedText = null;
-        this.recognized = false;
-        this.requestShot.run();
-        if (this.recognized) {
+        cameraScanActivity.recognizedText = null;
+        cameraScanActivity.recognized = false;
+        cameraScanActivity.requestShot.run();
+        if (cameraScanActivity.recognized) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(this), 500L);
+        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(cameraScanActivity), 500L);
     }
 
-    public void lambda$processShot$17() {
-        CameraView cameraView = this.cameraView;
+    public static void m1464$r8$lambda$hi5uJMwEBzVe3rU21g6HRqqt8(CameraScanActivity cameraScanActivity) {
+        CameraView cameraView = cameraScanActivity.cameraView;
         if (cameraView != null) {
-            processShot(cameraView.getTextureView().getBitmap());
+            cameraScanActivity.processShot(cameraView.getTextureView().getBitmap());
         }
     }
 
@@ -1382,9 +1392,8 @@ public class CameraScanActivity extends BaseFragment {
         String text;
         PointF[] pointF;
         int height;
-        LuminanceSource planarYUVLuminanceSource;
+        LuminanceSource rGBLuminanceSource;
         Frame frameBuild;
-        String str;
         AnonymousClass1 anonymousClass1 = null;
         try {
             RectF rectF = new RectF();
@@ -1428,13 +1437,13 @@ public class CameraScanActivity extends BaseFragment {
                     Bitmap bitmapInvert = invert(bitmap);
                     bitmap.recycle();
                     Frame frameBuild2 = new Frame.Builder().setBitmap(bitmapInvert).build();
-                    int width2 = bitmapInvert.getWidth();
-                    int height2 = bitmapInvert.getHeight();
+                    width = bitmapInvert.getWidth();
+                    height = bitmapInvert.getHeight();
                     SparseArray sparseArrayDetect2 = this.visionQrReader.detect(frameBuild2);
                     if (sparseArrayDetect2 != null && sparseArrayDetect2.size() > 0) {
                         Barcode barcode2 = (Barcode) sparseArrayDetect2.valueAt(0);
-                        str = barcode2.rawValue;
-                        pointF = toPointF(barcode2.cornerPoints, width2, height2);
+                        text = barcode2.rawValue;
+                        pointF = toPointF(barcode2.cornerPoints, width, height);
                         Point[] pointArr2 = barcode2.cornerPoints;
                         if (pointArr2 == null || pointArr2.length == 0) {
                             rectF = null;
@@ -1456,18 +1465,16 @@ public class CameraScanActivity extends BaseFragment {
                         Bitmap bitmapMonochrome = monochrome(bitmapInvert, 90);
                         bitmapInvert.recycle();
                         Frame frameBuild3 = new Frame.Builder().setBitmap(bitmapMonochrome).build();
-                        width2 = bitmapInvert.getWidth();
-                        height2 = bitmapInvert.getHeight();
+                        width = bitmapInvert.getWidth();
+                        height = bitmapInvert.getHeight();
                         SparseArray sparseArrayDetect3 = this.visionQrReader.detect(frameBuild3);
                         if (sparseArrayDetect3 == null || sparseArrayDetect3.size() <= 0) {
-                            width = width2;
-                            height = height2;
                             text = null;
                             pointF = null;
                         } else {
                             Barcode barcode3 = (Barcode) sparseArrayDetect3.valueAt(0);
-                            str = barcode3.rawValue;
-                            pointF = toPointF(barcode3.cornerPoints, width2, height2);
+                            text = barcode3.rawValue;
+                            pointF = toPointF(barcode3.cornerPoints, width, height);
                             Point[] pointArr3 = barcode3.cornerPoints;
                             if (pointArr3 == null || pointArr3.length == 0) {
                                 rectF = null;
@@ -1487,10 +1494,6 @@ public class CameraScanActivity extends BaseFragment {
                             }
                         }
                     }
-                    int i5 = height2;
-                    text = str;
-                    width = width2;
-                    height = i5;
                 } else {
                     text = null;
                     pointF = null;
@@ -1499,15 +1502,17 @@ public class CameraScanActivity extends BaseFragment {
                 if (bitmap != null) {
                     int[] iArr = new int[bitmap.getWidth() * bitmap.getHeight()];
                     bitmap.getPixels(iArr, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
-                    planarYUVLuminanceSource = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), iArr);
-                    width = bitmap.getWidth();
+                    rGBLuminanceSource = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), iArr);
+                    int width2 = bitmap.getWidth();
                     height = bitmap.getHeight();
+                    width = width2;
                 } else {
-                    planarYUVLuminanceSource = new PlanarYUVLuminanceSource(bArr, size.getWidth(), size.getHeight(), i, i2, i3, i3, false);
+                    PlanarYUVLuminanceSource planarYUVLuminanceSource = new PlanarYUVLuminanceSource(bArr, size.getWidth(), size.getHeight(), i, i2, i3, i3, false);
                     width = size.getWidth();
                     height = size.getHeight();
+                    rGBLuminanceSource = planarYUVLuminanceSource;
                 }
-                Result resultDecode = this.qrReader.decode(new BinaryBitmap(new GlobalHistogramBinarizer(planarYUVLuminanceSource)));
+                Result resultDecode = this.qrReader.decode(new BinaryBitmap(new GlobalHistogramBinarizer(rGBLuminanceSource)));
                 if (resultDecode == null) {
                     onNoQrFound();
                     return null;
@@ -1528,8 +1533,8 @@ public class CameraScanActivity extends BaseFragment {
                     rectF.set(fMin, fMin5, fMax, fMax5);
                     if (resultDecode.getResultPoints().length == 4) {
                         pointF = new PointF[4];
-                        for (int i6 = 0; i6 < 4; i6++) {
-                            pointF[i6] = new PointF(resultDecode.getResultPoints()[i6].getX() / width, resultDecode.getResultPoints()[i6].getY() / height);
+                        for (int i5 = 0; i5 < 4; i5++) {
+                            pointF[i5] = new PointF(resultDecode.getResultPoints()[i5].getX() / width, resultDecode.getResultPoints()[i5].getY() / height);
                         }
                     } else {
                         pointF = null;

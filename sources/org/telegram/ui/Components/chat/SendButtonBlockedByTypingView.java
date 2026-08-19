@@ -44,7 +44,10 @@ public class SendButtonBlockedByTypingView extends View {
 
     @Override
     protected boolean verifyDrawable(Drawable drawable) {
-        return super.verifyDrawable(drawable) || (drawable == this.typingDotsDrawable && !this.animatorStopAllowed.getValue());
+        if (super.verifyDrawable(drawable)) {
+            return true;
+        }
+        return drawable == this.typingDotsDrawable && !this.animatorStopAllowed.getValue();
     }
 
     public void setStopAllowed(boolean z, boolean z2) {

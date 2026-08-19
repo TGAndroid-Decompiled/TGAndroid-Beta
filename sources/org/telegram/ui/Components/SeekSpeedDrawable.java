@@ -71,7 +71,7 @@ public class SeekSpeedDrawable extends Drawable {
         this.hideHintRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                SeekSpeedDrawable.$r8$lambda$f0pjZyLEFgUH2shZlKotGAsQi7I(this.f$0);
             }
         };
         this.invalidate = runnable;
@@ -86,7 +86,6 @@ public class SeekSpeedDrawable extends Drawable {
         AnimatedFloat animatedFloat2 = new AnimatedFloat(runnable, 0L, 360L, cubicBezierInterpolator);
         this.animatedHintShown = animatedFloat2;
         animatedFloat2.set(false, true);
-        boolean z3 = false;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, true) {
             @Override
             public void invalidateSelf() {
@@ -110,10 +109,7 @@ public class SeekSpeedDrawable extends Drawable {
         path3.lineTo(AndroidUtilities.dp(8.66f), 0.0f);
         path3.lineTo(0.0f, AndroidUtilities.dp(6.33f));
         path3.close();
-        if (!z && !z2 && !MessagesController.getGlobalMainSettings().getBoolean("seekSpeedHintShowed", false)) {
-            z3 = true;
-        }
-        this.showHint = z3;
+        this.showHint = (z || z2 || MessagesController.getGlobalMainSettings().getBoolean("seekSpeedHintShowed", false)) ? false : true;
         path.moveTo(-AndroidUtilities.dp(6.5f), 0.0f);
         path.lineTo(0.0f, -AndroidUtilities.dp(6.33f));
         path.lineTo(AndroidUtilities.dp(6.5f), 0.0f);
@@ -229,7 +225,7 @@ public class SeekSpeedDrawable extends Drawable {
                 this.hintDrawable.restart(true);
             }
             this.hintDrawable.draw(canvas);
-            this.hintText.draw(canvas, AndroidUtilities.dp(39.0f) + this.hintRect.left, this.hintRect.centerY(), -1, f8);
+            this.hintText.draw(canvas, this.hintRect.left + AndroidUtilities.dp(39.0f), this.hintRect.centerY(), -1, f8);
             canvas.restore();
         }
     }
@@ -271,8 +267,8 @@ public class SeekSpeedDrawable extends Drawable {
         MessagesController.getGlobalMainSettings().edit().putBoolean("seekSpeedHintShowed", true).apply();
     }
 
-    public void lambda$new$0() {
-        this.showHint = false;
-        this.invalidate.run();
+    public static void $r8$lambda$f0pjZyLEFgUH2shZlKotGAsQi7I(SeekSpeedDrawable seekSpeedDrawable) {
+        seekSpeedDrawable.showHint = false;
+        seekSpeedDrawable.invalidate.run();
     }
 }

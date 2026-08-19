@@ -43,22 +43,23 @@ public class PhotoEditRadioCell extends FrameLayout {
             radioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    PhotoEditRadioCell.m1493$r8$lambda$k8_GxOPRgx8gMS6SfrRCpRMl24(this.f$0, view);
                 }
             });
         }
         addView(this.tintButtonsContainer, LayoutHelper.createFrame(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
     }
 
-    public void lambda$new$0(View view) {
+    public static void m1493$r8$lambda$k8_GxOPRgx8gMS6SfrRCpRMl24(PhotoEditRadioCell photoEditRadioCell, View view) {
+        photoEditRadioCell.getClass();
         RadioButton radioButton = (RadioButton) view;
-        if (this.currentType == 0) {
-            this.currentColor = this.tintShadowColors[((Integer) radioButton.getTag()).intValue()];
+        if (photoEditRadioCell.currentType == 0) {
+            photoEditRadioCell.currentColor = photoEditRadioCell.tintShadowColors[((Integer) radioButton.getTag()).intValue()];
         } else {
-            this.currentColor = this.tintHighlighsColors[((Integer) radioButton.getTag()).intValue()];
+            photoEditRadioCell.currentColor = photoEditRadioCell.tintHighlighsColors[((Integer) radioButton.getTag()).intValue()];
         }
-        updateSelectedTintButton(true);
-        this.onClickListener.onClick(this);
+        photoEditRadioCell.updateSelectedTintButton(true);
+        photoEditRadioCell.onClickListener.onClick(photoEditRadioCell);
     }
 
     public int getCurrentColor() {

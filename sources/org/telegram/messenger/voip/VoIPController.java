@@ -191,14 +191,17 @@ public class VoIPController {
         }
         boolean z = MessagesController.getGlobalMainSettings().getBoolean("dbg_dump_call_stats", false);
         long j2 = this.nativeInst;
-        boolean z2 = (zIsAvailable && VoIPServerConfig.getBoolean("use_system_aec", true)) ? false : true;
-        boolean z3 = (zIsAvailable2 && VoIPServerConfig.getBoolean("use_system_ns", true)) ? false : true;
+        boolean z2 = true;
+        boolean z3 = (zIsAvailable && VoIPServerConfig.getBoolean("use_system_aec", true)) ? false : true;
+        if (zIsAvailable2 && VoIPServerConfig.getBoolean("use_system_ns", true)) {
+            z2 = false;
+        }
         if (BuildVars.DEBUG_VERSION) {
             logFilePath = getLogFilePath("voip" + j);
         } else {
             logFilePath = getLogFilePath(j);
         }
-        nativeSetConfig(j2, d, d2, i, z2, z3, true, logFilePath, (BuildVars.DEBUG_VERSION && z) ? getLogFilePath("voipStats") : null, BuildVars.DEBUG_VERSION);
+        nativeSetConfig(j2, d, d2, i, z3, z2, true, logFilePath, (BuildVars.DEBUG_VERSION && z) ? getLogFilePath("voipStats") : null, BuildVars.DEBUG_VERSION);
     }
 
     public void debugCtl(int i, int i2) {
@@ -236,10 +239,15 @@ public class VoIPController {
     private String getLogFilePath(long j) {
         File logsDir = VoIPHelper.getLogsDir();
         if (!BuildVars.DEBUG_VERSION) {
-            ArrayList<File> arrayList = new ArrayList(Arrays.asList(logsDir.listFiles()));
+            ArrayList arrayList = new ArrayList(Arrays.asList(logsDir.listFiles()));
             while (arrayList.size() > 20) {
+                int i = 0;
                 File file = (File) arrayList.get(0);
-                for (File file2 : arrayList) {
+                int size = arrayList.size();
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    File file2 = (File) obj;
                     if (file2.getName().endsWith(".log") && file2.lastModified() < file.lastModified()) {
                         file = file2;
                     }

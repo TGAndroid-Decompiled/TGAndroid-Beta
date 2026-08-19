@@ -48,7 +48,9 @@ public class SuggestionOffer {
     }
 
     public void update(MessageObject messageObject) {
+        char c;
         int i;
+        float f;
         TLRPC.Message message;
         TLRPC.SuggestedPost suggestedPost = (messageObject == null || (message = messageObject.messageOwner) == null) ? null : message.suggested_post;
         if (suggestedPost == null) {
@@ -65,9 +67,15 @@ public class SuggestionOffer {
         if (suggestedPost.schedule_date > 0) {
             this.rows.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoTime), textPaint), new Text(LocaleController.bold(LocaleController.formatDateTime(suggestedPost.schedule_date, true)), textPaint)));
         }
+        ArrayList arrayList = this.rows;
+        int size = arrayList.size();
         float fMax = 0.0f;
         float fMax2 = 0.0f;
-        for (Row row : this.rows) {
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            Row row = (Row) obj;
             fMax = Math.max(fMax, row.title.getWidth());
             fMax2 = Math.max(fMax2, row.info.getWidth());
             int height = this.height + row.getHeight();
@@ -85,44 +93,57 @@ public class SuggestionOffer {
             } else {
                 spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.SuggestionOfferInfoTitle, name));
             }
+            f = 11.0f;
         } else {
             MessageObject messageObject2 = messageObject.replyMessageObject;
             if (messageObject2 != null) {
                 DialogObject.getName(messageObject2.getFromChatId());
             }
             StringBuilder sb = new StringBuilder();
-            int i2 = editedSuggestionFlags & 4;
-            int i3 = editedSuggestionFlags & 2;
-            int i4 = editedSuggestionFlags & 8;
-            int i5 = editedSuggestionFlags & 1;
-            int i6 = (i2 != 0 ? 1 : 0) + (i3 != 0 ? 1 : 0) + (i4 != 0 ? 1 : 0) + (i5 != 0 ? 1 : 0);
-            if (i5 != 0) {
-                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedPrice, i6 == 1);
+            int i3 = editedSuggestionFlags & 4;
+            int i4 = editedSuggestionFlags & 2;
+            int i5 = editedSuggestionFlags & 8;
+            int i6 = editedSuggestionFlags & 1;
+            int i7 = (i3 != 0 ? 1 : 0) + (i4 != 0 ? 1 : 0) + (i5 != 0 ? 1 : 0) + (i6 != 0 ? 1 : 0);
+            if (i6 != 0) {
+                c = 0;
+                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedPrice, i7 == 1);
                 i = 1;
             } else {
+                c = 0;
                 i = 0;
+            }
+            if (i4 != 0) {
+                i++;
+                f = 11.0f;
+                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedTime, i7 == i);
+            } else {
+                f = 11.0f;
             }
             if (i3 != 0) {
                 i++;
-                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedTime, i6 == i);
+                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedText, i7 == i);
             }
-            if (i2 != 0) {
-                i++;
-                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedText, i6 == i);
-            }
-            if (i4 != 0) {
-                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedMedia, i6 == i + 1);
+            if (i5 != 0) {
+                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedMedia, i7 == i + 1);
             }
             if (messageObject.isOutOwner()) {
-                spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.SuggestionOfferInfoTitleEditedFromYou, sb));
+                int i8 = R.string.SuggestionOfferInfoTitleEditedFromYou;
+                Object[] objArr = new Object[1];
+                objArr[c] = sb;
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(i8, objArr));
             } else {
-                spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.SuggestionOfferInfoTitleEditedFromX, name, sb));
+                int i9 = R.string.SuggestionOfferInfoTitleEditedFromX;
+                Object[] objArr2 = new Object[2];
+                objArr2[c] = name;
+                objArr2[1] = sb;
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(i9, objArr2));
             }
         }
         this.title = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, iMax, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         int iMax2 = 0;
-        for (int i7 = 0; i7 < this.title.getLineCount(); i7++) {
-            iMax2 = (int) Math.max(iMax2, this.title.getLineWidth(i7));
+        for (int i10 = 0; i10 < this.title.getLineCount(); i10++) {
+            iMax2 = (int) Math.max(iMax2, this.title.getLineWidth(i10));
         }
         int height2 = this.height + this.title.getHeight();
         this.height = height2;
@@ -130,9 +151,9 @@ public class SuggestionOffer {
         int iMax3 = Math.max(iDp, iMax2) + (AndroidUtilities.dp(24.0f) * 2);
         this.width = iMax3;
         this.titleX = (iMax3 - iMax) / 2;
-        int i8 = (iMax3 - iDp) / 2;
-        this.rowsTitleX = i8;
-        this.rowsInfoX = (int) (i8 + AndroidUtilities.dp(11.0f) + fMax);
+        int i11 = (iMax3 - iDp) / 2;
+        this.rowsTitleX = i11;
+        this.rowsInfoX = (int) (i11 + AndroidUtilities.dp(f) + fMax);
     }
 
     private void updateBuildTitleStep(StringBuilder sb, int i, boolean z) {
@@ -184,7 +205,13 @@ public class SuggestionOffer {
             canvas.restore();
             iDp += this.title.getHeight() + AndroidUtilities.dp(12.0f);
         }
-        for (Row row : this.rows) {
+        ArrayList arrayList = this.rows;
+        int size = arrayList.size();
+        int i4 = 0;
+        while (i4 < size) {
+            Object obj = arrayList.get(i4);
+            i4++;
+            Row row = (Row) obj;
             float f5 = iDp;
             row.title.draw(canvas, this.rowsTitleX + i3, (row.getHeight() / 2.0f) + f5, 0.85f);
             row.info.draw(canvas, this.rowsInfoX + i3, f5 + (row.getHeight() / 2.0f));

@@ -14,12 +14,12 @@ public class KeepAliveJob extends JobIntentService {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                KeepAliveJob.lambda$startJob$0();
+                KeepAliveJob.$r8$lambda$KunmSAUOG7za9CVFvrm3r_2vjUE();
             }
         });
     }
 
-    public static void lambda$startJob$0() {
+    public static void $r8$lambda$KunmSAUOG7za9CVFvrm3r_2vjUE() {
         if (startingJob || countDownLatch != null) {
             return;
         }

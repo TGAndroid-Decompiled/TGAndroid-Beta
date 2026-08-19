@@ -24,7 +24,7 @@ public class EmojiColorPickerWindow extends PopupWindow {
     private static final ViewTreeObserver.OnScrollChangedListener NOP = new ViewTreeObserver.OnScrollChangedListener() {
         @Override
         public final void onScrollChanged() {
-            EmojiColorPickerWindow.lambda$static$0();
+            EmojiColorPickerWindow.$r8$lambda$vfYy1CNvgCq4_8BXvYGs6QWAT_8();
         }
     };
     private static Field superListenerField;
@@ -34,7 +34,7 @@ public class EmojiColorPickerWindow extends PopupWindow {
     private ViewTreeObserver mViewTreeObserver;
     public EmojiColorPickerView pickerView;
 
-    public static void lambda$static$0() {
+    public static void $r8$lambda$vfYy1CNvgCq4_8BXvYGs6QWAT_8() {
     }
 
     public static EmojiColorPickerWindow create(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -55,16 +55,17 @@ public class EmojiColorPickerWindow extends PopupWindow {
         this.pickerView.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public final boolean onKey(View view, int i, KeyEvent keyEvent) {
-                return this.f$0.lambda$new$1(view, i, keyEvent);
+                return EmojiColorPickerWindow.m2281$r8$lambda$O92kydiWfMtyYraxj8TMJgARe0(this.f$0, view, i, keyEvent);
             }
         });
     }
 
-    public boolean lambda$new$1(View view, int i, KeyEvent keyEvent) {
-        if (i != 82 || keyEvent.getRepeatCount() != 0 || keyEvent.getAction() != 1 || !isShowing()) {
+    public static boolean m2281$r8$lambda$O92kydiWfMtyYraxj8TMJgARe0(EmojiColorPickerWindow emojiColorPickerWindow, View view, int i, KeyEvent keyEvent) {
+        emojiColorPickerWindow.getClass();
+        if (i != 82 || keyEvent.getRepeatCount() != 0 || keyEvent.getAction() != 1 || !emojiColorPickerWindow.isShowing()) {
             return false;
         }
-        dismiss();
+        emojiColorPickerWindow.dismiss();
         return true;
     }
 
@@ -315,14 +316,13 @@ public class EmojiColorPickerWindow extends PopupWindow {
             this.arrowDrawable.setBounds(this.arrowX - AndroidUtilities.dp(9.0f), getMeasuredHeight() - AndroidUtilities.dp(6.34f), this.arrowX + AndroidUtilities.dp(9.0f), getMeasuredHeight());
             this.arrowDrawable.draw(canvas);
             if (this.currentEmoji != null) {
-                float f = 5.0f;
                 if (this.isCompound) {
                     int i = 0;
                     while (i < 2) {
-                        float f2 = (i == 0 ? this.selection1Animated : this.selection2Animated).set(this.selection[i]);
-                        float f3 = f2 + 1.0f;
-                        int iDp = (int) ((this.emojiSize * f3) + AndroidUtilities.dp((Math.max(0.0f, Math.min(1.0f, f3)) * 3.0f) + f + (f3 * 4.0f)));
-                        float fMax = Math.max(0.0f, Math.min(1.0f, -f2));
+                        float f = (i == 0 ? this.selection1Animated : this.selection2Animated).set(this.selection[i]);
+                        float f2 = f + 1.0f;
+                        int iDp = (int) ((this.emojiSize * f2) + AndroidUtilities.dp((Math.max(0.0f, Math.min(1.0f, f2)) * 3.0f) + 5.0f + (f2 * 4.0f)));
+                        float fMax = Math.max(0.0f, Math.min(1.0f, -f));
                         int iLerp = AndroidUtilities.lerp(AndroidUtilities.dp(3.0f) + ((this.emojiSize + AndroidUtilities.dp(1.0f)) * i), (getMeasuredHeight() - this.emojiSize) / 2, fMax);
                         int i2 = this.emojiSize;
                         this.rect.set(iDp, iLerp, iDp + i2, iLerp + i2);
@@ -341,19 +341,18 @@ public class EmojiColorPickerWindow extends PopupWindow {
                             this.drawables[i4].draw(canvas);
                         }
                         i++;
-                        f = 5.0f;
                     }
                     this.drawables[0].setBounds(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - this.emojiSize) / 2, AndroidUtilities.dp(5.0f) + this.emojiSize, (getMeasuredHeight() + this.emojiSize) / 2);
                     this.drawables[0].draw(canvas);
                     canvas.drawRect(AndroidUtilities.dp(8.45f) + this.emojiSize, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(8.45f) + this.emojiSize + 1, getMeasuredHeight() - AndroidUtilities.dp(6.0f), Theme.dividerPaint);
                     return;
                 }
-                float f4 = this.selection1Animated.set(this.selection[0]);
-                int iDp4 = (int) ((this.emojiSize * f4) + AndroidUtilities.dp((f4 * 4.0f) + 5.0f));
+                float f3 = this.selection1Animated.set(this.selection[0]);
+                int iDp4 = (int) ((this.emojiSize * f3) + AndroidUtilities.dp((f3 * 4.0f) + 5.0f));
                 int iDp5 = AndroidUtilities.dp(5.0f);
-                float f5 = iDp5;
+                float f4 = iDp5;
                 int i6 = this.emojiSize;
-                this.rect.set(iDp4, f5, iDp4 + i6, i6 + iDp5);
+                this.rect.set(iDp4, f4, iDp4 + i6, i6 + iDp5);
                 this.rect.inset(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(-2.0f));
                 this.rectPaint.setColor(Theme.getColor(Theme.key_listSelector, this.resourcesProvider));
                 canvas.drawRoundRect(this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.rectPaint);
@@ -361,10 +360,10 @@ public class EmojiColorPickerWindow extends PopupWindow {
                     Drawable drawable2 = this.drawables[i7];
                     if (drawable2 != null) {
                         int iDp6 = (this.emojiSize * i7) + AndroidUtilities.dp((i7 * 4) + 5);
-                        float fMin = ((1.0f - (Math.min(0.5f, Math.abs(i7 - f4)) * 2.0f)) * 0.1f) + 0.9f;
+                        float fMin = ((1.0f - (Math.min(0.5f, Math.abs(i7 - f3)) * 2.0f)) * 0.1f) + 0.9f;
                         canvas.save();
-                        float f6 = this.emojiSize / 2.0f;
-                        canvas.scale(fMin, fMin, iDp6 + f6, f6 + f5);
+                        float f5 = this.emojiSize / 2.0f;
+                        canvas.scale(fMin, fMin, iDp6 + f5, f5 + f4);
                         int i8 = this.emojiSize;
                         drawable2.setBounds(iDp6, iDp5, iDp6 + i8, i8 + iDp5);
                         drawable2.draw(canvas);

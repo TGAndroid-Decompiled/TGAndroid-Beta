@@ -76,13 +76,13 @@ public class StickerSetCell extends FrameLayout {
     private TextView textView;
     private TextView valueTextView;
 
-    protected void onAddButtonClick() {
+    public void onAddButtonClick() {
     }
 
-    protected void onPremiumButtonClick() {
+    public void onPremiumButtonClick() {
     }
 
-    protected void onRemoveButtonClick() {
+    public void onRemoveButtonClick() {
     }
 
     public StickerSetCell(Context context, int i) {
@@ -156,7 +156,7 @@ public class StickerSetCell extends FrameLayout {
         this.addButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.onAddButtonClick();
             }
         });
         this.sideButtons.addView(this.addButtonView, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, (LocaleController.isRTL ? 3 : 5) | 16));
@@ -173,7 +173,7 @@ public class StickerSetCell extends FrameLayout {
         this.removeButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.onRemoveButtonClick();
             }
         });
         this.sideButtons.addView(this.removeButtonView, LayoutHelper.createFrameRelatively(-2.0f, 32.0f, (LocaleController.isRTL ? 3 : 5) | 16, 0.0f, -2.0f, 0.0f, 0.0f));
@@ -184,7 +184,7 @@ public class StickerSetCell extends FrameLayout {
         this.premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                this.f$0.onPremiumButtonClick();
             }
         });
         try {
@@ -205,7 +205,7 @@ public class StickerSetCell extends FrameLayout {
         this.sideButtons.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$3(view);
+                StickerSetCell.m1503$r8$lambda$ZcxGIGWf2quKDH9jLLUoG8940(this.f$0, view);
             }
         });
         TextView textView4 = new TextView(context) {
@@ -249,27 +249,15 @@ public class StickerSetCell extends FrameLayout {
         updateButtonState(0, false);
     }
 
-    public void lambda$new$0(View view) {
-        onAddButtonClick();
-    }
-
-    public void lambda$new$1(View view) {
-        onRemoveButtonClick();
-    }
-
-    public void lambda$new$2(View view) {
-        onPremiumButtonClick();
-    }
-
-    public void lambda$new$3(View view) {
-        if (this.premiumButtonView.getVisibility() == 0 && this.premiumButtonView.isEnabled()) {
-            this.premiumButtonView.performClick();
+    public static void m1503$r8$lambda$ZcxGIGWf2quKDH9jLLUoG8940(StickerSetCell stickerSetCell, View view) {
+        if (stickerSetCell.premiumButtonView.getVisibility() == 0 && stickerSetCell.premiumButtonView.isEnabled()) {
+            stickerSetCell.premiumButtonView.performClick();
             return;
         }
-        if (this.addButtonView.getVisibility() == 0 && this.addButtonView.isEnabled()) {
-            this.addButtonView.performClick();
-        } else if (this.removeButtonView.getVisibility() == 0 && this.removeButtonView.isEnabled()) {
-            this.removeButtonView.performClick();
+        if (stickerSetCell.addButtonView.getVisibility() == 0 && stickerSetCell.addButtonView.isEnabled()) {
+            stickerSetCell.addButtonView.performClick();
+        } else if (stickerSetCell.removeButtonView.getVisibility() == 0 && stickerSetCell.removeButtonView.isEnabled()) {
+            stickerSetCell.removeButtonView.performClick();
         }
     }
 
@@ -370,7 +358,6 @@ public class StickerSetCell extends FrameLayout {
             } else {
                 forSticker = ImageLocation.getForSticker((TLRPC.PhotoSize) closestPhotoSizeWithSize, document2, tL_messages_stickerSet.set.thumb_version);
             }
-            ImageLocation imageLocation = forSticker;
             boolean zIsEnabled = LiteMode.isEnabled(this.emojis ? 16388 : 1);
             StringBuilder sb = new StringBuilder();
             sb.append("50_50");
@@ -380,15 +367,15 @@ public class StickerSetCell extends FrameLayout {
                 if (svgThumb != null) {
                     this.imageView.setImage(ImageLocation.getForDocument(document2), string, svgThumb, 0, tL_messages_stickerSet);
                 } else {
-                    this.imageView.setImage(ImageLocation.getForDocument(document2), string, imageLocation, (String) null, 0, tL_messages_stickerSet);
+                    this.imageView.setImage(ImageLocation.getForDocument(document2), string, forSticker, (String) null, 0, tL_messages_stickerSet);
                 }
                 if (MessageObject.isTextColorEmoji(document2)) {
                     this.imageView.setColorFilter(Theme.getAnimatedEmojiColorFilter(null));
                 }
-            } else if (imageLocation != null && imageLocation.imageType == 1) {
-                this.imageView.setImage(imageLocation, string, "tgs", svgThumb, tL_messages_stickerSet);
+            } else if (forSticker != null && forSticker.imageType == 1) {
+                this.imageView.setImage(forSticker, string, "tgs", svgThumb, tL_messages_stickerSet);
             } else {
-                this.imageView.setImage(imageLocation, string, "webp", svgThumb, tL_messages_stickerSet);
+                this.imageView.setImage(forSticker, string, "webp", svgThumb, tL_messages_stickerSet);
             }
         } else {
             this.valueTextView.setText(LocaleController.formatPluralString(tL_messages_stickerSet.set.emojis ? "EmojiCount" : "Stickers", 0, new Object[0]));
@@ -397,7 +384,7 @@ public class StickerSetCell extends FrameLayout {
                 AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).fetchDocument(tL_messages_stickerSet.set.thumb_document_id, new AnimatedEmojiDrawable.ReceivedDocument() {
                     @Override
                     public final void run(TLRPC.Document document3) {
-                        this.f$0.lambda$setStickersSet$5(document3);
+                        StickerSetCell.$r8$lambda$Kf4Gggvr6Bi4mWkRa2APHn1LRfs(this.f$0, document3);
                     }
                 });
             }
@@ -411,21 +398,22 @@ public class StickerSetCell extends FrameLayout {
         }
     }
 
-    public void lambda$setStickersSet$5(final TLRPC.Document document) {
+    public static void $r8$lambda$Kf4Gggvr6Bi4mWkRa2APHn1LRfs(final StickerSetCell stickerSetCell, final TLRPC.Document document) {
+        stickerSetCell.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setStickersSet$4(document);
+                StickerSetCell.m1505$r8$lambda$GSV0ZOc0M4KQGzFfeviHnJQOA(this.f$0, document);
             }
         });
     }
 
-    public void lambda$setStickersSet$4(TLRPC.Document document) {
-        if (this.stickersSet.documents.isEmpty()) {
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.stickersSet;
+    public static void m1505$r8$lambda$GSV0ZOc0M4KQGzFfeviHnJQOA(StickerSetCell stickerSetCell, TLRPC.Document document) {
+        if (stickerSetCell.stickersSet.documents.isEmpty()) {
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetCell.stickersSet;
             if (tL_messages_stickerSet.set.thumb_document_id == document.id) {
                 tL_messages_stickerSet.documents.add(document);
-                setStickersSet(this.stickersSet, this.needDivider, this.groupSearch);
+                stickerSetCell.setStickersSet(stickerSetCell.stickersSet, stickerSetCell.needDivider, stickerSetCell.groupSearch);
             }
         }
     }
@@ -542,7 +530,7 @@ public class StickerSetCell extends FrameLayout {
                 duration.setInterpolator(interpolator).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setReorderable$6(z);
+                        StickerSetCell.m1504$r8$lambda$t_3viipGdfHoZbMu46z3dRMeaQ(this.f$0, z);
                     }
                 }).start();
                 if (this.emojis) {
@@ -550,7 +538,7 @@ public class StickerSetCell extends FrameLayout {
                     this.sideButtons.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(interpolator).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$setReorderable$7(z);
+                            StickerSetCell.$r8$lambda$Vrv2Zs4cuBcsRSzHyQQOB0vE24c(this.f$0, z);
                         }
                     }).start();
                     return;
@@ -559,7 +547,7 @@ public class StickerSetCell extends FrameLayout {
                     this.optionsButton.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(interpolator).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$setReorderable$8(z);
+                            StickerSetCell.$r8$lambda$IJiKsSN1QkfQXXgH6SA0j1AXfGc(this.f$0, z);
                         }
                     }).start();
                     return;
@@ -583,22 +571,27 @@ public class StickerSetCell extends FrameLayout {
         }
     }
 
-    public void lambda$setReorderable$6(boolean z) {
+    public static void m1504$r8$lambda$t_3viipGdfHoZbMu46z3dRMeaQ(StickerSetCell stickerSetCell, boolean z) {
         if (z) {
-            return;
-        }
-        this.reorderButton.setVisibility(8);
-    }
-
-    public void lambda$setReorderable$7(boolean z) {
-        if (z) {
-            this.sideButtons.setVisibility(8);
+            stickerSetCell.getClass();
+        } else {
+            stickerSetCell.reorderButton.setVisibility(8);
         }
     }
 
-    public void lambda$setReorderable$8(boolean z) {
+    public static void $r8$lambda$Vrv2Zs4cuBcsRSzHyQQOB0vE24c(StickerSetCell stickerSetCell, boolean z) {
         if (z) {
-            this.optionsButton.setVisibility(8);
+            stickerSetCell.sideButtons.setVisibility(8);
+        } else {
+            stickerSetCell.getClass();
+        }
+    }
+
+    public static void $r8$lambda$IJiKsSN1QkfQXXgH6SA0j1AXfGc(StickerSetCell stickerSetCell, boolean z) {
+        if (z) {
+            stickerSetCell.optionsButton.setVisibility(8);
+        } else {
+            stickerSetCell.getClass();
         }
     }
 
@@ -666,14 +659,14 @@ public class StickerSetCell extends FrameLayout {
             this.premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateButtonState$9(view);
+                    this.f$0.onPremiumButtonClick();
                 }
             });
         } else if (i == 2) {
             this.premiumButtonView.setButton(LocaleController.getString(R.string.Restore), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateButtonState$10(view);
+                    this.f$0.onPremiumButtonClick();
                 }
             });
         }
@@ -684,14 +677,17 @@ public class StickerSetCell extends FrameLayout {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.stateAnimator = animatorSet2;
             PremiumButtonView premiumButtonView = this.premiumButtonView;
+            float[] fArr = {(i == 1 || i == 2) ? 1.0f : 0.0f};
             Property property = FrameLayout.ALPHA;
-            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property, (i == 1 || i == 2) ? 1.0f : 0.0f);
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property, fArr);
             PremiumButtonView premiumButtonView2 = this.premiumButtonView;
+            float[] fArr2 = {(i == 1 || i == 2) ? 1.0f : 0.6f};
             Property property2 = FrameLayout.SCALE_X;
-            ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(premiumButtonView2, (Property<PremiumButtonView, Float>) property2, (i == 1 || i == 2) ? 1.0f : 0.6f);
+            ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(premiumButtonView2, (Property<PremiumButtonView, Float>) property2, fArr2);
             PremiumButtonView premiumButtonView3 = this.premiumButtonView;
+            float f = (i == 1 || i == 2) ? 1.0f : 0.6f;
             Property property3 = FrameLayout.SCALE_Y;
-            animatorSet2.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(premiumButtonView3, (Property<PremiumButtonView, Float>) property3, (i == 1 || i == 2) ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.addButtonView, (Property<TextView, Float>) property, i == 3 ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.addButtonView, (Property<TextView, Float>) property2, i == 3 ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.addButtonView, (Property<TextView, Float>) property3, i == 3 ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.removeButtonView, (Property<TextView, Float>) property, i == 4 ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.removeButtonView, (Property<TextView, Float>) property2, i == 4 ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.removeButtonView, (Property<TextView, Float>) property3, i == 4 ? 1.0f : 0.6f));
+            animatorSet2.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(premiumButtonView3, (Property<PremiumButtonView, Float>) property3, f), ObjectAnimator.ofFloat(this.addButtonView, (Property<TextView, Float>) property, i == 3 ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.addButtonView, (Property<TextView, Float>) property2, i == 3 ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.addButtonView, (Property<TextView, Float>) property3, i == 3 ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.removeButtonView, (Property<TextView, Float>) property, i == 4 ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.removeButtonView, (Property<TextView, Float>) property2, i == 4 ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.removeButtonView, (Property<TextView, Float>) property3, i == 4 ? 1.0f : 0.6f));
             this.stateAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -730,14 +726,6 @@ public class StickerSetCell extends FrameLayout {
         updateRightMargin();
     }
 
-    public void lambda$updateButtonState$9(View view) {
-        onPremiumButtonClick();
-    }
-
-    public void lambda$updateButtonState$10(View view) {
-        onPremiumButtonClick();
-    }
-
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -762,14 +750,14 @@ public class StickerSetCell extends FrameLayout {
                 stickerSetCell.setOnReorderButtonTouchListener(new View.OnTouchListener() {
                     @Override
                     public final boolean onTouch(View view, MotionEvent motionEvent) {
-                        return StickerSetCell.Factory.lambda$createView$0(universalRecyclerView, stickerSetCell, view, motionEvent);
+                        return StickerSetCell.Factory.$r8$lambda$N3qnKGflVcLtawK7SCRoWHhosIQ(universalRecyclerView, stickerSetCell, view, motionEvent);
                     }
                 });
             }
             return stickerSetCell;
         }
 
-        public static boolean lambda$createView$0(UniversalRecyclerView universalRecyclerView, StickerSetCell stickerSetCell, View view, MotionEvent motionEvent) {
+        public static boolean $r8$lambda$N3qnKGflVcLtawK7SCRoWHhosIQ(UniversalRecyclerView universalRecyclerView, StickerSetCell stickerSetCell, View view, MotionEvent motionEvent) {
             ItemTouchHelper itemTouchHelper;
             if (motionEvent.getAction() != 0 || (itemTouchHelper = universalRecyclerView.itemTouchHelper) == null) {
                 return false;

@@ -216,7 +216,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         configureHeader(LocaleController.getString(R.string.TONBalanceTitle), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.TONBalanceText), new Runnable() {
             @Override
             public final void run() {
-                TONIntroActivity.lambda$createView$0(context);
+                new ExplainStarsSheet(context).show();
             }
         }), true), this.aboveTitleView, null);
         this.listView.setOverScrollMode(2);
@@ -229,7 +229,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$createView$1(view, i);
+                TONIntroActivity.$r8$lambda$b8e3RIZz4s2nNCUZBryAqyBsftM(this.f$0, view, i);
             }
         });
         FireworksOverlay fireworksOverlay = new FireworksOverlay(getContext());
@@ -280,7 +280,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             this.buyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$createView$2(view);
+                    Browser.openUrlInSystemBrowser(this.f$0.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                 }
             });
             this.oneButtonsLayout.addView(this.buyButton, LayoutHelper.createFrame(-1, 48, 119));
@@ -304,7 +304,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.topUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$3(view);
+                Browser.openUrlInSystemBrowser(this.f$0.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
             }
         });
         if (this.allowTopUp) {
@@ -318,7 +318,8 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.withdrawButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$4(view);
+                TONIntroActivity tONIntroActivity = this.f$0;
+                tONIntroActivity.presentFragment(new BotStarsActivity(1, tONIntroActivity.getUserConfig().getClientUserId()));
             }
         });
         this.twoButtonsLayout.addView(this.withdrawButton, LayoutHelper.createLinear(-1, 48, 17.0f, 1, 0, 0, 0, 0));
@@ -337,29 +338,13 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         return this.fragmentView;
     }
 
-    public static void lambda$createView$0(Context context) {
-        new ExplainStarsSheet(context).show();
-    }
-
-    public void lambda$createView$1(View view, int i) {
+    public static void $r8$lambda$b8e3RIZz4s2nNCUZBryAqyBsftM(TONIntroActivity tONIntroActivity, View view, int i) {
         UItem item;
-        UniversalAdapter universalAdapter = this.adapter;
+        UniversalAdapter universalAdapter = tONIntroActivity.adapter;
         if (universalAdapter == null || (item = universalAdapter.getItem(i)) == null) {
             return;
         }
-        onItemClick(item, i);
-    }
-
-    public void lambda$createView$2(View view) {
-        Browser.openUrlInSystemBrowser(getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
-    }
-
-    public void lambda$createView$3(View view) {
-        Browser.openUrlInSystemBrowser(getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
-    }
-
-    public void lambda$createView$4(View view) {
-        presentFragment(new BotStarsActivity(1, getUserConfig().getClientUserId()));
+        tONIntroActivity.onItemClick(item, i);
     }
 
     private void updateBalance() {
@@ -392,13 +377,13 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             this.oneButtonsLayout.animate().alpha(z ? 0.0f : 1.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateButtonsLayouts$5(z);
+                    TONIntroActivity.m4658$r8$lambda$fL8Wa5lj42_4kZTkCddQBvA1JU(this.f$0, z);
                 }
             }).start();
             this.twoButtonsLayout.animate().alpha(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateButtonsLayouts$6(z);
+                    TONIntroActivity.m4657$r8$lambda$HK2sp5GJ6niPU1VJyccWP_ccL0(this.f$0, z);
                 }
             }).start();
             return;
@@ -411,17 +396,20 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.oneButtonsLayout.setVisibility(z ? 8 : 0);
     }
 
-    public void lambda$updateButtonsLayouts$5(boolean z) {
+    public static void m4658$r8$lambda$fL8Wa5lj42_4kZTkCddQBvA1JU(TONIntroActivity tONIntroActivity, boolean z) {
         if (z) {
-            this.oneButtonsLayout.setVisibility(8);
+            tONIntroActivity.oneButtonsLayout.setVisibility(8);
+        } else {
+            tONIntroActivity.getClass();
         }
     }
 
-    public void lambda$updateButtonsLayouts$6(boolean z) {
+    public static void m4657$r8$lambda$HK2sp5GJ6niPU1VJyccWP_ccL0(TONIntroActivity tONIntroActivity, boolean z) {
         if (z) {
-            return;
+            tONIntroActivity.getClass();
+        } else {
+            tONIntroActivity.twoButtonsLayout.setVisibility(8);
         }
-        this.twoButtonsLayout.setVisibility(8);
     }
 
     @Override
@@ -465,13 +453,14 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onNestedScroll$0();
+                        TONIntroActivity.NestedFrameLayout.$r8$lambda$l479CCcg83tB2FopnHtELNIqwWc(this.f$0);
                     }
                 });
             }
         }
 
-        public void lambda$onNestedScroll$0() {
+        public static void $r8$lambda$l479CCcg83tB2FopnHtELNIqwWc(NestedFrameLayout nestedFrameLayout) {
+            nestedFrameLayout.getClass();
             try {
                 RecyclerListView currentListView = TONIntroActivity.this.transactionsLayout.getCurrentListView();
                 if (currentListView == null || currentListView.getAdapter() == null) {
@@ -557,10 +546,12 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
 
     public boolean attachedTransactionsLayout() {
         StarsIntroActivity.StarsTransactionsLayout starsTransactionsLayout = this.transactionsLayout;
-        if (starsTransactionsLayout == null || !(starsTransactionsLayout.getParent() instanceof View)) {
-            return false;
+        if (starsTransactionsLayout != null && (starsTransactionsLayout.getParent() instanceof View)) {
+            if (this.listView.getHeight() - ((View) this.transactionsLayout.getParent()).getBottom() >= 0) {
+                return true;
+            }
         }
-        return this.listView.getHeight() - ((View) this.transactionsLayout.getParent()).getBottom() >= 0;
+        return false;
     }
 
     @Override
@@ -612,7 +603,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                     this.drawable.getPaint = new Utilities.CallbackReturn() {
                         @Override
                         public final Object run(Object obj) {
-                            return this.f$0.lambda$configure$0((Integer) obj);
+                            return TONIntroActivity.AnonymousClass4.m4659$r8$lambda$xSfyRSAjxu8EQXAvDOHBgRHNlk(this.f$0, (Integer) obj);
                         }
                     };
                     StarParticlesView.Drawable drawable2 = this.drawable;
@@ -626,8 +617,8 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             }
         }
 
-        public Paint lambda$configure$0(Integer num) {
-            return this.paints[num.intValue() % this.paints.length];
+        public static Paint m4659$r8$lambda$xSfyRSAjxu8EQXAvDOHBgRHNlk(AnonymousClass4 anonymousClass4, Integer num) {
+            return anonymousClass4.paints[num.intValue() % anonymousClass4.paints.length];
         }
 
         @Override
@@ -762,7 +753,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 }
                 runnable.run();
                 this.whenPurchased = null;
-                lambda$new$0();
+                dismiss();
             }
         }
 
@@ -807,7 +798,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i2) {
-                    this.f$0.lambda$new$0(view, i2);
+                    TONIntroActivity.StarsNeededSheet.$r8$lambda$9Mu6DZDKPvv5J6Suhu4Yy_HwfUw(this.f$0, view, i2);
                 }
             });
             DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -835,7 +826,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$1(view);
+                        Browser.openUrlInSystemBrowser(this.f$0.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                     }
                 });
             } else {
@@ -843,7 +834,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$2(view);
+                        this.f$0.dismiss();
                     }
                 });
             }
@@ -853,21 +844,13 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             }
         }
 
-        public void lambda$new$0(View view, int i) {
+        public static void $r8$lambda$9Mu6DZDKPvv5J6Suhu4Yy_HwfUw(StarsNeededSheet starsNeededSheet, View view, int i) {
             UItem item;
-            UniversalAdapter universalAdapter = this.adapter;
+            UniversalAdapter universalAdapter = starsNeededSheet.adapter;
             if (universalAdapter == null || (item = universalAdapter.getItem(i - 1)) == null) {
                 return;
             }
-            onItemClick(item, this.adapter);
-        }
-
-        public void lambda$new$1(View view) {
-            Browser.openUrlInSystemBrowser(getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
-        }
-
-        public void lambda$new$2(View view) {
-            lambda$new$0();
+            starsNeededSheet.onItemClick(item, starsNeededSheet.adapter);
         }
 
         @Override
@@ -897,8 +880,8 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         }
 
         @Override
-        public void lambda$new$0() {
-            super.lambda$new$0();
+        public void dismiss() {
+            super.dismiss();
             HeaderView headerView = this.headerView;
             if (headerView != null) {
                 headerView.iconView.setPaused(true);

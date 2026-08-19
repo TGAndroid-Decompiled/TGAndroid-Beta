@@ -87,6 +87,10 @@ public class PipSource {
         }
     }
 
+    public Player getPlayer() {
+        return this.player;
+    }
+
     public void setPlaceholderView(View view) {
         this.placeholderView = view;
     }

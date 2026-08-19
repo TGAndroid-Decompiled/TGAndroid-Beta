@@ -50,14 +50,14 @@ public class BuildVars {
                 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                     @Override
                     public final void uncaughtException(Thread thread, Throwable th) {
-                        BuildVars.lambda$static$0(defaultUncaughtExceptionHandler, thread, th);
+                        BuildVars.$r8$lambda$8fLp805Q7pNFu8Bc11LDPpNHh7A(defaultUncaughtExceptionHandler, thread, th);
                     }
                 });
             }
         }
     }
 
-    public static void lambda$static$0(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) {
+    public static void $r8$lambda$8fLp805Q7pNFu8Bc11LDPpNHh7A(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) {
         FileLog.fatal(th, false);
         if (uncaughtExceptionHandler != null) {
             uncaughtExceptionHandler.uncaughtException(thread, th);
@@ -65,13 +65,11 @@ public class BuildVars {
     }
 
     public static boolean useInvoiceBilling() {
-        if (!BillingController.billingClientEmpty && !ApplicationLoader.isStandaloneBuild()) {
-            isBetaApp();
-            if (!isHuaweiStoreApp() && !hasDirectCurrency()) {
-                return false;
-            }
+        if (BillingController.billingClientEmpty || ApplicationLoader.isStandaloneBuild()) {
+            return true;
         }
-        return true;
+        isBetaApp();
+        return isHuaweiStoreApp() || hasDirectCurrency();
     }
 
     private static boolean hasDirectCurrency() {

@@ -159,25 +159,25 @@ public abstract class PreviewView extends FrameLayout {
         this.slowerSeek = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                PreviewView.$r8$lambda$n8Q808FVPSY0qkobHNtVJv4cS8Y(this.f$0);
             }
         };
         this.updateProgressRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$10();
+                PreviewView.$r8$lambda$euKzbLKgVXX741x5sHwEjL7vfec(this.f$0);
             }
         };
         this.updateAudioProgressRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$11();
+                PreviewView.$r8$lambda$mySK8_QmHv1RuhFIVbbzfsoNLHs(this.f$0);
             }
         };
         this.updateRoundProgressRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$12();
+                PreviewView.m4552$r8$lambda$CxvBV3dFONwihCq5bSofngACbo(this.f$0);
             }
         };
         this.wallpaperDrawableCrossfade = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -397,6 +397,7 @@ public abstract class PreviewView extends FrameLayout {
                     inputDocument.file_reference = document.file_reference;
                     inputDocument.access_hash = document.access_hash;
                 }
+                int i = 0;
                 if (!TextUtils.isEmpty(messageObject.messageOwner.attachPath)) {
                     this.entry.audioPath = messageObject.messageOwner.attachPath;
                 } else {
@@ -423,17 +424,22 @@ public abstract class PreviewView extends FrameLayout {
                 storyEntry3.audioAuthor = null;
                 storyEntry3.audioTitle = null;
                 if (document != null) {
-                    for (TLRPC.DocumentAttribute documentAttribute : document.attributes) {
-                        if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
-                            this.entry.audioAuthor = documentAttribute.performer;
-                            if (!TextUtils.isEmpty(documentAttribute.title)) {
-                                this.entry.audioTitle = documentAttribute.title;
+                    ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
+                    int size = arrayList.size();
+                    while (i < size) {
+                        TLRPC.DocumentAttribute documentAttribute = arrayList.get(i);
+                        i++;
+                        TLRPC.DocumentAttribute documentAttribute2 = documentAttribute;
+                        if (documentAttribute2 instanceof TLRPC.TL_documentAttributeAudio) {
+                            this.entry.audioAuthor = documentAttribute2.performer;
+                            if (!TextUtils.isEmpty(documentAttribute2.title)) {
+                                this.entry.audioTitle = documentAttribute2.title;
                             }
-                            this.entry.audioDuration = (long) (documentAttribute.duration * 1000.0d);
+                            this.entry.audioDuration = (long) (documentAttribute2.duration * 1000.0d);
                             break;
                         }
-                        if (documentAttribute instanceof TLRPC.TL_documentAttributeFilename) {
-                            this.entry.audioTitle = documentAttribute.file_name;
+                        if (documentAttribute2 instanceof TLRPC.TL_documentAttributeFilename) {
+                            this.entry.audioTitle = documentAttribute2.file_name;
                         }
                     }
                 }
@@ -462,9 +468,9 @@ public abstract class PreviewView extends FrameLayout {
         setupAudio(this.entry, z);
     }
 
-    public void lambda$new$0() {
-        seekTo(this.finalSeekPosition);
-        this.slowerSeekScheduled = false;
+    public static void $r8$lambda$n8Q808FVPSY0qkobHNtVJv4cS8Y(PreviewView previewView) {
+        previewView.seekTo(previewView.finalSeekPosition);
+        previewView.slowerSeekScheduled = false;
     }
 
     public void seekTo(long j) {
@@ -544,12 +550,12 @@ public abstract class PreviewView extends FrameLayout {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PreviewView.lambda$getCoverBitmap$2(iDp, iDp2, iDp3, bitmapArr, callback);
+                PreviewView.$r8$lambda$xW4_UpPPqR_o185V2LHvtWoY7CI(iDp, iDp2, iDp3, bitmapArr, callback);
             }
         });
     }
 
-    public static void lambda$getCoverBitmap$2(int i, int i2, int i3, Bitmap[] bitmapArr, final Utilities.Callback callback) {
+    public static void $r8$lambda$xW4_UpPPqR_o185V2LHvtWoY7CI(int i, int i2, int i3, Bitmap[] bitmapArr, final Utilities.Callback callback) {
         final Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapCreateBitmap);
         Path path = new Path();
@@ -788,19 +794,20 @@ public abstract class PreviewView extends FrameLayout {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setupImage$5(storyEntry);
+                PreviewView.m4557$r8$lambda$jQudLc4HYUyzgSw_VphDvRmb78(this.f$0, storyEntry);
             }
         });
     }
 
-    public void lambda$setupImage$5(final StoryEntry storyEntry) {
+    public static void m4557$r8$lambda$jQudLc4HYUyzgSw_VphDvRmb78(final PreviewView previewView, final StoryEntry storyEntry) {
         long j;
         String str;
         Uri uriWithAppendedId;
+        previewView.getClass();
         final Bitmap[] bitmapArr = new Bitmap[1];
         final boolean[] zArr = {true};
         if (storyEntry != null) {
-            int measuredWidth = getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : getMeasuredWidth();
+            int measuredWidth = previewView.getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : previewView.getMeasuredWidth();
             int i = (int) ((measuredWidth * 16) / 9.0f);
             if (storyEntry.isVideo) {
                 Bitmap bitmap = storyEntry.blurredVideoThumb;
@@ -816,7 +823,7 @@ public abstract class PreviewView extends FrameLayout {
                             } else {
                                 uriWithAppendedId = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, j);
                             }
-                            bitmapArr[0] = getContext().getContentResolver().loadThumbnail(uriWithAppendedId, new Size(measuredWidth, i), null);
+                            bitmapArr[0] = previewView.getContext().getContentResolver().loadThumbnail(uriWithAppendedId, new Size(measuredWidth, i), null);
                         } catch (Exception unused) {
                         }
                     }
@@ -828,7 +835,7 @@ public abstract class PreviewView extends FrameLayout {
             }
             final long j2 = j;
             if (j2 < 0 && storyEntry.isVideo && storyEntry.thumbPath == null) {
-                invalidate();
+                previewView.invalidate();
                 return;
             }
             if (bitmapArr[0] == null) {
@@ -840,7 +847,7 @@ public abstract class PreviewView extends FrameLayout {
                 StoryEntry.DecodeBitmap decodeBitmap = new StoryEntry.DecodeBitmap() {
                     @Override
                     public final Bitmap decode(BitmapFactory.Options options) {
-                        return this.f$0.lambda$setupImage$3(storyEntry, j2, path, options);
+                        return PreviewView.m4551$r8$lambda$2kpkNKXknCFiM3yMPiPYaQSS3U(this.f$0, storyEntry, j2, path, options);
                     }
                 };
                 boolean z = storyEntry.isVideo;
@@ -851,50 +858,51 @@ public abstract class PreviewView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setupImage$4(bitmapArr, storyEntry, zArr);
+                PreviewView.$r8$lambda$SUOc28zjcoBM39n4SezQqEJpZT8(this.f$0, bitmapArr, storyEntry, zArr);
             }
         });
     }
 
-    public Bitmap lambda$setupImage$3(StoryEntry storyEntry, long j, String str, BitmapFactory.Options options) {
+    public static Bitmap m4551$r8$lambda$2kpkNKXknCFiM3yMPiPYaQSS3U(PreviewView previewView, StoryEntry storyEntry, long j, String str, BitmapFactory.Options options) {
+        previewView.getClass();
         if (storyEntry.isVideo) {
             String str2 = storyEntry.thumbPath;
             if (str2 != null) {
                 return BitmapFactory.decodeFile(str2, options);
             }
             try {
-                return MediaStore.Video.Thumbnails.getThumbnail(getContext().getContentResolver(), j, 1, options);
+                return MediaStore.Video.Thumbnails.getThumbnail(previewView.getContext().getContentResolver(), j, 1, options);
             } catch (Throwable unused) {
-                invalidate();
+                previewView.invalidate();
                 return null;
             }
         }
         return BitmapFactory.decodeFile(str, options);
     }
 
-    public void lambda$setupImage$4(Bitmap[] bitmapArr, StoryEntry storyEntry, boolean[] zArr) {
+    public static void $r8$lambda$SUOc28zjcoBM39n4SezQqEJpZT8(PreviewView previewView, Bitmap[] bitmapArr, StoryEntry storyEntry, boolean[] zArr) {
         BlurringShader.BlurManager blurManager;
-        Bitmap bitmap = this.bitmap;
+        Bitmap bitmap = previewView.bitmap;
         if (bitmap != null && !bitmap.isRecycled()) {
-            this.bitmap.recycle();
+            previewView.bitmap.recycle();
         }
         Bitmap bitmap2 = bitmapArr[0];
-        this.bitmap = bitmap2;
+        previewView.bitmap = bitmap2;
         if (storyEntry != null && !storyEntry.isDraft && storyEntry.isVideo && bitmap2 != null) {
             storyEntry.width = bitmap2.getWidth();
-            storyEntry.height = this.bitmap.getHeight();
+            storyEntry.height = previewView.bitmap.getHeight();
             storyEntry.setupMatrix();
         }
-        if (zArr[0] && storyEntry != null && (blurManager = this.blurManager) != null && this.bitmap != null) {
+        if (zArr[0] && storyEntry != null && (blurManager = previewView.blurManager) != null && previewView.bitmap != null) {
             blurManager.resetBitmap();
-            this.blurManager.setFallbackBlur(storyEntry.buildBitmap(0.2f, this.bitmap), 0);
-            Runnable runnable = this.invalidateBlur;
+            previewView.blurManager.setFallbackBlur(storyEntry.buildBitmap(0.2f, previewView.bitmap), 0);
+            Runnable runnable = previewView.invalidateBlur;
             if (runnable != null) {
                 runnable.run();
             }
         }
-        setupGradient();
-        invalidate();
+        previewView.setupGradient();
+        previewView.invalidate();
     }
 
     private void setupCollage(StoryEntry storyEntry) {
@@ -916,7 +924,7 @@ public abstract class PreviewView extends FrameLayout {
                 DominantColors.getColors(true, bitmap, true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$setupGradient$6(measuredHeight, (int[]) obj);
+                        PreviewView.m4553$r8$lambda$MVTr9TWLgKtcZwpWdE4hXMAVwI(this.f$0, measuredHeight, (int[]) obj);
                     }
                 });
             } else {
@@ -925,7 +933,7 @@ public abstract class PreviewView extends FrameLayout {
                     DominantColors.getColors(true, bitmap2, true, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            this.f$0.lambda$setupGradient$7(measuredHeight, (int[]) obj);
+                            PreviewView.m4554$r8$lambda$NUtN6UZyT8eMGfagUPyrwaYpEA(this.f$0, measuredHeight, (int[]) obj);
                         }
                     });
                 } else {
@@ -953,43 +961,43 @@ public abstract class PreviewView extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$setupGradient$6(int i, int[] iArr) {
-        StoryEntry storyEntry = this.entry;
+    public static void m4553$r8$lambda$MVTr9TWLgKtcZwpWdE4hXMAVwI(PreviewView previewView, int i, int[] iArr) {
+        StoryEntry storyEntry = previewView.entry;
         int i2 = iArr[0];
-        this.gradientTop = i2;
+        previewView.gradientTop = i2;
         storyEntry.gradientTopColor = i2;
         int i3 = iArr[1];
-        this.gradientBottom = i3;
+        previewView.gradientBottom = i3;
         storyEntry.gradientBottomColor = i3;
-        this.gradientPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-        invalidate();
-        VideoEditTextureView videoEditTextureView = this.textureView;
+        previewView.gradientPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        previewView.invalidate();
+        VideoEditTextureView videoEditTextureView = previewView.textureView;
         if (videoEditTextureView != null) {
-            videoEditTextureView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+            videoEditTextureView.updateUiBlurGradient(previewView.gradientTop, previewView.gradientBottom);
         }
-        PhotoFilterView photoFilterView = this.photoFilterView;
+        PhotoFilterView photoFilterView = previewView.photoFilterView;
         if (photoFilterView != null) {
-            photoFilterView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+            photoFilterView.updateUiBlurGradient(previewView.gradientTop, previewView.gradientBottom);
         }
     }
 
-    public void lambda$setupGradient$7(int i, int[] iArr) {
-        StoryEntry storyEntry = this.entry;
+    public static void m4554$r8$lambda$NUtN6UZyT8eMGfagUPyrwaYpEA(PreviewView previewView, int i, int[] iArr) {
+        StoryEntry storyEntry = previewView.entry;
         int i2 = iArr[0];
-        this.gradientTop = i2;
+        previewView.gradientTop = i2;
         storyEntry.gradientTopColor = i2;
         int i3 = iArr[1];
-        this.gradientBottom = i3;
+        previewView.gradientBottom = i3;
         storyEntry.gradientBottomColor = i3;
-        this.gradientPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-        invalidate();
-        VideoEditTextureView videoEditTextureView = this.textureView;
+        previewView.gradientPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        previewView.invalidate();
+        VideoEditTextureView videoEditTextureView = previewView.textureView;
         if (videoEditTextureView != null) {
-            videoEditTextureView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+            videoEditTextureView.updateUiBlurGradient(previewView.gradientTop, previewView.gradientBottom);
         }
-        PhotoFilterView photoFilterView = this.photoFilterView;
+        PhotoFilterView photoFilterView = previewView.photoFilterView;
         if (photoFilterView != null) {
-            photoFilterView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+            photoFilterView.updateUiBlurGradient(previewView.gradientTop, previewView.gradientBottom);
         }
     }
 
@@ -1012,7 +1020,7 @@ public abstract class PreviewView extends FrameLayout {
                     this.textureView.animate().alpha(0.0f).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$setupVideoPlayer$8();
+                            PreviewView.m4556$r8$lambda$gcmx4tJ_q80XzT55TXXqAt5vI(this.f$0);
                         }
                     }).start();
                 }
@@ -1059,7 +1067,7 @@ public abstract class PreviewView extends FrameLayout {
         storyEntry.detectHDR(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$setupVideoPlayer$9((StoryEntry.HDRInfo) obj);
+                PreviewView.$r8$lambda$z4tam59nbvyNSyWBG8zNmsnMtUA(this.f$0, (StoryEntry.HDRInfo) obj);
             }
         });
         this.videoPlayer.preparePlayer(Uri.fromFile(storyEntry.getOriginalFile()), "other");
@@ -1083,12 +1091,12 @@ public abstract class PreviewView extends FrameLayout {
         timelineView2.setProgress(j);
     }
 
-    public void lambda$setupVideoPlayer$8() {
-        VideoEditTextureView videoEditTextureView = this.textureView;
+    public static void m4556$r8$lambda$gcmx4tJ_q80XzT55TXXqAt5vI(PreviewView previewView) {
+        VideoEditTextureView videoEditTextureView = previewView.textureView;
         if (videoEditTextureView != null) {
             videoEditTextureView.release();
-            removeView(this.textureView);
-            this.textureView = null;
+            previewView.removeView(previewView.textureView);
+            previewView.textureView = null;
         }
     }
 
@@ -1177,7 +1185,7 @@ public abstract class PreviewView extends FrameLayout {
                         duration.withEndAction(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$onRenderedFirstFrame$0(storyEntry);
+                                PreviewView.AnonymousClass3.$r8$lambda$z5mfAMt55rD9EjhnDdQwm29EQvs(this.f$0, storyEntry);
                             }
                         }).start();
                         return;
@@ -1198,7 +1206,7 @@ public abstract class PreviewView extends FrameLayout {
             }
         }
 
-        public void lambda$onRenderedFirstFrame$0(StoryEntry storyEntry) {
+        public static void $r8$lambda$z5mfAMt55rD9EjhnDdQwm29EQvs(AnonymousClass3 anonymousClass3, StoryEntry storyEntry) {
             if (PreviewView.this.bitmap != null) {
                 PreviewView.this.bitmap.recycle();
                 if (storyEntry.blurredVideoThumb == PreviewView.this.bitmap) {
@@ -1215,8 +1223,8 @@ public abstract class PreviewView extends FrameLayout {
         }
     }
 
-    public void lambda$setupVideoPlayer$9(StoryEntry.HDRInfo hDRInfo) {
-        VideoEditTextureView videoEditTextureView = this.textureView;
+    public static void $r8$lambda$z4tam59nbvyNSyWBG8zNmsnMtUA(PreviewView previewView, StoryEntry.HDRInfo hDRInfo) {
+        VideoEditTextureView videoEditTextureView = previewView.textureView;
         if (videoEditTextureView != null) {
             videoEditTextureView.setHDRInfo(hDRInfo);
         }
@@ -1457,104 +1465,104 @@ public abstract class PreviewView extends FrameLayout {
         }
     }
 
-    public void lambda$new$10() {
+    public static void $r8$lambda$euKzbLKgVXX741x5sHwEjL7vfec(PreviewView previewView) {
         boolean z;
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer == null || this.timelineView == null) {
+        VideoPlayer videoPlayer = previewView.videoPlayer;
+        if (videoPlayer == null || previewView.timelineView == null) {
             return;
         }
         long currentPosition = videoPlayer.getCurrentPosition();
-        if (getDuration() > 1) {
-            float duration = currentPosition / getDuration();
-            if (this.timelineView.isDragging()) {
-                if (currentPosition < this.lastPos) {
+        if (previewView.getDuration() > 1) {
+            float duration = currentPosition / previewView.getDuration();
+            if (previewView.timelineView.isDragging()) {
+                if (currentPosition < previewView.lastPos) {
                     z = true;
                 } else {
                     z = false;
                 }
-                updateAudioPlayer(z);
-                updateRoundPlayer(currentPosition < this.lastPos);
+                previewView.updateAudioPlayer(z);
+                previewView.updateRoundPlayer(currentPosition < previewView.lastPos);
             } else {
-                StoryEntry storyEntry = this.entry;
-                if ((duration < storyEntry.left || duration > storyEntry.right) && System.currentTimeMillis() - this.seekedLastTime > 500) {
-                    this.seekedLastTime = System.currentTimeMillis();
-                    VideoPlayer videoPlayer2 = this.videoPlayer;
-                    long duration2 = (long) (this.entry.left * getDuration());
+                StoryEntry storyEntry = previewView.entry;
+                if ((duration < storyEntry.left || duration > storyEntry.right) && System.currentTimeMillis() - previewView.seekedLastTime > 500) {
+                    previewView.seekedLastTime = System.currentTimeMillis();
+                    VideoPlayer videoPlayer2 = previewView.videoPlayer;
+                    long duration2 = (long) (previewView.entry.left * previewView.getDuration());
                     videoPlayer2.seekTo(duration2);
-                    updateAudioPlayer(true);
-                    updateRoundPlayer(true);
+                    previewView.updateAudioPlayer(true);
+                    previewView.updateRoundPlayer(true);
                     currentPosition = duration2;
                 } else {
-                    if (currentPosition < this.lastPos) {
+                    if (currentPosition < previewView.lastPos) {
                         z = true;
                     } else {
                         z = false;
                     }
-                    updateAudioPlayer(z);
-                    updateRoundPlayer(currentPosition < this.lastPos);
+                    previewView.updateAudioPlayer(z);
+                    previewView.updateRoundPlayer(currentPosition < previewView.lastPos);
                 }
             }
-            this.timelineView.setProgress(this.videoPlayer.getCurrentPosition());
+            previewView.timelineView.setProgress(previewView.videoPlayer.getCurrentPosition());
         } else {
-            this.timelineView.setProgress(this.videoPlayer.getCurrentPosition());
+            previewView.timelineView.setProgress(previewView.videoPlayer.getCurrentPosition());
         }
-        if (this.videoPlayer.isPlaying()) {
-            AndroidUtilities.cancelRunOnUIThread(this.updateProgressRunnable);
-            AndroidUtilities.runOnUIThread(this.updateProgressRunnable, (long) (1000.0f / AndroidUtilities.screenRefreshRate));
+        if (previewView.videoPlayer.isPlaying()) {
+            AndroidUtilities.cancelRunOnUIThread(previewView.updateProgressRunnable);
+            AndroidUtilities.runOnUIThread(previewView.updateProgressRunnable, (long) (1000.0f / AndroidUtilities.screenRefreshRate));
         }
-        this.lastPos = currentPosition;
+        previewView.lastPos = currentPosition;
     }
 
-    public void lambda$new$11() {
-        if (this.audioPlayer == null || this.videoPlayer != null || this.roundPlayer != null || this.timelineView == null || isCollage()) {
+    public static void $r8$lambda$mySK8_QmHv1RuhFIVbbzfsoNLHs(PreviewView previewView) {
+        if (previewView.audioPlayer == null || previewView.videoPlayer != null || previewView.roundPlayer != null || previewView.timelineView == null || previewView.isCollage()) {
             return;
         }
-        long currentPosition = this.audioPlayer.getCurrentPosition();
-        StoryEntry storyEntry = this.entry;
+        long currentPosition = previewView.audioPlayer.getCurrentPosition();
+        StoryEntry storyEntry = previewView.entry;
         if (storyEntry != null) {
             float f = currentPosition;
             float f2 = storyEntry.audioLeft;
             float f3 = storyEntry.audioDuration;
-            if ((f < f2 * f3 || f > storyEntry.audioRight * f3) && System.currentTimeMillis() - this.seekedLastTime > 500) {
-                this.seekedLastTime = System.currentTimeMillis();
-                VideoPlayer videoPlayer = this.audioPlayer;
-                StoryEntry storyEntry2 = this.entry;
+            if ((f < f2 * f3 || f > storyEntry.audioRight * f3) && System.currentTimeMillis() - previewView.seekedLastTime > 500) {
+                previewView.seekedLastTime = System.currentTimeMillis();
+                VideoPlayer videoPlayer = previewView.audioPlayer;
+                StoryEntry storyEntry2 = previewView.entry;
                 long j = (long) (storyEntry2.audioLeft * storyEntry2.audioDuration);
                 videoPlayer.seekTo(j);
                 currentPosition = j;
             }
         }
-        this.timelineView.setProgress(currentPosition);
-        if (this.audioPlayer.isPlaying()) {
-            AndroidUtilities.cancelRunOnUIThread(this.updateAudioProgressRunnable);
-            AndroidUtilities.runOnUIThread(this.updateAudioProgressRunnable, (long) (1000.0f / AndroidUtilities.screenRefreshRate));
+        previewView.timelineView.setProgress(currentPosition);
+        if (previewView.audioPlayer.isPlaying()) {
+            AndroidUtilities.cancelRunOnUIThread(previewView.updateAudioProgressRunnable);
+            AndroidUtilities.runOnUIThread(previewView.updateAudioProgressRunnable, (long) (1000.0f / AndroidUtilities.screenRefreshRate));
         }
     }
 
-    public void lambda$new$12() {
-        if (this.roundPlayer == null || this.videoPlayer != null || isCollage() || this.timelineView == null) {
+    public static void m4552$r8$lambda$CxvBV3dFONwihCq5bSofngACbo(PreviewView previewView) {
+        if (previewView.roundPlayer == null || previewView.videoPlayer != null || previewView.isCollage() || previewView.timelineView == null) {
             return;
         }
-        long currentPosition = this.roundPlayer.getCurrentPosition();
-        StoryEntry storyEntry = this.entry;
+        long currentPosition = previewView.roundPlayer.getCurrentPosition();
+        StoryEntry storyEntry = previewView.entry;
         if (storyEntry != null) {
             float f = currentPosition;
             float f2 = storyEntry.roundLeft;
             float f3 = storyEntry.roundDuration;
-            if ((f < f2 * f3 || f > storyEntry.roundRight * f3) && System.currentTimeMillis() - this.seekedLastTime > 500) {
-                this.seekedLastTime = System.currentTimeMillis();
-                VideoPlayer videoPlayer = this.roundPlayer;
-                StoryEntry storyEntry2 = this.entry;
+            if ((f < f2 * f3 || f > storyEntry.roundRight * f3) && System.currentTimeMillis() - previewView.seekedLastTime > 500) {
+                previewView.seekedLastTime = System.currentTimeMillis();
+                VideoPlayer videoPlayer = previewView.roundPlayer;
+                StoryEntry storyEntry2 = previewView.entry;
                 long j = (long) (storyEntry2.roundLeft * storyEntry2.roundDuration);
                 videoPlayer.seekTo(j);
-                updateAudioPlayer(true);
+                previewView.updateAudioPlayer(true);
                 currentPosition = j;
             }
         }
-        this.timelineView.setProgress(currentPosition);
-        if (this.roundPlayer.isPlaying()) {
-            AndroidUtilities.cancelRunOnUIThread(this.updateRoundProgressRunnable);
-            AndroidUtilities.runOnUIThread(this.updateRoundProgressRunnable, (long) (1000.0f / AndroidUtilities.screenRefreshRate));
+        previewView.timelineView.setProgress(currentPosition);
+        if (previewView.roundPlayer.isPlaying()) {
+            AndroidUtilities.cancelRunOnUIThread(previewView.updateRoundProgressRunnable);
+            AndroidUtilities.runOnUIThread(previewView.updateRoundProgressRunnable, (long) (1000.0f / AndroidUtilities.screenRefreshRate));
         }
     }
 
@@ -1980,6 +1988,7 @@ public abstract class PreviewView extends FrameLayout {
     private boolean touchEvent(MotionEvent motionEvent) {
         double dAtan2;
         float fDistance;
+        float f;
         if (!this.allowCropping) {
             return false;
         }
@@ -2020,25 +2029,30 @@ public abstract class PreviewView extends FrameLayout {
         }
         if (motionEvent.getActionMasked() == 2 && this.moving && this.entry != null) {
             PointF pointF3 = this.touch;
-            float f = pointF3.x * width;
-            float f2 = pointF3.y * width;
+            float f2 = pointF3.x * width;
+            float f3 = pointF3.y * width;
             PointF pointF4 = this.lastTouch;
-            float f3 = pointF4.x * width;
-            float f4 = pointF4.y * width;
+            float f4 = pointF4.x * width;
+            float f5 = pointF4.y * width;
             if (motionEvent.getPointerCount() > 1) {
-                float f5 = this.lastTouchDistance;
-                if (f5 != 0.0f) {
-                    float f6 = fDistance / f5;
-                    this.touchMatrix.postScale(f6, f6, f, f2);
+                float f6 = this.lastTouchDistance;
+                if (f6 != 0.0f) {
+                    float f7 = fDistance / f6;
+                    this.touchMatrix.postScale(f7, f7, f2, f3);
                 }
                 float degrees = (float) Math.toDegrees(dAtan2 - this.lastTouchRotation);
-                float f7 = this.rotationDiff + degrees;
-                this.rotationDiff = f7;
-                if (!this.allowRotation) {
-                    boolean z2 = Math.abs(f7) > 20.0f;
+                float f8 = this.rotationDiff + degrees;
+                this.rotationDiff = f8;
+                if (this.allowRotation) {
+                    f = 90.0f;
+                } else {
+                    boolean z2 = Math.abs(f8) > 20.0f;
                     this.allowRotation = z2;
-                    if (!z2) {
+                    if (z2) {
+                        f = 90.0f;
+                    } else {
                         extractPointsData(this.touchMatrix);
+                        f = 90.0f;
                         this.allowRotation = (((float) Math.round(this.angle / 90.0f)) * 90.0f) - this.angle > 20.0f;
                     }
                     if (!this.snappedRotation) {
@@ -2047,17 +2061,19 @@ public abstract class PreviewView extends FrameLayout {
                     }
                 }
                 if (this.allowRotation) {
-                    this.touchMatrix.postRotate(degrees, f, f2);
+                    this.touchMatrix.postRotate(degrees, f2, f3);
                 }
                 this.allowWithSingleTouch = true;
+            } else {
+                f = 90.0f;
             }
             if (motionEvent.getPointerCount() > 1 || this.allowWithSingleTouch) {
-                this.touchMatrix.postTranslate(f - f3, f2 - f4);
+                this.touchMatrix.postTranslate(f2 - f4, f3 - f5);
             }
             this.finalMatrix.set(this.touchMatrix);
             this.matrix.set(this.touchMatrix);
             extractPointsData(this.matrix);
-            float fRound = (Math.round(this.angle / 90.0f) * 90.0f) - this.angle;
+            float fRound = (Math.round(this.angle / f) * f) - this.angle;
             if (this.allowRotation && !this.doNotSpanRotation) {
                 if (Math.abs(fRound) < 3.5f) {
                     this.finalMatrix.postRotate(fRound, this.cx, this.cy);
@@ -2399,7 +2415,7 @@ public abstract class PreviewView extends FrameLayout {
         emojiThemes.loadWallpaper(z ? 1 : 0, new ResultCallback() {
             @Override
             public final void onComplete(Object obj) {
-                PreviewView.lambda$getBackgroundDrawableFromTheme$13(emojiThemes, z, z, motionBackgroundDrawable, patternColor, (Pair) obj);
+                PreviewView.m4555$r8$lambda$YvX6qPvkc_kWlwMcyzkaJt4bas(emojiThemes, z, z, motionBackgroundDrawable, patternColor, (Pair) obj);
             }
 
             @Override
@@ -2415,7 +2431,7 @@ public abstract class PreviewView extends FrameLayout {
         return motionBackgroundDrawable;
     }
 
-    public static void lambda$getBackgroundDrawableFromTheme$13(EmojiThemes emojiThemes, boolean z, boolean z2, MotionBackgroundDrawable motionBackgroundDrawable, int i, Pair pair) {
+    public static void m4555$r8$lambda$YvX6qPvkc_kWlwMcyzkaJt4bas(EmojiThemes emojiThemes, boolean z, boolean z2, MotionBackgroundDrawable motionBackgroundDrawable, int i, Pair pair) {
         if (pair == null) {
             return;
         }

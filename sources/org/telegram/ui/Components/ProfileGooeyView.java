@@ -137,13 +137,14 @@ public class ProfileGooeyView extends FrameLayout {
             this.impl.draw(new Drawer() {
                 @Override
                 public final void draw(Canvas canvas2) {
-                    this.f$0.lambda$draw$0(canvas2);
+                    ProfileGooeyView.$r8$lambda$qmHZWXVSu8tfF83AWRtDJcRnU8Q(this.f$0, canvas2);
                 }
             }, canvas);
         }
     }
 
-    public void lambda$draw$0(Canvas canvas) {
+    public static void $r8$lambda$qmHZWXVSu8tfF83AWRtDJcRnU8Q(ProfileGooeyView profileGooeyView, Canvas canvas) {
+        profileGooeyView.getClass();
         canvas.save();
         canvas.translate(0.0f, AndroidUtilities.dp(32.0f));
         super.draw(canvas);
@@ -204,6 +205,7 @@ public class ProfileGooeyView extends FrameLayout {
 
         @Override
         public void draw(Drawer drawer, Canvas canvas) {
+            int i;
             Bitmap bitmap = this.bitmap;
             if (bitmap == null || bitmap.isRecycled()) {
                 return;
@@ -258,10 +260,13 @@ public class ProfileGooeyView extends FrameLayout {
             }
             if (iClamp != 0) {
                 if (iClamp != 255) {
-                    canvas.saveLayerAlpha(width, 0.0f, width + this.optimizedW, this.optimizedH, iClamp);
+                    i = iClamp;
+                    canvas.saveLayerAlpha(width, 0.0f, width + this.optimizedW, this.optimizedH, i);
+                } else {
+                    i = iClamp;
                 }
                 drawer.draw(canvas);
-                if (iClamp != 255) {
+                if (i != 255) {
                     canvas.restore();
                 }
             }
@@ -322,6 +327,7 @@ public class ProfileGooeyView extends FrameLayout {
 
         @Override
         public void draw(Drawer drawer, Canvas canvas) {
+            Paint paint;
             float f;
             if (canvas.isHardwareAccelerated()) {
                 this.whole.set(0.0f, 0.0f, ProfileGooeyView.this.getWidth(), ProfileGooeyView.this.getHeight());
@@ -408,11 +414,12 @@ public class ProfileGooeyView extends FrameLayout {
                 RecordingCanvas recordingCanvasBeginRecording4 = this.effectNotchNode.beginRecording();
                 recordingCanvasBeginRecording4.scale(f14, f14, 0.0f, 0.0f);
                 if (ProfileGooeyView.this.notchInfo == null) {
+                    paint = null;
                     recordingCanvasBeginRecording4.drawRect(0.0f, 0.0f, f4, AndroidUtilities.dp(32.0f), ProfileGooeyView.this.blackPaint);
                     ProfileGooeyView.this.path.rewind();
                     ProfileGooeyView.this.path.moveTo((f4 - fLerp) / 2.0f, AndroidUtilities.dp(32.0f));
                     ProfileGooeyView.this.path.lineTo(f4 / 2.0f, AndroidUtilities.dp(32.0f) + fLerp);
-                    ProfileGooeyView.this.path.lineTo((fLerp + f4) / 2.0f, AndroidUtilities.dp(32.0f));
+                    ProfileGooeyView.this.path.lineTo((f4 + fLerp) / 2.0f, AndroidUtilities.dp(32.0f));
                     ProfileGooeyView.this.path.close();
                     recordingCanvasBeginRecording4.drawPath(ProfileGooeyView.this.path, ProfileGooeyView.this.blackPaint);
                 } else {
@@ -446,6 +453,7 @@ public class ProfileGooeyView extends FrameLayout {
                         ProfileGooeyView.this.path.close();
                         recordingCanvasBeginRecording4.drawPath(ProfileGooeyView.this.path, ProfileGooeyView.this.blackPaint);
                     }
+                    paint = null;
                 }
                 this.effectNotchNode.endRecording();
                 canvas.save();
@@ -455,13 +463,13 @@ public class ProfileGooeyView extends FrameLayout {
                     canvas.clipRect(0.0f, notchInfo3.bounds.top, f4, f5);
                 }
                 canvas.saveLayer(this.wholeOptimized, this.filter);
-                canvas.scale(f13, r17);
+                canvas.scale(f13, f13);
                 canvas.drawRenderNode(this.effectNotchNode);
                 canvas.drawRenderNode(this.effectNode);
                 canvas.restore();
                 int iClamp2 = MathUtils.clamp((iIlerp * 3) / 4, 0, 255);
                 if (iClamp2 < 255) {
-                    canvas.saveLayer(this.wholeOptimized, null);
+                    canvas.saveLayer(this.wholeOptimized, paint);
                     if (ProfileGooeyView.this.blurIntensity != 0.0f) {
                         canvas.saveLayer(this.wholeOptimized, this.filter);
                         f = f11;
@@ -474,8 +482,6 @@ public class ProfileGooeyView extends FrameLayout {
                     }
                     canvas.drawRect(this.wholeOptimized, this.blackNodePaint);
                     canvas.restore();
-                } else {
-                    f = f11;
                 }
                 if (iClamp2 > 0) {
                     if (iClamp2 != 255) {
@@ -493,6 +499,7 @@ public class ProfileGooeyView extends FrameLayout {
                         canvas.restore();
                     }
                 }
+                f = f11;
                 canvas.restore();
             }
         }

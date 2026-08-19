@@ -176,7 +176,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$setButtons$0(view);
+                            this.f$0.delegate.didPressedButton((TL_keyboard.KeyboardButton) view.getTag());
                         }
                     });
                     ScaleStateListAnimator.apply(button, 0.02f, 1.5f);
@@ -191,10 +191,6 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
             return;
         }
         this.animator.clear(true);
-    }
-
-    public void lambda$setButtons$0(View view) {
-        this.delegate.didPressedButton((TL_keyboard.KeyboardButton) view.getTag());
     }
 
     private class Button extends FrameLayout {

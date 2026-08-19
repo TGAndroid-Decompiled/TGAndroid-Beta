@@ -70,24 +70,25 @@ public final class Duration implements Comparable {
     }
 
     public static long m296constructorimpl(long j) {
-        if (DurationJvmKt.getDurationAssertionsEnabled()) {
-            if (m313isInNanosimpl(j)) {
-                long jM309getValueimpl = m309getValueimpl(j);
-                if (-4611686018426999999L > jM309getValueimpl || jM309getValueimpl >= 4611686018427000000L) {
-                    throw new AssertionError(m309getValueimpl(j) + " ns is out of nanoseconds range");
-                }
-            } else {
-                long jM309getValueimpl2 = m309getValueimpl(j);
-                if (-4611686018427387903L > jM309getValueimpl2 || jM309getValueimpl2 >= 4611686018427387904L) {
-                    throw new AssertionError(m309getValueimpl(j) + " ms is out of milliseconds range");
-                }
-                long jM309getValueimpl3 = m309getValueimpl(j);
-                if (-4611686018426L <= jM309getValueimpl3 && jM309getValueimpl3 < 4611686018427L) {
-                    throw new AssertionError(m309getValueimpl(j) + " ms is denormalized");
-                }
-            }
+        if (!DurationJvmKt.getDurationAssertionsEnabled()) {
+            return j;
         }
-        return j;
+        if (m313isInNanosimpl(j)) {
+            long jM309getValueimpl = m309getValueimpl(j);
+            if (-4611686018426999999L <= jM309getValueimpl && jM309getValueimpl < 4611686018427000000L) {
+                return j;
+            }
+            throw new AssertionError(m309getValueimpl(j) + " ns is out of nanoseconds range");
+        }
+        long jM309getValueimpl2 = m309getValueimpl(j);
+        if (-4611686018427387903L > jM309getValueimpl2 || jM309getValueimpl2 >= 4611686018427387904L) {
+            throw new AssertionError(m309getValueimpl(j) + " ms is out of milliseconds range");
+        }
+        long jM309getValueimpl3 = m309getValueimpl(j);
+        if (-4611686018426L > jM309getValueimpl3 || jM309getValueimpl3 >= 4611686018427L) {
+            return j;
+        }
+        throw new AssertionError(m309getValueimpl(j) + " ms is denormalized");
     }
 
     public static final class Companion {

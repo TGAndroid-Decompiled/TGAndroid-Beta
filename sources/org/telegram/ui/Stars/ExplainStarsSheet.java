@@ -77,7 +77,7 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.dismiss();
             }
         });
         this.buttonContainer.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
@@ -87,10 +87,6 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         this.buttonContainer.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
         this.containerView.addView(this.buttonContainer, LayoutHelper.createFrame(-1, -2, 87));
         this.adapter.update(false);
-    }
-
-    public void lambda$new$0(View view) {
-        lambda$new$0();
     }
 
     @Override
@@ -121,16 +117,12 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         arrayList.add(FeatureCell.Factory.of(R.drawable.msg_bot, LocaleController.getString(R.string.ExplainStarsFeature2Title), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ExplainStarsFeature2Text), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$fillItems$1();
+                new StarAppsSheet(this.f$0.getContext()).show();
             }
         }), true)));
         arrayList.add(FeatureCell.Factory.of(R.drawable.menu_unlock, LocaleController.getString(R.string.ExplainStarsFeature3Title), LocaleController.getString(R.string.ExplainStarsFeature3Text)));
         arrayList.add(FeatureCell.Factory.of(R.drawable.menu_feature_paid, LocaleController.getString(R.string.ExplainStarsFeature4Title), LocaleController.getString(R.string.ExplainStarsFeature4Text)));
         arrayList.add(UItem.asSpace(AndroidUtilities.dp(68.0f)));
-    }
-
-    public void lambda$fillItems$1() {
-        new StarAppsSheet(getContext()).show();
     }
 
     public static class FeatureCell extends LinearLayout {

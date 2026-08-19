@@ -71,11 +71,11 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     protected void dispatchSetPressed(boolean z) {
     }
 
-    public void lambda$new$0() {
-        this.progress = -1;
+    public static void $r8$lambda$fQsvt3AUQGxg48itN5KCo1gLV0U(ThemePreviewMessagesCell themePreviewMessagesCell) {
+        themePreviewMessagesCell.progress = -1;
         int i = 0;
         while (true) {
-            ChatMessageCell[] chatMessageCellArr = this.cells;
+            ChatMessageCell[] chatMessageCellArr = themePreviewMessagesCell.cells;
             if (i >= chatMessageCellArr.length) {
                 return;
             }
@@ -97,10 +97,11 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
     public ThemePreviewMessagesCell(Context context, INavigationLayout iNavigationLayout, int i, long j, Theme.ResourcesProvider resourcesProvider) {
         MessageObject messageObject;
+        MessageObject messageObject2;
         int i2;
         ChatMessageCell[] chatMessageCellArr;
         boolean z;
-        MessageObject messageObject2;
+        MessageObject messageObject3;
         super(context);
         this.invalidateRunnable = new Runnable() {
             @Override
@@ -113,7 +114,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         this.cancelProgress = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                ThemePreviewMessagesCell.$r8$lambda$fQsvt3AUQGxg48itN5KCo1gLV0U(this.f$0);
             }
         };
         this.overrideDrawableUpdate = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -123,9 +124,9 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         setWillNotDraw(false);
         setOrientation(1);
         setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
-        this.shadowDrawable = Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow, resourcesProvider);
+        Theme.ResourcesProvider resourcesProvider2 = resourcesProvider;
+        this.shadowDrawable = Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow, resourcesProvider2);
         int iCurrentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-        MessageObject messageObject3 = null;
         if (i == 3) {
             boolean z2 = j < 0;
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
@@ -331,7 +332,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     messageObject8.customAvatarDrawable = new AvatarDrawable((TLRPC.User) tL_user, false);
                 }
                 messageObject = messageObject7;
-                messageObject3 = messageObject8;
+                messageObject2 = messageObject8;
             }
             i2 = 0;
             while (true) {
@@ -339,7 +340,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 if (i2 < chatMessageCellArr.length) {
                     return;
                 }
-                chatMessageCellArr[i2] = new ChatMessageCell(context, i3, false, null, resourcesProvider, context, i) {
+                chatMessageCellArr[i2] = new ChatMessageCell(context, i3, false, null, resourcesProvider2, context, i) {
                     private final AnimatedColor color1;
                     private final AnimatedColor color2;
                     private GestureDetector gestureDetector;
@@ -385,7 +386,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                     @Override
                                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                        this.f$0.lambda$onPreDraw$0(valueAnimator);
+                                        ThemePreviewMessagesCell.AnonymousClass1.C00181.ViewTreeObserverOnPreDrawListenerC00191.$r8$lambda$IBmVgRqswjD3cp0lQBxIf3nCYWI(this.f$0, valueAnimator);
                                     }
                                 });
                                 valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -401,9 +402,9 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                                 return false;
                             }
 
-                            public void lambda$onPreDraw$0(ValueAnimator valueAnimator) {
-                                getTransitionParams().animateChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                invalidate();
+                            public static void $r8$lambda$IBmVgRqswjD3cp0lQBxIf3nCYWI(ViewTreeObserverOnPreDrawListenerC00191 viewTreeObserverOnPreDrawListenerC00191, ValueAnimator valueAnimator) {
+                                AnonymousClass1.this.getTransitionParams().animateChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                AnonymousClass1.this.invalidate();
                             }
                         }
                     }
@@ -969,24 +970,26 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 chatMessageCell.isChat = z;
                 chatMessageCell.setFullyDraw(true);
                 if (i2 == 0) {
-                    messageObject2 = messageObject3;
+                    messageObject3 = messageObject2;
                 } else {
-                    messageObject2 = messageObject;
+                    messageObject3 = messageObject;
                 }
-                if (messageObject2 == null) {
-                    this.cells[i2].setMessageObject(messageObject2, null, false, false, false);
+                if (messageObject3 == null) {
+                    this.cells[i2].setMessageObject(messageObject3, null, false, false, false);
                     addView(this.cells[i2], LayoutHelper.createLinear(-1, -2));
                 }
                 i2++;
+                resourcesProvider2 = resourcesProvider;
             }
         }
+        messageObject2 = null;
         i2 = 0;
         while (true) {
             chatMessageCellArr = this.cells;
             if (i2 < chatMessageCellArr.length) {
                 return;
             }
-            chatMessageCellArr[i2] = new ChatMessageCell(context, i3, false, null, resourcesProvider, context, i) {
+            chatMessageCellArr[i2] = new ChatMessageCell(context, i3, false, null, resourcesProvider2, context, i) {
                 private final AnimatedColor color1;
                 private final AnimatedColor color2;
                 private GestureDetector gestureDetector;
@@ -1032,7 +1035,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    this.f$0.lambda$onPreDraw$0(valueAnimator);
+                                    ThemePreviewMessagesCell.AnonymousClass1.C00181.ViewTreeObserverOnPreDrawListenerC00191.$r8$lambda$IBmVgRqswjD3cp0lQBxIf3nCYWI(this.f$0, valueAnimator);
                                 }
                             });
                             valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -1048,9 +1051,9 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                             return false;
                         }
 
-                        public void lambda$onPreDraw$0(ValueAnimator valueAnimator) {
-                            getTransitionParams().animateChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            invalidate();
+                        public static void $r8$lambda$IBmVgRqswjD3cp0lQBxIf3nCYWI(ViewTreeObserverOnPreDrawListenerC00191 viewTreeObserverOnPreDrawListenerC00191, ValueAnimator valueAnimator) {
+                            AnonymousClass1.this.getTransitionParams().animateChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            AnonymousClass1.this.invalidate();
                         }
                     }
                 }
@@ -1616,15 +1619,16 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             chatMessageCell2.isChat = z;
             chatMessageCell2.setFullyDraw(true);
             if (i2 == 0) {
-                messageObject2 = messageObject3;
+                messageObject3 = messageObject2;
             } else {
-                messageObject2 = messageObject;
+                messageObject3 = messageObject;
             }
-            if (messageObject2 == null) {
-                this.cells[i2].setMessageObject(messageObject2, null, false, false, false);
+            if (messageObject3 == null) {
+                this.cells[i2].setMessageObject(messageObject3, null, false, false, false);
                 addView(this.cells[i2], LayoutHelper.createLinear(-1, -2));
             }
             i2++;
+            resourcesProvider2 = resourcesProvider;
         }
     }
 

@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
@@ -119,19 +118,19 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$runPendingAnimations$0(valueAnimator);
+                ChatListItemAnimator.$r8$lambda$LpqfvZEIIMt3c0FpRUsyJL8QNnw(this.f$0, valueAnimator);
             }
         });
         valueAnimatorOfFloat.setDuration(getRemoveDuration() + getMoveDuration());
         valueAnimatorOfFloat.start();
     }
 
-    public void lambda$runPendingAnimations$0(ValueAnimator valueAnimator) {
-        ChatActivity chatActivity = this.activity;
+    public static void $r8$lambda$LpqfvZEIIMt3c0FpRUsyJL8QNnw(ChatListItemAnimator chatListItemAnimator, ValueAnimator valueAnimator) {
+        ChatActivity chatActivity = chatListItemAnimator.activity;
         if (chatActivity != null) {
             chatActivity.onListItemAnimatorTick();
         } else {
-            this.recyclerListView.invalidate();
+            chatListItemAnimator.recyclerListView.invalidate();
         }
     }
 
@@ -147,12 +146,13 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         if (zIsEmpty && zIsEmpty2 && zIsEmpty4 && zIsEmpty3) {
             return;
         }
+        int i = 0;
         boolean z2 = (this.getThanosEffectContainer == null || (callback0Return = this.supportsThanosEffectContainer) == null || !((Boolean) callback0Return.run()).booleanValue()) ? false : true;
         if (z2) {
             LongSparseArray longSparseArray = null;
-            int i = 0;
-            while (i < this.mPendingRemovals.size()) {
-                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) this.mPendingRemovals.get(i);
+            int i2 = 0;
+            while (i2 < this.mPendingRemovals.size()) {
+                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) this.mPendingRemovals.get(i2);
                 if (this.toBeSnapped.contains(viewHolder)) {
                     View view = viewHolder.itemView;
                     if ((view instanceof ChatMessageCell) && ((ChatMessageCell) view).getCurrentMessagesGroup() != null && (messageObject = ((ChatMessageCell) viewHolder.itemView).getMessageObject()) != null && messageObject.getGroupId() != 0) {
@@ -167,17 +167,17 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                             arrayList = arrayList2;
                         }
                         this.toBeSnapped.remove(viewHolder);
-                        this.mPendingRemovals.remove(i);
-                        i--;
+                        this.mPendingRemovals.remove(i2);
+                        i2--;
                         arrayList.add(viewHolder);
                     }
                 }
-                i++;
+                i2++;
             }
             if (longSparseArray != null) {
                 z = false;
-                for (int i2 = 0; i2 < longSparseArray.size(); i2++) {
-                    ArrayList arrayList3 = (ArrayList) longSparseArray.valueAt(i2);
+                for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
+                    ArrayList arrayList3 = (ArrayList) longSparseArray.valueAt(i3);
                     if (arrayList3.size() > 0) {
                         View view2 = ((RecyclerView.ViewHolder) arrayList3.get(0)).itemView;
                         if ((view2 instanceof ChatMessageCell) && (currentMessagesGroup = ((ChatMessageCell) view2).getCurrentMessagesGroup()) != null && currentMessagesGroup.messages.size() > arrayList3.size()) {
@@ -194,7 +194,13 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         } else {
             z = false;
         }
-        for (RecyclerView.ViewHolder viewHolder2 : this.mPendingRemovals) {
+        ArrayList arrayList4 = this.mPendingRemovals;
+        int size = arrayList4.size();
+        int i4 = 0;
+        while (i4 < size) {
+            Object obj = arrayList4.get(i4);
+            i4++;
+            RecyclerView.ViewHolder viewHolder2 = (RecyclerView.ViewHolder) obj;
             boolean z3 = this.toBeSnapped.remove(viewHolder2) && z2;
             animateRemoveImpl(viewHolder2, z3);
             if (z3) {
@@ -203,44 +209,54 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         }
         this.mPendingRemovals.clear();
         if (!zIsEmpty2) {
-            final ArrayList arrayList4 = new ArrayList();
-            arrayList4.addAll(this.mPendingMoves);
-            this.mMovesList.add(arrayList4);
+            final ArrayList arrayList5 = new ArrayList();
+            arrayList5.addAll(this.mPendingMoves);
+            this.mMovesList.add(arrayList5);
             this.mPendingMoves.clear();
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    for (DefaultItemAnimator.MoveInfo moveInfo : arrayList4) {
+                    ArrayList arrayList6 = arrayList5;
+                    int size2 = arrayList6.size();
+                    int i5 = 0;
+                    while (i5 < size2) {
+                        Object obj2 = arrayList6.get(i5);
+                        i5++;
+                        DefaultItemAnimator.MoveInfo moveInfo = (DefaultItemAnimator.MoveInfo) obj2;
                         ChatListItemAnimator.this.animateMoveImpl(moveInfo.holder, moveInfo, z);
                     }
-                    arrayList4.clear();
-                    ((DefaultItemAnimator) ChatListItemAnimator.this).mMovesList.remove(arrayList4);
+                    arrayList5.clear();
+                    ((DefaultItemAnimator) ChatListItemAnimator.this).mMovesList.remove(arrayList5);
                 }
             };
             if (this.delayAnimations && !zIsEmpty) {
-                ViewCompat.postOnAnimationDelayed(((DefaultItemAnimator.MoveInfo) arrayList4.get(0)).holder.itemView, runnable, z ? 0L : getMoveAnimationDelay());
+                ViewCompat.postOnAnimationDelayed(((DefaultItemAnimator.MoveInfo) arrayList5.get(0)).holder.itemView, runnable, z ? 0L : getMoveAnimationDelay());
             } else {
                 runnable.run();
             }
         }
         if (!zIsEmpty3) {
-            final ArrayList arrayList5 = new ArrayList();
-            arrayList5.addAll(this.mPendingChanges);
-            this.mChangesList.add(arrayList5);
+            final ArrayList arrayList6 = new ArrayList();
+            arrayList6.addAll(this.mPendingChanges);
+            this.mChangesList.add(arrayList6);
             this.mPendingChanges.clear();
             Runnable runnable2 = new Runnable() {
                 @Override
                 public void run() {
-                    Iterator it = arrayList5.iterator();
-                    while (it.hasNext()) {
-                        ChatListItemAnimator.this.animateChangeImpl((DefaultItemAnimator.ChangeInfo) it.next());
+                    ArrayList arrayList7 = arrayList6;
+                    int size2 = arrayList7.size();
+                    int i5 = 0;
+                    while (i5 < size2) {
+                        Object obj2 = arrayList7.get(i5);
+                        i5++;
+                        ChatListItemAnimator.this.animateChangeImpl((DefaultItemAnimator.ChangeInfo) obj2);
                     }
-                    arrayList5.clear();
-                    ((DefaultItemAnimator) ChatListItemAnimator.this).mChangesList.remove(arrayList5);
+                    arrayList6.clear();
+                    ((DefaultItemAnimator) ChatListItemAnimator.this).mChangesList.remove(arrayList6);
                 }
             };
             if (this.delayAnimations && !zIsEmpty) {
-                ViewCompat.postOnAnimationDelayed(((DefaultItemAnimator.ChangeInfo) arrayList5.get(0)).oldHolder.itemView, runnable2, 0L);
+                ViewCompat.postOnAnimationDelayed(((DefaultItemAnimator.ChangeInfo) arrayList6.get(0)).oldHolder.itemView, runnable2, 0L);
             } else {
                 runnable2.run();
             }
@@ -248,24 +264,26 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         if (zIsEmpty4) {
             return;
         }
-        ArrayList arrayList6 = new ArrayList();
-        arrayList6.addAll(this.mPendingAdditions);
+        ArrayList arrayList7 = new ArrayList();
+        arrayList7.addAll(this.mPendingAdditions);
         this.mPendingAdditions.clear();
         this.alphaEnterDelay = 0L;
-        Collections.sort(arrayList6, new Comparator() {
+        Collections.sort(arrayList7, new Comparator() {
             @Override
-            public final int compare(Object obj, Object obj2) {
-                return ChatListItemAnimator.lambda$runAlphaEnterTransition$1((RecyclerView.ViewHolder) obj, (RecyclerView.ViewHolder) obj2);
+            public final int compare(Object obj2, Object obj3) {
+                return ChatListItemAnimator.$r8$lambda$0NLHKLzBmhjCgAIUOnunghuiOhE((RecyclerView.ViewHolder) obj2, (RecyclerView.ViewHolder) obj3);
             }
         });
-        Iterator it = arrayList6.iterator();
-        while (it.hasNext()) {
-            animateAddImpl((RecyclerView.ViewHolder) it.next());
+        int size2 = arrayList7.size();
+        while (i < size2) {
+            Object obj2 = arrayList7.get(i);
+            i++;
+            animateAddImpl((RecyclerView.ViewHolder) obj2);
         }
-        arrayList6.clear();
+        arrayList7.clear();
     }
 
-    public static int lambda$runAlphaEnterTransition$1(RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
+    public static int $r8$lambda$0NLHKLzBmhjCgAIUOnunghuiOhE(RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
         return viewHolder2.itemView.getTop() - viewHolder.itemView.getTop();
     }
 
@@ -277,43 +295,55 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         if (zIsEmpty && zIsEmpty2 && zIsEmpty4 && zIsEmpty3) {
             return;
         }
+        int i = 0;
         int height = 0;
-        for (int i = 0; i < this.mPendingAdditions.size(); i++) {
-            View view = ((RecyclerView.ViewHolder) this.mPendingAdditions.get(i)).itemView;
+        for (int i2 = 0; i2 < this.mPendingAdditions.size(); i2++) {
+            View view = ((RecyclerView.ViewHolder) this.mPendingAdditions.get(i2)).itemView;
             if (view instanceof ChatMessageCell) {
                 ChatMessageCell chatMessageCell = (ChatMessageCell) view;
                 if (chatMessageCell.getCurrentPosition() == null || (chatMessageCell.getCurrentPosition().flags & 1) != 0) {
-                    height += ((RecyclerView.ViewHolder) this.mPendingAdditions.get(i)).itemView.getHeight();
+                    height += ((RecyclerView.ViewHolder) this.mPendingAdditions.get(i2)).itemView.getHeight();
                 }
             } else {
-                height += ((RecyclerView.ViewHolder) this.mPendingAdditions.get(i)).itemView.getHeight();
+                height += ((RecyclerView.ViewHolder) this.mPendingAdditions.get(i2)).itemView.getHeight();
             }
         }
-        Iterator it = this.mPendingRemovals.iterator();
-        while (it.hasNext()) {
-            animateRemoveImpl((RecyclerView.ViewHolder) it.next());
+        ArrayList arrayList = this.mPendingRemovals;
+        int size = arrayList.size();
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            animateRemoveImpl((RecyclerView.ViewHolder) obj);
         }
         this.mPendingRemovals.clear();
         if (!zIsEmpty2) {
-            ArrayList<DefaultItemAnimator.MoveInfo> arrayList = new ArrayList();
-            arrayList.addAll(this.mPendingMoves);
+            ArrayList arrayList2 = new ArrayList();
+            arrayList2.addAll(this.mPendingMoves);
             this.mPendingMoves.clear();
-            for (DefaultItemAnimator.MoveInfo moveInfo : arrayList) {
+            int size2 = arrayList2.size();
+            int i4 = 0;
+            while (i4 < size2) {
+                Object obj2 = arrayList2.get(i4);
+                i4++;
+                DefaultItemAnimator.MoveInfo moveInfo = (DefaultItemAnimator.MoveInfo) obj2;
                 animateMoveImpl(moveInfo.holder, moveInfo);
             }
-            arrayList.clear();
+            arrayList2.clear();
         }
         if (zIsEmpty4) {
             return;
         }
-        ArrayList arrayList2 = new ArrayList();
-        arrayList2.addAll(this.mPendingAdditions);
+        ArrayList arrayList3 = new ArrayList();
+        arrayList3.addAll(this.mPendingAdditions);
         this.mPendingAdditions.clear();
-        Iterator it2 = arrayList2.iterator();
-        while (it2.hasNext()) {
-            animateAddImpl((RecyclerView.ViewHolder) it2.next(), height);
+        int size3 = arrayList3.size();
+        while (i < size3) {
+            Object obj3 = arrayList3.get(i);
+            i++;
+            animateAddImpl((RecyclerView.ViewHolder) obj3, height);
         }
-        arrayList2.clear();
+        arrayList3.clear();
     }
 
     @Override
@@ -439,6 +469,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                 if (itemHolderInfo instanceof ItemHolderInfoExtended) {
                     ItemHolderInfoExtended itemHolderInfoExtended = (ItemHolderInfoExtended) itemHolderInfo;
                     chatMessageCell.setImageCoords(itemHolderInfoExtended.imageX, itemHolderInfoExtended.imageY, itemHolderInfoExtended.imageWidth, itemHolderInfoExtended.imageHeight);
+                    return zAnimateRemove;
                 }
             } else if (left != 0) {
                 view.setTranslationX(-left);
@@ -449,675 +480,333 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
 
     @Override
     public boolean animateMove(RecyclerView.ViewHolder viewHolder, RecyclerView.ItemAnimator.ItemHolderInfo itemHolderInfo, int i, int i2, int i3, int i4) {
-        int topMediaOffset;
         int translationX;
+        int topMediaOffset;
         ChatMessageCell chatMessageCell;
         ChatActionCell chatActionCell;
-        int translationX2;
-        int[] iArr;
-        float f;
+        float imageY;
         float imageWidth;
-        float f2;
-        float f3;
-        int i5;
-        MoveInfoExtended moveInfoExtended;
-        ChatActionCell chatActionCell2;
-        int i6;
-        float f4;
-        float f5;
-        float f6;
-        float f7;
-        View view;
-        ChatActionCell.TransitionParams transitionParams;
-        boolean zAnimateChange;
-        ChatMessageCell.TransitionParams transitionParams2;
-        MessageObject.GroupedMessages currentMessagesGroup;
-        int i7;
-        int i8;
-        MessageObject.GroupedMessages groupedMessages;
+        float imageHeight;
+        float f;
+        ChatMessageCell chatMessageCell2;
         boolean z;
-        float f8;
-        boolean zAnimateChange2;
-        MessageObject.GroupedMessages.TransitionParams transitionParams3;
-        MessageObject.GroupedMessages groupedMessages2;
-        int i9;
-        int i10;
-        ImageReceiver photoImage;
-        ItemHolderInfoExtended itemHolderInfoExtended;
-        boolean z2;
-        boolean zIsOutOwner;
-        boolean z3;
-        int i11;
-        float f9;
-        float f10;
-        int i12;
-        boolean z4;
-        MessageObject.GroupedMessages.TransitionParams transitionParams4;
-        boolean z5;
-        float f11;
-        int i13;
-        View view2 = viewHolder.itemView;
-        if (view2 instanceof ChatMessageCell) {
-            ChatMessageCell chatMessageCell2 = (ChatMessageCell) view2;
-            translationX2 = i + ((int) chatMessageCell2.getAnimationOffsetX());
-            topMediaOffset = chatMessageCell2.getTransitionParams().lastTopOffset != chatMessageCell2.getTopMediaOffset() ? i2 + (chatMessageCell2.getTransitionParams().lastTopOffset - chatMessageCell2.getTopMediaOffset()) : i2;
-            chatMessageCell = chatMessageCell2;
+        float f2;
+        MessageObject.GroupedMessages groupedMessages;
+        ChatMessageCell chatMessageCell3;
+        View view = viewHolder.itemView;
+        if (view instanceof ChatMessageCell) {
+            ChatMessageCell chatMessageCell4 = (ChatMessageCell) view;
+            translationX = i + ((int) chatMessageCell4.getAnimationOffsetX());
+            topMediaOffset = chatMessageCell4.getTransitionParams().lastTopOffset != chatMessageCell4.getTopMediaOffset() ? i2 + (chatMessageCell4.getTransitionParams().lastTopOffset - chatMessageCell4.getTopMediaOffset()) : i2;
+            chatMessageCell = chatMessageCell4;
             chatActionCell = null;
+        } else if (view instanceof ChatActionCell) {
+            translationX = i + ((int) view.getTranslationX());
+            topMediaOffset = i2;
+            chatActionCell = (ChatActionCell) view;
+            chatMessageCell = null;
         } else {
-            if (view2 instanceof ChatActionCell) {
-                translationX2 = i + ((int) view2.getTranslationX());
-                topMediaOffset = i2;
-                chatActionCell = (ChatActionCell) view2;
-                chatMessageCell = null;
-            } else {
-                topMediaOffset = i2;
-                translationX = i + ((int) view2.getTranslationX());
-                chatMessageCell = null;
-                chatActionCell = null;
-            }
-            int translationY = topMediaOffset + ((int) viewHolder.itemView.getTranslationY());
-            iArr = new int[4];
-            if (chatMessageCell != null) {
-                float imageX = chatMessageCell.getPhotoImage().getImageX();
-                float imageY = chatMessageCell.getPhotoImage().getImageY();
-                imageWidth = chatMessageCell.getPhotoImage().getImageWidth();
-                float imageHeight = chatMessageCell.getPhotoImage().getImageHeight();
-                for (i13 = 0; i13 < 4; i13++) {
-                    iArr[i13] = chatMessageCell.getPhotoImage().getRoundRadius()[i13];
-                }
-                f3 = imageX;
-                f2 = imageY;
-                f = imageHeight;
-            } else {
-                f = 0.0f;
-                imageWidth = 0.0f;
-                f2 = 0.0f;
-                f3 = 0.0f;
-            }
-            resetAnimation(viewHolder);
-            int i14 = i3 - translationX;
-            i5 = i4 - translationY;
-            if (i5 != 0) {
-                view2.setTranslationY(-i5);
-            }
-            chatActionCell2 = chatActionCell;
-            i6 = i14;
-            f4 = f;
-            f5 = imageWidth;
-            f6 = f2;
-            f7 = f3;
-            moveInfoExtended = new MoveInfoExtended(viewHolder, translationX, translationY, i3, i4);
-            if (chatMessageCell != null) {
-                transitionParams2 = chatMessageCell.getTransitionParams();
-                if (!transitionParams2.supportChangeAnimation()) {
-                    if (i6 != 0 && i5 == 0) {
-                        dispatchMoveFinished(viewHolder);
-                        return false;
-                    }
-                    if (i6 != 0) {
-                        view2.setTranslationX(-i6);
-                    }
-                    this.mPendingMoves.add(moveInfoExtended);
-                    checkIsRunning();
-                    return true;
-                }
-                currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
-                if (i6 != 0) {
-                    chatMessageCell.setAnimationOffsetX(-i6);
-                }
-                if (itemHolderInfo instanceof ItemHolderInfoExtended) {
-                    photoImage = chatMessageCell.getPhotoImage();
-                    itemHolderInfoExtended = (ItemHolderInfoExtended) itemHolderInfo;
-                    if (transitionParams2.wasDraw || itemHolderInfoExtended.imageHeight == 0.0f || itemHolderInfoExtended.imageWidth == 0.0f) {
-                        z2 = false;
-                    } else {
-                        z2 = true;
-                    }
-                    moveInfoExtended.animateImage = z2;
-                    if (z2) {
-                        this.recyclerListView.setClipChildren(false);
-                        this.recyclerListView.invalidate();
-                        transitionParams2.imageChangeBoundsTransition = true;
-                        if (chatMessageCell.getMessageObject().isRoundVideo()) {
-                            transitionParams2.animateToImageX = f7;
-                            transitionParams2.animateToImageY = f6;
-                            transitionParams2.animateToImageW = f5;
-                            transitionParams2.animateToImageH = f4;
-                            transitionParams2.animateToRadius = iArr;
-                        } else {
-                            transitionParams2.animateToImageX = photoImage.getImageX();
-                            transitionParams2.animateToImageY = photoImage.getImageY();
-                            transitionParams2.animateToImageW = photoImage.getImageWidth();
-                            transitionParams2.animateToImageH = photoImage.getImageHeight();
-                            transitionParams2.animateToRadius = photoImage.getRoundRadius();
-                        }
-                        transitionParams2.animateRadius = false;
-                        for (i11 = 0; i11 < 4; i11++) {
-                            if (transitionParams2.imageRoundRadius[i11] != transitionParams2.animateToRadius[i11]) {
-                                transitionParams2.animateRadius = true;
-                                break;
-                            }
-                        }
-                        f9 = transitionParams2.animateToImageX;
-                        f10 = itemHolderInfoExtended.imageX;
-                        if (f9 != f10 && transitionParams2.animateToImageY == itemHolderInfoExtended.imageY && transitionParams2.animateToImageH == itemHolderInfoExtended.imageHeight && transitionParams2.animateToImageW == itemHolderInfoExtended.imageWidth && !transitionParams2.animateRadius) {
-                            transitionParams2.imageChangeBoundsTransition = false;
-                            moveInfoExtended.animateImage = false;
-                        } else {
-                            moveInfoExtended.imageX = f10;
-                            moveInfoExtended.imageY = itemHolderInfoExtended.imageY;
-                            moveInfoExtended.imageWidth = itemHolderInfoExtended.imageWidth;
-                            moveInfoExtended.imageHeight = itemHolderInfoExtended.imageHeight;
-                            if (currentMessagesGroup != null) {
-                                z4 = currentMessagesGroup.hasCaption;
-                                transitionParams4 = currentMessagesGroup.transitionParams;
-                                z5 = transitionParams4.drawCaptionLayout;
-                                if (z4 != z5) {
-                                    if (z5) {
-                                        f11 = 1.0f;
-                                    } else {
-                                        f11 = 0.0f;
-                                    }
-                                    transitionParams4.captionEnterProgress = f11;
-                                }
-                            }
-                            if (transitionParams2.animateRadius) {
-                                if (transitionParams2.animateToRadius == photoImage.getRoundRadius()) {
-                                    transitionParams2.animateToRadius = new int[4];
-                                    for (i12 = 0; i12 < 4; i12++) {
-                                        transitionParams2.animateToRadius[i12] = photoImage.getRoundRadius()[i12];
-                                    }
-                                }
-                                photoImage.setRoundRadius(transitionParams2.imageRoundRadius);
-                            }
-                            chatMessageCell.setImageCoords(moveInfoExtended.imageX, moveInfoExtended.imageY, moveInfoExtended.imageWidth, moveInfoExtended.imageHeight);
-                        }
-                    }
-                    if (currentMessagesGroup == null && transitionParams2.wasDraw) {
-                        zIsOutOwner = chatMessageCell.getMessageObject().isOutOwner();
-                        z3 = ((zIsOutOwner || transitionParams2.lastDrawingBackgroundRect.left == chatMessageCell.getBackgroundDrawableLeft()) && (zIsOutOwner || transitionParams2.lastDrawingBackgroundRect.right == chatMessageCell.getBackgroundDrawableRight())) ? false : true;
-                        if (!z3 || transitionParams2.lastDrawingBackgroundRect.top != chatMessageCell.getBackgroundDrawableTop() || transitionParams2.lastDrawingBackgroundRect.bottom != chatMessageCell.getBackgroundDrawableBottom()) {
-                            moveInfoExtended.deltaBottom = chatMessageCell.getBackgroundDrawableBottom() - transitionParams2.lastDrawingBackgroundRect.bottom;
-                            moveInfoExtended.deltaTop = chatMessageCell.getBackgroundDrawableTop() - transitionParams2.lastDrawingBackgroundRect.top;
-                            if (chatMessageCell.isSideMenuEnabled != transitionParams2.lastDrawingSideMenuEnabled) {
-                                moveInfoExtended.deltaLeft = chatMessageCell.getBackgroundDrawableLeft() - transitionParams2.lastDrawingBackgroundRect.left;
-                                moveInfoExtended.deltaRight = chatMessageCell.getBackgroundDrawableRight() - transitionParams2.lastDrawingBackgroundRect.right;
-                            } else if (zIsOutOwner) {
-                                moveInfoExtended.deltaLeft = chatMessageCell.getBackgroundDrawableLeft() - transitionParams2.lastDrawingBackgroundRect.left;
-                            } else {
-                                moveInfoExtended.deltaRight = chatMessageCell.getBackgroundDrawableRight() - transitionParams2.lastDrawingBackgroundRect.right;
-                            }
-                            moveInfoExtended.animateBackgroundOnly = true;
-                            transitionParams2.animateBackgroundBoundsInner = true;
-                            transitionParams2.animateBackgroundWidth = z3;
-                            transitionParams2.deltaLeft = -moveInfoExtended.deltaLeft;
-                            transitionParams2.deltaRight = -moveInfoExtended.deltaRight;
-                            transitionParams2.deltaTop = -moveInfoExtended.deltaTop;
-                            transitionParams2.deltaBottom = -moveInfoExtended.deltaBottom;
-                            this.recyclerListView.setClipChildren(false);
-                            this.recyclerListView.invalidate();
-                        }
-                    }
-                }
-                if (currentMessagesGroup == null && this.willChangedGroups.contains(currentMessagesGroup)) {
-                    this.willChangedGroups.remove(currentMessagesGroup);
-                    RecyclerListView recyclerListView = (RecyclerListView) viewHolder.itemView.getParent();
-                    MessageObject.GroupedMessages.TransitionParams transitionParams5 = currentMessagesGroup.transitionParams;
-                    int i15 = 0;
-                    int i16 = 0;
-                    int i17 = 0;
-                    int i18 = 0;
-                    int i19 = 0;
-                    boolean z6 = true;
-                    while (i17 < recyclerListView.getChildCount()) {
-                        View childAt = recyclerListView.getChildAt(i17);
-                        if (childAt instanceof ChatMessageCell) {
-                            ChatMessageCell chatMessageCell3 = (ChatMessageCell) childAt;
-                            if (chatMessageCell3.getCurrentMessagesGroup() != currentMessagesGroup || chatMessageCell3.getMessageObject().deleted) {
-                                groupedMessages2 = currentMessagesGroup;
-                                i9 = i6;
-                                i10 = i5;
-                            } else {
-                                int left = chatMessageCell3.getLeft() + chatMessageCell3.getBackgroundDrawableLeft();
-                                groupedMessages2 = currentMessagesGroup;
-                                int left2 = chatMessageCell3.getLeft() + chatMessageCell3.getBackgroundDrawableRight();
-                                i10 = i5;
-                                int top = chatMessageCell3.getTop() + chatMessageCell3.getPaddingTop() + chatMessageCell3.getBackgroundDrawableTop();
-                                i9 = i6;
-                                int top2 = chatMessageCell3.getTop() + chatMessageCell3.getPaddingTop() + chatMessageCell3.getBackgroundDrawableBottom();
-                                if (i15 == 0 || left < i15) {
-                                    i15 = left;
-                                }
-                                if (i16 == 0 || left2 > i16) {
-                                    i16 = left2;
-                                }
-                                if (chatMessageCell3.getTransitionParams().wasDraw || transitionParams5.isNewGroup) {
-                                    if (i18 == 0 || top < i18) {
-                                        i18 = top;
-                                    }
-                                    if (i19 == 0 || top2 > i19) {
-                                        i19 = top2;
-                                    }
-                                    z6 = false;
-                                }
-                            }
-                        } else {
-                            groupedMessages2 = currentMessagesGroup;
-                            i9 = i6;
-                            i10 = i5;
-                        }
-                        i17++;
-                        currentMessagesGroup = groupedMessages2;
-                        i5 = i10;
-                        i6 = i9;
-                    }
-                    i7 = i6;
-                    i8 = i5;
-                    transitionParams5.isNewGroup = false;
-                    if (i18 == 0 && i19 == 0 && i15 == 0 && i16 == 0) {
-                        moveInfoExtended.animateChangeGroupBackground = false;
-                        transitionParams5.backgroundChangeBounds = false;
-                    } else {
-                        int i20 = (-i18) + transitionParams5.top;
-                        moveInfoExtended.groupOffsetTop = i20;
-                        int i21 = (-i19) + transitionParams5.bottom;
-                        moveInfoExtended.groupOffsetBottom = i21;
-                        int i22 = (-i15) + transitionParams5.left;
-                        moveInfoExtended.groupOffsetLeft = i22;
-                        int i23 = (-i16) + transitionParams5.right;
-                        moveInfoExtended.groupOffsetRight = i23;
-                        moveInfoExtended.animateChangeGroupBackground = true;
-                        transitionParams5.backgroundChangeBounds = true;
-                        transitionParams5.offsetTop = i20;
-                        transitionParams5.offsetBottom = i21;
-                        transitionParams5.offsetLeft = i22;
-                        transitionParams5.offsetRight = i23;
-                        transitionParams5.captionEnterProgress = transitionParams5.drawCaptionLayout ? 1.0f : 0.0f;
-                        recyclerListView.setClipChildren(false);
-                        recyclerListView.invalidate();
-                    }
-                    transitionParams5.drawBackgroundForDeletedItems = z6;
-                } else {
-                    i7 = i6;
-                    i8 = i5;
-                }
-                groupedMessages = (MessageObject.GroupedMessages) this.willRemovedGroup.get(Integer.valueOf(chatMessageCell.getMessageObject().getId()));
-                if (groupedMessages != null) {
-                    transitionParams3 = groupedMessages.transitionParams;
-                    this.willRemovedGroup.remove(Integer.valueOf(chatMessageCell.getMessageObject().getId()));
-                    if (transitionParams2.wasDraw) {
-                        int left3 = chatMessageCell.getLeft() + chatMessageCell.getBackgroundDrawableLeft();
-                        int left4 = chatMessageCell.getLeft() + chatMessageCell.getBackgroundDrawableRight();
-                        int top3 = chatMessageCell.getTop() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableTop();
-                        int top4 = chatMessageCell.getTop() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableBottom();
-                        moveInfoExtended.animateRemoveGroup = true;
-                        transitionParams2.animateBackgroundBoundsInner = true;
-                        int i24 = left3 - transitionParams3.left;
-                        moveInfoExtended.deltaLeft = i24;
-                        moveInfoExtended.deltaRight = left4 - transitionParams3.right;
-                        moveInfoExtended.deltaTop = top3 - transitionParams3.top;
-                        moveInfoExtended.deltaBottom = top4 - transitionParams3.bottom;
-                        moveInfoExtended.animateBackgroundOnly = false;
-                        transitionParams2.deltaLeft = (int) ((-i24) - chatMessageCell.getAnimationOffsetX());
-                        transitionParams2.deltaRight = (int) ((-moveInfoExtended.deltaRight) - chatMessageCell.getAnimationOffsetX());
-                        transitionParams2.deltaTop = (int) ((-moveInfoExtended.deltaTop) - chatMessageCell.getTranslationY());
-                        transitionParams2.deltaBottom = (int) ((-moveInfoExtended.deltaBottom) - chatMessageCell.getTranslationY());
-                        z = true;
-                        transitionParams2.transformGroupToSingleMessage = true;
-                        this.recyclerListView.setClipChildren(false);
-                        this.recyclerListView.invalidate();
-                    } else {
-                        z = true;
-                        transitionParams3.drawBackgroundForDeletedItems = true;
-                    }
-                } else {
-                    z = true;
-                }
-                if (transitionParams2.drawPinnedBottomBackground != chatMessageCell.isDrawPinnedBottom()) {
-                    moveInfoExtended.animatePinnedBottom = z;
-                    f8 = 0.0f;
-                    transitionParams2.changePinnedBottomProgress = 0.0f;
-                } else {
-                    f8 = 0.0f;
-                }
-                zAnimateChange2 = transitionParams2.animateChange();
-                moveInfoExtended.animateChangeInternal = zAnimateChange2;
-                if (zAnimateChange2) {
-                    transitionParams2.animateChange = z;
-                    transitionParams2.animateChangeProgress = f8;
-                }
-                if (i7 == 0 && i8 == 0 && !moveInfoExtended.animateImage && !moveInfoExtended.animateRemoveGroup && !moveInfoExtended.animateChangeGroupBackground && !moveInfoExtended.animatePinnedBottom && !moveInfoExtended.animateBackgroundOnly && !zAnimateChange2) {
-                    dispatchMoveFinished(viewHolder);
-                    return false;
-                }
-            } else if (chatActionCell2 != null) {
-                transitionParams = chatActionCell2.getTransitionParams();
-                if (!transitionParams.supportChangeAnimation()) {
-                    if (i6 != 0 && i5 == 0) {
-                        dispatchMoveFinished(viewHolder);
-                        return false;
-                    }
-                    if (i6 != 0) {
-                        view2.setTranslationX(-i6);
-                    }
-                    this.mPendingMoves.add(moveInfoExtended);
-                    checkIsRunning();
-                    return true;
-                }
-                if (i6 != 0) {
-                    view2.setTranslationX(-i6);
-                }
-                zAnimateChange = transitionParams.animateChange();
-                moveInfoExtended.animateChangeInternal = zAnimateChange;
-                if (zAnimateChange) {
-                    transitionParams.animateChange = true;
-                    transitionParams.animateChangeProgress = 0.0f;
-                }
-                if (i6 == 0 && i5 == 0 && !zAnimateChange) {
-                    dispatchMoveFinished(viewHolder);
-                    return false;
-                }
-            } else {
-                view = viewHolder.itemView;
-                if (view instanceof BotHelpCell) {
-                    ((BotHelpCell) view).setAnimating(true);
-                } else if (view instanceof UserInfoCell) {
-                    ((UserInfoCell) view).setAnimating(true);
-                } else {
-                    if (i6 != 0 && i5 == 0) {
-                        dispatchMoveFinished(viewHolder);
-                        return false;
-                    }
-                    if (i6 != 0) {
-                        view2.setTranslationX(-i6);
-                    }
-                }
-            }
-            this.mPendingMoves.add(moveInfoExtended);
-            checkIsRunning();
-            return true;
+            translationX = i + ((int) view.getTranslationX());
+            topMediaOffset = i2;
+            chatMessageCell = null;
+            chatActionCell = null;
         }
-        translationX = translationX2;
-        int translationY2 = topMediaOffset + ((int) viewHolder.itemView.getTranslationY());
-        iArr = new int[4];
+        int translationY = topMediaOffset + ((int) viewHolder.itemView.getTranslationY());
+        int[] iArr = new int[4];
         if (chatMessageCell != null) {
-            float imageX2 = chatMessageCell.getPhotoImage().getImageX();
-            float imageY2 = chatMessageCell.getPhotoImage().getImageY();
+            float imageX = chatMessageCell.getPhotoImage().getImageX();
+            imageY = chatMessageCell.getPhotoImage().getImageY();
             imageWidth = chatMessageCell.getPhotoImage().getImageWidth();
-            float imageHeight2 = chatMessageCell.getPhotoImage().getImageHeight();
-            while (i13 < 4) {
-                iArr[i13] = chatMessageCell.getPhotoImage().getRoundRadius()[i13];
+            imageHeight = chatMessageCell.getPhotoImage().getImageHeight();
+            for (int i5 = 0; i5 < 4; i5++) {
+                iArr[i5] = chatMessageCell.getPhotoImage().getRoundRadius()[i5];
             }
-            f3 = imageX2;
-            f2 = imageY2;
-            f = imageHeight2;
+            f = imageX;
         } else {
-            f = 0.0f;
+            imageY = 0.0f;
             imageWidth = 0.0f;
-            f2 = 0.0f;
-            f3 = 0.0f;
+            imageHeight = 0.0f;
+            f = 0.0f;
         }
         resetAnimation(viewHolder);
-        int i110 = i3 - translationX;
-        i5 = i4 - translationY2;
-        if (i5 != 0) {
-            view2.setTranslationY(-i5);
+        int i6 = i3 - translationX;
+        int i7 = i4 - translationY;
+        if (i7 != 0) {
+            view.setTranslationY(-i7);
         }
-        chatActionCell2 = chatActionCell;
-        i6 = i110;
-        f4 = f;
-        f5 = imageWidth;
-        f6 = f2;
-        f7 = f3;
-        moveInfoExtended = new MoveInfoExtended(viewHolder, translationX, translationY2, i3, i4);
+        float f3 = imageWidth;
+        float f4 = imageHeight;
+        float f5 = imageY;
+        MoveInfoExtended moveInfoExtended = new MoveInfoExtended(viewHolder, translationX, translationY, i3, i4);
         if (chatMessageCell != null) {
-            transitionParams2 = chatMessageCell.getTransitionParams();
-            if (!transitionParams2.supportChangeAnimation()) {
-                if (i6 != 0) {
+            ChatMessageCell.TransitionParams transitionParams = chatMessageCell.getTransitionParams();
+            if (!transitionParams.supportChangeAnimation()) {
+                if (i6 == 0 && i7 == 0) {
+                    dispatchMoveFinished(viewHolder);
+                    return false;
                 }
                 if (i6 != 0) {
-                    view2.setTranslationX(-i6);
+                    view.setTranslationX(-i6);
                 }
                 this.mPendingMoves.add(moveInfoExtended);
                 checkIsRunning();
                 return true;
             }
-            currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
+            MessageObject.GroupedMessages currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
             if (i6 != 0) {
                 chatMessageCell.setAnimationOffsetX(-i6);
             }
             if (itemHolderInfo instanceof ItemHolderInfoExtended) {
-                photoImage = chatMessageCell.getPhotoImage();
-                itemHolderInfoExtended = (ItemHolderInfoExtended) itemHolderInfo;
-                if (transitionParams2.wasDraw) {
-                    z2 = false;
-                } else {
-                    z2 = false;
-                }
+                ImageReceiver photoImage = chatMessageCell.getPhotoImage();
+                ItemHolderInfoExtended itemHolderInfoExtended = (ItemHolderInfoExtended) itemHolderInfo;
+                boolean z2 = (!transitionParams.wasDraw || itemHolderInfoExtended.imageHeight == 0.0f || itemHolderInfoExtended.imageWidth == 0.0f) ? false : true;
                 moveInfoExtended.animateImage = z2;
                 if (z2) {
                     this.recyclerListView.setClipChildren(false);
                     this.recyclerListView.invalidate();
-                    transitionParams2.imageChangeBoundsTransition = true;
+                    transitionParams.imageChangeBoundsTransition = true;
                     if (chatMessageCell.getMessageObject().isRoundVideo()) {
-                        transitionParams2.animateToImageX = f7;
-                        transitionParams2.animateToImageY = f6;
-                        transitionParams2.animateToImageW = f5;
-                        transitionParams2.animateToImageH = f4;
-                        transitionParams2.animateToRadius = iArr;
+                        transitionParams.animateToImageX = f;
+                        transitionParams.animateToImageY = f5;
+                        transitionParams.animateToImageW = f3;
+                        transitionParams.animateToImageH = f4;
+                        transitionParams.animateToRadius = iArr;
                     } else {
-                        transitionParams2.animateToImageX = photoImage.getImageX();
-                        transitionParams2.animateToImageY = photoImage.getImageY();
-                        transitionParams2.animateToImageW = photoImage.getImageWidth();
-                        transitionParams2.animateToImageH = photoImage.getImageHeight();
-                        transitionParams2.animateToRadius = photoImage.getRoundRadius();
+                        transitionParams.animateToImageX = photoImage.getImageX();
+                        transitionParams.animateToImageY = photoImage.getImageY();
+                        transitionParams.animateToImageW = photoImage.getImageWidth();
+                        transitionParams.animateToImageH = photoImage.getImageHeight();
+                        transitionParams.animateToRadius = photoImage.getRoundRadius();
                     }
-                    transitionParams2.animateRadius = false;
-                    while (i11 < 4) {
-                        if (transitionParams2.imageRoundRadius[i11] != transitionParams2.animateToRadius[i11]) {
-                            transitionParams2.animateRadius = true;
+                    transitionParams.animateRadius = false;
+                    for (int i8 = 0; i8 < 4; i8++) {
+                        if (transitionParams.imageRoundRadius[i8] != transitionParams.animateToRadius[i8]) {
+                            transitionParams.animateRadius = true;
                             break;
                         }
                     }
-                    f9 = transitionParams2.animateToImageX;
-                    f10 = itemHolderInfoExtended.imageX;
-                    if (f9 != f10) {
-                        moveInfoExtended.imageX = f10;
-                        moveInfoExtended.imageY = itemHolderInfoExtended.imageY;
-                        moveInfoExtended.imageWidth = itemHolderInfoExtended.imageWidth;
-                        moveInfoExtended.imageHeight = itemHolderInfoExtended.imageHeight;
-                        if (currentMessagesGroup != null) {
-                            z4 = currentMessagesGroup.hasCaption;
-                            transitionParams4 = currentMessagesGroup.transitionParams;
-                            z5 = transitionParams4.drawCaptionLayout;
-                            if (z4 != z5) {
-                                if (z5) {
-                                    f11 = 1.0f;
-                                } else {
-                                    f11 = 0.0f;
-                                }
-                                transitionParams4.captionEnterProgress = f11;
-                            }
-                        }
-                        if (transitionParams2.animateRadius) {
-                            if (transitionParams2.animateToRadius == photoImage.getRoundRadius()) {
-                                transitionParams2.animateToRadius = new int[4];
-                                while (i12 < 4) {
-                                    transitionParams2.animateToRadius[i12] = photoImage.getRoundRadius()[i12];
-                                }
-                            }
-                            photoImage.setRoundRadius(transitionParams2.imageRoundRadius);
-                        }
-                        chatMessageCell.setImageCoords(moveInfoExtended.imageX, moveInfoExtended.imageY, moveInfoExtended.imageWidth, moveInfoExtended.imageHeight);
+                    float f6 = transitionParams.animateToImageX;
+                    float f7 = itemHolderInfoExtended.imageX;
+                    if (f6 == f7 && transitionParams.animateToImageY == itemHolderInfoExtended.imageY && transitionParams.animateToImageH == itemHolderInfoExtended.imageHeight && transitionParams.animateToImageW == itemHolderInfoExtended.imageWidth && !transitionParams.animateRadius) {
+                        transitionParams.imageChangeBoundsTransition = false;
+                        moveInfoExtended.animateImage = false;
                     } else {
-                        moveInfoExtended.imageX = f10;
+                        moveInfoExtended.imageX = f7;
                         moveInfoExtended.imageY = itemHolderInfoExtended.imageY;
                         moveInfoExtended.imageWidth = itemHolderInfoExtended.imageWidth;
                         moveInfoExtended.imageHeight = itemHolderInfoExtended.imageHeight;
                         if (currentMessagesGroup != null) {
-                            z4 = currentMessagesGroup.hasCaption;
-                            transitionParams4 = currentMessagesGroup.transitionParams;
-                            z5 = transitionParams4.drawCaptionLayout;
-                            if (z4 != z5) {
-                                if (z5) {
-                                    f11 = 1.0f;
-                                } else {
-                                    f11 = 0.0f;
-                                }
-                                transitionParams4.captionEnterProgress = f11;
+                            boolean z3 = currentMessagesGroup.hasCaption;
+                            MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
+                            boolean z4 = transitionParams2.drawCaptionLayout;
+                            if (z3 != z4) {
+                                transitionParams2.captionEnterProgress = z4 ? 1.0f : 0.0f;
                             }
                         }
-                        if (transitionParams2.animateRadius) {
-                            if (transitionParams2.animateToRadius == photoImage.getRoundRadius()) {
-                                transitionParams2.animateToRadius = new int[4];
-                                while (i12 < 4) {
-                                    transitionParams2.animateToRadius[i12] = photoImage.getRoundRadius()[i12];
+                        if (transitionParams.animateRadius) {
+                            if (transitionParams.animateToRadius == photoImage.getRoundRadius()) {
+                                transitionParams.animateToRadius = new int[4];
+                                for (int i9 = 0; i9 < 4; i9++) {
+                                    transitionParams.animateToRadius[i9] = photoImage.getRoundRadius()[i9];
                                 }
                             }
-                            photoImage.setRoundRadius(transitionParams2.imageRoundRadius);
+                            photoImage.setRoundRadius(transitionParams.imageRoundRadius);
                         }
                         chatMessageCell.setImageCoords(moveInfoExtended.imageX, moveInfoExtended.imageY, moveInfoExtended.imageWidth, moveInfoExtended.imageHeight);
                     }
                 }
-                if (currentMessagesGroup == null) {
-                    zIsOutOwner = chatMessageCell.getMessageObject().isOutOwner();
-                    if (zIsOutOwner) {
-                    }
-                    if (!z3) {
-                        moveInfoExtended.deltaBottom = chatMessageCell.getBackgroundDrawableBottom() - transitionParams2.lastDrawingBackgroundRect.bottom;
-                        moveInfoExtended.deltaTop = chatMessageCell.getBackgroundDrawableTop() - transitionParams2.lastDrawingBackgroundRect.top;
-                        if (chatMessageCell.isSideMenuEnabled != transitionParams2.lastDrawingSideMenuEnabled) {
-                            moveInfoExtended.deltaLeft = chatMessageCell.getBackgroundDrawableLeft() - transitionParams2.lastDrawingBackgroundRect.left;
-                            moveInfoExtended.deltaRight = chatMessageCell.getBackgroundDrawableRight() - transitionParams2.lastDrawingBackgroundRect.right;
+                if (currentMessagesGroup == null && transitionParams.wasDraw) {
+                    boolean zIsOutOwner = chatMessageCell.getMessageObject().isOutOwner();
+                    boolean z5 = (zIsOutOwner && transitionParams.lastDrawingBackgroundRect.left != chatMessageCell.getBackgroundDrawableLeft()) || !(zIsOutOwner || transitionParams.lastDrawingBackgroundRect.right == chatMessageCell.getBackgroundDrawableRight());
+                    if (z5 || transitionParams.lastDrawingBackgroundRect.top != chatMessageCell.getBackgroundDrawableTop() || transitionParams.lastDrawingBackgroundRect.bottom != chatMessageCell.getBackgroundDrawableBottom()) {
+                        moveInfoExtended.deltaBottom = chatMessageCell.getBackgroundDrawableBottom() - transitionParams.lastDrawingBackgroundRect.bottom;
+                        moveInfoExtended.deltaTop = chatMessageCell.getBackgroundDrawableTop() - transitionParams.lastDrawingBackgroundRect.top;
+                        if (chatMessageCell.isSideMenuEnabled != transitionParams.lastDrawingSideMenuEnabled) {
+                            moveInfoExtended.deltaLeft = chatMessageCell.getBackgroundDrawableLeft() - transitionParams.lastDrawingBackgroundRect.left;
+                            moveInfoExtended.deltaRight = chatMessageCell.getBackgroundDrawableRight() - transitionParams.lastDrawingBackgroundRect.right;
                         } else if (zIsOutOwner) {
-                            moveInfoExtended.deltaLeft = chatMessageCell.getBackgroundDrawableLeft() - transitionParams2.lastDrawingBackgroundRect.left;
+                            moveInfoExtended.deltaLeft = chatMessageCell.getBackgroundDrawableLeft() - transitionParams.lastDrawingBackgroundRect.left;
                         } else {
-                            moveInfoExtended.deltaRight = chatMessageCell.getBackgroundDrawableRight() - transitionParams2.lastDrawingBackgroundRect.right;
+                            moveInfoExtended.deltaRight = chatMessageCell.getBackgroundDrawableRight() - transitionParams.lastDrawingBackgroundRect.right;
                         }
                         moveInfoExtended.animateBackgroundOnly = true;
-                        transitionParams2.animateBackgroundBoundsInner = true;
-                        transitionParams2.animateBackgroundWidth = z3;
-                        transitionParams2.deltaLeft = -moveInfoExtended.deltaLeft;
-                        transitionParams2.deltaRight = -moveInfoExtended.deltaRight;
-                        transitionParams2.deltaTop = -moveInfoExtended.deltaTop;
-                        transitionParams2.deltaBottom = -moveInfoExtended.deltaBottom;
-                        this.recyclerListView.setClipChildren(false);
-                        this.recyclerListView.invalidate();
-                    } else {
-                        moveInfoExtended.deltaBottom = chatMessageCell.getBackgroundDrawableBottom() - transitionParams2.lastDrawingBackgroundRect.bottom;
-                        moveInfoExtended.deltaTop = chatMessageCell.getBackgroundDrawableTop() - transitionParams2.lastDrawingBackgroundRect.top;
-                        if (chatMessageCell.isSideMenuEnabled != transitionParams2.lastDrawingSideMenuEnabled) {
-                            moveInfoExtended.deltaLeft = chatMessageCell.getBackgroundDrawableLeft() - transitionParams2.lastDrawingBackgroundRect.left;
-                            moveInfoExtended.deltaRight = chatMessageCell.getBackgroundDrawableRight() - transitionParams2.lastDrawingBackgroundRect.right;
-                        } else if (zIsOutOwner) {
-                            moveInfoExtended.deltaLeft = chatMessageCell.getBackgroundDrawableLeft() - transitionParams2.lastDrawingBackgroundRect.left;
-                        } else {
-                            moveInfoExtended.deltaRight = chatMessageCell.getBackgroundDrawableRight() - transitionParams2.lastDrawingBackgroundRect.right;
-                        }
-                        moveInfoExtended.animateBackgroundOnly = true;
-                        transitionParams2.animateBackgroundBoundsInner = true;
-                        transitionParams2.animateBackgroundWidth = z3;
-                        transitionParams2.deltaLeft = -moveInfoExtended.deltaLeft;
-                        transitionParams2.deltaRight = -moveInfoExtended.deltaRight;
-                        transitionParams2.deltaTop = -moveInfoExtended.deltaTop;
-                        transitionParams2.deltaBottom = -moveInfoExtended.deltaBottom;
+                        transitionParams.animateBackgroundBoundsInner = true;
+                        transitionParams.animateBackgroundWidth = z5;
+                        transitionParams.deltaLeft = -moveInfoExtended.deltaLeft;
+                        transitionParams.deltaRight = -moveInfoExtended.deltaRight;
+                        transitionParams.deltaTop = -moveInfoExtended.deltaTop;
+                        transitionParams.deltaBottom = -moveInfoExtended.deltaBottom;
                         this.recyclerListView.setClipChildren(false);
                         this.recyclerListView.invalidate();
                     }
                 }
             }
-            if (currentMessagesGroup == null) {
-                i7 = i6;
-                i8 = i5;
+            if (currentMessagesGroup == null || !this.willChangedGroups.contains(currentMessagesGroup)) {
+                chatMessageCell2 = chatMessageCell;
             } else {
-                i7 = i6;
-                i8 = i5;
+                this.willChangedGroups.remove(currentMessagesGroup);
+                RecyclerListView recyclerListView = (RecyclerListView) viewHolder.itemView.getParent();
+                MessageObject.GroupedMessages.TransitionParams transitionParams3 = currentMessagesGroup.transitionParams;
+                int i10 = 0;
+                int i11 = 0;
+                int i12 = 0;
+                int i13 = 0;
+                int i14 = 0;
+                boolean z6 = true;
+                while (i10 < recyclerListView.getChildCount()) {
+                    View childAt = recyclerListView.getChildAt(i10);
+                    int i15 = i10;
+                    if (childAt instanceof ChatMessageCell) {
+                        ChatMessageCell chatMessageCell5 = (ChatMessageCell) childAt;
+                        if (chatMessageCell5.getCurrentMessagesGroup() != currentMessagesGroup || chatMessageCell5.getMessageObject().deleted) {
+                            groupedMessages = currentMessagesGroup;
+                            chatMessageCell3 = chatMessageCell;
+                        } else {
+                            int left = chatMessageCell5.getLeft() + chatMessageCell5.getBackgroundDrawableLeft();
+                            int left2 = chatMessageCell5.getLeft() + chatMessageCell5.getBackgroundDrawableRight();
+                            groupedMessages = currentMessagesGroup;
+                            int top = chatMessageCell5.getTop() + chatMessageCell5.getPaddingTop() + chatMessageCell5.getBackgroundDrawableTop();
+                            chatMessageCell3 = chatMessageCell;
+                            int top2 = chatMessageCell5.getTop() + chatMessageCell5.getPaddingTop() + chatMessageCell5.getBackgroundDrawableBottom();
+                            if (i13 == 0 || left < i13) {
+                                i13 = left;
+                            }
+                            if (i14 == 0 || left2 > i14) {
+                                i14 = left2;
+                            }
+                            if (chatMessageCell5.getTransitionParams().wasDraw || transitionParams3.isNewGroup) {
+                                if (i11 == 0 || top < i11) {
+                                    i11 = top;
+                                }
+                                if (i12 == 0 || top2 > i12) {
+                                    i12 = top2;
+                                }
+                                z6 = false;
+                            }
+                        }
+                    } else {
+                        groupedMessages = currentMessagesGroup;
+                        chatMessageCell3 = chatMessageCell;
+                    }
+                    i10 = i15 + 1;
+                    currentMessagesGroup = groupedMessages;
+                    chatMessageCell = chatMessageCell3;
+                }
+                chatMessageCell2 = chatMessageCell;
+                transitionParams3.isNewGroup = false;
+                if (i11 == 0 && i12 == 0 && i13 == 0 && i14 == 0) {
+                    moveInfoExtended.animateChangeGroupBackground = false;
+                    transitionParams3.backgroundChangeBounds = false;
+                } else {
+                    int i16 = (-i11) + transitionParams3.top;
+                    moveInfoExtended.groupOffsetTop = i16;
+                    int i17 = (-i12) + transitionParams3.bottom;
+                    moveInfoExtended.groupOffsetBottom = i17;
+                    int i18 = (-i13) + transitionParams3.left;
+                    moveInfoExtended.groupOffsetLeft = i18;
+                    int i19 = (-i14) + transitionParams3.right;
+                    moveInfoExtended.groupOffsetRight = i19;
+                    moveInfoExtended.animateChangeGroupBackground = true;
+                    transitionParams3.backgroundChangeBounds = true;
+                    transitionParams3.offsetTop = i16;
+                    transitionParams3.offsetBottom = i17;
+                    transitionParams3.offsetLeft = i18;
+                    transitionParams3.offsetRight = i19;
+                    transitionParams3.captionEnterProgress = transitionParams3.drawCaptionLayout ? 1.0f : 0.0f;
+                    recyclerListView.setClipChildren(false);
+                    recyclerListView.invalidate();
+                }
+                transitionParams3.drawBackgroundForDeletedItems = z6;
             }
-            groupedMessages = (MessageObject.GroupedMessages) this.willRemovedGroup.get(Integer.valueOf(chatMessageCell.getMessageObject().getId()));
-            if (groupedMessages != null) {
-                transitionParams3 = groupedMessages.transitionParams;
-                this.willRemovedGroup.remove(Integer.valueOf(chatMessageCell.getMessageObject().getId()));
-                if (transitionParams2.wasDraw) {
-                    int left5 = chatMessageCell.getLeft() + chatMessageCell.getBackgroundDrawableLeft();
-                    int left6 = chatMessageCell.getLeft() + chatMessageCell.getBackgroundDrawableRight();
-                    int top5 = chatMessageCell.getTop() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableTop();
-                    int top6 = chatMessageCell.getTop() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableBottom();
+            MessageObject.GroupedMessages groupedMessages2 = (MessageObject.GroupedMessages) this.willRemovedGroup.get(Integer.valueOf(chatMessageCell2.getMessageObject().getId()));
+            if (groupedMessages2 != null) {
+                MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages2.transitionParams;
+                this.willRemovedGroup.remove(Integer.valueOf(chatMessageCell2.getMessageObject().getId()));
+                if (transitionParams.wasDraw) {
+                    int left3 = chatMessageCell2.getLeft() + chatMessageCell2.getBackgroundDrawableLeft();
+                    int left4 = chatMessageCell2.getLeft() + chatMessageCell2.getBackgroundDrawableRight();
+                    int top3 = chatMessageCell2.getTop() + chatMessageCell2.getPaddingTop() + chatMessageCell2.getBackgroundDrawableTop();
+                    int top4 = chatMessageCell2.getTop() + chatMessageCell2.getPaddingTop() + chatMessageCell2.getBackgroundDrawableBottom();
                     moveInfoExtended.animateRemoveGroup = true;
-                    transitionParams2.animateBackgroundBoundsInner = true;
-                    int i25 = left5 - transitionParams3.left;
-                    moveInfoExtended.deltaLeft = i25;
-                    moveInfoExtended.deltaRight = left6 - transitionParams3.right;
-                    moveInfoExtended.deltaTop = top5 - transitionParams3.top;
-                    moveInfoExtended.deltaBottom = top6 - transitionParams3.bottom;
+                    transitionParams.animateBackgroundBoundsInner = true;
+                    int i20 = left3 - transitionParams4.left;
+                    moveInfoExtended.deltaLeft = i20;
+                    moveInfoExtended.deltaRight = left4 - transitionParams4.right;
+                    moveInfoExtended.deltaTop = top3 - transitionParams4.top;
+                    moveInfoExtended.deltaBottom = top4 - transitionParams4.bottom;
                     moveInfoExtended.animateBackgroundOnly = false;
-                    transitionParams2.deltaLeft = (int) ((-i25) - chatMessageCell.getAnimationOffsetX());
-                    transitionParams2.deltaRight = (int) ((-moveInfoExtended.deltaRight) - chatMessageCell.getAnimationOffsetX());
-                    transitionParams2.deltaTop = (int) ((-moveInfoExtended.deltaTop) - chatMessageCell.getTranslationY());
-                    transitionParams2.deltaBottom = (int) ((-moveInfoExtended.deltaBottom) - chatMessageCell.getTranslationY());
+                    transitionParams.deltaLeft = (int) ((-i20) - chatMessageCell2.getAnimationOffsetX());
+                    transitionParams.deltaRight = (int) ((-moveInfoExtended.deltaRight) - chatMessageCell2.getAnimationOffsetX());
+                    transitionParams.deltaTop = (int) ((-moveInfoExtended.deltaTop) - chatMessageCell2.getTranslationY());
+                    transitionParams.deltaBottom = (int) ((-moveInfoExtended.deltaBottom) - chatMessageCell2.getTranslationY());
                     z = true;
-                    transitionParams2.transformGroupToSingleMessage = true;
+                    transitionParams.transformGroupToSingleMessage = true;
                     this.recyclerListView.setClipChildren(false);
                     this.recyclerListView.invalidate();
                 } else {
                     z = true;
-                    transitionParams3.drawBackgroundForDeletedItems = true;
+                    transitionParams4.drawBackgroundForDeletedItems = true;
                 }
             } else {
                 z = true;
             }
-            if (transitionParams2.drawPinnedBottomBackground != chatMessageCell.isDrawPinnedBottom()) {
+            if (transitionParams.drawPinnedBottomBackground != chatMessageCell2.isDrawPinnedBottom()) {
                 moveInfoExtended.animatePinnedBottom = z;
-                f8 = 0.0f;
-                transitionParams2.changePinnedBottomProgress = 0.0f;
+                f2 = 0.0f;
+                transitionParams.changePinnedBottomProgress = 0.0f;
             } else {
-                f8 = 0.0f;
+                f2 = 0.0f;
             }
-            zAnimateChange2 = transitionParams2.animateChange();
-            moveInfoExtended.animateChangeInternal = zAnimateChange2;
-            if (zAnimateChange2) {
-                transitionParams2.animateChange = z;
-                transitionParams2.animateChangeProgress = f8;
+            boolean zAnimateChange = transitionParams.animateChange();
+            moveInfoExtended.animateChangeInternal = zAnimateChange;
+            if (zAnimateChange) {
+                transitionParams.animateChange = z;
+                transitionParams.animateChangeProgress = f2;
             }
-            if (i7 == 0) {
+            if (i6 == 0 && i7 == 0 && !moveInfoExtended.animateImage && !moveInfoExtended.animateRemoveGroup && !moveInfoExtended.animateChangeGroupBackground && !moveInfoExtended.animatePinnedBottom && !moveInfoExtended.animateBackgroundOnly && !zAnimateChange) {
                 dispatchMoveFinished(viewHolder);
                 return false;
             }
-        } else if (chatActionCell2 != null) {
-            transitionParams = chatActionCell2.getTransitionParams();
-            if (!transitionParams.supportChangeAnimation()) {
-                if (i6 != 0) {
+        } else if (chatActionCell != null) {
+            ChatActionCell.TransitionParams transitionParams5 = chatActionCell.getTransitionParams();
+            if (!transitionParams5.supportChangeAnimation()) {
+                if (i6 == 0 && i7 == 0) {
+                    dispatchMoveFinished(viewHolder);
+                    return false;
                 }
                 if (i6 != 0) {
-                    view2.setTranslationX(-i6);
+                    view.setTranslationX(-i6);
                 }
                 this.mPendingMoves.add(moveInfoExtended);
                 checkIsRunning();
                 return true;
             }
             if (i6 != 0) {
-                view2.setTranslationX(-i6);
+                view.setTranslationX(-i6);
             }
-            zAnimateChange = transitionParams.animateChange();
-            moveInfoExtended.animateChangeInternal = zAnimateChange;
-            if (zAnimateChange) {
-                transitionParams.animateChange = true;
-                transitionParams.animateChangeProgress = 0.0f;
+            boolean zAnimateChange2 = transitionParams5.animateChange();
+            moveInfoExtended.animateChangeInternal = zAnimateChange2;
+            if (zAnimateChange2) {
+                transitionParams5.animateChange = true;
+                transitionParams5.animateChangeProgress = 0.0f;
             }
-            if (i6 == 0) {
+            if (i6 == 0 && i7 == 0 && !zAnimateChange2) {
                 dispatchMoveFinished(viewHolder);
                 return false;
             }
         } else {
-            view = viewHolder.itemView;
-            if (view instanceof BotHelpCell) {
-                ((BotHelpCell) view).setAnimating(true);
-            } else if (view instanceof UserInfoCell) {
-                ((UserInfoCell) view).setAnimating(true);
+            View view2 = viewHolder.itemView;
+            if (view2 instanceof BotHelpCell) {
+                ((BotHelpCell) view2).setAnimating(true);
+            } else if (view2 instanceof UserInfoCell) {
+                ((UserInfoCell) view2).setAnimating(true);
             } else {
-                if (i6 != 0) {
+                if (i6 == 0 && i7 == 0) {
+                    dispatchMoveFinished(viewHolder);
+                    return false;
                 }
                 if (i6 != 0) {
-                    view2.setTranslationX(-i6);
+                    view.setTranslationX(-i6);
                 }
             }
         }
@@ -1133,40 +822,35 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
 
     protected void animateMoveImpl(final RecyclerView.ViewHolder viewHolder, DefaultItemAnimator.MoveInfo moveInfo, boolean z) {
         View view;
-        AnimatorSet animatorSet;
         final ChatActionCell chatActionCell;
         final ChatActionCell.TransitionParams transitionParams;
-        ChatMessageCell chatMessageCell;
+        final ChatMessageCell chatMessageCell;
         final ChatMessageCell.TransitionParams transitionParams2;
-        final ChatMessageCell chatMessageCell2;
         final MoveInfoExtended moveInfoExtended;
-        final ChatMessageCell.TransitionParams transitionParams3;
-        final ChatMessageCell chatMessageCell3;
+        float f;
         boolean z2;
         MessageObject.GroupedMessages currentMessagesGroup;
-        final float f;
         final float f2;
+        final float f3;
         final boolean z3;
-        float f3;
         final float f4;
         int iHasCaptionLayout;
         final float f5;
-        boolean z4;
-        final int[] iArr;
-        int[] iArr2;
-        int i;
+        final boolean z4;
+        char c;
+        int[] iArr;
         View view2;
-        int i2 = moveInfo.fromX;
-        int i3 = moveInfo.fromY;
-        int i4 = moveInfo.toY;
+        int i = moveInfo.fromX;
+        int i2 = moveInfo.fromY;
+        int i3 = moveInfo.toY;
         final View view3 = viewHolder.itemView;
-        final int i5 = i4 - i3;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        if (i5 != 0) {
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(view3, (Property<View, Float>) View.TRANSLATION_Y, 0.0f));
+        final int i4 = i3 - i2;
+        AnimatorSet animatorSet = new AnimatorSet();
+        if (i4 != 0) {
+            animatorSet.playTogether(ObjectAnimator.ofFloat(view3, (Property<View, Float>) View.TRANSLATION_Y, 0.0f));
         }
         this.mMoveAnimations.add(viewHolder);
-        final MoveInfoExtended moveInfoExtended2 = (MoveInfoExtended) moveInfo;
+        MoveInfoExtended moveInfoExtended2 = (MoveInfoExtended) moveInfo;
         ChatActivity chatActivity = this.activity;
         if (chatActivity != null) {
             View view4 = viewHolder.itemView;
@@ -1182,39 +866,184 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                         botHelpCell.setTranslationY((translationY * (1.0f - fFloatValue)) + ((((float) botHelpCell.getTop()) > measuredHeight ? measuredHeight - botHelpCell.getTop() : 0.0f) * fFloatValue));
                     }
                 });
-                animatorSet2.playTogether(valueAnimatorOfFloat);
-            } else {
-                if (chatActivity != null) {
-                    view2 = viewHolder.itemView;
-                    if (view2 instanceof UserInfoCell) {
-                        final UserInfoCell userInfoCell = (UserInfoCell) view2;
-                        final float translationY2 = userInfoCell.getTranslationY();
-                        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                float measuredHeight = ((((ChatListItemAnimator.this.recyclerListView.getMeasuredHeight() - ChatListItemAnimator.this.activity.getChatListViewPadding()) - ChatListItemAnimator.this.activity.blurredViewBottomOffset) / 2.0f) - (userInfoCell.getMeasuredHeight() / 2.0f)) + ChatListItemAnimator.this.activity.getChatListViewPadding();
-                                userInfoCell.setTranslationY((translationY2 * (1.0f - fFloatValue)) + ((((float) userInfoCell.getTop()) > measuredHeight ? measuredHeight - userInfoCell.getTop() : 0.0f) * fFloatValue));
+                animatorSet.playTogether(valueAnimatorOfFloat);
+            } else if (chatActivity != null) {
+                view2 = viewHolder.itemView;
+                if (view2 instanceof UserInfoCell) {
+                    final UserInfoCell userInfoCell = (UserInfoCell) view2;
+                    final float translationY2 = userInfoCell.getTranslationY();
+                    ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            float measuredHeight = ((((ChatListItemAnimator.this.recyclerListView.getMeasuredHeight() - ChatListItemAnimator.this.activity.getChatListViewPadding()) - ChatListItemAnimator.this.activity.blurredViewBottomOffset) / 2.0f) - (userInfoCell.getMeasuredHeight() / 2.0f)) + ChatListItemAnimator.this.activity.getChatListViewPadding();
+                            userInfoCell.setTranslationY((translationY2 * (1.0f - fFloatValue)) + ((((float) userInfoCell.getTop()) > measuredHeight ? measuredHeight - userInfoCell.getTop() : 0.0f) * fFloatValue));
+                        }
+                    });
+                    animatorSet.playTogether(valueAnimatorOfFloat2);
+                } else {
+                    view = viewHolder.itemView;
+                    if (view instanceof ChatMessageCell) {
+                        chatMessageCell = (ChatMessageCell) view;
+                        transitionParams2 = chatMessageCell.getTransitionParams();
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(chatMessageCell, (Property<ChatMessageCell, Float>) chatMessageCell.ANIMATION_OFFSET_X, 0.0f));
+                        if (moveInfoExtended2.animateImage) {
+                            chatMessageCell.setImageCoords(moveInfoExtended2.imageX, moveInfoExtended2.imageY, moveInfoExtended2.imageWidth, moveInfoExtended2.imageHeight);
+                            ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                            if (chatMessageCell.getCurrentMessagesGroup() == null) {
+                                f4 = transitionParams2.captionEnterProgress;
+                            } else {
+                                f4 = chatMessageCell.getCurrentMessagesGroup().transitionParams.captionEnterProgress;
                             }
-                        });
-                        animatorSet2.playTogether(valueAnimatorOfFloat2);
+                            if (chatMessageCell.getCurrentMessagesGroup() == null) {
+                                iHasCaptionLayout = chatMessageCell.hasCaptionLayout();
+                            } else {
+                                iHasCaptionLayout = chatMessageCell.getCurrentMessagesGroup().hasCaption;
+                            }
+                            f5 = iHasCaptionLayout;
+                            if (f4 != f5) {
+                                z4 = true;
+                            } else {
+                                z4 = false;
+                            }
+                            if (transitionParams2.animateRadius) {
+                                iArr = new int[4];
+                                c = 0;
+                                for (int i5 = 0; i5 < 4; i5++) {
+                                    iArr[i5] = chatMessageCell.getPhotoImage().getRoundRadius()[i5];
+                                }
+                            } else {
+                                c = 0;
+                                iArr = null;
+                            }
+                            moveInfoExtended = moveInfoExtended2;
+                            final int[] iArr2 = iArr;
+                            f = 0.0f;
+                            valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                    ChatListItemAnimator.m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr2, viewHolder, valueAnimator);
+                                }
+                            });
+                            Animator[] animatorArr = new Animator[1];
+                            animatorArr[c] = valueAnimatorOfFloat3;
+                            animatorSet.playTogether(animatorArr);
+                        } else {
+                            moveInfoExtended = moveInfoExtended2;
+                            f = 0.0f;
+                        }
+                        if (moveInfoExtended.deltaBottom == 0 || moveInfoExtended.deltaRight != 0 || moveInfoExtended.deltaTop != 0 || moveInfoExtended.deltaLeft != 0) {
+                            this.recyclerListView.setClipChildren(false);
+                            this.recyclerListView.invalidate();
+                            ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                            if (moveInfoExtended.animateBackgroundOnly) {
+                                transitionParams2.toDeltaLeft = -moveInfoExtended.deltaLeft;
+                                transitionParams2.toDeltaRight = -moveInfoExtended.deltaRight;
+                            } else {
+                                transitionParams2.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell.getAnimationOffsetX();
+                                transitionParams2.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell.getAnimationOffsetX();
+                            }
+                            valueAnimatorOfFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                    ChatListItemAnimator.$r8$lambda$8W2CifkKWRLeTD6jc3A2ApMzDzg(moveInfoExtended, transitionParams2, chatMessageCell, valueAnimator);
+                                }
+                            });
+                            z2 = false;
+                            animatorSet.playTogether(valueAnimatorOfFloat4);
+                        } else {
+                            transitionParams2.toDeltaLeft = f;
+                            transitionParams2.toDeltaRight = f;
+                            z2 = false;
+                        }
+                        currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
+                        if (currentMessagesGroup == null) {
+                            moveInfoExtended.animateChangeGroupBackground = z2;
+                        }
+                        if (moveInfoExtended.animateChangeGroupBackground) {
+                            ValueAnimator valueAnimatorOfFloat5 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                            final MessageObject.GroupedMessages.TransitionParams transitionParams3 = currentMessagesGroup.transitionParams;
+                            final RecyclerListView recyclerListView = (RecyclerListView) viewHolder.itemView.getParent();
+                            f2 = currentMessagesGroup.transitionParams.captionEnterProgress;
+                            if (currentMessagesGroup.hasCaption) {
+                                f3 = 1.0f;
+                            } else {
+                                f3 = 0.0f;
+                            }
+                            if (f2 != f3) {
+                                z3 = true;
+                            } else {
+                                z3 = false;
+                            }
+                            final MoveInfoExtended moveInfoExtended3 = moveInfoExtended;
+                            valueAnimatorOfFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                    ChatListItemAnimator.$r8$lambda$TDignImIjC3yBCWn8ikobW4ZBn8(transitionParams3, moveInfoExtended3, z3, f2, f3, recyclerListView, valueAnimator);
+                                }
+                            });
+                            valueAnimatorOfFloat5.addListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animator) {
+                                    MessageObject.GroupedMessages.TransitionParams transitionParams4 = transitionParams3;
+                                    transitionParams4.backgroundChangeBounds = false;
+                                    transitionParams4.drawBackgroundForDeletedItems = false;
+                                }
+                            });
+                            animatorSet.playTogether(valueAnimatorOfFloat5);
+                        }
+                        if (moveInfoExtended.animatePinnedBottom) {
+                            ValueAnimator valueAnimatorOfFloat6 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                            valueAnimatorOfFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                    ChatListItemAnimator.$r8$lambda$OQamxP6pcjwMza4x4sJNjqcje74(transitionParams2, chatMessageCell, valueAnimator);
+                                }
+                            });
+                            animatorSet.playTogether(valueAnimatorOfFloat6);
+                        }
+                        if (moveInfoExtended.animateChangeInternal) {
+                            ValueAnimator valueAnimatorOfFloat7 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                            transitionParams2.animateChange = true;
+                            valueAnimatorOfFloat7.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                    ChatListItemAnimator.$r8$lambda$DESw_RADR9OXg_W7WyJ2EAqETMc(transitionParams2, chatMessageCell, valueAnimator);
+                                }
+                            });
+                            animatorSet.playTogether(valueAnimatorOfFloat7);
+                        }
+                    } else if (view instanceof ChatActionCell) {
+                        chatActionCell = (ChatActionCell) view;
+                        transitionParams = chatActionCell.getTransitionParams();
+                        if (moveInfoExtended2.animateChangeInternal) {
+                            ValueAnimator valueAnimatorOfFloat8 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                            transitionParams.animateChange = true;
+                            valueAnimatorOfFloat8.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                    ChatListItemAnimator.$r8$lambda$51q0GWi0ObdvhDKFihDT07qKlQQ(transitionParams, chatActionCell, valueAnimator);
+                                }
+                            });
+                            animatorSet.playTogether(valueAnimatorOfFloat8);
+                        }
                     }
                 }
+            } else {
                 view = viewHolder.itemView;
                 if (view instanceof ChatMessageCell) {
                     chatMessageCell = (ChatMessageCell) view;
                     transitionParams2 = chatMessageCell.getTransitionParams();
-                    animatorSet2.playTogether(ObjectAnimator.ofFloat(chatMessageCell, (Property<ChatMessageCell, Float>) chatMessageCell.ANIMATION_OFFSET_X, 0.0f));
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(chatMessageCell, (Property<ChatMessageCell, Float>) chatMessageCell.ANIMATION_OFFSET_X, 0.0f));
                     if (moveInfoExtended2.animateImage) {
                         chatMessageCell.setImageCoords(moveInfoExtended2.imageX, moveInfoExtended2.imageY, moveInfoExtended2.imageWidth, moveInfoExtended2.imageHeight);
-                        ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        ValueAnimator valueAnimatorOfFloat9 = ValueAnimator.ofFloat(0.0f, 1.0f);
                         if (chatMessageCell.getCurrentMessagesGroup() == null) {
-                            f3 = transitionParams2.captionEnterProgress;
+                            f4 = transitionParams2.captionEnterProgress;
                         } else {
-                            f3 = chatMessageCell.getCurrentMessagesGroup().transitionParams.captionEnterProgress;
+                            f4 = chatMessageCell.getCurrentMessagesGroup().transitionParams.captionEnterProgress;
                         }
-                        f4 = f3;
                         if (chatMessageCell.getCurrentMessagesGroup() == null) {
                             iHasCaptionLayout = chatMessageCell.hasCaptionLayout();
                         } else {
@@ -1227,85 +1056,97 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                             z4 = false;
                         }
                         if (transitionParams2.animateRadius) {
-                            iArr2 = new int[4];
-                            for (i = 0; i < 4; i++) {
-                                iArr2[i] = chatMessageCell.getPhotoImage().getRoundRadius()[i];
+                            iArr = new int[4];
+                            c = 0;
+                            while (i5 < 4) {
+                                iArr[i5] = chatMessageCell.getPhotoImage().getRoundRadius()[i5];
                             }
-                            iArr = iArr2;
                         } else {
+                            c = 0;
                             iArr = null;
                         }
-                        final boolean z5 = z4;
-                        chatMessageCell2 = chatMessageCell;
-                        valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        moveInfoExtended = moveInfoExtended2;
+                        final int[] iArr3 = iArr;
+                        f = 0.0f;
+                        valueAnimatorOfFloat9.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ChatListItemAnimator.lambda$animateMoveImpl$2(moveInfoExtended2, transitionParams2, z5, f4, f5, chatMessageCell2, iArr, viewHolder, valueAnimator);
+                                ChatListItemAnimator.m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr3, viewHolder, valueAnimator);
                             }
                         });
-                        animatorSet = animatorSet2;
-                        animatorSet.playTogether(valueAnimatorOfFloat3);
-                        moveInfoExtended = moveInfoExtended2;
+                        Animator[] animatorArr2 = new Animator[1];
+                        animatorArr2[c] = valueAnimatorOfFloat9;
+                        animatorSet.playTogether(animatorArr2);
                     } else {
-                        chatMessageCell2 = chatMessageCell;
-                        animatorSet = animatorSet2;
                         moveInfoExtended = moveInfoExtended2;
+                        f = 0.0f;
                     }
-                    if (moveInfoExtended.deltaBottom == 0 || moveInfoExtended.deltaRight != 0 || moveInfoExtended.deltaTop != 0 || moveInfoExtended.deltaLeft != 0) {
-                        transitionParams3 = transitionParams2;
+                    if (moveInfoExtended.deltaBottom == 0) {
                         this.recyclerListView.setClipChildren(false);
                         this.recyclerListView.invalidate();
-                        ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                        ValueAnimator valueAnimatorOfFloat10 = ValueAnimator.ofFloat(1.0f, 0.0f);
                         if (moveInfoExtended.animateBackgroundOnly) {
-                            transitionParams3.toDeltaLeft = -moveInfoExtended.deltaLeft;
-                            transitionParams3.toDeltaRight = -moveInfoExtended.deltaRight;
+                            transitionParams2.toDeltaLeft = -moveInfoExtended.deltaLeft;
+                            transitionParams2.toDeltaRight = -moveInfoExtended.deltaRight;
                         } else {
-                            transitionParams3.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell2.getAnimationOffsetX();
-                            transitionParams3.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell2.getAnimationOffsetX();
+                            transitionParams2.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell.getAnimationOffsetX();
+                            transitionParams2.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell.getAnimationOffsetX();
                         }
-                        chatMessageCell3 = chatMessageCell2;
-                        valueAnimatorOfFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        valueAnimatorOfFloat10.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ChatListItemAnimator.lambda$animateMoveImpl$3(moveInfoExtended, transitionParams3, chatMessageCell3, valueAnimator);
+                                ChatListItemAnimator.$r8$lambda$8W2CifkKWRLeTD6jc3A2ApMzDzg(moveInfoExtended, transitionParams2, chatMessageCell, valueAnimator);
                             }
                         });
                         z2 = false;
-                        animatorSet.playTogether(valueAnimatorOfFloat4);
+                        animatorSet.playTogether(valueAnimatorOfFloat10);
                     } else {
-                        transitionParams3 = transitionParams2;
-                        transitionParams3.toDeltaLeft = 0.0f;
-                        transitionParams3.toDeltaRight = 0.0f;
-                        chatMessageCell3 = chatMessageCell2;
+                        this.recyclerListView.setClipChildren(false);
+                        this.recyclerListView.invalidate();
+                        ValueAnimator valueAnimatorOfFloat11 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                        if (moveInfoExtended.animateBackgroundOnly) {
+                            transitionParams2.toDeltaLeft = -moveInfoExtended.deltaLeft;
+                            transitionParams2.toDeltaRight = -moveInfoExtended.deltaRight;
+                        } else {
+                            transitionParams2.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell.getAnimationOffsetX();
+                            transitionParams2.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell.getAnimationOffsetX();
+                        }
+                        valueAnimatorOfFloat11.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                ChatListItemAnimator.$r8$lambda$8W2CifkKWRLeTD6jc3A2ApMzDzg(moveInfoExtended, transitionParams2, chatMessageCell, valueAnimator);
+                            }
+                        });
                         z2 = false;
+                        animatorSet.playTogether(valueAnimatorOfFloat11);
                     }
-                    currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup();
+                    currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
                     if (currentMessagesGroup == null) {
                         moveInfoExtended.animateChangeGroupBackground = z2;
                     }
                     if (moveInfoExtended.animateChangeGroupBackground) {
-                        ValueAnimator valueAnimatorOfFloat5 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                        ValueAnimator valueAnimatorOfFloat12 = ValueAnimator.ofFloat(1.0f, 0.0f);
                         final MessageObject.GroupedMessages.TransitionParams transitionParams4 = currentMessagesGroup.transitionParams;
-                        final RecyclerListView recyclerListView = (RecyclerListView) viewHolder.itemView.getParent();
-                        f = currentMessagesGroup.transitionParams.captionEnterProgress;
+                        final RecyclerListView recyclerListView2 = (RecyclerListView) viewHolder.itemView.getParent();
+                        f2 = currentMessagesGroup.transitionParams.captionEnterProgress;
                         if (currentMessagesGroup.hasCaption) {
-                            f2 = 1.0f;
+                            f3 = 1.0f;
                         } else {
-                            f2 = 0.0f;
+                            f3 = 0.0f;
                         }
-                        if (f != f2) {
+                        if (f2 != f3) {
                             z3 = true;
                         } else {
                             z3 = false;
                         }
-                        final MoveInfoExtended moveInfoExtended3 = moveInfoExtended;
-                        valueAnimatorOfFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        final MoveInfoExtended moveInfoExtended4 = moveInfoExtended;
+                        valueAnimatorOfFloat12.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ChatListItemAnimator.lambda$animateMoveImpl$4(transitionParams4, moveInfoExtended3, z3, f, f2, recyclerListView, valueAnimator);
+                                ChatListItemAnimator.$r8$lambda$TDignImIjC3yBCWn8ikobW4ZBn8(transitionParams4, moveInfoExtended4, z3, f2, f3, recyclerListView2, valueAnimator);
                             }
                         });
-                        valueAnimatorOfFloat5.addListener(new AnimatorListenerAdapter() {
+                        valueAnimatorOfFloat12.addListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 MessageObject.GroupedMessages.TransitionParams transitionParams5 = transitionParams4;
@@ -1313,82 +1154,237 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                                 transitionParams5.drawBackgroundForDeletedItems = false;
                             }
                         });
-                        animatorSet.playTogether(valueAnimatorOfFloat5);
+                        animatorSet.playTogether(valueAnimatorOfFloat12);
                     }
                     if (moveInfoExtended.animatePinnedBottom) {
-                        ValueAnimator valueAnimatorOfFloat6 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        valueAnimatorOfFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        ValueAnimator valueAnimatorOfFloat13 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        valueAnimatorOfFloat13.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ChatListItemAnimator.lambda$animateMoveImpl$5(transitionParams3, chatMessageCell3, valueAnimator);
+                                ChatListItemAnimator.$r8$lambda$OQamxP6pcjwMza4x4sJNjqcje74(transitionParams2, chatMessageCell, valueAnimator);
                             }
                         });
-                        animatorSet.playTogether(valueAnimatorOfFloat6);
+                        animatorSet.playTogether(valueAnimatorOfFloat13);
                     }
                     if (moveInfoExtended.animateChangeInternal) {
-                        ValueAnimator valueAnimatorOfFloat7 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        transitionParams3.animateChange = true;
-                        valueAnimatorOfFloat7.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        ValueAnimator valueAnimatorOfFloat14 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        transitionParams2.animateChange = true;
+                        valueAnimatorOfFloat14.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ChatListItemAnimator.lambda$animateMoveImpl$6(transitionParams3, chatMessageCell3, valueAnimator);
+                                ChatListItemAnimator.$r8$lambda$DESw_RADR9OXg_W7WyJ2EAqETMc(transitionParams2, chatMessageCell, valueAnimator);
                             }
                         });
-                        animatorSet.playTogether(valueAnimatorOfFloat7);
+                        animatorSet.playTogether(valueAnimatorOfFloat14);
                     }
-                } else {
-                    animatorSet = animatorSet2;
-                    if (view instanceof ChatActionCell) {
-                        chatActionCell = (ChatActionCell) view;
-                        transitionParams = chatActionCell.getTransitionParams();
-                        if (moveInfoExtended2.animateChangeInternal) {
-                            ValueAnimator valueAnimatorOfFloat8 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                            transitionParams.animateChange = true;
-                            valueAnimatorOfFloat8.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                                @Override
-                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    ChatListItemAnimator.lambda$animateMoveImpl$7(transitionParams, chatActionCell, valueAnimator);
-                                }
-                            });
-                            animatorSet.playTogether(valueAnimatorOfFloat8);
-                        }
+                } else if (view instanceof ChatActionCell) {
+                    chatActionCell = (ChatActionCell) view;
+                    transitionParams = chatActionCell.getTransitionParams();
+                    if (moveInfoExtended2.animateChangeInternal) {
+                        ValueAnimator valueAnimatorOfFloat15 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        transitionParams.animateChange = true;
+                        valueAnimatorOfFloat15.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                ChatListItemAnimator.$r8$lambda$51q0GWi0ObdvhDKFihDT07qKlQQ(transitionParams, chatActionCell, valueAnimator);
+                            }
+                        });
+                        animatorSet.playTogether(valueAnimatorOfFloat15);
                     }
                 }
             }
-            animatorSet = animatorSet2;
+        } else if (chatActivity != null) {
+            view2 = viewHolder.itemView;
+            if (view2 instanceof UserInfoCell) {
+                final UserInfoCell userInfoCell2 = (UserInfoCell) view2;
+                final float translationY3 = userInfoCell2.getTranslationY();
+                ValueAnimator valueAnimatorOfFloat16 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                valueAnimatorOfFloat16.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        float measuredHeight = ((((ChatListItemAnimator.this.recyclerListView.getMeasuredHeight() - ChatListItemAnimator.this.activity.getChatListViewPadding()) - ChatListItemAnimator.this.activity.blurredViewBottomOffset) / 2.0f) - (userInfoCell2.getMeasuredHeight() / 2.0f)) + ChatListItemAnimator.this.activity.getChatListViewPadding();
+                        userInfoCell2.setTranslationY((translationY3 * (1.0f - fFloatValue)) + ((((float) userInfoCell2.getTop()) > measuredHeight ? measuredHeight - userInfoCell2.getTop() : 0.0f) * fFloatValue));
+                    }
+                });
+                animatorSet.playTogether(valueAnimatorOfFloat16);
+            } else {
+                view = viewHolder.itemView;
+                if (view instanceof ChatMessageCell) {
+                    chatMessageCell = (ChatMessageCell) view;
+                    transitionParams2 = chatMessageCell.getTransitionParams();
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(chatMessageCell, (Property<ChatMessageCell, Float>) chatMessageCell.ANIMATION_OFFSET_X, 0.0f));
+                    if (moveInfoExtended2.animateImage) {
+                        chatMessageCell.setImageCoords(moveInfoExtended2.imageX, moveInfoExtended2.imageY, moveInfoExtended2.imageWidth, moveInfoExtended2.imageHeight);
+                        ValueAnimator valueAnimatorOfFloat17 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        if (chatMessageCell.getCurrentMessagesGroup() == null) {
+                            f4 = transitionParams2.captionEnterProgress;
+                        } else {
+                            f4 = chatMessageCell.getCurrentMessagesGroup().transitionParams.captionEnterProgress;
+                        }
+                        if (chatMessageCell.getCurrentMessagesGroup() == null) {
+                            iHasCaptionLayout = chatMessageCell.hasCaptionLayout();
+                        } else {
+                            iHasCaptionLayout = chatMessageCell.getCurrentMessagesGroup().hasCaption;
+                        }
+                        f5 = iHasCaptionLayout;
+                        if (f4 != f5) {
+                            z4 = true;
+                        } else {
+                            z4 = false;
+                        }
+                        if (transitionParams2.animateRadius) {
+                            iArr = new int[4];
+                            c = 0;
+                            while (i5 < 4) {
+                                iArr[i5] = chatMessageCell.getPhotoImage().getRoundRadius()[i5];
+                            }
+                        } else {
+                            c = 0;
+                            iArr = null;
+                        }
+                        moveInfoExtended = moveInfoExtended2;
+                        final int[] iArr4 = iArr;
+                        f = 0.0f;
+                        valueAnimatorOfFloat17.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                ChatListItemAnimator.m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr4, viewHolder, valueAnimator);
+                            }
+                        });
+                        Animator[] animatorArr3 = new Animator[1];
+                        animatorArr3[c] = valueAnimatorOfFloat17;
+                        animatorSet.playTogether(animatorArr3);
+                    } else {
+                        moveInfoExtended = moveInfoExtended2;
+                        f = 0.0f;
+                    }
+                    if (moveInfoExtended.deltaBottom == 0) {
+                        this.recyclerListView.setClipChildren(false);
+                        this.recyclerListView.invalidate();
+                        ValueAnimator valueAnimatorOfFloat18 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                        if (moveInfoExtended.animateBackgroundOnly) {
+                            transitionParams2.toDeltaLeft = -moveInfoExtended.deltaLeft;
+                            transitionParams2.toDeltaRight = -moveInfoExtended.deltaRight;
+                        } else {
+                            transitionParams2.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell.getAnimationOffsetX();
+                            transitionParams2.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell.getAnimationOffsetX();
+                        }
+                        valueAnimatorOfFloat18.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                ChatListItemAnimator.$r8$lambda$8W2CifkKWRLeTD6jc3A2ApMzDzg(moveInfoExtended, transitionParams2, chatMessageCell, valueAnimator);
+                            }
+                        });
+                        z2 = false;
+                        animatorSet.playTogether(valueAnimatorOfFloat18);
+                    } else {
+                        this.recyclerListView.setClipChildren(false);
+                        this.recyclerListView.invalidate();
+                        ValueAnimator valueAnimatorOfFloat19 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                        if (moveInfoExtended.animateBackgroundOnly) {
+                            transitionParams2.toDeltaLeft = -moveInfoExtended.deltaLeft;
+                            transitionParams2.toDeltaRight = -moveInfoExtended.deltaRight;
+                        } else {
+                            transitionParams2.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell.getAnimationOffsetX();
+                            transitionParams2.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell.getAnimationOffsetX();
+                        }
+                        valueAnimatorOfFloat19.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                ChatListItemAnimator.$r8$lambda$8W2CifkKWRLeTD6jc3A2ApMzDzg(moveInfoExtended, transitionParams2, chatMessageCell, valueAnimator);
+                            }
+                        });
+                        z2 = false;
+                        animatorSet.playTogether(valueAnimatorOfFloat19);
+                    }
+                    currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
+                    if (currentMessagesGroup == null) {
+                        moveInfoExtended.animateChangeGroupBackground = z2;
+                    }
+                    if (moveInfoExtended.animateChangeGroupBackground) {
+                        ValueAnimator valueAnimatorOfFloat110 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                        final MessageObject.GroupedMessages.TransitionParams transitionParams5 = currentMessagesGroup.transitionParams;
+                        final RecyclerListView recyclerListView3 = (RecyclerListView) viewHolder.itemView.getParent();
+                        f2 = currentMessagesGroup.transitionParams.captionEnterProgress;
+                        if (currentMessagesGroup.hasCaption) {
+                            f3 = 1.0f;
+                        } else {
+                            f3 = 0.0f;
+                        }
+                        if (f2 != f3) {
+                            z3 = true;
+                        } else {
+                            z3 = false;
+                        }
+                        final MoveInfoExtended moveInfoExtended5 = moveInfoExtended;
+                        valueAnimatorOfFloat110.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                ChatListItemAnimator.$r8$lambda$TDignImIjC3yBCWn8ikobW4ZBn8(transitionParams5, moveInfoExtended5, z3, f2, f3, recyclerListView3, valueAnimator);
+                            }
+                        });
+                        valueAnimatorOfFloat110.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                MessageObject.GroupedMessages.TransitionParams transitionParams6 = transitionParams5;
+                                transitionParams6.backgroundChangeBounds = false;
+                                transitionParams6.drawBackgroundForDeletedItems = false;
+                            }
+                        });
+                        animatorSet.playTogether(valueAnimatorOfFloat110);
+                    }
+                    if (moveInfoExtended.animatePinnedBottom) {
+                        ValueAnimator valueAnimatorOfFloat111 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        valueAnimatorOfFloat111.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                ChatListItemAnimator.$r8$lambda$OQamxP6pcjwMza4x4sJNjqcje74(transitionParams2, chatMessageCell, valueAnimator);
+                            }
+                        });
+                        animatorSet.playTogether(valueAnimatorOfFloat111);
+                    }
+                    if (moveInfoExtended.animateChangeInternal) {
+                        ValueAnimator valueAnimatorOfFloat112 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        transitionParams2.animateChange = true;
+                        valueAnimatorOfFloat112.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                ChatListItemAnimator.$r8$lambda$DESw_RADR9OXg_W7WyJ2EAqETMc(transitionParams2, chatMessageCell, valueAnimator);
+                            }
+                        });
+                        animatorSet.playTogether(valueAnimatorOfFloat112);
+                    }
+                } else if (view instanceof ChatActionCell) {
+                    chatActionCell = (ChatActionCell) view;
+                    transitionParams = chatActionCell.getTransitionParams();
+                    if (moveInfoExtended2.animateChangeInternal) {
+                        ValueAnimator valueAnimatorOfFloat113 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        transitionParams.animateChange = true;
+                        valueAnimatorOfFloat113.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                ChatListItemAnimator.$r8$lambda$51q0GWi0ObdvhDKFihDT07qKlQQ(transitionParams, chatActionCell, valueAnimator);
+                            }
+                        });
+                        animatorSet.playTogether(valueAnimatorOfFloat113);
+                    }
+                }
+            }
         } else {
-            if (chatActivity != null) {
-                view2 = viewHolder.itemView;
-                if (view2 instanceof UserInfoCell) {
-                    final UserInfoCell userInfoCell2 = (UserInfoCell) view2;
-                    final float translationY3 = userInfoCell2.getTranslationY();
-                    ValueAnimator valueAnimatorOfFloat9 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    valueAnimatorOfFloat9.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            float measuredHeight = ((((ChatListItemAnimator.this.recyclerListView.getMeasuredHeight() - ChatListItemAnimator.this.activity.getChatListViewPadding()) - ChatListItemAnimator.this.activity.blurredViewBottomOffset) / 2.0f) - (userInfoCell2.getMeasuredHeight() / 2.0f)) + ChatListItemAnimator.this.activity.getChatListViewPadding();
-                            userInfoCell2.setTranslationY((translationY3 * (1.0f - fFloatValue)) + ((((float) userInfoCell2.getTop()) > measuredHeight ? measuredHeight - userInfoCell2.getTop() : 0.0f) * fFloatValue));
-                        }
-                    });
-                    animatorSet2.playTogether(valueAnimatorOfFloat9);
-                    animatorSet = animatorSet2;
-                }
-            }
             view = viewHolder.itemView;
             if (view instanceof ChatMessageCell) {
                 chatMessageCell = (ChatMessageCell) view;
                 transitionParams2 = chatMessageCell.getTransitionParams();
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(chatMessageCell, (Property<ChatMessageCell, Float>) chatMessageCell.ANIMATION_OFFSET_X, 0.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(chatMessageCell, (Property<ChatMessageCell, Float>) chatMessageCell.ANIMATION_OFFSET_X, 0.0f));
                 if (moveInfoExtended2.animateImage) {
                     chatMessageCell.setImageCoords(moveInfoExtended2.imageX, moveInfoExtended2.imageY, moveInfoExtended2.imageWidth, moveInfoExtended2.imageHeight);
-                    ValueAnimator valueAnimatorOfFloat10 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    ValueAnimator valueAnimatorOfFloat114 = ValueAnimator.ofFloat(0.0f, 1.0f);
                     if (chatMessageCell.getCurrentMessagesGroup() == null) {
-                        f3 = transitionParams2.captionEnterProgress;
+                        f4 = transitionParams2.captionEnterProgress;
                     } else {
-                        f3 = chatMessageCell.getCurrentMessagesGroup().transitionParams.captionEnterProgress;
+                        f4 = chatMessageCell.getCurrentMessagesGroup().transitionParams.captionEnterProgress;
                     }
-                    f4 = f3;
                     if (chatMessageCell.getCurrentMessagesGroup() == null) {
                         iHasCaptionLayout = chatMessageCell.hasCaptionLayout();
                     } else {
@@ -1401,146 +1397,140 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                         z4 = false;
                     }
                     if (transitionParams2.animateRadius) {
-                        iArr2 = new int[4];
-                        while (i < 4) {
-                            iArr2[i] = chatMessageCell.getPhotoImage().getRoundRadius()[i];
+                        iArr = new int[4];
+                        c = 0;
+                        while (i5 < 4) {
+                            iArr[i5] = chatMessageCell.getPhotoImage().getRoundRadius()[i5];
                         }
-                        iArr = iArr2;
                     } else {
+                        c = 0;
                         iArr = null;
                     }
-                    final boolean z6 = z4;
-                    chatMessageCell2 = chatMessageCell;
-                    valueAnimatorOfFloat10.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    moveInfoExtended = moveInfoExtended2;
+                    final int[] iArr5 = iArr;
+                    f = 0.0f;
+                    valueAnimatorOfFloat114.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatListItemAnimator.lambda$animateMoveImpl$2(moveInfoExtended2, transitionParams2, z6, f4, f5, chatMessageCell2, iArr, viewHolder, valueAnimator);
+                            ChatListItemAnimator.m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr5, viewHolder, valueAnimator);
                         }
                     });
-                    animatorSet = animatorSet2;
-                    animatorSet.playTogether(valueAnimatorOfFloat10);
-                    moveInfoExtended = moveInfoExtended2;
+                    Animator[] animatorArr4 = new Animator[1];
+                    animatorArr4[c] = valueAnimatorOfFloat114;
+                    animatorSet.playTogether(animatorArr4);
                 } else {
-                    chatMessageCell2 = chatMessageCell;
-                    animatorSet = animatorSet2;
                     moveInfoExtended = moveInfoExtended2;
+                    f = 0.0f;
                 }
                 if (moveInfoExtended.deltaBottom == 0) {
-                    transitionParams3 = transitionParams2;
                     this.recyclerListView.setClipChildren(false);
                     this.recyclerListView.invalidate();
-                    ValueAnimator valueAnimatorOfFloat11 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                    ValueAnimator valueAnimatorOfFloat115 = ValueAnimator.ofFloat(1.0f, 0.0f);
                     if (moveInfoExtended.animateBackgroundOnly) {
-                        transitionParams3.toDeltaLeft = -moveInfoExtended.deltaLeft;
-                        transitionParams3.toDeltaRight = -moveInfoExtended.deltaRight;
+                        transitionParams2.toDeltaLeft = -moveInfoExtended.deltaLeft;
+                        transitionParams2.toDeltaRight = -moveInfoExtended.deltaRight;
                     } else {
-                        transitionParams3.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell2.getAnimationOffsetX();
-                        transitionParams3.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell2.getAnimationOffsetX();
+                        transitionParams2.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell.getAnimationOffsetX();
+                        transitionParams2.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell.getAnimationOffsetX();
                     }
-                    chatMessageCell3 = chatMessageCell2;
-                    valueAnimatorOfFloat11.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    valueAnimatorOfFloat115.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatListItemAnimator.lambda$animateMoveImpl$3(moveInfoExtended, transitionParams3, chatMessageCell3, valueAnimator);
+                            ChatListItemAnimator.$r8$lambda$8W2CifkKWRLeTD6jc3A2ApMzDzg(moveInfoExtended, transitionParams2, chatMessageCell, valueAnimator);
                         }
                     });
                     z2 = false;
-                    animatorSet.playTogether(valueAnimatorOfFloat11);
+                    animatorSet.playTogether(valueAnimatorOfFloat115);
                 } else {
-                    transitionParams3 = transitionParams2;
                     this.recyclerListView.setClipChildren(false);
                     this.recyclerListView.invalidate();
-                    ValueAnimator valueAnimatorOfFloat12 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                    ValueAnimator valueAnimatorOfFloat116 = ValueAnimator.ofFloat(1.0f, 0.0f);
                     if (moveInfoExtended.animateBackgroundOnly) {
-                        transitionParams3.toDeltaLeft = -moveInfoExtended.deltaLeft;
-                        transitionParams3.toDeltaRight = -moveInfoExtended.deltaRight;
+                        transitionParams2.toDeltaLeft = -moveInfoExtended.deltaLeft;
+                        transitionParams2.toDeltaRight = -moveInfoExtended.deltaRight;
                     } else {
-                        transitionParams3.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell2.getAnimationOffsetX();
-                        transitionParams3.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell2.getAnimationOffsetX();
+                        transitionParams2.toDeltaLeft = (-moveInfoExtended.deltaLeft) - chatMessageCell.getAnimationOffsetX();
+                        transitionParams2.toDeltaRight = (-moveInfoExtended.deltaRight) - chatMessageCell.getAnimationOffsetX();
                     }
-                    chatMessageCell3 = chatMessageCell2;
-                    valueAnimatorOfFloat12.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    valueAnimatorOfFloat116.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatListItemAnimator.lambda$animateMoveImpl$3(moveInfoExtended, transitionParams3, chatMessageCell3, valueAnimator);
+                            ChatListItemAnimator.$r8$lambda$8W2CifkKWRLeTD6jc3A2ApMzDzg(moveInfoExtended, transitionParams2, chatMessageCell, valueAnimator);
                         }
                     });
                     z2 = false;
-                    animatorSet.playTogether(valueAnimatorOfFloat12);
+                    animatorSet.playTogether(valueAnimatorOfFloat116);
                 }
-                currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup();
+                currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
                 if (currentMessagesGroup == null) {
                     moveInfoExtended.animateChangeGroupBackground = z2;
                 }
                 if (moveInfoExtended.animateChangeGroupBackground) {
-                    ValueAnimator valueAnimatorOfFloat13 = ValueAnimator.ofFloat(1.0f, 0.0f);
-                    final MessageObject.GroupedMessages.TransitionParams transitionParams5 = currentMessagesGroup.transitionParams;
-                    final RecyclerListView recyclerListView2 = (RecyclerListView) viewHolder.itemView.getParent();
-                    f = currentMessagesGroup.transitionParams.captionEnterProgress;
+                    ValueAnimator valueAnimatorOfFloat117 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                    final MessageObject.GroupedMessages.TransitionParams transitionParams6 = currentMessagesGroup.transitionParams;
+                    final RecyclerListView recyclerListView4 = (RecyclerListView) viewHolder.itemView.getParent();
+                    f2 = currentMessagesGroup.transitionParams.captionEnterProgress;
                     if (currentMessagesGroup.hasCaption) {
-                        f2 = 1.0f;
+                        f3 = 1.0f;
                     } else {
-                        f2 = 0.0f;
+                        f3 = 0.0f;
                     }
-                    if (f != f2) {
+                    if (f2 != f3) {
                         z3 = true;
                     } else {
                         z3 = false;
                     }
-                    final MoveInfoExtended moveInfoExtended4 = moveInfoExtended;
-                    valueAnimatorOfFloat13.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    final MoveInfoExtended moveInfoExtended6 = moveInfoExtended;
+                    valueAnimatorOfFloat117.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatListItemAnimator.lambda$animateMoveImpl$4(transitionParams5, moveInfoExtended4, z3, f, f2, recyclerListView2, valueAnimator);
+                            ChatListItemAnimator.$r8$lambda$TDignImIjC3yBCWn8ikobW4ZBn8(transitionParams6, moveInfoExtended6, z3, f2, f3, recyclerListView4, valueAnimator);
                         }
                     });
-                    valueAnimatorOfFloat13.addListener(new AnimatorListenerAdapter() {
+                    valueAnimatorOfFloat117.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
-                            MessageObject.GroupedMessages.TransitionParams transitionParams6 = transitionParams5;
-                            transitionParams6.backgroundChangeBounds = false;
-                            transitionParams6.drawBackgroundForDeletedItems = false;
+                            MessageObject.GroupedMessages.TransitionParams transitionParams7 = transitionParams6;
+                            transitionParams7.backgroundChangeBounds = false;
+                            transitionParams7.drawBackgroundForDeletedItems = false;
                         }
                     });
-                    animatorSet.playTogether(valueAnimatorOfFloat13);
+                    animatorSet.playTogether(valueAnimatorOfFloat117);
                 }
                 if (moveInfoExtended.animatePinnedBottom) {
-                    ValueAnimator valueAnimatorOfFloat14 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    valueAnimatorOfFloat14.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat118 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    valueAnimatorOfFloat118.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatListItemAnimator.lambda$animateMoveImpl$5(transitionParams3, chatMessageCell3, valueAnimator);
+                            ChatListItemAnimator.$r8$lambda$OQamxP6pcjwMza4x4sJNjqcje74(transitionParams2, chatMessageCell, valueAnimator);
                         }
                     });
-                    animatorSet.playTogether(valueAnimatorOfFloat14);
+                    animatorSet.playTogether(valueAnimatorOfFloat118);
                 }
                 if (moveInfoExtended.animateChangeInternal) {
-                    ValueAnimator valueAnimatorOfFloat15 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    transitionParams3.animateChange = true;
-                    valueAnimatorOfFloat15.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    ValueAnimator valueAnimatorOfFloat119 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    transitionParams2.animateChange = true;
+                    valueAnimatorOfFloat119.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatListItemAnimator.lambda$animateMoveImpl$6(transitionParams3, chatMessageCell3, valueAnimator);
+                            ChatListItemAnimator.$r8$lambda$DESw_RADR9OXg_W7WyJ2EAqETMc(transitionParams2, chatMessageCell, valueAnimator);
                         }
                     });
-                    animatorSet.playTogether(valueAnimatorOfFloat15);
+                    animatorSet.playTogether(valueAnimatorOfFloat119);
                 }
-            } else {
-                animatorSet = animatorSet2;
-                if (view instanceof ChatActionCell) {
-                    chatActionCell = (ChatActionCell) view;
-                    transitionParams = chatActionCell.getTransitionParams();
-                    if (moveInfoExtended2.animateChangeInternal) {
-                        ValueAnimator valueAnimatorOfFloat16 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        transitionParams.animateChange = true;
-                        valueAnimatorOfFloat16.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ChatListItemAnimator.lambda$animateMoveImpl$7(transitionParams, chatActionCell, valueAnimator);
-                            }
-                        });
-                        animatorSet.playTogether(valueAnimatorOfFloat16);
-                    }
+            } else if (view instanceof ChatActionCell) {
+                chatActionCell = (ChatActionCell) view;
+                transitionParams = chatActionCell.getTransitionParams();
+                if (moveInfoExtended2.animateChangeInternal) {
+                    ValueAnimator valueAnimatorOfFloat1110 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    transitionParams.animateChange = true;
+                    valueAnimatorOfFloat1110.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            ChatListItemAnimator.$r8$lambda$51q0GWi0ObdvhDKFihDT07qKlQQ(transitionParams, chatActionCell, valueAnimator);
+                        }
+                    });
+                    animatorSet.playTogether(valueAnimatorOfFloat1110);
                 }
             }
         }
@@ -1561,7 +1551,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
 
             @Override
             public void onAnimationCancel(Animator animator) {
-                if (i5 != 0) {
+                if (i4 != 0) {
                     view3.setTranslationY(0.0f);
                 }
             }
@@ -1572,12 +1562,12 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                 ChatListItemAnimator.this.restoreTransitionParams(viewHolder.itemView);
                 View view5 = viewHolder.itemView;
                 if (view5 instanceof ChatMessageCell) {
-                    ChatMessageCell chatMessageCell4 = (ChatMessageCell) view5;
-                    if (chatMessageCell4.makeVisibleAfterChange) {
-                        chatMessageCell4.makeVisibleAfterChange = false;
-                        chatMessageCell4.setVisibility(0);
+                    ChatMessageCell chatMessageCell2 = (ChatMessageCell) view5;
+                    if (chatMessageCell2.makeVisibleAfterChange) {
+                        chatMessageCell2.makeVisibleAfterChange = false;
+                        chatMessageCell2.setVisibility(0);
                     }
-                    MessageObject.GroupedMessages currentMessagesGroup2 = chatMessageCell4.getCurrentMessagesGroup();
+                    MessageObject.GroupedMessages currentMessagesGroup2 = chatMessageCell2.getCurrentMessagesGroup();
                     if (currentMessagesGroup2 != null) {
                         currentMessagesGroup2.transitionParams.reset();
                     }
@@ -1592,7 +1582,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         this.animators.put(viewHolder, animatorSet);
     }
 
-    public static void lambda$animateMoveImpl$2(MoveInfoExtended moveInfoExtended, ChatMessageCell.TransitionParams transitionParams, boolean z, float f, float f2, ChatMessageCell chatMessageCell, int[] iArr, RecyclerView.ViewHolder viewHolder, ValueAnimator valueAnimator) {
+    public static void m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(MoveInfoExtended moveInfoExtended, ChatMessageCell.TransitionParams transitionParams, boolean z, float f, float f2, ChatMessageCell chatMessageCell, int[] iArr, RecyclerView.ViewHolder viewHolder, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float f3 = 1.0f - fFloatValue;
         float f4 = (moveInfoExtended.imageX * f3) + (transitionParams.animateToImageX * fFloatValue);
@@ -1616,7 +1606,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         viewHolder.itemView.invalidate();
     }
 
-    public static void lambda$animateMoveImpl$3(MoveInfoExtended moveInfoExtended, ChatMessageCell.TransitionParams transitionParams, ChatMessageCell chatMessageCell, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$8W2CifkKWRLeTD6jc3A2ApMzDzg(MoveInfoExtended moveInfoExtended, ChatMessageCell.TransitionParams transitionParams, ChatMessageCell chatMessageCell, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         if (moveInfoExtended.animateBackgroundOnly) {
             transitionParams.deltaLeft = (-moveInfoExtended.deltaLeft) * fFloatValue;
@@ -1632,7 +1622,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         chatMessageCell.invalidate();
     }
 
-    public static void lambda$animateMoveImpl$4(MessageObject.GroupedMessages.TransitionParams transitionParams, MoveInfoExtended moveInfoExtended, boolean z, float f, float f2, RecyclerListView recyclerListView, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$TDignImIjC3yBCWn8ikobW4ZBn8(MessageObject.GroupedMessages.TransitionParams transitionParams, MoveInfoExtended moveInfoExtended, boolean z, float f, float f2, RecyclerListView recyclerListView, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         transitionParams.offsetTop = moveInfoExtended.groupOffsetTop * fFloatValue;
         transitionParams.offsetBottom = moveInfoExtended.groupOffsetBottom * fFloatValue;
@@ -1646,17 +1636,17 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         }
     }
 
-    public static void lambda$animateMoveImpl$5(ChatMessageCell.TransitionParams transitionParams, ChatMessageCell chatMessageCell, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$OQamxP6pcjwMza4x4sJNjqcje74(ChatMessageCell.TransitionParams transitionParams, ChatMessageCell chatMessageCell, ValueAnimator valueAnimator) {
         transitionParams.changePinnedBottomProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         chatMessageCell.invalidate();
     }
 
-    public static void lambda$animateMoveImpl$6(ChatMessageCell.TransitionParams transitionParams, ChatMessageCell chatMessageCell, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$DESw_RADR9OXg_W7WyJ2EAqETMc(ChatMessageCell.TransitionParams transitionParams, ChatMessageCell chatMessageCell, ValueAnimator valueAnimator) {
         transitionParams.animateChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         chatMessageCell.invalidate();
     }
 
-    public static void lambda$animateMoveImpl$7(ChatActionCell.TransitionParams transitionParams, ChatActionCell chatActionCell, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$51q0GWi0ObdvhDKFihDT07qKlQQ(ChatActionCell.TransitionParams transitionParams, ChatActionCell chatActionCell, ValueAnimator valueAnimator) {
         transitionParams.animateChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         chatActionCell.invalidate();
     }
@@ -1802,9 +1792,14 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
 
     private void cancelAnimators() {
         ThanosEffect thanosEffect;
-        ArrayList<Animator> arrayList = new ArrayList(this.animators.values());
+        ArrayList arrayList = new ArrayList(this.animators.values());
         this.animators.clear();
-        for (Animator animator : arrayList) {
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Animator animator = (Animator) obj;
             if (animator != null) {
                 animator.cancel();
             }
@@ -1872,9 +1867,13 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("end animations");
         }
-        Iterator it = this.willChangedGroups.iterator();
-        while (it.hasNext()) {
-            ((MessageObject.GroupedMessages) it.next()).transitionParams.isNewGroup = false;
+        ArrayList arrayList = this.willChangedGroups;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((MessageObject.GroupedMessages) obj).transitionParams.isNewGroup = false;
         }
         this.willChangedGroups.clear();
         cancelAnimators();
@@ -1884,59 +1883,59 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         }
         this.greetingsSticker = null;
         this.chatGreetingsView = null;
-        for (int size = this.mPendingMoves.size() - 1; size >= 0; size--) {
-            DefaultItemAnimator.MoveInfo moveInfo = (DefaultItemAnimator.MoveInfo) this.mPendingMoves.get(size);
+        for (int size2 = this.mPendingMoves.size() - 1; size2 >= 0; size2--) {
+            DefaultItemAnimator.MoveInfo moveInfo = (DefaultItemAnimator.MoveInfo) this.mPendingMoves.get(size2);
             restoreTransitionParams(moveInfo.holder.itemView);
             dispatchMoveFinished(moveInfo.holder);
-            this.mPendingMoves.remove(size);
+            this.mPendingMoves.remove(size2);
         }
-        for (int size2 = this.mPendingRemovals.size() - 1; size2 >= 0; size2--) {
-            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) this.mPendingRemovals.get(size2);
+        for (int size3 = this.mPendingRemovals.size() - 1; size3 >= 0; size3--) {
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) this.mPendingRemovals.get(size3);
             restoreTransitionParams(viewHolder.itemView);
             dispatchRemoveFinished(viewHolder);
-            this.mPendingRemovals.remove(size2);
+            this.mPendingRemovals.remove(size3);
         }
-        for (int size3 = this.mPendingAdditions.size() - 1; size3 >= 0; size3--) {
-            RecyclerView.ViewHolder viewHolder2 = (RecyclerView.ViewHolder) this.mPendingAdditions.get(size3);
+        for (int size4 = this.mPendingAdditions.size() - 1; size4 >= 0; size4--) {
+            RecyclerView.ViewHolder viewHolder2 = (RecyclerView.ViewHolder) this.mPendingAdditions.get(size4);
             restoreTransitionParams(viewHolder2.itemView);
             dispatchAddFinished(viewHolder2);
-            this.mPendingAdditions.remove(size3);
+            this.mPendingAdditions.remove(size4);
         }
-        for (int size4 = this.mPendingChanges.size() - 1; size4 >= 0; size4--) {
-            endChangeAnimationIfNecessary((DefaultItemAnimator.ChangeInfo) this.mPendingChanges.get(size4));
+        for (int size5 = this.mPendingChanges.size() - 1; size5 >= 0; size5--) {
+            endChangeAnimationIfNecessary((DefaultItemAnimator.ChangeInfo) this.mPendingChanges.get(size5));
         }
         this.mPendingChanges.clear();
         if (isRunning()) {
-            for (int size5 = this.mMovesList.size() - 1; size5 >= 0; size5--) {
-                ArrayList arrayList = (ArrayList) this.mMovesList.get(size5);
-                for (int size6 = arrayList.size() - 1; size6 >= 0; size6--) {
-                    DefaultItemAnimator.MoveInfo moveInfo2 = (DefaultItemAnimator.MoveInfo) arrayList.get(size6);
+            for (int size6 = this.mMovesList.size() - 1; size6 >= 0; size6--) {
+                ArrayList arrayList2 = (ArrayList) this.mMovesList.get(size6);
+                for (int size7 = arrayList2.size() - 1; size7 >= 0; size7--) {
+                    DefaultItemAnimator.MoveInfo moveInfo2 = (DefaultItemAnimator.MoveInfo) arrayList2.get(size7);
                     restoreTransitionParams(moveInfo2.holder.itemView);
                     dispatchMoveFinished(moveInfo2.holder);
-                    arrayList.remove(size6);
-                    if (arrayList.isEmpty()) {
-                        this.mMovesList.remove(arrayList);
+                    arrayList2.remove(size7);
+                    if (arrayList2.isEmpty()) {
+                        this.mMovesList.remove(arrayList2);
                     }
                 }
             }
-            for (int size7 = this.mAdditionsList.size() - 1; size7 >= 0; size7--) {
-                ArrayList arrayList2 = (ArrayList) this.mAdditionsList.get(size7);
-                for (int size8 = arrayList2.size() - 1; size8 >= 0; size8--) {
-                    RecyclerView.ViewHolder viewHolder3 = (RecyclerView.ViewHolder) arrayList2.get(size8);
+            for (int size8 = this.mAdditionsList.size() - 1; size8 >= 0; size8--) {
+                ArrayList arrayList3 = (ArrayList) this.mAdditionsList.get(size8);
+                for (int size9 = arrayList3.size() - 1; size9 >= 0; size9--) {
+                    RecyclerView.ViewHolder viewHolder3 = (RecyclerView.ViewHolder) arrayList3.get(size9);
                     restoreTransitionParams(viewHolder3.itemView);
                     dispatchAddFinished(viewHolder3);
-                    arrayList2.remove(size8);
-                    if (arrayList2.isEmpty()) {
-                        this.mAdditionsList.remove(arrayList2);
+                    arrayList3.remove(size9);
+                    if (arrayList3.isEmpty()) {
+                        this.mAdditionsList.remove(arrayList3);
                     }
                 }
             }
-            for (int size9 = this.mChangesList.size() - 1; size9 >= 0; size9--) {
-                ArrayList arrayList3 = (ArrayList) this.mChangesList.get(size9);
-                for (int size10 = arrayList3.size() - 1; size10 >= 0; size10--) {
-                    endChangeAnimationIfNecessary((DefaultItemAnimator.ChangeInfo) arrayList3.get(size10));
-                    if (arrayList3.isEmpty()) {
-                        this.mChangesList.remove(arrayList3);
+            for (int size10 = this.mChangesList.size() - 1; size10 >= 0; size10--) {
+                ArrayList arrayList4 = (ArrayList) this.mChangesList.get(size10);
+                for (int size11 = arrayList4.size() - 1; size11 >= 0; size11--) {
+                    endChangeAnimationIfNecessary((DefaultItemAnimator.ChangeInfo) arrayList4.get(size11));
+                    if (arrayList4.isEmpty()) {
+                        this.mChangesList.remove(arrayList4);
                     }
                 }
             }
@@ -2014,6 +2013,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
     }
 
     public void animateAddImpl(final RecyclerView.ViewHolder viewHolder) {
+        char c;
         boolean z;
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("animate add impl");
@@ -2049,6 +2049,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                 float imageX = chatMessageCell2.getPhotoImage().getImageX() + this.recyclerListView.getX() + chatMessageCell2.getX();
                 float imageY = chatMessageCell2.getPhotoImage().getImageY() + this.recyclerListView.getY() + chatMessageCell2.getY();
                 final float width = this.chatGreetingsView.stickerToSendView.getWidth();
+                c = 0;
                 final float height = this.chatGreetingsView.stickerToSendView.getHeight();
                 final float imageWidth = chatMessageCell2.getPhotoImage().getImageWidth();
                 final float imageHeight = chatMessageCell2.getPhotoImage().getImageHeight();
@@ -2063,7 +2064,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ChatListItemAnimator.lambda$animateAddImpl$8(chatMessageCell2, imageX2, f, imageY2, f2, width, imageWidth, height, imageHeight, valueAnimator);
+                        ChatListItemAnimator.$r8$lambda$jgyXUoF7EMpTRfhVSeeH1Kt7DMA(chatMessageCell2, imageX2, f, imageY2, f2, width, imageWidth, height, imageHeight, valueAnimator);
                     }
                 });
                 valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -2081,6 +2082,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                 jMax = jMax;
                 z = false;
             } else {
+                c = 0;
                 MessageObject.GroupedMessages currentMessagesGroup = ((ChatMessageCell) view).getCurrentMessagesGroup();
                 if (currentMessagesGroup == null) {
                     jMax = jMax;
@@ -2098,12 +2100,30 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                 }
             }
             view.setAlpha(0.0f);
-            animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, view.getAlpha(), 1.0f));
+            Property property = View.ALPHA;
+            float[] fArr = new float[2];
+            fArr[c] = view.getAlpha();
+            fArr[1] = 1.0f;
+            Animator[] animatorArr = new Animator[1];
+            animatorArr[c] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
+            animatorSet.playTogether(animatorArr);
             if (z) {
                 view.setScaleX(0.9f);
                 view.setScaleY(0.9f);
-                animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, view.getScaleY(), 1.0f));
-                animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, view.getScaleX(), 1.0f));
+                Property property2 = View.SCALE_Y;
+                float[] fArr2 = new float[2];
+                fArr2[c] = view.getScaleY();
+                fArr2[1] = 1.0f;
+                Animator[] animatorArr2 = new Animator[1];
+                animatorArr2[c] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, fArr2);
+                animatorSet.playTogether(animatorArr2);
+                Property property3 = View.SCALE_X;
+                float[] fArr3 = new float[2];
+                fArr3[c] = view.getScaleX();
+                fArr3[1] = 1.0f;
+                Animator[] animatorArr3 = new Animator[1];
+                animatorArr3[c] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property3, fArr3);
+                animatorSet.playTogether(animatorArr3);
             } else {
                 view.setScaleX(1.0f);
                 view.setScaleY(1.0f);
@@ -2143,14 +2163,33 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
             this.animators.put(viewHolder, animatorSet);
             animatorSet.start();
         }
+        c = 0;
         z = true;
         view.setAlpha(0.0f);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, view.getAlpha(), 1.0f));
+        Property property4 = View.ALPHA;
+        float[] fArr4 = new float[2];
+        fArr4[c] = view.getAlpha();
+        fArr4[1] = 1.0f;
+        Animator[] animatorArr4 = new Animator[1];
+        animatorArr4[c] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property4, fArr4);
+        animatorSet.playTogether(animatorArr4);
         if (z) {
             view.setScaleX(0.9f);
             view.setScaleY(0.9f);
-            animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, view.getScaleY(), 1.0f));
-            animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, view.getScaleX(), 1.0f));
+            Property property5 = View.SCALE_Y;
+            float[] fArr5 = new float[2];
+            fArr5[c] = view.getScaleY();
+            fArr5[1] = 1.0f;
+            Animator[] animatorArr5 = new Animator[1];
+            animatorArr5[c] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property5, fArr5);
+            animatorSet.playTogether(animatorArr5);
+            Property property6 = View.SCALE_X;
+            float[] fArr6 = new float[2];
+            fArr6[c] = view.getScaleX();
+            fArr6[1] = 1.0f;
+            Animator[] animatorArr6 = new Animator[1];
+            animatorArr6[c] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property6, fArr6);
+            animatorSet.playTogether(animatorArr6);
         } else {
             view.setScaleX(1.0f);
             view.setScaleY(1.0f);
@@ -2191,7 +2230,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         animatorSet.start();
     }
 
-    public static void lambda$animateAddImpl$8(ChatMessageCell chatMessageCell, float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$jgyXUoF7EMpTRfhVSeeH1Kt7DMA(ChatMessageCell chatMessageCell, float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         chatMessageCell.getTransitionParams().animateChangeProgress = fFloatValue;
         if (chatMessageCell.getTransitionParams().animateChangeProgress > 1.0f) {
@@ -2218,7 +2257,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
             thanosEffect.animate(view, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$animateRemoveImpl$9(view, viewHolder);
+                    ChatListItemAnimator.m5016$r8$lambda$0Fw2DeKdCu1fL7NSC9LfaHUiJ8(this.f$0, view, viewHolder);
                 }
             });
             this.thanosViews.add(view);
@@ -2247,13 +2286,14 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         this.recyclerListView.stopScroll();
     }
 
-    public void lambda$animateRemoveImpl$9(View view, RecyclerView.ViewHolder viewHolder) {
+    public static void m5016$r8$lambda$0Fw2DeKdCu1fL7NSC9LfaHUiJ8(ChatListItemAnimator chatListItemAnimator, View view, RecyclerView.ViewHolder viewHolder) {
+        chatListItemAnimator.getClass();
         view.setVisibility(0);
-        if (this.mRemoveAnimations.remove(viewHolder)) {
-            dispatchRemoveFinished(viewHolder);
-            dispatchFinishedWhenDone();
+        if (chatListItemAnimator.mRemoveAnimations.remove(viewHolder)) {
+            chatListItemAnimator.dispatchRemoveFinished(viewHolder);
+            chatListItemAnimator.dispatchFinishedWhenDone();
         }
-        this.thanosViews.remove(view);
+        chatListItemAnimator.thanosViews.remove(view);
     }
 
     private void animateRemoveGroupImpl(final ArrayList arrayList) {
@@ -2272,24 +2312,25 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         thanosEffect.animateGroup(arrayList2, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$animateRemoveGroupImpl$10(arrayList2, arrayList);
+                ChatListItemAnimator.m5017$r8$lambda$Gr_Ym_CfugNbnWQr848cwBmg(this.f$0, arrayList2, arrayList);
             }
         });
         this.thanosViews.add((View) arrayList2.get(0));
         this.recyclerListView.stopScroll();
     }
 
-    public void lambda$animateRemoveGroupImpl$10(ArrayList arrayList, ArrayList arrayList2) {
+    public static void m5017$r8$lambda$Gr_Ym_CfugNbnWQr848cwBmg(ChatListItemAnimator chatListItemAnimator, ArrayList arrayList, ArrayList arrayList2) {
+        chatListItemAnimator.getClass();
         for (int i = 0; i < arrayList.size(); i++) {
             ((View) arrayList.get(i)).setVisibility(0);
         }
-        if (this.mRemoveAnimations.removeAll(arrayList2)) {
+        if (chatListItemAnimator.mRemoveAnimations.removeAll(arrayList2)) {
             for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-                dispatchRemoveFinished((RecyclerView.ViewHolder) arrayList2.get(i2));
+                chatListItemAnimator.dispatchRemoveFinished((RecyclerView.ViewHolder) arrayList2.get(i2));
             }
-            dispatchFinishedWhenDone();
+            chatListItemAnimator.dispatchFinishedWhenDone();
         }
-        this.thanosViews.removeAll(arrayList);
+        chatListItemAnimator.thanosViews.removeAll(arrayList);
     }
 
     public void setShouldAnimateEnterFromBottom(boolean z) {

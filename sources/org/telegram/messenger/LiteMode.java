@@ -273,13 +273,13 @@ public class LiteMode {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LiteMode.lambda$onPowerSaverApplied$0(z);
+                    LiteMode.$r8$lambda$wUa83SN3wAsqe5yQuuAFmvxX3L4(z);
                 }
             });
         }
     }
 
-    public static void lambda$onPowerSaverApplied$0(boolean z) {
+    public static void $r8$lambda$wUa83SN3wAsqe5yQuuAFmvxX3L4(boolean z) {
         for (Utilities.Callback<Boolean> callback : onPowerSaverAppliedListeners) {
             if (callback != null) {
                 callback.run(Boolean.valueOf(z));

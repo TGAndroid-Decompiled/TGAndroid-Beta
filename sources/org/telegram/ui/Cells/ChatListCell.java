@@ -22,7 +22,7 @@ public abstract class ChatListCell extends LinearLayout {
 
     protected abstract void didSelectChatType(boolean z);
 
-    private class ListView extends FrameLayout {
+    class ListView extends FrameLayout {
         private RadioButton button;
         private boolean isThreeLines;
         private RectF rect;
@@ -125,18 +125,18 @@ public abstract class ChatListCell extends LinearLayout {
             this.listView[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(z, view);
+                    ChatListCell.m1477$r8$lambda$3Cqz9x1Ry6vrpGHY_qD7qAvgEg(this.f$0, z, view);
                 }
             });
             i++;
         }
     }
 
-    public void lambda$new$0(boolean z, View view) {
+    public static void m1477$r8$lambda$3Cqz9x1Ry6vrpGHY_qD7qAvgEg(ChatListCell chatListCell, boolean z, View view) {
         for (int i = 0; i < 2; i++) {
-            this.listView[i].button.setChecked(this.listView[i] == view, true);
+            chatListCell.listView[i].button.setChecked(chatListCell.listView[i] == view, true);
         }
-        didSelectChatType(z);
+        chatListCell.didSelectChatType(z);
     }
 
     @Override

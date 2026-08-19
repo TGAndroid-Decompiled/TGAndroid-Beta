@@ -109,6 +109,7 @@ public class FragmentSpansContainer extends ScrollView {
         @Override
         protected void onMeasure(int i, int i2) {
             int iMin;
+            char c;
             int childCount = getChildCount();
             int size = View.MeasureSpec.getSize(i);
             int iDp = size - AndroidUtilities.dp(26.0f);
@@ -117,10 +118,9 @@ public class FragmentSpansContainer extends ScrollView {
             if (!this.animationStarted) {
                 this.maxTy = 0;
             }
-            int i3 = 0;
             int measuredWidth = 0;
             int measuredWidth2 = 0;
-            while (i3 < childCount) {
+            for (int i3 = 0; i3 < childCount; i3++) {
                 View childAt = getChildAt(i3);
                 if (childAt instanceof GroupCreateSpan) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
@@ -134,37 +134,38 @@ public class FragmentSpansContainer extends ScrollView {
                         measuredWidth2 = 0;
                     }
                     int iDp4 = AndroidUtilities.dp(13.0f) + measuredWidth;
-                    if (this.animationStarted) {
-                        childCount = childCount;
-                    } else if (zContains) {
-                        childAt.setTranslationX(AndroidUtilities.dp(13.0f) + measuredWidth2);
-                        childAt.setTranslationY(iDp3);
-                        childCount = childCount;
-                    } else if (!this.removingSpans.isEmpty()) {
-                        float f = iDp4;
-                        if (childAt.getTranslationX() != f) {
-                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_X, f));
+                    if (!this.animationStarted) {
+                        if (zContains) {
+                            childAt.setTranslationX(AndroidUtilities.dp(13.0f) + measuredWidth2);
+                            childAt.setTranslationY(iDp3);
+                        } else if (!this.removingSpans.isEmpty()) {
+                            float f = iDp4;
+                            if (childAt.getTranslationX() != f) {
+                                c = 0;
+                                this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_X, f));
+                            } else {
+                                c = 0;
+                            }
+                            float f2 = iDp2;
+                            if (childAt.getTranslationY() != f2) {
+                                ArrayList arrayList = this.animators;
+                                Property property = View.TRANSLATION_Y;
+                                float[] fArr = new float[1];
+                                fArr[c] = f2;
+                                arrayList.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property, fArr));
+                            }
+                            this.maxTy = Math.max(this.maxTy, iDp2);
+                        } else {
+                            childAt.setTranslationX(iDp4);
+                            childAt.setTranslationY(iDp2);
+                            this.maxTy = Math.max(this.maxTy, iDp2);
                         }
-                        float f2 = iDp2;
-                        if (childAt.getTranslationY() != f2) {
-                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_Y, f2));
-                        }
-                        this.maxTy = Math.max(this.maxTy, iDp2);
-                    } else {
-                        childCount = childCount;
-                        childAt.setTranslationX(iDp4);
-                        childAt.setTranslationY(iDp2);
-                        this.maxTy = Math.max(this.maxTy, iDp2);
                     }
                     if (!zContains) {
                         measuredWidth += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
                     }
                     measuredWidth2 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
-                } else {
-                    childCount = childCount;
                 }
-                i3++;
-                childCount = childCount;
             }
             if (AndroidUtilities.isTablet()) {
                 iMin = AndroidUtilities.dp(372.0f) / 3;

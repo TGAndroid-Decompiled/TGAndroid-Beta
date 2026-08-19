@@ -102,7 +102,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             Collections.sort(this.onlineContacts, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return ContactsAdapter.lambda$sortOnlineContacts$0(messagesController, currentTime, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
+                    return ContactsAdapter.$r8$lambda$ELiMIR3niEAcM_m7UV_uqfYJfuE(messagesController, currentTime, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
                 }
             });
             notifyDataSetChanged();
@@ -111,7 +111,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         }
     }
 
-    public static int lambda$sortOnlineContacts$0(MessagesController messagesController, int i, TLRPC.TL_contact tL_contact, TLRPC.TL_contact tL_contact2) {
+    public static int $r8$lambda$ELiMIR3niEAcM_m7UV_uqfYJfuE(MessagesController messagesController, int i, TLRPC.TL_contact tL_contact, TLRPC.TL_contact tL_contact2) {
         int i2;
         int i3;
         TLRPC.User user = messagesController.getUser(Long.valueOf(tL_contact2.user_id));
@@ -140,22 +140,37 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 i3 = 0;
             }
         }
-        if (i2 > 0 && i3 > 0) {
+        if (i2 <= 0 || i3 <= 0) {
+            if (i2 >= 0 || i3 >= 0) {
+                if (i2 < 0 && i3 > 0) {
+                    return -1;
+                }
+                if (i2 == 0 && i3 != 0) {
+                    return -1;
+                }
+                if (i3 < 0 && i2 > 0) {
+                    return 1;
+                }
+                if (i3 == 0 && i2 != 0) {
+                    return 1;
+                }
+            } else {
+                if (i2 > i3) {
+                    return 1;
+                }
+                if (i2 < i3) {
+                    return -1;
+                }
+            }
+        } else {
             if (i2 > i3) {
                 return 1;
             }
-            return i2 < i3 ? -1 : 0;
-        }
-        if (i2 < 0 && i3 < 0) {
-            if (i2 > i3) {
-                return 1;
+            if (i2 < i3) {
+                return -1;
             }
-            return i2 < i3 ? -1 : 0;
         }
-        if ((i2 >= 0 || i3 <= 0) && (i2 != 0 || i3 == 0)) {
-            return ((i3 >= 0 || i2 <= 0) && (i3 != 0 || i2 == 0)) ? 0 : 1;
-        }
-        return -1;
+        return 0;
     }
 
     @Override
@@ -358,7 +373,6 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
 
     @Override
     public View getSectionHeaderView(int i, View view) {
-        int i2;
         if (this.onlyUsers == 2) {
             HashMap<String, ArrayList<TLRPC.TL_contact>> map = ContactsController.getInstance(this.currentAccount).usersMutualSectionsDict;
         } else {
@@ -371,32 +385,41 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         LetterSectionCell letterSectionCell = (LetterSectionCell) view;
         if (this.sortType == 2 || this.disableSections || this.isEmpty) {
             letterSectionCell.setLetter("");
-        } else if (this.onlyUsers != 0 && !this.isAdmin) {
+            return view;
+        }
+        if (this.onlyUsers != 0 && !this.isAdmin) {
             if (i < arrayList.size()) {
                 letterSectionCell.setLetter(arrayList.get(i));
-            } else {
-                letterSectionCell.setLetter("");
+                return view;
             }
-        } else if (i != 0 && (i2 = i - 1) < arrayList.size()) {
-            letterSectionCell.setLetter(arrayList.get(i2));
-        } else {
             letterSectionCell.setLetter("");
+            return view;
         }
+        if (i == 0) {
+            letterSectionCell.setLetter("");
+            return view;
+        }
+        int i2 = i - 1;
+        if (i2 < arrayList.size()) {
+            letterSectionCell.setLetter(arrayList.get(i2));
+            return view;
+        }
+        letterSectionCell.setLetter("");
         return view;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup viewGroup, int i) {
-        View textCell;
+        View headerCell;
         View view;
         if (i == 0) {
             UserCell userCell = new UserCell(this.mContext, 58, 1, false);
             userCell.setCallCellStyle(58);
-            textCell = userCell;
+            headerCell = userCell;
         } else if (i == 1) {
-            textCell = new TextCell(this.mContext);
+            headerCell = new TextCell(this.mContext);
         } else if (i == 2) {
-            textCell = new GraySectionCell(this.mContext);
+            headerCell = new GraySectionCell(this.mContext);
         } else if (i != 3) {
             if (i == 4) {
                 FrameLayout frameLayout = new FrameLayout(this.mContext) {
@@ -428,9 +451,9 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 frameLayout.setTag(-33024);
                 view = frameLayout;
             } else if (i == 7) {
-                textCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 14, 5, false, null);
+                headerCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 14, 5, false, null);
             } else if (i == 8) {
-                textCell = new InviteUserCell(this.mContext, false);
+                headerCell = new InviteUserCell(this.mContext, false);
             } else if (i == 9) {
                 View view2 = new View(this.mContext) {
                     @Override
@@ -442,15 +465,15 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 view2.setTag(-33024);
                 view = view2;
             } else {
-                textCell = new ShadowSectionCell(this.mContext);
+                headerCell = new ShadowSectionCell(this.mContext);
             }
-            textCell = view;
+            headerCell = view;
         } else {
             DividerCell dividerCell = new DividerCell(this.mContext);
             dividerCell.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : 72.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 28.0f), AndroidUtilities.dp(8.0f));
-            textCell = dividerCell;
+            headerCell = dividerCell;
         }
-        return new RecyclerListView.Holder(textCell);
+        return new RecyclerListView.Holder(headerCell);
     }
 
     @Override

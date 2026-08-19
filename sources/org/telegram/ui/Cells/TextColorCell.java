@@ -61,8 +61,9 @@ public class TextColorCell extends FrameLayout {
         super.setEnabled(z);
         if (arrayList != null) {
             TextView textView = this.textView;
+            float[] fArr = {z ? 1.0f : 0.5f};
             Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
             arrayList.add(ObjectAnimator.ofFloat(this, (Property<TextColorCell, Float>) property, z ? 1.0f : 0.5f));
             return;
         }
@@ -72,13 +73,17 @@ public class TextColorCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Canvas canvas2;
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas2 = canvas;
+            canvas2.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        } else {
+            canvas2 = canvas;
         }
         int i = this.currentColor;
         if (i != 0) {
             colorPaint.setColor(i);
-            canvas.drawCircle(LocaleController.isRTL ? AndroidUtilities.dp(33.0f) : getMeasuredWidth() - AndroidUtilities.dp(33.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(10.0f), colorPaint);
+            canvas2.drawCircle(LocaleController.isRTL ? AndroidUtilities.dp(33.0f) : getMeasuredWidth() - AndroidUtilities.dp(33.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(10.0f), colorPaint);
         }
     }
 }

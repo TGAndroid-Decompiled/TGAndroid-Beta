@@ -47,7 +47,7 @@ public class Input {
     private final Runnable fillWithCurrentBrush = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$1();
+            this.f$0.fill(null, true, null);
         }
     };
 
@@ -82,7 +82,7 @@ public class Input {
         matrix.invert(matrix2);
     }
 
-    private void fill(Brush brush, final boolean z, final Runnable runnable) {
+    public void fill(Brush brush, final boolean z, final Runnable runnable) {
         if (!this.canFill || this.renderView.getPainting().masking || this.lastLocation == null) {
             return;
         }
@@ -131,7 +131,7 @@ public class Input {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                this.f$0.lambda$fill$0(point6, brush2, fMax2, valueAnimator3);
+                Input.m2463$r8$lambda$DxnsDqYYnAEf8u9WBbIZMZ6I8(this.f$0, point6, brush2, fMax2, valueAnimator3);
             }
         });
         this.fillAnimator.addListener(new AnimatorListenerAdapter() {
@@ -158,15 +158,12 @@ public class Input {
         }
     }
 
-    public void lambda$fill$0(Point point, Brush brush, float f, ValueAnimator valueAnimator) {
+    public static void m2463$r8$lambda$DxnsDqYYnAEf8u9WBbIZMZ6I8(Input input, Point point, Brush brush, float f, ValueAnimator valueAnimator) {
+        input.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         Path path = new Path(new Point[]{point});
-        path.setup(brush.isEraser() ? -1 : this.renderView.getCurrentColor(), fFloatValue * f, brush);
-        this.renderView.getPainting().paintStroke(path, true, true, null);
-    }
-
-    public void lambda$new$1() {
-        fill(null, true, null);
+        path.setup(brush.isEraser() ? -1 : input.renderView.getCurrentColor(), fFloatValue * f, brush);
+        input.renderView.getPainting().paintStroke(path, true, true, null);
     }
 
     public void clear(Runnable runnable) {
@@ -181,6 +178,8 @@ public class Input {
 
     public void process(MotionEvent motionEvent, float f) {
         boolean z;
+        float f2;
+        char c;
         if (this.fillAnimator == null && this.arrowAnimator == null) {
             int actionMasked = motionEvent.getActionMasked();
             float x = motionEvent.getX();
@@ -231,11 +230,11 @@ public class Input {
                         } else if (this.pointsCount > 0) {
                             smoothenAndPaintPoints(true, this.renderView.getCurrentBrush().getSmoothThicknessRate());
                             if (this.renderView.getCurrentBrush() instanceof Brush.Arrow) {
-                                final float f2 = this.lastAngle;
+                                final float f3 = this.lastAngle;
                                 final Point point2 = this.points[this.pointsCount - 1];
                                 Point point3 = this.lastThickLocation;
                                 final double d = point3 == null ? point.z : point3.z;
-                                final float currentWeight = 12.0f * this.renderView.getCurrentWeight() * ((float) d);
+                                final float currentWeight = this.renderView.getCurrentWeight() * ((float) d) * 12.0f;
                                 ValueAnimator valueAnimator = this.arrowAnimator;
                                 if (valueAnimator != null) {
                                     valueAnimator.cancel();
@@ -247,7 +246,7 @@ public class Input {
                                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                     @Override
                                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                                        this.f$0.lambda$process$2(f2, point2, currentWeight, fArr3, d, zArr, valueAnimator2);
+                                        Input.$r8$lambda$P4dMGq0EALDnWaBxKPLLAFU6JlI(this.f$0, f3, point2, currentWeight, fArr3, d, zArr, valueAnimator2);
                                     }
                                 });
                                 this.arrowAnimator.addListener(new AnimatorListenerAdapter() {
@@ -265,7 +264,7 @@ public class Input {
                         this.renderView.getPainting().commitPath(null, this.renderView.getCurrentColor(), true, new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$process$3();
+                                Input.m2465$r8$lambda$kD7dz164h0Md9DEJCsD4Ge7hUw(this.f$0);
                             }
                         });
                     }
@@ -344,19 +343,24 @@ public class Input {
             }
             this.points[this.pointsCount] = point;
             if (this.renderView.getPainting() == null || !this.renderView.getPainting().masking) {
+                f2 = distanceTo;
+                c = 2;
                 if (System.currentTimeMillis() - this.drawingStart > 3000) {
                     this.detector.clear();
                     this.renderView.getPainting().setHelperShape(null);
                 } else if ((this.renderView.getCurrentBrush() instanceof Brush.Radial) || (this.renderView.getCurrentBrush() instanceof Brush.Elliptical)) {
-                    this.detector.append(point.x, point.y, distanceTo > ((float) AndroidUtilities.dp(6.0f)) / f);
+                    this.detector.append(point.x, point.y, f2 > ((float) AndroidUtilities.dp(6.0f)) / f);
                 }
+            } else {
+                f2 = distanceTo;
+                c = 2;
             }
             int i = this.pointsCount + 1;
             this.pointsCount = i;
             this.realPointsCount++;
             if (i == 3) {
                 Point[] pointArr = this.points;
-                Point point4 = pointArr[2];
+                Point point4 = pointArr[c];
                 double d2 = point4.y;
                 Point point5 = pointArr[1];
                 float fAtan2 = (float) Math.atan2(d2 - point5.y, point4.x - point5.x);
@@ -364,7 +368,7 @@ public class Input {
                     this.lastAngle = fAtan2;
                     this.lastAngleSet = true;
                 } else {
-                    float fClamp = androidx.core.math.MathUtils.clamp(distanceTo / (AndroidUtilities.dp(16.0f) / f), 0.0f, 1.0f);
+                    float fClamp = androidx.core.math.MathUtils.clamp(f2 / (AndroidUtilities.dp(16.0f) / f), 0.0f, 1.0f);
                     if (fClamp > 0.4f) {
                         this.lastAngle = lerpAngle(this.lastAngle, fAtan2, fClamp);
                     }
@@ -372,14 +376,15 @@ public class Input {
                 smoothenAndPaintPoints(false, this.renderView.getCurrentBrush().getSmoothThicknessRate());
             }
             this.lastLocation = point;
-            if (distanceTo > AndroidUtilities.dp(8.0f) / f) {
+            if (f2 > AndroidUtilities.dp(8.0f) / f) {
                 this.lastThickLocation = point;
             }
             this.velocity = androidx.core.math.MathUtils.clamp(this.velocity + (fCurrentTimeMillis / 75.0f), 0.6f, 1.0f);
         }
     }
 
-    public void lambda$process$2(float f, Point point, float f2, float[] fArr, double d, boolean[] zArr, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$P4dMGq0EALDnWaBxKPLLAFU6JlI(Input input, float f, Point point, float f2, float[] fArr, double d, boolean[] zArr, ValueAnimator valueAnimator) {
+        input.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         double d2 = f;
         double dCos = Math.cos(d2 - 2.5918139392115793d);
@@ -391,14 +396,14 @@ public class Input {
         double d7 = dSin * d4;
         Point point2 = new Point(d3 + (d5 * d6), point.y + (d6 * d7), d);
         double d8 = fFloatValue;
-        paintPath(new Path(new Point[]{point2, new Point(point.x + (d5 * d8), point.y + (d7 * d8), d, true)}));
+        input.paintPath(new Path(new Point[]{point2, new Point(point.x + (d5 * d8), point.y + (d7 * d8), d, true)}));
         double dCos2 = Math.cos(d2 + 2.5918139392115793d);
         double dSin2 = Math.sin(d2 + 2.748893571891069d);
         double d9 = point.x;
         double d10 = dCos2 * d4;
         double d11 = fArr[0];
         double d12 = dSin2 * d4;
-        paintPath(new Path(new Point[]{new Point(d9 + (d10 * d11), point.y + (d11 * d12), d), new Point(point.x + (d10 * d8), point.y + (d12 * d8), d, true)}));
+        input.paintPath(new Path(new Point[]{new Point(d9 + (d10 * d11), point.y + (d11 * d12), d), new Point(point.x + (d10 * d8), point.y + (d12 * d8), d, true)}));
         if (!zArr[0] && fFloatValue > 0.4f) {
             zArr[0] = true;
             BotWebViewVibrationEffect.SELECTION_CHANGE.vibrate();
@@ -406,11 +411,11 @@ public class Input {
         fArr[0] = fFloatValue;
     }
 
-    public void lambda$process$3() {
-        Brush brush = this.switchedBrushByStylusFrom;
+    public static void m2465$r8$lambda$kD7dz164h0Md9DEJCsD4Ge7hUw(Input input) {
+        Brush brush = input.switchedBrushByStylusFrom;
         if (brush != null) {
-            this.renderView.selectBrush(brush);
-            this.switchedBrushByStylusFrom = null;
+            input.renderView.selectBrush(brush);
+            input.switchedBrushByStylusFrom = null;
         }
     }
 
@@ -428,6 +433,7 @@ public class Input {
 
     private void smoothenAndPaintPoints(boolean z, float f) {
         int i = this.pointsCount;
+        boolean z2 = false;
         if (i > 2) {
             Vector vector = new Vector();
             Point[] pointArr = this.points;
@@ -441,25 +447,30 @@ public class Input {
             Point pointMultiplySum2 = point3.multiplySum(point2, 0.5d);
             int iMin = (int) Math.min(48.0d, Math.max(Math.floor(pointMultiplySum.getDistanceTo(pointMultiplySum2) / 1), 24.0d));
             float f2 = 1.0f / iMin;
-            int i2 = 0;
             float f3 = 0.0f;
+            int i2 = 0;
             while (i2 < iMin) {
-                int i3 = i2;
-                Point pointSmoothPoint = smoothPoint(pointMultiplySum, pointMultiplySum2, point2, f3, f);
+                Point point4 = pointMultiplySum;
+                Point point5 = pointMultiplySum2;
+                Point pointSmoothPoint = smoothPoint(point4, point5, point2, f3, f);
                 if (this.isFirst) {
                     pointSmoothPoint.edge = true;
-                    this.isFirst = false;
+                    this.isFirst = z2;
                 }
                 vector.add(pointSmoothPoint);
                 this.thicknessSum += pointSmoothPoint.z;
                 this.thicknessCount += 1.0d;
                 f3 += f2;
-                i2 = i3 + 1;
+                i2++;
+                pointMultiplySum = point4;
+                pointMultiplySum2 = point5;
+                z2 = false;
             }
+            Point point6 = pointMultiplySum2;
             if (z) {
-                pointMultiplySum2.edge = true;
+                point6.edge = true;
             }
-            vector.add(pointMultiplySum2);
+            vector.add(point6);
             Point[] pointArr2 = new Point[vector.size()];
             vector.toArray(pointArr2);
             paintPath(new Path(pointArr2));
@@ -496,22 +507,24 @@ public class Input {
         this.renderView.getPainting().paintStroke(path, this.clearBuffer, false, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$paintPath$5(path);
+                Input.$r8$lambda$FFO9ZkJ_tD5PihwheO666ZpJPhk(this.f$0, path);
             }
         });
         this.clearBuffer = false;
     }
 
-    public void lambda$paintPath$4(Path path) {
-        this.lastRemainder = path.remainder;
-    }
-
-    public void lambda$paintPath$5(final Path path) {
+    public static void $r8$lambda$FFO9ZkJ_tD5PihwheO666ZpJPhk(final Input input, final Path path) {
+        input.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$paintPath$4(path);
+                Input.m2464$r8$lambda$RFmGG638y7HswlBC2KbPA020(this.f$0, path);
             }
         });
+    }
+
+    public static void m2464$r8$lambda$RFmGG638y7HswlBC2KbPA020(Input input, Path path) {
+        input.getClass();
+        input.lastRemainder = path.remainder;
     }
 }

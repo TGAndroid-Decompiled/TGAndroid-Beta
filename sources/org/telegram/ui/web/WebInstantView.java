@@ -62,7 +62,7 @@ public class WebInstantView {
     public String url;
     public TLRPC.WebPage webpage;
 
-    public static void lambda$getHTML$6(String str) {
+    public static void $r8$lambda$Us0B0feOaqe1AirXDilnz7RNinI(String str) {
     }
 
     public static Runnable generate(WebView webView, boolean z, final Utilities.Callback callback) {
@@ -81,18 +81,18 @@ public class WebInstantView {
         webInstantView.getHTML(webView, z, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                WebInstantView.lambda$generate$1(taskStart, zArr, timerCreate, webInstantView, callback, (InputStream) obj);
+                WebInstantView.$r8$lambda$YlCjfT0mhFdTUR2hES1ATvDObGA(taskStart, zArr, timerCreate, webInstantView, callback, (InputStream) obj);
             }
         });
         return new Runnable() {
             @Override
             public final void run() {
-                WebInstantView.lambda$generate$2(zArr);
+                WebInstantView.$r8$lambda$5OKLd3KNjqeekGH8Do5VRgOXNAo(zArr);
             }
         };
     }
 
-    public static void lambda$generate$1(Timer.Task task, final boolean[] zArr, final Timer timer, final WebInstantView webInstantView, final Utilities.Callback callback, InputStream inputStream) {
+    public static void $r8$lambda$YlCjfT0mhFdTUR2hES1ATvDObGA(Timer.Task task, final boolean[] zArr, final Timer timer, final WebInstantView webInstantView, final Utilities.Callback callback, InputStream inputStream) {
         Timer.done(task);
         if (zArr[0]) {
             return;
@@ -101,12 +101,12 @@ public class WebInstantView {
         webInstantView.readHTML(webInstantView.url, inputStream, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                WebInstantView.lambda$generate$0(taskStart, zArr, timer, webInstantView, callback, (JSONObject) obj);
+                WebInstantView.$r8$lambda$Yh_rHIiOF3DpDgaZCNIA7rZXO0Q(taskStart, zArr, timer, webInstantView, callback, (JSONObject) obj);
             }
         });
     }
 
-    public static void lambda$generate$0(Timer.Task task, boolean[] zArr, Timer timer, WebInstantView webInstantView, Utilities.Callback callback, JSONObject jSONObject) {
+    public static void $r8$lambda$Yh_rHIiOF3DpDgaZCNIA7rZXO0Q(Timer.Task task, boolean[] zArr, Timer timer, WebInstantView webInstantView, Utilities.Callback callback, JSONObject jSONObject) {
         Timer.done(task);
         if (zArr[0]) {
             return;
@@ -127,7 +127,7 @@ public class WebInstantView {
         Timer.finish(timer);
     }
 
-    public static void lambda$generate$2(boolean[] zArr) {
+    public static void $r8$lambda$5OKLd3KNjqeekGH8Do5VRgOXNAo(boolean[] zArr) {
         zArr[0] = true;
     }
 
@@ -144,9 +144,14 @@ public class WebInstantView {
         if (webPage == null || (page = webPage.cached_page) == null || (arrayList = page.photos) == null) {
             return;
         }
-        for (TLRPC.Photo photo : arrayList) {
-            if (photo instanceof WebPhoto) {
-                WebPhoto webPhoto = (WebPhoto) photo;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            TLRPC.Photo photo = arrayList.get(i);
+            i++;
+            TLRPC.Photo photo2 = photo;
+            if (photo2 instanceof WebPhoto) {
+                WebPhoto webPhoto = (WebPhoto) photo2;
                 HashMap map = loadingPhotos;
                 if (map != null) {
                     map.remove(webPhoto.url);
@@ -245,7 +250,7 @@ public class WebInstantView {
             new HttpGetBitmapTask(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$loadPhotoInternal$4(webPhoto, (Bitmap) obj);
+                    WebInstantView.m5076$r8$lambda$hFjnVezg1x57UM9BcTjIWS8dlo(this.f$0, webPhoto, (Bitmap) obj);
                 }
             }).execute(webPhoto.url);
         } catch (Exception e) {
@@ -253,29 +258,32 @@ public class WebInstantView {
         }
     }
 
-    public void lambda$loadPhotoInternal$4(final WebPhoto webPhoto, final Bitmap bitmap) {
+    public static void m5076$r8$lambda$hFjnVezg1x57UM9BcTjIWS8dlo(final WebInstantView webInstantView, final WebPhoto webPhoto, final Bitmap bitmap) {
+        webInstantView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadPhotoInternal$3(webPhoto, bitmap);
+                WebInstantView.m5077$r8$lambda$qkSjPlFAa_0jByXyiAFVISRM8(this.f$0, webPhoto, bitmap);
             }
         });
     }
 
-    public void lambda$loadPhotoInternal$3(WebPhoto webPhoto, Bitmap bitmap) {
+    public static void m5077$r8$lambda$qkSjPlFAa_0jByXyiAFVISRM8(WebInstantView webInstantView, WebPhoto webPhoto, Bitmap bitmap) {
         Object obj;
+        webInstantView.getClass();
         if (loadingPhotos == null) {
             return;
         }
+        int i = 0;
         boolean z = (webPhoto.w <= 0 || webPhoto.h <= 0) && bitmap != null;
         if (bitmap != null) {
-            this.loadedPhotos.put(webPhoto.url, bitmap);
+            webInstantView.loadedPhotos.put(webPhoto.url, bitmap);
             if (z) {
-                int i = webPhoto.w;
-                if (i == 0 && webPhoto.h == 0) {
+                int i2 = webPhoto.w;
+                if (i2 == 0 && webPhoto.h == 0) {
                     webPhoto.w = bitmap.getWidth();
                     webPhoto.h = bitmap.getHeight();
-                } else if (i == 0) {
+                } else if (i2 == 0) {
                     webPhoto.w = (int) ((bitmap.getWidth() / bitmap.getHeight()) * webPhoto.h);
                 } else if (webPhoto.h == 0) {
                     webPhoto.h = (int) ((bitmap.getHeight() / bitmap.getWidth()) * webPhoto.w);
@@ -287,11 +295,15 @@ public class WebInstantView {
                 }
             }
         }
-        ArrayList<Pair> arrayList = (ArrayList) loadingPhotos.remove(webPhoto.url);
+        ArrayList arrayList = (ArrayList) loadingPhotos.remove(webPhoto.url);
         if (arrayList == null) {
             return;
         }
-        for (Pair pair : arrayList) {
+        int size = arrayList.size();
+        while (i < size) {
+            Object obj2 = arrayList.get(i);
+            i++;
+            Pair pair = (Pair) obj2;
             ((ImageReceiver) pair.first).setImageBitmap(bitmap);
             if (z && (obj = pair.second) != null) {
                 ((Runnable) obj).run();
@@ -338,7 +350,7 @@ public class WebInstantView {
                 webView.evaluateJavascript("document.documentElement.outerHTML", new ValueCallback() {
                     @Override
                     public final void onReceiveValue(Object obj) {
-                        WebInstantView.lambda$getHTML$5(callback, (String) obj);
+                        WebInstantView.$r8$lambda$5eCdyRlTVedsQRAWARfZXK7zwEo(callback, (String) obj);
                     }
                 });
                 return;
@@ -348,13 +360,13 @@ public class WebInstantView {
             webView.evaluateJavascript(AndroidUtilities.readRes(R.raw.open_collapsed).replace("$OPEN$", "true"), new ValueCallback() {
                 @Override
                 public final void onReceiveValue(Object obj) {
-                    this.f$0.lambda$getHTML$8(webView, file, callback, (String) obj);
+                    WebInstantView.$r8$lambda$rxqU5ebZZyE1bg0cAK4TZetOirc(this.f$0, webView, file, callback, (String) obj);
                 }
             });
         }
     }
 
-    public static void lambda$getHTML$5(Utilities.Callback callback, String str) {
+    public static void $r8$lambda$5eCdyRlTVedsQRAWARfZXK7zwEo(Utilities.Callback callback, String str) {
         try {
             JsonReader jsonReader = new JsonReader(new StringReader(str));
             jsonReader.setLenient(true);
@@ -367,27 +379,29 @@ public class WebInstantView {
         }
     }
 
-    public void lambda$getHTML$8(final WebView webView, final File file, final Utilities.Callback callback, String str) {
+    public static void $r8$lambda$rxqU5ebZZyE1bg0cAK4TZetOirc(final WebInstantView webInstantView, final WebView webView, final File file, final Utilities.Callback callback, String str) {
+        webInstantView.getClass();
         webView.saveWebArchive(file.getAbsolutePath(), false, new ValueCallback() {
             @Override
             public final void onReceiveValue(Object obj) {
-                this.f$0.lambda$getHTML$7(webView, file, callback, (String) obj);
+                WebInstantView.$r8$lambda$rCpmgwitTm1Voxiaw8LbPxhdPQA(this.f$0, webView, file, callback, (String) obj);
             }
         });
     }
 
-    public void lambda$getHTML$7(WebView webView, File file, Utilities.Callback callback, String str) {
+    public static void $r8$lambda$rCpmgwitTm1Voxiaw8LbPxhdPQA(WebInstantView webInstantView, WebView webView, File file, Utilities.Callback callback, String str) {
+        webInstantView.getClass();
         webView.evaluateJavascript(AndroidUtilities.readRes(R.raw.open_collapsed).replace("$OPEN$", "false"), new ValueCallback() {
             @Override
             public final void onReceiveValue(Object obj) {
-                WebInstantView.lambda$getHTML$6((String) obj);
+                WebInstantView.$r8$lambda$Us0B0feOaqe1AirXDilnz7RNinI((String) obj);
             }
         });
         try {
             MHTML mhtml = new MHTML(file);
-            this.mhtml = mhtml;
+            webInstantView.mhtml = mhtml;
             if (!mhtml.entries.isEmpty()) {
-                callback.run(((MHTML.Entry) this.mhtml.entries.get(0)).getInputStream());
+                callback.run(((MHTML.Entry) webInstantView.mhtml.entries.get(0)).getInputStream());
                 return;
             }
         } catch (Exception e) {
@@ -531,12 +545,12 @@ public class WebInstantView {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    WebInstantView.AnonymousClass4.lambda$done$0(zArr, webView, frameLayout, str, callback);
+                    WebInstantView.AnonymousClass4.$r8$lambda$K36wTf6YNhOLbQXYDc9HGQ7ErYU(zArr, webView, frameLayout, str, callback);
                 }
             });
         }
 
-        public static void lambda$done$0(boolean[] zArr, WebView webView, FrameLayout frameLayout, String str, Utilities.Callback callback) {
+        public static void $r8$lambda$K36wTf6YNhOLbQXYDc9HGQ7ErYU(boolean[] zArr, WebView webView, FrameLayout frameLayout, String str, Utilities.Callback callback) {
             JSONObject jSONObject;
             if (zArr[0]) {
                 return;
@@ -602,11 +616,12 @@ public class WebInstantView {
         tL_page.web = true;
         tL_page.url = str;
         tL_page.blocks.addAll(parsePageBlocks(str, jSONArrayOptJSONArray, tL_page));
-        if (tL_page.blocks.isEmpty() || !(tL_page.blocks.get(0) instanceof TL_iv.pageBlockHeader)) {
-            TL_iv.pageBlockTitle pageblocktitle = new TL_iv.pageBlockTitle();
-            pageblocktitle.text = trim(parseRichText(strOptString));
-            tL_page.blocks.add(0, pageblocktitle);
+        if (!tL_page.blocks.isEmpty() && (tL_page.blocks.get(0) instanceof TL_iv.pageBlockHeader)) {
+            return tL_page;
         }
+        TL_iv.pageBlockTitle pageblocktitle = new TL_iv.pageBlockTitle();
+        pageblocktitle.text = trim(parseRichText(strOptString));
+        tL_page.blocks.add(0, pageblocktitle);
         return tL_page;
     }
 
@@ -622,7 +637,7 @@ public class WebInstantView {
                 JSONObject jSONObject = (JSONObject) obj;
                 String strOptString = jSONObject.optString("tag");
                 JSONArray jSONArrayOptJSONArray = jSONObject.optJSONArray("content");
-                strOptString.hashCode();
+                strOptString.getClass();
                 switch (strOptString) {
                     case "figure":
                     case "picture":
@@ -744,17 +759,16 @@ public class WebInstantView {
     }
 
     public static TL_iv.RichText applyAnchor(TL_iv.RichText richText, JSONObject jSONObject) {
-        if (jSONObject == null) {
-            return richText;
+        if (jSONObject != null) {
+            String strOptString = jSONObject.optString("id");
+            if (!TextUtils.isEmpty(strOptString)) {
+                TL_iv.textAnchor textanchor = new TL_iv.textAnchor();
+                textanchor.text = richText;
+                textanchor.name = strOptString;
+                return textanchor;
+            }
         }
-        String strOptString = jSONObject.optString("id");
-        if (TextUtils.isEmpty(strOptString)) {
-            return richText;
-        }
-        TL_iv.textAnchor textanchor = new TL_iv.textAnchor();
-        textanchor.text = richText;
-        textanchor.name = strOptString;
-        return textanchor;
+        return richText;
     }
 
     public TL_iv.pageBlockPhoto parseFigure(JSONObject jSONObject, TL_iv.TL_page tL_page) throws JSONException {
@@ -939,7 +953,7 @@ public class WebInstantView {
             } else {
                 JSONObject jSONObject = (JSONObject) obj;
                 String strOptString = jSONObject.optString("tag");
-                strOptString.hashCode();
+                strOptString.getClass();
                 switch (strOptString) {
                     case "strong":
                     case "b":
@@ -1054,10 +1068,14 @@ public class WebInstantView {
         TL_iv.RichText richText2 = richText.text;
         if (richText2 != null) {
             addLastSpace(richText2);
-        } else if (!richText.texts.isEmpty()) {
+            return richText;
+        }
+        if (!richText.texts.isEmpty()) {
             ArrayList<TL_iv.RichText> arrayList = richText.texts;
             addLastSpace(arrayList.get(arrayList.size() - 1));
-        } else if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null && !str.endsWith(" ")) {
+            return richText;
+        }
+        if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null && !str.endsWith(" ")) {
             textplain.text += ' ';
         }
         return richText;
@@ -1070,10 +1088,14 @@ public class WebInstantView {
         TL_iv.RichText richText2 = richText.text;
         if (richText2 != null) {
             addNewLine(richText2);
-        } else if (!richText.texts.isEmpty()) {
+            return richText;
+        }
+        if (!richText.texts.isEmpty()) {
             ArrayList<TL_iv.RichText> arrayList = richText.texts;
             addNewLine(arrayList.get(arrayList.size() - 1));
-        } else if (richText instanceof TL_iv.textPlain) {
+            return richText;
+        }
+        if (richText instanceof TL_iv.textPlain) {
             StringBuilder sb = new StringBuilder();
             TL_iv.textPlain textplain = (TL_iv.textPlain) richText;
             sb.append(textplain.text);
@@ -1092,9 +1114,13 @@ public class WebInstantView {
         TL_iv.RichText richText2 = richText.text;
         if (richText2 != null) {
             trimStart(richText2);
-        } else if (!richText.texts.isEmpty()) {
+            return richText;
+        }
+        if (!richText.texts.isEmpty()) {
             trimStart(richText.texts.get(0));
-        } else if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
+            return richText;
+        }
+        if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
             textplain.text = str.replaceAll("^\\s+", "");
         }
         return richText;
@@ -1109,13 +1135,19 @@ public class WebInstantView {
         TL_iv.RichText richText2 = richText.text;
         if (richText2 != null) {
             trim(richText2);
-        } else if (richText.texts.size() == 1) {
+            return richText;
+        }
+        if (richText.texts.size() == 1) {
             trim(richText.texts.get(0));
-        } else if (!richText.texts.isEmpty()) {
+            return richText;
+        }
+        if (!richText.texts.isEmpty()) {
             trimStart(richText.texts.get(0));
             ArrayList<TL_iv.RichText> arrayList = richText.texts;
             trimEnd(arrayList.get(arrayList.size() - 1));
-        } else if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
+            return richText;
+        }
+        if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
             textplain.text = str.trim();
         }
         return richText;
@@ -1130,10 +1162,14 @@ public class WebInstantView {
         TL_iv.RichText richText2 = richText.text;
         if (richText2 != null) {
             trimEnd(richText2);
-        } else if (!richText.texts.isEmpty()) {
+            return richText;
+        }
+        if (!richText.texts.isEmpty()) {
             ArrayList<TL_iv.RichText> arrayList = richText.texts;
             trimEnd(arrayList.get(arrayList.size() - 1));
-        } else if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
+            return richText;
+        }
+        if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
             textplain.text = str.replaceAll("\\s+$", "");
         }
         return richText;
@@ -1325,20 +1361,20 @@ public class WebInstantView {
             this.cancelLocal = WebInstantView.generate(myWebView, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$retryLocal$0((WebInstantView) obj);
+                    WebInstantView.Loader.$r8$lambda$SpjkLf17hiKuprBBXrnClaVvkto(this.f$0, (WebInstantView) obj);
                 }
             });
         }
 
-        public void lambda$retryLocal$0(WebInstantView webInstantView) {
-            this.cancelLocal = null;
-            this.gotLocal = true;
-            TLRPC.WebPage webPage = this.localPage;
+        public static void $r8$lambda$SpjkLf17hiKuprBBXrnClaVvkto(Loader loader, WebInstantView webInstantView) {
+            loader.cancelLocal = null;
+            loader.gotLocal = true;
+            TLRPC.WebPage webPage = loader.localPage;
             if (webPage != null) {
                 WebInstantView.recycle(webPage);
             }
-            this.localPage = webInstantView.webpage;
-            notifyUpdate();
+            loader.localPage = webInstantView.webpage;
+            loader.notifyUpdate();
         }
 
         public void start(BotWebViewContainer.MyWebView myWebView) {
@@ -1352,7 +1388,7 @@ public class WebInstantView {
             this.cancelLocal = WebInstantView.generate(myWebView, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$start$1((WebInstantView) obj);
+                    WebInstantView.Loader.$r8$lambda$f16EGOwjFGaMeyNom7WZRrSDF7A(this.f$0, (WebInstantView) obj);
                 }
             });
             TLRPC.TL_messages_getWebPage tL_messages_getWebPage = new TLRPC.TL_messages_getWebPage();
@@ -1361,57 +1397,58 @@ public class WebInstantView {
             this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getWebPage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$start$3(tLObject, tL_error);
+                    WebInstantView.Loader.m5079$r8$lambda$RYaDXqpohU2_yiNxwr4F7AfdU(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public void lambda$start$1(WebInstantView webInstantView) {
-            this.cancelLocal = null;
-            this.gotLocal = true;
-            TLRPC.WebPage webPage = this.localPage;
+        public static void $r8$lambda$f16EGOwjFGaMeyNom7WZRrSDF7A(Loader loader, WebInstantView webInstantView) {
+            loader.cancelLocal = null;
+            loader.gotLocal = true;
+            TLRPC.WebPage webPage = loader.localPage;
             if (webPage != null) {
                 WebInstantView.recycle(webPage);
             }
-            this.localPage = webInstantView.webpage;
-            notifyUpdate();
+            loader.localPage = webInstantView.webpage;
+            loader.notifyUpdate();
         }
 
-        public void lambda$start$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m5079$r8$lambda$RYaDXqpohU2_yiNxwr4F7AfdU(final Loader loader, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            loader.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$start$2(tLObject);
+                    WebInstantView.Loader.$r8$lambda$gPWPPB1bsXS4Je2i5aNmTWBgkCs(this.f$0, tLObject);
                 }
             });
         }
 
-        public void lambda$start$2(TLObject tLObject) {
+        public static void $r8$lambda$gPWPPB1bsXS4Je2i5aNmTWBgkCs(Loader loader, TLObject tLObject) {
             Runnable runnable;
-            this.gotRemote = true;
+            loader.gotRemote = true;
             if (tLObject instanceof TLRPC.TL_messages_webPage) {
                 TLRPC.TL_messages_webPage tL_messages_webPage = (TLRPC.TL_messages_webPage) tLObject;
-                MessagesController.getInstance(this.currentAccount).putUsers(tL_messages_webPage.users, false);
-                MessagesController.getInstance(this.currentAccount).putChats(tL_messages_webPage.chats, false);
-                this.remotePage = tL_messages_webPage.webpage;
+                MessagesController.getInstance(loader.currentAccount).putUsers(tL_messages_webPage.users, false);
+                MessagesController.getInstance(loader.currentAccount).putChats(tL_messages_webPage.chats, false);
+                loader.remotePage = tL_messages_webPage.webpage;
             } else if (tLObject instanceof TLRPC.TL_webPage) {
                 TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) tLObject;
                 if (tL_webPage.cached_page instanceof TL_iv.TL_page) {
-                    this.remotePage = tL_webPage;
+                    loader.remotePage = tL_webPage;
                 } else {
-                    this.remotePage = null;
+                    loader.remotePage = null;
                 }
             } else {
-                this.remotePage = null;
+                loader.remotePage = null;
             }
-            TLRPC.WebPage webPage = this.remotePage;
+            TLRPC.WebPage webPage = loader.remotePage;
             if (webPage != null && webPage.cached_page == null) {
-                this.remotePage = null;
+                loader.remotePage = null;
             }
-            if (!SharedConfig.onlyLocalInstantView && this.remotePage != null && (runnable = this.cancelLocal) != null) {
+            if (!SharedConfig.onlyLocalInstantView && loader.remotePage != null && (runnable = loader.cancelLocal) != null) {
                 runnable.run();
             }
-            notifyUpdate();
+            loader.notifyUpdate();
         }
 
         public boolean isDone() {
@@ -1458,19 +1495,19 @@ public class WebInstantView {
             return new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$listen$4(runnable);
+                    this.f$0.listeners.remove(runnable);
                 }
             };
         }
 
-        public void lambda$listen$4(Runnable runnable) {
-            this.listeners.remove(runnable);
-        }
-
         private void notifyUpdate() {
-            Iterator it = this.listeners.iterator();
-            while (it.hasNext()) {
-                ((Runnable) it.next()).run();
+            ArrayList arrayList = this.listeners;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ((Runnable) obj).run();
             }
         }
     }

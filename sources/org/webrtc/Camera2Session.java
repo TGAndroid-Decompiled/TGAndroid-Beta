@@ -44,7 +44,7 @@ class Camera2Session implements CameraSession {
     private static final Histogram camera2StopTimeMsHistogram = Histogram.createCounts("WebRTC.Android.Camera2.StopTimeMs", 1, 10000, 50);
     private static final Histogram camera2ResolutionHistogram = Histogram.createEnumeration("WebRTC.Android.Camera2.Resolution", CameraEnumerationAndroid.COMMON_RESOLUTIONS.size());
 
-    private enum SessionState {
+    enum SessionState {
         RUNNING,
         STOPPED
     }
@@ -141,7 +141,7 @@ class Camera2Session implements CameraSession {
                 Camera2Session.this.surfaceTextureHelper.startListening(new VideoSink() {
                     @Override
                     public final void onFrame(VideoFrame videoFrame) {
-                        this.f$0.lambda$onConfigured$0(videoFrame);
+                        Camera2Session.CaptureSessionCallback.m5082$r8$lambda$ZzHOhveMDi0ypJsV9EdfM3Bwm0(this.f$0, videoFrame);
                     }
 
                     @Override
@@ -156,7 +156,7 @@ class Camera2Session implements CameraSession {
             }
         }
 
-        public void lambda$onConfigured$0(VideoFrame videoFrame) {
+        public static void m5082$r8$lambda$ZzHOhveMDi0ypJsV9EdfM3Bwm0(CaptureSessionCallback captureSessionCallback, VideoFrame videoFrame) {
             Camera2Session.this.checkIsOnCameraThread();
             if (Camera2Session.this.state == SessionState.RUNNING) {
                 if (!Camera2Session.this.firstFrameReported) {

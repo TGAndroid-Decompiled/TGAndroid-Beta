@@ -162,7 +162,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
         springAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                this.f$0.lambda$new$0(dynamicAnimation, f, f2);
+                StoryCaptionView.$r8$lambda$Ks6bIe_oG9qj8DaNtncMVarfqWA(this.f$0, dynamicAnimation, f, f2);
             }
         });
         springAnimation.getSpring().setDampingRatio(1.0f);
@@ -184,9 +184,9 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
         }
     }
 
-    public void lambda$new$0(DynamicAnimation dynamicAnimation, float f, float f2) {
-        this.overScrollY = f;
-        this.velocityY = f2;
+    public static void $r8$lambda$Ks6bIe_oG9qj8DaNtncMVarfqWA(StoryCaptionView storyCaptionView, DynamicAnimation dynamicAnimation, float f, float f2) {
+        storyCaptionView.overScrollY = f;
+        storyCaptionView.velocityY = f2;
     }
 
     @Override
@@ -466,7 +466,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$expand$1(scrollY, f, f2, valueAnimator);
+                    StoryCaptionView.m4437$r8$lambda$dyqUxoSVXEf1n0VolORrvk10U(this.f$0, scrollY, f, f2, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setDuration(250L);
@@ -475,11 +475,12 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
         }
     }
 
-    public void lambda$expand$1(float f, float f2, float f3, ValueAnimator valueAnimator) {
+    public static void m4437$r8$lambda$dyqUxoSVXEf1n0VolORrvk10U(StoryCaptionView storyCaptionView, float f, float f2, float f3, ValueAnimator valueAnimator) {
+        storyCaptionView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        setScrollY((int) AndroidUtilities.lerp(f, Math.min((getMeasuredHeight() - this.blackoutBottomOffset) - AndroidUtilities.dp(64.0f), this.captionContainer.getBottom() - getMeasuredHeight()), fFloatValue));
-        this.captionTextview.progressToExpand = AndroidUtilities.lerp(f2, f3, fFloatValue);
-        this.captionTextview.invalidate();
+        storyCaptionView.setScrollY((int) AndroidUtilities.lerp(f, Math.min((storyCaptionView.getMeasuredHeight() - storyCaptionView.blackoutBottomOffset) - AndroidUtilities.dp(64.0f), storyCaptionView.captionContainer.getBottom() - storyCaptionView.getMeasuredHeight()), fFloatValue));
+        storyCaptionView.captionTextview.progressToExpand = AndroidUtilities.lerp(f2, f3, fFloatValue);
+        storyCaptionView.captionTextview.invalidate();
     }
 
     public void collapse() {
@@ -493,7 +494,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$collapse$2(scrollY, f2, f, f3, valueAnimator);
+                    StoryCaptionView.$r8$lambda$rTTbcwa35cculuC5M0tnmVU04x0(this.f$0, scrollY, f2, f, f3, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setDuration(250L);
@@ -502,11 +503,12 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
         }
     }
 
-    public void lambda$collapse$2(float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$rTTbcwa35cculuC5M0tnmVU04x0(StoryCaptionView storyCaptionView, float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
+        storyCaptionView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        setScrollY((int) AndroidUtilities.lerp(f, f2, fFloatValue));
-        this.captionTextview.progressToExpand = AndroidUtilities.lerp(f3, f4, fFloatValue);
-        this.captionTextview.invalidate();
+        storyCaptionView.setScrollY((int) AndroidUtilities.lerp(f, f2, fFloatValue));
+        storyCaptionView.captionTextview.progressToExpand = AndroidUtilities.lerp(f3, f4, fFloatValue);
+        storyCaptionView.captionTextview.invalidate();
     }
 
     public void disableDraw(boolean z) {
@@ -624,25 +626,25 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             MessagesController.getInstance(this.currentAccount).getStoriesController().resolveStoryLink(this.peerId.longValue(), this.storyId.intValue(), new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    this.f$0.lambda$load$0((TL_stories.StoryItem) obj);
+                    StoryCaptionView.Panel.$r8$lambda$_bB6QtAd1HZh5dmRw6Jrm_YCiuo(this.f$0, (TL_stories.StoryItem) obj);
                 }
             });
         }
 
-        public void lambda$load$0(TL_stories.StoryItem storyItem) {
+        public static void $r8$lambda$_bB6QtAd1HZh5dmRw6Jrm_YCiuo(Panel panel, TL_stories.StoryItem storyItem) {
             String str;
-            this.loaded = true;
+            panel.loaded = true;
             if (storyItem == null || (str = storyItem.caption) == null) {
                 return;
             }
-            this.updateText = true;
-            this.text = str;
-            this.small = TextUtils.isEmpty(str);
-            View view = this.view;
+            panel.updateText = true;
+            panel.text = str;
+            panel.small = TextUtils.isEmpty(str);
+            View view = panel.view;
             if (view != null) {
                 view.invalidate();
             }
-            Runnable runnable = this.whenLoaded;
+            Runnable runnable = panel.whenLoaded;
             if (runnable != null) {
                 runnable.run();
             }
@@ -663,21 +665,23 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             panel.music = document;
             if (TextUtils.isEmpty(str)) {
                 panel.title = new SpannableStringBuilder(musicSpan()).append((CharSequence) " ").append((CharSequence) str2);
-            } else if (TextUtils.isEmpty(str2)) {
-                panel.title = new SpannableStringBuilder(musicSpan()).append((CharSequence) " ").append((CharSequence) str);
-            } else {
-                SpannableStringBuilder spannableStringBuilderAppend = new SpannableStringBuilder(musicSpan()).append((CharSequence) " ").append((CharSequence) str2);
-                panel.title = spannableStringBuilderAppend;
-                int length = spannableStringBuilderAppend.length();
-                ((SpannableStringBuilder) panel.title).append((CharSequence) " ・ ");
-                ((SpannableStringBuilder) panel.title).setSpan(new CharacterStyle() {
-                    @Override
-                    public void updateDrawState(TextPaint textPaint) {
-                        textPaint.setAlpha((int) (textPaint.getAlpha() * 0.66f));
-                    }
-                }, length, panel.title.length(), 33);
-                ((SpannableStringBuilder) panel.title).append((CharSequence) str);
+                return panel;
             }
+            if (TextUtils.isEmpty(str2)) {
+                panel.title = new SpannableStringBuilder(musicSpan()).append((CharSequence) " ").append((CharSequence) str);
+                return panel;
+            }
+            SpannableStringBuilder spannableStringBuilderAppend = new SpannableStringBuilder(musicSpan()).append((CharSequence) " ").append((CharSequence) str2);
+            panel.title = spannableStringBuilderAppend;
+            int length = spannableStringBuilderAppend.length();
+            ((SpannableStringBuilder) panel.title).append((CharSequence) " ・ ");
+            ((SpannableStringBuilder) panel.title).setSpan(new CharacterStyle() {
+                @Override
+                public void updateDrawState(TextPaint textPaint) {
+                    textPaint.setAlpha((int) (textPaint.getAlpha() * 0.66f));
+                }
+            }, length, panel.title.length(), 33);
+            ((SpannableStringBuilder) panel.title).append((CharSequence) str);
             return panel;
         }
 
@@ -943,7 +947,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                 this.clickDetector = new SpoilersClickDetector(StoryCaptionTextView.this, arrayList, new SpoilersClickDetector.OnSpoilerClickedListener() {
                     @Override
                     public final void onSpoilerClicked(SpoilerEffect spoilerEffect, float f, float f2) {
-                        this.f$0.lambda$new$2(spoilerEffect, f, f2);
+                        StoryCaptionView.StoryCaptionTextView.TextState.$r8$lambda$PHafEDmJqSyElN4XcBMCufaaOX0(this.f$0, spoilerEffect, f, f2);
                     }
                 });
                 LoadingDrawable loadingDrawable = new LoadingDrawable();
@@ -954,34 +958,27 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                 loadingDrawable.setCallback(StoryCaptionTextView.this);
             }
 
-            public void lambda$new$2(SpoilerEffect spoilerEffect, float f, float f2) {
+            public static void $r8$lambda$PHafEDmJqSyElN4XcBMCufaaOX0(final TextState textState, SpoilerEffect spoilerEffect, float f, float f2) {
                 if (StoryCaptionTextView.this.isSpoilersRevealed) {
                     return;
                 }
                 spoilerEffect.setOnRippleEndCallback(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$1();
+                        StoryCaptionView.StoryCaptionTextView.TextState textState2 = this.f$0;
+                        StoryCaptionView.StoryCaptionTextView.this.post(new Runnable() {
+                            @Override
+                            public final void run() {
+                                StoryCaptionView.StoryCaptionTextView.this.isSpoilersRevealed = true;
+                            }
+                        });
                     }
                 });
                 float fSqrt = (float) Math.sqrt(Math.pow(StoryCaptionTextView.this.getWidth(), 2.0d) + Math.pow(StoryCaptionTextView.this.getHeight(), 2.0d));
-                Iterator it = this.spoilers.iterator();
+                Iterator it = textState.spoilers.iterator();
                 while (it.hasNext()) {
                     ((SpoilerEffect) it.next()).startRipple(f, f2, fSqrt);
                 }
-            }
-
-            public void lambda$new$1() {
-                StoryCaptionTextView.this.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$new$0();
-                    }
-                });
-            }
-
-            public void lambda$new$0() {
-                StoryCaptionTextView.this.isSpoilersRevealed = true;
             }
 
             public void setup(CharSequence charSequence, Panel panel, Panel panel2) {
@@ -992,7 +989,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                     panel.listen(StoryCaptionTextView.this, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$setup$3();
+                            StoryCaptionView.StoryCaptionTextView.TextState.m4439$r8$lambda$sDzncH1g_gmTshtGC0Vpzm5Jao(this.f$0);
                         }
                     });
                 }
@@ -1001,7 +998,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                     panel3.listen(StoryCaptionTextView.this, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$setup$4();
+                            StoryCaptionView.StoryCaptionTextView.TextState.$r8$lambda$VLtx8o50g45noxdLqBmL2NsOYSs(this.f$0);
                         }
                     });
                 }
@@ -1010,7 +1007,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                 storyCaptionTextView.requestLayout();
             }
 
-            public void lambda$setup$3() {
+            public static void m4439$r8$lambda$sDzncH1g_gmTshtGC0Vpzm5Jao(TextState textState) {
                 StoryCaptionTextView storyCaptionTextView = StoryCaptionTextView.this;
                 storyCaptionTextView.sizeCached = 0;
                 storyCaptionTextView.requestLayout();
@@ -1018,7 +1015,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                 StoryCaptionView.this.requestLayout();
             }
 
-            public void lambda$setup$4() {
+            public static void $r8$lambda$VLtx8o50g45noxdLqBmL2NsOYSs(TextState textState) {
                 StoryCaptionTextView storyCaptionTextView = StoryCaptionTextView.this;
                 storyCaptionTextView.sizeCached = 0;
                 storyCaptionTextView.requestLayout();
@@ -1146,6 +1143,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             }
 
             public void draw(Canvas canvas, float f) {
+                Canvas canvas2;
                 float f2 = this.translateT.set(this.translating);
                 if (f <= 0.0f) {
                     return;
@@ -1153,14 +1151,16 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                 float fLerp = AndroidUtilities.lerp(f, 0.7f * f, f2);
                 if (fLerp >= 1.0f) {
                     drawInternal(canvas, f2);
+                    canvas2 = canvas;
                 } else {
-                    canvas.saveLayerAlpha(0.0f, 0.0f, StoryCaptionView.this.getWidth(), StoryCaptionView.this.getHeight(), (int) (fLerp * 255.0f), 31);
-                    drawInternal(canvas, f2);
-                    canvas.restore();
+                    canvas2 = canvas;
+                    canvas2.saveLayerAlpha(0.0f, 0.0f, StoryCaptionView.this.getWidth(), StoryCaptionView.this.getHeight(), (int) (fLerp * 255.0f), 31);
+                    drawInternal(canvas2, f2);
+                    canvas2.restore();
                 }
                 if (f2 > 0.0f || this.translating) {
                     this.loadingDrawable.setAlpha((int) (f2 * 255.0f * fLerp));
-                    this.loadingDrawable.draw(canvas);
+                    this.loadingDrawable.draw(canvas2);
                     StoryCaptionTextView.this.invalidate();
                 }
             }
@@ -1186,14 +1186,15 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
 
             private void drawInternal(Canvas canvas, float f) {
                 int i;
+                int i2;
                 if (this.topPanel != null) {
                     canvas.save();
                     StoryCaptionTextView storyCaptionTextView = StoryCaptionTextView.this;
                     canvas.translate(storyCaptionTextView.horizontalPadding, storyCaptionTextView.verticalPadding);
                     Panel panel = this.topPanel;
                     int width = StoryCaptionTextView.this.getWidth();
-                    int i2 = StoryCaptionTextView.this.horizontalPadding;
-                    panel.draw(canvas, (width - i2) - i2);
+                    int i3 = StoryCaptionTextView.this.horizontalPadding;
+                    panel.draw(canvas, (width - i3) - i3);
                     int iHeight = this.topPanel.height() + AndroidUtilities.dp(8.0f);
                     canvas.restore();
                     i = iHeight;
@@ -1252,15 +1253,15 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                         }
                     }
                     if (this.nextLinesLayouts != null) {
-                        int i3 = 0;
+                        int i4 = 0;
                         while (true) {
                             LineInfo[] lineInfoArr = this.nextLinesLayouts;
-                            if (i3 >= lineInfoArr.length) {
+                            if (i4 >= lineInfoArr.length) {
                                 break;
                             }
-                            LineInfo lineInfo = lineInfoArr[i3];
+                            LineInfo lineInfo = lineInfoArr[i4];
                             if (lineInfo == null) {
-                                i3 = i3;
+                                i2 = i4;
                             } else {
                                 canvas.save();
                                 float f2 = lineInfo.collapsedX;
@@ -1268,7 +1269,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                                 if (f2 == f3) {
                                     StoryCaptionTextView storyCaptionTextView8 = StoryCaptionTextView.this;
                                     if (storyCaptionTextView8.progressToExpand == 0.0f) {
-                                        i3 = i3;
+                                        i2 = i4;
                                     } else {
                                         canvas.translate(storyCaptionTextView8.horizontalPadding + f3, storyCaptionTextView8.verticalPadding + i + lineInfo.finalY);
                                         canvas.saveLayerAlpha(0.0f, 0.0f, lineInfo.staticLayout.getWidth(), lineInfo.staticLayout.getHeight(), (int) (StoryCaptionTextView.this.progressToExpand * 255.0f), 31);
@@ -1284,10 +1285,12 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                                         StaticLayout staticLayout4 = lineInfo.staticLayout;
                                         List list = this.spoilers;
                                         StoryCaptionTextView storyCaptionTextView10 = StoryCaptionTextView.this;
+                                        i2 = i4;
                                         AnimatedEmojiSpan.drawAnimatedEmojis(canvas, staticLayout4, emojiGroupedSpansUpdate3, 0.0f, list, 0.0f, 0.0f, 0.0f, storyCaptionTextView10.progressToExpand, storyCaptionTextView10.emojiColorFilter);
                                         canvas.restore();
                                     }
                                 } else {
+                                    i2 = i4;
                                     float fLerp = AndroidUtilities.lerp(f2, f3, StoryCaptionTextView.this.progressToExpand);
                                     float fLerp2 = AndroidUtilities.lerp(lineInfo.collapsedY, lineInfo.finalY, CubicBezierInterpolator.EASE_OUT.getInterpolation(StoryCaptionTextView.this.progressToExpand));
                                     StoryCaptionTextView storyCaptionTextView11 = StoryCaptionTextView.this;
@@ -1304,7 +1307,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                                 }
                                 canvas.restore();
                             }
-                            i3++;
+                            i4 = i2 + 1;
                         }
                     }
                 }
@@ -1314,8 +1317,8 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                     canvas.translate(storyCaptionTextView13.horizontalPadding, (storyCaptionTextView13.verticalPadding + AndroidUtilities.lerp(this.collapsedTextHeight, this.textHeight, storyCaptionTextView13.progressToExpand)) - this.bottomPanel.height());
                     Panel panel2 = this.bottomPanel;
                     int width2 = StoryCaptionTextView.this.getWidth();
-                    int i4 = StoryCaptionTextView.this.horizontalPadding;
-                    panel2.draw(canvas, (width2 - i4) - i4);
+                    int i5 = StoryCaptionTextView.this.horizontalPadding;
+                    panel2.draw(canvas, (width2 - i5) - i5);
                     canvas.restore();
                 }
             }
@@ -1393,7 +1396,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                                 StoryCaptionTextView.this.postDelayed(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        this.f$0.lambda$touch$5(linkSpanDrawable2);
+                                        StoryCaptionView.StoryCaptionTextView.TextState.$r8$lambda$DgGSnsk7A1WtNSWzGD643C1oPm4(this.f$0, linkSpanDrawable2);
                                     }
                                 }, ViewConfiguration.getLongPressTimeout());
                                 z2 = true;
@@ -1434,23 +1437,23 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                     }
                     this.pressedLink = null;
                     this.pressedEmoji = null;
-                } else {
-                    if (motionEvent.getAction() != 3) {
-                        return false;
-                    }
-                    StoryCaptionTextView.this.clearPressedLinks();
-                    this.pressedEmoji = null;
+                    return true;
                 }
+                if (motionEvent.getAction() != 3) {
+                    return false;
+                }
+                StoryCaptionTextView.this.clearPressedLinks();
+                this.pressedEmoji = null;
                 return true;
             }
 
-            public void lambda$touch$5(LinkSpanDrawable linkSpanDrawable) {
-                LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
+            public static void $r8$lambda$DgGSnsk7A1WtNSWzGD643C1oPm4(TextState textState, LinkSpanDrawable linkSpanDrawable) {
+                LinkSpanDrawable linkSpanDrawable2 = textState.pressedLink;
                 if (linkSpanDrawable == linkSpanDrawable2 && linkSpanDrawable2 != null && (linkSpanDrawable2.getSpan() instanceof URLSpan)) {
                     StoryCaptionView storyCaptionView = StoryCaptionView.this;
-                    URLSpan uRLSpan = (URLSpan) this.pressedLink.getSpan();
+                    URLSpan uRLSpan = (URLSpan) textState.pressedLink.getSpan();
                     StoryCaptionTextView storyCaptionTextView = StoryCaptionTextView.this;
-                    final LinkSpanDrawable.LinkCollector linkCollector = this.links;
+                    final LinkSpanDrawable.LinkCollector linkCollector = textState.links;
                     Objects.requireNonNull(linkCollector);
                     storyCaptionView.onLinkLongPress(uRLSpan, storyCaptionTextView, new Runnable() {
                         @Override
@@ -1458,7 +1461,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                             linkCollector.clear();
                         }
                     });
-                    this.pressedLink = null;
+                    textState.pressedLink = null;
                 }
             }
 
@@ -1599,7 +1602,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$animateUpdate$0(valueAnimator2);
+                    StoryCaptionView.StoryCaptionTextView.m4438$r8$lambda$jHRPhq9GuxOaOgO6rHZUHgXBEg(this.f$0, valueAnimator2);
                 }
             });
             this.updateAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1618,10 +1621,11 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             this.updateAnimator.start();
         }
 
-        public void lambda$animateUpdate$0(ValueAnimator valueAnimator) {
-            this.updateT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
-            requestLayout();
+        public static void m4438$r8$lambda$jHRPhq9GuxOaOgO6rHZUHgXBEg(StoryCaptionTextView storyCaptionTextView, ValueAnimator valueAnimator) {
+            storyCaptionTextView.getClass();
+            storyCaptionTextView.updateT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            storyCaptionTextView.invalidate();
+            storyCaptionTextView.requestLayout();
             StoryCaptionView.this.requestLayout();
         }
 
@@ -1648,15 +1652,18 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             if (this.showMore != null) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
+                canvas2 = canvas;
             } else {
-                canvas.save();
+                canvas2 = canvas;
+                canvas2.save();
             }
-            this.state[0].draw(canvas, 1.0f - this.updateT);
+            this.state[0].draw(canvas2, 1.0f - this.updateT);
             TextState textState = this.state[1];
             if (textState != null) {
-                textState.draw(canvas, this.updateT);
+                textState.draw(canvas2, this.updateT);
             }
             if (this.showMore != null) {
                 float scrollY = this.showMoreY + StoryCaptionView.this.getScrollY();
@@ -1664,17 +1671,17 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                 this.xRefGradinetPaint.setAlpha(iClamp);
                 this.xRefPaint.setAlpha(iClamp);
                 this.showMorePaint.setAlpha(iClamp);
-                canvas.save();
-                canvas.translate(this.showMoreX - AndroidUtilities.dp(32.0f), scrollY);
-                canvas.drawRect(0.0f, 0.0f, AndroidUtilities.dp(32.0f), this.showMore.getHeight() + this.verticalPadding, this.xRefGradinetPaint);
-                canvas.restore();
-                canvas.drawRect(this.showMoreX - AndroidUtilities.dp(16.0f), scrollY, getMeasuredWidth(), this.showMore.getHeight() + scrollY + this.verticalPadding, this.xRefPaint);
-                canvas.save();
-                canvas.translate(this.showMoreX, scrollY);
-                this.showMore.draw(canvas);
-                canvas.restore();
+                canvas2.save();
+                canvas2.translate(this.showMoreX - AndroidUtilities.dp(32.0f), scrollY);
+                canvas2.drawRect(0.0f, 0.0f, AndroidUtilities.dp(32.0f), this.showMore.getHeight() + this.verticalPadding, this.xRefGradinetPaint);
+                canvas2.restore();
+                canvas2.drawRect(this.showMoreX - AndroidUtilities.dp(16.0f), scrollY, getMeasuredWidth(), this.showMore.getHeight() + scrollY + this.verticalPadding, this.xRefPaint);
+                canvas2.save();
+                canvas2.translate(this.showMoreX, scrollY);
+                this.showMore.draw(canvas2);
+                canvas2.restore();
             }
-            canvas.restore();
+            canvas2.restore();
         }
 
         public StaticLayout makeTextLayout(TextPaint textPaint, CharSequence charSequence, int i) {
@@ -1703,14 +1710,13 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
         @Override
         public boolean onTouchEvent(MotionEvent motionEvent) {
             TextState[] textStateArr;
-            if (StoryCaptionView.this.disableTouches || (textStateArr = this.state) == null) {
-                return false;
+            if (!StoryCaptionView.this.disableTouches && (textStateArr = this.state) != null) {
+                TextState textState = textStateArr[0];
+                if (textState.fullLayout != null) {
+                    return textState.touch(motionEvent) || super.onTouchEvent(motionEvent);
+                }
             }
-            TextState textState = textStateArr[0];
-            if (textState.fullLayout == null) {
-                return false;
-            }
-            return textState.touch(motionEvent) || super.onTouchEvent(motionEvent);
+            return false;
         }
 
         @Override

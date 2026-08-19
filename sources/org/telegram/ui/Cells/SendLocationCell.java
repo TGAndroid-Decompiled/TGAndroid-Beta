@@ -290,11 +290,15 @@ public class SendLocationCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Canvas canvas2;
         float f;
         int i;
         Paint themePaint;
-        if (this.useDivider && (themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider)) != null) {
-            canvas.drawRect(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(73.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(73.0f) : 0), getMeasuredHeight(), themePaint);
+        if (!this.useDivider || (themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider)) == null) {
+            canvas2 = canvas;
+        } else {
+            canvas2 = canvas;
+            canvas2.drawRect(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(73.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(73.0f) : 0), getMeasuredHeight(), themePaint);
         }
         if (this.liveDisable) {
             return;
@@ -318,16 +322,16 @@ public class SendLocationCell extends FrameLayout {
         } else {
             this.rect.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(15.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(15.0f));
         }
-        canvas.save();
+        canvas2.save();
         float f4 = 1.0f;
         float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, f3);
-        canvas.scale(fLerp, fLerp, this.rect.centerX(), this.rect.centerY());
+        canvas2.scale(fLerp, fLerp, this.rect.centerX(), this.rect.centerY());
         int themedColor = getThemedColor(Theme.key_location_liveLocationProgress);
         Theme.chat_radialProgress2Paint.setColor(themedColor);
         int alpha = Theme.chat_radialProgress2Paint.getAlpha();
         float f5 = alpha;
         Theme.chat_radialProgress2Paint.setAlpha((int) (0.2f * f5 * f3));
-        canvas.drawArc(this.rect, -90.0f, 360.0f, false, Theme.chat_radialProgress2Paint);
+        canvas2.drawArc(this.rect, -90.0f, 360.0f, false, Theme.chat_radialProgress2Paint);
         Theme.chat_radialProgress2Paint.setAlpha((int) (f5 * f3));
         canvas.drawArc(this.rect, -90.0f, this.progress.set(f2) * (-360.0f), false, Theme.chat_radialProgress2Paint);
         Theme.chat_radialProgress2Paint.setAlpha(alpha);

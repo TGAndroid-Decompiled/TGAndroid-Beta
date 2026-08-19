@@ -92,7 +92,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.collapseMoveButton = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$5();
+                CaptionPhotoViewer.$r8$lambda$7tvACeO8We2NFs09tXdWuw7fu6s(this.f$0);
             }
         };
         this.applyCaption = runnable;
@@ -164,57 +164,58 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.aiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                CaptionPhotoViewer.m2061$r8$lambda$lvCr3OU7SGv7V8UYHoNyXCA8S0(this.f$0, view);
             }
         });
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$4(frameLayout, view);
+                CaptionPhotoViewer.$r8$lambda$GEl9WnoK5INWyzYSeKgjq_sE13g(this.f$0, frameLayout, view);
             }
         });
     }
 
-    public void lambda$new$2(View view) {
+    public static void m2061$r8$lambda$lvCr3OU7SGv7V8UYHoNyXCA8S0(final CaptionPhotoViewer captionPhotoViewer, View view) {
+        captionPhotoViewer.getClass();
         MessagesController.getGlobalMainSettings().edit().putInt("aihintshown", 3).apply();
-        new AIEditorAlert(getContext(), new DarkThemeResourceProvider()).setText(this.editText.getText()).setOnUse(new Utilities.Callback() {
+        new AIEditorAlert(captionPhotoViewer.getContext(), new DarkThemeResourceProvider()).setText(captionPhotoViewer.editText.getText()).setOnUse(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$0((CharSequence) obj);
+                CaptionPhotoViewer.m2059$r8$lambda$duzMCqUquEXRcGBfzZkMn2KHHw(this.f$0, (CharSequence) obj);
             }
         }).setOnSend(0L, true, new Utilities.Callback4() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                this.f$0.lambda$new$1((CharSequence) obj, (Integer) obj2, (Integer) obj3, (Boolean) obj4);
+                CaptionPhotoViewer.$r8$lambda$EEMxvrnTh6O00DaBh_JKDpdEZ7o(this.f$0, (CharSequence) obj, (Integer) obj2, (Integer) obj3, (Boolean) obj4);
             }
         }).show();
     }
 
-    public void lambda$new$0(CharSequence charSequence) {
-        this.editText.setText(charSequence);
-        this.editText.setSelection(charSequence.length(), charSequence.length());
+    public static void m2059$r8$lambda$duzMCqUquEXRcGBfzZkMn2KHHw(CaptionPhotoViewer captionPhotoViewer, CharSequence charSequence) {
+        captionPhotoViewer.editText.setText(charSequence);
+        captionPhotoViewer.editText.setSelection(charSequence.length(), charSequence.length());
     }
 
-    public void lambda$new$1(CharSequence charSequence, Integer num, Integer num2, Boolean bool) {
-        this.editText.setText(charSequence);
-        done();
+    public static void $r8$lambda$EEMxvrnTh6O00DaBh_JKDpdEZ7o(CaptionPhotoViewer captionPhotoViewer, CharSequence charSequence, Integer num, Integer num2, Boolean bool) {
+        captionPhotoViewer.editText.setText(charSequence);
+        captionPhotoViewer.done();
     }
 
-    public void lambda$new$4(FrameLayout frameLayout, View view) {
+    public static void $r8$lambda$GEl9WnoK5INWyzYSeKgjq_sE13g(final CaptionPhotoViewer captionPhotoViewer, FrameLayout frameLayout, View view) {
         String pluralString;
-        ItemOptions itemOptions = this.timerPopup;
+        ItemOptions itemOptions = captionPhotoViewer.timerPopup;
         if (itemOptions != null && itemOptions.isShown()) {
-            this.timerPopup.dismiss();
-            this.timerPopup = null;
+            captionPhotoViewer.timerPopup.dismiss();
+            captionPhotoViewer.timerPopup = null;
             return;
         }
-        this.hint.hide();
-        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(frameLayout, new DarkThemeResourceProvider(), this.timerButton);
-        this.timerPopup = itemOptionsMakeOptions;
+        captionPhotoViewer.hint.hide();
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(frameLayout, new DarkThemeResourceProvider(), captionPhotoViewer.timerButton);
+        captionPhotoViewer.timerPopup = itemOptionsMakeOptions;
         itemOptionsMakeOptions.setDimAlpha(0);
-        this.timerPopup.addText(LocaleController.getString(R.string.TimerPeriodHint), 13, AndroidUtilities.dp(200.0f));
-        this.timerPopup.addGap();
-        for (final int i : this.values) {
+        captionPhotoViewer.timerPopup.addText(LocaleController.getString(R.string.TimerPeriodHint), 13, AndroidUtilities.dp(200.0f));
+        captionPhotoViewer.timerPopup.addGap();
+        for (final int i : captionPhotoViewer.values) {
             if (i == 0) {
                 pluralString = LocaleController.getString(R.string.TimerPeriodDoNotDelete);
             } else if (i == Integer.MAX_VALUE) {
@@ -222,17 +223,17 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             } else {
                 pluralString = LocaleController.formatPluralString("Seconds", i, new Object[0]);
             }
-            this.timerPopup.add(0, pluralString, new Runnable() {
+            captionPhotoViewer.timerPopup.add(0, pluralString, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$3(i);
+                    this.f$0.changeTimer(i);
                 }
             });
-            if (this.timer == i) {
-                this.timerPopup.putCheck();
+            if (captionPhotoViewer.timer == i) {
+                captionPhotoViewer.timerPopup.putCheck();
             }
         }
-        this.timerPopup.show();
+        captionPhotoViewer.timerPopup.show();
     }
 
     @Override
@@ -262,10 +263,10 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         }
     }
 
-    public void lambda$new$5() {
-        if (this.moveButtonExpanded) {
-            this.moveButtonExpanded = false;
-            invalidate();
+    public static void $r8$lambda$7tvACeO8We2NFs09tXdWuw7fu6s(CaptionPhotoViewer captionPhotoViewer) {
+        if (captionPhotoViewer.moveButtonExpanded) {
+            captionPhotoViewer.moveButtonExpanded = false;
+            captionPhotoViewer.invalidate();
         }
     }
 
@@ -342,7 +343,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             this.addPhotoButton.animate().alpha(z ? 1.0f : 0.0f).translationX(z ? 0.0f : AndroidUtilities.dp(-8.0f)).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setAddPhotoVisible$6(z);
+                    CaptionPhotoViewer.$r8$lambda$IN9r1TmC2UUyFns8xPbj_1CWCps(this.f$0, z);
                 }
             }).start();
         } else {
@@ -359,11 +360,12 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.editText.setLayoutParams(marginLayoutParams);
     }
 
-    public void lambda$setAddPhotoVisible$6(boolean z) {
+    public static void $r8$lambda$IN9r1TmC2UUyFns8xPbj_1CWCps(CaptionPhotoViewer captionPhotoViewer, boolean z) {
         if (z) {
-            return;
+            captionPhotoViewer.getClass();
+        } else {
+            captionPhotoViewer.timerButton.setVisibility(8);
         }
-        this.timerButton.setVisibility(8);
     }
 
     @Override
@@ -379,7 +381,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     @Override
-    public void lambda$new$1() {
+    public void onTextChange() {
         Runnable runnable = this.applyCaption;
         if (runnable != null) {
             runnable.run();
@@ -395,7 +397,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             this.timerButton.animate().alpha(z ? 1.0f : 0.0f).translationX(z ? 0.0f : AndroidUtilities.dp(8.0f)).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setTimerVisible$7(z);
+                    CaptionPhotoViewer.m2063$r8$lambda$urkB2IxFGOTvJHjkiChnjNPiq4(this.f$0, z);
                 }
             }).start();
         } else {
@@ -411,11 +413,12 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.editText.setLayoutParams(marginLayoutParams);
     }
 
-    public void lambda$setTimerVisible$7(boolean z) {
+    public static void m2063$r8$lambda$urkB2IxFGOTvJHjkiChnjNPiq4(CaptionPhotoViewer captionPhotoViewer, boolean z) {
         if (z) {
-            return;
+            captionPhotoViewer.getClass();
+        } else {
+            captionPhotoViewer.timerButton.setVisibility(8);
         }
-        this.timerButton.setVisibility(8);
     }
 
     public boolean hasTimer() {
@@ -431,7 +434,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         }
     }
 
-    public void lambda$new$3(int i) {
+    public void changeTimer(int i) {
         CharSequence charSequenceReplaceTags;
         if (this.timer == i) {
             return;
@@ -590,7 +593,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.aiButton.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.6f).scaleY(z ? 1.0f : 0.6f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(420L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showAiButton$8(z);
+                CaptionPhotoViewer.m2060$r8$lambda$ezVo2wPMVjn64G4J3AEOYseNMg(this.f$0, z);
             }
         }).start();
         if (z) {
@@ -613,7 +616,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
                 this.aiHint.setOnHiddenListener(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$showAiButton$9(hintView3);
+                        this.f$0.removeView(hintView3);
                     }
                 });
                 this.aiHint.setDuration(4000L);
@@ -630,14 +633,11 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         }
     }
 
-    public void lambda$showAiButton$8(boolean z) {
+    public static void m2060$r8$lambda$ezVo2wPMVjn64G4J3AEOYseNMg(CaptionPhotoViewer captionPhotoViewer, boolean z) {
         if (z) {
-            return;
+            captionPhotoViewer.getClass();
+        } else {
+            captionPhotoViewer.aiButton.setVisibility(8);
         }
-        this.aiButton.setVisibility(8);
-    }
-
-    public void lambda$showAiButton$9(HintView2 hintView2) {
-        removeView(hintView2);
     }
 }

@@ -19,7 +19,7 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                     MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
                     return;
                 } else {
-                    MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
+                    MediaController.getInstance().pauseMessage(MediaController.getInstance().getPlayingMessageObject());
                     return;
                 }
             }
@@ -37,12 +37,11 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                 if (keyCode != 127) {
                     return;
                 }
-                MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
-                return;
+                MediaController.getInstance().pauseMessage(MediaController.getInstance().getPlayingMessageObject());
             }
         }
         String action = intent.getAction();
-        action.hashCode();
+        action.getClass();
         switch (action) {
             case "org.telegram.android.musicplayer.repeat":
                 SharedConfig.setRepeatMode((SharedConfig.repeatMode + 1) % 3);
@@ -52,7 +51,7 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                 break;
             case "org.telegram.android.musicplayer.pause":
             case "android.media.AUDIO_BECOMING_NOISY":
-                MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
+                MediaController.getInstance().pauseMessage(MediaController.getInstance().getPlayingMessageObject());
                 break;
             case "org.telegram.android.musicplayer.next":
                 MediaController.getInstance().playNextMessage();

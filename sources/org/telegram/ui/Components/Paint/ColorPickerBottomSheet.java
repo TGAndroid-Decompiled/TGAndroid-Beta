@@ -94,7 +94,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
         this.pipetteView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(context, view);
+                ColorPickerBottomSheet.$r8$lambda$sNcFg792RS7zQrEQTwD7We6S6Es(this.f$0, context, view);
             }
         });
         ImageView imageView3 = new ImageView(context);
@@ -105,7 +105,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
         this.doneView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.dismiss();
             }
         });
         AlphaPickerView alphaPickerView = new AlphaPickerView(context);
@@ -140,15 +140,15 @@ public class ColorPickerBottomSheet extends BottomSheet {
         setCustomView(scrollView);
     }
 
-    public void lambda$new$0(Context context, View view) {
-        if (this.pipetteDelegate.isPipetteVisible()) {
+    public static void $r8$lambda$sNcFg792RS7zQrEQTwD7We6S6Es(ColorPickerBottomSheet colorPickerBottomSheet, Context context, View view) {
+        if (colorPickerBottomSheet.pipetteDelegate.isPipetteVisible()) {
             return;
         }
-        Bitmap bitmapSnapshotView = AndroidUtilities.snapshotView(this.pipetteDelegate.getSnapshotDrawingView());
+        Bitmap bitmapSnapshotView = AndroidUtilities.snapshotView(colorPickerBottomSheet.pipetteDelegate.getSnapshotDrawingView());
         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmapSnapshotView.getWidth(), bitmapSnapshotView.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.drawColor(-16777216);
-        this.pipetteDelegate.onDrawImageOverCanvas(bitmapCreateBitmap, canvas);
+        colorPickerBottomSheet.pipetteDelegate.onDrawImageOverCanvas(bitmapCreateBitmap, canvas);
         canvas.drawBitmap(bitmapSnapshotView, 0.0f, 0.0f, (Paint) null);
         bitmapSnapshotView.recycle();
         PipettePickerView pipettePickerView = new PipettePickerView(context, bitmapCreateBitmap) {
@@ -162,8 +162,8 @@ public class ColorPickerBottomSheet extends BottomSheet {
                 ColorPickerBottomSheet.this.pipetteDelegate.onStopColorPipette();
             }
         };
-        this.pipetteDelegate.getContainerView().addView(pipettePickerView, LayoutHelper.createFrame(-1, -1.0f));
-        final PipetteDelegate pipetteDelegate = this.pipetteDelegate;
+        colorPickerBottomSheet.pipetteDelegate.getContainerView().addView(pipettePickerView, LayoutHelper.createFrame(-1, -1.0f));
+        final PipetteDelegate pipetteDelegate = colorPickerBottomSheet.pipetteDelegate;
         Objects.requireNonNull(pipetteDelegate);
         pipettePickerView.setColorListener(new Consumer() {
             @Override
@@ -172,11 +172,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             }
         });
         pipettePickerView.animateShow();
-        dismiss();
-    }
-
-    public void lambda$new$1(View view) {
-        dismiss();
+        colorPickerBottomSheet.dismiss();
     }
 
     @Override
@@ -682,26 +678,27 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.hexEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public final void onFocusChange(View view, boolean z) {
-                    this.f$0.lambda$new$0(view, z);
+                    ColorPickerBottomSheet.SlidersPickerView.$r8$lambda$kgdyBIGKnuHzSHjNlux6qWMC25o(this.f$0, view, z);
                 }
             });
             this.hexEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView2, int i, KeyEvent keyEvent) {
-                    return ColorPickerBottomSheet.SlidersPickerView.lambda$new$1(textView2, i, keyEvent);
+                    return ColorPickerBottomSheet.SlidersPickerView.$r8$lambda$sB_NLW7ur4GL9oonFr5FtyFSJtw(textView2, i, keyEvent);
                 }
             });
             linearLayout.addView(this.hexEdit, LayoutHelper.createLinear(72, 36));
         }
 
-        public void lambda$new$0(View view, boolean z) {
-            if (z || !TextUtils.isEmpty(this.hexEdit.getText())) {
-                return;
+        public static void $r8$lambda$kgdyBIGKnuHzSHjNlux6qWMC25o(SlidersPickerView slidersPickerView, View view, boolean z) {
+            if (z) {
+                slidersPickerView.getClass();
+            } else if (TextUtils.isEmpty(slidersPickerView.hexEdit.getText())) {
+                slidersPickerView.hexEdit.setText("0");
             }
-            this.hexEdit.setText("0");
         }
 
-        public static boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
+        public static boolean $r8$lambda$sB_NLW7ur4GL9oonFr5FtyFSJtw(TextView textView, int i, KeyEvent keyEvent) {
             if (i != 6) {
                 return false;
             }
@@ -790,26 +787,27 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.valueView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public final void onFocusChange(View view, boolean z) {
-                    this.f$0.lambda$new$0(view, z);
+                    ColorPickerBottomSheet.SliderCell.m2461$r8$lambda$gQTF5tYLPwl757tpzLH0EfU8Lc(this.f$0, view, z);
                 }
             });
             this.valueView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView2, int i, KeyEvent keyEvent) {
-                    return ColorPickerBottomSheet.SliderCell.lambda$new$1(textView2, i, keyEvent);
+                    return ColorPickerBottomSheet.SliderCell.$r8$lambda$eQW2gVHHzA80k4NfetuASsF7oAA(textView2, i, keyEvent);
                 }
             });
             addView(this.valueView, LayoutHelper.createFrame(72, 36, 85));
         }
 
-        public void lambda$new$0(View view, boolean z) {
-            if (z || !TextUtils.isEmpty(this.valueView.getText())) {
-                return;
+        public static void m2461$r8$lambda$gQTF5tYLPwl757tpzLH0EfU8Lc(SliderCell sliderCell, View view, boolean z) {
+            if (z) {
+                sliderCell.getClass();
+            } else if (TextUtils.isEmpty(sliderCell.valueView.getText())) {
+                sliderCell.valueView.setText("0");
             }
-            this.valueView.setText("0");
         }
 
-        public static boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
+        public static boolean $r8$lambda$eQW2gVHHzA80k4NfetuASsF7oAA(TextView textView, int i, KeyEvent keyEvent) {
             if (i != 6) {
                 return false;
             }

@@ -35,7 +35,7 @@ public class AttachBotIntroTopView extends View {
         this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                this.f$0.lambda$new$1(imageReceiver2, z, z2, z3);
+                AttachBotIntroTopView.m2015$r8$lambda$9E3iq6y937AHcDGuDGtpyutUaQ(this.f$0, imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -54,20 +54,21 @@ public class AttachBotIntroTopView extends View {
         this.paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
-    public void lambda$new$1(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void m2015$r8$lambda$9E3iq6y937AHcDGuDGtpyutUaQ(final AttachBotIntroTopView attachBotIntroTopView, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        attachBotIntroTopView.getClass();
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$new$0(valueAnimator);
+                AttachBotIntroTopView.$r8$lambda$r7NoZe1dOlXoqnpgquNHkrgXyLs(this.f$0, valueAnimator);
             }
         });
         duration.start();
     }
 
-    public void lambda$new$0(ValueAnimator valueAnimator) {
-        this.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-        invalidate();
+    public static void $r8$lambda$r7NoZe1dOlXoqnpgquNHkrgXyLs(AttachBotIntroTopView attachBotIntroTopView, ValueAnimator valueAnimator) {
+        attachBotIntroTopView.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        attachBotIntroTopView.invalidate();
     }
 
     public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
@@ -111,7 +112,7 @@ public class AttachBotIntroTopView extends View {
         this.imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.dp(42.0f) / 2.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
         this.imageReceiver.draw(canvas);
         canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, this.paint);
-        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, (getHeight() / 2.0f) + AndroidUtilities.dp(8.0f), this.paint);
+        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, AndroidUtilities.dp(8.0f) + (getHeight() / 2.0f), this.paint);
         this.attachDrawable.setBounds((getWidth() / 2) + AndroidUtilities.dp(24.0f), (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2), (getWidth() / 2) + AndroidUtilities.dp(66.0f), (getHeight() / 2) + (AndroidUtilities.dp(42.0f) / 2));
         this.attachDrawable.draw(canvas);
     }

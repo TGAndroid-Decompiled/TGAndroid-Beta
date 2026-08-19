@@ -25,7 +25,6 @@ public abstract class CastMediaRouteButton extends MediaRouteButton {
             declaredField.setAccessible(true);
             return ((Integer) declaredField.get(this)).intValue() > 0;
         } catch (Exception unused) {
-            return false;
         }
     }
 

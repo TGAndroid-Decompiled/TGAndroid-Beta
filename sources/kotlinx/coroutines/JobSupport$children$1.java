@@ -31,7 +31,7 @@ final class JobSupport$children$1 extends RestrictedSuspendLambda implements Fun
     }
 
     @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r7) {
+    public final java.lang.Object invokeSuspend(java.lang.Object r6) {
         throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.JobSupport$children$1.invokeSuspend(java.lang.Object):java.lang.Object");
     }
 }

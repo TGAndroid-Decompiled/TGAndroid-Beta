@@ -21,12 +21,12 @@ public class GcmPushListenerService extends FirebaseMessagingService {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GcmPushListenerService.lambda$onNewToken$0(str);
+                GcmPushListenerService.$r8$lambda$yff5x9Kir9GwH0krOiFRPGGXb_U(str);
             }
         });
     }
 
-    public static void lambda$onNewToken$0(String str) {
+    public static void $r8$lambda$yff5x9Kir9GwH0krOiFRPGGXb_U(String str) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("Refreshed FCM token: " + str);
         }

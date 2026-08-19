@@ -40,6 +40,7 @@ public class EncryptedFileInputStream extends FileInputStream {
 
     @Override
     public int read(byte[] bArr, int i, int i2) throws IOException {
+        int i3;
         if (this.currentMode == 1 && this.fileOffset == 0) {
             byte[] bArr2 = new byte[32];
             super.read(bArr2, 0, 32);
@@ -47,15 +48,19 @@ public class EncryptedFileInputStream extends FileInputStream {
             this.fileOffset += 32;
             skip((bArr2[0] & 255) - 32);
         }
-        int i3 = super.read(bArr, i, i2);
-        int i4 = this.currentMode;
-        if (i4 == 1) {
-            Utilities.aesCbcEncryptionByteArraySafe(bArr, this.key, this.iv, i, i2, this.fileOffset, 0);
-        } else if (i4 == 0) {
-            Utilities.aesCtrDecryptionByteArray(bArr, this.key, this.iv, i, i2, this.fileOffset);
+        int i4 = super.read(bArr, i, i2);
+        int i5 = this.currentMode;
+        if (i5 == 1) {
+            i3 = i2;
+            Utilities.aesCbcEncryptionByteArraySafe(bArr, this.key, this.iv, i, i3, this.fileOffset, 0);
+        } else {
+            i3 = i2;
+            if (i5 == 0) {
+                Utilities.aesCtrDecryptionByteArray(bArr, this.key, this.iv, i, i3, this.fileOffset);
+            }
         }
-        this.fileOffset += i2;
-        return i3;
+        this.fileOffset += i3;
+        return i4;
     }
 
     @Override

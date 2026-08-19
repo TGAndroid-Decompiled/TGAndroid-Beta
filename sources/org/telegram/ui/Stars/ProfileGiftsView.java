@@ -14,7 +14,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -130,9 +129,13 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
-        Iterator it = this.gifts.iterator();
-        while (it.hasNext()) {
-            ((Gift) it.next()).emojiDrawable.addView(this);
+        ArrayList arrayList = this.gifts;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((Gift) obj).emojiDrawable.addView(this);
         }
         update();
     }
@@ -141,9 +144,13 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-        Iterator it = this.gifts.iterator();
-        while (it.hasNext()) {
-            ((Gift) it.next()).emojiDrawable.removeView(this);
+        ArrayList arrayList = this.gifts;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((Gift) obj).emojiDrawable.removeView(this);
         }
     }
 
@@ -212,7 +219,7 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
             canvas.save();
             canvas.translate(f, f2);
             canvas.rotate(f4);
-            float scale = this.bounce.getScale(0.1f) * f3;
+            float scale = f3 * this.bounce.getScale(0.1f);
             canvas.scale(scale, scale);
             this.particles.process();
             this.particles.draw(canvas, this.color, f5);
@@ -227,7 +234,7 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
                 int i = (-iDp) / 2;
                 int i2 = iDp / 2;
                 this.emojiDrawable.setBounds(i, i, i2, i2);
-                this.emojiDrawable.setAlpha((int) (f5 * 255.0f));
+                this.emojiDrawable.setAlpha((int) (255.0f * f5));
                 this.emojiDrawable.draw(canvas);
             }
             canvas.restore();
@@ -380,8 +387,9 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
     @Override
     protected void dispatchDraw(Canvas canvas) {
         float fDp;
-        float fDp2;
+        int iDp;
         float fLerp;
+        float fLerp2;
         float f;
         float fMin;
         float f2;
@@ -403,7 +411,8 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
         float fMax2 = Math.max(width, fDpf2);
         float fMax3 = Math.max(height, fDpf2);
         canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getWidth(), this.expandY);
+        Canvas canvas2 = canvas;
+        canvas2.clipRect(0.0f, 0.0f, getWidth(), this.expandY);
         float f4 = fMin2 + (fMax2 / 2.0f);
         float f5 = (fMax3 / 2.0f) + fMax;
         float f6 = x + (width / 2.0f);
@@ -415,31 +424,31 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
         while (i < this.gifts.size()) {
             Gift gift = (Gift) this.gifts.get(i);
             float f10 = gift.animatedFloat.set(f3);
-            float fLerp2 = AndroidUtilities.lerp(0.5f, f3, f10);
-            float f11 = (f3 - this.expandProgress) * f10 * (f3 - this.actionBarProgress) * fClamp02;
+            float fLerp3 = AndroidUtilities.lerp(0.5f, f3, f10);
+            float f11 = (1.0f - this.expandProgress) * f10 * (1.0f - this.actionBarProgress) * fClamp02;
             int i2 = gift.position;
             if (i2 == 0) {
                 fDp = (f4 / 2.0f) - (AndroidUtilities.dp(20.0f) * f9);
-                fDp2 = f5 - AndroidUtilities.dp(13.0f);
+                iDp = AndroidUtilities.dp(13.0f);
             } else {
                 if (i2 == 1) {
-                    fLerp = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(6.0f) * f9);
-                    fDp2 = fMax - AndroidUtilities.dp(4.0f);
+                    fLerp2 = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(6.0f) * f9);
+                    fLerp = fMax - AndroidUtilities.dp(4.0f);
                 } else {
                     if (i2 == 2) {
-                        float fDp3 = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(12.0f) * f9);
-                        fDp2 = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
-                        fLerp = fDp3;
+                        float fDp2 = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(12.0f) * f9);
+                        fLerp = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
+                        fLerp2 = fDp2;
                     } else if (i2 == 3) {
                         fDp = (1.5f * f4) + (AndroidUtilities.dp(20.0f) * f9);
-                        fDp2 = f5 - AndroidUtilities.dp(13.0f);
+                        iDp = AndroidUtilities.dp(13.0f);
                     } else if (i2 == 4) {
-                        fLerp = ((f4 * 4.0f) / 3.0f) + (AndroidUtilities.dp(12.0f) * f9);
-                        fDp2 = fMax - AndroidUtilities.dp(4.0f);
+                        fLerp2 = ((f4 * 4.0f) / 3.0f) + (AndroidUtilities.dp(12.0f) * f9);
+                        fLerp = fMax - AndroidUtilities.dp(4.0f);
                     } else {
-                        float fDp4 = ((4.0f * f4) / 3.0f) + (AndroidUtilities.dp(12.0f) * f9);
-                        fDp2 = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
-                        fLerp = fDp4;
+                        float fDp3 = ((4.0f * f4) / 3.0f) + (AndroidUtilities.dp(12.0f) * f9);
+                        fLerp = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
+                        fLerp2 = fDp3;
                     }
                     f = 0.9f;
                     if (!this.isOpening || f10 >= 1.0f) {
@@ -454,13 +463,15 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
                         fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f2) / 0.67999995f);
                     }
                     if (fClamp01 < 1.0f) {
-                        fLerp = AndroidUtilities.lerp(f6, fLerp, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
-                        fDp2 = AndroidUtilities.lerp(f7, fDp2, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
-                        fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
+                        fLerp2 = AndroidUtilities.lerp(f6, fLerp2, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
+                        fLerp = AndroidUtilities.lerp(f7, fLerp, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
+                        fLerp3 = AndroidUtilities.lerp(fLerp3 / 2.0f, fLerp3, fClamp01);
                     }
-                    gift.draw(canvas, fLerp, fDp2, fLerp2, 0.0f, f11, 1.0f);
+                    gift.draw(canvas2, fLerp2, fLerp, fLerp3, 0.0f, f11, 1.0f);
                     i++;
+                    canvas2 = canvas;
                     fClamp02 = fClamp02;
+                    f9 = f9;
                     f3 = 1.0f;
                 }
                 f = 0.0f;
@@ -476,17 +487,21 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
                     fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f2) / 0.67999995f);
                 }
                 if (fClamp01 < 1.0f) {
-                    fLerp = AndroidUtilities.lerp(f6, fLerp, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
-                    fDp2 = AndroidUtilities.lerp(f7, fDp2, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
-                    fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
+                    fLerp2 = AndroidUtilities.lerp(f6, fLerp2, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
+                    fLerp = AndroidUtilities.lerp(f7, fLerp, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
+                    fLerp3 = AndroidUtilities.lerp(fLerp3 / 2.0f, fLerp3, fClamp01);
                 }
-                gift.draw(canvas, fLerp, fDp2, fLerp2, 0.0f, f11, 1.0f);
+                gift.draw(canvas2, fLerp2, fLerp, fLerp3, 0.0f, f11, 1.0f);
                 i++;
+                canvas2 = canvas;
                 fClamp02 = fClamp02;
+                f9 = f9;
                 f3 = 1.0f;
             }
+            fLerp = f5 - iDp;
             fClamp02 = fClamp02;
-            fLerp = fDp;
+            f9 = f9;
+            fLerp2 = fDp;
             f = 1.6f;
             if (!this.isOpening) {
                 fMin = this.collapseProgress;
@@ -500,13 +515,15 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
                 fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f2) / 0.67999995f);
             }
             if (fClamp01 < 1.0f) {
-                fLerp = AndroidUtilities.lerp(f6, fLerp, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
-                fDp2 = AndroidUtilities.lerp(f7, fDp2, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
-                fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
+                fLerp2 = AndroidUtilities.lerp(f6, fLerp2, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
+                fLerp = AndroidUtilities.lerp(f7, fLerp, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
+                fLerp3 = AndroidUtilities.lerp(fLerp3 / 2.0f, fLerp3, fClamp01);
             }
-            gift.draw(canvas, fLerp, fDp2, fLerp2, 0.0f, f11, 1.0f);
+            gift.draw(canvas2, fLerp2, fLerp, fLerp3, 0.0f, f11, 1.0f);
             i++;
+            canvas2 = canvas;
             fClamp02 = fClamp02;
+            f9 = f9;
             f3 = 1.0f;
         }
         canvas.restore();

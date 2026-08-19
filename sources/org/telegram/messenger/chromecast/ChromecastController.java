@@ -27,7 +27,7 @@ public class ChromecastController implements SessionManagerListener {
         sharedInstance.addCastStateListener(new CastStateListener() {
             @Override
             public final void onCastStateChanged(int i) {
-                ChromecastController.lambda$new$0(i);
+                Log.d("CAST_STATE", "onCastStateChanged " + i);
             }
         });
         this.state = new ChromecastControllerState();
@@ -35,10 +35,6 @@ public class ChromecastController implements SessionManagerListener {
         this.sessionManager = sessionManager;
         sessionManager.addSessionManagerListener(this, CastSession.class);
         tryInitClient(sessionManager.getCurrentCastSession());
-    }
-
-    public static void lambda$new$0(int i) {
-        Log.d("CAST_STATE", "onCastStateChanged " + i);
     }
 
     public boolean isCasting() {
@@ -98,18 +94,20 @@ public class ChromecastController implements SessionManagerListener {
     }
 
     public static ChromecastController getInstance() {
-        ChromecastController chromecastController = Instance;
-        if (chromecastController == null) {
-            synchronized (ChromecastController.class) {
-                try {
-                    chromecastController = Instance;
-                    if (chromecastController == null) {
-                        chromecastController = new ChromecastController();
-                        Instance = chromecastController;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        ChromecastController chromecastController;
+        ChromecastController chromecastController2 = Instance;
+        if (chromecastController2 != null) {
+            return chromecastController2;
+        }
+        synchronized (ChromecastController.class) {
+            try {
+                chromecastController = Instance;
+                if (chromecastController == null) {
+                    chromecastController = new ChromecastController();
+                    Instance = chromecastController;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return chromecastController;

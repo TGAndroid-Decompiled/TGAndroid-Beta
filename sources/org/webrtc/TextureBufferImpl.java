@@ -67,14 +67,15 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         this.refCountDelegate = new RefCountDelegate(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0(refCountMonitor);
+                TextureBufferImpl.m5090$r8$lambda$H35TZ4MlCTttXlwV_K3ZnKf910(this.f$0, refCountMonitor);
             }
         });
         this.refCountMonitor = refCountMonitor;
     }
 
-    public void lambda$new$0(RefCountMonitor refCountMonitor) {
-        refCountMonitor.onDestroy(this);
+    public static void m5090$r8$lambda$H35TZ4MlCTttXlwV_K3ZnKf910(TextureBufferImpl textureBufferImpl, RefCountMonitor refCountMonitor) {
+        textureBufferImpl.getClass();
+        refCountMonitor.onDestroy(textureBufferImpl);
     }
 
     @Override
@@ -107,13 +108,10 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         return (VideoFrame.I420Buffer) ThreadUtils.invokeAtFrontUninterruptibly(this.toI420Handler, new Callable() {
             @Override
             public final Object call() {
-                return this.f$0.lambda$toI420$1();
+                TextureBufferImpl textureBufferImpl = this.f$0;
+                return textureBufferImpl.yuvConverter.convert(textureBufferImpl);
             }
         });
-    }
-
-    public VideoFrame.I420Buffer lambda$toI420$1() {
-        return this.yuvConverter.convert(this);
     }
 
     @Override

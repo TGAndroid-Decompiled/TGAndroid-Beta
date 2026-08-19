@@ -54,23 +54,23 @@ public class LanguageDetector {
         LanguageIdentification.getClient().identifyLanguage(str).addOnSuccessListener(new OnSuccessListener() {
             @Override
             public final void onSuccess(Object obj) {
-                LanguageDetector.lambda$detectLanguage$0(stringCallback, (String) obj);
+                LanguageDetector.$r8$lambda$A9hSaUSYsiHXwXl3Wg4NimNwdkM(stringCallback, (String) obj);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public final void onFailure(Exception exc) {
-                LanguageDetector.lambda$detectLanguage$1(exceptionCallback, exc);
+                LanguageDetector.$r8$lambda$AoS_Dilvh2Sr5L6lsNQg9lI_0nY(exceptionCallback, exc);
             }
         });
     }
 
-    public static void lambda$detectLanguage$0(StringCallback stringCallback, String str) {
+    public static void $r8$lambda$A9hSaUSYsiHXwXl3Wg4NimNwdkM(StringCallback stringCallback, String str) {
         if (stringCallback != null) {
             stringCallback.run(str);
         }
     }
 
-    public static void lambda$detectLanguage$1(ExceptionCallback exceptionCallback, Exception exc) {
+    public static void $r8$lambda$AoS_Dilvh2Sr5L6lsNQg9lI_0nY(ExceptionCallback exceptionCallback, Exception exc) {
         if (exceptionCallback != null) {
             exceptionCallback.run(exc);
         }

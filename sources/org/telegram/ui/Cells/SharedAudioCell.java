@@ -368,13 +368,11 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             z = true;
             this.radialProgress.setPressed(this.miniButtonPressed, true);
             if (z) {
-                return true;
             }
         }
         z = false;
         this.radialProgress.setPressed(this.miniButtonPressed, true);
         if (z) {
-            return true;
         }
     }
 
@@ -436,7 +434,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             return;
         }
         if (i == 1) {
-            if (MediaController.getInstance().lambda$startAudioAgain$7(this.currentMessageObject)) {
+            if (MediaController.getInstance().pauseMessage(this.currentMessageObject)) {
                 this.buttonState = 0;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                 invalidate();

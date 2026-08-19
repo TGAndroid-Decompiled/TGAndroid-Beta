@@ -113,7 +113,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             balanceCloud.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(context, resourcesProvider, view);
+                    MessageSuggestionOfferSheet.$r8$lambda$Iv_NvSsw0utf8b5gfnNggrLo0pI(this.f$0, context, resourcesProvider, view);
                 }
             });
         } else {
@@ -150,7 +150,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.dismiss();
             }
         });
         linearLayout2.addView(imageView, LayoutHelper.createLinear(48, 48, 0.0f, 21, 0, 0, 6, 0));
@@ -165,7 +165,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             horizontalRoundTabsLayout.setTabs(arrayList, new MessagesStorage.IntCallback() {
                 @Override
                 public final void run(int i6) {
-                    this.f$0.lambda$new$2(i6);
+                    MessageSuggestionOfferSheet.$r8$lambda$CfDFHtBQZhtIh_tUnEXEtDV4KL4(this.f$0, i6);
                 }
             });
             linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(-1, -2, 18.0f, 0.0f, 18.0f, 12.0f));
@@ -194,7 +194,8 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z3) {
-                this.f$0.lambda$new$3(view, z3);
+                MessageSuggestionOfferSheet messageSuggestionOfferSheet = this.f$0;
+                messageSuggestionOfferSheet.starsCountEditOutline.animateSelection(z3, !TextUtils.isEmpty(messageSuggestionOfferSheet.starsCountEditField.getText()));
             }
         });
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
@@ -245,7 +246,13 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         outlineTextContainerView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$5(context, resourcesProvider, view);
+                MessageSuggestionOfferSheet messageSuggestionOfferSheet = this.f$0;
+                AlertsCreator.createSuggestedMessageDatePickerDialog(context, messageSuggestionOfferSheet.selectedTime, new AlertsCreator.ScheduleDatePickerDelegate() {
+                    @Override
+                    public final void didSelectDate(boolean z3, int i7, int i8) {
+                        MessageSuggestionOfferSheet.$r8$lambda$cAMTukSpGgubjMgjuZiXo7Rujlg(messageSuggestionOfferSheet, z3, i7, i8);
+                    }
+                }, resourcesProvider, 0).show();
             }
         });
         linearLayout3.addView(outlineTextContainerView2, LayoutHelper.createLinear(-1, 58, 18.0f, 24.0f, 18.0f, 0.0f));
@@ -270,7 +277,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$6(chatActivity, i, context, resourcesProvider, j, callback, view);
+                MessageSuggestionOfferSheet.$r8$lambda$knv52gY02EmZTgxWFRw6qUuxx34(this.f$0, chatActivity, i, context, resourcesProvider, j, callback, view);
             }
         });
         if (i2 == 1) {
@@ -310,72 +317,57 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         });
     }
 
-    public void lambda$new$0(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
-        if (this.inputAmount.currency == AmountUtils$Currency.STARS) {
+    public static void $r8$lambda$Iv_NvSsw0utf8b5gfnNggrLo0pI(MessageSuggestionOfferSheet messageSuggestionOfferSheet, Context context, Theme.ResourcesProvider resourcesProvider, View view) {
+        if (messageSuggestionOfferSheet.inputAmount.currency == AmountUtils$Currency.STARS) {
             new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
         }
     }
 
-    public void lambda$new$1(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$new$2(int i) {
+    public static void $r8$lambda$CfDFHtBQZhtIh_tUnEXEtDV4KL4(MessageSuggestionOfferSheet messageSuggestionOfferSheet, int i) {
         AmountUtils$Currency amountUtils$Currency;
+        messageSuggestionOfferSheet.getClass();
         if (i == 0) {
             amountUtils$Currency = AmountUtils$Currency.STARS;
         } else {
             amountUtils$Currency = AmountUtils$Currency.TON;
         }
-        setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency), true, false, true);
-        this.starsCountEditField.setText("");
+        messageSuggestionOfferSheet.setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency), true, false, true);
+        messageSuggestionOfferSheet.starsCountEditField.setText("");
     }
 
-    public void lambda$new$3(View view, boolean z) {
-        this.starsCountEditOutline.animateSelection(z, !TextUtils.isEmpty(this.starsCountEditField.getText()));
-    }
-
-    public void lambda$new$5(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
-        AlertsCreator.createSuggestedMessageDatePickerDialog(context, this.selectedTime, new AlertsCreator.ScheduleDatePickerDelegate() {
-            @Override
-            public final void didSelectDate(boolean z, int i, int i2) {
-                this.f$0.lambda$new$4(z, i, i2);
-            }
-        }, resourcesProvider, 0).show();
-    }
-
-    public void lambda$new$4(boolean z, int i, int i2) {
+    public static void $r8$lambda$cAMTukSpGgubjMgjuZiXo7Rujlg(MessageSuggestionOfferSheet messageSuggestionOfferSheet, boolean z, int i, int i2) {
         if (z) {
-            setSelectedTime(i, true);
+            messageSuggestionOfferSheet.setSelectedTime(i, true);
+        } else {
+            messageSuggestionOfferSheet.getClass();
         }
     }
 
-    public void lambda$new$6(ChatActivity chatActivity, int i, Context context, Theme.ResourcesProvider resourcesProvider, long j, Utilities.Callback callback, View view) {
-        if (chatActivity == null || !this.buttonView.isEnabled()) {
+    public static void $r8$lambda$knv52gY02EmZTgxWFRw6qUuxx34(MessageSuggestionOfferSheet messageSuggestionOfferSheet, ChatActivity chatActivity, int i, Context context, Theme.ResourcesProvider resourcesProvider, long j, Utilities.Callback callback, View view) {
+        if (chatActivity == null) {
+            messageSuggestionOfferSheet.getClass();
             return;
         }
-        if (MessagesController.getInstance(i).isFrozen()) {
-            AccountFrozenAlert.show(i);
-            return;
-        }
-        StarsController starsController = StarsController.getInstance(i, this.inputAmount.currency);
-        AmountUtils$Amount amountUtils$AmountOf = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
-        if (!this.isMonoForumAdmin && (amountUtils$AmountOf == null || amountUtils$AmountOf.asNano() < this.inputAmount.asNano())) {
-            AmountUtils$Amount amountUtils$Amount = this.inputAmount;
+        if (messageSuggestionOfferSheet.buttonView.isEnabled()) {
+            if (MessagesController.getInstance(i).isFrozen()) {
+                AccountFrozenAlert.show(i);
+                return;
+            }
+            StarsController starsController = StarsController.getInstance(i, messageSuggestionOfferSheet.inputAmount.currency);
+            AmountUtils$Amount amountUtils$AmountOf = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
+            if (messageSuggestionOfferSheet.isMonoForumAdmin || (amountUtils$AmountOf != null && amountUtils$AmountOf.asNano() >= messageSuggestionOfferSheet.inputAmount.asNano())) {
+                callback.run(MessageSuggestionParams.of(messageSuggestionOfferSheet.inputAmount, messageSuggestionOfferSheet.selectedTime));
+                messageSuggestionOfferSheet.dismiss();
+                return;
+            }
+            AmountUtils$Amount amountUtils$Amount = messageSuggestionOfferSheet.inputAmount;
             AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
             if (amountUtils$Currency == AmountUtils$Currency.STARS) {
                 new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount.asDecimal(), 13, ForumUtilities.getMonoForumTitle(i, j, true), null, j).show();
-                return;
-            } else {
-                if (amountUtils$Currency == AmountUtils$Currency.TON) {
-                    new TONIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount, true, null).show();
-                    return;
-                }
-                return;
+            } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
+                new TONIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount, true, null).show();
             }
         }
-        callback.run(MessageSuggestionParams.of(this.inputAmount, this.selectedTime));
-        lambda$new$0();
     }
 
     private void setSelectedTime(long j, boolean z) {
@@ -567,13 +559,9 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$7();
+                AndroidUtilities.showKeyboard(this.f$0.starsCountEditField);
             }
         }, 50L);
-    }
-
-    public void lambda$show$7() {
-        AndroidUtilities.showKeyboard(this.starsCountEditField);
     }
 
     public static String formatDateTime(long j) {

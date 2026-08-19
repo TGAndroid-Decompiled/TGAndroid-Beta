@@ -79,10 +79,12 @@ public class ShutterButton extends View {
 
     private void setHighlighted(boolean z) {
         AnimatorSet animatorSet = new AnimatorSet();
+        Property property = View.SCALE_Y;
+        Property property2 = View.SCALE_X;
         if (z) {
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) View.SCALE_X, 1.06f), ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) View.SCALE_Y, 1.06f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) property2, 1.06f), ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) property, 1.06f));
         } else {
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) View.SCALE_Y, 1.0f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) property2, 1.0f), ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) property, 1.0f));
             animatorSet.setStartDelay(40L);
         }
         animatorSet.setDuration(120L);

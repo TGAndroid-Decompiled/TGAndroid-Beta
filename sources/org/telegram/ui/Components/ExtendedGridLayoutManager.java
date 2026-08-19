@@ -151,11 +151,12 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
         float f = size.width;
         float f2 = size.height;
         float f3 = f / f2;
-        if (f3 > 4.0f || f3 < 0.2f) {
-            float fMax = Math.max(f, f2);
-            size.width = fMax;
-            size.height = fMax;
+        if (f3 <= 4.0f && f3 >= 0.2f) {
+            return size;
         }
+        float fMax = Math.max(f, f2);
+        size.width = fMax;
+        size.height = fMax;
         return size;
     }
 

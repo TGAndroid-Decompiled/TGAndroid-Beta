@@ -63,6 +63,7 @@ public class StarGiftUniqueActionLayout {
     private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emoji;
     private RadialGradient gradient;
     private int gradientRadius;
+    private boolean hasGiftMessage;
     int height;
     public final ImageReceiver imageReceiver;
     private final GiftMessageDrawable messageDrawable;
@@ -119,7 +120,7 @@ public class StarGiftUniqueActionLayout {
 
             @Override
             public final void onFactorChanged(int i2, float f, float f2, FactorAnimator factorAnimator) {
-                this.f$0.lambda$new$0(i2, f, f2, factorAnimator);
+                this.f$0.invalidate();
             }
         }, CubicBezierInterpolator.EASE_OUT_QUINT, 320L);
         this.currentAccount = i;
@@ -221,10 +222,12 @@ public class StarGiftUniqueActionLayout {
     }
 
     private void setInternal(MessageObject messageObject, TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique, TL_stars.TL_starGiftUnique tL_starGiftUnique, boolean z) {
+        float f;
+        float f2;
         float height;
         float fDp;
         int iDp;
-        float f = this.width;
+        float f3 = this.width;
         long clientUserId = (tL_messageActionStarGiftUnique.upgrade ^ true) == messageObject.isOutOwner() ? UserConfig.getInstance(this.currentAccount).getClientUserId() : messageObject.getDialogId();
         TLRPC.Peer peer = tL_messageActionStarGiftUnique.from_id;
         if (peer != null) {
@@ -251,8 +254,16 @@ public class StarGiftUniqueActionLayout {
         float height2 = fDp2 + this.title.getHeight() + AndroidUtilities.dp(3.0f);
         if (this.repost) {
             this.subtitle = new Text(LocaleController.formatPluralStringComma("Gift2CollectionNumber", tL_starGiftUnique.num), 12.0f, AndroidUtilities.bold());
+            f = 10.0f;
+            f2 = 3.0f;
         } else {
-            this.subtitle = new Text(tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','), 12.0f);
+            StringBuilder sb = new StringBuilder();
+            sb.append(tL_starGiftUnique.title);
+            sb.append(" #");
+            f = 10.0f;
+            f2 = 3.0f;
+            sb.append(LocaleController.formatNumber(tL_starGiftUnique.num, ','));
+            this.subtitle = new Text(sb.toString(), 12.0f);
         }
         this.subtitleY = (this.subtitle.getHeight() / 2.0f) + height2;
         float height3 = height2 + this.subtitle.getHeight() + AndroidUtilities.dp(this.repost ? 14.0f : 11.0f);
@@ -273,9 +284,10 @@ public class StarGiftUniqueActionLayout {
                     userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(messageObject.getFromChatId());
                 }
             }
+            this.hasGiftMessage = true;
             this.messageDrawable.setUser(userOrChat);
             this.messageDrawable.setMessage(spannableReplaceAnimatedEmoji);
-            this.messageDrawable.measure(((int) f) - AndroidUtilities.dp(24.0f));
+            this.messageDrawable.measure(((int) f3) - AndroidUtilities.dp(24.0f));
             if (!this.widthExpanded && this.messageDrawable.getLineCount() > 3) {
                 this.widthExpanded = true;
                 this.width = (int) (this.width * (Math.min(0.4f, (this.messageDrawable.getLineCount() - 3) * 0.1f) + 1.0f));
@@ -285,9 +297,10 @@ public class StarGiftUniqueActionLayout {
                 float fDp3 = height3 + AndroidUtilities.dp(4.0f);
                 this.messageY = fDp3;
                 height3 = fDp3 + this.messageDrawable.getMinimumHeight();
-                height = AndroidUtilities.dp(3.0f);
+                height = AndroidUtilities.dp(f2);
             }
         } else {
+            this.hasGiftMessage = false;
             this.messageDrawable.setUser(null);
             this.messageDrawable.setMessage(null);
             if (this.model != null) {
@@ -296,10 +309,10 @@ public class StarGiftUniqueActionLayout {
                 }
                 Row row = new Row(height3, LocaleController.getString(R.string.Gift2AttributeModel), this.model.name);
                 this.table.add(row);
-                float f2 = f * 0.5f;
-                row.name.ellipsize(f2);
+                float f4 = f3 * 0.5f;
+                row.name.ellipsize(f4);
                 this.nameWidth = Math.max(this.nameWidth, row.name.getCurrentWidth());
-                row.value.ellipsize(f2);
+                row.value.ellipsize(f4);
                 this.valueWidth = Math.max(this.valueWidth, row.value.getCurrentWidth());
                 height3 += row.getHeight();
             }
@@ -309,10 +322,10 @@ public class StarGiftUniqueActionLayout {
                 }
                 Row row2 = new Row(height3, LocaleController.getString(R.string.Gift2AttributeBackdrop), this.backdrop.name);
                 this.table.add(row2);
-                float f3 = f * 0.5f;
-                row2.name.ellipsize(f3);
+                float f5 = f3 * 0.5f;
+                row2.name.ellipsize(f5);
                 this.nameWidth = Math.max(this.nameWidth, row2.name.getCurrentWidth());
-                row2.value.ellipsize(f3);
+                row2.value.ellipsize(f5);
                 this.valueWidth = Math.max(this.valueWidth, row2.value.getCurrentWidth());
                 height3 += row2.getHeight();
             }
@@ -322,10 +335,10 @@ public class StarGiftUniqueActionLayout {
                 }
                 Row row3 = new Row(height3, LocaleController.getString(R.string.Gift2AttributeSymbol), this.pattern.name);
                 this.table.add(row3);
-                float f4 = f * 0.5f;
-                row3.name.ellipsize(f4);
+                float f6 = f3 * 0.5f;
+                row3.name.ellipsize(f6);
                 this.nameWidth = Math.max(this.nameWidth, row3.name.getCurrentWidth());
-                row3.value.ellipsize(f4);
+                row3.value.ellipsize(f6);
                 this.valueWidth = Math.max(this.valueWidth, row3.value.getCurrentWidth());
                 height = row3.getHeight();
             }
@@ -338,7 +351,7 @@ public class StarGiftUniqueActionLayout {
                 fDp += fDp4;
                 iDp = AndroidUtilities.dp(11.0f);
             } else {
-                iDp = AndroidUtilities.dp(10.0f);
+                iDp = AndroidUtilities.dp(f);
             }
             this.height = (int) (fDp + iDp);
         }
@@ -352,7 +365,7 @@ public class StarGiftUniqueActionLayout {
             fDp += fDp5;
             iDp = AndroidUtilities.dp(11.0f);
         } else {
-            iDp = AndroidUtilities.dp(10.0f);
+            iDp = AndroidUtilities.dp(f);
         }
         this.height = (int) (fDp + iDp);
     }
@@ -433,7 +446,9 @@ public class StarGiftUniqueActionLayout {
             spannableStringBuilder2.setSpan(new ForegroundColorSpan(-1593835521), 0, spannableStringBuilder2.length(), 33);
             spannableReplaceAnimatedEmoji = spannableStringBuilder2;
         }
-        this.messageDrawable.setUser(j != 0 ? MessagesController.getInstance(this.currentAccount).getUserOrChat(j) : null);
+        TLObject userOrChat = j != 0 ? MessagesController.getInstance(this.currentAccount).getUserOrChat(j) : null;
+        this.hasGiftMessage = true;
+        this.messageDrawable.setUser(userOrChat);
         this.messageDrawable.setMessage(spannableReplaceAnimatedEmoji);
         this.messageDrawable.measure(((int) f) - AndroidUtilities.dp(24.0f));
         if (!this.widthExpanded && this.messageDrawable.getLineCount() > 3) {
@@ -525,24 +540,35 @@ public class StarGiftUniqueActionLayout {
         text.draw(canvas, width - (text.getCurrentWidth() / 2.0f), this.titleY, -1, 1.0f);
         this.subtitle.ellipsize(getWidth() - AndroidUtilities.dp(12.0f));
         Text text2 = this.subtitle;
-        text2.draw(canvas, width - (text2.getCurrentWidth() / 2.0f), this.subtitleY, i, 1.0f);
-        if (this.messageDrawable.getMinimumHeight() > 0) {
+        Canvas canvas2 = canvas;
+        int i2 = i;
+        text2.draw(canvas2, width - (text2.getCurrentWidth() / 2.0f), this.subtitleY, i2, 1.0f);
+        if (this.hasGiftMessage) {
             int minimumWidth = this.messageDrawable.getMinimumWidth();
             int minimumHeight = this.messageDrawable.getMinimumHeight();
-            int i2 = (int) (width - (minimumWidth / 2.0f));
+            int i3 = (int) (width - (minimumWidth / 2.0f));
             GiftMessageDrawable giftMessageDrawable = this.messageDrawable;
-            int i3 = (int) this.messageY;
-            giftMessageDrawable.setBounds(i2, i3, minimumWidth + i2, minimumHeight + i3);
-            this.messageDrawable.draw(canvas);
+            int i4 = (int) this.messageY;
+            giftMessageDrawable.setBounds(i3, i4, minimumWidth + i3, minimumHeight + i4);
+            this.messageDrawable.draw(canvas2);
         } else {
             float fDp = this.nameWidth + AndroidUtilities.dp(9.0f) + this.valueWidth;
-            for (Row row : this.table) {
+            ArrayList arrayList = this.table;
+            int size = arrayList.size();
+            int i5 = 0;
+            while (i5 < size) {
+                int i6 = i5 + 1;
+                Row row = (Row) arrayList.get(i5);
                 Text text3 = row.name;
                 float f2 = width - (fDp / 2.0f);
-                text3.draw(canvas, (f2 + this.nameWidth) - text3.getCurrentWidth(), row.y, i, 1.0f);
-                row.value.draw(canvas, f2 + this.nameWidth + AndroidUtilities.dp(9.0f), row.y, -1, 1.0f);
+                text3.draw(canvas2, (f2 + this.nameWidth) - text3.getCurrentWidth(), row.y, i2, 1.0f);
+                canvas2 = canvas;
+                row.value.draw(canvas2, f2 + this.nameWidth + AndroidUtilities.dp(9.0f), row.y, -1, 1.0f);
+                i5 = i6;
+                i2 = i2;
             }
         }
+        int i7 = i2;
         if (!this.repost) {
             this.buttonRect.set(width - ((this.buttonText.getCurrentWidth() + AndroidUtilities.dp(30.0f)) / 2.0f), this.buttonY, width + ((this.buttonText.getCurrentWidth() + AndroidUtilities.dp(30.0f)) / 2.0f), this.buttonY + this.buttonHeight);
             this.buttonPath.rewind();
@@ -552,14 +578,14 @@ public class StarGiftUniqueActionLayout {
             path.addRoundRect(rectF, f3, f3, Path.Direction.CW);
             this.buttonBackgroundPaint.setColor(Theme.multAlpha(-16777216, 0.13f));
             float scale2 = this.buttonBounce.getScale(0.075f);
-            canvas.scale(scale2, scale2, this.buttonRect.centerX(), this.buttonRect.centerY());
-            canvas.drawPath(this.buttonPath, this.buttonBackgroundPaint);
-            canvas.restore();
+            canvas2.scale(scale2, scale2, this.buttonRect.centerX(), this.buttonRect.centerY());
+            canvas2.drawPath(this.buttonPath, this.buttonBackgroundPaint);
+            canvas2.restore();
             this.ribbon.setBounds(((int) this.backgroundRect.right) - AndroidUtilities.dp(46.67f), ((int) this.backgroundRect.top) - AndroidUtilities.dp(1.33f), ((int) this.backgroundRect.right) + AndroidUtilities.dp(1.33f), ((int) this.backgroundRect.top) + AndroidUtilities.dp(46.67f));
-            this.ribbon.setTextColor(i);
-            this.ribbon.draw(canvas);
+            this.ribbon.setTextColor(i7);
+            this.ribbon.draw(canvas2);
         }
-        canvas.restore();
+        canvas2.restore();
     }
 
     public void drawOutbounds(Canvas canvas) {
@@ -580,17 +606,13 @@ public class StarGiftUniqueActionLayout {
         invalidate();
     }
 
-    private void invalidate() {
+    public void invalidate() {
         View view = this.view;
         if (view instanceof ChatActionCell) {
             ((ChatActionCell) view).invalidateOutbounds();
         } else {
             view.invalidate();
         }
-    }
-
-    public void lambda$new$0(int i, float f, float f2, FactorAnimator factorAnimator) {
-        invalidate();
     }
 
     private void checkAnimatedWidth(boolean z) {

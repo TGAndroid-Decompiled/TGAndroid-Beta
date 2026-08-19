@@ -75,12 +75,15 @@ public abstract class StoriesViewPager extends ViewPager {
 
             @Override
             public Object instantiateItem(ViewGroup viewGroup, int i2) {
+                AnonymousClass2 anonymousClass2;
                 PeerStoriesView peerStoriesView;
                 PageLayout pageLayout = StoriesViewPager.this.new PageLayout(context);
                 if (!this.cachedViews.isEmpty()) {
                     peerStoriesView = (PeerStoriesView) this.cachedViews.remove(0);
                     peerStoriesView.reset();
+                    anonymousClass2 = this;
                 } else {
+                    anonymousClass2 = this;
                     peerStoriesView = new HwPeerStoriesView(context, storyViewer, StoriesViewPager.this.resources, resourcesProvider) {
                         @Override
                         public boolean isSelectedPeer() {
@@ -132,7 +135,7 @@ public abstract class StoriesViewPager extends ViewPager {
         setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public final void transformPage(View view, float f) {
-                this.f$0.lambda$new$1(view, f);
+                StoriesViewPager.$r8$lambda$fz22C2XjwxT_G95OHZuTTOQPrEg(this.f$0, view, f);
             }
         });
         setOffscreenPageLimit(0);
@@ -176,21 +179,22 @@ public abstract class StoriesViewPager extends ViewPager {
         setOverScrollMode(2);
     }
 
-    public void lambda$new$1(View view, float f) {
+    public static void $r8$lambda$fz22C2XjwxT_G95OHZuTTOQPrEg(StoriesViewPager storiesViewPager, View view, float f) {
+        storiesViewPager.getClass();
         final PageLayout pageLayout = (PageLayout) view;
         if (Math.abs(f) >= 1.0f) {
             pageLayout.setVisible(false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesViewPager.lambda$new$0(pageLayout);
+                    StoriesViewPager.$r8$lambda$9CHsGpUu_NGtik9WFwY0kDWgpxw(pageLayout);
                 }
             }, 16L);
             return;
         }
         if (!pageLayout.isVisible) {
             pageLayout.setVisible(true);
-            if (this.days != null) {
+            if (storiesViewPager.days != null) {
                 pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day, -1);
             } else {
                 pageLayout.peerStoryView.setDialogId(pageLayout.dialogId, -1);
@@ -203,7 +207,7 @@ public abstract class StoriesViewPager extends ViewPager {
         view.setRotationY(f * 90.0f);
     }
 
-    public static void lambda$new$0(PageLayout pageLayout) {
+    public static void $r8$lambda$9CHsGpUu_NGtik9WFwY0kDWgpxw(PageLayout pageLayout) {
         ArrayList arrayList = pageLayout.day;
         if (arrayList != null) {
             pageLayout.peerStoryView.day = arrayList;

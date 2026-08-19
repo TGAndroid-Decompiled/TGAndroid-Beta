@@ -134,10 +134,9 @@ public class LegendSignatureView extends FrameLayout {
 
     public void setData(int i, long j, ArrayList arrayList, boolean z, int i2, float f) {
         int i3;
-        long j2;
         TextView textView;
         int length = this.holders.length;
-        int i4 = 2;
+        int i4 = 0;
         if (z) {
             TransitionSet transitionSet = new TransitionSet();
             transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(150L)).addTransition(new Fade(1).setDuration(150L));
@@ -156,29 +155,27 @@ public class LegendSignatureView extends FrameLayout {
                 this.hourTime.setText(this.hourFormat.format(Long.valueOf(j)));
             }
         }
-        long j3 = 0;
+        long j2 = 0;
         for (int i5 = 0; i5 < arrayList.size(); i5++) {
             if (((LineViewData) arrayList.get(i5)).enabled) {
-                j3 += ((LineViewData) arrayList.get(i5)).line.y[i];
+                j2 += ((LineViewData) arrayList.get(i5)).line.y[i];
             }
         }
         int i6 = 0;
         while (i6 < length) {
             Holder holder = this.holders[i6];
             int i7 = i6 % 2;
-            LineViewData lineViewData = (LineViewData) arrayList.get((i2 == 1 || i2 == i4) ? i6 / 2 : i6);
+            LineViewData lineViewData = (LineViewData) arrayList.get((i2 == 1 || i2 == 2) ? i6 / 2 : i6);
             if (!lineViewData.enabled) {
                 holder.root.setVisibility(8);
                 i3 = i6;
-                j2 = j3;
             } else {
                 if (holder.root.getMeasuredHeight() == 0) {
                     holder.root.requestLayout();
                 }
-                holder.root.setVisibility(0);
+                holder.root.setVisibility(i4);
                 AnimatedEmojiSpan.TextViewEmojis textViewEmojis = holder.value;
-                int i8 = i6;
-                long j4 = j3;
+                i3 = i6;
                 textViewEmojis.setText(formatWholeNumber(lineViewData.line.y[i], i2, i7, textViewEmojis, f));
                 if (i2 == 1) {
                     holder.signature.setText(LocaleController.formatString(i7 == 0 ? R.string.ChartInTON : R.string.ChartInUSD, lineViewData.line.name));
@@ -187,42 +184,32 @@ public class LegendSignatureView extends FrameLayout {
                 } else {
                     holder.signature.setText(lineViewData.line.name);
                 }
-                int i9 = lineViewData.line.colorKey;
-                if (i9 >= 0 && Theme.hasThemeKey(i9)) {
+                int i8 = lineViewData.line.colorKey;
+                if (i8 >= 0 && Theme.hasThemeKey(i8)) {
                     holder.value.setTextColor(Theme.getColor(lineViewData.line.colorKey, this.resourcesProvider));
                 } else {
                     holder.value.setTextColor(Theme.getCurrentTheme().isDark() ? lineViewData.line.colorDark : lineViewData.line.color);
                 }
                 TextView textView2 = holder.signature;
-                int i10 = Theme.key_dialogTextBlack;
-                textView2.setTextColor(Theme.getColor(i10, this.resourcesProvider));
-                if (!this.showPercentage || (textView = holder.percentage) == null) {
-                    i3 = i8;
-                    j2 = j4;
-                } else {
+                int i9 = Theme.key_dialogTextBlack;
+                textView2.setTextColor(Theme.getColor(i9, this.resourcesProvider));
+                if (this.showPercentage && (textView = holder.percentage) != null) {
                     textView.setVisibility(0);
-                    holder.percentage.setTextColor(Theme.getColor(i10, this.resourcesProvider));
-                    i3 = i8;
-                    j2 = j4;
+                    holder.percentage.setTextColor(Theme.getColor(i9, this.resourcesProvider));
                     float f2 = ((LineViewData) arrayList.get(i3)).line.y[i] / j2;
                     if (f2 < 0.1f && f2 != 0.0f) {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%.1f%s", Float.valueOf(f2 * 100.0f), "%"));
                     } else {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%d%s", Integer.valueOf(Math.round(f2 * 100.0f)), "%"));
                     }
-                    i6 = i3 + 1;
-                    j3 = j2;
-                    i4 = 2;
                 }
             }
             i6 = i3 + 1;
-            j3 = j2;
-            i4 = 2;
+            i4 = 0;
         }
-        long j5 = j3;
         if (this.zoomEnabled) {
-            this.canGoZoom = j5 > 0;
-            this.chevron.setVisibility(j5 <= 0 ? 8 : 0);
+            this.canGoZoom = j2 > 0;
+            this.chevron.setVisibility(j2 > 0 ? 0 : 8);
         } else {
             this.canGoZoom = false;
             this.chevron.setVisibility(8);

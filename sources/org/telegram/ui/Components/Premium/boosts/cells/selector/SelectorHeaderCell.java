@@ -46,13 +46,13 @@ public class SelectorHeaderCell extends FrameLayout {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                SelectorHeaderCell.$r8$lambda$Q_aq6LZJEciJ9EbiU8tIvtGbJGc(this.f$0, view);
             }
         });
     }
 
-    public void lambda$new$0(View view) {
-        Runnable runnable = this.onCloseClickListener;
+    public static void $r8$lambda$Q_aq6LZJEciJ9EbiU8tIvtGbJGc(SelectorHeaderCell selectorHeaderCell, View view) {
+        Runnable runnable = selectorHeaderCell.onCloseClickListener;
         if (runnable != null) {
             runnable.run();
         }

@@ -768,21 +768,20 @@ public class NumberPicker extends LinearLayout {
     }
 
     private int makeMeasureSpec(int i, int i2) {
-        if (i2 == -1) {
-            return i;
+        if (i2 != -1) {
+            int size = View.MeasureSpec.getSize(i);
+            int mode = View.MeasureSpec.getMode(i);
+            if (mode == Integer.MIN_VALUE) {
+                return View.MeasureSpec.makeMeasureSpec(Math.min(size, i2), 1073741824);
+            }
+            if (mode == 0) {
+                return View.MeasureSpec.makeMeasureSpec(i2, 1073741824);
+            }
+            if (mode != 1073741824) {
+                throw new IllegalArgumentException("Unknown measure mode: " + mode);
+            }
         }
-        int size = View.MeasureSpec.getSize(i);
-        int mode = View.MeasureSpec.getMode(i);
-        if (mode == Integer.MIN_VALUE) {
-            return View.MeasureSpec.makeMeasureSpec(Math.min(size, i2), 1073741824);
-        }
-        if (mode == 0) {
-            return View.MeasureSpec.makeMeasureSpec(i2, 1073741824);
-        }
-        if (mode == 1073741824) {
-            return i;
-        }
-        throw new IllegalArgumentException("Unknown measure mode: " + mode);
+        return i;
     }
 
     private int resolveSizeAndStateRespectingMinSize(int i, int i2, int i3) {

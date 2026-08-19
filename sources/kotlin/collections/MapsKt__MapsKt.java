@@ -17,19 +17,19 @@ public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
 
     public static Map mapOf(Pair... pairs) {
         Intrinsics.checkNotNullParameter(pairs, "pairs");
-        return pairs.length > 0 ? toMap(pairs, new LinkedHashMap(MapsKt.mapCapacity(pairs.length))) : MapsKt.emptyMap();
+        return pairs.length > 0 ? toMap(pairs, new LinkedHashMap(MapsKt__MapsJVMKt.mapCapacity(pairs.length))) : emptyMap();
     }
 
     public static Map mutableMapOf(Pair... pairs) {
         Intrinsics.checkNotNullParameter(pairs, "pairs");
-        LinkedHashMap linkedHashMap = new LinkedHashMap(MapsKt.mapCapacity(pairs.length));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(MapsKt__MapsJVMKt.mapCapacity(pairs.length));
         putAll(linkedHashMap, pairs);
         return linkedHashMap;
     }
 
     public static LinkedHashMap linkedMapOf(Pair... pairs) {
         Intrinsics.checkNotNullParameter(pairs, "pairs");
-        return (LinkedHashMap) toMap(pairs, new LinkedHashMap(MapsKt.mapCapacity(pairs.length)));
+        return (LinkedHashMap) toMap(pairs, new LinkedHashMap(MapsKt__MapsJVMKt.mapCapacity(pairs.length)));
     }
 
     public static final void putAll(Map map, Pair[] pairs) {
@@ -56,12 +56,12 @@ public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
             Collection collection = (Collection) iterable;
             int size = collection.size();
             if (size == 0) {
-                return MapsKt.emptyMap();
+                return emptyMap();
             }
             if (size != 1) {
-                return toMap(iterable, new LinkedHashMap(MapsKt.mapCapacity(collection.size())));
+                return toMap(iterable, new LinkedHashMap(MapsKt__MapsJVMKt.mapCapacity(collection.size())));
             }
-            return MapsKt.mapOf((Pair) (iterable instanceof List ? ((List) iterable).get(0) : collection.iterator().next()));
+            return MapsKt__MapsJVMKt.mapOf((Pair) (iterable instanceof List ? ((List) iterable).get(0) : collection.iterator().next()));
         }
         return optimizeReadOnlyMap(toMap(iterable, new LinkedHashMap()));
     }
@@ -84,12 +84,12 @@ public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
         Intrinsics.checkNotNullParameter(map, "<this>");
         int size = map.size();
         if (size == 0) {
-            return MapsKt.emptyMap();
+            return emptyMap();
         }
         if (size == 1) {
             return MapsKt__MapsJVMKt.toSingletonMap(map);
         }
-        return MapsKt.toMutableMap(map);
+        return toMutableMap(map);
     }
 
     public static Map toMutableMap(Map map) {
@@ -103,6 +103,6 @@ public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
         if (size != 0) {
             return size != 1 ? map : MapsKt__MapsJVMKt.toSingletonMap(map);
         }
-        return MapsKt.emptyMap();
+        return emptyMap();
     }
 }

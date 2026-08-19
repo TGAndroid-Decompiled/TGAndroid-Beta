@@ -92,7 +92,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         this.closeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.dismiss();
             }
         });
         String toLanguage = TranslateAlert2.getToLanguage();
@@ -125,7 +125,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i6) {
-                this.f$0.lambda$new$1(resourcesProvider, view, i6);
+                TranslateAlert3.m2913$r8$lambda$tDNqMAJKCG8KubBJ54N5_leE40(this.f$0, resourcesProvider, view, i6);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -137,33 +137,29 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         this.adapter.update(false);
     }
 
-    public void lambda$new$0(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$new$1(Theme.ResourcesProvider resourcesProvider, View view, int i) {
-        UItem item = this.adapter.getItem(i - 1);
+    public static void m2913$r8$lambda$tDNqMAJKCG8KubBJ54N5_leE40(TranslateAlert3 translateAlert3, Theme.ResourcesProvider resourcesProvider, View view, int i) {
+        UItem item = translateAlert3.adapter.getItem(i - 1);
         if (item == null) {
             return;
         }
         int i2 = item.id;
         if (i2 == 1) {
-            CharSequence charSequence = this.translated;
-            if (charSequence == null || this.translatedLoading) {
+            CharSequence charSequence = translateAlert3.translated;
+            if (charSequence == null || translateAlert3.translatedLoading) {
                 return;
             }
             AndroidUtilities.addToClipboard(charSequence);
             return;
         }
         if (i2 == 2) {
-            if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
+            if (!UserConfig.getInstance(translateAlert3.currentAccount).isPremium()) {
                 if (LaunchActivity.getSafeLastFragment() == null) {
                     return;
                 }
-                new PremiumFeatureBottomSheet(getContext(), 13, true, resourcesProvider).show();
+                new PremiumFeatureBottomSheet(translateAlert3.getContext(), 13, true, resourcesProvider).show();
             } else {
-                MessagesController.getInstance(this.currentAccount).getTranslateController().toggleTranslatingDialog(this.dialogId);
-                lambda$new$0();
+                MessagesController.getInstance(translateAlert3.currentAccount).getTranslateController().toggleTranslatingDialog(translateAlert3.dialogId);
+                translateAlert3.dismiss();
             }
         }
     }
@@ -193,7 +189,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             LanguageDetector.detectLanguage(charSequence.toString(), new LanguageDetector.StringCallback() {
                 @Override
                 public final void run(String str) {
-                    this.f$0.lambda$setText$2(str);
+                    TranslateAlert3.$r8$lambda$5Aya75_B6xDKOoW2KIjGM_G9qe8(this.f$0, str);
                 }
             }, new LanguageDetector.ExceptionCallback() {
                 @Override
@@ -205,9 +201,9 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         return this;
     }
 
-    public void lambda$setText$2(String str) {
-        this.from_lang = str;
-        this.adapter.update(true);
+    public static void $r8$lambda$5Aya75_B6xDKOoW2KIjGM_G9qe8(TranslateAlert3 translateAlert3, String str) {
+        translateAlert3.from_lang = str;
+        translateAlert3.adapter.update(true);
     }
 
     public TranslateAlert3 setOnUse(Utilities.Callback callback) {
@@ -236,6 +232,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
     public void onToLangMenu(View view) {
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.container, this.resourcesProvider, view);
         itemOptionsMakeOptions.setMaxHeight(AndroidUtilities.dp(450.0f));
+        int i = 0;
         itemOptionsMakeOptions.setDrawScrim(false);
         itemOptionsMakeOptions.setOnTopOfScrim();
         ScrollView scrollView = new ScrollView(getContext());
@@ -243,69 +240,80 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         linearLayout.setOrientation(1);
         scrollView.addView(linearLayout);
         itemOptionsMakeOptions.addView(scrollView);
-        final int i = 0;
-        while (i < this.tones.length) {
-            addChecked(itemOptionsMakeOptions, linearLayout, this.tone == i, this.tonesText[i], new Runnable() {
+        final int i2 = 0;
+        while (i2 < this.tones.length) {
+            addChecked(itemOptionsMakeOptions, linearLayout, this.tone == i2, this.tonesText[i2], new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onToLangMenu$4(i);
+                    TranslateAlert3.$r8$lambda$NtlnpT7JNpcyw9AbKbIv7Hxd9sM(this.f$0, i2);
                 }
             });
-            i++;
+            i2++;
         }
-        View gapView = new ActionBarPopupWindow.GapView(getContext(), this.resourcesProvider);
+        TranslateAlert3 translateAlert3 = this;
+        ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(getContext(), translateAlert3.resourcesProvider);
         gapView.setTag(R.id.fit_width_tag, 1);
         linearLayout.addView(gapView, LayoutHelper.createLinear(-1, 8));
         ArrayList<TranslateController.Language> suggestedLanguages = TranslateController.getSuggestedLanguages(null);
         ArrayList<TranslateController.Language> languages = TranslateController.getLanguages();
-        if (!TextUtils.isEmpty(this.to_lang)) {
-            addChecked(itemOptionsMakeOptions, linearLayout, true, TranslateAlert2.capitalFirst(TranslateAlert2.languageName(this.to_lang)), null);
+        if (!TextUtils.isEmpty(translateAlert3.to_lang)) {
+            translateAlert3.addChecked(itemOptionsMakeOptions, linearLayout, true, TranslateAlert2.capitalFirst(TranslateAlert2.languageName(translateAlert3.to_lang)), null);
         }
-        for (final TranslateController.Language language : suggestedLanguages) {
-            if (!TextUtils.equals(language.code, this.to_lang)) {
-                addChecked(itemOptionsMakeOptions, linearLayout, false, language.displayName, new Runnable() {
+        int size = suggestedLanguages.size();
+        int i3 = 0;
+        while (i3 < size) {
+            int i4 = i3 + 1;
+            final TranslateController.Language language = suggestedLanguages.get(i3);
+            if (!TextUtils.equals(language.code, translateAlert3.to_lang)) {
+                translateAlert3.addChecked(itemOptionsMakeOptions, linearLayout, false, language.displayName, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onToLangMenu$5(language);
+                        TranslateAlert3.$r8$lambda$cqD3k1u3oSm7TVgZRlxvuT08ozs(this.f$0, language);
                     }
                 });
             }
+            i3 = i4;
         }
-        View gapView2 = new ActionBarPopupWindow.GapView(getContext(), this.resourcesProvider);
+        ActionBarPopupWindow.GapView gapView2 = new ActionBarPopupWindow.GapView(getContext(), translateAlert3.resourcesProvider);
         gapView2.setTag(R.id.fit_width_tag, 1);
         linearLayout.addView(gapView2, LayoutHelper.createLinear(-1, 8));
-        for (final TranslateController.Language language2 : languages) {
-            addChecked(itemOptionsMakeOptions, linearLayout, TextUtils.equals(language2.code, this.to_lang), language2.displayName, new Runnable() {
+        int size2 = languages.size();
+        while (i < size2) {
+            TranslateController.Language language2 = languages.get(i);
+            i++;
+            final TranslateController.Language language3 = language2;
+            translateAlert3.addChecked(itemOptionsMakeOptions, linearLayout, TextUtils.equals(language3.code, translateAlert3.to_lang), language3.displayName, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onToLangMenu$6(language2);
+                    TranslateAlert3.$r8$lambda$8ep80p8WMuP0YePCq02GG_aREc8(this.f$0, language3);
                 }
             });
+            translateAlert3 = this;
         }
         itemOptionsMakeOptions.show();
     }
 
-    public void lambda$onToLangMenu$4(int i) {
-        cancelRequest();
-        this.tone = i;
-        TranslateAlert2.setToLanguage(this.to_lang);
-        requestTranslate();
+    public static void $r8$lambda$NtlnpT7JNpcyw9AbKbIv7Hxd9sM(TranslateAlert3 translateAlert3, int i) {
+        translateAlert3.cancelRequest();
+        translateAlert3.tone = i;
+        TranslateAlert2.setToLanguage(translateAlert3.to_lang);
+        translateAlert3.requestTranslate();
     }
 
-    public void lambda$onToLangMenu$5(TranslateController.Language language) {
-        cancelRequest();
+    public static void $r8$lambda$cqD3k1u3oSm7TVgZRlxvuT08ozs(TranslateAlert3 translateAlert3, TranslateController.Language language) {
+        translateAlert3.cancelRequest();
         String str = language.code;
-        this.to_lang = str;
+        translateAlert3.to_lang = str;
         TranslateAlert2.setToLanguage(str);
-        requestTranslate();
+        translateAlert3.requestTranslate();
     }
 
-    public void lambda$onToLangMenu$6(TranslateController.Language language) {
-        cancelRequest();
+    public static void $r8$lambda$8ep80p8WMuP0YePCq02GG_aREc8(TranslateAlert3 translateAlert3, TranslateController.Language language) {
+        translateAlert3.cancelRequest();
         String str = language.code;
-        this.to_lang = str;
+        translateAlert3.to_lang = str;
         TranslateAlert2.setToLanguage(str);
-        requestTranslate();
+        translateAlert3.requestTranslate();
     }
 
     private void addChecked(final ItemOptions itemOptions, LinearLayout linearLayout, final boolean z, CharSequence charSequence, final Runnable runnable) {
@@ -320,13 +328,13 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TranslateAlert3.lambda$addChecked$7(itemOptions, z, runnable, view);
+                TranslateAlert3.$r8$lambda$WlSvybLsZ7hpCq2QXw4aLfEqSSE(itemOptions, z, runnable, view);
             }
         });
         linearLayout.addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, -2));
     }
 
-    public static void lambda$addChecked$7(ItemOptions itemOptions, boolean z, Runnable runnable, View view) {
+    public static void $r8$lambda$WlSvybLsZ7hpCq2QXw4aLfEqSSE(ItemOptions itemOptions, boolean z, Runnable runnable, View view) {
         itemOptions.dismiss();
         if (z || runnable == null) {
             return;
@@ -355,7 +363,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         arrayList.add(Text.Factory.of(4, this.text, this.collapsed, this.noforwards, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$fillItems$8(universalAdapter, view);
+                TranslateAlert3.$r8$lambda$zLUNmIrtW8gKAwc99LlMoWvGwVI(this.f$0, universalAdapter, view);
             }
         }, new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
@@ -395,11 +403,11 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         universalAdapter.whiteSectionEnd();
     }
 
-    public void lambda$fillItems$8(UniversalAdapter universalAdapter, View view) {
-        this.collapsed = false;
-        saveScrollPosition();
+    public static void $r8$lambda$zLUNmIrtW8gKAwc99LlMoWvGwVI(TranslateAlert3 translateAlert3, UniversalAdapter universalAdapter, View view) {
+        translateAlert3.collapsed = false;
+        translateAlert3.saveScrollPosition();
         universalAdapter.update(true);
-        applyScrolledPosition(true);
+        translateAlert3.applyScrolledPosition(true);
     }
 
     @Override
@@ -416,18 +424,18 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             this.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$show$9(view);
+                    TranslateAlert3.m2914$r8$lambda$vXB4S8kqYVmh5P34mUKhWoth6A(this.f$0, view);
                 }
             });
         }
     }
 
-    public void lambda$show$9(View view) {
-        CharSequence charSequence = this.translated;
+    public static void m2914$r8$lambda$vXB4S8kqYVmh5P34mUKhWoth6A(TranslateAlert3 translateAlert3, View view) {
+        CharSequence charSequence = translateAlert3.translated;
         if (charSequence != null) {
-            this.onUseListener.run(charSequence);
+            translateAlert3.onUseListener.run(charSequence);
         }
-        lambda$new$0();
+        translateAlert3.dismiss();
     }
 
     private void requestTranslate() {
@@ -458,7 +466,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$requestTranslate$11((TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                    TranslateAlert3.$r8$lambda$T1APxgRrvDe21jpytuUkt3dnmT8(this.f$0, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
                 }
             });
         } else {
@@ -480,69 +488,57 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_translateText, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$requestTranslate$14((TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
+                    TranslateAlert3.m2912$r8$lambda$lfofoaMfIs2lFbB2nLJqR5za0(this.f$0, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
         this.adapter.update(true);
     }
 
-    public void lambda$requestTranslate$11(TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_error tL_error) {
-        this.requestId = -1;
-        this.button.setLoading(false);
+    public static void $r8$lambda$T1APxgRrvDe21jpytuUkt3dnmT8(final TranslateAlert3 translateAlert3, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_error tL_error) {
+        translateAlert3.requestId = -1;
+        translateAlert3.button.setLoading(false);
         if (tL_error != null) {
-            BulletinFactory.of(this.topBulletinContainer, this.resourcesProvider).showForError(tL_error);
-            this.button.setText(LocaleController.getString(R.string.OK));
-            this.button.setOnClickListener(new View.OnClickListener() {
+            BulletinFactory.of(translateAlert3.topBulletinContainer, translateAlert3.resourcesProvider).showForError(tL_error);
+            translateAlert3.button.setText(LocaleController.getString(R.string.OK));
+            translateAlert3.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$requestTranslate$10(view);
+                    this.f$0.dismiss();
                 }
             });
         } else {
-            this.translated = MessageObject.formatTextWithEntities(tL_textWithEntities);
-            this.translatedLoading = false;
-            this.adapter.update(true);
+            translateAlert3.translated = MessageObject.formatTextWithEntities(tL_textWithEntities);
+            translateAlert3.translatedLoading = false;
+            translateAlert3.adapter.update(true);
         }
     }
 
-    public void lambda$requestTranslate$10(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$requestTranslate$14(TLRPC.TL_messages_translateResult tL_messages_translateResult, TLRPC.TL_error tL_error) {
-        this.requestId = -1;
-        this.button.setLoading(false);
+    public static void m2912$r8$lambda$lfofoaMfIs2lFbB2nLJqR5za0(final TranslateAlert3 translateAlert3, TLRPC.TL_messages_translateResult tL_messages_translateResult, TLRPC.TL_error tL_error) {
+        translateAlert3.requestId = -1;
+        translateAlert3.button.setLoading(false);
         if (tL_error != null) {
-            BulletinFactory.of(this.topBulletinContainer, this.resourcesProvider).showForError(tL_error);
-            this.button.setText(LocaleController.getString(R.string.OK));
-            this.button.setOnClickListener(new View.OnClickListener() {
+            BulletinFactory.of(translateAlert3.topBulletinContainer, translateAlert3.resourcesProvider).showForError(tL_error);
+            translateAlert3.button.setText(LocaleController.getString(R.string.OK));
+            translateAlert3.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$requestTranslate$12(view);
+                    this.f$0.dismiss();
                 }
             });
         } else if (tL_messages_translateResult == null || tL_messages_translateResult.result.isEmpty()) {
-            this.button.setText(LocaleController.getString(R.string.OK));
-            this.button.setOnClickListener(new View.OnClickListener() {
+            translateAlert3.button.setText(LocaleController.getString(R.string.OK));
+            translateAlert3.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$requestTranslate$13(view);
+                    this.f$0.dismiss();
                 }
             });
         } else {
-            this.translated = MessageObject.formatTextWithEntities(tL_messages_translateResult.result.get(0));
-            this.translatedLoading = false;
-            this.adapter.update(true);
+            translateAlert3.translated = MessageObject.formatTextWithEntities(tL_messages_translateResult.result.get(0));
+            translateAlert3.translatedLoading = false;
+            translateAlert3.adapter.update(true);
         }
-    }
-
-    public void lambda$requestTranslate$12(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$requestTranslate$13(View view) {
-        lambda$new$0();
     }
 
     private void cancelRequest() {
@@ -686,14 +682,14 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             this.anotherExample.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$set$0(onClickListener3, view);
+                    TranslateAlert3.Header.$r8$lambda$iVHrExkVY2ARbN9idA5pkIdAX7Q(this.f$0, onClickListener3, view);
                 }
             });
             updateColors();
         }
 
-        public void lambda$set$0(View.OnClickListener onClickListener, View view) {
-            this.anotherExampleIcon.animate().rotation(this.anotherExampleIcon.getRotation() + 180.0f).setDuration(380L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+        public static void $r8$lambda$iVHrExkVY2ARbN9idA5pkIdAX7Q(Header header, View.OnClickListener onClickListener, View view) {
+            header.anotherExampleIcon.animate().rotation(header.anotherExampleIcon.getRotation() + 180.0f).setDuration(380L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
             if (onClickListener != null) {
                 onClickListener.onClick(view);
             }
@@ -902,7 +898,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
                 ViewPropertyAnimator viewPropertyAnimatorWithEndAction = this.shortTextView.animate().alpha(0.0f).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$set$0();
+                        this.f$0.shortTextView.setVisibility(8);
                     }
                 });
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -924,10 +920,6 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             this.copyButton.setOnClickListener(onClickListener2);
             this.needDivider = z3;
             setWillNotDraw(!z3);
-        }
-
-        public void lambda$set$0() {
-            this.shortTextView.setVisibility(8);
         }
 
         @Override

@@ -189,6 +189,8 @@ public class ChannelRecommendationsCell {
     public void draw(Canvas canvas) {
         float fDp;
         float f;
+        Canvas canvas2;
+        float f2;
         if (this.msg == null || this.cell == null) {
             return;
         }
@@ -226,8 +228,8 @@ public class ChannelRecommendationsCell {
             this.scrollX = Utilities.clamp(this.scrollX, this.channelsScrollWidth - (this.backgroundBounds.width() - AndroidUtilities.dp(14.0f)), 0.0f);
             checkBackgroundPath(fClamp);
             canvas.save();
-            float f2 = (0.6f * fClamp) + 0.4f;
-            canvas.scale(f2, f2, this.backgroundBounds.centerX(), this.backgroundBounds.top - AndroidUtilities.dp(6.0f));
+            float f3 = (0.6f * fClamp) + 0.4f;
+            canvas.scale(f3, f3, this.backgroundBounds.centerX(), this.backgroundBounds.top - AndroidUtilities.dp(6.0f));
             this.backgroundPaint.setAlpha((int) (fClamp * 255.0f));
             this.backgroundPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33f), ColorUtils.setAlphaComponent(-16777216, (int) (27.0f * fClamp)));
             canvas.drawPath(this.backgroundPath, this.backgroundPaint);
@@ -235,24 +237,35 @@ public class ChannelRecommendationsCell {
             Text text = this.headerText;
             if (text != null) {
                 text.draw(canvas, AndroidUtilities.dp(17.0f) + this.backgroundBounds.left, AndroidUtilities.dp(20.0f) + this.backgroundBounds.top, this.cell.getThemedColor(Theme.key_windowBackgroundWhiteBlackText), fClamp);
+                canvas2 = canvas;
+            } else {
+                canvas2 = canvas;
             }
-            float f3 = this.loadingAlpha.set(this.loading);
+            float f4 = this.loadingAlpha.set(this.loading);
             float fDp2 = (this.backgroundBounds.left + AndroidUtilities.dp(7.0f)) - this.scrollX;
             float fDp3 = this.blockWidth + AndroidUtilities.dp(9.0f);
             int iFloor = (int) Math.floor(((this.backgroundBounds.left - iMin) - fDp2) / fDp3);
             int iCeil = (int) Math.ceil((this.backgroundBounds.right - fDp2) / fDp3);
-            if (f3 < 1.0f) {
-                for (int iMax = Math.max(0, iFloor); iMax < Math.min(iCeil + 1, this.channels.size()); iMax++) {
+            if (f4 < 1.0f) {
+                int iMax = Math.max(0, iFloor);
+                while (true) {
+                    f2 = 4.0f;
+                    if (iMax >= Math.min(iCeil + 1, this.channels.size())) {
+                        break;
+                    }
                     ChannelBlock channelBlock = (ChannelBlock) this.channels.get(iMax);
-                    canvas.save();
-                    canvas.translate((iMax * fDp3) + fDp2, this.backgroundBounds.bottom - ChannelBlock.height());
-                    float f4 = (1.0f - f3) * fClamp;
-                    channelBlock.draw(canvas, this.blockWidth, f4);
-                    channelBlock.drawText(canvas, this.blockWidth, f4);
-                    canvas.restore();
+                    canvas2.save();
+                    canvas2.translate((iMax * fDp3) + fDp2, this.backgroundBounds.bottom - ChannelBlock.height());
+                    float f5 = (1.0f - f4) * fClamp;
+                    channelBlock.draw(canvas2, this.blockWidth, f5);
+                    channelBlock.drawText(canvas2, this.blockWidth, f5);
+                    canvas2.restore();
+                    iMax++;
                 }
+            } else {
+                f2 = 4.0f;
             }
-            if (f3 > 0.0f) {
+            if (f4 > 0.0f) {
                 this.loadingPath.rewind();
                 for (int iMax2 = Math.max(0, iFloor); iMax2 < iCeil; iMax2++) {
                     ChannelBlock.fillPath(this.loadingPath, this.blockWidth, (iMax2 * fDp3) + fDp2);
@@ -266,20 +279,20 @@ public class ChannelRecommendationsCell {
                 int themedColor = this.cell.getThemedColor(Theme.key_windowBackgroundWhiteBlackText);
                 this.loadingDrawable.setColors(Theme.multAlpha(themedColor, 0.05f), Theme.multAlpha(themedColor, 0.15f), Theme.multAlpha(themedColor, 0.1f), Theme.multAlpha(themedColor, 0.3f));
                 this.loadingDrawable.setGradientScale(1.5f);
-                this.loadingDrawable.setAlpha((int) (f3 * 255.0f));
-                canvas.save();
-                canvas.translate(0.0f, this.backgroundBounds.bottom - ChannelBlock.height());
-                this.loadingDrawable.draw(canvas);
-                canvas.restore();
+                this.loadingDrawable.setAlpha((int) (f4 * 255.0f));
+                canvas2.save();
+                canvas2.translate(0.0f, this.backgroundBounds.bottom - ChannelBlock.height());
+                this.loadingDrawable.draw(canvas2);
+                canvas2.restore();
             }
             float scale = this.closeBounce.getScale(0.02f);
             float fDp4 = this.backgroundBounds.right - AndroidUtilities.dp(20.0f);
             float fDp5 = this.backgroundBounds.top + AndroidUtilities.dp(20.0f);
-            canvas.save();
-            canvas.scale(scale, scale, fDp4, fDp5);
+            canvas2.save();
+            canvas2.scale(scale, scale, fDp4, fDp5);
             this.closePaint.setStrokeWidth(AndroidUtilities.dp(1.33f));
-            canvas.drawLine(fDp4 - AndroidUtilities.dp(4.0f), fDp5 - AndroidUtilities.dp(4.0f), fDp4 + AndroidUtilities.dp(4.0f), fDp5 + AndroidUtilities.dp(4.0f), this.closePaint);
-            canvas.drawLine(fDp4 - AndroidUtilities.dp(4.0f), fDp5 + AndroidUtilities.dp(4.0f), fDp4 + AndroidUtilities.dp(4.0f), fDp5 - AndroidUtilities.dp(4.0f), this.closePaint);
+            canvas2.drawLine(fDp4 - AndroidUtilities.dp(f2), fDp5 - AndroidUtilities.dp(f2), AndroidUtilities.dp(f2) + fDp4, AndroidUtilities.dp(f2) + fDp5, this.closePaint);
+            canvas.drawLine(fDp4 - AndroidUtilities.dp(f2), fDp5 + AndroidUtilities.dp(f2), fDp4 + AndroidUtilities.dp(f2), fDp5 - AndroidUtilities.dp(f2), this.closePaint);
             this.closeBounds.set(fDp4 - AndroidUtilities.dp(12.0f), fDp5 - AndroidUtilities.dp(12.0f), fDp4 + AndroidUtilities.dp(12.0f), fDp5 + AndroidUtilities.dp(12.0f));
             canvas.restore();
             canvas.restore();
@@ -493,6 +506,7 @@ public class ChannelRecommendationsCell {
         }
 
         public void drawText(Canvas canvas, int i, float f) {
+            Canvas canvas2;
             canvas.save();
             float scale = this.bounce.getScale(0.075f);
             float f2 = i;
@@ -521,9 +535,12 @@ public class ChannelRecommendationsCell {
                     drawable.setBounds((int) ((this.isLock ? this.subscribersText.getWidth() + AndroidUtilities.dp(1.33f) : 0.0f) + fDp + AndroidUtilities.dp(3.0f)), (int) (fDp2 - ((this.subscribersDrawable.getIntrinsicHeight() / 2.0f) * 0.625f)), (int) ((this.isLock ? this.subscribersText.getWidth() + AndroidUtilities.dp(1.33f) : 0.0f) + fDp + AndroidUtilities.dp(3.0f) + (this.subscribersDrawable.getIntrinsicWidth() * 0.625f)), (int) (((this.subscribersDrawable.getIntrinsicHeight() / 2.0f) * 0.625f) + fDp2));
                     this.subscribersDrawable.draw(canvas);
                 }
-                this.subscribersText.draw(canvas, fDp + AndroidUtilities.dp(!this.isLock ? 12.66f : 4.0f), fDp2, -1, f);
+                canvas2 = canvas;
+                this.subscribersText.draw(canvas2, fDp + AndroidUtilities.dp(!this.isLock ? 12.66f : 4.0f), fDp2, -1, f);
+            } else {
+                canvas2 = canvas;
             }
-            canvas.restore();
+            canvas2.restore();
         }
 
         public void draw(Canvas canvas, int i, float f) {
@@ -733,7 +750,7 @@ public class ChannelRecommendationsCell {
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$checkTouchEvent$0(channelBlock);
+                        ChannelRecommendationsCell.$r8$lambda$l1ob359XgkqkdjFpe3ALqxl2DWs(this.f$0, channelBlock);
                     }
                 };
                 this.longPressRunnable = runnable2;
@@ -799,28 +816,28 @@ public class ChannelRecommendationsCell {
         return false;
     }
 
-    public void lambda$checkTouchEvent$0(ChannelBlock channelBlock) {
-        ChannelBlock channelBlock2 = this.longPressedBlock;
+    public static void $r8$lambda$l1ob359XgkqkdjFpe3ALqxl2DWs(ChannelRecommendationsCell channelRecommendationsCell, ChannelBlock channelBlock) {
+        ChannelBlock channelBlock2 = channelRecommendationsCell.longPressedBlock;
         if (channelBlock == channelBlock2) {
             channelBlock2.bounce.setPressed(false);
-            ChannelBlock channelBlock3 = this.longPressedBlock;
+            ChannelBlock channelBlock3 = channelRecommendationsCell.longPressedBlock;
             if (channelBlock3.isLock) {
-                if (this.cell.getDelegate() != null) {
-                    this.cell.getDelegate().didPressMoreChannelRecommendations(this.cell);
+                if (channelRecommendationsCell.cell.getDelegate() != null) {
+                    channelRecommendationsCell.cell.getDelegate().didPressMoreChannelRecommendations(channelRecommendationsCell.cell);
                 }
             } else {
-                didClickChannel(channelBlock3.chat, true);
+                channelRecommendationsCell.didClickChannel(channelBlock3.chat, true);
             }
         }
-        this.longPressedBlock = null;
-        this.longPressRunnable = null;
-        this.scrolling = false;
-        this.maybeScrolling = false;
-        this.closeBounce.setPressed(false);
-        VelocityTracker velocityTracker = this.velocityTracker;
+        channelRecommendationsCell.longPressedBlock = null;
+        channelRecommendationsCell.longPressRunnable = null;
+        channelRecommendationsCell.scrolling = false;
+        channelRecommendationsCell.maybeScrolling = false;
+        channelRecommendationsCell.closeBounce.setPressed(false);
+        VelocityTracker velocityTracker = channelRecommendationsCell.velocityTracker;
         if (velocityTracker != null) {
             velocityTracker.recycle();
-            this.velocityTracker = null;
+            channelRecommendationsCell.velocityTracker = null;
         }
     }
 

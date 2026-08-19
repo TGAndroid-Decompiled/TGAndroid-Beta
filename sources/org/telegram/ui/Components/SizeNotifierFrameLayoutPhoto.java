@@ -67,18 +67,18 @@ public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayo
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$notifyHeightChanged$0(z);
+                SizeNotifierFrameLayoutPhoto.m2814$r8$lambda$P7SZp_2m8n1mZLvJ0vGjJ0xWr4(this.f$0, z);
             }
         });
     }
 
-    public void lambda$notifyHeightChanged$0(boolean z) {
-        SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = this.delegate;
+    public static void m2814$r8$lambda$P7SZp_2m8n1mZLvJ0vGjJ0xWr4(SizeNotifierFrameLayoutPhoto sizeNotifierFrameLayoutPhoto, boolean z) {
+        SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = sizeNotifierFrameLayoutPhoto.delegate;
         if (sizeNotifierFrameLayoutDelegate != null) {
-            sizeNotifierFrameLayoutDelegate.onSizeChanged(this.keyboardHeight, z);
+            sizeNotifierFrameLayoutDelegate.onSizeChanged(sizeNotifierFrameLayoutPhoto.keyboardHeight, z);
         }
-        for (int i = 0; i < this.delegates.size(); i++) {
-            ((SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate) this.delegates.get(i)).onSizeChanged(this.keyboardHeight, z);
+        for (int i = 0; i < sizeNotifierFrameLayoutPhoto.delegates.size(); i++) {
+            ((SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate) sizeNotifierFrameLayoutPhoto.delegates.get(i)).onSizeChanged(sizeNotifierFrameLayoutPhoto.keyboardHeight, z);
         }
     }
 }

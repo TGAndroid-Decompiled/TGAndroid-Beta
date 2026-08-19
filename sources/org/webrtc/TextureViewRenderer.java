@@ -195,14 +195,14 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onFirstFrameRendered$0();
+                    TextureViewRenderer.TextureEglRenderer.$r8$lambda$vBkGMSpMpfvaJ6znhck92ar86Wc(this.f$0);
                 }
             });
         }
 
-        public void lambda$onFirstFrameRendered$0() {
-            this.isFirstFrameRendered = true;
-            this.rendererEvents.onFirstFrameRendered();
+        public static void $r8$lambda$vBkGMSpMpfvaJ6znhck92ar86Wc(TextureEglRenderer textureEglRenderer) {
+            textureEglRenderer.isFirstFrameRendered = true;
+            textureEglRenderer.rendererEvents.onFirstFrameRendered();
         }
     }
 
@@ -462,9 +462,10 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     @Override
-    public void onFrameResolutionChanged(final int i, final int i2, int i3) {
+    public void onFrameResolutionChanged(final int i, final int i2, int i3) throws Throwable {
         int i4;
         final int i5;
+        Throwable th;
         RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
         if (rendererEvents != null) {
             rendererEvents.onFrameResolutionChanged(i, i2, i3);
@@ -506,32 +507,45 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         final int i9 = i4;
         synchronized (this.eglRenderer.layoutLock) {
             try {
-                Runnable runnable = this.updateScreenRunnable;
-                if (runnable != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
-                }
-                Runnable runnable2 = new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$onFrameResolutionChanged$0(i, i2, i9, i5);
+                try {
+                    Runnable runnable = this.updateScreenRunnable;
+                    if (runnable != null) {
+                        try {
+                            AndroidUtilities.cancelRunOnUIThread(runnable);
+                        } catch (Throwable th2) {
+                            th = th2;
+                            throw th;
+                        }
                     }
-                };
-                this.updateScreenRunnable = runnable2;
-                postOrRun(runnable2);
-            } catch (Throwable th) {
+                    Runnable runnable2 = new Runnable() {
+                        @Override
+                        public final void run() {
+                            TextureViewRenderer.m5091$r8$lambda$wtAVKtJ0HfkL3QYugafIwOl5W4(this.f$0, i, i2, i9, i5);
+                        }
+                    };
+                    this.updateScreenRunnable = runnable2;
+                    postOrRun(runnable2);
+                } catch (Throwable th3) {
+                    th = th3;
+                    th = th;
+                    throw th;
+                }
+            } catch (Throwable th4) {
+                th = th4;
+                th = th;
                 throw th;
             }
         }
     }
 
-    public void lambda$onFrameResolutionChanged$0(int i, int i2, int i3, int i4) {
-        this.updateScreenRunnable = null;
-        this.videoWidth = i;
-        this.videoHeight = i2;
-        this.rotatedFrameWidth = i3;
-        this.rotatedFrameHeight = i4;
-        updateSurfaceSize();
-        requestLayout();
+    public static void m5091$r8$lambda$wtAVKtJ0HfkL3QYugafIwOl5W4(TextureViewRenderer textureViewRenderer, int i, int i2, int i3, int i4) {
+        textureViewRenderer.updateScreenRunnable = null;
+        textureViewRenderer.videoWidth = i;
+        textureViewRenderer.videoHeight = i2;
+        textureViewRenderer.rotatedFrameWidth = i3;
+        textureViewRenderer.rotatedFrameHeight = i4;
+        textureViewRenderer.updateSurfaceSize();
+        textureViewRenderer.requestLayout();
     }
 
     public void setScreenRotation(int i) {
@@ -582,7 +596,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$updateVideoSizes$1(i2, i3);
+                        TextureViewRenderer.m5092$r8$lambda$yc_DZEyKpurrKvjSc8Qvugm5Q(this.f$0, i2, i3);
                     }
                 };
                 this.updateScreenRunnable = runnable2;
@@ -593,12 +607,12 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
     }
 
-    public void lambda$updateVideoSizes$1(int i, int i2) {
-        this.updateScreenRunnable = null;
-        this.rotatedFrameWidth = i;
-        this.rotatedFrameHeight = i2;
-        updateSurfaceSize();
-        requestLayout();
+    public static void m5092$r8$lambda$yc_DZEyKpurrKvjSc8Qvugm5Q(TextureViewRenderer textureViewRenderer, int i, int i2) {
+        textureViewRenderer.updateScreenRunnable = null;
+        textureViewRenderer.rotatedFrameWidth = i;
+        textureViewRenderer.rotatedFrameHeight = i2;
+        textureViewRenderer.updateSurfaceSize();
+        textureViewRenderer.requestLayout();
     }
 
     public void setRotateTextureWithScreen(boolean z) {

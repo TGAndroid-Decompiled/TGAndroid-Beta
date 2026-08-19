@@ -206,8 +206,13 @@ public class LoadingDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
+        float f;
         boolean z;
         boolean z2;
+        Path path;
+        Paint paint;
+        Rect rect;
+        int iMax;
         if (isDisappeared()) {
             return;
         }
@@ -232,18 +237,18 @@ public class LoadingDrawable extends Drawable {
             this.gradientWidth = iMin;
             this.gradientColor1 = iIntValue;
             this.gradientColor2 = iIntValue2;
-            float f = this.gradientWidth;
+            float f2 = this.gradientWidth;
             int i = this.gradientColor1;
             Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, f, 0.0f, new int[]{i, this.gradientColor2, i}, new float[]{0.0f, 0.67f, 1.0f}, tileMode);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, f2, 0.0f, new int[]{i, this.gradientColor2, i}, new float[]{0.0f, 0.67f, 1.0f}, tileMode);
             this.gradient = linearGradient;
             linearGradient.setLocalMatrix(this.matrix);
             this.paint.setShader(this.gradient);
             this.gradientStrokeColor1 = iIntValue3;
             this.gradientStrokeColor2 = iIntValue4;
-            float f2 = this.gradientWidth;
+            float f3 = this.gradientWidth;
             int i2 = this.gradientStrokeColor1;
-            LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, f2, 0.0f, new int[]{i2, i2, this.gradientStrokeColor2, i2}, new float[]{0.0f, 0.4f, 0.67f, 1.0f}, tileMode);
+            LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, f3, 0.0f, new int[]{i2, i2, this.gradientStrokeColor2, i2}, new float[]{0.0f, 0.4f, 0.67f, 1.0f}, tileMode);
             this.strokeGradient = linearGradient2;
             linearGradient2.setLocalMatrix(this.strokeMatrix);
             this.strokePaint.setShader(this.strokeGradient);
@@ -253,26 +258,27 @@ public class LoadingDrawable extends Drawable {
             this.start = jElapsedRealtime;
         }
         float fPow = ((float) Math.pow((((jElapsedRealtime - this.start) / 2000.0f) * this.speed) / 4.0f, 0.8500000238418579d)) * 4.0f * AndroidUtilities.density;
-        float f3 = this.gradientWidth;
-        float f4 = (fPow * f3) % f3;
-        float f5 = (jElapsedRealtime - this.start) / 550.0f;
+        float f4 = this.gradientWidth;
+        float f5 = (fPow * f4) % f4;
+        float f6 = (jElapsedRealtime - this.start) / 550.0f;
         long j = this.disappearStart;
         float interpolation = j > 0 ? 1.0f - CubicBezierInterpolator.EASE_OUT.getInterpolation(Math.min(1.0f, (jElapsedRealtime - j) / 320.0f)) : 0.0f;
         if (isDisappearing()) {
-            int iMax = Math.max(AndroidUtilities.dp(200.0f), bounds.width() / 3);
+            f = 1.0f;
+            int iMax2 = Math.max(AndroidUtilities.dp(200.0f), bounds.width() / 3);
             if (interpolation < 1.0f) {
                 if (this.disappearPaint == null) {
                     this.disappearPaint = new Paint(1);
-                    this.disappearGradientWidth = iMax;
-                    this.disappearGradient = new LinearGradient(0.0f, 0.0f, iMax, 0.0f, new int[]{-1, 16777215}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    this.disappearGradientWidth = iMax2;
+                    this.disappearGradient = new LinearGradient(0.0f, 0.0f, iMax2, 0.0f, new int[]{-1, 16777215}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                     Matrix matrix = new Matrix();
                     this.disappearMatrix = matrix;
                     this.disappearGradient.setLocalMatrix(matrix);
                     this.disappearPaint.setShader(this.disappearGradient);
                     this.disappearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                } else if (this.disappearGradientWidth != iMax) {
-                    this.disappearGradientWidth = iMax;
-                    LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, iMax, 0.0f, new int[]{-1, 16777215}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                } else if (this.disappearGradientWidth != iMax2) {
+                    this.disappearGradientWidth = iMax2;
+                    LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, iMax2, 0.0f, new int[]{-1, 16777215}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                     this.disappearGradient = linearGradient3;
                     linearGradient3.setLocalMatrix(this.disappearMatrix);
                     this.disappearPaint.setShader(this.disappearGradient);
@@ -281,29 +287,105 @@ public class LoadingDrawable extends Drawable {
                 this.rectF.inset(-this.strokePaint.getStrokeWidth(), -this.strokePaint.getStrokeWidth());
                 canvas.saveLayerAlpha(this.rectF, 255, 31);
                 z = true;
-            } else {
-                z = false;
             }
-        } else {
-            z = false;
+            if (this.appearByGradient) {
+                iMax = Math.max(AndroidUtilities.dp(200.0f), bounds.width() / 3);
+                if (f6 < f) {
+                    if (this.appearPaint == null) {
+                        this.appearPaint = new Paint(1);
+                        this.appearGradientWidth = iMax;
+                        this.appearGradient = new LinearGradient(0.0f, 0.0f, iMax, 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                        Matrix matrix2 = new Matrix();
+                        this.appearMatrix = matrix2;
+                        this.appearGradient.setLocalMatrix(matrix2);
+                        this.appearPaint.setShader(this.appearGradient);
+                        this.appearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                    } else if (this.appearGradientWidth != iMax) {
+                        this.appearGradientWidth = iMax;
+                        LinearGradient linearGradient4 = new LinearGradient(0.0f, 0.0f, iMax, 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                        this.appearGradient = linearGradient4;
+                        linearGradient4.setLocalMatrix(this.appearMatrix);
+                        this.appearPaint.setShader(this.appearGradient);
+                    }
+                    this.rectF.set(bounds);
+                    this.rectF.inset(-this.strokePaint.getStrokeWidth(), -this.strokePaint.getStrokeWidth());
+                    canvas.saveLayerAlpha(this.rectF, 255, 31);
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+            } else {
+                z2 = false;
+            }
+            this.matrix.setTranslate(f5, 0.0f);
+            this.gradient.setLocalMatrix(this.matrix);
+            this.strokeMatrix.setTranslate(f5, 0.0f);
+            this.strokeGradient.setLocalMatrix(this.strokeMatrix);
+            path = this.usePath;
+            if (path == null) {
+                rect = this.lastBounds;
+                if (rect != null || !rect.equals(bounds)) {
+                    this.path.rewind();
+                    RectF rectF = this.rectF;
+                    this.lastBounds = bounds;
+                    rectF.set(bounds);
+                    this.path.addRoundRect(this.rectF, this.radii, Path.Direction.CW);
+                }
+                path = this.path;
+            }
+            paint = this.backgroundPaint;
+            if (paint != null) {
+                canvas.drawPath(path, paint);
+            }
+            canvas.drawPath(path, this.paint);
+            if (this.stroke) {
+                canvas.drawPath(path, this.strokePaint);
+            }
+            if (z2) {
+                canvas.save();
+                int iWidth2 = this.appearGradientWidth + bounds.width();
+                int i3 = this.appearGradientWidth;
+                this.appearMatrix.setTranslate(bounds.left + ((f6 * (iWidth2 + i3)) - i3), 0.0f);
+                this.appearGradient.setLocalMatrix(this.appearMatrix);
+                int strokeWidth = (int) this.strokePaint.getStrokeWidth();
+                canvas.drawRect(bounds.left - strokeWidth, bounds.top - strokeWidth, bounds.right + strokeWidth, bounds.bottom + strokeWidth, this.appearPaint);
+                canvas.restore();
+                canvas.restore();
+            }
+            if (z) {
+                canvas.save();
+                int iWidth3 = this.disappearGradientWidth + bounds.width();
+                int i4 = this.disappearGradientWidth;
+                this.disappearMatrix.setTranslate(bounds.right - ((interpolation * (iWidth3 + i4)) - i4), 0.0f);
+                this.disappearGradient.setLocalMatrix(this.disappearMatrix);
+                int strokeWidth2 = (int) this.strokePaint.getStrokeWidth();
+                canvas.drawRect(bounds.left - strokeWidth2, bounds.top - strokeWidth2, bounds.right + strokeWidth2, bounds.bottom + strokeWidth2, this.disappearPaint);
+                canvas.restore();
+                canvas.restore();
+            }
+            if (isDisappeared()) {
+            }
+            invalidateSelf();
         }
+        f = 1.0f;
+        z = false;
         if (this.appearByGradient) {
-            int iMax2 = Math.max(AndroidUtilities.dp(200.0f), bounds.width() / 3);
-            if (f5 < 1.0f) {
+            iMax = Math.max(AndroidUtilities.dp(200.0f), bounds.width() / 3);
+            if (f6 < f) {
                 if (this.appearPaint == null) {
                     this.appearPaint = new Paint(1);
-                    this.appearGradientWidth = iMax2;
-                    this.appearGradient = new LinearGradient(0.0f, 0.0f, iMax2, 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                    Matrix matrix2 = new Matrix();
-                    this.appearMatrix = matrix2;
-                    this.appearGradient.setLocalMatrix(matrix2);
+                    this.appearGradientWidth = iMax;
+                    this.appearGradient = new LinearGradient(0.0f, 0.0f, iMax, 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    Matrix matrix3 = new Matrix();
+                    this.appearMatrix = matrix3;
+                    this.appearGradient.setLocalMatrix(matrix3);
                     this.appearPaint.setShader(this.appearGradient);
                     this.appearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                } else if (this.appearGradientWidth != iMax2) {
-                    this.appearGradientWidth = iMax2;
-                    LinearGradient linearGradient4 = new LinearGradient(0.0f, 0.0f, iMax2, 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                    this.appearGradient = linearGradient4;
-                    linearGradient4.setLocalMatrix(this.appearMatrix);
+                } else if (this.appearGradientWidth != iMax) {
+                    this.appearGradientWidth = iMax;
+                    LinearGradient linearGradient5 = new LinearGradient(0.0f, 0.0f, iMax, 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    this.appearGradient = linearGradient5;
+                    linearGradient5.setLocalMatrix(this.appearMatrix);
                     this.appearPaint.setShader(this.appearGradient);
                 }
                 this.rectF.set(bounds);
@@ -316,23 +398,29 @@ public class LoadingDrawable extends Drawable {
         } else {
             z2 = false;
         }
-        this.matrix.setTranslate(f4, 0.0f);
+        this.matrix.setTranslate(f5, 0.0f);
         this.gradient.setLocalMatrix(this.matrix);
-        this.strokeMatrix.setTranslate(f4, 0.0f);
+        this.strokeMatrix.setTranslate(f5, 0.0f);
         this.strokeGradient.setLocalMatrix(this.strokeMatrix);
-        Path path = this.usePath;
+        path = this.usePath;
         if (path == null) {
-            Rect rect = this.lastBounds;
-            if (rect == null || !rect.equals(bounds)) {
+            rect = this.lastBounds;
+            if (rect != null) {
                 this.path.rewind();
-                RectF rectF = this.rectF;
+                RectF rectF2 = this.rectF;
                 this.lastBounds = bounds;
-                rectF.set(bounds);
+                rectF2.set(bounds);
+                this.path.addRoundRect(this.rectF, this.radii, Path.Direction.CW);
+            } else {
+                this.path.rewind();
+                RectF rectF3 = this.rectF;
+                this.lastBounds = bounds;
+                rectF3.set(bounds);
                 this.path.addRoundRect(this.rectF, this.radii, Path.Direction.CW);
             }
             path = this.path;
         }
-        Paint paint = this.backgroundPaint;
+        paint = this.backgroundPaint;
         if (paint != null) {
             canvas.drawPath(path, paint);
         }
@@ -342,30 +430,29 @@ public class LoadingDrawable extends Drawable {
         }
         if (z2) {
             canvas.save();
-            int iWidth2 = this.appearGradientWidth + bounds.width();
-            int i3 = this.appearGradientWidth;
-            this.appearMatrix.setTranslate(bounds.left + ((f5 * (iWidth2 + i3)) - i3), 0.0f);
+            int iWidth4 = this.appearGradientWidth + bounds.width();
+            int i5 = this.appearGradientWidth;
+            this.appearMatrix.setTranslate(bounds.left + ((f6 * (iWidth4 + i5)) - i5), 0.0f);
             this.appearGradient.setLocalMatrix(this.appearMatrix);
-            int strokeWidth = (int) this.strokePaint.getStrokeWidth();
-            canvas.drawRect(bounds.left - strokeWidth, bounds.top - strokeWidth, bounds.right + strokeWidth, bounds.bottom + strokeWidth, this.appearPaint);
+            int strokeWidth3 = (int) this.strokePaint.getStrokeWidth();
+            canvas.drawRect(bounds.left - strokeWidth3, bounds.top - strokeWidth3, bounds.right + strokeWidth3, bounds.bottom + strokeWidth3, this.appearPaint);
             canvas.restore();
             canvas.restore();
         }
         if (z) {
             canvas.save();
-            int iWidth3 = this.disappearGradientWidth + bounds.width();
-            int i4 = this.disappearGradientWidth;
-            this.disappearMatrix.setTranslate(bounds.right - ((interpolation * (iWidth3 + i4)) - i4), 0.0f);
+            int iWidth5 = this.disappearGradientWidth + bounds.width();
+            int i6 = this.disappearGradientWidth;
+            this.disappearMatrix.setTranslate(bounds.right - ((interpolation * (iWidth5 + i6)) - i6), 0.0f);
             this.disappearGradient.setLocalMatrix(this.disappearMatrix);
-            int strokeWidth2 = (int) this.strokePaint.getStrokeWidth();
-            canvas.drawRect(bounds.left - strokeWidth2, bounds.top - strokeWidth2, bounds.right + strokeWidth2, bounds.bottom + strokeWidth2, this.disappearPaint);
+            int strokeWidth4 = (int) this.strokePaint.getStrokeWidth();
+            canvas.drawRect(bounds.left - strokeWidth4, bounds.top - strokeWidth4, bounds.right + strokeWidth4, bounds.bottom + strokeWidth4, this.disappearPaint);
             canvas.restore();
             canvas.restore();
         }
         if (isDisappeared()) {
-            return;
+            invalidateSelf();
         }
-        invalidateSelf();
     }
 
     public void updateBounds() {

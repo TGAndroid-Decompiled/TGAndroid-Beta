@@ -2,7 +2,6 @@ package org.telegram.ui.Components.poll;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.tgnet.TLRPC;
 
 public class PollSendParams {
@@ -36,9 +35,13 @@ public class PollSendParams {
         tL_poll.creator = poll.creator;
         tL_poll.quiz = poll.quiz;
         tL_poll.answers = new ArrayList<>(tL_messageMediaPoll.poll.answers);
-        Iterator<TLRPC.PollAnswer> it = tL_messageMediaPoll.poll.answers.iterator();
-        while (it.hasNext()) {
-            new TLRPC.TL_inputPollAnswer().text = it.next().text;
+        ArrayList<TLRPC.PollAnswer> arrayList3 = tL_messageMediaPoll.poll.answers;
+        int size = arrayList3.size();
+        int i = 0;
+        while (i < size) {
+            TLRPC.PollAnswer pollAnswer = arrayList3.get(i);
+            i++;
+            new TLRPC.TL_inputPollAnswer().text = pollAnswer.text;
         }
         TLRPC.Poll poll2 = tL_inputMediaPoll.poll;
         TLRPC.Poll poll3 = tL_messageMediaPoll.poll;

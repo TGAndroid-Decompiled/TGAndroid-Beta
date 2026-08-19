@@ -257,7 +257,7 @@ public class ImageWithWavesView extends FrameLayout {
                 this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setMuteToStatic$0(valueAnimator2);
+                        ImageWithWavesView.AvatarWavesDrawable.m2980$r8$lambda$_ebVITTxOVzm1c6XWJKr3yMvGM(this.f$0, valueAnimator2);
                     }
                 });
                 if (z2) {
@@ -270,8 +270,9 @@ public class ImageWithWavesView extends FrameLayout {
             }
         }
 
-        public void lambda$setMuteToStatic$0(ValueAnimator valueAnimator) {
-            this.muteToStaticProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        public static void m2980$r8$lambda$_ebVITTxOVzm1c6XWJKr3yMvGM(AvatarWavesDrawable avatarWavesDrawable, ValueAnimator valueAnimator) {
+            avatarWavesDrawable.getClass();
+            avatarWavesDrawable.muteToStaticProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         }
     }
 }

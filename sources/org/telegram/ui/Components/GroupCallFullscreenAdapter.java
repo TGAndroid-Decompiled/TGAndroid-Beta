@@ -488,6 +488,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         public void updateState(boolean z) {
             final int color;
             final int color2;
+            int color3;
             ValueAnimator valueAnimator;
             GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
             if (groupCallStatusIcon == null) {
@@ -495,10 +496,10 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             }
             groupCallStatusIcon.updateIcon(z);
             if (this.statusIcon.isMutedByMe()) {
-                color = Theme.getColor(Theme.key_voipgroup_mutedByAdminIcon);
+                color3 = Theme.getColor(Theme.key_voipgroup_mutedByAdminIcon);
             } else {
                 if (this.statusIcon.isSpeaking()) {
-                    color = Theme.getColor(Theme.key_voipgroup_speakingText);
+                    color3 = Theme.getColor(Theme.key_voipgroup_speakingText);
                 } else {
                     color = Theme.getColor(Theme.key_voipgroup_nameText);
                     color2 = Theme.getColor(Theme.key_voipgroup_listeningText);
@@ -522,12 +523,10 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 final int i2 = this.lastWavesColor;
                 ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 this.colorAnimator = valueAnimatorOfFloat;
-                final int i3 = color;
-                final int i4 = color2;
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$updateState$0(i, i3, i2, i4, valueAnimator2);
+                        GroupCallFullscreenAdapter.GroupCallUserCell.$r8$lambda$t3iQGSiWgoIn6oeEeKA0SWuKcHI(this.f$0, i, color, i2, color2, valueAnimator2);
                     }
                 });
                 this.colorAnimator.addListener(new AnimatorListenerAdapter() {
@@ -547,6 +546,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 });
                 this.colorAnimator.start();
             }
+            color = color3;
             color2 = color;
             if (!z) {
                 valueAnimator = this.colorAnimator;
@@ -563,16 +563,14 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 invalidate();
                 return;
             }
-            final int i5 = this.lastColor;
-            final int i6 = this.lastWavesColor;
+            final int i3 = this.lastColor;
+            final int i4 = this.lastWavesColor;
             ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.colorAnimator = valueAnimatorOfFloat2;
-            final int i7 = color;
-            final int i8 = color2;
             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$updateState$0(i5, i7, i6, i8, valueAnimator2);
+                    GroupCallFullscreenAdapter.GroupCallUserCell.$r8$lambda$t3iQGSiWgoIn6oeEeKA0SWuKcHI(this.f$0, i3, color, i4, color2, valueAnimator2);
                 }
             });
             this.colorAnimator.addListener(new AnimatorListenerAdapter() {
@@ -593,14 +591,15 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             this.colorAnimator.start();
         }
 
-        public void lambda$updateState$0(int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
-            this.lastColor = ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            this.lastWavesColor = ColorUtils.blendARGB(i3, i4, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            this.muteButton.setColorFilter(new PorterDuffColorFilter(this.lastColor, PorterDuff.Mode.MULTIPLY));
-            this.textPaint.setColor(this.lastColor);
-            this.selectionPaint.setColor(this.lastWavesColor);
-            this.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(this.lastWavesColor, 38));
-            invalidate();
+        public static void $r8$lambda$t3iQGSiWgoIn6oeEeKA0SWuKcHI(GroupCallUserCell groupCallUserCell, int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
+            groupCallUserCell.getClass();
+            groupCallUserCell.lastColor = ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+            groupCallUserCell.lastWavesColor = ColorUtils.blendARGB(i3, i4, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+            groupCallUserCell.muteButton.setColorFilter(new PorterDuffColorFilter(groupCallUserCell.lastColor, PorterDuff.Mode.MULTIPLY));
+            groupCallUserCell.textPaint.setColor(groupCallUserCell.lastColor);
+            groupCallUserCell.selectionPaint.setColor(groupCallUserCell.lastWavesColor);
+            groupCallUserCell.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(groupCallUserCell.lastWavesColor, 38));
+            groupCallUserCell.invalidate();
         }
 
         @Override

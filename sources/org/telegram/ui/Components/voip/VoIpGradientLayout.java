@@ -137,7 +137,7 @@ public class VoIpGradientLayout extends FrameLayout {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$new$0(voIPBackgroundProvider, valueAnimator);
+                VoIpGradientLayout.$r8$lambda$HQkk_DnxZ04zcOfBc3TAaWifPdM(this.f$0, voIPBackgroundProvider, valueAnimator);
             }
         });
         valueAnimatorOfInt.setRepeatCount(-1);
@@ -151,14 +151,15 @@ public class VoIpGradientLayout extends FrameLayout {
         switchToCalling();
     }
 
-    public void lambda$new$0(VoIPBackgroundProvider voIPBackgroundProvider, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$HQkk_DnxZ04zcOfBc3TAaWifPdM(VoIpGradientLayout voIpGradientLayout, VoIPBackgroundProvider voIPBackgroundProvider, ValueAnimator valueAnimator) {
+        voIpGradientLayout.getClass();
         voIPBackgroundProvider.setDegree(((Integer) valueAnimator.getAnimatedValue()).intValue());
         int degree = voIPBackgroundProvider.getDegree();
-        if (((degree < 0 || degree > 2) && (degree < 180 || degree > 182)) || !this.isPaused) {
+        if (((degree < 0 || degree > 2) && (degree < 180 || degree > 182)) || !voIpGradientLayout.isPaused) {
             return;
         }
-        this.defaultAnimatorSet.pause();
-        AnimatorSet animatorSet = this.connectedAnimatorSet;
+        voIpGradientLayout.defaultAnimatorSet.pause();
+        AnimatorSet animatorSet = voIpGradientLayout.connectedAnimatorSet;
         if (animatorSet != null) {
             animatorSet.pause();
         }
@@ -194,7 +195,7 @@ public class VoIpGradientLayout extends FrameLayout {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$switchToCalling$1(valueAnimator);
+                VoIpGradientLayout.m3003$r8$lambda$NdAtpf0Wp0qwPG1r12koW7hMYs(this.f$0, valueAnimator);
             }
         });
         this.callingAnimator.setRepeatCount(-1);
@@ -206,9 +207,10 @@ public class VoIpGradientLayout extends FrameLayout {
         }
     }
 
-    public void lambda$switchToCalling$1(ValueAnimator valueAnimator) {
-        this.alphaBlueViolet = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        invalidate();
+    public static void m3003$r8$lambda$NdAtpf0Wp0qwPG1r12koW7hMYs(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
+        voIpGradientLayout.getClass();
+        voIpGradientLayout.alphaBlueViolet = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        voIpGradientLayout.invalidate();
     }
 
     public boolean isConnectedCalled() {
@@ -245,7 +247,7 @@ public class VoIpGradientLayout extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$switchToCallConnected$2(valueAnimator2);
+                VoIpGradientLayout.$r8$lambda$foitUgjB7vq3edwIu70VlbsCbkE(this.f$0, valueAnimator2);
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -264,10 +266,11 @@ public class VoIpGradientLayout extends FrameLayout {
         valueAnimatorOfFloat.start();
     }
 
-    public void lambda$switchToCallConnected$2(ValueAnimator valueAnimator) {
-        this.clipRadius = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-        this.backgroundProvider.invalidateViews();
+    public static void $r8$lambda$foitUgjB7vq3edwIu70VlbsCbkE(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
+        voIpGradientLayout.getClass();
+        voIpGradientLayout.clipRadius = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        voIpGradientLayout.invalidate();
+        voIpGradientLayout.backgroundProvider.invalidateViews();
     }
 
     public void switchToConnectedAnimator() {
@@ -286,7 +289,7 @@ public class VoIpGradientLayout extends FrameLayout {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$switchToConnectedAnimator$3(valueAnimator2);
+                VoIpGradientLayout.$r8$lambda$Lu6ZbXrhPf_0kjh3OVBIO1ARXco(this.f$0, valueAnimator2);
             }
         });
         valueAnimatorOfInt.setRepeatCount(-1);
@@ -295,7 +298,7 @@ public class VoIpGradientLayout extends FrameLayout {
         valueAnimatorOfInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$switchToConnectedAnimator$4(valueAnimator2);
+                VoIpGradientLayout.$r8$lambda$aA1m3nWKJtOaWmDC0ZePcZMDyb0(this.f$0, valueAnimator2);
             }
         });
         valueAnimatorOfInt2.setRepeatCount(-1);
@@ -312,14 +315,16 @@ public class VoIpGradientLayout extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$switchToConnectedAnimator$3(ValueAnimator valueAnimator) {
-        this.alphaBlueGreen = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        invalidate();
+    public static void $r8$lambda$Lu6ZbXrhPf_0kjh3OVBIO1ARXco(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
+        voIpGradientLayout.getClass();
+        voIpGradientLayout.alphaBlueGreen = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        voIpGradientLayout.invalidate();
     }
 
-    public void lambda$switchToConnectedAnimator$4(ValueAnimator valueAnimator) {
-        this.alphaBlueViolet = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        invalidate();
+    public static void $r8$lambda$aA1m3nWKJtOaWmDC0ZePcZMDyb0(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
+        voIpGradientLayout.getClass();
+        voIpGradientLayout.alphaBlueViolet = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        voIpGradientLayout.invalidate();
     }
 
     public void showToBadConnection() {
@@ -334,17 +339,18 @@ public class VoIpGradientLayout extends FrameLayout {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$showToBadConnection$5(valueAnimator);
+                VoIpGradientLayout.$r8$lambda$kzDbnNgLrL54LmPLhYF2RfPahsg(this.f$0, valueAnimator);
             }
         });
         this.badConnectionAnimator.setDuration(500L);
         this.badConnectionAnimator.start();
     }
 
-    public void lambda$showToBadConnection$5(ValueAnimator valueAnimator) {
-        this.alphaOrangeRed = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        invalidate();
-        this.backgroundProvider.invalidateViews();
+    public static void $r8$lambda$kzDbnNgLrL54LmPLhYF2RfPahsg(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
+        voIpGradientLayout.getClass();
+        voIpGradientLayout.alphaOrangeRed = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        voIpGradientLayout.invalidate();
+        voIpGradientLayout.backgroundProvider.invalidateViews();
     }
 
     public void hideBadConnection() {
@@ -365,17 +371,18 @@ public class VoIpGradientLayout extends FrameLayout {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$hideBadConnection$6(valueAnimator2);
+                VoIpGradientLayout.$r8$lambda$qThKa9FOWGNYjCoHGarIUDPuE1k(this.f$0, valueAnimator2);
             }
         });
         this.badConnectionAnimator.setDuration(500L);
         this.badConnectionAnimator.start();
     }
 
-    public void lambda$hideBadConnection$6(ValueAnimator valueAnimator) {
-        this.alphaOrangeRed = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        invalidate();
-        this.backgroundProvider.invalidateViews();
+    public static void $r8$lambda$qThKa9FOWGNYjCoHGarIUDPuE1k(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
+        voIpGradientLayout.getClass();
+        voIpGradientLayout.alphaOrangeRed = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        voIpGradientLayout.invalidate();
+        voIpGradientLayout.backgroundProvider.invalidateViews();
     }
 
     public void pause() {

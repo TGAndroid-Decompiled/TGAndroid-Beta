@@ -314,17 +314,18 @@ public class Track {
 
     public void prepare() {
         int i;
+        long j = 0;
         this.duration = 0L;
         ArrayList arrayList = new ArrayList(this.samplePresentationTimes);
         Collections.sort(this.samplePresentationTimes, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return Track.lambda$prepare$0((Track.SamplePresentationTime) obj, (Track.SamplePresentationTime) obj2);
+                return Track.$r8$lambda$PAG47EftV8dtSArRwd94kkDFa4U((Track.SamplePresentationTime) obj, (Track.SamplePresentationTime) obj2);
             }
         });
         this.sampleDurations = new long[this.samplePresentationTimes.size()];
         long jMin = Long.MAX_VALUE;
-        long j = 0;
+        long j2 = 0;
         int i2 = 0;
         boolean z = false;
         while (true) {
@@ -332,20 +333,20 @@ public class Track {
                 break;
             }
             SamplePresentationTime samplePresentationTime = this.samplePresentationTimes.get(i2);
-            long j2 = samplePresentationTime.presentationTime - j;
-            j = samplePresentationTime.presentationTime;
-            this.sampleDurations[samplePresentationTime.index] = j2;
-            int i3 = i2;
+            long j3 = samplePresentationTime.presentationTime - j2;
+            j2 = samplePresentationTime.presentationTime;
+            this.sampleDurations[samplePresentationTime.index] = j3;
             if (samplePresentationTime.index != 0) {
-                this.duration += j2;
+                this.duration += j3;
             }
-            if (j2 > 0 && j2 < 2147483647L) {
-                jMin = Math.min(jMin, j2);
+            if (j3 > j && j3 < 2147483647L) {
+                jMin = Math.min(jMin, j3);
             }
-            if (samplePresentationTime.index != i3) {
+            if (samplePresentationTime.index != i2) {
                 z = true;
             }
-            i2 = i3 + 1;
+            i2++;
+            j = j;
         }
         long[] jArr = this.sampleDurations;
         if (jArr.length > 0) {
@@ -357,14 +358,14 @@ public class Track {
         }
         if (z) {
             this.sampleCompositions = new int[this.samplePresentationTimes.size()];
-            for (int i4 = 0; i4 < this.samplePresentationTimes.size(); i4++) {
-                SamplePresentationTime samplePresentationTime2 = this.samplePresentationTimes.get(i4);
+            for (int i3 = 0; i3 < this.samplePresentationTimes.size(); i3++) {
+                SamplePresentationTime samplePresentationTime2 = this.samplePresentationTimes.get(i3);
                 this.sampleCompositions[samplePresentationTime2.index] = (int) (samplePresentationTime2.presentationTime - samplePresentationTime2.dt);
             }
         }
     }
 
-    public static int lambda$prepare$0(SamplePresentationTime samplePresentationTime, SamplePresentationTime samplePresentationTime2) {
+    public static int $r8$lambda$PAG47EftV8dtSArRwd94kkDFa4U(SamplePresentationTime samplePresentationTime, SamplePresentationTime samplePresentationTime2) {
         if (samplePresentationTime.presentationTime > samplePresentationTime2.presentationTime) {
             return 1;
         }

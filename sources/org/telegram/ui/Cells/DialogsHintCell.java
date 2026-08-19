@@ -185,13 +185,13 @@ public class DialogsHintCell extends FrameLayout {
         super.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$setOnClickListener$0(onClickListener, view);
+                DialogsHintCell.$r8$lambda$djl6f41F7MaGy1hqIwHSY2q0ukw(this.f$0, onClickListener, view);
             }
         });
     }
 
-    public void lambda$setOnClickListener$0(View.OnClickListener onClickListener, View view) {
-        if (getAlpha() <= 0.5f || onClickListener == null) {
+    public static void $r8$lambda$djl6f41F7MaGy1hqIwHSY2q0ukw(DialogsHintCell dialogsHintCell, View.OnClickListener onClickListener, View view) {
+        if (dialogsHintCell.getAlpha() <= 0.5f || onClickListener == null) {
             return;
         }
         onClickListener.onClick(view);

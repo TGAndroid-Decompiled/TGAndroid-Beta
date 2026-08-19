@@ -227,7 +227,7 @@ public class StorageUsageView extends FrameLayout {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setStorageUsage$0(valueAnimator2);
+                        StorageUsageView.$r8$lambda$MQyrrkLQezyqXYoVVNAe0fhpOIQ(this.f$0, valueAnimator2);
                     }
                 });
                 this.valueAnimator.start();
@@ -242,7 +242,7 @@ public class StorageUsageView extends FrameLayout {
                 valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        this.f$0.lambda$setStorageUsage$1(valueAnimator3);
+                        StorageUsageView.$r8$lambda$qtdXgkmgFZrYs21GtTW1qvhlx9k(this.f$0, valueAnimator3);
                     }
                 });
                 this.valueAnimator2.start();
@@ -252,14 +252,16 @@ public class StorageUsageView extends FrameLayout {
         requestLayout();
     }
 
-    public void lambda$setStorageUsage$0(ValueAnimator valueAnimator) {
-        this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$MQyrrkLQezyqXYoVVNAe0fhpOIQ(StorageUsageView storageUsageView, ValueAnimator valueAnimator) {
+        storageUsageView.getClass();
+        storageUsageView.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        storageUsageView.invalidate();
     }
 
-    public void lambda$setStorageUsage$1(ValueAnimator valueAnimator) {
-        this.progress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$qtdXgkmgFZrYs21GtTW1qvhlx9k(StorageUsageView storageUsageView, ValueAnimator valueAnimator) {
+        storageUsageView.getClass();
+        storageUsageView.progress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        storageUsageView.invalidate();
     }
 
     @Override

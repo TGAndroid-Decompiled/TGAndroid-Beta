@@ -80,23 +80,24 @@ public class NotificationsSettingsFacade {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$applyDialogNotificationsSettings$1(j, j2, peerNotifySettings);
+                NotificationsSettingsFacade.m959$r8$lambda$Dyc1qFf1nfrov3gU38IqpW2W9I(this.f$0, j, j2, peerNotifySettings);
             }
         });
     }
 
-    public void lambda$applyDialogNotificationsSettings$1(long j, long j2, TLRPC.PeerNotifySettings peerNotifySettings) {
+    public static void m959$r8$lambda$Dyc1qFf1nfrov3gU38IqpW2W9I(final NotificationsSettingsFacade notificationsSettingsFacade, long j, long j2, TLRPC.PeerNotifySettings peerNotifySettings) {
         boolean z;
         int i;
         int i2;
+        notificationsSettingsFacade.getClass();
         String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2, true);
-        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
-        MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        NotificationsController notificationsController = NotificationsController.getInstance(this.currentAccount);
-        int i3 = getPreferences().getInt("notify2_" + sharedPrefKey, -1);
-        int i4 = getPreferences().getInt("notifyuntil_" + sharedPrefKey, 0);
-        SharedPreferences.Editor editorEdit = getPreferences().edit();
+        MessagesController messagesController = MessagesController.getInstance(notificationsSettingsFacade.currentAccount);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(notificationsSettingsFacade.currentAccount);
+        MessagesStorage messagesStorage = MessagesStorage.getInstance(notificationsSettingsFacade.currentAccount);
+        NotificationsController notificationsController = NotificationsController.getInstance(notificationsSettingsFacade.currentAccount);
+        int i3 = notificationsSettingsFacade.getPreferences().getInt("notify2_" + sharedPrefKey, -1);
+        int i4 = notificationsSettingsFacade.getPreferences().getInt("notifyuntil_" + sharedPrefKey, 0);
+        SharedPreferences.Editor editorEdit = notificationsSettingsFacade.getPreferences().edit();
         if ((peerNotifySettings.flags & 2) != 0) {
             editorEdit.putBoolean("silent_" + sharedPrefKey, peerNotifySettings.silent);
         } else {
@@ -175,20 +176,16 @@ public class NotificationsSettingsFacade {
             }
         }
         boolean z2 = z;
-        applySoundSettings(peerNotifySettings.android_sound, editorEdit, j, j2, 0, false);
+        notificationsSettingsFacade.applySoundSettings(peerNotifySettings.android_sound, editorEdit, j, j2, 0, false);
         editorEdit.apply();
         if (z2) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$applyDialogNotificationsSettings$0();
+                    NotificationCenter.getInstance(this.f$0.currentAccount).postNotificationName(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
                 }
             });
         }
-    }
-
-    public void lambda$applyDialogNotificationsSettings$0() {
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
     }
 
     public void applySoundSettings(TLRPC.NotificationSound notificationSound, SharedPreferences.Editor editor, long j, long j2, int i, boolean z) {

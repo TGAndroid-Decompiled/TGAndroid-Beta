@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
@@ -317,7 +316,7 @@ public class LinkManager {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$handleSettings$0(filtersSetupActivity);
+                                filtersSetupActivity.createFolder(this.f$0.getParentLayout());
                             }
                         }, 300L);
                     }
@@ -352,7 +351,7 @@ public class LinkManager {
                     setRequestId(getConnectionsManager().sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$handleSettings$2(tLObject, tL_error);
+                            LinkManager.$r8$lambda$FTjISxid4ZMyM2vnubeewnhkhfM(this.f$0, tLObject, tL_error);
                         }
                     }, 10));
                 } else if ("chats".equalsIgnoreCase(str)) {
@@ -486,7 +485,12 @@ public class LinkManager {
                                     profileActivity.whenFullyVisible(new Runnable() {
                                         @Override
                                         public final void run() {
-                                            LinkManager.lambda$handleSettings$4(profileActivity);
+                                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                                @Override
+                                                public final void run() {
+                                                    LinkManager.$r8$lambda$LH95z6iiSbgUKZuFzNPo8_CwFi0(profileActivity);
+                                                }
+                                            }, 200L);
                                         }
                                     });
                                 }
@@ -494,7 +498,12 @@ public class LinkManager {
                                     profileActivity.whenFullyVisible(new Runnable() {
                                         @Override
                                         public final void run() {
-                                            LinkManager.lambda$handleSettings$6(profileActivity);
+                                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                                @Override
+                                                public final void run() {
+                                                    LinkManager.$r8$lambda$paHps_jeHUwNd7Rbor9CdgvlPiQ(profileActivity);
+                                                }
+                                            }, 200L);
                                         }
                                     });
                                 }
@@ -520,7 +529,7 @@ public class LinkManager {
                                 notificationsSettingsActivity.loadExceptions(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        this.f$0.lambda$handleSettings$7(notificationsSettingsActivity, i4, str3);
+                                        LinkManager.$r8$lambda$Jc7BiNOWixcRUcVcKIDmxiGhYAg(this.f$0, notificationsSettingsActivity, i4, str3);
                                     }
                                 });
                             } else {
@@ -596,7 +605,7 @@ public class LinkManager {
                                     Runnable runnable = new Runnable() {
                                         @Override
                                         public final void run() {
-                                            this.f$0.lambda$handleSettings$8(str3);
+                                            LinkManager.$r8$lambda$KI_W5AvBpDAU0Drn11mFdJ7eR8k(this.f$0, str3);
                                         }
                                     };
                                     BaseFragment baseFragmentDetermineOpenFragment = PasscodeActivity.determineOpenFragment();
@@ -613,7 +622,7 @@ public class LinkManager {
                                     setRequestId(getConnectionsManager().sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                                         @Override
                                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                            this.f$0.lambda$handleSettings$11(str3, tLObject, tL_error);
+                                            LinkManager.m3401$r8$lambda$IQ_Z2YYGa7BhMAbvIr_OYGr524(this.f$0, str3, tLObject, tL_error);
                                         }
                                     }, 10));
                                 } else if (TextUtils.isEmpty(str3) && "passkey".equalsIgnoreCase(str2) && Build.VERSION.SDK_INT >= 28) {
@@ -621,7 +630,7 @@ public class LinkManager {
                                     setRequestId(getConnectionsManager().sendRequestTyped(new TL_account.getPasskeys(), new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                                         @Override
                                         public final void run(Object obj, Object obj2) {
-                                            this.f$0.lambda$handleSettings$12(str3, (TL_account.Passkeys) obj, (TLRPC.TL_error) obj2);
+                                            LinkManager.$r8$lambda$USK0WmlmeY2frZnNUReW0nKtUdc(this.f$0, str3, (TL_account.Passkeys) obj, (TLRPC.TL_error) obj2);
                                         }
                                     }));
                                 } else if (TextUtils.isEmpty(str3) && "auto-delete".equalsIgnoreCase(str2) && getUserConfig().getGlobalTTl() >= 0) {
@@ -1205,7 +1214,12 @@ public class LinkManager {
                                 profileActivity.whenFullyVisible(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        LinkManager.lambda$handleSettings$4(profileActivity);
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                LinkManager.$r8$lambda$LH95z6iiSbgUKZuFzNPo8_CwFi0(profileActivity);
+                                            }
+                                        }, 200L);
                                     }
                                 });
                             }
@@ -1213,7 +1227,12 @@ public class LinkManager {
                                 profileActivity.whenFullyVisible(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        LinkManager.lambda$handleSettings$6(profileActivity);
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                LinkManager.$r8$lambda$paHps_jeHUwNd7Rbor9CdgvlPiQ(profileActivity);
+                                            }
+                                        }, 200L);
                                     }
                                 });
                             }
@@ -3001,7 +3020,12 @@ public class LinkManager {
                                 profileActivity.whenFullyVisible(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        LinkManager.lambda$handleSettings$4(profileActivity);
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                LinkManager.$r8$lambda$LH95z6iiSbgUKZuFzNPo8_CwFi0(profileActivity);
+                                            }
+                                        }, 200L);
                                     }
                                 });
                             }
@@ -3009,7 +3033,12 @@ public class LinkManager {
                                 profileActivity.whenFullyVisible(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        LinkManager.lambda$handleSettings$6(profileActivity);
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                LinkManager.$r8$lambda$paHps_jeHUwNd7Rbor9CdgvlPiQ(profileActivity);
+                                            }
+                                        }, 200L);
                                     }
                                 });
                             }
@@ -4756,23 +4785,20 @@ public class LinkManager {
         return true;
     }
 
-    public void lambda$handleSettings$0(FiltersSetupActivity filtersSetupActivity) {
-        filtersSetupActivity.createFolder(getParentLayout());
-    }
-
-    public void lambda$handleSettings$2(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$FTjISxid4ZMyM2vnubeewnhkhfM(final LinkManager linkManager, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        linkManager.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$handleSettings$1(tLObject);
+                LinkManager.$r8$lambda$kmI2ZTgjPFiBHXKBUYAnd90DMpg(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$handleSettings$1(TLObject tLObject) {
-        lambda$handleInvoiceSlug$13();
+    public static void $r8$lambda$kmI2ZTgjPFiBHXKBUYAnd90DMpg(LinkManager linkManager, TLObject tLObject) {
+        linkManager.done();
         if (tLObject != null) {
-            this.activity.lambda$handleIntent$19((TL_account.Password) tLObject);
+            linkManager.activity.openEmailSettings((TL_account.Password) tLObject);
         }
     }
 
@@ -4792,7 +4818,7 @@ public class LinkManager {
                     getConnectionsManager().sendRequest(tL_users_getFullUser, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$onCallUsersSelected$1(user, z, tLObject, tL_error);
+                            LinkManager.AnonymousClass1.m3406$r8$lambda$HL2XXrJILYHwBHGhWwGPaBAuZE(this.f$0, user, z, tLObject, tL_error);
                         }
                     });
                     return;
@@ -4804,54 +4830,62 @@ public class LinkManager {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$onCallUsersSelected$3(z, hashSet, tLObject, tL_error);
+                        LinkManager.AnonymousClass1.$r8$lambda$Emw0vwyuSJZj2hQUVlklpr2MMGM(this.f$0, z, hashSet, tLObject, tL_error);
                     }
                 });
             }
             finishFragment();
         }
 
-        public void lambda$onCallUsersSelected$1(final TLRPC.User user, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m3406$r8$lambda$HL2XXrJILYHwBHGhWwGPaBAuZE(final AnonymousClass1 anonymousClass1, final TLRPC.User user, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            anonymousClass1.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCallUsersSelected$0(tLObject, user, z);
+                    LinkManager.AnonymousClass1.$r8$lambda$JlkCN8OTFM89ACCmyBG_73v7igg(this.f$0, tLObject, user, z);
                 }
             });
         }
 
-        public void lambda$onCallUsersSelected$0(TLObject tLObject, TLRPC.User user, boolean z) {
+        public static void $r8$lambda$JlkCN8OTFM89ACCmyBG_73v7igg(AnonymousClass1 anonymousClass1, TLObject tLObject, TLRPC.User user, boolean z) {
             TLRPC.UserFull userFull;
+            anonymousClass1.getClass();
             if (tLObject instanceof TLRPC.TL_users_userFull) {
                 TLRPC.TL_users_userFull tL_users_userFull = (TLRPC.TL_users_userFull) tLObject;
-                getMessagesController().putUsers(tL_users_userFull.users, false);
-                getMessagesController().putChats(tL_users_userFull.chats, false);
+                anonymousClass1.getMessagesController().putUsers(tL_users_userFull.users, false);
+                anonymousClass1.getMessagesController().putChats(tL_users_userFull.chats, false);
                 userFull = tL_users_userFull.full_user;
             } else {
                 userFull = null;
             }
             TLRPC.UserFull userFull2 = userFull;
-            VoIPHelper.startCall(user, z, userFull2 != null && userFull2.video_calls_available, getParentActivity(), userFull2, getAccountInstance());
+            VoIPHelper.startCall(user, z, userFull2 != null && userFull2.video_calls_available, anonymousClass1.getParentActivity(), userFull2, anonymousClass1.getAccountInstance());
         }
 
-        public void lambda$onCallUsersSelected$3(final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$Emw0vwyuSJZj2hQUVlklpr2MMGM(final AnonymousClass1 anonymousClass1, final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            anonymousClass1.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCallUsersSelected$2(tLObject, z, hashSet, tL_error);
+                    LinkManager.AnonymousClass1.m3407$r8$lambda$HXl8PLciMA6n3wwTS5T3bi4tZo(this.f$0, tLObject, z, hashSet, tL_error);
                 }
             });
         }
 
-        public void lambda$onCallUsersSelected$2(TLObject tLObject, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) {
+        public static void m3407$r8$lambda$HXl8PLciMA6n3wwTS5T3bi4tZo(AnonymousClass1 anonymousClass1, TLObject tLObject, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) {
+            anonymousClass1.getClass();
+            int i = 0;
             if (tLObject instanceof TLRPC.Updates) {
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
-                MessagesController.getInstance(this.currentAccount).putChats(updates.chats, false);
-                Iterator it = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCall.class).iterator();
+                MessagesController.getInstance(anonymousClass1.currentAccount).putUsers(updates.users, false);
+                MessagesController.getInstance(anonymousClass1.currentAccount).putChats(updates.chats, false);
+                ArrayList arrayListFindUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCall.class);
+                int size = arrayListFindUpdatesAndRemove.size();
                 TLRPC.GroupCall groupCall = null;
-                while (it.hasNext()) {
-                    groupCall = ((TL_update.TL_updateGroupCall) it.next()).call;
+                while (i < size) {
+                    Object obj = arrayListFindUpdatesAndRemove.get(i);
+                    i++;
+                    groupCall = ((TL_update.TL_updateGroupCall) obj).call;
                 }
                 if (LaunchActivity.instance == null || groupCall == null) {
                     return;
@@ -4859,7 +4893,7 @@ public class LinkManager {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
                 tL_inputGroupCall.id = groupCall.id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
-                VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall, z, groupCall, hashSet);
+                VoIPHelper.joinConference(LaunchActivity.instance, anonymousClass1.currentAccount, tL_inputGroupCall, z, groupCall, hashSet);
                 return;
             }
             if (!(tLObject instanceof TL_phone.groupCall)) {
@@ -4870,8 +4904,8 @@ public class LinkManager {
                 return;
             }
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(groupcall.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(groupcall.chats, false);
+            MessagesController.getInstance(anonymousClass1.currentAccount).putUsers(groupcall.users, false);
+            MessagesController.getInstance(anonymousClass1.currentAccount).putChats(groupcall.chats, false);
             if (LaunchActivity.instance == null) {
                 return;
             }
@@ -4879,20 +4913,11 @@ public class LinkManager {
             TLRPC.GroupCall groupCall2 = groupcall.call;
             tL_inputGroupCall2.id = groupCall2.id;
             tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-            VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall2, z, groupCall2, hashSet);
+            VoIPHelper.joinConference(LaunchActivity.instance, anonymousClass1.currentAccount, tL_inputGroupCall2, z, groupCall2, hashSet);
         }
     }
 
-    public static void lambda$handleSettings$4(final ProfileActivity profileActivity) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LinkManager.lambda$handleSettings$3(profileActivity);
-            }
-        }, 200L);
-    }
-
-    public static void lambda$handleSettings$3(ProfileActivity profileActivity) {
+    public static void $r8$lambda$LH95z6iiSbgUKZuFzNPo8_CwFi0(ProfileActivity profileActivity) {
         SharedMediaLayout sharedMediaLayout = profileActivity.sharedMediaLayout;
         if (sharedMediaLayout != null) {
             sharedMediaLayout.scrollToPage(14);
@@ -4900,16 +4925,7 @@ public class LinkManager {
         }
     }
 
-    public static void lambda$handleSettings$6(final ProfileActivity profileActivity) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LinkManager.lambda$handleSettings$5(profileActivity);
-            }
-        }, 200L);
-    }
-
-    public static void lambda$handleSettings$5(ProfileActivity profileActivity) {
+    public static void $r8$lambda$paHps_jeHUwNd7Rbor9CdgvlPiQ(ProfileActivity profileActivity) {
         SharedMediaLayout sharedMediaLayout = profileActivity.sharedMediaLayout;
         if (sharedMediaLayout != null) {
             sharedMediaLayout.scrollToPage(14);
@@ -4917,127 +4933,130 @@ public class LinkManager {
         }
     }
 
-    public void lambda$handleSettings$7(NotificationsSettingsActivity notificationsSettingsActivity, int i, String str) {
-        lambda$handleInvoiceSlug$13();
+    public static void $r8$lambda$Jc7BiNOWixcRUcVcKIDmxiGhYAg(LinkManager linkManager, NotificationsSettingsActivity notificationsSettingsActivity, int i, String str) {
+        linkManager.done();
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivityMakeNotificationsCustomSettingsActivity = notificationsSettingsActivity.makeNotificationsCustomSettingsActivity(i);
         notificationsCustomSettingsActivityMakeNotificationsCustomSettingsActivity.expanded = true;
         notificationsCustomSettingsActivityMakeNotificationsCustomSettingsActivity.updateRows(false);
-        presentFragment(notificationsCustomSettingsActivityMakeNotificationsCustomSettingsActivity);
+        linkManager.presentFragment(notificationsCustomSettingsActivityMakeNotificationsCustomSettingsActivity);
         if ("show".equalsIgnoreCase(str)) {
-            scrollTo("showRow");
+            linkManager.scrollTo("showRow");
         }
         if ("new".equalsIgnoreCase(str)) {
-            scrollTo("newRow");
+            linkManager.scrollTo("newRow");
         }
         if ("important".equalsIgnoreCase(str)) {
-            scrollTo("importantRow");
+            linkManager.scrollTo("importantRow");
         }
         if ("messages".equalsIgnoreCase(str)) {
-            scrollTo("messagesRow");
+            linkManager.scrollTo("messagesRow");
         }
         if ("stories".equalsIgnoreCase(str)) {
-            scrollTo("storiesRow");
+            linkManager.scrollTo("storiesRow");
         }
         if ("preview".equalsIgnoreCase(str)) {
-            scrollTo("previewRow");
+            linkManager.scrollTo("previewRow");
         }
         if ("show-sender".equalsIgnoreCase(str)) {
-            scrollTo("showSenderRow");
+            linkManager.scrollTo("showSenderRow");
         }
         if ("sound".equalsIgnoreCase(str)) {
-            scrollTo("soundRow");
+            linkManager.scrollTo("soundRow");
         }
         if ("add-exception".equalsIgnoreCase(str)) {
-            scrollTo("addExceptionRow");
+            linkManager.scrollTo("addExceptionRow");
         }
         if ("delete-exceptions".equalsIgnoreCase(str)) {
-            scrollTo("deleteExceptionsRow");
+            linkManager.scrollTo("deleteExceptionsRow");
         }
         if ("light-color".equalsIgnoreCase(str)) {
-            scrollTo("lightColorRow");
+            linkManager.scrollTo("lightColorRow");
         }
         if ("vibrate".equalsIgnoreCase(str)) {
-            scrollTo("vibrateRow");
+            linkManager.scrollTo("vibrateRow");
         }
         if ("popup".equalsIgnoreCase(str)) {
-            scrollTo("popupRow");
+            linkManager.scrollTo("popupRow");
         }
         if ("priority".equalsIgnoreCase(str)) {
-            scrollTo("priorityRow");
+            linkManager.scrollTo("priorityRow");
         }
     }
 
-    public void lambda$handleSettings$8(String str) {
+    public static void $r8$lambda$KI_W5AvBpDAU0Drn11mFdJ7eR8k(LinkManager linkManager, String str) {
+        linkManager.getClass();
         if ("disable".equalsIgnoreCase(str)) {
-            scrollTo("disablePasscodeRow");
+            linkManager.scrollTo("disablePasscodeRow");
         }
         if ("change".equalsIgnoreCase(str)) {
-            scrollTo("changePasscodeRow");
+            linkManager.scrollTo("changePasscodeRow");
         }
         if ("auto-lock".equalsIgnoreCase(str)) {
-            scrollTo("autoLockRow");
+            linkManager.scrollTo("autoLockRow");
         }
         if ("fingerprint".equalsIgnoreCase(str)) {
-            scrollTo("fingerprintRow");
+            linkManager.scrollTo("fingerprintRow");
         }
     }
 
-    public void lambda$handleSettings$11(final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3401$r8$lambda$IQ_Z2YYGa7BhMAbvIr_OYGr524(final LinkManager linkManager, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        linkManager.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$handleSettings$10(tLObject, str);
+                LinkManager.$r8$lambda$zFjc9RBlr8jZac_yFHGk21FZeV0(this.f$0, tLObject, str);
             }
         });
     }
 
-    public void lambda$handleSettings$10(TLObject tLObject, final String str) {
-        lambda$handleInvoiceSlug$13();
+    public static void $r8$lambda$zFjc9RBlr8jZac_yFHGk21FZeV0(final LinkManager linkManager, TLObject tLObject, final String str) {
+        linkManager.done();
         if (tLObject == null) {
             return;
         }
         TL_account.Password password = (TL_account.Password) tLObject;
         if (!TwoStepVerificationActivity.canHandleCurrentPassword(password, false)) {
-            AlertsCreator.showUpdateAppAlert(this.activity, LocaleController.getString(R.string.UpdateAppAlert), true);
+            AlertsCreator.showUpdateAppAlert(linkManager.activity, LocaleController.getString(R.string.UpdateAppAlert), true);
         }
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$handleSettings$9(str);
+                LinkManager.m3404$r8$lambda$hzRVS3j2oLc6YP6Ai4UdLpLw2s(this.f$0, str);
             }
         };
         if (password.has_password) {
             TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
             twoStepVerificationActivity.setPassword(password);
-            presentFragment(twoStepVerificationActivity);
+            linkManager.presentFragment(twoStepVerificationActivity);
             runnable.run();
             return;
         }
         TwoStepVerificationSetupActivity twoStepVerificationSetupActivity = new TwoStepVerificationSetupActivity(TextUtils.isEmpty(password.email_unconfirmed_pattern) ? 6 : 5, password);
         twoStepVerificationSetupActivity.setOnOpenedSettings(runnable);
-        presentFragment(twoStepVerificationSetupActivity);
+        linkManager.presentFragment(twoStepVerificationSetupActivity);
     }
 
-    public void lambda$handleSettings$9(String str) {
+    public static void m3404$r8$lambda$hzRVS3j2oLc6YP6Ai4UdLpLw2s(LinkManager linkManager, String str) {
+        linkManager.getClass();
         if ("disable".equalsIgnoreCase(str)) {
-            scrollTo("turnPasswordOffRow");
+            linkManager.scrollTo("turnPasswordOffRow");
         }
         if ("change".equalsIgnoreCase(str)) {
-            scrollTo("changePasswordRow");
+            linkManager.scrollTo("changePasswordRow");
         }
         if ("change-email".equalsIgnoreCase(str)) {
-            scrollTo("emailRow");
+            linkManager.scrollTo("emailRow");
         }
     }
 
-    public void lambda$handleSettings$12(String str, TL_account.Passkeys passkeys, TLRPC.TL_error tL_error) {
-        lambda$handleInvoiceSlug$13();
+    public static void $r8$lambda$USK0WmlmeY2frZnNUReW0nKtUdc(LinkManager linkManager, String str, TL_account.Passkeys passkeys, TLRPC.TL_error tL_error) {
+        linkManager.done();
         if (passkeys == null) {
             return;
         }
-        presentFragment(new PasskeysActivity(passkeys.passkeys));
+        linkManager.presentFragment(new PasskeysActivity(passkeys.passkeys));
         if ("create".equalsIgnoreCase(str)) {
-            scrollTo("addPasskeyRow");
+            linkManager.scrollTo("addPasskeyRow");
         }
     }
 
@@ -5053,80 +5072,82 @@ public class LinkManager {
         setRequestId(getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$handleInvoiceSlug$17(tL_inputInvoiceSlug, str, tLObject, tL_error);
+                LinkManager.$r8$lambda$yB86LXrUQcAq2ueYKff7Ht76ewI(this.f$0, tL_inputInvoiceSlug, str, tLObject, tL_error);
             }
         }));
         return true;
     }
 
-    public void lambda$handleInvoiceSlug$17(final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$yB86LXrUQcAq2ueYKff7Ht76ewI(final LinkManager linkManager, final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        linkManager.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$handleInvoiceSlug$16(tL_error, tLObject, tL_inputInvoiceSlug, str);
+                LinkManager.m3405$r8$lambda$q1bC5o24mucYv0tXZ1GLOM5QjU(this.f$0, tL_error, tLObject, tL_inputInvoiceSlug, str);
             }
         });
     }
 
-    public void lambda$handleInvoiceSlug$16(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, String str) {
+    public static void m3405$r8$lambda$q1bC5o24mucYv0tXZ1GLOM5QjU(final LinkManager linkManager, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, String str) {
         PaymentFormActivity paymentFormActivity;
         if (tL_error != null) {
+            linkManager.getClass();
             if ("SUBSCRIPTION_ALREADY_ACTIVE".equalsIgnoreCase(tL_error.text)) {
-                getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.PaymentInvoiceSubscriptionLinkAlreadyPaid)).show();
+                linkManager.getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.PaymentInvoiceSubscriptionLinkAlreadyPaid)).show();
             } else {
-                getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.PaymentInvoiceLinkInvalid)).show();
+                linkManager.getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.PaymentInvoiceLinkInvalid)).show();
             }
-        } else if (!this.activity.isFinishing()) {
+        } else if (!linkManager.activity.isFinishing()) {
             if (tLObject instanceof TLRPC.TL_payments_paymentFormStars) {
-                LaunchActivity launchActivity = this.activity;
+                LaunchActivity launchActivity = linkManager.activity;
                 final Runnable runnable = launchActivity.navigateToPremiumGiftCallback;
                 launchActivity.navigateToPremiumGiftCallback = null;
-                StarsController.getInstance(this.currentAccount).openPaymentForm(null, tL_inputInvoiceSlug, (TLRPC.TL_payments_paymentFormStars) tLObject, new Runnable() {
+                StarsController.getInstance(linkManager.currentAccount).openPaymentForm(null, tL_inputInvoiceSlug, (TLRPC.TL_payments_paymentFormStars) tLObject, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$handleInvoiceSlug$13();
+                        this.f$0.done();
                     }
                 }, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        LinkManager.lambda$handleInvoiceSlug$14(runnable, (String) obj);
+                        LinkManager.$r8$lambda$URxiwuOJG0fM2eKyA9oQo6oOclQ(runnable, (String) obj);
                     }
                 });
                 return;
             }
             if (tLObject instanceof TLRPC.PaymentForm) {
                 TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
-                MessagesController.getInstance(this.currentAccount).putUsers(paymentForm.users, false);
-                paymentFormActivity = new PaymentFormActivity(paymentForm, str, getLastFragment());
+                MessagesController.getInstance(linkManager.currentAccount).putUsers(paymentForm.users, false);
+                paymentFormActivity = new PaymentFormActivity(paymentForm, str, linkManager.getLastFragment());
             } else {
                 paymentFormActivity = tLObject instanceof TLRPC.PaymentReceipt ? new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject) : null;
             }
             if (paymentFormActivity != null) {
-                LaunchActivity launchActivity2 = this.activity;
+                LaunchActivity launchActivity2 = linkManager.activity;
                 final Runnable runnable2 = launchActivity2.navigateToPremiumGiftCallback;
                 if (runnable2 != null) {
                     launchActivity2.navigateToPremiumGiftCallback = null;
                     paymentFormActivity.setPaymentFormCallback(new PaymentFormActivity.PaymentFormCallback() {
                         @Override
                         public final void onInvoiceStatusChanged(PaymentFormActivity.InvoiceStatus invoiceStatus) {
-                            LinkManager.lambda$handleInvoiceSlug$15(runnable2, invoiceStatus);
+                            LinkManager.$r8$lambda$5p5ZPZn3KDU8oha1jokY1ltg1Eo(runnable2, invoiceStatus);
                         }
                     });
                 }
-                presentFragment(paymentFormActivity);
+                linkManager.presentFragment(paymentFormActivity);
             }
         }
-        lambda$handleInvoiceSlug$13();
+        linkManager.done();
     }
 
-    public static void lambda$handleInvoiceSlug$14(Runnable runnable, String str) {
+    public static void $r8$lambda$URxiwuOJG0fM2eKyA9oQo6oOclQ(Runnable runnable, String str) {
         if (runnable == null || !"paid".equals(str)) {
             return;
         }
         runnable.run();
     }
 
-    public static void lambda$handleInvoiceSlug$15(Runnable runnable, PaymentFormActivity.InvoiceStatus invoiceStatus) {
+    public static void $r8$lambda$5p5ZPZn3KDU8oha1jokY1ltg1Eo(Runnable runnable, PaymentFormActivity.InvoiceStatus invoiceStatus) {
         if (invoiceStatus == PaymentFormActivity.InvoiceStatus.PAID) {
             runnable.run();
         }
@@ -5146,24 +5167,24 @@ public class LinkManager {
         getConnectionsManager().sendRequestTyped(tL_messages_requestUrlAuth, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$handleOAuth$18(tL_messages_requestUrlAuth, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
+                LinkManager.$r8$lambda$0OGqaoTZwVb4VG3NP2kGnejvvLA(this.f$0, tL_messages_requestUrlAuth, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
             }
         });
         return true;
     }
 
-    public void lambda$handleOAuth$18(TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
-        lambda$handleInvoiceSlug$13();
+    public static void $r8$lambda$0OGqaoTZwVb4VG3NP2kGnejvvLA(LinkManager linkManager, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
+        linkManager.done();
         if (tL_error != null) {
             if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain)).show();
+                linkManager.getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain)).show();
                 return;
             } else {
-                getBulletinFactory().showForError(tL_error);
+                linkManager.getBulletinFactory().showForError(tL_error);
                 return;
             }
         }
-        OAuthSheet.handle(this.isExternalIntent, this.currentAccount, tL_messages_requestUrlAuth, urlAuthResult);
+        OAuthSheet.handle(linkManager.isExternalIntent, linkManager.currentAccount, tL_messages_requestUrlAuth, urlAuthResult);
     }
 
     private boolean handleNewBot(String str, String str2, String str3) {
@@ -5184,37 +5205,38 @@ public class LinkManager {
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$handleNewBot$20(safeLastFragment, userArr, tL_requestPeerTypeCreateBot);
+                    LinkManager.m3400$r8$lambda$I3F9JBOvhHnAnrtQk9jLIx5OJM(this.f$0, safeLastFragment, userArr, tL_requestPeerTypeCreateBot);
                 }
             };
             MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    this.f$0.lambda$handleNewBot$21(userArr, runnable, (Long) obj);
+                    LinkManager.$r8$lambda$xSLKfM3fA0oKlIz8PdAFgt17Szc(this.f$0, userArr, runnable, (Long) obj);
                 }
             });
         }
         return true;
     }
 
-    public void lambda$handleNewBot$20(BaseFragment baseFragment, final TLRPC.User[] userArr, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot) {
-        CreateBotAlert.show(baseFragment.getContext(), this.currentAccount, userArr[0], tL_requestPeerTypeCreateBot, true, new Utilities.Callback() {
+    public static void m3400$r8$lambda$I3F9JBOvhHnAnrtQk9jLIx5OJM(final LinkManager linkManager, BaseFragment baseFragment, final TLRPC.User[] userArr, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot) {
+        linkManager.getClass();
+        CreateBotAlert.show(baseFragment.getContext(), linkManager.currentAccount, userArr[0], tL_requestPeerTypeCreateBot, true, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$handleNewBot$19(userArr, (TLRPC.User) obj);
+                LinkManager.$r8$lambda$7TXSyGNbxU5se5jRBCF_U7IHzEw(this.f$0, userArr, (TLRPC.User) obj);
             }
-        }, baseFragment.getResourceProvider(), getBulletinFactory(), false);
+        }, baseFragment.getResourceProvider(), linkManager.getBulletinFactory(), false);
     }
 
-    public void lambda$handleNewBot$19(TLRPC.User[] userArr, TLRPC.User user) {
-        lambda$handleInvoiceSlug$13();
+    public static void $r8$lambda$7TXSyGNbxU5se5jRBCF_U7IHzEw(LinkManager linkManager, TLRPC.User[] userArr, TLRPC.User user) {
+        linkManager.done();
         if (user == null) {
             return;
         }
         long j = userArr[0].id;
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", user.id);
-        presentFragment(new AnonymousClass3(bundle, user, userArr, j));
+        linkManager.presentFragment(linkManager.new AnonymousClass3(bundle, user, userArr, j));
     }
 
     class AnonymousClass3 extends ChatActivity {
@@ -5245,22 +5267,29 @@ public class LinkManager {
             bulletinFactoryOf.createSimpleBulletin(i, string, AndroidUtilities.replaceSingleTag(string2, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onBecomeFullyVisible$0(j);
+                    LinkManager.AnonymousClass3.$r8$lambda$4Xfi51IC5nkwO_aRmvJmFiJOPrY(this.f$0, j);
                 }
             })).show();
         }
 
-        public void lambda$onBecomeFullyVisible$0(long j) {
-            presentFragment(ChatActivity.of(j));
+        public static void $r8$lambda$4Xfi51IC5nkwO_aRmvJmFiJOPrY(AnonymousClass3 anonymousClass3, long j) {
+            anonymousClass3.getClass();
+            anonymousClass3.presentFragment(ChatActivity.of(j));
         }
     }
 
-    public void lambda$handleNewBot$21(TLRPC.User[] userArr, Runnable runnable, Long l) {
-        TLRPC.User user = l == null ? null : MessagesController.getInstance(this.currentAccount).getUser(l);
+    public static void $r8$lambda$xSLKfM3fA0oKlIz8PdAFgt17Szc(LinkManager linkManager, TLRPC.User[] userArr, Runnable runnable, Long l) {
+        TLRPC.User user;
+        if (l == null) {
+            linkManager.getClass();
+            user = null;
+        } else {
+            user = MessagesController.getInstance(linkManager.currentAccount).getUser(l);
+        }
         userArr[0] = user;
         if (user == null) {
-            lambda$handleInvoiceSlug$13();
-            getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.NoUsernameFound)).show();
+            linkManager.done();
+            linkManager.getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.NoUsernameFound)).show();
         } else {
             runnable.run();
         }
@@ -5278,28 +5307,28 @@ public class LinkManager {
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettone, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$handleAiStyle$22((TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
+                LinkManager.$r8$lambda$swZ_QT24wHgr_jmlkXH9ntoARYY(this.f$0, (TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
             }
         });
         return true;
     }
 
-    public void lambda$handleAiStyle$22(TL_aicompose.Tones tones, TLRPC.TL_error tL_error) {
-        lambda$handleInvoiceSlug$13();
+    public static void $r8$lambda$swZ_QT24wHgr_jmlkXH9ntoARYY(LinkManager linkManager, TL_aicompose.Tones tones, TLRPC.TL_error tL_error) {
+        linkManager.done();
         if (!(tones instanceof TL_aicompose.TL_tones)) {
             if (tL_error != null) {
                 if ("AICOMPOSE_TONE_SLUG_INVALID".equalsIgnoreCase(tL_error.text)) {
-                    getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AIEditorStyleNotFound)).show();
+                    linkManager.getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AIEditorStyleNotFound)).show();
                     return;
                 } else {
-                    getBulletinFactory().showForError(tL_error);
+                    linkManager.getBulletinFactory().showForError(tL_error);
                     return;
                 }
             }
             return;
         }
         TL_aicompose.TL_tones tL_tones = (TL_aicompose.TL_tones) tones;
-        MessagesController.getInstance(this.currentAccount).putUsers(tL_tones.users, false);
+        MessagesController.getInstance(linkManager.currentAccount).putUsers(tL_tones.users, false);
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null || tL_tones.tones.isEmpty()) {
             return;
@@ -5363,7 +5392,7 @@ public class LinkManager {
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    this.f$0.lambda$init$23(dialogInterface);
+                    this.f$0.cancel();
                 }
             });
             this.progressDialog.showDelayed(300L);
@@ -5379,10 +5408,6 @@ public class LinkManager {
         this.inited = true;
     }
 
-    public void lambda$init$23(DialogInterface dialogInterface) {
-        cancel();
-    }
-
     public void cancel() {
         if (this.currentRequestId >= 0) {
             getConnectionsManager().cancelRequest(this.currentRequestId, true);
@@ -5390,7 +5415,7 @@ public class LinkManager {
         }
     }
 
-    public void lambda$handleInvoiceSlug$13() {
+    public void done() {
         if (this.done) {
             return;
         }

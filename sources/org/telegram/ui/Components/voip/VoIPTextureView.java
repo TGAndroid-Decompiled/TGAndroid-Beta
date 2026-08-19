@@ -493,7 +493,7 @@ public class VoIPTextureView extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$onLayout$0(f3, f4, f2, f, f5, valueAnimator2);
+                    VoIPTextureView.$r8$lambda$TtSAUHTrBh5tiBw7S2DlHP_v1Zs(this.f$0, f3, f4, f2, f, f5, valueAnimator2);
                 }
             });
             long j = this.animateNextDuration;
@@ -548,26 +548,27 @@ public class VoIPTextureView extends FrameLayout {
         }
     }
 
-    public void lambda$onLayout$0(float f, float f2, float f3, float f4, float f5, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$TtSAUHTrBh5tiBw7S2DlHP_v1Zs(VoIPTextureView voIPTextureView, float f, float f2, float f3, float f4, float f5, ValueAnimator valueAnimator) {
+        voIPTextureView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float f6 = 1.0f - fFloatValue;
-        this.animationProgress = f6;
-        this.currentClipVertical = this.clipVertical * fFloatValue;
-        this.currentClipHorizontal = this.clipHorizontal * fFloatValue;
-        invalidateOutline();
-        invalidate();
-        float f7 = (f * fFloatValue) + (this.scaleTextureToFill * f6);
-        this.renderer.setScaleX(f7);
-        this.renderer.setScaleY(f7);
-        float f8 = (f2 * fFloatValue) + (this.scaleTextureToFillBlur * f6);
-        TextureView textureView = this.blurRenderer;
+        voIPTextureView.animationProgress = f6;
+        voIPTextureView.currentClipVertical = voIPTextureView.clipVertical * fFloatValue;
+        voIPTextureView.currentClipHorizontal = voIPTextureView.clipHorizontal * fFloatValue;
+        voIPTextureView.invalidateOutline();
+        voIPTextureView.invalidate();
+        float f7 = (f * fFloatValue) + (voIPTextureView.scaleTextureToFill * f6);
+        voIPTextureView.renderer.setScaleX(f7);
+        voIPTextureView.renderer.setScaleY(f7);
+        float f8 = (f2 * fFloatValue) + (voIPTextureView.scaleTextureToFillBlur * f6);
+        TextureView textureView = voIPTextureView.blurRenderer;
         if (textureView != null) {
             textureView.setScaleX(f8);
-            this.blurRenderer.setScaleY(f8);
+            voIPTextureView.blurRenderer.setScaleY(f8);
         }
-        setTranslationX(f3 * fFloatValue);
-        setTranslationY(f4 * fFloatValue);
-        this.currentThumbScale = (f5 * fFloatValue) + (this.scaleThumb * f6);
+        voIPTextureView.setTranslationX(f3 * fFloatValue);
+        voIPTextureView.setTranslationY(f4 * fFloatValue);
+        voIPTextureView.currentThumbScale = (f5 * fFloatValue) + (voIPTextureView.scaleThumb * f6);
     }
 
     public void setAnimateWithParent(boolean z) {

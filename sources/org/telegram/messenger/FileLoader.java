@@ -224,19 +224,21 @@ public class FileLoader extends BaseController {
     }
 
     public static FileLoader getInstance(int i) {
+        FileLoader fileLoader;
         FileLoader[] fileLoaderArr = Instance;
-        FileLoader fileLoader = fileLoaderArr[i];
-        if (fileLoader == null) {
-            synchronized (FileLoader.class) {
-                try {
-                    fileLoader = fileLoaderArr[i];
-                    if (fileLoader == null) {
-                        fileLoader = new FileLoader(i);
-                        fileLoaderArr[i] = fileLoader;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        FileLoader fileLoader2 = fileLoaderArr[i];
+        if (fileLoader2 != null) {
+            return fileLoader2;
+        }
+        synchronized (FileLoader.class) {
+            try {
+                fileLoader = fileLoaderArr[i];
+                if (fileLoader == null) {
+                    fileLoader = new FileLoader(i);
+                    fileLoaderArr[i] = fileLoader;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return fileLoader;
@@ -261,7 +263,7 @@ public class FileLoader extends BaseController {
         this.dumpFilesQueueRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$18();
+                FileLoader.$r8$lambda$uHLmzhBP7qiyrI_rMMfEWDKRAVQ(this.f$0);
             }
         };
         this.filePathDatabase = new FilePathDatabase(i);
@@ -318,13 +320,13 @@ public class FileLoader extends BaseController {
         return this.parentObjectReferences.get(Integer.valueOf(i));
     }
 
-    public void lambda$setLoadingVideo$0(TLRPC.Document document, boolean z) {
+    public void setLoadingVideoInternal(TLRPC.Document document, boolean z) {
         String attachFileName = getAttachFileName(document);
         StringBuilder sb = new StringBuilder();
         sb.append(attachFileName);
         sb.append(z ? "p" : "");
         this.loadingVideos.put(sb.toString(), Boolean.TRUE);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
+        getNotificationCenter().postNotificationName(NotificationCenter.videoLoadingStateChanged, attachFileName);
     }
 
     public void setLoadingVideo(final TLRPC.Document document, final boolean z, boolean z2) {
@@ -335,11 +337,11 @@ public class FileLoader extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setLoadingVideo$0(document, z);
+                    this.f$0.setLoadingVideoInternal(document, z);
                 }
             });
         } else {
-            lambda$setLoadingVideo$0(document, z);
+            setLoadingVideoInternal(document, z);
         }
     }
 
@@ -358,17 +360,17 @@ public class FileLoader extends BaseController {
             sb2.append(attachFileName);
             sb2.append(z ? "p" : "");
             map2.put(sb2.toString(), Boolean.TRUE);
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
+            getNotificationCenter().postNotificationName(NotificationCenter.videoLoadingStateChanged, attachFileName);
         }
     }
 
-    public void lambda$removeLoadingVideo$1(TLRPC.Document document, boolean z) {
+    public void removeLoadingVideoInternal(TLRPC.Document document, boolean z) {
         String attachFileName = getAttachFileName(document);
         StringBuilder sb = new StringBuilder();
         sb.append(attachFileName);
         sb.append(z ? "p" : "");
         if (this.loadingVideos.remove(sb.toString()) != null) {
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
+            getNotificationCenter().postNotificationName(NotificationCenter.videoLoadingStateChanged, attachFileName);
         }
     }
 
@@ -380,25 +382,23 @@ public class FileLoader extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$removeLoadingVideo$1(document, z);
+                    this.f$0.removeLoadingVideoInternal(document, z);
                 }
             });
         } else {
-            lambda$removeLoadingVideo$1(document, z);
+            removeLoadingVideoInternal(document, z);
         }
     }
 
     public boolean isLoadingVideo(TLRPC.Document document, boolean z) {
-        if (document != null) {
-            HashMap<String, Boolean> map = this.loadingVideos;
-            StringBuilder sb = new StringBuilder();
-            sb.append(getAttachFileName(document));
-            sb.append(z ? "p" : "");
-            if (map.containsKey(sb.toString())) {
-                return true;
-            }
+        if (document == null) {
+            return false;
         }
-        return false;
+        HashMap<String, Boolean> map = this.loadingVideos;
+        StringBuilder sb = new StringBuilder();
+        sb.append(getAttachFileName(document));
+        sb.append(z ? "p" : "");
+        return map.containsKey(sb.toString());
     }
 
     public boolean isLoadingVideoAny(TLRPC.Document document) {
@@ -412,23 +412,23 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$cancelFileUpload$2(z, str);
+                FileLoader.$r8$lambda$jFhfuJBFQrDjRp9WrPwBCGMsKyc(this.f$0, z, str);
             }
         });
     }
 
-    public void lambda$cancelFileUpload$2(boolean z, String str) {
+    public static void $r8$lambda$jFhfuJBFQrDjRp9WrPwBCGMsKyc(FileLoader fileLoader, boolean z, String str) {
         FileUploadOperation fileUploadOperation;
         if (!z) {
-            fileUploadOperation = this.uploadOperationPaths.get(str);
+            fileUploadOperation = fileLoader.uploadOperationPaths.get(str);
         } else {
-            fileUploadOperation = this.uploadOperationPathsEnc.get(str);
+            fileUploadOperation = fileLoader.uploadOperationPathsEnc.get(str);
         }
-        this.uploadSizes.remove(str);
+        fileLoader.uploadSizes.remove(str);
         if (fileUploadOperation != null) {
-            this.uploadOperationPathsEnc.remove(str);
-            this.uploadOperationQueue.remove(fileUploadOperation);
-            this.uploadSmallOperationQueue.remove(fileUploadOperation);
+            fileLoader.uploadOperationPathsEnc.remove(str);
+            fileLoader.uploadOperationQueue.remove(fileUploadOperation);
+            fileLoader.uploadSmallOperationQueue.remove(fileUploadOperation);
             fileUploadOperation.cancel();
         }
     }
@@ -441,23 +441,23 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkUploadNewDataAvailable$3(z, str, j, j2, f);
+                FileLoader.$r8$lambda$fryEbw2PPFDF_HTxPaY4FZ1T9iw(this.f$0, z, str, j, j2, f);
             }
         });
     }
 
-    public void lambda$checkUploadNewDataAvailable$3(boolean z, String str, long j, long j2, Float f) {
+    public static void $r8$lambda$fryEbw2PPFDF_HTxPaY4FZ1T9iw(FileLoader fileLoader, boolean z, String str, long j, long j2, Float f) {
         FileUploadOperation fileUploadOperation;
         if (z) {
-            fileUploadOperation = this.uploadOperationPathsEnc.get(str);
+            fileUploadOperation = fileLoader.uploadOperationPathsEnc.get(str);
         } else {
-            fileUploadOperation = this.uploadOperationPaths.get(str);
+            fileUploadOperation = fileLoader.uploadOperationPaths.get(str);
         }
         FileUploadOperation fileUploadOperation2 = fileUploadOperation;
         if (fileUploadOperation2 != null) {
             fileUploadOperation2.checkNewDataAvailable(j, j2, f);
         } else if (j2 != 0) {
-            this.uploadSizes.put(str, Long.valueOf(j2));
+            fileLoader.uploadSizes.put(str, Long.valueOf(j2));
         }
     }
 
@@ -465,17 +465,17 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onNetworkChanged$4(z);
+                FileLoader.$r8$lambda$n4pHL6xqejY4aOohbO19kzJ09Tc(this.f$0, z);
             }
         });
     }
 
-    public void lambda$onNetworkChanged$4(boolean z) {
-        Iterator<Map.Entry<String, FileUploadOperation>> it = this.uploadOperationPaths.entrySet().iterator();
+    public static void $r8$lambda$n4pHL6xqejY4aOohbO19kzJ09Tc(FileLoader fileLoader, boolean z) {
+        Iterator<Map.Entry<String, FileUploadOperation>> it = fileLoader.uploadOperationPaths.entrySet().iterator();
         while (it.hasNext()) {
             it.next().getValue().onNetworkChanged(z);
         }
-        Iterator<Map.Entry<String, FileUploadOperation>> it2 = this.uploadOperationPathsEnc.entrySet().iterator();
+        Iterator<Map.Entry<String, FileUploadOperation>> it2 = fileLoader.uploadOperationPathsEnc.entrySet().iterator();
         while (it2.hasNext()) {
             it2.next().getValue().onNetworkChanged(z);
         }
@@ -492,57 +492,61 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$uploadFile$5(z, str, j, i, z3, z2);
+                FileLoader.$r8$lambda$t8Su9aLjzQX2k0ehoEDf7r47kyU(this.f$0, z, str, j, i, z3, z2);
             }
         });
     }
 
-    public void lambda$uploadFile$5(boolean z, String str, long j, int i, boolean z2, boolean z3) {
+    public static void $r8$lambda$t8Su9aLjzQX2k0ehoEDf7r47kyU(FileLoader fileLoader, boolean z, String str, long j, int i, boolean z2, boolean z3) {
         long j2;
         if (z) {
-            if (this.uploadOperationPathsEnc.containsKey(str)) {
+            if (fileLoader.uploadOperationPathsEnc.containsKey(str)) {
                 return;
             }
-        } else if (this.uploadOperationPaths.containsKey(str)) {
+        } else if (fileLoader.uploadOperationPaths.containsKey(str)) {
             return;
         }
-        if (j == 0 || this.uploadSizes.get(str) == null) {
+        if (j == 0 || fileLoader.uploadSizes.get(str) == null) {
             j2 = j;
         } else {
-            this.uploadSizes.remove(str);
+            fileLoader.uploadSizes.remove(str);
             j2 = 0;
         }
-        FileUploadOperation fileUploadOperation = new FileUploadOperation(this.currentAccount, str, z, j2, i);
-        FileLoaderDelegate fileLoaderDelegate = this.delegate;
+        FileUploadOperation fileUploadOperation = new FileUploadOperation(fileLoader.currentAccount, str, z, j2, i);
+        FileLoaderDelegate fileLoaderDelegate = fileLoader.delegate;
         if (fileLoaderDelegate != null && j != 0) {
             fileLoaderDelegate.fileUploadProgressChanged(fileUploadOperation, str, 0L, j, z);
         }
         if (z) {
-            this.uploadOperationPathsEnc.put(str, fileUploadOperation);
+            fileLoader.uploadOperationPathsEnc.put(str, fileUploadOperation);
         } else {
-            this.uploadOperationPaths.put(str, fileUploadOperation);
+            fileLoader.uploadOperationPaths.put(str, fileUploadOperation);
         }
         if (z2) {
+            fileUploadOperation = fileUploadOperation;
+            fileUploadOperation = fileUploadOperation;
             fileUploadOperation.setForceSmallFile();
         }
-        fileUploadOperation.setDelegate(new AnonymousClass1(z, str, z3));
+        fileUploadOperation = fileUploadOperation;
+        fileUploadOperation = fileUploadOperation;
+        fileUploadOperation.setDelegate(fileLoader.new AnonymousClass1(z, str, z3));
         if (z3) {
-            int i2 = this.currentUploadSmallOperationsCount;
+            int i2 = fileLoader.currentUploadSmallOperationsCount;
             if (i2 < 1) {
-                this.currentUploadSmallOperationsCount = i2 + 1;
+                fileLoader.currentUploadSmallOperationsCount = i2 + 1;
                 fileUploadOperation.start();
                 return;
             } else {
-                this.uploadSmallOperationQueue.add(fileUploadOperation);
+                fileLoader.uploadSmallOperationQueue.add(fileUploadOperation);
                 return;
             }
         }
-        int i3 = this.currentUploadOperationsCount;
+        int i3 = fileLoader.currentUploadOperationsCount;
         if (i3 < 1) {
-            this.currentUploadOperationsCount = i3 + 1;
+            fileLoader.currentUploadOperationsCount = i3 + 1;
             fileUploadOperation.start();
         } else {
-            this.uploadOperationQueue.add(fileUploadOperation);
+            fileLoader.uploadOperationQueue.add(fileUploadOperation);
         }
     }
 
@@ -566,12 +570,12 @@ public class FileLoader extends BaseController {
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$didFinishUploadingFile$0(z, str, z2, inputFile, inputEncryptedFile, bArr, bArr2, fileUploadOperation);
+                    FileLoader.AnonymousClass1.m443$r8$lambda$Rs3O13V_5hw4u4o2C0PygpoFfw(this.f$0, z, str, z2, inputFile, inputEncryptedFile, bArr, bArr2, fileUploadOperation);
                 }
             });
         }
 
-        public void lambda$didFinishUploadingFile$0(boolean z, String str, boolean z2, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, FileUploadOperation fileUploadOperation) {
+        public static void m443$r8$lambda$Rs3O13V_5hw4u4o2C0PygpoFfw(AnonymousClass1 anonymousClass1, boolean z, String str, boolean z2, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, FileUploadOperation fileUploadOperation) {
             FileUploadOperation fileUploadOperation2;
             FileUploadOperation fileUploadOperation3;
             if (z) {
@@ -606,12 +610,12 @@ public class FileLoader extends BaseController {
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$didFailedUploadingFile$1(z, str, z2);
+                    FileLoader.AnonymousClass1.$r8$lambda$DFG8Rcj4K3apSJBkoxiDkZQcXP4(this.f$0, z, str, z2);
                 }
             });
         }
 
-        public void lambda$didFailedUploadingFile$1(boolean z, String str, boolean z2) {
+        public static void $r8$lambda$DFG8Rcj4K3apSJBkoxiDkZQcXP4(AnonymousClass1 anonymousClass1, boolean z, String str, boolean z2) {
             FileUploadOperation fileUploadOperation;
             FileUploadOperation fileUploadOperation2;
             if (z) {
@@ -654,21 +658,22 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setForceStreamLoadingFile$6(fileLocation, str);
+                FileLoader.$r8$lambda$Y2FpK_ednifbXGtkp3YXvSjpFII(this.f$0, fileLocation, str);
             }
         });
     }
 
-    public void lambda$setForceStreamLoadingFile$6(TLRPC.FileLocation fileLocation, String str) {
+    public static void $r8$lambda$Y2FpK_ednifbXGtkp3YXvSjpFII(FileLoader fileLoader, TLRPC.FileLocation fileLocation, String str) {
+        fileLoader.getClass();
         String attachFileName = getAttachFileName(fileLocation, str);
-        this.forceLoadingFile = attachFileName;
-        FileLoadOperation fileLoadOperation = this.loadOperationPaths.get(attachFileName);
+        fileLoader.forceLoadingFile = attachFileName;
+        FileLoadOperation fileLoadOperation = fileLoader.loadOperationPaths.get(attachFileName);
         if (fileLoadOperation != null) {
             if (fileLoadOperation.isPreloadVideoOperation()) {
                 fileLoadOperation.setIsPreloadVideoOperation(false);
             }
             fileLoadOperation.setForceRequest(true);
-            fileLoadOperation.setPriority(getPriorityValue(4));
+            fileLoadOperation.setPriority(fileLoader.getPriorityValue(4));
             fileLoadOperation.getQueue().remove(fileLoadOperation);
             fileLoadOperation.getQueue().add(fileLoadOperation);
             fileLoadOperation.getQueue().checkLoadingOperations();
@@ -740,7 +745,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$cancelLoadFile$7(str2);
+                FileLoader.$r8$lambda$y6TnDiAaartuZy2trnc9k7oNMpY(this.f$0, str2);
             }
         });
         if (!z2 || document == null) {
@@ -749,20 +754,16 @@ public class FileLoader extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$cancelLoadFile$8();
+                this.f$0.getNotificationCenter().postNotificationName(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
             }
         });
     }
 
-    public void lambda$cancelLoadFile$7(String str) {
-        FileLoadOperation fileLoadOperationRemove = this.loadOperationPaths.remove(str);
+    public static void $r8$lambda$y6TnDiAaartuZy2trnc9k7oNMpY(FileLoader fileLoader, String str) {
+        FileLoadOperation fileLoadOperationRemove = fileLoader.loadOperationPaths.remove(str);
         if (fileLoadOperationRemove != null) {
             fileLoadOperationRemove.getQueue().cancel(fileLoadOperationRemove);
         }
-    }
-
-    public void lambda$cancelLoadFile$8() {
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
     }
 
     public void cancel(FileLoadOperation fileLoadOperation) {
@@ -779,28 +780,24 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$cancel$9(fileName);
+                FileLoader.m438$r8$lambda$2Ctm0RRnO_gT49ZnU7GbCTeMWM(this.f$0, fileName);
             }
         });
         if (z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$cancel$10();
+                    this.f$0.getNotificationCenter().postNotificationName(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
                 }
             });
         }
     }
 
-    public void lambda$cancel$9(String str) {
-        FileLoadOperation fileLoadOperationRemove = this.loadOperationPaths.remove(str);
+    public static void m438$r8$lambda$2Ctm0RRnO_gT49ZnU7GbCTeMWM(FileLoader fileLoader, String str) {
+        FileLoadOperation fileLoadOperationRemove = fileLoader.loadOperationPaths.remove(str);
         if (fileLoadOperationRemove != null) {
             fileLoadOperationRemove.getQueue().cancel(fileLoadOperationRemove);
         }
-    }
-
-    public void lambda$cancel$10() {
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
     }
 
     public void changePriority(final int i, TLRPC.Document document, SecureDocument secureDocument, WebFile webFile, TLRPC.FileLocation fileLocation, String str, final String str2) {
@@ -819,15 +816,15 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$changePriority$11(str2, i);
+                FileLoader.m439$r8$lambda$EknGph0ZntSvZj4F4uFewjXlZc(this.f$0, str2, i);
             }
         });
     }
 
-    public void lambda$changePriority$11(String str, int i) {
+    public static void m439$r8$lambda$EknGph0ZntSvZj4F4uFewjXlZc(FileLoader fileLoader, String str, int i) {
         int priorityValue;
-        FileLoadOperation fileLoadOperation = this.loadOperationPaths.get(str);
-        if (fileLoadOperation == null || fileLoadOperation.getPriority() == (priorityValue = getPriorityValue(i))) {
+        FileLoadOperation fileLoadOperation = fileLoader.loadOperationPaths.get(str);
+        if (fileLoadOperation == null || fileLoadOperation.getPriority() == (priorityValue = fileLoader.getPriorityValue(i))) {
             return;
         }
         fileLoadOperation.setPriority(priorityValue);
@@ -835,7 +832,7 @@ public class FileLoader extends BaseController {
         queue.remove(fileLoadOperation);
         queue.add(fileLoadOperation);
         queue.checkLoadingOperations();
-        FileLog.d("update priority " + str + " position in queue " + fileLoadOperation.getPositionInQueue() + " account=" + this.currentAccount);
+        FileLog.d("update priority " + str + " position in queue " + fileLoadOperation.getPositionInQueue() + " account=" + fileLoader.currentAccount);
     }
 
     public void cancelLoadAllFiles() {
@@ -848,14 +845,14 @@ public class FileLoader extends BaseController {
             fileLoaderQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$cancelLoadAllFiles$12(str);
+                    FileLoader.$r8$lambda$sK43yibFN5OQXnWyJ6fHD8AKFXs(this.f$0, str);
                 }
             });
         }
     }
 
-    public void lambda$cancelLoadAllFiles$12(String str) {
-        FileLoadOperation fileLoadOperationRemove = this.loadOperationPaths.remove(str);
+    public static void $r8$lambda$sK43yibFN5OQXnWyJ6fHD8AKFXs(FileLoader fileLoader, String str) {
+        FileLoadOperation fileLoadOperationRemove = fileLoader.loadOperationPaths.remove(str);
         if (fileLoadOperationRemove != null) {
             fileLoadOperationRemove.getQueue().cancel(fileLoadOperationRemove);
         }
@@ -973,265 +970,714 @@ public class FileLoader extends BaseController {
         loadFile(null, null, webFile, null, null, null, null, 0L, i, i2);
     }
 
-    private FileLoadOperation loadFileInternal(TLRPC.Document document, SecureDocument secureDocument, WebFile webFile, TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, ImageLocation imageLocation, Object obj, String str, long j, int i, FileLoadOperationStream fileLoadOperationStream, long j2, boolean z, int i2) {
+    public FileLoadOperation loadFileInternal(TLRPC.Document document, SecureDocument secureDocument, WebFile webFile, TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, ImageLocation imageLocation, Object obj, String str, long j, int i, FileLoadOperationStream fileLoadOperationStream, long j2, boolean z, int i2) {
         String str2;
+        String str3;
         String attachFileName;
         int i3;
+        ?? r12;
+        FileLoadOperation fileLoadOperation;
         long j3;
         int i4;
         int i5;
-        long j4;
+        FileLoadOperation fileLoadOperation2;
         int i6;
-        int i7;
-        FileLoaderPriorityQueue fileLoaderPriorityQueue;
-        File directory;
-        String str3;
-        String str4;
-        File parentFile;
+        long j4;
         boolean z2;
+        FileLoadOperation fileLoadOperation3;
+        FileLoadOperation fileLoadOperation4;
+        int iClamp;
+        boolean z3;
+        FileLoaderPriorityQueue fileLoaderPriorityQueue;
+        long j5;
+        int i7;
+        File directory;
+        String str4;
+        String path;
+        int i8;
+        String name;
+        File parentFile;
+        boolean z4;
         File directory2;
         File directory3;
-        String str5;
-        boolean z3;
-        boolean z4;
         boolean z5;
+        boolean z6;
+        File file;
+        FileLoadOperation fileLoadOperation5;
+        FileStreamLoadOperation fileStreamLoadOperation;
+        boolean z7;
+        boolean z8;
+        FileLoadOperation fileLoadOperation6;
+        boolean z9;
         AnonymousClass1 anonymousClass1 = null;
         if (tL_fileLocationToBeDeprecated != null) {
-            attachFileName = getAttachFileName(tL_fileLocationToBeDeprecated, str);
-        } else if (secureDocument != null) {
-            attachFileName = getAttachFileName(secureDocument);
-        } else if (document != null) {
-            attachFileName = getAttachFileName(document);
+            str2 = str;
+            attachFileName = getAttachFileName(tL_fileLocationToBeDeprecated, str2);
         } else {
-            if (webFile != null) {
-                attachFileName = getAttachFileName(webFile);
-            } else {
-                str2 = null;
-            }
-            if (str2 != null || str2.contains("-2147483648")) {
-                return null;
-            }
-            if (str2.startsWith("0_0")) {
-                FileLog.e(new RuntimeException("cant get hash from " + document));
-                return null;
-            }
-            if (i2 != 10 && !TextUtils.isEmpty(str2) && !str2.contains("-2147483648")) {
-                this.loadOperationPathsUI.put(str2, new LoadOperationUIObject(anonymousClass1));
-            }
-            if (document != null && (obj instanceof MessageObject)) {
-                MessageObject messageObject = (MessageObject) obj;
-                if (messageObject.putInDownloadsStore && !messageObject.isAnyKindOfSticker()) {
-                    getDownloadController().startDownloadFile(document, messageObject);
-                }
-            }
-            FileLoadOperation fileLoadOperation = this.loadOperationPaths.get(str2);
-            int priorityValue = getPriorityValue(i);
-            String str6 = str2;
-            if (fileLoadOperation != null) {
-                if (i2 != 10 && fileLoadOperation.isPreloadVideoOperation()) {
-                    fileLoadOperation.setIsPreloadVideoOperation(false);
-                }
-                fileLoadOperation.setForceRequest(priorityValue > 0);
-                fileLoadOperation.setStream(fileLoadOperationStream, z, j2);
-                if (fileLoadOperation.getPriority() != priorityValue) {
-                    fileLoadOperation.setPriority(priorityValue);
-                    z5 = true;
-                } else {
-                    z5 = false;
-                }
-                fileLoadOperation.getQueue().add(fileLoadOperation);
-                fileLoadOperation.updateProgress();
-                if (z5) {
-                    fileLoadOperation.getQueue().checkLoadingOperations();
-                }
-                return fileLoadOperation;
-            }
-            File directory4 = getDirectory(4);
+            str2 = str;
             if (secureDocument != null) {
-                fileLoadOperation = new FileLoadOperation(secureDocument);
-                j3 = 0;
-                i4 = 0;
-                i5 = 3;
-                i3 = 1;
+                attachFileName = getAttachFileName(secureDocument);
+            } else if (document != null) {
+                attachFileName = getAttachFileName(document);
             } else {
-                if (tL_fileLocationToBeDeprecated != null) {
-                    long j5 = tL_fileLocationToBeDeprecated.volume_id;
-                    i3 = 1;
-                    i4 = tL_fileLocationToBeDeprecated.dc_id + (tL_fileLocationToBeDeprecated.local_id << 16);
-                    fileLoadOperation = new FileLoadOperation(imageLocation, obj, str, j);
-                    j3 = j5;
+                if (webFile != null) {
+                    attachFileName = getAttachFileName(webFile);
                 } else {
-                    i3 = 1;
-                    if (document != null) {
-                        fileLoadOperation = new FileLoadOperation(document, obj);
-                        if (MessageObject.isVoiceDocument(document)) {
-                            j4 = 0;
-                            i7 = 1;
-                            i6 = 0;
-                        } else if (MessageObject.isVideoDocument(document)) {
-                            j4 = document.id;
-                            i6 = document.dc_id;
-                            i7 = 2;
+                    str3 = null;
+                }
+                if (str3 != null || str3.contains("-2147483648")) {
+                    return null;
+                }
+                if (str3.startsWith("0_0")) {
+                    FileLog.e(new RuntimeException("cant get hash from " + document));
+                    return null;
+                }
+                if (i2 != 10 && !TextUtils.isEmpty(str3) && !str3.contains("-2147483648")) {
+                    this.loadOperationPathsUI.put(str3, new LoadOperationUIObject(anonymousClass1));
+                }
+                if (document != null && (obj instanceof MessageObject)) {
+                    MessageObject messageObject = (MessageObject) obj;
+                    if (messageObject.putInDownloadsStore && !messageObject.isAnyKindOfSticker()) {
+                        getDownloadController().startDownloadFile(document, messageObject);
+                    }
+                }
+                FileLoadOperation fileLoadOperation7 = this.loadOperationPaths.get(str3);
+                int priorityValue = getPriorityValue(i);
+                String str5 = str3;
+                if (fileLoadOperation7 != null) {
+                    if (i2 != 10 && fileLoadOperation7.isPreloadVideoOperation()) {
+                        fileLoadOperation7.setIsPreloadVideoOperation(false);
+                    }
+                    fileLoadOperation7.setForceRequest(priorityValue > 0);
+                    fileLoadOperation7.setStream(fileLoadOperationStream, z, j2);
+                    if (fileLoadOperation7.getPriority() != priorityValue) {
+                        fileLoadOperation7.setPriority(priorityValue);
+                        z9 = true;
+                    } else {
+                        z9 = false;
+                    }
+                    fileLoadOperation7.getQueue().add(fileLoadOperation7);
+                    fileLoadOperation7.updateProgress();
+                    if (z9) {
+                        fileLoadOperation7.getQueue().checkLoadingOperations();
+                    }
+                    return fileLoadOperation7;
+                }
+                int i9 = 10;
+                File directory4 = getDirectory(4);
+                int i10 = 3;
+                if (secureDocument != null) {
+                    i3 = priorityValue;
+                    j3 = 0;
+                    z8 = true;
+                    i4 = 0;
+                    fileLoadOperation6 = new FileLoadOperation(secureDocument);
+                } else {
+                    if (tL_fileLocationToBeDeprecated != null) {
+                        long j6 = tL_fileLocationToBeDeprecated.volume_id;
+                        i3 = priorityValue;
+                        z2 = true;
+                        i4 = tL_fileLocationToBeDeprecated.dc_id + (tL_fileLocationToBeDeprecated.local_id << 16);
+                        fileLoadOperation3 = new FileLoadOperation(imageLocation, obj, str2, j);
+                        j3 = j6;
+                        i9 = 10;
+                    } else {
+                        i3 = priorityValue;
+                        r12 = 1;
+                        r12 = 1;
+                        r12 = 1;
+                        r12 = 1;
+                        r12 = 1;
+                        z2 = true;
+                        z8 = true;
+                        if (document != null) {
+                            FileLoadOperation fileLoadOperation8 = new FileLoadOperation(document, obj);
+                            if (MessageObject.isVoiceDocument(document)) {
+                                fileLoadOperation = fileLoadOperation7;
+                                j4 = 0;
+                                i6 = 0;
+                                i10 = 1;
+                            } else if (MessageObject.isVideoDocument(document)) {
+                                fileLoadOperation = fileLoadOperation7;
+                                long j7 = document.id;
+                                i6 = document.dc_id;
+                                j4 = j7;
+                                i10 = 2;
+                            } else {
+                                fileLoadOperation = fileLoadOperation7;
+                                long j8 = document.id;
+                                i6 = document.dc_id;
+                                j4 = j8;
+                            }
+                            if (MessageObject.isRoundVideoDocument(document)) {
+                                i5 = i10;
+                                j3 = 0;
+                                i4 = 0;
+                                fileLoadOperation4 = fileLoadOperation8;
+                            } else {
+                                i4 = i6;
+                                j3 = j4;
+                                i5 = i10;
+                                fileLoadOperation4 = fileLoadOperation8;
+                            }
+                        } else if (webFile != null) {
+                            fileLoadOperation2 = new FileLoadOperation(this.currentAccount, webFile);
+                            fileLoadOperation = fileLoadOperation2;
+                            if (webFile.location != null) {
+                                j3 = 0;
+                                i4 = 0;
+                                i5 = 4;
+                                fileLoadOperation4 = fileLoadOperation;
+                            } else if (MessageObject.isVoiceWebDocument(webFile)) {
+                                j3 = 0;
+                                i4 = 0;
+                                i5 = 1;
+                                fileLoadOperation4 = fileLoadOperation2;
+                            } else if (MessageObject.isVideoWebDocument(webFile)) {
+                                j3 = 0;
+                                i4 = 0;
+                                i5 = 2;
+                                fileLoadOperation4 = fileLoadOperation2;
+                            } else {
+                                j3 = 0;
+                                i4 = 0;
+                                if (MessageObject.isImageWebDocument(webFile)) {
+                                }
+                            }
                         } else {
-                            j4 = document.id;
-                            i6 = document.dc_id;
-                            i7 = 3;
-                        }
-                        if (MessageObject.isRoundVideoDocument(document)) {
-                            i5 = i7;
-                            j3 = 0;
-                            i4 = 0;
-                        } else {
-                            i5 = i7;
-                            j3 = j4;
-                            i4 = i6;
-                        }
-                    } else if (webFile != null) {
-                        fileLoadOperation = new FileLoadOperation(this.currentAccount, webFile);
-                        if (webFile.location != null) {
                             j3 = 0;
                             i4 = 0;
                             i5 = 4;
-                        } else if (MessageObject.isVoiceWebDocument(webFile)) {
-                            j3 = 0;
-                            i4 = 0;
-                            i5 = 1;
-                        } else if (MessageObject.isVideoWebDocument(webFile)) {
-                            j3 = 0;
-                            i4 = 0;
-                            i5 = 2;
+                            fileLoadOperation4 = fileLoadOperation;
+                        }
+                        iClamp = Utilities.clamp(fileLoadOperation4.getDatacenterId() - r12, 4, 0);
+                        z3 = obj instanceof TL_stories.StoryItem;
+                        if (fileLoadOperation4.totalBytesCount <= 20971520 || z3) {
+                            fileLoaderPriorityQueue = this.largeFilesQueue[iClamp];
                         } else {
-                            j3 = 0;
-                            if (MessageObject.isImageWebDocument(webFile)) {
-                                i4 = 0;
+                            fileLoaderPriorityQueue = this.smallFilesQueue[iClamp];
+                        }
+                        FileLoaderPriorityQueue fileLoaderPriorityQueue2 = fileLoaderPriorityQueue;
+                        if (i2 == 0 && i2 != i9 && !z3) {
+                            if (i2 == 2) {
+                                fileLoadOperation4.setEncryptFile(r12);
+                            }
+                            str4 = str5;
+                            directory = directory4;
+                            j5 = j3;
+                            i7 = i5;
+                        } else if (j3 != 0) {
+                            path = getFileDatabase().getPath(j3, i4, i5, true);
+                            j5 = j3;
+                            i8 = i4;
+                            i7 = i5;
+                            if (path != null) {
+                                file = new File(path);
+                                if (file.exists()) {
+                                    name = file.getName();
+                                    parentFile = file.getParentFile();
+                                    z4 = true;
+                                } else {
+                                    name = str5;
+                                    parentFile = directory4;
+                                    z4 = false;
+                                }
                             } else {
-                                i4 = 0;
-                                i5 = 3;
+                                name = str5;
+                                parentFile = directory4;
+                                z4 = false;
+                            }
+                            if (!z4) {
+                                directory2 = getDirectory(i7);
+                                if (z3) {
+                                    directory3 = getDirectory(6);
+                                    if (directory3 != null) {
+                                        directory2 = directory3;
+                                        z6 = true;
+                                    } else {
+                                        z6 = false;
+                                    }
+                                    z5 = z6;
+                                    parentFile = directory2;
+                                    name = str5;
+                                } else {
+                                    if ((i7 != 0 || i7 == 2) && canSaveToPublicStorage(obj)) {
+                                        if (i7 == 0) {
+                                            directory3 = getDirectory(100);
+                                        } else {
+                                            directory3 = getDirectory(101);
+                                        }
+                                        if (directory3 != null) {
+                                            directory2 = directory3;
+                                            z6 = true;
+                                        }
+                                        z5 = z6;
+                                        parentFile = directory2;
+                                        name = str5;
+                                    } else if (!TextUtils.isEmpty(getDocumentFileName(document)) && canSaveAsFile(obj)) {
+                                        String documentFileName = getDocumentFileName(document);
+                                        File directory5 = getDirectory(5);
+                                        if (directory5 != null) {
+                                            name = documentFileName;
+                                            parentFile = directory5;
+                                            z5 = true;
+                                        } else {
+                                            parentFile = directory2;
+                                            name = documentFileName;
+                                            z5 = false;
+                                        }
+                                    }
+                                    z6 = false;
+                                    z5 = z6;
+                                    parentFile = directory2;
+                                    name = str5;
+                                }
+                                if (z5) {
+                                    fileLoadOperation4.pathSaveData = new FilePathDatabase.PathData(j5, i8, i7);
+                                }
+                            }
+                            str4 = name;
+                            directory = parentFile;
+                        } else {
+                            j5 = j3;
+                            i7 = i5;
+                            directory = getDirectory(i7);
+                            str4 = str5;
+                        }
+                        fileLoadOperation5 = fileLoadOperation4;
+                        fileLoadOperation5.setPaths(this.currentAccount, str5, fileLoaderPriorityQueue2, directory, directory4, str4);
+                        if (i2 == i9) {
+                            fileLoadOperation5.setIsPreloadVideoOperation(r12);
+                        }
+                        fileLoadOperation5.setDelegate(new AnonymousClass2(obj, document, str5, i7));
+                        this.loadOperationPaths.put(str5, fileLoadOperation5);
+                        int i11 = i3;
+                        fileLoadOperation5.setPriority(i11);
+                        if (fileLoadOperationStream == null) {
+                            fileStreamLoadOperation = FileStreamLoadOperation.allStreams.get(Long.valueOf(j5));
+                        } else {
+                            fileStreamLoadOperation = fileLoadOperationStream;
+                        }
+                        if (fileStreamLoadOperation != null) {
+                            fileLoadOperation5.setStream(fileStreamLoadOperation, z, j2);
+                        }
+                        fileLoaderPriorityQueue2.add(fileLoadOperation5);
+                        if (fileLoadOperation5.isStory || i11 < 1048576) {
+                            z7 = false;
+                        } else {
+                            z7 = true;
+                        }
+                        fileLoaderPriorityQueue2.checkLoadingOperations(z7);
+                        if (BuildVars.LOGS_ENABLED) {
+                            FileLog.d("create load operation fileName=" + str5 + " documentName=" + getDocumentFileName(document) + " size=" + AndroidUtilities.formatFileSize(fileLoadOperation5.totalBytesCount) + " position in queue " + fileLoadOperation5.getPositionInQueue() + " account=" + this.currentAccount + " cacheType=" + i2 + " priority=" + fileLoadOperation5.getPriority() + " stream=" + fileStreamLoadOperation);
+                        }
+                        return fileLoadOperation5;
+                    }
+                    fileLoadOperation6 = fileLoadOperation2;
+                    fileLoadOperation3 = fileLoadOperation2;
+                    i5 = 0;
+                    fileLoadOperation4 = fileLoadOperation3;
+                    r12 = z2;
+                    iClamp = Utilities.clamp(fileLoadOperation4.getDatacenterId() - r12, 4, 0);
+                    z3 = obj instanceof TL_stories.StoryItem;
+                    if (fileLoadOperation4.totalBytesCount <= 20971520) {
+                        fileLoaderPriorityQueue = this.largeFilesQueue[iClamp];
+                    } else {
+                        fileLoaderPriorityQueue = this.largeFilesQueue[iClamp];
+                    }
+                    FileLoaderPriorityQueue fileLoaderPriorityQueue3 = fileLoaderPriorityQueue;
+                    if (i2 == 0) {
+                        if (j3 != 0) {
+                            path = getFileDatabase().getPath(j3, i4, i5, true);
+                            j5 = j3;
+                            i8 = i4;
+                            i7 = i5;
+                            if (path != null) {
+                                file = new File(path);
+                                if (file.exists()) {
+                                    name = file.getName();
+                                    parentFile = file.getParentFile();
+                                    z4 = true;
+                                } else {
+                                    name = str5;
+                                    parentFile = directory4;
+                                    z4 = false;
+                                }
+                            } else {
+                                name = str5;
+                                parentFile = directory4;
+                                z4 = false;
+                            }
+                            if (!z4) {
+                                directory2 = getDirectory(i7);
+                                if (z3) {
+                                    directory3 = getDirectory(6);
+                                    if (directory3 != null) {
+                                        directory2 = directory3;
+                                        z6 = true;
+                                    } else {
+                                        z6 = false;
+                                    }
+                                    z5 = z6;
+                                    parentFile = directory2;
+                                    name = str5;
+                                } else {
+                                    if (i7 != 0) {
+                                        if (i7 == 0) {
+                                            directory3 = getDirectory(100);
+                                        } else {
+                                            directory3 = getDirectory(101);
+                                        }
+                                        if (directory3 != null) {
+                                            directory2 = directory3;
+                                            z6 = true;
+                                        }
+                                        z5 = z6;
+                                        parentFile = directory2;
+                                        name = str5;
+                                    } else {
+                                        if (i7 == 0) {
+                                            directory3 = getDirectory(100);
+                                        } else {
+                                            directory3 = getDirectory(101);
+                                        }
+                                        if (directory3 != null) {
+                                            directory2 = directory3;
+                                            z6 = true;
+                                        }
+                                        z5 = z6;
+                                        parentFile = directory2;
+                                        name = str5;
+                                    }
+                                    z6 = false;
+                                    z5 = z6;
+                                    parentFile = directory2;
+                                    name = str5;
+                                }
+                                if (z5) {
+                                    fileLoadOperation4.pathSaveData = new FilePathDatabase.PathData(j5, i8, i7);
+                                }
+                            }
+                            str4 = name;
+                            directory = parentFile;
+                        } else {
+                            j5 = j3;
+                            i7 = i5;
+                            directory = getDirectory(i7);
+                            str4 = str5;
+                        }
+                    } else if (j3 != 0) {
+                        path = getFileDatabase().getPath(j3, i4, i5, true);
+                        j5 = j3;
+                        i8 = i4;
+                        i7 = i5;
+                        if (path != null) {
+                            file = new File(path);
+                            if (file.exists()) {
+                                name = file.getName();
+                                parentFile = file.getParentFile();
+                                z4 = true;
+                            } else {
+                                name = str5;
+                                parentFile = directory4;
+                                z4 = false;
+                            }
+                        } else {
+                            name = str5;
+                            parentFile = directory4;
+                            z4 = false;
+                        }
+                        if (!z4) {
+                            directory2 = getDirectory(i7);
+                            if (z3) {
+                                directory3 = getDirectory(6);
+                                if (directory3 != null) {
+                                    directory2 = directory3;
+                                    z6 = true;
+                                } else {
+                                    z6 = false;
+                                }
+                                z5 = z6;
+                                parentFile = directory2;
+                                name = str5;
+                            } else {
+                                if (i7 != 0) {
+                                    if (i7 == 0) {
+                                        directory3 = getDirectory(100);
+                                    } else {
+                                        directory3 = getDirectory(101);
+                                    }
+                                    if (directory3 != null) {
+                                        directory2 = directory3;
+                                        z6 = true;
+                                    }
+                                    z5 = z6;
+                                    parentFile = directory2;
+                                    name = str5;
+                                } else {
+                                    if (i7 == 0) {
+                                        directory3 = getDirectory(100);
+                                    } else {
+                                        directory3 = getDirectory(101);
+                                    }
+                                    if (directory3 != null) {
+                                        directory2 = directory3;
+                                        z6 = true;
+                                    }
+                                    z5 = z6;
+                                    parentFile = directory2;
+                                    name = str5;
+                                }
+                                z6 = false;
+                                z5 = z6;
+                                parentFile = directory2;
+                                name = str5;
+                            }
+                            if (z5) {
+                                fileLoadOperation4.pathSaveData = new FilePathDatabase.PathData(j5, i8, i7);
                             }
                         }
-                    } else {
-                        j3 = 0;
-                        i4 = 0;
-                        i5 = 4;
-                    }
-                }
-                i5 = 0;
-            }
-            int iClamp = Utilities.clamp(fileLoadOperation.getDatacenterId() - i3, 4, 0);
-            boolean z6 = obj instanceof TL_stories.StoryItem;
-            if (fileLoadOperation.totalBytesCount > 20971520 || z6) {
-                fileLoaderPriorityQueue = this.largeFilesQueue[iClamp];
-            } else {
-                fileLoaderPriorityQueue = this.smallFilesQueue[iClamp];
-            }
-            if (i2 != 0 && i2 != 10 && !z6) {
-                if (i2 == 2) {
-                    fileLoadOperation.setEncryptFile(true);
-                }
-                str3 = str6;
-                directory = directory4;
-            } else if (j3 != 0) {
-                String path = getFileDatabase().getPath(j3, i4, i5, true);
-                if (path != null) {
-                    File file = new File(path);
-                    if (file.exists()) {
-                        String name = file.getName();
-                        parentFile = file.getParentFile();
                         str4 = name;
-                        z2 = true;
+                        directory = parentFile;
                     } else {
-                        str4 = str6;
-                        parentFile = directory4;
-                        z2 = false;
+                        j5 = j3;
+                        i7 = i5;
+                        directory = getDirectory(i7);
+                        str4 = str5;
                     }
-                } else {
-                    str4 = str6;
-                    parentFile = directory4;
-                    z2 = false;
+                    fileLoadOperation5 = fileLoadOperation4;
+                    fileLoadOperation5.setPaths(this.currentAccount, str5, fileLoaderPriorityQueue3, directory, directory4, str4);
+                    if (i2 == i9) {
+                        fileLoadOperation5.setIsPreloadVideoOperation(r12);
+                    }
+                    fileLoadOperation5.setDelegate(new AnonymousClass2(obj, document, str5, i7));
+                    this.loadOperationPaths.put(str5, fileLoadOperation5);
+                    int i12 = i3;
+                    fileLoadOperation5.setPriority(i12);
+                    if (fileLoadOperationStream == null) {
+                        fileStreamLoadOperation = FileStreamLoadOperation.allStreams.get(Long.valueOf(j5));
+                    } else {
+                        fileStreamLoadOperation = fileLoadOperationStream;
+                    }
+                    if (fileStreamLoadOperation != null) {
+                        fileLoadOperation5.setStream(fileStreamLoadOperation, z, j2);
+                    }
+                    fileLoaderPriorityQueue3.add(fileLoadOperation5);
+                    if (fileLoadOperation5.isStory) {
+                        z7 = false;
+                    } else {
+                        z7 = false;
+                    }
+                    fileLoaderPriorityQueue3.checkLoadingOperations(z7);
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("create load operation fileName=" + str5 + " documentName=" + getDocumentFileName(document) + " size=" + AndroidUtilities.formatFileSize(fileLoadOperation5.totalBytesCount) + " position in queue " + fileLoadOperation5.getPositionInQueue() + " account=" + this.currentAccount + " cacheType=" + i2 + " priority=" + fileLoadOperation5.getPriority() + " stream=" + fileStreamLoadOperation);
+                    }
+                    return fileLoadOperation5;
                 }
-                if (z2) {
-                    directory = parentFile;
-                    str3 = str4;
+                fileLoadOperation6 = fileLoadOperation2;
+                fileLoadOperation3 = fileLoadOperation2;
+                i5 = 3;
+                fileLoadOperation4 = fileLoadOperation6;
+                r12 = z8;
+                iClamp = Utilities.clamp(fileLoadOperation4.getDatacenterId() - r12, 4, 0);
+                z3 = obj instanceof TL_stories.StoryItem;
+                if (fileLoadOperation4.totalBytesCount <= 20971520) {
+                    fileLoaderPriorityQueue = this.largeFilesQueue[iClamp];
                 } else {
-                    File directory5 = getDirectory(i5);
-                    if (z6) {
-                        directory2 = getDirectory(6);
-                        if (directory2 != null) {
-                            directory5 = directory2;
-                            z3 = true;
+                    fileLoaderPriorityQueue = this.largeFilesQueue[iClamp];
+                }
+                FileLoaderPriorityQueue fileLoaderPriorityQueue4 = fileLoaderPriorityQueue;
+                if (i2 == 0) {
+                    if (j3 != 0) {
+                        path = getFileDatabase().getPath(j3, i4, i5, true);
+                        j5 = j3;
+                        i8 = i4;
+                        i7 = i5;
+                        if (path != null) {
+                            file = new File(path);
+                            if (file.exists()) {
+                                name = file.getName();
+                                parentFile = file.getParentFile();
+                                z4 = true;
+                            } else {
+                                name = str5;
+                                parentFile = directory4;
+                                z4 = false;
+                            }
                         } else {
-                            z3 = false;
+                            name = str5;
+                            parentFile = directory4;
+                            z4 = false;
                         }
-                        directory3 = directory5;
-                        str5 = str6;
+                        if (!z4) {
+                            directory2 = getDirectory(i7);
+                            if (z3) {
+                                directory3 = getDirectory(6);
+                                if (directory3 != null) {
+                                    directory2 = directory3;
+                                    z6 = true;
+                                } else {
+                                    z6 = false;
+                                }
+                                z5 = z6;
+                                parentFile = directory2;
+                                name = str5;
+                            } else {
+                                if (i7 != 0) {
+                                    if (i7 == 0) {
+                                        directory3 = getDirectory(100);
+                                    } else {
+                                        directory3 = getDirectory(101);
+                                    }
+                                    if (directory3 != null) {
+                                        directory2 = directory3;
+                                        z6 = true;
+                                    }
+                                    z5 = z6;
+                                    parentFile = directory2;
+                                    name = str5;
+                                } else {
+                                    if (i7 == 0) {
+                                        directory3 = getDirectory(100);
+                                    } else {
+                                        directory3 = getDirectory(101);
+                                    }
+                                    if (directory3 != null) {
+                                        directory2 = directory3;
+                                        z6 = true;
+                                    }
+                                    z5 = z6;
+                                    parentFile = directory2;
+                                    name = str5;
+                                }
+                                z6 = false;
+                                z5 = z6;
+                                parentFile = directory2;
+                                name = str5;
+                            }
+                            if (z5) {
+                                fileLoadOperation4.pathSaveData = new FilePathDatabase.PathData(j5, i8, i7);
+                            }
+                        }
+                        str4 = name;
+                        directory = parentFile;
                     } else {
-                        if ((i5 == 0 || i5 == 2) && canSaveToPublicStorage(obj)) {
-                            if (i5 == 0) {
-                                directory2 = getDirectory(100);
-                            } else {
-                                directory2 = getDirectory(101);
-                            }
-                            if (directory2 != null) {
-                                directory5 = directory2;
-                                z3 = true;
-                            }
-                            directory3 = directory5;
-                            str5 = str6;
-                        } else if (!TextUtils.isEmpty(getDocumentFileName(document)) && canSaveAsFile(obj)) {
-                            String documentFileName = getDocumentFileName(document);
-                            directory3 = getDirectory(5);
-                            if (directory3 != null) {
-                                str5 = documentFileName;
-                                z3 = true;
-                            } else {
-                                directory3 = directory5;
-                                str5 = documentFileName;
-                                z3 = false;
-                            }
+                        j5 = j3;
+                        i7 = i5;
+                        directory = getDirectory(i7);
+                        str4 = str5;
+                    }
+                } else if (j3 != 0) {
+                    path = getFileDatabase().getPath(j3, i4, i5, true);
+                    j5 = j3;
+                    i8 = i4;
+                    i7 = i5;
+                    if (path != null) {
+                        file = new File(path);
+                        if (file.exists()) {
+                            name = file.getName();
+                            parentFile = file.getParentFile();
+                            z4 = true;
+                        } else {
+                            name = str5;
+                            parentFile = directory4;
+                            z4 = false;
                         }
-                        z3 = false;
-                        directory3 = directory5;
-                        str5 = str6;
+                    } else {
+                        name = str5;
+                        parentFile = directory4;
+                        z4 = false;
                     }
-                    if (z3) {
-                        fileLoadOperation.pathSaveData = new FilePathDatabase.PathData(j3, i4, i5);
+                    if (!z4) {
+                        directory2 = getDirectory(i7);
+                        if (z3) {
+                            directory3 = getDirectory(6);
+                            if (directory3 != null) {
+                                directory2 = directory3;
+                                z6 = true;
+                            } else {
+                                z6 = false;
+                            }
+                            z5 = z6;
+                            parentFile = directory2;
+                            name = str5;
+                        } else {
+                            if (i7 != 0) {
+                                if (i7 == 0) {
+                                    directory3 = getDirectory(100);
+                                } else {
+                                    directory3 = getDirectory(101);
+                                }
+                                if (directory3 != null) {
+                                    directory2 = directory3;
+                                    z6 = true;
+                                }
+                                z5 = z6;
+                                parentFile = directory2;
+                                name = str5;
+                            } else {
+                                if (i7 == 0) {
+                                    directory3 = getDirectory(100);
+                                } else {
+                                    directory3 = getDirectory(101);
+                                }
+                                if (directory3 != null) {
+                                    directory2 = directory3;
+                                    z6 = true;
+                                }
+                                z5 = z6;
+                                parentFile = directory2;
+                                name = str5;
+                            }
+                            z6 = false;
+                            z5 = z6;
+                            parentFile = directory2;
+                            name = str5;
+                        }
+                        if (z5) {
+                            fileLoadOperation4.pathSaveData = new FilePathDatabase.PathData(j5, i8, i7);
+                        }
                     }
-                    str3 = str5;
-                    directory = directory3;
+                    str4 = name;
+                    directory = parentFile;
+                } else {
+                    j5 = j3;
+                    i7 = i5;
+                    directory = getDirectory(i7);
+                    str4 = str5;
                 }
-            } else {
-                directory = getDirectory(i5);
-                str3 = str6;
+                fileLoadOperation5 = fileLoadOperation4;
+                fileLoadOperation5.setPaths(this.currentAccount, str5, fileLoaderPriorityQueue4, directory, directory4, str4);
+                if (i2 == i9) {
+                    fileLoadOperation5.setIsPreloadVideoOperation(r12);
+                }
+                fileLoadOperation5.setDelegate(new AnonymousClass2(obj, document, str5, i7));
+                this.loadOperationPaths.put(str5, fileLoadOperation5);
+                int i13 = i3;
+                fileLoadOperation5.setPriority(i13);
+                if (fileLoadOperationStream == null) {
+                    fileStreamLoadOperation = FileStreamLoadOperation.allStreams.get(Long.valueOf(j5));
+                } else {
+                    fileStreamLoadOperation = fileLoadOperationStream;
+                }
+                if (fileStreamLoadOperation != null) {
+                    fileLoadOperation5.setStream(fileStreamLoadOperation, z, j2);
+                }
+                fileLoaderPriorityQueue4.add(fileLoadOperation5);
+                if (fileLoadOperation5.isStory) {
+                    z7 = false;
+                } else {
+                    z7 = false;
+                }
+                fileLoaderPriorityQueue4.checkLoadingOperations(z7);
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("create load operation fileName=" + str5 + " documentName=" + getDocumentFileName(document) + " size=" + AndroidUtilities.formatFileSize(fileLoadOperation5.totalBytesCount) + " position in queue " + fileLoadOperation5.getPositionInQueue() + " account=" + this.currentAccount + " cacheType=" + i2 + " priority=" + fileLoadOperation5.getPriority() + " stream=" + fileStreamLoadOperation);
+                }
+                return fileLoadOperation5;
             }
-            fileLoadOperation.setPaths(this.currentAccount, str6, fileLoaderPriorityQueue, directory, directory4, str3);
-            if (i2 == 10) {
-                z4 = true;
-                fileLoadOperation.setIsPreloadVideoOperation(true);
-            } else {
-                z4 = true;
-            }
-            FileLoaderPriorityQueue fileLoaderPriorityQueue2 = fileLoaderPriorityQueue;
-            FileLoadOperation fileLoadOperation2 = fileLoadOperation;
-            long j6 = j3;
-            fileLoadOperation2.setDelegate(new AnonymousClass2(obj, document, str6, i5));
-            this.loadOperationPaths.put(str6, fileLoadOperation2);
-            fileLoadOperation2.setPriority(priorityValue);
-            FileStreamLoadOperation fileStreamLoadOperation = fileLoadOperationStream == null ? FileStreamLoadOperation.allStreams.get(Long.valueOf(j6)) : fileLoadOperationStream;
-            if (fileStreamLoadOperation != null) {
-                fileLoadOperation2.setStream(fileStreamLoadOperation, z, j2);
-            }
-            fileLoaderPriorityQueue2.add(fileLoadOperation2);
-            if (!fileLoadOperation2.isStory || priorityValue < 1048576) {
-                z4 = false;
-            }
-            fileLoaderPriorityQueue2.checkLoadingOperations(z4);
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("create load operation fileName=" + str6 + " documentName=" + getDocumentFileName(document) + " size=" + AndroidUtilities.formatFileSize(fileLoadOperation2.totalBytesCount) + " position in queue " + fileLoadOperation2.getPositionInQueue() + " account=" + this.currentAccount + " cacheType=" + i2 + " priority=" + fileLoadOperation2.getPriority() + " stream=" + fileStreamLoadOperation);
-            }
-            return fileLoadOperation2;
         }
-        str2 = attachFileName;
-        if (str2 != null) {
+        str3 = attachFileName;
+        if (str3 != null) {
         }
         return null;
     }
@@ -1255,12 +1701,12 @@ public class FileLoader extends BaseController {
             FileLoader.fileLoaderQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.AnonymousClass2.lambda$didPreFinishLoading$0(fileLoadOperation, queue);
+                    FileLoader.AnonymousClass2.m444$r8$lambda$mxbBfeFTETIsHMKtk_6I_mmOw(fileLoadOperation, queue);
                 }
             });
         }
 
-        public static void lambda$didPreFinishLoading$0(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue) {
+        public static void m444$r8$lambda$mxbBfeFTETIsHMKtk_6I_mmOw(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue) {
             fileLoadOperation.preFinished = true;
             fileLoaderPriorityQueue.checkLoadingOperations();
         }
@@ -1386,47 +1832,52 @@ public class FileLoader extends BaseController {
         linkedList.add(fileLoadOperation);
     }
 
-    private void loadFile(final TLRPC.Document document, final SecureDocument secureDocument, final WebFile webFile, final TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, final ImageLocation imageLocation, final Object obj, final String str, final long j, final int i, final int i2) {
-        String str2;
+    private void loadFile(final TLRPC.Document document, final SecureDocument secureDocument, final WebFile webFile, final TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, final ImageLocation imageLocation, final Object obj, String str, final long j, final int i, final int i2) {
+        final String str2;
+        String str3;
         String attachFileName;
+        Runnable runnable;
         AnonymousClass1 anonymousClass1 = null;
         if (tL_fileLocationToBeDeprecated != null) {
-            attachFileName = getAttachFileName(tL_fileLocationToBeDeprecated, str);
-        } else if (document != null) {
-            attachFileName = getAttachFileName(document);
+            str2 = str;
+            attachFileName = getAttachFileName(tL_fileLocationToBeDeprecated, str2);
         } else {
-            if (webFile != null) {
-                attachFileName = getAttachFileName(webFile);
+            str2 = str;
+            if (document != null) {
+                attachFileName = getAttachFileName(document);
             } else {
-                str2 = null;
-            }
-            Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$loadFile$13(document, secureDocument, webFile, tL_fileLocationToBeDeprecated, imageLocation, obj, str, j, i, i2);
+                if (webFile != null) {
+                    attachFileName = getAttachFileName(webFile);
+                } else {
+                    str3 = null;
                 }
-            };
-            if (i2 == 10 && !TextUtils.isEmpty(str2) && !str2.contains("-2147483648")) {
-                LoadOperationUIObject loadOperationUIObject = new LoadOperationUIObject(anonymousClass1);
-                loadOperationUIObject.loadInternalRunnable = runnable;
-                this.loadOperationPathsUI.put(str2, loadOperationUIObject);
+                runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.loadFileInternal(document, secureDocument, webFile, tL_fileLocationToBeDeprecated, imageLocation, obj, str2, j, i, null, 0L, false, i2);
+                    }
+                };
+                if (i2 != 10 && !TextUtils.isEmpty(str3) && !str3.contains("-2147483648")) {
+                    LoadOperationUIObject loadOperationUIObject = new LoadOperationUIObject(anonymousClass1);
+                    loadOperationUIObject.loadInternalRunnable = runnable;
+                    this.loadOperationPathsUI.put(str3, loadOperationUIObject);
+                }
+                fileLoaderQueue.postRunnable(runnable);
             }
-            fileLoaderQueue.postRunnable(runnable);
         }
-        str2 = attachFileName;
-        Runnable runnable2 = new Runnable() {
+        str3 = attachFileName;
+        runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadFile$13(document, secureDocument, webFile, tL_fileLocationToBeDeprecated, imageLocation, obj, str, j, i, i2);
+                this.f$0.loadFileInternal(document, secureDocument, webFile, tL_fileLocationToBeDeprecated, imageLocation, obj, str2, j, i, null, 0L, false, i2);
             }
         };
-        if (i2 == 10) {
+        if (i2 != 10) {
+            LoadOperationUIObject loadOperationUIObject2 = new LoadOperationUIObject(anonymousClass1);
+            loadOperationUIObject2.loadInternalRunnable = runnable;
+            this.loadOperationPathsUI.put(str3, loadOperationUIObject2);
         }
-        fileLoaderQueue.postRunnable(runnable2);
-    }
-
-    public void lambda$loadFile$13(TLRPC.Document document, SecureDocument secureDocument, WebFile webFile, TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, ImageLocation imageLocation, Object obj, String str, long j, int i, int i2) {
-        loadFileInternal(document, secureDocument, webFile, tL_fileLocationToBeDeprecated, imageLocation, obj, str, j, i, null, 0L, false, i2);
+        fileLoaderQueue.postRunnable(runnable);
     }
 
     protected FileLoadOperation loadStreamFile(FileLoadOperationStream fileLoadOperationStream, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j, boolean z, int i) {
@@ -1439,20 +1890,21 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadStreamFile$14(fileLoadOperationArr, document, imageLocation, obj, i, fileLoadOperationStream, j, z, i2, countDownLatch);
+                FileLoader.m441$r8$lambda$pURvZN6hmOuxGELs9q0TzMbtFE(this.f$0, fileLoadOperationArr, document, imageLocation, obj, i, fileLoadOperationStream, j, z, i2, countDownLatch);
             }
         });
         awaitFileLoadOperation(countDownLatch, true);
         return fileLoadOperationArr[0];
     }
 
-    public void lambda$loadStreamFile$14(FileLoadOperation[] fileLoadOperationArr, TLRPC.Document document, ImageLocation imageLocation, Object obj, int i, FileLoadOperationStream fileLoadOperationStream, long j, boolean z, int i2, CountDownLatch countDownLatch) {
+    public static void m441$r8$lambda$pURvZN6hmOuxGELs9q0TzMbtFE(FileLoader fileLoader, FileLoadOperation[] fileLoadOperationArr, TLRPC.Document document, ImageLocation imageLocation, Object obj, int i, FileLoadOperationStream fileLoadOperationStream, long j, boolean z, int i2, CountDownLatch countDownLatch) {
+        fileLoader.getClass();
         String str = null;
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = (document != null || imageLocation == null) ? null : imageLocation.location;
         if (document == null && imageLocation != null) {
             str = "mp4";
         }
-        fileLoadOperationArr[0] = loadFileInternal(document, null, null, tL_fileLocationToBeDeprecated, imageLocation, obj, str, (document != null || imageLocation == null) ? 0L : imageLocation.currentSize, i, fileLoadOperationStream, j, z, i2);
+        fileLoadOperationArr[0] = fileLoader.loadFileInternal(document, null, null, tL_fileLocationToBeDeprecated, imageLocation, obj, str, (document != null || imageLocation == null) ? 0L : imageLocation.currentSize, i, fileLoadOperationStream, j, z, i2);
         countDownLatch.countDown();
     }
 
@@ -1475,14 +1927,15 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkDownloadQueue$15(fileLoaderPriorityQueue, fileLoadOperation);
+                FileLoader.$r8$lambda$klpcS6sBoAvLATizSwjYSBTU_9Y(this.f$0, fileLoaderPriorityQueue, fileLoadOperation);
             }
         }, j);
     }
 
-    public void lambda$checkDownloadQueue$15(FileLoaderPriorityQueue fileLoaderPriorityQueue, FileLoadOperation fileLoadOperation) {
+    public static void $r8$lambda$klpcS6sBoAvLATizSwjYSBTU_9Y(FileLoader fileLoader, FileLoaderPriorityQueue fileLoaderPriorityQueue, FileLoadOperation fileLoadOperation) {
+        fileLoader.getClass();
         if (fileLoaderPriorityQueue.remove(fileLoadOperation)) {
-            this.loadOperationPaths.remove(fileLoadOperation.getFileName());
+            fileLoader.loadOperationPaths.remove(fileLoadOperation.getFileName());
             fileLoaderPriorityQueue.checkLoadingOperations(fileLoadOperation.isStory);
         }
     }
@@ -2061,12 +2514,12 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.lambda$deleteFiles$16(arrayList, i);
+                FileLoader.$r8$lambda$aznnlSjB__e8IovJEzDI8QCbiag(arrayList, i);
             }
         });
     }
 
-    public static void lambda$deleteFiles$16(ArrayList arrayList, int i) {
+    public static void $r8$lambda$aznnlSjB__e8IovJEzDI8QCbiag(ArrayList arrayList, int i) {
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             File file = (File) arrayList.get(i2);
             File file2 = new File(file.getAbsolutePath() + ".enc");
@@ -2110,7 +2563,10 @@ public class FileLoader extends BaseController {
     }
 
     public static boolean isVideoMimeType(String str) {
-        return "video/mp4".equals(str) || (SharedConfig.streamMkv && "video/x-matroska".equals(str));
+        if ("video/mp4".equals(str)) {
+            return true;
+        }
+        return SharedConfig.streamMkv && "video/x-matroska".equals(str);
     }
 
     public static boolean copyFile(InputStream inputStream, File file) {
@@ -2214,14 +2670,14 @@ public class FileLoader extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkCurrentDownloadsFiles$17(arrayList);
+                FileLoader.$r8$lambda$LnObBXAmRgD6P2knEpXSVsNVzvQ(this.f$0, arrayList);
             }
         });
     }
 
-    public void lambda$checkCurrentDownloadsFiles$17(ArrayList arrayList) {
-        getDownloadController().recentDownloadingFiles.removeAll(arrayList);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
+    public static void $r8$lambda$LnObBXAmRgD6P2knEpXSVsNVzvQ(FileLoader fileLoader, ArrayList arrayList) {
+        fileLoader.getDownloadController().recentDownloadingFiles.removeAll(arrayList);
+        fileLoader.getNotificationCenter().postNotificationName(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
     }
 
     public void checkMediaExistance(ArrayList<MessageObject> arrayList) {
@@ -2269,17 +2725,17 @@ public class FileLoader extends BaseController {
         return j;
     }
 
-    public void lambda$new$18() {
+    public static void $r8$lambda$uHLmzhBP7qiyrI_rMMfEWDKRAVQ(FileLoader fileLoader) {
         int i = 0;
         while (true) {
-            FileLoaderPriorityQueue[] fileLoaderPriorityQueueArr = this.smallFilesQueue;
+            FileLoaderPriorityQueue[] fileLoaderPriorityQueueArr = fileLoader.smallFilesQueue;
             if (i < fileLoaderPriorityQueueArr.length) {
-                if (fileLoaderPriorityQueueArr[i].getCount() > 0 || this.largeFilesQueue[i].getCount() > 0) {
-                    FileLog.d("download queue: dc" + (i + 1) + " account=" + this.currentAccount + " small_operations=" + this.smallFilesQueue[i].getCount() + " large_operations=" + this.largeFilesQueue[i].getCount());
+                if (fileLoaderPriorityQueueArr[i].getCount() > 0 || fileLoader.largeFilesQueue[i].getCount() > 0) {
+                    FileLog.d("download queue: dc" + (i + 1) + " account=" + fileLoader.currentAccount + " small_operations=" + fileLoader.smallFilesQueue[i].getCount() + " large_operations=" + fileLoader.largeFilesQueue[i].getCount());
                 }
                 i++;
             } else {
-                dumpFilesQueue();
+                fileLoader.dumpFilesQueue();
                 return;
             }
         }
@@ -2296,13 +2752,13 @@ public class FileLoader extends BaseController {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$uploadFile$19(notificationCenterDelegateArr);
+                FileLoader.$r8$lambda$UWip9yAOtkcFB6AIU8XCJ_3lX2Y(this.f$0, notificationCenterDelegateArr);
             }
         };
         final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                FileLoader.lambda$uploadFile$20(str, callback, runnable, i, i2, objArr);
+                FileLoader.m440$r8$lambda$gKJsZClCE1qk51wAobZ3vhvknU(str, callback, runnable, i, i2, objArr);
             }
         }};
         getNotificationCenter().addObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploaded);
@@ -2310,12 +2766,12 @@ public class FileLoader extends BaseController {
         uploadFile(str, false, false, 67108864);
     }
 
-    public void lambda$uploadFile$19(NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
-        getNotificationCenter().removeObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploaded);
-        getNotificationCenter().removeObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploadFailed);
+    public static void $r8$lambda$UWip9yAOtkcFB6AIU8XCJ_3lX2Y(FileLoader fileLoader, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+        fileLoader.getNotificationCenter().removeObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploaded);
+        fileLoader.getNotificationCenter().removeObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploadFailed);
     }
 
-    public static void lambda$uploadFile$20(String str, Utilities.Callback callback, Runnable runnable, int i, int i2, Object[] objArr) {
+    public static void m440$r8$lambda$gKJsZClCE1qk51wAobZ3vhvknU(String str, Utilities.Callback callback, Runnable runnable, int i, int i2, Object[] objArr) {
         if (i == NotificationCenter.fileUploaded) {
             if (objArr[0] == str) {
                 callback.run((TLRPC.InputFile) objArr[1]);

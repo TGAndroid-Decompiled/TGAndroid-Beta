@@ -104,7 +104,7 @@ public class HintDialogCell extends FrameLayout {
             this.checkBox.setProgressDelegate(new CheckBoxBase.ProgressDelegate() {
                 @Override
                 public final void setProgress(float f) {
-                    this.f$0.lambda$new$0(f);
+                    HintDialogCell.$r8$lambda$_dlaC65F9xxxqRjlzVRF2iYViwA(this.f$0, f);
                 }
             });
             addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 49, 19.0f, 42.0f, 0.0f, 0.0f));
@@ -113,11 +113,11 @@ public class HintDialogCell extends FrameLayout {
         }
     }
 
-    public void lambda$new$0(float f) {
-        float progress = 1.0f - (this.checkBox.getProgress() * 0.143f);
-        this.imageView.setScaleX(progress);
-        this.imageView.setScaleY(progress);
-        invalidate();
+    public static void $r8$lambda$_dlaC65F9xxxqRjlzVRF2iYViwA(HintDialogCell hintDialogCell, float f) {
+        float progress = 1.0f - (hintDialogCell.checkBox.getProgress() * 0.143f);
+        hintDialogCell.imageView.setScaleX(progress);
+        hintDialogCell.imageView.setScaleY(progress);
+        hintDialogCell.invalidate();
     }
 
     public void showPremiumBlocked() {
@@ -128,16 +128,12 @@ public class HintDialogCell extends FrameLayout {
         NotificationCenter.getInstance(this.currentAccount).listen(this, NotificationCenter.userIsPremiumBlockedUpadted, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$showPremiumBlocked$1((Object[]) obj);
+                this.f$0.updatePremiumBlocked(true);
             }
         });
     }
 
-    public void lambda$showPremiumBlocked$1(Object[] objArr) {
-        updatePremiumBlocked(true);
-    }
-
-    private void updatePremiumBlocked(boolean z) {
+    public void updatePremiumBlocked(boolean z) {
         TL_account.RequirementToContact requirementToContactIsUserContactBlocked = (!this.showPremiumBlocked || this.currentUser == null) ? null : MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.currentUser.id);
         if (this.premiumBlocked == DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked) && this.starsPriceBlocked == DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked)) {
             return;

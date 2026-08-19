@@ -57,12 +57,13 @@ public class UserListPoller {
             ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequestTyped(tL_stories_getPeerMaxIDs, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$run$0(arrayList, (Vector) obj, (TLRPC.TL_error) obj2);
+                    UserListPoller.AnonymousClass1.m4452$r8$lambda$TSLJOqgHbjqw1Eo52kACYthvjA(this.f$0, arrayList, (Vector) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
 
-        public void lambda$run$0(ArrayList arrayList, Vector vector, TLRPC.TL_error tL_error) {
+        public static void m4452$r8$lambda$TSLJOqgHbjqw1Eo52kACYthvjA(AnonymousClass1 anonymousClass1, ArrayList arrayList, Vector vector, TLRPC.TL_error tL_error) {
+            anonymousClass1.getClass();
             if (vector != null) {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
@@ -94,7 +95,7 @@ public class UserListPoller {
                     }
                 }
                 MessagesStorage.getInstance(UserListPoller.this.currentAccount).putUsersAndChats(arrayList2, arrayList3, true, true);
-                NotificationCenter.getInstance(UserListPoller.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
+                NotificationCenter.getInstance(UserListPoller.this.currentAccount).postNotificationName(NotificationCenter.updateInterfaces, 0);
             }
         }
     }

@@ -59,7 +59,7 @@ class RichCaptionController {
         richEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
             public final void onSpansChanged() {
-                this.f$0.lambda$new$0(host);
+                RichCaptionController.$r8$lambda$n1sUuvU1MNhRn1Nf4OolbWszShQ(this.f$0, host);
             }
         });
         applyColors();
@@ -136,12 +136,13 @@ class RichCaptionController {
             richEditText.post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSelectionChanged$0(richEditText, i2, articleTextSelectionHelperSelectionHelper, host, i);
+                    RichCaptionController.AnonymousClass1.$r8$lambda$I_EWBiPSH2lv4l0Ypt9TL6n5u80(this.f$0, richEditText, i2, articleTextSelectionHelperSelectionHelper, host, i);
                 }
             });
         }
 
-        public void lambda$onSelectionChanged$0(RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, Host host, int i2) {
+        public static void $r8$lambda$I_EWBiPSH2lv4l0Ypt9TL6n5u80(AnonymousClass1 anonymousClass1, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, Host host, int i2) {
+            anonymousClass1.getClass();
             if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd() || !articleTextSelectionHelper.selectRangeOf(host.cell(), 0, i2, i)) {
                 return;
             }
@@ -151,8 +152,8 @@ class RichCaptionController {
         }
     }
 
-    public void lambda$new$0(Host host) {
-        persist();
+    public static void $r8$lambda$n1sUuvU1MNhRn1Nf4OolbWszShQ(RichCaptionController richCaptionController, Host host) {
+        richCaptionController.persist();
         host.onCaptionSpansChanged();
     }
 
@@ -259,7 +260,10 @@ class RichCaptionController {
                 TL_iv.PageCaption pageCaption;
                 TL_iv.RichText richText;
                 BlockRow blockRowCurrentRow = RichCaptionController.this.host.currentRow();
-                return (blockRowCurrentRow == null || (pageBlock = blockRowCurrentRow.block) == null || (pageCaption = pageBlock.caption) == null || (richText = pageCaption.text) == null) ? "" : RichTextStyle.toSpannable(richText);
+                if (blockRowCurrentRow == null || (pageBlock = blockRowCurrentRow.block) == null || (pageCaption = pageBlock.caption) == null || (richText = pageCaption.text) == null) {
+                    return "";
+                }
+                return RichTextStyle.toSpannable(richText);
             }
         });
     }
@@ -283,10 +287,12 @@ class RichCaptionController {
         }
         int left = i - (this.editText.getLeft() + this.editText.getPaddingLeft());
         int top = i2 - (this.editText.getTop() + this.editText.getPaddingTop());
-        if (top < 0 || top >= layout.getHeight() || (lineForVertical = layout.getLineForVertical(top)) < 0 || lineForVertical >= layout.getLineCount()) {
-            return false;
+        if (top >= 0 && top < layout.getHeight() && (lineForVertical = layout.getLineForVertical(top)) >= 0 && lineForVertical < layout.getLineCount()) {
+            float f = left;
+            if (f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical)) {
+                return true;
+            }
         }
-        float f = left;
-        return f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical);
+        return false;
     }
 }

@@ -29,7 +29,7 @@ public abstract class DialogsRequestedEmptyCell extends LinearLayout implements 
     TextView subtitleView;
     TextView titleView;
 
-    protected abstract void onButtonClick();
+    public abstract void onButtonClick();
 
     public DialogsRequestedEmptyCell(Context context) {
         super(context);
@@ -70,7 +70,7 @@ public abstract class DialogsRequestedEmptyCell extends LinearLayout implements 
         backupImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.stickerView.getImageReceiver().startAnimation();
             }
         });
         updateSticker();
@@ -99,20 +99,12 @@ public abstract class DialogsRequestedEmptyCell extends LinearLayout implements 
         this.buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.onButtonClick();
             }
         });
         linearLayout.addView(this.buttonView, LayoutHelper.createLinear(-1, -2, 49, 0, 18, 0, 0));
         addView(linearLayout, LayoutHelper.createLinear(-1, -2));
         set(null);
-    }
-
-    public void lambda$new$0(View view) {
-        this.stickerView.getImageReceiver().startAnimation();
-    }
-
-    public void lambda$new$1(View view) {
-        onButtonClick();
     }
 
     public void set(TLRPC.RequestPeerType requestPeerType) {

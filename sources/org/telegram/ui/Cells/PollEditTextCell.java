@@ -79,7 +79,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
     protected void onEditTextFocusChanged(boolean z) {
     }
 
-    public void lambda$new$1(PollEditTextCell pollEditTextCell) {
+    public void onEmojiButtonClicked(PollEditTextCell pollEditTextCell) {
     }
 
     @Override
@@ -252,7 +252,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             this.checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    PollEditTextCell.$r8$lambda$StNFaXkf6An7q3DM08j_zGEhLB4(this.f$0, view);
                 }
             });
         } else {
@@ -277,18 +277,19 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             this.emojiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$1(view);
+                    PollEditTextCell pollEditTextCell = this.f$0;
+                    pollEditTextCell.onEmojiButtonClicked(pollEditTextCell);
                 }
             });
             this.emojiButton.setContentDescription(LocaleController.getString(R.string.Emoji));
         }
     }
 
-    public void lambda$new$0(View view) {
-        if (this.checkBox.getTag() == null) {
+    public static void $r8$lambda$StNFaXkf6An7q3DM08j_zGEhLB4(PollEditTextCell pollEditTextCell, View view) {
+        if (pollEditTextCell.checkBox.getTag() == null) {
             return;
         }
-        onCheckBoxClick(this, !this.checkBox.isChecked());
+        pollEditTextCell.onCheckBoxClick(pollEditTextCell, !pollEditTextCell.checkBox.isChecked());
     }
 
     public View addAttachView() {
@@ -484,8 +485,9 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.checkBoxAnimation = animatorSet2;
             CheckBox2 checkBox2 = this.checkBox;
+            float[] fArr = {z ? 1.0f : 0.0f};
             Property property = View.ALPHA;
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property, z ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.moveImageView, (Property<ImageView, Float>) property, z ? 0.0f : 1.0f));
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property, fArr), ObjectAnimator.ofFloat(this.moveImageView, (Property<ImageView, Float>) property, z ? 0.0f : 1.0f));
             this.checkBoxAnimation.setDuration(180L);
             this.checkBoxAnimation.start();
             return;

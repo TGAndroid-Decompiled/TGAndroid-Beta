@@ -66,61 +66,60 @@ public class Camera2Session {
     }
 
     public static Camera2Session create(boolean z, int i, int i2) {
+        Camera2Session camera2Session;
         String str;
         android.util.Size size;
-        CameraManager cameraManager;
         Context context = ApplicationLoader.applicationContext;
-        CameraManager cameraManager2 = (CameraManager) context.getSystemService("camera");
+        CameraManager cameraManager = (CameraManager) context.getSystemService("camera");
         try {
-            String[] cameraIdList = cameraManager2.getCameraIdList();
-            int i3 = 0;
             str = null;
             size = null;
             float f = 0.0f;
-            while (i3 < cameraIdList.length) {
+            for (String str2 : cameraManager.getCameraIdList()) {
                 try {
-                    String str2 = cameraIdList[i3];
-                    CameraCharacteristics cameraCharacteristics = cameraManager2.getCameraCharacteristics(str2);
-                    if (cameraCharacteristics != null && ((Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == (!z)) {
-                        StreamConfigurationMap streamConfigurationMap = (StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-                        android.util.Size size2 = (android.util.Size) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE);
-                        float width = size2 == null ? 0.0f : size2.getWidth() / size2.getHeight();
-                        float f2 = i / i2;
-                        cameraManager = cameraManager2;
-                        if ((f2 >= 1.0f) != (width >= 1.0f)) {
-                            width = 1.0f / width;
-                        }
-                        if (f <= 0.0f || Math.abs(f2 - f) > Math.abs(f2 - width)) {
-                            if (streamConfigurationMap != null && Build.VERSION.SDK_INT >= 23) {
-                                android.util.Size sizeChooseOptimalSize = chooseOptimalSize(streamConfigurationMap.getOutputSizes(SurfaceTexture.class), i, i2, false);
-                                if (sizeChooseOptimalSize != null) {
-                                    size = sizeChooseOptimalSize;
-                                    str = str2;
-                                    f = width;
+                    CameraCharacteristics cameraCharacteristics = cameraManager.getCameraCharacteristics(str2);
+                    if (cameraCharacteristics != null) {
+                        camera2Session = null;
+                        if (((Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == (!z)) {
+                            try {
+                                StreamConfigurationMap streamConfigurationMap = (StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+                                android.util.Size size2 = (android.util.Size) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE);
+                                float width = size2 == null ? 0.0f : size2.getWidth() / size2.getHeight();
+                                float f2 = i / i2;
+                                if ((f2 >= 1.0f) != (width >= 1.0f)) {
+                                    width = 1.0f / width;
+                                }
+                                if (f <= 0.0f || Math.abs(f2 - f) > Math.abs(f2 - width)) {
+                                    if (streamConfigurationMap != null && Build.VERSION.SDK_INT >= 23) {
+                                        android.util.Size sizeChooseOptimalSize = chooseOptimalSize(streamConfigurationMap.getOutputSizes(SurfaceTexture.class), i, i2, false);
+                                        if (sizeChooseOptimalSize != null) {
+                                            size = sizeChooseOptimalSize;
+                                            str = str2;
+                                            f = width;
+                                        }
+                                    }
+                                }
+                            } catch (Exception e) {
+                                e = e;
+                                FileLog.e(e);
+                                if (str != null) {
                                 }
                             }
                         }
-                        i3++;
-                        cameraManager2 = cameraManager;
-                    } else {
-                        cameraManager = cameraManager2;
                     }
-                    i3++;
-                    cameraManager2 = cameraManager;
-                } catch (Exception e) {
-                    e = e;
-                    FileLog.e(e);
+                } catch (Exception e2) {
+                    e = e2;
+                    camera2Session = null;
                 }
             }
-        } catch (Exception e2) {
-            e = e2;
+            camera2Session = null;
+        } catch (Exception e3) {
+            e = e3;
+            camera2Session = null;
             str = null;
             size = null;
         }
-        if (str == null || size == null) {
-            return null;
-        }
-        return new Camera2Session(context, z, str, size);
+        return (str != null || size == null) ? camera2Session : new Camera2Session(context, z, str, size);
     }
 
     private Camera2Session(Context context, boolean z, String str, android.util.Size size) {
@@ -155,7 +154,7 @@ public class Camera2Session {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0();
+                    this.f$0.isError = true;
                 }
             });
         }
@@ -189,13 +188,9 @@ public class Camera2Session {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onError$0();
+                    Camera2Session.this.isError = true;
                 }
             });
-        }
-
-        public void lambda$onError$0() {
-            Camera2Session.this.isError = true;
         }
     }
 
@@ -216,7 +211,7 @@ public class Camera2Session {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onConfigured$0();
+                        Camera2Session.AnonymousClass2.$r8$lambda$nwjxHiGomPSPXJIpYCIMnSMskdo(this.f$0);
                     }
                 });
             } catch (Exception e) {
@@ -224,7 +219,7 @@ public class Camera2Session {
             }
         }
 
-        public void lambda$onConfigured$0() {
+        public static void $r8$lambda$nwjxHiGomPSPXJIpYCIMnSMskdo(AnonymousClass2 anonymousClass2) {
             Camera2Session.this.isSuccess = true;
             if (Camera2Session.this.doneCallback != null) {
                 Camera2Session.this.doneCallback.run();
@@ -239,18 +234,10 @@ public class Camera2Session {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onConfigureFailed$1();
+                    Camera2Session.this.isError = true;
                 }
             });
         }
-
-        public void lambda$onConfigureFailed$1() {
-            Camera2Session.this.isError = true;
-        }
-    }
-
-    public void lambda$new$0() {
-        this.isError = true;
     }
 
     public void whenDone(Runnable runnable) {
@@ -266,17 +253,17 @@ public class Camera2Session {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$open$1(surfaceTexture);
+                Camera2Session.m1095$r8$lambda$9XvuwtWfJlNKuRGR6prp1HeyQ(this.f$0, surfaceTexture);
             }
         });
     }
 
-    public void lambda$open$1(SurfaceTexture surfaceTexture) {
-        this.surfaceTexture = surfaceTexture;
+    public static void m1095$r8$lambda$9XvuwtWfJlNKuRGR6prp1HeyQ(Camera2Session camera2Session, SurfaceTexture surfaceTexture) {
+        camera2Session.surfaceTexture = surfaceTexture;
         if (surfaceTexture != null) {
-            surfaceTexture.setDefaultBufferSize(getPreviewWidth(), getPreviewHeight());
+            surfaceTexture.setDefaultBufferSize(camera2Session.getPreviewWidth(), camera2Session.getPreviewHeight());
         }
-        checkOpen();
+        camera2Session.checkOpen();
     }
 
     public void checkOpen() {
@@ -295,14 +282,10 @@ public class Camera2Session {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$checkOpen$2();
+                    this.f$0.isError = true;
                 }
             });
         }
-    }
-
-    public void lambda$checkOpen$2() {
-        this.isError = true;
     }
 
     public boolean isInitiated() {
@@ -428,7 +411,7 @@ public class Camera2Session {
             this.handler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$destroy$4(runnable);
+                    Camera2Session.$r8$lambda$rlsvOa_i09a9BhBZVJLhgISAAYM(this.f$0, runnable);
                 }
             });
             return;
@@ -459,34 +442,35 @@ public class Camera2Session {
         }
     }
 
-    public void lambda$destroy$4(final Runnable runnable) {
-        CameraCaptureSession cameraCaptureSession = this.captureSession;
+    public static void $r8$lambda$rlsvOa_i09a9BhBZVJLhgISAAYM(final Camera2Session camera2Session, final Runnable runnable) {
+        CameraCaptureSession cameraCaptureSession = camera2Session.captureSession;
         if (cameraCaptureSession != null) {
             cameraCaptureSession.close();
-            this.captureSession = null;
+            camera2Session.captureSession = null;
         }
-        CameraDevice cameraDevice = this.cameraDevice;
+        CameraDevice cameraDevice = camera2Session.cameraDevice;
         if (cameraDevice != null) {
             cameraDevice.close();
-            this.cameraDevice = null;
+            camera2Session.cameraDevice = null;
         }
-        ImageReader imageReader = this.imageReader;
+        ImageReader imageReader = camera2Session.imageReader;
         if (imageReader != null) {
             imageReader.close();
-            this.imageReader = null;
+            camera2Session.imageReader = null;
         }
-        this.thread.quitSafely();
+        camera2Session.thread.quitSafely();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$destroy$3(runnable);
+                Camera2Session.$r8$lambda$RQeESMtgykQCBrnxVH9Q0FUcf_M(this.f$0, runnable);
             }
         });
     }
 
-    public void lambda$destroy$3(Runnable runnable) {
+    public static void $r8$lambda$RQeESMtgykQCBrnxVH9Q0FUcf_M(Camera2Session camera2Session, Runnable runnable) {
+        camera2Session.getClass();
         try {
-            this.thread.join();
+            camera2Session.thread.join();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -622,7 +606,7 @@ public class Camera2Session {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                Camera2Session.AnonymousClass3.lambda$onImageAvailable$0(callback, i);
+                                Camera2Session.AnonymousClass3.$r8$lambda$C8GruD4YcNmICIAfGZxauIzKYfU(callback, i);
                             }
                         });
                     }
@@ -660,12 +644,12 @@ public class Camera2Session {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    Camera2Session.AnonymousClass3.lambda$onImageAvailable$0(callback2, i2);
+                    Camera2Session.AnonymousClass3.$r8$lambda$C8GruD4YcNmICIAfGZxauIzKYfU(callback2, i2);
                 }
             });
         }
 
-        public static void lambda$onImageAvailable$0(Utilities.Callback callback, int i) {
+        public static void $r8$lambda$C8GruD4YcNmICIAfGZxauIzKYfU(Utilities.Callback callback, int i) {
             if (callback != null) {
                 callback.run(Integer.valueOf(i));
             }

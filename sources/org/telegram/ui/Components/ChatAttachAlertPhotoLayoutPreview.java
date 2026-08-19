@@ -35,7 +35,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
@@ -218,11 +217,19 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     public void startMediaCrossfade() {
-        Iterator it = this.groupsView.groupCells.iterator();
-        while (it.hasNext()) {
-            Iterator it2 = ((PreviewGroupsView.PreviewGroupCell) it.next()).media.iterator();
-            while (it2.hasNext()) {
-                ((PreviewGroupsView.PreviewGroupCell.MediaCell) it2.next()).startCrossfade();
+        ArrayList arrayList = this.groupsView.groupCells;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ArrayList arrayList2 = ((PreviewGroupsView.PreviewGroupCell) obj).media;
+            int size2 = arrayList2.size();
+            int i2 = 0;
+            while (i2 < size2) {
+                Object obj2 = arrayList2.get(i2);
+                i2++;
+                ((PreviewGroupsView.PreviewGroupCell.MediaCell) obj2).startCrossfade();
             }
         }
     }
@@ -243,13 +250,13 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             this.listView.post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onShow$0(attachAlertLayout);
+                    ChatAttachAlertPhotoLayoutPreview.$r8$lambda$4WxXY8L8PbU1QF6rFa0wJqi4lVM(this.f$0, attachAlertLayout);
                 }
             });
             postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onShow$1();
+                    ChatAttachAlertPhotoLayoutPreview.$r8$lambda$a5MCt0VnzYfhlX92TjlKaSxAi2c(this.f$0);
                 }
             }, 250L);
             this.groupsView.toPhotoLayout(this.photoLayout, false);
@@ -265,23 +272,24 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         interpolator.start();
     }
 
-    public void lambda$onShow$0(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+    public static void $r8$lambda$4WxXY8L8PbU1QF6rFa0wJqi4lVM(ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview, ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+        chatAttachAlertPhotoLayoutPreview.getClass();
         int currentItemTop = attachAlertLayout.getCurrentItemTop();
         int listTopPadding = attachAlertLayout.getListTopPadding();
-        RecyclerListView recyclerListView = this.listView;
+        RecyclerListView recyclerListView = chatAttachAlertPhotoLayoutPreview.listView;
         if (currentItemTop > AndroidUtilities.dp(7.0f)) {
             listTopPadding -= currentItemTop;
         }
         recyclerListView.scrollBy(0, listTopPadding);
     }
 
-    public void lambda$onShow$1() {
-        if (!this.shown || this.parentAlert.getPhotoLayout() == null) {
+    public static void $r8$lambda$a5MCt0VnzYfhlX92TjlKaSxAi2c(ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview) {
+        if (!chatAttachAlertPhotoLayoutPreview.shown || chatAttachAlertPhotoLayoutPreview.parentAlert.getPhotoLayout() == null) {
             return;
         }
-        this.parentAlert.getPhotoLayout().previewItem.setIcon(R.drawable.ic_ab_back);
-        this.parentAlert.getPhotoLayout().previewItem.setText(LocaleController.getString(R.string.Back));
-        this.parentAlert.getPhotoLayout().previewItem.setRightIcon(0);
+        chatAttachAlertPhotoLayoutPreview.parentAlert.getPhotoLayout().previewItem.setIcon(R.drawable.ic_ab_back);
+        chatAttachAlertPhotoLayoutPreview.parentAlert.getPhotoLayout().previewItem.setText(LocaleController.getString(R.string.Back));
+        chatAttachAlertPhotoLayoutPreview.parentAlert.getPhotoLayout().previewItem.setRightIcon(0);
     }
 
     @Override
@@ -315,9 +323,19 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         if (undoView != null) {
             undoView.hide(false, 0);
         }
-        Iterator it = this.groupsView.groupCells.iterator();
-        while (it.hasNext()) {
-            for (PreviewGroupsView.PreviewGroupCell.MediaCell mediaCell : ((PreviewGroupsView.PreviewGroupCell) it.next()).media) {
+        ArrayList arrayList = this.groupsView.groupCells;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ArrayList arrayList2 = ((PreviewGroupsView.PreviewGroupCell) obj).media;
+            int size2 = arrayList2.size();
+            int i2 = 0;
+            while (i2 < size2) {
+                Object obj2 = arrayList2.get(i2);
+                i2++;
+                PreviewGroupsView.PreviewGroupCell.MediaCell mediaCell = (PreviewGroupsView.PreviewGroupCell.MediaCell) obj2;
                 if (mediaCell.wasSpoiler && (photoEntry = mediaCell.photoEntry) != null) {
                     photoEntry.isChatPreviewSpoilerRevealed = false;
                 }
@@ -384,39 +402,36 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
         public void calculate() {
             int i;
-            ?? r14;
             int i2;
             ArrayList arrayList;
             int i3;
             int i4;
-            int i5;
             MessageObject.GroupedMessagePosition groupedMessagePosition;
             boolean zBooleanValue;
-            GroupCalculator groupCalculator = this;
-            int i6 = 8;
-            int size = groupCalculator.photos.size();
-            groupCalculator.posArray.clear();
-            groupCalculator.positions.clear();
-            int i7 = 0;
+            int i5 = 8;
+            int size = this.photos.size();
+            this.posArray.clear();
+            this.positions.clear();
+            int i6 = 0;
             if (size == 0) {
-                groupCalculator.width = 0;
-                groupCalculator.height = 0.0f;
-                groupCalculator.maxX = 0;
-                groupCalculator.maxY = 0;
+                this.width = 0;
+                this.height = 0.0f;
+                this.maxX = 0;
+                this.maxY = 0;
                 return;
             }
-            groupCalculator.posArray.ensureCapacity(size);
+            this.posArray.ensureCapacity(size);
             char[] cArr = new char[size];
-            int i8 = 0;
+            int i7 = 0;
             float f = 1.0f;
             boolean z = false;
-            while (i8 < size) {
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) groupCalculator.photos.get(i8);
+            while (i7 < size) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) this.photos.get(i7);
                 MessageObject.GroupedMessagePosition groupedMessagePosition2 = new MessageObject.GroupedMessagePosition();
-                groupedMessagePosition2.last = i8 == size + (-1);
+                groupedMessagePosition2.last = i7 == size + (-1);
                 MediaController.CropState cropState = photoEntry.cropState;
-                int i9 = cropState != null ? cropState.width : photoEntry.width;
-                int i10 = cropState != null ? cropState.height : photoEntry.height;
+                int i8 = cropState != null ? cropState.width : photoEntry.width;
+                int i9 = cropState != null ? cropState.height : photoEntry.height;
                 if (ChatAttachAlertPhotoLayoutPreview.photoRotate.containsKey(photoEntry)) {
                     zBooleanValue = ((Boolean) ChatAttachAlertPhotoLayoutPreview.photoRotate.get(photoEntry)).booleanValue();
                 } else {
@@ -432,7 +447,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             }
                         } else {
                             int attributeInt = new ExifInterface(photoEntry.path).getAttributeInt("Orientation", 1);
-                            if (attributeInt == 6 || attributeInt == i6) {
+                            if (attributeInt == 6 || attributeInt == i5) {
                                 zBooleanValue = true;
                             } else {
                                 zBooleanValue = false;
@@ -443,21 +458,21 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     ChatAttachAlertPhotoLayoutPreview.photoRotate.put(photoEntry, Boolean.valueOf(zBooleanValue));
                 }
                 if (zBooleanValue) {
-                    int i11 = i9;
-                    i9 = i10;
-                    i10 = i11;
+                    int i10 = i9;
+                    i9 = i8;
+                    i8 = i10;
                 }
-                float f2 = i9 / i10;
+                float f2 = i8 / i9;
                 groupedMessagePosition2.aspectRatio = f2;
-                cArr[i8] = f2 > 1.2f ? 'w' : f2 < 0.8f ? 'n' : 'q';
+                cArr[i7] = f2 > 1.2f ? 'w' : f2 < 0.8f ? 'n' : 'q';
                 f += f2;
                 if (f2 > 2.0f) {
                     z = true;
                 }
-                groupCalculator.positions.put(photoEntry, groupedMessagePosition2);
-                groupCalculator.posArray.add(groupedMessagePosition2);
-                i8++;
-                i6 = 8;
+                this.positions.put(photoEntry, groupedMessagePosition2);
+                this.posArray.add(groupedMessagePosition2);
+                i7++;
+                i5 = 8;
             }
             String str = new String(cArr);
             int iDp = AndroidUtilities.dp(120.0f);
@@ -470,351 +485,334 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             float f3 = f / size;
             float fDp3 = AndroidUtilities.dp(100.0f) / 814.0f;
             if (size == 1) {
-                MessageObject.GroupedMessagePosition groupedMessagePosition3 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(0);
+                MessageObject.GroupedMessagePosition groupedMessagePosition3 = (MessageObject.GroupedMessagePosition) this.posArray.get(0);
                 int backgroundPaddingLeft = AndroidUtilities.displaySize.x - (ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getBackgroundPaddingLeft() * 2);
                 Point point3 = AndroidUtilities.displaySize;
                 groupedMessagePosition3.set(0, 0, 0, 0, 800, ((backgroundPaddingLeft * 0.8f) / groupedMessagePosition3.aspectRatio) / (Math.max(point3.x, point3.y) * 0.5f), 15);
             } else {
                 if (z || !(size == 2 || size == 3 || size == 4)) {
-                    int size2 = groupCalculator.posArray.size();
+                    int size2 = this.posArray.size();
                     float[] fArr = new float[size2];
-                    for (int i12 = 0; i12 < size; i12++) {
+                    for (int i11 = 0; i11 < size; i11++) {
                         if (f3 > 1.1f) {
-                            fArr[i12] = Math.max(1.0f, ((MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(i12)).aspectRatio);
+                            fArr[i11] = Math.max(1.0f, ((MessageObject.GroupedMessagePosition) this.posArray.get(i11)).aspectRatio);
                         } else {
-                            fArr[i12] = Math.min(1.0f, ((MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(i12)).aspectRatio);
+                            fArr[i11] = Math.min(1.0f, ((MessageObject.GroupedMessagePosition) this.posArray.get(i11)).aspectRatio);
                         }
-                        fArr[i12] = Math.max(0.66667f, Math.min(1.7f, fArr[i12]));
+                        fArr[i11] = Math.max(0.66667f, Math.min(1.7f, fArr[i11]));
                     }
                     ArrayList arrayList2 = new ArrayList();
-                    int i13 = 1;
-                    while (i13 < size2) {
-                        int i14 = size2 - i13;
-                        if (i13 <= 3) {
-                            if (i14 > 3) {
-                                i13 = i13;
-                            } else {
-                                arrayList2.add(new MessageGroupedLayoutAttempt(i13, i14, groupCalculator.multiHeight(fArr, 0, i13), groupCalculator.multiHeight(fArr, i13, size2)));
-                            }
-                            i13++;
+                    for (int i12 = 1; i12 < size2; i12++) {
+                        int i13 = size2 - i12;
+                        if (i12 <= 3 && i13 <= 3) {
+                            arrayList2.add(new MessageGroupedLayoutAttempt(i12, i13, multiHeight(fArr, 0, i12), multiHeight(fArr, i12, size2)));
                         }
-                        i13++;
                     }
-                    int i15 = 1;
-                    while (i15 < size2 - 1) {
-                        int i16 = 1;
+                    int i14 = 1;
+                    while (i14 < size2 - 1) {
+                        int i15 = 1;
                         while (true) {
-                            int i17 = size2 - i15;
-                            if (i16 < i17) {
-                                int i18 = i17 - i16;
-                                if (i15 > 3) {
-                                    arrayList = arrayList2;
-                                } else if (i16 > (f3 < 0.85f ? 4 : 3)) {
-                                    arrayList = arrayList2;
-                                } else if (i18 > 3) {
-                                    i16 = i16;
-                                    size = size;
-                                    f3 = f3;
-                                    arrayList = arrayList2;
-                                } else {
-                                    int i19 = i15 + i16;
-                                    arrayList = arrayList2;
-                                    arrayList.add(new MessageGroupedLayoutAttempt(i15, i16, i18, groupCalculator.multiHeight(fArr, i7, i15), groupCalculator.multiHeight(fArr, i15, i19), groupCalculator.multiHeight(fArr, i19, size2)));
-                                }
-                                i16++;
-                                arrayList2 = arrayList;
-                                f3 = f3;
-                                size = size;
-                                i7 = 0;
-                            }
-                        }
-                        i15++;
-                        f3 = f3;
-                        i7 = 0;
-                    }
-                    ArrayList arrayList3 = arrayList2;
-                    int i20 = size;
-                    int i21 = 1;
-                    while (i21 < size2 - 2) {
-                        int i22 = 1;
-                        while (true) {
-                            int i23 = size2 - i21;
-                            if (i22 < i23) {
-                                int i24 = 1;
-                                while (true) {
-                                    int i25 = i23 - i22;
-                                    if (i24 < i25) {
-                                        int i26 = i25 - i24;
-                                        if (i21 <= 3 && i22 <= 3 && i24 <= 3 && i26 <= 3) {
-                                            int i27 = i21 + i22;
-                                            int i28 = i27 + i24;
-                                            arrayList3.add(new MessageGroupedLayoutAttempt(i21, i22, i24, i26, groupCalculator.multiHeight(fArr, 0, i21), groupCalculator.multiHeight(fArr, i21, i27), groupCalculator.multiHeight(fArr, i27, i28), groupCalculator.multiHeight(fArr, i28, size2)));
-                                        }
-                                        i24++;
-                                        fArr = fArr;
-                                        i23 = i23;
-                                        i22 = i22;
-                                        fDp3 = fDp3;
-                                        size2 = size2;
-                                        i20 = i20;
+                            int i16 = size2 - i14;
+                            if (i15 < i16) {
+                                int i17 = i16 - i15;
+                                if (i14 <= 3) {
+                                    if (i15 <= (f3 < 0.85f ? 4 : 3) && i17 <= 3) {
+                                        float fMultiHeight = multiHeight(fArr, i6, i14);
+                                        int i18 = i14 + i15;
+                                        arrayList2.add(new MessageGroupedLayoutAttempt(i14, i15, i17, fMultiHeight, multiHeight(fArr, i14, i18), multiHeight(fArr, i18, size2)));
                                     }
                                 }
-                                i22++;
-                                fDp3 = fDp3;
-                                i20 = i20;
+                                i15++;
+                                i6 = 0;
                             }
                         }
-                        i21++;
-                        fDp3 = fDp3;
-                        i20 = i20;
+                        i14++;
+                        i6 = 0;
                     }
-                    float[] fArr2 = fArr;
-                    i = i20;
-                    float f4 = fDp3;
-                    r14 = 1;
-                    MessageGroupedLayoutAttempt messageGroupedLayoutAttempt = null;
-                    float f5 = 0.0f;
-                    for (int i29 = 0; i29 < arrayList3.size(); i29++) {
-                        MessageGroupedLayoutAttempt messageGroupedLayoutAttempt2 = (MessageGroupedLayoutAttempt) arrayList3.get(i29);
-                        float f6 = Float.MAX_VALUE;
-                        int i30 = 0;
-                        float f7 = 0.0f;
+                    int i19 = 1;
+                    while (true) {
+                        int i20 = 0;
+                        if (i19 >= size2 - 2) {
+                            break;
+                        }
+                        int i21 = 1;
                         while (true) {
-                            float[] fArr3 = messageGroupedLayoutAttempt2.heights;
-                            if (i30 >= fArr3.length) {
+                            int i22 = size2 - i19;
+                            if (i21 < i22) {
+                                int i23 = 1;
+                                while (true) {
+                                    int i24 = i22 - i21;
+                                    if (i23 < i24) {
+                                        int i25 = i24 - i23;
+                                        if (i19 > 3 || i21 > 3 || i23 > 3) {
+                                            i2 = size;
+                                            arrayList = arrayList2;
+                                        } else {
+                                            if (i25 > 3) {
+                                                i2 = size;
+                                                i22 = i22;
+                                                arrayList = arrayList2;
+                                            } else {
+                                                float fMultiHeight2 = multiHeight(fArr, i20, i19);
+                                                int i26 = i19 + i21;
+                                                float fMultiHeight3 = multiHeight(fArr, i19, i26);
+                                                int i27 = i26 + i23;
+                                                float fMultiHeight4 = multiHeight(fArr, i26, i27);
+                                                float fMultiHeight5 = multiHeight(fArr, i27, size2);
+                                                arrayList = arrayList2;
+                                                i2 = size;
+                                                arrayList.add(new MessageGroupedLayoutAttempt(i19, i21, i23, i25, fMultiHeight2, fMultiHeight3, fMultiHeight4, fMultiHeight5));
+                                            }
+                                            i23++;
+                                            arrayList2 = arrayList;
+                                            size = i2;
+                                            i22 = i22;
+                                            i20 = 0;
+                                        }
+                                        i23++;
+                                        arrayList2 = arrayList;
+                                        size = i2;
+                                        i22 = i22;
+                                        i20 = 0;
+                                    }
+                                }
+                                i21++;
+                                i20 = 0;
+                            }
+                        }
+                        i19++;
+                    }
+                    i = size;
+                    ArrayList arrayList3 = arrayList2;
+                    MessageGroupedLayoutAttempt messageGroupedLayoutAttempt = null;
+                    float f4 = 0.0f;
+                    for (int i28 = 0; i28 < arrayList3.size(); i28++) {
+                        MessageGroupedLayoutAttempt messageGroupedLayoutAttempt2 = (MessageGroupedLayoutAttempt) arrayList3.get(i28);
+                        float f5 = Float.MAX_VALUE;
+                        int i29 = 0;
+                        float f6 = 0.0f;
+                        while (true) {
+                            float[] fArr2 = messageGroupedLayoutAttempt2.heights;
+                            if (i29 >= fArr2.length) {
                                 break;
                             }
-                            float f8 = fArr3[i30];
-                            f7 += f8;
-                            if (f8 < f6) {
-                                f6 = f8;
+                            float f7 = fArr2[i29];
+                            f6 += f7;
+                            if (f7 < f5) {
+                                f5 = f7;
                             }
-                            i30++;
+                            i29++;
                         }
-                        float fAbs = Math.abs(f7 - 1332.0f);
+                        float fAbs = Math.abs(f6 - 1332.0f);
                         int[] iArr = messageGroupedLayoutAttempt2.lineCounts;
                         if (iArr.length > 1) {
-                            int i31 = iArr[0];
-                            int i32 = iArr[1];
-                            if (i31 <= i32 && (iArr.length <= 2 || i32 <= iArr[2])) {
+                            int i30 = iArr[0];
+                            int i31 = iArr[1];
+                            if (i30 <= i31 && (iArr.length <= 2 || i31 <= iArr[2])) {
                                 if (iArr.length > 3 && iArr[2] > iArr[3]) {
                                 }
                             }
                             fAbs *= 1.2f;
                         }
-                        if (f6 < iMin) {
+                        if (f5 < iMin) {
                             fAbs *= 1.5f;
                         }
-                        if (messageGroupedLayoutAttempt == null || fAbs < f5) {
+                        if (messageGroupedLayoutAttempt == null || fAbs < f4) {
                             messageGroupedLayoutAttempt = messageGroupedLayoutAttempt2;
-                            f5 = fAbs;
+                            f4 = fAbs;
                         }
                     }
                     if (messageGroupedLayoutAttempt == null) {
                         return;
                     }
+                    int i32 = 0;
                     int i33 = 0;
-                    int i34 = 0;
                     while (true) {
                         int[] iArr2 = messageGroupedLayoutAttempt.lineCounts;
-                        if (i34 >= iArr2.length) {
+                        if (i33 >= iArr2.length) {
                             break;
                         }
-                        int i35 = iArr2[i34];
-                        float f9 = messageGroupedLayoutAttempt.heights[i34];
-                        int i36 = 1000;
+                        int i34 = iArr2[i33];
+                        float f8 = messageGroupedLayoutAttempt.heights[i33];
+                        int i35 = 1000;
+                        int i36 = 0;
                         MessageObject.GroupedMessagePosition groupedMessagePosition4 = null;
-                        for (int i37 = 0; i37 < i35; i37++) {
-                            int i38 = (int) (fArr2[i33] * f9);
-                            i36 -= i38;
-                            MessageObject.GroupedMessagePosition groupedMessagePosition5 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(i33);
-                            int i39 = i34 == 0 ? 4 : 0;
-                            if (i34 == messageGroupedLayoutAttempt.lineCounts.length - 1) {
-                                i39 |= 8;
+                        while (i36 < i34) {
+                            int i37 = (int) (fArr[i32] * f8);
+                            i35 -= i37;
+                            MessageObject.GroupedMessagePosition groupedMessagePosition5 = (MessageObject.GroupedMessagePosition) this.posArray.get(i32);
+                            int i38 = i33 == 0 ? 4 : 0;
+                            if (i33 == messageGroupedLayoutAttempt.lineCounts.length - 1) {
+                                i38 |= 8;
                             }
-                            if (i37 == 0) {
-                                i39 |= 1;
+                            if (i36 == 0) {
+                                i38 |= 1;
                                 groupedMessagePosition4 = groupedMessagePosition5;
                             }
-                            if (i37 == i35 - 1) {
-                                i2 = i39 | 2;
+                            if (i36 == i34 - 1) {
+                                i38 |= 2;
                                 groupedMessagePosition4 = groupedMessagePosition5;
-                            } else {
-                                i2 = i39;
                             }
-                            groupedMessagePosition5.set(i37, i37, i34, i34, i38, Math.max(f4, f9 / 814.0f), i2);
-                            i33++;
+                            int i39 = i36;
+                            groupedMessagePosition5.set(i39, i36, i33, i33, i37, Math.max(fDp3, f8 / 814.0f), i38);
+                            i32++;
+                            i36 = i39 + 1;
                         }
-                        float f10 = f4;
+                        int i40 = i33;
                         if (groupedMessagePosition4 != null) {
-                            groupedMessagePosition4.pw += i36;
-                            groupedMessagePosition4.spanSize += i36;
+                            groupedMessagePosition4.pw += i35;
+                            groupedMessagePosition4.spanSize += i35;
                         }
-                        i34++;
-                        f4 = f10;
+                        i33 = i40 + 1;
                     }
                 } else if (size == 2) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition6 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(0);
-                    MessageObject.GroupedMessagePosition groupedMessagePosition7 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(1);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition6 = (MessageObject.GroupedMessagePosition) this.posArray.get(0);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition7 = (MessageObject.GroupedMessagePosition) this.posArray.get(1);
                     if (str.equals("ww") && f3 > ((double) 1.2285012f) * 1.4d) {
-                        float f11 = groupedMessagePosition6.aspectRatio;
-                        float f12 = groupedMessagePosition7.aspectRatio;
-                        if (f11 - f12 < 0.2d) {
-                            float fRound = Math.round(Math.min(1000.0f / f11, Math.min(1000.0f / f12, 407.0f))) / 814.0f;
+                        float f9 = groupedMessagePosition6.aspectRatio;
+                        float f10 = groupedMessagePosition7.aspectRatio;
+                        if (f9 - f10 < 0.2d) {
+                            float fRound = Math.round(Math.min(1000.0f / f9, Math.min(1000.0f / f10, 407.0f))) / 814.0f;
                             groupedMessagePosition6.set(0, 0, 0, 0, 1000, fRound, 7);
                             groupedMessagePosition7.set(0, 0, 1, 1, 1000, fRound, 11);
                         } else if (!str.equals("ww")) {
-                            float f13 = 500;
-                            float fRound2 = Math.round(Math.min(f13 / groupedMessagePosition6.aspectRatio, Math.min(f13 / groupedMessagePosition7.aspectRatio, 814.0f))) / 814.0f;
+                            float f11 = 500;
+                            float fRound2 = Math.round(Math.min(f11 / groupedMessagePosition6.aspectRatio, Math.min(f11 / groupedMessagePosition7.aspectRatio, 814.0f))) / 814.0f;
                             groupedMessagePosition6.set(0, 0, 0, 0, 500, fRound2, 13);
                             groupedMessagePosition7.set(1, 1, 0, 0, 500, fRound2, 14);
                         } else {
-                            float f14 = 500;
-                            float fRound3 = Math.round(Math.min(f14 / groupedMessagePosition6.aspectRatio, Math.min(f14 / groupedMessagePosition7.aspectRatio, 814.0f))) / 814.0f;
+                            float f12 = 500;
+                            float fRound3 = Math.round(Math.min(f12 / groupedMessagePosition6.aspectRatio, Math.min(f12 / groupedMessagePosition7.aspectRatio, 814.0f))) / 814.0f;
                             groupedMessagePosition6.set(0, 0, 0, 0, 500, fRound3, 13);
                             groupedMessagePosition7.set(1, 1, 0, 0, 500, fRound3, 14);
                         }
                     } else if (!str.equals("ww") || str.equals("qq")) {
-                        float f15 = 500;
-                        float fRound4 = Math.round(Math.min(f15 / groupedMessagePosition6.aspectRatio, Math.min(f15 / groupedMessagePosition7.aspectRatio, 814.0f))) / 814.0f;
+                        float f13 = 500;
+                        float fRound4 = Math.round(Math.min(f13 / groupedMessagePosition6.aspectRatio, Math.min(f13 / groupedMessagePosition7.aspectRatio, 814.0f))) / 814.0f;
                         groupedMessagePosition6.set(0, 0, 0, 0, 500, fRound4, 13);
                         groupedMessagePosition7.set(1, 1, 0, 0, 500, fRound4, 14);
                     } else {
-                        float f16 = groupedMessagePosition6.aspectRatio;
-                        int iMax = (int) Math.max(400.0f, Math.round((1000.0f / f16) / ((1.0f / f16) + (1.0f / groupedMessagePosition7.aspectRatio))));
-                        int i40 = 1000 - iMax;
-                        if (i40 < iMin) {
-                            iMax -= iMin - i40;
+                        float f14 = groupedMessagePosition6.aspectRatio;
+                        int iMax = (int) Math.max(400.0f, Math.round((1000.0f / f14) / ((1.0f / f14) + (1.0f / groupedMessagePosition7.aspectRatio))));
+                        int i41 = 1000 - iMax;
+                        if (i41 < iMin) {
+                            iMax -= iMin - i41;
                         } else {
-                            iMin = i40;
+                            iMin = i41;
                         }
                         float fMin = Math.min(814.0f, Math.round(Math.min(iMin / groupedMessagePosition6.aspectRatio, iMax / groupedMessagePosition7.aspectRatio))) / 814.0f;
                         groupedMessagePosition6.set(0, 0, 0, 0, iMin, fMin, 13);
                         groupedMessagePosition7.set(1, 1, 0, 0, iMax, fMin, 14);
                     }
-                    r14 = 1;
-                    groupCalculator = this;
-                    i = size;
                 } else if (size == 3) {
-                    groupCalculator = this;
-                    MessageObject.GroupedMessagePosition groupedMessagePosition8 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(0);
-                    MessageObject.GroupedMessagePosition groupedMessagePosition9 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(1);
-                    MessageObject.GroupedMessagePosition groupedMessagePosition10 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(2);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition8 = (MessageObject.GroupedMessagePosition) this.posArray.get(0);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition9 = (MessageObject.GroupedMessagePosition) this.posArray.get(1);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition10 = (MessageObject.GroupedMessagePosition) this.posArray.get(2);
                     if (str.charAt(0) == 'n') {
-                        float f17 = groupedMessagePosition9.aspectRatio;
-                        float fMin2 = Math.min(407.0f, Math.round((1000.0f * f17) / (groupedMessagePosition10.aspectRatio + f17)));
-                        float f18 = 814.0f - fMin2;
-                        int iMax2 = (int) Math.max(iMin, Math.min(500.0f, Math.round(Math.min(groupedMessagePosition10.aspectRatio * fMin2, groupedMessagePosition9.aspectRatio * f18))));
-                        int i41 = 1000 - iMax2;
-                        groupedMessagePosition8.set(0, 0, 0, 1, Math.round(Math.min((groupedMessagePosition8.aspectRatio * 814.0f) + iMin2, i41)), 1.0f, 13);
-                        float f19 = f18 / 814.0f;
-                        groupedMessagePosition9.set(1, 1, 0, 0, iMax2, f19, 6);
-                        float f20 = fMin2 / 814.0f;
-                        groupedMessagePosition10.set(1, 1, 1, 1, iMax2, f20, 10);
+                        float f15 = groupedMessagePosition9.aspectRatio;
+                        float fMin2 = Math.min(407.0f, Math.round((1000.0f * f15) / (groupedMessagePosition10.aspectRatio + f15)));
+                        float f16 = 814.0f - fMin2;
+                        int iMax2 = (int) Math.max(iMin, Math.min(500.0f, Math.round(Math.min(groupedMessagePosition10.aspectRatio * fMin2, groupedMessagePosition9.aspectRatio * f16))));
+                        int i42 = 1000 - iMax2;
+                        groupedMessagePosition8.set(0, 0, 0, 1, Math.round(Math.min((groupedMessagePosition8.aspectRatio * 814.0f) + iMin2, i42)), 1.0f, 13);
+                        float f17 = f16 / 814.0f;
+                        groupedMessagePosition9.set(1, 1, 0, 0, iMax2, f17, 6);
+                        float f18 = fMin2 / 814.0f;
+                        groupedMessagePosition10.set(1, 1, 1, 1, iMax2, f18, 10);
                         groupedMessagePosition10.spanSize = 1000;
-                        groupedMessagePosition8.siblingHeights = new float[]{f20, f19};
-                        groupedMessagePosition8.spanSize = i41;
+                        groupedMessagePosition8.siblingHeights = new float[]{f18, f17};
+                        groupedMessagePosition8.spanSize = i42;
                     } else {
                         float fRound5 = Math.round(Math.min(1000.0f / groupedMessagePosition8.aspectRatio, 537.24005f)) / 814.0f;
                         groupedMessagePosition8.set(0, 1, 0, 0, 1000, fRound5, 7);
-                        float f21 = 500;
-                        float fMin3 = Math.min(814.0f - fRound5, Math.round(Math.min(f21 / groupedMessagePosition9.aspectRatio, f21 / groupedMessagePosition10.aspectRatio))) / 814.0f;
-                        if (fMin3 < fDp3) {
-                            fMin3 = fDp3;
-                        }
-                        float f22 = fMin3;
-                        groupedMessagePosition9.set(0, 0, 1, 1, 500, f22, 9);
-                        groupedMessagePosition10.set(1, 1, 1, 1, 500, f22, 10);
+                        float f19 = 500;
+                        float fMin3 = Math.min(814.0f - fRound5, Math.round(Math.min(f19 / groupedMessagePosition9.aspectRatio, f19 / groupedMessagePosition10.aspectRatio))) / 814.0f;
+                        float f20 = fMin3 < fDp3 ? fDp3 : fMin3;
+                        groupedMessagePosition9.set(0, 0, 1, 1, 500, f20, 9);
+                        groupedMessagePosition10.set(1, 1, 1, 1, 500, f20, 10);
                     }
                 } else {
-                    groupCalculator = this;
-                    MessageObject.GroupedMessagePosition groupedMessagePosition11 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(0);
-                    MessageObject.GroupedMessagePosition groupedMessagePosition12 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(1);
-                    MessageObject.GroupedMessagePosition groupedMessagePosition13 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(2);
-                    MessageObject.GroupedMessagePosition groupedMessagePosition14 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(3);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition11 = (MessageObject.GroupedMessagePosition) this.posArray.get(0);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition12 = (MessageObject.GroupedMessagePosition) this.posArray.get(1);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition13 = (MessageObject.GroupedMessagePosition) this.posArray.get(2);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition14 = (MessageObject.GroupedMessagePosition) this.posArray.get(3);
                     if (str.charAt(0) == 'w') {
                         float fRound6 = Math.round(Math.min(1000.0f / groupedMessagePosition11.aspectRatio, 537.24005f)) / 814.0f;
                         groupedMessagePosition11.set(0, 2, 0, 0, 1000, fRound6, 7);
                         float fRound7 = Math.round(1000.0f / ((groupedMessagePosition12.aspectRatio + groupedMessagePosition13.aspectRatio) + groupedMessagePosition14.aspectRatio));
-                        float f23 = iMin;
-                        int iMax3 = (int) Math.max(f23, Math.min(400.0f, groupedMessagePosition12.aspectRatio * fRound7));
-                        int iMax4 = (int) Math.max(Math.max(f23, 330.0f), groupedMessagePosition14.aspectRatio * fRound7);
+                        float f21 = iMin;
+                        int iMax3 = (int) Math.max(f21, Math.min(400.0f, groupedMessagePosition12.aspectRatio * fRound7));
+                        int iMax4 = (int) Math.max(Math.max(f21, 330.0f), groupedMessagePosition14.aspectRatio * fRound7);
                         int iDp2 = (1000 - iMax3) - iMax4;
                         if (iDp2 < AndroidUtilities.dp(58.0f)) {
                             int iDp3 = AndroidUtilities.dp(58.0f) - iDp2;
                             iDp2 = AndroidUtilities.dp(58.0f);
-                            int i42 = iDp3 / 2;
-                            iMax3 -= i42;
-                            iMax4 -= iDp3 - i42;
+                            int i43 = iDp3 / 2;
+                            iMax3 -= i43;
+                            iMax4 -= iDp3 - i43;
                         }
-                        int i43 = iMax3;
+                        int i44 = iMax3;
                         float fMin4 = Math.min(814.0f - fRound6, fRound7) / 814.0f;
-                        if (fMin4 < fDp3) {
-                            fMin4 = fDp3;
-                        }
-                        float f24 = fMin4;
-                        groupedMessagePosition12.set(0, 0, 1, 1, i43, f24, 9);
-                        groupedMessagePosition13.set(1, 1, 1, 1, iDp2, f24, 8);
-                        groupedMessagePosition14.set(2, 2, 1, 1, iMax4, f24, 10);
+                        float f22 = fMin4 < fDp3 ? fDp3 : fMin4;
+                        groupedMessagePosition12.set(0, 0, 1, 1, i44, f22, 9);
+                        groupedMessagePosition13.set(1, 1, 1, 1, iDp2, f22, 8);
+                        groupedMessagePosition14.set(2, 2, 1, 1, iMax4, f22, 10);
                     } else {
                         int iMax5 = Math.max(iMin, Math.round(814.0f / (((1.0f / groupedMessagePosition12.aspectRatio) + (1.0f / groupedMessagePosition13.aspectRatio)) + (1.0f / groupedMessagePosition14.aspectRatio))));
-                        float f25 = iDp;
-                        float f26 = iMax5;
-                        float fMin5 = Math.min(0.33f, Math.max(f25, f26 / groupedMessagePosition12.aspectRatio) / 814.0f);
-                        float fMin6 = Math.min(0.33f, Math.max(f25, f26 / groupedMessagePosition13.aspectRatio) / 814.0f);
-                        float f27 = (1.0f - fMin5) - fMin6;
-                        int i44 = 1000 - iMax5;
-                        groupedMessagePosition11.set(0, 0, 0, 2, Math.round(Math.min((groupedMessagePosition11.aspectRatio * 814.0f) + iMin2, i44)), fMin5 + fMin6 + f27, 13);
+                        float f23 = iDp;
+                        float f24 = iMax5;
+                        float fMin5 = Math.min(0.33f, Math.max(f23, f24 / groupedMessagePosition12.aspectRatio) / 814.0f);
+                        float fMin6 = Math.min(0.33f, Math.max(f23, f24 / groupedMessagePosition13.aspectRatio) / 814.0f);
+                        float f25 = (1.0f - fMin5) - fMin6;
+                        int i45 = 1000 - iMax5;
+                        groupedMessagePosition11.set(0, 0, 0, 2, Math.round(Math.min((groupedMessagePosition11.aspectRatio * 814.0f) + iMin2, i45)), fMin5 + fMin6 + f25, 13);
                         groupedMessagePosition12.set(1, 1, 0, 0, iMax5, fMin5, 6);
                         groupedMessagePosition13.set(1, 1, 1, 1, iMax5, fMin6, 2);
                         groupedMessagePosition13.spanSize = 1000;
-                        groupedMessagePosition14.set(1, 1, 2, 2, iMax5, f27, 10);
+                        groupedMessagePosition14.set(1, 1, 2, 2, iMax5, f25, 10);
                         groupedMessagePosition14.spanSize = 1000;
-                        groupedMessagePosition11.spanSize = i44;
-                        groupedMessagePosition11.siblingHeights = new float[]{fMin5, fMin6, f27};
+                        groupedMessagePosition11.spanSize = i45;
+                        groupedMessagePosition11.siblingHeights = new float[]{fMin5, fMin6, f25};
                     }
                 }
-                i3 = i;
-                for (i4 = 0; i4 < i3; i4 += r14) {
-                    groupedMessagePosition = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(i4);
+                for (i3 = 0; i3 < i; i3++) {
+                    groupedMessagePosition = (MessageObject.GroupedMessagePosition) this.posArray.get(i3);
                     if (groupedMessagePosition.minX == 0) {
                         groupedMessagePosition.spanSize += 200;
                     }
                     if ((groupedMessagePosition.flags & 2) != 0) {
-                        groupedMessagePosition.edge = r14;
+                        groupedMessagePosition.edge = true;
                     }
-                    groupCalculator.maxX = Math.max(groupCalculator.maxX, (int) groupedMessagePosition.maxX);
-                    groupCalculator.maxY = Math.max(groupCalculator.maxY, (int) groupedMessagePosition.maxY);
-                    groupedMessagePosition.left = groupCalculator.getLeft(groupedMessagePosition, groupedMessagePosition.minY, groupedMessagePosition.maxY, groupedMessagePosition.minX);
+                    this.maxX = Math.max(this.maxX, (int) groupedMessagePosition.maxX);
+                    this.maxY = Math.max(this.maxY, (int) groupedMessagePosition.maxY);
+                    groupedMessagePosition.left = getLeft(groupedMessagePosition, groupedMessagePosition.minY, groupedMessagePosition.maxY, groupedMessagePosition.minX);
                 }
-                for (i5 = 0; i5 < i3; i5 += r14) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition15 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(i5);
-                    groupedMessagePosition15.top = groupCalculator.getTop(groupedMessagePosition15, groupedMessagePosition15.minY);
+                for (i4 = 0; i4 < i; i4++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition15 = (MessageObject.GroupedMessagePosition) this.posArray.get(i4);
+                    groupedMessagePosition15.top = getTop(groupedMessagePosition15, groupedMessagePosition15.minY);
                 }
-                groupCalculator.width = getWidth();
-                groupCalculator.height = getHeight();
+                this.width = getWidth();
+                this.height = getHeight();
             }
             i = size;
-            r14 = 1;
-            i3 = i;
-            while (i4 < i3) {
-                groupedMessagePosition = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(i4);
+            while (i3 < i) {
+                groupedMessagePosition = (MessageObject.GroupedMessagePosition) this.posArray.get(i3);
                 if (groupedMessagePosition.minX == 0) {
                     groupedMessagePosition.spanSize += 200;
                 }
                 if ((groupedMessagePosition.flags & 2) != 0) {
-                    groupedMessagePosition.edge = r14;
+                    groupedMessagePosition.edge = true;
                 }
-                groupCalculator.maxX = Math.max(groupCalculator.maxX, (int) groupedMessagePosition.maxX);
-                groupCalculator.maxY = Math.max(groupCalculator.maxY, (int) groupedMessagePosition.maxY);
-                groupedMessagePosition.left = groupCalculator.getLeft(groupedMessagePosition, groupedMessagePosition.minY, groupedMessagePosition.maxY, groupedMessagePosition.minX);
+                this.maxX = Math.max(this.maxX, (int) groupedMessagePosition.maxX);
+                this.maxY = Math.max(this.maxY, (int) groupedMessagePosition.maxY);
+                groupedMessagePosition.left = getLeft(groupedMessagePosition, groupedMessagePosition.minY, groupedMessagePosition.maxY, groupedMessagePosition.minX);
             }
-            while (i5 < i3) {
-                MessageObject.GroupedMessagePosition groupedMessagePosition16 = (MessageObject.GroupedMessagePosition) groupCalculator.posArray.get(i5);
-                groupedMessagePosition16.top = groupCalculator.getTop(groupedMessagePosition16, groupedMessagePosition16.minY);
+            while (i4 < i) {
+                MessageObject.GroupedMessagePosition groupedMessagePosition16 = (MessageObject.GroupedMessagePosition) this.posArray.get(i4);
+                groupedMessagePosition16.top = getTop(groupedMessagePosition16, groupedMessagePosition16.minY);
             }
-            groupCalculator.width = getWidth();
-            groupCalculator.height = getHeight();
+            this.width = getWidth();
+            this.height = getHeight();
         }
 
         public int getWidth() {
@@ -1175,7 +1173,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             int i2 = size - 1;
             for (int i3 = 0; i3 < size; i3++) {
                 Integer num = (Integer) this.photosOrder.get(i3);
-                num.intValue();
+                num.getClass();
                 arrayList.add((MediaController.PhotoEntry) this.photosMap.get(num));
                 if (i3 % 10 == 9 || i3 == i2) {
                     PreviewGroupCell previewGroupCell = new PreviewGroupCell();
@@ -1323,7 +1321,13 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
         public boolean isSeen(float f, float f2) {
             float f3 = this.viewTop;
-            return (f >= f3 && f <= this.viewBottom) || (f2 >= f3 && f2 <= this.viewBottom) || (f <= f3 && f2 >= this.viewBottom);
+            if (f >= f3 && f <= this.viewBottom) {
+                return true;
+            }
+            if (f2 < f3 || f2 > this.viewBottom) {
+                return f <= f3 && f2 >= this.viewBottom;
+            }
+            return true;
         }
 
         public void onScroll() {
@@ -1452,7 +1456,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$stopDragging$0(valueAnimator);
+                    ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.$r8$lambda$ixGI42umPjCmhHGRfys1kGhUrF8(this.f$0, valueAnimator);
                 }
             });
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1468,9 +1472,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             invalidate();
         }
 
-        public void lambda$stopDragging$0(ValueAnimator valueAnimator) {
-            this.draggingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+        public static void $r8$lambda$ixGI42umPjCmhHGRfys1kGhUrF8(PreviewGroupsView previewGroupsView, ValueAnimator valueAnimator) {
+            previewGroupsView.getClass();
+            previewGroupsView.draggingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            previewGroupsView.invalidate();
         }
 
         void startDragging(PreviewGroupCell.MediaCell mediaCell) {
@@ -1487,16 +1492,17 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$startDragging$1(valueAnimator);
+                    ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.m2188$r8$lambda$Nj5B9IguX1XoP5OIQrsk_MUJbE(this.f$0, valueAnimator);
                 }
             });
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.setDuration(200L);
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.start();
         }
 
-        public void lambda$startDragging$1(ValueAnimator valueAnimator) {
-            this.draggingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+        public static void m2188$r8$lambda$Nj5B9IguX1XoP5OIQrsk_MUJbE(PreviewGroupsView previewGroupsView, ValueAnimator valueAnimator) {
+            previewGroupsView.getClass();
+            previewGroupsView.draggingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            previewGroupsView.invalidate();
         }
 
         class GroupingPhotoViewerProvider extends PhotoViewer.EmptyPhotoViewerProvider {
@@ -1676,8 +1682,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         public boolean onTouchEvent(MotionEvent motionEvent) {
             PreviewGroupCell previewGroupCell;
             PreviewGroupCell.MediaCell mediaCell;
-            PreviewGroupCell.MediaCell mediaCell2;
+            float f;
             PreviewGroupCell previewGroupCell2;
+            PreviewGroupCell.MediaCell mediaCell2;
+            int action;
             int i;
             int i2;
             boolean z;
@@ -1690,12 +1698,13 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             int size;
             int i4;
             PreviewGroupCell.MediaCell mediaCell4;
-            float f;
+            PreviewGroupCell.MediaCell mediaCell5;
             float x = motionEvent.getX();
             float y = motionEvent.getY();
             int size2 = this.groupCells.size();
-            int i5 = 0;
             float f2 = 0.0f;
+            int i5 = 0;
+            float f3 = 0.0f;
             while (true) {
                 if (i5 >= size2) {
                     previewGroupCell = null;
@@ -1703,10 +1712,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
                 previewGroupCell = (PreviewGroupCell) this.groupCells.get(i5);
                 float fMeasure = previewGroupCell.measure();
-                if (y >= f2 && y <= f2 + fMeasure) {
+                if (y >= f3 && y <= f3 + fMeasure) {
                     break;
                 }
-                f2 += fMeasure;
+                f3 += fMeasure;
                 i5++;
             }
             if (previewGroupCell == null) {
@@ -1718,7 +1727,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             while (true) {
                 if (i6 < size3) {
                     mediaCell = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i6);
-                    if (mediaCell != null && mediaCell.drawingRect().contains(x, y - f2)) {
+                    if (mediaCell != null && mediaCell.drawingRect().contains(x, y - f3)) {
                         break;
                     }
                     i6++;
@@ -1727,421 +1736,757 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     break;
                 }
             }
-            int i7 = 4;
             if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
                 RectF rectFRect = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.rect();
                 PointF pointFDragTranslate = dragTranslate();
                 RectF rectF = new RectF();
-                float f3 = pointFDragTranslate.x;
-                float f4 = pointFDragTranslate.y;
-                rectF.set(f3 - (rectFRect.width() / 2.0f), f4 - (rectFRect.height() / 2.0f), f3 + (rectFRect.width() / 2.0f), f4 + (rectFRect.height() / 2.0f));
-                int i8 = 0;
+                float f4 = pointFDragTranslate.x;
+                float f5 = pointFDragTranslate.y;
+                rectF.set(f4 - (rectFRect.width() / 2.0f), f5 - (rectFRect.height() / 2.0f), f4 + (rectFRect.width() / 2.0f), f5 + (rectFRect.height() / 2.0f));
+                int i7 = 0;
                 previewGroupCell2 = null;
-                float f5 = 0.0f;
                 float f6 = 0.0f;
-                while (i8 < size2) {
-                    PreviewGroupCell previewGroupCell3 = (PreviewGroupCell) this.groupCells.get(i8);
-                    float fMeasure2 = f5 + previewGroupCell3.measure();
+                float f7 = 0.0f;
+                while (i7 < size2) {
+                    PreviewGroupCell previewGroupCell3 = (PreviewGroupCell) this.groupCells.get(i7);
+                    float fMeasure2 = f6 + previewGroupCell3.measure();
                     if (fMeasure2 >= rectF.top) {
-                        float f7 = rectF.bottom;
-                        if (f7 >= f5) {
-                            float fMin = Math.min(fMeasure2, f7) - Math.max(f5, rectF.top);
-                            if (fMin > f6) {
-                                f6 = fMin;
+                        float f8 = rectF.bottom;
+                        if (f8 >= f6) {
+                            float fMin = Math.min(fMeasure2, f8) - Math.max(f6, rectF.top);
+                            if (fMin > f7) {
+                                f7 = fMin;
                                 previewGroupCell2 = previewGroupCell3;
                             }
                         }
                     }
-                    i8++;
-                    f5 = fMeasure2;
+                    i7++;
+                    f6 = fMeasure2;
                 }
                 if (previewGroupCell2 != null) {
                     int size4 = previewGroupCell2.media.size();
-                    int i9 = 0;
+                    int i8 = 0;
                     mediaCell2 = null;
-                    float f8 = 0.0f;
-                    while (i9 < size4) {
-                        PreviewGroupCell.MediaCell mediaCell5 = (PreviewGroupCell.MediaCell) previewGroupCell2.media.get(i9);
-                        if (mediaCell5 != null && mediaCell5 != ChatAttachAlertPhotoLayoutPreview.this.draggingCell && previewGroupCell2.group.photos.contains(mediaCell5.photoEntry)) {
-                            RectF rectFDrawingRect = mediaCell5.drawingRect();
-                            if ((mediaCell5.positionFlags & i7) > 0) {
-                                f = 0.0f;
-                                rectFDrawingRect.top = 0.0f;
-                            } else {
-                                f = 0.0f;
+                    float f9 = 0.0f;
+                    while (i8 < size4) {
+                        PreviewGroupCell.MediaCell mediaCell6 = (PreviewGroupCell.MediaCell) previewGroupCell2.media.get(i8);
+                        if (mediaCell6 != null && mediaCell6 != ChatAttachAlertPhotoLayoutPreview.this.draggingCell && previewGroupCell2.group.photos.contains(mediaCell6.photoEntry)) {
+                            RectF rectFDrawingRect = mediaCell6.drawingRect();
+                            if ((mediaCell6.positionFlags & 4) > 0) {
+                                rectFDrawingRect.top = f2;
                             }
-                            if ((mediaCell5.positionFlags & 1) > 0) {
-                                rectFDrawingRect.left = f;
+                            if ((mediaCell6.positionFlags & 1) > 0) {
+                                rectFDrawingRect.left = f2;
                             }
-                            if ((mediaCell5.positionFlags & 2) > 0) {
+                            if ((mediaCell6.positionFlags & 2) > 0) {
                                 rectFDrawingRect.right = getWidth();
                             }
-                            if ((mediaCell5.positionFlags & 8) > 0) {
+                            if ((mediaCell6.positionFlags & 8) > 0) {
                                 rectFDrawingRect.bottom = previewGroupCell2.height;
                             }
                             if (RectF.intersects(rectF, rectFDrawingRect)) {
                                 float fMin2 = ((Math.min(rectFDrawingRect.right, rectF.right) - Math.max(rectFDrawingRect.left, rectF.left)) * (Math.min(rectFDrawingRect.bottom, rectF.bottom) - Math.max(rectFDrawingRect.top, rectF.top))) / (rectF.width() * rectF.height());
-                                if (fMin2 > 0.15f && fMin2 > f8) {
-                                    mediaCell2 = mediaCell5;
-                                    f8 = fMin2;
+                                if (fMin2 > 0.15f && fMin2 > f9) {
+                                    mediaCell2 = mediaCell6;
+                                    f9 = fMin2;
                                 }
                             }
                         }
-                        i9++;
-                        i7 = 4;
+                        i8++;
+                        f2 = 0.0f;
+                    }
+                    f = 0.0f;
+                } else {
+                    f = 0.0f;
+                }
+                action = motionEvent.getAction();
+                if (action == 0 || ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
+                    if (action == 2 || ChatAttachAlertPhotoLayoutPreview.this.draggingCell == null || ChatAttachAlertPhotoLayoutPreview.this.draggingCellHiding) {
+                        i = 1;
+                        if (action != 1) {
+                            if (action == i || ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null || (mediaCell3 = this.tapMediaCell) == null || this.tapGroupCell == null) {
+                                i2 = 1;
+                                z = false;
+                            } else {
+                                if (!mediaCell3.wasSpoiler || mediaCell3.spoilerRevealProgress != f) {
+                                    RectF rectFDrawingRect2 = this.tapMediaCell.drawingRect();
+                                    RectF rectF2 = AndroidUtilities.rectTmp;
+                                    rectF2.set(rectFDrawingRect2.right - AndroidUtilities.dp(36.4f), this.tapGroupCell.top + rectFDrawingRect2.top, rectFDrawingRect2.right, this.tapGroupCell.top + rectFDrawingRect2.top + AndroidUtilities.dp(36.4f));
+                                    if (rectF2.contains(x, y - this.tapMediaCell.groupCell.y)) {
+                                        if (ChatAttachAlertPhotoLayoutPreview.this.getSelectedItemsCount() > 1) {
+                                            final MediaController.PhotoEntry photoEntry = this.tapMediaCell.photoEntry;
+                                            final int iIndexOf3 = this.tapGroupCell.group.photos.indexOf(photoEntry);
+                                            if (iIndexOf3 >= 0) {
+                                                saveDeletedImageId(photoEntry);
+                                                final PreviewGroupCell previewGroupCell4 = this.tapGroupCell;
+                                                previewGroupCell4.group.photos.remove(iIndexOf3);
+                                                previewGroupCell4.setGroup(previewGroupCell4.group, true);
+                                                updateGroups();
+                                                toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+                                                final int i9 = this.undoViewId + 1;
+                                                this.undoViewId = i9;
+                                                ChatAttachAlertPhotoLayoutPreview.this.undoView.showWithAction(0L, 82, photoEntry, null, new Runnable() {
+                                                    @Override
+                                                    public final void run() {
+                                                        ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.$r8$lambda$g5hAEvblIRfBqrzeNY1sWy3_xc8(this.f$0, previewGroupCell4, photoEntry, iIndexOf3);
+                                                    }
+                                                });
+                                                postDelayed(new Runnable() {
+                                                    @Override
+                                                    public final void run() {
+                                                        ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.$r8$lambda$c7pGCRpTzDlczhScXtLh0bijKfc(this.f$0, i9);
+                                                    }
+                                                }, 4000L);
+                                            }
+                                            if (ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator != null) {
+                                                ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.cancel();
+                                            }
+                                        }
+                                    } else {
+                                        calcPhotoArrays();
+                                        ArrayList photos = getPhotos();
+                                        int iIndexOf4 = photos.indexOf(this.tapMediaCell.photoEntry);
+                                        ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayoutPreview.this.parentAlert;
+                                        if (chatAttachAlert.avatarPicker != 0) {
+                                            i3 = 1;
+                                        } else {
+                                            BaseFragment baseFragment = chatAttachAlert.baseFragment;
+                                            if (baseFragment instanceof ChatActivity) {
+                                                chatActivity = (ChatActivity) baseFragment;
+                                                i3 = 0;
+                                            } else {
+                                                i3 = 4;
+                                            }
+                                            lastFragment = chatAttachAlert.baseFragment;
+                                            if (lastFragment == null) {
+                                                lastFragment = LaunchActivity.getLastFragment();
+                                            }
+                                            if (!ChatAttachAlertPhotoLayoutPreview.this.parentAlert.delegate.needEnterComment()) {
+                                                AndroidUtilities.hideKeyboard(lastFragment.getFragmentView().findFocus());
+                                                AndroidUtilities.hideKeyboard(ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getContainer().findFocus());
+                                            }
+                                            PhotoViewer.getInstance().setParentActivity(lastFragment, ChatAttachAlertPhotoLayoutPreview.this.resourcesProvider);
+                                            PhotoViewer.getInstance().setParentAlert(ChatAttachAlertPhotoLayoutPreview.this.parentAlert);
+                                            PhotoViewer photoViewer = PhotoViewer.getInstance();
+                                            ChatAttachAlert chatAttachAlert2 = ChatAttachAlertPhotoLayoutPreview.this.parentAlert;
+                                            photoViewer.setMaxSelectedPhotos(chatAttachAlert2.maxSelectedPhotos, chatAttachAlert2.allowOrder);
+                                            this.photoViewerProvider.init(photos);
+                                            PhotoViewer.getInstance().openPhotoForSelect(new ArrayList(photos), iIndexOf4, i3, false, this.photoViewerProvider, chatActivity);
+                                            if (ChatAttachAlertPhotoLayoutPreview.this.photoLayout.captionForAllMedia()) {
+                                                PhotoViewer.getInstance().setCaption(ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getCommentView().getText());
+                                            }
+                                        }
+                                        chatActivity = null;
+                                        lastFragment = chatAttachAlert.baseFragment;
+                                        if (lastFragment == null) {
+                                            lastFragment = LaunchActivity.getLastFragment();
+                                        }
+                                        if (!ChatAttachAlertPhotoLayoutPreview.this.parentAlert.delegate.needEnterComment()) {
+                                            AndroidUtilities.hideKeyboard(lastFragment.getFragmentView().findFocus());
+                                            AndroidUtilities.hideKeyboard(ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getContainer().findFocus());
+                                        }
+                                        PhotoViewer.getInstance().setParentActivity(lastFragment, ChatAttachAlertPhotoLayoutPreview.this.resourcesProvider);
+                                        PhotoViewer.getInstance().setParentAlert(ChatAttachAlertPhotoLayoutPreview.this.parentAlert);
+                                        PhotoViewer photoViewer2 = PhotoViewer.getInstance();
+                                        ChatAttachAlert chatAttachAlert3 = ChatAttachAlertPhotoLayoutPreview.this.parentAlert;
+                                        photoViewer2.setMaxSelectedPhotos(chatAttachAlert3.maxSelectedPhotos, chatAttachAlert3.allowOrder);
+                                        this.photoViewerProvider.init(photos);
+                                        PhotoViewer.getInstance().openPhotoForSelect(new ArrayList(photos), iIndexOf4, i3, false, this.photoViewerProvider, chatActivity);
+                                        if (ChatAttachAlertPhotoLayoutPreview.this.photoLayout.captionForAllMedia()) {
+                                            PhotoViewer.getInstance().setCaption(ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getCommentView().getText());
+                                        }
+                                    }
+                                    this.tapMediaCell = null;
+                                    this.tapTime = 0L;
+                                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell = null;
+                                    this.draggingT = 0.0f;
+                                } else {
+                                    this.tapMediaCell.startRevealMedia(motionEvent.getX(), motionEvent.getY());
+                                }
+                                i2 = 1;
+                                z = true;
+                            }
+                        } else {
+                            if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
+                                if (previewGroupCell != null || mediaCell == null || mediaCell == ChatAttachAlertPhotoLayoutPreview.this.draggingCell) {
+                                    if (previewGroupCell2 != null || mediaCell2 == null || mediaCell2 == ChatAttachAlertPhotoLayoutPreview.this.draggingCell || mediaCell2.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
+                                        previewGroupCell = null;
+                                        mediaCell = null;
+                                    } else {
+                                        previewGroupCell = previewGroupCell2;
+                                        mediaCell = mediaCell2;
+                                    }
+                                }
+                                if (previewGroupCell != null && mediaCell != null && mediaCell != ChatAttachAlertPhotoLayoutPreview.this.draggingCell) {
+                                    iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
+                                    iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
+                                    if (iIndexOf >= 0) {
+                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
+                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
+                                    }
+                                    if (iIndexOf2 >= 0) {
+                                        if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
+                                            iIndexOf2++;
+                                        }
+                                        pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
+                                        if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
+                                            size = previewGroupCell.media.size();
+                                            i4 = 0;
+                                            while (true) {
+                                                if (i4 >= size) {
+                                                    mediaCell4 = null;
+                                                    break;
+                                                }
+                                                mediaCell5 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
+                                                if (mediaCell5.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
+                                                    mediaCell4 = mediaCell5;
+                                                    break;
+                                                }
+                                                i4++;
+                                            }
+                                            if (mediaCell4 != null) {
+                                                remeasure();
+                                                mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
+                                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
+                                                mediaCell4.groupCell = previewGroupCell;
+                                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
+                                                mediaCell4.scale = 1.0f;
+                                                remeasure();
+                                            }
+                                        }
+                                    }
+                                    try {
+                                        ChatAttachAlertPhotoLayoutPreview.this.performHapticFeedback(7, 2);
+                                    } catch (Exception unused) {
+                                    }
+                                    updateGroups();
+                                    toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+                                }
+                                stopDragging();
+                            } else {
+                                i = 1;
+                                if (action == i) {
+                                }
+                                i2 = 1;
+                                z = false;
+                            }
+                            i2 = 1;
+                            z = true;
+                        }
+                    } else {
+                        ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchX = x;
+                        ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY = y;
+                        z = true;
+                        if (!this.scrollerStarted) {
+                            this.scrollerStarted = true;
+                            postDelayed(this.scroller, 16L);
+                        }
+                        invalidate();
+                        i2 = 1;
                     }
                 } else {
-                    mediaCell2 = null;
-                }
-            } else {
-                mediaCell2 = null;
-                previewGroupCell2 = null;
-            }
-            int action = motionEvent.getAction();
-            if (action != 0 || ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
-                if (action == 2 || ChatAttachAlertPhotoLayoutPreview.this.draggingCell == null || ChatAttachAlertPhotoLayoutPreview.this.draggingCellHiding) {
-                    i = 1;
-                    if (action != 1) {
-                        if (action == i || ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null || (mediaCell3 = this.tapMediaCell) == null || this.tapGroupCell == null) {
+                    ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview = ChatAttachAlertPhotoLayoutPreview.this;
+                    if (!chatAttachAlertPhotoLayoutPreview.listView.scrollingByUser && ((chatAttachAlertPhotoLayoutPreview.draggingAnimator == null || !ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.isRunning()) && previewGroupCell != null && mediaCell != null && previewGroupCell.group != null && previewGroupCell.group.photos.contains(mediaCell.photoEntry))) {
+                        this.tapGroupCell = previewGroupCell;
+                        this.tapMediaCell = mediaCell;
+                        ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchX = x;
+                        ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY = y;
+                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell = null;
+                        final long jElapsedRealtime = SystemClock.elapsedRealtime();
+                        this.tapTime = jElapsedRealtime;
+                        final PreviewGroupCell.MediaCell mediaCell7 = this.tapMediaCell;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.$r8$lambda$jkv7Pm0k0kp3it_Ta57rqKXTPfA(this.f$0, jElapsedRealtime, mediaCell7);
+                            }
+                        }, ViewConfiguration.getLongPressTimeout());
+                        invalidate();
+                    } else if (action == 2) {
+                        i = 1;
+                        if (action != 1) {
+                            if (action == i) {
+                            }
                             i2 = 1;
                             z = false;
-                        } else if (!mediaCell3.wasSpoiler || mediaCell3.spoilerRevealProgress != 0.0f) {
-                            RectF rectFDrawingRect2 = this.tapMediaCell.drawingRect();
-                            RectF rectF2 = AndroidUtilities.rectTmp;
-                            rectF2.set(rectFDrawingRect2.right - AndroidUtilities.dp(36.4f), this.tapGroupCell.top + rectFDrawingRect2.top, rectFDrawingRect2.right, this.tapGroupCell.top + rectFDrawingRect2.top + AndroidUtilities.dp(36.4f));
-                            if (rectF2.contains(x, y - this.tapMediaCell.groupCell.y)) {
-                                if (ChatAttachAlertPhotoLayoutPreview.this.getSelectedItemsCount() > 1) {
-                                    final MediaController.PhotoEntry photoEntry = this.tapMediaCell.photoEntry;
-                                    final int iIndexOf3 = this.tapGroupCell.group.photos.indexOf(photoEntry);
-                                    if (iIndexOf3 >= 0) {
-                                        saveDeletedImageId(photoEntry);
-                                        final PreviewGroupCell previewGroupCell4 = this.tapGroupCell;
-                                        previewGroupCell4.group.photos.remove(iIndexOf3);
-                                        previewGroupCell4.setGroup(previewGroupCell4.group, true);
-                                        updateGroups();
-                                        toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
-                                        final int i10 = this.undoViewId + 1;
-                                        this.undoViewId = i10;
-                                        ChatAttachAlertPhotoLayoutPreview.this.undoView.showWithAction(0L, 82, photoEntry, null, new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                this.f$0.lambda$onTouchEvent$3(previewGroupCell4, photoEntry, iIndexOf3);
-                                            }
-                                        });
-                                        postDelayed(new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                this.f$0.lambda$onTouchEvent$4(i10);
-                                            }
-                                        }, 4000L);
-                                    }
-                                    if (ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator != null) {
-                                        ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.cancel();
-                                    }
-                                }
-                            } else {
-                                calcPhotoArrays();
-                                ArrayList photos = getPhotos();
-                                int iIndexOf4 = photos.indexOf(this.tapMediaCell.photoEntry);
-                                ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayoutPreview.this.parentAlert;
-                                if (chatAttachAlert.avatarPicker != 0) {
-                                    i3 = 1;
+                        } else if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
+                            if (previewGroupCell != null) {
+                                if (previewGroupCell2 != null) {
+                                    previewGroupCell = null;
+                                    mediaCell = null;
                                 } else {
-                                    BaseFragment baseFragment = chatAttachAlert.baseFragment;
-                                    if (baseFragment instanceof ChatActivity) {
-                                        chatActivity = (ChatActivity) baseFragment;
-                                        i3 = 0;
-                                    } else {
-                                        i3 = 4;
-                                    }
-                                    lastFragment = chatAttachAlert.baseFragment;
-                                    if (lastFragment == null) {
-                                        lastFragment = LaunchActivity.getLastFragment();
-                                    }
-                                    if (!ChatAttachAlertPhotoLayoutPreview.this.parentAlert.delegate.needEnterComment()) {
-                                        AndroidUtilities.hideKeyboard(lastFragment.getFragmentView().findFocus());
-                                        AndroidUtilities.hideKeyboard(ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getContainer().findFocus());
-                                    }
-                                    PhotoViewer.getInstance().setParentActivity(lastFragment, ChatAttachAlertPhotoLayoutPreview.this.resourcesProvider);
-                                    PhotoViewer.getInstance().setParentAlert(ChatAttachAlertPhotoLayoutPreview.this.parentAlert);
-                                    PhotoViewer photoViewer = PhotoViewer.getInstance();
-                                    ChatAttachAlert chatAttachAlert2 = ChatAttachAlertPhotoLayoutPreview.this.parentAlert;
-                                    photoViewer.setMaxSelectedPhotos(chatAttachAlert2.maxSelectedPhotos, chatAttachAlert2.allowOrder);
-                                    this.photoViewerProvider.init(photos);
-                                    PhotoViewer.getInstance().openPhotoForSelect(new ArrayList(photos), iIndexOf4, i3, false, this.photoViewerProvider, chatActivity);
-                                    if (ChatAttachAlertPhotoLayoutPreview.this.photoLayout.captionForAllMedia()) {
-                                        PhotoViewer.getInstance().setCaption(ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getCommentView().getText());
-                                    }
+                                    previewGroupCell = null;
+                                    mediaCell = null;
                                 }
-                                chatActivity = null;
-                                lastFragment = chatAttachAlert.baseFragment;
-                                if (lastFragment == null) {
-                                    lastFragment = LaunchActivity.getLastFragment();
-                                }
-                                if (!ChatAttachAlertPhotoLayoutPreview.this.parentAlert.delegate.needEnterComment()) {
-                                    AndroidUtilities.hideKeyboard(lastFragment.getFragmentView().findFocus());
-                                    AndroidUtilities.hideKeyboard(ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getContainer().findFocus());
-                                }
-                                PhotoViewer.getInstance().setParentActivity(lastFragment, ChatAttachAlertPhotoLayoutPreview.this.resourcesProvider);
-                                PhotoViewer.getInstance().setParentAlert(ChatAttachAlertPhotoLayoutPreview.this.parentAlert);
-                                PhotoViewer photoViewer2 = PhotoViewer.getInstance();
-                                ChatAttachAlert chatAttachAlert3 = ChatAttachAlertPhotoLayoutPreview.this.parentAlert;
-                                photoViewer2.setMaxSelectedPhotos(chatAttachAlert3.maxSelectedPhotos, chatAttachAlert3.allowOrder);
-                                this.photoViewerProvider.init(photos);
-                                PhotoViewer.getInstance().openPhotoForSelect(new ArrayList(photos), iIndexOf4, i3, false, this.photoViewerProvider, chatActivity);
-                                if (ChatAttachAlertPhotoLayoutPreview.this.photoLayout.captionForAllMedia()) {
-                                    PhotoViewer.getInstance().setCaption(ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getCommentView().getText());
-                                }
-                            }
-                            this.tapMediaCell = null;
-                            this.tapTime = 0L;
-                            ChatAttachAlertPhotoLayoutPreview.this.draggingCell = null;
-                            this.draggingT = 0.0f;
-                        } else {
-                            this.tapMediaCell.startRevealMedia(motionEvent.getX(), motionEvent.getY());
-                        }
-                    } else if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
-                        if (previewGroupCell != null || mediaCell == null || mediaCell == ChatAttachAlertPhotoLayoutPreview.this.draggingCell) {
-                            if (previewGroupCell2 != null || mediaCell2 == null || mediaCell2 == ChatAttachAlertPhotoLayoutPreview.this.draggingCell || mediaCell2.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
+                            } else if (previewGroupCell2 != null) {
                                 previewGroupCell = null;
                                 mediaCell = null;
                             } else {
-                                mediaCell = mediaCell2;
-                                previewGroupCell = previewGroupCell2;
+                                previewGroupCell = null;
+                                mediaCell = null;
                             }
-                        }
-                        if (previewGroupCell != null && mediaCell != null && mediaCell != ChatAttachAlertPhotoLayoutPreview.this.draggingCell) {
-                            iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
-                            iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
-                            if (iIndexOf >= 0) {
-                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
-                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
-                            }
-                            if (iIndexOf2 >= 0) {
-                                if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
-                                    iIndexOf2++;
+                            if (previewGroupCell != null) {
+                                iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
+                                iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
+                                if (iIndexOf >= 0) {
+                                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
+                                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
                                 }
-                                pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
-                                if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
-                                    size = previewGroupCell.media.size();
-                                    i4 = 0;
-                                    while (true) {
-                                        if (i4 >= size) {
-                                            mediaCell4 = null;
-                                            break;
-                                        }
-                                        mediaCell4 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
-                                        if (mediaCell4.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
-                                            break;
-                                        }
-                                        i4++;
+                                if (iIndexOf2 >= 0) {
+                                    if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
+                                        iIndexOf2++;
                                     }
-                                    if (mediaCell4 != null) {
-                                        remeasure();
-                                        mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
-                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
-                                        mediaCell4.groupCell = previewGroupCell;
-                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
-                                        mediaCell4.scale = 1.0f;
-                                        remeasure();
+                                    pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
+                                    if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
+                                        size = previewGroupCell.media.size();
+                                        i4 = 0;
+                                        while (true) {
+                                            if (i4 >= size) {
+                                                mediaCell4 = null;
+                                                break;
+                                            }
+                                            mediaCell5 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
+                                            if (mediaCell5.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
+                                                mediaCell4 = mediaCell5;
+                                                break;
+                                            }
+                                            i4++;
+                                        }
+                                        if (mediaCell4 != null) {
+                                            remeasure();
+                                            mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
+                                            ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
+                                            mediaCell4.groupCell = previewGroupCell;
+                                            ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
+                                            mediaCell4.scale = 1.0f;
+                                            remeasure();
+                                        }
                                     }
                                 }
-                            }
-                            try {
                                 ChatAttachAlertPhotoLayoutPreview.this.performHapticFeedback(7, 2);
-                            } catch (Exception unused) {
+                                updateGroups();
+                                toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
                             }
-                            updateGroups();
-                            toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+                            stopDragging();
+                        } else {
+                            i = 1;
+                            if (action == i) {
+                            }
+                            i2 = 1;
+                            z = false;
                         }
-                        stopDragging();
                     } else {
                         i = 1;
-                        if (action == i) {
-                        }
-                        i2 = 1;
-                        z = false;
-                    }
-                } else {
-                    ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchX = x;
-                    ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY = y;
-                    if (!this.scrollerStarted) {
-                        this.scrollerStarted = true;
-                        postDelayed(this.scroller, 16L);
-                    }
-                    invalidate();
-                }
-                i2 = 1;
-                z = true;
-            } else {
-                ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview = ChatAttachAlertPhotoLayoutPreview.this;
-                if (!chatAttachAlertPhotoLayoutPreview.listView.scrollingByUser && ((chatAttachAlertPhotoLayoutPreview.draggingAnimator == null || !ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.isRunning()) && previewGroupCell != null && mediaCell != null && previewGroupCell.group != null && previewGroupCell.group.photos.contains(mediaCell.photoEntry))) {
-                    this.tapGroupCell = previewGroupCell;
-                    this.tapMediaCell = mediaCell;
-                    ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchX = x;
-                    ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY = y;
-                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell = null;
-                    final long jElapsedRealtime = SystemClock.elapsedRealtime();
-                    this.tapTime = jElapsedRealtime;
-                    final PreviewGroupCell.MediaCell mediaCell6 = this.tapMediaCell;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$onTouchEvent$2(jElapsedRealtime, mediaCell6);
-                        }
-                    }, ViewConfiguration.getLongPressTimeout());
-                    invalidate();
-                } else if (action == 2) {
-                    i = 1;
-                    if (action != 1) {
-                        if (action == i) {
-                        }
-                        i2 = 1;
-                        z = false;
-                    } else if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
-                        if (previewGroupCell != null) {
-                            if (previewGroupCell2 != null) {
+                        if (action != 1) {
+                            if (action == i) {
+                            }
+                            i2 = 1;
+                            z = false;
+                        } else if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
+                            if (previewGroupCell != null) {
+                                if (previewGroupCell2 != null) {
+                                    previewGroupCell = null;
+                                    mediaCell = null;
+                                } else {
+                                    previewGroupCell = null;
+                                    mediaCell = null;
+                                }
+                            } else if (previewGroupCell2 != null) {
                                 previewGroupCell = null;
                                 mediaCell = null;
                             } else {
                                 previewGroupCell = null;
                                 mediaCell = null;
                             }
-                        } else if (previewGroupCell2 != null) {
-                            previewGroupCell = null;
-                            mediaCell = null;
+                            if (previewGroupCell != null) {
+                                iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
+                                iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
+                                if (iIndexOf >= 0) {
+                                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
+                                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
+                                }
+                                if (iIndexOf2 >= 0) {
+                                    if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
+                                        iIndexOf2++;
+                                    }
+                                    pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
+                                    if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
+                                        size = previewGroupCell.media.size();
+                                        i4 = 0;
+                                        while (true) {
+                                            if (i4 >= size) {
+                                                mediaCell4 = null;
+                                                break;
+                                            }
+                                            mediaCell5 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
+                                            if (mediaCell5.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
+                                                mediaCell4 = mediaCell5;
+                                                break;
+                                            }
+                                            i4++;
+                                        }
+                                        if (mediaCell4 != null) {
+                                            remeasure();
+                                            mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
+                                            ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
+                                            mediaCell4.groupCell = previewGroupCell;
+                                            ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
+                                            mediaCell4.scale = 1.0f;
+                                            remeasure();
+                                        }
+                                    }
+                                }
+                                ChatAttachAlertPhotoLayoutPreview.this.performHapticFeedback(7, 2);
+                                updateGroups();
+                                toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+                            }
+                            stopDragging();
                         } else {
-                            previewGroupCell = null;
-                            mediaCell = null;
-                        }
-                        if (previewGroupCell != null) {
-                            iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
-                            iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
-                            if (iIndexOf >= 0) {
-                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
-                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
+                            i = 1;
+                            if (action == i) {
                             }
-                            if (iIndexOf2 >= 0) {
-                                if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
-                                    iIndexOf2++;
-                                }
-                                pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
-                                if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
-                                    size = previewGroupCell.media.size();
-                                    i4 = 0;
-                                    while (true) {
-                                        if (i4 >= size) {
-                                            mediaCell4 = null;
-                                            break;
-                                        }
-                                        mediaCell4 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
-                                        if (mediaCell4.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
-                                            break;
-                                            break;
-                                        }
-                                        i4++;
-                                    }
-                                    if (mediaCell4 != null) {
-                                        remeasure();
-                                        mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
-                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
-                                        mediaCell4.groupCell = previewGroupCell;
-                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
-                                        mediaCell4.scale = 1.0f;
-                                        remeasure();
-                                    }
-                                }
-                            }
-                            ChatAttachAlertPhotoLayoutPreview.this.performHapticFeedback(7, 2);
-                            updateGroups();
-                            toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+                            i2 = 1;
+                            z = false;
                         }
-                        stopDragging();
-                    } else {
-                        i = 1;
-                        if (action == i) {
-                        }
-                        i2 = 1;
-                        z = false;
                     }
-                } else {
-                    i = 1;
-                    if (action != 1) {
-                        if (action == i) {
-                        }
-                        i2 = 1;
-                        z = false;
-                    } else if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
-                        if (previewGroupCell != null) {
-                            if (previewGroupCell2 != null) {
-                                previewGroupCell = null;
-                                mediaCell = null;
-                            } else {
-                                previewGroupCell = null;
-                                mediaCell = null;
-                            }
-                        } else if (previewGroupCell2 != null) {
-                            previewGroupCell = null;
-                            mediaCell = null;
-                        } else {
-                            previewGroupCell = null;
-                            mediaCell = null;
-                        }
-                        if (previewGroupCell != null) {
-                            iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
-                            iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
-                            if (iIndexOf >= 0) {
-                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
-                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
-                            }
-                            if (iIndexOf2 >= 0) {
-                                if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
-                                    iIndexOf2++;
-                                }
-                                pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
-                                if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
-                                    size = previewGroupCell.media.size();
-                                    i4 = 0;
-                                    while (true) {
-                                        if (i4 >= size) {
-                                            mediaCell4 = null;
-                                            break;
-                                        }
-                                        mediaCell4 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
-                                        if (mediaCell4.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
-                                            break;
-                                            break;
-                                        }
-                                        i4++;
-                                    }
-                                    if (mediaCell4 != null) {
-                                        remeasure();
-                                        mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
-                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
-                                        mediaCell4.groupCell = previewGroupCell;
-                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
-                                        mediaCell4.scale = 1.0f;
-                                        remeasure();
-                                    }
-                                }
-                            }
-                            ChatAttachAlertPhotoLayoutPreview.this.performHapticFeedback(7, 2);
-                            updateGroups();
-                            toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
-                        }
+                    i2 = 1;
+                    z = true;
+                }
+                if (action != i2 || action == 3) {
+                    this.tapTime = 0L;
+                    removeCallbacks(this.scroller);
+                    this.scrollerStarted = false;
+                    if (!z) {
                         stopDragging();
-                    } else {
-                        i = 1;
-                        if (action == i) {
-                        }
-                        i2 = 1;
-                        z = false;
+                        return true;
                     }
                 }
-                i2 = 1;
-                z = true;
+                return z;
             }
-            if (action == i2 || action == 3) {
+            f = 0.0f;
+            previewGroupCell2 = null;
+            mediaCell2 = null;
+            action = motionEvent.getAction();
+            if (action == 0) {
+                if (action == 2) {
+                    i = 1;
+                    if (action != 1) {
+                        if (action == i) {
+                        }
+                        i2 = 1;
+                        z = false;
+                    } else {
+                        if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
+                            if (previewGroupCell != null) {
+                                if (previewGroupCell2 != null) {
+                                    previewGroupCell = null;
+                                    mediaCell = null;
+                                } else {
+                                    previewGroupCell = null;
+                                    mediaCell = null;
+                                }
+                            } else if (previewGroupCell2 != null) {
+                                previewGroupCell = null;
+                                mediaCell = null;
+                            } else {
+                                previewGroupCell = null;
+                                mediaCell = null;
+                            }
+                            if (previewGroupCell != null) {
+                                iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
+                                iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
+                                if (iIndexOf >= 0) {
+                                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
+                                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
+                                }
+                                if (iIndexOf2 >= 0) {
+                                    if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
+                                        iIndexOf2++;
+                                    }
+                                    pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
+                                    if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
+                                        size = previewGroupCell.media.size();
+                                        i4 = 0;
+                                        while (true) {
+                                            if (i4 >= size) {
+                                                mediaCell4 = null;
+                                                break;
+                                            }
+                                            mediaCell5 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
+                                            if (mediaCell5.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
+                                                mediaCell4 = mediaCell5;
+                                                break;
+                                            }
+                                            i4++;
+                                        }
+                                        if (mediaCell4 != null) {
+                                            remeasure();
+                                            mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
+                                            ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
+                                            mediaCell4.groupCell = previewGroupCell;
+                                            ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
+                                            mediaCell4.scale = 1.0f;
+                                            remeasure();
+                                        }
+                                    }
+                                }
+                                ChatAttachAlertPhotoLayoutPreview.this.performHapticFeedback(7, 2);
+                                updateGroups();
+                                toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+                            }
+                            stopDragging();
+                        } else {
+                            i = 1;
+                            if (action == i) {
+                            }
+                            i2 = 1;
+                            z = false;
+                        }
+                        i2 = 1;
+                        z = true;
+                    }
+                } else {
+                    i = 1;
+                    if (action != 1) {
+                        if (action == i) {
+                        }
+                        i2 = 1;
+                        z = false;
+                    } else {
+                        if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
+                            if (previewGroupCell != null) {
+                                if (previewGroupCell2 != null) {
+                                    previewGroupCell = null;
+                                    mediaCell = null;
+                                } else {
+                                    previewGroupCell = null;
+                                    mediaCell = null;
+                                }
+                            } else if (previewGroupCell2 != null) {
+                                previewGroupCell = null;
+                                mediaCell = null;
+                            } else {
+                                previewGroupCell = null;
+                                mediaCell = null;
+                            }
+                            if (previewGroupCell != null) {
+                                iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
+                                iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
+                                if (iIndexOf >= 0) {
+                                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
+                                    ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
+                                }
+                                if (iIndexOf2 >= 0) {
+                                    if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
+                                        iIndexOf2++;
+                                    }
+                                    pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
+                                    if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
+                                        size = previewGroupCell.media.size();
+                                        i4 = 0;
+                                        while (true) {
+                                            if (i4 >= size) {
+                                                mediaCell4 = null;
+                                                break;
+                                            }
+                                            mediaCell5 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
+                                            if (mediaCell5.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
+                                                mediaCell4 = mediaCell5;
+                                                break;
+                                            }
+                                            i4++;
+                                        }
+                                        if (mediaCell4 != null) {
+                                            remeasure();
+                                            mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
+                                            ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
+                                            mediaCell4.groupCell = previewGroupCell;
+                                            ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
+                                            mediaCell4.scale = 1.0f;
+                                            remeasure();
+                                        }
+                                    }
+                                }
+                                ChatAttachAlertPhotoLayoutPreview.this.performHapticFeedback(7, 2);
+                                updateGroups();
+                                toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+                            }
+                            stopDragging();
+                        } else {
+                            i = 1;
+                            if (action == i) {
+                            }
+                            i2 = 1;
+                            z = false;
+                        }
+                        i2 = 1;
+                        z = true;
+                    }
+                }
+            } else if (action == 2) {
+                i = 1;
+                if (action != 1) {
+                    if (action == i) {
+                    }
+                    i2 = 1;
+                    z = false;
+                } else {
+                    if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
+                        if (previewGroupCell != null) {
+                            if (previewGroupCell2 != null) {
+                                previewGroupCell = null;
+                                mediaCell = null;
+                            } else {
+                                previewGroupCell = null;
+                                mediaCell = null;
+                            }
+                        } else if (previewGroupCell2 != null) {
+                            previewGroupCell = null;
+                            mediaCell = null;
+                        } else {
+                            previewGroupCell = null;
+                            mediaCell = null;
+                        }
+                        if (previewGroupCell != null) {
+                            iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
+                            iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
+                            if (iIndexOf >= 0) {
+                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
+                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
+                            }
+                            if (iIndexOf2 >= 0) {
+                                if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
+                                    iIndexOf2++;
+                                }
+                                pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
+                                if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
+                                    size = previewGroupCell.media.size();
+                                    i4 = 0;
+                                    while (true) {
+                                        if (i4 >= size) {
+                                            mediaCell4 = null;
+                                            break;
+                                        }
+                                        mediaCell5 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
+                                        if (mediaCell5.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
+                                            mediaCell4 = mediaCell5;
+                                            break;
+                                        }
+                                        i4++;
+                                    }
+                                    if (mediaCell4 != null) {
+                                        remeasure();
+                                        mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
+                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
+                                        mediaCell4.groupCell = previewGroupCell;
+                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
+                                        mediaCell4.scale = 1.0f;
+                                        remeasure();
+                                    }
+                                }
+                            }
+                            ChatAttachAlertPhotoLayoutPreview.this.performHapticFeedback(7, 2);
+                            updateGroups();
+                            toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+                        }
+                        stopDragging();
+                    } else {
+                        i = 1;
+                        if (action == i) {
+                        }
+                        i2 = 1;
+                        z = false;
+                    }
+                    i2 = 1;
+                    z = true;
+                }
+            } else {
+                i = 1;
+                if (action != 1) {
+                    if (action == i) {
+                    }
+                    i2 = 1;
+                    z = false;
+                } else {
+                    if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
+                        if (previewGroupCell != null) {
+                            if (previewGroupCell2 != null) {
+                                previewGroupCell = null;
+                                mediaCell = null;
+                            } else {
+                                previewGroupCell = null;
+                                mediaCell = null;
+                            }
+                        } else if (previewGroupCell2 != null) {
+                            previewGroupCell = null;
+                            mediaCell = null;
+                        } else {
+                            previewGroupCell = null;
+                            mediaCell = null;
+                        }
+                        if (previewGroupCell != null) {
+                            iIndexOf = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry);
+                            iIndexOf2 = previewGroupCell.group.photos.indexOf(mediaCell.photoEntry);
+                            if (iIndexOf >= 0) {
+                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group.photos.remove(iIndexOf);
+                                ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.setGroup(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.group, true);
+                            }
+                            if (iIndexOf2 >= 0) {
+                                if (this.groupCells.indexOf(previewGroupCell) > this.groupCells.indexOf(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell)) {
+                                    iIndexOf2++;
+                                }
+                                pushToGroup(previewGroupCell, ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry, iIndexOf2);
+                                if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell != previewGroupCell) {
+                                    size = previewGroupCell.media.size();
+                                    i4 = 0;
+                                    while (true) {
+                                        if (i4 >= size) {
+                                            mediaCell4 = null;
+                                            break;
+                                        }
+                                        mediaCell5 = (PreviewGroupCell.MediaCell) previewGroupCell.media.get(i4);
+                                        if (mediaCell5.photoEntry == ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry) {
+                                            mediaCell4 = mediaCell5;
+                                            break;
+                                        }
+                                        i4++;
+                                    }
+                                    if (mediaCell4 != null) {
+                                        remeasure();
+                                        mediaCell4.layoutFrom(ChatAttachAlertPhotoLayoutPreview.this.draggingCell);
+                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell4;
+                                        mediaCell4.groupCell = previewGroupCell;
+                                        ChatAttachAlertPhotoLayoutPreview.this.draggingCell.fromScale = 1.0f;
+                                        mediaCell4.scale = 1.0f;
+                                        remeasure();
+                                    }
+                                }
+                            }
+                            ChatAttachAlertPhotoLayoutPreview.this.performHapticFeedback(7, 2);
+                            updateGroups();
+                            toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+                        }
+                        stopDragging();
+                    } else {
+                        i = 1;
+                        if (action == i) {
+                        }
+                        i2 = 1;
+                        z = false;
+                    }
+                    i2 = 1;
+                    z = true;
+                }
+            }
+            if (action != i2) {
+                this.tapTime = 0L;
+                removeCallbacks(this.scroller);
+                this.scrollerStarted = false;
+                if (!z) {
+                    stopDragging();
+                    return true;
+                }
+            } else {
                 this.tapTime = 0L;
                 removeCallbacks(this.scroller);
                 this.scrollerStarted = false;
@@ -2153,10 +2498,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             return z;
         }
 
-        public void lambda$onTouchEvent$2(long j, PreviewGroupCell.MediaCell mediaCell) {
+        public static void $r8$lambda$jkv7Pm0k0kp3it_Ta57rqKXTPfA(PreviewGroupsView previewGroupsView, long j, PreviewGroupCell.MediaCell mediaCell) {
             PreviewGroupCell.MediaCell mediaCell2;
-            if (!ChatAttachAlertPhotoLayoutPreview.this.listView.scrollingByUser && this.tapTime == j && (mediaCell2 = this.tapMediaCell) == mediaCell) {
-                startDragging(mediaCell2);
+            if (!ChatAttachAlertPhotoLayoutPreview.this.listView.scrollingByUser && previewGroupsView.tapTime == j && (mediaCell2 = previewGroupsView.tapMediaCell) == mediaCell) {
+                previewGroupsView.startDragging(mediaCell2);
                 RectF rectFRect = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.rect();
                 RectF rectFDrawingRect = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.drawingRect();
                 ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview = ChatAttachAlertPhotoLayoutPreview.this;
@@ -2172,19 +2517,19 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
         }
 
-        public void lambda$onTouchEvent$3(PreviewGroupCell previewGroupCell, MediaController.PhotoEntry photoEntry, int i) {
+        public static void $r8$lambda$g5hAEvblIRfBqrzeNY1sWy3_xc8(PreviewGroupsView previewGroupsView, PreviewGroupCell previewGroupCell, MediaController.PhotoEntry photoEntry, int i) {
             if (ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator != null) {
                 ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.cancel();
             }
             ChatAttachAlertPhotoLayoutPreview.this.draggingCell = null;
-            this.draggingT = 0.0f;
-            pushToGroup(previewGroupCell, photoEntry, i);
-            updateGroups();
-            toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+            previewGroupsView.draggingT = 0.0f;
+            previewGroupsView.pushToGroup(previewGroupCell, photoEntry, i);
+            previewGroupsView.updateGroups();
+            previewGroupsView.toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
         }
 
-        public void lambda$onTouchEvent$4(int i) {
-            if (i == this.undoViewId && ChatAttachAlertPhotoLayoutPreview.this.undoView.isShown()) {
+        public static void $r8$lambda$c7pGCRpTzDlczhScXtLh0bijKfc(PreviewGroupsView previewGroupsView, int i) {
+            if (i == previewGroupsView.undoViewId && ChatAttachAlertPhotoLayoutPreview.this.undoView.isShown()) {
                 ChatAttachAlertPhotoLayoutPreview.this.undoView.hide(true, 1);
             }
         }
@@ -2400,7 +2745,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         this.image.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                             @Override
                             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                                this.f$0.lambda$setImage$0(photoEntry, imageReceiver, z, z2, z3);
+                                ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.PreviewGroupCell.MediaCell.$r8$lambda$TbhHdsXIdMHnlz4NjRb6hg04z5c(this.f$0, photoEntry, imageReceiver, z, z2, z3);
                             }
 
                             @Override
@@ -2434,13 +2779,14 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     }
                 }
 
-                public void lambda$setImage$0(MediaController.PhotoEntry photoEntry, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                    if (z && !z2 && photoEntry != null && photoEntry.hasSpoiler && this.blurredImage.getBitmap() == null) {
-                        if (this.blurredImage.getBitmap() != null && !this.blurredImage.getBitmap().isRecycled()) {
-                            this.blurredImage.getBitmap().recycle();
-                            this.blurredImage.setImageBitmap((Bitmap) null);
+                public static void $r8$lambda$TbhHdsXIdMHnlz4NjRb6hg04z5c(MediaCell mediaCell, MediaController.PhotoEntry photoEntry, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+                    mediaCell.getClass();
+                    if (z && !z2 && photoEntry != null && photoEntry.hasSpoiler && mediaCell.blurredImage.getBitmap() == null) {
+                        if (mediaCell.blurredImage.getBitmap() != null && !mediaCell.blurredImage.getBitmap().isRecycled()) {
+                            mediaCell.blurredImage.getBitmap().recycle();
+                            mediaCell.blurredImage.setImageBitmap((Bitmap) null);
                         }
-                        this.blurredImage.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver.getBitmap()));
+                        mediaCell.blurredImage.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver.getBitmap()));
                     }
                 }
 
@@ -2704,7 +3050,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$startRevealMedia$1(valueAnimator);
+                            ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.PreviewGroupCell.MediaCell.$r8$lambda$3IZzTzLSKDvR27ES6V4JnyEWOQY(this.f$0, valueAnimator);
                         }
                     });
                     duration.addListener(new AnimatorListenerAdapter() {
@@ -2718,8 +3064,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     duration.start();
                 }
 
-                public void lambda$startRevealMedia$1(ValueAnimator valueAnimator) {
-                    this.spoilerRevealProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                public static void $r8$lambda$3IZzTzLSKDvR27ES6V4JnyEWOQY(MediaCell mediaCell, ValueAnimator valueAnimator) {
+                    mediaCell.getClass();
+                    mediaCell.spoilerRevealProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                     PreviewGroupsView.this.invalidate();
                 }
 
@@ -2732,16 +3079,25 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
 
                 public boolean draw(Canvas canvas, float f, boolean z) {
-                    Bitmap bitmap;
-                    boolean z2;
-                    String string;
                     char c;
+                    char c2;
+                    char c3;
+                    char c4;
+                    float f2;
+                    String str;
+                    Bitmap bitmap;
+                    int iIndexOf;
+                    float f3;
+                    boolean z2;
+                    float f4;
+                    float f5;
+                    char c5;
                     Path.Direction direction;
                     RectF rectF;
                     if (this.rect == null || this.image == null) {
                         return false;
                     }
-                    float f2 = ChatAttachAlertPhotoLayoutPreview.this.draggingCell == this ? PreviewGroupsView.this.draggingT : 0.0f;
+                    float f6 = ChatAttachAlertPhotoLayoutPreview.this.draggingCell == this ? PreviewGroupsView.this.draggingT : 0.0f;
                     float fLerp = AndroidUtilities.lerp(this.fromScale, this.scale, f);
                     if (fLerp <= 0.0f) {
                         return false;
@@ -2759,10 +3115,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         fLerp4 = AndroidUtilities.lerp(this.fromRoundRadiuses.right, fLerp4, f);
                         fLerp5 = AndroidUtilities.lerp(this.fromRoundRadiuses.bottom, fLerp5, f);
                     }
-                    float fLerp6 = AndroidUtilities.lerp(fLerp2, fDp, f2);
-                    float fLerp7 = AndroidUtilities.lerp(fLerp3, fDp, f2);
-                    float fLerp8 = AndroidUtilities.lerp(fLerp4, fDp, f2);
-                    float fLerp9 = AndroidUtilities.lerp(fLerp5, fDp, f2);
+                    float fLerp6 = AndroidUtilities.lerp(fLerp2, fDp, f6);
+                    float fLerp7 = AndroidUtilities.lerp(fLerp3, fDp, f6);
+                    float fLerp8 = AndroidUtilities.lerp(fLerp4, fDp, f6);
+                    float fLerp9 = AndroidUtilities.lerp(fLerp5, fDp, f6);
                     if (z) {
                         canvas.save();
                         canvas.translate(-rectFDrawingRect.centerX(), -rectFDrawingRect.centerY());
@@ -2776,37 +3132,85 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.image.setAlpha(fLerp);
                     this.image.draw(canvas);
                     MediaController.PhotoEntry photoEntry = this.photoEntry;
-                    if (photoEntry == null || !photoEntry.hasSpoiler || photoEntry.isChatPreviewSpoilerRevealed) {
-                        fLerp9 = fLerp9;
-                    } else {
-                        if (!this.wasSpoiler && this.blurredImage.getBitmap() == null && this.image.getBitmap() != null) {
-                            this.wasSpoiler = true;
-                            this.blurredImage.setImageBitmap(Utilities.stackBlurBitmapMax(this.image.getBitmap()));
-                        } else {
-                            if (!this.wasSpoiler && this.blurredImage.getBitmap() != null) {
-                                c = 1;
+                    if (photoEntry != null) {
+                        c = 6;
+                        if (photoEntry.hasSpoiler && !photoEntry.isChatPreviewSpoilerRevealed) {
+                            if (!this.wasSpoiler && this.blurredImage.getBitmap() == null && this.image.getBitmap() != null) {
                                 this.wasSpoiler = true;
+                                this.blurredImage.setImageBitmap(Utilities.stackBlurBitmapMax(this.image.getBitmap()));
+                            } else {
+                                if (!this.wasSpoiler && this.blurredImage.getBitmap() != null) {
+                                    c5 = 1;
+                                    this.wasSpoiler = true;
+                                }
+                                float[] fArr = this.radii;
+                                fArr[c5] = fLerp6;
+                                fArr[0] = fLerp6;
+                                fArr[3] = fLerp7;
+                                fArr[2] = fLerp7;
+                                fArr[5] = fLerp8;
+                                fArr[4] = fLerp8;
+                                fArr[7] = fLerp9;
+                                fArr[6] = fLerp9;
+                                canvas.save();
+                                this.path.rewind();
+                                Path path = this.path;
+                                float[] fArr2 = this.radii;
+                                c2 = 7;
+                                direction = Path.Direction.CW;
+                                path.addRoundRect(rectFDrawingRect, fArr2, direction);
+                                canvas.clipPath(this.path);
+                                if (this.spoilerRevealProgress != 0.0f) {
+                                    this.path.rewind();
+                                    c3 = 4;
+                                    c4 = 5;
+                                    this.path.addCircle(this.spoilerRevealX, this.spoilerRevealY, this.spoilerMaxRadius * this.spoilerRevealProgress, direction);
+                                    canvas.clipPath(this.path, Region.Op.DIFFERENCE);
+                                } else {
+                                    c3 = 4;
+                                    c4 = 5;
+                                }
+                                this.blurredImage.setRoundRadius(i, i2, i3, i4);
+                                this.blurredImage.setImageCoords(rectFDrawingRect.left, rectFDrawingRect.top, rectFDrawingRect.width(), rectFDrawingRect.height());
+                                this.blurredImage.setAlpha(fLerp);
+                                this.blurredImage.draw(canvas);
+                                if (this.spoilerEffect == null) {
+                                    this.spoilerEffect = SpoilerEffect2.getInstance(PreviewGroupsView.this);
+                                }
+                                SpoilerEffect2 spoilerEffect2 = this.spoilerEffect;
+                                PreviewGroupsView previewGroupsView = PreviewGroupsView.this;
+                                spoilerEffect2.draw(canvas, previewGroupsView, previewGroupsView.getWidth(), PreviewGroupsView.this.getHeight());
+                                canvas.restore();
+                                PreviewGroupsView.this.invalidate();
+                                PreviewGroupsView.this.invalidate();
                             }
-                            float[] fArr = this.radii;
-                            fArr[c] = fLerp6;
-                            fArr[0] = fLerp6;
-                            fArr[3] = fLerp7;
-                            fArr[2] = fLerp7;
-                            fArr[5] = fLerp8;
-                            fArr[4] = fLerp8;
-                            fArr[7] = fLerp9;
-                            fArr[6] = fLerp9;
+                            c5 = 1;
+                            float[] fArr3 = this.radii;
+                            fArr3[c5] = fLerp6;
+                            fArr3[0] = fLerp6;
+                            fArr3[3] = fLerp7;
+                            fArr3[2] = fLerp7;
+                            fArr3[5] = fLerp8;
+                            fArr3[4] = fLerp8;
+                            fArr3[7] = fLerp9;
+                            fArr3[6] = fLerp9;
                             canvas.save();
                             this.path.rewind();
-                            Path path = this.path;
-                            float[] fArr2 = this.radii;
+                            Path path2 = this.path;
+                            float[] fArr4 = this.radii;
+                            c2 = 7;
                             direction = Path.Direction.CW;
-                            path.addRoundRect(rectFDrawingRect, fArr2, direction);
+                            path2.addRoundRect(rectFDrawingRect, fArr4, direction);
                             canvas.clipPath(this.path);
                             if (this.spoilerRevealProgress != 0.0f) {
                                 this.path.rewind();
+                                c3 = 4;
+                                c4 = 5;
                                 this.path.addCircle(this.spoilerRevealX, this.spoilerRevealY, this.spoilerMaxRadius * this.spoilerRevealProgress, direction);
                                 canvas.clipPath(this.path, Region.Op.DIFFERENCE);
+                            } else {
+                                c3 = 4;
+                                c4 = 5;
                             }
                             this.blurredImage.setRoundRadius(i, i2, i3, i4);
                             this.blurredImage.setImageCoords(rectFDrawingRect.left, rectFDrawingRect.top, rectFDrawingRect.width(), rectFDrawingRect.height());
@@ -2815,109 +3219,126 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             if (this.spoilerEffect == null) {
                                 this.spoilerEffect = SpoilerEffect2.getInstance(PreviewGroupsView.this);
                             }
-                            SpoilerEffect2 spoilerEffect2 = this.spoilerEffect;
-                            PreviewGroupsView previewGroupsView = PreviewGroupsView.this;
-                            spoilerEffect2.draw(canvas, previewGroupsView, previewGroupsView.getWidth(), PreviewGroupsView.this.getHeight());
+                            SpoilerEffect2 spoilerEffect3 = this.spoilerEffect;
+                            PreviewGroupsView previewGroupsView2 = PreviewGroupsView.this;
+                            spoilerEffect3.draw(canvas, previewGroupsView2, previewGroupsView2.getWidth(), PreviewGroupsView.this.getHeight());
                             canvas.restore();
                             PreviewGroupsView.this.invalidate();
                             PreviewGroupsView.this.invalidate();
                         }
-                        c = 1;
-                        float[] fArr3 = this.radii;
-                        fArr3[c] = fLerp6;
-                        fArr3[0] = fLerp6;
-                        fArr3[3] = fLerp7;
-                        fArr3[2] = fLerp7;
-                        fArr3[5] = fLerp8;
-                        fArr3[4] = fLerp8;
-                        fArr3[7] = fLerp9;
-                        fArr3[6] = fLerp9;
-                        canvas.save();
-                        this.path.rewind();
-                        Path path2 = this.path;
-                        float[] fArr4 = this.radii;
-                        direction = Path.Direction.CW;
-                        path2.addRoundRect(rectFDrawingRect, fArr4, direction);
-                        canvas.clipPath(this.path);
-                        if (this.spoilerRevealProgress != 0.0f) {
+                        f2 = this.spoilerCrossfadeProgress;
+                        str = null;
+                        if (f2 == 1.0f && this.spoilerCrossfadeBitmap != null) {
+                            float[] fArr5 = this.radii;
+                            fArr5[1] = fLerp6;
+                            fArr5[0] = fLerp6;
+                            fArr5[3] = fLerp7;
+                            fArr5[2] = fLerp7;
+                            fArr5[c4] = fLerp8;
+                            fArr5[c3] = fLerp8;
+                            fArr5[c2] = fLerp9;
+                            fArr5[c] = fLerp9;
+                            canvas.save();
                             this.path.rewind();
-                            this.path.addCircle(this.spoilerRevealX, this.spoilerRevealY, this.spoilerMaxRadius * this.spoilerRevealProgress, direction);
-                            canvas.clipPath(this.path, Region.Op.DIFFERENCE);
+                            this.path.addRoundRect(rectFDrawingRect, this.radii, Path.Direction.CW);
+                            canvas.clipPath(this.path);
+                            float fMin = Math.min(1.0f, this.spoilerCrossfadeProgress + (Math.min(16L, SystemClock.elapsedRealtime() - this.lastUpdate) / 250.0f));
+                            this.spoilerCrossfadeProgress = fMin;
+                            this.spoilerCrossfadePaint.setAlpha((int) ((1.0f - fMin) * 255.0f));
+                            canvas.drawBitmap(this.spoilerCrossfadeBitmap, rectFDrawingRect.left, rectFDrawingRect.top, this.spoilerCrossfadePaint);
+                            canvas.restore();
+                            PreviewGroupsView.this.invalidate();
+                        } else if (f2 == 1.0f && (bitmap = this.spoilerCrossfadeBitmap) != null) {
+                            bitmap.recycle();
+                            this.spoilerCrossfadeBitmap = null;
+                            PreviewGroupsView.this.invalidate();
                         }
-                        this.blurredImage.setRoundRadius(i, i2, i3, i4);
-                        this.blurredImage.setImageCoords(rectFDrawingRect.left, rectFDrawingRect.top, rectFDrawingRect.width(), rectFDrawingRect.height());
-                        this.blurredImage.setAlpha(fLerp);
-                        this.blurredImage.draw(canvas);
-                        if (this.spoilerEffect == null) {
-                            this.spoilerEffect = SpoilerEffect2.getInstance(PreviewGroupsView.this);
+                        PreviewGroupCell previewGroupCell = PreviewGroupCell.this;
+                        iIndexOf = previewGroupCell.indexStart + previewGroupCell.group.photos.indexOf(this.photoEntry);
+                        if (iIndexOf >= 0) {
+                            str = (iIndexOf + 1) + "";
                         }
-                        SpoilerEffect2 spoilerEffect3 = this.spoilerEffect;
-                        PreviewGroupsView previewGroupsView2 = PreviewGroupsView.this;
-                        spoilerEffect3.draw(canvas, previewGroupsView2, previewGroupsView2.getWidth(), PreviewGroupsView.this.getHeight());
-                        canvas.restore();
-                        PreviewGroupsView.this.invalidate();
-                        PreviewGroupsView.this.invalidate();
+                        String str2 = str;
+                        if (this.image.getVisible()) {
+                            f3 = 1.0f;
+                        } else {
+                            f3 = 0.0f;
+                        }
+                        if (Math.abs(this.visibleT - f3) > 0.01f) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                        if (z2) {
+                            long jMin = Math.min(17L, SystemClock.elapsedRealtime() - this.lastVisibleTUpdate);
+                            this.lastVisibleTUpdate = SystemClock.elapsedRealtime();
+                            f4 = jMin / 100.0f;
+                            f5 = this.visibleT;
+                            if (f3 < f5) {
+                                this.visibleT = Math.max(0.0f, f5 - f4);
+                            } else {
+                                this.visibleT = Math.min(1.0f, f5 + f4);
+                            }
+                        }
+                        drawPhotoIndex(canvas, rectFDrawingRect.top + AndroidUtilities.dp(10.0f), rectFDrawingRect.right - AndroidUtilities.dp(10.0f), str2, fLerp, this.visibleT * fLerp);
+                        drawDuration(canvas, rectFDrawingRect.left + AndroidUtilities.dp(4.0f), rectFDrawingRect.bottom - AndroidUtilities.dp(4.0f), this.videoDurationText, fLerp, fLerp * this.visibleT);
+                        if (z) {
+                            canvas.restore();
+                        }
+                        return f < 1.0f || z2;
                     }
-                    float f3 = this.spoilerCrossfadeProgress;
-                    if (f3 != 1.0f && this.spoilerCrossfadeBitmap != null) {
-                        float[] fArr5 = this.radii;
-                        fArr5[1] = fLerp6;
-                        fArr5[0] = fLerp6;
-                        fArr5[3] = fLerp7;
-                        fArr5[2] = fLerp7;
-                        fArr5[5] = fLerp8;
-                        fArr5[4] = fLerp8;
-                        fArr5[7] = fLerp9;
-                        fArr5[6] = fLerp9;
-                        canvas.save();
-                        this.path.rewind();
-                        this.path.addRoundRect(rectFDrawingRect, this.radii, Path.Direction.CW);
-                        canvas.clipPath(this.path);
-                        float fMin = Math.min(1.0f, this.spoilerCrossfadeProgress + (Math.min(16L, SystemClock.elapsedRealtime() - this.lastUpdate) / 250.0f));
-                        this.spoilerCrossfadeProgress = fMin;
-                        this.spoilerCrossfadePaint.setAlpha((int) ((1.0f - fMin) * 255.0f));
-                        canvas.drawBitmap(this.spoilerCrossfadeBitmap, rectFDrawingRect.left, rectFDrawingRect.top, this.spoilerCrossfadePaint);
-                        canvas.restore();
-                        PreviewGroupsView.this.invalidate();
-                    } else if (f3 == 1.0f && (bitmap = this.spoilerCrossfadeBitmap) != null) {
+                    c = 6;
+                    c2 = 7;
+                    c3 = 4;
+                    c4 = 5;
+                    f2 = this.spoilerCrossfadeProgress;
+                    str = null;
+                    if (f2 == 1.0f) {
+                        if (f2 == 1.0f) {
+                            bitmap.recycle();
+                            this.spoilerCrossfadeBitmap = null;
+                            PreviewGroupsView.this.invalidate();
+                        }
+                    } else if (f2 == 1.0f) {
                         bitmap.recycle();
                         this.spoilerCrossfadeBitmap = null;
                         PreviewGroupsView.this.invalidate();
                     }
-                    PreviewGroupCell previewGroupCell = PreviewGroupCell.this;
-                    int iIndexOf = previewGroupCell.indexStart + previewGroupCell.group.photos.indexOf(this.photoEntry);
+                    PreviewGroupCell previewGroupCell2 = PreviewGroupCell.this;
+                    iIndexOf = previewGroupCell2.indexStart + previewGroupCell2.group.photos.indexOf(this.photoEntry);
                     if (iIndexOf >= 0) {
-                        StringBuilder sb = new StringBuilder();
-                        z2 = true;
-                        sb.append(iIndexOf + 1);
-                        sb.append("");
-                        string = sb.toString();
-                    } else {
-                        z2 = true;
-                        string = null;
+                        str = (iIndexOf + 1) + "";
                     }
-                    float f4 = this.image.getVisible() ? 1.0f : 0.0f;
-                    boolean z3 = Math.abs(this.visibleT - f4) > 0.01f;
-                    if (z3) {
-                        long jMin = Math.min(17L, SystemClock.elapsedRealtime() - this.lastVisibleTUpdate);
+                    String str3 = str;
+                    if (this.image.getVisible()) {
+                        f3 = 1.0f;
+                    } else {
+                        f3 = 0.0f;
+                    }
+                    if (Math.abs(this.visibleT - f3) > 0.01f) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    if (z2) {
+                        long jMin2 = Math.min(17L, SystemClock.elapsedRealtime() - this.lastVisibleTUpdate);
                         this.lastVisibleTUpdate = SystemClock.elapsedRealtime();
-                        float f5 = jMin / 100.0f;
-                        float f6 = this.visibleT;
-                        if (f4 < f6) {
-                            this.visibleT = Math.max(0.0f, f6 - f5);
+                        f4 = jMin2 / 100.0f;
+                        f5 = this.visibleT;
+                        if (f3 < f5) {
+                            this.visibleT = Math.max(0.0f, f5 - f4);
                         } else {
-                            this.visibleT = Math.min(1.0f, f6 + f5);
+                            this.visibleT = Math.min(1.0f, f5 + f4);
                         }
                     }
-                    drawPhotoIndex(canvas, AndroidUtilities.dp(10.0f) + rectFDrawingRect.top, rectFDrawingRect.right - AndroidUtilities.dp(10.0f), string, fLerp, fLerp * this.visibleT);
-                    drawDuration(canvas, AndroidUtilities.dp(4.0f) + rectFDrawingRect.left, rectFDrawingRect.bottom - AndroidUtilities.dp(4.0f), this.videoDurationText, fLerp, fLerp * this.visibleT);
+                    drawPhotoIndex(canvas, rectFDrawingRect.top + AndroidUtilities.dp(10.0f), rectFDrawingRect.right - AndroidUtilities.dp(10.0f), str3, fLerp, this.visibleT * fLerp);
+                    drawDuration(canvas, rectFDrawingRect.left + AndroidUtilities.dp(4.0f), rectFDrawingRect.bottom - AndroidUtilities.dp(4.0f), this.videoDurationText, fLerp, fLerp * this.visibleT);
                     if (z) {
                         canvas.restore();
                     }
-                    if (f < 1.0f || z3) {
-                        return z2;
+                    if (f < 1.0f) {
+                        return true;
                     }
-                    return false;
                 }
             }
 
@@ -2930,6 +3351,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 groupCalculator.calculate();
                 long jElapsedRealtime = SystemClock.elapsedRealtime();
                 long j = jElapsedRealtime - this.lastMediaUpdate;
+                long j2 = 200;
                 if (j < 200) {
                     float f = j / 200.0f;
                     this.previousGroupHeight = AndroidUtilities.lerp(this.previousGroupHeight, this.groupHeight, f);
@@ -2952,6 +3374,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     }
                     MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) arrayList.get(i2);
                     MessageObject.GroupedMessagePosition groupedMessagePosition = (MessageObject.GroupedMessagePosition) groupCalculator.positions.get(photoEntry);
+                    long j3 = j2;
                     this.stars = Math.max(this.stars, photoEntry.starsAmount);
                     int size2 = this.media.size();
                     int i3 = 0;
@@ -2976,12 +3399,14 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         this.media.add(mediaCell2);
                     }
                     i2++;
+                    j2 = j3;
                 }
+                long j4 = j2;
                 int size3 = this.media.size();
                 while (i < size3) {
                     MediaCell mediaCell3 = (MediaCell) this.media.get(i);
                     if (!groupCalculator.positions.containsKey(mediaCell3.photoEntry)) {
-                        if (mediaCell3.scale > 0.0f || mediaCell3.lastUpdate + 200 > jElapsedRealtime) {
+                        if (mediaCell3.scale > 0.0f || mediaCell3.lastUpdate + j4 > jElapsedRealtime) {
                             mediaCell3.layout(null, null, z);
                         } else {
                             mediaCell3.detach();

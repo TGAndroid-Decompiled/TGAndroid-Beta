@@ -4,7 +4,6 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -300,6 +299,7 @@ public class RichEditorHistory {
         if (pageBlock.caption == null) {
             pageBlock.caption = emptyCaption();
         }
+        int i = 0;
         if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
             TL_iv.pageBlockBlockquote pageblockblockquote = (TL_iv.pageBlockBlockquote) pageBlock;
             if (pageblockblockquote.caption == null) {
@@ -310,9 +310,13 @@ public class RichEditorHistory {
             if (pageblockblockquoteblocks.blocks == null) {
                 pageblockblockquoteblocks.blocks = new ArrayList<>();
             }
-            Iterator<TL_iv.PageBlock> it = pageblockblockquoteblocks.blocks.iterator();
-            while (it.hasNext()) {
-                normalize(it.next());
+            ArrayList<TL_iv.PageBlock> arrayList = pageblockblockquoteblocks.blocks;
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                TL_iv.PageBlock pageBlock2 = arrayList.get(i2);
+                i2++;
+                normalize(pageBlock2);
             }
             if (pageblockblockquoteblocks.caption == null) {
                 pageblockblockquoteblocks.caption = emptyRichText();
@@ -355,14 +359,26 @@ public class RichEditorHistory {
             if (pageblocktable.rows == null) {
                 pageblocktable.rows = new ArrayList<>();
             }
-            for (TL_iv.pageTableRow pagetablerow : pageblocktable.rows) {
-                if (pagetablerow != null) {
-                    if (pagetablerow.cells == null) {
-                        pagetablerow.cells = new ArrayList<>();
+            ArrayList<TL_iv.pageTableRow> arrayList2 = pageblocktable.rows;
+            int size2 = arrayList2.size();
+            int i3 = 0;
+            while (i3 < size2) {
+                TL_iv.pageTableRow pagetablerow = arrayList2.get(i3);
+                i3++;
+                TL_iv.pageTableRow pagetablerow2 = pagetablerow;
+                if (pagetablerow2 != null) {
+                    if (pagetablerow2.cells == null) {
+                        pagetablerow2.cells = new ArrayList<>();
                     }
-                    for (TL_iv.pageTableCell pagetablecell : pagetablerow.cells) {
-                        if (pagetablecell != null && pagetablecell.text == null) {
-                            pagetablecell.text = emptyRichText();
+                    ArrayList<TL_iv.pageTableCell> arrayList3 = pagetablerow2.cells;
+                    int size3 = arrayList3.size();
+                    int i4 = 0;
+                    while (i4 < size3) {
+                        TL_iv.pageTableCell pagetablecell = arrayList3.get(i4);
+                        i4++;
+                        TL_iv.pageTableCell pagetablecell2 = pagetablecell;
+                        if (pagetablecell2 != null && pagetablecell2.text == null) {
+                            pagetablecell2.text = emptyRichText();
                         }
                     }
                 }
@@ -374,9 +390,14 @@ public class RichEditorHistory {
             if (pageblockbuttonrow.buttons == null) {
                 pageblockbuttonrow.buttons = new ArrayList<>();
             }
-            for (TL_keyboard.PageButton pageButton : pageblockbuttonrow.buttons) {
-                if (pageButton != null && pageButton.text == null) {
-                    pageButton.text = emptyRichText();
+            ArrayList<TL_keyboard.PageButton> arrayList4 = pageblockbuttonrow.buttons;
+            int size4 = arrayList4.size();
+            while (i < size4) {
+                TL_keyboard.PageButton pageButton = arrayList4.get(i);
+                i++;
+                TL_keyboard.PageButton pageButton2 = pageButton;
+                if (pageButton2 != null && pageButton2.text == null) {
+                    pageButton2.text = emptyRichText();
                 }
             }
             return;
@@ -386,9 +407,12 @@ public class RichEditorHistory {
             if (pageblockcollage.items == null) {
                 pageblockcollage.items = new ArrayList<>();
             }
-            Iterator<TL_iv.PageBlock> it2 = pageblockcollage.items.iterator();
-            while (it2.hasNext()) {
-                normalize(it2.next());
+            ArrayList<TL_iv.PageBlock> arrayList5 = pageblockcollage.items;
+            int size5 = arrayList5.size();
+            while (i < size5) {
+                TL_iv.PageBlock pageBlock3 = arrayList5.get(i);
+                i++;
+                normalize(pageBlock3);
             }
             return;
         }
@@ -397,9 +421,12 @@ public class RichEditorHistory {
             if (pageblockslideshow.items == null) {
                 pageblockslideshow.items = new ArrayList<>();
             }
-            Iterator<TL_iv.PageBlock> it3 = pageblockslideshow.items.iterator();
-            while (it3.hasNext()) {
-                normalize(it3.next());
+            ArrayList<TL_iv.PageBlock> arrayList6 = pageblockslideshow.items;
+            int size6 = arrayList6.size();
+            while (i < size6) {
+                TL_iv.PageBlock pageBlock4 = arrayList6.get(i);
+                i++;
+                normalize(pageBlock4);
             }
         }
     }

@@ -253,32 +253,40 @@ public class CodeHighlighting {
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    CodeHighlighting.lambda$highlightEditable$1(string, str, spannableString, callback);
+                    CodeHighlighting.m381$r8$lambda$GnQc0UFVOreAy2pkYwEC22lbb4(string, str, spannableString, callback);
                 }
             });
         }
     }
 
-    public static void lambda$highlightEditable$1(String str, String str2, final SpannableString spannableString, final Utilities.Callback callback) throws Throwable {
+    public static void m381$r8$lambda$GnQc0UFVOreAy2pkYwEC22lbb4(String str, String str2, SpannableString spannableString, final Utilities.Callback callback) throws Throwable {
+        final SpannableString spannableString2;
         if (compiledPatterns == null) {
             parse();
         }
         final ArrayList arrayList = new ArrayList();
         try {
             HashMap<String, TokenPattern[]> map = compiledPatterns;
-            colorize(spannableString, 0, spannableString.length(), tokenize(str, map == null ? null : map.get(str2), 0).toArray(), -1, arrayList);
-        } catch (Exception e) {
-            FileLog.e(e);
+            spannableString2 = spannableString;
+            try {
+                colorize(spannableString2, 0, spannableString.length(), tokenize(str, map == null ? null : map.get(str2), 0).toArray(), -1, arrayList);
+            } catch (Exception e) {
+                e = e;
+                FileLog.e(e);
+            }
+        } catch (Exception e2) {
+            e = e2;
+            spannableString2 = spannableString;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CodeHighlighting.lambda$highlightEditable$0(arrayList, spannableString, callback);
+                CodeHighlighting.$r8$lambda$uJk7sehDZe0ZSZDsLPpJs_l6bMw(arrayList, spannableString2, callback);
             }
         });
     }
 
-    public static void lambda$highlightEditable$0(ArrayList arrayList, SpannableString spannableString, Utilities.Callback callback) {
+    public static void $r8$lambda$uJk7sehDZe0ZSZDsLPpJs_l6bMw(ArrayList arrayList, SpannableString spannableString, Utilities.Callback callback) {
         for (int i = 0; i < arrayList.size(); i++) {
             CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);
             spannableString.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
@@ -293,12 +301,12 @@ public class CodeHighlighting {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                CodeHighlighting.lambda$prepare$2();
+                CodeHighlighting.$r8$lambda$yc7DAs30Il1LjoB2owuVZpqSbS0();
             }
         });
     }
 
-    public static void lambda$prepare$2() throws Throwable {
+    public static void $r8$lambda$yc7DAs30Il1LjoB2owuVZpqSbS0() throws Throwable {
         if (compiledPatterns == null) {
             parse();
         }
@@ -319,12 +327,12 @@ public class CodeHighlighting {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                CodeHighlighting.lambda$highlight$5(spannable, i, i2, str);
+                CodeHighlighting.m382$r8$lambda$jQO9jOIHZCkw36qQVzRg3QK6o8(spannable, i, i2, str);
             }
         });
     }
 
-    public static void lambda$highlight$5(final Spannable spannable, int i, int i2, String str) throws Throwable {
+    public static void m382$r8$lambda$jQO9jOIHZCkw36qQVzRg3QK6o8(final Spannable spannable, int i, int i2, String str) throws Throwable {
         if (compiledPatterns == null) {
             parse();
         }
@@ -355,7 +363,7 @@ public class CodeHighlighting {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CodeHighlighting.lambda$highlight$3(spannable);
+                    CodeHighlighting.$r8$lambda$FUf8UFflQpy8dsJzr9b6qK27Hmk(spannable);
                 }
             });
             return;
@@ -363,32 +371,35 @@ public class CodeHighlighting {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CodeHighlighting.lambda$highlight$4(arrayList, spannable);
+                CodeHighlighting.m383$r8$lambda$plxGIoXIX1WFe9rdhmpCX8CFw4(arrayList, spannable);
             }
         });
     }
 
-    public static void lambda$highlight$3(Spannable spannable) {
+    public static void $r8$lambda$FUf8UFflQpy8dsJzr9b6qK27Hmk(Spannable spannable) {
         ((LockedSpannableString) spannable).unlock();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiLoaded, new Object[0]);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiLoaded, new Object[0]);
     }
 
-    public static void lambda$highlight$4(ArrayList arrayList, Spannable spannable) {
+    public static void m383$r8$lambda$plxGIoXIX1WFe9rdhmpCX8CFw4(ArrayList arrayList, Spannable spannable) {
         long jCurrentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < arrayList.size(); i++) {
             CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);
             spannable.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
         }
         FileLog.d("[CodeHighlighter] applying " + arrayList.size() + " colorize spans took " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiLoaded, new Object[0]);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiLoaded, new Object[0]);
     }
 
     private static void colorize(Spannable spannable, int i, int i2, StringToken[] stringTokenArr, int i3, ArrayList<CachedToSpan> arrayList) {
-        int length;
+        Spannable spannable2;
+        ArrayList<CachedToSpan> arrayList2;
         if (stringTokenArr == null) {
             return;
         }
-        for (int i4 = 0; i4 < stringTokenArr.length && i < i2; i4++) {
+        int i4 = 0;
+        int length = i;
+        while (i4 < stringTokenArr.length && length < i2) {
             StringToken stringToken = stringTokenArr[i4];
             if (stringToken != null) {
                 if (stringToken.string != null) {
@@ -397,21 +408,34 @@ public class CodeHighlighting {
                         i5 = i3;
                     }
                     if (i5 == -1) {
-                        length = stringToken.length();
+                        length += stringToken.length();
+                        spannable2 = spannable;
+                        arrayList2 = arrayList;
                     } else {
-                        arrayList.add(new CachedToSpan(i5, i, stringToken.length() + i));
+                        arrayList.add(new CachedToSpan(i5, length, stringToken.length() + length));
                     }
-                    i += length;
-                } else if (stringToken.inside != null) {
-                    colorize(spannable, i, i + stringToken.length(), stringToken.inside.toArray(), stringToken.group, arrayList);
+                } else {
+                    if (stringToken.inside != null) {
+                        spannable2 = spannable;
+                        arrayList2 = arrayList;
+                        colorize(spannable2, length, length + stringToken.length(), stringToken.inside.toArray(), stringToken.group, arrayList2);
+                    }
+                    length += stringToken.length();
                 }
-                length = stringToken.length();
-                i += length;
+                spannable2 = spannable;
+                arrayList2 = arrayList;
+                length += stringToken.length();
+            } else {
+                spannable2 = spannable;
+                arrayList2 = arrayList;
             }
+            i4++;
+            spannable = spannable2;
+            arrayList = arrayList2;
         }
     }
 
-    private static class CachedToSpan {
+    static class CachedToSpan {
         public int end;
         public int group;
         public int start;
@@ -458,31 +482,37 @@ public class CodeHighlighting {
     }
 
     private static void matchGrammar(String str, LinkedList linkedList, TokenPattern[] tokenPatternArr, Node node, int i, RematchOptions rematchOptions, TokenPattern tokenPattern, int i2) {
-        TokenPattern tokenPattern2;
         int i3;
-        int i4;
         Match matchMatchPattern;
+        int i4;
+        String strSubstring;
+        String strSubstring2;
+        int length;
+        Node nodeAddAfter;
+        TokenPattern[] tokenPatternArr2;
         int i5;
+        String str2;
         StringToken stringToken;
+        Node nodeAddAfter2;
         int i6;
-        TokenPattern[] tokenPatternArr2 = tokenPatternArr;
-        if (tokenPatternArr2 == null || i2 > 20) {
+        TokenPattern[] tokenPatternArr3 = tokenPatternArr;
+        if (tokenPatternArr3 == null || i2 > 20) {
             return;
         }
-        int length = tokenPatternArr2.length;
+        int length2 = tokenPatternArr3.length;
         int i7 = 0;
-        while (i7 < length) {
-            TokenPattern tokenPattern3 = tokenPatternArr2[i7];
-            if (tokenPattern3 == tokenPattern) {
+        while (i7 < length2) {
+            TokenPattern tokenPattern2 = tokenPatternArr3[i7];
+            if (tokenPattern2 == tokenPattern) {
                 return;
             }
-            if (rematchOptions != null && rematchOptions.cause == tokenPattern3) {
+            if (rematchOptions != null && rematchOptions.cause == tokenPattern2) {
                 return;
             }
             Node node2 = node.next;
-            int length2 = i;
+            int length3 = i;
             while (node2 != linkedList.tail) {
-                if (rematchOptions != null && length2 >= rematchOptions.reach) {
+                if (rematchOptions != null && length3 >= rematchOptions.reach) {
                     return;
                 }
                 if (linkedList.length > str.length()) {
@@ -490,113 +520,135 @@ public class CodeHighlighting {
                     return;
                 }
                 StringToken stringToken2 = node2.value;
-                String strSubstring = stringToken2.string;
-                if (strSubstring == null || stringToken2.token) {
-                    tokenPattern2 = tokenPattern3;
-                    i3 = length;
-                } else {
-                    if (tokenPattern3.greedy) {
-                        matchMatchPattern = matchPattern(tokenPattern3, length2, str);
+                String strSubstring3 = stringToken2.string;
+                if (strSubstring3 != null && !stringToken2.token) {
+                    if (tokenPattern2.greedy) {
+                        matchMatchPattern = matchPattern(tokenPattern2, length3, str);
                         if (matchMatchPattern == null || matchMatchPattern.index >= str.length()) {
                             break;
                         }
                         int i8 = matchMatchPattern.index;
                         int i9 = matchMatchPattern.length + i8;
-                        int length3 = node2.value.length();
+                        int length4 = node2.value.length();
                         while (true) {
-                            length2 += length3;
-                            if (i8 < length2) {
+                            length3 += length4;
+                            if (i8 < length3) {
                                 break;
                             }
                             node2 = node2.next;
-                            length3 = node2.value.length();
+                            length4 = node2.value.length();
                         }
-                        length2 -= node2.value.length();
+                        length3 -= node2.value.length();
                         StringToken stringToken3 = node2.value;
-                        if (stringToken3.string == null || stringToken3.token) {
-                            tokenPattern2 = tokenPattern3;
-                            i3 = length;
-                            node2 = node2;
-                        } else {
-                            Node node3 = node2;
-                            int length4 = length2;
+                        if (stringToken3.string != null && !stringToken3.token) {
+                            int length5 = length3;
                             int i10 = 1;
-                            while (node3 != linkedList.tail && (length4 < i9 || !node3.value.token)) {
+                            for (Node node3 = node2; node3 != linkedList.tail && (length5 < i9 || !node3.value.token); node3 = node3.next) {
                                 i10++;
-                                length4 += node3.value.length();
-                                node3 = node3.next;
+                                length5 += node3.value.length();
                             }
-                            strSubstring = str.substring(length2, length4);
-                            matchMatchPattern.index -= length2;
-                            i5 = i10 - 1;
-                            node2 = node3;
-                            i4 = 0;
+                            strSubstring3 = str.substring(length3, length5);
+                            matchMatchPattern.index -= length3;
+                            i4 = i10 - 1;
+                            i3 = 0;
+                            int i11 = matchMatchPattern.index;
+                            strSubstring = strSubstring3.substring(i3, i11);
+                            strSubstring2 = strSubstring3.substring(i11 + matchMatchPattern.length);
+                            length = strSubstring3.length() + length3;
+                            if (rematchOptions != null && length > rematchOptions.reach) {
+                                rematchOptions.reach = length;
+                            }
+                            nodeAddAfter = node2.prev;
+                            if (strSubstring.length() > 0) {
+                                nodeAddAfter = linkedList.addAfter(nodeAddAfter, new StringToken(strSubstring));
+                                length3 += strSubstring.length();
+                            }
+                            linkedList.removeRange(nodeAddAfter, i4);
+                            tokenPatternArr2 = tokenPattern2.insideTokenPatterns;
+                            if (tokenPatternArr2 != null) {
+                                i5 = length3;
+                                stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, tokenPatternArr2, tokenPattern2, i2 + 1), matchMatchPattern.length);
+                            } else {
+                                i5 = length3;
+                                str2 = tokenPattern2.insideLanguage;
+                                if (str2 != null) {
+                                    stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, compiledPatterns.get(str2), tokenPattern2, i2 + 1), matchMatchPattern.length);
+                                } else {
+                                    stringToken = new StringToken(tokenPattern2.group, matchMatchPattern.string);
+                                }
+                            }
+                            nodeAddAfter2 = linkedList.addAfter(nodeAddAfter, stringToken);
+                            if (strSubstring2.length() > 0) {
+                                linkedList.addAfter(nodeAddAfter2, new StringToken(strSubstring2));
+                            }
+                            if (i4 > 1) {
+                                RematchOptions rematchOptions2 = new RematchOptions();
+                                rematchOptions2.cause = tokenPattern2;
+                                rematchOptions2.reach = length;
+                                matchGrammar(str, linkedList, tokenPatternArr, nodeAddAfter2.prev, i5, rematchOptions2, tokenPattern, i2 + 1);
+                                if (rematchOptions != null && (i6 = rematchOptions2.reach) > rematchOptions.reach) {
+                                    rematchOptions.reach = i6;
+                                }
+                            }
+                            node2 = nodeAddAfter2;
+                            length3 = i5;
                         }
                     } else {
-                        i4 = 0;
-                        matchMatchPattern = matchPattern(tokenPattern3, 0, strSubstring);
-                        if (matchMatchPattern == null) {
-                            tokenPattern2 = tokenPattern3;
-                            i3 = length;
-                        } else {
-                            i5 = 1;
+                        i3 = 0;
+                        matchMatchPattern = matchPattern(tokenPattern2, 0, strSubstring3);
+                        if (matchMatchPattern != null) {
+                            i4 = 1;
+                            int i12 = matchMatchPattern.index;
+                            strSubstring = strSubstring3.substring(i3, i12);
+                            strSubstring2 = strSubstring3.substring(i12 + matchMatchPattern.length);
+                            length = strSubstring3.length() + length3;
+                            if (rematchOptions != null) {
+                                rematchOptions.reach = length;
+                            }
+                            nodeAddAfter = node2.prev;
+                            if (strSubstring.length() > 0) {
+                                nodeAddAfter = linkedList.addAfter(nodeAddAfter, new StringToken(strSubstring));
+                                length3 += strSubstring.length();
+                            }
+                            linkedList.removeRange(nodeAddAfter, i4);
+                            tokenPatternArr2 = tokenPattern2.insideTokenPatterns;
+                            if (tokenPatternArr2 != null) {
+                                i5 = length3;
+                                stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, tokenPatternArr2, tokenPattern2, i2 + 1), matchMatchPattern.length);
+                            } else {
+                                i5 = length3;
+                                str2 = tokenPattern2.insideLanguage;
+                                if (str2 != null) {
+                                    stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, compiledPatterns.get(str2), tokenPattern2, i2 + 1), matchMatchPattern.length);
+                                } else {
+                                    stringToken = new StringToken(tokenPattern2.group, matchMatchPattern.string);
+                                }
+                            }
+                            nodeAddAfter2 = linkedList.addAfter(nodeAddAfter, stringToken);
+                            if (strSubstring2.length() > 0) {
+                                linkedList.addAfter(nodeAddAfter2, new StringToken(strSubstring2));
+                            }
+                            if (i4 > 1) {
+                                RematchOptions rematchOptions3 = new RematchOptions();
+                                rematchOptions3.cause = tokenPattern2;
+                                rematchOptions3.reach = length;
+                                matchGrammar(str, linkedList, tokenPatternArr, nodeAddAfter2.prev, i5, rematchOptions3, tokenPattern, i2 + 1);
+                                if (rematchOptions != null) {
+                                    rematchOptions.reach = i6;
+                                }
+                            }
+                            node2 = nodeAddAfter2;
+                            length3 = i5;
                         }
                     }
-                    int i11 = matchMatchPattern.index;
-                    String strSubstring2 = strSubstring.substring(i4, i11);
-                    String strSubstring3 = strSubstring.substring(i11 + matchMatchPattern.length);
-                    int length5 = strSubstring.length() + length2;
-                    if (rematchOptions != null && length5 > rematchOptions.reach) {
-                        rematchOptions.reach = length5;
-                    }
-                    Node nodeAddAfter = node2.prev;
-                    if (strSubstring2.length() > 0) {
-                        nodeAddAfter = linkedList.addAfter(nodeAddAfter, new StringToken(strSubstring2));
-                        length2 += strSubstring2.length();
-                    }
-                    int i12 = length2;
-                    linkedList.removeRange(nodeAddAfter, i5);
-                    TokenPattern[] tokenPatternArr3 = tokenPattern3.insideTokenPatterns;
-                    if (tokenPatternArr3 != null) {
-                        i3 = length;
-                        stringToken = new StringToken(tokenPattern3.group, tokenize(matchMatchPattern.string, tokenPatternArr3, tokenPattern3, i2 + 1), matchMatchPattern.length);
-                    } else {
-                        i3 = length;
-                        String str2 = tokenPattern3.insideLanguage;
-                        if (str2 != null) {
-                            stringToken = new StringToken(tokenPattern3.group, tokenize(matchMatchPattern.string, compiledPatterns.get(str2), tokenPattern3, i2 + 1), matchMatchPattern.length);
-                        } else {
-                            stringToken = new StringToken(tokenPattern3.group, matchMatchPattern.string);
-                        }
-                    }
-                    Node nodeAddAfter2 = linkedList.addAfter(nodeAddAfter, stringToken);
-                    if (strSubstring3.length() > 0) {
-                        linkedList.addAfter(nodeAddAfter2, new StringToken(strSubstring3));
-                    }
-                    if (i5 > 1) {
-                        RematchOptions rematchOptions2 = new RematchOptions();
-                        rematchOptions2.cause = tokenPattern3;
-                        rematchOptions2.reach = length5;
-                        tokenPattern2 = tokenPattern3;
-                        matchGrammar(str, linkedList, tokenPatternArr, nodeAddAfter2.prev, i12, rematchOptions2, tokenPattern, i2 + 1);
-                        if (rematchOptions != null && (i6 = rematchOptions2.reach) > rematchOptions.reach) {
-                            rematchOptions.reach = i6;
-                        }
-                    } else {
-                        tokenPattern2 = tokenPattern3;
-                    }
-                    node2 = nodeAddAfter2;
-                    length2 = i12;
                 }
-                length2 += node2.value.length();
+                length3 += node2.value.length();
                 node2 = node2.next;
                 str = str;
-                tokenPattern3 = tokenPattern2;
-                length = i3;
+                linkedList = linkedList;
             }
             i7++;
-            tokenPatternArr2 = tokenPatternArr;
-            length = length;
+            tokenPatternArr3 = tokenPatternArr;
         }
     }
 
@@ -641,7 +693,7 @@ public class CodeHighlighting {
         }
     }
 
-    private static class LinkedList {
+    static class LinkedList {
         public Node head;
         public int length = 0;
         public Node tail;
@@ -699,7 +751,7 @@ public class CodeHighlighting {
         }
     }
 
-    private static class StringToken {
+    static class StringToken {
         final int group;
         final LinkedList inside;
         final int insideLength;
@@ -991,7 +1043,7 @@ public class CodeHighlighting {
         }
     }
 
-    private static class TokenPattern {
+    static class TokenPattern {
         public boolean greedy;
         public int group;
         public String insideLanguage;

@@ -507,7 +507,7 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
             return;
         }
         if (i == 1) {
-            if (MediaController.getInstance().lambda$startAudioAgain$7(this.messageObject)) {
+            if (MediaController.getInstance().pauseMessage(this.messageObject)) {
                 this.buttonState = 0;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, z);
                 invalidate();

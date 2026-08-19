@@ -61,7 +61,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
     private final TextView valueTextView;
     private Long waitingForStickerSetId;
 
-    protected void onPremiumButtonClick() {
+    public void onPremiumButtonClick() {
     }
 
     public FeaturedStickerSetCell2(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -116,7 +116,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.onPremiumButtonClick();
             }
         });
         premiumButtonView.setVisibility(8);
@@ -133,10 +133,6 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         }
         addView(this.unlockButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 10.0f, 0.0f));
         updateColors();
-    }
-
-    public void lambda$new$0(View view) {
-        onPremiumButtonClick();
     }
 
     public TextView getTextView() {
@@ -158,6 +154,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
     }
 
     public void setStickersSet(TLRPC.StickerSetCovered stickerSetCovered, boolean z, boolean z2, boolean z3, boolean z4) {
+        TLRPC.StickerSetCovered stickerSetCovered2;
         ImageLocation forSticker;
         TLRPC.StickerSet stickerSet;
         ArrayList<TLRPC.Document> arrayList;
@@ -225,13 +222,21 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
                 this.bindedObserver = true;
             }
             TLRPC.TL_messages_stickerSet stickerSet3 = MediaDataController.getInstance(this.currentAccount).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), false);
-            if (stickerSet3 != null && (arrayList = stickerSet3.documents) != null && !arrayList.isEmpty()) {
-                document = stickerSet3.documents.get(0);
-                for (int i = 0; i < stickerSet3.documents.size(); i++) {
+            if (stickerSet3 == null || (arrayList = stickerSet3.documents) == null || arrayList.isEmpty()) {
+                break;
+            }
+            document = stickerSet3.documents.get(0);
+            int i = 0;
+            while (true) {
+                if (i >= stickerSet3.documents.size()) {
+                    break;
+                    break;
+                } else {
                     if (stickerSet3.documents.get(i).id == stickerSetCovered.set.thumb_document_id) {
                         document = stickerSet3.documents.get(i);
                         break;
                     }
+                    i++;
                 }
             }
         } else {
@@ -282,26 +287,33 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
                     } else {
                         this.imageView.setImage(ImageLocation.getForDocument(document), "50_50", imageLocation, (String) null, 0, stickerSetCovered);
                     }
+                    stickerSetCovered2 = stickerSetCovered;
                 } else if (imageLocation != null && imageLocation.imageType == 1) {
-                    this.imageView.setImage(imageLocation, "50_50", "tgs", svgThumb, stickerSetCovered);
+                    stickerSetCovered2 = stickerSetCovered;
+                    this.imageView.setImage(imageLocation, "50_50", "tgs", svgThumb, stickerSetCovered2);
                 } else {
-                    this.imageView.setImage(imageLocation, "50_50", "webp", svgThumb, stickerSetCovered);
+                    stickerSetCovered2 = stickerSetCovered;
+                    this.imageView.setImage(imageLocation, "50_50", "webp", svgThumb, stickerSetCovered2);
                 }
             } else {
-                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+                TLRPC.Document document3 = document;
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document3.thumbs, 90);
                 if (closestPhotoSizeWithSize2 != null) {
-                    this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), "50_50", "webp", (Drawable) null, stickerSetCovered);
+                    stickerSetCovered2 = stickerSetCovered;
+                    this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document3), "50_50", "webp", (Drawable) null, stickerSetCovered2);
                 } else {
-                    this.imageView.setImage(ImageLocation.getForDocument(document), "50_50", "webp", (Drawable) null, stickerSetCovered);
+                    stickerSetCovered2 = stickerSetCovered;
+                    this.imageView.setImage(ImageLocation.getForDocument(document3), "50_50", "webp", (Drawable) null, stickerSetCovered2);
                 }
             }
         } else {
-            this.imageView.setImage((ImageLocation) null, (String) null, "webp", (Drawable) null, stickerSetCovered);
+            stickerSetCovered2 = stickerSetCovered;
+            this.imageView.setImage((ImageLocation) null, (String) null, "webp", (Drawable) null, stickerSetCovered2);
         }
         this.addButton.setVisibility(0);
         this.forceInstalled = z3;
-        this.isInstalled = z3 || MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(stickerSetCovered.set.id);
-        boolean z7 = !UserConfig.getInstance(this.currentAccount).isPremium() && MessageObject.isPremiumEmojiPack(stickerSetCovered);
+        this.isInstalled = z3 || MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(stickerSetCovered2.set.id);
+        boolean z7 = !UserConfig.getInstance(this.currentAccount).isPremium() && MessageObject.isPremiumEmojiPack(stickerSetCovered2);
         this.isLocked = z7;
         if (z4) {
             if (z7) {
@@ -321,14 +333,17 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
             animatorSet2.setDuration(250L);
             AnimatorSet animatorSet3 = this.currentAnimation;
             TextView textView3 = this.delButton;
+            float[] fArr = {(!this.isInstalled || this.isLocked) ? 0.0f : 1.0f};
             Property property = View.ALPHA;
-            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property, (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f);
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property, fArr);
             TextView textView4 = this.delButton;
+            float[] fArr2 = {(!this.isInstalled || this.isLocked) ? 0.0f : 1.0f};
             Property property2 = View.SCALE_X;
-            ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property2, (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f);
+            ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property2, fArr2);
             TextView textView5 = this.delButton;
+            float[] fArr3 = {(!this.isInstalled || this.isLocked) ? 0.0f : 1.0f};
             Property property3 = View.SCALE_Y;
-            animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property3, (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property2, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f));
+            animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property3, fArr3), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property2, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.unlockButton, (Property<PremiumButtonView, Float>) property3, this.isLocked ? 1.0f : 0.0f));
             this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {

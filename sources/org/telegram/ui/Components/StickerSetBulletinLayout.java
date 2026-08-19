@@ -183,7 +183,7 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
                     this.subtitleTextView.setText(AndroidUtilities.premiumText(LocaleController.formatString("LimitReachedFavoriteStickersSubtitle", R.string.LimitReachedFavoriteStickersSubtitle, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).stickersFavedLimitPremium)), new Runnable() {
                         @Override
                         public final void run() {
-                            StickerSetBulletinLayout.lambda$new$0(context);
+                            StickerSetBulletinLayout.$r8$lambda$H3iEL8c72YVk4MXdEAWXkJoksi0(context);
                         }
                     }));
                     return;
@@ -199,7 +199,7 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
                     this.subtitleTextView.setText(AndroidUtilities.premiumText(LocaleController.formatString(R.string.LimitReachedFavoriteGifsSubtitle, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).savedGifsLimitPremium)), new Runnable() {
                         @Override
                         public final void run() {
-                            StickerSetBulletinLayout.lambda$new$1(context);
+                            StickerSetBulletinLayout.m2829$r8$lambda$57QwHCVIjZ3fyt7ykEQYpLyG_I(context);
                         }
                     }));
                     return;
@@ -213,17 +213,17 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
         }
     }
 
-    public static void lambda$new$0(Context context) {
+    public static void $r8$lambda$H3iEL8c72YVk4MXdEAWXkJoksi0(Context context) {
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         if (activityFindActivity instanceof LaunchActivity) {
-            ((LaunchActivity) activityFindActivity).lambda$runLinkRequest$100(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(10)));
+            ((LaunchActivity) activityFindActivity).presentFragment(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(10)));
         }
     }
 
-    public static void lambda$new$1(Context context) {
+    public static void m2829$r8$lambda$57QwHCVIjZ3fyt7ykEQYpLyG_I(Context context) {
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         if (activityFindActivity instanceof LaunchActivity) {
-            ((LaunchActivity) activityFindActivity).lambda$runLinkRequest$100(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(9)));
+            ((LaunchActivity) activityFindActivity).presentFragment(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(9)));
         }
     }
 }

@@ -47,7 +47,7 @@ public class MediaCodecVideoConvertor {
         return this.endPresentationTime;
     }
 
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r83, boolean r84, int r85) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r107, boolean r108, int r109) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -206,11 +206,16 @@ public class MediaCodecVideoConvertor {
         int i2;
         int i3;
         boolean z2;
-        boolean z3;
         byte[] bArrArray;
+        int iLimit;
         int i4;
         int i5;
+        int i6;
+        int i7;
+        int i8;
+        int i9;
         int integer;
+        int i10 = 0;
         int iFindTrack = MediaController.findTrack(mediaExtractor, false);
         int iFindTrack2 = z ? MediaController.findTrack(mediaExtractor, true) : -1;
         float f = j3 / 1000.0f;
@@ -260,100 +265,109 @@ public class MediaCodecVideoConvertor {
             iMax = 65536;
         }
         ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(iMax);
+        long j4 = -1;
         if (iFindTrack2 < 0 && iFindTrack < 0) {
             return -1L;
         }
         checkConversionCanceled();
-        long j4 = 0;
         long j5 = -1;
-        boolean z4 = false;
-        while (!z4) {
+        boolean z3 = false;
+        long j6 = 0;
+        while (!z3) {
             checkConversionCanceled();
+            j4 = j4;
             if (Build.VERSION.SDK_INT >= 28) {
                 long sampleSize = mediaExtractor.getSampleSize();
                 i = iFindTrack2;
                 if (sampleSize > iMax) {
-                    int i6 = (int) (sampleSize + 1024);
-                    iMax = i6;
-                    byteBufferAllocateDirect = ByteBuffer.allocateDirect(i6);
+                    int i11 = (int) (sampleSize + 1024);
+                    iMax = i11;
+                    byteBufferAllocateDirect = ByteBuffer.allocateDirect(i11);
                 }
             } else {
                 i = iFindTrack2;
             }
-            bufferInfo.size = mediaExtractor.readSampleData(byteBufferAllocateDirect, 0);
+            bufferInfo.size = mediaExtractor.readSampleData(byteBufferAllocateDirect, i10);
             int sampleTrackIndex = mediaExtractor.getSampleTrackIndex();
-            int i7 = i;
+            iFindTrack2 = i;
             if (sampleTrackIndex == iFindTrack) {
                 i3 = iAddTrack;
             } else {
-                if (sampleTrackIndex == i7) {
+                if (sampleTrackIndex == iFindTrack2) {
                     i3 = iAddTrack2;
                 } else {
                     i2 = -1;
                     i3 = -1;
                 }
                 if (i3 != i2) {
-                    if (sampleTrackIndex == i7 && (bArrArray = byteBufferAllocateDirect.array()) != null) {
+                    if (sampleTrackIndex != iFindTrack2 && (bArrArray = byteBufferAllocateDirect.array()) != null) {
                         int iArrayOffset = byteBufferAllocateDirect.arrayOffset();
-                        int iLimit = iArrayOffset + byteBufferAllocateDirect.limit();
-                        int i8 = iArrayOffset;
-                        int i9 = -1;
+                        iLimit = iArrayOffset + byteBufferAllocateDirect.limit();
+                        i4 = iArrayOffset;
+                        i5 = -1;
                         while (true) {
-                            z2 = z4;
-                            int i10 = iLimit - 4;
-                            if (i8 > i10) {
+                            i6 = iLimit - 4;
+                            if (i4 <= i6) {
                                 break;
                             }
-                            if (bArrArray[i8] == 0 && bArrArray[i8 + 1] == 0 && bArrArray[i8 + 2] == 0) {
-                                i5 = iMax;
-                                i4 = i7;
-                                if (bArrArray[i8 + 3] == 1) {
-                                    if (i9 != -1) {
-                                        int i11 = (i8 - i9) - (i8 == i10 ? 0 : 4);
-                                        bArrArray[i9] = (byte) (i11 >> 24);
-                                        bArrArray[i9 + 1] = (byte) (i11 >> 16);
-                                        bArrArray[i9 + 2] = (byte) (i11 >> 8);
-                                        bArrArray[i9 + 3] = (byte) i11;
+                            if (bArrArray[i4] != 0 && bArrArray[i4 + 1] == 0 && bArrArray[i4 + 2] == 0) {
+                                i7 = iAddTrack2;
+                                i8 = iMax;
+                                if (bArrArray[i4 + 3] == 1) {
+                                    if (i5 != -1) {
+                                        int i12 = i4 - i5;
+                                        if (i4 != i6) {
+                                            i9 = 4;
+                                        } else {
+                                            i9 = 0;
+                                        }
+                                        int i13 = i12 - i9;
+                                        bArrArray[i5] = (byte) (i13 >> 24);
+                                        bArrArray[i5 + 1] = (byte) (i13 >> 16);
+                                        bArrArray[i5 + 2] = (byte) (i13 >> 8);
+                                        bArrArray[i5 + 3] = (byte) i13;
                                     }
-                                    i9 = i8;
+                                    i5 = i4;
                                 }
-                                i8++;
-                                z4 = z2;
-                                i7 = i4;
-                                iMax = i5;
+                                i4++;
+                                iAddTrack2 = i7;
+                                iMax = i8;
                             } else {
-                                i4 = i7;
-                                i5 = iMax;
+                                i7 = iAddTrack2;
+                                i8 = iMax;
                             }
-                            if (i8 == i10) {
-                                if (i9 != -1) {
-                                    int i12 = (i8 - i9) - (i8 == i10 ? 0 : 4);
-                                    bArrArray[i9] = (byte) (i12 >> 24);
-                                    bArrArray[i9 + 1] = (byte) (i12 >> 16);
-                                    bArrArray[i9 + 2] = (byte) (i12 >> 8);
-                                    bArrArray[i9 + 3] = (byte) i12;
+                            if (i4 == i6) {
+                                if (i5 != -1) {
+                                    int i14 = i4 - i5;
+                                    if (i4 != i6) {
+                                        i9 = 4;
+                                    } else {
+                                        i9 = 0;
+                                    }
+                                    int i15 = i14 - i9;
+                                    bArrArray[i5] = (byte) (i15 >> 24);
+                                    bArrArray[i5 + 1] = (byte) (i15 >> 16);
+                                    bArrArray[i5 + 2] = (byte) (i15 >> 8);
+                                    bArrArray[i5 + 3] = (byte) i15;
                                 }
-                                i9 = i8;
+                                i5 = i4;
                             }
-                            i8++;
-                            z4 = z2;
-                            i7 = i4;
-                            iMax = i5;
+                            i4++;
+                            iAddTrack2 = i7;
+                            iMax = i8;
                         }
-                    } else {
-                        z2 = z4;
                     }
-                    iFindTrack2 = i7;
+                    iAddTrack2 = iAddTrack2;
                     iMax = iMax;
                     if (bufferInfo.size >= 0) {
                         bufferInfo.presentationTimeUs = mediaExtractor.getSampleTime();
-                        z3 = false;
+                        z2 = false;
                     } else {
                         bufferInfo.size = 0;
-                        z3 = true;
+                        z2 = true;
                     }
-                    if (bufferInfo.size <= 0 && !z3) {
-                        if (sampleTrackIndex == iFindTrack && j > 0 && j5 == -1) {
+                    if (bufferInfo.size <= 0 && !z2) {
+                        if (sampleTrackIndex == iFindTrack && j > 0 && j5 == j4) {
                             j5 = bufferInfo.presentationTimeUs;
                         }
                         if (j2 < 0 || bufferInfo.presentationTimeUs < j2) {
@@ -363,86 +377,123 @@ public class MediaCodecVideoConvertor {
                             if (jWriteSampleData != 0) {
                                 MediaController.VideoConvertorListener videoConvertorListener = this.callback;
                                 if (videoConvertorListener != null) {
-                                    long j6 = bufferInfo.presentationTimeUs - j5;
-                                    if (j6 <= j4) {
-                                        j6 = j4;
+                                    long j7 = bufferInfo.presentationTimeUs - j5;
+                                    if (j7 <= j6) {
+                                        j7 = j6;
                                     }
-                                    videoConvertorListener.didWriteData(jWriteSampleData, (j6 / 1000.0f) / f);
-                                    j4 = j6;
+                                    videoConvertorListener.didWriteData(jWriteSampleData, (j7 / 1000.0f) / f);
+                                    j6 = j7;
                                 }
                             }
                         } else {
-                            z3 = true;
+                            z2 = true;
                         }
                     }
-                    if (!z3) {
+                    if (!z2) {
                         mediaExtractor.advance();
                     }
                 } else {
                     iAddTrack2 = iAddTrack2;
-                    z2 = z4;
-                    iFindTrack2 = i7;
                     iMax = iMax;
                     if (sampleTrackIndex == -1) {
-                        z3 = true;
+                        z2 = true;
                     } else {
                         mediaExtractor.advance();
-                        z3 = false;
+                        z2 = false;
                     }
                 }
-                iAddTrack2 = iAddTrack2;
-                if (z3) {
-                    z4 = true;
+                if (z2) {
+                    i10 = 0;
+                    z3 = true;
                 } else {
-                    z4 = z2;
+                    i10 = 0;
                 }
             }
             i2 = -1;
             if (i3 != i2) {
-                if (sampleTrackIndex == i7) {
-                    z2 = z4;
-                } else {
-                    z2 = z4;
+                if (sampleTrackIndex != iFindTrack2) {
+                    int iArrayOffset2 = byteBufferAllocateDirect.arrayOffset();
+                    iLimit = iArrayOffset2 + byteBufferAllocateDirect.limit();
+                    i4 = iArrayOffset2;
+                    i5 = -1;
+                    while (true) {
+                        i6 = iLimit - 4;
+                        if (i4 <= i6) {
+                            break;
+                            break;
+                        }
+                        if (bArrArray[i4] != 0) {
+                            i7 = iAddTrack2;
+                            i8 = iMax;
+                            if (i4 == i6) {
+                            }
+                            i4++;
+                            iAddTrack2 = i7;
+                            iMax = i8;
+                        } else {
+                            i7 = iAddTrack2;
+                            i8 = iMax;
+                            if (i4 == i6) {
+                            }
+                            i4++;
+                            iAddTrack2 = i7;
+                            iMax = i8;
+                        }
+                        if (i5 != -1) {
+                            int i16 = i4 - i5;
+                            if (i4 != i6) {
+                                i9 = 4;
+                            } else {
+                                i9 = 0;
+                            }
+                            int i17 = i16 - i9;
+                            bArrArray[i5] = (byte) (i17 >> 24);
+                            bArrArray[i5 + 1] = (byte) (i17 >> 16);
+                            bArrArray[i5 + 2] = (byte) (i17 >> 8);
+                            bArrArray[i5 + 3] = (byte) i17;
+                        }
+                        i5 = i4;
+                        i4++;
+                        iAddTrack2 = i7;
+                        iMax = i8;
+                    }
                 }
-                iFindTrack2 = i7;
+                iAddTrack2 = iAddTrack2;
                 iMax = iMax;
                 if (bufferInfo.size >= 0) {
                     bufferInfo.presentationTimeUs = mediaExtractor.getSampleTime();
-                    z3 = false;
+                    z2 = false;
                 } else {
                     bufferInfo.size = 0;
-                    z3 = true;
+                    z2 = true;
                 }
                 if (bufferInfo.size <= 0) {
                 }
-                if (!z3) {
+                if (!z2) {
                     mediaExtractor.advance();
                 }
             } else {
                 iAddTrack2 = iAddTrack2;
-                z2 = z4;
-                iFindTrack2 = i7;
                 iMax = iMax;
                 if (sampleTrackIndex == -1) {
-                    z3 = true;
+                    z2 = true;
                 } else {
                     mediaExtractor.advance();
-                    z3 = false;
+                    z2 = false;
                 }
             }
-            iAddTrack2 = iAddTrack2;
-            if (z3) {
-                z4 = true;
+            if (z2) {
+                i10 = 0;
+                z3 = true;
             } else {
-                z4 = z2;
+                i10 = 0;
             }
         }
-        int i13 = iFindTrack2;
         if (iFindTrack >= 0) {
             mediaExtractor.unselectTrack(iFindTrack);
         }
-        if (i13 >= 0) {
-            mediaExtractor.unselectTrack(i13);
+        if (iFindTrack2 >= 0) {
+            mediaExtractor.unselectTrack(iFindTrack2);
         }
         return j5;
     }

@@ -167,10 +167,6 @@ public class EditTextBoldCursor extends EditTextEffects {
         return null;
     }
 
-    public void lambda$new$0(long j) {
-        invalidate();
-    }
-
     public void setHintText2(CharSequence charSequence, boolean z) {
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.hintAnimatedDrawable2;
         if (animatedTextDrawable != null) {
@@ -232,7 +228,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         this.invalidateCallback = new Choreographer60FpsContent.FrameCallback() {
             @Override
             public final void doFrame(long j) {
-                this.f$0.lambda$new$0(j);
+                this.f$0.invalidate();
             }
         };
         this.rect = new Rect();
@@ -916,7 +912,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                             callback2.run(canvas, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    this.f$0.lambda$drawHint$1(canvas);
+                                    this.f$0.hintLayout.draw(canvas);
                                 }
                             });
                         } else {
@@ -928,10 +924,6 @@ public class EditTextBoldCursor extends EditTextEffects {
                 }
             }
         }
-    }
-
-    public void lambda$drawHint$1(Canvas canvas) {
-        this.hintLayout.draw(canvas);
     }
 
     @Override
@@ -1113,7 +1105,8 @@ public class EditTextBoldCursor extends EditTextEffects {
             if (measuredWidth < 0) {
                 measuredWidth = getMeasuredWidth() / 2;
             }
-            int iMax = Math.max(measuredWidth, getMeasuredWidth() - measuredWidth) * 2;
+            int i6 = measuredWidth;
+            int iMax = Math.max(i6, getMeasuredWidth() - i6) * 2;
             if (this.lineActiveness < 1.0f) {
                 canvas.drawRect(getScrollX(), measuredHeight - iDp, getScrollX() + getMeasuredWidth(), measuredHeight, this.linePaint);
             }
@@ -1127,7 +1120,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                 if (z4) {
                     interpolation = 1.0f;
                 }
-                float f4 = measuredWidth;
+                float f4 = i6;
                 canvas.drawRect(getScrollX() + Math.max(0.0f, f4 - (this.activeLineWidth / 2.0f)), measuredHeight - ((int) (interpolation * AndroidUtilities.dp(2.0f))), getScrollX() + Math.min(f4 + (this.activeLineWidth / 2.0f), getMeasuredWidth()), measuredHeight, this.activeLinePaint);
             }
         }
@@ -1282,7 +1275,7 @@ public class EditTextBoldCursor extends EditTextEffects {
             this.floatingToolbarPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
                 @Override
                 public final boolean onPreDraw() {
-                    return this.f$0.lambda$startActionMode$2();
+                    return EditTextBoldCursor.m2264$r8$lambda$ORqNHs4RTfN0BrsU5GDNmUYeTI(this.f$0);
                 }
             };
             FloatingActionMode floatingActionMode2 = this.floatingActionMode;
@@ -1297,8 +1290,8 @@ public class EditTextBoldCursor extends EditTextEffects {
         return super.startActionMode(callback);
     }
 
-    public boolean lambda$startActionMode$2() {
-        FloatingActionMode floatingActionMode = this.floatingActionMode;
+    public static boolean m2264$r8$lambda$ORqNHs4RTfN0BrsU5GDNmUYeTI(EditTextBoldCursor editTextBoldCursor) {
+        FloatingActionMode floatingActionMode = editTextBoldCursor.floatingActionMode;
         if (floatingActionMode == null) {
             return true;
         }

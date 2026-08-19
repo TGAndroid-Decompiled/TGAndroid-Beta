@@ -56,8 +56,8 @@ public class StoryReactionWidgetBackground extends Drawable {
         this.points[0] = getBounds().centerX();
         int i = 1;
         this.points[1] = getBounds().centerY();
+        int i2 = 2;
         this.points[2] = getBounds().height() / 2.0f;
-        int i2 = 3;
         this.points[3] = getBounds().left + (getBounds().width() * 1.027f);
         this.points[4] = getBounds().top + (getBounds().height() * 0.956f);
         this.points[5] = getBounds().height() * 0.055f;
@@ -91,20 +91,20 @@ public class StoryReactionWidgetBackground extends Drawable {
         }
         this.path.rewind();
         int i4 = 0;
-        while (i4 < 2) {
+        while (i4 < i2) {
             if (this.style != i || i4 != 0) {
                 Paint paint2 = i4 == 0 ? this.shadowPaint : this.backgroundPaint;
                 int i5 = i4 == 0 ? 1 : 0;
                 int i6 = 0;
                 while (i6 < 5) {
-                    if (i6 == i || i6 == 2) {
+                    if (i6 == i || i6 == i2) {
                         if (f != 1.0f) {
                             Path path = this.path;
                             float[] fArr = this.points;
                             int i7 = i6 * 3;
                             path.addCircle(fArr[i7], fArr[i7 + 1], (fArr[i7 + 2] * (1.0f - f)) - i5, Path.Direction.CW);
                         }
-                    } else if (i6 != i2 && i6 != 4) {
+                    } else if (i6 != 3 && i6 != 4) {
                         Path path2 = this.path;
                         float[] fArr2 = this.points;
                         int i8 = i6 * 3;
@@ -117,13 +117,13 @@ public class StoryReactionWidgetBackground extends Drawable {
                     }
                     i6++;
                     i = 1;
-                    i2 = 3;
+                    i2 = 2;
                 }
                 canvas.drawPath(this.path, paint2);
             }
             i4++;
             i = 1;
-            i2 = 3;
+            i2 = 2;
         }
         canvas.restore();
     }

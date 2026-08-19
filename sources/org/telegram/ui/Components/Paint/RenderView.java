@@ -13,6 +13,7 @@ import android.opengl.GLUtils;
 import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.TextureView;
+import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
 import java.util.concurrent.CountDownLatch;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -78,7 +79,7 @@ public class RenderView extends TextureView {
         this.shapeInput = new ShapeInput(this, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                RenderView.m2477$r8$lambda$wzXQDLrcF6BiMx654uDxkc67J0(this.f$0);
             }
         });
         this.painting.setDelegate(new Painting.PaintingDelegate() {
@@ -123,7 +124,7 @@ public class RenderView extends TextureView {
             RenderView.this.post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSurfaceTextureAvailable$0();
+                    RenderView.AnonymousClass1.m2478$r8$lambda$LJbNVf5C620YHTq_OTymRHeg6M(this.f$0);
                 }
             });
             if (RenderView.this.painting.isPaused()) {
@@ -131,7 +132,7 @@ public class RenderView extends TextureView {
             }
         }
 
-        public void lambda$onSurfaceTextureAvailable$0() {
+        public static void m2478$r8$lambda$LJbNVf5C620YHTq_OTymRHeg6M(AnonymousClass1 anonymousClass1) {
             if (RenderView.this.internal != null) {
                 RenderView.this.internal.requestRender();
             }
@@ -148,12 +149,12 @@ public class RenderView extends TextureView {
             RenderView.this.internal.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSurfaceTextureSizeChanged$1();
+                    RenderView.AnonymousClass1.m2479$r8$lambda$LcdpUUSgReGVSyRjKfudWRcaf4(this.f$0);
                 }
             });
         }
 
-        public void lambda$onSurfaceTextureSizeChanged$1() {
+        public static void m2479$r8$lambda$LcdpUUSgReGVSyRjKfudWRcaf4(AnonymousClass1 anonymousClass1) {
             if (RenderView.this.internal != null) {
                 RenderView.this.internal.requestRender();
             }
@@ -165,21 +166,21 @@ public class RenderView extends TextureView {
                 RenderView.this.painting.onPause(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onSurfaceTextureDestroyed$2();
+                        RenderView.AnonymousClass1.$r8$lambda$gtC29xJL3fU37c_25qOt1qQJaAg(this.f$0);
                     }
                 });
             }
             return true;
         }
 
-        public void lambda$onSurfaceTextureDestroyed$2() {
+        public static void $r8$lambda$gtC29xJL3fU37c_25qOt1qQJaAg(AnonymousClass1 anonymousClass1) {
             RenderView.this.internal.shutdown();
             RenderView.this.internal = null;
         }
     }
 
-    public void lambda$new$0() {
-        RenderViewDelegate renderViewDelegate = this.delegate;
+    public static void m2477$r8$lambda$wzXQDLrcF6BiMx654uDxkc67J0(RenderView renderView) {
+        RenderViewDelegate renderViewDelegate = renderView.delegate;
         if (renderViewDelegate != null) {
             renderViewDelegate.invalidateInputView();
         }
@@ -337,28 +338,25 @@ public class RenderView extends TextureView {
             performInContext(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$shutdown$1();
+                    RenderView.m2474$r8$lambda$KkJBdjWtg7kPr0OgL33b0Y8D4k(this.f$0);
                 }
             });
         }
         setVisibility(8);
     }
 
-    public void lambda$shutdown$1() {
-        this.painting.cleanResources(this.transformedBitmap);
-        this.internal.shutdown();
-        this.internal = null;
-    }
-
-    public void lambda$clearAll$2() {
-        this.painting.setBrush(this.brush);
+    public static void m2474$r8$lambda$KkJBdjWtg7kPr0OgL33b0Y8D4k(RenderView renderView) {
+        renderView.painting.cleanResources(renderView.transformedBitmap);
+        renderView.internal.shutdown();
+        renderView.internal = null;
     }
 
     public void clearAll() {
         this.input.clear(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$clearAll$2();
+                RenderView renderView = this.f$0;
+                renderView.painting.setBrush(renderView.brush);
             }
         });
     }
@@ -384,7 +382,7 @@ public class RenderView extends TextureView {
             this.safeRequestRender = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0();
+                    RenderView.CanvasInternal.$r8$lambda$FA6VVbRbZBwch6GqyevhJ1GmFmo(this.f$0);
                 }
             };
             this.blurManager = blurManager;
@@ -447,7 +445,7 @@ public class RenderView extends TextureView {
                     this.blurManager.attach(this.safeRequestRender);
                 }
                 SurfaceTexture surfaceTexture = this.surfaceTexture;
-                if (surfaceTexture instanceof SurfaceTexture) {
+                if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(surfaceTexture)) {
                     EGLSurface eGLSurfaceEglCreateWindowSurface = this.egl10.eglCreateWindowSurface(this.eglDisplay, eGLConfig, surfaceTexture, null);
                     this.eglSurface = eGLSurfaceEglCreateWindowSurface;
                     if (eGLSurfaceEglCreateWindowSurface == null || eGLSurfaceEglCreateWindowSurface == EGL10.EGL_NO_SURFACE) {
@@ -538,7 +536,7 @@ public class RenderView extends TextureView {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$run$0();
+                            RenderView.this.delegate.onFirstDraw();
                         }
                     });
                 }
@@ -546,10 +544,6 @@ public class RenderView extends TextureView {
                     return;
                 }
                 CanvasInternal.this.ready = true;
-            }
-
-            public void lambda$run$0() {
-                RenderView.this.delegate.onFirstDraw();
             }
         }
 
@@ -562,14 +556,14 @@ public class RenderView extends TextureView {
             postRunnable(this.drawRunnable);
         }
 
-        public void lambda$new$0() {
-            Runnable runnable = this.scheduledRunnable;
+        public static void $r8$lambda$FA6VVbRbZBwch6GqyevhJ1GmFmo(CanvasInternal canvasInternal) {
+            Runnable runnable = canvasInternal.scheduledRunnable;
             if (runnable != null) {
-                cancelRunnable(runnable);
-                this.scheduledRunnable = null;
+                canvasInternal.cancelRunnable(runnable);
+                canvasInternal.scheduledRunnable = null;
             }
-            cancelRunnable(this.drawRunnable);
-            postRunnable(this.drawRunnable);
+            canvasInternal.cancelRunnable(canvasInternal.drawRunnable);
+            canvasInternal.postRunnable(canvasInternal.drawRunnable);
         }
 
         public void scheduleRedraw() {
@@ -581,16 +575,16 @@ public class RenderView extends TextureView {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$scheduleRedraw$1();
+                    RenderView.CanvasInternal.m2480$r8$lambda$7qG9Fc64ltnMpamgcBHkAv5BY(this.f$0);
                 }
             };
             this.scheduledRunnable = runnable2;
             postRunnable(runnable2, 1L);
         }
 
-        public void lambda$scheduleRedraw$1() {
-            this.scheduledRunnable = null;
-            this.drawRunnable.run();
+        public static void m2480$r8$lambda$7qG9Fc64ltnMpamgcBHkAv5BY(CanvasInternal canvasInternal) {
+            canvasInternal.scheduledRunnable = null;
+            canvasInternal.drawRunnable.run();
         }
 
         public void finish() {
@@ -626,13 +620,13 @@ public class RenderView extends TextureView {
             postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$shutdown$2();
+                    RenderView.CanvasInternal.$r8$lambda$YdRdX0FzJIp8vgnGWrhnn4rxP7U(this.f$0);
                 }
             });
         }
 
-        public void lambda$shutdown$2() {
-            finish();
+        public static void $r8$lambda$YdRdX0FzJIp8vgnGWrhnn4rxP7U(CanvasInternal canvasInternal) {
+            canvasInternal.finish();
             Looper looperMyLooper = Looper.myLooper();
             if (looperMyLooper != null) {
                 looperMyLooper.quit();
@@ -646,20 +640,25 @@ public class RenderView extends TextureView {
             final CountDownLatch countDownLatch = new CountDownLatch(1);
             final Bitmap[] bitmapArr = new Bitmap[1];
             try {
-                postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$getTexture$3(z, z2, bitmapArr, countDownLatch);
-                    }
-                });
-                countDownLatch.await();
-            } catch (Exception e) {
-                FileLog.e(e);
+                try {
+                    postRunnable(new Runnable() {
+                        @Override
+                        public final void run() {
+                            RenderView.CanvasInternal.$r8$lambda$ozHTjMukf70F7u0T6IwQMnKraWU(this.f$0, z, z2, bitmapArr, countDownLatch);
+                        }
+                    });
+                    countDownLatch.await();
+                } catch (Exception e) {
+                    e = e;
+                    FileLog.e(e);
+                }
+            } catch (Exception e2) {
+                e = e2;
             }
             return bitmapArr[0];
         }
 
-        public void lambda$getTexture$3(boolean z, boolean z2, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
+        public static void $r8$lambda$ozHTjMukf70F7u0T6IwQMnKraWU(CanvasInternal canvasInternal, boolean z, boolean z2, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
             Painting.PaintingData paintingData = RenderView.this.painting.getPaintingData(new RectF(0.0f, 0.0f, RenderView.this.painting.getSize().width, RenderView.this.painting.getSize().height), false, z, z2);
             if (paintingData != null) {
                 bitmapArr[0] = paintingData.bitmap;
@@ -687,17 +686,17 @@ public class RenderView extends TextureView {
         canvasInternal.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$performInContext$3(runnable);
+                RenderView.m2476$r8$lambda$YwcIaCgxCuATp_OnbIlHgEm7Zo(this.f$0, runnable);
             }
         });
     }
 
-    public void lambda$performInContext$3(Runnable runnable) {
-        CanvasInternal canvasInternal = this.internal;
+    public static void m2476$r8$lambda$YwcIaCgxCuATp_OnbIlHgEm7Zo(RenderView renderView, Runnable runnable) {
+        CanvasInternal canvasInternal = renderView.internal;
         if (canvasInternal == null || !canvasInternal.initialized) {
             return;
         }
-        this.internal.setCurrentContext();
+        renderView.internal.setCurrentContext();
         runnable.run();
     }
 }

@@ -108,61 +108,57 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$createView$1(view, i);
+                GroupInviteActivity.m3317$r8$lambda$wnfBykg4qtvDlfNrCL3sGcC48E(this.f$0, view, i);
             }
         });
         return this.fragmentView;
     }
 
-    public void lambda$createView$1(View view, int i) {
-        if (getParentActivity() == null) {
+    public static void m3317$r8$lambda$wnfBykg4qtvDlfNrCL3sGcC48E(final GroupInviteActivity groupInviteActivity, View view, int i) {
+        if (groupInviteActivity.getParentActivity() == null) {
             return;
         }
-        if (i == this.copyLinkRow || i == this.linkRow) {
-            if (this.invite == null) {
+        if (i == groupInviteActivity.copyLinkRow || i == groupInviteActivity.linkRow) {
+            if (groupInviteActivity.invite == null) {
                 return;
             }
             try {
-                ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.invite.link));
-                BulletinFactory.createCopyLinkBulletin(this).show();
+                ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", groupInviteActivity.invite.link));
+                BulletinFactory.createCopyLinkBulletin(groupInviteActivity).show();
                 return;
             } catch (Exception e) {
                 FileLog.e(e);
                 return;
             }
         }
-        if (i == this.shareLinkRow) {
-            if (this.invite == null) {
+        if (i == groupInviteActivity.shareLinkRow) {
+            if (groupInviteActivity.invite == null) {
                 return;
             }
             try {
                 Intent intent = new Intent("android.intent.action.SEND");
                 intent.setType("text/plain");
-                intent.putExtra("android.intent.extra.TEXT", this.invite.link);
-                getParentActivity().startActivityForResult(Intent.createChooser(intent, LocaleController.getString(R.string.InviteToGroupByLink)), 500);
+                intent.putExtra("android.intent.extra.TEXT", groupInviteActivity.invite.link);
+                groupInviteActivity.getParentActivity().startActivityForResult(Intent.createChooser(intent, LocaleController.getString(R.string.InviteToGroupByLink)), 500);
                 return;
             } catch (Exception e2) {
                 FileLog.e(e2);
                 return;
             }
         }
-        if (i == this.revokeLinkRow) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+        if (i == groupInviteActivity.revokeLinkRow) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(groupInviteActivity.getParentActivity());
             builder.setMessage(LocaleController.getString(R.string.RevokeAlert));
             builder.setTitle(LocaleController.getString(R.string.RevokeLink));
             builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    this.f$0.lambda$createView$0(alertDialog, i2);
+                    this.f$0.generateLink(true);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            showDialog(builder.create());
+            groupInviteActivity.showDialog(builder.create());
         }
-    }
-
-    public void lambda$createView$0(AlertDialog alertDialog, int i) {
-        generateLink(true);
     }
 
     @Override
@@ -195,14 +191,14 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    private void generateLink(final boolean z) {
+    public void generateLink(final boolean z) {
         this.loading = true;
         TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
         tL_messages_exportChatInvite.peer = getMessagesController().getInputPeer(-this.chatId);
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$generateLink$3(z, tLObject, tL_error);
+                GroupInviteActivity.m3316$r8$lambda$flazjxHjB3Lw9JnjaScZFlylto(this.f$0, z, tLObject, tL_error);
             }
         }), this.classGuid);
         ListAdapter listAdapter = this.listAdapter;
@@ -211,34 +207,36 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$generateLink$3(final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3316$r8$lambda$flazjxHjB3Lw9JnjaScZFlylto(final GroupInviteActivity groupInviteActivity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        groupInviteActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$generateLink$2(tL_error, tLObject, z);
+                GroupInviteActivity.$r8$lambda$7E07p2dQ7ZU3MsHU3mFMECwV_Wo(this.f$0, tL_error, tLObject, z);
             }
         });
     }
 
-    public void lambda$generateLink$2(TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
+    public static void $r8$lambda$7E07p2dQ7ZU3MsHU3mFMECwV_Wo(GroupInviteActivity groupInviteActivity, TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
         if (tL_error == null) {
-            this.invite = (TLRPC.TL_chatInviteExported) tLObject;
+            groupInviteActivity.getClass();
+            groupInviteActivity.invite = (TLRPC.TL_chatInviteExported) tLObject;
             if (z) {
-                if (getParentActivity() == null) {
+                if (groupInviteActivity.getParentActivity() == null) {
                     return;
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+                AlertDialog.Builder builder = new AlertDialog.Builder(groupInviteActivity.getParentActivity());
                 builder.setMessage(LocaleController.getString(R.string.RevokeAlertNewLink));
                 builder.setTitle(LocaleController.getString(R.string.RevokeLink));
                 builder.setNegativeButton(LocaleController.getString(R.string.OK), null);
-                showDialog(builder.create());
+                groupInviteActivity.showDialog(builder.create());
             }
         }
-        this.loading = false;
-        this.listAdapter.notifyDataSetChanged();
+        groupInviteActivity.loading = false;
+        groupInviteActivity.listAdapter.notifyDataSetChanged();
     }
 
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         public ListAdapter(Context context) {

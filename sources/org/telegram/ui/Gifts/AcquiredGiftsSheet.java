@@ -37,7 +37,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
     private final GiftAuctionController.Auction auction;
     private final List gifts;
 
-    public static void lambda$new$0(View view, int i) {
+    public static void $r8$lambda$HLA2HufTkWAEylodHDmfcb8x3Rs(View view, int i) {
     }
 
     public AcquiredGiftsSheet(Context context, Theme.ResourcesProvider resourcesProvider, GiftAuctionController.Auction auction, List list) {
@@ -53,7 +53,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                AcquiredGiftsSheet.lambda$new$0(view, i);
+                AcquiredGiftsSheet.$r8$lambda$HLA2HufTkWAEylodHDmfcb8x3Rs(view, i);
             }
         });
         this.recyclerListView.setOverScrollMode(2);
@@ -61,7 +61,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.dismiss();
             }
         });
         buttonWithCounterView.setText(LocaleController.getString(R.string.OK), false);
@@ -72,10 +72,6 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
         layoutParamsCreateFrame.rightMargin += i2;
         this.containerView.addView(buttonWithCounterView, layoutParamsCreateFrame);
         this.adapter.update(false);
-    }
-
-    public void lambda$new$1(View view) {
-        lambda$new$0();
     }
 
     @Override
@@ -109,19 +105,20 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             arrayList.add(AcquiredGiftsCell.Factory.as(tL_StarGiftAuctionAcquiredGift, this.auction, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$fillItems$2(tL_StarGiftAuctionAcquiredGift, view);
+                    AcquiredGiftsSheet.$r8$lambda$6p2ATsNjCD9ZcBjz0iV35Iawdmo(this.f$0, tL_StarGiftAuctionAcquiredGift, view);
                 }
             }));
         }
         arrayList.add(UItem.asSpace(AndroidUtilities.dp(16.0f)));
     }
 
-    public void lambda$fillItems$2(TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift, View view) {
-        openProfile(DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer));
+    public static void $r8$lambda$6p2ATsNjCD9ZcBjz0iV35Iawdmo(AcquiredGiftsSheet acquiredGiftsSheet, TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift, View view) {
+        acquiredGiftsSheet.getClass();
+        acquiredGiftsSheet.openProfile(DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer));
     }
 
     private void openProfile(long j) {
-        lambda$new$0();
+        dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null || UserObject.isService(j)) {
             return;
@@ -165,7 +162,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             tableView.addRowUser(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), this.currentAccount, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$bind$0(onClickListener);
+                    AcquiredGiftsSheet.AcquiredGiftsCell.$r8$lambda$uA6eUPYTbmOPN1KWI4PUtoEWjHA(this.f$0, onClickListener);
                 }
             });
             tableView.addRowDateTime(LocaleController.getString(R.string.Gift2AuctionsAcquiredDate), tL_StarGiftAuctionAcquiredGift.date);
@@ -173,8 +170,9 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             addView(tableView, LayoutHelper.createFrame(-1, -2.0f));
         }
 
-        public void lambda$bind$0(View.OnClickListener onClickListener) {
-            onClickListener.onClick(this);
+        public static void $r8$lambda$uA6eUPYTbmOPN1KWI4PUtoEWjHA(AcquiredGiftsCell acquiredGiftsCell, View.OnClickListener onClickListener) {
+            acquiredGiftsCell.getClass();
+            onClickListener.onClick(acquiredGiftsCell);
         }
 
         private static class Factory extends UItem.UItemFactory {

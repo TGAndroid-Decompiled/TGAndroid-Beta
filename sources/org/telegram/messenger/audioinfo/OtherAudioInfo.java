@@ -3,6 +3,7 @@ package org.telegram.messenger.audioinfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
+import androidx.core.provider.FontProvider$ContentQueryWrapperApi24Impl$$ExternalSyntheticAutoCloseableDispatcher0;
 import java.io.File;
 import org.telegram.messenger.FileLog;
 
@@ -49,7 +50,7 @@ public class OtherAudioInfo extends AudioInfo {
         try {
             MediaMetadataRetriever mediaMetadataRetriever2 = this.r;
             if (mediaMetadataRetriever2 != null) {
-                mediaMetadataRetriever2.release();
+                FontProvider$ContentQueryWrapperApi24Impl$$ExternalSyntheticAutoCloseableDispatcher0.m(mediaMetadataRetriever2);
             }
         } catch (Exception e2) {
             FileLog.e(e2);

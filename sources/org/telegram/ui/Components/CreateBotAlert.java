@@ -126,13 +126,12 @@ public abstract class CreateBotAlert {
         if (strSubstring != null && strSubstring.toLowerCase().endsWith("bot")) {
             strSubstring = strSubstring.substring(0, strSubstring.length() - 3);
         }
-        CharSequence charSequence = strSubstring;
-        editTextCell2.setText(charSequence);
+        editTextCell2.setText(strSubstring);
         linearLayout.addView(editTextCell2, LayoutHelper.createLinear(-1, -2, 55, 12, 0, 12, 0));
         editTextCell.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView4, int i4, KeyEvent keyEvent) {
-                return CreateBotAlert.lambda$show$0(editTextCell2, textView4, i4, keyEvent);
+                return CreateBotAlert.m2237$r8$lambda$Z87qQ9FB7PN4baMJPXCnYjip_4(editTextCell2, textView4, i4, keyEvent);
             }
         });
         final TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context, resourcesProvider);
@@ -163,22 +162,22 @@ public abstract class CreateBotAlert {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                CreateBotAlert.lambda$show$2(editTextCell2, iArr2, i, strArr, strArr2, round, textInfoPrivacyCell2, resourcesProvider, iArr3);
+                CreateBotAlert.m2238$r8$lambda$duLcuQuCStUZz3PaAYwTmfqe0(editTextCell2, iArr2, i, strArr, strArr2, round, textInfoPrivacyCell2, resourcesProvider, iArr3);
             }
         };
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                CreateBotAlert.lambda$show$6(strArr, runnable, editTextCell, iArr3, round, z, i, user, iArr, zArr, callback, bottomSheetCreate, resourcesProvider, context);
+                CreateBotAlert.$r8$lambda$Qpj78b_0NziE56xjf31rIY9Vfg8(strArr, runnable, editTextCell, iArr3, round, z, i, user, iArr, zArr, callback, bottomSheetCreate, resourcesProvider, context);
             }
         };
         editTextCell2.editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence2, int i4, int i5, int i6) {
+            public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence2, int i4, int i5, int i6) {
+            public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
             }
 
             @Override
@@ -186,19 +185,19 @@ public abstract class CreateBotAlert {
                 runnable.run();
             }
         });
-        if (!TextUtils.isEmpty(charSequence)) {
+        if (!TextUtils.isEmpty(strSubstring)) {
             runnable.run();
         }
         editTextCell2.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView4, int i4, KeyEvent keyEvent) {
-                return CreateBotAlert.lambda$show$7(runnable2, textView4, i4, keyEvent);
+                return CreateBotAlert.$r8$lambda$DNHBVk_FfcLHor8rzZBpk0hsHQg(runnable2, textView4, i4, keyEvent);
             }
         });
         neutral.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                bottomSheetCreate.lambda$new$0();
+                bottomSheetCreate.dismiss();
             }
         });
         round.setEnabled(false);
@@ -211,13 +210,13 @@ public abstract class CreateBotAlert {
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                CreateBotAlert.lambda$show$10(zArr, callback, iArr, i, dialogInterface);
+                CreateBotAlert.$r8$lambda$O4LfDmOpx_9Y5LMHst2_FDOR_54(zArr, callback, iArr, i, dialogInterface);
             }
         });
         bottomSheetCreate.show();
     }
 
-    public static boolean lambda$show$0(EditTextCell editTextCell, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m2237$r8$lambda$Z87qQ9FB7PN4baMJPXCnYjip_4(EditTextCell editTextCell, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
             return false;
         }
@@ -227,7 +226,7 @@ public abstract class CreateBotAlert {
         return true;
     }
 
-    public static void lambda$show$2(EditTextCell editTextCell, int[] iArr, int i, final String[] strArr, final String[] strArr2, final ButtonWithCounterView buttonWithCounterView, final TextInfoPrivacyCell textInfoPrivacyCell, final Theme.ResourcesProvider resourcesProvider, final int[] iArr2) {
+    public static void m2238$r8$lambda$duLcuQuCStUZz3PaAYwTmfqe0(EditTextCell editTextCell, int[] iArr, int i, final String[] strArr, final String[] strArr2, final ButtonWithCounterView buttonWithCounterView, final TextInfoPrivacyCell textInfoPrivacyCell, final Theme.ResourcesProvider resourcesProvider, final int[] iArr2) {
         final String str = ((Object) editTextCell.getText()) + "bot";
         if (str.length() < 4) {
             if (iArr[0] >= 0) {
@@ -274,12 +273,12 @@ public abstract class CreateBotAlert {
         iArr[0] = ConnectionsManager.getInstance(i).sendRequestTyped(checkusername, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CreateBotAlert.lambda$show$1(buttonWithCounterView, strArr2, strArr, str, textInfoPrivacyCell, resourcesProvider, iArr2, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                CreateBotAlert.$r8$lambda$GmKpaDpTm5NvpHF_qD44TjE4Y10(buttonWithCounterView, strArr2, strArr, str, textInfoPrivacyCell, resourcesProvider, iArr2, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$show$1(ButtonWithCounterView buttonWithCounterView, String[] strArr, String[] strArr2, String str, TextInfoPrivacyCell textInfoPrivacyCell, Theme.ResourcesProvider resourcesProvider, int[] iArr, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$GmKpaDpTm5NvpHF_qD44TjE4Y10(ButtonWithCounterView buttonWithCounterView, String[] strArr, String[] strArr2, String str, TextInfoPrivacyCell textInfoPrivacyCell, Theme.ResourcesProvider resourcesProvider, int[] iArr, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         buttonWithCounterView.setLoading(false);
         strArr[0] = null;
         if (bool instanceof TLRPC.TL_boolTrue) {
@@ -298,7 +297,7 @@ public abstract class CreateBotAlert {
         AndroidUtilities.shakeViewSpring(textInfoPrivacyCell, i);
     }
 
-    public static void lambda$show$6(String[] strArr, Runnable runnable, EditTextCell editTextCell, int[] iArr, final ButtonWithCounterView buttonWithCounterView, boolean z, final int i, final TLRPC.User user, final int[] iArr2, final boolean[] zArr, final Utilities.Callback callback, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, final Context context) {
+    public static void $r8$lambda$Qpj78b_0NziE56xjf31rIY9Vfg8(String[] strArr, Runnable runnable, EditTextCell editTextCell, int[] iArr, final ButtonWithCounterView buttonWithCounterView, boolean z, final int i, final TLRPC.User user, final int[] iArr2, final boolean[] zArr, final Utilities.Callback callback, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, final Context context) {
         if (strArr[0] == null) {
             runnable.run();
             return;
@@ -319,12 +318,12 @@ public abstract class CreateBotAlert {
         iArr2[0] = ConnectionsManager.getInstance(i).sendRequestTyped(createbot, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CreateBotAlert.lambda$show$5(iArr2, buttonWithCounterView, zArr, i, callback, bottomSheet, resourcesProvider, context, user, (TLRPC.User) obj, (TLRPC.TL_error) obj2);
+                CreateBotAlert.$r8$lambda$beTIbpFDg1oTOp6ADA6Nl3xYAEw(iArr2, buttonWithCounterView, zArr, i, callback, bottomSheet, resourcesProvider, context, user, (TLRPC.User) obj, (TLRPC.TL_error) obj2);
             }
         }, 1024);
     }
 
-    public static void lambda$show$5(int[] iArr, ButtonWithCounterView buttonWithCounterView, boolean[] zArr, int i, Utilities.Callback callback, final BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, final Context context, TLRPC.User user, TLRPC.User user2, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$beTIbpFDg1oTOp6ADA6Nl3xYAEw(int[] iArr, ButtonWithCounterView buttonWithCounterView, boolean[] zArr, int i, Utilities.Callback callback, final BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, final Context context, TLRPC.User user, TLRPC.User user2, TLRPC.TL_error tL_error) {
         String userName;
         String string;
         iArr[0] = -1;
@@ -338,7 +337,7 @@ public abstract class CreateBotAlert {
             if (callback != null) {
                 callback.run(user2);
             }
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
             return;
         }
         if (tL_error != null) {
@@ -356,12 +355,12 @@ public abstract class CreateBotAlert {
                 bulletinFactoryOf.createSimpleBulletin(i2, string2, highlightBotFather(context, AndroidUtilities.replaceSingleLink(string, Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider), new Runnable() {
                     @Override
                     public final void run() {
-                        CreateBotAlert.lambda$show$3(bottomSheet);
+                        CreateBotAlert.m2239$r8$lambda$xZYcFF9Rk1bcL4YP6Sw5LitsM0(bottomSheet);
                     }
                 }), new Runnable() {
                     @Override
                     public final void run() {
-                        CreateBotAlert.lambda$show$4(bottomSheet, context);
+                        CreateBotAlert.m2236$r8$lambda$UVa_TRG5c6A9jayVCV9VEts8OU(bottomSheet, context);
                     }
                 }, resourcesProvider)).setDuration(8000).show();
             } else {
@@ -383,20 +382,20 @@ public abstract class CreateBotAlert {
         }
     }
 
-    public static void lambda$show$3(BottomSheet bottomSheet) {
-        bottomSheet.lambda$new$0();
+    public static void m2239$r8$lambda$xZYcFF9Rk1bcL4YP6Sw5LitsM0(BottomSheet bottomSheet) {
+        bottomSheet.dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
             safeLastFragment.presentFragment(new PremiumPreviewFragment("create_bot"));
         }
     }
 
-    public static void lambda$show$4(BottomSheet bottomSheet, Context context) {
-        bottomSheet.lambda$new$0();
+    public static void m2236$r8$lambda$UVa_TRG5c6A9jayVCV9VEts8OU(BottomSheet bottomSheet, Context context) {
+        bottomSheet.dismiss();
         Browser.openUrl(context, "https://t.me/BotFather?start=deletebot");
     }
 
-    public static boolean lambda$show$7(Runnable runnable, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean $r8$lambda$DNHBVk_FfcLHor8rzZBpk0hsHQg(Runnable runnable, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 6) {
             return false;
         }
@@ -404,7 +403,7 @@ public abstract class CreateBotAlert {
         return true;
     }
 
-    public static void lambda$show$10(boolean[] zArr, Utilities.Callback callback, int[] iArr, int i, DialogInterface dialogInterface) {
+    public static void $r8$lambda$O4LfDmOpx_9Y5LMHst2_FDOR_54(boolean[] zArr, Utilities.Callback callback, int[] iArr, int i, DialogInterface dialogInterface) {
         if (!zArr[0]) {
             zArr[0] = true;
             if (callback != null) {

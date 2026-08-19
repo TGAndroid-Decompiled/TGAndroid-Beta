@@ -88,7 +88,7 @@ public class SimpleAvatarView extends View {
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setSelected$0(valueAnimator2);
+                    SimpleAvatarView.m2811$r8$lambda$NP7dCIoAfh8q15iCnFF9r7CD_c(this.f$0, valueAnimator2);
                 }
             });
             duration.addListener(new AnimatorListenerAdapter() {
@@ -107,9 +107,10 @@ public class SimpleAvatarView extends View {
         invalidate();
     }
 
-    public void lambda$setSelected$0(ValueAnimator valueAnimator) {
-        this.selectProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void m2811$r8$lambda$NP7dCIoAfh8q15iCnFF9r7CD_c(SimpleAvatarView simpleAvatarView, ValueAnimator valueAnimator) {
+        simpleAvatarView.getClass();
+        simpleAvatarView.selectProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        simpleAvatarView.invalidate();
     }
 
     public void setHideAvatar(boolean z) {

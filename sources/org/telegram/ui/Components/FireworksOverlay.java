@@ -259,22 +259,23 @@ public class FireworksOverlay extends View {
                 particle.y = (-Utilities.random.nextFloat()) * getHeightForAnimation() * 1.2f;
                 particle.x = AndroidUtilities.dp(5.0f) + Utilities.random.nextInt(Math.max(1, getWidthForAnimation() - AndroidUtilities.dp(10.0f)));
                 particle.xFinished = particle.finishedStart;
-            } else {
-                int iDp = AndroidUtilities.dp(Utilities.random.nextInt(10) + 4);
-                int heightForAnimation = getHeightForAnimation() / 4;
-                if (particle.side == 0) {
-                    particle.x = -iDp;
-                } else {
-                    particle.x = getWidthForAnimation() + iDp;
-                }
-                particle.moveX = (particle.side == 0 ? 1 : -1) * (AndroidUtilities.dp(1.2f) + (Utilities.random.nextFloat() * AndroidUtilities.dp(4.0f)));
-                particle.moveY = -(AndroidUtilities.dp(4.0f) + (Utilities.random.nextFloat() * AndroidUtilities.dp(4.0f)));
-                particle.y = (heightForAnimation / 2) + Utilities.random.nextInt(Math.max(1, heightForAnimation * 2));
+                return particle;
             }
+            int iDp = AndroidUtilities.dp(Utilities.random.nextInt(10) + 4);
+            int heightForAnimation = getHeightForAnimation() / 4;
+            if (particle.side == 0) {
+                particle.x = -iDp;
+            } else {
+                particle.x = getWidthForAnimation() + iDp;
+            }
+            particle.moveX = (particle.side == 0 ? 1 : -1) * (AndroidUtilities.dp(1.2f) + (Utilities.random.nextFloat() * AndroidUtilities.dp(4.0f)));
+            particle.moveY = -(AndroidUtilities.dp(4.0f) + (Utilities.random.nextFloat() * AndroidUtilities.dp(4.0f)));
+            particle.y = (heightForAnimation / 2) + Utilities.random.nextInt(Math.max(1, heightForAnimation * 2));
+            return particle;
         } catch (Exception e) {
             FileLog.e(e);
+            return particle;
         }
-        return particle;
     }
 
     public boolean isStarted() {
@@ -359,16 +360,16 @@ public class FireworksOverlay extends View {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onDraw$0();
+                FireworksOverlay.m2333$r8$lambda$TdBXviA6ch6Fl3bB7PGubx5g8s(this.f$0);
             }
         });
         onStop();
     }
 
-    public void lambda$onDraw$0() {
-        if (this.started) {
+    public static void m2333$r8$lambda$TdBXviA6ch6Fl3bB7PGubx5g8s(FireworksOverlay fireworksOverlay) {
+        if (fireworksOverlay.started) {
             return;
         }
-        setLayerType(0, null);
+        fireworksOverlay.setLayerType(0, null);
     }
 }

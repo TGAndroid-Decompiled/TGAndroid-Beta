@@ -73,7 +73,6 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
         float interpolation2 = CubicBezierInterpolator.EASE_IN.getInterpolation(fMin < 0.3f ? fMin / 0.3f : 1.0f);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
         float interpolation3 = cubicBezierInterpolator.getInterpolation(fMin < 0.3f ? 0.0f : (fMin - 0.3f) / 0.7f);
-        float f = 2.0f;
         if (this.increment) {
             fDp = (AndroidUtilities.dp(2.1f) * interpolation2) + ((AndroidUtilities.dp(7.0f) - AndroidUtilities.dp(2.1f)) * (1.0f - interpolation2));
             interpolation = AndroidUtilities.dpf2(1.5f) * (1.0f - cubicBezierInterpolator.getInterpolation(this.progress / 2.0f));
@@ -95,17 +94,14 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
         if (paint.getStrokeWidth() != AndroidUtilities.dp(0.8f)) {
             paint.setStrokeWidth(AndroidUtilities.dp(0.8f));
         }
-        int i = 0;
-        while (i < 2) {
+        for (int i = 0; i < 2; i++) {
             canvas.save();
-            canvas.translate((paint.getStrokeWidth() / f) + interpolation + (AndroidUtilities.dp(9.0f) * i) + getBounds().left + AndroidUtilities.dpf2(0.2f), (paint.getStrokeWidth() / f) + AndroidUtilities.dpf2(f) + getBounds().top);
+            canvas.translate((paint.getStrokeWidth() / 2.0f) + interpolation + (AndroidUtilities.dp(9.0f) * i) + getBounds().left + AndroidUtilities.dpf2(0.2f), (paint.getStrokeWidth() / 2.0f) + AndroidUtilities.dpf2(2.0f) + getBounds().top);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, fDpf3, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(11.0f) - fDpf3);
             canvas.drawOval(rectF, paint);
             canvas.drawCircle(fDp, fDp2, fDpf2, paint2);
             canvas.restore();
-            i++;
-            f = 2.0f;
         }
         if (this.started) {
             update();

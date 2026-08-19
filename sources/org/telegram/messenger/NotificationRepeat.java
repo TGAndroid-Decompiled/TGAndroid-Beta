@@ -18,13 +18,9 @@ public class NotificationRepeat extends IntentService {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationRepeat.lambda$onHandleIntent$0(intExtra);
+                    NotificationsController.getInstance(intExtra).repeatNotificationMaybe();
                 }
             });
         }
-    }
-
-    public static void lambda$onHandleIntent$0(int i) {
-        NotificationsController.getInstance(i).repeatNotificationMaybe();
     }
 }

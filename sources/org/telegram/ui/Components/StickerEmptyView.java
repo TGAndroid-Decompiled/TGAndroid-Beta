@@ -96,7 +96,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         backupImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$0(view2);
+                this.f$0.stickerView.getImageReceiver().startAnimation();
             }
         });
         SpoilersTextView spoilersTextView = new SpoilersTextView(context);
@@ -131,10 +131,6 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
             this.progressBar.setScaleX(0.5f);
             addView(this.progressBar, LayoutHelper.createFrame(-2, -2, 17));
         }
-    }
-
-    public void lambda$new$0(View view) {
-        this.stickerView.getImageReceiver().startAnimation();
     }
 
     public void createButtonLayout(CharSequence charSequence, final Runnable runnable) {
@@ -504,7 +500,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
                 this.visibilityAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setVisibility$2(valueAnimator2);
+                        StickerEmptyView.$r8$lambda$vjFuOerJO4DZOynBWrGEgXpQeaU(this.f$0, valueAnimator2);
                     }
                 });
                 this.visibilityAnimator.start();
@@ -512,10 +508,11 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public void lambda$setVisibility$2(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$vjFuOerJO4DZOynBWrGEgXpQeaU(StickerEmptyView stickerEmptyView, ValueAnimator valueAnimator) {
+        stickerEmptyView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.visibilityFactor = fFloatValue;
-        onVisibilityChange(fFloatValue);
+        stickerEmptyView.visibilityFactor = fFloatValue;
+        stickerEmptyView.onVisibilityChange(fFloatValue);
     }
 
     protected void onVisibilityChange(float f) {

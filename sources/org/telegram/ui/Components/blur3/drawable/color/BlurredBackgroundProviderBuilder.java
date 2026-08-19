@@ -20,7 +20,7 @@ public class BlurredBackgroundProviderBuilder implements BlurredBackgroundProvid
         int getColor(Theme.ResourcesProvider resourcesProvider, boolean z);
     }
 
-    public static int lambda$create$0(int i, int i2, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public static int $r8$lambda$L6TaFC4EiCuKVKYV83zwJJCpq8s(int i, int i2, Theme.ResourcesProvider resourcesProvider, boolean z) {
         return z ? i : i2;
     }
 
@@ -140,7 +140,7 @@ public class BlurredBackgroundProviderBuilder implements BlurredBackgroundProvid
         return new ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider, boolean z) {
-                return BlurredBackgroundProviderBuilder.lambda$create$0(i2, i, resourcesProvider, z);
+                return BlurredBackgroundProviderBuilder.$r8$lambda$L6TaFC4EiCuKVKYV83zwJJCpq8s(i2, i, resourcesProvider, z);
             }
         };
     }

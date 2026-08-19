@@ -122,13 +122,13 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     private static final Executor loadFrameRunnableQueue = Executors.newFixedThreadPool(4, new ThreadFactory() {
         @Override
         public final Thread newThread(Runnable runnable) {
-            return RLottieDrawable.lambda$static$0(runnable);
+            return RLottieDrawable.$r8$lambda$SDPla3uMDH_CxSS3qXRsmIRexjM(runnable);
         }
     });
     private static final Executor loadFrameRunnableQueueLimitFps = Executors.newFixedThreadPool(2, new ThreadFactory() {
         @Override
         public final Thread newThread(Runnable runnable) {
-            return RLottieDrawable.lambda$static$1(runnable);
+            return RLottieDrawable.$r8$lambda$tC1mWcNZZzGahHI8lHqSQzgxU0s(runnable);
         }
     });
 
@@ -141,11 +141,11 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         return true;
     }
 
-    public static Thread lambda$static$0(Runnable runnable) {
+    public static Thread $r8$lambda$SDPla3uMDH_CxSS3qXRsmIRexjM(Runnable runnable) {
         return new Thread(runnable, "Lottie-" + threadId.getAndIncrement());
     }
 
-    public static Thread lambda$static$1(Runnable runnable) {
+    public static Thread $r8$lambda$tC1mWcNZZzGahHI8lHqSQzgxU0s(Runnable runnable) {
         return new Thread(runnable, "LottieLow-" + threadId2.getAndIncrement());
     }
 
@@ -175,22 +175,23 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$uiRunnableGenerateCacheImpl$2();
+                RLottieDrawable.m2683$r8$lambda$RSAaTV5WT95EcZ43Gn4_uuGyE8(this.f$0);
             }
         };
         this.cacheGenerateTask = runnable;
         dispatchQueue.postRunnable(runnable);
     }
 
-    public void lambda$uiRunnableGenerateCacheImpl$2() {
+    public static void m2683$r8$lambda$RSAaTV5WT95EcZ43Gn4_uuGyE8(RLottieDrawable rLottieDrawable) {
+        rLottieDrawable.getClass();
         try {
-            BitmapsCache bitmapsCache = this.bitmapsCache;
+            BitmapsCache bitmapsCache = rLottieDrawable.bitmapsCache;
             if (bitmapsCache != null) {
                 bitmapsCache.createCache();
             }
         } catch (Throwable unused) {
         }
-        AndroidUtilities.runOnUIThread(this.uiRunnableCacheFinished);
+        AndroidUtilities.runOnUIThread(rLottieDrawable.uiRunnableCacheFinished);
     }
 
     public void uiRunnableCacheFinishedImpl() {
@@ -1358,7 +1359,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     }
 
     public final boolean hasBitmap() {
-        return (this.isRecycled || (this.renderingBitmap == null && this.nextRenderingBitmap == null) || this.isInvalid) ? false : true;
+        if (this.isRecycled) {
+            return false;
+        }
+        return ((this.renderingBitmap == null && this.nextRenderingBitmap == null) || this.isInvalid) ? false : true;
     }
 
     public final void setInvalidateOnProgressSet(boolean z) {

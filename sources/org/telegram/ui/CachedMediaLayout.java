@@ -157,7 +157,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$new$0(view2);
+                        this.f$0.delegate.clearSelection();
                     }
                 });
                 AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
@@ -177,7 +177,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                 actionBarMenuItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$new$1(view2);
+                        this.f$0.delegate.clear();
                     }
                 });
                 return;
@@ -253,7 +253,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
                 @Override
                 public final boolean onItemClick(View view, int i2, float f, float f2) {
-                    return this.f$0.lambda$createView$5(recyclerListView, baseFragment, view, i2, f, f2);
+                    return CachedMediaLayout.AnonymousClass1.$r8$lambda$MoX0w7VckYxqA1B2hE6LcApPigU(this.f$0, recyclerListView, baseFragment, view, i2, f, f2);
                 }
 
                 @Override
@@ -269,7 +269,8 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             return recyclerListView;
         }
 
-        public boolean lambda$createView$5(final RecyclerListView recyclerListView, final BaseFragment baseFragment, final View view, int i, float f, float f2) {
+        public static boolean $r8$lambda$MoX0w7VckYxqA1B2hE6LcApPigU(final AnonymousClass1 anonymousClass1, final RecyclerListView recyclerListView, final BaseFragment baseFragment, final View view, int i, float f, float f2) {
+            anonymousClass1.getClass();
             final BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
             final ItemInner itemInner = (ItemInner) baseAdapter.itemInners.get(i);
             if ((view instanceof CacheCell) || (view instanceof SharedPhotoVideoCell2)) {
@@ -278,21 +279,21 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            this.f$0.lambda$createView$0(itemInner, baseAdapter, recyclerListView, view, view2);
+                            CachedMediaLayout.AnonymousClass1.$r8$lambda$dMdwR_9VldD6JAf5K_FHwSdxtPE(this.f$0, itemInner, baseAdapter, recyclerListView, view, view2);
                         }
                     });
                 } else if (((CacheCell) view).container.getChildAt(0) instanceof SharedAudioCell) {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_played, LocaleController.getString(R.string.PlayFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            this.f$0.lambda$createView$1(itemInner, view, view2);
+                            CachedMediaLayout.AnonymousClass1.$r8$lambda$EyMtRyLqx7w2LGRjRkH5PuzJ4Fo(this.f$0, itemInner, view, view2);
                         }
                     });
                 } else {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            this.f$0.lambda$createView$2(itemInner, view, view2);
+                            CachedMediaLayout.AnonymousClass1.$r8$lambda$tQSlYLOxCY1xteXD68aMQngCVOc(this.f$0, itemInner, view, view2);
                         }
                     });
                 }
@@ -301,17 +302,17 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_viewintopic, LocaleController.getString(R.string.ViewInChat), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            this.f$0.lambda$createView$3(itemInner, baseFragment, view2);
+                            CachedMediaLayout.AnonymousClass1.m1432$r8$lambda$H6Dlzvcu4aeyycMq2m0jzndFRI(this.f$0, itemInner, baseFragment, view2);
                         }
                     });
                 }
                 ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_select, LocaleController.getString(!CachedMediaLayout.this.cacheModel.selectedFiles.contains(itemInner.file) ? R.string.Select : R.string.Deselect), false, null).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$createView$4(itemInner, view2);
+                        CachedMediaLayout.AnonymousClass1.$r8$lambda$En7sboSWdrr88mkAPOKI_IdRDeo(this.f$0, itemInner, view2);
                     }
                 });
-                this.popupWindow = AlertsCreator.createSimplePopup(baseFragment, actionBarPopupWindowLayout, view, (int) f, (int) f2);
+                anonymousClass1.popupWindow = AlertsCreator.createSimplePopup(baseFragment, actionBarPopupWindowLayout, view, (int) f, (int) f2);
                 CachedMediaLayout.this.getRootView().dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
                 return true;
             }
@@ -322,31 +323,32 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             return true;
         }
 
-        public void lambda$createView$0(ItemInner itemInner, BaseAdapter baseAdapter, RecyclerListView recyclerListView, View view, View view2) {
+        public static void $r8$lambda$dMdwR_9VldD6JAf5K_FHwSdxtPE(AnonymousClass1 anonymousClass1, ItemInner itemInner, BaseAdapter baseAdapter, RecyclerListView recyclerListView, View view, View view2) {
             CachedMediaLayout.this.openPhoto(itemInner, (MediaAdapter) baseAdapter, recyclerListView, (SharedPhotoVideoCell2) view);
-            ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
             if (actionBarPopupWindow != null) {
                 actionBarPopupWindow.dismiss();
             }
         }
 
-        public void lambda$createView$1(ItemInner itemInner, View view, View view2) {
+        public static void $r8$lambda$EyMtRyLqx7w2LGRjRkH5PuzJ4Fo(AnonymousClass1 anonymousClass1, ItemInner itemInner, View view, View view2) {
             CachedMediaLayout.this.openItem(itemInner.file, (CacheCell) view);
-            ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
             if (actionBarPopupWindow != null) {
                 actionBarPopupWindow.dismiss();
             }
         }
 
-        public void lambda$createView$2(ItemInner itemInner, View view, View view2) {
+        public static void $r8$lambda$tQSlYLOxCY1xteXD68aMQngCVOc(AnonymousClass1 anonymousClass1, ItemInner itemInner, View view, View view2) {
             CachedMediaLayout.this.openItem(itemInner.file, (CacheCell) view);
-            ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
             if (actionBarPopupWindow != null) {
                 actionBarPopupWindow.dismiss();
             }
         }
 
-        public void lambda$createView$3(ItemInner itemInner, BaseFragment baseFragment, View view) {
+        public static void m1432$r8$lambda$H6Dlzvcu4aeyycMq2m0jzndFRI(AnonymousClass1 anonymousClass1, ItemInner itemInner, BaseFragment baseFragment, View view) {
+            anonymousClass1.getClass();
             Bundle bundle = new Bundle();
             long j = itemInner.file.dialogId;
             if (j > 0) {
@@ -357,18 +359,18 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             bundle.putInt("message_id", itemInner.file.messageId);
             baseFragment.presentFragment(new ChatActivity(bundle));
             CachedMediaLayout.this.delegate.dismiss();
-            ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
             if (actionBarPopupWindow != null) {
                 actionBarPopupWindow.dismiss();
             }
         }
 
-        public void lambda$createView$4(ItemInner itemInner, View view) {
+        public static void $r8$lambda$En7sboSWdrr88mkAPOKI_IdRDeo(AnonymousClass1 anonymousClass1, ItemInner itemInner, View view) {
             Delegate delegate = CachedMediaLayout.this.delegate;
             if (delegate != null) {
                 delegate.onItemSelected(itemInner.entities, itemInner.file, true);
             }
-            ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
             if (actionBarPopupWindow != null) {
                 actionBarPopupWindow.dismiss();
             }
@@ -385,14 +387,6 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             }
             recyclerListView.setTag(Integer.valueOf(((Page) CachedMediaLayout.this.pages.get(i)).type));
         }
-    }
-
-    public void lambda$new$0(View view) {
-        this.delegate.clearSelection();
-    }
-
-    public void lambda$new$1(View view) {
-        this.delegate.clear();
     }
 
     public void openPhoto(ItemInner itemInner, MediaAdapter mediaAdapter, RecyclerListView recyclerListView, SharedPhotoVideoCell2 sharedPhotoVideoCell2) {
@@ -429,7 +423,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         if (cacheCell.type == 3) {
             if (MediaController.getInstance().isPlayingMessage(fileInfo.messageObject)) {
                 if (!MediaController.getInstance().isMessagePaused()) {
-                    MediaController.getInstance().lambda$startAudioAgain$7(fileInfo.messageObject);
+                    MediaController.getInstance().pauseMessage(fileInfo.messageObject);
                     return;
                 } else {
                     MediaController.getInstance().playMessage(fileInfo.messageObject);
@@ -724,7 +718,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         }
     }
 
-    private class MediaAdapter extends BaseFilesAdapter {
+    class MediaAdapter extends BaseFilesAdapter {
         boolean isStories;
         ArrayList photoEntries;
         private SharedPhotoVideoCell2.SharedResources sharedResources;
@@ -761,7 +755,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             }
             SharedPhotoVideoCell2 sharedPhotoVideoCell2 = new SharedPhotoVideoCell2(viewGroup.getContext(), this.sharedResources, CachedMediaLayout.this.parentFragment.getCurrentAccount()) {
                 @Override
-                public void lambda$setStyle$1() {
+                public void onCheckBoxPressed() {
                     CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
                 }
             };
@@ -957,7 +951,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() throws Throwable {
-                        this.f$0.lambda$checkMessageObjectForAudio$3(fileInfo, tL_documentAttributeAudio);
+                        CachedMediaLayout.m1431$r8$lambda$SXwQEwURU4BsHU8U5Grstgo0Hw(this.f$0, fileInfo, tL_documentAttributeAudio);
                     }
                 });
             }
@@ -972,12 +966,14 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         }
     }
 
-    public void lambda$checkMessageObjectForAudio$3(final CacheModel.FileInfo fileInfo, final TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio) throws Throwable {
-        MediaMetadataRetriever mediaMetadataRetriever;
+    public static void m1431$r8$lambda$SXwQEwURU4BsHU8U5Grstgo0Hw(final CachedMediaLayout cachedMediaLayout, final CacheModel.FileInfo fileInfo, final TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio) throws Throwable {
         String str;
+        Throwable th;
+        MediaMetadataRetriever mediaMetadataRetriever;
         String strExtractMetadata;
         final String str2;
         final String str3;
+        cachedMediaLayout.getClass();
         String strExtractMetadata2 = "";
         MediaMetadataRetriever mediaMetadataRetriever2 = null;
         try {
@@ -985,7 +981,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                 mediaMetadataRetriever = new MediaMetadataRetriever();
                 try {
                     try {
-                        mediaMetadataRetriever.setDataSource(getContext(), Uri.fromFile(fileInfo.file));
+                        mediaMetadataRetriever.setDataSource(cachedMediaLayout.getContext(), Uri.fromFile(fileInfo.file));
                         strExtractMetadata = mediaMetadataRetriever.extractMetadata(7);
                         try {
                             strExtractMetadata2 = mediaMetadataRetriever.extractMetadata(2);
@@ -1014,48 +1010,51 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    this.f$0.lambda$checkMessageObjectForAudio$2(fileInfo, tL_documentAttributeAudio, str3, str2);
+                                    CachedMediaLayout.m1430$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(this.f$0, fileInfo, tL_documentAttributeAudio, str3, str2);
                                 }
                             });
                         }
-                    } catch (Throwable th) {
-                        th = th;
-                        if (mediaMetadataRetriever != null) {
-                            try {
-                                mediaMetadataRetriever.release();
-                            } catch (Throwable unused3) {
-                            }
-                        }
-                        throw th;
+                    } catch (Exception e2) {
+                        e = e2;
+                        strExtractMetadata = "";
                     }
-                } catch (Exception e2) {
-                    e = e2;
-                    strExtractMetadata = "";
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (mediaMetadataRetriever != null) {
+                        try {
+                            mediaMetadataRetriever.release();
+                            throw th;
+                        } catch (Throwable unused3) {
+                            throw th;
+                        }
+                    }
+                    throw th;
                 }
-            } catch (Exception e3) {
-                e = e3;
-                str = "";
+            } catch (Throwable th3) {
+                th = th3;
+                mediaMetadataRetriever = mediaMetadataRetriever2;
             }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$checkMessageObjectForAudio$2(fileInfo, tL_documentAttributeAudio, str3, str2);
-                }
-            });
-        } catch (Throwable th2) {
-            th = th2;
-            mediaMetadataRetriever = mediaMetadataRetriever2;
+        } catch (Exception e3) {
+            e = e3;
+            str = "";
         }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                CachedMediaLayout.m1430$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(this.f$0, fileInfo, tL_documentAttributeAudio, str3, str2);
+            }
+        });
     }
 
-    public void lambda$checkMessageObjectForAudio$2(CacheModel.FileInfo fileInfo, TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio, String str, String str2) {
+    public static void m1430$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(CachedMediaLayout cachedMediaLayout, CacheModel.FileInfo fileInfo, TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio, String str, String str2) {
+        cachedMediaLayout.getClass();
         CacheModel.FileInfo.FileMetadata fileMetadata = fileInfo.metadata;
         fileMetadata.loading = false;
         fileMetadata.title = str;
         tL_documentAttributeAudio.title = str;
         fileMetadata.author = str2;
         tL_documentAttributeAudio.performer = str2;
-        updateRow(fileInfo, 3);
+        cachedMediaLayout.updateRow(fileInfo, 3);
     }
 
     private void updateRow(CacheModel.FileInfo fileInfo, int i) {
@@ -1130,7 +1129,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$new$0(view2);
+                    this.f$0.onCheckBoxPressed();
                 }
             });
             this.container = new FrameLayout(context);
@@ -1150,10 +1149,6 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             addView(view, LayoutHelper.createFrame(40, 40.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
             addView(this.container, LayoutHelper.createFrame(-1, -2.0f, 0, 48.0f, 0.0f, 90.0f, 0.0f));
             addView(this.sizeTextView, LayoutHelper.createFrame(69, -2.0f, 21, 0.0f, 0.0f, 21.0f, 0.0f));
-        }
-
-        public void lambda$new$0(View view) {
-            onCheckBoxPressed();
         }
 
         @Override

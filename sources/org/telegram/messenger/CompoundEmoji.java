@@ -148,20 +148,21 @@ public class CompoundEmoji {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$load$0();
+                    CompoundEmoji.DrawableInfo.$r8$lambda$wbW9CXuP9w0yW9XkwcIeNNNomWw(this.f$0);
                 }
             });
         }
 
-        public void lambda$load$0() {
-            Bitmap bitmapLoadBitmap = Emoji.loadBitmap("emoji/compound/" + this.emoji + "_" + this.skin + "_" + this.place + ".png");
+        public static void $r8$lambda$wbW9CXuP9w0yW9XkwcIeNNNomWw(DrawableInfo drawableInfo) {
+            drawableInfo.getClass();
+            Bitmap bitmapLoadBitmap = Emoji.loadBitmap("emoji/compound/" + drawableInfo.emoji + "_" + drawableInfo.skin + "_" + drawableInfo.place + ".png");
             if (bitmapLoadBitmap != null) {
-                bitmaps.put(this.hash, bitmapLoadBitmap);
+                bitmaps.put(drawableInfo.hash, bitmapLoadBitmap);
                 Runnable runnable = Emoji.invalidateUiRunnable;
                 AndroidUtilities.cancelRunOnUIThread(runnable);
                 AndroidUtilities.runOnUIThread(runnable);
             }
-            loading.remove(Integer.valueOf(this.hash));
+            loading.remove(Integer.valueOf(drawableInfo.hash));
         }
 
         public Bitmap getBitmap() {

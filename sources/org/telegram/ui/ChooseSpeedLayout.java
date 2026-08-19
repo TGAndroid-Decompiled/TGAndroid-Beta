@@ -62,7 +62,7 @@ public class ChooseSpeedLayout {
         this.slider.setOnValueChange(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ChooseSpeedLayout.lambda$new$1(callback, (Float) obj, (Boolean) obj2);
+                callback.onSpeedSelected((((Float) obj).floatValue() * 2.3f) + 0.2f, ((Boolean) obj2).booleanValue(), false);
             }
         });
         this.speedSwipeBackLayout.addView((View) this.slider, LayoutHelper.createLinear(-1, 44));
@@ -132,10 +132,6 @@ public class ChooseSpeedLayout {
         });
         actionBarMenuSubItemAddItem6.setSelectorColor(268435455);
         this.speedItems[4] = actionBarMenuSubItemAddItem6;
-    }
-
-    public static void lambda$new$1(Callback callback, Float f, Boolean bool) {
-        callback.onSpeedSelected((f.floatValue() * 2.3f) + 0.2f, bool.booleanValue(), false);
     }
 
     public void update(float f, boolean z) {

@@ -51,33 +51,33 @@ public class MatrixParticlesDrawable {
         long jCurrentTimeMillis = System.currentTimeMillis();
         ArrayList[] arrayListArr = this.particles;
         AnonymousClass1 anonymousClass1 = null;
+        int i = 0;
         if (arrayListArr == null || arrayListArr.length != iWidth + 1) {
             this.particles = new ArrayList[iWidth + 1];
-            for (int i = 0; i <= iWidth; i++) {
-                this.particles[i] = new ArrayList();
+            for (int i2 = 0; i2 <= iWidth; i2++) {
+                this.particles[i2] = new ArrayList();
                 Particle particle = new Particle();
                 particle.init(iHeight, jCurrentTimeMillis);
-                this.particles[i].add(particle);
+                this.particles[i2].add(particle);
             }
         }
         MatrixTextParticle[][] matrixTextParticleArr = this.matrixTextParticles;
         if (matrixTextParticleArr == null || matrixTextParticleArr.length != iWidth + 1 || matrixTextParticleArr[0].length != iHeight + 1) {
             this.matrixTextParticles = new MatrixTextParticle[iWidth + 1][];
-            for (int i2 = 0; i2 <= iWidth; i2++) {
-                this.matrixTextParticles[i2] = new MatrixTextParticle[iHeight + 1];
-                for (int i3 = 0; i3 <= iHeight; i3++) {
-                    this.matrixTextParticles[i2][i3] = new MatrixTextParticle();
-                    this.matrixTextParticles[i2][i3].init(jCurrentTimeMillis);
+            for (int i3 = 0; i3 <= iWidth; i3++) {
+                this.matrixTextParticles[i3] = new MatrixTextParticle[iHeight + 1];
+                for (int i4 = 0; i4 <= iHeight; i4++) {
+                    this.matrixTextParticles[i3][i4] = new MatrixTextParticle();
+                    this.matrixTextParticles[i3][i4].init(jCurrentTimeMillis);
                 }
             }
         }
-        int i4 = 0;
-        while (i4 <= iWidth) {
-            ArrayList arrayList = this.particles[i4];
-            int i5 = 0;
-            while (i5 < arrayList.size()) {
-                Particle particle2 = (Particle) arrayList.get(i5);
-                int i6 = 1;
+        int i5 = 0;
+        while (i5 <= iWidth) {
+            ArrayList arrayList = this.particles[i5];
+            int i6 = 0;
+            while (i6 < arrayList.size()) {
+                Particle particle2 = (Particle) arrayList.get(i6);
                 if (jCurrentTimeMillis - particle2.time > 50) {
                     int i7 = particle2.y + 1;
                     particle2.y = i7;
@@ -87,35 +87,33 @@ public class MatrixParticlesDrawable {
                             particle2.reset(jCurrentTimeMillis);
                         } else {
                             arrayList.remove(particle2);
-                            i5--;
+                            i6--;
                         }
                     }
-                    if (particle2.y > particle2.len && i5 == arrayList.size() - 1 && Math.abs(Utilities.fastRandom.nextInt(4)) == 0) {
+                    if (particle2.y > particle2.len && i6 == arrayList.size() - 1 && Math.abs(Utilities.fastRandom.nextInt(4)) == 0) {
                         Particle particle3 = new Particle();
                         particle3.reset(jCurrentTimeMillis);
                         arrayList.add(particle3);
                     }
                 }
-                int i8 = i5;
-                int iMin = Math.min(particle2.y, iHeight + 1);
-                int iMax = Math.max(0, particle2.y - particle2.len);
-                while (iMax < iMin) {
+                int i8 = i6;
+                int iMax = Math.max(i, particle2.y - particle2.len);
+                for (int iMin = Math.min(particle2.y, iHeight + 1); iMax < iMin; iMin = iMin) {
                     int i9 = this.size;
-                    float f = i9 * i4;
+                    float f = i9 * i5;
                     float f2 = i9 * iMax;
                     if (!this.excludeRect.contains(f, f2)) {
-                        this.matrixTextParticles[i4][iMax].draw(canvas, f, f2, jCurrentTimeMillis, Utilities.clamp(((1.0f - ((particle2.y - iMax) / (particle2.len - i6))) * 0.8f) + 0.2f, 1.0f, 0.0f));
+                        this.matrixTextParticles[i5][iMax].draw(canvas, f, f2, jCurrentTimeMillis, Utilities.clamp(((1.0f - ((particle2.y - iMax) / (particle2.len - 1))) * 0.8f) + 0.2f, 1.0f, 0.0f));
                     }
                     iMax++;
-                    iMin = iMin;
-                    particle2 = particle2;
-                    i6 = 1;
                 }
-                i5 = i8 + 1;
+                i6 = i8 + 1;
                 anonymousClass1 = null;
+                i = 0;
             }
-            i4++;
+            i5++;
             anonymousClass1 = null;
+            i = 0;
         }
     }
 

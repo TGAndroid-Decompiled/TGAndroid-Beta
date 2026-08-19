@@ -123,7 +123,7 @@ public class ReactedHeaderView extends FrameLayout {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReadParticipants, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$onAttachedToWindow$5(j, chat, tLObject, tL_error);
+                    ReactedHeaderView.$r8$lambda$IHIYwVtDG2ExOUQV83nv2ZSuID8(this.f$0, j, chat, tLObject, tL_error);
                 }
             }, 64);
             return;
@@ -131,11 +131,17 @@ public class ReactedHeaderView extends FrameLayout {
         loadReactions();
     }
 
-    public void lambda$onAttachedToWindow$5(long j, TLRPC.Chat chat, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$IHIYwVtDG2ExOUQV83nv2ZSuID8(final ReactedHeaderView reactedHeaderView, long j, TLRPC.Chat chat, TLObject tLObject, TLRPC.TL_error tL_error) {
+        reactedHeaderView.getClass();
         if (tLObject instanceof Vector) {
             final ArrayList arrayList = new ArrayList();
             final ArrayList arrayList2 = new ArrayList();
-            for (Object obj : ((Vector) tLObject).objects) {
+            ArrayList<T> arrayList3 = ((Vector) tLObject).objects;
+            int size = arrayList3.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList3.get(i);
+                i++;
                 if (obj instanceof Long) {
                     Long l = (Long) obj;
                     if (j != l.longValue()) {
@@ -145,91 +151,93 @@ public class ReactedHeaderView extends FrameLayout {
                 } else if (obj instanceof TLRPC.TL_readParticipantDate) {
                     TLRPC.TL_readParticipantDate tL_readParticipantDate = (TLRPC.TL_readParticipantDate) obj;
                     long j2 = tL_readParticipantDate.user_id;
-                    int i = tL_readParticipantDate.date;
+                    int i2 = tL_readParticipantDate.date;
                     if (j != j2) {
                         arrayList.add(Long.valueOf(j2));
-                        arrayList2.add(Integer.valueOf(i));
+                        arrayList2.add(Integer.valueOf(i2));
                     }
                 }
             }
             arrayList.add(Long.valueOf(j));
             arrayList2.add(0);
-            final ArrayList arrayList3 = new ArrayList();
+            final ArrayList arrayList4 = new ArrayList();
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onAttachedToWindow$0(arrayList3);
+                    ReactedHeaderView.$r8$lambda$9qpietCFqwkxZJotd3Y1Ec2G3XE(this.f$0, arrayList4);
                 }
             };
             if (ChatObject.isChannel(chat)) {
                 TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-                tL_channels_getParticipants.limit = MessagesController.getInstance(this.currentAccount).chatReadMarkSizeThreshold;
+                tL_channels_getParticipants.limit = MessagesController.getInstance(reactedHeaderView.currentAccount).chatReadMarkSizeThreshold;
                 tL_channels_getParticipants.offset = 0;
                 tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
-                tL_channels_getParticipants.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(chat.id);
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
+                tL_channels_getParticipants.channel = MessagesController.getInstance(reactedHeaderView.currentAccount).getInputChannel(chat.id);
+                ConnectionsManager.getInstance(reactedHeaderView.currentAccount).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        this.f$0.lambda$onAttachedToWindow$2(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
+                        ReactedHeaderView.$r8$lambda$G9XSZJSzmE9HNk3lYBZc8ApRTUI(this.f$0, arrayList, arrayList4, arrayList2, runnable, tLObject2, tL_error2);
                     }
                 });
                 return;
             }
             TLRPC.TL_messages_getFullChat tL_messages_getFullChat = new TLRPC.TL_messages_getFullChat();
             tL_messages_getFullChat.chat_id = chat.id;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getFullChat, new RequestDelegate() {
+            ConnectionsManager.getInstance(reactedHeaderView.currentAccount).sendRequest(tL_messages_getFullChat, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    this.f$0.lambda$onAttachedToWindow$4(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
+                    ReactedHeaderView.$r8$lambda$WLVShuvP6GvdSaClK7TG0rrcNn0(this.f$0, arrayList, arrayList4, arrayList2, runnable, tLObject2, tL_error2);
                 }
             });
         }
     }
 
-    public void lambda$onAttachedToWindow$0(List list) {
-        this.seenUsers.addAll(list);
+    public static void $r8$lambda$9qpietCFqwkxZJotd3Y1Ec2G3XE(ReactedHeaderView reactedHeaderView, List list) {
+        reactedHeaderView.seenUsers.addAll(list);
         Iterator it = list.iterator();
         while (it.hasNext()) {
             UserSeen userSeen = (UserSeen) it.next();
             int i = 0;
             while (true) {
-                if (i >= this.users.size()) {
-                    this.users.add(userSeen);
+                if (i >= reactedHeaderView.users.size()) {
+                    reactedHeaderView.users.add(userSeen);
                     break;
                 } else {
-                    if (MessageObject.getObjectPeerId(((UserSeen) this.users.get(i)).user) == MessageObject.getObjectPeerId(userSeen.user)) {
+                    if (MessageObject.getObjectPeerId(((UserSeen) reactedHeaderView.users.get(i)).user) == MessageObject.getObjectPeerId(userSeen.user)) {
                         if (userSeen.date <= 0) {
                             break;
                         }
-                        ((UserSeen) this.users.get(i)).date = userSeen.date;
+                        ((UserSeen) reactedHeaderView.users.get(i)).date = userSeen.date;
                         break;
                     }
                     i++;
                 }
             }
         }
-        Consumer consumer = this.seenCallback;
+        Consumer consumer = reactedHeaderView.seenCallback;
         if (consumer != null) {
             consumer.accept(list);
         }
-        loadReactions();
+        reactedHeaderView.loadReactions();
     }
 
-    public void lambda$onAttachedToWindow$2(final List list, final List list2, final List list3, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$G9XSZJSzmE9HNk3lYBZc8ApRTUI(final ReactedHeaderView reactedHeaderView, final List list, final List list2, final List list3, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        reactedHeaderView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onAttachedToWindow$1(tLObject, list, list2, list3, runnable);
+                ReactedHeaderView.$r8$lambda$6k5yybSRTWlcMqMcmyrsNuMQwm8(this.f$0, tLObject, list, list2, list3, runnable);
             }
         });
     }
 
-    public void lambda$onAttachedToWindow$1(TLObject tLObject, List list, List list2, List list3, Runnable runnable) {
+    public static void $r8$lambda$6k5yybSRTWlcMqMcmyrsNuMQwm8(ReactedHeaderView reactedHeaderView, TLObject tLObject, List list, List list2, List list3, Runnable runnable) {
+        reactedHeaderView.getClass();
         if (tLObject != null) {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
             for (int i = 0; i < tL_channels_channelParticipants.users.size(); i++) {
                 TLRPC.User user = tL_channels_channelParticipants.users.get(i);
-                MessagesController.getInstance(this.currentAccount).putUser(user, false);
+                MessagesController.getInstance(reactedHeaderView.currentAccount).putUser(user, false);
                 int iIndexOf = list.indexOf(Long.valueOf(user.id));
                 if (!user.self && iIndexOf >= 0) {
                     list2.add(new UserSeen(user, ((Integer) list3.get(iIndexOf)).intValue()));
@@ -239,21 +247,23 @@ public class ReactedHeaderView extends FrameLayout {
         runnable.run();
     }
 
-    public void lambda$onAttachedToWindow$4(final List list, final List list2, final List list3, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$WLVShuvP6GvdSaClK7TG0rrcNn0(final ReactedHeaderView reactedHeaderView, final List list, final List list2, final List list3, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        reactedHeaderView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onAttachedToWindow$3(tLObject, list, list2, list3, runnable);
+                ReactedHeaderView.$r8$lambda$cVjtk1SNKfBKvSh8e4JLYcDzKxw(this.f$0, tLObject, list, list2, list3, runnable);
             }
         });
     }
 
-    public void lambda$onAttachedToWindow$3(TLObject tLObject, List list, List list2, List list3, Runnable runnable) {
+    public static void $r8$lambda$cVjtk1SNKfBKvSh8e4JLYcDzKxw(ReactedHeaderView reactedHeaderView, TLObject tLObject, List list, List list2, List list3, Runnable runnable) {
+        reactedHeaderView.getClass();
         if (tLObject != null) {
             TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject;
             for (int i = 0; i < tL_messages_chatFull.users.size(); i++) {
                 TLRPC.User user = tL_messages_chatFull.users.get(i);
-                MessagesController.getInstance(this.currentAccount).putUser(user, false);
+                MessagesController.getInstance(reactedHeaderView.currentAccount).putUser(user, false);
                 int iIndexOf = list.indexOf(Long.valueOf(user.id));
                 if (!user.self && iIndexOf >= 0) {
                     list2.add(new UserSeen(user, ((Integer) list3.get(iIndexOf)).intValue()));
@@ -274,88 +284,85 @@ public class ReactedHeaderView extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadReactions$7(tLObject, tL_error);
+                ReactedHeaderView.m2686$r8$lambda$oTvvU_Q8jECjqksT8415vGaDS0(this.f$0, tLObject, tL_error);
             }
         }, 64);
     }
 
-    public void lambda$loadReactions$7(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m2686$r8$lambda$oTvvU_Q8jECjqksT8415vGaDS0(final ReactedHeaderView reactedHeaderView, TLObject tLObject, TLRPC.TL_error tL_error) {
+        reactedHeaderView.getClass();
         if (tLObject instanceof TLRPC.TL_messages_messageReactionsList) {
             final TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList = (TLRPC.TL_messages_messageReactionsList) tLObject;
             final int i = tL_messages_messageReactionsList.count;
             tL_messages_messageReactionsList.users.size();
-            post(new Runnable() {
+            reactedHeaderView.post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadReactions$6(i, tL_messages_messageReactionsList);
+                    ReactedHeaderView.m2685$r8$lambda$DLZ2RF5EmgOFwQ1ufTuC7qqf8Y(this.f$0, i, tL_messages_messageReactionsList);
                 }
             });
         }
     }
 
-    public void lambda$loadReactions$6(int i, TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList) {
+    public static void m2685$r8$lambda$DLZ2RF5EmgOFwQ1ufTuC7qqf8Y(ReactedHeaderView reactedHeaderView, int i, TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList) {
         String pluralString;
-        if (this.seenUsers.isEmpty() || this.seenUsers.size() < i) {
+        String strValueOf;
+        if (reactedHeaderView.seenUsers.isEmpty() || reactedHeaderView.seenUsers.size() < i) {
             pluralString = LocaleController.formatPluralString("ReactionsCount", i, new Object[0]);
         } else {
-            pluralString = String.format(LocaleController.getPluralString("Reacted", i), i == this.seenUsers.size() ? String.valueOf(i) : i + "/" + this.seenUsers.size());
+            if (i == reactedHeaderView.seenUsers.size()) {
+                strValueOf = String.valueOf(i);
+            } else {
+                strValueOf = i + "/" + reactedHeaderView.seenUsers.size();
+            }
+            pluralString = String.format(LocaleController.getPluralString("Reacted", i), strValueOf);
         }
-        if (getMeasuredWidth() > 0) {
-            this.fixedWidth = getMeasuredWidth();
+        if (reactedHeaderView.getMeasuredWidth() > 0) {
+            reactedHeaderView.fixedWidth = reactedHeaderView.getMeasuredWidth();
         }
-        this.titleView.setText(pluralString);
-        TLRPC.TL_messageReactions tL_messageReactions = this.message.messageOwner.reactions;
+        reactedHeaderView.titleView.setText(pluralString);
+        TLRPC.TL_messageReactions tL_messageReactions = reactedHeaderView.message.messageOwner.reactions;
         if (tL_messageReactions != null && tL_messageReactions.results.size() == 1 && !tL_messages_messageReactionsList.reactions.isEmpty()) {
-            Iterator<TLRPC.TL_availableReaction> it = MediaDataController.getInstance(this.currentAccount).getReactionsList().iterator();
+            Iterator<TLRPC.TL_availableReaction> it = MediaDataController.getInstance(reactedHeaderView.currentAccount).getReactionsList().iterator();
             while (true) {
                 if (it.hasNext()) {
                     TLRPC.TL_availableReaction next = it.next();
                     if (next.reaction.equals(tL_messages_messageReactionsList.reactions.get(0).reaction)) {
-                        this.reactView.setImage(ImageLocation.getForDocument(next.center_icon), "40_40_lastreactframe", "webp", (Drawable) null, next);
-                        this.reactView.setVisibility(0);
-                        this.reactView.setAlpha(0.0f);
-                        this.reactView.animate().alpha(1.0f).start();
-                        this.iconView.setVisibility(8);
+                        reactedHeaderView.reactView.setImage(ImageLocation.getForDocument(next.center_icon), "40_40_lastreactframe", "webp", (Drawable) null, next);
+                        reactedHeaderView.reactView.setVisibility(0);
+                        reactedHeaderView.reactView.setAlpha(0.0f);
+                        reactedHeaderView.reactView.animate().alpha(1.0f).start();
+                        reactedHeaderView.iconView.setVisibility(8);
                         break;
                     }
                 } else {
-                    this.iconView.setVisibility(0);
-                    this.iconView.setAlpha(0.0f);
-                    this.iconView.animate().alpha(1.0f).start();
+                    reactedHeaderView.iconView.setVisibility(0);
+                    reactedHeaderView.iconView.setAlpha(0.0f);
+                    reactedHeaderView.iconView.animate().alpha(1.0f).start();
                     break;
                 }
             }
         } else {
-            this.iconView.setVisibility(0);
-            this.iconView.setAlpha(0.0f);
-            this.iconView.animate().alpha(1.0f).start();
+            reactedHeaderView.iconView.setVisibility(0);
+            reactedHeaderView.iconView.setAlpha(0.0f);
+            reactedHeaderView.iconView.animate().alpha(1.0f).start();
             break;
         }
-        for (TLRPC.User user : tL_messages_messageReactionsList.users) {
-            TLRPC.Peer peer = this.message.messageOwner.from_id;
-            if (peer != null && user.id != peer.user_id) {
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= this.users.size()) {
-                        this.users.add(new UserSeen(user, 0));
-                        break;
-                    } else if (((UserSeen) this.users.get(i2)).dialogId == user.id) {
-                        break;
-                    } else {
-                        i2++;
-                    }
-                }
-            }
-        }
-        for (TLRPC.Chat chat : tL_messages_messageReactionsList.chats) {
-            TLRPC.Peer peer2 = this.message.messageOwner.from_id;
-            if (peer2 != null && chat.id != peer2.user_id) {
+        ArrayList<TLRPC.User> arrayList = tL_messages_messageReactionsList.users;
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            TLRPC.User user = arrayList.get(i2);
+            i2++;
+            TLRPC.User user2 = user;
+            TLRPC.Peer peer = reactedHeaderView.message.messageOwner.from_id;
+            if (peer != null && user2.id != peer.user_id) {
                 int i3 = 0;
                 while (true) {
-                    if (i3 >= this.users.size()) {
-                        this.users.add(new UserSeen(chat, 0));
+                    if (i3 >= reactedHeaderView.users.size()) {
+                        reactedHeaderView.users.add(new UserSeen(user2, 0));
                         break;
-                    } else if (((UserSeen) this.users.get(i3)).dialogId == (-chat.id)) {
+                    } else if (((UserSeen) reactedHeaderView.users.get(i3)).dialogId == user2.id) {
                         break;
                     } else {
                         i3++;
@@ -363,7 +370,29 @@ public class ReactedHeaderView extends FrameLayout {
                 }
             }
         }
-        updateView();
+        ArrayList<TLRPC.Chat> arrayList2 = tL_messages_messageReactionsList.chats;
+        int size2 = arrayList2.size();
+        int i4 = 0;
+        while (i4 < size2) {
+            TLRPC.Chat chat = arrayList2.get(i4);
+            i4++;
+            TLRPC.Chat chat2 = chat;
+            TLRPC.Peer peer2 = reactedHeaderView.message.messageOwner.from_id;
+            if (peer2 != null && chat2.id != peer2.user_id) {
+                int i5 = 0;
+                while (true) {
+                    if (i5 >= reactedHeaderView.users.size()) {
+                        reactedHeaderView.users.add(new UserSeen(chat2, 0));
+                        break;
+                    } else if (((UserSeen) reactedHeaderView.users.get(i5)).dialogId == (-chat2.id)) {
+                        break;
+                    } else {
+                        i5++;
+                    }
+                }
+            }
+        }
+        reactedHeaderView.updateView();
     }
 
     public List<UserSeen> getSeenUsers() {

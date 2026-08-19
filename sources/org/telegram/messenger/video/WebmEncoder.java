@@ -40,7 +40,7 @@ public class WebmEncoder {
 
     private static native boolean writeFrame(long j, ByteBuffer byteBuffer, int i, int i2);
 
-    public static boolean convert(MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams, int i) throws Throwable {
+    public static boolean convert(MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams, int i) {
         boolean z;
         long length;
         MediaController.VideoConvertorListener videoConvertorListener;
@@ -58,93 +58,113 @@ public class WebmEncoder {
             try {
                 bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
                 try {
-                    ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(bitmapCreateBitmap.getByteCount());
-                    Canvas canvas = new Canvas(bitmapCreateBitmap);
-                    FrameDrawer frameDrawer = new FrameDrawer(convertVideoParams);
-                    int iCeil = (int) Math.ceil(((double) convertVideoParams.framerate) * (convertVideoParams.duration / 1000.0d));
-                    int i4 = 0;
-                    while (i4 < iCeil) {
-                        frameDrawer.draw(canvas, i4);
-                        bitmapCreateBitmap.copyPixelsToBuffer(byteBufferAllocateDirect);
-                        byteBufferAllocateDirect.flip();
-                        if (!writeFrame(jCreateEncoder, byteBufferAllocateDirect, i2, i3)) {
-                            FileLog.d("webm writeFile error at " + i4 + "/" + iCeil);
-                            stop(jCreateEncoder);
-                            bitmapCreateBitmap.recycle();
-                            return z2;
-                        }
-                        MediaController.VideoConvertorListener videoConvertorListener3 = convertVideoParams.callback;
-                        if (videoConvertorListener3 != null) {
-                            bitmap = bitmapCreateBitmap;
-                            try {
-                                videoConvertorListener3.didWriteData(Math.min(261120L, convertVideoParams.cacheFile.length()), i4 / iCeil);
-                            } catch (Exception e) {
-                                e = e;
-                                bitmapCreateBitmap = bitmap;
-                            } catch (Throwable th) {
-                                th = th;
-                                bitmapCreateBitmap = bitmap;
+                    try {
+                        ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(bitmapCreateBitmap.getByteCount());
+                        Canvas canvas = new Canvas(bitmapCreateBitmap);
+                        FrameDrawer frameDrawer = new FrameDrawer(convertVideoParams);
+                        int iCeil = (int) Math.ceil(((double) convertVideoParams.framerate) * (convertVideoParams.duration / 1000.0d));
+                        int i4 = 0;
+                        while (i4 < iCeil) {
+                            frameDrawer.draw(canvas, i4);
+                            bitmapCreateBitmap.copyPixelsToBuffer(byteBufferAllocateDirect);
+                            byteBufferAllocateDirect.flip();
+                            if (!writeFrame(jCreateEncoder, byteBufferAllocateDirect, i2, i3)) {
+                                FileLog.d("webm writeFile error at " + i4 + "/" + iCeil);
                                 stop(jCreateEncoder);
-                                if (bitmapCreateBitmap != null) {
-                                    bitmapCreateBitmap.recycle();
+                                bitmapCreateBitmap.recycle();
+                                return z2;
+                            }
+                            MediaController.VideoConvertorListener videoConvertorListener3 = convertVideoParams.callback;
+                            if (videoConvertorListener3 != null) {
+                                try {
+                                    bitmap = bitmapCreateBitmap;
+                                    try {
+                                        videoConvertorListener3.didWriteData(Math.min(261120L, convertVideoParams.cacheFile.length()), i4 / iCeil);
+                                    } catch (Exception e) {
+                                        e = e;
+                                        bitmapCreateBitmap = bitmap;
+                                        FileLog.e(e);
+                                        stop(jCreateEncoder);
+                                        if (bitmapCreateBitmap != null) {
+                                            bitmapCreateBitmap.recycle();
+                                        }
+                                        z = true;
+                                        length = convertVideoParams.cacheFile.length();
+                                        if (i > 0) {
+                                        }
+                                        videoConvertorListener = convertVideoParams.callback;
+                                        if (videoConvertorListener != null) {
+                                            videoConvertorListener.didWriteData(length, 1.0f);
+                                        }
+                                        FileLog.d("webm encoded to " + convertVideoParams.cacheFile + " with size=" + length + " triesLeft=" + i);
+                                        return z;
+                                    } catch (Throwable th) {
+                                        th = th;
+                                        bitmapCreateBitmap = bitmap;
+                                        stop(jCreateEncoder);
+                                        if (bitmapCreateBitmap != null) {
+                                            bitmapCreateBitmap.recycle();
+                                        }
+                                        throw th;
+                                    }
+                                } catch (Exception e2) {
+                                    e = e2;
                                 }
-                                throw th;
+                            } else {
+                                bitmap = bitmapCreateBitmap;
                             }
-                        } else {
-                            bitmap = bitmapCreateBitmap;
+                            if (i4 % 3 == 0 && (videoConvertorListener2 = convertVideoParams.callback) != null) {
+                                videoConvertorListener2.checkConversionCanceled();
+                            }
+                            i4++;
+                            bitmapCreateBitmap = bitmap;
+                            i2 = i2;
+                            z2 = true;
                         }
-                        if (i4 % 3 == 0 && (videoConvertorListener2 = convertVideoParams.callback) != null) {
-                            videoConvertorListener2.checkConversionCanceled();
-                        }
-                        i4++;
-                        i3 = i3;
-                        bitmapCreateBitmap = bitmap;
-                        byteBufferAllocateDirect = byteBufferAllocateDirect;
-                        z2 = true;
-                        FileLog.e(e);
                         stop(jCreateEncoder);
-                        if (bitmapCreateBitmap != null) {
-                            bitmapCreateBitmap.recycle();
-                        }
-                        z = true;
-                        length = convertVideoParams.cacheFile.length();
-                        if (i > 0 || length <= 261120) {
-                            videoConvertorListener = convertVideoParams.callback;
-                            if (videoConvertorListener != null) {
-                                videoConvertorListener.didWriteData(length, 1.0f);
-                            }
-                            FileLog.d("webm encoded to " + convertVideoParams.cacheFile + " with size=" + length + " triesLeft=" + i);
-                            return z;
-                        }
-                        int i5 = convertVideoParams.bitrate;
-                        convertVideoParams.bitrate = (int) (i5 * (261120.0f / length) * 0.9f);
-                        convertVideoParams.cacheFile.delete();
-                        FileLog.d("webm encoded too much, got " + length + ", old bitrate = " + i5 + " new bitrate = " + convertVideoParams.bitrate);
-                        return convert(convertVideoParams, i - 1);
+                        bitmapCreateBitmap.recycle();
+                        z = false;
+                    } catch (Throwable th2) {
+                        th = th2;
                     }
+                } catch (Exception e3) {
+                    e = e3;
+                    FileLog.e(e);
                     stop(jCreateEncoder);
-                    bitmapCreateBitmap.recycle();
-                    z = false;
-                } catch (Exception e2) {
-                    e = e2;
-                } catch (Throwable th2) {
-                    th = th2;
+                    if (bitmapCreateBitmap != null) {
+                        bitmapCreateBitmap.recycle();
+                    }
+                    z = true;
+                    length = convertVideoParams.cacheFile.length();
+                    if (i > 0) {
+                    }
+                    videoConvertorListener = convertVideoParams.callback;
+                    if (videoConvertorListener != null) {
+                        videoConvertorListener.didWriteData(length, 1.0f);
+                    }
+                    FileLog.d("webm encoded to " + convertVideoParams.cacheFile + " with size=" + length + " triesLeft=" + i);
+                    return z;
                 }
             } catch (Throwable th3) {
                 th = th3;
             }
-        } catch (Exception e3) {
-            e = e3;
+        } catch (Exception e4) {
+            e = e4;
         }
         length = convertVideoParams.cacheFile.length();
-        if (i > 0) {
+        if (i > 0 || length <= 261120) {
+            videoConvertorListener = convertVideoParams.callback;
+            if (videoConvertorListener != null) {
+                videoConvertorListener.didWriteData(length, 1.0f);
+            }
+            FileLog.d("webm encoded to " + convertVideoParams.cacheFile + " with size=" + length + " triesLeft=" + i);
+            return z;
         }
-        videoConvertorListener = convertVideoParams.callback;
-        if (videoConvertorListener != null) {
-            videoConvertorListener.didWriteData(length, 1.0f);
-        }
-        FileLog.d("webm encoded to " + convertVideoParams.cacheFile + " with size=" + length + " triesLeft=" + i);
-        return z;
+        int i5 = convertVideoParams.bitrate;
+        convertVideoParams.bitrate = (int) (i5 * (261120.0f / length) * 0.9f);
+        convertVideoParams.cacheFile.delete();
+        FileLog.d("webm encoded too much, got " + length + ", old bitrate = " + i5 + " new bitrate = " + convertVideoParams.bitrate);
+        return convert(convertVideoParams, i - 1);
     }
 
     public static class FrameDrawer {
@@ -209,7 +229,10 @@ public class WebmEncoder {
 
         private void drawEntity(Canvas canvas, VideoEditedInfo.MediaEntity mediaEntity, int i, long j) {
             VideoEditedInfo.MediaEntity mediaEntity2;
+            Canvas canvas2;
+            long j2;
             RLottieNative rLottieNative = mediaEntity.lottieNative;
+            int i2 = 0;
             if (rLottieNative != null) {
                 Bitmap bitmap = mediaEntity.bitmap;
                 if (bitmap == null || mediaEntity.W <= 0 || mediaEntity.H <= 0) {
@@ -232,10 +255,10 @@ public class WebmEncoder {
             }
             if (mediaEntity.animatedFileDrawable != null) {
                 float f2 = mediaEntity.currentFrame;
-                int i2 = (int) f2;
+                int i3 = (int) f2;
                 float f3 = f2 + mediaEntity.framesPerDraw;
                 mediaEntity.currentFrame = f3;
-                for (int i3 = (int) f3; i2 != i3; i3--) {
+                for (int i4 = (int) f3; i3 != i4; i4--) {
                     mediaEntity.animatedFileDrawable.getNextFrame(true);
                 }
                 Bitmap backgroundBitmap = mediaEntity.animatedFileDrawable.getBackgroundBitmap();
@@ -250,11 +273,19 @@ public class WebmEncoder {
             if (arrayList == null || arrayList.isEmpty()) {
                 return;
             }
-            for (int i4 = 0; i4 < mediaEntity.entities.size(); i4++) {
-                VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i4);
-                if (emojiEntity != null && (mediaEntity2 = emojiEntity.entity) != null) {
-                    drawEntity(canvas, mediaEntity2, mediaEntity.color, j);
+            while (i2 < mediaEntity.entities.size()) {
+                VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i2);
+                if (emojiEntity == null || (mediaEntity2 = emojiEntity.entity) == null) {
+                    canvas2 = canvas;
+                    j2 = j;
+                } else {
+                    canvas2 = canvas;
+                    j2 = j;
+                    drawEntity(canvas2, mediaEntity2, mediaEntity.color, j2);
                 }
+                i2++;
+                canvas = canvas2;
+                j = j2;
             }
         }
 
@@ -273,7 +304,12 @@ public class WebmEncoder {
             }
             editTextOutline.setTextSize(0, mediaEntity.fontSize);
             SpannableString spannableString = new SpannableString(mediaEntity.text);
-            for (final VideoEditedInfo.EmojiEntity emojiEntity : mediaEntity.entities) {
+            ArrayList<VideoEditedInfo.EmojiEntity> arrayList = mediaEntity.entities;
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                int i3 = i2 + 1;
+                final VideoEditedInfo.EmojiEntity emojiEntity = arrayList.get(i2);
                 if (emojiEntity.documentAbsolutePath != null) {
                     VideoEditedInfo.MediaEntity mediaEntity2 = new VideoEditedInfo.MediaEntity();
                     emojiEntity.entity = mediaEntity2;
@@ -281,14 +317,14 @@ public class WebmEncoder {
                     mediaEntity2.subType = emojiEntity.subType;
                     AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(0L, 1.0f, editTextOutline.getPaint().getFontMetricsInt()) {
                         @Override
-                        public void draw(Canvas canvas, CharSequence charSequence, int i2, int i3, float f, int i4, int i5, int i6, Paint paint) {
-                            super.draw(canvas, charSequence, i2, i3, f, i4, i5, i6, paint);
+                        public void draw(Canvas canvas, CharSequence charSequence, int i4, int i5, float f, int i6, int i7, int i8, Paint paint) {
+                            super.draw(canvas, charSequence, i4, i5, f, i6, i7, i8, paint);
                             float f2 = mediaEntity.x;
                             float paddingLeft = editTextOutline.getPaddingLeft() + f + (this.measuredSize / 2.0f);
                             VideoEditedInfo.MediaEntity mediaEntity3 = mediaEntity;
                             float f3 = f2 + ((paddingLeft / mediaEntity3.viewWidth) * mediaEntity3.width);
                             float f4 = mediaEntity3.y;
-                            float paddingTop = editTextOutline.getPaddingTop() + i4 + ((i6 - i4) / 2.0f);
+                            float paddingTop = editTextOutline.getPaddingTop() + i6 + ((i8 - i6) / 2.0f);
                             VideoEditedInfo.MediaEntity mediaEntity4 = mediaEntity;
                             float f5 = paddingTop / mediaEntity4.viewHeight;
                             float f6 = mediaEntity4.height;
@@ -318,9 +354,10 @@ public class WebmEncoder {
                             }
                         }
                     };
-                    int i2 = emojiEntity.offset;
-                    spannableString.setSpan(animatedEmojiSpan, i2, emojiEntity.length + i2, 33);
+                    int i4 = emojiEntity.offset;
+                    spannableString.setSpan(animatedEmojiSpan, i4, emojiEntity.length + i4, 33);
                 }
+                i2 = i3;
             }
             CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableString, editTextOutline.getPaint().getFontMetricsInt(), false);
             if ((charSequenceReplaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) charSequenceReplaceEmoji).getSpans(0, charSequenceReplaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
@@ -330,12 +367,12 @@ public class WebmEncoder {
             }
             editTextOutline.setText(charSequenceReplaceEmoji);
             editTextOutline.setTextColor(mediaEntity.color);
-            int i3 = mediaEntity.textAlign;
-            editTextOutline.setGravity(i3 != 1 ? i3 != 2 ? 19 : 21 : 17);
-            int i4 = Build.VERSION.SDK_INT;
             int i5 = mediaEntity.textAlign;
-            if (i5 != 1) {
-                i = (i5 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) ? 3 : 2;
+            editTextOutline.setGravity(i5 != 1 ? i5 != 2 ? 19 : 21 : 17);
+            int i6 = Build.VERSION.SDK_INT;
+            int i7 = mediaEntity.textAlign;
+            if (i7 != 1) {
+                i = (i7 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) ? 3 : 2;
             } else {
                 i = 4;
             }
@@ -344,7 +381,7 @@ public class WebmEncoder {
             editTextOutline.setImeOptions(268435456);
             editTextOutline.setFocusableInTouchMode(true);
             editTextOutline.setInputType(editTextOutline.getInputType() | 16384);
-            if (i4 >= 23) {
+            if (i6 >= 23) {
                 setBreakStrategy(editTextOutline);
             }
             byte b = mediaEntity.subType;

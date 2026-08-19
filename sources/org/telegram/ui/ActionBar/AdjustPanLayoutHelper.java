@@ -85,7 +85,7 @@ public abstract class AdjustPanLayoutHelper {
             this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$animateHeight$0(valueAnimator);
+                    AdjustPanLayoutHelper.$r8$lambda$zTRNXEnZ4vnXnlkNIOtBKmRm3K0(this.f$0, valueAnimator);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {
@@ -111,11 +111,11 @@ public abstract class AdjustPanLayoutHelper {
         }
     }
 
-    public void lambda$animateHeight$0(ValueAnimator valueAnimator) {
-        if (this.usingInsetAnimator) {
+    public static void $r8$lambda$zTRNXEnZ4vnXnlkNIOtBKmRm3K0(AdjustPanLayoutHelper adjustPanLayoutHelper, ValueAnimator valueAnimator) {
+        if (adjustPanLayoutHelper.usingInsetAnimator) {
             return;
         }
-        updateTransition(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        adjustPanLayoutHelper.updateTransition(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public void startTransition(int i, int i2, boolean z) {

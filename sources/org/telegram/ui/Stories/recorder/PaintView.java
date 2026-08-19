@@ -294,7 +294,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
 
     protected abstract void onGalleryClick();
 
-    protected abstract void onOpenCloseStickersAlert(boolean z);
+    public abstract void onOpenCloseStickersAlert(boolean z);
 
     public abstract void onSelectRound(RoundView roundView);
 
@@ -501,7 +501,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         undoStore.setDelegate(new UndoStore.UndoStoreDelegate() {
             @Override
             public final void historyChanged() {
-                this.f$0.lambda$new$0();
+                PaintView.m4537$r8$lambda$oBldUZaDbn8VHalkh5eS6GMZ6o(this.f$0);
             }
         });
         View view = new View(context);
@@ -534,7 +534,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             @Override
             public void onBeganDrawing() {
                 if (PaintView.this.currentEntityView != null) {
-                    PaintView.this.lambda$createRound$61(null);
+                    PaintView.this.selectEntity(null);
                 }
                 PaintView.this.weightChooserView.setViewHidden(true);
             }
@@ -549,7 +549,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             public boolean shouldDraw() {
                 boolean z4 = PaintView.this.currentEntityView == null;
                 if (!z4) {
-                    PaintView.this.lambda$createRound$61(null);
+                    PaintView.this.selectEntity(null);
                 }
                 return z4;
             }
@@ -593,7 +593,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
 
             @Override
             public void onEntityDeselect() {
-                PaintView.this.lambda$createRound$61(null);
+                PaintView.this.selectEntity(null);
                 PaintView paintView = PaintView.this;
                 if (paintView.enteredThroughText) {
                     paintView.dismiss();
@@ -777,7 +777,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$new$1(view3);
+                PaintView.m4520$r8$lambda$dGFoaS0jxh1gKM8vN1N0xK2n9w(this.f$0, view3);
             }
         });
         this.undoButton.setAlpha(0.6f);
@@ -803,7 +803,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.zoomOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.lambda$new$2(view3);
+                PhotoViewer.getInstance().zoomOut();
             }
         });
         this.topLayout.addView(this.zoomOutButton, LayoutHelper.createFrame(-2, 32, 17));
@@ -819,7 +819,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.undoAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$new$3(view3);
+                this.f$0.clearAll();
             }
         });
         this.undoAllButton.setAlpha(0.6f);
@@ -836,7 +836,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.cancelTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$new$4(view3);
+                PaintView.m4541$r8$lambda$u9DlI6yf9KgnfSAfq24i4_Qzc(this.f$0, view3);
             }
         });
         this.cancelTextButton.setAlpha(0.0f);
@@ -854,7 +854,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.doneTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$new$5(view3);
+                this.f$0.selectEntity(null);
             }
         });
         this.doneTextButton.setAlpha(0.0f);
@@ -890,6 +890,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
 
             @Override
             protected void onDraw(Canvas canvas) {
+                float f;
                 super.onDraw(canvas);
                 ViewGroup barView = PaintView.this.getBarView();
                 RectF rectF = AndroidUtilities.rectTmp;
@@ -918,11 +919,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                         PaintView paintView = PaintView.this;
                         ViewGroup viewGroup = (ViewGroup) paintView.getBarView(paintView.tabsNewSelectedIndex);
                         View childAt2 = (viewGroup == null ? barView : viewGroup).getChildAt(0);
+                        f = 1.0f;
                         if (viewGroup instanceof PaintTextOptionsView) {
                             childAt2 = ((PaintTextOptionsView) viewGroup).getColorClickableView();
                         }
                         x = AndroidUtilities.lerp(x, childAt2.getX() + childAt2.getPaddingLeft() + (((childAt2.getWidth() - childAt2.getPaddingLeft()) - childAt2.getPaddingRight()) / 2.0f), PaintView.this.tabsSelectionProgress);
                         y = AndroidUtilities.lerp(y, childAt2.getY() + childAt2.getPaddingTop() + (((childAt2.getHeight() - childAt2.getPaddingTop()) - childAt2.getPaddingBottom()) / 2.0f), PaintView.this.tabsSelectionProgress);
+                    } else {
+                        f = 1.0f;
                     }
                     if (PaintView.this.colorsListView != null && PaintView.this.colorsListView.getChildCount() > 0) {
                         View childAt3 = PaintView.this.colorsListView.getChildAt(0);
@@ -930,15 +934,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                         y = AndroidUtilities.lerp(y, (PaintView.this.colorsListView.getY() - barView.getTop()) + childAt3.getY() + (childAt3.getHeight() / 2.0f), PaintView.this.toolsTransformProgress);
                         iBlendARGB = ColorUtils.blendARGB(PaintView.this.colorSwatch.color, persistColorPalette.getColor(0), PaintView.this.toolsTransformProgress);
                     }
-                    float f = x;
-                    checkRainbow(f, y);
+                    checkRainbow(x, y);
                     float fMin = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
                     if (PaintView.this.colorsListView != null && PaintView.this.colorsListView.getChildCount() > 0) {
                         View childAt4 = PaintView.this.colorsListView.getChildAt(0);
                         fMin = AndroidUtilities.lerp(fMin, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), PaintView.this.toolsTransformProgress);
                     }
                     float f2 = fMin;
-                    rectF.set(f - f2, y - f2, f + f2, y + f2);
+                    rectF.set(x - f2, y - f2, x + f2, y + f2);
                     canvas.drawArc(rectF, 0.0f, 360.0f, false, PaintView.this.colorPickerRainbowPaint);
                     PaintView.this.colorSwatchPaint.setColor(iBlendARGB);
                     PaintView.this.colorSwatchPaint.setAlpha((int) (PaintView.this.colorSwatchPaint.getAlpha() * view3.getAlpha()));
@@ -948,10 +951,10 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     if (PaintView.this.colorsListView != null && PaintView.this.colorsListView.getSelectedColorIndex() != 0) {
                         fDp = AndroidUtilities.lerp(f2 - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(2.0f) + f2, PaintView.this.toolsTransformProgress);
                     }
-                    PaintColorsListView.drawColorCircle(canvas, f, y, fDp, PaintView.this.colorSwatchPaint.getColor());
+                    PaintColorsListView.drawColorCircle(canvas, x, y, fDp, PaintView.this.colorSwatchPaint.getColor());
                     if (PaintView.this.colorsListView != null && PaintView.this.colorsListView.getSelectedColorIndex() == 0) {
                         PaintView.this.colorSwatchOutlinePaint.setAlpha((int) (PaintView.this.colorSwatchOutlinePaint.getAlpha() * PaintView.this.toolsTransformProgress * view3.getAlpha()));
-                        canvas.drawCircle(f, y, f2 - ((AndroidUtilities.dp(3.0f) + PaintView.this.colorSwatchOutlinePaint.getStrokeWidth()) * (1.0f - PaintView.this.toolsTransformProgress)), PaintView.this.colorSwatchOutlinePaint);
+                        canvas.drawCircle(x, y, f2 - ((AndroidUtilities.dp(3.0f) + PaintView.this.colorSwatchOutlinePaint.getStrokeWidth()) * (f - PaintView.this.toolsTransformProgress)), PaintView.this.colorSwatchOutlinePaint);
                     }
                 }
                 canvas.restore();
@@ -975,7 +978,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$6(i);
+                this.f$0.textOptionsView.setTypeface(PersistColorPalette.getInstance(i).getCurrentTypeface());
             }
         });
         this.textOptionsView.setAlignment(PersistColorPalette.getInstance(i).getCurrentAlignment());
@@ -1019,7 +1022,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.typefaceListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view3, int i6) {
-                this.f$0.lambda$new$7(view3, i6);
+                PaintView.m4529$r8$lambda$R8Ui38q3MsqtWt7rypX78eyODE(this.f$0, view3, i6);
             }
         });
         this.textOptionsView.setTypefaceListView(this.typefaceListView);
@@ -1049,7 +1052,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.colorsListView.setColorListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                this.f$0.lambda$new$8((Integer) obj);
+                PaintView.m4533$r8$lambda$eIPhcx0VA7U6ZTz5ULIuViGQxI(this.f$0, (Integer) obj);
             }
         });
         this.bottomLayout.addView(this.colorsListView, LayoutHelper.createFrame(-1, 84.0f, 48, 56.0f, 0.0f, 56.0f, 6.0f));
@@ -1062,7 +1065,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$new$9(view3);
+                PaintView.m4526$r8$lambda$KV4omYmCLKaQdbM8mfGFs26XIc(this.f$0, view3);
             }
         });
         PaintDoneView paintDoneView = new PaintDoneView(context);
@@ -1072,7 +1075,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$new$11(context, bitmap3, persistColorPalette, view3);
+                PaintView.$r8$lambda$uFZyhW1wszQP1UCEnMOMI73TFJE(this.f$0, context, bitmap3, persistColorPalette, view3);
             }
         });
         this.bottomLayout.addView(this.doneButton, LayoutHelper.createFrame(32, 32.0f, 85, 0.0f, 0.0f, 12.0f, 4.0f));
@@ -1085,7 +1088,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.weightChooserView.setOnUpdate(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$12(i);
+                PaintView.m4521$r8$lambda$8bnbpgQIcpNrDuY6Klv0Ys4ipo(this.f$0, i);
             }
         });
         addView(this.weightChooserView, LayoutHelper.createFrame(-1, -1.0f));
@@ -1106,7 +1109,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.keyboardNotifier = new KeyboardNotifier(windowView, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$13(windowView, (Integer) obj);
+                PaintView.m4524$r8$lambda$ES9xyWYC0uOX1LRDjIWpITGOo8(this.f$0, windowView, (Integer) obj);
             }
         }) {
             @Override
@@ -1120,91 +1123,77 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         EmojiBottomSheet.savedPosition = i5;
     }
 
-    public void lambda$new$0() {
-        boolean zCanUndo = this.undoStore.canUndo();
-        this.undoButton.animate().cancel();
-        this.undoButton.animate().alpha(zCanUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
-        this.undoButton.setClickable(zCanUndo);
-        this.undoAllButton.animate().cancel();
-        this.undoAllButton.animate().alpha(zCanUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
-        this.undoAllButton.setClickable(zCanUndo);
+    public static void m4537$r8$lambda$oBldUZaDbn8VHalkh5eS6GMZ6o(PaintView paintView) {
+        boolean zCanUndo = paintView.undoStore.canUndo();
+        paintView.undoButton.animate().cancel();
+        paintView.undoButton.animate().alpha(zCanUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
+        paintView.undoButton.setClickable(zCanUndo);
+        paintView.undoAllButton.animate().cancel();
+        paintView.undoAllButton.animate().alpha(zCanUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
+        paintView.undoAllButton.setClickable(zCanUndo);
     }
 
-    public void lambda$new$1(View view) {
-        RenderView renderView = this.renderView;
+    public static void m4520$r8$lambda$dGFoaS0jxh1gKM8vN1N0xK2n9w(PaintView paintView, View view) {
+        RenderView renderView = paintView.renderView;
         if (renderView != null && (renderView.getCurrentBrush() instanceof Brush.Shape)) {
-            this.renderView.clearShape();
-            this.paintToolsView.setSelectedIndex(1);
-            onBrushSelected((Brush) Brush.BRUSHES_LIST.get(0));
+            paintView.renderView.clearShape();
+            paintView.paintToolsView.setSelectedIndex(1);
+            paintView.onBrushSelected((Brush) Brush.BRUSHES_LIST.get(0));
             return;
         }
-        this.undoStore.undo();
+        paintView.undoStore.undo();
     }
 
-    public static void lambda$new$2(View view) {
-        PhotoViewer.getInstance().zoomOut();
-    }
-
-    public void lambda$new$3(View view) {
-        clearAll();
-    }
-
-    public void lambda$new$4(View view) {
-        EntityView entityView = this.currentEntityView;
+    public static void m4541$r8$lambda$u9DlI6yf9KgnfSAfq24i4_Qzc(PaintView paintView, View view) {
+        EntityView entityView = paintView.currentEntityView;
         if (entityView instanceof TextPaintView) {
             AndroidUtilities.hideKeyboard(((TextPaintView) entityView).getFocusedView());
         }
-        if (this.emojiViewVisible) {
-            hideEmojiPopup(false);
+        if (paintView.emojiViewVisible) {
+            paintView.hideEmojiPopup(false);
         }
-        lambda$registerRemovalUndo$62(this.currentEntityView);
-        lambda$createRound$61(null);
+        paintView.removeEntity(paintView.currentEntityView);
+        paintView.selectEntity(null);
     }
 
-    public void lambda$new$5(View view) {
-        lambda$createRound$61(null);
-    }
-
-    public void lambda$new$6(int i) {
-        this.textOptionsView.setTypeface(PersistColorPalette.getInstance(i).getCurrentTypeface());
-    }
-
-    public void lambda$new$7(View view, int i) {
+    public static void m4529$r8$lambda$R8Ui38q3MsqtWt7rypX78eyODE(PaintView paintView, View view, int i) {
+        paintView.getClass();
         PaintTypeface paintTypeface = (PaintTypeface) PaintTypeface.get().get(i);
-        this.textOptionsView.setTypeface(paintTypeface.getKey());
-        onTypefaceSelected(paintTypeface);
-        showTypefaceMenu(false);
+        paintView.textOptionsView.setTypeface(paintTypeface.getKey());
+        paintView.onTypefaceSelected(paintTypeface);
+        paintView.showTypefaceMenu(false);
     }
 
-    public void lambda$new$8(Integer num) {
-        setNewColor(num.intValue());
-        showColorList(false);
+    public static void m4533$r8$lambda$eIPhcx0VA7U6ZTz5ULIuViGQxI(PaintView paintView, Integer num) {
+        paintView.getClass();
+        paintView.setNewColor(num.intValue());
+        paintView.showColorList(false);
     }
 
-    public void lambda$new$9(View view) {
-        if (this.isColorListShown) {
-            showColorList(false);
+    public static void m4526$r8$lambda$KV4omYmCLKaQdbM8mfGFs26XIc(PaintView paintView, View view) {
+        if (paintView.isColorListShown) {
+            paintView.showColorList(false);
             return;
         }
-        if (this.emojiViewVisible) {
-            hideEmojiPopup(true);
+        if (paintView.emojiViewVisible) {
+            paintView.hideEmojiPopup(true);
             return;
         }
-        if (this.editingText) {
-            lambda$createRound$61(null);
+        if (paintView.editingText) {
+            paintView.selectEntity(null);
             return;
         }
-        Runnable runnable = this.onCancelButtonClickedListener;
+        Runnable runnable = paintView.onCancelButtonClickedListener;
         if (runnable != null) {
             runnable.run();
         }
     }
 
-    public void lambda$new$11(Context context, final Bitmap bitmap, final PersistColorPalette persistColorPalette, View view) {
-        if (this.isColorListShown) {
-            ColorPickerBottomSheet colorPickerBottomSheet = new ColorPickerBottomSheet(context, this.resourcesProvider);
-            this.colorPickerBottomSheet = colorPickerBottomSheet;
-            colorPickerBottomSheet.setColor(this.colorSwatch.color).setPipetteDelegate(new ColorPickerBottomSheet.PipetteDelegate() {
+    public static void $r8$lambda$uFZyhW1wszQP1UCEnMOMI73TFJE(final PaintView paintView, Context context, final Bitmap bitmap, final PersistColorPalette persistColorPalette, View view) {
+        if (paintView.isColorListShown) {
+            ColorPickerBottomSheet colorPickerBottomSheet = new ColorPickerBottomSheet(context, paintView.resourcesProvider);
+            paintView.colorPickerBottomSheet = colorPickerBottomSheet;
+            colorPickerBottomSheet.setColor(paintView.colorSwatch.color).setPipetteDelegate(new ColorPickerBottomSheet.PipetteDelegate() {
                 private boolean hasPipette;
 
                 @Override
@@ -1260,36 +1249,38 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             }).setColorListener(new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    this.f$0.lambda$new$10(persistColorPalette, (Integer) obj);
+                    PaintView.$r8$lambda$EQ7QjT8U9YRwr9AD3pOyF1Ltpjg(this.f$0, persistColorPalette, (Integer) obj);
                 }
             }).show();
         } else {
-            Runnable runnable = this.onDoneButtonClickedListener;
+            Runnable runnable = paintView.onDoneButtonClickedListener;
             if (runnable != null) {
                 runnable.run();
             }
         }
     }
 
-    public void lambda$new$10(PersistColorPalette persistColorPalette, Integer num) {
+    public static void $r8$lambda$EQ7QjT8U9YRwr9AD3pOyF1Ltpjg(PaintView paintView, PersistColorPalette persistColorPalette, Integer num) {
+        paintView.getClass();
         persistColorPalette.selectColor(num.intValue());
         persistColorPalette.saveColors();
-        setNewColor(num.intValue());
-        this.colorsListView.setSelectedColorIndex(persistColorPalette.getCurrentColorPosition());
-        this.colorPickerBottomSheet = null;
+        paintView.setNewColor(num.intValue());
+        paintView.colorsListView.setSelectedColorIndex(persistColorPalette.getCurrentColorPosition());
+        paintView.colorPickerBottomSheet = null;
     }
 
-    public void lambda$new$12(int i) {
-        setCurrentSwatch(this.colorSwatch, true);
-        PersistColorPalette.getInstance(i).setCurrentWeight(this.colorSwatch.brushWeight);
+    public static void m4521$r8$lambda$8bnbpgQIcpNrDuY6Klv0Ys4ipo(PaintView paintView, int i) {
+        paintView.setCurrentSwatch(paintView.colorSwatch, true);
+        PersistColorPalette.getInstance(i).setCurrentWeight(paintView.colorSwatch.brushWeight);
     }
 
-    public void lambda$new$13(StoryRecorder.WindowView windowView, Integer num) {
+    public static void m4524$r8$lambda$ES9xyWYC0uOX1LRDjIWpITGOo8(PaintView paintView, StoryRecorder.WindowView windowView, Integer num) {
         boolean z;
-        int iMax = Math.max(0, Math.max(num.intValue() - windowView.getBottomPadding2(), this.emojiPadding - windowView.getPaddingUnderContainer()));
-        notifyHeightChanged();
+        paintView.getClass();
+        int iMax = Math.max(0, Math.max(num.intValue() - windowView.getBottomPadding2(), paintView.emojiPadding - windowView.getPaddingUnderContainer()));
+        paintView.notifyHeightChanged();
         if (iMax > 0) {
-            EntityView entityView = this.currentEntityView;
+            EntityView entityView = paintView.currentEntityView;
             if ((entityView instanceof TextPaintView) && ((TextPaintView) entityView).getEditText().isFocused()) {
                 z = true;
             } else {
@@ -1298,43 +1289,45 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         } else {
             z = false;
         }
-        AnimatorSet animatorSet = this.keyboardAnimator;
+        AnimatorSet animatorSet = paintView.keyboardAnimator;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
-        this.keyboardAnimator = new AnimatorSet();
+        paintView.keyboardAnimator = new AnimatorSet();
         ArrayList arrayList = new ArrayList();
-        PaintWeightChooserView paintWeightChooserView = this.weightChooserView;
+        PaintWeightChooserView paintWeightChooserView = paintView.weightChooserView;
+        float[] fArr = {iMax > 0 ? Math.min(0.0f, ((-iMax) / 2.0f) - AndroidUtilities.dp(8.0f)) : 0.0f};
         Property property = View.TRANSLATION_Y;
-        arrayList.add(ObjectAnimator.ofFloat(paintWeightChooserView, (Property<PaintWeightChooserView, Float>) property, iMax > 0 ? Math.min(0.0f, ((-iMax) / 2.0f) - AndroidUtilities.dp(8.0f)) : 0.0f));
-        arrayList.add(ObjectAnimator.ofFloat(this.bottomLayout, (Property<FrameLayout, Float>) property, iMax > 0 ? Math.min(0, (-iMax) + AndroidUtilities.dp(40.0f)) : 0));
-        LinearLayout linearLayout = this.tabsLayout;
+        arrayList.add(ObjectAnimator.ofFloat(paintWeightChooserView, (Property<PaintWeightChooserView, Float>) property, fArr));
+        arrayList.add(ObjectAnimator.ofFloat(paintView.bottomLayout, (Property<FrameLayout, Float>) property, iMax > 0 ? Math.min(0, (-iMax) + AndroidUtilities.dp(40.0f)) : 0));
+        LinearLayout linearLayout = paintView.tabsLayout;
+        float[] fArr2 = {z ? 0.0f : 1.0f};
         Property property2 = View.ALPHA;
-        arrayList.add(ObjectAnimator.ofFloat(linearLayout, (Property<LinearLayout, Float>) property2, z ? 0.0f : 1.0f));
-        arrayList.add(ObjectAnimator.ofFloat(this.doneButton, (Property<PaintDoneView, Float>) property2, (!z || this.isColorListShown) ? 1.0f : 0.0f));
-        arrayList.add(ObjectAnimator.ofFloat(this.cancelButton, (Property<PaintCancelView, Float>) property2, (!z || this.isColorListShown) ? 1.0f : 0.0f));
-        updatePreviewViewTranslationY();
-        this.keyboardAnimator.playTogether(arrayList);
+        arrayList.add(ObjectAnimator.ofFloat(linearLayout, (Property<LinearLayout, Float>) property2, fArr2));
+        arrayList.add(ObjectAnimator.ofFloat(paintView.doneButton, (Property<PaintDoneView, Float>) property2, (!z || paintView.isColorListShown) ? 1.0f : 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(paintView.cancelButton, (Property<PaintCancelView, Float>) property2, (!z || paintView.isColorListShown) ? 1.0f : 0.0f));
+        paintView.updatePreviewViewTranslationY();
+        paintView.keyboardAnimator.playTogether(arrayList);
         if (z) {
-            this.keyboardAnimator.setDuration(250L);
-            this.keyboardAnimator.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
+            paintView.keyboardAnimator.setDuration(250L);
+            paintView.keyboardAnimator.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
         } else {
-            this.keyboardAnimator.setDuration(350L);
-            this.keyboardAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            paintView.keyboardAnimator.setDuration(350L);
+            paintView.keyboardAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         }
-        this.keyboardAnimator.start();
+        paintView.keyboardAnimator.start();
         for (int i = 0; i < arrayList.size(); i++) {
             ((Animator) arrayList.get(i)).setDuration(z ? 350L : 250L);
             ((Animator) arrayList.get(i)).setInterpolator(z ? CubicBezierInterpolator.EASE_OUT_QUINT : AdjustPanLayoutHelper.keyboardInterpolator);
             ((Animator) arrayList.get(i)).start();
         }
         if (!z) {
-            showTypefaceMenu(false);
+            paintView.showTypefaceMenu(false);
         }
-        if (this.wasKeyboardVisible != z) {
-            checkEntitiesIsVideo();
+        if (paintView.wasKeyboardVisible != z) {
+            paintView.checkEntitiesIsVideo();
         }
-        this.wasKeyboardVisible = z;
+        paintView.wasKeyboardVisible = z;
     }
 
     private void updatePreviewViewTranslationY() {
@@ -1379,16 +1372,17 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$setNewColor$14(i2, i, valueAnimator);
+                PaintView.$r8$lambda$VTwXdQ1aFFz1FfgczXN5Bap14IQ(this.f$0, i2, i, valueAnimator);
             }
         });
         duration.start();
     }
 
-    public void lambda$setNewColor$14(int i, int i2, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$VTwXdQ1aFFz1FfgczXN5Bap14IQ(PaintView paintView, int i, int i2, ValueAnimator valueAnimator) {
+        paintView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.colorSwatch.color = ColorUtils.blendARGB(i, i2, fFloatValue);
-        this.bottomLayout.invalidate();
+        paintView.colorSwatch.color = ColorUtils.blendARGB(i, i2, fFloatValue);
+        paintView.bottomLayout.invalidate();
     }
 
     private LocationView createLocationSticker(TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, boolean z) {
@@ -1508,7 +1502,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         textPaintView.setMinMaxFontSize((int) (0.5f * f), (int) (f * 2.0f), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createText$15();
+                PaintView.m4530$r8$lambda$VI7E7eB4xCOow7C5y4pHyXJp3A(this.f$0);
             }
         });
         if (pointFStartPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
@@ -1542,8 +1536,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return textPaintView;
     }
 
-    public void lambda$createText$15() {
-        PaintWeightChooserView paintWeightChooserView = this.weightChooserView;
+    public static void m4530$r8$lambda$VI7E7eB4xCOow7C5y4pHyXJp3A(PaintView paintView) {
+        PaintWeightChooserView paintWeightChooserView = paintView.weightChooserView;
         if (paintWeightChooserView != null) {
             paintWeightChooserView.invalidate();
         }
@@ -1587,7 +1581,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         AndroidUtilities.showKeyboard(focusedView);
     }
 
-    public boolean lambda$createRound$61(EntityView entityView) {
+    public boolean selectEntity(EntityView entityView) {
         return selectEntity(entityView, true);
     }
 
@@ -1684,7 +1678,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         EntityView entityView5 = this.currentEntityView;
         this.currentEntityView = entityView;
         if ((entityView5 instanceof TextPaintView) && TextUtils.isEmpty(((TextPaintView) entityView5).getText())) {
-            lambda$registerRemovalUndo$62(entityView5);
+            removeEntity(entityView5);
         }
         EntityView entityView6 = this.currentEntityView;
         if (entityView5 != entityView6 && (entityView6 instanceof RoundView)) {
@@ -1861,7 +1855,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$showReactionsLayout$16(valueAnimator);
+                            PaintView.$r8$lambda$o3KnaDXK8Fio01NMT7zr9GjJoTU(this.f$0, valueAnimator);
                         }
                     });
                     valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -1895,10 +1889,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public void lambda$showReactionsLayout$16(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$o3KnaDXK8Fio01NMT7zr9GjJoTU(PaintView paintView, ValueAnimator valueAnimator) {
+        paintView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.reactionShowProgress = fFloatValue;
-        this.reactionLayout.setTransitionProgress(fFloatValue);
+        paintView.reactionShowProgress = fFloatValue;
+        paintView.reactionLayout.setTransitionProgress(fFloatValue);
     }
 
     @Override
@@ -1985,7 +1980,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.drawTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$setupTabsLayout$17(view);
+                PaintView.m4538$r8$lambda$pDzi3K0cRdyqqZAFZpx5xn1zcc(this.f$0, view);
             }
         });
         this.tabsLayout.addView(this.drawTab, LayoutHelper.createLinear(0, -2, 1.0f));
@@ -1997,7 +1992,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.stickerTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$setupTabsLayout$18(view);
+                this.f$0.openStickersView();
             }
         });
         this.stickerTab.setTextColor(-1);
@@ -2021,31 +2016,27 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.textTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$setupTabsLayout$19(view);
+                PaintView.$r8$lambda$Nb8K5FvxGN14iMGbkihq8hLTF7k(this.f$0, view);
             }
         });
         this.tabsLayout.addView(this.textTab, LayoutHelper.createLinear(0, -2, 1.0f));
     }
 
-    public void lambda$setupTabsLayout$17(View view) {
-        if (this.editingText) {
-            lambda$createRound$61(null);
+    public static void m4538$r8$lambda$pDzi3K0cRdyqqZAFZpx5xn1zcc(PaintView paintView, View view) {
+        if (paintView.editingText) {
+            paintView.selectEntity(null);
         } else {
-            switchTab(0);
+            paintView.switchTab(0);
         }
     }
 
-    public void lambda$setupTabsLayout$18(View view) {
-        openStickersView();
-    }
-
-    public void lambda$setupTabsLayout$19(View view) {
-        switchTab(2);
-        if (this.currentEntityView instanceof TextPaintView) {
+    public static void $r8$lambda$Nb8K5FvxGN14iMGbkihq8hLTF7k(PaintView paintView, View view) {
+        paintView.switchTab(2);
+        if (paintView.currentEntityView instanceof TextPaintView) {
             return;
         }
-        this.forceChanges = true;
-        createText(true);
+        paintView.forceChanges = true;
+        paintView.createText(true);
     }
 
     public View getBarView(int i) {
@@ -2078,7 +2069,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.tabsSelectionAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$switchTab$20(barView, barView2, valueAnimator2);
+                PaintView.$r8$lambda$GJy4C3Y2zNRt35JBQCZlRxNo0CY(this.f$0, barView, barView2, valueAnimator2);
             }
         });
         this.tabsSelectionAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2118,24 +2109,25 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.tabsSelectionAnimator.start();
     }
 
-    public void lambda$switchTab$20(View view, View view2, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$GJy4C3Y2zNRt35JBQCZlRxNo0CY(PaintView paintView, View view, View view2, ValueAnimator valueAnimator) {
         float f;
-        this.tabsSelectionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.tabsLayout.invalidate();
-        this.bottomLayout.invalidate();
-        this.overlayLayout.invalidate();
+        paintView.getClass();
+        paintView.tabsSelectionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        paintView.tabsLayout.invalidate();
+        paintView.bottomLayout.invalidate();
+        paintView.overlayLayout.invalidate();
         int i = 0;
-        while (i < this.tabsLayout.getChildCount()) {
-            View childAt = this.tabsLayout.getChildAt(i);
-            if (i == this.tabsNewSelectedIndex) {
-                f = this.tabsSelectionProgress;
+        while (i < paintView.tabsLayout.getChildCount()) {
+            View childAt = paintView.tabsLayout.getChildAt(i);
+            if (i == paintView.tabsNewSelectedIndex) {
+                f = paintView.tabsSelectionProgress;
             } else {
-                f = i == this.tabsSelectedIndex ? 1.0f - this.tabsSelectionProgress : 0.0f;
+                f = i == paintView.tabsSelectedIndex ? 1.0f - paintView.tabsSelectionProgress : 0.0f;
             }
             childAt.setAlpha((f * 0.4f) + 0.6f);
             i++;
         }
-        float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(this.tabsSelectionProgress);
+        float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(paintView.tabsSelectionProgress);
         if (view == null || view2 == null) {
             return;
         }
@@ -2152,13 +2144,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         view2.setAlpha(1.0f - (Math.min(f2, 0.25f) / 0.25f));
     }
 
-    private void openStickersView() {
+    public void openStickersView() {
         final int i = this.tabsSelectedIndex;
         switchTab(1);
         postDelayed(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openStickersView$21();
+                PaintView.m4523$r8$lambda$CisvG___c2pZ0BvnUk9R52o8Zg(this.f$0);
             }
         }, 350L);
         final EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), false, this.resourcesProvider, false) {
@@ -2229,56 +2221,58 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         emojiBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$openStickersView$22(zArr, i, dialogInterface);
+                PaintView.$r8$lambda$CzX1vGhsurBYGJVpnpNoGDpyTck(this.f$0, zArr, i, dialogInterface);
             }
         });
         emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3) {
-                return this.f$0.lambda$openStickersView$23(obj, (TLRPC.Document) obj2, (Boolean) obj3);
+                return PaintView.$r8$lambda$QBQ0un2FrHxdCRyZH3sau1YHD8Q(this.f$0, obj, (TLRPC.Document) obj2, (Boolean) obj3);
             }
         });
         emojiBottomSheet.whenWidgetSelected(new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                return this.f$0.lambda$openStickersView$27(zArr, emojiBottomSheet, (Integer) obj);
+                return PaintView.$r8$lambda$egnvP7JOgwFVch9FnCxpeAGJjGw(this.f$0, zArr, emojiBottomSheet, (Integer) obj);
             }
         });
         emojiBottomSheet.show();
         onOpenCloseStickersAlert(true);
     }
 
-    public void lambda$openStickersView$21() {
-        if (this.facesBitmap != null) {
-            detectFaces();
+    public static void m4523$r8$lambda$CisvG___c2pZ0BvnUk9R52o8Zg(PaintView paintView) {
+        if (paintView.facesBitmap != null) {
+            paintView.detectFaces();
         }
     }
 
-    public void lambda$openStickersView$22(boolean[] zArr, int i, DialogInterface dialogInterface) {
-        this.emojiPopup = null;
+    public static void $r8$lambda$CzX1vGhsurBYGJVpnpNoGDpyTck(PaintView paintView, boolean[] zArr, int i, DialogInterface dialogInterface) {
+        paintView.emojiPopup = null;
         if (zArr[0]) {
-            onOpenCloseStickersAlert(false);
+            paintView.onOpenCloseStickersAlert(false);
         }
-        switchTab(i);
+        paintView.switchTab(i);
     }
 
-    public Boolean lambda$openStickersView$23(Object obj, TLRPC.Document document, Boolean bool) {
-        this.forceChanges = true;
-        StickerView stickerViewCreateSticker = createSticker(obj, document, false);
+    public static Boolean $r8$lambda$QBQ0un2FrHxdCRyZH3sau1YHD8Q(PaintView paintView, Object obj, TLRPC.Document document, Boolean bool) {
+        paintView.forceChanges = true;
+        StickerView stickerViewCreateSticker = paintView.createSticker(obj, document, false);
         if (bool.booleanValue()) {
             stickerViewCreateSticker.setScale(1.5f);
         }
-        appearAnimation(stickerViewCreateSticker);
+        paintView.appearAnimation(stickerViewCreateSticker);
         return Boolean.TRUE;
     }
 
-    public Boolean lambda$openStickersView$27(boolean[] zArr, final EmojiBottomSheet emojiBottomSheet, Integer num) {
+    public static Boolean $r8$lambda$egnvP7JOgwFVch9FnCxpeAGJjGw(final PaintView paintView, boolean[] zArr, final EmojiBottomSheet emojiBottomSheet, Integer num) {
+        paintView.getClass();
         if (num.intValue() == 0) {
             zArr[0] = false;
-            showLocationAlert(null, new Utilities.Callback2() {
+            paintView.showLocationAlert(null, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$openStickersView$24((TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2);
+                    PaintView paintView2 = this.f$0;
+                    paintView2.appearAnimation(paintView2.createLocationSticker((TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2, false));
                 }
             });
             return Boolean.TRUE;
@@ -2288,19 +2282,19 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             Weather.fetch(true, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$openStickersView$25(emojiBottomSheet, (Weather.State) obj);
+                    PaintView.$r8$lambda$RwC7AQmGB9KJ066GIXXfB3x3nA8(this.f$0, emojiBottomSheet, (Weather.State) obj);
                 }
             });
             return Boolean.FALSE;
         }
         if (num.intValue() == 2) {
-            emojiBottomSheet.lambda$new$0();
-            onGalleryClick();
+            emojiBottomSheet.dismiss();
+            paintView.onGalleryClick();
             return Boolean.TRUE;
         }
         if (num.intValue() == 1) {
             zArr[0] = false;
-            showAudioAlert(new Utilities.Callback() {
+            paintView.showAudioAlert(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     this.f$0.onAudioSelect((MessageObject) obj);
@@ -2309,55 +2303,53 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             return Boolean.TRUE;
         }
         if (num.intValue() == 3) {
-            this.forceChanges = true;
-            appearAnimation(createReactionWidget(true));
+            paintView.forceChanges = true;
+            paintView.appearAnimation(paintView.createReactionWidget(true));
             return Boolean.TRUE;
         }
         if (num.intValue() == 4) {
-            if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
+            if (!UserConfig.getInstance(paintView.currentAccount).isPremium()) {
                 try {
                     emojiBottomSheet.container.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
-                BulletinFactory.of(emojiBottomSheet.container, this.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.StoryLinkPremium), new Runnable() {
+                BulletinFactory.of(emojiBottomSheet.container, paintView.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.StoryLinkPremium), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$openStickersView$26();
+                        PaintView.m4542$r8$lambda$uYgGVVdkNZqPluSn4FKVqKnY5M(this.f$0);
                     }
                 })).show(true);
                 return Boolean.FALSE;
             }
             int i = 0;
-            for (int i2 = 0; i2 < this.entitiesView.getChildCount(); i2++) {
-                if (this.entitiesView.getChildAt(i2) instanceof LinkView) {
+            for (int i2 = 0; i2 < paintView.entitiesView.getChildCount(); i2++) {
+                if (paintView.entitiesView.getChildAt(i2) instanceof LinkView) {
                     i++;
                 }
             }
             if (i >= 3) {
-                BulletinFactory.of(emojiBottomSheet.container, this.resourcesProvider).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.StoryLinkLimitTitle), LocaleController.formatPluralString("StoryLinkLimitMessage", 3, new Object[0])).show(true);
+                BulletinFactory.of(emojiBottomSheet.container, paintView.resourcesProvider).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.StoryLinkLimitTitle), LocaleController.formatPluralString("StoryLinkLimitMessage", 3, new Object[0])).show(true);
                 return Boolean.FALSE;
             }
             zArr[0] = false;
-            showLinkAlert(null);
-            emojiBottomSheet.lambda$new$0();
+            paintView.showLinkAlert(null);
+            emojiBottomSheet.dismiss();
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
-    public void lambda$openStickersView$24(TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
-        appearAnimation(createLocationSticker(messageMedia, mediaArea, false));
-    }
-
-    public void lambda$openStickersView$25(EmojiBottomSheet emojiBottomSheet, Weather.State state) {
+    public static void $r8$lambda$RwC7AQmGB9KJ066GIXXfB3x3nA8(PaintView paintView, EmojiBottomSheet emojiBottomSheet, Weather.State state) {
+        paintView.getClass();
         if (state != null) {
-            emojiBottomSheet.lambda$new$0();
-            onOpenCloseStickersAlert(false);
-            appearAnimation(createWeatherView(state, false));
+            emojiBottomSheet.dismiss();
+            paintView.onOpenCloseStickersAlert(false);
+            paintView.appearAnimation(paintView.createWeatherView(state, false));
         }
     }
 
-    public void lambda$openStickersView$26() {
+    public static void m4542$r8$lambda$uYgGVVdkNZqPluSn4FKVqKnY5M(PaintView paintView) {
+        paintView.getClass();
         new PremiumFeatureBottomSheet(new BaseFragment() {
             @Override
             public int getCurrentAccount() {
@@ -2398,7 +2390,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         StoryLinkSheet storyLinkSheet = new StoryLinkSheet(getContext(), this.resourcesProvider, this.previewView, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$showLinkAlert$28(linkView, (LinkPreview.WebPagePreview) obj);
+                PaintView.$r8$lambda$PHQeDsJRGkGhnqYEGCV3S60RNU4(this.f$0, linkView, (LinkPreview.WebPagePreview) obj);
             }
         });
         if (linkView != null) {
@@ -2407,24 +2399,20 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         storyLinkSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$showLinkAlert$29(dialogInterface);
+                this.f$0.onOpenCloseStickersAlert(false);
             }
         });
         storyLinkSheet.show();
         onOpenCloseStickersAlert(true);
     }
 
-    public void lambda$showLinkAlert$28(LinkView linkView, LinkPreview.WebPagePreview webPagePreview) {
+    public static void $r8$lambda$PHQeDsJRGkGhnqYEGCV3S60RNU4(PaintView paintView, LinkView linkView, LinkPreview.WebPagePreview webPagePreview) {
         if (linkView != null) {
-            linkView.setLink(this.currentAccount, webPagePreview, null);
-            appearAnimation(linkView);
+            linkView.setLink(paintView.currentAccount, webPagePreview, null);
+            paintView.appearAnimation(linkView);
         } else {
-            appearAnimation(createLinkSticker(webPagePreview, null, false));
+            paintView.appearAnimation(paintView.createLinkSticker(webPagePreview, null, false));
         }
-    }
-
-    public void lambda$showLinkAlert$29(DialogInterface dialogInterface) {
-        onOpenCloseStickersAlert(false);
     }
 
     class AnonymousClass24 extends ChatActivity {
@@ -2490,7 +2478,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            PaintView.AnonymousClass24.lambda$didSelectLocation$0(messageMedia, tL_mediaAreaGeoPoint2);
+                            PaintView.AnonymousClass24.m4546$r8$lambda$TJAqtHJ3gUHTAs7IV4QJfxXHk(messageMedia, tL_mediaAreaGeoPoint2);
                         }
                     });
                     obj = tL_mediaAreaGeoPoint2;
@@ -2505,7 +2493,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.val$onLocationSelected.run(messageMedia, obj2);
         }
 
-        public static void lambda$didSelectLocation$0(TLRPC.MessageMedia messageMedia, TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint) {
+        public static void m4546$r8$lambda$TJAqtHJ3gUHTAs7IV4QJfxXHk(TLRPC.MessageMedia messageMedia, TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint) {
             try {
                 List<Address> fromLocationName = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocationName(messageMedia.title, 1);
                 if (fromLocationName.size() <= 0) {
@@ -2577,15 +2565,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         chatAttachAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$showLocationAlert$30(dialogInterface);
+                this.f$0.onOpenCloseStickersAlert(false);
             }
         });
         chatAttachAlert.init();
         chatAttachAlert.show();
-    }
-
-    public void lambda$showLocationAlert$30(DialogInterface dialogInterface) {
-        onOpenCloseStickersAlert(false);
     }
 
     private void showAudioAlert(Utilities.Callback callback) {
@@ -2593,14 +2577,10 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         selectAudioAlert.setOnDismissListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showAudioAlert$31();
+                this.f$0.onOpenCloseStickersAlert(false);
             }
         });
         selectAudioAlert.show();
-    }
-
-    public void lambda$showAudioAlert$31() {
-        onOpenCloseStickersAlert(false);
     }
 
     @Override
@@ -2679,6 +2659,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     public void setupEntities() {
+        int i;
         RoundView roundViewCreateRound;
         MessageEntityView messageEntityViewCreateMessage;
         Emoji.EmojiSpan[] emojiSpanArr;
@@ -2689,29 +2670,40 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.initialEntry = null;
             this.initialEntities = null;
             int size = arrayList.size();
-            for (int i = 0; i < size; i++) {
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i);
+            boolean z = false;
+            int i2 = 0;
+            while (i2 < size) {
+                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i2);
                 byte b = mediaEntity.type;
                 if (b == 0) {
-                    StickerView stickerViewCreateSticker = createSticker(mediaEntity.parentObject, mediaEntity.document, false);
+                    StickerView stickerViewCreateSticker = createSticker(mediaEntity.parentObject, mediaEntity.document, z);
                     if ((2 & mediaEntity.subType) != 0) {
                         stickerViewCreateSticker.mirror();
                     }
                     ViewGroup.LayoutParams layoutParams = stickerViewCreateSticker.getLayoutParams();
                     layoutParams.width = mediaEntity.viewWidth;
                     layoutParams.height = mediaEntity.viewHeight;
+                    i = i2;
                     stickerView = stickerViewCreateSticker;
                 } else if (b == 1) {
-                    TextPaintView textPaintViewCreateText = createText(false);
+                    TextPaintView textPaintViewCreateText = createText(z);
                     textPaintViewCreateText.setType(mediaEntity.subType);
                     textPaintViewCreateText.setTypeface(mediaEntity.textTypeface);
                     textPaintViewCreateText.setBaseFontSize(mediaEntity.fontSize);
                     SpannableString spannableString = new SpannableString(mediaEntity.text);
-                    for (VideoEditedInfo.EmojiEntity emojiEntity : mediaEntity.entities) {
-                        AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(emojiEntity.document_id, 1.0f, textPaintViewCreateText.getFontMetricsInt());
-                        int i2 = emojiEntity.offset;
-                        spannableString.setSpan(animatedEmojiSpan, i2, emojiEntity.length + i2, 33);
+                    ArrayList<VideoEditedInfo.EmojiEntity> arrayList2 = mediaEntity.entities;
+                    int size2 = arrayList2.size();
+                    int i3 = 0;
+                    while (i3 < size2) {
+                        VideoEditedInfo.EmojiEntity emojiEntity = arrayList2.get(i3);
+                        i3++;
+                        VideoEditedInfo.EmojiEntity emojiEntity2 = emojiEntity;
+                        AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(emojiEntity2.document_id, 1.0f, textPaintViewCreateText.getFontMetricsInt());
+                        int i4 = emojiEntity2.offset;
+                        spannableString.setSpan(animatedEmojiSpan, i4, emojiEntity2.length + i4, 33);
+                        i2 = i2;
                     }
+                    i = i2;
                     CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableString, textPaintViewCreateText.getFontMetricsInt(), false);
                     if ((charSequenceReplaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) charSequenceReplaceEmoji).getSpans(0, charSequenceReplaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
                         for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
@@ -2724,94 +2716,99 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     swatch.color = mediaEntity.color;
                     textPaintViewCreateText.setSwatch(swatch);
                     stickerView = textPaintViewCreateText;
-                } else if (b == 2) {
-                    PhotoView photoViewCreatePhoto = createPhoto(mediaEntity.text, false);
-                    photoViewCreatePhoto.crop = mediaEntity.crop;
-                    photoViewCreatePhoto.preloadSegmented(mediaEntity.segmentedPath);
-                    if ((2 & mediaEntity.subType) != 0) {
-                        photoViewCreatePhoto.mirror();
-                    }
-                    if ((mediaEntity.subType & 16) != 0) {
-                        photoViewCreatePhoto.toggleSegmented(false);
-                    }
-                    ViewGroup.LayoutParams layoutParams2 = photoViewCreatePhoto.getLayoutParams();
-                    layoutParams2.width = mediaEntity.viewWidth;
-                    layoutParams2.height = mediaEntity.viewHeight;
-                    stickerView = photoViewCreatePhoto;
-                } else if (b == 6) {
-                    messageEntityViewCreateMessage = createMessage(storyEntry.messageObjects, false, storyEntry.isVideo);
-                    if (mediaEntity.viewWidth > 0 && mediaEntity.viewHeight > 0) {
-                        stickerView = messageEntityViewCreateMessage;
-                        stickerView = messageEntityViewCreateMessage;
-                        ViewGroup.LayoutParams layoutParams3 = messageEntityViewCreateMessage.getLayoutParams();
-                        layoutParams3.width = mediaEntity.viewWidth;
-                        layoutParams3.height = mediaEntity.viewHeight;
-                        stickerView = messageEntityViewCreateMessage;
-                    }
-                } else if (b == 3) {
-                    LocationView locationViewCreateLocationSticker = createLocationSticker(mediaEntity.media, mediaEntity.mediaArea, false);
-                    int i3 = mediaEntity.color;
-                    if (i3 != 0) {
-                        locationViewCreateLocationSticker.setColor(i3);
-                    }
-                    locationViewCreateLocationSticker.setType(mediaEntity.subType);
-                    stickerView = locationViewCreateLocationSticker;
                 } else {
-                    if (b == 8) {
-                        Weather.State state = mediaEntity.weather;
-                        if (state != null) {
-                            WeatherView weatherViewCreateWeatherView = createWeatherView(state, false);
-                            int i4 = mediaEntity.color;
-                            if (i4 != 0) {
-                                weatherViewCreateWeatherView.setColor(i4);
-                            }
-                            weatherViewCreateWeatherView.setType(mediaEntity.subType);
-                            stickerView = weatherViewCreateWeatherView;
+                    i = i2;
+                    if (b == 2) {
+                        PhotoView photoViewCreatePhoto = createPhoto(mediaEntity.text, false);
+                        photoViewCreatePhoto.crop = mediaEntity.crop;
+                        photoViewCreatePhoto.preloadSegmented(mediaEntity.segmentedPath);
+                        if ((mediaEntity.subType & 2) != 0) {
+                            photoViewCreatePhoto.mirror();
                         }
-                    } else if (b == 7) {
-                        LinkView linkViewCreateLinkSticker = createLinkSticker(mediaEntity.linkSettings, mediaEntity.mediaArea, false);
+                        if ((mediaEntity.subType & 16) != 0) {
+                            photoViewCreatePhoto.toggleSegmented(false);
+                        }
+                        ViewGroup.LayoutParams layoutParams2 = photoViewCreatePhoto.getLayoutParams();
+                        layoutParams2.width = mediaEntity.viewWidth;
+                        layoutParams2.height = mediaEntity.viewHeight;
+                        stickerView = photoViewCreatePhoto;
+                    } else if (b == 6) {
+                        messageEntityViewCreateMessage = createMessage(storyEntry.messageObjects, false, storyEntry.isVideo);
+                        if (mediaEntity.viewWidth > 0 && mediaEntity.viewHeight > 0) {
+                            stickerView = messageEntityViewCreateMessage;
+                            stickerView = messageEntityViewCreateMessage;
+                            ViewGroup.LayoutParams layoutParams3 = messageEntityViewCreateMessage.getLayoutParams();
+                            layoutParams3.width = mediaEntity.viewWidth;
+                            layoutParams3.height = mediaEntity.viewHeight;
+                            stickerView = messageEntityViewCreateMessage;
+                        }
+                    } else if (b == 3) {
+                        LocationView locationViewCreateLocationSticker = createLocationSticker(mediaEntity.media, mediaEntity.mediaArea, false);
                         int i5 = mediaEntity.color;
                         if (i5 != 0) {
-                            linkViewCreateLinkSticker.setColor(i5);
+                            locationViewCreateLocationSticker.setColor(i5);
                         }
-                        if (linkViewCreateLinkSticker.marker.withPreview()) {
-                            linkViewCreateLinkSticker.marker.setPreviewType(mediaEntity.subType);
-                        }
-                        byte b2 = mediaEntity.subType;
-                        if (b2 == -1) {
-                            linkViewCreateLinkSticker.setType(3);
-                            linkViewCreateLinkSticker.marker.setupLayout();
-                            LinkPreview linkPreview = linkViewCreateLinkSticker.marker;
-                            int iCeil = linkPreview.padx + ((int) Math.ceil(linkPreview.w));
-                            LinkPreview linkPreview2 = linkViewCreateLinkSticker.marker;
-                            mediaEntity.viewWidth = iCeil + linkPreview2.padx;
-                            mediaEntity.viewHeight = linkPreview2.pady + ((int) Math.ceil(linkPreview2.h)) + linkViewCreateLinkSticker.marker.pady;
-                            PointF position = linkViewCreateLinkSticker.getPosition();
-                            position.y += this.h * 0.3f;
-                            linkViewCreateLinkSticker.setPosition(position);
-                        } else {
-                            linkViewCreateLinkSticker.setType(b2);
-                            stickerView = linkViewCreateLinkSticker;
-                        }
-                    } else if (b == 4) {
-                        ReactionWidgetEntityView reactionWidgetEntityViewCreateReactionWidget = createReactionWidget(false);
-                        reactionWidgetEntityViewCreateReactionWidget.setCurrentReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(mediaEntity.mediaArea.reaction), false);
-                        if (mediaEntity.mediaArea.flipped) {
-                            reactionWidgetEntityViewCreateReactionWidget.mirror(false);
-                        }
-                        stickerView = reactionWidgetEntityViewCreateReactionWidget;
-                        if (mediaEntity.mediaArea.dark) {
-                            reactionWidgetEntityViewCreateReactionWidget.changeStyle(false);
+                        locationViewCreateLocationSticker.setType(mediaEntity.subType);
+                        stickerView = locationViewCreateLocationSticker;
+                    } else {
+                        if (b == 8) {
+                            Weather.State state = mediaEntity.weather;
+                            if (state != null) {
+                                WeatherView weatherViewCreateWeatherView = createWeatherView(state, false);
+                                int i6 = mediaEntity.color;
+                                if (i6 != 0) {
+                                    weatherViewCreateWeatherView.setColor(i6);
+                                }
+                                weatherViewCreateWeatherView.setType(mediaEntity.subType);
+                                stickerView = weatherViewCreateWeatherView;
+                            }
+                        } else if (b == 7) {
+                            LinkView linkViewCreateLinkSticker = createLinkSticker(mediaEntity.linkSettings, mediaEntity.mediaArea, false);
+                            int i7 = mediaEntity.color;
+                            if (i7 != 0) {
+                                linkViewCreateLinkSticker.setColor(i7);
+                            }
+                            if (linkViewCreateLinkSticker.marker.withPreview()) {
+                                linkViewCreateLinkSticker.marker.setPreviewType(mediaEntity.subType);
+                            }
+                            byte b2 = mediaEntity.subType;
+                            if (b2 == -1) {
+                                linkViewCreateLinkSticker.setType(3);
+                                linkViewCreateLinkSticker.marker.setupLayout();
+                                LinkPreview linkPreview = linkViewCreateLinkSticker.marker;
+                                int iCeil = linkPreview.padx + ((int) Math.ceil(linkPreview.w));
+                                LinkPreview linkPreview2 = linkViewCreateLinkSticker.marker;
+                                mediaEntity.viewWidth = iCeil + linkPreview2.padx;
+                                mediaEntity.viewHeight = linkPreview2.pady + ((int) Math.ceil(linkPreview2.h)) + linkViewCreateLinkSticker.marker.pady;
+                                PointF position = linkViewCreateLinkSticker.getPosition();
+                                position.y += this.h * 0.3f;
+                                linkViewCreateLinkSticker.setPosition(position);
+                            } else {
+                                linkViewCreateLinkSticker.setType(b2);
+                                stickerView = linkViewCreateLinkSticker;
+                            }
+                        } else if (b == 4) {
+                            ReactionWidgetEntityView reactionWidgetEntityViewCreateReactionWidget = createReactionWidget(false);
+                            reactionWidgetEntityViewCreateReactionWidget.setCurrentReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(mediaEntity.mediaArea.reaction), false);
+                            if (mediaEntity.mediaArea.flipped) {
+                                reactionWidgetEntityViewCreateReactionWidget.mirror(false);
+                            }
                             stickerView = reactionWidgetEntityViewCreateReactionWidget;
+                            if (mediaEntity.mediaArea.dark) {
+                                reactionWidgetEntityViewCreateReactionWidget.changeStyle(false);
+                                stickerView = reactionWidgetEntityViewCreateReactionWidget;
+                            }
+                        } else if (b == 5 && storyEntry.round != null) {
+                            roundViewCreateRound = createRound(storyEntry.roundThumb, false);
+                            onCreateRound(roundViewCreateRound);
+                            if ((mediaEntity.subType & 2) != 0) {
+                                stickerView = roundViewCreateRound;
+                                roundViewCreateRound.mirror(false);
+                                stickerView = roundViewCreateRound;
+                            }
                         }
-                    } else if (b == 5 && storyEntry.round != null) {
-                        roundViewCreateRound = createRound(storyEntry.roundThumb, false);
-                        onCreateRound(roundViewCreateRound);
-                        if ((2 & mediaEntity.subType) != 0) {
-                            stickerView = roundViewCreateRound;
-                            roundViewCreateRound.mirror(false);
-                            stickerView = roundViewCreateRound;
-                        }
+                        i2 = i + 1;
+                        z = false;
                     }
                 }
                 stickerView = roundViewCreateRound;
@@ -2823,6 +2820,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 stickerView.setPosition(new PointF(stickerView.getX() + (mediaEntity.viewWidth / 2.0f), stickerView.getY() + (mediaEntity.viewHeight / 2.0f)));
                 stickerView.setScale(mediaEntity.scale);
                 stickerView.setRotation((float) ((((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d));
+                i2 = i + 1;
+                z = false;
             }
             this.entitiesView.setVisibility(0);
         }
@@ -2848,16 +2847,17 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.queue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$detectFaces$32();
+                PaintView.$r8$lambda$fQIA9MpVlDKhN_X9dOhQVNVwav0(this.f$0);
             }
         }, 200L);
     }
 
-    public void lambda$detectFaces$32() {
+    public static void $r8$lambda$fQIA9MpVlDKhN_X9dOhQVNVwav0(PaintView paintView) {
+        paintView.getClass();
         FaceDetector faceDetectorBuild = null;
         try {
             try {
-                faceDetectorBuild = new FaceDetector.Builder(getContext()).setMode(1).setLandmarkType(1).setTrackingEnabled(false).build();
+                faceDetectorBuild = new FaceDetector.Builder(paintView.getContext()).setMode(1).setLandmarkType(1).setTrackingEnabled(false).build();
                 if (!faceDetectorBuild.isOperational()) {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.e("face detection is not operational");
@@ -2866,16 +2866,16 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     return;
                 }
                 try {
-                    SparseArray sparseArrayDetect = faceDetectorBuild.detect(new Frame.Builder().setBitmap(this.facesBitmap).setRotation(getFrameRotation()).build());
+                    SparseArray sparseArrayDetect = faceDetectorBuild.detect(new Frame.Builder().setBitmap(paintView.facesBitmap).setRotation(paintView.getFrameRotation()).build());
                     ArrayList arrayList = new ArrayList();
-                    Size paintingSize = getPaintingSize();
+                    Size paintingSize = paintView.getPaintingSize();
                     for (int i = 0; i < sparseArrayDetect.size(); i++) {
-                        PhotoFace photoFace = new PhotoFace((Face) sparseArrayDetect.get(sparseArrayDetect.keyAt(i)), this.facesBitmap, paintingSize, isSidewardOrientation());
+                        PhotoFace photoFace = new PhotoFace((Face) sparseArrayDetect.get(sparseArrayDetect.keyAt(i)), paintView.facesBitmap, paintingSize, paintView.isSidewardOrientation());
                         if (photoFace.isSufficient()) {
                             arrayList.add(photoFace);
                         }
                     }
-                    this.faces = arrayList;
+                    paintView.faces = arrayList;
                     faceDetectorBuild.release();
                 } catch (Throwable th) {
                     FileLog.e(th);
@@ -2901,20 +2901,20 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.queue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PaintView.lambda$shutdown$33();
+                PaintView.$r8$lambda$99gGnOV4l55xPUUWQjnKOVlFTaQ();
             }
         });
         EmojiBottomSheet emojiBottomSheet = this.emojiPopup;
         if (emojiBottomSheet != null) {
-            emojiBottomSheet.lambda$new$0();
+            emojiBottomSheet.dismiss();
         }
         ColorPickerBottomSheet colorPickerBottomSheet = this.colorPickerBottomSheet;
         if (colorPickerBottomSheet != null) {
-            colorPickerBottomSheet.lambda$new$0();
+            colorPickerBottomSheet.dismiss();
         }
     }
 
-    public static void lambda$shutdown$33() {
+    public static void $r8$lambda$99gGnOV4l55xPUUWQjnKOVlFTaQ() {
         Looper looperMyLooper = Looper.myLooper();
         if (looperMyLooper != null) {
             looperMyLooper.quit();
@@ -2940,13 +2940,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     public static boolean isVideoStickerDocument(TLRPC.Document document) {
-        if (document == null) {
-            return false;
-        }
-        for (int i = 0; i < document.attributes.size(); i++) {
-            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
-            if ((documentAttribute instanceof TLRPC.TL_documentAttributeSticker) || (documentAttribute instanceof TLRPC.TL_documentAttributeCustomEmoji) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                return "video/webm".equals(document.mime_type) || "video/mp4".equals(document.mime_type);
+        if (document != null) {
+            for (int i = 0; i < document.attributes.size(); i++) {
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeSticker) || (documentAttribute instanceof TLRPC.TL_documentAttributeCustomEmoji) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                    return "video/webm".equals(document.mime_type) || "video/mp4".equals(document.mime_type);
+                }
             }
         }
         return false;
@@ -2961,28 +2960,22 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         View childAt;
         EntityView entityView;
         VideoEditedInfo.MediaEntity mediaEntity;
-        PaintView paintView;
         int i4;
         int i5;
-        View view;
+        float f;
         boolean z5;
         boolean z6;
         ImageReceiver imageReceiver;
-        Bitmap bitmap2;
-        Canvas canvas;
-        View view2;
+        View view;
         long duration;
         MessageEntityView messageEntityView;
         MessageObject messageObject;
-        boolean z7;
         MessageEntityView messageEntityView2;
         View childAt2;
         ImageReceiver photoImage;
-        boolean z8;
         TLRPC.Message message;
         ChatActionCell chatActionCell;
         StarGiftUniqueActionLayout starGiftUniqueActionLayout;
-        ImageReceiver imageReceiver2;
         RoundView roundView;
         LinkView linkView;
         int color;
@@ -3013,19 +3006,18 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         float scaleY;
         float x;
         float y;
-        EntityView entityView2;
-        boolean z9;
         TL_stories.MediaArea mediaArea;
-        boolean z10;
+        boolean z7;
         float radius;
         double bubbleBounds;
         float imageAspectRatio;
-        float f;
         float f2;
+        float f3;
         float measuredWidth;
         TL_stories.MediaArea mediaArea2;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates;
         CharSequence text;
+        CharSequence charSequence;
         Spanned spanned;
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
         int i6;
@@ -3033,34 +3025,34 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         TLRPC.Document documentFindDocument;
         VideoEditedInfo.EmojiEntity emojiEntity3;
         Spanned spanned2;
-        boolean z11;
+        boolean z8;
         boolean zIsAnimatedStickerDocument4;
         byte b4;
         ArrayList<TLRPC.PhotoSize> arrayList2;
-        PaintView paintView2 = this;
         int i7 = 0;
         byte b5 = 1;
         if (z) {
-            bitmapCreateBitmap = paintView2.renderView.getResultBitmap(false, z4);
+            bitmapCreateBitmap = this.renderView.getResultBitmap(false, z4);
         } else if (z3) {
-            bitmapCreateBitmap = Bitmap.createBitmap(Math.max(1, paintView2.entitiesView.getMeasuredWidth()), Math.max(1, paintView2.entitiesView.getMeasuredHeight()), Bitmap.Config.ARGB_8888);
+            bitmapCreateBitmap = Bitmap.createBitmap(Math.max(1, this.entitiesView.getMeasuredWidth()), Math.max(1, this.entitiesView.getMeasuredHeight()), Bitmap.Config.ARGB_8888);
         } else {
-            if (!z2 || (resultBitmap = paintView2.renderView.getResultBitmap(false, false)) == null) {
+            if (!z2 || (resultBitmap = this.renderView.getResultBitmap(false, false)) == null) {
                 bitmap = null;
             } else {
                 bitmapCreateBitmap = Bitmap.createBitmap(resultBitmap.getWidth(), resultBitmap.getHeight(), Bitmap.Config.ARGB_8888);
             }
-            paintView2.lcm = BigInteger.ONE;
-            if (paintView2.entitiesView.entitiesCount() > 0) {
-                childCount = paintView2.entitiesView.getChildCount();
+            this.lcm = BigInteger.ONE;
+            if (this.entitiesView.entitiesCount() > 0) {
+                childCount = this.entitiesView.getChildCount();
                 i3 = 0;
                 while (i3 < childCount) {
-                    childAt = paintView2.entitiesView.getChildAt(i3);
+                    childAt = this.entitiesView.getChildAt(i3);
                     if (childAt instanceof EntityView) {
                         entityView = (EntityView) childAt;
                         entityView.getPosition();
                         mediaEntity = new VideoEditedInfo.MediaEntity();
                         if (arrayList != 0) {
+                            f = 1.0f;
                             duration = 5000;
                             if (entityView instanceof TextPaintView) {
                                 mediaEntity.type = b5;
@@ -3075,26 +3067,27 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                             animatedEmojiSpan = animatedEmojiSpanArr[i6];
                                             documentFindDocument = animatedEmojiSpan.document;
                                             if (documentFindDocument == null) {
-                                                documentFindDocument = AnimatedEmojiDrawable.findDocument(paintView2.currentAccount, animatedEmojiSpan.getDocumentId());
+                                                documentFindDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
                                             }
                                             if (documentFindDocument != null) {
-                                                AnimatedEmojiDrawable.getDocumentFetcher(paintView2.currentAccount).putDocument(documentFindDocument);
+                                                AnimatedEmojiDrawable.getDocumentFetcher(this.currentAccount).putDocument(documentFindDocument);
                                             }
                                             emojiEntity3 = new VideoEditedInfo.EmojiEntity();
-                                            View view3 = childAt;
+                                            CharSequence charSequence2 = text;
+                                            AnimatedEmojiSpan[] animatedEmojiSpanArr2 = animatedEmojiSpanArr;
                                             emojiEntity3.document_id = animatedEmojiSpan.getDocumentId();
                                             emojiEntity3.document = documentFindDocument;
                                             emojiEntity3.offset = spanned.getSpanStart(animatedEmojiSpan);
                                             emojiEntity3.length = spanned.getSpanEnd(animatedEmojiSpan) - emojiEntity3.offset;
-                                            emojiEntity3.documentAbsolutePath = FileLoader.getInstance(paintView2.currentAccount).getPathToAttach(documentFindDocument, true).getAbsolutePath();
+                                            emojiEntity3.documentAbsolutePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(documentFindDocument, true).getAbsolutePath();
                                             int i8 = 0;
                                             while (true) {
                                                 if (documentFindDocument == null) {
                                                     arrayList2 = documentFindDocument.thumbs;
                                                     if (arrayList2 == null && !arrayList2.isEmpty() && !new File(emojiEntity3.documentAbsolutePath).exists()) {
                                                         spanned2 = spanned;
-                                                        z11 = true;
-                                                        emojiEntity3.documentAbsolutePath = FileLoader.getInstance(paintView2.currentAccount).getPathToAttach(documentFindDocument.thumbs.get(i8), true).getAbsolutePath();
+                                                        z8 = true;
+                                                        emojiEntity3.documentAbsolutePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(documentFindDocument.thumbs.get(i8), true).getAbsolutePath();
                                                         i8++;
                                                         if (i8 >= documentFindDocument.thumbs.size()) {
                                                             break;
@@ -3103,10 +3096,10 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                                     }
                                                 }
                                                 spanned2 = spanned;
-                                                z11 = true;
+                                                z8 = true;
                                                 break;
                                             }
-                                            zIsAnimatedStickerDocument4 = MessageObject.isAnimatedStickerDocument(emojiEntity3.document, z11);
+                                            zIsAnimatedStickerDocument4 = MessageObject.isAnimatedStickerDocument(emojiEntity3.document, z8);
                                             if (!zIsAnimatedStickerDocument4 || isVideoStickerDocument(emojiEntity3.document)) {
                                                 byte b6 = emojiEntity3.subType;
                                                 if (zIsAnimatedStickerDocument4) {
@@ -3114,7 +3107,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                                 } else {
                                                     b4 = 4;
                                                 }
-                                                emojiEntity3.subType = (byte) (b4 | b6);
+                                                emojiEntity3.subType = (byte) (b6 | b4);
                                             }
                                             if (MessageObject.isTextColorEmoji(emojiEntity3.document)) {
                                                 emojiEntity3.subType = (byte) (emojiEntity3.subType | 8);
@@ -3122,20 +3115,25 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                             mediaEntity.entities.add(emojiEntity3);
                                             if (documentFindDocument != null) {
                                                 BigInteger bigIntegerValueOf = BigInteger.valueOf(5000L);
-                                                paintView2.lcm = paintView2.lcm.multiply(bigIntegerValueOf).divide(paintView2.lcm.gcd(bigIntegerValueOf));
+                                                this.lcm = this.lcm.multiply(bigIntegerValueOf).divide(this.lcm.gcd(bigIntegerValueOf));
                                             }
                                             i6++;
+                                            text = charSequence2;
                                             childCount = childCount;
                                             i3 = i3;
-                                            childAt = view3;
+                                            animatedEmojiSpanArr = animatedEmojiSpanArr2;
                                             spanned = spanned2;
                                         }
                                     }
+                                    i4 = childCount;
+                                    i5 = i3;
+                                    charSequence = text;
+                                } else {
+                                    i4 = childCount;
+                                    i5 = i3;
+                                    charSequence = text;
                                 }
-                                i4 = childCount;
-                                i5 = i3;
-                                view = childAt;
-                                mediaEntity.text = text.toString();
+                                mediaEntity.text = charSequence.toString();
                                 mediaEntity.subType = (byte) textPaintView.getType();
                                 mediaEntity.color = textPaintView.getSwatch().color;
                                 mediaEntity.fontSize = textPaintView.getTextSize();
@@ -3144,7 +3142,6 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                             } else {
                                 i4 = childCount;
                                 i5 = i3;
-                                view = childAt;
                                 if (entityView instanceof StickerView) {
                                     mediaEntity.type = (byte) 0;
                                     stickerView = (StickerView) entityView;
@@ -3167,7 +3164,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                         duration = (!zIsAnimatedStickerDocument3 || isVideoStickerDocument(sticker)) ? stickerView.getDuration() : 5000L;
                                         if (duration != 0) {
                                             BigInteger bigIntegerValueOf2 = BigInteger.valueOf(duration);
-                                            paintView2.lcm = paintView2.lcm.multiply(bigIntegerValueOf2).divide(paintView2.lcm.gcd(bigIntegerValueOf2));
+                                            this.lcm = this.lcm.multiply(bigIntegerValueOf2).divide(this.lcm.gcd(bigIntegerValueOf2));
                                         }
                                     }
                                     if (MessageObject.isTextColorEmoji(sticker)) {
@@ -3183,12 +3180,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                     Size baseSize2 = photoView.getBaseSize();
                                     mediaEntity.width = baseSize2.width;
                                     mediaEntity.height = baseSize2.height;
-                                    mediaEntity.text = photoView.getPath(paintView2.currentAccount);
+                                    mediaEntity.text = photoView.getPath(this.currentAccount);
                                     mediaEntity.crop = photoView.crop;
                                     if (photoView.isMirrored()) {
                                         mediaEntity.subType = (byte) (mediaEntity.subType | 2);
                                     }
-                                    if (photoView.hasSegmentedImage() && photoView.isSegmented() && (fileSaveSegmentedImage = photoView.saveSegmentedImage(paintView2.currentAccount)) != null) {
+                                    if (photoView.hasSegmentedImage() && photoView.isSegmented() && (fileSaveSegmentedImage = photoView.saveSegmentedImage(this.currentAccount)) != null) {
                                         mediaEntity.subType = (byte) (mediaEntity.subType | 16);
                                         mediaEntity.segmentedPath = fileSaveSegmentedImage.getPath();
                                     }
@@ -3215,7 +3212,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                         emojiEntity2 = new VideoEditedInfo.EmojiEntity();
                                         emojiEntity2.document_id = codeEmojiDocument2.id;
                                         emojiEntity2.document = codeEmojiDocument2;
-                                        emojiEntity2.documentAbsolutePath = FileLoader.getInstance(paintView2.currentAccount).getPathToAttach(codeEmojiDocument2, true).getAbsolutePath();
+                                        emojiEntity2.documentAbsolutePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(codeEmojiDocument2, true).getAbsolutePath();
                                         zIsAnimatedStickerDocument2 = MessageObject.isAnimatedStickerDocument(emojiEntity2.document, true);
                                         if (!zIsAnimatedStickerDocument2 || isVideoStickerDocument(emojiEntity2.document)) {
                                             byte b8 = emojiEntity2.subType;
@@ -3255,7 +3252,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                         emojiEntity = new VideoEditedInfo.EmojiEntity();
                                         emojiEntity.document_id = codeEmojiDocument.id;
                                         emojiEntity.document = codeEmojiDocument;
-                                        emojiEntity.documentAbsolutePath = FileLoader.getInstance(paintView2.currentAccount).getPathToAttach(codeEmojiDocument, true).getAbsolutePath();
+                                        emojiEntity.documentAbsolutePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(codeEmojiDocument, true).getAbsolutePath();
                                         zIsAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(emojiEntity.document, true);
                                         if (!zIsAnimatedStickerDocument || isVideoStickerDocument(emojiEntity.document)) {
                                             byte b9 = emojiEntity.subType;
@@ -3268,95 +3265,90 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                         }
                                         mediaEntity.entities.add(emojiEntity);
                                     }
-                                    entityView = entityView;
-                                    bitmap = bitmap;
-                                    z7 = false;
-                                    z8 = false;
+                                    childAt = childAt;
+                                    z5 = false;
+                                    z6 = false;
                                     imageReceiver = null;
-                                    paintView = paintView2;
                                     arrayList.add(mediaEntity);
-                                    scaleX = view.getScaleX();
-                                    scaleY = view.getScaleY();
-                                    x = view.getX();
-                                    y = view.getY();
-                                    mediaEntity.viewWidth = view.getWidth();
-                                    mediaEntity.viewHeight = view.getHeight();
-                                    mediaEntity.width = (view.getWidth() * scaleX) / paintView.entitiesView.getMeasuredWidth();
-                                    mediaEntity.height = (view.getHeight() * scaleY) / paintView.entitiesView.getMeasuredHeight();
-                                    mediaEntity.x = (((view.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                    mediaEntity.y = (((view.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                    mediaEntity.rotation = (float) (((double) (-view.getRotation())) * 0.017453292519943295d);
-                                    mediaEntity.textViewX = ((view.getWidth() / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                    mediaEntity.textViewY = ((view.getHeight() / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                    mediaEntity.textViewWidth = mediaEntity.viewWidth / paintView.entitiesView.getMeasuredWidth();
-                                    mediaEntity.textViewHeight = mediaEntity.viewHeight / paintView.entitiesView.getMeasuredHeight();
+                                    scaleX = childAt.getScaleX();
+                                    scaleY = childAt.getScaleY();
+                                    x = childAt.getX();
+                                    y = childAt.getY();
+                                    mediaEntity.viewWidth = childAt.getWidth();
+                                    mediaEntity.viewHeight = childAt.getHeight();
+                                    mediaEntity.width = (childAt.getWidth() * scaleX) / this.entitiesView.getMeasuredWidth();
+                                    mediaEntity.height = (childAt.getHeight() * scaleY) / this.entitiesView.getMeasuredHeight();
+                                    mediaEntity.x = (((childAt.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                    mediaEntity.y = (((childAt.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                    mediaEntity.rotation = (float) (((double) (-childAt.getRotation())) * 0.017453292519943295d);
+                                    mediaEntity.textViewX = ((childAt.getWidth() / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                    mediaEntity.textViewY = ((childAt.getHeight() / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                    mediaEntity.textViewWidth = mediaEntity.viewWidth / this.entitiesView.getMeasuredWidth();
+                                    mediaEntity.textViewHeight = mediaEntity.viewHeight / this.entitiesView.getMeasuredHeight();
                                     mediaEntity.scale = scaleX;
-                                    entityView2 = entityView;
-                                    if (entityView2 instanceof MessageEntityView) {
-                                        MessageEntityView messageEntityView3 = (MessageEntityView) entityView2;
+                                    if (entityView instanceof MessageEntityView) {
+                                        MessageEntityView messageEntityView3 = (MessageEntityView) entityView;
                                         RectF rectF = AndroidUtilities.rectTmp;
                                         bubbleBounds = messageEntityView3.getBubbleBounds(rectF);
-                                        z9 = z7;
                                         rectF.offset(messageEntityView3.container.getX(), messageEntityView3.container.getY());
                                         rectF.offset(messageEntityView3.listView.getX(), messageEntityView3.listView.getY());
-                                        mediaEntity.mediaArea.coordinates.x = ((((x + (view.getWidth() / 2.0f)) - ((view.getWidth() / 2.0f) * scaleX)) + (rectF.centerX() * scaleX)) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                        mediaEntity.mediaArea.coordinates.y = ((((y + (view.getHeight() / 2.0f)) - ((view.getHeight() / 2.0f) * scaleY)) + (rectF.centerY() * scaleY)) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                                        mediaEntity.mediaArea.coordinates.w = ((rectF.width() * scaleX) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                        mediaEntity.mediaArea.coordinates.h = ((rectF.height() * scaleY) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
+                                        mediaEntity.mediaArea.coordinates.x = ((((x + (childAt.getWidth() / 2.0f)) - ((childAt.getWidth() / 2.0f) * scaleX)) + (rectF.centerX() * scaleX)) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                        mediaEntity.mediaArea.coordinates.y = ((((y + (childAt.getHeight() / 2.0f)) - ((childAt.getHeight() / 2.0f) * scaleY)) + (rectF.centerY() * scaleY)) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                                        mediaEntity.mediaArea.coordinates.w = ((rectF.width() * scaleX) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                        mediaEntity.mediaArea.coordinates.h = ((rectF.height() * scaleY) / this.entitiesView.getMeasuredHeight()) * 100.0f;
                                         mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
                                     } else {
-                                        z9 = z7;
-                                        if (entityView2 instanceof StickerView) {
-                                            imageAspectRatio = ((StickerView) entityView2).centerImage.getImageAspectRatio();
-                                            f = mediaEntity.x + (mediaEntity.width / 2.0f);
-                                            f2 = mediaEntity.y + (mediaEntity.height / 2.0f);
-                                            measuredWidth = paintView.entitiesView.getMeasuredWidth() / paintView.entitiesView.getMeasuredHeight();
+                                        if (entityView instanceof StickerView) {
+                                            imageAspectRatio = ((StickerView) entityView).centerImage.getImageAspectRatio();
+                                            f2 = mediaEntity.x + (mediaEntity.width / 2.0f);
+                                            f3 = mediaEntity.y + (mediaEntity.height / 2.0f);
+                                            measuredWidth = this.entitiesView.getMeasuredWidth() / this.entitiesView.getMeasuredHeight();
                                             if (imageAspectRatio > 1.0f) {
-                                                float f3 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
-                                                mediaEntity.height = f3;
+                                                float f4 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
+                                                mediaEntity.height = f4;
                                                 mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
-                                                mediaEntity.y = f2 - (f3 / 2.0f);
+                                                mediaEntity.y = f3 - (f4 / 2.0f);
                                             } else if (imageAspectRatio < 1.0f) {
-                                                float f4 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
-                                                mediaEntity.width = f4;
+                                                float f5 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
+                                                mediaEntity.width = f5;
                                                 mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
-                                                mediaEntity.x = f - (f4 / 2.0f);
+                                                mediaEntity.x = f2 - (f5 / 2.0f);
                                             }
                                         } else {
                                             mediaArea = mediaEntity.mediaArea;
-                                            if (mediaArea == null && (((z10 = entityView2 instanceof LocationView)) || (entityView2 instanceof WeatherView) || (entityView2 instanceof LinkView) || (entityView2 instanceof ReactionWidgetEntityView))) {
+                                            if (mediaArea == null && (((z7 = entityView instanceof LocationView)) || (entityView instanceof WeatherView) || (entityView instanceof LinkView) || (entityView instanceof ReactionWidgetEntityView))) {
                                                 TL_stories.MediaAreaCoordinates mediaAreaCoordinates2 = mediaArea.coordinates;
-                                                float f5 = mediaEntity.x;
-                                                float f6 = mediaEntity.width;
-                                                mediaAreaCoordinates2.x = (f5 + (f6 / 2.0f)) * 100.0f;
+                                                float f6 = mediaEntity.x;
+                                                float f7 = mediaEntity.width;
+                                                mediaAreaCoordinates2.x = (f6 + (f7 / 2.0f)) * 100.0f;
                                                 mediaAreaCoordinates2.y = (mediaEntity.y + (mediaEntity.height / 2.0f)) * 100.0f;
-                                                if (z10) {
-                                                    LocationView locationView2 = (LocationView) entityView2;
-                                                    mediaAreaCoordinates2.w = (f6 - (((locationView2.marker.padx * 2) * scaleX) / paintView.entitiesView.getMeasuredWidth())) * 100.0f;
-                                                    mediaEntity.mediaArea.coordinates.h = (mediaEntity.height - (((locationView2.marker.pady * 2) * scaleY) / paintView.entitiesView.getMeasuredHeight())) * 100.0f;
-                                                } else if (entityView2 instanceof WeatherView) {
-                                                    WeatherView weatherView2 = (WeatherView) entityView2;
-                                                    mediaAreaCoordinates2.w = (f6 - (((weatherView2.marker.padx * 2) * scaleX) / paintView.entitiesView.getMeasuredWidth())) * 100.0f;
-                                                    mediaEntity.mediaArea.coordinates.h = (mediaEntity.height - (((weatherView2.marker.pady * 2) * scaleY) / paintView.entitiesView.getMeasuredHeight())) * 100.0f;
-                                                } else if (entityView2 instanceof LinkView) {
-                                                    LinkView linkView2 = (LinkView) entityView2;
-                                                    mediaAreaCoordinates2.w = (f6 - (((linkView2.marker.padx * 2) * scaleX) / paintView.entitiesView.getMeasuredWidth())) * 100.0f;
-                                                    mediaEntity.mediaArea.coordinates.h = (mediaEntity.height - (((linkView2.marker.pady * 2) * scaleY) / paintView.entitiesView.getMeasuredHeight())) * 100.0f;
-                                                } else if (entityView2 instanceof ReactionWidgetEntityView) {
-                                                    ReactionWidgetEntityView reactionWidgetEntityView = (ReactionWidgetEntityView) entityView2;
-                                                    float padding = ((reactionWidgetEntityView.getPadding() * 2) * scaleX) / paintView.entitiesView.getMeasuredWidth();
-                                                    float padding2 = ((reactionWidgetEntityView.getPadding() * 2) * scaleX) / paintView.entitiesView.getMeasuredHeight();
+                                                if (z7) {
+                                                    LocationView locationView2 = (LocationView) entityView;
+                                                    mediaAreaCoordinates2.w = (f7 - (((locationView2.marker.padx * 2) * scaleX) / this.entitiesView.getMeasuredWidth())) * 100.0f;
+                                                    mediaEntity.mediaArea.coordinates.h = (mediaEntity.height - (((locationView2.marker.pady * 2) * scaleY) / this.entitiesView.getMeasuredHeight())) * 100.0f;
+                                                } else if (entityView instanceof WeatherView) {
+                                                    WeatherView weatherView2 = (WeatherView) entityView;
+                                                    mediaAreaCoordinates2.w = (f7 - (((weatherView2.marker.padx * 2) * scaleX) / this.entitiesView.getMeasuredWidth())) * 100.0f;
+                                                    mediaEntity.mediaArea.coordinates.h = (mediaEntity.height - (((weatherView2.marker.pady * 2) * scaleY) / this.entitiesView.getMeasuredHeight())) * 100.0f;
+                                                } else if (entityView instanceof LinkView) {
+                                                    LinkView linkView2 = (LinkView) entityView;
+                                                    mediaAreaCoordinates2.w = (f7 - (((linkView2.marker.padx * 2) * scaleX) / this.entitiesView.getMeasuredWidth())) * 100.0f;
+                                                    mediaEntity.mediaArea.coordinates.h = (mediaEntity.height - (((linkView2.marker.pady * 2) * scaleY) / this.entitiesView.getMeasuredHeight())) * 100.0f;
+                                                } else if (entityView instanceof ReactionWidgetEntityView) {
+                                                    ReactionWidgetEntityView reactionWidgetEntityView = (ReactionWidgetEntityView) entityView;
+                                                    float padding = ((reactionWidgetEntityView.getPadding() * 2) * scaleX) / this.entitiesView.getMeasuredWidth();
+                                                    float padding2 = ((reactionWidgetEntityView.getPadding() * 2) * scaleX) / this.entitiesView.getMeasuredHeight();
                                                     TL_stories.MediaAreaCoordinates mediaAreaCoordinates3 = mediaEntity.mediaArea.coordinates;
                                                     mediaAreaCoordinates3.w = (mediaEntity.width - padding) * 100.0f;
                                                     mediaAreaCoordinates3.h = (mediaEntity.height - padding2) * 100.0f;
                                                 }
                                                 mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
-                                                if (z10) {
-                                                    radius = ((LocationView) entityView2).marker.getRadius();
-                                                } else if (entityView2 instanceof WeatherView) {
-                                                    radius = ((WeatherView) entityView2).marker.getRadius();
-                                                } else if (entityView2 instanceof LinkView) {
-                                                    radius = ((LinkView) entityView2).marker.getRadius();
+                                                if (z7) {
+                                                    radius = ((LocationView) entityView).marker.getRadius();
+                                                } else if (entityView instanceof WeatherView) {
+                                                    radius = ((WeatherView) entityView).marker.getRadius();
+                                                } else if (entityView instanceof LinkView) {
+                                                    radius = ((LinkView) entityView).marker.getRadius();
                                                 }
                                                 bubbleBounds = radius;
                                             }
@@ -3366,305 +3358,296 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                     mediaArea2 = mediaEntity.mediaArea;
                                     if (mediaArea2 != null && (mediaAreaCoordinates = mediaArea2.coordinates) != null && bubbleBounds > 0.0d) {
                                         mediaAreaCoordinates.flags |= 1;
-                                        mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) view.getWidth())) * 100.0d;
+                                        mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) childAt.getWidth())) * 100.0d;
                                     }
-                                    z5 = z8;
-                                    z6 = z9;
+                                } else if (entityView instanceof LinkView) {
+                                    linkView = (LinkView) entityView;
+                                    mediaEntity.type = (byte) 7;
+                                    if (linkView.marker.withPreview()) {
+                                        mediaEntity.subType = (byte) linkView.marker.getPreviewType();
+                                    } else {
+                                        mediaEntity.subType = (byte) linkView.getType();
+                                    }
+                                    mediaEntity.width = linkView.marker.getWidth();
+                                    mediaEntity.height = linkView.marker.getHeight();
+                                    if (linkView.hasColor()) {
+                                        color = linkView.getColor();
+                                    } else {
+                                        color = 0;
+                                    }
+                                    mediaEntity.color = color;
+                                    linkPreview = linkView.marker;
+                                    mediaEntity.density = linkPreview.density;
+                                    mediaEntity.linkSettings = linkView.link;
+                                    if (linkPreview.hasPhoto) {
+                                        linkPreview.pushPhotoToCache();
+                                        LinkPreview.WebPagePreview webPagePreview2 = mediaEntity.linkSettings;
+                                        webPagePreview2.flags |= 4;
+                                        webPagePreview2.photoSize = linkView.marker.getPhotoSide();
+                                    }
+                                    tL_mediaAreaUrl = new TL_stories.TL_mediaAreaUrl();
+                                    mediaEntity.mediaArea = tL_mediaAreaUrl;
+                                    webPagePreview = linkView.link;
+                                    if (webPagePreview != null) {
+                                        webPage = webPagePreview.webpage;
+                                        if (webPage != null || TextUtils.isEmpty(webPage.url)) {
+                                            str = linkView.link.url;
+                                        } else {
+                                            str = linkView.link.webpage.url;
+                                        }
+                                        tL_mediaAreaUrl.url = str;
+                                        mediaEntity.mediaArea.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                    }
+                                    i3 = i5 + 1;
+                                    childCount = i4;
+                                    i7 = 0;
+                                    b5 = 1;
                                 } else {
-                                    if (entityView instanceof LinkView) {
-                                        linkView = (LinkView) entityView;
-                                        mediaEntity.type = (byte) 7;
-                                        if (linkView.marker.withPreview()) {
-                                            mediaEntity.subType = (byte) linkView.marker.getPreviewType();
-                                        } else {
-                                            mediaEntity.subType = (byte) linkView.getType();
+                                    if (entityView instanceof ReactionWidgetEntityView) {
+                                        ReactionWidgetEntityView reactionWidgetEntityView2 = (ReactionWidgetEntityView) entityView;
+                                        mediaEntity.type = (byte) 4;
+                                        TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = new TL_stories.TL_mediaAreaSuggestedReaction();
+                                        mediaEntity.mediaArea = tL_mediaAreaSuggestedReaction;
+                                        tL_mediaAreaSuggestedReaction.reaction = ReactionsUtils.toTLReaction(reactionWidgetEntityView2.getCurrentReaction());
+                                        mediaEntity.mediaArea.dark = reactionWidgetEntityView2.isDark();
+                                        mediaEntity.mediaArea.flipped = reactionWidgetEntityView2.isMirrored();
+                                        mediaEntity.mediaArea.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                    } else if (entityView instanceof RoundView) {
+                                        roundView = (RoundView) entityView;
+                                        Size baseSize3 = roundView.getBaseSize();
+                                        mediaEntity.width = baseSize3.width;
+                                        mediaEntity.height = baseSize3.height;
+                                        mediaEntity.type = (byte) 5;
+                                        if (storyEntry != 0) {
+                                            mediaEntity.text = storyEntry.round.getAbsolutePath();
+                                            mediaEntity.roundOffset = storyEntry.roundOffset;
+                                            long j = storyEntry.roundDuration;
+                                            mediaEntity.roundDuration = j;
+                                            float f8 = j;
+                                            mediaEntity.roundLeft = (long) (storyEntry.roundLeft * f8);
+                                            mediaEntity.roundRight = (long) (storyEntry.roundRight * f8);
                                         }
-                                        mediaEntity.width = linkView.marker.getWidth();
-                                        mediaEntity.height = linkView.marker.getHeight();
-                                        if (linkView.hasColor()) {
-                                            color = linkView.getColor();
-                                        } else {
-                                            color = 0;
-                                        }
-                                        mediaEntity.color = color;
-                                        linkPreview = linkView.marker;
-                                        mediaEntity.density = linkPreview.density;
-                                        mediaEntity.linkSettings = linkView.link;
-                                        if (linkPreview.hasPhoto) {
-                                            linkPreview.pushPhotoToCache();
-                                            LinkPreview.WebPagePreview webPagePreview2 = mediaEntity.linkSettings;
-                                            webPagePreview2.flags |= 4;
-                                            webPagePreview2.photoSize = linkView.marker.getPhotoSide();
-                                        }
-                                        tL_mediaAreaUrl = new TL_stories.TL_mediaAreaUrl();
-                                        mediaEntity.mediaArea = tL_mediaAreaUrl;
-                                        webPagePreview = linkView.link;
-                                        if (webPagePreview == null) {
-                                            webPage = webPagePreview.webpage;
-                                            if (webPage != null || TextUtils.isEmpty(webPage.url)) {
-                                                str = linkView.link.url;
-                                            } else {
-                                                str = linkView.link.webpage.url;
-                                            }
-                                            tL_mediaAreaUrl.url = str;
-                                            mediaEntity.mediaArea.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                        mediaEntity.subType = (byte) 4;
+                                        if (roundView.isMirrored()) {
+                                            mediaEntity.subType = (byte) (mediaEntity.subType | 2);
                                         }
                                     } else {
-                                        if (entityView instanceof ReactionWidgetEntityView) {
-                                            ReactionWidgetEntityView reactionWidgetEntityView2 = (ReactionWidgetEntityView) entityView;
-                                            mediaEntity.type = (byte) 4;
-                                            TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = new TL_stories.TL_mediaAreaSuggestedReaction();
-                                            mediaEntity.mediaArea = tL_mediaAreaSuggestedReaction;
-                                            tL_mediaAreaSuggestedReaction.reaction = ReactionsUtils.toTLReaction(reactionWidgetEntityView2.getCurrentReaction());
-                                            mediaEntity.mediaArea.dark = reactionWidgetEntityView2.isDark();
-                                            mediaEntity.mediaArea.flipped = reactionWidgetEntityView2.isMirrored();
-                                            mediaEntity.mediaArea.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                        } else {
-                                            if (entityView instanceof RoundView) {
-                                                roundView = (RoundView) entityView;
-                                                Size baseSize3 = roundView.getBaseSize();
-                                                mediaEntity.width = baseSize3.width;
-                                                mediaEntity.height = baseSize3.height;
-                                                mediaEntity.type = (byte) 5;
-                                                if (storyEntry != 0) {
-                                                    mediaEntity.text = storyEntry.round.getAbsolutePath();
-                                                    mediaEntity.roundOffset = storyEntry.roundOffset;
-                                                    long j = storyEntry.roundDuration;
-                                                    mediaEntity.roundDuration = j;
-                                                    float f7 = j;
-                                                    mediaEntity.roundLeft = (long) (storyEntry.roundLeft * f7);
-                                                    mediaEntity.roundRight = (long) (storyEntry.roundRight * f7);
-                                                }
-                                                mediaEntity.subType = (byte) 4;
-                                                if (roundView.isMirrored()) {
-                                                    mediaEntity.subType = (byte) (mediaEntity.subType | 2);
-                                                }
-                                            } else if (entityView instanceof MessageEntityView) {
-                                                messageEntityView = (MessageEntityView) entityView;
-                                                mediaEntity.type = (byte) 6;
-                                                int width = messageEntityView.getWidth();
-                                                mediaEntity.viewWidth = width;
-                                                mediaEntity.width = width;
-                                                int height = messageEntityView.getHeight();
-                                                mediaEntity.viewHeight = height;
-                                                mediaEntity.height = height;
-                                                if (messageEntityView.messageObjects.size() > 0) {
-                                                    messageObject = (MessageObject) messageEntityView.messageObjects.get(0);
+                                        if (entityView instanceof MessageEntityView) {
+                                            messageEntityView = (MessageEntityView) entityView;
+                                            mediaEntity.type = (byte) 6;
+                                            int width = messageEntityView.getWidth();
+                                            mediaEntity.viewWidth = width;
+                                            mediaEntity.width = width;
+                                            int height = messageEntityView.getHeight();
+                                            mediaEntity.viewHeight = height;
+                                            mediaEntity.height = height;
+                                            if (messageEntityView.messageObjects.size() > 0) {
+                                                messageObject = (MessageObject) messageEntityView.messageObjects.get(0);
+                                            } else {
+                                                messageObject = null;
+                                            }
+                                            if (messageObject != null || (message = messageObject.messageOwner) == null) {
+                                                messageEntityView2 = messageEntityView;
+                                                childAt = childAt;
+                                                if (messageObject != null) {
+                                                    TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost = new TL_stories.TL_inputMediaAreaChannelPost();
+                                                    mediaEntity.mediaArea = tL_inputMediaAreaChannelPost;
+                                                    tL_inputMediaAreaChannelPost.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                                    ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-StoryEntry.getRepostDialogId(messageObject));
+                                                    ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).msg_id = StoryEntry.getRepostMessageId(messageObject);
                                                 } else {
-                                                    messageObject = null;
+                                                    TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost2 = new TL_stories.TL_inputMediaAreaChannelPost();
+                                                    mediaEntity.mediaArea = tL_inputMediaAreaChannelPost2;
+                                                    tL_inputMediaAreaChannelPost2.coordinates = new TL_stories.TL_mediaAreaCoordinates();
                                                 }
-                                                if (messageObject != null || (message = messageObject.messageOwner) == null) {
-                                                    entityView = entityView;
-                                                    paintView = paintView2;
-                                                    messageEntityView = messageEntityView;
-                                                    bitmap = bitmap;
+                                                imageReceiver = null;
+                                            } else {
+                                                TLRPC.MessageAction messageAction = message.action;
+                                                if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
+                                                    TL_stars.StarGift starGift = ((TLRPC.TL_messageActionStarGiftUnique) messageAction).gift;
+                                                    TL_stories.TL_mediaAreaStarGift tL_mediaAreaStarGift = new TL_stories.TL_mediaAreaStarGift();
+                                                    mediaEntity.mediaArea = tL_mediaAreaStarGift;
+                                                    tL_mediaAreaStarGift.slug = starGift.slug;
+                                                    tL_mediaAreaStarGift.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                                    int i9 = 0;
+                                                    while (true) {
+                                                        if (i9 >= messageEntityView.listView.getChildCount()) {
+                                                            chatActionCell = null;
+                                                            break;
+                                                        }
+                                                        View childAt3 = messageEntityView.listView.getChildAt(i9);
+                                                        if (childAt3 instanceof ChatActionCell) {
+                                                            chatActionCell = (ChatActionCell) childAt3;
+                                                            break;
+                                                        }
+                                                        i9++;
+                                                    }
+                                                    if (chatActionCell == null || (starGiftUniqueActionLayout = chatActionCell.starGiftLayout) == null || (imageReceiver = starGiftUniqueActionLayout.imageReceiver) == null) {
+                                                        messageEntityView2 = messageEntityView;
+                                                        childAt = childAt;
+                                                    } else {
+                                                        imageReceiver.setVisible(false, false);
+                                                        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) StarsController.findAttribute(starGift.attributes, TL_stars.starGiftAttributeModel.class);
+                                                        if (stargiftattributemodel != null) {
+                                                            float fDp = AndroidUtilities.dp(110.0f);
+                                                            float x2 = messageEntityView.listView.getX() + chatActionCell.getX() + chatActionCell.starGiftLayoutX + imageReceiver.getCenterX();
+                                                            float y2 = messageEntityView.listView.getY() + chatActionCell.getY() + chatActionCell.starGiftLayoutY + imageReceiver.getCenterY();
+                                                            VideoEditedInfo.MediaEntity mediaEntity2 = new VideoEditedInfo.MediaEntity();
+                                                            mediaEntity2.type = (byte) 0;
+                                                            mediaEntity2.width = fDp;
+                                                            mediaEntity2.height = fDp;
+                                                            TLRPC.Document document = stargiftattributemodel.document;
+                                                            mediaEntity2.document = document;
+                                                            mediaEntity2.parentObject = starGift;
+                                                            mediaEntity2.text = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true).getAbsolutePath();
+                                                            if (MessageObject.isAnimatedStickerDocument(document, true) || isVideoStickerDocument(document)) {
+                                                                boolean zIsAnimatedStickerDocument5 = MessageObject.isAnimatedStickerDocument(document, true);
+                                                                mediaEntity2.subType = (byte) (mediaEntity2.subType | (zIsAnimatedStickerDocument5 ? (byte) 1 : (byte) 4));
+                                                                RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
+                                                                if (lottieAnimation != null && (zIsAnimatedStickerDocument5 || isVideoStickerDocument(document))) {
+                                                                    duration = lottieAnimation.getDuration();
+                                                                }
+                                                                if (duration != 0) {
+                                                                    BigInteger bigIntegerValueOf3 = BigInteger.valueOf(duration);
+                                                                    this.lcm = this.lcm.multiply(bigIntegerValueOf3).divide(this.lcm.gcd(bigIntegerValueOf3));
+                                                                }
+                                                            }
+                                                            float scaleX2 = childAt.getScaleX();
+                                                            float scaleY2 = childAt.getScaleY();
+                                                            float x3 = childAt.getX();
+                                                            float y3 = childAt.getY();
+                                                            int i10 = (int) fDp;
+                                                            mediaEntity2.viewWidth = i10;
+                                                            mediaEntity2.viewHeight = i10;
+                                                            mediaEntity2.width = (fDp * scaleX2) / this.entitiesView.getMeasuredWidth();
+                                                            mediaEntity2.height = (fDp * scaleY2) / this.entitiesView.getMeasuredHeight();
+                                                            mediaEntity2.x = x3 + (childAt.getWidth() / 2.0f);
+                                                            mediaEntity2.y = y3 + (childAt.getHeight() / 2.0f);
+                                                            float width2 = (x2 * scaleX2) - ((childAt.getWidth() / 2.0f) * scaleX2);
+                                                            float height2 = (y2 * scaleY2) - ((childAt.getHeight() / 2.0f) * scaleY2);
+                                                            childAt = childAt;
+                                                            messageEntityView2 = messageEntityView;
+                                                            double d = width2;
+                                                            double rotation = (float) (((double) (childAt.getRotation() / 180.0f)) * 3.141592653589793d);
+                                                            double d2 = height2;
+                                                            mediaEntity2.x = (float) (((double) mediaEntity2.x) + ((Math.cos(rotation) * d) - (Math.sin(rotation) * d2)));
+                                                            float fSin = (float) (((double) mediaEntity2.y) + (Math.sin(rotation) * d) + (d2 * Math.cos(rotation)));
+                                                            float f9 = (-fDp) / 2.0f;
+                                                            float f10 = mediaEntity2.x + (f9 * scaleX2);
+                                                            mediaEntity2.x = f10;
+                                                            mediaEntity2.y = fSin + (f9 * scaleY2);
+                                                            mediaEntity2.x = f10 / this.entitiesView.getMeasuredWidth();
+                                                            mediaEntity2.y /= this.entitiesView.getMeasuredHeight();
+                                                            mediaEntity2.rotation = (float) (((double) (-childAt.getRotation())) * 0.017453292519943295d);
+                                                            mediaEntity2.scale = scaleX2;
+                                                            arrayList.add(mediaEntity2);
+                                                        } else {
+                                                            messageEntityView2 = messageEntityView;
+                                                            childAt = childAt;
+                                                        }
+                                                    }
+                                                } else {
+                                                    messageEntityView2 = messageEntityView;
+                                                    childAt = childAt;
                                                     if (messageObject != null) {
-                                                        TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost = new TL_stories.TL_inputMediaAreaChannelPost();
-                                                        mediaEntity.mediaArea = tL_inputMediaAreaChannelPost;
-                                                        tL_inputMediaAreaChannelPost.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                                        ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).channel = MessagesController.getInstance(paintView.currentAccount).getInputChannel(-StoryEntry.getRepostDialogId(messageObject));
+                                                        TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost3 = new TL_stories.TL_inputMediaAreaChannelPost();
+                                                        mediaEntity.mediaArea = tL_inputMediaAreaChannelPost3;
+                                                        tL_inputMediaAreaChannelPost3.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                                        ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-StoryEntry.getRepostDialogId(messageObject));
                                                         ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).msg_id = StoryEntry.getRepostMessageId(messageObject);
                                                     } else {
-                                                        TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost2 = new TL_stories.TL_inputMediaAreaChannelPost();
-                                                        mediaEntity.mediaArea = tL_inputMediaAreaChannelPost2;
-                                                        tL_inputMediaAreaChannelPost2.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                                        TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost4 = new TL_stories.TL_inputMediaAreaChannelPost();
+                                                        mediaEntity.mediaArea = tL_inputMediaAreaChannelPost4;
+                                                        tL_inputMediaAreaChannelPost4.coordinates = new TL_stories.TL_mediaAreaCoordinates();
                                                     }
-                                                    imageReceiver = null;
-                                                } else {
-                                                    TLRPC.MessageAction messageAction = message.action;
-                                                    if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
-                                                        TL_stars.StarGift starGift = ((TLRPC.TL_messageActionStarGiftUnique) messageAction).gift;
-                                                        TL_stories.TL_mediaAreaStarGift tL_mediaAreaStarGift = new TL_stories.TL_mediaAreaStarGift();
-                                                        mediaEntity.mediaArea = tL_mediaAreaStarGift;
-                                                        tL_mediaAreaStarGift.slug = starGift.slug;
-                                                        tL_mediaAreaStarGift.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                                        int i9 = 0;
-                                                        while (true) {
-                                                            if (i9 >= messageEntityView.listView.getChildCount()) {
-                                                                chatActionCell = null;
-                                                                break;
-                                                            }
-                                                            View childAt3 = messageEntityView.listView.getChildAt(i9);
-                                                            if (childAt3 instanceof ChatActionCell) {
-                                                                chatActionCell = (ChatActionCell) childAt3;
-                                                                break;
-                                                            }
-                                                            i9++;
-                                                        }
-                                                        if (chatActionCell == null || (starGiftUniqueActionLayout = chatActionCell.starGiftLayout) == null || (imageReceiver2 = starGiftUniqueActionLayout.imageReceiver) == null) {
-                                                            entityView = entityView;
-                                                            paintView = paintView2;
-                                                            messageEntityView = messageEntityView;
-                                                            bitmap = bitmap;
-                                                        } else {
-                                                            imageReceiver2.setVisible(false, false);
-                                                            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) StarsController.findAttribute(starGift.attributes, TL_stars.starGiftAttributeModel.class);
-                                                            if (stargiftattributemodel != null) {
-                                                                float fDp = AndroidUtilities.dp(110.0f);
-                                                                float x2 = messageEntityView.listView.getX() + chatActionCell.getX() + chatActionCell.starGiftLayoutX + imageReceiver2.getCenterX();
-                                                                float y2 = messageEntityView.listView.getY() + chatActionCell.getY() + chatActionCell.starGiftLayoutY + imageReceiver2.getCenterY();
-                                                                VideoEditedInfo.MediaEntity mediaEntity2 = new VideoEditedInfo.MediaEntity();
-                                                                mediaEntity2.type = (byte) 0;
-                                                                mediaEntity2.width = fDp;
-                                                                mediaEntity2.height = fDp;
-                                                                TLRPC.Document document = stargiftattributemodel.document;
-                                                                mediaEntity2.document = document;
-                                                                mediaEntity2.parentObject = starGift;
-                                                                mediaEntity2.text = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true).getAbsolutePath();
-                                                                if (MessageObject.isAnimatedStickerDocument(document, true) || isVideoStickerDocument(document)) {
-                                                                    boolean zIsAnimatedStickerDocument5 = MessageObject.isAnimatedStickerDocument(document, true);
-                                                                    mediaEntity2.subType = (byte) (mediaEntity2.subType | (zIsAnimatedStickerDocument5 ? (byte) 1 : (byte) 4));
-                                                                    RLottieDrawable lottieAnimation = imageReceiver2.getLottieAnimation();
-                                                                    if (lottieAnimation != null && (zIsAnimatedStickerDocument5 || isVideoStickerDocument(document))) {
-                                                                        duration = lottieAnimation.getDuration();
-                                                                    }
-                                                                    if (duration != 0) {
-                                                                        BigInteger bigIntegerValueOf3 = BigInteger.valueOf(duration);
-                                                                        paintView2.lcm = paintView2.lcm.multiply(bigIntegerValueOf3).divide(paintView2.lcm.gcd(bigIntegerValueOf3));
-                                                                    }
-                                                                }
-                                                                float scaleX2 = view.getScaleX();
-                                                                float scaleY2 = view.getScaleY();
-                                                                float x3 = view.getX();
-                                                                float y3 = view.getY();
-                                                                int i10 = (int) fDp;
-                                                                mediaEntity2.viewWidth = i10;
-                                                                mediaEntity2.viewHeight = i10;
-                                                                mediaEntity2.width = (fDp * scaleX2) / paintView2.entitiesView.getMeasuredWidth();
-                                                                mediaEntity2.height = (fDp * scaleY2) / paintView2.entitiesView.getMeasuredHeight();
-                                                                mediaEntity2.x = x3 + (view.getWidth() / 2.0f);
-                                                                mediaEntity2.y = y3 + (view.getHeight() / 2.0f);
-                                                                float width2 = (x2 * scaleX2) - ((view.getWidth() / 2.0f) * scaleX2);
-                                                                float height2 = (y2 * scaleY2) - ((view.getHeight() / 2.0f) * scaleY2);
-                                                                double d = width2;
-                                                                double rotation = (float) (((double) (view.getRotation() / 180.0f)) * 3.141592653589793d);
-                                                                double d2 = height2;
-                                                                mediaEntity2.x = (float) (((double) mediaEntity2.x) + ((Math.cos(rotation) * d) - (Math.sin(rotation) * d2)));
-                                                                float fSin = (float) (((double) mediaEntity2.y) + (d * Math.sin(rotation)) + (d2 * Math.cos(rotation)));
-                                                                float f8 = (-fDp) / 2.0f;
-                                                                float f9 = mediaEntity2.x + (f8 * scaleX2);
-                                                                mediaEntity2.x = f9;
-                                                                mediaEntity2.y = fSin + (f8 * scaleY2);
-                                                                paintView = this;
-                                                                mediaEntity2.x = f9 / paintView.entitiesView.getMeasuredWidth();
-                                                                mediaEntity2.y /= paintView.entitiesView.getMeasuredHeight();
-                                                                mediaEntity2.rotation = (float) (((double) (-view.getRotation())) * 0.017453292519943295d);
-                                                                mediaEntity2.scale = scaleX2;
-                                                                arrayList.add(mediaEntity2);
-                                                            } else {
-                                                                paintView = paintView2;
-                                                            }
-                                                            imageReceiver = imageReceiver2;
-                                                        }
-                                                    } else {
-                                                        entityView = entityView;
-                                                        paintView = paintView2;
-                                                        messageEntityView = messageEntityView;
-                                                        bitmap = bitmap;
-                                                        if (messageObject != null) {
-                                                            TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost3 = new TL_stories.TL_inputMediaAreaChannelPost();
-                                                            mediaEntity.mediaArea = tL_inputMediaAreaChannelPost3;
-                                                            tL_inputMediaAreaChannelPost3.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                                            ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).channel = MessagesController.getInstance(paintView.currentAccount).getInputChannel(-StoryEntry.getRepostDialogId(messageObject));
-                                                            ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).msg_id = StoryEntry.getRepostMessageId(messageObject);
-                                                        } else {
-                                                            TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost4 = new TL_stories.TL_inputMediaAreaChannelPost();
-                                                            mediaEntity.mediaArea = tL_inputMediaAreaChannelPost4;
-                                                            tL_inputMediaAreaChannelPost4.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                                        }
-                                                    }
-                                                    imageReceiver = null;
                                                 }
-                                                if (z3) {
-                                                    if (storyEntry != null && storyEntry.isVideo) {
-                                                        storyEntry.matrix.reset();
-                                                        messageEntityView2 = messageEntityView;
-                                                        if (messageEntityView2.listView.getChildCount() == 1) {
-                                                            childAt2 = messageEntityView2.listView.getChildAt(0);
-                                                            photoImage = childAt2 instanceof ChatMessageCell ? ((ChatMessageCell) childAt2).getPhotoImage() : null;
-                                                            if (photoImage != null) {
-                                                                float fMax = Math.max(photoImage.getImageWidth() / Math.max(1, storyEntry.width), photoImage.getImageHeight() / Math.max(1, storyEntry.height));
-                                                                storyEntry.matrix.postScale(fMax, fMax);
-                                                                storyEntry.matrix.postTranslate(photoImage.getCenterX() - ((storyEntry.width * fMax) / 2.0f), photoImage.getCenterY() - ((storyEntry.height * fMax) / 2.0f));
-                                                                storyEntry.matrix.postTranslate(messageEntityView2.container.getX(), messageEntityView2.container.getY());
-                                                                storyEntry.matrix.postTranslate(messageEntityView2.listView.getX(), messageEntityView2.listView.getY());
-                                                                storyEntry.matrix.postTranslate(childAt2.getX(), childAt2.getY());
-                                                                storyEntry.matrix.postScale(messageEntityView2.getScaleX(), messageEntityView2.getScaleY(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
-                                                                storyEntry.matrix.postRotate(messageEntityView2.getRotation(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
-                                                                storyEntry.matrix.postTranslate(messageEntityView2.getX(), messageEntityView2.getY());
-                                                                storyEntry.matrix.postScale(1.0f / paintView.entitiesView.getWidth(), 1.0f / paintView.entitiesView.getHeight());
-                                                                storyEntry.matrix.postScale(storyEntry.resultWidth, storyEntry.resultHeight);
-                                                            }
-                                                        } else {
-                                                            childAt2 = null;
-                                                        }
+                                                imageReceiver = null;
+                                            }
+                                            if (z3) {
+                                                if (storyEntry != null && storyEntry.isVideo) {
+                                                    storyEntry.matrix.reset();
+                                                    if (messageEntityView2.listView.getChildCount() == 1) {
+                                                        childAt2 = messageEntityView2.listView.getChildAt(0);
+                                                        photoImage = childAt2 instanceof ChatMessageCell ? ((ChatMessageCell) childAt2).getPhotoImage() : null;
                                                         if (photoImage != null) {
-                                                            float fMax2 = Math.max(photoImage.getImageWidth() / Math.max(1, storyEntry.width), photoImage.getImageHeight() / Math.max(1, storyEntry.height));
-                                                            storyEntry.matrix.postScale(fMax2, fMax2);
-                                                            storyEntry.matrix.postTranslate(photoImage.getCenterX() - ((storyEntry.width * fMax2) / 2.0f), photoImage.getCenterY() - ((storyEntry.height * fMax2) / 2.0f));
+                                                            float fMax = Math.max(photoImage.getImageWidth() / Math.max(1, storyEntry.width), photoImage.getImageHeight() / Math.max(1, storyEntry.height));
+                                                            storyEntry.matrix.postScale(fMax, fMax);
+                                                            storyEntry.matrix.postTranslate(photoImage.getCenterX() - ((storyEntry.width * fMax) / 2.0f), photoImage.getCenterY() - ((storyEntry.height * fMax) / 2.0f));
                                                             storyEntry.matrix.postTranslate(messageEntityView2.container.getX(), messageEntityView2.container.getY());
                                                             storyEntry.matrix.postTranslate(messageEntityView2.listView.getX(), messageEntityView2.listView.getY());
                                                             storyEntry.matrix.postTranslate(childAt2.getX(), childAt2.getY());
                                                             storyEntry.matrix.postScale(messageEntityView2.getScaleX(), messageEntityView2.getScaleY(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
                                                             storyEntry.matrix.postRotate(messageEntityView2.getRotation(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
                                                             storyEntry.matrix.postTranslate(messageEntityView2.getX(), messageEntityView2.getY());
-                                                            storyEntry.matrix.postScale(1.0f / paintView.entitiesView.getWidth(), 1.0f / paintView.entitiesView.getHeight());
+                                                            storyEntry.matrix.postScale(1.0f / this.entitiesView.getWidth(), 1.0f / this.entitiesView.getHeight());
                                                             storyEntry.matrix.postScale(storyEntry.resultWidth, storyEntry.resultHeight);
                                                         }
+                                                    } else {
+                                                        childAt2 = null;
                                                     }
-                                                    z7 = false;
-                                                } else {
-                                                    z7 = true;
+                                                    if (photoImage != null) {
+                                                        float fMax2 = Math.max(photoImage.getImageWidth() / Math.max(1, storyEntry.width), photoImage.getImageHeight() / Math.max(1, storyEntry.height));
+                                                        storyEntry.matrix.postScale(fMax2, fMax2);
+                                                        storyEntry.matrix.postTranslate(photoImage.getCenterX() - ((storyEntry.width * fMax2) / 2.0f), photoImage.getCenterY() - ((storyEntry.height * fMax2) / 2.0f));
+                                                        storyEntry.matrix.postTranslate(messageEntityView2.container.getX(), messageEntityView2.container.getY());
+                                                        storyEntry.matrix.postTranslate(messageEntityView2.listView.getX(), messageEntityView2.listView.getY());
+                                                        storyEntry.matrix.postTranslate(childAt2.getX(), childAt2.getY());
+                                                        storyEntry.matrix.postScale(messageEntityView2.getScaleX(), messageEntityView2.getScaleY(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
+                                                        storyEntry.matrix.postRotate(messageEntityView2.getRotation(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
+                                                        storyEntry.matrix.postTranslate(messageEntityView2.getX(), messageEntityView2.getY());
+                                                        storyEntry.matrix.postScale(1.0f / this.entitiesView.getWidth(), 1.0f / this.entitiesView.getHeight());
+                                                        storyEntry.matrix.postScale(storyEntry.resultWidth, storyEntry.resultHeight);
+                                                    }
                                                 }
-                                                z8 = true;
+                                                z5 = false;
+                                            } else {
+                                                z5 = true;
                                             }
+                                            z6 = true;
                                             arrayList.add(mediaEntity);
-                                            scaleX = view.getScaleX();
-                                            scaleY = view.getScaleY();
-                                            x = view.getX();
-                                            y = view.getY();
-                                            mediaEntity.viewWidth = view.getWidth();
-                                            mediaEntity.viewHeight = view.getHeight();
-                                            mediaEntity.width = (view.getWidth() * scaleX) / paintView.entitiesView.getMeasuredWidth();
-                                            mediaEntity.height = (view.getHeight() * scaleY) / paintView.entitiesView.getMeasuredHeight();
-                                            mediaEntity.x = (((view.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                            mediaEntity.y = (((view.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                            mediaEntity.rotation = (float) (((double) (-view.getRotation())) * 0.017453292519943295d);
-                                            mediaEntity.textViewX = ((view.getWidth() / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                            mediaEntity.textViewY = ((view.getHeight() / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                            mediaEntity.textViewWidth = mediaEntity.viewWidth / paintView.entitiesView.getMeasuredWidth();
-                                            mediaEntity.textViewHeight = mediaEntity.viewHeight / paintView.entitiesView.getMeasuredHeight();
+                                            scaleX = childAt.getScaleX();
+                                            scaleY = childAt.getScaleY();
+                                            x = childAt.getX();
+                                            y = childAt.getY();
+                                            mediaEntity.viewWidth = childAt.getWidth();
+                                            mediaEntity.viewHeight = childAt.getHeight();
+                                            mediaEntity.width = (childAt.getWidth() * scaleX) / this.entitiesView.getMeasuredWidth();
+                                            mediaEntity.height = (childAt.getHeight() * scaleY) / this.entitiesView.getMeasuredHeight();
+                                            mediaEntity.x = (((childAt.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                            mediaEntity.y = (((childAt.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                            mediaEntity.rotation = (float) (((double) (-childAt.getRotation())) * 0.017453292519943295d);
+                                            mediaEntity.textViewX = ((childAt.getWidth() / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                            mediaEntity.textViewY = ((childAt.getHeight() / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                            mediaEntity.textViewWidth = mediaEntity.viewWidth / this.entitiesView.getMeasuredWidth();
+                                            mediaEntity.textViewHeight = mediaEntity.viewHeight / this.entitiesView.getMeasuredHeight();
                                             mediaEntity.scale = scaleX;
-                                            entityView2 = entityView;
-                                            if (entityView2 instanceof MessageEntityView) {
-                                                MessageEntityView messageEntityView4 = (MessageEntityView) entityView2;
+                                            if (entityView instanceof MessageEntityView) {
+                                                MessageEntityView messageEntityView4 = (MessageEntityView) entityView;
                                                 RectF rectF2 = AndroidUtilities.rectTmp;
                                                 bubbleBounds = messageEntityView4.getBubbleBounds(rectF2);
-                                                z9 = z7;
                                                 rectF2.offset(messageEntityView4.container.getX(), messageEntityView4.container.getY());
                                                 rectF2.offset(messageEntityView4.listView.getX(), messageEntityView4.listView.getY());
-                                                mediaEntity.mediaArea.coordinates.x = ((((x + (view.getWidth() / 2.0f)) - ((view.getWidth() / 2.0f) * scaleX)) + (rectF2.centerX() * scaleX)) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                                mediaEntity.mediaArea.coordinates.y = ((((y + (view.getHeight() / 2.0f)) - ((view.getHeight() / 2.0f) * scaleY)) + (rectF2.centerY() * scaleY)) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                                                mediaEntity.mediaArea.coordinates.w = ((rectF2.width() * scaleX) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                                mediaEntity.mediaArea.coordinates.h = ((rectF2.height() * scaleY) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
+                                                mediaEntity.mediaArea.coordinates.x = ((((x + (childAt.getWidth() / 2.0f)) - ((childAt.getWidth() / 2.0f) * scaleX)) + (rectF2.centerX() * scaleX)) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                                mediaEntity.mediaArea.coordinates.y = ((((y + (childAt.getHeight() / 2.0f)) - ((childAt.getHeight() / 2.0f) * scaleY)) + (rectF2.centerY() * scaleY)) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                                                mediaEntity.mediaArea.coordinates.w = ((rectF2.width() * scaleX) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                                mediaEntity.mediaArea.coordinates.h = ((rectF2.height() * scaleY) / this.entitiesView.getMeasuredHeight()) * 100.0f;
                                                 mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
                                             } else {
-                                                z9 = z7;
-                                                if (entityView2 instanceof StickerView) {
-                                                    imageAspectRatio = ((StickerView) entityView2).centerImage.getImageAspectRatio();
-                                                    f = mediaEntity.x + (mediaEntity.width / 2.0f);
-                                                    f2 = mediaEntity.y + (mediaEntity.height / 2.0f);
-                                                    measuredWidth = paintView.entitiesView.getMeasuredWidth() / paintView.entitiesView.getMeasuredHeight();
+                                                if (entityView instanceof StickerView) {
+                                                    imageAspectRatio = ((StickerView) entityView).centerImage.getImageAspectRatio();
+                                                    f2 = mediaEntity.x + (mediaEntity.width / 2.0f);
+                                                    f3 = mediaEntity.y + (mediaEntity.height / 2.0f);
+                                                    measuredWidth = this.entitiesView.getMeasuredWidth() / this.entitiesView.getMeasuredHeight();
                                                     if (imageAspectRatio > 1.0f) {
-                                                        float f10 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
-                                                        mediaEntity.height = f10;
+                                                        float f11 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
+                                                        mediaEntity.height = f11;
                                                         mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
-                                                        mediaEntity.y = f2 - (f10 / 2.0f);
+                                                        mediaEntity.y = f3 - (f11 / 2.0f);
                                                     } else if (imageAspectRatio < 1.0f) {
-                                                        float f11 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
-                                                        mediaEntity.width = f11;
+                                                        float f12 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
+                                                        mediaEntity.width = f12;
                                                         mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
-                                                        mediaEntity.x = f - (f11 / 2.0f);
+                                                        mediaEntity.x = f2 - (f12 / 2.0f);
                                                     }
                                                 } else {
                                                     mediaArea = mediaEntity.mediaArea;
@@ -3676,133 +3659,123 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                             mediaArea2 = mediaEntity.mediaArea;
                                             if (mediaArea2 != null) {
                                                 mediaAreaCoordinates.flags |= 1;
-                                                mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) view.getWidth())) * 100.0d;
+                                                mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) childAt.getWidth())) * 100.0d;
                                             }
-                                            z5 = z8;
-                                            z6 = z9;
                                         }
-                                        z7 = true;
-                                        z8 = true;
-                                        imageReceiver = null;
-                                        paintView = paintView2;
-                                        arrayList.add(mediaEntity);
-                                        scaleX = view.getScaleX();
-                                        scaleY = view.getScaleY();
-                                        x = view.getX();
-                                        y = view.getY();
-                                        mediaEntity.viewWidth = view.getWidth();
-                                        mediaEntity.viewHeight = view.getHeight();
-                                        mediaEntity.width = (view.getWidth() * scaleX) / paintView.entitiesView.getMeasuredWidth();
-                                        mediaEntity.height = (view.getHeight() * scaleY) / paintView.entitiesView.getMeasuredHeight();
-                                        mediaEntity.x = (((view.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                        mediaEntity.y = (((view.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                        mediaEntity.rotation = (float) (((double) (-view.getRotation())) * 0.017453292519943295d);
-                                        mediaEntity.textViewX = ((view.getWidth() / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                        mediaEntity.textViewY = ((view.getHeight() / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                        mediaEntity.textViewWidth = mediaEntity.viewWidth / paintView.entitiesView.getMeasuredWidth();
-                                        mediaEntity.textViewHeight = mediaEntity.viewHeight / paintView.entitiesView.getMeasuredHeight();
-                                        mediaEntity.scale = scaleX;
-                                        entityView2 = entityView;
-                                        if (entityView2 instanceof MessageEntityView) {
-                                            MessageEntityView messageEntityView5 = (MessageEntityView) entityView2;
-                                            RectF rectF3 = AndroidUtilities.rectTmp;
-                                            bubbleBounds = messageEntityView5.getBubbleBounds(rectF3);
-                                            z9 = z7;
-                                            rectF3.offset(messageEntityView5.container.getX(), messageEntityView5.container.getY());
-                                            rectF3.offset(messageEntityView5.listView.getX(), messageEntityView5.listView.getY());
-                                            mediaEntity.mediaArea.coordinates.x = ((((x + (view.getWidth() / 2.0f)) - ((view.getWidth() / 2.0f) * scaleX)) + (rectF3.centerX() * scaleX)) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                            mediaEntity.mediaArea.coordinates.y = ((((y + (view.getHeight() / 2.0f)) - ((view.getHeight() / 2.0f) * scaleY)) + (rectF3.centerY() * scaleY)) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                                            mediaEntity.mediaArea.coordinates.w = ((rectF3.width() * scaleX) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                            mediaEntity.mediaArea.coordinates.h = ((rectF3.height() * scaleY) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                                            mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
-                                        } else {
-                                            z9 = z7;
-                                            if (entityView2 instanceof StickerView) {
-                                                imageAspectRatio = ((StickerView) entityView2).centerImage.getImageAspectRatio();
-                                                f = mediaEntity.x + (mediaEntity.width / 2.0f);
-                                                f2 = mediaEntity.y + (mediaEntity.height / 2.0f);
-                                                measuredWidth = paintView.entitiesView.getMeasuredWidth() / paintView.entitiesView.getMeasuredHeight();
-                                                if (imageAspectRatio > 1.0f) {
-                                                    float f12 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
-                                                    mediaEntity.height = f12;
-                                                    mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
-                                                    mediaEntity.y = f2 - (f12 / 2.0f);
-                                                } else if (imageAspectRatio < 1.0f) {
-                                                    float f13 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
-                                                    mediaEntity.width = f13;
-                                                    mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
-                                                    mediaEntity.x = f - (f13 / 2.0f);
-                                                }
-                                            } else {
-                                                mediaArea = mediaEntity.mediaArea;
-                                                if (mediaArea == null) {
-                                                }
-                                            }
-                                            bubbleBounds = -1.0d;
-                                        }
-                                        mediaArea2 = mediaEntity.mediaArea;
-                                        if (mediaArea2 != null) {
-                                            mediaAreaCoordinates.flags |= 1;
-                                            mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) view.getWidth())) * 100.0d;
-                                        }
-                                        z5 = z8;
-                                        z6 = z9;
+                                        i3 = i5 + 1;
+                                        childCount = i4;
+                                        i7 = 0;
+                                        b5 = 1;
                                     }
-                                    paintView = paintView2;
-                                    bitmap2 = bitmap;
+                                    z5 = true;
+                                    z6 = true;
+                                    imageReceiver = null;
+                                    arrayList.add(mediaEntity);
+                                    scaleX = childAt.getScaleX();
+                                    scaleY = childAt.getScaleY();
+                                    x = childAt.getX();
+                                    y = childAt.getY();
+                                    mediaEntity.viewWidth = childAt.getWidth();
+                                    mediaEntity.viewHeight = childAt.getHeight();
+                                    mediaEntity.width = (childAt.getWidth() * scaleX) / this.entitiesView.getMeasuredWidth();
+                                    mediaEntity.height = (childAt.getHeight() * scaleY) / this.entitiesView.getMeasuredHeight();
+                                    mediaEntity.x = (((childAt.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                    mediaEntity.y = (((childAt.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                    mediaEntity.rotation = (float) (((double) (-childAt.getRotation())) * 0.017453292519943295d);
+                                    mediaEntity.textViewX = ((childAt.getWidth() / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                    mediaEntity.textViewY = ((childAt.getHeight() / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                    mediaEntity.textViewWidth = mediaEntity.viewWidth / this.entitiesView.getMeasuredWidth();
+                                    mediaEntity.textViewHeight = mediaEntity.viewHeight / this.entitiesView.getMeasuredHeight();
+                                    mediaEntity.scale = scaleX;
+                                    if (entityView instanceof MessageEntityView) {
+                                        MessageEntityView messageEntityView5 = (MessageEntityView) entityView;
+                                        RectF rectF3 = AndroidUtilities.rectTmp;
+                                        bubbleBounds = messageEntityView5.getBubbleBounds(rectF3);
+                                        rectF3.offset(messageEntityView5.container.getX(), messageEntityView5.container.getY());
+                                        rectF3.offset(messageEntityView5.listView.getX(), messageEntityView5.listView.getY());
+                                        mediaEntity.mediaArea.coordinates.x = ((((x + (childAt.getWidth() / 2.0f)) - ((childAt.getWidth() / 2.0f) * scaleX)) + (rectF3.centerX() * scaleX)) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                        mediaEntity.mediaArea.coordinates.y = ((((y + (childAt.getHeight() / 2.0f)) - ((childAt.getHeight() / 2.0f) * scaleY)) + (rectF3.centerY() * scaleY)) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                                        mediaEntity.mediaArea.coordinates.w = ((rectF3.width() * scaleX) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                        mediaEntity.mediaArea.coordinates.h = ((rectF3.height() * scaleY) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                                        mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
+                                    } else {
+                                        if (entityView instanceof StickerView) {
+                                            imageAspectRatio = ((StickerView) entityView).centerImage.getImageAspectRatio();
+                                            f2 = mediaEntity.x + (mediaEntity.width / 2.0f);
+                                            f3 = mediaEntity.y + (mediaEntity.height / 2.0f);
+                                            measuredWidth = this.entitiesView.getMeasuredWidth() / this.entitiesView.getMeasuredHeight();
+                                            if (imageAspectRatio > 1.0f) {
+                                                float f13 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
+                                                mediaEntity.height = f13;
+                                                mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
+                                                mediaEntity.y = f3 - (f13 / 2.0f);
+                                            } else if (imageAspectRatio < 1.0f) {
+                                                float f14 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
+                                                mediaEntity.width = f14;
+                                                mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
+                                                mediaEntity.x = f2 - (f14 / 2.0f);
+                                            }
+                                        } else {
+                                            mediaArea = mediaEntity.mediaArea;
+                                            if (mediaArea == null) {
+                                            }
+                                        }
+                                        bubbleBounds = -1.0d;
+                                    }
+                                    mediaArea2 = mediaEntity.mediaArea;
+                                    if (mediaArea2 != null) {
+                                        mediaAreaCoordinates.flags |= 1;
+                                        mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) childAt.getWidth())) * 100.0d;
+                                    }
                                 }
                             }
-                            z7 = false;
-                            z8 = true;
+                            z5 = false;
+                            z6 = true;
                             imageReceiver = null;
-                            paintView = paintView2;
                             arrayList.add(mediaEntity);
-                            scaleX = view.getScaleX();
-                            scaleY = view.getScaleY();
-                            x = view.getX();
-                            y = view.getY();
-                            mediaEntity.viewWidth = view.getWidth();
-                            mediaEntity.viewHeight = view.getHeight();
-                            mediaEntity.width = (view.getWidth() * scaleX) / paintView.entitiesView.getMeasuredWidth();
-                            mediaEntity.height = (view.getHeight() * scaleY) / paintView.entitiesView.getMeasuredHeight();
-                            mediaEntity.x = (((view.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                            mediaEntity.y = (((view.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                            mediaEntity.rotation = (float) (((double) (-view.getRotation())) * 0.017453292519943295d);
-                            mediaEntity.textViewX = ((view.getWidth() / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                            mediaEntity.textViewY = ((view.getHeight() / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                            mediaEntity.textViewWidth = mediaEntity.viewWidth / paintView.entitiesView.getMeasuredWidth();
-                            mediaEntity.textViewHeight = mediaEntity.viewHeight / paintView.entitiesView.getMeasuredHeight();
+                            scaleX = childAt.getScaleX();
+                            scaleY = childAt.getScaleY();
+                            x = childAt.getX();
+                            y = childAt.getY();
+                            mediaEntity.viewWidth = childAt.getWidth();
+                            mediaEntity.viewHeight = childAt.getHeight();
+                            mediaEntity.width = (childAt.getWidth() * scaleX) / this.entitiesView.getMeasuredWidth();
+                            mediaEntity.height = (childAt.getHeight() * scaleY) / this.entitiesView.getMeasuredHeight();
+                            mediaEntity.x = (((childAt.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                            mediaEntity.y = (((childAt.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                            mediaEntity.rotation = (float) (((double) (-childAt.getRotation())) * 0.017453292519943295d);
+                            mediaEntity.textViewX = ((childAt.getWidth() / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                            mediaEntity.textViewY = ((childAt.getHeight() / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                            mediaEntity.textViewWidth = mediaEntity.viewWidth / this.entitiesView.getMeasuredWidth();
+                            mediaEntity.textViewHeight = mediaEntity.viewHeight / this.entitiesView.getMeasuredHeight();
                             mediaEntity.scale = scaleX;
-                            entityView2 = entityView;
-                            if (entityView2 instanceof MessageEntityView) {
-                                MessageEntityView messageEntityView6 = (MessageEntityView) entityView2;
+                            if (entityView instanceof MessageEntityView) {
+                                MessageEntityView messageEntityView6 = (MessageEntityView) entityView;
                                 RectF rectF4 = AndroidUtilities.rectTmp;
                                 bubbleBounds = messageEntityView6.getBubbleBounds(rectF4);
-                                z9 = z7;
                                 rectF4.offset(messageEntityView6.container.getX(), messageEntityView6.container.getY());
                                 rectF4.offset(messageEntityView6.listView.getX(), messageEntityView6.listView.getY());
-                                mediaEntity.mediaArea.coordinates.x = ((((x + (view.getWidth() / 2.0f)) - ((view.getWidth() / 2.0f) * scaleX)) + (rectF4.centerX() * scaleX)) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                mediaEntity.mediaArea.coordinates.y = ((((y + (view.getHeight() / 2.0f)) - ((view.getHeight() / 2.0f) * scaleY)) + (rectF4.centerY() * scaleY)) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                                mediaEntity.mediaArea.coordinates.w = ((rectF4.width() * scaleX) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                mediaEntity.mediaArea.coordinates.h = ((rectF4.height() * scaleY) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
+                                mediaEntity.mediaArea.coordinates.x = ((((x + (childAt.getWidth() / 2.0f)) - ((childAt.getWidth() / 2.0f) * scaleX)) + (rectF4.centerX() * scaleX)) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                mediaEntity.mediaArea.coordinates.y = ((((y + (childAt.getHeight() / 2.0f)) - ((childAt.getHeight() / 2.0f) * scaleY)) + (rectF4.centerY() * scaleY)) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                                mediaEntity.mediaArea.coordinates.w = ((rectF4.width() * scaleX) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                mediaEntity.mediaArea.coordinates.h = ((rectF4.height() * scaleY) / this.entitiesView.getMeasuredHeight()) * 100.0f;
                                 mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
                             } else {
-                                z9 = z7;
-                                if (entityView2 instanceof StickerView) {
-                                    imageAspectRatio = ((StickerView) entityView2).centerImage.getImageAspectRatio();
-                                    f = mediaEntity.x + (mediaEntity.width / 2.0f);
-                                    f2 = mediaEntity.y + (mediaEntity.height / 2.0f);
-                                    measuredWidth = paintView.entitiesView.getMeasuredWidth() / paintView.entitiesView.getMeasuredHeight();
+                                if (entityView instanceof StickerView) {
+                                    imageAspectRatio = ((StickerView) entityView).centerImage.getImageAspectRatio();
+                                    f2 = mediaEntity.x + (mediaEntity.width / 2.0f);
+                                    f3 = mediaEntity.y + (mediaEntity.height / 2.0f);
+                                    measuredWidth = this.entitiesView.getMeasuredWidth() / this.entitiesView.getMeasuredHeight();
                                     if (imageAspectRatio > 1.0f) {
-                                        float f14 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
-                                        mediaEntity.height = f14;
+                                        float f15 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
+                                        mediaEntity.height = f15;
                                         mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
-                                        mediaEntity.y = f2 - (f14 / 2.0f);
+                                        mediaEntity.y = f3 - (f15 / 2.0f);
                                     } else if (imageAspectRatio < 1.0f) {
-                                        float f15 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
-                                        mediaEntity.width = f15;
+                                        float f16 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
+                                        mediaEntity.width = f16;
                                         mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
-                                        mediaEntity.x = f - (f15 / 2.0f);
+                                        mediaEntity.x = f2 - (f16 / 2.0f);
                                     }
                                 } else {
                                     mediaArea = mediaEntity.mediaArea;
@@ -3814,91 +3787,73 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                             mediaArea2 = mediaEntity.mediaArea;
                             if (mediaArea2 != null) {
                                 mediaAreaCoordinates.flags |= 1;
-                                mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) view.getWidth())) * 100.0d;
+                                mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) childAt.getWidth())) * 100.0d;
                             }
-                            z5 = z8;
-                            z6 = z9;
                         } else {
-                            paintView = paintView2;
-                            bitmap = bitmap;
                             i4 = childCount;
                             i5 = i3;
-                            view = childAt;
-                            z5 = true;
-                            z6 = false;
+                            childAt = childAt;
+                            f = 1.0f;
+                            z5 = false;
+                            z6 = true;
                             imageReceiver = null;
                         }
-                        if (z5 || (!(z2 || (z3 && mediaEntity.type == 6)) || bitmap == null)) {
-                            bitmap2 = bitmap;
-                        } else {
-                            bitmap2 = bitmap;
-                            Canvas canvas2 = new Canvas(bitmap2);
-                            float width3 = bitmap2.getWidth() / paintView.entitiesView.getMeasuredWidth();
+                        if (!z6 && ((z2 || (z3 && mediaEntity.type == 6)) && bitmap != null)) {
+                            Canvas canvas = new Canvas(bitmap);
+                            float width3 = bitmap.getWidth() / this.entitiesView.getMeasuredWidth();
                             int i11 = 0;
                             while (i11 < 2) {
-                                Canvas canvas3 = i11 == 0 ? canvas2 : null;
-                                if (canvas3 == null || (i11 == 0 && z6)) {
-                                    canvas = canvas2;
-                                    view2 = view;
+                                Canvas canvas2 = i11 == 0 ? canvas : null;
+                                if (canvas2 == null || (i11 == 0 && z5)) {
+                                    view = childAt;
                                 } else {
-                                    canvas3.save();
-                                    canvas3.scale(width3, width3);
-                                    canvas3.translate(mediaEntity.x * paintView.entitiesView.getMeasuredWidth(), mediaEntity.y * paintView.entitiesView.getMeasuredHeight());
-                                    canvas3.scale(view.getScaleX(), view.getScaleY());
-                                    canvas3.rotate(view.getRotation(), ((mediaEntity.width / 2.0f) / view.getScaleX()) * paintView.entitiesView.getMeasuredWidth(), ((mediaEntity.height / 2.0f) / view.getScaleY()) * paintView.entitiesView.getMeasuredHeight());
-                                    view2 = view;
-                                    if ((view2 instanceof TextPaintView) && view2.getHeight() > 0 && view2.getWidth() > 0) {
-                                        int width4 = (int) (view2.getWidth() * view2.getScaleX());
-                                        int height3 = (int) (view2.getHeight() * view2.getScaleY());
+                                    canvas2.save();
+                                    canvas2.scale(width3, width3);
+                                    canvas2.translate(mediaEntity.x * this.entitiesView.getMeasuredWidth(), mediaEntity.y * this.entitiesView.getMeasuredHeight());
+                                    canvas2.scale(childAt.getScaleX(), childAt.getScaleY());
+                                    canvas2.rotate(childAt.getRotation(), ((mediaEntity.width / 2.0f) / childAt.getScaleX()) * this.entitiesView.getMeasuredWidth(), ((mediaEntity.height / 2.0f) / childAt.getScaleY()) * this.entitiesView.getMeasuredHeight());
+                                    view = childAt;
+                                    if ((view instanceof TextPaintView) && view.getHeight() > 0 && view.getWidth() > 0) {
+                                        int width4 = (int) (view.getWidth() * view.getScaleX());
+                                        int height3 = (int) (view.getHeight() * view.getScaleY());
                                         Bitmap bitmapCreateBitmap2 = Bitmaps.createBitmap(width4, height3, Bitmap.Config.ARGB_8888);
-                                        Canvas canvas4 = new Canvas(bitmapCreateBitmap2);
-                                        canvas4.scale(view2.getScaleX(), view2.getScaleY());
-                                        view2.draw(canvas4);
-                                        canvas = canvas2;
-                                        canvas3.scale(1.0f / view2.getScaleX(), 1.0f / view2.getScaleY());
-                                        canvas3.drawBitmap(bitmapCreateBitmap2, (Rect) null, new Rect(0, 0, width4, height3), new Paint(3));
+                                        Canvas canvas3 = new Canvas(bitmapCreateBitmap2);
+                                        canvas3.scale(view.getScaleX(), view.getScaleY());
+                                        view.draw(canvas3);
+                                        canvas2.scale(f / view.getScaleX(), f / view.getScaleY());
+                                        canvas2.drawBitmap(bitmapCreateBitmap2, (Rect) null, new Rect(0, 0, width4, height3), new Paint(3));
                                         try {
-                                            canvas4.setBitmap(null);
+                                            canvas3.setBitmap(null);
                                         } catch (Exception e) {
                                             FileLog.e(e);
                                         }
                                         bitmapCreateBitmap2.recycle();
+                                    } else if (view instanceof MessageEntityView) {
+                                        MessageEntityView messageEntityView7 = (MessageEntityView) view;
+                                        messageEntityView7.prepareToDraw(true);
+                                        view.draw(canvas2);
+                                        messageEntityView7.prepareToDraw(false);
                                     } else {
-                                        canvas = canvas2;
-                                        if (view2 instanceof MessageEntityView) {
-                                            MessageEntityView messageEntityView7 = (MessageEntityView) view2;
-                                            messageEntityView7.prepareToDraw(true);
-                                            view2.draw(canvas3);
-                                            messageEntityView7.prepareToDraw(false);
-                                        } else {
-                                            view2.draw(canvas3);
-                                        }
+                                        view.draw(canvas2);
                                     }
-                                    canvas3.restore();
+                                    canvas2.restore();
                                 }
                                 i11++;
-                                canvas2 = canvas;
-                                view = view2;
+                                childAt = view;
                             }
                             if (imageReceiver != null) {
                                 imageReceiver.setVisible(true, false);
                             }
                         }
                         i3 = i5 + 1;
-                        bitmap = bitmap2;
-                        paintView2 = paintView;
                         childCount = i4;
                         i7 = 0;
                         b5 = 1;
                     } else {
-                        paintView = paintView2;
-                        bitmap2 = bitmap;
                         i4 = childCount;
                         i5 = i3;
                     }
                     i3 = i5 + 1;
-                    bitmap = bitmap2;
-                    paintView2 = paintView;
                     childCount = i4;
                     i7 = 0;
                     b5 = 1;
@@ -3907,15 +3862,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             return bitmap;
         }
         bitmap = bitmapCreateBitmap;
-        paintView2.lcm = BigInteger.ONE;
-        if (paintView2.entitiesView.entitiesCount() > 0) {
-            childCount = paintView2.entitiesView.getChildCount();
+        this.lcm = BigInteger.ONE;
+        if (this.entitiesView.entitiesCount() > 0) {
+            childCount = this.entitiesView.getChildCount();
             i3 = 0;
             while (i3 < childCount) {
-                childAt = paintView2.entitiesView.getChildAt(i3);
+                childAt = this.entitiesView.getChildAt(i3);
                 if (childAt instanceof EntityView) {
-                    paintView = paintView2;
-                    bitmap2 = bitmap;
                     i4 = childCount;
                     i5 = i3;
                 } else {
@@ -3923,6 +3876,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     entityView.getPosition();
                     mediaEntity = new VideoEditedInfo.MediaEntity();
                     if (arrayList != 0) {
+                        f = 1.0f;
                         duration = 5000;
                         if (entityView instanceof TextPaintView) {
                             mediaEntity.type = b5;
@@ -3937,18 +3891,19 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                         animatedEmojiSpan = animatedEmojiSpanArr[i6];
                                         documentFindDocument = animatedEmojiSpan.document;
                                         if (documentFindDocument == null) {
-                                            documentFindDocument = AnimatedEmojiDrawable.findDocument(paintView2.currentAccount, animatedEmojiSpan.getDocumentId());
+                                            documentFindDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
                                         }
                                         if (documentFindDocument != null) {
-                                            AnimatedEmojiDrawable.getDocumentFetcher(paintView2.currentAccount).putDocument(documentFindDocument);
+                                            AnimatedEmojiDrawable.getDocumentFetcher(this.currentAccount).putDocument(documentFindDocument);
                                         }
                                         emojiEntity3 = new VideoEditedInfo.EmojiEntity();
-                                        View view4 = childAt;
+                                        CharSequence charSequence3 = text;
+                                        AnimatedEmojiSpan[] animatedEmojiSpanArr3 = animatedEmojiSpanArr;
                                         emojiEntity3.document_id = animatedEmojiSpan.getDocumentId();
                                         emojiEntity3.document = documentFindDocument;
                                         emojiEntity3.offset = spanned.getSpanStart(animatedEmojiSpan);
                                         emojiEntity3.length = spanned.getSpanEnd(animatedEmojiSpan) - emojiEntity3.offset;
-                                        emojiEntity3.documentAbsolutePath = FileLoader.getInstance(paintView2.currentAccount).getPathToAttach(documentFindDocument, true).getAbsolutePath();
+                                        emojiEntity3.documentAbsolutePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(documentFindDocument, true).getAbsolutePath();
                                         int i12 = 0;
                                         while (true) {
                                             if (documentFindDocument == null) {
@@ -3957,10 +3912,10 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                                 }
                                             }
                                             spanned2 = spanned;
-                                            z11 = true;
+                                            z8 = true;
                                             spanned = spanned2;
                                         }
-                                        zIsAnimatedStickerDocument4 = MessageObject.isAnimatedStickerDocument(emojiEntity3.document, z11);
+                                        zIsAnimatedStickerDocument4 = MessageObject.isAnimatedStickerDocument(emojiEntity3.document, z8);
                                         if (!zIsAnimatedStickerDocument4) {
                                             byte b10 = emojiEntity3.subType;
                                             if (zIsAnimatedStickerDocument4) {
@@ -3968,7 +3923,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                             } else {
                                                 b4 = 4;
                                             }
-                                            emojiEntity3.subType = (byte) (b4 | b10);
+                                            emojiEntity3.subType = (byte) (b10 | b4);
                                         } else {
                                             byte b11 = emojiEntity3.subType;
                                             if (zIsAnimatedStickerDocument4) {
@@ -3976,7 +3931,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                             } else {
                                                 b4 = 4;
                                             }
-                                            emojiEntity3.subType = (byte) (b4 | b11);
+                                            emojiEntity3.subType = (byte) (b11 | b4);
                                         }
                                         if (MessageObject.isTextColorEmoji(emojiEntity3.document)) {
                                             emojiEntity3.subType = (byte) (emojiEntity3.subType | 8);
@@ -3984,20 +3939,25 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                         mediaEntity.entities.add(emojiEntity3);
                                         if (documentFindDocument != null) {
                                             BigInteger bigIntegerValueOf4 = BigInteger.valueOf(5000L);
-                                            paintView2.lcm = paintView2.lcm.multiply(bigIntegerValueOf4).divide(paintView2.lcm.gcd(bigIntegerValueOf4));
+                                            this.lcm = this.lcm.multiply(bigIntegerValueOf4).divide(this.lcm.gcd(bigIntegerValueOf4));
                                         }
                                         i6++;
+                                        text = charSequence3;
                                         childCount = childCount;
                                         i3 = i3;
-                                        childAt = view4;
+                                        animatedEmojiSpanArr = animatedEmojiSpanArr3;
                                         spanned = spanned2;
                                     }
                                 }
+                                i4 = childCount;
+                                i5 = i3;
+                                charSequence = text;
+                            } else {
+                                i4 = childCount;
+                                i5 = i3;
+                                charSequence = text;
                             }
-                            i4 = childCount;
-                            i5 = i3;
-                            view = childAt;
-                            mediaEntity.text = text.toString();
+                            mediaEntity.text = charSequence.toString();
                             mediaEntity.subType = (byte) textPaintView2.getType();
                             mediaEntity.color = textPaintView2.getSwatch().color;
                             mediaEntity.fontSize = textPaintView2.getTextSize();
@@ -4006,7 +3966,6 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                         } else {
                             i4 = childCount;
                             i5 = i3;
-                            view = childAt;
                             if (entityView instanceof StickerView) {
                                 mediaEntity.type = (byte) 0;
                                 stickerView = (StickerView) entityView;
@@ -4030,7 +3989,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                     }
                                     if (duration != 0) {
                                         BigInteger bigIntegerValueOf5 = BigInteger.valueOf(duration);
-                                        paintView2.lcm = paintView2.lcm.multiply(bigIntegerValueOf5).divide(paintView2.lcm.gcd(bigIntegerValueOf5));
+                                        this.lcm = this.lcm.multiply(bigIntegerValueOf5).divide(this.lcm.gcd(bigIntegerValueOf5));
                                     }
                                 } else {
                                     zIsAnimatedStickerDocument3 = MessageObject.isAnimatedStickerDocument(sticker, true);
@@ -4045,7 +4004,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                     }
                                     if (duration != 0) {
                                         BigInteger bigIntegerValueOf6 = BigInteger.valueOf(duration);
-                                        paintView2.lcm = paintView2.lcm.multiply(bigIntegerValueOf6).divide(paintView2.lcm.gcd(bigIntegerValueOf6));
+                                        this.lcm = this.lcm.multiply(bigIntegerValueOf6).divide(this.lcm.gcd(bigIntegerValueOf6));
                                     }
                                 }
                                 if (MessageObject.isTextColorEmoji(sticker)) {
@@ -4061,7 +4020,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                 Size baseSize5 = photoView.getBaseSize();
                                 mediaEntity.width = baseSize5.width;
                                 mediaEntity.height = baseSize5.height;
-                                mediaEntity.text = photoView.getPath(paintView2.currentAccount);
+                                mediaEntity.text = photoView.getPath(this.currentAccount);
                                 mediaEntity.crop = photoView.crop;
                                 if (photoView.isMirrored()) {
                                     mediaEntity.subType = (byte) (mediaEntity.subType | 2);
@@ -4093,7 +4052,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                     emojiEntity2 = new VideoEditedInfo.EmojiEntity();
                                     emojiEntity2.document_id = codeEmojiDocument2.id;
                                     emojiEntity2.document = codeEmojiDocument2;
-                                    emojiEntity2.documentAbsolutePath = FileLoader.getInstance(paintView2.currentAccount).getPathToAttach(codeEmojiDocument2, true).getAbsolutePath();
+                                    emojiEntity2.documentAbsolutePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(codeEmojiDocument2, true).getAbsolutePath();
                                     zIsAnimatedStickerDocument2 = MessageObject.isAnimatedStickerDocument(emojiEntity2.document, true);
                                     if (!zIsAnimatedStickerDocument2) {
                                         byte b14 = emojiEntity2.subType;
@@ -4141,7 +4100,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                     emojiEntity = new VideoEditedInfo.EmojiEntity();
                                     emojiEntity.document_id = codeEmojiDocument.id;
                                     emojiEntity.document = codeEmojiDocument;
-                                    emojiEntity.documentAbsolutePath = FileLoader.getInstance(paintView2.currentAccount).getPathToAttach(codeEmojiDocument, true).getAbsolutePath();
+                                    emojiEntity.documentAbsolutePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(codeEmojiDocument, true).getAbsolutePath();
                                     zIsAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(emojiEntity.document, true);
                                     if (!zIsAnimatedStickerDocument) {
                                         byte b16 = emojiEntity.subType;
@@ -4162,59 +4121,54 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                     }
                                     mediaEntity.entities.add(emojiEntity);
                                 }
-                                entityView = entityView;
-                                bitmap = bitmap;
-                                z7 = false;
-                                z8 = false;
+                                childAt = childAt;
+                                z5 = false;
+                                z6 = false;
                                 imageReceiver = null;
-                                paintView = paintView2;
                                 arrayList.add(mediaEntity);
-                                scaleX = view.getScaleX();
-                                scaleY = view.getScaleY();
-                                x = view.getX();
-                                y = view.getY();
-                                mediaEntity.viewWidth = view.getWidth();
-                                mediaEntity.viewHeight = view.getHeight();
-                                mediaEntity.width = (view.getWidth() * scaleX) / paintView.entitiesView.getMeasuredWidth();
-                                mediaEntity.height = (view.getHeight() * scaleY) / paintView.entitiesView.getMeasuredHeight();
-                                mediaEntity.x = (((view.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                mediaEntity.y = (((view.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                mediaEntity.rotation = (float) (((double) (-view.getRotation())) * 0.017453292519943295d);
-                                mediaEntity.textViewX = ((view.getWidth() / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                mediaEntity.textViewY = ((view.getHeight() / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                mediaEntity.textViewWidth = mediaEntity.viewWidth / paintView.entitiesView.getMeasuredWidth();
-                                mediaEntity.textViewHeight = mediaEntity.viewHeight / paintView.entitiesView.getMeasuredHeight();
+                                scaleX = childAt.getScaleX();
+                                scaleY = childAt.getScaleY();
+                                x = childAt.getX();
+                                y = childAt.getY();
+                                mediaEntity.viewWidth = childAt.getWidth();
+                                mediaEntity.viewHeight = childAt.getHeight();
+                                mediaEntity.width = (childAt.getWidth() * scaleX) / this.entitiesView.getMeasuredWidth();
+                                mediaEntity.height = (childAt.getHeight() * scaleY) / this.entitiesView.getMeasuredHeight();
+                                mediaEntity.x = (((childAt.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                mediaEntity.y = (((childAt.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                mediaEntity.rotation = (float) (((double) (-childAt.getRotation())) * 0.017453292519943295d);
+                                mediaEntity.textViewX = ((childAt.getWidth() / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                mediaEntity.textViewY = ((childAt.getHeight() / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                mediaEntity.textViewWidth = mediaEntity.viewWidth / this.entitiesView.getMeasuredWidth();
+                                mediaEntity.textViewHeight = mediaEntity.viewHeight / this.entitiesView.getMeasuredHeight();
                                 mediaEntity.scale = scaleX;
-                                entityView2 = entityView;
-                                if (entityView2 instanceof MessageEntityView) {
-                                    MessageEntityView messageEntityView8 = (MessageEntityView) entityView2;
+                                if (entityView instanceof MessageEntityView) {
+                                    MessageEntityView messageEntityView8 = (MessageEntityView) entityView;
                                     RectF rectF5 = AndroidUtilities.rectTmp;
                                     bubbleBounds = messageEntityView8.getBubbleBounds(rectF5);
-                                    z9 = z7;
                                     rectF5.offset(messageEntityView8.container.getX(), messageEntityView8.container.getY());
                                     rectF5.offset(messageEntityView8.listView.getX(), messageEntityView8.listView.getY());
-                                    mediaEntity.mediaArea.coordinates.x = ((((x + (view.getWidth() / 2.0f)) - ((view.getWidth() / 2.0f) * scaleX)) + (rectF5.centerX() * scaleX)) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                    mediaEntity.mediaArea.coordinates.y = ((((y + (view.getHeight() / 2.0f)) - ((view.getHeight() / 2.0f) * scaleY)) + (rectF5.centerY() * scaleY)) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                                    mediaEntity.mediaArea.coordinates.w = ((rectF5.width() * scaleX) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                    mediaEntity.mediaArea.coordinates.h = ((rectF5.height() * scaleY) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
+                                    mediaEntity.mediaArea.coordinates.x = ((((x + (childAt.getWidth() / 2.0f)) - ((childAt.getWidth() / 2.0f) * scaleX)) + (rectF5.centerX() * scaleX)) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                    mediaEntity.mediaArea.coordinates.y = ((((y + (childAt.getHeight() / 2.0f)) - ((childAt.getHeight() / 2.0f) * scaleY)) + (rectF5.centerY() * scaleY)) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                                    mediaEntity.mediaArea.coordinates.w = ((rectF5.width() * scaleX) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                    mediaEntity.mediaArea.coordinates.h = ((rectF5.height() * scaleY) / this.entitiesView.getMeasuredHeight()) * 100.0f;
                                     mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
                                 } else {
-                                    z9 = z7;
-                                    if (entityView2 instanceof StickerView) {
-                                        imageAspectRatio = ((StickerView) entityView2).centerImage.getImageAspectRatio();
-                                        f = mediaEntity.x + (mediaEntity.width / 2.0f);
-                                        f2 = mediaEntity.y + (mediaEntity.height / 2.0f);
-                                        measuredWidth = paintView.entitiesView.getMeasuredWidth() / paintView.entitiesView.getMeasuredHeight();
+                                    if (entityView instanceof StickerView) {
+                                        imageAspectRatio = ((StickerView) entityView).centerImage.getImageAspectRatio();
+                                        f2 = mediaEntity.x + (mediaEntity.width / 2.0f);
+                                        f3 = mediaEntity.y + (mediaEntity.height / 2.0f);
+                                        measuredWidth = this.entitiesView.getMeasuredWidth() / this.entitiesView.getMeasuredHeight();
                                         if (imageAspectRatio > 1.0f) {
-                                            float f16 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
-                                            mediaEntity.height = f16;
+                                            float f17 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
+                                            mediaEntity.height = f17;
                                             mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
-                                            mediaEntity.y = f2 - (f16 / 2.0f);
+                                            mediaEntity.y = f3 - (f17 / 2.0f);
                                         } else if (imageAspectRatio < 1.0f) {
-                                            float f17 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
-                                            mediaEntity.width = f17;
+                                            float f18 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
+                                            mediaEntity.width = f18;
                                             mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
-                                            mediaEntity.x = f - (f17 / 2.0f);
+                                            mediaEntity.x = f2 - (f18 / 2.0f);
                                         }
                                     } else {
                                         mediaArea = mediaEntity.mediaArea;
@@ -4226,219 +4180,211 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                 mediaArea2 = mediaEntity.mediaArea;
                                 if (mediaArea2 != null) {
                                     mediaAreaCoordinates.flags |= 1;
-                                    mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) view.getWidth())) * 100.0d;
+                                    mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) childAt.getWidth())) * 100.0d;
                                 }
-                                z5 = z8;
-                                z6 = z9;
+                            } else if (entityView instanceof LinkView) {
+                                linkView = (LinkView) entityView;
+                                mediaEntity.type = (byte) 7;
+                                if (linkView.marker.withPreview()) {
+                                    mediaEntity.subType = (byte) linkView.marker.getPreviewType();
+                                } else {
+                                    mediaEntity.subType = (byte) linkView.getType();
+                                }
+                                mediaEntity.width = linkView.marker.getWidth();
+                                mediaEntity.height = linkView.marker.getHeight();
+                                if (linkView.hasColor()) {
+                                    color = linkView.getColor();
+                                } else {
+                                    color = 0;
+                                }
+                                mediaEntity.color = color;
+                                linkPreview = linkView.marker;
+                                mediaEntity.density = linkPreview.density;
+                                mediaEntity.linkSettings = linkView.link;
+                                if (linkPreview.hasPhoto) {
+                                    linkPreview.pushPhotoToCache();
+                                    LinkPreview.WebPagePreview webPagePreview3 = mediaEntity.linkSettings;
+                                    webPagePreview3.flags |= 4;
+                                    webPagePreview3.photoSize = linkView.marker.getPhotoSide();
+                                }
+                                tL_mediaAreaUrl = new TL_stories.TL_mediaAreaUrl();
+                                mediaEntity.mediaArea = tL_mediaAreaUrl;
+                                webPagePreview = linkView.link;
+                                if (webPagePreview != null) {
+                                    webPage = webPagePreview.webpage;
+                                    if (webPage != null) {
+                                        str = linkView.link.url;
+                                    } else {
+                                        str = linkView.link.url;
+                                    }
+                                    tL_mediaAreaUrl.url = str;
+                                    mediaEntity.mediaArea.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                }
+                                i3 = i5 + 1;
+                                childCount = i4;
+                                i7 = 0;
+                                b5 = 1;
                             } else {
-                                if (entityView instanceof LinkView) {
-                                    linkView = (LinkView) entityView;
-                                    mediaEntity.type = (byte) 7;
-                                    if (linkView.marker.withPreview()) {
-                                        mediaEntity.subType = (byte) linkView.marker.getPreviewType();
-                                    } else {
-                                        mediaEntity.subType = (byte) linkView.getType();
+                                if (entityView instanceof ReactionWidgetEntityView) {
+                                    ReactionWidgetEntityView reactionWidgetEntityView3 = (ReactionWidgetEntityView) entityView;
+                                    mediaEntity.type = (byte) 4;
+                                    TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction2 = new TL_stories.TL_mediaAreaSuggestedReaction();
+                                    mediaEntity.mediaArea = tL_mediaAreaSuggestedReaction2;
+                                    tL_mediaAreaSuggestedReaction2.reaction = ReactionsUtils.toTLReaction(reactionWidgetEntityView3.getCurrentReaction());
+                                    mediaEntity.mediaArea.dark = reactionWidgetEntityView3.isDark();
+                                    mediaEntity.mediaArea.flipped = reactionWidgetEntityView3.isMirrored();
+                                    mediaEntity.mediaArea.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                } else if (entityView instanceof RoundView) {
+                                    roundView = (RoundView) entityView;
+                                    Size baseSize6 = roundView.getBaseSize();
+                                    mediaEntity.width = baseSize6.width;
+                                    mediaEntity.height = baseSize6.height;
+                                    mediaEntity.type = (byte) 5;
+                                    if (storyEntry != 0) {
+                                        mediaEntity.text = storyEntry.round.getAbsolutePath();
+                                        mediaEntity.roundOffset = storyEntry.roundOffset;
+                                        long j2 = storyEntry.roundDuration;
+                                        mediaEntity.roundDuration = j2;
+                                        float f19 = j2;
+                                        mediaEntity.roundLeft = (long) (storyEntry.roundLeft * f19);
+                                        mediaEntity.roundRight = (long) (storyEntry.roundRight * f19);
                                     }
-                                    mediaEntity.width = linkView.marker.getWidth();
-                                    mediaEntity.height = linkView.marker.getHeight();
-                                    if (linkView.hasColor()) {
-                                        color = linkView.getColor();
-                                    } else {
-                                        color = 0;
-                                    }
-                                    mediaEntity.color = color;
-                                    linkPreview = linkView.marker;
-                                    mediaEntity.density = linkPreview.density;
-                                    mediaEntity.linkSettings = linkView.link;
-                                    if (linkPreview.hasPhoto) {
-                                        linkPreview.pushPhotoToCache();
-                                        LinkPreview.WebPagePreview webPagePreview3 = mediaEntity.linkSettings;
-                                        webPagePreview3.flags |= 4;
-                                        webPagePreview3.photoSize = linkView.marker.getPhotoSide();
-                                    }
-                                    tL_mediaAreaUrl = new TL_stories.TL_mediaAreaUrl();
-                                    mediaEntity.mediaArea = tL_mediaAreaUrl;
-                                    webPagePreview = linkView.link;
-                                    if (webPagePreview == null) {
-                                        webPage = webPagePreview.webpage;
-                                        if (webPage != null) {
-                                            str = linkView.link.url;
-                                        } else {
-                                            str = linkView.link.url;
-                                        }
-                                        tL_mediaAreaUrl.url = str;
-                                        mediaEntity.mediaArea.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                    mediaEntity.subType = (byte) 4;
+                                    if (roundView.isMirrored()) {
+                                        mediaEntity.subType = (byte) (mediaEntity.subType | 2);
                                     }
                                 } else {
-                                    if (entityView instanceof ReactionWidgetEntityView) {
-                                        ReactionWidgetEntityView reactionWidgetEntityView3 = (ReactionWidgetEntityView) entityView;
-                                        mediaEntity.type = (byte) 4;
-                                        TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction2 = new TL_stories.TL_mediaAreaSuggestedReaction();
-                                        mediaEntity.mediaArea = tL_mediaAreaSuggestedReaction2;
-                                        tL_mediaAreaSuggestedReaction2.reaction = ReactionsUtils.toTLReaction(reactionWidgetEntityView3.getCurrentReaction());
-                                        mediaEntity.mediaArea.dark = reactionWidgetEntityView3.isDark();
-                                        mediaEntity.mediaArea.flipped = reactionWidgetEntityView3.isMirrored();
-                                        mediaEntity.mediaArea.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                    } else {
-                                        if (entityView instanceof RoundView) {
-                                            roundView = (RoundView) entityView;
-                                            Size baseSize6 = roundView.getBaseSize();
-                                            mediaEntity.width = baseSize6.width;
-                                            mediaEntity.height = baseSize6.height;
-                                            mediaEntity.type = (byte) 5;
-                                            if (storyEntry != 0) {
-                                                mediaEntity.text = storyEntry.round.getAbsolutePath();
-                                                mediaEntity.roundOffset = storyEntry.roundOffset;
-                                                long j2 = storyEntry.roundDuration;
-                                                mediaEntity.roundDuration = j2;
-                                                float f18 = j2;
-                                                mediaEntity.roundLeft = (long) (storyEntry.roundLeft * f18);
-                                                mediaEntity.roundRight = (long) (storyEntry.roundRight * f18);
-                                            }
-                                            mediaEntity.subType = (byte) 4;
-                                            if (roundView.isMirrored()) {
-                                                mediaEntity.subType = (byte) (mediaEntity.subType | 2);
-                                            }
-                                        } else if (entityView instanceof MessageEntityView) {
-                                            messageEntityView = (MessageEntityView) entityView;
-                                            mediaEntity.type = (byte) 6;
-                                            int width5 = messageEntityView.getWidth();
-                                            mediaEntity.viewWidth = width5;
-                                            mediaEntity.width = width5;
-                                            int height4 = messageEntityView.getHeight();
-                                            mediaEntity.viewHeight = height4;
-                                            mediaEntity.height = height4;
-                                            if (messageEntityView.messageObjects.size() > 0) {
-                                                messageObject = (MessageObject) messageEntityView.messageObjects.get(0);
-                                            } else {
-                                                messageObject = null;
-                                            }
+                                    if (entityView instanceof MessageEntityView) {
+                                        messageEntityView = (MessageEntityView) entityView;
+                                        mediaEntity.type = (byte) 6;
+                                        int width5 = messageEntityView.getWidth();
+                                        mediaEntity.viewWidth = width5;
+                                        mediaEntity.width = width5;
+                                        int height4 = messageEntityView.getHeight();
+                                        mediaEntity.viewHeight = height4;
+                                        mediaEntity.height = height4;
+                                        if (messageEntityView.messageObjects.size() > 0) {
+                                            messageObject = (MessageObject) messageEntityView.messageObjects.get(0);
+                                        } else {
+                                            messageObject = null;
+                                        }
+                                        if (messageObject != null) {
+                                            messageEntityView2 = messageEntityView;
+                                            childAt = childAt;
                                             if (messageObject != null) {
-                                                entityView = entityView;
-                                                paintView = paintView2;
-                                                messageEntityView = messageEntityView;
-                                                bitmap = bitmap;
-                                                if (messageObject != null) {
-                                                    TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost5 = new TL_stories.TL_inputMediaAreaChannelPost();
-                                                    mediaEntity.mediaArea = tL_inputMediaAreaChannelPost5;
-                                                    tL_inputMediaAreaChannelPost5.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                                    ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).channel = MessagesController.getInstance(paintView.currentAccount).getInputChannel(-StoryEntry.getRepostDialogId(messageObject));
-                                                    ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).msg_id = StoryEntry.getRepostMessageId(messageObject);
-                                                } else {
-                                                    TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost6 = new TL_stories.TL_inputMediaAreaChannelPost();
-                                                    mediaEntity.mediaArea = tL_inputMediaAreaChannelPost6;
-                                                    tL_inputMediaAreaChannelPost6.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                                }
-                                                imageReceiver = null;
+                                                TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost5 = new TL_stories.TL_inputMediaAreaChannelPost();
+                                                mediaEntity.mediaArea = tL_inputMediaAreaChannelPost5;
+                                                tL_inputMediaAreaChannelPost5.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                                ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-StoryEntry.getRepostDialogId(messageObject));
+                                                ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).msg_id = StoryEntry.getRepostMessageId(messageObject);
                                             } else {
-                                                entityView = entityView;
-                                                paintView = paintView2;
-                                                messageEntityView = messageEntityView;
-                                                bitmap = bitmap;
-                                                if (messageObject != null) {
-                                                    TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost7 = new TL_stories.TL_inputMediaAreaChannelPost();
-                                                    mediaEntity.mediaArea = tL_inputMediaAreaChannelPost7;
-                                                    tL_inputMediaAreaChannelPost7.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                                    ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).channel = MessagesController.getInstance(paintView.currentAccount).getInputChannel(-StoryEntry.getRepostDialogId(messageObject));
-                                                    ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).msg_id = StoryEntry.getRepostMessageId(messageObject);
-                                                } else {
-                                                    TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost8 = new TL_stories.TL_inputMediaAreaChannelPost();
-                                                    mediaEntity.mediaArea = tL_inputMediaAreaChannelPost8;
-                                                    tL_inputMediaAreaChannelPost8.coordinates = new TL_stories.TL_mediaAreaCoordinates();
-                                                }
-                                                imageReceiver = null;
+                                                TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost6 = new TL_stories.TL_inputMediaAreaChannelPost();
+                                                mediaEntity.mediaArea = tL_inputMediaAreaChannelPost6;
+                                                tL_inputMediaAreaChannelPost6.coordinates = new TL_stories.TL_mediaAreaCoordinates();
                                             }
-                                            if (z3) {
-                                                z7 = true;
+                                            imageReceiver = null;
+                                        } else {
+                                            messageEntityView2 = messageEntityView;
+                                            childAt = childAt;
+                                            if (messageObject != null) {
+                                                TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost7 = new TL_stories.TL_inputMediaAreaChannelPost();
+                                                mediaEntity.mediaArea = tL_inputMediaAreaChannelPost7;
+                                                tL_inputMediaAreaChannelPost7.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                                ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-StoryEntry.getRepostDialogId(messageObject));
+                                                ((TL_stories.TL_inputMediaAreaChannelPost) mediaEntity.mediaArea).msg_id = StoryEntry.getRepostMessageId(messageObject);
                                             } else {
-                                                if (storyEntry != null) {
-                                                    storyEntry.matrix.reset();
-                                                    messageEntityView2 = messageEntityView;
-                                                    if (messageEntityView2.listView.getChildCount() == 1) {
-                                                        childAt2 = messageEntityView2.listView.getChildAt(0);
-                                                        if (childAt2 instanceof ChatMessageCell) {
-                                                        }
-                                                        if (photoImage != null) {
-                                                            float fMax3 = Math.max(photoImage.getImageWidth() / Math.max(1, storyEntry.width), photoImage.getImageHeight() / Math.max(1, storyEntry.height));
-                                                            storyEntry.matrix.postScale(fMax3, fMax3);
-                                                            storyEntry.matrix.postTranslate(photoImage.getCenterX() - ((storyEntry.width * fMax3) / 2.0f), photoImage.getCenterY() - ((storyEntry.height * fMax3) / 2.0f));
-                                                            storyEntry.matrix.postTranslate(messageEntityView2.container.getX(), messageEntityView2.container.getY());
-                                                            storyEntry.matrix.postTranslate(messageEntityView2.listView.getX(), messageEntityView2.listView.getY());
-                                                            storyEntry.matrix.postTranslate(childAt2.getX(), childAt2.getY());
-                                                            storyEntry.matrix.postScale(messageEntityView2.getScaleX(), messageEntityView2.getScaleY(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
-                                                            storyEntry.matrix.postRotate(messageEntityView2.getRotation(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
-                                                            storyEntry.matrix.postTranslate(messageEntityView2.getX(), messageEntityView2.getY());
-                                                            storyEntry.matrix.postScale(1.0f / paintView.entitiesView.getWidth(), 1.0f / paintView.entitiesView.getHeight());
-                                                            storyEntry.matrix.postScale(storyEntry.resultWidth, storyEntry.resultHeight);
-                                                        }
-                                                    } else {
-                                                        childAt2 = null;
+                                                TL_stories.TL_inputMediaAreaChannelPost tL_inputMediaAreaChannelPost8 = new TL_stories.TL_inputMediaAreaChannelPost();
+                                                mediaEntity.mediaArea = tL_inputMediaAreaChannelPost8;
+                                                tL_inputMediaAreaChannelPost8.coordinates = new TL_stories.TL_mediaAreaCoordinates();
+                                            }
+                                            imageReceiver = null;
+                                        }
+                                        if (z3) {
+                                            z5 = true;
+                                        } else {
+                                            if (storyEntry != null) {
+                                                storyEntry.matrix.reset();
+                                                if (messageEntityView2.listView.getChildCount() == 1) {
+                                                    childAt2 = messageEntityView2.listView.getChildAt(0);
+                                                    if (childAt2 instanceof ChatMessageCell) {
                                                     }
                                                     if (photoImage != null) {
-                                                        float fMax4 = Math.max(photoImage.getImageWidth() / Math.max(1, storyEntry.width), photoImage.getImageHeight() / Math.max(1, storyEntry.height));
-                                                        storyEntry.matrix.postScale(fMax4, fMax4);
-                                                        storyEntry.matrix.postTranslate(photoImage.getCenterX() - ((storyEntry.width * fMax4) / 2.0f), photoImage.getCenterY() - ((storyEntry.height * fMax4) / 2.0f));
+                                                        float fMax3 = Math.max(photoImage.getImageWidth() / Math.max(1, storyEntry.width), photoImage.getImageHeight() / Math.max(1, storyEntry.height));
+                                                        storyEntry.matrix.postScale(fMax3, fMax3);
+                                                        storyEntry.matrix.postTranslate(photoImage.getCenterX() - ((storyEntry.width * fMax3) / 2.0f), photoImage.getCenterY() - ((storyEntry.height * fMax3) / 2.0f));
                                                         storyEntry.matrix.postTranslate(messageEntityView2.container.getX(), messageEntityView2.container.getY());
                                                         storyEntry.matrix.postTranslate(messageEntityView2.listView.getX(), messageEntityView2.listView.getY());
                                                         storyEntry.matrix.postTranslate(childAt2.getX(), childAt2.getY());
                                                         storyEntry.matrix.postScale(messageEntityView2.getScaleX(), messageEntityView2.getScaleY(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
                                                         storyEntry.matrix.postRotate(messageEntityView2.getRotation(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
                                                         storyEntry.matrix.postTranslate(messageEntityView2.getX(), messageEntityView2.getY());
-                                                        storyEntry.matrix.postScale(1.0f / paintView.entitiesView.getWidth(), 1.0f / paintView.entitiesView.getHeight());
+                                                        storyEntry.matrix.postScale(1.0f / this.entitiesView.getWidth(), 1.0f / this.entitiesView.getHeight());
                                                         storyEntry.matrix.postScale(storyEntry.resultWidth, storyEntry.resultHeight);
                                                     }
+                                                } else {
+                                                    childAt2 = null;
                                                 }
-                                                z7 = false;
+                                                if (photoImage != null) {
+                                                    float fMax4 = Math.max(photoImage.getImageWidth() / Math.max(1, storyEntry.width), photoImage.getImageHeight() / Math.max(1, storyEntry.height));
+                                                    storyEntry.matrix.postScale(fMax4, fMax4);
+                                                    storyEntry.matrix.postTranslate(photoImage.getCenterX() - ((storyEntry.width * fMax4) / 2.0f), photoImage.getCenterY() - ((storyEntry.height * fMax4) / 2.0f));
+                                                    storyEntry.matrix.postTranslate(messageEntityView2.container.getX(), messageEntityView2.container.getY());
+                                                    storyEntry.matrix.postTranslate(messageEntityView2.listView.getX(), messageEntityView2.listView.getY());
+                                                    storyEntry.matrix.postTranslate(childAt2.getX(), childAt2.getY());
+                                                    storyEntry.matrix.postScale(messageEntityView2.getScaleX(), messageEntityView2.getScaleY(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
+                                                    storyEntry.matrix.postRotate(messageEntityView2.getRotation(), messageEntityView2.getPivotX(), messageEntityView2.getPivotY());
+                                                    storyEntry.matrix.postTranslate(messageEntityView2.getX(), messageEntityView2.getY());
+                                                    storyEntry.matrix.postScale(1.0f / this.entitiesView.getWidth(), 1.0f / this.entitiesView.getHeight());
+                                                    storyEntry.matrix.postScale(storyEntry.resultWidth, storyEntry.resultHeight);
+                                                }
                                             }
-                                            z8 = true;
+                                            z5 = false;
                                         }
+                                        z6 = true;
                                         arrayList.add(mediaEntity);
-                                        scaleX = view.getScaleX();
-                                        scaleY = view.getScaleY();
-                                        x = view.getX();
-                                        y = view.getY();
-                                        mediaEntity.viewWidth = view.getWidth();
-                                        mediaEntity.viewHeight = view.getHeight();
-                                        mediaEntity.width = (view.getWidth() * scaleX) / paintView.entitiesView.getMeasuredWidth();
-                                        mediaEntity.height = (view.getHeight() * scaleY) / paintView.entitiesView.getMeasuredHeight();
-                                        mediaEntity.x = (((view.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                        mediaEntity.y = (((view.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                        mediaEntity.rotation = (float) (((double) (-view.getRotation())) * 0.017453292519943295d);
-                                        mediaEntity.textViewX = ((view.getWidth() / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                        mediaEntity.textViewY = ((view.getHeight() / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                        mediaEntity.textViewWidth = mediaEntity.viewWidth / paintView.entitiesView.getMeasuredWidth();
-                                        mediaEntity.textViewHeight = mediaEntity.viewHeight / paintView.entitiesView.getMeasuredHeight();
+                                        scaleX = childAt.getScaleX();
+                                        scaleY = childAt.getScaleY();
+                                        x = childAt.getX();
+                                        y = childAt.getY();
+                                        mediaEntity.viewWidth = childAt.getWidth();
+                                        mediaEntity.viewHeight = childAt.getHeight();
+                                        mediaEntity.width = (childAt.getWidth() * scaleX) / this.entitiesView.getMeasuredWidth();
+                                        mediaEntity.height = (childAt.getHeight() * scaleY) / this.entitiesView.getMeasuredHeight();
+                                        mediaEntity.x = (((childAt.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                        mediaEntity.y = (((childAt.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                        mediaEntity.rotation = (float) (((double) (-childAt.getRotation())) * 0.017453292519943295d);
+                                        mediaEntity.textViewX = ((childAt.getWidth() / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                        mediaEntity.textViewY = ((childAt.getHeight() / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                        mediaEntity.textViewWidth = mediaEntity.viewWidth / this.entitiesView.getMeasuredWidth();
+                                        mediaEntity.textViewHeight = mediaEntity.viewHeight / this.entitiesView.getMeasuredHeight();
                                         mediaEntity.scale = scaleX;
-                                        entityView2 = entityView;
-                                        if (entityView2 instanceof MessageEntityView) {
-                                            MessageEntityView messageEntityView9 = (MessageEntityView) entityView2;
+                                        if (entityView instanceof MessageEntityView) {
+                                            MessageEntityView messageEntityView9 = (MessageEntityView) entityView;
                                             RectF rectF6 = AndroidUtilities.rectTmp;
                                             bubbleBounds = messageEntityView9.getBubbleBounds(rectF6);
-                                            z9 = z7;
                                             rectF6.offset(messageEntityView9.container.getX(), messageEntityView9.container.getY());
                                             rectF6.offset(messageEntityView9.listView.getX(), messageEntityView9.listView.getY());
-                                            mediaEntity.mediaArea.coordinates.x = ((((x + (view.getWidth() / 2.0f)) - ((view.getWidth() / 2.0f) * scaleX)) + (rectF6.centerX() * scaleX)) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                            mediaEntity.mediaArea.coordinates.y = ((((y + (view.getHeight() / 2.0f)) - ((view.getHeight() / 2.0f) * scaleY)) + (rectF6.centerY() * scaleY)) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                                            mediaEntity.mediaArea.coordinates.w = ((rectF6.width() * scaleX) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                            mediaEntity.mediaArea.coordinates.h = ((rectF6.height() * scaleY) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
+                                            mediaEntity.mediaArea.coordinates.x = ((((x + (childAt.getWidth() / 2.0f)) - ((childAt.getWidth() / 2.0f) * scaleX)) + (rectF6.centerX() * scaleX)) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                            mediaEntity.mediaArea.coordinates.y = ((((y + (childAt.getHeight() / 2.0f)) - ((childAt.getHeight() / 2.0f) * scaleY)) + (rectF6.centerY() * scaleY)) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                                            mediaEntity.mediaArea.coordinates.w = ((rectF6.width() * scaleX) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                            mediaEntity.mediaArea.coordinates.h = ((rectF6.height() * scaleY) / this.entitiesView.getMeasuredHeight()) * 100.0f;
                                             mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
                                         } else {
-                                            z9 = z7;
-                                            if (entityView2 instanceof StickerView) {
-                                                imageAspectRatio = ((StickerView) entityView2).centerImage.getImageAspectRatio();
-                                                f = mediaEntity.x + (mediaEntity.width / 2.0f);
-                                                f2 = mediaEntity.y + (mediaEntity.height / 2.0f);
-                                                measuredWidth = paintView.entitiesView.getMeasuredWidth() / paintView.entitiesView.getMeasuredHeight();
+                                            if (entityView instanceof StickerView) {
+                                                imageAspectRatio = ((StickerView) entityView).centerImage.getImageAspectRatio();
+                                                f2 = mediaEntity.x + (mediaEntity.width / 2.0f);
+                                                f3 = mediaEntity.y + (mediaEntity.height / 2.0f);
+                                                measuredWidth = this.entitiesView.getMeasuredWidth() / this.entitiesView.getMeasuredHeight();
                                                 if (imageAspectRatio > 1.0f) {
-                                                    float f19 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
-                                                    mediaEntity.height = f19;
+                                                    float f110 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
+                                                    mediaEntity.height = f110;
                                                     mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
-                                                    mediaEntity.y = f2 - (f19 / 2.0f);
+                                                    mediaEntity.y = f3 - (f110 / 2.0f);
                                                 } else if (imageAspectRatio < 1.0f) {
-                                                    float f110 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
-                                                    mediaEntity.width = f110;
+                                                    float f111 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
+                                                    mediaEntity.width = f111;
                                                     mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
-                                                    mediaEntity.x = f - (f110 / 2.0f);
+                                                    mediaEntity.x = f2 - (f111 / 2.0f);
                                                 }
                                             } else {
                                                 mediaArea = mediaEntity.mediaArea;
@@ -4450,133 +4396,123 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                                         mediaArea2 = mediaEntity.mediaArea;
                                         if (mediaArea2 != null) {
                                             mediaAreaCoordinates.flags |= 1;
-                                            mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) view.getWidth())) * 100.0d;
+                                            mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) childAt.getWidth())) * 100.0d;
                                         }
-                                        z5 = z8;
-                                        z6 = z9;
                                     }
-                                    z7 = true;
-                                    z8 = true;
-                                    imageReceiver = null;
-                                    paintView = paintView2;
-                                    arrayList.add(mediaEntity);
-                                    scaleX = view.getScaleX();
-                                    scaleY = view.getScaleY();
-                                    x = view.getX();
-                                    y = view.getY();
-                                    mediaEntity.viewWidth = view.getWidth();
-                                    mediaEntity.viewHeight = view.getHeight();
-                                    mediaEntity.width = (view.getWidth() * scaleX) / paintView.entitiesView.getMeasuredWidth();
-                                    mediaEntity.height = (view.getHeight() * scaleY) / paintView.entitiesView.getMeasuredHeight();
-                                    mediaEntity.x = (((view.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                    mediaEntity.y = (((view.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                    mediaEntity.rotation = (float) (((double) (-view.getRotation())) * 0.017453292519943295d);
-                                    mediaEntity.textViewX = ((view.getWidth() / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                                    mediaEntity.textViewY = ((view.getHeight() / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                                    mediaEntity.textViewWidth = mediaEntity.viewWidth / paintView.entitiesView.getMeasuredWidth();
-                                    mediaEntity.textViewHeight = mediaEntity.viewHeight / paintView.entitiesView.getMeasuredHeight();
-                                    mediaEntity.scale = scaleX;
-                                    entityView2 = entityView;
-                                    if (entityView2 instanceof MessageEntityView) {
-                                        MessageEntityView messageEntityView10 = (MessageEntityView) entityView2;
-                                        RectF rectF7 = AndroidUtilities.rectTmp;
-                                        bubbleBounds = messageEntityView10.getBubbleBounds(rectF7);
-                                        z9 = z7;
-                                        rectF7.offset(messageEntityView10.container.getX(), messageEntityView10.container.getY());
-                                        rectF7.offset(messageEntityView10.listView.getX(), messageEntityView10.listView.getY());
-                                        mediaEntity.mediaArea.coordinates.x = ((((x + (view.getWidth() / 2.0f)) - ((view.getWidth() / 2.0f) * scaleX)) + (rectF7.centerX() * scaleX)) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                        mediaEntity.mediaArea.coordinates.y = ((((y + (view.getHeight() / 2.0f)) - ((view.getHeight() / 2.0f) * scaleY)) + (rectF7.centerY() * scaleY)) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                                        mediaEntity.mediaArea.coordinates.w = ((rectF7.width() * scaleX) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                                        mediaEntity.mediaArea.coordinates.h = ((rectF7.height() * scaleY) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                                        mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
-                                    } else {
-                                        z9 = z7;
-                                        if (entityView2 instanceof StickerView) {
-                                            imageAspectRatio = ((StickerView) entityView2).centerImage.getImageAspectRatio();
-                                            f = mediaEntity.x + (mediaEntity.width / 2.0f);
-                                            f2 = mediaEntity.y + (mediaEntity.height / 2.0f);
-                                            measuredWidth = paintView.entitiesView.getMeasuredWidth() / paintView.entitiesView.getMeasuredHeight();
-                                            if (imageAspectRatio > 1.0f) {
-                                                float f111 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
-                                                mediaEntity.height = f111;
-                                                mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
-                                                mediaEntity.y = f2 - (f111 / 2.0f);
-                                            } else if (imageAspectRatio < 1.0f) {
-                                                float f112 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
-                                                mediaEntity.width = f112;
-                                                mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
-                                                mediaEntity.x = f - (f112 / 2.0f);
-                                            }
-                                        } else {
-                                            mediaArea = mediaEntity.mediaArea;
-                                            if (mediaArea == null) {
-                                            }
-                                        }
-                                        bubbleBounds = -1.0d;
-                                    }
-                                    mediaArea2 = mediaEntity.mediaArea;
-                                    if (mediaArea2 != null) {
-                                        mediaAreaCoordinates.flags |= 1;
-                                        mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) view.getWidth())) * 100.0d;
-                                    }
-                                    z5 = z8;
-                                    z6 = z9;
+                                    i3 = i5 + 1;
+                                    childCount = i4;
+                                    i7 = 0;
+                                    b5 = 1;
                                 }
-                                paintView = paintView2;
-                                bitmap2 = bitmap;
+                                z5 = true;
+                                z6 = true;
+                                imageReceiver = null;
+                                arrayList.add(mediaEntity);
+                                scaleX = childAt.getScaleX();
+                                scaleY = childAt.getScaleY();
+                                x = childAt.getX();
+                                y = childAt.getY();
+                                mediaEntity.viewWidth = childAt.getWidth();
+                                mediaEntity.viewHeight = childAt.getHeight();
+                                mediaEntity.width = (childAt.getWidth() * scaleX) / this.entitiesView.getMeasuredWidth();
+                                mediaEntity.height = (childAt.getHeight() * scaleY) / this.entitiesView.getMeasuredHeight();
+                                mediaEntity.x = (((childAt.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                mediaEntity.y = (((childAt.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                mediaEntity.rotation = (float) (((double) (-childAt.getRotation())) * 0.017453292519943295d);
+                                mediaEntity.textViewX = ((childAt.getWidth() / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                                mediaEntity.textViewY = ((childAt.getHeight() / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                                mediaEntity.textViewWidth = mediaEntity.viewWidth / this.entitiesView.getMeasuredWidth();
+                                mediaEntity.textViewHeight = mediaEntity.viewHeight / this.entitiesView.getMeasuredHeight();
+                                mediaEntity.scale = scaleX;
+                                if (entityView instanceof MessageEntityView) {
+                                    MessageEntityView messageEntityView10 = (MessageEntityView) entityView;
+                                    RectF rectF7 = AndroidUtilities.rectTmp;
+                                    bubbleBounds = messageEntityView10.getBubbleBounds(rectF7);
+                                    rectF7.offset(messageEntityView10.container.getX(), messageEntityView10.container.getY());
+                                    rectF7.offset(messageEntityView10.listView.getX(), messageEntityView10.listView.getY());
+                                    mediaEntity.mediaArea.coordinates.x = ((((x + (childAt.getWidth() / 2.0f)) - ((childAt.getWidth() / 2.0f) * scaleX)) + (rectF7.centerX() * scaleX)) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                    mediaEntity.mediaArea.coordinates.y = ((((y + (childAt.getHeight() / 2.0f)) - ((childAt.getHeight() / 2.0f) * scaleY)) + (rectF7.centerY() * scaleY)) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                                    mediaEntity.mediaArea.coordinates.w = ((rectF7.width() * scaleX) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                                    mediaEntity.mediaArea.coordinates.h = ((rectF7.height() * scaleY) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                                    mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
+                                } else {
+                                    if (entityView instanceof StickerView) {
+                                        imageAspectRatio = ((StickerView) entityView).centerImage.getImageAspectRatio();
+                                        f2 = mediaEntity.x + (mediaEntity.width / 2.0f);
+                                        f3 = mediaEntity.y + (mediaEntity.height / 2.0f);
+                                        measuredWidth = this.entitiesView.getMeasuredWidth() / this.entitiesView.getMeasuredHeight();
+                                        if (imageAspectRatio > 1.0f) {
+                                            float f112 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
+                                            mediaEntity.height = f112;
+                                            mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
+                                            mediaEntity.y = f3 - (f112 / 2.0f);
+                                        } else if (imageAspectRatio < 1.0f) {
+                                            float f113 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
+                                            mediaEntity.width = f113;
+                                            mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
+                                            mediaEntity.x = f2 - (f113 / 2.0f);
+                                        }
+                                    } else {
+                                        mediaArea = mediaEntity.mediaArea;
+                                        if (mediaArea == null) {
+                                        }
+                                    }
+                                    bubbleBounds = -1.0d;
+                                }
+                                mediaArea2 = mediaEntity.mediaArea;
+                                if (mediaArea2 != null) {
+                                    mediaAreaCoordinates.flags |= 1;
+                                    mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) childAt.getWidth())) * 100.0d;
+                                }
                             }
                         }
-                        z7 = false;
-                        z8 = true;
+                        z5 = false;
+                        z6 = true;
                         imageReceiver = null;
-                        paintView = paintView2;
                         arrayList.add(mediaEntity);
-                        scaleX = view.getScaleX();
-                        scaleY = view.getScaleY();
-                        x = view.getX();
-                        y = view.getY();
-                        mediaEntity.viewWidth = view.getWidth();
-                        mediaEntity.viewHeight = view.getHeight();
-                        mediaEntity.width = (view.getWidth() * scaleX) / paintView.entitiesView.getMeasuredWidth();
-                        mediaEntity.height = (view.getHeight() * scaleY) / paintView.entitiesView.getMeasuredHeight();
-                        mediaEntity.x = (((view.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                        mediaEntity.y = (((view.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                        mediaEntity.rotation = (float) (((double) (-view.getRotation())) * 0.017453292519943295d);
-                        mediaEntity.textViewX = ((view.getWidth() / 2.0f) + x) / paintView.entitiesView.getMeasuredWidth();
-                        mediaEntity.textViewY = ((view.getHeight() / 2.0f) + y) / paintView.entitiesView.getMeasuredHeight();
-                        mediaEntity.textViewWidth = mediaEntity.viewWidth / paintView.entitiesView.getMeasuredWidth();
-                        mediaEntity.textViewHeight = mediaEntity.viewHeight / paintView.entitiesView.getMeasuredHeight();
+                        scaleX = childAt.getScaleX();
+                        scaleY = childAt.getScaleY();
+                        x = childAt.getX();
+                        y = childAt.getY();
+                        mediaEntity.viewWidth = childAt.getWidth();
+                        mediaEntity.viewHeight = childAt.getHeight();
+                        mediaEntity.width = (childAt.getWidth() * scaleX) / this.entitiesView.getMeasuredWidth();
+                        mediaEntity.height = (childAt.getHeight() * scaleY) / this.entitiesView.getMeasuredHeight();
+                        mediaEntity.x = (((childAt.getWidth() * (1.0f - scaleX)) / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                        mediaEntity.y = (((childAt.getHeight() * (1.0f - scaleY)) / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                        mediaEntity.rotation = (float) (((double) (-childAt.getRotation())) * 0.017453292519943295d);
+                        mediaEntity.textViewX = ((childAt.getWidth() / 2.0f) + x) / this.entitiesView.getMeasuredWidth();
+                        mediaEntity.textViewY = ((childAt.getHeight() / 2.0f) + y) / this.entitiesView.getMeasuredHeight();
+                        mediaEntity.textViewWidth = mediaEntity.viewWidth / this.entitiesView.getMeasuredWidth();
+                        mediaEntity.textViewHeight = mediaEntity.viewHeight / this.entitiesView.getMeasuredHeight();
                         mediaEntity.scale = scaleX;
-                        entityView2 = entityView;
-                        if (entityView2 instanceof MessageEntityView) {
-                            MessageEntityView messageEntityView11 = (MessageEntityView) entityView2;
+                        if (entityView instanceof MessageEntityView) {
+                            MessageEntityView messageEntityView11 = (MessageEntityView) entityView;
                             RectF rectF8 = AndroidUtilities.rectTmp;
                             bubbleBounds = messageEntityView11.getBubbleBounds(rectF8);
-                            z9 = z7;
                             rectF8.offset(messageEntityView11.container.getX(), messageEntityView11.container.getY());
                             rectF8.offset(messageEntityView11.listView.getX(), messageEntityView11.listView.getY());
-                            mediaEntity.mediaArea.coordinates.x = ((((x + (view.getWidth() / 2.0f)) - ((view.getWidth() / 2.0f) * scaleX)) + (rectF8.centerX() * scaleX)) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                            mediaEntity.mediaArea.coordinates.y = ((((y + (view.getHeight() / 2.0f)) - ((view.getHeight() / 2.0f) * scaleY)) + (rectF8.centerY() * scaleY)) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
-                            mediaEntity.mediaArea.coordinates.w = ((rectF8.width() * scaleX) / paintView.entitiesView.getMeasuredWidth()) * 100.0f;
-                            mediaEntity.mediaArea.coordinates.h = ((rectF8.height() * scaleY) / paintView.entitiesView.getMeasuredHeight()) * 100.0f;
+                            mediaEntity.mediaArea.coordinates.x = ((((x + (childAt.getWidth() / 2.0f)) - ((childAt.getWidth() / 2.0f) * scaleX)) + (rectF8.centerX() * scaleX)) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                            mediaEntity.mediaArea.coordinates.y = ((((y + (childAt.getHeight() / 2.0f)) - ((childAt.getHeight() / 2.0f) * scaleY)) + (rectF8.centerY() * scaleY)) / this.entitiesView.getMeasuredHeight()) * 100.0f;
+                            mediaEntity.mediaArea.coordinates.w = ((rectF8.width() * scaleX) / this.entitiesView.getMeasuredWidth()) * 100.0f;
+                            mediaEntity.mediaArea.coordinates.h = ((rectF8.height() * scaleY) / this.entitiesView.getMeasuredHeight()) * 100.0f;
                             mediaEntity.mediaArea.coordinates.rotation = (((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d;
                         } else {
-                            z9 = z7;
-                            if (entityView2 instanceof StickerView) {
-                                imageAspectRatio = ((StickerView) entityView2).centerImage.getImageAspectRatio();
-                                f = mediaEntity.x + (mediaEntity.width / 2.0f);
-                                f2 = mediaEntity.y + (mediaEntity.height / 2.0f);
-                                measuredWidth = paintView.entitiesView.getMeasuredWidth() / paintView.entitiesView.getMeasuredHeight();
+                            if (entityView instanceof StickerView) {
+                                imageAspectRatio = ((StickerView) entityView).centerImage.getImageAspectRatio();
+                                f2 = mediaEntity.x + (mediaEntity.width / 2.0f);
+                                f3 = mediaEntity.y + (mediaEntity.height / 2.0f);
+                                measuredWidth = this.entitiesView.getMeasuredWidth() / this.entitiesView.getMeasuredHeight();
                                 if (imageAspectRatio > 1.0f) {
-                                    float f113 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
-                                    mediaEntity.height = f113;
+                                    float f114 = (mediaEntity.width * measuredWidth) / imageAspectRatio;
+                                    mediaEntity.height = f114;
                                     mediaEntity.viewHeight = (int) (mediaEntity.viewWidth / imageAspectRatio);
-                                    mediaEntity.y = f2 - (f113 / 2.0f);
+                                    mediaEntity.y = f3 - (f114 / 2.0f);
                                 } else if (imageAspectRatio < 1.0f) {
-                                    float f114 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
-                                    mediaEntity.width = f114;
+                                    float f115 = (mediaEntity.height / measuredWidth) * imageAspectRatio;
+                                    mediaEntity.width = f115;
                                     mediaEntity.viewWidth = (int) (mediaEntity.viewHeight * imageAspectRatio);
-                                    mediaEntity.x = f - (f114 / 2.0f);
+                                    mediaEntity.x = f2 - (f115 / 2.0f);
                                 }
                             } else {
                                 mediaArea = mediaEntity.mediaArea;
@@ -4588,27 +4524,25 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                         mediaArea2 = mediaEntity.mediaArea;
                         if (mediaArea2 != null) {
                             mediaAreaCoordinates.flags |= 1;
-                            mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) view.getWidth())) * 100.0d;
+                            mediaAreaCoordinates.radius = ((((double) scaleX) * bubbleBounds) / ((double) childAt.getWidth())) * 100.0d;
                         }
-                        z5 = z8;
-                        z6 = z9;
                     } else {
-                        paintView = paintView2;
-                        bitmap = bitmap;
                         i4 = childCount;
                         i5 = i3;
-                        view = childAt;
-                        z5 = true;
-                        z6 = false;
+                        childAt = childAt;
+                        f = 1.0f;
+                        z5 = false;
+                        z6 = true;
                         imageReceiver = null;
                     }
-                    if (z5) {
+                    if (!z6) {
                     }
-                    bitmap2 = bitmap;
+                    i3 = i5 + 1;
+                    childCount = i4;
+                    i7 = 0;
+                    b5 = 1;
                 }
                 i3 = i5 + 1;
-                bitmap = bitmap2;
-                paintView2 = paintView;
                 childCount = i4;
                 i7 = 0;
                 b5 = 1;
@@ -4645,7 +4579,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         if (this.isCoverPreview != z) {
             this.isCoverPreview = z;
             if (z) {
-                lambda$createRound$61(null);
+                selectEntity(null);
             }
             setCoverPause(z);
         }
@@ -4707,7 +4641,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             return false;
         }
         if (this.currentEntityView != null) {
-            lambda$createRound$61(null);
+            selectEntity(null);
         }
         float x = motionEvent.getX();
         float y = motionEvent.getY();
@@ -4723,7 +4657,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     public void clearSelection() {
-        lambda$createRound$61(null);
+        selectEntity(null);
     }
 
     public void openPaint() {
@@ -4863,35 +4797,35 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.typefaceMenuTransformAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    this.f$0.lambda$showTypefaceMenu$36(dynamicAnimation, f, f2);
+                    PaintView.$r8$lambda$nLIIC0nzaFi0lCaZQazfwnIkYJE(this.f$0, dynamicAnimation, f, f2);
                 }
             });
             this.typefaceMenuTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    this.f$0.lambda$showTypefaceMenu$37(z, dynamicAnimation, z2, f, f2);
+                    PaintView.$r8$lambda$zhJMP3J6A4Emw2hhzJ4b0FLCLTU(this.f$0, z, dynamicAnimation, z2, f, f2);
                 }
             });
             this.typefaceMenuTransformAnimation.start();
         }
     }
 
-    public void lambda$showTypefaceMenu$36(DynamicAnimation dynamicAnimation, float f, float f2) {
+    public static void $r8$lambda$nLIIC0nzaFi0lCaZQazfwnIkYJE(PaintView paintView, DynamicAnimation dynamicAnimation, float f, float f2) {
         float f3 = f / 1000.0f;
-        this.typefaceMenuTransformProgress = f3;
-        this.typefaceListView.setAlpha(f3);
-        this.typefaceListView.invalidate();
-        this.overlayLayout.invalidate();
-        this.textOptionsView.getTypefaceCell().setAlpha(1.0f - this.typefaceMenuTransformProgress);
+        paintView.typefaceMenuTransformProgress = f3;
+        paintView.typefaceListView.setAlpha(f3);
+        paintView.typefaceListView.invalidate();
+        paintView.overlayLayout.invalidate();
+        paintView.textOptionsView.getTypefaceCell().setAlpha(1.0f - paintView.typefaceMenuTransformProgress);
     }
 
-    public void lambda$showTypefaceMenu$37(boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-        if (dynamicAnimation == this.typefaceMenuTransformAnimation) {
-            this.typefaceMenuTransformAnimation = null;
+    public static void $r8$lambda$zhJMP3J6A4Emw2hhzJ4b0FLCLTU(PaintView paintView, boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
+        if (dynamicAnimation == paintView.typefaceMenuTransformAnimation) {
+            paintView.typefaceMenuTransformAnimation = null;
             if (!z) {
-                this.typefaceListView.setVisibility(8);
+                paintView.typefaceListView.setVisibility(8);
             }
-            this.typefaceListView.setMaskProvider(null);
+            paintView.typefaceListView.setMaskProvider(null);
         }
     }
 
@@ -4912,13 +4846,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.toolsTransformAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    this.f$0.lambda$showColorList$38(barView, z, zArr, alpha, translationY, dynamicAnimation, f, f2);
+                    PaintView.$r8$lambda$QOsAD96SidNWZ6sIg1gkfXoGhdQ(this.f$0, barView, z, zArr, alpha, translationY, dynamicAnimation, f, f2);
                 }
             });
             this.toolsTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    this.f$0.lambda$showColorList$39(z, dynamicAnimation, z2, f, f2);
+                    PaintView.m4518$r8$lambda$DIbbpaapYWjmsZJzBVLg_fcuw0(this.f$0, z, dynamicAnimation, z2, f, f2);
                 }
             });
             this.toolsTransformAnimation.start();
@@ -4929,43 +4863,43 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public void lambda$showColorList$38(View view, boolean z, boolean[] zArr, float f, float f2, DynamicAnimation dynamicAnimation, float f3, float f4) {
+    public static void $r8$lambda$QOsAD96SidNWZ6sIg1gkfXoGhdQ(PaintView paintView, View view, boolean z, boolean[] zArr, float f, float f2, DynamicAnimation dynamicAnimation, float f3, float f4) {
         float f5 = f3 / 1000.0f;
-        this.toolsTransformProgress = f5;
+        paintView.toolsTransformProgress = f5;
         float f6 = ((1.0f - f5) * 0.4f) + 0.6f;
         view.setScaleX(f6);
         view.setScaleY(f6);
-        view.setTranslationY((AndroidUtilities.dp(16.0f) * Math.min(this.toolsTransformProgress, 0.25f)) / 0.25f);
-        view.setAlpha(1.0f - (Math.min(this.toolsTransformProgress, 0.25f) / 0.25f));
-        this.colorsListView.setProgress(this.toolsTransformProgress, z);
-        this.doneButton.setProgress(this.toolsTransformProgress);
-        this.cancelButton.setProgress(this.toolsTransformProgress);
-        this.tabsLayout.setTranslationY(AndroidUtilities.dp(32.0f) * this.toolsTransformProgress);
-        AnimatorSet animatorSet = this.keyboardAnimator;
+        view.setTranslationY((AndroidUtilities.dp(16.0f) * Math.min(paintView.toolsTransformProgress, 0.25f)) / 0.25f);
+        view.setAlpha(1.0f - (Math.min(paintView.toolsTransformProgress, 0.25f) / 0.25f));
+        paintView.colorsListView.setProgress(paintView.toolsTransformProgress, z);
+        paintView.doneButton.setProgress(paintView.toolsTransformProgress);
+        paintView.cancelButton.setProgress(paintView.toolsTransformProgress);
+        paintView.tabsLayout.setTranslationY(AndroidUtilities.dp(32.0f) * paintView.toolsTransformProgress);
+        AnimatorSet animatorSet = paintView.keyboardAnimator;
         if (animatorSet != null && animatorSet.isRunning()) {
             zArr[0] = false;
         }
         if (zArr[0]) {
-            float f7 = z ? this.toolsTransformProgress : 1.0f - this.toolsTransformProgress;
-            this.doneButton.setAlpha(AndroidUtilities.lerp(f, z ? 1.0f : 0.0f, f7));
-            this.cancelButton.setAlpha(AndroidUtilities.lerp(f, z ? 1.0f : 0.0f, f7));
-            this.bottomLayout.setTranslationY(f2 - ((AndroidUtilities.dp(39.0f) * f7) * (z ? 1 : -1)));
+            float f7 = z ? paintView.toolsTransformProgress : 1.0f - paintView.toolsTransformProgress;
+            paintView.doneButton.setAlpha(AndroidUtilities.lerp(f, z ? 1.0f : 0.0f, f7));
+            paintView.cancelButton.setAlpha(AndroidUtilities.lerp(f, z ? 1.0f : 0.0f, f7));
+            paintView.bottomLayout.setTranslationY(f2 - ((AndroidUtilities.dp(39.0f) * f7) * (z ? 1 : -1)));
         }
-        this.bottomLayout.invalidate();
-        if (view == this.textOptionsView) {
-            this.overlayLayout.invalidate();
+        paintView.bottomLayout.invalidate();
+        if (view == paintView.textOptionsView) {
+            paintView.overlayLayout.invalidate();
         }
     }
 
-    public void lambda$showColorList$39(boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-        if (dynamicAnimation == this.toolsTransformAnimation) {
-            this.toolsTransformAnimation = null;
+    public static void m4518$r8$lambda$DIbbpaapYWjmsZJzBVLg_fcuw0(PaintView paintView, boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
+        if (dynamicAnimation == paintView.toolsTransformAnimation) {
+            paintView.toolsTransformAnimation = null;
             if (z) {
                 return;
             }
-            this.colorsListView.setVisibility(8);
-            PersistColorPalette.getInstance(this.currentAccount).saveColors();
-            this.colorsListView.getAdapter().notifyDataSetChanged();
+            paintView.colorsListView.setVisibility(8);
+            PersistColorPalette.getInstance(paintView.currentAccount).saveColors();
+            paintView.colorsListView.getAdapter().notifyDataSetChanged();
         }
     }
 
@@ -4991,7 +4925,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$setCurrentSwatch$40(num, i, valueAnimator);
+                        PaintView.m4536$r8$lambda$mteQzzDC7tzgEXQpoSvrxQWvJ8(this.f$0, num, i, valueAnimator);
                     }
                 });
                 duration.start();
@@ -5019,10 +4953,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public void lambda$setCurrentSwatch$40(Integer num, int i, ValueAnimator valueAnimator) {
+    public static void m4536$r8$lambda$mteQzzDC7tzgEXQpoSvrxQWvJ8(PaintView paintView, Integer num, int i, ValueAnimator valueAnimator) {
+        paintView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.colorSwatch.color = ColorUtils.blendARGB(num.intValue(), i, fFloatValue);
-        FrameLayout frameLayout = this.bottomLayout;
+        paintView.colorSwatch.color = ColorUtils.blendARGB(num.intValue(), i, fFloatValue);
+        FrameLayout frameLayout = paintView.bottomLayout;
         if (frameLayout != null) {
             frameLayout.invalidate();
         }
@@ -5053,7 +4988,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.keyboardNotifier.ignore(true);
             return false;
         }
-        lambda$createRound$61(null);
+        selectEntity(null);
         return true;
     }
 
@@ -5229,7 +5164,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setIcon$0(z, valueAnimator2);
+                        PaintView.PopupButton.$r8$lambda$_3k7bWtJZMI4NePt0c0T1U49bUE(this.f$0, z, valueAnimator2);
                     }
                 });
                 this.imageSwitchAnimator.addListener(new AnimatorListenerAdapter() {
@@ -5253,13 +5188,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.imageView.setImageResource(i);
         }
 
-        public void lambda$setIcon$0(boolean z, ValueAnimator valueAnimator) {
+        public static void $r8$lambda$_3k7bWtJZMI4NePt0c0T1U49bUE(PopupButton popupButton, boolean z, ValueAnimator valueAnimator) {
+            popupButton.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.imageSwitchT = fFloatValue;
+            popupButton.imageSwitchT = fFloatValue;
             if (!z) {
-                this.imageView.setAlpha(1.0f - fFloatValue);
+                popupButton.imageView.setAlpha(1.0f - fFloatValue);
             }
-            this.imagesView.invalidate();
+            popupButton.imagesView.invalidate();
         }
 
         @Override
@@ -5331,46 +5267,46 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onAddButtonPressed$44();
+                PaintView.$r8$lambda$kbmXxxtGwTA2lwZf5xLmZH1lH38(this.f$0);
             }
         }, this, 53, 0, getHeight(), false);
     }
 
-    public void lambda$onAddButtonPressed$44() {
-        boolean fillShapes = PersistColorPalette.getInstance(this.currentAccount).getFillShapes();
+    public static void $r8$lambda$kbmXxxtGwTA2lwZf5xLmZH1lH38(final PaintView paintView) {
+        boolean fillShapes = PersistColorPalette.getInstance(paintView.currentAccount).getFillShapes();
         for (int i = 0; i < Brush.Shape.SHAPES_LIST.size(); i++) {
             final Brush.Shape shape = (Brush.Shape) Brush.Shape.SHAPES_LIST.get(i);
             final int filledIconRes = fillShapes ? shape.getFilledIconRes() : shape.getIconRes();
-            PopupButton popupButtonButtonForPopup = buttonForPopup(shape.getShapeName(), filledIconRes, false, new Runnable() {
+            PopupButton popupButtonButtonForPopup = paintView.buttonForPopup(shape.getShapeName(), filledIconRes, false, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onAddButtonPressed$42(shape, filledIconRes);
+                    PaintView.$r8$lambda$Ee9zu3leu62rojM294x1KR7z_RM(this.f$0, shape, filledIconRes);
                 }
             });
             popupButtonButtonForPopup.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    return this.f$0.lambda$onAddButtonPressed$43(view);
+                    return PaintView.$r8$lambda$hcCN6UhYhUqXJO1EcIeYShkU8hs(this.f$0, view);
                 }
             });
-            this.popupLayout.addView((View) popupButtonButtonForPopup, LayoutHelper.createLinear(-1, 48));
+            paintView.popupLayout.addView((View) popupButtonButtonForPopup, LayoutHelper.createLinear(-1, 48));
         }
     }
 
-    public void lambda$onAddButtonPressed$42(Brush.Shape shape, int i) {
-        if (this.renderView.getCurrentBrush() instanceof Brush.Shape) {
-            this.ignoreToolChangeAnimationOnce = true;
+    public static void $r8$lambda$Ee9zu3leu62rojM294x1KR7z_RM(PaintView paintView, Brush.Shape shape, int i) {
+        if (paintView.renderView.getCurrentBrush() instanceof Brush.Shape) {
+            paintView.ignoreToolChangeAnimationOnce = true;
         }
-        onBrushSelected(shape);
-        this.paintToolsView.animatePlusToIcon(i);
+        paintView.onBrushSelected(shape);
+        paintView.paintToolsView.animatePlusToIcon(i);
     }
 
-    public boolean lambda$onAddButtonPressed$43(View view) {
-        if (this.popupLayout != null) {
-            PersistColorPalette.getInstance(this.currentAccount).toggleFillShapes();
-            boolean fillShapes = PersistColorPalette.getInstance(this.currentAccount).getFillShapes();
-            for (int i = 0; i < this.popupLayout.getItemsCount(); i++) {
-                View itemAt = this.popupLayout.getItemAt(i);
+    public static boolean $r8$lambda$hcCN6UhYhUqXJO1EcIeYShkU8hs(PaintView paintView, View view) {
+        if (paintView.popupLayout != null) {
+            PersistColorPalette.getInstance(paintView.currentAccount).toggleFillShapes();
+            boolean fillShapes = PersistColorPalette.getInstance(paintView.currentAccount).getFillShapes();
+            for (int i = 0; i < paintView.popupLayout.getItemsCount(); i++) {
+                View itemAt = paintView.popupLayout.getItemAt(i);
                 if (itemAt instanceof PopupButton) {
                     Brush.Shape shape = (Brush.Shape) Brush.Shape.SHAPES_LIST.get(i);
                     ((PopupButton) itemAt).setIcon(fillShapes ? shape.getFilledIconRes() : shape.getIconRes(), fillShapes, true);
@@ -5393,18 +5329,19 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showMenuForEntity$55(entityView);
+                PaintView.$r8$lambda$2WhBya3IqqgZfrFiSxXaFahDvKE(this.f$0, entityView);
             }
         }, this, 51, centerLocationInWindow[0], centerLocationInWindow[1] - AndroidUtilities.dp(32.0f), true);
     }
 
-    public void lambda$showMenuForEntity$55(final EntityView entityView) {
-        LinearLayout linearLayout = new LinearLayout(getContext());
+    public static void $r8$lambda$2WhBya3IqqgZfrFiSxXaFahDvKE(final PaintView paintView, final EntityView entityView) {
+        paintView.getClass();
+        LinearLayout linearLayout = new LinearLayout(paintView.getContext());
         linearLayout.setOrientation(0);
         boolean z = entityView instanceof MessageEntityView;
         if (!z) {
-            TextView textView = new TextView(getContext());
-            textView.setTextColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
+            TextView textView = new TextView(paintView.getContext());
+            textView.setTextColor(paintView.getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
             textView.setGravity(16);
             textView.setLines(1);
             textView.setSingleLine();
@@ -5417,14 +5354,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showMenuForEntity$45(entityView, view);
+                    PaintView.m4525$r8$lambda$GNhtBFoirVO3CDXOZEO4Gvpbno(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textView, LayoutHelper.createLinear(-2, 44));
         }
         if (entityView instanceof TextPaintView) {
-            TextView textView2 = new TextView(getContext());
-            textView2.setTextColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
+            TextView textView2 = new TextView(paintView.getContext());
+            textView2.setTextColor(paintView.getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
             textView2.setGravity(16);
             textView2.setLines(1);
             textView2.setSingleLine();
@@ -5432,13 +5369,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textView2.setTypeface(AndroidUtilities.bold());
             textView2.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
             textView2.setTextSize(1, 14.0f);
-            if ((this.keyboardNotifier.keyboardVisible() && !this.keyboardNotifier.ignoring) || this.emojiPadding > 0) {
+            if ((paintView.keyboardNotifier.keyboardVisible() && !paintView.keyboardNotifier.ignoring) || paintView.emojiPadding > 0) {
                 textView2.setTag(3);
                 textView2.setText(LocaleController.getString(R.string.Paste));
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$showMenuForEntity$46(entityView, view);
+                        PaintView.m4528$r8$lambda$Mxl6eGfXO5oQa53MEAk7jFfRik(this.f$0, entityView, view);
                     }
                 });
             } else {
@@ -5447,36 +5384,36 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$showMenuForEntity$47(entityView, view);
+                        PaintView.$r8$lambda$Je2bvHkmiTqADTx1xXaVRuu34e4(this.f$0, entityView, view);
                     }
                 });
             }
             linearLayout.addView(textView2, LayoutHelper.createLinear(-2, 44));
         } else if (entityView instanceof LocationView) {
-            TextView textViewCreateActionLayoutButton = createActionLayoutButton(1, LocaleController.getString(R.string.PaintEdit));
+            TextView textViewCreateActionLayoutButton = paintView.createActionLayoutButton(1, LocaleController.getString(R.string.PaintEdit));
             textViewCreateActionLayoutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showMenuForEntity$49(entityView, view);
+                    PaintView.m4522$r8$lambda$CbOM6_4zBiAYvWEzAVUCZ8fdlA(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textViewCreateActionLayoutButton, LayoutHelper.createLinear(-2, 44));
         } else if (entityView instanceof LinkView) {
-            TextView textViewCreateActionLayoutButton2 = createActionLayoutButton(1, LocaleController.getString(R.string.PaintEdit));
+            TextView textViewCreateActionLayoutButton2 = paintView.createActionLayoutButton(1, LocaleController.getString(R.string.PaintEdit));
             textViewCreateActionLayoutButton2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showMenuForEntity$50(entityView, view);
+                    PaintView.$r8$lambda$O5KOm1g2orutSTPC9rdhAkj8AX4(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textViewCreateActionLayoutButton2, LayoutHelper.createLinear(-2, 44));
         }
         if ((entityView instanceof StickerView) || (entityView instanceof RoundView) || (entityView instanceof PhotoView) || (entityView instanceof ReactionWidgetEntityView)) {
-            TextView textViewCreateActionLayoutButton3 = createActionLayoutButton(4, LocaleController.getString(R.string.Flip));
+            TextView textViewCreateActionLayoutButton3 = paintView.createActionLayoutButton(4, LocaleController.getString(R.string.Flip));
             textViewCreateActionLayoutButton3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showMenuForEntity$51(entityView, view);
+                    PaintView.m4534$r8$lambda$fgGfZ_AtsetQxwR400Zd5yg9LU(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textViewCreateActionLayoutButton3, LayoutHelper.createLinear(-2, 44));
@@ -5485,20 +5422,20 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         if (z2) {
             final PhotoView photoView = (PhotoView) entityView;
             if (photoView.hasSegmentedImage()) {
-                TextView textViewCreateActionLayoutButton4 = createActionLayoutButton(5, LocaleController.getString(photoView.isSegmented() ? R.string.SegmentationUndoCutOut : R.string.SegmentationCutOut));
+                TextView textViewCreateActionLayoutButton4 = paintView.createActionLayoutButton(5, LocaleController.getString(photoView.isSegmented() ? R.string.SegmentationUndoCutOut : R.string.SegmentationCutOut));
                 textViewCreateActionLayoutButton4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$showMenuForEntity$52(photoView, view);
+                        PaintView.$r8$lambda$6xvtPdIboyxjCp8RiAjN9ST1K_0(this.f$0, photoView, view);
                     }
                 });
                 linearLayout.addView(textViewCreateActionLayoutButton4, LayoutHelper.createLinear(-2, 44));
                 photoView.highlightSegmented();
             }
         }
-        if (this.entitiesView.indexOfChild(entityView) != this.entitiesView.getChildCount() - 1 && !(entityView instanceof ReactionWidgetEntityView)) {
-            TextView textView3 = new TextView(getContext());
-            textView3.setTextColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
+        if (paintView.entitiesView.indexOfChild(entityView) != paintView.entitiesView.getChildCount() - 1 && !(entityView instanceof ReactionWidgetEntityView)) {
+            TextView textView3 = new TextView(paintView.getContext());
+            textView3.setTextColor(paintView.getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
             textView3.setLines(1);
             textView3.setSingleLine();
             textView3.setEllipsize(TextUtils.TruncateAt.END);
@@ -5511,13 +5448,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showMenuForEntity$53(entityView, view);
+                    PaintView.$r8$lambda$tw9sE1ma8VPrUMs22SoAWIUvlT0(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textView3, LayoutHelper.createLinear(-2, 44));
         } else if (!z2 && !z && !(entityView instanceof RoundView) && !(entityView instanceof LocationView) && !(entityView instanceof WeatherView) && !(entityView instanceof LinkView) && !(entityView instanceof ReactionWidgetEntityView)) {
-            TextView textView4 = new TextView(getContext());
-            textView4.setTextColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
+            TextView textView4 = new TextView(paintView.getContext());
+            textView4.setTextColor(paintView.getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
             textView4.setLines(1);
             textView4.setSingleLine();
             textView4.setEllipsize(TextUtils.TruncateAt.END);
@@ -5530,7 +5467,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showMenuForEntity$54(entityView, view);
+                    PaintView.m4532$r8$lambda$dtbLMoNsyc5VolIiUkbd4V6moE(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textView4, LayoutHelper.createLinear(-2, 44));
@@ -5538,7 +5475,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         int i = 0;
         while (i < linearLayout.getChildCount()) {
             View childAt = linearLayout.getChildAt(i);
-            int themedColor = getThemedColor(Theme.key_listSelector);
+            int themedColor = paintView.getThemedColor(Theme.key_listSelector);
             int i2 = 8;
             int i3 = i == 0 ? 8 : 0;
             int i4 = i == linearLayout.getChildCount() - 1 ? 8 : 0;
@@ -5549,80 +5486,84 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             childAt.setBackground(Theme.createRadSelectorDrawable(themedColor, i3, i4, i5, i2));
             i++;
         }
-        this.popupLayout.addView(linearLayout);
+        paintView.popupLayout.addView(linearLayout);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
         layoutParams.width = -2;
         layoutParams.height = -2;
         linearLayout.setLayoutParams(layoutParams);
     }
 
-    public void lambda$showMenuForEntity$45(EntityView entityView, View view) {
+    public static void m4525$r8$lambda$GNhtBFoirVO3CDXOZEO4Gvpbno(PaintView paintView, EntityView entityView, View view) {
+        paintView.getClass();
         if (entityView instanceof RoundView) {
-            onTryDeleteRound();
+            paintView.onTryDeleteRound();
         } else {
-            lambda$registerRemovalUndo$62(entityView);
+            paintView.removeEntity(entityView);
         }
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+        ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
         }
-        this.popupWindow.dismiss(true);
+        paintView.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$46(EntityView entityView, View view) {
+    public static void m4528$r8$lambda$Mxl6eGfXO5oQa53MEAk7jFfRik(PaintView paintView, EntityView entityView, View view) {
+        paintView.getClass();
         try {
             ((TextPaintView) entityView).getEditText().onTextContextMenuItem(16908337);
         } catch (Exception e) {
             FileLog.e(e);
         }
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+        ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
         }
-        this.popupWindow.dismiss(true);
+        paintView.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$47(EntityView entityView, View view) {
-        lambda$createRound$61(entityView);
-        editSelectedTextEntity();
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+    public static void $r8$lambda$Je2bvHkmiTqADTx1xXaVRuu34e4(PaintView paintView, EntityView entityView, View view) {
+        paintView.selectEntity(entityView);
+        paintView.editSelectedTextEntity();
+        ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
         }
-        this.popupWindow.dismiss(true);
+        paintView.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$49(final EntityView entityView, View view) {
-        lambda$createRound$61(null);
-        showLocationAlert((LocationView) entityView, new Utilities.Callback2() {
+    public static void m4522$r8$lambda$CbOM6_4zBiAYvWEzAVUCZ8fdlA(final PaintView paintView, final EntityView entityView, View view) {
+        paintView.selectEntity(null);
+        paintView.showLocationAlert((LocationView) entityView, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$showMenuForEntity$48(entityView, (TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2);
+                PaintView.$r8$lambda$2Kk_XJMTtQ5xssosTBcpFn_Th6A(this.f$0, entityView, (TLRPC.MessageMedia) obj, (TL_stories.MediaArea) obj2);
             }
         });
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+        ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
         }
-        this.popupWindow.dismiss(true);
+        paintView.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$48(EntityView entityView, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
-        ((LocationView) entityView).setLocation(this.currentAccount, messageMedia, mediaArea);
-        appearAnimation(entityView);
+    public static void $r8$lambda$2Kk_XJMTtQ5xssosTBcpFn_Th6A(PaintView paintView, EntityView entityView, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
+        paintView.getClass();
+        ((LocationView) entityView).setLocation(paintView.currentAccount, messageMedia, mediaArea);
+        paintView.appearAnimation(entityView);
     }
 
-    public void lambda$showMenuForEntity$50(EntityView entityView, View view) {
-        lambda$createRound$61(null);
-        showLinkAlert((LinkView) entityView);
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+    public static void $r8$lambda$O5KOm1g2orutSTPC9rdhAkj8AX4(PaintView paintView, EntityView entityView, View view) {
+        paintView.selectEntity(null);
+        paintView.showLinkAlert((LinkView) entityView);
+        ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
         }
-        this.popupWindow.dismiss(true);
+        paintView.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$51(EntityView entityView, View view) {
+    public static void m4534$r8$lambda$fgGfZ_AtsetQxwR400Zd5yg9LU(PaintView paintView, EntityView entityView, View view) {
+        paintView.getClass();
         if (entityView instanceof StickerView) {
             ((StickerView) entityView).mirror(true);
         } else if (entityView instanceof ReactionWidgetEntityView) {
@@ -5632,41 +5573,43 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         } else {
             ((PhotoView) entityView).mirror(true);
         }
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+        ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
         }
-        this.popupWindow.dismiss(true);
+        paintView.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$52(PhotoView photoView, View view) {
+    public static void $r8$lambda$6xvtPdIboyxjCp8RiAjN9ST1K_0(PaintView paintView, PhotoView photoView, View view) {
+        paintView.getClass();
         photoView.toggleSegmented(true);
         if (photoView.isSegmented()) {
-            onSwitchSegmentedAnimation(photoView);
+            paintView.onSwitchSegmentedAnimation(photoView);
         }
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+        ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
         }
-        this.popupWindow.dismiss(true);
+        paintView.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$53(EntityView entityView, View view) {
+    public static void $r8$lambda$tw9sE1ma8VPrUMs22SoAWIUvlT0(PaintView paintView, EntityView entityView, View view) {
+        paintView.getClass();
         entityView.bringToFront();
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+        ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
         }
-        this.popupWindow.dismiss(true);
+        paintView.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$54(EntityView entityView, View view) {
-        duplicateEntity(entityView);
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+    public static void m4532$r8$lambda$dtbLMoNsyc5VolIiUkbd4V6moE(PaintView paintView, EntityView entityView, View view) {
+        paintView.duplicateEntity(entityView);
+        ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
         }
-        this.popupWindow.dismiss(true);
+        paintView.popupWindow.dismiss(true);
     }
 
     private TextView createActionLayoutButton(int i, String str) {
@@ -5708,12 +5651,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             entityView2 = textPaintView;
         }
         registerRemovalUndo(entityView2);
-        lambda$createRound$61(null);
+        selectEntity(null);
         appearAnimation(entityView2);
     }
 
     private PointF startPositionRelativeToEntity(EntityView entityView) {
-        int i;
+        float f;
         MediaController.CropState cropState = this.currentCropState;
         float fMin = cropState != null ? 200.0f / cropState.cropScale : 200.0f;
         if (entityView != null) {
@@ -5721,38 +5664,39 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             float fMin2 = Math.min(entityView.getHeight(), entityView.getWidth()) * 0.2f;
             return new PointF(position.x + fMin2, position.y + fMin2);
         }
-        float f = cropState != null ? 100.0f / cropState.cropScale : 100.0f;
+        float f2 = cropState != null ? 100.0f / cropState.cropScale : 100.0f;
         PointF pointFCenterPositionForEntity = centerPositionForEntity();
-        int i2 = 0;
-        while (i2 < 10) {
-            int i3 = 0;
+        int i = 0;
+        while (i < 10) {
+            int i2 = 0;
             boolean z = false;
-            while (i3 < this.entitiesView.getChildCount()) {
-                View childAt = this.entitiesView.getChildAt(i3);
+            while (i2 < this.entitiesView.getChildCount()) {
+                View childAt = this.entitiesView.getChildAt(i2);
                 if (!(childAt instanceof EntityView) || (childAt instanceof MessageEntityView)) {
-                    i = i2;
+                    f = f2;
                 } else {
                     PointF position2 = ((EntityView) childAt).getPosition();
-                    i = i2;
+                    f = f2;
                     if (((float) Math.sqrt(Math.pow(position2.x - pointFCenterPositionForEntity.x, 2.0d) + Math.pow(position2.y - pointFCenterPositionForEntity.y, 2.0d))) < f) {
                         fMin = Math.min(childAt.getHeight(), childAt.getWidth()) * 0.2f;
                         z = true;
                     }
                 }
-                i3++;
-                i2 = i;
+                i2++;
+                f2 = f;
             }
-            int i4 = i2;
+            float f3 = f2;
             if (!z) {
                 break;
             }
-            i2 = i4 + 1;
+            i++;
             pointFCenterPositionForEntity = new PointF(pointFCenterPositionForEntity.x + fMin, pointFCenterPositionForEntity.y + fMin);
+            f2 = f3;
         }
         return pointFCenterPositionForEntity;
     }
 
-    private class PopupWindowLayout extends ActionBarPopupWindow.ActionBarPopupWindowLayout {
+    class PopupWindowLayout extends ActionBarPopupWindow.ActionBarPopupWindowLayout {
         private final ButtonBounce bounce;
         private float cx;
         private float cy;
@@ -5809,13 +5753,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                    return this.f$0.lambda$showPopup$56(view2, motionEvent);
+                    return PaintView.$r8$lambda$edbfV4RScwlski40Y9nE1rgOjAM(this.f$0, view2, motionEvent);
                 }
             });
             this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                 @Override
                 public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                    this.f$0.lambda$showPopup$57(keyEvent);
+                    PaintView.$r8$lambda$2Ph2UMq6j919THI4Sly21NAe0tA(this.f$0, keyEvent);
                 }
             });
             this.popupLayout.setShownFromBottom(true);
@@ -5837,7 +5781,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public final void onDismiss() {
-                    this.f$0.lambda$showPopup$58();
+                    this.f$0.popupLayout.removeInnerViews();
                 }
             });
         }
@@ -5859,28 +5803,26 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public boolean lambda$showPopup$56(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$edbfV4RScwlski40Y9nE1rgOjAM(PaintView paintView, View view, MotionEvent motionEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
-        if (motionEvent.getActionMasked() != 0 || (actionBarPopupWindow = this.popupWindow) == null || !actionBarPopupWindow.isShowing()) {
+        paintView.getClass();
+        if (motionEvent.getActionMasked() != 0 || (actionBarPopupWindow = paintView.popupWindow) == null || !actionBarPopupWindow.isShowing()) {
             return false;
         }
-        view.getHitRect(this.popupRect);
-        if (this.popupRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+        view.getHitRect(paintView.popupRect);
+        if (paintView.popupRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
             return false;
         }
-        this.popupWindow.dismiss();
+        paintView.popupWindow.dismiss();
         return false;
     }
 
-    public void lambda$showPopup$57(KeyEvent keyEvent) {
+    public static void $r8$lambda$2Ph2UMq6j919THI4Sly21NAe0tA(PaintView paintView, KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.popupWindow) != null && actionBarPopupWindow.isShowing()) {
-            this.popupWindow.dismiss();
+        paintView.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = paintView.popupWindow) != null && actionBarPopupWindow.isShowing()) {
+            paintView.popupWindow.dismiss();
         }
-    }
-
-    public void lambda$showPopup$58() {
-        this.popupLayout.removeInnerViews();
     }
 
     public int getThemedColor(int i) {
@@ -5948,16 +5890,17 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         view.animate().scaleX(scaleX).scaleY(scaleY).alpha(1.0f).setInterpolator(new OvershootInterpolator(3.0f)).setDuration(240L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$appearAnimation$59(view);
+                PaintView.$r8$lambda$Rr6uusUl6fJZi8I28vGIZmni2q4(this.f$0, view);
             }
         }).start();
     }
 
-    public void lambda$appearAnimation$59(View view) {
+    public static void $r8$lambda$Rr6uusUl6fJZi8I28vGIZmni2q4(PaintView paintView, View view) {
+        paintView.getClass();
         if (view instanceof EntityView) {
             EntityView entityView = (EntityView) view;
             entityView.updateSelectionView();
-            lambda$createRound$61(entityView);
+            paintView.selectEntity(entityView);
         }
     }
 
@@ -6012,12 +5955,20 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         if (i >= 0 && i <= 3 && !this.faces.isEmpty()) {
             int size = this.faces.size();
             int iNextInt = Utilities.random.nextInt(size);
-            for (int i2 = size; i2 > 0; i2--) {
+            int i2 = size;
+            while (i2 > 0) {
                 PhotoFace photoFace = (PhotoFace) this.faces.get(iNextInt);
-                if (!isFaceAnchorOccupied(photoFace, i, j, tL_maskCoords)) {
+                int i3 = i;
+                long j2 = j;
+                TLRPC.TL_maskCoords tL_maskCoords2 = tL_maskCoords;
+                if (!isFaceAnchorOccupied(photoFace, i3, j2, tL_maskCoords2)) {
                     return photoFace;
                 }
                 iNextInt = (iNextInt + 1) % size;
+                i2--;
+                i = i3;
+                j = j2;
+                tL_maskCoords = tL_maskCoords2;
             }
         }
         return null;
@@ -6062,7 +6013,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         checkEntitiesIsVideo();
         if (z) {
             registerRemovalUndo(photoView);
-            lambda$createRound$61(photoView);
+            selectEntity(photoView);
         }
         return photoView;
     }
@@ -6072,16 +6023,21 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             final View childAt = this.entitiesView.getChildAt(i);
             if (childAt instanceof RoundView) {
                 if (this.currentEntityView == childAt) {
-                    lambda$createRound$61(null);
+                    selectEntity(null);
                 }
                 childAt.animate().scaleX(0.0f).scaleY(0.0f).setDuration(280L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$deleteRound$60(childAt);
+                        PaintView.$r8$lambda$u5hLlW2EB6ZxKoNsxXuhK6eurbs(this.f$0, childAt);
                     }
                 }).start();
             }
         }
+    }
+
+    public static void $r8$lambda$u5hLlW2EB6ZxKoNsxXuhK6eurbs(PaintView paintView, View view) {
+        paintView.getClass();
+        paintView.removeEntity((RoundView) view);
     }
 
     public RoundView createRound(String str, boolean z) {
@@ -6105,7 +6061,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createRound$61(roundView);
+                    this.f$0.selectEntity(roundView);
                 }
             });
         }
@@ -6126,7 +6082,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         checkEntitiesIsVideo();
         if (z) {
             registerRemovalUndo(messageEntityView);
-            lambda$createRound$61(messageEntityView);
+            selectEntity(messageEntityView);
         }
         return messageEntityView;
     }
@@ -6149,7 +6105,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         checkEntitiesIsVideo();
         if (z) {
             registerRemovalUndo(photoView);
-            lambda$createRound$61(photoView);
+            selectEntity(photoView);
         }
         return photoView;
     }
@@ -6171,7 +6127,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         checkEntitiesIsVideo();
         if (z) {
             registerRemovalUndo(stickerView);
-            lambda$createRound$61(stickerView);
+            selectEntity(stickerView);
         }
         return stickerView;
     }
@@ -6204,7 +6160,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         checkEntitiesIsVideo();
         if (z) {
             registerRemovalUndo(reactionWidgetEntityView);
-            lambda$createRound$61(reactionWidgetEntityView);
+            selectEntity(reactionWidgetEntityView);
         }
         return reactionWidgetEntityView;
     }
@@ -6212,15 +6168,15 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     public void removeCurrentEntity() {
         EntityView entityView = this.currentEntityView;
         if (entityView != null) {
-            lambda$registerRemovalUndo$62(entityView);
+            removeEntity(entityView);
         }
     }
 
-    public void lambda$registerRemovalUndo$62(EntityView entityView) {
+    public void removeEntity(EntityView entityView) {
         EntityView entityView2 = this.currentEntityView;
         if (entityView == entityView2 && entityView2 != null) {
             entityView2.deselect();
-            lambda$createRound$61(null);
+            selectEntity(null);
             if (entityView instanceof TextPaintView) {
                 ValueAnimator valueAnimator = this.tabsSelectionAnimator;
                 if (valueAnimator != null && this.tabsNewSelectedIndex != 0) {
@@ -6300,14 +6256,14 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.undoStore.registerUndo(entityView.getUUID(), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$registerRemovalUndo$62(entityView);
+                this.f$0.removeEntity(entityView);
             }
         });
     }
 
     @Override
     public boolean onEntitySelected(EntityView entityView) {
-        return lambda$createRound$61(entityView);
+        return selectEntity(entityView);
     }
 
     @Override
@@ -6447,7 +6403,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$showEmojiPopup$63(valueAnimator);
+                            PaintView.m4544$r8$lambda$yo_j9Gre4WHKMtEu5_BKfHXYlc(this.f$0, valueAnimator);
                         }
                     });
                     valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -6483,8 +6439,9 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         updatePlusEmojiKeyboardButton();
     }
 
-    public void lambda$showEmojiPopup$63(ValueAnimator valueAnimator) {
-        this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public static void m4544$r8$lambda$yo_j9Gre4WHKMtEu5_BKfHXYlc(PaintView paintView, ValueAnimator valueAnimator) {
+        paintView.getClass();
+        paintView.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     private void hideEmojiPopup(boolean z) {
@@ -6498,7 +6455,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$hideEmojiPopup$64(valueAnimator);
+                        PaintView.$r8$lambda$IgBc_s7bL4Gu0mPjy0ysF4t5UVg(this.f$0, valueAnimator);
                     }
                 });
                 this.isAnimatePopupClosing = true;
@@ -6519,8 +6476,9 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public void lambda$hideEmojiPopup$64(ValueAnimator valueAnimator) {
-        this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public static void $r8$lambda$IgBc_s7bL4Gu0mPjy0ysF4t5UVg(PaintView paintView, ValueAnimator valueAnimator) {
+        paintView.getClass();
+        paintView.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public void hideEmojiView() {
@@ -6606,16 +6564,17 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.textDim.animate().alpha(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateTextDim$65(z);
+                PaintView.$r8$lambda$DL2d1qwmCf8WCB0UF329YkrNfu0(this.f$0, z);
             }
         }).start();
     }
 
-    public void lambda$updateTextDim$65(boolean z) {
+    public static void $r8$lambda$DL2d1qwmCf8WCB0UF329YkrNfu0(PaintView paintView, boolean z) {
         if (z) {
-            return;
+            paintView.getClass();
+        } else {
+            paintView.textDim.setVisibility(8);
         }
-        this.textDim.setVisibility(8);
     }
 
     private void updatePlusEmojiKeyboardButton() {
@@ -6632,9 +6591,8 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         boolean z2 = !z;
         AndroidUtilities.updateViewShow(this.undoAllButton, z2, false, 1.0f, true, null);
         AndroidUtilities.updateViewShow(this.undoButton, z2, false, 1.0f, true, null);
-        boolean z3 = z;
-        AndroidUtilities.updateViewShow(this.doneTextButton, z3, false, 1.0f, true, null);
-        AndroidUtilities.updateViewShow(this.cancelTextButton, z3, false, 1.0f, true, null);
+        AndroidUtilities.updateViewShow(this.doneTextButton, z, false, 1.0f, true, null);
+        AndroidUtilities.updateViewShow(this.cancelTextButton, z, false, 1.0f, true, null);
     }
 
     protected void createEmojiView() {
@@ -6799,20 +6757,18 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     selectionEnd = 0;
                 }
                 try {
-                    try {
-                        this.innerTextChange = 2;
-                        CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(str, textPaintView.getFontMetricsInt(), false);
-                        if ((charSequenceReplaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) charSequenceReplaceEmoji).getSpans(0, charSequenceReplaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
-                            for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
-                                emojiSpan.scale = 0.85f;
-                            }
+                    this.innerTextChange = 2;
+                    CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(str, textPaintView.getFontMetricsInt(), false);
+                    if ((charSequenceReplaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) charSequenceReplaceEmoji).getSpans(0, charSequenceReplaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
+                        for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
+                            emojiSpan.scale = 0.85f;
                         }
-                        editText.setText(editText.getText().insert(selectionEnd, charSequenceReplaceEmoji));
-                        int length = selectionEnd + charSequenceReplaceEmoji.length();
-                        editText.setSelection(length, length);
-                    } catch (Exception e) {
-                        FileLog.e(e);
                     }
+                    editText.setText(editText.getText().insert(selectionEnd, charSequenceReplaceEmoji));
+                    int length = selectionEnd + charSequenceReplaceEmoji.length();
+                    editText.setSelection(length, length);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 } finally {
                     this.innerTextChange = 0;
                 }
@@ -6831,21 +6787,19 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 selectionEnd = 0;
             }
             try {
-                try {
-                    this.innerTextChange = 2;
-                    SpannableString spannableString = new SpannableString(str);
-                    if (document != null) {
-                        animatedEmojiSpan = new AnimatedEmojiSpan(document, 1.0f, editText.getPaint().getFontMetricsInt());
-                    } else {
-                        animatedEmojiSpan = new AnimatedEmojiSpan(j, 1.0f, editText.getPaint().getFontMetricsInt());
-                    }
-                    spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
-                    editText.setText(editText.getText().insert(selectionEnd, spannableString));
-                    int length = selectionEnd + spannableString.length();
-                    editText.setSelection(length, length);
-                } catch (Exception e) {
-                    FileLog.e(e);
+                this.innerTextChange = 2;
+                SpannableString spannableString = new SpannableString(str);
+                if (document != null) {
+                    animatedEmojiSpan = new AnimatedEmojiSpan(document, 1.0f, editText.getPaint().getFontMetricsInt());
+                } else {
+                    animatedEmojiSpan = new AnimatedEmojiSpan(j, 1.0f, editText.getPaint().getFontMetricsInt());
                 }
+                spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
+                editText.setText(editText.getText().insert(selectionEnd, spannableString));
+                int length = selectionEnd + spannableString.length();
+                editText.setSelection(length, length);
+            } catch (Exception e) {
+                FileLog.e(e);
             } finally {
                 this.innerTextChange = 0;
             }
@@ -6859,15 +6813,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onClearEmojiRecent$0(alertDialog, i);
+                    PaintView.this.emojiView.clearRecentEmoji();
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             builder.show();
-        }
-
-        public void lambda$onClearEmojiRecent$0(AlertDialog alertDialog, int i) {
-            PaintView.this.emojiView.clearRecentEmoji();
         }
     }
 

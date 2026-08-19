@@ -13,11 +13,13 @@ public class IntSize {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
+        if (obj != null && getClass() == obj.getClass()) {
+            IntSize intSize = (IntSize) obj;
+            if (this.width == intSize.width && this.height == intSize.height) {
+                return true;
+            }
         }
-        IntSize intSize = (IntSize) obj;
-        return this.width == intSize.width && this.height == intSize.height;
+        return false;
     }
 
     public int hashCode() {

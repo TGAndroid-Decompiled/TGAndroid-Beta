@@ -97,16 +97,16 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
             this.albumViews[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    PhotoPickerAlbumsCell.$r8$lambda$waiSIsOL9q3VL46JSzP47vgOYoU(this.f$0, view);
                 }
             });
         }
     }
 
-    public void lambda$new$0(View view) {
-        PhotoPickerAlbumsCellDelegate photoPickerAlbumsCellDelegate = this.delegate;
+    public static void $r8$lambda$waiSIsOL9q3VL46JSzP47vgOYoU(PhotoPickerAlbumsCell photoPickerAlbumsCell, View view) {
+        PhotoPickerAlbumsCellDelegate photoPickerAlbumsCellDelegate = photoPickerAlbumsCell.delegate;
         if (photoPickerAlbumsCellDelegate != null) {
-            photoPickerAlbumsCellDelegate.didSelectAlbum(this.albumEntries[((Integer) view.getTag()).intValue()]);
+            photoPickerAlbumsCellDelegate.didSelectAlbum(photoPickerAlbumsCell.albumEntries[((Integer) view.getTag()).intValue()]);
         }
     }
 

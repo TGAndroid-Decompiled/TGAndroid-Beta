@@ -143,25 +143,31 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
     }
 
     public static VideoFrame.Buffer cropAndScaleI420(final VideoFrame.I420Buffer i420Buffer, int i, int i2, int i3, int i4, int i5, int i6) {
-        if (i3 == i5 && i4 == i6) {
-            ByteBuffer dataY = i420Buffer.getDataY();
-            ByteBuffer dataU = i420Buffer.getDataU();
-            ByteBuffer dataV = i420Buffer.getDataV();
-            dataY.position(i + (i420Buffer.getStrideY() * i2));
-            int i7 = i / 2;
-            int i8 = i2 / 2;
-            dataU.position((i420Buffer.getStrideU() * i8) + i7);
-            dataV.position(i7 + (i8 * i420Buffer.getStrideV()));
-            i420Buffer.retain();
-            return wrap(i5, i6, dataY.slice(), i420Buffer.getStrideY(), dataU.slice(), i420Buffer.getStrideU(), dataV.slice(), i420Buffer.getStrideV(), new Runnable() {
-                @Override
-                public final void run() {
-                    i420Buffer.release();
-                }
-            });
+        int i7;
+        if (i3 == i5) {
+            i7 = i4;
+            if (i7 == i6) {
+                ByteBuffer dataY = i420Buffer.getDataY();
+                ByteBuffer dataU = i420Buffer.getDataU();
+                ByteBuffer dataV = i420Buffer.getDataV();
+                dataY.position(i + (i420Buffer.getStrideY() * i2));
+                int i8 = i / 2;
+                int i9 = i2 / 2;
+                dataU.position((i420Buffer.getStrideU() * i9) + i8);
+                dataV.position(i8 + (i9 * i420Buffer.getStrideV()));
+                i420Buffer.retain();
+                return wrap(i5, i6, dataY.slice(), i420Buffer.getStrideY(), dataU.slice(), i420Buffer.getStrideU(), dataV.slice(), i420Buffer.getStrideV(), new Runnable() {
+                    @Override
+                    public final void run() {
+                        i420Buffer.release();
+                    }
+                });
+            }
+        } else {
+            i7 = i4;
         }
         JavaI420Buffer javaI420BufferAllocate = allocate(i5, i6);
-        nativeCropAndScaleI420(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), i, i2, i3, i4, javaI420BufferAllocate.getDataY(), javaI420BufferAllocate.getStrideY(), javaI420BufferAllocate.getDataU(), javaI420BufferAllocate.getStrideU(), javaI420BufferAllocate.getDataV(), javaI420BufferAllocate.getStrideV(), i5, i6);
+        nativeCropAndScaleI420(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), i, i2, i3, i7, javaI420BufferAllocate.getDataY(), javaI420BufferAllocate.getStrideY(), javaI420BufferAllocate.getDataU(), javaI420BufferAllocate.getStrideU(), javaI420BufferAllocate.getDataV(), javaI420BufferAllocate.getStrideV(), i5, i6);
         return javaI420BufferAllocate;
     }
 }

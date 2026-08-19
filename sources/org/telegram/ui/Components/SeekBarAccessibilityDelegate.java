@@ -64,7 +64,7 @@ public abstract class SeekBarAccessibilityDelegate extends View.AccessibilityDel
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$postAccessibilityEventRunnable$0(view);
+                        this.f$0.sendAccessibilityEvent(view, 4);
                     }
                 };
                 map.put(view, runnable2);
@@ -75,10 +75,6 @@ public abstract class SeekBarAccessibilityDelegate extends View.AccessibilityDel
             }
             view.postDelayed(runnable, 400L);
         }
-    }
-
-    public void lambda$postAccessibilityEventRunnable$0(View view) {
-        sendAccessibilityEvent(view, 4);
     }
 
     @Override

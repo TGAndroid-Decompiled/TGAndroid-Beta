@@ -19,7 +19,7 @@ import kotlinx.coroutines.DebugStringsKt;
 import kotlinx.coroutines.internal.ResizableAtomicArray;
 import kotlinx.coroutines.internal.Symbol;
 
-public final class CoroutineScheduler implements Executor, Closeable {
+public final class CoroutineScheduler implements Executor, Closeable, AutoCloseable {
     private volatile int _isTerminated$volatile;
     private volatile long controlState$volatile;
     public final int corePoolSize;
@@ -270,7 +270,7 @@ public final class CoroutineScheduler implements Executor, Closeable {
                         int i = this.indexInArray;
                         setIndexInArray(0);
                         coroutineScheduler.parkedWorkersStackTopUpdate(this, i, 0);
-                        int andDecrement = (int) (CoroutineScheduler.getControlState$volatile$FU().getAndDecrement(coroutineScheduler) & 2097151);
+                        int andDecrement = (int) (2097151 & CoroutineScheduler.getControlState$volatile$FU().getAndDecrement(coroutineScheduler));
                         if (andDecrement != i) {
                             Object obj = coroutineScheduler.workers.get(andDecrement);
                             Intrinsics.checkNotNull(obj);
@@ -742,6 +742,7 @@ public final class CoroutineScheduler implements Executor, Closeable {
     public final void runSafely(Task task) {
         try {
             task.run();
+            AbstractTimeSourceKt.access$getTimeSource$p();
         } catch (Throwable th) {
             try {
                 Thread threadCurrentThread = Thread.currentThread();

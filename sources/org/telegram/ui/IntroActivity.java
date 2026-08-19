@@ -27,6 +27,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
 import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -163,7 +164,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$0(rLottieImageView, view);
+                IntroActivity.$r8$lambda$2ENXQXFPJCcjNwHoyGaFKZJtL34(this.f$0, rLottieImageView, view);
             }
         });
         FrameLayout frameLayout3 = new FrameLayout(context);
@@ -266,7 +267,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.startMessagingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$1(view);
+                IntroActivity.$r8$lambda$wAg5VLWJcoV24PlyjEdqX7swqBs(this.f$0, view);
             }
         });
         BottomPagesView bottomPagesView = new BottomPagesView(context, this.viewPager, 6);
@@ -280,7 +281,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.switchLanguageTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$2(view);
+                IntroActivity.m3324$r8$lambda$_ElmO9SCTF2Y_G_CIMzrlIbXOo(this.f$0, view);
             }
         });
         float f = 4;
@@ -296,8 +297,9 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(RLottieImageView rLottieImageView, View view) {
+    public static void $r8$lambda$2ENXQXFPJCcjNwHoyGaFKZJtL34(IntroActivity introActivity, RLottieImageView rLottieImageView, View view) {
         Theme.ThemeInfo theme;
+        introActivity.getClass();
         if (DialogsActivity.switchingTheme) {
             return;
         }
@@ -312,14 +314,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         Theme.selectedAutoNightType = 0;
         Theme.saveAutoNightThemeConfig();
         Theme.cancelAutoNightThemeCallbacks();
-        RLottieDrawable rLottieDrawable = this.darkThemeDrawable;
+        RLottieDrawable rLottieDrawable = introActivity.darkThemeDrawable;
         rLottieDrawable.setCustomEndFrame(!zIsCurrentThemeDark ? rLottieDrawable.getFramesCount() - 1 : 0);
         rLottieImageView.playAnimation();
         int[] iArr = new int[2];
         rLottieImageView.getLocationInWindow(iArr);
         iArr[0] = iArr[0] + (rLottieImageView.getMeasuredWidth() / 2);
         iArr[1] = iArr[1] + (rLottieImageView.getMeasuredHeight() / 2);
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr, -1, Boolean.valueOf(z), rLottieImageView);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr, -1, Boolean.valueOf(z), rLottieImageView);
         rLottieImageView.setContentDescription(LocaleController.getString(!zIsCurrentThemeDark ? R.string.AccDescrSwitchToDayTheme : R.string.AccDescrSwitchToNightTheme));
     }
 
@@ -341,13 +343,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             IntroActivity.this.eglThread.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSurfaceTextureAvailable$0();
+                    IntroActivity.AnonymousClass2.$r8$lambda$lW0gbtrZmtREdW9deffKfu77fhI(this.f$0);
                 }
             });
             IntroActivity.this.eglThread.postRunnable(IntroActivity.this.eglThread.drawRunnable);
         }
 
-        public void lambda$onSurfaceTextureAvailable$0() {
+        public static void $r8$lambda$lW0gbtrZmtREdW9deffKfu77fhI(AnonymousClass2 anonymousClass2) {
+            anonymousClass2.getClass();
             float fCurrentTimeMillis = (System.currentTimeMillis() - IntroActivity.this.currentDate) / 1000.0f;
             Intro.setPage(IntroActivity.this.currentViewPagerPage);
             Intro.setDate(fCurrentTimeMillis);
@@ -379,25 +382,25 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$createView$1(View view) {
-        if (this.startPressed) {
+    public static void $r8$lambda$wAg5VLWJcoV24PlyjEdqX7swqBs(IntroActivity introActivity, View view) {
+        if (introActivity.startPressed) {
             return;
         }
-        this.startPressed = true;
-        presentFragment(new LoginActivity().setIntroView(this.frameContainerView, this.startMessagingButton), true);
-        this.destroyed = true;
+        introActivity.startPressed = true;
+        introActivity.presentFragment(new LoginActivity().setIntroView(introActivity.frameContainerView, introActivity.startMessagingButton), true);
+        introActivity.destroyed = true;
     }
 
-    public void lambda$createView$2(View view) {
-        if (this.startPressed || this.localeInfo == null) {
+    public static void m3324$r8$lambda$_ElmO9SCTF2Y_G_CIMzrlIbXOo(IntroActivity introActivity, View view) {
+        if (introActivity.startPressed || introActivity.localeInfo == null) {
             return;
         }
-        this.startPressed = true;
+        introActivity.startPressed = true;
         AlertDialog alertDialog = new AlertDialog(view.getContext(), 3);
         alertDialog.setCanCancel(false);
         alertDialog.showDelayed(1000L);
-        NotificationCenter.getGlobalInstance().addObserver(new AnonymousClass5(alertDialog), NotificationCenter.reloadInterface);
-        LocaleController.getInstance().applyLanguage(this.localeInfo, true, false, this.currentAccount);
+        NotificationCenter.getGlobalInstance().addObserver(introActivity.new AnonymousClass5(alertDialog), NotificationCenter.reloadInterface);
+        LocaleController.getInstance().applyLanguage(introActivity.localeInfo, true, false, introActivity.currentAccount);
     }
 
     class AnonymousClass5 implements NotificationCenter.NotificationCenterDelegate {
@@ -415,13 +418,13 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$didReceivedNotification$0();
+                        IntroActivity.AnonymousClass5.$r8$lambda$xL6vpq53Lm6Tvke2vYRX2m51uis(this.f$0);
                     }
                 }, 100L);
             }
         }
 
-        public void lambda$didReceivedNotification$0() {
+        public static void $r8$lambda$xL6vpq53Lm6Tvke2vYRX2m51uis(AnonymousClass5 anonymousClass5) {
             IntroActivity.this.presentFragment(new LoginActivity().setIntroView(IntroActivity.this.frameContainerView, IntroActivity.this.startMessagingButton), true);
             IntroActivity.this.destroyed = true;
         }
@@ -495,12 +498,13 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_langpack_getStrings, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$checkContinueText$4(language, tLObject, tL_error);
+                IntroActivity.$r8$lambda$95lC4Ljjm2wYCHDdrDgtk1BURrc(this.f$0, language, tLObject, tL_error);
             }
         }, 8);
     }
 
-    public void lambda$checkContinueText$4(final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$95lC4Ljjm2wYCHDdrDgtk1BURrc(final IntroActivity introActivity, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+        introActivity.getClass();
         if (tLObject instanceof Vector) {
             Vector vector = (Vector) tLObject;
             if (vector.objects.isEmpty()) {
@@ -511,18 +515,18 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$checkContinueText$3(langPackString, str);
+                        IntroActivity.$r8$lambda$coNgkOBWdJB24qadrKfAh79JjAc(this.f$0, langPackString, str);
                     }
                 });
             }
         }
     }
 
-    public void lambda$checkContinueText$3(TLRPC.LangPackString langPackString, String str) {
-        if (this.destroyed) {
+    public static void $r8$lambda$coNgkOBWdJB24qadrKfAh79JjAc(IntroActivity introActivity, TLRPC.LangPackString langPackString, String str) {
+        if (introActivity.destroyed) {
             return;
         }
-        this.switchLanguageTextView.setText(langPackString.value);
+        introActivity.switchLanguageTextView.setText(langPackString.value);
         MessagesController.getGlobalMainSettings().edit().putString("language_showed2", str.toLowerCase()).apply();
     }
 
@@ -634,7 +638,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         private final GenericProvider telegramMaskProvider;
         private final int[] textures;
 
-        public static Bitmap lambda$new$0(Void r6) {
+        public static Bitmap m3325$r8$lambda$7LXCaMmSl_zxBSp3pQPev_oFIc(Void r6) {
             int iDp = AndroidUtilities.dp(150.0f);
             Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), iDp, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmapCreateBitmap);
@@ -651,7 +655,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             this.telegramMaskProvider = new GenericProvider() {
                 @Override
                 public final Object provide(Object obj) {
-                    return IntroActivity.EGLThread.lambda$new$0((Void) obj);
+                    return IntroActivity.EGLThread.m3325$r8$lambda$7LXCaMmSl_zxBSp3pQPev_oFIc((Void) obj);
                 }
             };
             this.drawRunnable = new Runnable() {
@@ -737,7 +741,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                     return false;
                 }
                 SurfaceTexture surfaceTexture = this.surfaceTexture;
-                if (surfaceTexture instanceof SurfaceTexture) {
+                if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(surfaceTexture)) {
                     EGLSurface eGLSurfaceEglCreateWindowSurface = this.egl10.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, surfaceTexture, null);
                     this.eglSurface = eGLSurfaceEglCreateWindowSurface;
                     if (eGLSurfaceEglCreateWindowSurface == null || eGLSurfaceEglCreateWindowSurface == EGL10.EGL_NO_SURFACE) {
@@ -780,7 +784,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                     loadTexture(new GenericProvider() {
                         @Override
                         public final Object provide(Object obj) {
-                            return IntroActivity.EGLThread.lambda$initGL$1((Void) obj);
+                            return IntroActivity.EGLThread.$r8$lambda$foVV6ESqdPYksTpmJ2qe1lzbeC4((Void) obj);
                         }
                     }, 22);
                     loadTexture(this.telegramMaskProvider, 23);
@@ -808,7 +812,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             return false;
         }
 
-        public static Bitmap lambda$initGL$1(Void r4) {
+        public static Bitmap $r8$lambda$foVV6ESqdPYksTpmJ2qe1lzbeC4(Void r4) {
             Paint paint = new Paint(1);
             paint.setColor(-14509328);
             int iDp = AndroidUtilities.dp(150.0f);
@@ -903,13 +907,13 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$shutdown$2();
+                    IntroActivity.EGLThread.m3326$r8$lambda$LcdJc3TAXcftAtQwqQ4ZW4Hns0(this.f$0);
                 }
             });
         }
 
-        public void lambda$shutdown$2() {
-            finish();
+        public static void m3326$r8$lambda$LcdJc3TAXcftAtQwqQ4ZW4Hns0(EGLThread eGLThread) {
+            eGLThread.finish();
             Looper looperMyLooper = Looper.myLooper();
             if (looperMyLooper != null) {
                 looperMyLooper.quit();
@@ -927,16 +931,12 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$getThemeDescriptions$5() {
-        updateColors(true);
-    }
-
     @Override
     public ArrayList getThemeDescriptions() {
         return SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$5();
+                this.f$0.updateColors(true);
             }
 
             @Override
@@ -946,7 +946,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }, Theme.key_windowBackgroundWhite, Theme.key_windowBackgroundWhiteBlueText4, Theme.key_chats_actionBackground, Theme.key_chats_actionPressedBackground, Theme.key_featuredStickers_buttonText, Theme.key_windowBackgroundWhiteBlackText);
     }
 
-    private void updateColors(boolean z) {
+    public void updateColors(boolean z) {
         GradientDrawable gradientDrawable = this.startMessagingButtonBackground;
         int i = Theme.key_featuredStickers_addButton;
         gradientDrawable.setColors(new int[]{getThemedColor(i), getThemedColor(Theme.key_featuredStickers_addButton2)});
@@ -965,7 +965,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 eGLThread.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$updateColors$6();
+                        IntroActivity.$r8$lambda$4LU_vfFsDQgjbkl1glfciARiHgU(this.f$0);
                     }
                 });
             }
@@ -981,15 +981,15 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         Intro.setBackgroundColor(Theme.getColor(i2));
     }
 
-    public void lambda$updateColors$6() {
-        EGLThread eGLThread = this.eglThread;
+    public static void $r8$lambda$4LU_vfFsDQgjbkl1glfciARiHgU(IntroActivity introActivity) {
+        EGLThread eGLThread = introActivity.eglThread;
         int i = R.drawable.intro_powerful_mask;
         int i2 = Theme.key_windowBackgroundWhite;
         eGLThread.loadTexture(i, 17, Theme.getColor(i2), true);
-        this.eglThread.updatePowerfulTextures();
-        EGLThread eGLThread2 = this.eglThread;
+        introActivity.eglThread.updatePowerfulTextures();
+        EGLThread eGLThread2 = introActivity.eglThread;
         eGLThread2.loadTexture(eGLThread2.telegramMaskProvider, 23, true);
-        this.eglThread.updateTelegramTextures();
+        introActivity.eglThread.updateTelegramTextures();
         Intro.setBackgroundColor(Theme.getColor(i2));
     }
 

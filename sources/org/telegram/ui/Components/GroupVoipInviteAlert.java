@@ -103,7 +103,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$0(view, i2);
+                GroupVoipInviteAlert.$r8$lambda$I1wLTd3lRAmy0vtOuCPKH3MV6S8(this.f$0, view, i2);
             }
         });
         SearchAdapter searchAdapter = new SearchAdapter(context);
@@ -118,16 +118,16 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         setColorProgress(0.0f);
     }
 
-    public void lambda$new$0(View view, int i) {
-        if (i == this.addNewRow) {
-            this.delegate.copyInviteLink();
-            lambda$new$0();
+    public static void $r8$lambda$I1wLTd3lRAmy0vtOuCPKH3MV6S8(GroupVoipInviteAlert groupVoipInviteAlert, View view, int i) {
+        if (i == groupVoipInviteAlert.addNewRow) {
+            groupVoipInviteAlert.delegate.copyInviteLink();
+            groupVoipInviteAlert.dismiss();
         } else if (view instanceof ManageChatUserCell) {
             ManageChatUserCell manageChatUserCell = (ManageChatUserCell) view;
-            if (this.invitedUsers.contains(Long.valueOf(manageChatUserCell.getUserId()))) {
+            if (groupVoipInviteAlert.invitedUsers.contains(Long.valueOf(manageChatUserCell.getUserId()))) {
                 return;
             }
-            this.delegate.inviteUser(manageChatUserCell.getUserId());
+            groupVoipInviteAlert.delegate.inviteUser(manageChatUserCell.getUserId());
         }
     }
 
@@ -219,13 +219,13 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             Collections.sort(this.contacts, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return GroupVoipInviteAlert.lambda$fillContacts$1(messagesController, currentTime, (TLObject) obj, (TLObject) obj2);
+                    return GroupVoipInviteAlert.$r8$lambda$Jxjb1g4dHVPktfHUABWJR3wxpuE(messagesController, currentTime, (TLObject) obj, (TLObject) obj2);
                 }
             });
         }
     }
 
-    public static int lambda$fillContacts$1(MessagesController messagesController, int i, TLObject tLObject, TLObject tLObject2) {
+    public static int $r8$lambda$Jxjb1g4dHVPktfHUABWJR3wxpuE(MessagesController messagesController, int i, TLObject tLObject, TLObject tLObject2) {
         int i2;
         int i3;
         TLRPC.User user = tLObject2 instanceof TLRPC.TL_contact ? messagesController.getUser(Long.valueOf(((TLRPC.TL_contact) tLObject2).user_id)) : null;
@@ -254,22 +254,34 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 i3 = 0;
             }
         }
-        if (i2 > 0 && i3 > 0) {
+        if (i2 <= 0 || i3 <= 0) {
+            if (i2 >= 0 || i3 >= 0) {
+                if (i2 < 0 && i3 > 0) {
+                    return -1;
+                }
+                if (i2 == 0 && i3 != 0) {
+                    return -1;
+                }
+                if (i3 < 0 || i2 != 0) {
+                    return 1;
+                }
+            } else {
+                if (i2 > i3) {
+                    return 1;
+                }
+                if (i2 < i3) {
+                    return -1;
+                }
+            }
+        } else {
             if (i2 > i3) {
                 return 1;
             }
-            return i2 < i3 ? -1 : 0;
-        }
-        if (i2 < 0 && i3 < 0) {
-            if (i2 > i3) {
-                return 1;
+            if (i2 < i3) {
+                return -1;
             }
-            return i2 < i3 ? -1 : 0;
         }
-        if ((i2 >= 0 || i3 <= 0) && (i2 != 0 || i3 == 0)) {
-            return (i3 < 0 || i2 != 0) ? 1 : 0;
-        }
-        return -1;
+        return 0;
     }
 
     protected void loadChatParticipants(int i, int i2, boolean z) {
@@ -333,43 +345,45 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadChatParticipants$4(tL_channels_getParticipants, tLObject, tL_error);
+                GroupVoipInviteAlert.$r8$lambda$cPIqJgkEo7rTWw9FQIdCbYaRLRo(this.f$0, tL_channels_getParticipants, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$loadChatParticipants$4(final TLRPC.TL_channels_getParticipants tL_channels_getParticipants, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$cPIqJgkEo7rTWw9FQIdCbYaRLRo(final GroupVoipInviteAlert groupVoipInviteAlert, final TLRPC.TL_channels_getParticipants tL_channels_getParticipants, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        groupVoipInviteAlert.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadChatParticipants$3(tL_error, tLObject, tL_channels_getParticipants);
+                GroupVoipInviteAlert.$r8$lambda$o2gVJELpXbrziXY2ZSFK1p_PfDE(this.f$0, tL_error, tLObject, tL_channels_getParticipants);
             }
         });
     }
 
-    public void lambda$loadChatParticipants$3(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants) {
+    public static void $r8$lambda$o2gVJELpXbrziXY2ZSFK1p_PfDE(final GroupVoipInviteAlert groupVoipInviteAlert, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants) {
         int itemCount;
         ArrayList arrayList;
         LongSparseArray longSparseArray;
         LongSparseArray longSparseArray2;
         if (tL_error == null) {
+            groupVoipInviteAlert.getClass();
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_channels_channelParticipants.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(tL_channels_channelParticipants.chats, false);
-            long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+            MessagesController.getInstance(groupVoipInviteAlert.currentAccount).putUsers(tL_channels_channelParticipants.users, false);
+            MessagesController.getInstance(groupVoipInviteAlert.currentAccount).putChats(tL_channels_channelParticipants.chats, false);
+            long clientUserId = UserConfig.getInstance(groupVoipInviteAlert.currentAccount).getClientUserId();
             for (int i = 0; i < tL_channels_channelParticipants.participants.size(); i++) {
                 if (MessageObject.getPeerId(tL_channels_channelParticipants.participants.get(i).peer) == clientUserId) {
                     tL_channels_channelParticipants.participants.remove(i);
                     break;
                 }
             }
-            this.delayResults--;
+            groupVoipInviteAlert.delayResults--;
             if (tL_channels_getParticipants.filter instanceof TLRPC.TL_channelParticipantsContacts) {
-                arrayList = this.contacts;
-                longSparseArray = this.contactsMap;
+                arrayList = groupVoipInviteAlert.contacts;
+                longSparseArray = groupVoipInviteAlert.contactsMap;
             } else {
-                arrayList = this.participants;
-                longSparseArray = this.participantsMap;
+                arrayList = groupVoipInviteAlert.participants;
+                longSparseArray = groupVoipInviteAlert.participantsMap;
             }
             arrayList.clear();
             arrayList.addAll(tL_channels_channelParticipants.participants);
@@ -378,30 +392,30 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i2);
                 longSparseArray.put(MessageObject.getPeerId(channelParticipant.peer), channelParticipant);
             }
-            int size2 = this.participants.size();
+            int size2 = groupVoipInviteAlert.participants.size();
             int i3 = 0;
             while (i3 < size2) {
-                long peerId = MessageObject.getPeerId(((TLRPC.ChannelParticipant) this.participants.get(i3)).peer);
-                boolean z = this.contactsMap.get(peerId) != null || ((longSparseArray2 = this.ignoredUsers) != null && longSparseArray2.indexOfKey(peerId) >= 0);
-                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerId));
+                long peerId = MessageObject.getPeerId(((TLRPC.ChannelParticipant) groupVoipInviteAlert.participants.get(i3)).peer);
+                boolean z = groupVoipInviteAlert.contactsMap.get(peerId) != null || ((longSparseArray2 = groupVoipInviteAlert.ignoredUsers) != null && longSparseArray2.indexOfKey(peerId) >= 0);
+                TLRPC.User user = MessagesController.getInstance(groupVoipInviteAlert.currentAccount).getUser(Long.valueOf(peerId));
                 if ((user != null && user.bot) || UserObject.isDeleted(user)) {
                     z = true;
                 }
                 if (z) {
-                    this.participants.remove(i3);
-                    this.participantsMap.remove(peerId);
+                    groupVoipInviteAlert.participants.remove(i3);
+                    groupVoipInviteAlert.participantsMap.remove(peerId);
                     i3--;
                     size2--;
                 }
                 i3++;
             }
             try {
-                if (this.info.participants_count <= 200) {
-                    final int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+                if (groupVoipInviteAlert.info.participants_count <= 200) {
+                    final int currentTime = ConnectionsManager.getInstance(groupVoipInviteAlert.currentAccount).getCurrentTime();
                     Collections.sort(arrayList, new Comparator() {
                         @Override
                         public final int compare(Object obj, Object obj2) {
-                            return this.f$0.lambda$loadChatParticipants$2(currentTime, (TLObject) obj, (TLObject) obj2);
+                            return GroupVoipInviteAlert.$r8$lambda$97A0f2JrnYbpQIQJPkp6QdfE7Ak(this.f$0, currentTime, (TLObject) obj, (TLObject) obj2);
                         }
                     });
                 }
@@ -409,38 +423,39 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 FileLog.e(e);
             }
         }
-        if (this.delayResults <= 0) {
-            this.loadingUsers = false;
-            this.firstLoaded = true;
-            if (this.flickerProgressRow == 1) {
+        if (groupVoipInviteAlert.delayResults <= 0) {
+            groupVoipInviteAlert.loadingUsers = false;
+            groupVoipInviteAlert.firstLoaded = true;
+            if (groupVoipInviteAlert.flickerProgressRow == 1) {
                 itemCount = 1;
             } else {
-                RecyclerView.Adapter adapter = this.listViewAdapter;
+                RecyclerView.Adapter adapter = groupVoipInviteAlert.listViewAdapter;
                 itemCount = adapter != null ? adapter.getItemCount() - 1 : 0;
             }
-            showItemsAnimated(itemCount);
-            if (this.participants.isEmpty()) {
-                this.showContacts = true;
-                fillContacts();
+            groupVoipInviteAlert.showItemsAnimated(itemCount);
+            if (groupVoipInviteAlert.participants.isEmpty()) {
+                groupVoipInviteAlert.showContacts = true;
+                groupVoipInviteAlert.fillContacts();
             }
         }
-        updateRows();
-        RecyclerView.Adapter adapter2 = this.listViewAdapter;
+        groupVoipInviteAlert.updateRows();
+        RecyclerView.Adapter adapter2 = groupVoipInviteAlert.listViewAdapter;
         if (adapter2 != null) {
             adapter2.notifyDataSetChanged();
-            if (this.emptyView != null && this.listViewAdapter.getItemCount() == 0 && this.firstLoaded) {
-                this.emptyView.showProgress(false, true);
+            if (groupVoipInviteAlert.emptyView != null && groupVoipInviteAlert.listViewAdapter.getItemCount() == 0 && groupVoipInviteAlert.firstLoaded) {
+                groupVoipInviteAlert.emptyView.showProgress(false, true);
             }
         }
     }
 
-    public int lambda$loadChatParticipants$2(int i, TLObject tLObject, TLObject tLObject2) {
+    public static int $r8$lambda$97A0f2JrnYbpQIQJPkp6QdfE7Ak(GroupVoipInviteAlert groupVoipInviteAlert, int i, TLObject tLObject, TLObject tLObject2) {
         int i2;
         int i3;
         TLRPC.UserStatus userStatus;
         TLRPC.UserStatus userStatus2;
-        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject).peer)));
-        TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject2).peer)));
+        groupVoipInviteAlert.getClass();
+        TLRPC.User user = MessagesController.getInstance(groupVoipInviteAlert.currentAccount).getUser(Long.valueOf(MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject).peer)));
+        TLRPC.User user2 = MessagesController.getInstance(groupVoipInviteAlert.currentAccount).getUser(Long.valueOf(MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject2).peer)));
         if (user == null || (userStatus2 = user.status) == null) {
             i2 = 0;
         } else {
@@ -451,22 +466,37 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         } else {
             i3 = user2.self ? i + 50000 : userStatus.expires;
         }
-        if (i2 > 0 && i3 > 0) {
+        if (i2 <= 0 || i3 <= 0) {
+            if (i2 >= 0 || i3 >= 0) {
+                if (i2 < 0 && i3 > 0) {
+                    return -1;
+                }
+                if (i2 == 0 && i3 != 0) {
+                    return -1;
+                }
+                if (i3 < 0 && i2 > 0) {
+                    return 1;
+                }
+                if (i3 == 0 && i2 != 0) {
+                    return 1;
+                }
+            } else {
+                if (i2 > i3) {
+                    return 1;
+                }
+                if (i2 < i3) {
+                    return -1;
+                }
+            }
+        } else {
             if (i2 > i3) {
                 return 1;
             }
-            return i2 < i3 ? -1 : 0;
-        }
-        if (i2 < 0 && i3 < 0) {
-            if (i2 > i3) {
-                return 1;
+            if (i2 < i3) {
+                return -1;
             }
-            return i2 < i3 ? -1 : 0;
         }
-        if ((i2 >= 0 || i3 <= 0) && (i2 != 0 || i3 == 0)) {
-            return ((i3 >= 0 || i2 <= 0) && (i3 != 0 || i2 == 0)) ? 0 : 1;
-        }
-        return -1;
+        return 0;
     }
 
     class SearchAdapter extends RecyclerListView.SelectionAdapter {
@@ -544,7 +574,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$searchUsers$0(str, i);
+                        GroupVoipInviteAlert.SearchAdapter.$r8$lambda$g8bP68nTTnyvJPfqD3AAONjhqPc(this.f$0, str, i);
                     }
                 };
                 this.searchRunnable = runnable2;
@@ -561,26 +591,26 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             this.lastSearchId = -1;
         }
 
-        public void lambda$searchUsers$0(String str, int i) {
-            if (this.searchRunnable == null) {
+        public static void $r8$lambda$g8bP68nTTnyvJPfqD3AAONjhqPc(SearchAdapter searchAdapter, String str, int i) {
+            if (searchAdapter.searchRunnable == null) {
                 return;
             }
-            this.searchRunnable = null;
-            processSearch(str, i);
+            searchAdapter.searchRunnable = null;
+            searchAdapter.processSearch(str, i);
         }
 
         private void processSearch(final String str, final int i) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processSearch$2(str, i);
+                    GroupVoipInviteAlert.SearchAdapter.$r8$lambda$WOOHIamTWLN8vtCnjnHRON6PMIU(this.f$0, str, i);
                 }
             });
         }
 
-        public void lambda$processSearch$2(final String str, final int i) {
+        public static void $r8$lambda$WOOHIamTWLN8vtCnjnHRON6PMIU(final SearchAdapter searchAdapter, final String str, final int i) {
             final ArrayList arrayList = null;
-            this.searchRunnable = null;
+            searchAdapter.searchRunnable = null;
             if (!ChatObject.isChannel(GroupVoipInviteAlert.this.currentChat) && GroupVoipInviteAlert.this.info != null) {
                 arrayList = new ArrayList(GroupVoipInviteAlert.this.info.participants.participants);
             }
@@ -588,20 +618,21 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$processSearch$1(str, i, arrayList);
+                        GroupVoipInviteAlert.SearchAdapter.$r8$lambda$rsYF5l6k1eUCFCnwFiU1gr6TQxs(this.f$0, str, i, arrayList);
                     }
                 });
             } else {
-                this.searchInProgress = false;
+                searchAdapter.searchInProgress = false;
             }
-            this.searchAdapterHelper.queryServerSearch(str, ChatObject.canAddUsers(GroupVoipInviteAlert.this.currentChat), false, true, false, false, ChatObject.isChannel(GroupVoipInviteAlert.this.currentChat) ? GroupVoipInviteAlert.this.currentChat.id : 0L, false, 2, i);
+            searchAdapter.searchAdapterHelper.queryServerSearch(str, ChatObject.canAddUsers(GroupVoipInviteAlert.this.currentChat), false, true, false, false, ChatObject.isChannel(GroupVoipInviteAlert.this.currentChat) ? GroupVoipInviteAlert.this.currentChat.id : 0L, false, 2, i);
         }
 
-        public void lambda$processSearch$1(String str, int i, ArrayList arrayList) {
+        public static void $r8$lambda$rsYF5l6k1eUCFCnwFiU1gr6TQxs(SearchAdapter searchAdapter, String str, int i, ArrayList arrayList) {
             long peerId;
+            searchAdapter.getClass();
             String lowerCase = str.trim().toLowerCase();
             if (lowerCase.length() == 0) {
-                updateSearchResults(new ArrayList(), i);
+                searchAdapter.updateSearchResults(new ArrayList(), i);
                 return;
             }
             String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
@@ -661,33 +692,33 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                     }
                 }
             }
-            updateSearchResults(arrayList2, i);
+            searchAdapter.updateSearchResults(arrayList2, i);
         }
 
         private void updateSearchResults(final ArrayList arrayList, final int i) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateSearchResults$3(i, arrayList);
+                    GroupVoipInviteAlert.SearchAdapter.m2365$r8$lambda$rdIHZpsNuxb6Ms3uedjnASGMFg(this.f$0, i, arrayList);
                 }
             });
         }
 
-        public void lambda$updateSearchResults$3(int i, ArrayList arrayList) {
-            if (i != this.lastSearchId) {
+        public static void m2365$r8$lambda$rdIHZpsNuxb6Ms3uedjnASGMFg(SearchAdapter searchAdapter, int i, ArrayList arrayList) {
+            if (i != searchAdapter.lastSearchId) {
                 return;
             }
-            this.searchInProgress = false;
+            searchAdapter.searchInProgress = false;
             if (!ChatObject.isChannel(GroupVoipInviteAlert.this.currentChat)) {
-                this.searchAdapterHelper.addGroupMembers(arrayList);
+                searchAdapter.searchAdapterHelper.addGroupMembers(arrayList);
             }
-            int itemCount = getItemCount() - 1;
+            int itemCount = searchAdapter.getItemCount() - 1;
             boolean z = GroupVoipInviteAlert.this.emptyView.getVisibility() == 0;
-            notifyDataSetChanged();
-            if (getItemCount() > itemCount) {
+            searchAdapter.notifyDataSetChanged();
+            if (searchAdapter.getItemCount() > itemCount) {
                 GroupVoipInviteAlert.this.showItemsAnimated(itemCount);
             }
-            if (this.searchInProgress || this.searchAdapterHelper.isSearchInProgress() || !GroupVoipInviteAlert.this.listView.emptyViewIsVisible()) {
+            if (searchAdapter.searchInProgress || searchAdapter.searchAdapterHelper.isSearchInProgress() || !GroupVoipInviteAlert.this.listView.emptyViewIsVisible()) {
                 return;
             }
             GroupVoipInviteAlert.this.emptyView.showProgress(false, z);

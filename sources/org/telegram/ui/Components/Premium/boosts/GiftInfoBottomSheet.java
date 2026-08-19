@@ -48,17 +48,17 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         BoostRepository.checkGiftCode(str, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                GiftInfoBottomSheet.lambda$show$1(atomicBoolean, baseFragment, str, progress, (TLRPC.TL_payments_checkedGiftCode) obj);
+                GiftInfoBottomSheet.$r8$lambda$YUYLW_38Gm6o4KeCIm9DBgReAdw(atomicBoolean, baseFragment, str, progress, (TLRPC.TL_payments_checkedGiftCode) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                GiftInfoBottomSheet.lambda$show$2(atomicBoolean, progress, (TLRPC.TL_error) obj);
+                GiftInfoBottomSheet.$r8$lambda$Y7glcthtbPhwh6Sao6m83JvUN7w(atomicBoolean, progress, (TLRPC.TL_error) obj);
             }
         });
     }
 
-    public static void lambda$show$1(AtomicBoolean atomicBoolean, BaseFragment baseFragment, String str, Browser.Progress progress, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode) {
+    public static void $r8$lambda$YUYLW_38Gm6o4KeCIm9DBgReAdw(AtomicBoolean atomicBoolean, BaseFragment baseFragment, String str, Browser.Progress progress, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode) {
         if (atomicBoolean.get() || baseFragment.getParentActivity() == null) {
             return;
         }
@@ -78,7 +78,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void lambda$show$2(AtomicBoolean atomicBoolean, Browser.Progress progress, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$Y7glcthtbPhwh6Sao6m83JvUN7w(AtomicBoolean atomicBoolean, Browser.Progress progress, TLRPC.TL_error tL_error) {
         if (atomicBoolean.get() || progress == null) {
             return;
         }
@@ -189,8 +189,8 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        protected void dismiss() {
-            GiftInfoBottomSheet.this.lambda$new$0();
+        public void dismiss() {
+            GiftInfoBottomSheet.this.dismiss();
         }
 
         @Override
@@ -198,12 +198,13 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$afterCodeApplied$0();
+                    GiftInfoBottomSheet.AnonymousClass2.m2638$r8$lambda$IXs29PEC1DO6dXlYNCK1ojvTw(this.f$0);
                 }
             }, 200L);
         }
 
-        public void lambda$afterCodeApplied$0() {
+        public static void m2638$r8$lambda$IXs29PEC1DO6dXlYNCK1ojvTw(AnonymousClass2 anonymousClass2) {
+            anonymousClass2.getClass();
             GiftInfoBottomSheet.this.getBaseFragment().showDialog(new PremiumPreviewBottomSheet(GiftInfoBottomSheet.this.getBaseFragment(), ((BottomSheet) GiftInfoBottomSheet.this).currentAccount, null, null, null, ((BottomSheet) GiftInfoBottomSheet.this).resourcesProvider).setAnimateConfetti(true).setOutboundGift(true));
         }
 

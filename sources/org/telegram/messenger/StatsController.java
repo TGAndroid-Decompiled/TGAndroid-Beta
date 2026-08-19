@@ -71,20 +71,22 @@ public class StatsController extends BaseController {
     }
 
     public static StatsController getInstance(int i) {
-        StatsController statsController = Instance[i];
-        if (statsController == null) {
-            synchronized (StatsController.class) {
-                try {
-                    statsController = Instance[i];
-                    if (statsController == null) {
-                        StatsController[] statsControllerArr = Instance;
-                        StatsController statsController2 = new StatsController(i);
-                        statsControllerArr[i] = statsController2;
-                        statsController = statsController2;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        StatsController statsController;
+        StatsController statsController2 = Instance[i];
+        if (statsController2 != null) {
+            return statsController2;
+        }
+        synchronized (StatsController.class) {
+            try {
+                statsController = Instance[i];
+                if (statsController == null) {
+                    StatsController[] statsControllerArr = Instance;
+                    StatsController statsController3 = new StatsController(i);
+                    statsControllerArr[i] = statsController3;
+                    statsController = statsController3;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return statsController;

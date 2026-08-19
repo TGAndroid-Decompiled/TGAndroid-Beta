@@ -9,9 +9,10 @@ public class Bitmaps {
 
     public static Bitmap createBitmap(int i, int i2, Bitmap.Config config) {
         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, config);
-        if (config == Bitmap.Config.ARGB_8888 || config == Bitmap.Config.ARGB_4444) {
-            bitmapCreateBitmap.eraseColor(0);
+        if (config != Bitmap.Config.ARGB_8888 && config != Bitmap.Config.ARGB_4444) {
+            return bitmapCreateBitmap;
         }
+        bitmapCreateBitmap.eraseColor(0);
         return bitmapCreateBitmap;
     }
 

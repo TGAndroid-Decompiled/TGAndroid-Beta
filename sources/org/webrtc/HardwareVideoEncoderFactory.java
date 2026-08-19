@@ -163,7 +163,13 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     private boolean isHardwareSupportedInCurrentSdkVp8(MediaCodecInfo mediaCodecInfo) {
         String name = mediaCodecInfo.getName();
-        return name.startsWith("OMX.qcom.") || (name.startsWith("OMX.Exynos.") && Build.VERSION.SDK_INT >= 23) || (name.startsWith("OMX.Intel.") && this.enableIntelVp8Encoder);
+        if (name.startsWith("OMX.qcom.")) {
+            return true;
+        }
+        if (!name.startsWith("OMX.Exynos.") || Build.VERSION.SDK_INT < 23) {
+            return name.startsWith("OMX.Intel.") && this.enableIntelVp8Encoder;
+        }
+        return true;
     }
 
     private boolean isHardwareSupportedInCurrentSdkVp9(MediaCodecInfo mediaCodecInfo) {

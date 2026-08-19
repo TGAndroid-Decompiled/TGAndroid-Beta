@@ -159,14 +159,14 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         return f2;
     }
 
-    public void lambda$new$0() {
-        if (this.textureView.renderer.isFirstFrameRendered()) {
+    public static void $r8$lambda$b8w45sCeMZn9__fUkOVxQOfs4RQ(GroupCallMiniTextureView groupCallMiniTextureView) {
+        if (groupCallMiniTextureView.textureView.renderer.isFirstFrameRendered()) {
             return;
         }
-        this.textureView.animate().cancel();
-        this.textureView.animate().alpha(0.0f).setDuration(150L).start();
-        this.noRtmpStreamTextView.animate().cancel();
-        this.noRtmpStreamTextView.animate().alpha(1.0f).setDuration(150L).start();
+        groupCallMiniTextureView.textureView.animate().cancel();
+        groupCallMiniTextureView.textureView.animate().alpha(0.0f).setDuration(150L).start();
+        groupCallMiniTextureView.noRtmpStreamTextView.animate().cancel();
+        groupCallMiniTextureView.noRtmpStreamTextView.animate().alpha(1.0f).setDuration(150L).start();
     }
 
     public GroupCallMiniTextureView(final GroupCallRenderersContainer groupCallRenderersContainer, ArrayList arrayList, final ChatObject.Call call, final GroupCallActivity groupCallActivity) {
@@ -179,7 +179,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.noRtmpStreamCallback = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                GroupCallMiniTextureView.$r8$lambda$b8w45sCeMZn9__fUkOVxQOfs4RQ(this.f$0);
             }
         };
         this.rect = new Rect();
@@ -209,9 +209,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         final String string3 = LocaleController.getString(R.string.VoipVideoScreenSharing);
         final float fMeasureText = textPaint.measureText(string);
         final float fMeasureText2 = textPaint2.measureText(string3);
-        boolean z = true;
-        boolean z2 = false;
-        VoIPTextureView voIPTextureView = new VoIPTextureView(groupCallRenderersContainer.getContext(), z2, z2, z, z) {
+        VoIPTextureView voIPTextureView = new VoIPTextureView(groupCallRenderersContainer.getContext(), false, false, true, true) {
             float overlayIconAlphaFrom;
 
             @Override
@@ -234,10 +232,13 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 float f;
-                float fDp;
                 float f2;
                 float f3;
-                if (!this.renderer.isFirstFrameRendered() || ((this.renderer.getAlpha() != 1.0f && this.blurRenderer.getAlpha() != 1.0f) || GroupCallMiniTextureView.this.videoIsPaused)) {
+                float f4;
+                float fDp;
+                float f5;
+                float f6;
+                if (!this.renderer.isFirstFrameRendered() || (!(this.renderer.getAlpha() == 1.0f || this.blurRenderer.getAlpha() == 1.0f) || GroupCallMiniTextureView.this.videoIsPaused)) {
                     if (GroupCallMiniTextureView.this.progressToBackground != 1.0f) {
                         GroupCallMiniTextureView.access$116(GroupCallMiniTextureView.this, 0.10666667f);
                         if (GroupCallMiniTextureView.this.progressToBackground > 1.0f) {
@@ -249,8 +250,8 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                     GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
                     if (groupCallMiniTextureView.thumb != null) {
                         canvas.save();
-                        float f4 = this.currentThumbScale;
-                        canvas.scale(f4, f4, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+                        float f7 = this.currentThumbScale;
+                        canvas.scale(f7, f7, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
                         GroupCallMiniTextureView groupCallMiniTextureView2 = GroupCallMiniTextureView.this;
                         if (groupCallMiniTextureView2.thumbPaint == null) {
                             groupCallMiniTextureView2.thumbPaint = new Paint(1);
@@ -280,7 +281,13 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                         if (GroupCallMiniTextureView.this.stopSharingTextView.getVisibility() != 4) {
                             GroupCallMiniTextureView.this.stopSharingTextView.setVisibility(4);
                         }
+                        f = 48.0f;
+                        f2 = 2.0f;
+                        f3 = 255.0f;
                     } else if (!videoParticipant.presentation || !videoParticipant.participant.self) {
+                        f = 48.0f;
+                        f2 = 2.0f;
+                        f3 = 255.0f;
                         if (groupCallMiniTextureView4.stopSharingTextView.getVisibility() != 4) {
                             GroupCallMiniTextureView.this.stopSharingTextView.setVisibility(4);
                         }
@@ -291,43 +298,46 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                             GroupCallMiniTextureView.this.stopSharingTextView.setScaleX(1.0f);
                             GroupCallMiniTextureView.this.stopSharingTextView.setScaleY(1.0f);
                         }
-                        float f5 = GroupCallMiniTextureView.this.drawFirst ? 0.0f : groupCallRenderersContainer.progressToFullscreenMode;
+                        float f8 = GroupCallMiniTextureView.this.drawFirst ? 0.0f : groupCallRenderersContainer.progressToFullscreenMode;
                         int iDp2 = AndroidUtilities.dp(33.0f);
                         GroupCallMiniTextureView groupCallMiniTextureView5 = GroupCallMiniTextureView.this;
                         if (groupCallMiniTextureView5.animateToFullscreen || groupCallMiniTextureView5.showingInFullscreen) {
-                            f = iDp2;
+                            f4 = iDp2;
                             fDp = AndroidUtilities.dp(10.0f) + (AndroidUtilities.dp(39.0f) * groupCallRenderersContainer.progressToFullscreenMode);
                         } else {
-                            f = iDp2;
+                            f4 = iDp2;
                             fDp = AndroidUtilities.dp(10.0f) * Math.max(1.0f - groupCallRenderersContainer.progressToFullscreenMode, (GroupCallMiniTextureView.this.showingAsScrimView || GroupCallMiniTextureView.this.animateToScrimView) ? groupCallRenderersContainer.progressToScrimView : 0.0f);
                         }
-                        int i = (int) (f + fDp);
+                        int i = (int) (f4 + fDp);
                         int measuredWidth2 = (getMeasuredWidth() - i) / 2;
-                        float f6 = (GroupCallMiniTextureView.this.showingAsScrimView || GroupCallMiniTextureView.this.animateToScrimView) ? groupCallRenderersContainer.progressToScrimView : 0.0f;
+                        float f9 = (GroupCallMiniTextureView.this.showingAsScrimView || GroupCallMiniTextureView.this.animateToScrimView) ? groupCallRenderersContainer.progressToScrimView : 0.0f;
                         GroupCallMiniTextureView groupCallMiniTextureView6 = GroupCallMiniTextureView.this;
                         if (groupCallMiniTextureView6.showingInFullscreen) {
-                            f2 = f5;
+                            f5 = f8;
                         } else {
-                            f5 = groupCallMiniTextureView6.animateToFullscreen ? groupCallRenderersContainer.progressToFullscreenMode : f6;
-                            f2 = (groupCallMiniTextureView6.showingAsScrimView || GroupCallMiniTextureView.this.animateToScrimView) ? groupCallRenderersContainer.progressToScrimView : groupCallRenderersContainer.progressToFullscreenMode;
+                            f8 = groupCallMiniTextureView6.animateToFullscreen ? groupCallRenderersContainer.progressToFullscreenMode : f9;
+                            f5 = (groupCallMiniTextureView6.showingAsScrimView || GroupCallMiniTextureView.this.animateToScrimView) ? groupCallRenderersContainer.progressToScrimView : groupCallRenderersContainer.progressToFullscreenMode;
                         }
                         float measuredHeight2 = ((getMeasuredHeight() - i) / 2) - AndroidUtilities.dp(28.0f);
+                        f = 48.0f;
                         float fDp3 = AndroidUtilities.dp(17.0f);
+                        f3 = 255.0f;
                         float fDp4 = AndroidUtilities.dp(74.0f);
+                        f2 = 2.0f;
                         GroupCallMiniTextureView groupCallMiniTextureView7 = GroupCallMiniTextureView.this;
-                        int iDp3 = (int) ((measuredHeight2 - ((fDp3 + (fDp4 * ((groupCallMiniTextureView7.showingInFullscreen || groupCallMiniTextureView7.animateToFullscreen) ? groupCallRenderersContainer.progressToFullscreenMode : 0.0f))) * f5)) + (AndroidUtilities.dp(17.0f) * f2));
+                        int iDp3 = (int) ((measuredHeight2 - ((fDp3 + (fDp4 * ((groupCallMiniTextureView7.showingInFullscreen || groupCallMiniTextureView7.animateToFullscreen) ? groupCallRenderersContainer.progressToFullscreenMode : 0.0f))) * f8)) + (AndroidUtilities.dp(17.0f) * f5));
                         int i2 = iDp3 + i;
                         GroupCallMiniTextureView.this.castingScreenDrawable.setBounds(measuredWidth2, iDp3, measuredWidth2 + i, i2);
                         GroupCallMiniTextureView.this.castingScreenDrawable.draw(canvas);
-                        float f7 = groupCallRenderersContainer.progressToFullscreenMode;
-                        if (f7 <= 0.0f && f6 <= 0.0f) {
+                        float f10 = groupCallRenderersContainer.progressToFullscreenMode;
+                        if (f10 <= 0.0f && f9 <= 0.0f) {
                             GroupCallMiniTextureView.this.stopSharingTextView.setAlpha(0.0f);
                         } else {
-                            float fMax = Math.max(f7, f6) * f5;
+                            float fMax = Math.max(f10, f9) * f8;
                             textPaint2.setAlpha((int) (fMax * 255.0f));
                             GroupCallMiniTextureView groupCallMiniTextureView8 = GroupCallMiniTextureView.this;
                             if (groupCallMiniTextureView8.animateToFullscreen || groupCallMiniTextureView8.showingInFullscreen) {
-                                groupCallMiniTextureView8.stopSharingTextView.setAlpha(fMax * (1.0f - f6));
+                                groupCallMiniTextureView8.stopSharingTextView.setAlpha(fMax * (1.0f - f9));
                             } else {
                                 groupCallMiniTextureView8.stopSharingTextView.setAlpha(0.0f);
                             }
@@ -335,9 +345,9 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                         }
                         GroupCallMiniTextureView.this.stopSharingTextView.setTranslationY(((AndroidUtilities.dp(72.0f) + i2) + GroupCallMiniTextureView.this.swipeToBackDy) - this.currentClipVertical);
                         GroupCallMiniTextureView.this.stopSharingTextView.setTranslationX(((getMeasuredWidth() - GroupCallMiniTextureView.this.stopSharingTextView.getMeasuredWidth()) / 2.0f) - this.currentClipHorizontal);
-                        float f8 = groupCallRenderersContainer.progressToFullscreenMode;
-                        if (f8 < 1.0f && f6 < 1.0f) {
-                            textPaint.setAlpha((int) ((1.0d - ((double) Math.max(f8, f6))) * 255.0d));
+                        float f11 = groupCallRenderersContainer.progressToFullscreenMode;
+                        if (f11 < 1.0f && f9 < 1.0f) {
+                            textPaint.setAlpha((int) (255.0d * (1.0d - ((double) Math.max(f11, f9)))));
                             canvas.save();
                             canvas.translate((measuredWidth2 - (AndroidUtilities.dp(400.0f) / 2.0f)) + (i / 2.0f), i2 + AndroidUtilities.dp(10.0f));
                             staticLayout.draw(canvas);
@@ -345,9 +355,13 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                         }
                     }
                     invalidate();
+                } else {
+                    f = 48.0f;
+                    f2 = 2.0f;
+                    f3 = 255.0f;
                 }
-                GroupCallMiniTextureView.this.noRtmpStreamTextView.setTranslationY((((getMeasuredHeight() - GroupCallMiniTextureView.this.noRtmpStreamTextView.getMeasuredHeight()) / 2.0f) + GroupCallMiniTextureView.this.swipeToBackDy) - this.currentClipVertical);
-                GroupCallMiniTextureView.this.noRtmpStreamTextView.setTranslationX(((getMeasuredWidth() - GroupCallMiniTextureView.this.noRtmpStreamTextView.getMeasuredWidth()) / 2.0f) - this.currentClipHorizontal);
+                GroupCallMiniTextureView.this.noRtmpStreamTextView.setTranslationY((((getMeasuredHeight() - GroupCallMiniTextureView.this.noRtmpStreamTextView.getMeasuredHeight()) / f2) + GroupCallMiniTextureView.this.swipeToBackDy) - this.currentClipVertical);
+                GroupCallMiniTextureView.this.noRtmpStreamTextView.setTranslationX(((getMeasuredWidth() - GroupCallMiniTextureView.this.noRtmpStreamTextView.getMeasuredWidth()) / f2) - this.currentClipHorizontal);
                 ImageView imageView = GroupCallMiniTextureView.this.blurredFlippingStub;
                 if (imageView != null && imageView.getParent() != null) {
                     GroupCallMiniTextureView groupCallMiniTextureView9 = GroupCallMiniTextureView.this;
@@ -387,39 +401,39 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                             invalidate();
                         }
                     }
-                    float f9 = GroupCallMiniTextureView.this.videoIsPausedProgress;
+                    float f12 = GroupCallMiniTextureView.this.videoIsPausedProgress;
                     if (isInAnimation()) {
-                        float f10 = this.overlayIconAlphaFrom;
-                        float f11 = this.animationProgress;
-                        f3 = (f10 * (1.0f - f11)) + (GroupCallMiniTextureView.this.overlayIconAlpha * f11);
+                        float f13 = this.overlayIconAlphaFrom;
+                        float f14 = this.animationProgress;
+                        f6 = (f13 * (1.0f - f14)) + (GroupCallMiniTextureView.this.overlayIconAlpha * f14);
                     } else {
-                        f3 = GroupCallMiniTextureView.this.overlayIconAlpha;
+                        f6 = GroupCallMiniTextureView.this.overlayIconAlpha;
                     }
-                    float f12 = f9 * f3;
-                    if (f12 > 0.0f) {
-                        float fDp6 = AndroidUtilities.dp(48.0f);
-                        float measuredWidth3 = (getMeasuredWidth() - fDp6) / 2.0f;
-                        float measuredHeight4 = (getMeasuredHeight() - fDp6) / 2.0f;
+                    float f15 = f12 * f6;
+                    if (f15 > 0.0f) {
+                        float fDp6 = AndroidUtilities.dp(f);
+                        float measuredWidth3 = (getMeasuredWidth() - fDp6) / f2;
+                        float measuredHeight4 = (getMeasuredHeight() - fDp6) / f2;
                         if (GroupCallMiniTextureView.this.participant == call.videoNotAvailableParticipant) {
                             measuredHeight4 -= fDp6 / 2.5f;
                         }
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f13 = measuredHeight4 + fDp6;
-                        rectF.set((int) measuredWidth3, (int) measuredHeight4, (int) (measuredWidth3 + fDp6), (int) f13);
-                        if (f12 != 1.0f) {
-                            canvas.saveLayerAlpha(rectF, (int) (f12 * 255.0f), 31);
+                        float f16 = measuredHeight4 + fDp6;
+                        rectF.set((int) measuredWidth3, (int) measuredHeight4, (int) (measuredWidth3 + fDp6), (int) f16);
+                        if (f15 != 1.0f) {
+                            canvas.saveLayerAlpha(rectF, (int) (f15 * f3), 31);
                         } else {
                             canvas.save();
                         }
                         GroupCallMiniTextureView.this.pausedVideoDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                         GroupCallMiniTextureView.this.pausedVideoDrawable.draw(canvas);
                         canvas.restore();
-                        float f14 = f12 * groupCallRenderersContainer.progressToFullscreenMode;
-                        if (f14 <= 0.0f || GroupCallMiniTextureView.this.participant == call.videoNotAvailableParticipant) {
+                        float f17 = f15 * groupCallRenderersContainer.progressToFullscreenMode;
+                        if (f17 <= 0.0f || GroupCallMiniTextureView.this.participant == call.videoNotAvailableParticipant) {
                             return;
                         }
-                        textPaint.setAlpha((int) (f14 * 255.0f));
-                        canvas.drawText(string, (measuredWidth3 - (fMeasureText / 2.0f)) + (fDp6 / 2.0f), f13 + AndroidUtilities.dp(16.0f), textPaint);
+                        textPaint.setAlpha((int) (f17 * f3));
+                        canvas.drawText(string, (measuredWidth3 - (fMeasureText / f2)) + (fDp6 / f2), f16 + AndroidUtilities.dp(16.0f), textPaint);
                     }
                 }
             }
@@ -450,7 +464,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             }
 
             @Override
-            protected void onLayout(boolean z3, int i, int i2, int i3, int i4) {
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 int i5;
                 ChatObject.VideoParticipant videoParticipant;
                 GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
@@ -474,7 +488,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                         GroupCallMiniTextureView.this.checkScale = false;
                     }
                 }
-                super.onLayout(z3, i, i2, i3, i4);
+                super.onLayout(z, i, i2, i3, i4);
                 TextureViewRenderer textureViewRenderer2 = this.renderer;
                 int i6 = textureViewRenderer2.rotatedFrameHeight;
                 if (i6 == 0 || (i5 = textureViewRenderer2.rotatedFrameWidth) == 0 || (videoParticipant = GroupCallMiniTextureView.this.participant) == null) {
@@ -606,7 +620,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.stopSharingTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                GroupCallMiniTextureView.m2972$r8$lambda$G8sfTidlQ0_KmG95jyWktFbM(this.f$0, view);
             }
         });
         addView(this.stopSharingTextView, LayoutHelper.createFrame(-2, 38, 51));
@@ -626,11 +640,12 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         addView(this.noRtmpStreamTextView, LayoutHelper.createFrame(-2, -2, 51));
     }
 
-    public void lambda$new$1(View view) {
+    public static void m2972$r8$lambda$G8sfTidlQ0_KmG95jyWktFbM(GroupCallMiniTextureView groupCallMiniTextureView, View view) {
+        groupCallMiniTextureView.getClass();
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().stopScreenCapture();
         }
-        this.stopSharingTextView.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(180L).start();
+        groupCallMiniTextureView.stopSharingTextView.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(180L).start();
     }
 
     public boolean isInsideStopScreenButton(float f, float f2) {
@@ -1088,7 +1103,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                         Runnable runnable2 = new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$updateAttachState$2(z13, this);
+                                GroupCallMiniTextureView.$r8$lambda$M7omZyxOdGvvLaoWj9kPVU8zshg(this.f$0, z13, this);
                             }
                         };
                         this.hideRunnable = runnable2;
@@ -1339,14 +1354,14 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                             forChat2 = ImageLocation.getForChat(this.currentAccount, chat, 1);
                             obj = chat;
                         }
+                        Object obj2 = obj;
+                        ImageLocation imageLocation = forChat;
                         avatarDrawable = this.noVideoStubLayout.avatarDrawable;
                         if (forChat2 != null || (imageFromMemory = ImageLoader.getInstance().getImageFromMemory(forChat2.location, null, "50_50")) == null) {
                             drawable = avatarDrawable;
                         } else {
                             drawable = imageFromMemory;
                         }
-                        ImageLocation imageLocation = forChat;
-                        Object obj2 = obj;
                         this.noVideoStubLayout.avatarImageReceiver.setImage(imageLocation, null, drawable, null, obj2, 0);
                         this.noVideoStubLayout.backgroundImageReceiver.setImage(imageLocation, "50_50_b", new ColorDrawable(Theme.getColor(Theme.key_voipgroup_listViewBackground)), null, obj2, 0);
                         z7 = false;
@@ -1367,14 +1382,14 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                         forChat2 = ImageLocation.getForChat(this.currentAccount, chat2, 1);
                         obj = chat2;
                     }
+                    Object obj3 = obj;
+                    ImageLocation imageLocation2 = forChat;
                     avatarDrawable = this.noVideoStubLayout.avatarDrawable;
                     if (forChat2 != null) {
                         drawable = avatarDrawable;
                     } else {
                         drawable = avatarDrawable;
                     }
-                    ImageLocation imageLocation2 = forChat;
-                    Object obj3 = obj;
                     this.noVideoStubLayout.avatarImageReceiver.setImage(imageLocation2, null, drawable, null, obj3, 0);
                     this.noVideoStubLayout.backgroundImageReceiver.setImage(imageLocation2, "50_50_b", new ColorDrawable(Theme.getColor(Theme.key_voipgroup_listViewBackground)), null, obj3, 0);
                     z7 = false;
@@ -1407,7 +1422,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                                this.f$0.lambda$updateAttachState$3(valueAnimator3);
+                                GroupCallMiniTextureView.$r8$lambda$WkvRvnobl25LRdS4s1OwqWIMLi4(this.f$0, valueAnimator3);
                             }
                         });
                         this.noVideoStubAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1720,14 +1735,14 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                     forChat2 = ImageLocation.getForChat(this.currentAccount, chat3, 1);
                     obj = chat3;
                 }
+                Object obj4 = obj;
+                ImageLocation imageLocation3 = forChat;
                 avatarDrawable = this.noVideoStubLayout.avatarDrawable;
                 if (forChat2 != null) {
                     drawable = avatarDrawable;
                 } else {
                     drawable = avatarDrawable;
                 }
-                ImageLocation imageLocation3 = forChat;
-                Object obj4 = obj;
                 this.noVideoStubLayout.avatarImageReceiver.setImage(imageLocation3, null, drawable, null, obj4, 0);
                 this.noVideoStubLayout.backgroundImageReceiver.setImage(imageLocation3, "50_50_b", new ColorDrawable(Theme.getColor(Theme.key_voipgroup_listViewBackground)), null, obj4, 0);
                 z7 = false;
@@ -1760,7 +1775,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                     valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                            this.f$0.lambda$updateAttachState$3(valueAnimator3);
+                            GroupCallMiniTextureView.$r8$lambda$WkvRvnobl25LRdS4s1OwqWIMLi4(this.f$0, valueAnimator3);
                         }
                     });
                     this.noVideoStubAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1855,19 +1870,22 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         updateInfo();
     }
 
-    public void lambda$updateAttachState$2(boolean z, View view) {
+    public static void $r8$lambda$M7omZyxOdGvvLaoWj9kPVU8zshg(GroupCallMiniTextureView groupCallMiniTextureView, boolean z, View view) {
         if (z) {
-            this.parentContainer.removeView(view);
+            groupCallMiniTextureView.parentContainer.removeView(view);
+        } else {
+            groupCallMiniTextureView.getClass();
         }
         view.setVisibility(8);
-        this.hideRunnable = null;
+        groupCallMiniTextureView.hideRunnable = null;
     }
 
-    public void lambda$updateAttachState$3(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$WkvRvnobl25LRdS4s1OwqWIMLi4(GroupCallMiniTextureView groupCallMiniTextureView, ValueAnimator valueAnimator) {
+        groupCallMiniTextureView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.progressToNoVideoStub = fFloatValue;
-        this.noVideoStubLayout.setAlpha(fFloatValue);
-        this.textureView.invalidate();
+        groupCallMiniTextureView.progressToNoVideoStub = fFloatValue;
+        groupCallMiniTextureView.noVideoStubLayout.setAlpha(fFloatValue);
+        groupCallMiniTextureView.textureView.invalidate();
     }
 
     private void loadThumb() {
@@ -2100,12 +2118,13 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         getRenderBufferBitmap(new GlGenericDrawer.TextureCallback() {
             @Override
             public final void run(Bitmap bitmap, int i) {
-                this.f$0.lambda$saveThumb$5(bitmap, i);
+                GroupCallMiniTextureView.$r8$lambda$9VF_aMMj22oMzPoDWEAYWT8zBbM(this.f$0, bitmap, i);
             }
         });
     }
 
-    public void lambda$saveThumb$5(final Bitmap bitmap, int i) {
+    public static void $r8$lambda$9VF_aMMj22oMzPoDWEAYWT8zBbM(final GroupCallMiniTextureView groupCallMiniTextureView, final Bitmap bitmap, int i) {
+        groupCallMiniTextureView.getClass();
         if (bitmap == null || bitmap.getPixel(0, 0) == 0) {
             return;
         }
@@ -2113,14 +2132,14 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$saveThumb$4(bitmap);
+                GroupCallMiniTextureView.m2973$r8$lambda$HzKCJRFXcH6qrRMe7k0BSvKQ0I(this.f$0, bitmap);
             }
         });
     }
 
-    public void lambda$saveThumb$4(Bitmap bitmap) {
-        HashMap<String, Bitmap> map = this.call.thumbs;
-        ChatObject.VideoParticipant videoParticipant = this.participant;
+    public static void m2973$r8$lambda$HzKCJRFXcH6qrRMe7k0BSvKQ0I(GroupCallMiniTextureView groupCallMiniTextureView, Bitmap bitmap) {
+        HashMap<String, Bitmap> map = groupCallMiniTextureView.call.thumbs;
+        ChatObject.VideoParticipant videoParticipant = groupCallMiniTextureView.participant;
         boolean z = videoParticipant.presentation;
         TLRPC.GroupCallParticipant groupCallParticipant = videoParticipant.participant;
         map.put(z ? groupCallParticipant.presentationEndpoint : groupCallParticipant.videoEndpoint, bitmap);
@@ -2180,7 +2199,8 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
 
     private void updateIconColor(boolean z) {
         final int color;
-        final int color2;
+        final int i;
+        int color2;
         ValueAnimator valueAnimator;
         GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
         if (groupCallStatusIcon == null) {
@@ -2193,9 +2213,9 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                 color2 = Theme.getColor(Theme.key_voipgroup_speakingText);
             } else {
                 color = Theme.getColor(Theme.key_voipgroup_speakingText);
-                color2 = -1;
+                i = -1;
             }
-            if (this.animateToColor == color2) {
+            if (this.animateToColor == i) {
                 return;
             }
             valueAnimator = this.colorAnimator;
@@ -2209,29 +2229,27 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                 paint.setColor(color);
                 return;
             }
-            final int i = this.lastIconColor;
-            final int i2 = this.lastSpeakingFrameColor;
-            this.animateToColor = color2;
+            final int i2 = this.lastIconColor;
+            final int i3 = this.lastSpeakingFrameColor;
+            this.animateToColor = i;
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.colorAnimator = valueAnimatorOfFloat;
-            final int i3 = color2;
-            final int i4 = color;
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$updateIconColor$6(i, i3, i2, i4, valueAnimator2);
+                    GroupCallMiniTextureView.m2974$r8$lambda$gp4EJojynBToFBTyNDV6akzEq4(this.f$0, i2, i, i3, color, valueAnimator2);
                 }
             });
             this.colorAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
-                    int i5 = color2;
-                    groupCallMiniTextureView.lastIconColor = i5;
-                    groupCallMiniTextureView.animateToColor = i5;
-                    int i6 = color;
-                    groupCallMiniTextureView.lastSpeakingFrameColor = i6;
-                    groupCallMiniTextureView.speakingPaint.setColor(i6);
+                    int i4 = i;
+                    groupCallMiniTextureView.lastIconColor = i4;
+                    groupCallMiniTextureView.animateToColor = i4;
+                    int i5 = color;
+                    groupCallMiniTextureView.lastSpeakingFrameColor = i5;
+                    groupCallMiniTextureView.speakingPaint.setColor(i5);
                     GroupCallMiniTextureView groupCallMiniTextureView2 = GroupCallMiniTextureView.this;
                     if (groupCallMiniTextureView2.progressToSpeaking > 0.0f) {
                         groupCallMiniTextureView2.invalidate();
@@ -2240,8 +2258,9 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             });
             this.colorAnimator.start();
         }
-        color = color2;
-        if (this.animateToColor == color2) {
+        i = color2;
+        color = i;
+        if (this.animateToColor == i) {
             return;
         }
         valueAnimator = this.colorAnimator;
@@ -2255,29 +2274,27 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             paint2.setColor(color);
             return;
         }
-        final int i5 = this.lastIconColor;
-        final int i6 = this.lastSpeakingFrameColor;
-        this.animateToColor = color2;
+        final int i4 = this.lastIconColor;
+        final int i5 = this.lastSpeakingFrameColor;
+        this.animateToColor = i;
         ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.colorAnimator = valueAnimatorOfFloat2;
-        final int i7 = color2;
-        final int i8 = color;
         valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$updateIconColor$6(i5, i7, i6, i8, valueAnimator2);
+                GroupCallMiniTextureView.m2974$r8$lambda$gp4EJojynBToFBTyNDV6akzEq4(this.f$0, i4, i, i5, color, valueAnimator2);
             }
         });
         this.colorAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
-                int i9 = color2;
-                groupCallMiniTextureView.lastIconColor = i9;
-                groupCallMiniTextureView.animateToColor = i9;
-                int i10 = color;
-                groupCallMiniTextureView.lastSpeakingFrameColor = i10;
-                groupCallMiniTextureView.speakingPaint.setColor(i10);
+                int i6 = i;
+                groupCallMiniTextureView.lastIconColor = i6;
+                groupCallMiniTextureView.animateToColor = i6;
+                int i7 = color;
+                groupCallMiniTextureView.lastSpeakingFrameColor = i7;
+                groupCallMiniTextureView.speakingPaint.setColor(i7);
                 GroupCallMiniTextureView groupCallMiniTextureView2 = GroupCallMiniTextureView.this;
                 if (groupCallMiniTextureView2.progressToSpeaking > 0.0f) {
                     groupCallMiniTextureView2.invalidate();
@@ -2287,14 +2304,15 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.colorAnimator.start();
     }
 
-    public void lambda$updateIconColor$6(int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
+    public static void m2974$r8$lambda$gp4EJojynBToFBTyNDV6akzEq4(GroupCallMiniTextureView groupCallMiniTextureView, int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
+        groupCallMiniTextureView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.lastIconColor = ColorUtils.blendARGB(i, i2, fFloatValue);
+        groupCallMiniTextureView.lastIconColor = ColorUtils.blendARGB(i, i2, fFloatValue);
         int iBlendARGB = ColorUtils.blendARGB(i3, i4, fFloatValue);
-        this.lastSpeakingFrameColor = iBlendARGB;
-        this.speakingPaint.setColor(iBlendARGB);
-        if (this.progressToSpeaking > 0.0f) {
-            invalidate();
+        groupCallMiniTextureView.lastSpeakingFrameColor = iBlendARGB;
+        groupCallMiniTextureView.speakingPaint.setColor(iBlendARGB);
+        if (groupCallMiniTextureView.progressToSpeaking > 0.0f) {
+            groupCallMiniTextureView.invalidate();
         }
     }
 
@@ -2319,7 +2337,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.nameView.setFullLayoutAdditionalWidth(measuredWidth - i, 0);
     }
 
-    private class NoVideoStubLayout extends View {
+    class NoVideoStubLayout extends View {
         float amplitude;
         float animateAmplitudeDiff;
         float animateToAmplitude;
@@ -2566,7 +2584,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$startFlipAnimation$7(valueAnimator);
+                GroupCallMiniTextureView.m2971$r8$lambda$Cua88UCZwnyso5wOKQnm_z2ycY(this.f$0, valueAnimator);
             }
         });
         this.flipAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2588,8 +2606,9 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         this.flipAnimator.start();
     }
 
-    public void lambda$startFlipAnimation$7(ValueAnimator valueAnimator) {
+    public static void m2971$r8$lambda$Cua88UCZwnyso5wOKQnm_z2ycY(GroupCallMiniTextureView groupCallMiniTextureView, ValueAnimator valueAnimator) {
         boolean z;
+        groupCallMiniTextureView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         if (fFloatValue < 0.5f) {
             z = false;
@@ -2597,13 +2616,13 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             fFloatValue -= 1.0f;
             z = true;
         }
-        if (z && !this.flipHalfReached) {
-            this.blurredFlippingStub.setAlpha(1.0f);
-            this.flipHalfReached = true;
-            this.textureView.renderer.clearImage();
+        if (z && !groupCallMiniTextureView.flipHalfReached) {
+            groupCallMiniTextureView.blurredFlippingStub.setAlpha(1.0f);
+            groupCallMiniTextureView.flipHalfReached = true;
+            groupCallMiniTextureView.textureView.renderer.clearImage();
         }
         float f = fFloatValue * 180.0f;
-        this.blurredFlippingStub.setRotationY(f);
-        this.textureView.renderer.setRotationY(f);
+        groupCallMiniTextureView.blurredFlippingStub.setRotationY(f);
+        groupCallMiniTextureView.textureView.renderer.setRotationY(f);
     }
 }

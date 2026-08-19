@@ -65,7 +65,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(baseFragment, view);
+                SuggestClearDatabaseBottomSheet.$r8$lambda$nYsqJ1RXmHGX4Nf_7a3E266jF0o(this.f$0, baseFragment, view);
             }
         });
         ScrollView scrollView = new ScrollView(parentActivity);
@@ -73,7 +73,8 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         setCustomView(scrollView);
     }
 
-    public void lambda$new$1(final BaseFragment baseFragment, View view) {
+    public static void $r8$lambda$nYsqJ1RXmHGX4Nf_7a3E266jF0o(final SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet, final BaseFragment baseFragment, View view) {
+        suggestClearDatabaseBottomSheet.getClass();
         AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.LocalDatabaseClearTextTitle));
         builder.setMessage(LocaleController.getString(R.string.LocalDatabaseClearText));
@@ -81,7 +82,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         builder.setPositiveButton(LocaleController.getString(R.string.CacheClear), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$new$0(baseFragment, alertDialog, i);
+                SuggestClearDatabaseBottomSheet.$r8$lambda$mTqBTGq3KzrFVzvYRtiCazGxjOc(this.f$0, baseFragment, alertDialog, i);
             }
         });
         AlertDialog alertDialogCreate = builder.create();
@@ -92,24 +93,25 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         }
     }
 
-    public void lambda$new$0(BaseFragment baseFragment, AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$mTqBTGq3KzrFVzvYRtiCazGxjOc(SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet, BaseFragment baseFragment, AlertDialog alertDialog, int i) {
+        suggestClearDatabaseBottomSheet.getClass();
         if (baseFragment.getParentActivity() == null) {
             return;
         }
-        MessagesController.getInstance(this.currentAccount).clearQueryTime();
+        MessagesController.getInstance(suggestClearDatabaseBottomSheet.currentAccount).clearQueryTime();
         baseFragment.getMessagesStorage().clearLocalDatabase();
     }
 
     @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
+    public void dismiss() {
+        super.dismiss();
         dialog = null;
     }
 
     public static void dismissDialog() {
         SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet = dialog;
         if (suggestClearDatabaseBottomSheet != null) {
-            suggestClearDatabaseBottomSheet.lambda$new$0();
+            suggestClearDatabaseBottomSheet.dismiss();
             dialog = null;
         }
     }

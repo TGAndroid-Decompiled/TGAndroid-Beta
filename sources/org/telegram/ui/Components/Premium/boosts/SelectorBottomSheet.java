@@ -128,7 +128,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         selectorHeaderCell.setOnCloseClickListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.dismiss();
             }
         });
         selectorHeaderCell.setText(getTitle());
@@ -170,7 +170,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.save(false);
             }
         });
         selectorBtnCell.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
@@ -202,7 +202,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final void onItemClick(View view, int i6, float f, float f2) {
-                this.f$0.lambda$new$5(view, i6, f, f2);
+                SelectorBottomSheet.m2648$r8$lambda$q9tZrG2dHginLI047fMFqvlto(this.f$0, view, i6, f, f2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -225,25 +225,22 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         loadData(3, true, null);
     }
 
-    public void lambda$new$0(View view) {
-        save(false);
-    }
-
-    public void lambda$new$5(View view, int i, float f, float f2) {
+    public static void m2648$r8$lambda$q9tZrG2dHginLI047fMFqvlto(final SelectorBottomSheet selectorBottomSheet, View view, int i, float f, float f2) {
         TLRPC.Chat chat;
+        selectorBottomSheet.getClass();
         if (view instanceof TextCell) {
-            this.allSelectedObjects.clear();
-            save(true);
+            selectorBottomSheet.allSelectedObjects.clear();
+            selectorBottomSheet.save(true);
         } else if (view instanceof SelectorUserCell) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) view;
             TLRPC.User user = selectorUserCell.getUser();
             TLRPC.Chat chat2 = selectorUserCell.getChat();
             final long j = user != null ? user.id : -chat2.id;
-            if (this.selectedIds.contains(Long.valueOf(j))) {
-                this.selectedIds.remove(Long.valueOf(j));
+            if (selectorBottomSheet.selectedIds.contains(Long.valueOf(j))) {
+                selectorBottomSheet.selectedIds.remove(Long.valueOf(j));
             } else {
-                this.selectedIds.add(Long.valueOf(j));
-                HashMap map = this.allSelectedObjects;
+                selectorBottomSheet.selectedIds.add(Long.valueOf(j));
+                HashMap map = selectorBottomSheet.allSelectedObjects;
                 Long lValueOf = Long.valueOf(j);
                 if (user == null) {
                     chat = user;
@@ -252,23 +249,23 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 chat = user;
                 map.put(lValueOf, chat);
             }
-            if ((this.selectedIds.size() == 11 && this.type == 1) || (this.selectedIds.size() == BoostRepository.giveawayAddPeersMax() + 1 && this.type == 2)) {
-                this.selectedIds.remove(Long.valueOf(j));
-                showMaximumUsersToast();
+            if ((selectorBottomSheet.selectedIds.size() == 11 && selectorBottomSheet.type == 1) || (selectorBottomSheet.selectedIds.size() == BoostRepository.giveawayAddPeersMax() + 1 && selectorBottomSheet.type == 2)) {
+                selectorBottomSheet.selectedIds.remove(Long.valueOf(j));
+                selectorBottomSheet.showMaximumUsersToast();
                 return;
             }
-            this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
+            selectorBottomSheet.searchField.updateSpans(true, selectorBottomSheet.selectedIds, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$1();
+                    this.f$0.updateList(true, false);
                 }
             }, null);
-            updateList(true, false);
-            if (chat2 != null && !ChatObject.isPublic(chat2) && this.selectedIds.contains(Long.valueOf(j))) {
-                BoostDialogs.showPrivateChannelAlert(chat2, getBaseFragment().getContext(), this.resourcesProvider, new Runnable() {
+            selectorBottomSheet.updateList(true, false);
+            if (chat2 != null && !ChatObject.isPublic(chat2) && selectorBottomSheet.selectedIds.contains(Long.valueOf(j))) {
+                BoostDialogs.showPrivateChannelAlert(chat2, selectorBottomSheet.getBaseFragment().getContext(), selectorBottomSheet.resourcesProvider, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$3(j);
+                        SelectorBottomSheet.$r8$lambda$DVj2HuRKVzr5GDJ9vmx6O8XUVS8(this.f$0, j);
                     }
                 }, new Runnable() {
                     @Override
@@ -277,59 +274,47 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                     }
                 });
             } else if (chat2 != null) {
-                clearSearchAfterSelectChannel();
+                selectorBottomSheet.clearSearchAfterSelectChannel();
             }
         }
         if (view instanceof SelectorCountryCell) {
             long jHashCode = ((SelectorCountryCell) view).getCountry().default_name.hashCode();
-            if (this.selectedIds.contains(Long.valueOf(jHashCode))) {
-                this.selectedIds.remove(Long.valueOf(jHashCode));
+            if (selectorBottomSheet.selectedIds.contains(Long.valueOf(jHashCode))) {
+                selectorBottomSheet.selectedIds.remove(Long.valueOf(jHashCode));
             } else {
-                this.selectedIds.add(Long.valueOf(jHashCode));
+                selectorBottomSheet.selectedIds.add(Long.valueOf(jHashCode));
             }
-            if (this.selectedIds.size() == BoostRepository.giveawayCountriesMax() + 1 && this.type == 3) {
-                this.selectedIds.remove(Long.valueOf(jHashCode));
-                showMaximumUsersToast();
+            if (selectorBottomSheet.selectedIds.size() == BoostRepository.giveawayCountriesMax() + 1 && selectorBottomSheet.type == 3) {
+                selectorBottomSheet.selectedIds.remove(Long.valueOf(jHashCode));
+                selectorBottomSheet.showMaximumUsersToast();
                 return;
             }
-            this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
+            selectorBottomSheet.searchField.updateSpans(true, selectorBottomSheet.selectedIds, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$4();
+                    this.f$0.updateList(true, false);
                 }
-            }, this.countriesList);
-            if (isSearching()) {
-                this.query = null;
-                this.searchField.setText("");
-                updateList(false, false);
-                updateList(true, true);
+            }, selectorBottomSheet.countriesList);
+            if (selectorBottomSheet.isSearching()) {
+                selectorBottomSheet.query = null;
+                selectorBottomSheet.searchField.setText("");
+                selectorBottomSheet.updateList(false, false);
+                selectorBottomSheet.updateList(true, true);
                 return;
             }
-            updateList(true, false);
+            selectorBottomSheet.updateList(true, false);
         }
     }
 
-    public void lambda$new$1() {
-        updateList(true, false);
-    }
-
-    public void lambda$new$3(long j) {
-        this.selectedIds.remove(Long.valueOf(j));
-        this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
+    public static void $r8$lambda$DVj2HuRKVzr5GDJ9vmx6O8XUVS8(final SelectorBottomSheet selectorBottomSheet, long j) {
+        selectorBottomSheet.selectedIds.remove(Long.valueOf(j));
+        selectorBottomSheet.searchField.updateSpans(true, selectorBottomSheet.selectedIds, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$2();
+                this.f$0.updateList(true, false);
             }
         }, null);
-        updateList(true, false);
-    }
-
-    public void lambda$new$2() {
-        updateList(true, false);
-    }
-
-    public void lambda$new$4() {
-        updateList(true, false);
+        selectorBottomSheet.updateList(true, false);
     }
 
     public void clearSearchAfterSelectChannel() {
@@ -344,7 +329,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    private void save(boolean z) {
+    public void save(boolean z) {
         if (this.selectedIds.size() != 0 || z) {
             int i = this.type;
             if (i == 1) {
@@ -408,24 +393,24 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.recyclerListView.scrollToPosition(0);
     }
 
-    public void lambda$loadData$6(List list) {
-        if (isSearching()) {
-            this.peers.clear();
-            this.peers.addAll(list);
-            updateList(true, true);
-            scrollToTop(true);
+    public static void $r8$lambda$HPKLsZahMvfzimmFmXHvb6bMb5U(SelectorBottomSheet selectorBottomSheet, List list) {
+        if (selectorBottomSheet.isSearching()) {
+            selectorBottomSheet.peers.clear();
+            selectorBottomSheet.peers.addAll(list);
+            selectorBottomSheet.updateList(true, true);
+            selectorBottomSheet.scrollToTop(true);
         }
     }
 
-    public void lambda$loadData$7(boolean z, List list) {
+    public static void $r8$lambda$AMXyX0bpR1GQ88ZmjUd2n4zHP6s(SelectorBottomSheet selectorBottomSheet, boolean z, List list) {
         if (z) {
-            this.users.addAll(list);
+            selectorBottomSheet.users.addAll(list);
         }
-        if (this.type == 1) {
-            this.peers.clear();
-            this.peers.addAll(list);
-            updateList(true, true);
-            scrollToTop(true);
+        if (selectorBottomSheet.type == 1) {
+            selectorBottomSheet.peers.clear();
+            selectorBottomSheet.peers.addAll(list);
+            selectorBottomSheet.updateList(true, true);
+            selectorBottomSheet.scrollToTop(true);
         }
     }
 
@@ -434,14 +419,14 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             BoostRepository.loadChatParticipants(this.currentChat.id, 0, str, 0, 50, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$loadData$7(z, (List) obj);
+                    SelectorBottomSheet.$r8$lambda$AMXyX0bpR1GQ88ZmjUd2n4zHP6s(this.f$0, z, (List) obj);
                 }
             });
         } else if (i == 2) {
             BoostRepository.searchChats(this.currentChat.id, 0, str, 50, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$loadData$6((List) obj);
+                    SelectorBottomSheet.$r8$lambda$HPKLsZahMvfzimmFmXHvb6bMb5U(this.f$0, (List) obj);
                 }
             });
         } else {
@@ -451,20 +436,20 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             BoostRepository.loadCountries(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$loadData$9(z, (Pair) obj);
+                    SelectorBottomSheet.$r8$lambda$FNF3LzV7cp2NghAtn4qJGZ8PdAo(this.f$0, z, (Pair) obj);
                 }
             });
         }
     }
 
-    public void lambda$loadData$9(boolean z, Pair pair) {
+    public static void $r8$lambda$FNF3LzV7cp2NghAtn4qJGZ8PdAo(final SelectorBottomSheet selectorBottomSheet, boolean z, Pair pair) {
         if (z) {
-            this.countriesMap.putAll((Map) pair.first);
-            this.countriesLetters.addAll((Collection) pair.second);
-            j$.util.Map.EL.forEach(this.countriesMap, new BiConsumer() {
+            selectorBottomSheet.countriesMap.putAll((Map) pair.first);
+            selectorBottomSheet.countriesLetters.addAll((Collection) pair.second);
+            j$.util.Map.EL.forEach(selectorBottomSheet.countriesMap, new BiConsumer() {
                 @Override
                 public final void accept(Object obj, Object obj2) {
-                    this.f$0.lambda$loadData$8((String) obj, (List) obj2);
+                    this.f$0.countriesList.addAll((List) obj2);
                 }
 
                 public BiConsumer andThen(BiConsumer biConsumer) {
@@ -472,14 +457,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 }
             });
         }
-        if (this.type == 3) {
-            updateList(true, true);
-            scrollToTop(true);
+        if (selectorBottomSheet.type == 3) {
+            selectorBottomSheet.updateList(true, true);
+            selectorBottomSheet.scrollToTop(true);
         }
-    }
-
-    public void lambda$loadData$8(String str, List list) {
-        this.countriesList.addAll(list);
     }
 
     public boolean hasChanges() {
@@ -489,29 +470,25 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         BoostDialogs.showUnsavedChanges(this.type, getContext(), this.resourcesProvider, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$hasChanges$10();
+                this.f$0.save(true);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$hasChanges$11();
+                SelectorBottomSheet.m2649$r8$lambda$rOPx9CNYNi2wciVKm_Y6d_mEr4(this.f$0);
             }
         });
         return true;
     }
 
-    public void lambda$hasChanges$10() {
-        save(true);
-    }
-
-    public void lambda$hasChanges$11() {
-        this.selectedIds.clear();
-        this.openedIds.clear();
-        lambda$new$0();
+    public static void m2649$r8$lambda$rOPx9CNYNi2wciVKm_Y6d_mEr4(SelectorBottomSheet selectorBottomSheet) {
+        selectorBottomSheet.selectedIds.clear();
+        selectorBottomSheet.openedIds.clear();
+        selectorBottomSheet.dismiss();
     }
 
     @Override
-    public void lambda$new$0() {
+    public void dismiss() {
         Runnable runnable = this.onCloseClick;
         if (runnable != null) {
             runnable.run();
@@ -575,7 +552,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.searchField.updateSpans(false, this.selectedIds, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$prepare$12();
+                this.f$0.updateList(true, false);
             }
         }, this.countriesList);
         updateSection();
@@ -583,10 +560,6 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.headerView.setText(getTitle());
         updateActionButton(false);
         scrollToTop(false);
-    }
-
-    public void lambda$prepare$12() {
-        updateList(true, false);
     }
 
     private void updateSection() {
@@ -623,7 +596,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    private void updateList(boolean z, boolean z2) {
+    public void updateList(boolean z, boolean z2) {
         updateItems(z, z2);
         updateCheckboxes(z);
         updateActionButton(z);
@@ -724,7 +697,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             this.sectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), true, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateSectionCell$13(view);
+                    SelectorBottomSheet.$r8$lambda$pGDc838R9EjAnw2iVu5MbJScHog(this.f$0, view);
                 }
             });
         } else if (z) {
@@ -734,10 +707,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$updateSectionCell$13(View view) {
-        this.selectedIds.clear();
-        this.searchField.spansContainer.removeAllSpans(true);
-        updateList(true, false);
+    public static void $r8$lambda$pGDc838R9EjAnw2iVu5MbJScHog(SelectorBottomSheet selectorBottomSheet, View view) {
+        selectorBottomSheet.selectedIds.clear();
+        selectorBottomSheet.searchField.spansContainer.removeAllSpans(true);
+        selectorBottomSheet.updateList(true, false);
     }
 
     private boolean isSearching() {
@@ -773,7 +746,13 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else {
             iDp = 0;
         }
-        for (TLRPC.InputPeer inputPeer : this.peers) {
+        ArrayList arrayList2 = this.peers;
+        int size = arrayList2.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList2.get(i);
+            i++;
+            TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
             iDp += AndroidUtilities.dp(56.0f);
             this.items.add(SelectorAdapter.Item.asPeer(inputPeer, this.selectedIds.contains(Long.valueOf(DialogObject.getPeerDialogId(inputPeer)))));
         }

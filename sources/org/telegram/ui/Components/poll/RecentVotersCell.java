@@ -84,7 +84,7 @@ public class RecentVotersCell extends FrameLayout {
         final VotesList votesList = new VotesList(baseFragment.getCurrentAccount(), baseFragment.getMessagesController().getInputPeer(j), i, bArr, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createListView$0();
+                this.f$0.listView.adapter.update(true);
             }
         }, callback);
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -120,10 +120,6 @@ public class RecentVotersCell extends FrameLayout {
             }
         });
         return this.listView;
-    }
-
-    public void lambda$createListView$0() {
-        this.listView.adapter.update(true);
     }
 
     static class VotesList {
@@ -165,40 +161,46 @@ public class RecentVotersCell extends FrameLayout {
             ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_getPollVotes, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$load$0((TLRPC.TL_messages_votesList) obj, (TLRPC.TL_error) obj2);
+                    RecentVotersCell.VotesList.$r8$lambda$Tr7iptCM8TYxXZb72A_eJ6F0Hso(this.f$0, (TLRPC.TL_messages_votesList) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
 
-        public void lambda$load$0(TLRPC.TL_messages_votesList tL_messages_votesList, TLRPC.TL_error tL_error) {
-            this.loading = false;
+        public static void $r8$lambda$Tr7iptCM8TYxXZb72A_eJ6F0Hso(VotesList votesList, TLRPC.TL_messages_votesList tL_messages_votesList, TLRPC.TL_error tL_error) {
+            votesList.loading = false;
             if (tL_messages_votesList != null) {
-                MessagesController.getInstance(this.currentAccount).putUsers(tL_messages_votesList.users, false);
-                MessagesController.getInstance(this.currentAccount).putChats(tL_messages_votesList.chats, false);
+                MessagesController.getInstance(votesList.currentAccount).putUsers(tL_messages_votesList.users, false);
+                MessagesController.getInstance(votesList.currentAccount).putChats(tL_messages_votesList.chats, false);
                 String str = tL_messages_votesList.next_offset;
-                this.nextOffset = str;
-                this.completed = str == null;
-                this.count = tL_messages_votesList.count;
-                this.votes.addAll(tL_messages_votesList.votes);
-                Runnable runnable = this.onUpdate;
+                votesList.nextOffset = str;
+                votesList.completed = str == null;
+                votesList.count = tL_messages_votesList.count;
+                votesList.votes.addAll(tL_messages_votesList.votes);
+                Runnable runnable = votesList.onUpdate;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             }
-            this.nextOffset = null;
-            this.completed = true;
+            votesList.nextOffset = null;
+            votesList.completed = true;
         }
 
         public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
             arrayList.clear();
-            for (TLRPC.MessagePeerVote messagePeerVote : this.votes) {
+            ArrayList arrayList2 = this.votes;
+            int size = arrayList2.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList2.get(i);
+                i++;
+                TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) obj;
                 final long peerDialogId = DialogObject.getPeerDialogId(messagePeerVote.peer);
                 arrayList.add(Factory.of(MessagesController.getInstance(this.currentAccount).getUserOrChat(peerDialogId), peerDialogId, messagePeerVote.date, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$fillItems$1(peerDialogId, view);
+                        RecentVotersCell.VotesList.m2958$r8$lambda$FWhD4iE8bM0SvRU6HI1zX8FouU(this.f$0, peerDialogId, view);
                     }
                 }));
             }
@@ -216,8 +218,8 @@ public class RecentVotersCell extends FrameLayout {
             arrayList.add(FlickerFactory.of());
         }
 
-        public void lambda$fillItems$1(long j, View view) {
-            Utilities.Callback callback = this.onClick;
+        public static void m2958$r8$lambda$FWhD4iE8bM0SvRU6HI1zX8FouU(VotesList votesList, long j, View view) {
+            Utilities.Callback callback = votesList.onClick;
             if (callback != null) {
                 callback.run(Long.valueOf(j));
             }

@@ -1,7 +1,7 @@
 package org.telegram.ui.bots;
 
 import androidx.appcompat.app.WindowDecorActionBar$$ExternalSyntheticThrowCCEIfNotNull0;
-import java.util.Iterator;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
@@ -23,21 +23,21 @@ public abstract class BotWebViewAttachedSheet implements NotificationCenter.Noti
         @Override
         public final float get(Object obj) {
             WindowDecorActionBar$$ExternalSyntheticThrowCCEIfNotNull0.m(obj);
-            return BotWebViewAttachedSheet.lambda$static$1(null);
+            return BotWebViewAttachedSheet.$r8$lambda$2ljsgWWd0z2DS7mi0mN7h8I8ujA(null);
         }
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
             WindowDecorActionBar$$ExternalSyntheticThrowCCEIfNotNull0.m(obj);
-            BotWebViewAttachedSheet.lambda$static$2(null, f);
+            BotWebViewAttachedSheet.$r8$lambda$frEEu6okCrK_l1W85skt8JpfieA(null, f);
         }
     }).setMultiplier(100.0f);
 
-    public static float lambda$static$1(BotWebViewAttachedSheet botWebViewAttachedSheet) {
+    public static float $r8$lambda$2ljsgWWd0z2DS7mi0mN7h8I8ujA(BotWebViewAttachedSheet botWebViewAttachedSheet) {
         throw null;
     }
 
-    public static void lambda$static$2(BotWebViewAttachedSheet botWebViewAttachedSheet, float f) {
+    public static void $r8$lambda$frEEu6okCrK_l1W85skt8JpfieA(BotWebViewAttachedSheet botWebViewAttachedSheet, float f) {
         throw null;
     }
 
@@ -49,9 +49,13 @@ public abstract class BotWebViewAttachedSheet implements NotificationCenter.Noti
         if (botInfo.privacy_policy_url != null) {
             return true;
         }
-        Iterator<TLRPC.BotCommand> it = botInfo.commands.iterator();
-        while (it.hasNext()) {
-            if ("privacy".equals(it.next().command)) {
+        ArrayList<TLRPC.BotCommand> arrayList = botInfo.commands;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            TLRPC.BotCommand botCommand = arrayList.get(i);
+            i++;
+            if ("privacy".equals(botCommand.command)) {
                 return true;
             }
         }
@@ -82,13 +86,9 @@ public abstract class BotWebViewAttachedSheet implements NotificationCenter.Noti
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.lambda$openPrivacy$37(i, j);
+                SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", j, null, null, null, false, null, null, null, true, 0, 0, null, false));
             }
         }, 150L);
         return true;
-    }
-
-    public static void lambda$openPrivacy$37(int i, long j) {
-        SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", j, null, null, null, false, null, null, null, true, 0, 0, null, false));
     }
 }

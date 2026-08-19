@@ -295,7 +295,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setEnabledByColor$0(i, i2, valueAnimator2);
+                ActionBarMenuSubItem.m1237$r8$lambda$oSRpsz_FbzUub0sZQJmG9oUyvc(this.f$0, i, i2, valueAnimator2);
             }
         });
         this.enabledAnimator.addListener(new AnimatorListenerAdapter() {
@@ -310,10 +310,11 @@ public class ActionBarMenuSubItem extends FrameLayout {
         this.enabledAnimator.start();
     }
 
-    public void lambda$setEnabledByColor$0(int i, int i2, ValueAnimator valueAnimator) {
+    public static void m1237$r8$lambda$oSRpsz_FbzUub0sZQJmG9oUyvc(ActionBarMenuSubItem actionBarMenuSubItem, int i, int i2, ValueAnimator valueAnimator) {
+        actionBarMenuSubItem.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        setTextColor(ColorUtils.blendARGB(i, i2, fFloatValue));
-        setIconColor(ColorUtils.blendARGB(i, i2, fFloatValue));
+        actionBarMenuSubItem.setTextColor(ColorUtils.blendARGB(i, i2, fFloatValue));
+        actionBarMenuSubItem.setIconColor(ColorUtils.blendARGB(i, i2, fFloatValue));
     }
 
     public void setEnabledByColor(final boolean z, final int i, final int i2, final int i3) {
@@ -327,7 +328,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setEnabledByColor$1(i, i3, i2, valueAnimator2);
+                ActionBarMenuSubItem.$r8$lambda$PsUVeQxedlHsbN9kKH8y4ZFhiAY(this.f$0, i, i3, i2, valueAnimator2);
             }
         });
         this.enabledAnimator.addListener(new AnimatorListenerAdapter() {
@@ -342,10 +343,11 @@ public class ActionBarMenuSubItem extends FrameLayout {
         this.enabledAnimator.start();
     }
 
-    public void lambda$setEnabledByColor$1(int i, int i2, int i3, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$PsUVeQxedlHsbN9kKH8y4ZFhiAY(ActionBarMenuSubItem actionBarMenuSubItem, int i, int i2, int i3, ValueAnimator valueAnimator) {
+        actionBarMenuSubItem.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        setTextColor(ColorUtils.blendARGB(i, i2, fFloatValue));
-        setIconColor(ColorUtils.blendARGB(i3, i2, fFloatValue));
+        actionBarMenuSubItem.setTextColor(ColorUtils.blendARGB(i, i2, fFloatValue));
+        actionBarMenuSubItem.setIconColor(ColorUtils.blendARGB(i3, i2, fFloatValue));
     }
 
     public int getIconResId() {

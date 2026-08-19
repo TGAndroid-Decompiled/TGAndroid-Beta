@@ -51,7 +51,7 @@ public class BoostCounterView extends View {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateCount$0(valueAnimator2);
+                BoostCounterView.$r8$lambda$aJESGgsPM9CMtfm2YLl0K_7USeM(this.f$0, valueAnimator2);
             }
         });
         this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -66,9 +66,10 @@ public class BoostCounterView extends View {
         this.countAnimator.start();
     }
 
-    public void lambda$animateCount$0(ValueAnimator valueAnimator) {
-        this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        invalidate();
+    public static void $r8$lambda$aJESGgsPM9CMtfm2YLl0K_7USeM(BoostCounterView boostCounterView, ValueAnimator valueAnimator) {
+        boostCounterView.getClass();
+        boostCounterView.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        boostCounterView.invalidate();
     }
 
     public void setCount(int i, boolean z) {

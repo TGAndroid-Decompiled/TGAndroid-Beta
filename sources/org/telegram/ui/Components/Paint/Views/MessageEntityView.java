@@ -153,7 +153,7 @@ public abstract class MessageEntityView extends EntityView {
 
             @Override
             public Paint getPaint(String str) {
-                str.hashCode();
+                str.getClass();
                 switch (str) {
                     case "paintChatActionText2":
                         return this.chat_actionTextPaint2;
@@ -385,9 +385,9 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             private void drawChatForegroundElements(Canvas canvas) {
+                float f3;
                 int size = this.drawTimeAfter.size();
-                boolean z2 = 1;
-                boolean z3 = false;
+                boolean z2 = false;
                 if (size > 0) {
                     for (int i4 = 0; i4 < size; i4++) {
                         ChatMessageCell chatMessageCell = (ChatMessageCell) this.drawTimeAfter.get(i4);
@@ -419,37 +419,39 @@ public abstract class MessageEntityView extends EntityView {
                     int i6 = 0;
                     while (i6 < size3) {
                         ChatMessageCell chatMessageCell3 = (ChatMessageCell) this.drawCaptionAfter.get(i6);
-                        boolean z4 = chatMessageCell3.getCurrentPosition() != null && (chatMessageCell3.getCurrentPosition().flags & z2) == 0;
+                        boolean z3 = chatMessageCell3.getCurrentPosition() != null && (chatMessageCell3.getCurrentPosition().flags & 1) == 0;
                         float alpha2 = chatMessageCell3.shouldDrawAlphaLayer() ? chatMessageCell3.getAlpha() : 1.0f;
-                        float left2 = chatMessageCell3.getLeft() + chatMessageCell3.getNonAnimationTranslationX(z3);
+                        float left2 = chatMessageCell3.getLeft() + chatMessageCell3.getNonAnimationTranslationX(z2);
                         float y2 = chatMessageCell3.getY();
                         canvas.save();
                         MessageObject.GroupedMessages currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup();
                         if (currentMessagesGroup != null && currentMessagesGroup.transitionParams.backgroundChangeBounds) {
-                            float nonAnimationTranslationX = chatMessageCell3.getNonAnimationTranslationX(z2);
+                            float nonAnimationTranslationX = chatMessageCell3.getNonAnimationTranslationX(true);
                             MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
-                            float f3 = transitionParams.left + nonAnimationTranslationX + transitionParams.offsetLeft;
+                            float f4 = transitionParams.left + nonAnimationTranslationX + transitionParams.offsetLeft;
                             float translationY = transitionParams.top + transitionParams.offsetTop;
-                            float f4 = transitionParams.right + nonAnimationTranslationX + transitionParams.offsetRight;
+                            float f5 = transitionParams.right + nonAnimationTranslationX + transitionParams.offsetRight;
                             float translationY2 = transitionParams.bottom + transitionParams.offsetBottom;
                             if (!transitionParams.backgroundChangeBounds) {
                                 translationY += chatMessageCell3.getTranslationY();
                                 translationY2 += chatMessageCell3.getTranslationY();
                             }
-                            canvas.clipRect(f3 + AndroidUtilities.dp(8.0f), translationY + AndroidUtilities.dp(8.0f), f4 - AndroidUtilities.dp(8.0f), translationY2 - AndroidUtilities.dp(8.0f));
+                            canvas.clipRect(f4 + AndroidUtilities.dp(8.0f), translationY + AndroidUtilities.dp(8.0f), f5 - AndroidUtilities.dp(8.0f), translationY2 - AndroidUtilities.dp(8.0f));
                         }
                         if (chatMessageCell3.getTransitionParams().wasDraw) {
                             canvas.translate(left2, y2);
                             chatMessageCell3.setInvalidatesParent(true);
-                            chatMessageCell3.drawCaptionLayout(canvas, z4, alpha2);
+                            chatMessageCell3.drawCaptionLayout(canvas, z3, alpha2);
                             chatMessageCell3.setInvalidatesParent(false);
                             canvas.restore();
                         }
                         i6++;
-                        z2 = 1;
-                        z3 = false;
+                        z2 = false;
                     }
+                    f3 = 8.0f;
                     this.drawCaptionAfter.clear();
+                } else {
+                    f3 = 8.0f;
                 }
                 int size4 = this.drawReactionsAfter.size();
                 if (size4 > 0) {
@@ -464,15 +466,15 @@ public abstract class MessageEntityView extends EntityView {
                             if (currentMessagesGroup2 != null && currentMessagesGroup2.transitionParams.backgroundChangeBounds) {
                                 float nonAnimationTranslationX2 = chatMessageCell4.getNonAnimationTranslationX(true);
                                 MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup2.transitionParams;
-                                float f5 = transitionParams2.left + nonAnimationTranslationX2 + transitionParams2.offsetLeft;
+                                float f6 = transitionParams2.left + nonAnimationTranslationX2 + transitionParams2.offsetLeft;
                                 float translationY3 = transitionParams2.top + transitionParams2.offsetTop;
-                                float f6 = transitionParams2.right + nonAnimationTranslationX2 + transitionParams2.offsetRight;
+                                float f7 = transitionParams2.right + nonAnimationTranslationX2 + transitionParams2.offsetRight;
                                 float translationY4 = transitionParams2.bottom + transitionParams2.offsetBottom;
                                 if (!transitionParams2.backgroundChangeBounds) {
                                     translationY3 += chatMessageCell4.getTranslationY();
                                     translationY4 += chatMessageCell4.getTranslationY();
                                 }
-                                canvas.clipRect(f5 + AndroidUtilities.dp(8.0f), translationY3 + AndroidUtilities.dp(8.0f), f6 - AndroidUtilities.dp(8.0f), translationY4 - AndroidUtilities.dp(8.0f));
+                                canvas.clipRect(f6 + AndroidUtilities.dp(f3), translationY3 + AndroidUtilities.dp(f3), f7 - AndroidUtilities.dp(f3), translationY4 - AndroidUtilities.dp(f3));
                             }
                             if (chatMessageCell4.getTransitionParams().wasDraw) {
                                 canvas.translate(left3, y3);
@@ -491,22 +493,21 @@ public abstract class MessageEntityView extends EntityView {
             private void drawChatBackgroundElements(Canvas canvas) {
                 float touchX;
                 int i4;
-                int i5;
                 boolean z2;
                 MessageObject.GroupedMessages currentMessagesGroup;
                 int measuredHeight;
+                Canvas canvas2 = canvas;
                 int childCount = getChildCount();
-                int i6 = 0;
+                int i5 = 0;
                 MessageObject.GroupedMessages groupedMessages2 = null;
                 while (true) {
                     touchX = 0.0f;
-                    i4 = 4;
-                    i5 = 2;
+                    i4 = 2;
                     z2 = true;
-                    if (i6 >= childCount) {
+                    if (i5 >= childCount) {
                         break;
                     }
-                    View childAt = getChildAt(i6);
+                    View childAt = getChildAt(i5);
                     if (childAt.getVisibility() != 4) {
                         if (childAt instanceof ChatMessageCell) {
                             ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
@@ -514,17 +515,17 @@ public abstract class MessageEntityView extends EntityView {
                             if (currentMessagesGroup2 == null || currentMessagesGroup2 != groupedMessages2) {
                                 MessageObject.GroupedMessagePosition currentPosition = chatMessageCell.getCurrentPosition();
                                 MessageBackgroundDrawable backgroundDrawable = chatMessageCell.getBackgroundDrawable();
-                                if ((backgroundDrawable.isAnimationInProgress() || chatMessageCell.isDrawingSelectionBackground()) && (currentPosition == null || (currentPosition.flags & 2) != 0)) {
+                                if ((backgroundDrawable.isAnimationInProgress() || chatMessageCell.isDrawingSelectionBackground()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
                                     int y = (int) chatMessageCell.getY();
-                                    canvas.save();
+                                    canvas2.save();
                                     if (currentPosition == null) {
                                         measuredHeight = chatMessageCell.getMeasuredHeight();
                                     } else {
                                         int measuredHeight2 = chatMessageCell.getMeasuredHeight() + y;
                                         long j = 0;
                                         float touchY = 0.0f;
-                                        for (int i7 = 0; i7 < childCount; i7++) {
-                                            View childAt2 = getChildAt(i7);
+                                        for (int i6 = 0; i6 < childCount; i6++) {
+                                            View childAt2 = getChildAt(i6);
                                             if (childAt2 instanceof ChatMessageCell) {
                                                 ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt2;
                                                 if (chatMessageCell2.getCurrentMessagesGroup() == currentMessagesGroup2) {
@@ -543,40 +544,40 @@ public abstract class MessageEntityView extends EntityView {
                                         backgroundDrawable.setTouchCoordsOverride(touchX, touchY - y);
                                         measuredHeight = measuredHeight2 - y;
                                     }
-                                    int i8 = measuredHeight + y;
-                                    canvas.clipRect(0, y, getMeasuredWidth(), i8);
+                                    int i7 = measuredHeight + y;
+                                    canvas2.clipRect(0, y, getMeasuredWidth(), i7);
                                     backgroundDrawable.setCustomPaint(null);
                                     backgroundDrawable.setColor(getThemedColor(Theme.key_chat_selectedBackground));
-                                    backgroundDrawable.setBounds(0, y, getMeasuredWidth(), i8);
-                                    backgroundDrawable.draw(canvas);
-                                    canvas.restore();
+                                    backgroundDrawable.setBounds(0, y, getMeasuredWidth(), i7);
+                                    backgroundDrawable.draw(canvas2);
+                                    canvas2.restore();
                                 }
                                 groupedMessages2 = currentMessagesGroup2;
                             }
                         } else if (childAt instanceof ChatActionCell) {
                             ChatActionCell chatActionCell = (ChatActionCell) childAt;
                             if (chatActionCell.hasGradientService()) {
-                                canvas.save();
-                                canvas.translate(chatActionCell.getX(), chatActionCell.getY() + chatActionCell.getPaddingTop());
-                                canvas.scale(chatActionCell.getScaleX(), chatActionCell.getScaleY(), chatActionCell.getMeasuredWidth() / 2.0f, chatActionCell.getMeasuredHeight() / 2.0f);
-                                chatActionCell.drawBackground(canvas, true);
-                                chatActionCell.drawReactions(canvas, true, null);
-                                canvas.restore();
+                                canvas2.save();
+                                canvas2.translate(chatActionCell.getX(), chatActionCell.getY() + chatActionCell.getPaddingTop());
+                                canvas2.scale(chatActionCell.getScaleX(), chatActionCell.getScaleY(), chatActionCell.getMeasuredWidth() / 2.0f, chatActionCell.getMeasuredHeight() / 2.0f);
+                                chatActionCell.drawBackground(canvas2, true);
+                                chatActionCell.drawReactions(canvas2, true, null);
+                                canvas2.restore();
                             }
                         }
                     }
-                    i6++;
+                    i5++;
                 }
-                int i9 = 0;
-                while (i9 < 3) {
+                int i8 = 0;
+                while (i8 < 3) {
                     this.drawingGroups.clear();
-                    if (i9 != i5 || isFastScrollAnimationRunning()) {
-                        int i10 = 0;
-                        while (i10 < childCount) {
-                            View childAt3 = getChildAt(i10);
+                    if (i8 != i4 || isFastScrollAnimationRunning()) {
+                        int i9 = 0;
+                        while (i9 < childCount) {
+                            View childAt3 = getChildAt(i9);
                             if (childAt3 instanceof ChatMessageCell) {
                                 ChatMessageCell chatMessageCell3 = (ChatMessageCell) childAt3;
-                                if (childAt3.getY() <= getHeight() && childAt3.getY() + childAt3.getHeight() >= touchX && chatMessageCell3.getVisibility() != i4 && chatMessageCell3.getVisibility() != 8 && (currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup()) != null && ((i9 != 0 || currentMessagesGroup.messages.size() != z2) && ((i9 != z2 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i9 != 0 || !chatMessageCell3.getMessageObject().deleted) && ((i9 != z2 || chatMessageCell3.getMessageObject().deleted) && ((i9 != i5 || chatMessageCell3.willRemovedAfterAnimation()) && (i9 == i5 || !chatMessageCell3.willRemovedAfterAnimation()))))))) {
+                                if (childAt3.getY() <= getHeight() && childAt3.getY() + childAt3.getHeight() >= touchX && chatMessageCell3.getVisibility() != 4 && chatMessageCell3.getVisibility() != 8 && (currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup()) != null && ((i8 != 0 || currentMessagesGroup.messages.size() != z2) && ((i8 != z2 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i8 != 0 || !chatMessageCell3.getMessageObject().deleted) && ((i8 != z2 || chatMessageCell3.getMessageObject().deleted) && ((i8 != i4 || chatMessageCell3.willRemovedAfterAnimation()) && (i8 == i4 || !chatMessageCell3.willRemovedAfterAnimation()))))))) {
                                     if (!this.drawingGroups.contains(currentMessagesGroup)) {
                                         MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
                                         transitionParams.left = 0;
@@ -594,87 +595,88 @@ public abstract class MessageEntityView extends EntityView {
                                     int left2 = chatMessageCell3.getLeft() + chatMessageCell3.getBackgroundDrawableRight();
                                     int top = chatMessageCell3.getTop() + chatMessageCell3.getPaddingTop() + chatMessageCell3.getBackgroundDrawableTop();
                                     int top2 = chatMessageCell3.getTop() + chatMessageCell3.getPaddingTop() + chatMessageCell3.getBackgroundDrawableBottom();
-                                    if ((chatMessageCell3.getCurrentPosition().flags & i4) == 0) {
+                                    if ((chatMessageCell3.getCurrentPosition().flags & 4) == 0) {
                                         top -= AndroidUtilities.dp(10.0f);
                                     }
-                                    if ((8 & chatMessageCell3.getCurrentPosition().flags) == 0) {
+                                    if ((chatMessageCell3.getCurrentPosition().flags & 8) == 0) {
                                         top2 += AndroidUtilities.dp(10.0f);
                                     }
-                                    int i11 = top2;
+                                    int i10 = top2;
                                     if (chatMessageCell3.willRemovedAfterAnimation()) {
                                         currentMessagesGroup.transitionParams.cell = chatMessageCell3;
                                     }
                                     MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
-                                    int i12 = transitionParams2.top;
-                                    if (i12 == 0 || top < i12) {
+                                    int i11 = transitionParams2.top;
+                                    if (i11 == 0 || top < i11) {
                                         transitionParams2.top = top;
                                     }
-                                    int i13 = transitionParams2.bottom;
-                                    if (i13 == 0 || i11 > i13) {
-                                        transitionParams2.bottom = i11;
+                                    int i12 = transitionParams2.bottom;
+                                    if (i12 == 0 || i10 > i12) {
+                                        transitionParams2.bottom = i10;
                                     }
-                                    int i14 = transitionParams2.left;
-                                    if (i14 == 0 || left < i14) {
+                                    int i13 = transitionParams2.left;
+                                    if (i13 == 0 || left < i13) {
                                         transitionParams2.left = left;
                                     }
-                                    int i15 = transitionParams2.right;
-                                    if (i15 == 0 || left2 > i15) {
+                                    int i14 = transitionParams2.right;
+                                    if (i14 == 0 || left2 > i14) {
                                         transitionParams2.right = left2;
                                     }
                                 }
                             }
-                            i10++;
-                            i5 = 2;
+                            i9++;
+                            i4 = 2;
                         }
-                        int i16 = 0;
-                        while (i16 < this.drawingGroups.size()) {
-                            MessageObject.GroupedMessages groupedMessages3 = (MessageObject.GroupedMessages) this.drawingGroups.get(i16);
+                        int i15 = 0;
+                        while (i15 < this.drawingGroups.size()) {
+                            MessageObject.GroupedMessages groupedMessages3 = (MessageObject.GroupedMessages) this.drawingGroups.get(i15);
                             float nonAnimationTranslationX = groupedMessages3.transitionParams.cell.getNonAnimationTranslationX(z2);
                             MessageObject.GroupedMessages.TransitionParams transitionParams3 = groupedMessages3.transitionParams;
                             float f3 = transitionParams3.left + nonAnimationTranslationX + transitionParams3.offsetLeft;
                             float translationY = transitionParams3.top + transitionParams3.offsetTop;
-                            float f4 = transitionParams3.right + nonAnimationTranslationX + transitionParams3.offsetRight;
+                            float f4 = transitionParams3.offsetRight + transitionParams3.right + nonAnimationTranslationX;
                             float translationY2 = transitionParams3.bottom + transitionParams3.offsetBottom;
                             if (!transitionParams3.backgroundChangeBounds) {
                                 translationY += transitionParams3.cell.getTranslationY();
                                 translationY2 += groupedMessages3.transitionParams.cell.getTranslationY();
                             }
-                            float f5 = translationY2;
+                            float f5 = translationY;
+                            float f6 = translationY2;
                             boolean z3 = (groupedMessages3.transitionParams.cell.getScaleX() == 1.0f && groupedMessages3.transitionParams.cell.getScaleY() == 1.0f) ? false : true;
                             if (z3) {
-                                canvas.save();
-                                canvas.scale(groupedMessages3.transitionParams.cell.getScaleX(), groupedMessages3.transitionParams.cell.getScaleY(), f3 + ((f4 - f3) / 2.0f), translationY + ((f5 - translationY) / 2.0f));
+                                canvas2.save();
+                                canvas2.scale(groupedMessages3.transitionParams.cell.getScaleX(), groupedMessages3.transitionParams.cell.getScaleY(), f3 + ((f4 - f3) / 2.0f), f5 + ((f6 - f5) / 2.0f));
                             }
                             MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages3.transitionParams;
-                            float f6 = translationY;
-                            int i17 = i16;
-                            transitionParams4.cell.drawBackground(canvas, (int) f3, (int) translationY, (int) f4, (int) f5, transitionParams4.pinnedTop, transitionParams4.pinnedBotton, false, 0);
+                            int i16 = i15;
+                            transitionParams4.cell.drawBackground(canvas2, (int) f3, (int) f5, (int) f4, (int) f6, transitionParams4.pinnedTop, transitionParams4.pinnedBotton, false, 0);
                             MessageObject.GroupedMessages.TransitionParams transitionParams5 = groupedMessages3.transitionParams;
                             transitionParams5.cell = null;
                             transitionParams5.drawCaptionLayout = groupedMessages3.hasCaption;
                             if (z3) {
                                 canvas.restore();
-                                for (int i18 = 0; i18 < childCount; i18++) {
-                                    View childAt4 = getChildAt(i18);
+                                for (int i17 = 0; i17 < childCount; i17++) {
+                                    View childAt4 = getChildAt(i17);
                                     if (childAt4 instanceof ChatMessageCell) {
                                         ChatMessageCell chatMessageCell4 = (ChatMessageCell) childAt4;
                                         if (chatMessageCell4.getCurrentMessagesGroup() == groupedMessages3) {
                                             int left3 = chatMessageCell4.getLeft();
                                             int top3 = chatMessageCell4.getTop();
                                             childAt4.setPivotX((f3 - left3) + ((f4 - f3) / 2.0f));
-                                            childAt4.setPivotY((f6 - top3) + ((f5 - f6) / 2.0f));
+                                            childAt4.setPivotY((f5 - top3) + ((f6 - f5) / 2.0f));
                                         }
                                     }
                                 }
                             }
-                            i16 = i17 + 1;
+                            i15 = i16 + 1;
+                            canvas2 = canvas;
                             z2 = true;
                         }
                     }
-                    i9++;
+                    i8++;
+                    canvas2 = canvas;
+                    i4 = 2;
                     z2 = true;
-                    i5 = 2;
-                    i4 = 4;
                     touchX = 0.0f;
                 }
             }
@@ -683,7 +685,7 @@ public abstract class MessageEntityView extends EntityView {
             public boolean drawChild(Canvas canvas, View view, long j) {
                 ChatActionCell chatActionCell;
                 float f3;
-                boolean z2;
+                float f4;
                 int adapterPosition;
                 int adapterPosition2;
                 int i4;
@@ -750,22 +752,30 @@ public abstract class MessageEntityView extends EntityView {
                     if (avatarImage == null) {
                         f3 = 0.0f;
                     } else {
-                        boolean z3 = isFastScrollAnimationRunning() || (MessageEntityView.this.groupedMessages != null && MessageEntityView.this.groupedMessages.transitionParams.backgroundChangeBounds);
-                        int top = z3 ? view.getTop() : (int) view.getY();
+                        boolean z2 = isFastScrollAnimationRunning() || (MessageEntityView.this.groupedMessages != null && MessageEntityView.this.groupedMessages.transitionParams.backgroundChangeBounds);
+                        int top = z2 ? view.getTop() : (int) view.getY();
                         if (chatMessageCell.drawPinnedBottom() && (adapterPosition2 = MessageEntityView.this.listView.getChildViewHolder(view).getAdapterPosition()) >= 0) {
-                            if (MessageEntityView.this.groupedMessages == null || currentPosition == null) {
-                                i4 = adapterPosition2 - 1;
-                            } else {
+                            if (MessageEntityView.this.groupedMessages != null && currentPosition != null) {
                                 int iIndexOf = MessageEntityView.this.groupedMessages.posArray.indexOf(currentPosition);
                                 int size = MessageEntityView.this.groupedMessages.posArray.size();
                                 if ((currentPosition.flags & 8) != 0) {
                                     i4 = (adapterPosition2 - size) + iIndexOf;
                                 } else {
                                     i4 = adapterPosition2 - 1;
-                                    for (int i6 = iIndexOf + 1; i6 < size && MessageEntityView.this.groupedMessages.posArray.get(i6).minY <= currentPosition.maxY; i6++) {
-                                        i4--;
+                                    int i6 = iIndexOf + 1;
+                                    while (true) {
+                                        if (i6 < size) {
+                                            if (MessageEntityView.this.groupedMessages.posArray.get(i6).minY > currentPosition.maxY) {
+                                                break;
+                                            }
+                                            i4--;
+                                            i6++;
+                                        }
                                     }
                                 }
+                                break;
+                            } else {
+                                i4 = adapterPosition2 - 1;
                             }
                             if (findViewHolderForAdapterPosition(i4) != null) {
                                 if (view.getTranslationY() != 0.0f) {
@@ -776,81 +786,78 @@ public abstract class MessageEntityView extends EntityView {
                             }
                         }
                         float slidingOffsetX = chatMessageCell.getSlidingOffsetX() + chatMessageCell.getCheckBoxTranslation();
-                        int top2 = (int) ((z3 ? view.getTop() : view.getY()) + chatMessageCell.getLayoutHeight() + chatMessageCell.getTransitionParams().deltaBottom);
+                        int top2 = (int) ((z2 ? view.getTop() : view.getY()) + chatMessageCell.getLayoutHeight() + chatMessageCell.getTransitionParams().deltaBottom);
                         int measuredHeight = getMeasuredHeight() - getPaddingBottom();
-                        boolean z4 = chatMessageCell.isCheckBoxVisible() && slidingOffsetX == 0.0f;
+                        boolean z3 = chatMessageCell.isCheckBoxVisible() && slidingOffsetX == 0.0f;
                         if (chatMessageCell.isPlayingRound() || chatMessageCell.getTransitionParams().animatePlayingRound) {
                             if (chatMessageCell.getTransitionParams().animatePlayingRound) {
-                                float f4 = chatMessageCell.getTransitionParams().animateChangeProgress;
+                                float f5 = chatMessageCell.getTransitionParams().animateChangeProgress;
                                 if (!chatMessageCell.isPlayingRound()) {
-                                    f4 = 1.0f - f4;
+                                    f5 = 1.0f - f5;
                                 }
-                                top2 = (int) ((top2 * f4) + (Math.min(top2, measuredHeight) * (1.0f - f4)));
+                                top2 = (int) ((top2 * f5) + (Math.min(top2, measuredHeight) * (1.0f - f5)));
                             }
                         } else if (top2 > measuredHeight) {
                             top2 = measuredHeight;
                         }
-                        if (!z3 && view.getTranslationY() != 0.0f) {
+                        if (!z2 && view.getTranslationY() != 0.0f) {
                             canvas.restore();
                         }
                         if (chatMessageCell.drawPinnedTop() && (adapterPosition = getChildViewHolder(view).getAdapterPosition()) >= 0) {
-                            int i7 = adapterPosition;
-                            int top3 = top;
-                            float f5 = slidingOffsetX;
-                            ChatMessageCell chatMessageCell2 = chatMessageCell;
-                            int i8 = 0;
-                            while (i8 < 20) {
-                                i8++;
-                                if (MessageEntityView.this.groupedMessages == null || currentPosition == null) {
+                            int i7 = 0;
+                            do {
+                                if (i7 < 20) {
                                     i7++;
-                                } else {
-                                    int iIndexOf2 = MessageEntityView.this.groupedMessages.posArray.indexOf(currentPosition);
-                                    if (iIndexOf2 < 0) {
-                                        break;
-                                    }
-                                    MessageEntityView.this.groupedMessages.posArray.size();
-                                    if ((currentPosition.flags & 4) != 0) {
-                                        i7 = i7 + iIndexOf2 + 1;
+                                    if (MessageEntityView.this.groupedMessages == null || currentPosition == null) {
+                                        f4 = 0.0f;
+                                        adapterPosition++;
                                     } else {
-                                        i7++;
-                                        for (int i9 = iIndexOf2 - 1; i9 >= 0 && MessageEntityView.this.groupedMessages.posArray.get(i9).maxY >= currentPosition.minY; i9--) {
-                                            i7++;
+                                        int iIndexOf2 = MessageEntityView.this.groupedMessages.posArray.indexOf(currentPosition);
+                                        if (iIndexOf2 >= 0) {
+                                            f4 = 0.0f;
+                                            MessageEntityView.this.groupedMessages.posArray.size();
+                                            if ((currentPosition.flags & 4) != 0) {
+                                                adapterPosition = adapterPosition + iIndexOf2 + 1;
+                                            } else {
+                                                adapterPosition++;
+                                                for (int i8 = iIndexOf2 - 1; i8 >= 0 && MessageEntityView.this.groupedMessages.posArray.get(i8).maxY >= currentPosition.minY; i8--) {
+                                                    adapterPosition++;
+                                                }
+                                            }
                                         }
                                     }
+                                    RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = findViewHolderForAdapterPosition(adapterPosition);
+                                    if (viewHolderFindViewHolderForAdapterPosition == null) {
+                                        break;
+                                    }
+                                    top = viewHolderFindViewHolderForAdapterPosition.itemView.getTop();
+                                    View view2 = viewHolderFindViewHolderForAdapterPosition.itemView;
+                                    if (!(view2 instanceof ChatMessageCell)) {
+                                        break;
+                                    }
+                                    chatMessageCell = (ChatMessageCell) view2;
+                                    float slidingOffsetX2 = chatMessageCell.getSlidingOffsetX() + chatMessageCell.getCheckBoxTranslation();
+                                    if (z3 && slidingOffsetX2 > f4) {
+                                        slidingOffsetX = slidingOffsetX2;
+                                    }
                                 }
-                                RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = findViewHolderForAdapterPosition(i7);
-                                if (viewHolderFindViewHolderForAdapterPosition == null) {
-                                    break;
-                                }
-                                top3 = viewHolderFindViewHolderForAdapterPosition.itemView.getTop();
-                                View view2 = viewHolderFindViewHolderForAdapterPosition.itemView;
-                                if (!(view2 instanceof ChatMessageCell)) {
-                                    break;
-                                }
-                                chatMessageCell2 = (ChatMessageCell) view2;
-                                float slidingOffsetX2 = chatMessageCell2.getSlidingOffsetX() + chatMessageCell2.getCheckBoxTranslation();
-                                if (z4 && slidingOffsetX2 > 0.0f) {
-                                    f5 = slidingOffsetX2;
-                                }
-                                if (!chatMessageCell2.drawPinnedTop()) {
-                                    break;
-                                }
-                            }
-                            chatMessageCell = chatMessageCell2;
-                            slidingOffsetX = f5;
-                            top = top3;
+                                f4 = 0.0f;
+                                break;
+                            } while (chatMessageCell.drawPinnedTop());
                         }
+                        f4 = 0.0f;
+                        break;
                         if (top2 - AndroidUtilities.dp(42.0f) < top) {
                             top2 = top + AndroidUtilities.dp(42.0f);
                         }
                         if (!chatMessageCell.drawPinnedBottom()) {
-                            int bottom = z3 ? chatMessageCell.getBottom() : (int) (chatMessageCell.getY() + chatMessageCell.getMeasuredHeight() + chatMessageCell.getTransitionParams().deltaBottom);
+                            int bottom = z2 ? chatMessageCell.getBottom() : (int) (chatMessageCell.getY() + chatMessageCell.getMeasuredHeight() + chatMessageCell.getTransitionParams().deltaBottom);
                             if (top2 > bottom) {
                                 top2 = bottom;
                             }
                         }
                         canvas.save();
-                        if (slidingOffsetX != 0.0f) {
+                        if (slidingOffsetX != f4) {
                             canvas.translate(slidingOffsetX, 0.0f);
                         }
                         if (chatMessageCell.getCurrentMessagesGroup() != null && chatMessageCell.getCurrentMessagesGroup().transitionParams.backgroundChangeBounds) {
@@ -859,16 +866,14 @@ public abstract class MessageEntityView extends EntityView {
                         avatarImage.setImageY(top2 - AndroidUtilities.dp(40.0f));
                         if (chatMessageCell.shouldDrawAlphaLayer()) {
                             avatarImage.setAlpha(chatMessageCell.getAlpha());
-                            z2 = true;
                             canvas.scale(chatMessageCell.getScaleX(), chatMessageCell.getScaleY(), chatMessageCell.getX() + chatMessageCell.getPivotX(), chatMessageCell.getY() + (chatMessageCell.getHeight() >> 1));
                         } else {
-                            z2 = true;
                             avatarImage.setAlpha(1.0f);
                         }
-                        avatarImage.setVisible(z2, false);
+                        avatarImage.setVisible(true, false);
                         avatarImage.draw(canvas);
                         canvas.restore();
-                        if (z3) {
+                        if (z2) {
                             f3 = 0.0f;
                         } else {
                             f3 = 0.0f;
@@ -949,15 +954,18 @@ public abstract class MessageEntityView extends EntityView {
 
                     @Override
                     protected void onDraw(Canvas canvas) {
+                        Canvas canvas2;
                         AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
                         PreviewView.TextureViewHolder textureViewHolder2 = textureViewHolder;
                         if ((textureViewHolder2 != null && textureViewHolder2.active && textureViewHolder2.textureViewActive) || MessageEntityView.this.clipVideoMessageForBitmap) {
-                            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                            canvas2 = canvas;
+                            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
                         } else {
-                            canvas.save();
+                            canvas2 = canvas;
+                            canvas2.save();
                         }
-                        super.onDraw(canvas);
-                        canvas.restore();
+                        super.onDraw(canvas2);
+                        canvas2.restore();
                     }
 
                     @Override
@@ -1130,39 +1138,40 @@ public abstract class MessageEntityView extends EntityView {
             textureViewHolder.takeTextureView(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$new$0((TextureView) obj);
+                    MessageEntityView.$r8$lambda$WJ6ZUblGCnsBkpSBJKCfxHxBqvg(this.f$0, (TextureView) obj);
                 }
             }, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$new$2((Integer) obj, (Integer) obj2);
+                    MessageEntityView.m2514$r8$lambda$f1ac0PpokJUyMxQsIQ_HjZDFT0(this.f$0, (Integer) obj, (Integer) obj2);
                 }
             });
         }
         updatePosition();
     }
 
-    public void lambda$new$0(TextureView textureView) {
-        this.textureView = textureView;
+    public static void $r8$lambda$WJ6ZUblGCnsBkpSBJKCfxHxBqvg(MessageEntityView messageEntityView, TextureView textureView) {
+        messageEntityView.textureView = textureView;
         if (textureView != null) {
-            this.container.addView(textureView, 0);
+            messageEntityView.container.addView(textureView, 0);
         }
     }
 
-    public void lambda$new$2(Integer num, Integer num2) {
-        this.videoWidth = num.intValue();
-        this.videoHeight = num2.intValue();
+    public static void m2514$r8$lambda$f1ac0PpokJUyMxQsIQ_HjZDFT0(final MessageEntityView messageEntityView, Integer num, Integer num2) {
+        messageEntityView.getClass();
+        messageEntityView.videoWidth = num.intValue();
+        messageEntityView.videoHeight = num2.intValue();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                MessageEntityView.$r8$lambda$c7MUwsOexxPq3GCXt0Yp6OjZydk(this.f$0);
             }
         }, 60L);
     }
 
-    public void lambda$new$1() {
-        this.textureViewActive = true;
-        invalidateAll();
+    public static void $r8$lambda$c7MUwsOexxPq3GCXt0Yp6OjZydk(MessageEntityView messageEntityView) {
+        messageEntityView.textureViewActive = true;
+        messageEntityView.invalidateAll();
     }
 
     public ChatMessageCell getCell() {
@@ -1179,9 +1188,9 @@ public abstract class MessageEntityView extends EntityView {
 
     public float getBubbleBounds(RectF rectF) {
         float y;
-        float y2;
         float x;
         float x2;
+        float y2;
         float fMin = 2.1474836E9f;
         float fMin2 = 2.1474836E9f;
         float fMax = -2.1474836E9f;
@@ -1193,34 +1202,35 @@ public abstract class MessageEntityView extends EntityView {
                 if (chatMessageCell.getMessageObject() != null && chatMessageCell.getMessageObject().isRoundVideo() && chatMessageCell.getPhotoImage() != null) {
                     x = this.container.getX() + chatMessageCell.getX() + chatMessageCell.getPhotoImage().getImageX();
                     x2 = this.container.getX() + chatMessageCell.getX() + chatMessageCell.getPhotoImage().getImageX2();
-                    y = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY();
-                    y2 = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY2();
+                    y2 = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY();
+                    y = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY2();
                 } else {
                     float x3 = this.container.getX() + childAt.getX() + chatMessageCell.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
                     if (this.groupedMessages == null) {
                         x3 += AndroidUtilities.dp(8.0f);
                     }
                     float x4 = ((this.container.getX() + childAt.getX()) + chatMessageCell.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
-                    y = this.container.getY() + childAt.getY() + chatMessageCell.getBackgroundDrawableTop() + AndroidUtilities.dp(2.0f);
-                    y2 = ((this.container.getY() + childAt.getY()) + chatMessageCell.getBackgroundDrawableBottom()) - AndroidUtilities.dp(1.0f);
+                    float y3 = this.container.getY() + childAt.getY() + chatMessageCell.getBackgroundDrawableTop() + AndroidUtilities.dp(2.0f);
+                    y = ((this.container.getY() + childAt.getY()) + chatMessageCell.getBackgroundDrawableBottom()) - AndroidUtilities.dp(1.0f);
                     x = x3;
                     x2 = x4;
+                    y2 = y3;
                 }
                 fMin = Math.min(Math.min(fMin, x), x2);
                 fMax = Math.max(Math.max(fMax, x), x2);
-                fMin2 = Math.min(Math.min(fMin2, y), y2);
-                fMax2 = Math.max(Math.max(fMax2, y), y2);
+                fMin2 = Math.min(Math.min(fMin2, y2), y);
+                fMax2 = Math.max(Math.max(fMax2, y2), y);
             } else if (childAt instanceof ChatActionCell) {
                 ChatActionCell chatActionCell = (ChatActionCell) childAt;
                 if (chatActionCell.starGiftLayout.has()) {
                     float x5 = this.container.getX() + chatActionCell.getX() + chatActionCell.getBoundsLeft();
                     float x6 = this.container.getX() + chatActionCell.getX() + chatActionCell.getBoundsRight();
-                    float y3 = this.container.getY() + chatActionCell.getY();
-                    float y4 = this.container.getY() + chatActionCell.getY() + chatActionCell.getMeasuredHeight();
+                    float y4 = this.container.getY() + chatActionCell.getY();
+                    float y5 = this.container.getY() + chatActionCell.getY() + chatActionCell.getMeasuredHeight();
                     fMin = Math.min(Math.min(fMin, x5), x6);
                     fMax = Math.max(Math.max(fMax, x5), x6);
-                    fMin2 = Math.min(Math.min(fMin2, y3), y4);
-                    fMax2 = Math.max(Math.max(fMax2, y3), y4);
+                    fMin2 = Math.min(Math.min(fMin2, y4), y5);
+                    fMax2 = Math.max(Math.max(fMax2, y4), y5);
                 }
             }
         }
@@ -1246,7 +1256,7 @@ public abstract class MessageEntityView extends EntityView {
     }
 
     @Override
-    protected void updatePosition() {
+    public void updatePosition() {
         float measuredWidth = getMeasuredWidth() / 2.0f;
         float measuredHeight = getMeasuredHeight() / 2.0f;
         setX(getPositionX() - measuredWidth);
@@ -1329,6 +1339,7 @@ public abstract class MessageEntityView extends EntityView {
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             super.onDraw(canvas);
             int saveCount = canvas.getSaveCount();
             float showAlpha = getShowAlpha();
@@ -1336,7 +1347,11 @@ public abstract class MessageEntityView extends EntityView {
                 return;
             }
             if (showAlpha < 1.0f) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
+                int i = (int) (showAlpha * 255.0f);
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), i, 31);
+            } else {
+                canvas2 = canvas;
             }
             float fDp = AndroidUtilities.dp(2.0f);
             float fDpf2 = AndroidUtilities.dpf2(5.66f);
@@ -1362,20 +1377,20 @@ public abstract class MessageEntityView extends EntityView {
             float f9 = f2 - f5;
             rectF.set(f9, fDp2, f2, f8);
             this.path.arcTo(rectF, 270.0f, 90.0f);
-            canvas.drawPath(this.path, this.paint);
+            canvas2.drawPath(this.path, this.paint);
             this.path.rewind();
             float f10 = f3 - f7;
             rectF.set(fDp2, f10, f6, f3);
             this.path.arcTo(rectF, 180.0f, -90.0f);
             rectF.set(f9, f10, f2, f3);
             this.path.arcTo(rectF, 90.0f, -90.0f);
-            canvas.drawPath(this.path, this.paint);
+            canvas2.drawPath(this.path, this.paint);
             float f11 = fDp2 + f4;
-            canvas.drawCircle(fDp2, f11, fDpf2, this.dotStrokePaint);
-            canvas.drawCircle(fDp2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas.drawCircle(f2, f11, fDpf2, this.dotStrokePaint);
-            canvas.drawCircle(f2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            canvas2.drawCircle(fDp2, f11, fDpf2, this.dotStrokePaint);
+            canvas2.drawCircle(fDp2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            canvas2.drawCircle(f2, f11, fDpf2, this.dotStrokePaint);
+            canvas2.drawCircle(f2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             float f12 = fDp2 + fMin2;
             float f13 = f3 - fMin2;
             canvas.drawLine(fDp2, f12, fDp2, f13, this.paint);

@@ -28,10 +28,7 @@ public class BottomSheetTabDialog extends Dialog {
 
     public static BottomSheetTabsOverlay.Sheet checkSheet(BottomSheetTabsOverlay.Sheet sheet) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment == null) {
-            return sheet;
-        }
-        if (AndroidUtilities.isTablet() || sheet.hadDialog() || AndroidUtilities.hasDialogOnTop(safeLastFragment)) {
+        if (safeLastFragment != null && (AndroidUtilities.isTablet() || sheet.hadDialog() || AndroidUtilities.hasDialogOnTop(safeLastFragment))) {
             BottomSheetTabDialog bottomSheetTabDialog = new BottomSheetTabDialog(sheet);
             if (sheet.setDialog(bottomSheetTabDialog)) {
                 bottomSheetTabDialog.windowView.putView();
@@ -99,12 +96,12 @@ public class BottomSheetTabDialog extends Dialog {
         this.windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                return BottomSheetTabDialog.lambda$onCreate$0(view, windowInsets);
+                return BottomSheetTabDialog.$r8$lambda$mi9mEbznhj0FGRXpR2lBBTI87Mo(view, windowInsets);
             }
         });
     }
 
-    public static WindowInsets lambda$onCreate$0(View view, WindowInsets windowInsets) {
+    public static WindowInsets $r8$lambda$mi9mEbznhj0FGRXpR2lBBTI87Mo(View view, WindowInsets windowInsets) {
         view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
         if (Build.VERSION.SDK_INT >= 30) {
             return WindowInsets.CONSUMED;

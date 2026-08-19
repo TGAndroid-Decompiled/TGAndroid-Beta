@@ -112,7 +112,7 @@ public abstract class ReportAlert extends BottomSheet {
         this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView3, int i3, KeyEvent keyEvent) {
-                return this.f$0.lambda$new$0(textView3, i3, keyEvent);
+                return ReportAlert.$r8$lambda$p0AIfjY80my76B4tFO4cPMImDtY(this.f$0, textView3, i3, keyEvent);
             }
         });
         frameLayout.addView(this.editText, LayoutHelper.createFrame(-1, 36.0f, 51, 17.0f, 305.0f, 17.0f, 0.0f));
@@ -124,24 +124,25 @@ public abstract class ReportAlert extends BottomSheet {
         this.clearButton.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(i, view);
+                ReportAlert.$r8$lambda$trFD2dphH52P6kGgwOBFUmrLsxU(this.f$0, i, view);
             }
         });
         frameLayout.addView(this.clearButton, LayoutHelper.createFrame(-1, 50.0f, 51, 0.0f, 357.0f, 0.0f, 0.0f));
         this.smoothKeyboardAnimationEnabled = true;
     }
 
-    public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 6) {
-            return false;
+    public static boolean $r8$lambda$p0AIfjY80my76B4tFO4cPMImDtY(ReportAlert reportAlert, TextView textView, int i, KeyEvent keyEvent) {
+        if (i == 6) {
+            reportAlert.clearButton.background.callOnClick();
+            return true;
         }
-        this.clearButton.background.callOnClick();
-        return true;
+        reportAlert.getClass();
+        return false;
     }
 
-    public void lambda$new$1(int i, View view) {
-        AndroidUtilities.hideKeyboard(this.editText);
-        onSend(i, this.editText.getText().toString());
-        dismiss();
+    public static void $r8$lambda$trFD2dphH52P6kGgwOBFUmrLsxU(ReportAlert reportAlert, int i, View view) {
+        AndroidUtilities.hideKeyboard(reportAlert.editText);
+        reportAlert.onSend(i, reportAlert.editText.getText().toString());
+        reportAlert.dismiss();
     }
 }

@@ -252,19 +252,20 @@ public abstract class UsersAlertBase extends BottomSheet {
             this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                    return this.f$0.lambda$new$0(textView, i, keyEvent);
+                    return UsersAlertBase.SearchField.$r8$lambda$FuB3YmaLg_S0RrMd0WXyTlxEvy0(this.f$0, textView, i, keyEvent);
                 }
             });
         }
 
-        public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
+        public static boolean $r8$lambda$FuB3YmaLg_S0RrMd0WXyTlxEvy0(SearchField searchField, TextView textView, int i, KeyEvent keyEvent) {
+            searchField.getClass();
             if (keyEvent == null) {
                 return false;
             }
             if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
                 return false;
             }
-            AndroidUtilities.hideKeyboard(this.searchEditText);
+            AndroidUtilities.hideKeyboard(searchField.searchEditText);
             return false;
         }
 
@@ -454,7 +455,7 @@ public abstract class UsersAlertBase extends BottomSheet {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            this.f$0.lambda$onMeasure$0(valueAnimator2);
+                            UsersAlertBase.ContainerView.m2931$r8$lambda$escEspxYUkbGGIcbqNqz1PUPtw(this.f$0, valueAnimator2);
                         }
                     });
                     this.valueAnimator.setDuration(250L);
@@ -485,10 +486,11 @@ public abstract class UsersAlertBase extends BottomSheet {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
         }
 
-        public void lambda$onMeasure$0(ValueAnimator valueAnimator) {
+        public static void m2931$r8$lambda$escEspxYUkbGGIcbqNqz1PUPtw(ContainerView containerView, ValueAnimator valueAnimator) {
+            containerView.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.snapToTopOffset = fFloatValue;
-            setTranslationY(fFloatValue);
+            containerView.snapToTopOffset = fFloatValue;
+            containerView.setTranslationY(fFloatValue);
         }
 
         @Override

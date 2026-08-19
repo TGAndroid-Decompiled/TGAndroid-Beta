@@ -44,7 +44,7 @@ public abstract class CropEditor extends FrameLayout {
     private final int[] thisLocation;
     public final CropRotationWheel wheel;
 
-    protected abstract void close();
+    public abstract void close();
 
     public int getCurrentWidth() {
         StoryEntry storyEntry = this.entry;
@@ -165,7 +165,7 @@ public abstract class CropEditor extends FrameLayout {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.close();
             }
         });
         TextView textView2 = new TextView(context);
@@ -180,7 +180,7 @@ public abstract class CropEditor extends FrameLayout {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                CropEditor.$r8$lambda$YzhabpHu7k4LpTrzMQ5twFVpLtI(this.f$0, view);
             }
         });
         TextView textView3 = new TextView(context);
@@ -195,26 +195,22 @@ public abstract class CropEditor extends FrameLayout {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                CropEditor.$r8$lambda$niRe_kh35IxcjZjnMYl_50CiJxw(this.f$0, view);
             }
         });
     }
 
-    public void lambda$new$0(View view) {
-        close();
+    public static void $r8$lambda$YzhabpHu7k4LpTrzMQ5twFVpLtI(CropEditor cropEditor, View view) {
+        cropEditor.cropView.reset(true);
+        cropEditor.wheel.setRotated(false);
+        cropEditor.wheel.setMirrored(false);
+        cropEditor.wheel.setRotation(0.0f, true);
+        cropEditor.contentView.invalidate();
     }
 
-    public void lambda$new$1(View view) {
-        this.cropView.reset(true);
-        this.wheel.setRotated(false);
-        this.wheel.setMirrored(false);
-        this.wheel.setRotation(0.0f, true);
-        this.contentView.invalidate();
-    }
-
-    public void lambda$new$2(View view) {
-        apply();
-        close();
+    public static void $r8$lambda$niRe_kh35IxcjZjnMYl_50CiJxw(CropEditor cropEditor, View view) {
+        cropEditor.apply();
+        cropEditor.close();
     }
 
     @Override
@@ -237,13 +233,14 @@ public abstract class CropEditor extends FrameLayout {
         if (cropState == null) {
             cropState = null;
         }
-        this.cropView.start(storyEntry.orientation, true, false, this.cropTransform, cropState);
+        MediaController.CropState cropState2 = cropState;
+        this.cropView.start(storyEntry.orientation, true, false, this.cropTransform, cropState2);
         this.wheel.setRotation(this.cropView.getRotation());
-        if (cropState != null) {
-            this.wheel.setRotation(cropState.cropRotate, false);
-            this.wheel.setRotated(cropState.transformRotation != 0);
-            this.wheel.setMirrored(cropState.mirrored);
-            this.animatedMirror.set(cropState.mirrored, false);
+        if (cropState2 != null) {
+            this.wheel.setRotation(cropState2.cropRotate, false);
+            this.wheel.setRotated(cropState2.transformRotation != 0);
+            this.wheel.setMirrored(cropState2.mirrored);
+            this.animatedMirror.set(cropState2.mirrored, false);
         } else {
             this.wheel.setRotation(0.0f, false);
             this.wheel.setRotated(false);
@@ -329,18 +326,22 @@ public abstract class CropEditor extends FrameLayout {
         }
 
         public void drawImage(Canvas canvas, boolean z) {
+            Canvas canvas2;
             boolean zIsMirrored = true;
-            if (z) {
+            if (!z) {
+                canvas2 = canvas;
+            } else {
                 if (CropEditor.this.appearProgress >= 1.0f) {
                     return;
                 }
-                canvas.saveLayerAlpha(0.0f, 0.0f, CropEditor.this.previewView.getWidth(), CropEditor.this.previewView.getHeight(), (int) (Math.min(1.0f, (1.0f - CropEditor.this.appearProgress) * 2.0f) * 255.0f), 31);
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, CropEditor.this.previewView.getWidth(), CropEditor.this.previewView.getHeight(), (int) (Math.min(1.0f, (1.0f - CropEditor.this.appearProgress) * 2.0f) * 255.0f), 31);
                 canvas.translate(CropEditor.this.thisLocation[0] - CropEditor.this.previewLocation[0], CropEditor.this.thisLocation[1] - CropEditor.this.previewLocation[1]);
             }
             canvas.save();
             this.dimPaint.setColor(-16777216);
             this.dimPaint.setAlpha((int) (CropEditor.this.appearProgress * 255.0f));
-            canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.dimPaint);
+            canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.dimPaint);
             if (CropEditor.this.appearProgress < 1.0f && !z) {
                 this.previewClipPath.rewind();
                 this.previewClipRect.set(0.0f, 0.0f, CropEditor.this.previewView.getWidth(), CropEditor.this.previewView.getHeight());

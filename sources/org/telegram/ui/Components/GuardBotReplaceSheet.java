@@ -71,7 +71,7 @@ public class GuardBotReplaceSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(runnable, view);
+                GuardBotReplaceSheet.$r8$lambda$Dfm0AiOLq1tqqgqeVh6n3ovgaYo(this.f$0, runnable, view);
             }
         });
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 10.0f));
@@ -83,7 +83,7 @@ public class GuardBotReplaceSheet extends BottomSheetWithRecyclerListView {
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.dismiss();
             }
         });
         linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 14.0f));
@@ -93,15 +93,12 @@ public class GuardBotReplaceSheet extends BottomSheetWithRecyclerListView {
         this.adapter.update(false);
     }
 
-    public void lambda$new$0(Runnable runnable, View view) {
+    public static void $r8$lambda$Dfm0AiOLq1tqqgqeVh6n3ovgaYo(GuardBotReplaceSheet guardBotReplaceSheet, Runnable runnable, View view) {
         if (runnable != null) {
+            guardBotReplaceSheet.getClass();
             runnable.run();
         }
-        lambda$new$0();
-    }
-
-    public void lambda$new$1(View view) {
-        lambda$new$0();
+        guardBotReplaceSheet.dismiss();
     }
 
     private View buildAvatar(Context context, TLObject tLObject, int i) {

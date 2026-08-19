@@ -83,7 +83,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0 && FiltersListBottomSheet.this.scrollOffsetY != 0 && motionEvent.getY() < FiltersListBottomSheet.this.scrollOffsetY) {
-                    FiltersListBottomSheet.this.lambda$new$0();
+                    FiltersListBottomSheet.this.dismiss();
                     return true;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -239,7 +239,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i3) {
-                this.f$0.lambda$new$0(view2, i3);
+                FiltersListBottomSheet.m2332$r8$lambda$yPiFoLCkBJevHKLzC2xHtH7Og(this.f$0, view2, i3);
             }
         });
         this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
@@ -260,9 +260,9 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
     }
 
-    public void lambda$new$0(View view, int i) {
-        this.delegate.didSelectFilter(this.adapter.getItem(i), view instanceof BottomSheet.BottomSheetCell ? ((BottomSheet.BottomSheetCell) view).isChecked() : false);
-        lambda$new$0();
+    public static void m2332$r8$lambda$yPiFoLCkBJevHKLzC2xHtH7Og(FiltersListBottomSheet filtersListBottomSheet, View view, int i) {
+        filtersListBottomSheet.delegate.didSelectFilter(filtersListBottomSheet.adapter.getItem(i), view instanceof BottomSheet.BottomSheetCell ? ((BottomSheet.BottomSheetCell) view).isChecked() : false);
+        filtersListBottomSheet.dismiss();
     }
 
     public void updateLayout() {
@@ -336,8 +336,8 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
     }
 
     @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
+    public void dismiss() {
+        super.dismiss();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
     }
 
@@ -347,13 +347,13 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
             AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    FiltersListBottomSheet.lambda$didReceivedNotification$1((View) obj);
+                    FiltersListBottomSheet.$r8$lambda$uGKg_SdI2ieBTD7mZxsNnyzCORc((View) obj);
                 }
             });
         }
     }
 
-    public static void lambda$didReceivedNotification$1(View view) {
+    public static void $r8$lambda$uGKg_SdI2ieBTD7mZxsNnyzCORc(View view) {
         if (view instanceof BottomSheet.BottomSheetCell) {
             ((BottomSheet.BottomSheetCell) view).getTextView().invalidate();
         } else {
@@ -417,7 +417,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         return arrayList2;
     }
 
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
 
         @Override

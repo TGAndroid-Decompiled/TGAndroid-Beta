@@ -39,7 +39,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
 
     protected abstract void afterCodeApplied();
 
-    protected abstract void dismiss();
+    public abstract void dismiss();
 
     @Override
     public int getItemCount() {
@@ -177,7 +177,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             actionBtnCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$onBindViewHolder$2(actionBtnCell, view);
+                    GiftInfoAdapter.$r8$lambda$h0vGbgoMo7ZLA76X70xFF3x1IIU(this.f$0, actionBtnCell, view);
                 }
             });
             TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.giftCode;
@@ -186,7 +186,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 actionBtnCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$onBindViewHolder$3(view);
+                        this.f$0.dismiss();
                     }
                 });
                 return;
@@ -223,41 +223,39 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
     }
 
-    public void lambda$onBindViewHolder$2(final ActionBtnCell actionBtnCell, View view) {
-        if (this.isUnused) {
+    public static void $r8$lambda$h0vGbgoMo7ZLA76X70xFF3x1IIU(final GiftInfoAdapter giftInfoAdapter, final ActionBtnCell actionBtnCell, View view) {
+        if (giftInfoAdapter.isUnused) {
             if (actionBtnCell.isLoading()) {
                 return;
             }
             actionBtnCell.updateLoading(true);
-            BoostRepository.applyGiftCode(this.slug, new Utilities.Callback() {
+            BoostRepository.applyGiftCode(giftInfoAdapter.slug, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onBindViewHolder$0(actionBtnCell, (Void) obj);
+                    GiftInfoAdapter.$r8$lambda$fjrnpH7dJv9ZfyEvZe8WUJIaqVE(this.f$0, actionBtnCell, (Void) obj);
                 }
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onBindViewHolder$1(actionBtnCell, (TLRPC.TL_error) obj);
+                    GiftInfoAdapter.$r8$lambda$4ObwOuFEVWilRpdMhPy_pSxyTR8(this.f$0, actionBtnCell, (TLRPC.TL_error) obj);
                 }
             });
             return;
         }
-        dismiss();
+        giftInfoAdapter.dismiss();
     }
 
-    public void lambda$onBindViewHolder$0(ActionBtnCell actionBtnCell, Void r2) {
+    public static void $r8$lambda$fjrnpH7dJv9ZfyEvZe8WUJIaqVE(GiftInfoAdapter giftInfoAdapter, ActionBtnCell actionBtnCell, Void r2) {
+        giftInfoAdapter.getClass();
         actionBtnCell.updateLoading(false);
-        afterCodeApplied();
-        dismiss();
+        giftInfoAdapter.afterCodeApplied();
+        giftInfoAdapter.dismiss();
     }
 
-    public void lambda$onBindViewHolder$1(ActionBtnCell actionBtnCell, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$4ObwOuFEVWilRpdMhPy_pSxyTR8(GiftInfoAdapter giftInfoAdapter, ActionBtnCell actionBtnCell, TLRPC.TL_error tL_error) {
+        giftInfoAdapter.getClass();
         actionBtnCell.updateLoading(false);
-        BoostDialogs.processApplyGiftCodeError(tL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda2(this));
-    }
-
-    public void lambda$onBindViewHolder$3(View view) {
-        dismiss();
+        BoostDialogs.processApplyGiftCodeError(tL_error, giftInfoAdapter.container, giftInfoAdapter.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda2(giftInfoAdapter));
     }
 
     public void share() {
@@ -274,7 +272,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-                return this.f$0.lambda$share$4(str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
+                return GiftInfoAdapter.$r8$lambda$fvJJIO_FvgA9NTYBbnGh8dHiyx4(this.f$0, str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
             }
 
             @Override
@@ -286,11 +284,15 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         dismiss();
     }
 
-    public boolean lambda$share$4(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public static boolean $r8$lambda$fvJJIO_FvgA9NTYBbnGh8dHiyx4(GiftInfoAdapter giftInfoAdapter, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+        giftInfoAdapter.getClass();
         long j = 0;
-        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            j = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
-            this.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, 0, null, false));
+        int i3 = 0;
+        while (i3 < arrayList.size()) {
+            long j2 = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
+            giftInfoAdapter.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            i3++;
+            j = j2;
         }
         dialogsActivity.finishFragment();
         BoostDialogs.showGiftLinkForwardedBulletin(j);

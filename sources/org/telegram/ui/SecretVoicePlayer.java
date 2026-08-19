@@ -140,19 +140,23 @@ public class SecretVoicePlayer extends Dialog {
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
-                if (SecretVoicePlayer.this.openProgress > 0.0f && SecretVoicePlayer.this.blurBitmapPaint != null) {
+                Canvas canvas2;
+                if (SecretVoicePlayer.this.openProgress <= 0.0f || SecretVoicePlayer.this.blurBitmapPaint == null) {
+                    canvas2 = canvas;
+                } else {
                     SecretVoicePlayer.this.blurMatrix.reset();
                     float width = getWidth() / SecretVoicePlayer.this.blurBitmap.getWidth();
                     SecretVoicePlayer.this.blurMatrix.postScale(width, width);
                     SecretVoicePlayer.this.blurBitmapShader.setLocalMatrix(SecretVoicePlayer.this.blurMatrix);
                     SecretVoicePlayer.this.blurBitmapPaint.setAlpha((int) (SecretVoicePlayer.this.openProgress * 255.0f));
-                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), SecretVoicePlayer.this.blurBitmapPaint);
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), SecretVoicePlayer.this.blurBitmapPaint);
                 }
                 if (SecretVoicePlayer.this.setCellInvisible && SecretVoicePlayer.this.cell != null) {
                     SecretVoicePlayer.this.cell.setVisibility(4);
                     SecretVoicePlayer.this.setCellInvisible = false;
                 }
-                super.dispatchDraw(canvas);
+                super.dispatchDraw(canvas2);
             }
 
             @Override
@@ -174,7 +178,7 @@ public class SecretVoicePlayer extends Dialog {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                SecretVoicePlayer.m3992$r8$lambda$LeF4wIGXatYvPasvsipyHHniC8(this.f$0, view);
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(context) {
@@ -211,7 +215,7 @@ public class SecretVoicePlayer extends Dialog {
         ViewCompat.setOnApplyWindowInsetsListener(this.windowView, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                return this.f$0.lambda$new$1(view, windowInsetsCompat);
+                return SecretVoicePlayer.$r8$lambda$t2vFV0Ft9twosv66n5FYiIaR3CE(this.f$0, view, windowInsetsCompat);
             }
         });
         if (SharedConfig.raiseToListen) {
@@ -219,17 +223,18 @@ public class SecretVoicePlayer extends Dialog {
         }
     }
 
-    public void lambda$new$0(View view) {
-        if (this.closeAction == null) {
-            dismiss();
+    public static void m3992$r8$lambda$LeF4wIGXatYvPasvsipyHHniC8(SecretVoicePlayer secretVoicePlayer, View view) {
+        if (secretVoicePlayer.closeAction == null) {
+            secretVoicePlayer.dismiss();
         }
     }
 
-    public WindowInsetsCompat lambda$new$1(View view, WindowInsetsCompat windowInsetsCompat) {
+    public static WindowInsetsCompat $r8$lambda$t2vFV0Ft9twosv66n5FYiIaR3CE(SecretVoicePlayer secretVoicePlayer, View view, WindowInsetsCompat windowInsetsCompat) {
+        secretVoicePlayer.getClass();
         Insets defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
-        this.insets = defaultWindowInsets;
-        this.containerView.setPadding(defaultWindowInsets.left, defaultWindowInsets.top, defaultWindowInsets.right, defaultWindowInsets.bottom);
-        this.windowView.requestLayout();
+        secretVoicePlayer.insets = defaultWindowInsets;
+        secretVoicePlayer.containerView.setPadding(defaultWindowInsets.left, defaultWindowInsets.top, defaultWindowInsets.right, defaultWindowInsets.bottom);
+        secretVoicePlayer.windowView.requestLayout();
         return WindowInsetsCompat.CONSUMED;
     }
 
@@ -240,28 +245,29 @@ public class SecretVoicePlayer extends Dialog {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$prepareBlur$2(view, (Bitmap) obj);
+                SecretVoicePlayer.m3993$r8$lambda$RsyRmTAcJKWZBeOcrZYnYy5pas(this.f$0, view, (Bitmap) obj);
             }
         }, 14.0f);
     }
 
-    public void lambda$prepareBlur$2(View view, Bitmap bitmap) {
+    public static void m3993$r8$lambda$RsyRmTAcJKWZBeOcrZYnYy5pas(SecretVoicePlayer secretVoicePlayer, View view, Bitmap bitmap) {
         if (view != null) {
+            secretVoicePlayer.getClass();
             view.setVisibility(0);
         }
-        this.blurBitmap = bitmap;
+        secretVoicePlayer.blurBitmap = bitmap;
         Paint paint = new Paint(1);
-        this.blurBitmapPaint = paint;
-        Bitmap bitmap2 = this.blurBitmap;
+        secretVoicePlayer.blurBitmapPaint = paint;
+        Bitmap bitmap2 = secretVoicePlayer.blurBitmap;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-        this.blurBitmapShader = bitmapShader;
+        secretVoicePlayer.blurBitmapShader = bitmapShader;
         paint.setShader(bitmapShader);
         ColorMatrix colorMatrix = new ColorMatrix();
         AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.05f : 0.25f);
         AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.02f : -0.04f);
-        this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        this.blurMatrix = new Matrix();
+        secretVoicePlayer.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        secretVoicePlayer.blurMatrix = new Matrix();
     }
 
     @Override
@@ -398,6 +404,7 @@ public class SecretVoicePlayer extends Dialog {
 
                 @Override
                 protected void onDraw(Canvas canvas) {
+                    Canvas canvas2;
                     if (SecretVoicePlayer.this.isRound) {
                         if (!this.setRect) {
                             this.fromRect.set(getPhotoImage().getImageX(), getPhotoImage().getImageY(), getPhotoImage().getImageX2(), getPhotoImage().getImageY2());
@@ -414,14 +421,19 @@ public class SecretVoicePlayer extends Dialog {
                         AndroidUtilities.lerp(this.fromRect, this.toRect, SecretVoicePlayer.this.openProgress, SecretVoicePlayer.this.rect);
                         setImageCoords(SecretVoicePlayer.this.rect.left, SecretVoicePlayer.this.rect.top, SecretVoicePlayer.this.rect.width(), SecretVoicePlayer.this.rect.height());
                         getPhotoImage().setRoundRadius((int) SecretVoicePlayer.this.rect.width());
-                        if (SecretVoicePlayer.this.openProgress > 0.0f && SecretVoicePlayer.this.renderedFirstFrame) {
-                            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                        if (SecretVoicePlayer.this.openProgress <= 0.0f || !SecretVoicePlayer.this.renderedFirstFrame) {
+                            canvas2 = canvas;
+                        } else {
+                            canvas2 = canvas;
+                            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
                         }
                         this.radialProgressAlpha = 1.0f - SecretVoicePlayer.this.openProgress;
+                    } else {
+                        canvas2 = canvas;
                     }
-                    super.onDraw(canvas);
+                    super.onDraw(canvas2);
                     if (SecretVoicePlayer.this.isRound && SecretVoicePlayer.this.openProgress > 0.0f && SecretVoicePlayer.this.renderedFirstFrame) {
-                        canvas.restore();
+                        canvas2.restore();
                     }
                 }
 
@@ -1179,7 +1191,7 @@ public class SecretVoicePlayer extends Dialog {
         this.closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$setCell$3(view2);
+                this.f$0.dismiss();
             }
         });
         this.containerView.addView(this.closeButton, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, 18.0f));
@@ -1242,19 +1254,15 @@ public class SecretVoicePlayer extends Dialog {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onRenderedFirstFrame$0();
+                    SecretVoicePlayer.AnonymousClass5.m3998$r8$lambda$pqKvCZgsToISh77meG8KWXRdc(this.f$0);
                 }
             });
         }
 
-        public void lambda$onRenderedFirstFrame$0() {
+        public static void m3998$r8$lambda$pqKvCZgsToISh77meG8KWXRdc(AnonymousClass5 anonymousClass5) {
             SecretVoicePlayer.this.renderedFirstFrame = true;
             SecretVoicePlayer.this.myCell.invalidate();
         }
-    }
-
-    public void lambda$setCell$3(View view) {
-        dismiss();
     }
 
     @Override
@@ -1315,12 +1323,12 @@ public class SecretVoicePlayer extends Dialog {
             AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseTitle : R.string.VoiceOnceCloseTitle)).setMessage(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseMessage : R.string.VoiceOnceCloseMessage)).setPositiveButton(LocaleController.getString(R.string.Continue), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog2, int i) {
-                    this.f$0.lambda$onBackPressed$4(alertDialog2, i);
+                    SecretVoicePlayer.$r8$lambda$ztEMBOpEXkVr11YSJszXsUcWo8E(this.f$0, alertDialog2, i);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog2, int i) {
-                    this.f$0.lambda$onBackPressed$5(alertDialog2, i);
+                    SecretVoicePlayer.m3995$r8$lambda$l1puDsHIvlT0hcExnAVKlRXVic(this.f$0, alertDialog2, i);
                 }
             }).create();
             this.backDialog = alertDialogCreate;
@@ -1335,20 +1343,20 @@ public class SecretVoicePlayer extends Dialog {
         super.onBackPressed();
     }
 
-    public void lambda$onBackPressed$4(AlertDialog alertDialog, int i) {
-        AlertDialog alertDialog2 = this.backDialog;
+    public static void $r8$lambda$ztEMBOpEXkVr11YSJszXsUcWo8E(SecretVoicePlayer secretVoicePlayer, AlertDialog alertDialog, int i) {
+        AlertDialog alertDialog2 = secretVoicePlayer.backDialog;
         if (alertDialog2 != null) {
             alertDialog2.dismiss();
         }
     }
 
-    public void lambda$onBackPressed$5(AlertDialog alertDialog, int i) {
-        AlertDialog alertDialog2 = this.backDialog;
+    public static void m3995$r8$lambda$l1puDsHIvlT0hcExnAVKlRXVic(SecretVoicePlayer secretVoicePlayer, AlertDialog alertDialog, int i) {
+        AlertDialog alertDialog2 = secretVoicePlayer.backDialog;
         if (alertDialog2 != null) {
             alertDialog2.dismiss();
-            this.backDialog = null;
+            secretVoicePlayer.backDialog = null;
         }
-        dismiss();
+        secretVoicePlayer.dismiss();
     }
 
     @Override
@@ -1382,7 +1390,7 @@ public class SecretVoicePlayer extends Dialog {
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$dismiss$7();
+                SecretVoicePlayer.m3991$r8$lambda$GrEIy_oOLoY8yBhY2AG0Np6xpI(this.f$0);
             }
         });
         this.windowView.invalidate();
@@ -1400,7 +1408,7 @@ public class SecretVoicePlayer extends Dialog {
             this.thanosEffect.animate(this.myCell, 1.5f, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$dismiss$8();
+                    super/*android.app.Dialog*/.dismiss();
                 }
             });
             WindowManager.LayoutParams attributes = getWindow().getAttributes();
@@ -1413,29 +1421,21 @@ public class SecretVoicePlayer extends Dialog {
         }
     }
 
-    public void lambda$dismiss$7() {
-        if (this.thanosEffect == null) {
+    public static void m3991$r8$lambda$GrEIy_oOLoY8yBhY2AG0Np6xpI(final SecretVoicePlayer secretVoicePlayer) {
+        if (secretVoicePlayer.thanosEffect == null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$dismiss$6();
+                    super/*android.app.Dialog*/.dismiss();
                 }
             });
-            ChatMessageCell chatMessageCell = this.cell;
+            ChatMessageCell chatMessageCell = secretVoicePlayer.cell;
             if (chatMessageCell != null) {
                 chatMessageCell.setVisibility(0);
-                this.cell.invalidate();
+                secretVoicePlayer.cell.invalidate();
             }
         }
         MediaController.getInstance().tryResumePausedAudio();
-    }
-
-    public void lambda$dismiss$6() {
-        super.dismiss();
-    }
-
-    public void lambda$dismiss$8() {
-        super.dismiss();
     }
 
     private void animateOpenTo(final boolean z, final Runnable runnable) {
@@ -1453,7 +1453,7 @@ public class SecretVoicePlayer extends Dialog {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                this.f$0.lambda$animateOpenTo$9(z, valueAnimator3);
+                SecretVoicePlayer.$r8$lambda$gNtiSWXegUFfj1GneDKy3QcECoc(this.f$0, z, valueAnimator3);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1489,7 +1489,7 @@ public class SecretVoicePlayer extends Dialog {
         valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                this.f$0.lambda$animateOpenTo$10(valueAnimator4);
+                SecretVoicePlayer.m3996$r8$lambda$qNEYvQh4pCHZyDIEAhrI7UsV8o(this.f$0, valueAnimator4);
             }
         });
         this.open2Animator.addListener(new AnimatorListenerAdapter() {
@@ -1506,29 +1506,31 @@ public class SecretVoicePlayer extends Dialog {
         this.open2Animator.start();
     }
 
-    public void lambda$animateOpenTo$9(boolean z, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$gNtiSWXegUFfj1GneDKy3QcECoc(SecretVoicePlayer secretVoicePlayer, boolean z, ValueAnimator valueAnimator) {
         ChatMessageCell chatMessageCell;
-        this.openProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.windowView.invalidate();
-        this.containerView.invalidate();
-        if (this.isRound) {
-            this.myCell.invalidate();
+        secretVoicePlayer.getClass();
+        secretVoicePlayer.openProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        secretVoicePlayer.windowView.invalidate();
+        secretVoicePlayer.containerView.invalidate();
+        if (secretVoicePlayer.isRound) {
+            secretVoicePlayer.myCell.invalidate();
         }
-        updateTranslation();
-        TextView textView = this.closeButton;
+        secretVoicePlayer.updateTranslation();
+        TextView textView = secretVoicePlayer.closeButton;
         if (textView != null) {
-            textView.setAlpha(this.openProgress);
+            textView.setAlpha(secretVoicePlayer.openProgress);
         }
-        if (this.isRound || (chatMessageCell = this.myCell) == null || chatMessageCell.getSeekBarWaveform() == null) {
+        if (secretVoicePlayer.isRound || (chatMessageCell = secretVoicePlayer.myCell) == null || chatMessageCell.getSeekBarWaveform() == null) {
             return;
         }
-        this.myCell.getSeekBarWaveform().setExplosionRate((z ? CubicBezierInterpolator.EASE_OUT : CubicBezierInterpolator.EASE_IN).getInterpolation(Utilities.clamp(this.openProgress * 1.25f, 1.0f, 0.0f)));
+        secretVoicePlayer.myCell.getSeekBarWaveform().setExplosionRate((z ? CubicBezierInterpolator.EASE_OUT : CubicBezierInterpolator.EASE_IN).getInterpolation(Utilities.clamp(secretVoicePlayer.openProgress * 1.25f, 1.0f, 0.0f)));
     }
 
-    public void lambda$animateOpenTo$10(ValueAnimator valueAnimator) {
-        this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        if (this.isRound) {
-            this.myCell.invalidate();
+    public static void m3996$r8$lambda$qNEYvQh4pCHZyDIEAhrI7UsV8o(SecretVoicePlayer secretVoicePlayer, ValueAnimator valueAnimator) {
+        secretVoicePlayer.getClass();
+        secretVoicePlayer.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (secretVoicePlayer.isRound) {
+            secretVoicePlayer.myCell.invalidate();
         }
     }
 }

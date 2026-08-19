@@ -98,40 +98,41 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         this.clickDetector = new SpoilersClickDetector(this, this.spoilers, new SpoilersClickDetector.OnSpoilerClickedListener() {
             @Override
             public final void onSpoilerClicked(SpoilerEffect spoilerEffect, float f, float f2) {
-                this.f$0.lambda$new$2(z, spoilerEffect, f, f2);
+                SpoilersTextView.$r8$lambda$72CtBnIzp_PVVNlwN_tlhPC9zjM(this.f$0, z, spoilerEffect, f, f2);
             }
         });
     }
 
-    public void lambda$new$2(boolean z, SpoilerEffect spoilerEffect, float f, float f2) {
-        if (this.isSpoilersRevealed || !z) {
+    public static void $r8$lambda$72CtBnIzp_PVVNlwN_tlhPC9zjM(final SpoilersTextView spoilersTextView, boolean z, SpoilerEffect spoilerEffect, float f, float f2) {
+        if (spoilersTextView.isSpoilersRevealed || !z) {
             return;
         }
         spoilerEffect.setOnRippleEndCallback(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                SpoilersTextView.$r8$lambda$CdeZ2FFq2oJpD16Kbv_Kk7Oo5v8(this.f$0);
             }
         });
-        float fSqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
-        Iterator it = this.spoilers.iterator();
+        float fSqrt = (float) Math.sqrt(Math.pow(spoilersTextView.getWidth(), 2.0d) + Math.pow(spoilersTextView.getHeight(), 2.0d));
+        Iterator it = spoilersTextView.spoilers.iterator();
         while (it.hasNext()) {
             ((SpoilerEffect) it.next()).startRipple(f, f2, fSqrt);
         }
     }
 
-    public void lambda$new$1() {
-        post(new Runnable() {
+    public static void $r8$lambda$CdeZ2FFq2oJpD16Kbv_Kk7Oo5v8(final SpoilersTextView spoilersTextView) {
+        spoilersTextView.getClass();
+        spoilersTextView.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                SpoilersTextView.$r8$lambda$eSUj1oM8nCmrR4AeTELm6d34Aqg(this.f$0);
             }
         });
     }
 
-    public void lambda$new$0() {
-        this.isSpoilersRevealed = true;
-        invalidateSpoilers();
+    public static void $r8$lambda$eSUj1oM8nCmrR4AeTELm6d34Aqg(SpoilersTextView spoilersTextView) {
+        spoilersTextView.isSpoilersRevealed = true;
+        spoilersTextView.invalidateSpoilers();
     }
 
     public void setLoading(CharacterStyle characterStyle) {
@@ -179,7 +180,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$dispatchTouchEvent$3(linkSpanDrawable, clickableSpanHit);
+                        SpoilersTextView.m2967$r8$lambda$NPeLUXgdxoyt4INz4etcRGmgxA(this.f$0, linkSpanDrawable, clickableSpanHit);
                     }
                 }, ViewConfiguration.getLongPressTimeout());
                 return true;
@@ -213,14 +214,14 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public void lambda$dispatchTouchEvent$3(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
-        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onLongPressListener;
-        if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
+    public static void m2967$r8$lambda$NPeLUXgdxoyt4INz4etcRGmgxA(SpoilersTextView spoilersTextView, LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = spoilersTextView.onLongPressListener;
+        if (onLinkPress == null || spoilersTextView.pressedLink != linkSpanDrawable) {
             return;
         }
         onLinkPress.run(clickableSpan);
-        this.pressedLink = null;
-        this.links.clear();
+        spoilersTextView.pressedLink = null;
+        spoilersTextView.links.clear();
     }
 
     @Override

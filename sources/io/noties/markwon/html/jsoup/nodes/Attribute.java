@@ -43,20 +43,22 @@ public class Attribute implements Map.Entry, Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
+        if (obj != null && getClass() == obj.getClass()) {
+            Attribute attribute = (Attribute) obj;
+            String str = this.key;
+            if (str == null ? attribute.key != null : !str.equals(attribute.key)) {
+                return false;
+            }
+            String str2 = this.val;
+            String str3 = attribute.val;
+            if (str2 != null) {
+                return str2.equals(str3);
+            }
+            if (str3 == null) {
+                return true;
+            }
         }
-        Attribute attribute = (Attribute) obj;
-        String str = this.key;
-        if (str == null ? attribute.key != null : !str.equals(attribute.key)) {
-            return false;
-        }
-        String str2 = this.val;
-        String str3 = attribute.val;
-        if (str2 != null) {
-            return str2.equals(str3);
-        }
-        return str3 == null;
+        return false;
     }
 
     @Override

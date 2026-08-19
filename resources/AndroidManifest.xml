@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="70249"
+    android:versionCode="70309"
     android:versionName="12.10.0"
     android:installLocation="auto"
-    android:compileSdkVersion="35"
-    android:compileSdkVersionCodename="15"
+    android:compileSdkVersion="36"
+    android:compileSdkVersionCodename="16"
     package="org.telegram.messenger.beta"
-    platformBuildVersionCode="35"
-    platformBuildVersionName="15">
+    platformBuildVersionCode="36"
+    platformBuildVersionName="16">
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="35"/>
+        android:targetSdkVersion="36"/>
     <uses-feature
         android:name="android.hardware.location.gps"
         android:required="false"/>

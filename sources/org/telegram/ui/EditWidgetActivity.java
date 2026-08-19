@@ -420,32 +420,32 @@ public class EditWidgetActivity extends BaseFragment {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$createView$1(context, view, i);
+                EditWidgetActivity.$r8$lambda$6qU1ajADFmSA_9tuzSTbH9AsNLg(this.f$0, context, view, i);
             }
         });
         this.listView.setOnItemLongClickListener(new AnonymousClass2());
         return this.fragmentView;
     }
 
-    public void lambda$createView$1(Context context, View view, int i) {
-        if (i == this.selectChatsRow) {
-            InviteMembersBottomSheet inviteMembersBottomSheet = new InviteMembersBottomSheet(context, this.currentAccount, null, 0L, this, null);
+    public static void $r8$lambda$6qU1ajADFmSA_9tuzSTbH9AsNLg(final EditWidgetActivity editWidgetActivity, Context context, View view, int i) {
+        if (i == editWidgetActivity.selectChatsRow) {
+            InviteMembersBottomSheet inviteMembersBottomSheet = new InviteMembersBottomSheet(context, editWidgetActivity.currentAccount, null, 0L, editWidgetActivity, null);
             inviteMembersBottomSheet.setDelegate(new InviteMembersBottomSheet.InviteMembersBottomSheetDelegate() {
                 @Override
                 public final void didSelectDialogs(ArrayList arrayList) {
-                    this.f$0.lambda$createView$0(arrayList);
+                    EditWidgetActivity.$r8$lambda$8Cgrp_sWPSj_GFCSMbKytBRfals(this.f$0, arrayList);
                 }
-            }, this.selectedDialogs);
-            inviteMembersBottomSheet.setSelectedContacts(this.selectedDialogs);
-            showDialog(inviteMembersBottomSheet);
+            }, editWidgetActivity.selectedDialogs);
+            inviteMembersBottomSheet.setSelectedContacts(editWidgetActivity.selectedDialogs);
+            editWidgetActivity.showDialog(inviteMembersBottomSheet);
         }
     }
 
-    public void lambda$createView$0(ArrayList arrayList) {
-        this.selectedDialogs.clear();
-        this.selectedDialogs.addAll(arrayList);
-        updateRows();
-        WidgetPreviewCell widgetPreviewCell = this.widgetPreviewCell;
+    public static void $r8$lambda$8Cgrp_sWPSj_GFCSMbKytBRfals(EditWidgetActivity editWidgetActivity, ArrayList arrayList) {
+        editWidgetActivity.selectedDialogs.clear();
+        editWidgetActivity.selectedDialogs.addAll(arrayList);
+        editWidgetActivity.updateRows();
+        WidgetPreviewCell widgetPreviewCell = editWidgetActivity.widgetPreviewCell;
         if (widgetPreviewCell != null) {
             widgetPreviewCell.updateDialogs();
         }
@@ -474,7 +474,7 @@ public class EditWidgetActivity extends BaseFragment {
                     builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i2) {
-                            this.f$0.lambda$onItemClick$0(i, dialogInterface, i2);
+                            EditWidgetActivity.AnonymousClass2.$r8$lambda$PaGtWYwaIpQviWbJ40MtAlfQGDA(this.f$0, i, dialogInterface, i2);
                         }
                     });
                     EditWidgetActivity.this.showDialog(builder.create());
@@ -484,13 +484,15 @@ public class EditWidgetActivity extends BaseFragment {
             return false;
         }
 
-        public void lambda$onItemClick$0(int i, DialogInterface dialogInterface, int i2) {
-            if (i2 == 0) {
-                EditWidgetActivity.this.selectedDialogs.remove(i - EditWidgetActivity.this.chatsStartRow);
-                EditWidgetActivity.this.updateRows();
-                if (EditWidgetActivity.this.widgetPreviewCell != null) {
-                    EditWidgetActivity.this.widgetPreviewCell.updateDialogs();
-                }
+        public static void $r8$lambda$PaGtWYwaIpQviWbJ40MtAlfQGDA(AnonymousClass2 anonymousClass2, int i, DialogInterface dialogInterface, int i2) {
+            if (i2 != 0) {
+                anonymousClass2.getClass();
+                return;
+            }
+            EditWidgetActivity.this.selectedDialogs.remove(i - EditWidgetActivity.this.chatsStartRow);
+            EditWidgetActivity.this.updateRows();
+            if (EditWidgetActivity.this.widgetPreviewCell != null) {
+                EditWidgetActivity.this.widgetPreviewCell.updateDialogs();
             }
         }
     }
@@ -549,7 +551,7 @@ public class EditWidgetActivity extends BaseFragment {
                 imageView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                        return this.f$0.lambda$onCreateViewHolder$0(groupCreateUserCell, view2, motionEvent);
+                        return EditWidgetActivity.ListAdapter.$r8$lambda$rclc1fCILNbWnC7IR4B40e_ii_U(this.f$0, groupCreateUserCell, view2, motionEvent);
                     }
                 });
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_pinnedIcon), PorterDuff.Mode.MULTIPLY));
@@ -558,7 +560,8 @@ public class EditWidgetActivity extends BaseFragment {
             return new RecyclerListView.Holder(view);
         }
 
-        public boolean lambda$onCreateViewHolder$0(GroupCreateUserCell groupCreateUserCell, View view, MotionEvent motionEvent) {
+        public static boolean $r8$lambda$rclc1fCILNbWnC7IR4B40e_ii_U(ListAdapter listAdapter, GroupCreateUserCell groupCreateUserCell, View view, MotionEvent motionEvent) {
+            listAdapter.getClass();
             if (motionEvent.getAction() != 0) {
                 return false;
             }

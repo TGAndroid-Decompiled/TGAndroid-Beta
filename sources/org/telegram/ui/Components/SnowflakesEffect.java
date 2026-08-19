@@ -169,26 +169,25 @@ public class SnowflakesEffect {
                 }
                 float f4 = i2 == 0 ? iDp : 0.0f;
                 this.batchParticlesBuffer.setParticleColor(i, ColorUtils.setAlphaComponent(this.color, (int) (particle2.alpha * 255.0f)));
-                int i3 = i;
-                this.batchParticlesBuffer.setParticleVertexCords(i3, f - f3, f2 - f3, f + f3, f3 + f2);
+                this.batchParticlesBuffer.setParticleVertexCords(i, f - f3, f2 - f3, f + f3, f2 + f3);
                 float f5 = iDp;
-                this.batchParticlesBuffer.setParticleTextureCords(i3, f4, 0.0f, f4 + f5, f5);
+                this.batchParticlesBuffer.setParticleTextureCords(i, f4, 0.0f, f4 + f5, f5);
             }
             BatchParticlesDrawHelper.draw(canvas, this.batchParticlesBuffer, iMin, this.batchParticlesPaint);
         } else {
             int size = this.particles.size();
-            for (int i4 = 0; i4 < size; i4++) {
-                ((Particle) this.particles.get(i4)).draw(canvas);
+            for (int i3 = 0; i3 < size; i3++) {
+                ((Particle) this.particles.get(i3)).draw(canvas);
             }
         }
-        int i5 = this.viewType == 0 ? 1 : 10;
+        int i4 = this.viewType == 0 ? 1 : 10;
         if (this.particles.size() < this.maxCount) {
-            for (int i6 = 0; i6 < i5; i6++) {
+            for (int i5 = 0; i5 < i4; i5++) {
                 if (this.particles.size() < this.maxCount && Utilities.random.nextFloat() > 0.7f) {
-                    int i7 = AndroidUtilities.statusBarHeight;
+                    int i6 = AndroidUtilities.statusBarHeight;
                     float fNextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
                     if (this.viewType == 0) {
-                        measuredHeight = i7 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i7));
+                        measuredHeight = i6 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i6));
                     } else {
                         measuredHeight = view.getMeasuredHeight() * Utilities.random.nextFloat();
                     }
@@ -238,29 +237,35 @@ public class SnowflakesEffect {
         float fDpf3 = AndroidUtilities.dpf2(1.55f) * 2.0f;
         float fDp = AndroidUtilities.dp(5.0f);
         float fDp2 = AndroidUtilities.dp(5.0f);
-        int i = 0;
         float f2 = -1.5707964f;
+        int i = 0;
         while (i < 6) {
             double d = f2;
-            Bitmap bitmap = bitmapCreateBitmap;
+            float f3 = f2;
             float fCos = ((float) Math.cos(d)) * fDpf2;
+            Bitmap bitmap = bitmapCreateBitmap;
             float fSin = ((float) Math.sin(d)) * fDpf2;
-            float f3 = 0.66f * fSin;
-            float f4 = fSin + fDp2;
-            float f5 = f2;
-            float f6 = fDp2;
-            canvas.drawLine(fDp, fDp2, fDp + fCos, f4, paint);
+            float f4 = fCos * 0.66f;
+            float f5 = 0.66f * fSin;
+            canvas.drawLine(fDp, fDp2, fCos + fDp, fSin + fDp2, paint);
+            float f6 = fDp;
+            float f7 = fDp2;
             double d2 = (float) (d - 1.5707963267948966d);
             double d3 = f;
             double d4 = fDpf3;
-            float f7 = fDp + (fCos * 0.66f);
-            float f8 = f6 + f3;
-            canvas.drawLine(f7, f8, fDp + ((float) ((Math.cos(d2) * d3) - (Math.sin(d2) * d4))), f6 + ((float) ((Math.sin(d2) * d3) + (Math.cos(d2) * d4))), paint);
-            canvas.drawLine(f7, f8, fDp + ((float) (((-Math.cos(d2)) * d3) - (Math.sin(d2) * d4))), f6 + ((float) (((-Math.sin(d2)) * d3) + (Math.cos(d2) * d4))), paint);
-            f2 = f5 + 1.0471976f;
+            float fCos2 = (float) ((Math.cos(d2) * d3) - (Math.sin(d2) * d4));
+            Canvas canvas2 = canvas;
+            float fSin2 = (float) ((Math.sin(d2) * d3) + (Math.cos(d2) * d4));
+            float f8 = f6 + f4;
+            float f9 = f7 + f5;
+            canvas2.drawLine(f8, f9, f6 + fCos2, fSin2 + f7, paint);
+            canvas = canvas2;
+            canvas.drawLine(f8, f9, f6 + ((float) (((-Math.cos(d2)) * d3) - (Math.sin(d2) * d4))), ((float) (((-Math.sin(d2)) * d3) + (Math.cos(d2) * d4))) + f7, paint);
+            f2 = f3 + 1.0471976f;
             i++;
+            fDp2 = f7;
             bitmapCreateBitmap = bitmap;
-            fDp2 = f6;
+            fDp = f6;
         }
         Bitmap bitmap2 = bitmapCreateBitmap;
         if (z) {

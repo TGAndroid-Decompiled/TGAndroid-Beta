@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.function.ToIntFunction;
 import me.vkryl.android.animator.ListAnimator;
 import me.vkryl.core.lambda.Destroyable;
@@ -20,12 +19,12 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
     private static final Comparator comparator = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new ToIntFunction() {
         @Override
         public final int applyAsInt(Object obj) {
-            return AnimatedLinearLayout.Holder.access$100((AnimatedLinearLayout.Holder) obj);
+            return ((AnimatedLinearLayout.Holder) obj).priority;
         }
     }), new ToIntFunction() {
         @Override
         public final int applyAsInt(Object obj) {
-            return AnimatedLinearLayout.Holder.access$400((AnimatedLinearLayout.Holder) obj);
+            return ((AnimatedLinearLayout.Holder) obj).order;
         }
     });
     private final ListAnimator.Callback callback;
@@ -41,9 +40,9 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
     protected void onItemsChanged() {
     }
 
-    public void lambda$new$0(ListAnimator listAnimator) {
-        checkViewsVisibility();
-        onItemsChanged();
+    public static void $r8$lambda$xxBQTnlvUtZFrR6r87BAjvhWYBQ(AnimatedLinearLayout animatedLinearLayout, ListAnimator listAnimator) {
+        animatedLinearLayout.checkViewsVisibility();
+        animatedLinearLayout.onItemsChanged();
     }
 
     public AnimatedLinearLayout(Context context) {
@@ -73,7 +72,7 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
 
             @Override
             public final void onItemsChanged(ListAnimator listAnimator) {
-                this.f$0.lambda$new$0(listAnimator);
+                AnimatedLinearLayout.$r8$lambda$xxBQTnlvUtZFrR6r87BAjvhWYBQ(this.f$0, listAnimator);
             }
 
             @Override
@@ -179,9 +178,13 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
         }
         Collections.sort(this.visibleHolders, comparator);
         this.listAnimator.reset(this.visibleHolders, !this.skipNextAnimation);
-        Iterator it = this.visibleHolders.iterator();
-        while (it.hasNext()) {
-            ((Holder) it.next()).hasInAnimator = true;
+        ArrayList arrayList = this.visibleHolders;
+        int size = arrayList.size();
+        int i6 = 0;
+        while (i6 < size) {
+            Object obj = arrayList.get(i6);
+            i6++;
+            ((Holder) obj).hasInAnimator = true;
         }
         this.skipNextAnimation = false;
         checkViewsVisibility();
@@ -260,14 +263,6 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
         @Override
         public int getSpacingStart(boolean z) {
             return ListAnimator.Measurable.CC.$default$getSpacingStart(this, z);
-        }
-
-        public static int access$100(Holder holder) {
-            return holder.priority;
-        }
-
-        public static int access$400(Holder holder) {
-            return holder.order;
         }
 
         public Holder(View view) {

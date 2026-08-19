@@ -16,16 +16,12 @@ public class TLParseException extends RuntimeException {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TLParseException.lambda$doThrowOrLog$0(this.f$0);
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.tlSchemeParseException, this.f$0);
                 }
             });
         }
         if (z) {
             throw tLParseException;
         }
-    }
-
-    public static void lambda$doThrowOrLog$0(TLParseException tLParseException) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.tlSchemeParseException, tLParseException);
     }
 }

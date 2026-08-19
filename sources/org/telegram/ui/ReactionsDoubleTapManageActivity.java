@@ -153,7 +153,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$createView$0(view, i);
+                ReactionsDoubleTapManageActivity.$r8$lambda$UOPbY8v3uAHX4KzOHhtn8U0wu2k(this.f$0, view, i);
             }
         });
         linearLayout.addView(this.listView, LayoutHelper.createLinear(-1, -1));
@@ -164,24 +164,25 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         return this.contentView;
     }
 
-    public void lambda$createView$0(View view, int i) {
+    public static void $r8$lambda$UOPbY8v3uAHX4KzOHhtn8U0wu2k(ReactionsDoubleTapManageActivity reactionsDoubleTapManageActivity, View view, int i) {
+        reactionsDoubleTapManageActivity.getClass();
         if (view instanceof AvailableReactionCell) {
             AvailableReactionCell availableReactionCell = (AvailableReactionCell) view;
-            if (availableReactionCell.locked && !getUserConfig().isPremium()) {
-                showDialog(new PremiumFeatureBottomSheet(this, 4, true));
+            if (availableReactionCell.locked && !reactionsDoubleTapManageActivity.getUserConfig().isPremium()) {
+                reactionsDoubleTapManageActivity.showDialog(new PremiumFeatureBottomSheet(reactionsDoubleTapManageActivity, 4, true));
                 return;
             } else {
-                MediaDataController.getInstance(this.currentAccount).setDoubleTapReaction(availableReactionCell.react.reaction);
-                this.listView.getAdapter().notifyItemRangeChanged(0, this.listView.getAdapter().getItemCount());
+                MediaDataController.getInstance(reactionsDoubleTapManageActivity.currentAccount).setDoubleTapReaction(availableReactionCell.react.reaction);
+                reactionsDoubleTapManageActivity.listView.getAdapter().notifyItemRangeChanged(0, reactionsDoubleTapManageActivity.listView.getAdapter().getItemCount());
                 return;
             }
         }
         if (view instanceof SetDefaultReactionCell) {
-            showSelectStatusDialog((SetDefaultReactionCell) view);
+            reactionsDoubleTapManageActivity.showSelectStatusDialog((SetDefaultReactionCell) view);
         }
     }
 
-    private class SetDefaultReactionCell extends FrameLayout {
+    class SetDefaultReactionCell extends FrameLayout {
         private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable imageDrawable;
         private TextView textView;
 
@@ -263,14 +264,13 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                 rect.set(setDefaultReactionCell.imageDrawable.getBounds());
                 int iDp = (-(setDefaultReactionCell.getHeight() - rect.centerY())) - AndroidUtilities.dp(16.0f);
                 iCenterX = rect.centerX() - ((AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) - ((int) Math.min(AndroidUtilities.dp(324.0f), AndroidUtilities.displaySize.x * 0.95f)));
+                setDefaultReactionCell2 = setDefaultReactionCell;
                 swapAnimatedEmojiDrawable = swapAnimatedEmojiDrawable2;
                 i = iDp;
-                setDefaultReactionCell2 = setDefaultReactionCell;
             } else {
-                swapAnimatedEmojiDrawable = swapAnimatedEmojiDrawable2;
                 setDefaultReactionCell2 = setDefaultReactionCell;
+                swapAnimatedEmojiDrawable = swapAnimatedEmojiDrawable2;
             }
-            int i3 = i;
             selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(this, getContext(), false, Integer.valueOf(iCenterX), 2, null) {
                 @Override
                 protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
@@ -318,8 +318,8 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             selectAnimatedEmojiDialog.setRecentReactions(arrayList);
             selectAnimatedEmojiDialog.setSaveState(3);
             selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, setDefaultReactionCell2);
-            int i4 = -2;
-            SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, i4, i4) {
+            int i3 = -2;
+            SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, i3, i3) {
                 @Override
                 public void dismiss() {
                     super.dismiss();
@@ -328,14 +328,13 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             };
             this.selectAnimatedEmojiDialog = selectAnimatedEmojiDialogWindow;
             selectAnimatedEmojiDialogWindowArr[0] = selectAnimatedEmojiDialogWindow;
-            selectAnimatedEmojiDialogWindow.showAsDropDown(setDefaultReactionCell, 0, i3, 53);
+            selectAnimatedEmojiDialogWindow.showAsDropDown(setDefaultReactionCell, 0, i, 53);
             selectAnimatedEmojiDialogWindowArr[0].dimBehind();
         }
         swapAnimatedEmojiDrawable = null;
         setDefaultReactionCell2 = null;
         iCenterX = 0;
         i = 0;
-        int i5 = i;
         selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(this, getContext(), false, Integer.valueOf(iCenterX), 2, null) {
             @Override
             protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
@@ -380,8 +379,8 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         selectAnimatedEmojiDialog.setRecentReactions(arrayList);
         selectAnimatedEmojiDialog.setSaveState(3);
         selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, setDefaultReactionCell2);
-        int i6 = -2;
-        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow2 = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, i6, i6) {
+        int i4 = -2;
+        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow2 = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, i4, i4) {
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -390,7 +389,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         };
         this.selectAnimatedEmojiDialog = selectAnimatedEmojiDialogWindow2;
         selectAnimatedEmojiDialogWindowArr[0] = selectAnimatedEmojiDialogWindow2;
-        selectAnimatedEmojiDialogWindow2.showAsDropDown(setDefaultReactionCell, 0, i5, 53);
+        selectAnimatedEmojiDialogWindow2.showAsDropDown(setDefaultReactionCell, 0, i, 53);
         selectAnimatedEmojiDialogWindowArr[0].dimBehind();
     }
 

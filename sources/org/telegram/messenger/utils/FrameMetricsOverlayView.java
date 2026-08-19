@@ -41,7 +41,7 @@ public final class FrameMetricsOverlayView extends View {
     private long vsyncWindowStartNs;
     private WindowManager wm;
 
-    private enum Metric {
+    enum Metric {
         UNKNOWN_DELAY_DURATION(0, "unknown delay", true),
         INPUT_HANDLING_DURATION(1, "input", true),
         ANIMATION_DURATION(2, "animation", true),
@@ -164,7 +164,7 @@ public final class FrameMetricsOverlayView extends View {
         Window.OnFrameMetricsAvailableListener onFrameMetricsAvailableListener = new Window.OnFrameMetricsAvailableListener() {
             @Override
             public final void onFrameMetricsAvailable(Window window, FrameMetrics frameMetrics, int i) {
-                FrameMetricsOverlayView.lambda$start$0(window, frameMetrics, i);
+                FrameMetricsOverlayView.m1128$r8$lambda$m42WIPdz4HTot3OVFKZa0YbcXM(window, frameMetrics, i);
             }
         };
         this.listener = onFrameMetricsAvailableListener;
@@ -172,7 +172,7 @@ public final class FrameMetricsOverlayView extends View {
         this.choreographerCallback = new Choreographer.FrameCallback() {
             @Override
             public final void doFrame(long j) {
-                this.f$0.lambda$start$1(j);
+                FrameMetricsOverlayView.$r8$lambda$gltRIaOZHlqXqiv9bXSxIVoxzrU(this.f$0, j);
             }
         };
         Choreographer.getInstance().postFrameCallback(this.choreographerCallback);
@@ -180,7 +180,7 @@ public final class FrameMetricsOverlayView extends View {
         this.uiHandler.post(this.redraw);
     }
 
-    public static void lambda$start$0(Window window, FrameMetrics frameMetrics, int i) {
+    public static void m1128$r8$lambda$m42WIPdz4HTot3OVFKZa0YbcXM(Window window, FrameMetrics frameMetrics, int i) {
         for (Metric metric : Metric.values()) {
             if (!metric.isAvailable()) {
                 metric.last = Long.MIN_VALUE;
@@ -199,20 +199,20 @@ public final class FrameMetricsOverlayView extends View {
         }
     }
 
-    public void lambda$start$1(long j) {
-        if (this.running.get()) {
-            long j2 = this.vsyncWindowStartNs;
+    public static void $r8$lambda$gltRIaOZHlqXqiv9bXSxIVoxzrU(FrameMetricsOverlayView frameMetricsOverlayView, long j) {
+        if (frameMetricsOverlayView.running.get()) {
+            long j2 = frameMetricsOverlayView.vsyncWindowStartNs;
             if (j2 == 0) {
-                this.vsyncWindowStartNs = j;
+                frameMetricsOverlayView.vsyncWindowStartNs = j;
             } else if (j - j2 >= 1000000000) {
-                this.vsyncPerSecond = this.vsyncCountAccum;
-                this.onDrawPerSecond = this.onDrawCountAccum.getAndSet(0);
-                this.vsyncCountAccum = 0;
-                this.vsyncWindowStartNs = j;
+                frameMetricsOverlayView.vsyncPerSecond = frameMetricsOverlayView.vsyncCountAccum;
+                frameMetricsOverlayView.onDrawPerSecond = frameMetricsOverlayView.onDrawCountAccum.getAndSet(0);
+                frameMetricsOverlayView.vsyncCountAccum = 0;
+                frameMetricsOverlayView.vsyncWindowStartNs = j;
             } else {
-                this.vsyncCountAccum++;
+                frameMetricsOverlayView.vsyncCountAccum++;
             }
-            Choreographer.getInstance().postFrameCallback(this.choreographerCallback);
+            Choreographer.getInstance().postFrameCallback(frameMetricsOverlayView.choreographerCallback);
         }
     }
 
@@ -242,17 +242,13 @@ public final class FrameMetricsOverlayView extends View {
         this.onDrawListener = new ViewTreeObserver.OnDrawListener() {
             @Override
             public final void onDraw() {
-                this.f$0.lambda$attachOnDrawListener$2();
+                this.f$0.onDrawCountAccum.incrementAndGet();
             }
         };
         ViewTreeObserver viewTreeObserver = this.observedView.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
             viewTreeObserver.addOnDrawListener(this.onDrawListener);
         }
-    }
-
-    public void lambda$attachOnDrawListener$2() {
-        this.onDrawCountAccum.incrementAndGet();
     }
 
     private void detachOnDrawListener() {
@@ -269,178 +265,137 @@ public final class FrameMetricsOverlayView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float f;
-        long j;
+        int i;
+        double d;
+        int i2;
         String str;
-        long j2;
-        long j3;
-        int i = 3;
+        String str2;
         float fDp = AndroidUtilities.dp(8.0f);
         float fDp2 = AndroidUtilities.dp(11.0f);
         canvas.drawRoundRect(0.0f, 0.0f, getWidth() > 0 ? getWidth() : AndroidUtilities.dp(260.0f), (2.0f * fDp) + ((Metric.values().length + 9) * fDp2), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.bgPaint);
-        float f2 = fDp + fDp2;
+        float f = fDp + fDp2;
         Metric[] metricArrValues = Metric.values();
         int length = metricArrValues.length;
-        double d = 0.0d;
-        long j4 = 0;
         double d2 = 0.0d;
         double d3 = 0.0d;
         double d4 = 0.0d;
-        long j5 = 0;
-        long j6 = 0;
-        long j7 = 0;
-        long j8 = 0;
-        int i2 = 0;
-        while (i2 < length) {
-            Metric metric = metricArrValues[i2];
+        double d5 = 0.0d;
+        float f2 = fDp2;
+        long j = 0;
+        long j2 = 0;
+        int i3 = 0;
+        long j3 = 0;
+        long j4 = 0;
+        while (i3 < length) {
+            Metric[] metricArr = metricArrValues;
+            Metric metric = metricArr[i3];
             if (metric.isAvailable()) {
-                f = fDp;
-                long j9 = metric.last;
-                if (j9 >= j4) {
+                i = length;
+                d = d2;
+                long j5 = metric.last;
+                if (j5 >= 0) {
                     if (metric.isDuration) {
-                        Locale locale = Locale.US;
-                        String str2 = metric.label;
-                        Double dValueOf = Double.valueOf(j9 / 1000000.0d);
-                        metricArrValues = metricArrValues;
-                        length = length;
-                        Double dValueOf2 = Double.valueOf(metric.avgMs);
-                        Object[] objArr = new Object[i];
-                        objArr[0] = str2;
-                        objArr[1] = dValueOf;
-                        objArr[2] = dValueOf2;
-                        str = String.format(locale, "%-16s : %5.2f / %5.2f ms", objArr);
+                        f2 = f2;
+                        str = String.format(Locale.US, "%-16s : %5.2f / %5.2f ms", metric.label, Double.valueOf(j5 / 1000000.0d), Double.valueOf(metric.avgMs));
                         switch (metric) {
                             case UNKNOWN_DELAY_DURATION:
                             case SWAP_BUFFERS_DURATION:
-                                double d5 = d2;
-                                d3 = d3;
-                                d = d;
-                                j2 = j6;
-                                i2 = i2;
-                                j5 = j5;
-                                d2 = d5;
-                                j8 += metric.last;
+                                j4 += metric.last;
                                 d4 += metric.avgMs;
-                                double d6 = d3;
-                                d2 = d2;
-                                j5 = j5;
-                                j = j2;
-                                d = d;
-                                d3 = d6;
+                                str = str;
+                                d2 = d;
                                 break;
                             case INPUT_HANDLING_DURATION:
                             case ANIMATION_DURATION:
                             case LAYOUT_MEASURE_DURATION:
                             case DRAW_DURATION:
-                                long j10 = j6;
-                                i2 = i2;
-                                j5 += metric.last;
-                                d3 = d3;
-                                d2 = d2;
-                                d += metric.avgMs;
-                                j = j10;
+                                j3 += metric.last;
+                                d2 = d + metric.avgMs;
+                                str = str;
                                 break;
                             case SYNC_DURATION:
-                                long j11 = j6;
-                                long j12 = metric.last;
-                                i2 = i2;
-                                j5 += j12;
-                                double d7 = metric.avgMs;
-                                d += d7;
-                                j = j11 + j12;
-                                d3 = d3;
-                                d2 += d7;
+                                long j6 = metric.last;
+                                j3 += j6;
+                                double d6 = metric.avgMs;
+                                j += j6;
+                                d3 += d6;
+                                str = str;
+                                d2 = d + d6;
                                 break;
                             case COMMAND_ISSUE_DURATION:
-                                long j13 = j6 + metric.last;
-                                d2 += metric.avgMs;
-                                d = d;
-                                d3 = d3;
-                                j = j13;
-                                i2 = i2;
+                                j += metric.last;
+                                d3 += metric.avgMs;
+                                d2 = d;
                                 break;
                             case GPU_DURATION:
-                                j7 += metric.last;
-                                d3 += metric.avgMs;
+                                j2 += metric.last;
+                                d5 += metric.avgMs;
+                                d2 = d;
+                                break;
                             default:
-                                j = j6;
-                                i2 = i2;
+                                d2 = d;
                                 break;
                         }
+                        i2 = 1;
                     } else {
-                        metricArrValues = metricArrValues;
-                        length = length;
-                        j2 = j6;
-                        j3 = j8;
-                        str = String.format(Locale.US, "%-16s : %d", metric.label, Long.valueOf(j9));
-                        j8 = j3;
-                        j7 = j7;
-                        double d8 = d3;
-                        d2 = d2;
-                        j5 = j5;
-                        j = j2;
-                        d = d;
-                        d3 = d8;
+                        str2 = String.format(Locale.US, "%-16s : %d", metric.label, Long.valueOf(j5));
+                        j4 = j4;
+                        d2 = d;
+                        i2 = 1;
                     }
+                    canvas.drawText(str, fDp, f, this.textPaint);
+                    f += f2;
+                    i3 += i2;
+                    metricArrValues = metricArr;
+                    length = i;
+                    f2 = f2;
                 }
-                float f3 = f;
-                canvas.drawText(str, f3, f2, this.textPaint);
-                f2 += fDp2;
-                i2++;
-                j6 = j;
-                fDp = f3;
-                metricArrValues = metricArrValues;
-                length = length;
-                j4 = 0;
-                i = 3;
+                str = str2;
+                canvas.drawText(str, fDp, f, this.textPaint);
+                f += f2;
+                i3 += i2;
+                metricArrValues = metricArr;
+                length = i;
+                f2 = f2;
             } else {
-                f = fDp;
+                i = length;
+                d = d2;
             }
-            j2 = j6;
-            j3 = j8;
-            str = String.format(Locale.US, "%-16s : n/a", metric.label);
-            j8 = j3;
-            j7 = j7;
-            double d9 = d3;
-            d2 = d2;
-            j5 = j5;
-            j = j2;
-            d = d;
-            d3 = d9;
-            float f4 = f;
-            canvas.drawText(str, f4, f2, this.textPaint);
-            f2 += fDp2;
-            i2++;
-            j6 = j;
-            fDp = f4;
-            metricArrValues = metricArrValues;
-            length = length;
-            j4 = 0;
-            i = 3;
+            long j7 = j4;
+            i2 = 1;
+            str2 = String.format(Locale.US, "%-16s : n/a", metric.label);
+            j4 = j7;
+            d2 = d;
+            str = str2;
+            canvas.drawText(str, fDp, f, this.textPaint);
+            f += f2;
+            i3 += i2;
+            metricArrValues = metricArr;
+            length = i;
+            f2 = f2;
         }
-        float f5 = fDp;
-        double d10 = d2;
-        double d11 = d3;
-        long j14 = j5;
-        double d12 = d;
-        long j15 = j6;
-        long j16 = j7;
-        long jMax = Math.max(j14, Math.max(j15, j16));
-        double dMax = Math.max(d12, Math.max(d10, d11));
-        float f6 = f2 + fDp2;
-        Locale locale2 = Locale.US;
-        canvas.drawText(String.format(locale2, "%-16s : %5.2f / %5.2f ms", "ui", Double.valueOf(j14 / 1000000.0d), Double.valueOf(d12)), f5, f6, this.textPaint);
-        float f7 = f6 + fDp2;
-        canvas.drawText(String.format(locale2, "%-16s : %5.2f / %5.2f ms", "rt", Double.valueOf(j15 / 1000000.0d), Double.valueOf(d10)), f5, f7, this.textPaint);
-        float f8 = f7 + fDp2;
-        canvas.drawText(String.format(locale2, "%-16s : %5.2f / %5.2f ms", "gpu", Double.valueOf(j16 / 1000000.0d), Double.valueOf(d11)), f5, f8, this.textPaint);
-        float f9 = f8 + fDp2;
-        canvas.drawText(String.format(locale2, "%-16s : %5.2f / %5.2f ms", "other", Double.valueOf(j8 / 1000000.0d), Double.valueOf(d4)), f5, f9, this.textPaint);
-        float f10 = f9 + fDp2;
-        canvas.drawText(String.format(locale2, "%-16s : %5.2f / %5.2f ms", "frame", Double.valueOf(jMax / 1000000.0d), Double.valueOf(dMax)), f5, f10, this.textPaint);
-        float f11 = f10 + fDp2 + fDp2;
-        canvas.drawText(String.format(locale2, "%-16s : %d /s", "vsync", Integer.valueOf(this.vsyncPerSecond)), f5, f11, this.textPaint);
-        canvas.drawText(String.format(locale2, "%-16s : %d /s", this.observedView != null ? "onDraw" : "onDraw (none)", Integer.valueOf(this.onDrawPerSecond)), f5, f11 + fDp2, this.textPaint);
+        double d7 = d2;
+        float f3 = f2;
+        float f4 = f;
+        long j8 = j3;
+        long jMax = Math.max(j8, Math.max(j, j2));
+        double d8 = d5;
+        long j9 = j2;
+        double dMax = Math.max(d7, Math.max(d3, d8));
+        float f5 = f4 + f3;
+        Locale locale = Locale.US;
+        canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "ui", Double.valueOf(j8 / 1000000.0d), Double.valueOf(d7)), fDp, f5, this.textPaint);
+        float f6 = f5 + f3;
+        canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "rt", Double.valueOf(j / 1000000.0d), Double.valueOf(d3)), fDp, f6, this.textPaint);
+        float f7 = f6 + f3;
+        canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "gpu", Double.valueOf(j9 / 1000000.0d), Double.valueOf(d8)), fDp, f7, this.textPaint);
+        float f8 = f7 + f3;
+        canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "other", Double.valueOf(j4 / 1000000.0d), Double.valueOf(d4)), fDp, f8, this.textPaint);
+        float f9 = f8 + f3;
+        canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "frame", Double.valueOf(jMax / 1000000.0d), Double.valueOf(dMax)), fDp, f9, this.textPaint);
+        float f10 = f9 + f3 + f3;
+        canvas.drawText(String.format(locale, "%-16s : %d /s", "vsync", Integer.valueOf(this.vsyncPerSecond)), fDp, f10, this.textPaint);
+        canvas.drawText(String.format(locale, "%-16s : %d /s", this.observedView != null ? "onDraw" : "onDraw (none)", Integer.valueOf(this.onDrawPerSecond)), fDp, f10 + f3, this.textPaint);
     }
 
     @Override

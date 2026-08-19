@@ -239,96 +239,109 @@ public class SlideChooseView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int i = 2;
-        float f = this.selectedIndexAnimatedHolder.set(this.selectedIndex);
-        float f2 = 0.0f;
-        float f3 = 1.0f;
-        float f4 = this.movingAnimatedHolder.set(this.moving ? 1.0f : 0.0f);
+        float f;
+        float f2;
+        Canvas canvas2 = canvas;
+        float f3 = this.selectedIndexAnimatedHolder.set(this.selectedIndex);
+        float f4 = 0.0f;
+        float f5 = 1.0f;
+        float f6 = this.movingAnimatedHolder.set(this.moving ? 1.0f : 0.0f);
         int measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(11.0f);
-        int i2 = 0;
-        while (i2 < this.optionsStr.length) {
-            int i3 = this.sideSide;
-            int i4 = this.lineSize + (this.gapSize * 2);
-            int i5 = this.circleSize;
-            int i6 = i3 + ((i4 + i5) * i2) + (i5 / i);
-            float f5 = i2;
-            float f6 = f5 - f;
-            float fMax = Math.max(f2, f3 - Math.abs(f6));
-            float fClamp = MathUtils.clamp((f - f5) + f3, f2, f3);
+        int i = 0;
+        while (i < this.optionsStr.length) {
+            int i2 = this.sideSide;
+            int i3 = this.lineSize + (this.gapSize * 2);
+            int i4 = this.circleSize;
+            int i5 = i2 + ((i3 + i4) * i) + (i4 / 2);
+            float f7 = i;
+            float f8 = f7 - f3;
+            float fMax = Math.max(f4, f5 - Math.abs(f8));
+            float fClamp = MathUtils.clamp((f3 - f7) + f5, f4, f5);
             int themedColor = getThemedColor(Theme.key_switchTrack);
             int themedColor2 = getThemedColor(Theme.key_switchTrackChecked);
-            int i7 = this.minIndex;
-            int iBlendARGB = ColorUtils.blendARGB(themedColor, Theme.multAlpha(themedColor2, (i7 == Integer.MIN_VALUE || i2 > i7) ? 1.0f : 0.5f), fClamp);
+            int i6 = this.minIndex;
+            int iBlendARGB = ColorUtils.blendARGB(themedColor, Theme.multAlpha(themedColor2, (i6 == Integer.MIN_VALUE || i > i6) ? 1.0f : 0.5f), fClamp);
             this.paint.setColor(iBlendARGB);
             this.linePaint.setColor(iBlendARGB);
-            float f7 = measuredHeight;
-            canvas.drawCircle(i6, f7, AndroidUtilities.lerp(this.circleSize / i, AndroidUtilities.dp(6.0f), fMax), this.paint);
-            if (i2 != 0) {
-                int i8 = (i6 - (this.circleSize / i)) - this.gapSize;
-                int i9 = this.lineSize;
-                int i10 = i8 - i9;
-                int i11 = this.dashedFrom;
-                if (i11 != -1 && i2 - 1 >= i11) {
-                    int iDp = i10 + AndroidUtilities.dp(3.0f);
-                    int iDp2 = i9 - AndroidUtilities.dp(3.0f);
+            float f9 = measuredHeight;
+            canvas2.drawCircle(i5, f9, AndroidUtilities.lerp(this.circleSize / 2, AndroidUtilities.dp(6.0f), fMax), this.paint);
+            if (i != 0) {
+                int i7 = (i5 - (this.circleSize / 2)) - this.gapSize;
+                int i8 = this.lineSize;
+                int i9 = i7 - i8;
+                int i10 = this.dashedFrom;
+                f2 = 3.0f;
+                if (i10 != -1 && i - 1 >= i10) {
+                    int iDp = i9 + AndroidUtilities.dp(3.0f);
+                    int iDp2 = i8 - AndroidUtilities.dp(3.0f);
                     int iDp3 = iDp2 / AndroidUtilities.dp(13.0f);
                     if (this.lastDash != iDp3) {
                         this.linePaint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(6.0f), (iDp2 - (AndroidUtilities.dp(8.0f) * iDp3)) / (iDp3 - 1)}, 0.0f));
                         this.lastDash = iDp3;
                     }
-                    canvas.drawLine(AndroidUtilities.dp(1.0f) + iDp, f7, (iDp + iDp2) - AndroidUtilities.dp(1.0f), f7, this.linePaint);
+                    f = fMax;
+                    canvas2 = canvas;
+                    canvas2.drawLine(AndroidUtilities.dp(1.0f) + iDp, f9, (iDp + iDp2) - AndroidUtilities.dp(1.0f), f9, this.linePaint);
                 } else {
-                    float f8 = f6 - 1.0f;
-                    float fClamp2 = MathUtils.clamp(1.0f - Math.abs(f8), 0.0f, 1.0f);
-                    int iDp4 = (int) (i9 - (AndroidUtilities.dp(3.0f) * MathUtils.clamp(1.0f - Math.min(Math.abs(f6), Math.abs(f8)), 0.0f, 1.0f)));
-                    int iDp5 = (int) (i10 + (AndroidUtilities.dp(3.0f) * fClamp2));
-                    canvas.drawRect(iDp5, measuredHeight - AndroidUtilities.dp(1.0f), iDp5 + iDp4, AndroidUtilities.dp(1.0f) + measuredHeight, this.paint);
+                    f = fMax;
+                    float f10 = f8 - 1.0f;
+                    float fClamp2 = MathUtils.clamp(1.0f - Math.abs(f10), 0.0f, 1.0f);
+                    int iDp4 = (int) (i8 - (AndroidUtilities.dp(3.0f) * MathUtils.clamp(1.0f - Math.min(Math.abs(f8), Math.abs(f10)), 0.0f, 1.0f)));
+                    int iDp5 = (int) (i9 + (AndroidUtilities.dp(3.0f) * fClamp2));
+                    canvas2 = canvas;
+                    canvas2.drawRect(iDp5, measuredHeight - AndroidUtilities.dp(1.0f), iDp4 + iDp5, AndroidUtilities.dp(1.0f) + measuredHeight, this.paint);
                 }
-            }
-            int i12 = this.optionsSizes[i2];
-            String str = this.optionsStr[i2];
-            this.textPaint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_windowBackgroundWhiteGrayText), getThemedColor(Theme.key_windowBackgroundWhiteBlueText), fMax));
-            if (this.leftDrawables != null) {
-                canvas.save();
-                if (i2 == 0) {
-                    canvas.translate(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(15.5f));
-                } else if (i2 == this.optionsStr.length - 1) {
-                    canvas.translate(((getMeasuredWidth() - i12) - AndroidUtilities.dp(22.0f)) - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(28.0f) - AndroidUtilities.dp(12.5f));
-                } else {
-                    canvas.translate((i6 - (i12 / 2)) - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(28.0f) - AndroidUtilities.dp(12.5f));
-                }
-                this.leftDrawables[i2].setColorFilter(this.textPaint.getColor(), PorterDuff.Mode.MULTIPLY);
-                this.leftDrawables[i2].draw(canvas);
-                canvas.restore();
-                canvas.save();
-                canvas.translate((this.leftDrawables[i2].getIntrinsicWidth() / 2.0f) - AndroidUtilities.dp(i2 == 0 ? 3.0f : 2.0f), 0.0f);
-            }
-            if (i2 == 0) {
-                canvas.drawText(str, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
-            } else if (i2 == this.optionsStr.length - 1) {
-                canvas.drawText(str, (getMeasuredWidth() - i12) - AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
             } else {
-                canvas.drawText(str, i6 - (i12 / 2), AndroidUtilities.dp(28.0f), this.textPaint);
+                f = fMax;
+                f2 = 3.0f;
+            }
+            int i11 = this.optionsSizes[i];
+            String str = this.optionsStr[i];
+            this.textPaint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_windowBackgroundWhiteGrayText), getThemedColor(Theme.key_windowBackgroundWhiteBlueText), f));
+            if (this.leftDrawables != null) {
+                canvas2.save();
+                if (i == 0) {
+                    canvas2.translate(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(15.5f));
+                } else if (i == this.optionsStr.length - 1) {
+                    canvas2.translate(((getMeasuredWidth() - i11) - AndroidUtilities.dp(22.0f)) - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(28.0f) - AndroidUtilities.dp(12.5f));
+                } else {
+                    canvas2.translate((i5 - (i11 / 2)) - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(28.0f) - AndroidUtilities.dp(12.5f));
+                }
+                this.leftDrawables[i].setColorFilter(this.textPaint.getColor(), PorterDuff.Mode.MULTIPLY);
+                this.leftDrawables[i].draw(canvas2);
+                canvas2.restore();
+                canvas2.save();
+                float intrinsicWidth = this.leftDrawables[i].getIntrinsicWidth() / 2.0f;
+                if (i != 0) {
+                    f2 = 2.0f;
+                }
+                canvas2.translate(intrinsicWidth - AndroidUtilities.dp(f2), 0.0f);
+            }
+            if (i == 0) {
+                canvas2.drawText(str, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
+            } else if (i == this.optionsStr.length - 1) {
+                canvas2.drawText(str, (getMeasuredWidth() - i11) - AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
+            } else {
+                canvas2.drawText(str, i5 - (i11 / 2), AndroidUtilities.dp(28.0f), this.textPaint);
             }
             if (this.leftDrawables != null) {
-                canvas.restore();
+                canvas2.restore();
             }
-            i2++;
-            i = 2;
-            f2 = 0.0f;
-            f3 = 1.0f;
+            i++;
+            f4 = 0.0f;
+            f5 = 1.0f;
         }
-        float f9 = this.sideSide;
-        int i13 = this.lineSize + (this.gapSize * 2);
-        int i14 = this.circleSize;
-        float f10 = f9 + ((i13 + i14) * f) + (i14 / 2);
+        float f11 = this.sideSide;
+        int i12 = this.lineSize + (this.gapSize * 2);
+        int i13 = this.circleSize;
+        float f12 = f11 + ((i12 + i13) * f3) + (i13 / 2);
         Paint paint = this.paint;
-        int i15 = Theme.key_switchTrackChecked;
-        paint.setColor(ColorUtils.setAlphaComponent(getThemedColor(i15), 80));
-        float f11 = measuredHeight;
-        canvas.drawCircle(f10, f11, AndroidUtilities.dp(f4 * 12.0f), this.paint);
-        this.paint.setColor(getThemedColor(i15));
-        canvas.drawCircle(f10, f11, AndroidUtilities.dp(6.0f), this.paint);
+        int i14 = Theme.key_switchTrackChecked;
+        paint.setColor(ColorUtils.setAlphaComponent(getThemedColor(i14), 80));
+        float f13 = measuredHeight;
+        canvas2.drawCircle(f12, f13, AndroidUtilities.dp(f6 * 12.0f), this.paint);
+        this.paint.setColor(getThemedColor(i14));
+        canvas2.drawCircle(f12, f13, AndroidUtilities.dp(6.0f), this.paint);
     }
 
     @Override

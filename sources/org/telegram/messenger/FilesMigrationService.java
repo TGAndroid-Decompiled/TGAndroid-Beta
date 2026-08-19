@@ -70,12 +70,13 @@ public class FilesMigrationService extends Service {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$run$0();
+                    FilesMigrationService.AnonymousClass1.$r8$lambda$HjSudWMQI5vNMKAzhIAC3wQ2I48(this.f$0);
                 }
             });
         }
 
-        public void lambda$run$0() {
+        public static void $r8$lambda$HjSudWMQI5vNMKAzhIAC3wQ2I48(AnonymousClass1 anonymousClass1) {
+            anonymousClass1.getClass();
             FilesMigrationService.isRunning = false;
             FilesMigrationService.this.stopForeground(true);
             FilesMigrationService.this.stopSelf();
@@ -126,8 +127,8 @@ public class FilesMigrationService extends Service {
                     try {
                         streamConvert.forEach(new Consumer() {
                             @Override
-                            public final void p(Object obj) {
-                                this.f$0.lambda$moveDirectory$0(file2, (Path) obj);
+                            public final void s(Object obj) {
+                                FilesMigrationService.m473$r8$lambda$gcPhkMdBFERemd7i1MOR00gJ8E(this.f$0, file2, (Path) obj);
                             }
 
                             public Consumer andThen(Consumer consumer) {
@@ -157,10 +158,11 @@ public class FilesMigrationService extends Service {
         }
     }
 
-    public void lambda$moveDirectory$0(File file, Path path) {
+    public static void m473$r8$lambda$gcPhkMdBFERemd7i1MOR00gJ8E(FilesMigrationService filesMigrationService, File file, Path path) {
+        filesMigrationService.getClass();
         File file2 = new File(file, path.getFileName().toString());
         if (Files.isDirectory(path, new LinkOption[0])) {
-            moveDirectory(path.toFile(), file2);
+            filesMigrationService.moveDirectory(path.toFile(), file2);
             return;
         }
         try {
@@ -173,8 +175,8 @@ public class FilesMigrationService extends Service {
                 FileLog.e(e2);
             }
         }
-        this.movedFilesCount++;
-        updateProgress();
+        filesMigrationService.movedFilesCount++;
+        filesMigrationService.updateProgress();
     }
 
     private void updateProgress() {
@@ -183,15 +185,16 @@ public class FilesMigrationService extends Service {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateProgress$1(i);
+                    FilesMigrationService.$r8$lambda$SLt5OJlbdrP51pHuYFgV8Ttwlg4(this.f$0, i);
                 }
             });
         }
     }
 
-    public void lambda$updateProgress$1(int i) {
+    public static void $r8$lambda$SLt5OJlbdrP51pHuYFgV8Ttwlg4(FilesMigrationService filesMigrationService, int i) {
+        filesMigrationService.getClass();
         Distribute$$ExternalSyntheticApiModelOutline1.m();
-        ((NotificationManager) getSystemService("notification")).notify(301, Distribute$$ExternalSyntheticApiModelOutline0.m(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(R.string.MigratingFiles)).setContentText(String.format("%s/%s", Integer.valueOf(i), Integer.valueOf(this.totalFilesCount))).setSmallIcon(R.drawable.notification).setAutoCancel(false).setProgress(this.totalFilesCount, i, false).build());
+        ((NotificationManager) filesMigrationService.getSystemService("notification")).notify(301, Distribute$$ExternalSyntheticApiModelOutline0.m(filesMigrationService, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(filesMigrationService.getText(R.string.MigratingFiles)).setContentText(String.format("%s/%s", Integer.valueOf(i), Integer.valueOf(filesMigrationService.totalFilesCount))).setSmallIcon(R.drawable.notification).setAutoCancel(false).setProgress(filesMigrationService.totalFilesCount, i, false).build());
     }
 
     public static void checkBottomSheet(BaseFragment baseFragment) {
@@ -280,16 +283,12 @@ public class FilesMigrationService extends Service {
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    this.f$0.migrateOldFolder();
                 }
             });
             ScrollView scrollView = new ScrollView(parentActivity);
             scrollView.addView(linearLayout);
             setCustomView(scrollView);
-        }
-
-        public void lambda$new$0(View view) {
-            migrateOldFolder();
         }
 
         public void migrateOldFolder() {
@@ -318,12 +317,12 @@ public class FilesMigrationService extends Service {
                 return;
             }
             FilesMigrationService.start();
-            lambda$new$0();
+            dismiss();
         }
 
         @Override
-        public void lambda$new$0() {
-            super.lambda$new$0();
+        public void dismiss() {
+            super.dismiss();
             FilesMigrationService.filesMigrationBottomSheet = null;
         }
     }

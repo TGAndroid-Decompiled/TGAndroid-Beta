@@ -150,7 +150,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
             public final void onGlobalFocusChanged(View view, View view2) {
-                this.f$0.lambda$new$0(view, view2);
+                this.f$0.updateToolbarBlockType();
             }
         });
     }
@@ -205,14 +205,14 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 chatAttachAlertRichLayout.commandSuggestions = new RichCommandSuggestions(new RichCommandSuggestions.MenuFactory() {
                     @Override
                     public final ItemOptions make(View view) {
-                        return this.f$0.lambda$onSlashSuggest$0(resourcesProvider, view);
+                        return ChatAttachAlertRichLayout.AnonymousClass1.$r8$lambda$pUtKNyYoHQNRqYgrwOGAL3BCesg(this.f$0, resourcesProvider, view);
                     }
                 }, this.val$resourcesProvider);
             }
             ChatAttachAlertRichLayout.this.commandSuggestions.update(richTextCell, str);
         }
 
-        public ItemOptions lambda$onSlashSuggest$0(Theme.ResourcesProvider resourcesProvider, View view) {
+        public static ItemOptions $r8$lambda$pUtKNyYoHQNRqYgrwOGAL3BCesg(AnonymousClass1 anonymousClass1, Theme.ResourcesProvider resourcesProvider, View view) {
             ChatAttachAlertRichLayout chatAttachAlertRichLayout = ChatAttachAlertRichLayout.this;
             return chatAttachAlertRichLayout.menu = ItemOptions.makeOptions(chatAttachAlertRichLayout, resourcesProvider, view, false, false, true);
         }
@@ -272,10 +272,6 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$new$0(View view, View view2) {
-        updateToolbarBlockType();
-    }
-
     class AnonymousClass2 implements RichEditorToolbar.Delegate {
         @Override
         public void onBack() {
@@ -304,16 +300,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             ChatAttachAlertRichLayout.this.toggleEmojiPopup();
         }
 
-        public void lambda$onAi$0(TL_iv.RichMessage richMessage) {
-            ChatAttachAlertRichLayout.this.listView.addRichMessage(richMessage);
-        }
-
         @Override
         public void onAi() {
             new RichAIComposeSheet(ChatAttachAlertRichLayout.this.getContext(), ChatAttachAlertRichLayout.this.currentAccount, ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).resourcesProvider, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onAi$0((TL_iv.RichMessage) obj);
+                    ChatAttachAlertRichLayout.this.listView.addRichMessage((TL_iv.RichMessage) obj);
                 }
             }).show();
         }
@@ -417,24 +409,20 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.ArticleSaveDraftTitle)).setMessage(LocaleController.getString(R.string.ArticleSaveDraftMessage)).setNegativeButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$checkDiscard$1(alertDialog, i);
+                this.f$0.parentAlert.dismiss();
             }
         }).setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$checkDiscard$2(alertDialog, i);
+                ChatAttachAlertRichLayout.m4904$r8$lambda$s7NYAxG7xyGe18QPldoLjE0MlE(this.f$0, alertDialog, i);
             }
         }).makeRed(-2).show();
         return false;
     }
 
-    public void lambda$checkDiscard$1(AlertDialog alertDialog, int i) {
-        this.parentAlert.lambda$new$0();
-    }
-
-    public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) {
-        persistDraft();
-        this.parentAlert.lambda$new$0();
+    public static void m4904$r8$lambda$s7NYAxG7xyGe18QPldoLjE0MlE(ChatAttachAlertRichLayout chatAttachAlertRichLayout, AlertDialog alertDialog, int i) {
+        chatAttachAlertRichLayout.persistDraft();
+        chatAttachAlertRichLayout.parentAlert.dismiss();
     }
 
     private boolean persistDraft() {
@@ -506,7 +494,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             showEditLatexSheet(getContext(), (pageblockmath == null || TextUtils.isEmpty(pageblockmath.source)) ? "" : pageblockmath.source, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onBlockButtonClicked$3(pageblockmath, (String) obj);
+                    ChatAttachAlertRichLayout.$r8$lambda$tnBqrg4FVKQQB5V2uj_itfS3iAE(this.f$0, pageblockmath, (String) obj);
                 }
             }, this.resourcesProvider);
             return;
@@ -524,14 +512,15 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$onBlockButtonClicked$3(TL_iv.pageBlockMath pageblockmath, String str) {
+    public static void $r8$lambda$tnBqrg4FVKQQB5V2uj_itfS3iAE(ChatAttachAlertRichLayout chatAttachAlertRichLayout, TL_iv.pageBlockMath pageblockmath, String str) {
+        chatAttachAlertRichLayout.getClass();
         if (pageblockmath != null) {
             pageblockmath.source = str;
-            this.listView.adapter.update(false);
+            chatAttachAlertRichLayout.listView.adapter.update(false);
         } else {
             TL_iv.pageBlockMath pageblockmath2 = new TL_iv.pageBlockMath();
             pageblockmath2.source = str;
-            this.listView.addBlock(pageblockmath2);
+            chatAttachAlertRichLayout.listView.addBlock(pageblockmath2);
         }
     }
 
@@ -567,70 +556,50 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockParagraph), R.drawable.iv_text, LocaleController.getString(R.string.ArticleText), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showTextTypeMenu$6(blockRow);
+                this.f$0.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockParagraph());
             }
         });
         itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockBlockquote), R.drawable.iv_quote, LocaleController.getString(R.string.ArticleQuote), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showTextTypeMenu$7(blockRow);
+                this.f$0.listView.turnInto(blockRow, RichEditorListView.newBlockquote(), 0, 0, false, false);
             }
         });
         itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockPullquote), new RichEditor.RequiresPremiumDrawable(getContext(), R.drawable.iv_pullquote).setPremium(z), LocaleController.getString(R.string.ArticlePullquote), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showTextTypeMenu$8(blockRow);
+                this.f$0.listView.turnInto(blockRow, RichEditorListView.newPullquote(), 0, 0, false, false);
             }
         });
         itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockPreformatted), R.drawable.iv_code, LocaleController.getString(R.string.ArticleCode), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showTextTypeMenu$9(blockRow);
+                this.f$0.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockPreformatted());
             }
         });
         itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockFooter), new RichEditor.RequiresPremiumDrawable(getContext(), R.drawable.iv_footer).setPremium(z), LocaleController.getString(R.string.ArticleFooter), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showTextTypeMenu$10(blockRow);
+                this.f$0.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockFooter());
             }
         });
         this.menu = itemOptionsDontFocus.show();
     }
 
-    public void lambda$showTextTypeMenu$6(BlockRow blockRow) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockParagraph());
-    }
-
-    public void lambda$showTextTypeMenu$7(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, RichEditorListView.newBlockquote(), 0, 0, false, false);
-    }
-
-    public void lambda$showTextTypeMenu$8(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, RichEditorListView.newPullquote(), 0, 0, false, false);
-    }
-
-    public void lambda$showTextTypeMenu$9(BlockRow blockRow) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockPreformatted());
-    }
-
-    public void lambda$showTextTypeMenu$10(BlockRow blockRow) {
-        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockFooter());
+    public static void m4898$r8$lambda$iAz3SLOHY6iui3pwYkpUkoa6uQ(ChatAttachAlertRichLayout chatAttachAlertRichLayout, BlockRow blockRow, TL_iv.PageBlock pageBlock, ItemOptions itemOptions) {
+        chatAttachAlertRichLayout.listView.turnIntoKeepList(blockRow, pageBlock);
+        itemOptions.dismiss();
     }
 
     private void addHeadingItem(ItemOptions itemOptions, final BlockRow blockRow, final TL_iv.PageBlock pageBlock, int i, String str, int i2, final ItemOptions itemOptions2) {
         itemOptions.addChecked(blockRow != null && blockRow.block.getClass() == pageBlock.getClass(), i, str, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$addHeadingItem$11(blockRow, pageBlock, itemOptions2);
+                ChatAttachAlertRichLayout.m4898$r8$lambda$iAz3SLOHY6iui3pwYkpUkoa6uQ(this.f$0, blockRow, pageBlock, itemOptions2);
             }
         });
         itemOptions.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
         itemOptions.getLast().textView.setTextSize(1, i2);
-    }
-
-    public void lambda$addHeadingItem$11(BlockRow blockRow, TL_iv.PageBlock pageBlock, ItemOptions itemOptions) {
-        this.listView.turnIntoKeepList(blockRow, pageBlock);
-        itemOptions.dismiss();
     }
 
     private void showListMenu(final BlockRow blockRow, View view) {
@@ -643,22 +612,22 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         ItemOptions itemOptionsAddChecked = itemOptionsDontFocus.addChecked(blockRow == null || !blockRow.isInList(), R.drawable.field_carret_empty, LocaleController.getString(R.string.ArticleNone), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showListMenu$12(blockRow);
+                this.f$0.listView.turnIntoList(blockRow, 0);
             }
         }).addChecked((blockRow == null || !blockRow.isInList() || blockRow.isChecklist() || blockRow.isOrdered()) ? false : true, R.drawable.iv_list, LocaleController.getString(R.string.ArticleListBulleted), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showListMenu$13(blockRow);
+                this.f$0.listView.turnIntoList(blockRow, 1);
             }
         }).addChecked(blockRow != null && blockRow.isInList() && !blockRow.isChecklist() && blockRow.isOrdered(), R.drawable.iv_ordered_list, LocaleController.getString(R.string.ArticleListNumbered), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showListMenu$14(blockRow);
+                this.f$0.listView.turnIntoList(blockRow, 2);
             }
         }).addChecked(blockRow != null && blockRow.isInList() && blockRow.isChecklist() && !blockRow.isOrdered(), R.drawable.iv_todo, LocaleController.getString(R.string.ArticleListTodo), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showListMenu$15(blockRow);
+                this.f$0.listView.turnIntoList(blockRow, 3);
             }
         });
         if (blockRow != null && (blockRow.block instanceof TL_iv.pageBlockDetails)) {
@@ -677,7 +646,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 itemOptionsDontFocus.add(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$showListMenu$16(itemOptionsDontFocus);
+                        ChatAttachAlertRichLayout.$r8$lambda$9dpnV3Yb4JKmN6lwUap7An6ojsw(this.f$0, itemOptionsDontFocus);
                     }
                 });
             }
@@ -685,7 +654,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 itemOptionsDontFocus.add(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$showListMenu$17(itemOptionsDontFocus);
+                        ChatAttachAlertRichLayout.m4890$r8$lambda$M3k1YD6H5FGvPOMkNJEQjKaTw(this.f$0, itemOptionsDontFocus);
                     }
                 });
             }
@@ -693,29 +662,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         this.menu = itemOptionsDontFocus.forceTop(true).show();
     }
 
-    public void lambda$showListMenu$12(BlockRow blockRow) {
-        this.listView.turnIntoList(blockRow, 0);
-    }
-
-    public void lambda$showListMenu$13(BlockRow blockRow) {
-        this.listView.turnIntoList(blockRow, 1);
-    }
-
-    public void lambda$showListMenu$14(BlockRow blockRow) {
-        this.listView.turnIntoList(blockRow, 2);
-    }
-
-    public void lambda$showListMenu$15(BlockRow blockRow) {
-        this.listView.turnIntoList(blockRow, 3);
-    }
-
-    public void lambda$showListMenu$16(ItemOptions itemOptions) {
-        this.listView.indentSelection(false);
+    public static void $r8$lambda$9dpnV3Yb4JKmN6lwUap7An6ojsw(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ItemOptions itemOptions) {
+        chatAttachAlertRichLayout.listView.indentSelection(false);
         itemOptions.dismiss();
     }
 
-    public void lambda$showListMenu$17(ItemOptions itemOptions) {
-        this.listView.indentSelection(true);
+    public static void m4890$r8$lambda$M3k1YD6H5FGvPOMkNJEQjKaTw(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ItemOptions itemOptions) {
+        chatAttachAlertRichLayout.listView.indentSelection(true);
         itemOptions.dismiss();
     }
 
@@ -751,19 +704,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         int endOffset = textSelectionHelper.getEndOffset();
         boolean z = startCell >= 0 && endCell >= 0 && endCell >= startCell && endCell < this.listView.itemRows.size();
         if (z) {
-            int[] iArr = STYLE_FLAGS;
-            int length = iArr.length;
             int i2 = 0;
-            int i3 = 0;
-            while (i2 < length) {
-                int i4 = iArr[i2];
-                int i5 = i2;
-                if (this.listView.isStyleFullyApplied(i4, startCell, startOffset, endCell, endOffset)) {
-                    i3 |= i4;
+            for (int i3 : STYLE_FLAGS) {
+                if (this.listView.isStyleFullyApplied(i3, startCell, startOffset, endCell, endOffset)) {
+                    i2 |= i3;
                 }
-                i2 = i5 + 1;
             }
-            i = i3;
+            i = i2;
         } else {
             i = 0;
         }
@@ -777,23 +724,17 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         int endChildPosition = textSelectionHelper.getEndChildPosition();
         int startOffset = textSelectionHelper.getStartOffset();
         int endOffset = textSelectionHelper.getEndOffset();
-        int[] iArr = STYLE_FLAGS;
-        int length = iArr.length;
         int i = 0;
-        int i2 = 0;
-        while (i < length) {
-            int i3 = iArr[i];
-            int i4 = i;
-            if (this.listView.isStyleFullyAppliedTable(i3, startCell, startChildPosition, startOffset, endChildPosition, endOffset)) {
-                i2 |= i3;
+        for (int i2 : STYLE_FLAGS) {
+            if (this.listView.isStyleFullyAppliedTable(i2, startCell, startChildPosition, startOffset, endChildPosition, endOffset)) {
+                i |= i2;
             }
-            i = i4 + 1;
         }
         boolean z = startChildPosition == endChildPosition;
         RichEditText richEditTextTableEditText = z ? this.listView.tableEditText(startCell, startChildPosition) : null;
         int iMax = Math.max(0, Math.min(startOffset, endOffset));
         int iMax2 = richEditTextTableEditText == null ? 0 : Math.max(0, Math.min(Math.max(startOffset, endOffset), richEditTextTableEditText.length()));
-        this.toolbar.setFormattingState(i2, richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextTableEditText.getText(), iMax, iMax2), richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextTableEditText.getText(), iMax, iMax2), z, this.listView.canCreateInlineButtonOnSelection(), true);
+        this.toolbar.setFormattingState(i, richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextTableEditText.getText(), iMax, iMax2), richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextTableEditText.getText(), iMax, iMax2), z, this.listView.canCreateInlineButtonOnSelection(), true);
     }
 
     private void updateFormattingButtonsCaption() {
@@ -911,13 +852,14 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     private int attachRaiseTarget(boolean z) {
-        if (!z) {
-            ChatAttachAlert chatAttachAlert = this.parentAlert;
-            if (!chatAttachAlert.pinnedToTop) {
-                return chatAttachAlert.getTypeButtonsHeight();
-            }
+        if (z) {
+            return 0;
         }
-        return 0;
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        if (chatAttachAlert.pinnedToTop) {
+            return 0;
+        }
+        return chatAttachAlert.getTypeButtonsHeight();
     }
 
     public void updateAttachRaise() {
@@ -1195,8 +1137,8 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
 
     @Override
     public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
-        MessageObject messageObject;
         long sendMonoForumPeerId;
+        MessageObject messageObject;
         MessageObject messageObject2;
         SendMessageChatArguments messageChatSendParams;
         ChatActivityEnterView chatActivityEnterView;
@@ -1234,15 +1176,15 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             MessageObject threadMessage = chatActivity.getThreadMessage();
             sendMonoForumPeerId = chatActivity.getSendMonoForumPeerId();
             messageChatSendParams = chatActivity.getMessageChatSendParams();
-            messageObject2 = replyMessage;
-            messageObject = threadMessage;
+            messageObject = replyMessage;
+            messageObject2 = threadMessage;
         } else {
-            messageObject = null;
             sendMonoForumPeerId = 0;
+            messageObject = null;
             messageObject2 = null;
             messageChatSendParams = null;
         }
-        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, arrayListCollect, false, this.parentAlert.getDialogId(), messageObject2, messageObject, z, i, i2, messageChatSendParams, j, sendMonoForumPeerId, 0L);
+        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, arrayListCollect, false, this.parentAlert.getDialogId(), messageObject, messageObject2, z, i, i2, messageChatSendParams, j, sendMonoForumPeerId, 0L);
         this.parentAlert.dismiss(true);
         return true;
     }
@@ -1276,7 +1218,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         messageSendPreview2.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$showSendPreview$18(dialogInterface);
+                this.f$0.messageSendPreview = null;
             }
         });
         final long dialogId = this.parentAlert.getDialogId();
@@ -1315,7 +1257,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         ChatActivityEnterView.SendButton sendButton2 = this.messageSendPreview.setSendButton(sendButton, true, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$showSendPreview$19(view2);
+                ChatAttachAlertRichLayout.m4895$r8$lambda$f7QJXiD9UeGha4RUPtfO5L6h4k(this.f$0, view2);
             }
         });
         if (sendButton2 != null) {
@@ -1337,7 +1279,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 itemOptionsMakeOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$showSendPreview$21();
+                        ChatAttachAlertRichLayout.m4900$r8$lambda$ob25m3sc67irTGUji_fo9TGTAU(this.f$0);
                     }
                 });
             }
@@ -1346,7 +1288,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             itemOptionsMakeOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showSendPreview$22();
+                    ChatAttachAlertRichLayout.m4899$r8$lambda$ik1NHVuJc7cKM6PJuHXlSsclYw(this.f$0);
                 }
             });
         }
@@ -1360,16 +1302,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         return true;
     }
 
-    public void lambda$showSendPreview$18(DialogInterface dialogInterface) {
-        this.messageSendPreview = null;
-    }
-
-    public void lambda$showSendPreview$19(View view) {
-        sendSelectedItems(true, 0, 0, 0L, false);
-        MessageSendPreview messageSendPreview = this.messageSendPreview;
+    public static void m4895$r8$lambda$f7QJXiD9UeGha4RUPtfO5L6h4k(ChatAttachAlertRichLayout chatAttachAlertRichLayout, View view) {
+        chatAttachAlertRichLayout.sendSelectedItems(true, 0, 0, 0L, false);
+        MessageSendPreview messageSendPreview = chatAttachAlertRichLayout.messageSendPreview;
         if (messageSendPreview != null) {
             messageSendPreview.dismiss(true);
-            this.messageSendPreview = null;
+            chatAttachAlertRichLayout.messageSendPreview = null;
         }
     }
 
@@ -1386,21 +1324,21 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }, this.resourcesProvider);
     }
 
-    public void lambda$showSendPreview$21() {
-        sendSelectedItems(true, 2147483646, 0, 0L, false);
-        MessageSendPreview messageSendPreview = this.messageSendPreview;
+    public static void m4900$r8$lambda$ob25m3sc67irTGUji_fo9TGTAU(ChatAttachAlertRichLayout chatAttachAlertRichLayout) {
+        chatAttachAlertRichLayout.sendSelectedItems(true, 2147483646, 0, 0L, false);
+        MessageSendPreview messageSendPreview = chatAttachAlertRichLayout.messageSendPreview;
         if (messageSendPreview != null) {
             messageSendPreview.dismiss(false);
-            this.messageSendPreview = null;
+            chatAttachAlertRichLayout.messageSendPreview = null;
         }
     }
 
-    public void lambda$showSendPreview$22() {
-        sendSelectedItems(false, 0, 0, 0L, false);
-        MessageSendPreview messageSendPreview = this.messageSendPreview;
+    public static void m4899$r8$lambda$ik1NHVuJc7cKM6PJuHXlSsclYw(ChatAttachAlertRichLayout chatAttachAlertRichLayout) {
+        chatAttachAlertRichLayout.sendSelectedItems(false, 0, 0, 0L, false);
+        MessageSendPreview messageSendPreview = chatAttachAlertRichLayout.messageSendPreview;
         if (messageSendPreview != null) {
             messageSendPreview.dismiss(true);
-            this.messageSendPreview = null;
+            chatAttachAlertRichLayout.messageSendPreview = null;
         }
     }
 
@@ -1457,7 +1395,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
                 @Override
                 public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
-                    this.f$0.lambda$openLocationPicker$24(blockRow, chatAttachAlert, messageMedia, i, z, i2, j);
+                    ChatAttachAlertRichLayout.$r8$lambda$nqyUavaBHvrPbKrnzfQoU6Zse8c(this.f$0, blockRow, chatAttachAlert, messageMedia, i, z, i2, j);
                 }
             });
             chatAttachAlert.init();
@@ -1465,11 +1403,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$openLocationPicker$24(final BlockRow blockRow, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public static void $r8$lambda$nqyUavaBHvrPbKrnzfQoU6Zse8c(final ChatAttachAlertRichLayout chatAttachAlertRichLayout, final BlockRow blockRow, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+        chatAttachAlertRichLayout.getClass();
         if (messageMedia == null || messageMedia.geo == null) {
             return;
         }
-        RichEditorHistory richEditorHistory = this.listView.history;
+        RichEditorHistory richEditorHistory = chatAttachAlertRichLayout.listView.history;
         if (richEditorHistory != null) {
             richEditorHistory.flush();
         }
@@ -1480,26 +1419,26 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             pageblockmap.w = 600;
             pageblockmap.h = 400;
         }
-        RichEditorHistory richEditorHistory2 = this.listView.history;
+        RichEditorHistory richEditorHistory2 = chatAttachAlertRichLayout.listView.history;
         if (richEditorHistory2 != null) {
             richEditorHistory2.record();
         }
-        updateSendButton(true);
+        chatAttachAlertRichLayout.updateSendButton(true);
         chatAttachAlert.dismiss(true);
-        this.listView.post(new Runnable() {
+        chatAttachAlertRichLayout.listView.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openLocationPicker$23(blockRow);
+                ChatAttachAlertRichLayout.m4896$r8$lambda$fjEAiuvDz_ViPJwWBRNt6jze1M(this.f$0, blockRow);
             }
         });
     }
 
-    public void lambda$openLocationPicker$23(BlockRow blockRow) {
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
+    public static void m4896$r8$lambda$fjEAiuvDz_ViPJwWBRNt6jze1M(ChatAttachAlertRichLayout chatAttachAlertRichLayout, BlockRow blockRow) {
+        View viewFindViewByItemObject = chatAttachAlertRichLayout.listView.findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichMapCell) {
-            ((RichMapCell) viewFindViewByItemObject).bind(blockRow, this.listView.getMapDelegate());
+            ((RichMapCell) viewFindViewByItemObject).bind(blockRow, chatAttachAlertRichLayout.listView.getMapDelegate());
         } else {
-            this.listView.adapter.update(false);
+            chatAttachAlertRichLayout.listView.adapter.update(false);
         }
     }
 
@@ -1577,13 +1516,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
             @Override
             public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z, int i4, long j) {
-                this.f$0.lambda$openAttach$25(chatAttachAlert, messageMedia, i3, z, i4, j);
+                ChatAttachAlertRichLayout.m4903$r8$lambda$rQGU9Iem5yMyB0gkt1Kt2PiPgA(this.f$0, chatAttachAlert, messageMedia, i3, z, i4, j);
             }
         });
         chatAttachAlert.setAudioSelectDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
             @Override
             public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i3, int i4, long j, boolean z2, long j2) {
-                this.f$0.lambda$openAttach$26(chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
+                ChatAttachAlertRichLayout.m4902$r8$lambda$q9JYunuxpmvwVb58j7TRaf4O0(this.f$0, chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
             }
         });
         chatAttachAlert.setDocumentsDelegate(new ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate() {
@@ -1600,7 +1539,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             @Override
             public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i3, int i4, long j, boolean z2, long j2) {
                 if (arrayList != null && !arrayList.isEmpty()) {
-                    ChatAttachAlertRichLayout.this.listView.lambda$attachDocument$42((String) arrayList.get(0));
+                    ChatAttachAlertRichLayout.this.listView.attachDocument((String) arrayList.get(0));
                 } else if (arrayList3 != null && !arrayList3.isEmpty()) {
                     ChatAttachAlertRichLayout.this.listView.attachDocument((MessageObject) arrayList3.get(0));
                 }
@@ -1626,7 +1565,8 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         chatAttachAlert.show();
     }
 
-    public void lambda$openAttach$25(ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public static void m4903$r8$lambda$rQGU9Iem5yMyB0gkt1Kt2PiPgA(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+        chatAttachAlertRichLayout.getClass();
         if (messageMedia == null || messageMedia.geo == null) {
             chatAttachAlert.dismiss(true);
             return;
@@ -1636,14 +1576,15 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         pageblockmap.zoom = 15;
         pageblockmap.w = 600;
         pageblockmap.h = 400;
-        this.listView.addBlock(pageblockmap);
-        updateSendButton(true);
+        chatAttachAlertRichLayout.listView.addBlock(pageblockmap);
+        chatAttachAlertRichLayout.updateSendButton(true);
         chatAttachAlert.dismiss(true);
     }
 
-    public void lambda$openAttach$26(ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public static void m4902$r8$lambda$q9JYunuxpmvwVb58j7TRaf4O0(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+        chatAttachAlertRichLayout.getClass();
         if (arrayList != null && !arrayList.isEmpty()) {
-            this.listView.attachAudio((MessageObject) arrayList.get(0));
+            chatAttachAlertRichLayout.listView.attachAudio((MessageObject) arrayList.get(0));
         }
         chatAttachAlert.dismiss(true);
     }
@@ -1706,16 +1647,16 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         RichEditor.openConversionSheet(context, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda1(richEditorListView), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showConversionSheet$27();
+                ChatAttachAlertRichLayout.m4901$r8$lambda$piAGnuIwXGyrxr3T1sStWEVtMQ(this.f$0);
             }
         }, this.resourcesProvider);
     }
 
-    public void lambda$showConversionSheet$27() {
-        if (UserConfig.getInstance(this.currentAccount).isPremium()) {
+    public static void m4901$r8$lambda$piAGnuIwXGyrxr3T1sStWEVtMQ(ChatAttachAlertRichLayout chatAttachAlertRichLayout) {
+        if (UserConfig.getInstance(chatAttachAlertRichLayout.currentAccount).isPremium()) {
             return;
         }
-        new PremiumFeatureBottomSheet(this.parentAlert.baseFragment, getContext(), this.currentAccount, 43, true).show();
+        new PremiumFeatureBottomSheet(chatAttachAlertRichLayout.parentAlert.baseFragment, chatAttachAlertRichLayout.getContext(), chatAttachAlertRichLayout.currentAccount, 43, true).show();
     }
 
     @Override
@@ -2092,13 +2033,18 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         final Utilities.Callback2 callback2 = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$30(strArr, (String) obj, (Utilities.Callback2) obj2);
+                Utilities.themeQueue.postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatAttachAlertRichLayout.$r8$lambda$kPAmXiVcrSNtjVaVKtMxol4y1bw(strArr, callback2);
+                    }
+                });
             }
         };
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$32(strArr, horizontalScrollView, round, zArr2, callback2, imageView, resourcesProvider, iArr);
+                ChatAttachAlertRichLayout.$r8$lambda$_w4zLTN74NScBlbNrdSdUEOSZCE(strArr, horizontalScrollView, round, zArr2, callback2, imageView, resourcesProvider, iArr);
             }
         };
         final EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.ArticleLatexEquation), true, false, -1, resourcesProvider);
@@ -2129,7 +2075,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         builder.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$33(editTextCell, zArr, zArr2, str, strArr, callback, dialogInterface);
+                ChatAttachAlertRichLayout.$r8$lambda$T_iX90XDQb6L6BZzm8gNZjs1QW0(editTextCell, zArr, zArr2, str, strArr, callback, dialogInterface);
             }
         });
         final BottomSheet bottomSheetShow = builder.show();
@@ -2139,27 +2085,18 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$34(round, zArr, callback, strArr, bottomSheetShow, view);
+                ChatAttachAlertRichLayout.m4893$r8$lambda$Zjled5bofGN3SKK241Q7f6xf4U(round, zArr, callback, strArr, bottomSheetShow, view);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$35(editTextCell);
+                ChatAttachAlertRichLayout.m4892$r8$lambda$XmCv70BUTvSf0IPHKEfsKbsWTE(editTextCell);
             }
         }, 200L);
     }
 
-    public static void lambda$showEditLatexSheet$30(final String[] strArr, String str, final Utilities.Callback2 callback2) {
-        Utilities.themeQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$29(strArr, callback2);
-            }
-        });
-    }
-
-    public static void lambda$showEditLatexSheet$29(String[] strArr, final Utilities.Callback2 callback2) {
+    public static void $r8$lambda$kPAmXiVcrSNtjVaVKtMxol4y1bw(String[] strArr, final Utilities.Callback2 callback2) {
         final boolean z = false;
         Latex latexRender = Latex.render(strArr[0], AndroidUtilities.dp(26.0f), false);
         if (latexRender == null) {
@@ -2170,16 +2107,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$28(callback2, bitmap, z);
+                callback2.run(bitmap, Boolean.valueOf(z));
             }
         });
     }
 
-    public static void lambda$showEditLatexSheet$28(Utilities.Callback2 callback2, Bitmap bitmap, boolean z) {
-        callback2.run(bitmap, Boolean.valueOf(z));
-    }
-
-    public static void lambda$showEditLatexSheet$32(final String[] strArr, final HorizontalScrollView horizontalScrollView, final ButtonWithCounterView buttonWithCounterView, final boolean[] zArr, Utilities.Callback2 callback2, final ImageView imageView, final Theme.ResourcesProvider resourcesProvider, final int[] iArr) {
+    public static void $r8$lambda$_w4zLTN74NScBlbNrdSdUEOSZCE(final String[] strArr, final HorizontalScrollView horizontalScrollView, final ButtonWithCounterView buttonWithCounterView, final boolean[] zArr, Utilities.Callback2 callback2, final ImageView imageView, final Theme.ResourcesProvider resourcesProvider, final int[] iArr) {
         if (TextUtils.isEmpty(strArr[0].trim())) {
             horizontalScrollView.setVisibility(8);
             buttonWithCounterView.setEnabled(false);
@@ -2189,13 +2122,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             callback2.run(str, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatAttachAlertRichLayout.lambda$showEditLatexSheet$31(str, strArr, imageView, resourcesProvider, z, iArr, buttonWithCounterView, horizontalScrollView, zArr, (Bitmap) obj, (Boolean) obj2);
+                    ChatAttachAlertRichLayout.m4906$r8$lambda$zp9lBohig9Yn8FGLzmyhbJ2dBw(str, strArr, imageView, resourcesProvider, z, iArr, buttonWithCounterView, horizontalScrollView, zArr, (Bitmap) obj, (Boolean) obj2);
                 }
             });
         }
     }
 
-    public static void lambda$showEditLatexSheet$31(String str, String[] strArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, ButtonWithCounterView buttonWithCounterView, HorizontalScrollView horizontalScrollView, boolean[] zArr, Bitmap bitmap, Boolean bool) {
+    public static void m4906$r8$lambda$zp9lBohig9Yn8FGLzmyhbJ2dBw(String str, String[] strArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, ButtonWithCounterView buttonWithCounterView, HorizontalScrollView horizontalScrollView, boolean[] zArr, Bitmap bitmap, Boolean bool) {
         if (TextUtils.equals(str, strArr[0])) {
             if (bool.booleanValue()) {
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_text_RedBold, resourcesProvider), PorterDuff.Mode.SRC_IN));
@@ -2216,7 +2149,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void lambda$showEditLatexSheet$33(EditTextCell editTextCell, boolean[] zArr, boolean[] zArr2, String str, String[] strArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+    public static void $r8$lambda$T_iX90XDQb6L6BZzm8gNZjs1QW0(EditTextCell editTextCell, boolean[] zArr, boolean[] zArr2, String str, String[] strArr, Utilities.Callback callback, DialogInterface dialogInterface) {
         editTextCell.editText.clearFocus();
         AndroidUtilities.hideKeyboard(editTextCell.editText);
         if (zArr[0] || zArr2[0] || TextUtils.equals(str, strArr[0])) {
@@ -2226,17 +2159,17 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         callback.run(strArr[0]);
     }
 
-    public static void lambda$showEditLatexSheet$34(ButtonWithCounterView buttonWithCounterView, boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
+    public static void m4893$r8$lambda$Zjled5bofGN3SKK241Q7f6xf4U(ButtonWithCounterView buttonWithCounterView, boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
         if (buttonWithCounterView.isEnabled()) {
             if (!zArr[0]) {
                 zArr[0] = true;
                 callback.run(strArr[0]);
             }
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
         }
     }
 
-    public static void lambda$showEditLatexSheet$35(EditTextCell editTextCell) {
+    public static void m4892$r8$lambda$XmCv70BUTvSf0IPHKEfsKbsWTE(EditTextCell editTextCell) {
         editTextCell.editText.requestFocus();
         AndroidUtilities.showKeyboard(editTextCell.editText);
     }

@@ -6,7 +6,6 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.CharacterStyle;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.SharedConfig;
@@ -56,7 +55,11 @@ public abstract class RichTextStyle {
             return 0;
         }
         for (int i2 = 0; i2 < charSequence.length(); i2++) {
-            for (Object obj : arrayList) {
+            int size = arrayList.size();
+            int i3 = 0;
+            while (i3 < size) {
+                Object obj = arrayList.get(i3);
+                i3++;
                 if (spanned.getSpanStart(obj) <= i2 && spanned.getSpanEnd(obj) > i2) {
                 }
             }
@@ -89,9 +92,13 @@ public abstract class RichTextStyle {
             return;
         }
         if (richText instanceof TL_iv.textConcat) {
-            Iterator<TL_iv.RichText> it = ((TL_iv.textConcat) richText).texts.iterator();
-            while (it.hasNext()) {
-                append(spannableStringBuilder, it.next(), i, pageBlock, z);
+            ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                TL_iv.RichText richText2 = arrayList.get(i2);
+                i2++;
+                append(spannableStringBuilder, richText2, i, pageBlock, z);
             }
             return;
         }
@@ -259,9 +266,13 @@ public abstract class RichTextStyle {
         }
         if (richText instanceof TL_iv.textConcat) {
             StringBuilder sb = new StringBuilder();
-            Iterator<TL_iv.RichText> it = ((TL_iv.textConcat) richText).texts.iterator();
-            while (it.hasNext()) {
-                sb.append(plainOf(it.next()));
+            ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TL_iv.RichText richText2 = arrayList.get(i);
+                i++;
+                sb.append(plainOf(richText2));
             }
             return sb.toString();
         }
@@ -288,9 +299,13 @@ public abstract class RichTextStyle {
             return str2 == null || str2.isEmpty();
         }
         if (richText instanceof TL_iv.textConcat) {
-            Iterator<TL_iv.RichText> it = ((TL_iv.textConcat) richText).texts.iterator();
-            while (it.hasNext()) {
-                if (!isEmpty(it.next())) {
+            ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TL_iv.RichText richText2 = arrayList.get(i);
+                i++;
+                if (!isEmpty(richText2)) {
                     return false;
                 }
             }

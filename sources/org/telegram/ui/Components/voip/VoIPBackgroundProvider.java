@@ -75,7 +75,7 @@ public class VoIPBackgroundProvider {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$setHasVideo$0(valueAnimator);
+                    VoIPBackgroundProvider.$r8$lambda$QMudu5aswTbVewGRgDTvmdq1UEM(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setInterpolator(new LinearInterpolator());
@@ -95,7 +95,7 @@ public class VoIPBackgroundProvider {
             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$setHasVideo$1(valueAnimator);
+                    VoIPBackgroundProvider.$r8$lambda$L1LSd_WXei80B3Enj5rYixrVATM(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat2.setInterpolator(new LinearInterpolator());
@@ -108,20 +108,22 @@ public class VoIPBackgroundProvider {
         invalidateViews();
     }
 
-    public void lambda$setHasVideo$0(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$QMudu5aswTbVewGRgDTvmdq1UEM(VoIPBackgroundProvider voIPBackgroundProvider, ValueAnimator valueAnimator) {
+        voIPBackgroundProvider.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         int i = (int) (35.0f * fFloatValue);
-        this.darkPaint.setAlpha(i);
-        this.darkVideoPaint.setAlpha((int) (fFloatValue * 102.0f));
-        this.whiteVideoPaint.setAlpha(i);
-        invalidateViews();
+        voIPBackgroundProvider.darkPaint.setAlpha(i);
+        voIPBackgroundProvider.darkVideoPaint.setAlpha((int) (fFloatValue * 102.0f));
+        voIPBackgroundProvider.whiteVideoPaint.setAlpha(i);
+        voIPBackgroundProvider.invalidateViews();
     }
 
-    public void lambda$setHasVideo$1(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$L1LSd_WXei80B3Enj5rYixrVATM(VoIPBackgroundProvider voIPBackgroundProvider, ValueAnimator valueAnimator) {
+        voIPBackgroundProvider.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.darkShaderTools.paint.setAlpha((int) (180.0f * fFloatValue));
-        this.lightShaderTools.paint.setAlpha((int) (fFloatValue * 255.0f));
-        invalidateViews();
+        voIPBackgroundProvider.darkShaderTools.paint.setAlpha((int) (180.0f * fFloatValue));
+        voIPBackgroundProvider.lightShaderTools.paint.setAlpha((int) (fFloatValue * 255.0f));
+        voIPBackgroundProvider.invalidateViews();
     }
 
     public Canvas getLightCanvas() {

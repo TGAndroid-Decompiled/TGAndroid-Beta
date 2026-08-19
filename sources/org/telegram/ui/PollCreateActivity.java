@@ -286,7 +286,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PollCreateActivity.lambda$onBecomeFullyVisible$0(textView);
+                    PollCreateActivity.$r8$lambda$EdmxrXuzb7SBQM9xD_eK2M4liAs(textView);
                 }
             }, 300L);
             this.requestFieldFocusAtPosition = -1;
@@ -294,7 +294,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         this.firstRequestField = false;
     }
 
-    public static void lambda$onBecomeFullyVisible$0(EditTextBoldCursor editTextBoldCursor) {
+    public static void $r8$lambda$EdmxrXuzb7SBQM9xD_eK2M4liAs(EditTextBoldCursor editTextBoldCursor) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
@@ -411,13 +411,14 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 if (iMeasureKeyboardHeight > AndroidUtilities.dp(20.0f) && PollCreateActivity.this.isEmojiSearchOpened) {
                     emojiPadding = AndroidUtilities.dp(120.0f);
                 }
+                int i4 = emojiPadding;
                 int childCount = getChildCount();
-                for (int i4 = 0; i4 < childCount; i4++) {
-                    View childAt = getChildAt(i4);
+                for (int i5 = 0; i5 < childCount; i5++) {
+                    View childAt = getChildAt(i5);
                     if (childAt != null && childAt.getVisibility() != 8 && childAt != ((BaseFragment) PollCreateActivity.this).actionBar) {
                         if (PollCreateActivity.this.emojiView == null || PollCreateActivity.this.emojiView != childAt) {
                             if (PollCreateActivity.this.listView == childAt) {
-                                childAt.measure(i2, View.MeasureSpec.makeMeasureSpec(paddingTop - emojiPadding, 1073741824));
+                                childAt.measure(i2, View.MeasureSpec.makeMeasureSpec(paddingTop - i4, 1073741824));
                             } else {
                                 measureChildWithMargins(childAt, i2, 0, i3, 0);
                             }
@@ -594,7 +595,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$createView$1(view, i2);
+                PollCreateActivity.$r8$lambda$QzjjAi5KN_NE5ioxt2yQl5a2Pwg(this.f$0, view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -740,7 +741,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                         AlertsCreator.createScheduleDatePickerDialog(PollCreateActivity.this.parentFragment.getParentActivity(), PollCreateActivity.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                             @Override
                             public final void didSelectDate(boolean z, int i7, int i8) {
-                                this.f$0.lambda$onItemClick$1(tL_messageMediaPoll, arrayList, z, i7, i8);
+                                PollCreateActivity.AnonymousClass2.m3749$r8$lambda$Nd_8ka_3sTkoeHSrKSOphM3kow(this.f$0, tL_messageMediaPoll, arrayList, z, i7, i8);
                             }
                         });
                         return;
@@ -806,7 +807,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     AlertsCreator.createScheduleDatePickerDialog(PollCreateActivity.this.parentFragment.getParentActivity(), PollCreateActivity.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
                         public final void didSelectDate(boolean z, int i11, int i12) {
-                            this.f$0.lambda$onItemClick$0(tL_messageMediaToDo, z, i11, i12);
+                            PollCreateActivity.AnonymousClass2.m3748$r8$lambda$G9wZ1elIZxXvUTytkl2Z_VRlWA(this.f$0, tL_messageMediaToDo, z, i11, i12);
                         }
                     });
                 } else {
@@ -816,100 +817,100 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             }
         }
 
-        public void lambda$onItemClick$0(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, boolean z, int i, int i2) {
+        public static void m3748$r8$lambda$G9wZ1elIZxXvUTytkl2Z_VRlWA(AnonymousClass2 anonymousClass2, TLRPC.TL_messageMediaToDo tL_messageMediaToDo, boolean z, int i, int i2) {
             PollCreateActivity.this.delegate.sendPoll(tL_messageMediaToDo, null, z, i);
             PollCreateActivity.this.finishFragment();
         }
 
-        public void lambda$onItemClick$1(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, ArrayList arrayList, boolean z, int i, int i2) {
+        public static void m3749$r8$lambda$Nd_8ka_3sTkoeHSrKSOphM3kow(AnonymousClass2 anonymousClass2, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, ArrayList arrayList, boolean z, int i, int i2) {
             PollCreateActivity.this.delegate.sendPoll(tL_messageMediaPoll, arrayList, z, i);
             PollCreateActivity.this.finishFragment();
         }
     }
 
-    public void lambda$createView$1(View view, int i) {
+    public static void $r8$lambda$QzjjAi5KN_NE5ioxt2yQl5a2Pwg(PollCreateActivity pollCreateActivity, View view, int i) {
         boolean z;
-        if (i == this.addAnswerRow) {
-            addNewField();
+        if (i == pollCreateActivity.addAnswerRow) {
+            pollCreateActivity.addNewField();
             return;
         }
         if (view instanceof TextCheckCell) {
             TextCheckCell textCheckCell = (TextCheckCell) view;
-            boolean z2 = this.quizPoll;
-            SuggestEmojiView suggestEmojiView = this.suggestEmojiPanel;
+            boolean z2 = pollCreateActivity.quizPoll;
+            SuggestEmojiView suggestEmojiView = pollCreateActivity.suggestEmojiPanel;
             if (suggestEmojiView != null) {
                 suggestEmojiView.forceClose();
             }
-            if (this.onlyAdding) {
-                int i2 = -this.shiftDp;
-                this.shiftDp = i2;
+            if (pollCreateActivity.onlyAdding) {
+                int i2 = -pollCreateActivity.shiftDp;
+                pollCreateActivity.shiftDp = i2;
                 AndroidUtilities.shakeViewSpring(textCheckCell, i2);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
                 return;
             }
-            if (i == this.anonymousRow) {
-                z = !this.anonymousPoll;
-                this.anonymousPoll = z;
+            if (i == pollCreateActivity.anonymousRow) {
+                z = !pollCreateActivity.anonymousPoll;
+                pollCreateActivity.anonymousPoll = z;
             } else {
-                int i3 = this.allowAddingRow;
+                int i3 = pollCreateActivity.allowAddingRow;
                 if (i == i3) {
-                    z = !this.allowAdding;
-                    this.allowAdding = z;
-                } else if (i == this.allowMarkingRow) {
-                    boolean z3 = !this.allowMarking;
-                    this.allowMarking = z3;
-                    updateRows();
-                    int i4 = this.allowAddingRow;
+                    z = !pollCreateActivity.allowAdding;
+                    pollCreateActivity.allowAdding = z;
+                } else if (i == pollCreateActivity.allowMarkingRow) {
+                    boolean z3 = !pollCreateActivity.allowMarking;
+                    pollCreateActivity.allowMarking = z3;
+                    pollCreateActivity.updateRows();
+                    int i4 = pollCreateActivity.allowAddingRow;
                     if (i4 >= 0 && i3 < 0) {
-                        this.listAdapter.notifyItemInserted(i4);
+                        pollCreateActivity.listAdapter.notifyItemInserted(i4);
                     } else if (i3 >= 0 && i4 < 0) {
-                        this.listAdapter.notifyItemRemoved(i3);
+                        pollCreateActivity.listAdapter.notifyItemRemoved(i3);
                     }
                     z = z3;
-                } else if (i == this.multipleRow) {
-                    boolean z4 = this.multipleChoise;
+                } else if (i == pollCreateActivity.multipleRow) {
+                    boolean z4 = pollCreateActivity.multipleChoise;
                     boolean z5 = !z4;
-                    this.multipleChoise = z5;
-                    if (!z4 && this.quizPoll) {
-                        int i5 = this.solutionRow;
-                        this.quizPoll = false;
-                        updateRows();
-                        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.quizRow);
+                    pollCreateActivity.multipleChoise = z5;
+                    if (!z4 && pollCreateActivity.quizPoll) {
+                        int i5 = pollCreateActivity.solutionRow;
+                        pollCreateActivity.quizPoll = false;
+                        pollCreateActivity.updateRows();
+                        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = pollCreateActivity.listView.findViewHolderForAdapterPosition(pollCreateActivity.quizRow);
                         if (viewHolderFindViewHolderForAdapterPosition != null) {
                             ((TextCheckCell) viewHolderFindViewHolderForAdapterPosition.itemView).setChecked(false);
                         } else {
-                            this.listAdapter.notifyItemChanged(this.quizRow);
+                            pollCreateActivity.listAdapter.notifyItemChanged(pollCreateActivity.quizRow);
                         }
-                        this.listAdapter.notifyItemRangeRemoved(i5, 2);
+                        pollCreateActivity.listAdapter.notifyItemRangeRemoved(i5, 2);
                     }
                     z = z5;
                 } else {
-                    if (this.quizOnly != 0) {
+                    if (pollCreateActivity.quizOnly != 0) {
                         return;
                     }
-                    z = !this.quizPoll;
-                    this.quizPoll = z;
-                    int i6 = this.solutionRow;
-                    updateRows();
-                    if (this.quizPoll) {
-                        this.listAdapter.notifyItemRangeInserted(this.solutionRow, 2);
+                    z = !pollCreateActivity.quizPoll;
+                    pollCreateActivity.quizPoll = z;
+                    int i6 = pollCreateActivity.solutionRow;
+                    pollCreateActivity.updateRows();
+                    if (pollCreateActivity.quizPoll) {
+                        pollCreateActivity.listAdapter.notifyItemRangeInserted(pollCreateActivity.solutionRow, 2);
                     } else {
-                        this.listAdapter.notifyItemRangeRemoved(i6, 2);
+                        pollCreateActivity.listAdapter.notifyItemRangeRemoved(i6, 2);
                     }
-                    if (this.quizPoll && this.multipleChoise) {
-                        this.multipleChoise = false;
-                        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition2 = this.listView.findViewHolderForAdapterPosition(this.multipleRow);
+                    if (pollCreateActivity.quizPoll && pollCreateActivity.multipleChoise) {
+                        pollCreateActivity.multipleChoise = false;
+                        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition2 = pollCreateActivity.listView.findViewHolderForAdapterPosition(pollCreateActivity.multipleRow);
                         if (viewHolderFindViewHolderForAdapterPosition2 != null) {
                             ((TextCheckCell) viewHolderFindViewHolderForAdapterPosition2.itemView).setChecked(false);
                         } else {
-                            this.listAdapter.notifyItemChanged(this.multipleRow);
+                            pollCreateActivity.listAdapter.notifyItemChanged(pollCreateActivity.multipleRow);
                         }
                     }
-                    if (this.quizPoll) {
+                    if (pollCreateActivity.quizPoll) {
                         int i7 = 0;
                         boolean z6 = false;
                         while (true) {
-                            boolean[] zArr = this.answersChecks;
+                            boolean[] zArr = pollCreateActivity.answersChecks;
                             if (i7 >= zArr.length) {
                                 break;
                             }
@@ -923,27 +924,27 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     }
                 }
             }
-            if (this.hintShowed && !this.quizPoll) {
-                this.hintView.hide();
+            if (pollCreateActivity.hintShowed && !pollCreateActivity.quizPoll) {
+                pollCreateActivity.hintView.hide();
             }
-            this.listView.getChildCount();
-            for (int i8 = this.answerStartRow; i8 < this.answerStartRow + this.answersCount; i8++) {
-                RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition3 = this.listView.findViewHolderForAdapterPosition(i8);
+            pollCreateActivity.listView.getChildCount();
+            for (int i8 = pollCreateActivity.answerStartRow; i8 < pollCreateActivity.answerStartRow + pollCreateActivity.answersCount; i8++) {
+                RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition3 = pollCreateActivity.listView.findViewHolderForAdapterPosition(i8);
                 if (viewHolderFindViewHolderForAdapterPosition3 != null) {
                     View view2 = viewHolderFindViewHolderForAdapterPosition3.itemView;
                     if (view2 instanceof PollEditTextCell) {
                         PollEditTextCell pollEditTextCell = (PollEditTextCell) view2;
-                        pollEditTextCell.setShowCheckBox(this.quizPoll, true);
-                        pollEditTextCell.setChecked(this.answersChecks[i8 - this.answerStartRow], z2);
-                        if (pollEditTextCell.getTop() > AndroidUtilities.dp(40.0f) && i == this.quizRow && !this.hintShowed) {
-                            this.hintView.showForView(pollEditTextCell.getCheckBox(), true);
-                            this.hintShowed = true;
+                        pollEditTextCell.setShowCheckBox(pollCreateActivity.quizPoll, true);
+                        pollEditTextCell.setChecked(pollCreateActivity.answersChecks[i8 - pollCreateActivity.answerStartRow], z2);
+                        if (pollEditTextCell.getTop() > AndroidUtilities.dp(40.0f) && i == pollCreateActivity.quizRow && !pollCreateActivity.hintShowed) {
+                            pollCreateActivity.hintView.showForView(pollEditTextCell.getCheckBox(), true);
+                            pollCreateActivity.hintShowed = true;
                         }
                     }
                 }
             }
             textCheckCell.setChecked(z);
-            checkDoneButton();
+            pollCreateActivity.checkDoneButton();
         }
     }
 
@@ -1206,17 +1207,13 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             builder.setPositiveButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i5) {
-                    this.f$0.lambda$checkDiscard$2(alertDialog, i5);
+                    this.f$0.finishFragment();
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             showDialog(builder.create());
         }
         return z2;
-    }
-
-    public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) {
-        finishFragment();
     }
 
     public void setDelegate(PollCreateActivityDelegate pollCreateActivityDelegate) {
@@ -1384,7 +1381,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$animateEmojiViewTranslationY$3(f, f2, valueAnimator);
+                PollCreateActivity.m3747$r8$lambda$yp5aq0CECswlgJfloGqbvtHXc(this.f$0, f, f2, valueAnimator);
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -1398,8 +1395,9 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         valueAnimatorOfFloat.start();
     }
 
-    public void lambda$animateEmojiViewTranslationY$3(float f, float f2, ValueAnimator valueAnimator) {
-        this.emojiView.setTranslationY(AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+    public static void m3747$r8$lambda$yp5aq0CECswlgJfloGqbvtHXc(PollCreateActivity pollCreateActivity, float f, float f2, ValueAnimator valueAnimator) {
+        pollCreateActivity.getClass();
+        pollCreateActivity.emojiView.setTranslationY(AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
     }
 
     public void onEmojiClicked(PollEditTextCell pollEditTextCell) {
@@ -1486,7 +1484,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$showEmojiPopup$4(valueAnimator);
+                        PollCreateActivity.m3746$r8$lambda$fO3VA2kn5bIxq9ZAmlYEjWuwlQ(this.f$0, valueAnimator);
                     }
                 });
                 valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -1521,8 +1519,9 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    public void lambda$showEmojiPopup$4(ValueAnimator valueAnimator) {
-        this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public static void m3746$r8$lambda$fO3VA2kn5bIxq9ZAmlYEjWuwlQ(PollCreateActivity pollCreateActivity, ValueAnimator valueAnimator) {
+        pollCreateActivity.getClass();
+        pollCreateActivity.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public void onCellFocusChanges(PollEditTextCell pollEditTextCell, boolean z) {
@@ -1569,7 +1568,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$hideEmojiPopup$5(valueAnimator);
+                            PollCreateActivity.$r8$lambda$0FRgb5aYHXeNJFwIOaVx20DJ_uA(this.f$0, valueAnimator);
                         }
                     });
                     this.isAnimatePopupClosing = true;
@@ -1591,8 +1590,9 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    public void lambda$hideEmojiPopup$5(ValueAnimator valueAnimator) {
-        this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public static void $r8$lambda$0FRgb5aYHXeNJFwIOaVx20DJ_uA(PollCreateActivity pollCreateActivity, ValueAnimator valueAnimator) {
+        pollCreateActivity.getClass();
+        pollCreateActivity.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public void hideEmojiView() {
@@ -1812,15 +1812,11 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onClearEmojiRecent$0(alertDialog, i);
+                    PollCreateActivity.this.emojiView.clearRecentEmoji();
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             builder.show();
-        }
-
-        public void lambda$onClearEmojiRecent$0(AlertDialog alertDialog, int i) {
-            PollCreateActivity.this.emojiView.clearRecentEmoji();
         }
 
         @Override
@@ -2023,18 +2019,16 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             if (adapterPosition == PollCreateActivity.this.questionRow || adapterPosition == PollCreateActivity.this.allowAddingRow || adapterPosition == PollCreateActivity.this.allowMarkingRow) {
                 return !PollCreateActivity.this.onlyAdding;
             }
-            if (PollCreateActivity.this.onlyAdding && adapterPosition >= PollCreateActivity.this.answerStartRow && adapterPosition < PollCreateActivity.this.answerStartRow + PollCreateActivity.this.answersCount) {
-                return adapterPosition - PollCreateActivity.this.answerStartRow >= PollCreateActivity.this.oldAnswersCount;
+            if (!PollCreateActivity.this.onlyAdding || adapterPosition < PollCreateActivity.this.answerStartRow || adapterPosition >= PollCreateActivity.this.answerStartRow + PollCreateActivity.this.answersCount) {
+                return adapterPosition == PollCreateActivity.this.addAnswerRow || adapterPosition == PollCreateActivity.this.anonymousRow || adapterPosition == PollCreateActivity.this.multipleRow || (PollCreateActivity.this.quizOnly == 0 && adapterPosition == PollCreateActivity.this.quizRow);
             }
-            if (adapterPosition == PollCreateActivity.this.addAnswerRow || adapterPosition == PollCreateActivity.this.anonymousRow || adapterPosition == PollCreateActivity.this.multipleRow) {
-                return true;
-            }
-            return PollCreateActivity.this.quizOnly == 0 && adapterPosition == PollCreateActivity.this.quizRow;
+            return adapterPosition - PollCreateActivity.this.answerStartRow >= PollCreateActivity.this.oldAnswersCount;
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View shadowSectionCell;
+            final PollEditTextCell pollEditTextCell;
             if (i == 0) {
                 HeaderCell headerCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, false);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
@@ -2043,339 +2037,341 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 shadowSectionCell = new ShadowSectionCell(this.mContext);
             } else if (i == 2) {
                 shadowSectionCell = new TextInfoPrivacyCell(this.mContext);
-            } else if (i == 3) {
-                TextCell textCell = new TextCell(this.mContext);
-                textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                shadowSectionCell = textCell;
-            } else if (i == 4) {
-                final PollEditTextCell pollEditTextCell = new PollEditTextCell(this.mContext, false, PollCreateActivity.this.isPremium ? 1 : 0, null) {
-                    @Override
-                    protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
-                    }
-
-                    @Override
-                    protected void onEditTextFocusChanged(boolean z) {
-                        PollCreateActivity.this.onCellFocusChanges(this, z);
-                    }
-
-                    @Override
-                    public void lambda$new$1(PollEditTextCell pollEditTextCell2) {
-                        PollCreateActivity.this.onEmojiClicked(pollEditTextCell2);
-                    }
-
-                    @Override
-                    public boolean onPastedMultipleLines(ArrayList arrayList) {
-                        if (arrayList.isEmpty()) {
-                            return false;
+            } else if (i != 3) {
+                if (i == 4) {
+                    pollEditTextCell = new PollEditTextCell(this.mContext, false, PollCreateActivity.this.isPremium ? 1 : 0, null) {
+                        @Override
+                        protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
                         }
-                        this.textView.getText().replace(this.textView.getSelectionStart(), this.textView.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-                        int i2 = 0;
-                        while (!arrayList.isEmpty() && i2 < PollCreateActivity.this.maxAnswersCount) {
-                            for (int length = PollCreateActivity.this.answers.length - 1; length > i2; length--) {
-                                PollCreateActivity.this.answers[length] = PollCreateActivity.this.answers[length - 1];
-                            }
-                            PollCreateActivity.this.answers[i2] = (CharSequence) arrayList.remove(0);
-                            PollCreateActivity.access$4908(PollCreateActivity.this);
-                            i2++;
-                        }
-                        PollCreateActivity.this.updateRows();
-                        PollCreateActivity pollCreateActivity = PollCreateActivity.this;
-                        pollCreateActivity.requestFieldFocusAtPosition = (pollCreateActivity.answerStartRow + i2) - 1;
-                        PollCreateActivity.this.listAdapter.notifyDataSetChanged();
-                        return true;
-                    }
-                };
-                pollEditTextCell.createErrorTextView();
-                pollEditTextCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                pollEditTextCell.addTextWatcher(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                    }
 
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                    }
+                        @Override
+                        protected void onEditTextFocusChanged(boolean z) {
+                            PollCreateActivity.this.onCellFocusChanges(this, z);
+                        }
 
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-                        if (pollEditTextCell.getTag() != null) {
-                            return;
+                        @Override
+                        public void onEmojiButtonClicked(PollEditTextCell pollEditTextCell2) {
+                            PollCreateActivity.this.onEmojiClicked(pollEditTextCell2);
                         }
-                        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(PollCreateActivity.this.questionRow);
-                        if (viewHolderFindViewHolderForAdapterPosition != null && PollCreateActivity.this.suggestEmojiPanel != null) {
-                            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
-                                editable.removeSpan(imageSpan);
-                            }
-                            Emoji.replaceEmoji(editable, pollEditTextCell.getEditField().getPaint().getFontMetricsInt(), false);
-                            PollCreateActivity.this.suggestEmojiPanel.setDirection(1);
-                            PollCreateActivity.this.suggestEmojiPanel.setDelegate(pollEditTextCell);
-                            PollCreateActivity.this.suggestEmojiPanel.setTranslationY(viewHolderFindViewHolderForAdapterPosition.itemView.getY());
-                            PollCreateActivity.this.suggestEmojiPanel.fireUpdate();
-                        }
-                        PollCreateActivity.this.questionString = editable;
-                        if (viewHolderFindViewHolderForAdapterPosition != null) {
-                            PollCreateActivity pollCreateActivity = PollCreateActivity.this;
-                            pollCreateActivity.setTextLeft(viewHolderFindViewHolderForAdapterPosition.itemView, pollCreateActivity.questionRow);
-                        }
-                        PollCreateActivity.this.checkDoneButton();
-                    }
-                });
-                shadowSectionCell = pollEditTextCell;
-            } else if (i == 6) {
-                TextCheckCell textCheckCell = new TextCheckCell(this.mContext);
-                textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                shadowSectionCell = textCheckCell;
-            } else if (i != 7) {
-                Context context = this.mContext;
-                boolean z = PollCreateActivity.this.isPremium;
-                final PollCreateActivity pollCreateActivity = PollCreateActivity.this;
-                final PollEditTextCell pollEditTextCell2 = new PollEditTextCell(context, false, z ? 1 : 0, new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        pollCreateActivity.deleteItem(view);
-                    }
-                }) {
-                    @Override
-                    protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
-                        if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
-                            Menu menu = actionMode.getMenu();
-                            if (menu.findItem(16908321) == null) {
-                                return;
-                            }
-                            ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false, true);
-                        }
-                    }
 
-                    @Override
-                    protected void onEditTextFocusChanged(boolean z2) {
-                        PollCreateActivity.this.onCellFocusChanges(this, z2);
-                    }
-
-                    @Override
-                    protected boolean drawDivider() {
-                        RecyclerView.ViewHolder viewHolderFindContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(this);
-                        if (viewHolderFindContainingViewHolder != null) {
-                            int adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition();
-                            if (PollCreateActivity.this.answersCount == PollCreateActivity.this.maxAnswersCount && adapterPosition == (PollCreateActivity.this.answerStartRow + PollCreateActivity.this.answersCount) - 1) {
+                        @Override
+                        public boolean onPastedMultipleLines(ArrayList arrayList) {
+                            if (arrayList.isEmpty()) {
                                 return false;
                             }
+                            this.textView.getText().replace(this.textView.getSelectionStart(), this.textView.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+                            int i2 = 0;
+                            while (!arrayList.isEmpty() && i2 < PollCreateActivity.this.maxAnswersCount) {
+                                for (int length = PollCreateActivity.this.answers.length - 1; length > i2; length--) {
+                                    PollCreateActivity.this.answers[length] = PollCreateActivity.this.answers[length - 1];
+                                }
+                                PollCreateActivity.this.answers[i2] = (CharSequence) arrayList.remove(0);
+                                PollCreateActivity.access$4908(PollCreateActivity.this);
+                                i2++;
+                            }
+                            PollCreateActivity.this.updateRows();
+                            PollCreateActivity pollCreateActivity = PollCreateActivity.this;
+                            pollCreateActivity.requestFieldFocusAtPosition = (pollCreateActivity.answerStartRow + i2) - 1;
+                            PollCreateActivity.this.listAdapter.notifyDataSetChanged();
+                            return true;
                         }
-                        return true;
-                    }
+                    };
+                    pollEditTextCell.createErrorTextView();
+                    pollEditTextCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    pollEditTextCell.addTextWatcher(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                        }
 
-                    @Override
-                    protected boolean shouldShowCheckBox() {
-                        return PollCreateActivity.this.quizPoll;
-                    }
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                        }
 
-                    @Override
-                    protected void onCheckBoxClick(PollEditTextCell pollEditTextCell3, boolean z2) {
-                        int adapterPosition;
-                        if (z2 && PollCreateActivity.this.quizPoll) {
-                            Arrays.fill(PollCreateActivity.this.answersChecks, false);
-                            PollCreateActivity.this.listView.getChildCount();
-                            for (int i2 = PollCreateActivity.this.answerStartRow; i2 < PollCreateActivity.this.answerStartRow + PollCreateActivity.this.answersCount; i2++) {
-                                RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(i2);
-                                if (viewHolderFindViewHolderForAdapterPosition != null) {
-                                    View view = viewHolderFindViewHolderForAdapterPosition.itemView;
-                                    if (view instanceof PollEditTextCell) {
-                                        ((PollEditTextCell) view).setChecked(false, true);
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+                            if (pollEditTextCell.getTag() != null) {
+                                return;
+                            }
+                            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(PollCreateActivity.this.questionRow);
+                            if (viewHolderFindViewHolderForAdapterPosition != null && PollCreateActivity.this.suggestEmojiPanel != null) {
+                                for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                                    editable.removeSpan(imageSpan);
+                                }
+                                Emoji.replaceEmoji(editable, pollEditTextCell.getEditField().getPaint().getFontMetricsInt(), false);
+                                PollCreateActivity.this.suggestEmojiPanel.setDirection(1);
+                                PollCreateActivity.this.suggestEmojiPanel.setDelegate(pollEditTextCell);
+                                PollCreateActivity.this.suggestEmojiPanel.setTranslationY(viewHolderFindViewHolderForAdapterPosition.itemView.getY());
+                                PollCreateActivity.this.suggestEmojiPanel.fireUpdate();
+                            }
+                            PollCreateActivity.this.questionString = editable;
+                            if (viewHolderFindViewHolderForAdapterPosition != null) {
+                                PollCreateActivity pollCreateActivity = PollCreateActivity.this;
+                                pollCreateActivity.setTextLeft(viewHolderFindViewHolderForAdapterPosition.itemView, pollCreateActivity.questionRow);
+                            }
+                            PollCreateActivity.this.checkDoneButton();
+                        }
+                    });
+                } else if (i == 6) {
+                    TextCheckCell textCheckCell = new TextCheckCell(this.mContext);
+                    textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    shadowSectionCell = textCheckCell;
+                } else if (i != 7) {
+                    Context context = this.mContext;
+                    boolean z = PollCreateActivity.this.isPremium;
+                    final PollCreateActivity pollCreateActivity = PollCreateActivity.this;
+                    final PollEditTextCell pollEditTextCell2 = new PollEditTextCell(context, false, z ? 1 : 0, new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            pollCreateActivity.deleteItem(view);
+                        }
+                    }) {
+                        @Override
+                        protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
+                            if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
+                                Menu menu = actionMode.getMenu();
+                                if (menu.findItem(16908321) == null) {
+                                    return;
+                                }
+                                ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false, true);
+                            }
+                        }
+
+                        @Override
+                        protected void onEditTextFocusChanged(boolean z2) {
+                            PollCreateActivity.this.onCellFocusChanges(this, z2);
+                        }
+
+                        @Override
+                        protected boolean drawDivider() {
+                            RecyclerView.ViewHolder viewHolderFindContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(this);
+                            if (viewHolderFindContainingViewHolder != null) {
+                                int adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition();
+                                if (PollCreateActivity.this.answersCount == PollCreateActivity.this.maxAnswersCount && adapterPosition == (PollCreateActivity.this.answerStartRow + PollCreateActivity.this.answersCount) - 1) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+
+                        @Override
+                        protected boolean shouldShowCheckBox() {
+                            return PollCreateActivity.this.quizPoll;
+                        }
+
+                        @Override
+                        protected void onCheckBoxClick(PollEditTextCell pollEditTextCell3, boolean z2) {
+                            int adapterPosition;
+                            if (z2 && PollCreateActivity.this.quizPoll) {
+                                Arrays.fill(PollCreateActivity.this.answersChecks, false);
+                                PollCreateActivity.this.listView.getChildCount();
+                                for (int i2 = PollCreateActivity.this.answerStartRow; i2 < PollCreateActivity.this.answerStartRow + PollCreateActivity.this.answersCount; i2++) {
+                                    RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(i2);
+                                    if (viewHolderFindViewHolderForAdapterPosition != null) {
+                                        View view = viewHolderFindViewHolderForAdapterPosition.itemView;
+                                        if (view instanceof PollEditTextCell) {
+                                            ((PollEditTextCell) view).setChecked(false, true);
+                                        }
                                     }
                                 }
                             }
-                        }
-                        super.onCheckBoxClick(pollEditTextCell3, z2);
-                        RecyclerView.ViewHolder viewHolderFindContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(pollEditTextCell3);
-                        if (viewHolderFindContainingViewHolder != null && (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition()) != -1) {
-                            PollCreateActivity.this.answersChecks[adapterPosition - PollCreateActivity.this.answerStartRow] = z2;
-                        }
-                        PollCreateActivity.this.checkDoneButton();
-                    }
-
-                    @Override
-                    protected boolean isChecked(PollEditTextCell pollEditTextCell3) {
-                        int adapterPosition;
-                        RecyclerView.ViewHolder viewHolderFindContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(pollEditTextCell3);
-                        if (viewHolderFindContainingViewHolder == null || (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition()) == -1) {
-                            return false;
-                        }
-                        return PollCreateActivity.this.answersChecks[adapterPosition - PollCreateActivity.this.answerStartRow];
-                    }
-
-                    @Override
-                    public void lambda$new$1(PollEditTextCell pollEditTextCell3) {
-                        PollCreateActivity.this.onEmojiClicked(pollEditTextCell3);
-                    }
-
-                    @Override
-                    public boolean onPastedMultipleLines(ArrayList arrayList) {
-                        int childAdapterPosition;
-                        if (arrayList.isEmpty() || (childAdapterPosition = PollCreateActivity.this.listView.getChildAdapterPosition(this) - PollCreateActivity.this.answerStartRow) < 0) {
-                            return false;
-                        }
-                        this.textView.getText().replace(this.textView.getSelectionStart(), this.textView.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-                        int i2 = childAdapterPosition + 1;
-                        while (!arrayList.isEmpty() && i2 < PollCreateActivity.this.maxAnswersCount) {
-                            for (int length = PollCreateActivity.this.answers.length - 1; length > i2; length--) {
-                                PollCreateActivity.this.answers[length] = PollCreateActivity.this.answers[length - 1];
+                            super.onCheckBoxClick(pollEditTextCell3, z2);
+                            RecyclerView.ViewHolder viewHolderFindContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(pollEditTextCell3);
+                            if (viewHolderFindContainingViewHolder != null && (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition()) != -1) {
+                                PollCreateActivity.this.answersChecks[adapterPosition - PollCreateActivity.this.answerStartRow] = z2;
                             }
-                            PollCreateActivity.this.answers[i2] = (CharSequence) arrayList.remove(0);
-                            PollCreateActivity.access$4908(PollCreateActivity.this);
-                            i2++;
+                            PollCreateActivity.this.checkDoneButton();
                         }
-                        PollCreateActivity.this.updateRows();
-                        PollCreateActivity pollCreateActivity2 = PollCreateActivity.this;
-                        pollCreateActivity2.requestFieldFocusAtPosition = (pollCreateActivity2.answerStartRow + i2) - 1;
-                        PollCreateActivity.this.listAdapter.notifyDataSetChanged();
-                        return true;
-                    }
-                };
-                pollEditTextCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                pollEditTextCell2.addTextWatcher(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                    }
 
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                    }
+                        @Override
+                        protected boolean isChecked(PollEditTextCell pollEditTextCell3) {
+                            int adapterPosition;
+                            RecyclerView.ViewHolder viewHolderFindContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(pollEditTextCell3);
+                            if (viewHolderFindContainingViewHolder == null || (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition()) == -1) {
+                                return false;
+                            }
+                            return PollCreateActivity.this.answersChecks[adapterPosition - PollCreateActivity.this.answerStartRow];
+                        }
 
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-                        int adapterPosition;
-                        RecyclerView.ViewHolder viewHolderFindContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(pollEditTextCell2);
-                        if (viewHolderFindContainingViewHolder == null || (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition() - PollCreateActivity.this.answerStartRow) < 0 || adapterPosition >= PollCreateActivity.this.answers.length) {
-                            return;
+                        @Override
+                        public void onEmojiButtonClicked(PollEditTextCell pollEditTextCell3) {
+                            PollCreateActivity.this.onEmojiClicked(pollEditTextCell3);
                         }
-                        if (PollCreateActivity.this.suggestEmojiPanel != null) {
-                            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
-                                editable.removeSpan(imageSpan);
+
+                        @Override
+                        public boolean onPastedMultipleLines(ArrayList arrayList) {
+                            int childAdapterPosition;
+                            if (arrayList.isEmpty() || (childAdapterPosition = PollCreateActivity.this.listView.getChildAdapterPosition(this) - PollCreateActivity.this.answerStartRow) < 0) {
+                                return false;
                             }
-                            Emoji.replaceEmoji(editable, pollEditTextCell2.getEditField().getPaint().getFontMetricsInt(), false);
-                            float y = (viewHolderFindContainingViewHolder.itemView.getY() - AndroidUtilities.dp(166.0f)) + viewHolderFindContainingViewHolder.itemView.getMeasuredHeight();
-                            if (y > 0.0f) {
-                                PollCreateActivity.this.suggestEmojiPanel.setDirection(0);
-                                PollCreateActivity.this.suggestEmojiPanel.setTranslationY(y);
-                            } else {
-                                PollCreateActivity.this.suggestEmojiPanel.setDirection(1);
-                                PollCreateActivity.this.suggestEmojiPanel.setTranslationY(viewHolderFindContainingViewHolder.itemView.getY());
+                            this.textView.getText().replace(this.textView.getSelectionStart(), this.textView.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+                            int i2 = childAdapterPosition + 1;
+                            while (!arrayList.isEmpty() && i2 < PollCreateActivity.this.maxAnswersCount) {
+                                for (int length = PollCreateActivity.this.answers.length - 1; length > i2; length--) {
+                                    PollCreateActivity.this.answers[length] = PollCreateActivity.this.answers[length - 1];
+                                }
+                                PollCreateActivity.this.answers[i2] = (CharSequence) arrayList.remove(0);
+                                PollCreateActivity.access$4908(PollCreateActivity.this);
+                                i2++;
                             }
-                            PollCreateActivity.this.suggestEmojiPanel.setDelegate(pollEditTextCell2);
-                            PollCreateActivity.this.suggestEmojiPanel.fireUpdate();
+                            PollCreateActivity.this.updateRows();
+                            PollCreateActivity pollCreateActivity2 = PollCreateActivity.this;
+                            pollCreateActivity2.requestFieldFocusAtPosition = (pollCreateActivity2.answerStartRow + i2) - 1;
+                            PollCreateActivity.this.listAdapter.notifyDataSetChanged();
+                            return true;
                         }
-                        PollCreateActivity.this.answers[adapterPosition] = editable;
-                        PollCreateActivity.this.setTextLeft(pollEditTextCell2, adapterPosition);
-                        PollCreateActivity.this.checkDoneButton();
-                    }
-                });
-                pollEditTextCell2.setShowNextButton(true);
-                EditTextBoldCursor textView = pollEditTextCell2.getTextView();
-                textView.setImeOptions(textView.getImeOptions() | 5);
-                textView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                    @Override
-                    public final boolean onEditorAction(TextView textView2, int i2, KeyEvent keyEvent) {
-                        return this.f$0.lambda$onCreateViewHolder$0(pollEditTextCell2, textView2, i2, keyEvent);
-                    }
-                });
-                textView.setOnKeyListener(new View.OnKeyListener() {
-                    @Override
-                    public final boolean onKey(View view, int i2, KeyEvent keyEvent) {
-                        return PollCreateActivity.ListAdapter.lambda$onCreateViewHolder$1(pollEditTextCell2, view, i2, keyEvent);
-                    }
-                });
-                shadowSectionCell = pollEditTextCell2;
-            } else {
-                final PollEditTextCell pollEditTextCell3 = new PollEditTextCell(this.mContext, false, PollCreateActivity.this.isPremium ? 1 : 0, null) {
-                    @Override
-                    protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
-                        if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
-                            Menu menu = actionMode.getMenu();
-                            if (menu.findItem(16908321) == null) {
+                    };
+                    pollEditTextCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    pollEditTextCell2.addTextWatcher(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+                            int adapterPosition;
+                            RecyclerView.ViewHolder viewHolderFindContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(pollEditTextCell2);
+                            if (viewHolderFindContainingViewHolder == null || (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition() - PollCreateActivity.this.answerStartRow) < 0 || adapterPosition >= PollCreateActivity.this.answers.length) {
                                 return;
                             }
-                            ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false, true);
-                        }
-                    }
-
-                    @Override
-                    public void lambda$new$1(PollEditTextCell pollEditTextCell4) {
-                        PollCreateActivity.this.onEmojiClicked(pollEditTextCell4);
-                    }
-
-                    @Override
-                    protected void onEditTextFocusChanged(boolean z2) {
-                        PollCreateActivity.this.onCellFocusChanges(this, z2);
-                    }
-                };
-                pollEditTextCell3.createErrorTextView();
-                pollEditTextCell3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                pollEditTextCell3.addTextWatcher(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-                        if (pollEditTextCell3.getTag() != null) {
-                            return;
-                        }
-                        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(PollCreateActivity.this.questionRow);
-                        if (viewHolderFindViewHolderForAdapterPosition != null && PollCreateActivity.this.suggestEmojiPanel != null) {
-                            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
-                                editable.removeSpan(imageSpan);
+                            if (PollCreateActivity.this.suggestEmojiPanel != null) {
+                                for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                                    editable.removeSpan(imageSpan);
+                                }
+                                Emoji.replaceEmoji(editable, pollEditTextCell2.getEditField().getPaint().getFontMetricsInt(), false);
+                                float y = (viewHolderFindContainingViewHolder.itemView.getY() - AndroidUtilities.dp(166.0f)) + viewHolderFindContainingViewHolder.itemView.getMeasuredHeight();
+                                if (y > 0.0f) {
+                                    PollCreateActivity.this.suggestEmojiPanel.setDirection(0);
+                                    PollCreateActivity.this.suggestEmojiPanel.setTranslationY(y);
+                                } else {
+                                    PollCreateActivity.this.suggestEmojiPanel.setDirection(1);
+                                    PollCreateActivity.this.suggestEmojiPanel.setTranslationY(viewHolderFindContainingViewHolder.itemView.getY());
+                                }
+                                PollCreateActivity.this.suggestEmojiPanel.setDelegate(pollEditTextCell2);
+                                PollCreateActivity.this.suggestEmojiPanel.fireUpdate();
                             }
-                            Emoji.replaceEmoji(editable, pollEditTextCell3.getEditField().getPaint().getFontMetricsInt(), false);
-                            PollCreateActivity.this.suggestEmojiPanel.setDirection(1);
-                            PollCreateActivity.this.suggestEmojiPanel.setDelegate(pollEditTextCell3);
-                            PollCreateActivity.this.suggestEmojiPanel.setTranslationY(viewHolderFindViewHolderForAdapterPosition.itemView.getY());
-                            PollCreateActivity.this.suggestEmojiPanel.fireUpdate();
+                            PollCreateActivity.this.answers[adapterPosition] = editable;
+                            PollCreateActivity.this.setTextLeft(pollEditTextCell2, adapterPosition);
+                            PollCreateActivity.this.checkDoneButton();
                         }
-                        PollCreateActivity.this.solutionString = editable;
-                        if (viewHolderFindViewHolderForAdapterPosition != null) {
-                            PollCreateActivity pollCreateActivity2 = PollCreateActivity.this;
-                            pollCreateActivity2.setTextLeft(viewHolderFindViewHolderForAdapterPosition.itemView, pollCreateActivity2.solutionRow);
+                    });
+                    pollEditTextCell2.setShowNextButton(true);
+                    EditTextBoldCursor textView = pollEditTextCell2.getTextView();
+                    textView.setImeOptions(textView.getImeOptions() | 5);
+                    textView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        @Override
+                        public final boolean onEditorAction(TextView textView2, int i2, KeyEvent keyEvent) {
+                            return PollCreateActivity.ListAdapter.m3750$r8$lambda$CjCfNCrb5lbvsuS0J5JXXx0(this.f$0, pollEditTextCell2, textView2, i2, keyEvent);
                         }
-                        PollCreateActivity.this.checkDoneButton();
-                    }
-                });
-                shadowSectionCell = pollEditTextCell3;
+                    });
+                    textView.setOnKeyListener(new View.OnKeyListener() {
+                        @Override
+                        public final boolean onKey(View view, int i2, KeyEvent keyEvent) {
+                            return PollCreateActivity.ListAdapter.m3751$r8$lambda$dNeJEm63DShYxRjXrpacmFzg4(pollEditTextCell2, view, i2, keyEvent);
+                        }
+                    });
+                    shadowSectionCell = pollEditTextCell2;
+                } else {
+                    pollEditTextCell = new PollEditTextCell(this.mContext, false, PollCreateActivity.this.isPremium ? 1 : 0, null) {
+                        @Override
+                        protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
+                            if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
+                                Menu menu = actionMode.getMenu();
+                                if (menu.findItem(16908321) == null) {
+                                    return;
+                                }
+                                ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false, true);
+                            }
+                        }
+
+                        @Override
+                        public void onEmojiButtonClicked(PollEditTextCell pollEditTextCell3) {
+                            PollCreateActivity.this.onEmojiClicked(pollEditTextCell3);
+                        }
+
+                        @Override
+                        protected void onEditTextFocusChanged(boolean z2) {
+                            PollCreateActivity.this.onCellFocusChanges(this, z2);
+                        }
+                    };
+                    pollEditTextCell.createErrorTextView();
+                    pollEditTextCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    pollEditTextCell.addTextWatcher(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+                            if (pollEditTextCell.getTag() != null) {
+                                return;
+                            }
+                            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(PollCreateActivity.this.questionRow);
+                            if (viewHolderFindViewHolderForAdapterPosition != null && PollCreateActivity.this.suggestEmojiPanel != null) {
+                                for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                                    editable.removeSpan(imageSpan);
+                                }
+                                Emoji.replaceEmoji(editable, pollEditTextCell.getEditField().getPaint().getFontMetricsInt(), false);
+                                PollCreateActivity.this.suggestEmojiPanel.setDirection(1);
+                                PollCreateActivity.this.suggestEmojiPanel.setDelegate(pollEditTextCell);
+                                PollCreateActivity.this.suggestEmojiPanel.setTranslationY(viewHolderFindViewHolderForAdapterPosition.itemView.getY());
+                                PollCreateActivity.this.suggestEmojiPanel.fireUpdate();
+                            }
+                            PollCreateActivity.this.solutionString = editable;
+                            if (viewHolderFindViewHolderForAdapterPosition != null) {
+                                PollCreateActivity pollCreateActivity2 = PollCreateActivity.this;
+                                pollCreateActivity2.setTextLeft(viewHolderFindViewHolderForAdapterPosition.itemView, pollCreateActivity2.solutionRow);
+                            }
+                            PollCreateActivity.this.checkDoneButton();
+                        }
+                    });
+                }
+                shadowSectionCell = pollEditTextCell;
+            } else {
+                TextCell textCell = new TextCell(this.mContext);
+                textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                shadowSectionCell = textCell;
             }
             shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             return new RecyclerListView.Holder(shadowSectionCell);
         }
 
-        public boolean lambda$onCreateViewHolder$0(PollEditTextCell pollEditTextCell, TextView textView, int i, KeyEvent keyEvent) {
+        public static boolean m3750$r8$lambda$CjCfNCrb5lbvsuS0J5JXXx0(ListAdapter listAdapter, PollEditTextCell pollEditTextCell, TextView textView, int i, KeyEvent keyEvent) {
             int adapterPosition;
             if (i != 5) {
+                listAdapter.getClass();
                 return false;
             }
             RecyclerView.ViewHolder viewHolderFindContainingViewHolder = PollCreateActivity.this.listView.findContainingViewHolder(pollEditTextCell);
             if (viewHolderFindContainingViewHolder != null && (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition()) != -1) {
                 int i2 = adapterPosition - PollCreateActivity.this.answerStartRow;
-                if (i2 != PollCreateActivity.this.answersCount - 1 || PollCreateActivity.this.answersCount >= PollCreateActivity.this.maxAnswersCount) {
-                    if (i2 != PollCreateActivity.this.answersCount - 1) {
-                        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(adapterPosition + 1);
-                        if (viewHolderFindViewHolderForAdapterPosition != null) {
-                            View view = viewHolderFindViewHolderForAdapterPosition.itemView;
-                            if (view instanceof PollEditTextCell) {
-                                ((PollEditTextCell) view).getTextView().requestFocus();
-                            }
-                        }
-                    } else {
-                        AndroidUtilities.hideKeyboard(pollEditTextCell.getTextView());
-                    }
-                } else {
+                if (i2 == PollCreateActivity.this.answersCount - 1 && PollCreateActivity.this.answersCount < PollCreateActivity.this.maxAnswersCount) {
                     PollCreateActivity.this.addNewField();
+                    return true;
+                }
+                if (i2 == PollCreateActivity.this.answersCount - 1) {
+                    AndroidUtilities.hideKeyboard(pollEditTextCell.getTextView());
+                    return true;
+                }
+                RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = PollCreateActivity.this.listView.findViewHolderForAdapterPosition(adapterPosition + 1);
+                if (viewHolderFindViewHolderForAdapterPosition != null) {
+                    View view = viewHolderFindViewHolderForAdapterPosition.itemView;
+                    if (view instanceof PollEditTextCell) {
+                        ((PollEditTextCell) view).getTextView().requestFocus();
+                    }
                 }
             }
             return true;
         }
 
-        public static boolean lambda$onCreateViewHolder$1(PollEditTextCell pollEditTextCell, View view, int i, KeyEvent keyEvent) {
+        public static boolean m3751$r8$lambda$dNeJEm63DShYxRjXrpacmFzg4(PollEditTextCell pollEditTextCell, View view, int i, KeyEvent keyEvent) {
             EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
             if (i != 67 || keyEvent.getAction() != 0 || editTextBoldCursor.length() != 0) {
                 return false;

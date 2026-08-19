@@ -9,20 +9,22 @@ public class AccountInstance {
     private int currentAccount;
 
     public static AccountInstance getInstance(int i) {
-        AccountInstance accountInstance = Instance[i];
-        if (accountInstance == null) {
-            synchronized (AccountInstance.class) {
-                try {
-                    accountInstance = Instance[i];
-                    if (accountInstance == null) {
-                        AccountInstance[] accountInstanceArr = Instance;
-                        AccountInstance accountInstance2 = new AccountInstance(i);
-                        accountInstanceArr[i] = accountInstance2;
-                        accountInstance = accountInstance2;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        AccountInstance accountInstance;
+        AccountInstance accountInstance2 = Instance[i];
+        if (accountInstance2 != null) {
+            return accountInstance2;
+        }
+        synchronized (AccountInstance.class) {
+            try {
+                accountInstance = Instance[i];
+                if (accountInstance == null) {
+                    AccountInstance[] accountInstanceArr = Instance;
+                    AccountInstance accountInstance3 = new AccountInstance(i);
+                    accountInstanceArr[i] = accountInstance3;
+                    accountInstance = accountInstance3;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return accountInstance;

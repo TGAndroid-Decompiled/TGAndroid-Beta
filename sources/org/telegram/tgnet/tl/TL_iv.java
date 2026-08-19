@@ -1374,9 +1374,14 @@ public class TL_iv {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.ordered = inputSerializedData.readBool(z);
-            for (RichText richText : Vector.deserialize(inputSerializedData, new TL_iv$pageBlockList_layer82$$ExternalSyntheticLambda0(), z)) {
+            ArrayList arrayListDeserialize = Vector.deserialize(inputSerializedData, new TL_iv$pageBlockList_layer82$$ExternalSyntheticLambda0(), z);
+            int size = arrayListDeserialize.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayListDeserialize.get(i);
+                i++;
                 TL_pageListItemText tL_pageListItemText = new TL_pageListItemText();
-                tL_pageListItemText.text = richText;
+                tL_pageListItemText.text = (RichText) obj;
                 this.items.add(tL_pageListItemText);
             }
         }
@@ -1386,9 +1391,15 @@ public class TL_iv {
             outputSerializedData.writeInt32(978896884);
             outputSerializedData.writeBool(this.ordered);
             ArrayList arrayList = new ArrayList(this.items.size());
-            for (PageListItem pageListItem : this.items) {
-                if (pageListItem instanceof TL_pageListItemText) {
-                    arrayList.add(((TL_pageListItemText) pageListItem).text);
+            ArrayList<PageListItem> arrayList2 = this.items;
+            int size = arrayList2.size();
+            int i = 0;
+            while (i < size) {
+                PageListItem pageListItem = arrayList2.get(i);
+                i++;
+                PageListItem pageListItem2 = pageListItem;
+                if (pageListItem2 instanceof TL_pageListItemText) {
+                    arrayList.add(((TL_pageListItemText) pageListItem2).text);
                 }
             }
             Vector.serialize(outputSerializedData, arrayList);

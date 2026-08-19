@@ -38,7 +38,6 @@ import java.nio.channels.WritableByteChannel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import org.telegram.messenger.AndroidUtilities;
 
@@ -147,14 +146,20 @@ public class MP4Builder {
         if (this.mdat.getContentSize() != 0) {
             flushCurrentMdat();
         }
-        for (Track track : this.currentMp4Movie.getTracks()) {
-            ArrayList<Sample> samples = track.getSamples();
-            int size = samples.size();
-            long[] jArr = new long[size];
-            for (int i = 0; i < size; i++) {
-                jArr[i] = samples.get(i).getSize();
+        ArrayList<Track> tracks = this.currentMp4Movie.getTracks();
+        int size = tracks.size();
+        int i = 0;
+        while (i < size) {
+            Track track = tracks.get(i);
+            i++;
+            Track track2 = track;
+            ArrayList<Sample> samples = track2.getSamples();
+            int size2 = samples.size();
+            long[] jArr = new long[size2];
+            for (int i2 = 0; i2 < size2; i2++) {
+                jArr[i2] = samples.get(i2).getSize();
             }
-            this.track2SampleSizes.put(track, jArr);
+            this.track2SampleSizes.put(track2, jArr);
         }
         createMovieBox(this.currentMp4Movie).getBox(this.fc);
         this.fos.flush();
@@ -187,14 +192,20 @@ public class MP4Builder {
                     channel.position(jPosition);
                 }
                 this.track2SampleSizes.clear();
-                for (Track track : this.currentMp4Movie.getTracks()) {
-                    ArrayList<Sample> samples = track.getSamples();
-                    int size = samples.size();
-                    long[] jArr = new long[size];
-                    for (int i = 0; i < size; i++) {
-                        jArr[i] = samples.get(i).getSize();
+                ArrayList<Track> tracks = this.currentMp4Movie.getTracks();
+                int size = tracks.size();
+                int i = 0;
+                while (i < size) {
+                    Track track = tracks.get(i);
+                    i++;
+                    Track track2 = track;
+                    ArrayList<Sample> samples = track2.getSamples();
+                    int size2 = samples.size();
+                    long[] jArr = new long[size2];
+                    for (int i2 = 0; i2 < size2; i2++) {
+                        jArr[i2] = samples.get(i2).getSize();
                     }
-                    this.track2SampleSizes.put(track, jArr);
+                    this.track2SampleSizes.put(track2, jArr);
                 }
                 createMovieBox(this.currentMp4Movie).getBox(channel);
                 channel.close();
@@ -311,9 +322,13 @@ public class MP4Builder {
 
     public long getTimescale(Mp4Movie mp4Movie) {
         long timeScale = !mp4Movie.getTracks().isEmpty() ? mp4Movie.getTracks().iterator().next().getTimeScale() : 0L;
-        Iterator<Track> it = mp4Movie.getTracks().iterator();
-        while (it.hasNext()) {
-            timeScale = gcd(it.next().getTimeScale(), timeScale);
+        ArrayList<Track> tracks = mp4Movie.getTracks();
+        int size = tracks.size();
+        int i = 0;
+        while (i < size) {
+            Track track = tracks.get(i);
+            i++;
+            timeScale = gcd(track.getTimeScale(), timeScale);
         }
         return timeScale;
     }
@@ -325,10 +340,17 @@ public class MP4Builder {
         movieHeaderBox.setModificationTime(new Date());
         movieHeaderBox.setMatrix(Matrix.ROTATE_0);
         long timescale = getTimescale(mp4Movie);
+        ArrayList<Track> tracks = mp4Movie.getTracks();
+        int size = tracks.size();
         long j = 0;
-        for (Track track : mp4Movie.getTracks()) {
-            track.prepare();
-            long duration = (track.getDuration() * timescale) / ((long) track.getTimeScale());
+        int i = 0;
+        int i2 = 0;
+        while (i2 < size) {
+            Track track = tracks.get(i2);
+            i2++;
+            Track track2 = track;
+            track2.prepare();
+            long duration = (track2.getDuration() * timescale) / ((long) track2.getTimeScale());
             if (duration > j) {
                 j = duration;
             }
@@ -337,9 +359,12 @@ public class MP4Builder {
         movieHeaderBox.setTimescale(timescale);
         movieHeaderBox.setNextTrackId(mp4Movie.getTracks().size() + 1);
         movieBox.addBox(movieHeaderBox);
-        Iterator<Track> it = mp4Movie.getTracks().iterator();
-        while (it.hasNext()) {
-            movieBox.addBox(createTrackBox(it.next(), mp4Movie));
+        ArrayList<Track> tracks2 = mp4Movie.getTracks();
+        int size2 = tracks2.size();
+        while (i < size2) {
+            Track track3 = tracks2.get(i);
+            i++;
+            movieBox.addBox(createTrackBox(track3, mp4Movie));
         }
         return movieBox;
     }
@@ -484,20 +509,26 @@ public class MP4Builder {
 
     protected void createStco(Track track, SampleTableBox sampleTableBox) {
         ArrayList arrayList = new ArrayList();
-        long size = -1;
-        for (Sample sample : track.getSamples()) {
-            long offset = sample.getOffset();
-            if (size != -1 && size != offset) {
-                size = -1;
+        ArrayList<Sample> samples = track.getSamples();
+        int size = samples.size();
+        long size2 = -1;
+        int i = 0;
+        while (i < size) {
+            Sample sample = samples.get(i);
+            i++;
+            Sample sample2 = sample;
+            long offset = sample2.getOffset();
+            if (size2 != -1 && size2 != offset) {
+                size2 = -1;
             }
-            if (size == -1) {
+            if (size2 == -1) {
                 arrayList.add(Long.valueOf(offset));
             }
-            size = sample.getSize() + offset;
+            size2 = sample2.getSize() + offset;
         }
         long[] jArr = new long[arrayList.size()];
-        for (int i = 0; i < arrayList.size(); i++) {
-            jArr[i] = ((Long) arrayList.get(i)).longValue();
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            jArr[i2] = ((Long) arrayList.get(i2)).longValue();
         }
         StaticChunkOffsetBox staticChunkOffsetBox = new StaticChunkOffsetBox();
         staticChunkOffsetBox.setChunkOffsets(jArr);

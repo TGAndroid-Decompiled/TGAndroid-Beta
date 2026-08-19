@@ -83,7 +83,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         this.focusInvalidator = new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
             public final void onGlobalFocusChanged(View view, View view2) {
-                this.f$0.lambda$new$1(view, view2);
+                this.f$0.invalidateGridForFocus();
             }
         };
         this.resourcesProvider = resourcesProvider;
@@ -105,7 +105,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         richEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
             public final void onSpansChanged() {
-                this.f$0.lambda$new$0();
+                RichTableCell.m5006$r8$lambda$Su1cqipSUeadHDEPTbqvFgQHo(this.f$0);
             }
         });
         addView(richEditText);
@@ -222,13 +222,14 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
                 RichTableCell.this.post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onSelectionChanged$0(richEditText, i2, selectionHelper, iTitleChildPos, i);
+                        RichTableCell.AnonymousClass1.$r8$lambda$AjNvT1ALaMA8P9LXxyAqKnmip3w(this.f$0, richEditText, i2, selectionHelper, iTitleChildPos, i);
                     }
                 });
             }
         }
 
-        public void lambda$onSelectionChanged$0(RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2, int i3) {
+        public static void $r8$lambda$AjNvT1ALaMA8P9LXxyAqKnmip3w(AnonymousClass1 anonymousClass1, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2, int i3) {
+            anonymousClass1.getClass();
             if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd() || !articleTextSelectionHelper.selectRangeOf(RichTableCell.this, i2, i3, i)) {
                 return;
             }
@@ -238,12 +239,12 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         }
     }
 
-    public void lambda$new$0() {
+    public static void m5006$r8$lambda$Su1cqipSUeadHDEPTbqvFgQHo(RichTableCell richTableCell) {
         BlockRow blockRow;
-        rememberTitleAutoBoldState();
-        persistTitle();
-        Delegate delegate = this.delegate;
-        if (delegate == null || (blockRow = this.currentRow) == null) {
+        richTableCell.rememberTitleAutoBoldState();
+        richTableCell.persistTitle();
+        Delegate delegate = richTableCell.delegate;
+        if (delegate == null || (blockRow = richTableCell.currentRow) == null) {
             return;
         }
         delegate.onSpansChanged(blockRow);
@@ -420,11 +421,13 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         }
         int left = i - (this.titleEditText.getLeft() + this.titleEditText.getPaddingLeft());
         int top = i2 - (this.titleEditText.getTop() + this.titleEditText.getPaddingTop());
-        if (top < 0 || top >= layout.getHeight() || (lineForVertical = layout.getLineForVertical(top)) < 0 || lineForVertical >= layout.getLineCount()) {
-            return false;
+        if (top >= 0 && top < layout.getHeight() && (lineForVertical = layout.getLineForVertical(top)) >= 0 && lineForVertical < layout.getLineCount()) {
+            float f = left;
+            if (f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical)) {
+                return true;
+            }
         }
-        float f = left;
-        return f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical);
+        return false;
     }
 
     public Set<TL_iv.pageTableCell> getSelectedCells() {
@@ -736,11 +739,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         super.onDetachedFromWindow();
     }
 
-    public void lambda$new$1(View view, View view2) {
-        invalidateGridForFocus();
-    }
-
-    private void invalidateGridForFocus() {
+    public void invalidateGridForFocus() {
         updateHandleOverlayLayer();
         RichTableCellGrid richTableCellGrid = this.grid;
         if (richTableCellGrid != null) {
@@ -765,11 +764,15 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         }
         int paddingTop = top2 - richTableCellHostHostForAnchor.editText.getPaddingTop();
         int paddingLeft = left2 - richTableCellHostHostForAnchor.editText.getPaddingLeft();
-        if (paddingTop < 0 || paddingTop >= layout.getHeight() || (lineForVertical = layout.getLineForVertical(paddingTop)) < 0 || lineForVertical >= layout.getLineCount()) {
-            return false;
+        if (paddingTop >= 0 && paddingTop < layout.getHeight() && (lineForVertical = layout.getLineForVertical(paddingTop)) >= 0 && lineForVertical < layout.getLineCount()) {
+            float lineLeft = layout.getLineLeft(lineForVertical);
+            float lineRight = layout.getLineRight(lineForVertical);
+            float f = paddingLeft;
+            if (f >= lineLeft && f <= lineRight) {
+                return true;
+            }
         }
-        float f = paddingLeft;
-        return f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical);
+        return false;
     }
 
     public void applyHeaderToggle(boolean z) {
@@ -927,9 +930,9 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
             this.grid.invalidate();
             focusCellAt(iMin2, iMin);
             notifyCellSelectionChanged();
-        } else {
-            this.selectedCells.addAll(hashSet);
+            return zMergeCells;
         }
+        this.selectedCells.addAll(hashSet);
         return zMergeCells;
     }
 
@@ -950,9 +953,9 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
             this.grid.invalidate();
             focusCellAt(iAnchorRowOf, iAnchorColOf);
             notifyCellSelectionChanged();
-        } else {
-            this.selectedCells.add(pagetablecell);
+            return zUnmergeCell;
         }
+        this.selectedCells.add(pagetablecell);
         return zUnmergeCell;
     }
 
@@ -1099,13 +1102,13 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$focusCellAt$2(pagetablecell);
+                RichTableCell.m5005$r8$lambda$OiBw7tU0oyPrRYM2QMmv9Rm2Nc(this.f$0, pagetablecell);
             }
         });
     }
 
-    public void lambda$focusCellAt$2(TL_iv.pageTableCell pagetablecell) {
-        RichTableCellHost richTableCellHostHostForAnchor = this.grid.hostForAnchor(pagetablecell);
+    public static void m5005$r8$lambda$OiBw7tU0oyPrRYM2QMmv9Rm2Nc(RichTableCell richTableCell, TL_iv.pageTableCell pagetablecell) {
+        RichTableCellHost richTableCellHostHostForAnchor = richTableCell.grid.hostForAnchor(pagetablecell);
         if (richTableCellHostHostForAnchor == null) {
             return;
         }
@@ -1168,7 +1171,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
                 richTableCellHost.editText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
                     @Override
                     public final void onSpansChanged() {
-                        this.f$0.lambda$wireCellListeners$3(richTableCellHost);
+                        RichTableCell.$r8$lambda$kFWEEX_IFW3G8zNagGHVmYMiA7I(this.f$0, richTableCellHost);
                     }
                 });
             }
@@ -1269,13 +1272,14 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
                 RichTableCell.this.post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onSelectionChanged$0(richEditText, i2, selectionHelper, iChildPosForAnchor, i);
+                        RichTableCell.AnonymousClass3.m5007$r8$lambda$h4CWbDdD6LfyxuGhoQxoD0zeLU(this.f$0, richEditText, i2, selectionHelper, iChildPosForAnchor, i);
                     }
                 });
             }
         }
 
-        public void lambda$onSelectionChanged$0(RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2, int i3) {
+        public static void m5007$r8$lambda$h4CWbDdD6LfyxuGhoQxoD0zeLU(AnonymousClass3 anonymousClass3, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2, int i3) {
+            anonymousClass3.getClass();
             if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd() || !articleTextSelectionHelper.selectRangeOf(RichTableCell.this, i2, i3, i)) {
                 return;
             }
@@ -1285,14 +1289,15 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         }
     }
 
-    public void lambda$wireCellListeners$3(RichTableCellHost richTableCellHost) {
+    public static void $r8$lambda$kFWEEX_IFW3G8zNagGHVmYMiA7I(RichTableCell richTableCell, RichTableCellHost richTableCellHost) {
         BlockRow blockRow;
+        richTableCell.getClass();
         TL_iv.pageTableCell pagetablecell = richTableCellHost.cell;
         if (pagetablecell != null) {
             TableModel.applyStyledText(pagetablecell, richTableCellHost.editText.getText());
         }
-        Delegate delegate = this.delegate;
-        if (delegate == null || (blockRow = this.currentRow) == null) {
+        Delegate delegate = richTableCell.delegate;
+        if (delegate == null || (blockRow = richTableCell.currentRow) == null) {
             return;
         }
         delegate.onSpansChanged(blockRow);
@@ -1390,13 +1395,14 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
                 public CharSequence getText() {
                     TL_iv.RichText richText;
                     BlockRow blockRow = RichTableCell.this.currentRow;
-                    if (blockRow != null) {
-                        TL_iv.PageBlock pageBlock = blockRow.block;
-                        if ((pageBlock instanceof TL_iv.pageBlockTable) && (richText = ((TL_iv.pageBlockTable) pageBlock).title) != null) {
-                            return RichTextStyle.toSpannable(richText);
-                        }
+                    if (blockRow == null) {
+                        return "";
                     }
-                    return "";
+                    TL_iv.PageBlock pageBlock = blockRow.block;
+                    if (!(pageBlock instanceof TL_iv.pageBlockTable) || (richText = ((TL_iv.pageBlockTable) pageBlock).title) == null) {
+                        return "";
+                    }
+                    return RichTextStyle.toSpannable(richText);
                 }
             });
         }

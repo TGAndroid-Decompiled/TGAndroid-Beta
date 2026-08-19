@@ -99,13 +99,13 @@ public class SwipeGestureSettingsView extends FrameLayout {
         this.picker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return this.f$0.lambda$new$0(i3);
+                return SwipeGestureSettingsView.m2863$r8$lambda$wmjRpPKY79yrqKxg2ozJCgEyaA(this.f$0, i3);
             }
         });
         this.picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public final void onValueChange(NumberPicker numberPicker2, int i3, int i4) {
-                this.f$0.lambda$new$1(numberPicker2, i3, i4);
+                SwipeGestureSettingsView.$r8$lambda$NlDmQiN0aDbkcQrUsXScxNXMR9E(this.f$0, numberPicker2, i3, i4);
             }
         });
         this.picker.setImportantForAccessibility(2);
@@ -128,14 +128,14 @@ public class SwipeGestureSettingsView extends FrameLayout {
         this.currentIconValue = this.picker.getValue();
     }
 
-    public String lambda$new$0(int i) {
-        return this.strings[i];
+    public static String m2863$r8$lambda$wmjRpPKY79yrqKxg2ozJCgEyaA(SwipeGestureSettingsView swipeGestureSettingsView, int i) {
+        return swipeGestureSettingsView.strings[i];
     }
 
-    public void lambda$new$1(NumberPicker numberPicker, int i, int i2) {
-        swapIcons();
+    public static void $r8$lambda$NlDmQiN0aDbkcQrUsXScxNXMR9E(SwipeGestureSettingsView swipeGestureSettingsView, NumberPicker numberPicker, int i, int i2) {
+        swipeGestureSettingsView.swapIcons();
         SharedConfig.updateChatListSwipeSetting(i2);
-        invalidate();
+        swipeGestureSettingsView.invalidate();
         try {
             numberPicker.performHapticFeedback(3, 2);
         } catch (Exception unused) {
@@ -163,7 +163,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$swapIcons$2();
+                    SwipeGestureSettingsView.m2862$r8$lambda$YgpkfuTuKiC_0DdKcX7KXwRWws(this.f$0);
                 }
             };
             this.swapIconRunnable = runnable;
@@ -171,9 +171,9 @@ public class SwipeGestureSettingsView extends FrameLayout {
         }
     }
 
-    public void lambda$swapIcons$2() {
-        this.swapIconRunnable = null;
-        swapIcons();
+    public static void m2862$r8$lambda$YgpkfuTuKiC_0DdKcX7KXwRWws(SwipeGestureSettingsView swipeGestureSettingsView) {
+        swipeGestureSettingsView.swapIconRunnable = null;
+        swipeGestureSettingsView.swapIcons();
     }
 
     @Override

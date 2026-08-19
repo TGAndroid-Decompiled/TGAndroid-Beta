@@ -53,6 +53,8 @@ public class SliderView extends View {
     private final Paint whitePaint;
 
     public SliderView(Context context, int i) {
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable;
+        int i2;
         super(context);
         this.minVolume = 0.0f;
         this.maxVolume = 1.0f;
@@ -68,8 +70,8 @@ public class SliderView extends View {
         this.speakerWave1Paint = paint4;
         Paint paint5 = new Paint(1);
         this.speakerWave2Paint = paint5;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-        this.text = animatedTextDrawable;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+        this.text = animatedTextDrawable2;
         this.clipPath = new Path();
         this.speaker1Path = new Path();
         this.speaker2Path = new Path();
@@ -79,13 +81,13 @@ public class SliderView extends View {
         this.wave2Alpha = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.textPaint = new TextPaint(1);
         this.currentType = i;
-        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
-        animatedTextDrawable.setAnimationProperties(0.3f, 0L, 40L, cubicBezierInterpolator);
-        animatedTextDrawable.setCallback(this);
-        animatedTextDrawable.setTextColor(-1);
-        animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+        animatedTextDrawable2.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 40L, cubicBezierInterpolator);
+        animatedTextDrawable2.setCallback(this);
+        animatedTextDrawable2.setTextColor(-1);
+        animatedTextDrawable2.setOverrideFullWidth(AndroidUtilities.displaySize.x);
         if (i == 0) {
-            animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.0f));
+            animatedTextDrawable2.setTextSize(AndroidUtilities.dp(15.0f));
             this.text2 = null;
             paint2.setColor(-1);
             paint3.setColor(-1);
@@ -93,27 +95,31 @@ public class SliderView extends View {
             paint5.setColor(-1);
             paint5.setStyle(Paint.Style.STROKE);
             paint5.setStrokeCap(Paint.Cap.ROUND);
+            animatedTextDrawable = animatedTextDrawable2;
+            i2 = -1;
         } else {
-            animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
-            animatedTextDrawable.setGravity(5);
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-            this.text2 = animatedTextDrawable2;
-            animatedTextDrawable2.setOverrideFullWidth(AndroidUtilities.displaySize.x);
             animatedTextDrawable2.setTextSize(AndroidUtilities.dp(14.0f));
-            animatedTextDrawable2.setTypeface(AndroidUtilities.bold());
-            animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 40L, cubicBezierInterpolator);
-            animatedTextDrawable2.setCallback(this);
-            animatedTextDrawable2.setTextColor(-1);
+            animatedTextDrawable2.setGravity(5);
+            animatedTextDrawable = animatedTextDrawable2;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+            this.text2 = animatedTextDrawable3;
+            animatedTextDrawable3.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+            animatedTextDrawable3.setTextSize(AndroidUtilities.dp(14.0f));
+            animatedTextDrawable3.setTypeface(AndroidUtilities.bold());
+            i2 = -1;
+            animatedTextDrawable3.setAnimationProperties(0.3f, 0L, 40L, cubicBezierInterpolator);
+            animatedTextDrawable3.setCallback(this);
+            animatedTextDrawable3.setTextColor(-1);
             if (i == 1) {
-                animatedTextDrawable2.setText(LocaleController.getString(R.string.FlashWarmth));
+                animatedTextDrawable3.setText(LocaleController.getString(R.string.FlashWarmth));
             } else if (i == 2) {
-                animatedTextDrawable2.setText(LocaleController.getString(R.string.FlashIntensity));
+                animatedTextDrawable3.setText(LocaleController.getString(R.string.FlashIntensity));
             } else if (i == 3) {
-                animatedTextDrawable2.setText(LocaleController.getString(R.string.WallpaperDimming));
+                animatedTextDrawable3.setText(LocaleController.getString(R.string.WallpaperDimming));
             }
         }
         animatedTextDrawable.setText("");
-        paint.setColor(-1);
+        paint.setColor(i2);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
     }
 

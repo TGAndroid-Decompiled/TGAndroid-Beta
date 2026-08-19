@@ -169,11 +169,9 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         public void draw(Canvas canvas) {
             int iSave = canvas.save();
             try {
-                try {
-                    super.draw(canvas);
-                } catch (Exception e) {
-                    FileLog.e("probably forgot to put setCallback", e);
-                }
+                super.draw(canvas);
+            } catch (Exception e) {
+                FileLog.e("probably forgot to put setCallback", e);
             } finally {
                 canvas.restoreToCount(iSave);
             }

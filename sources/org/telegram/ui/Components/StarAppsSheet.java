@@ -29,15 +29,15 @@ public class StarAppsSheet extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$0(view, i2);
+                StarAppsSheet.$r8$lambda$FVOAvvo4ZVgEI5DyLsXrg4gvCwo(this.f$0, view, i2);
             }
         });
     }
 
-    public void lambda$new$0(View view, int i) {
-        Object object = this.adapter.getObject(i - 1);
+    public static void $r8$lambda$FVOAvvo4ZVgEI5DyLsXrg4gvCwo(StarAppsSheet starAppsSheet, View view, int i) {
+        Object object = starAppsSheet.adapter.getObject(i - 1);
         if (object instanceof TLRPC.User) {
-            MessagesController.getInstance(this.currentAccount).openApp(this.attachedFragment, (TLRPC.User) object, null, 0, null);
+            MessagesController.getInstance(starAppsSheet.currentAccount).openApp(starAppsSheet.attachedFragment, (TLRPC.User) object, null, 0, null);
         }
     }
 

@@ -85,23 +85,24 @@ public class RecordStatusDrawable extends StatusDrawable {
         if (paint == null) {
             paint = Theme.chat_statusRecordPaint;
         }
-        if (paint.getStrokeWidth() != AndroidUtilities.dp(2.0f)) {
-            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        Paint paint2 = paint;
+        if (paint2.getStrokeWidth() != AndroidUtilities.dp(2.0f)) {
+            paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         }
         canvas.save();
         canvas.translate(0.0f, (getIntrinsicHeight() / 2) + AndroidUtilities.dp(this.isChat ? 1.0f : 2.0f));
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
-                paint.setAlpha((int) (this.alpha * this.progress));
+                paint2.setAlpha((int) (this.alpha * this.progress));
             } else if (i == 3) {
-                paint.setAlpha((int) (this.alpha * (1.0f - this.progress)));
+                paint2.setAlpha((int) (this.alpha * (1.0f - this.progress)));
             } else {
-                paint.setAlpha(this.alpha);
+                paint2.setAlpha(this.alpha);
             }
             float fDp = (AndroidUtilities.dp(4.0f) * i) + (AndroidUtilities.dp(4.0f) * this.progress);
             float f = -fDp;
             this.rect.set(f, f, fDp, fDp);
-            canvas.drawArc(this.rect, -15.0f, 30.0f, false, paint);
+            canvas.drawArc(this.rect, -15.0f, 30.0f, false, paint2);
         }
         canvas.restore();
         if (this.started) {

@@ -114,14 +114,10 @@ public class DispatchQueueMainThreadSync extends Thread {
         postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$recycle$0();
+                this.f$0.handler.getLooper().quit();
             }
         });
         this.isRecycled = true;
-    }
-
-    public void lambda$recycle$0() {
-        this.handler.getLooper().quit();
     }
 
     @Override
@@ -130,7 +126,7 @@ public class DispatchQueueMainThreadSync extends Thread {
         this.handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @Override
             public final boolean handleMessage(Message message) {
-                return this.f$0.lambda$run$1(message);
+                return DispatchQueueMainThreadSync.m414$r8$lambda$E779pQCgwglpboUjyEXnUhMILs(this.f$0, message);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -146,8 +142,8 @@ public class DispatchQueueMainThreadSync extends Thread {
         Looper.loop();
     }
 
-    public boolean lambda$run$1(Message message) {
-        handleMessage(message);
+    public static boolean m414$r8$lambda$E779pQCgwglpboUjyEXnUhMILs(DispatchQueueMainThreadSync dispatchQueueMainThreadSync, Message message) {
+        dispatchQueueMainThreadSync.handleMessage(message);
         return true;
     }
 

@@ -427,30 +427,31 @@ public class ShareTopView extends FrameLayout implements NotificationCenter.Noti
         this.linkRequestId = AccountInstance.getInstance(this.currentAccount).getConnectionsManager().sendRequest(getwebpagepreview, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$requestLinkPreview$2(i, str, tLObject, tL_error);
+                ShareTopView.$r8$lambda$A6ZiDmaA01FOWLNWhPbQ_iufumE(this.f$0, i, str, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$requestLinkPreview$2(final int i, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$A6ZiDmaA01FOWLNWhPbQ_iufumE(final ShareTopView shareTopView, final int i, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        shareTopView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$requestLinkPreview$1(i, tLObject, str);
+                ShareTopView.m2760$r8$lambda$mKFoh2HtvAFSQQxf684zGN4Dd8(this.f$0, i, tLObject, str);
             }
         });
     }
 
-    public void lambda$requestLinkPreview$1(int i, TLObject tLObject, String str) {
+    public static void m2760$r8$lambda$mKFoh2HtvAFSQQxf684zGN4Dd8(ShareTopView shareTopView, int i, TLObject tLObject, String str) {
         TLRPC.WebPage webPage;
-        if (i != this.linkRequestSerial) {
+        if (i != shareTopView.linkRequestSerial) {
             return;
         }
-        this.linkRequestId = 0;
+        shareTopView.linkRequestId = 0;
         if (tLObject instanceof TL_account.webPagePreview) {
             TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(webpagepreview.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(webpagepreview.chats, false);
+            MessagesController.getInstance(shareTopView.currentAccount).putUsers(webpagepreview.users, false);
+            MessagesController.getInstance(shareTopView.currentAccount).putChats(webpagepreview.chats, false);
             TLRPC.MessageMedia messageMedia = webpagepreview.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                 webPage = ((TLRPC.TL_messageMediaWebPage) messageMedia).webpage;
@@ -461,28 +462,28 @@ public class ShareTopView extends FrameLayout implements NotificationCenter.Noti
             webPage = null;
         }
         if (webPage instanceof TLRPC.TL_webPage) {
-            if (this.linkPreviewCache.size() > 5) {
-                Iterator it = this.linkPreviewCache.keySet().iterator();
-                while (it.hasNext() && this.linkPreviewCache.size() > 5) {
+            if (shareTopView.linkPreviewCache.size() > 5) {
+                Iterator it = shareTopView.linkPreviewCache.keySet().iterator();
+                while (it.hasNext() && shareTopView.linkPreviewCache.size() > 5) {
                     it.next();
                     it.remove();
                 }
             }
-            this.linkPreviewCache.put(str, webPage);
-            this.loadedWebPage = webPage;
-            bindLinkLoaded(current(), webPage, str);
+            shareTopView.linkPreviewCache.put(str, webPage);
+            shareTopView.loadedWebPage = webPage;
+            shareTopView.bindLinkLoaded(shareTopView.current(), webPage, str);
             return;
         }
         if (webPage instanceof TLRPC.TL_webPagePending) {
-            this.loadedWebPage = webPage;
+            shareTopView.loadedWebPage = webPage;
             return;
         }
         if (webPage instanceof TLRPC.TL_webPageEmpty) {
-            this.loadedWebPage = null;
-            int i2 = this.currentMode;
+            shareTopView.loadedWebPage = null;
+            int i2 = shareTopView.currentMode;
             if (i2 != 0) {
-                this.currentMode = 0;
-                OnModeChangeListener onModeChangeListener = this.modeChangeListener;
+                shareTopView.currentMode = 0;
+                OnModeChangeListener onModeChangeListener = shareTopView.modeChangeListener;
                 if (onModeChangeListener != null) {
                     onModeChangeListener.onModeChanged(i2, 0);
                 }
@@ -506,25 +507,28 @@ public class ShareTopView extends FrameLayout implements NotificationCenter.Noti
             }
             return;
         }
-        Iterator it = arrayList.iterator();
+        int size = arrayList.size();
         int i = 0;
         int i2 = 0;
-        while (it.hasNext()) {
-            if (((MediaController.PhotoEntry) it.next()).isVideo) {
-                i++;
-            } else {
+        int i3 = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            if (((MediaController.PhotoEntry) obj).isVideo) {
                 i2++;
+            } else {
+                i3++;
             }
         }
-        int size = arrayList.size();
-        if (size == 1) {
+        int size2 = arrayList.size();
+        if (size2 == 1) {
             layout.name.setText(LocaleController.getString(((MediaController.PhotoEntry) arrayList.get(0)).isVideo ? R.string.ShareSendVideo : R.string.ShareSendPhoto));
-        } else if (i == 0) {
-            layout.name.setText(LocaleController.formatPluralString("ShareSendPhotos", size, new Object[0]));
         } else if (i2 == 0) {
-            layout.name.setText(LocaleController.formatPluralString("ShareSendVideos", size, new Object[0]));
+            layout.name.setText(LocaleController.formatPluralString("ShareSendPhotos", size2, new Object[0]));
+        } else if (i3 == 0) {
+            layout.name.setText(LocaleController.formatPluralString("ShareSendVideos", size2, new Object[0]));
         } else {
-            layout.name.setText(LocaleController.formatPluralString("ShareSendItems", size, new Object[0]));
+            layout.name.setText(LocaleController.formatPluralString("ShareSendItems", size2, new Object[0]));
         }
         layout.obj.setText(buildRecipientText(layout));
         bindThumb(layout.images[0], arrayList.size() > 0 ? (MediaController.PhotoEntry) arrayList.get(0) : null);
@@ -615,9 +619,13 @@ public class ShareTopView extends FrameLayout implements NotificationCenter.Noti
             return "";
         }
         StringBuilder sb = new StringBuilder();
-        Iterator it = this.recipients.iterator();
-        while (it.hasNext()) {
-            long jLongValue = ((Long) it.next()).longValue();
+        ArrayList arrayList = this.recipients;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            long jLongValue = ((Long) obj).longValue();
             if (sb.length() > 0) {
                 sb.append(", ");
             }
@@ -643,30 +651,30 @@ public class ShareTopView extends FrameLayout implements NotificationCenter.Noti
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$startHintRotation$3();
+                ShareTopView.$r8$lambda$Nb22ItWQJ08gUUbIUXFzK7iiFYw(this.f$0);
             }
         };
         this.hintRunnable = runnable;
         AndroidUtilities.runOnUIThread(runnable, 1000L);
     }
 
-    public void lambda$startHintRotation$3() {
-        if (this.currentMode != 1) {
-            for (Layout layout : this.layouts) {
+    public static void $r8$lambda$Nb22ItWQJ08gUUbIUXFzK7iiFYw(ShareTopView shareTopView) {
+        if (shareTopView.currentMode != 1) {
+            for (Layout layout : shareTopView.layouts) {
                 layout.obj.setAlpha(1.0f);
                 layout.obj.setScaleX(1.0f);
                 layout.obj.setScaleY(1.0f);
                 layout.objHint.setAlpha(0.0f);
             }
-            this.showingHint = false;
-            AndroidUtilities.runOnUIThread(this.hintRunnable, 4000L);
+            shareTopView.showingHint = false;
+            AndroidUtilities.runOnUIThread(shareTopView.hintRunnable, 4000L);
             return;
         }
-        this.showingHint = !this.showingHint;
-        for (Layout layout2 : this.layouts) {
+        shareTopView.showingHint = !shareTopView.showingHint;
+        for (Layout layout2 : shareTopView.layouts) {
             layout2.obj.setPivotX(0.0f);
             layout2.objHint.setPivotX(0.0f);
-            if (this.showingHint) {
+            if (shareTopView.showingHint) {
                 layout2.obj.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
                 layout2.objHint.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
             } else {
@@ -674,7 +682,7 @@ public class ShareTopView extends FrameLayout implements NotificationCenter.Noti
                 layout2.objHint.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
             }
         }
-        AndroidUtilities.runOnUIThread(this.hintRunnable, 4000L);
+        AndroidUtilities.runOnUIThread(shareTopView.hintRunnable, 4000L);
     }
 
     public void stopHintRotation() {
@@ -786,14 +794,10 @@ public class ShareTopView extends FrameLayout implements NotificationCenter.Noti
             imageView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    ShareTopView.this.dismissWebPagePreview();
                 }
             });
             this.container.addView(imageView2, LayoutHelper.createLinear(36, 36, 21, 0, 0, 4, 0));
-        }
-
-        public void lambda$new$0(View view) {
-            ShareTopView.this.dismissWebPagePreview();
         }
     }
 }

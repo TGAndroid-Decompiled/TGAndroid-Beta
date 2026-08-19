@@ -99,19 +99,19 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         this.xUpdater2 = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$new$1(valueAnimator);
+                this.f$0.mRenderer.angleX2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             }
         };
         this.xUpdater = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$new$2(valueAnimator);
+                this.f$0.mRenderer.angleX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             }
         };
         this.yUpdater = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$new$3(valueAnimator);
+                this.f$0.mRenderer.angleY = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             }
         };
         this.type = i2;
@@ -169,13 +169,13 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSingleTapUp$0(fNextInt, fNextInt2);
+                    GLIconTextureView.AnonymousClass1.$r8$lambda$nu0ruVaKQ5jIEF3MuPrAqEayuR4(this.f$0, fNextInt, fNextInt2);
                 }
             }, 16L);
             return true;
         }
 
-        public void lambda$onSingleTapUp$0(float f, float f2) {
+        public static void $r8$lambda$nu0ruVaKQ5jIEF3MuPrAqEayuR4(AnonymousClass1 anonymousClass1, float f, float f2) {
             ValueAnimator valueAnimator = GLIconTextureView.this.backAnimation;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -453,9 +453,8 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         } else {
             iArr = new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12326, 0, 12338, 1, 12344};
         }
-        int[] iArr3 = iArr;
         this.eglConfig = null;
-        if (!this.mEgl.eglChooseConfig(this.mEglDisplay, iArr3, eGLConfigArr, 1, iArr2)) {
+        if (!this.mEgl.eglChooseConfig(this.mEglDisplay, iArr, eGLConfigArr, 1, iArr2)) {
             throw new IllegalArgumentException("eglChooseConfig failed " + GLUtils.getEGLErrorString(this.mEgl.eglGetError()));
         }
         if (iArr2[0] > 0) {
@@ -510,7 +509,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$startBackAnimation$0(f, f3, f2, valueAnimator);
+                GLIconTextureView.m2576$r8$lambda$RoeAmLTxcl1yTBHo_oeMcSmbWQ(this.f$0, f, f3, f2, valueAnimator);
             }
         });
         this.backAnimation.setDuration(600L);
@@ -523,9 +522,10 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         scheduleIdleAnimation(this.idleDelay);
     }
 
-    public void lambda$startBackAnimation$0(float f, float f2, float f3, ValueAnimator valueAnimator) {
+    public static void m2576$r8$lambda$RoeAmLTxcl1yTBHo_oeMcSmbWQ(GLIconTextureView gLIconTextureView, float f, float f2, float f3, ValueAnimator valueAnimator) {
+        gLIconTextureView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        GLIconRenderer gLIconRenderer = this.mRenderer;
+        GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
         gLIconRenderer.angleX = f * fFloatValue;
         gLIconRenderer.angleX2 = f2 * fFloatValue;
         gLIconRenderer.angleY = fFloatValue * f3;
@@ -565,18 +565,6 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
             gLIconRenderer.angleX2 = 0.0f;
         }
         this.attached = false;
-    }
-
-    public void lambda$new$1(ValueAnimator valueAnimator) {
-        this.mRenderer.angleX2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-    }
-
-    public void lambda$new$2(ValueAnimator valueAnimator) {
-        this.mRenderer.angleX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-    }
-
-    public void lambda$new$3(ValueAnimator valueAnimator) {
-        this.mRenderer.angleY = ((Float) valueAnimator.getAnimatedValue()).floatValue();
     }
 
     public void scheduleIdleAnimation(long j) {

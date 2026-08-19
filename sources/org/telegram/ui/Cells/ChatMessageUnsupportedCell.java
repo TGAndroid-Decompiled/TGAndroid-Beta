@@ -41,13 +41,13 @@ public class ChatMessageUnsupportedCell extends View implements Theme.Colorable 
         unsupportedBlockDrawable.setOnClickListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                ChatMessageUnsupportedCell.$r8$lambda$9kWNZCd7_y2vHz1m5G2sNSX0N74(this.f$0);
             }
         });
     }
 
-    public void lambda$new$0() {
-        ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
+    public static void $r8$lambda$9kWNZCd7_y2vHz1m5G2sNSX0N74(ChatMessageUnsupportedCell chatMessageUnsupportedCell) {
+        ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate = chatMessageUnsupportedCell.delegate;
         if (chatMessageCellDelegate != null) {
             chatMessageCellDelegate.didPressAppUpdateButton();
         }

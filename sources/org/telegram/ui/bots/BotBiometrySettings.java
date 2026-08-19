@@ -65,18 +65,18 @@ public class BotBiometrySettings extends BaseFragment {
         BotBiometry.getBots(getContext(), this.currentAccount, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$createView$0((ArrayList) obj);
+                BotBiometrySettings.$r8$lambda$buU3pTP4agEiSbcLsjY6rWpN0ys(this.f$0, (ArrayList) obj);
             }
         });
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
-    public void lambda$createView$0(ArrayList arrayList) {
+    public static void $r8$lambda$buU3pTP4agEiSbcLsjY6rWpN0ys(BotBiometrySettings botBiometrySettings, ArrayList arrayList) {
         UniversalAdapter universalAdapter;
-        this.biometryBots.clear();
-        this.biometryBots.addAll(arrayList);
-        UniversalRecyclerView universalRecyclerView = this.listView;
+        botBiometrySettings.biometryBots.clear();
+        botBiometrySettings.biometryBots.addAll(arrayList);
+        UniversalRecyclerView universalRecyclerView = botBiometrySettings.listView;
         if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
             return;
         }

@@ -125,13 +125,11 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
     }
 
     public boolean equals(Object obj) {
-        if (obj instanceof HandlerContext) {
-            HandlerContext handlerContext = (HandlerContext) obj;
-            if (handlerContext.handler == this.handler && handlerContext.invokeImmediately == this.invokeImmediately) {
-                return true;
-            }
+        if (!(obj instanceof HandlerContext)) {
+            return false;
         }
-        return false;
+        HandlerContext handlerContext = (HandlerContext) obj;
+        return handlerContext.handler == this.handler && handlerContext.invokeImmediately == this.invokeImmediately;
     }
 
     public int hashCode() {

@@ -67,7 +67,7 @@ public class ButtonBounce {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setPressed$0(valueAnimator2);
+                    ButtonBounce.$r8$lambda$grnQYDy3yxTkUbUjjclvBWYg__I(this.f$0, valueAnimator2);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {
@@ -93,9 +93,10 @@ public class ButtonBounce {
         }
     }
 
-    public void lambda$setPressed$0(ValueAnimator valueAnimator) {
-        this.pressedT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$grnQYDy3yxTkUbUjjclvBWYg__I(ButtonBounce buttonBounce, ValueAnimator valueAnimator) {
+        buttonBounce.getClass();
+        buttonBounce.pressedT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        buttonBounce.invalidate();
     }
 
     public float getScale(float f) {

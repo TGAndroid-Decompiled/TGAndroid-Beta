@@ -134,7 +134,10 @@ class WebRtcAudioEffects {
     }
 
     private boolean effectTypeIsVoIP(UUID uuid) {
-        return (AudioEffect.EFFECT_TYPE_AEC.equals(uuid) && isAcousticEchoCancelerSupported()) || (AudioEffect.EFFECT_TYPE_NS.equals(uuid) && isNoiseSuppressorSupported());
+        if (AudioEffect.EFFECT_TYPE_AEC.equals(uuid) && isAcousticEchoCancelerSupported()) {
+            return true;
+        }
+        return AudioEffect.EFFECT_TYPE_NS.equals(uuid) && isNoiseSuppressorSupported();
     }
 
     private static void assertTrue(boolean z) {

@@ -107,7 +107,7 @@ public class HeaderCell extends FrameLayout {
         drawable.getPaint = new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                return this.f$0.lambda$new$0((Integer) obj);
+                return HeaderCell.$r8$lambda$WPcGChIXs94YZvbIdiyKzxTLPwQ(this.f$0, (Integer) obj);
             }
         };
         starParticlesView.drawable.init();
@@ -137,8 +137,8 @@ public class HeaderCell extends FrameLayout {
         setWillNotDraw(false);
     }
 
-    public Paint lambda$new$0(Integer num) {
-        return this.paints[num.intValue() % this.paints.length];
+    public static Paint $r8$lambda$WPcGChIXs94YZvbIdiyKzxTLPwQ(HeaderCell headerCell, Integer num) {
+        return headerCell.paints[num.intValue() % headerCell.paints.length];
     }
 
     public void setBoostViaGifsText(TLRPC.Chat chat) {
@@ -205,27 +205,26 @@ public class HeaderCell extends FrameLayout {
             valueAnimator.cancel();
         }
         final float f = this.iconTextureView.mRenderer.golden;
-        float f2 = z ? 1.0f : 0.0f;
+        final float f2 = z ? 1.0f : 0.0f;
         this.goldenAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
         final float[] fArr = {0.0f};
         this.iconTextureView.cancelIdleAnimation();
         this.iconTextureView.cancelAnimatons();
         this.iconTextureView.startBackAnimation();
-        final float f3 = f2;
         this.goldenAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setStars$2(fArr, f, f3, z, valueAnimator2);
+                HeaderCell.m2661$r8$lambda$yxHakWKcnYuCIiACk6m96TS_Sc(this.f$0, fArr, f, f2, z, valueAnimator2);
             }
         });
         this.goldenAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 float[] fArr2 = fArr;
-                float f4 = 1.0f - fArr2[0];
+                float f3 = 1.0f - fArr2[0];
                 fArr2[0] = 1.0f;
-                HeaderCell.this.iconTextureView.mRenderer.golden = AndroidUtilities.lerp(f, f3, 1.0f);
-                HeaderCell.this.iconTextureView.mRenderer.angleX3 += f4 * 360.0f * (z ? 1 : -1);
+                HeaderCell.this.iconTextureView.mRenderer.golden = AndroidUtilities.lerp(f, f2, 1.0f);
+                HeaderCell.this.iconTextureView.mRenderer.angleX3 += f3 * 360.0f * (z ? 1 : -1);
                 HeaderCell.this.iconTextureView.mRenderer.updateColors();
                 HeaderCell headerCell = HeaderCell.this;
                 headerCell.updatePaints(headerCell.iconTextureView.mRenderer.golden);
@@ -237,15 +236,16 @@ public class HeaderCell extends FrameLayout {
         this.goldenAnimator.start();
     }
 
-    public void lambda$setStars$2(float[] fArr, float f, float f2, boolean z, ValueAnimator valueAnimator) {
+    public static void m2661$r8$lambda$yxHakWKcnYuCIiACk6m96TS_Sc(HeaderCell headerCell, float[] fArr, float f, float f2, boolean z, ValueAnimator valueAnimator) {
+        headerCell.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float f3 = fFloatValue - fArr[0];
         fArr[0] = fFloatValue;
-        this.iconTextureView.mRenderer.golden = AndroidUtilities.lerp(f, f2, fFloatValue);
-        GLIconRenderer gLIconRenderer = this.iconTextureView.mRenderer;
+        headerCell.iconTextureView.mRenderer.golden = AndroidUtilities.lerp(f, f2, fFloatValue);
+        GLIconRenderer gLIconRenderer = headerCell.iconTextureView.mRenderer;
         gLIconRenderer.angleX3 += f3 * 360.0f * (z ? 1 : -1);
         gLIconRenderer.updateColors();
-        updatePaints(this.iconTextureView.mRenderer.golden);
+        headerCell.updatePaints(headerCell.iconTextureView.mRenderer.golden);
     }
 
     public void updatePaints(float f) {

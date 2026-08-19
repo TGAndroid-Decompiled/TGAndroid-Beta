@@ -69,7 +69,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     VideoPlayerHolderBase videoPlayerBase;
     boolean visible;
 
-    public static void lambda$stopVideoPlayer$2() {
+    public static void $r8$lambda$oqqJ5kFEZuqEQjRzuFj19R2Iil8() {
     }
 
     public void checkVideo() {
@@ -247,7 +247,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                         cellFlickerDrawable.progress = 3.5f;
                         cellFlickerDrawable.frameInside = true;
                         this.cellFlickerDrawable = cellFlickerDrawable.getDrawableInterface(this, this.svgIcon);
-                        combinedDrawable = new CombinedDrawable(this.roundedBitmapDrawable, this.cellFlickerDrawable) {
+                        CombinedDrawable combinedDrawable2 = new CombinedDrawable(this.roundedBitmapDrawable, this.cellFlickerDrawable) {
                             @Override
                             public void setBounds(int i3, int i4, int i5, int i6) {
                                 VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
@@ -258,7 +258,8 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                                 }
                             }
                         };
-                        combinedDrawable.setFullsize(true);
+                        combinedDrawable2.setFullsize(true);
+                        combinedDrawable = combinedDrawable2;
                     }
                 }
                 this.attachFileName = FileLoader.getAttachFileName(document);
@@ -268,26 +269,26 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setVideo$1(document);
+                        VideoScreenPreview.$r8$lambda$qoBGRdLZ21d1kUjhyHUJymySrX8(this.f$0, document);
                     }
                 });
             }
         }
     }
 
-    public void lambda$setVideo$1(TLRPC.Document document) {
-        final File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(document);
+    public static void $r8$lambda$qoBGRdLZ21d1kUjhyHUJymySrX8(final VideoScreenPreview videoScreenPreview, TLRPC.Document document) {
+        final File pathToAttach = FileLoader.getInstance(videoScreenPreview.currentAccount).getPathToAttach(document);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setVideo$0(pathToAttach);
+                VideoScreenPreview.m2597$r8$lambda$uhPOCGoEW4sKRGT2owdMDblTA(this.f$0, pathToAttach);
             }
         });
     }
 
-    public void lambda$setVideo$0(File file) {
-        this.file = file;
-        checkVideo();
+    public static void m2597$r8$lambda$uhPOCGoEW4sKRGT2owdMDblTA(VideoScreenPreview videoScreenPreview, File file) {
+        videoScreenPreview.file = file;
+        videoScreenPreview.checkVideo();
     }
 
     @Override
@@ -657,7 +658,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             this.videoPlayerBase.release(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoScreenPreview.lambda$stopVideoPlayer$2();
+                    VideoScreenPreview.$r8$lambda$oqqJ5kFEZuqEQjRzuFj19R2Iil8();
                 }
             });
             this.videoPlayerBase = null;

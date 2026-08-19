@@ -45,6 +45,7 @@ public class FeaturesPageView extends BaseListPageView {
     public final int type;
 
     public FeaturesPageView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        FeaturesPageView featuresPageView;
         final SparseIntArray sparseIntArray;
         super(context, resourcesProvider);
         this.items = new ArrayList();
@@ -59,7 +60,8 @@ public class FeaturesPageView extends BaseListPageView {
             arrayList.add(new Item(1, R.drawable.msg_stories_timer, LocaleController.getString(R.string.PremiumStoriesExpiration), LocaleController.getString(R.string.PremiumStoriesExpirationDescription), 17));
             arrayList.add(new Item(1, R.drawable.msg_stories_save, LocaleController.getString(R.string.PremiumStoriesSaveToGallery), LocaleController.getString(R.string.PremiumStoriesSaveToGalleryDescription), 18));
             arrayList.add(new Item(1, R.drawable.msg_stories_caption, LocaleController.getString(R.string.PremiumStoriesCaption), LocaleController.getString(R.string.PremiumStoriesCaptionDescription), 21));
-            arrayList.add(new Item(1, R.drawable.msg_stories_link, LocaleController.getString(R.string.PremiumStoriesFormatting), LocaleController.getString(R.string.PremiumStoriesFormattingDescription), 19));
+            featuresPageView = this;
+            arrayList.add(featuresPageView.new Item(1, R.drawable.msg_stories_link, LocaleController.getString(R.string.PremiumStoriesFormatting), LocaleController.getString(R.string.PremiumStoriesFormattingDescription), 19));
         } else {
             if (i == 1) {
                 sparseIntArray = messagesController.businessFeaturesTypesToPosition;
@@ -70,45 +72,48 @@ public class FeaturesPageView extends BaseListPageView {
                 arrayList.add(new Item(1, R.drawable.menu_premium_away, LocaleController.getString(R.string.PremiumBusinessAwayMessages), LocaleController.getString(R.string.PremiumBusinessAwayMessagesDescription), 33));
                 arrayList.add(new Item(1, R.drawable.menu_premium_chatbot, LocaleController.getString(R.string.PremiumBusinessChatbots2), LocaleController.getString(R.string.PremiumBusinessChatbotsDescription), 34));
                 arrayList.add(new Item(1, R.drawable.menu_feature_intro, LocaleController.getString(R.string.PremiumBusinessIntro), LocaleController.getString(R.string.PremiumBusinessIntroDescription), 36));
-                arrayList.add(new Item(1, R.drawable.menu_premium_chatlink, LocaleController.getString(R.string.PremiumBusinessChatLinks), LocaleController.getString(R.string.PremiumBusinessChatLinksDescription), 37));
+                featuresPageView = this;
+                arrayList.add(featuresPageView.new Item(1, R.drawable.menu_premium_chatlink, LocaleController.getString(R.string.PremiumBusinessChatLinks), LocaleController.getString(R.string.PremiumBusinessChatLinksDescription), 37));
+            } else {
+                featuresPageView = this;
             }
             if (sparseIntArray != null) {
                 Collections.sort(arrayList, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return FeaturesPageView.lambda$new$0(sparseIntArray, (FeaturesPageView.Item) obj, (FeaturesPageView.Item) obj2);
+                        return FeaturesPageView.m2574$r8$lambda$dXX_8nC6cQoBeyITZRw1xIN6w(sparseIntArray, (FeaturesPageView.Item) obj, (FeaturesPageView.Item) obj2);
                     }
                 });
             }
-            this.items.add(new Item(0));
-            this.items.addAll(arrayList);
-            this.items.add(new Item(2));
-            this.bitmap = Bitmap.createBitmap(this.items.size(), 1, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(this.bitmap);
+            featuresPageView.items.add(new Item(0));
+            featuresPageView.items.addAll(arrayList);
+            featuresPageView.items.add(new Item(2));
+            featuresPageView.bitmap = Bitmap.createBitmap(featuresPageView.items.size(), 1, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(featuresPageView.bitmap);
             Paint paint = new Paint();
-            paint.setShader(new LinearGradient(0.0f, 0.0f, this.bitmap.getWidth(), 0.0f, new int[]{Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient2), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(Theme.key_premiumGradient4)}, (float[]) null, Shader.TileMode.CLAMP));
-            canvas.drawRect(0.0f, 0.0f, this.bitmap.getWidth(), this.bitmap.getHeight(), paint);
+            paint.setShader(new LinearGradient(0.0f, 0.0f, featuresPageView.bitmap.getWidth(), 0.0f, new int[]{Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient2), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(Theme.key_premiumGradient4)}, (float[]) null, Shader.TileMode.CLAMP));
+            canvas.drawRect(0.0f, 0.0f, featuresPageView.bitmap.getWidth(), featuresPageView.bitmap.getHeight(), paint);
         }
         sparseIntArray = null;
         if (sparseIntArray != null) {
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return FeaturesPageView.lambda$new$0(sparseIntArray, (FeaturesPageView.Item) obj, (FeaturesPageView.Item) obj2);
+                    return FeaturesPageView.m2574$r8$lambda$dXX_8nC6cQoBeyITZRw1xIN6w(sparseIntArray, (FeaturesPageView.Item) obj, (FeaturesPageView.Item) obj2);
                 }
             });
         }
-        this.items.add(new Item(0));
-        this.items.addAll(arrayList);
-        this.items.add(new Item(2));
-        this.bitmap = Bitmap.createBitmap(this.items.size(), 1, Bitmap.Config.ARGB_8888);
-        Canvas canvas2 = new Canvas(this.bitmap);
+        featuresPageView.items.add(new Item(0));
+        featuresPageView.items.addAll(arrayList);
+        featuresPageView.items.add(new Item(2));
+        featuresPageView.bitmap = Bitmap.createBitmap(featuresPageView.items.size(), 1, Bitmap.Config.ARGB_8888);
+        Canvas canvas2 = new Canvas(featuresPageView.bitmap);
         Paint paint2 = new Paint();
-        paint2.setShader(new LinearGradient(0.0f, 0.0f, this.bitmap.getWidth(), 0.0f, new int[]{Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient2), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(Theme.key_premiumGradient4)}, (float[]) null, Shader.TileMode.CLAMP));
-        canvas2.drawRect(0.0f, 0.0f, this.bitmap.getWidth(), this.bitmap.getHeight(), paint2);
+        paint2.setShader(new LinearGradient(0.0f, 0.0f, featuresPageView.bitmap.getWidth(), 0.0f, new int[]{Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient2), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(Theme.key_premiumGradient4)}, (float[]) null, Shader.TileMode.CLAMP));
+        canvas2.drawRect(0.0f, 0.0f, featuresPageView.bitmap.getWidth(), featuresPageView.bitmap.getHeight(), paint2);
     }
 
-    public static int lambda$new$0(SparseIntArray sparseIntArray, Item item, Item item2) {
+    public static int m2574$r8$lambda$dXX_8nC6cQoBeyITZRw1xIN6w(SparseIntArray sparseIntArray, Item item, Item item2) {
         return sparseIntArray.get(item.order, Integer.MAX_VALUE) - sparseIntArray.get(item2.order, Integer.MAX_VALUE);
     }
 

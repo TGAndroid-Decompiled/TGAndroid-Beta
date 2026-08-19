@@ -17,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -26,7 +27,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.core.BitwiseUtils;
@@ -106,7 +106,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         BOTTOM
     }
 
-    public static void lambda$onTabLongClick$16() {
+    public static void $r8$lambda$whz9_2q0Ul6L4zdHpqUqnJxFQVc() {
     }
 
     @Override
@@ -115,6 +115,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
     }
 
     public TopicsTabsView(Context context, BaseFragment baseFragment, int i, long j, Theme.ResourcesProvider resourcesProvider) {
+        ViewGroup viewGroup;
         super(context);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorTopicsVisibility = new BoolAnimator(0, this, cubicBezierInterpolator, 380L, true);
@@ -126,7 +127,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
 
             @Override
             public final void onFactorChanged(int i2, float f, float f2, FactorAnimator factorAnimator) {
-                this.f$0.lambda$new$1(i2, f, f2, factorAnimator);
+                this.f$0.checkUi_closeButtonVisibility();
             }
         }, cubicBezierInterpolator, 320L);
         this.sidemenuT = 0.0f;
@@ -187,11 +188,15 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
+                Canvas canvas2;
                 float f = this.animatedClipL.set(canScrollHorizontally(-1));
                 float f2 = this.animatedClipR.set(canScrollHorizontally(1));
                 boolean z = f > 0.0f || f2 > 0.0f;
                 if (z) {
-                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                    canvas2 = canvas;
+                    canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                } else {
+                    canvas2 = canvas;
                 }
                 drawPinnedBackground(canvas);
                 super.dispatchDraw(canvas);
@@ -226,22 +231,22 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
                         AndroidUtilities.lerp(rectF, this.lineRect, this.animateTab.set(1.0f), this.lineRect);
                     }
                     this.linePaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), 31));
-                    canvas.drawRoundRect(this.lineRect, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.linePaint);
+                    canvas2.drawRoundRect(this.lineRect, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.linePaint);
                 }
                 if (z) {
-                    canvas.save();
+                    canvas2.save();
                     if (f > 0.0f) {
                         RectF rectF2 = AndroidUtilities.rectTmp;
                         rectF2.set(0.0f, 0.0f, AndroidUtilities.dp(12.0f), getHeight());
-                        this.clip.draw(canvas, rectF2, 0, f);
+                        this.clip.draw(canvas2, rectF2, 0, f);
                     }
                     if (f2 > 0.0f) {
                         RectF rectF3 = AndroidUtilities.rectTmp;
                         rectF3.set(getWidth() - AndroidUtilities.dp(12.0f), 0.0f, getWidth(), getHeight());
-                        this.clip.draw(canvas, rectF3, 2, f2);
+                        this.clip.draw(canvas2, rectF3, 2, f2);
                     }
-                    canvas.restore();
-                    canvas.restore();
+                    canvas2.restore();
+                    canvas2.restore();
                 }
             }
 
@@ -315,14 +320,17 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             verticalTabView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    this.f$0.onTopicSelected.run(0, Boolean.FALSE);
                 }
             });
-            frameLayout2.addView(verticalTabView, LayoutHelper.createFrame(64, 42.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
+            viewGroup = frameLayout2;
+            viewGroup.addView(verticalTabView, LayoutHelper.createFrame(64, 42.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
         } else {
+            viewGroup = frameLayout2;
             this.botCreateTopicButtonHorizontal = null;
             this.botCreateTopicButtonVertical = null;
         }
+        ViewGroup viewGroup2 = viewGroup;
         UniversalRecyclerView universalRecyclerView2 = new UniversalRecyclerView(context, i, 0, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
@@ -347,19 +355,23 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
+                Canvas canvas2;
                 float f = this.animatedClip.set(canScrollVertically(-1));
                 if (f > 0.0f) {
-                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                    canvas2 = canvas;
+                    canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                } else {
+                    canvas2 = canvas;
                 }
-                drawPinnedBackground(canvas);
-                super.dispatchDraw(canvas);
+                drawPinnedBackground(canvas2);
+                super.dispatchDraw(canvas2);
                 if (f > 0.0f) {
-                    canvas.save();
+                    canvas2.save();
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f));
-                    this.clip.draw(canvas, rectF, 1, f);
-                    canvas.restore();
-                    canvas.restore();
+                    this.clip.draw(canvas2, rectF, 1, f);
+                    canvas2.restore();
+                    canvas2.restore();
                 }
             }
 
@@ -411,7 +423,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         universalRecyclerView2.adapter.setApplyBackground(false);
         universalRecyclerView2.setClipToPadding(false);
         universalRecyclerView2.setClipChildren(false);
-        frameLayout2.addView(universalRecyclerView2, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, zIsBotForumWithEditableTopics ? 90.0f : 48.0f, 0.0f, 0.0f));
+        viewGroup2.addView(universalRecyclerView2, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, zIsBotForumWithEditableTopics ? 90.0f : 48.0f, 0.0f, 0.0f));
         universalRecyclerView2.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
@@ -436,7 +448,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         });
         this.toggleButtonSide = imageViewCreateButton2;
         frameLayout.addView(imageViewCreateButton, LayoutHelper.createFrame(44, 36, 51));
-        frameLayout2.addView(imageViewCreateButton2, LayoutHelper.createFrame(64, 48, 51));
+        viewGroup2.addView(imageViewCreateButton2, LayoutHelper.createFrame(64, 48, 51));
         int i3 = R.drawable.msg_select;
         ImageView imageViewCreateButton3 = createButton(context, i3, new View.OnClickListener() {
             @Override
@@ -453,7 +465,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         });
         this.closeButtonSide = imageViewCreateButton4;
         frameLayout.addView(imageViewCreateButton3, LayoutHelper.createFrame(44, 36, 51));
-        frameLayout2.addView(imageViewCreateButton4, LayoutHelper.createFrame(64, 48, 51));
+        viewGroup2.addView(imageViewCreateButton4, LayoutHelper.createFrame(64, 48, 51));
         MessagesController.getInstance(i).getTopicsController().loadTopics(j2, false, 3);
         SharedPreferences mainSettings = MessagesController.getInstance(i).getMainSettings();
         if (mainSettings.getBoolean("topicssidetabs" + j, false)) {
@@ -467,10 +479,6 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         checkUi_closeButtonVisibility();
         updateSidemenuPosition();
         updateTabs();
-    }
-
-    public void lambda$new$0(View view) {
-        this.onTopicSelected.run(0, Boolean.FALSE);
     }
 
     private void checkTopicsVisibility(boolean z) {
@@ -500,11 +508,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         return imageView;
     }
 
-    public void lambda$new$1(int i, float f, float f2, FactorAnimator factorAnimator) {
-        checkUi_closeButtonVisibility();
-    }
-
-    private void checkUi_closeButtonVisibility() {
+    public void checkUi_closeButtonVisibility() {
         float floatValue = this.animatorCloseButtonVisibility.getFloatValue();
         this.closeButtonTop.setAlpha(floatValue);
         this.closeButtonTop.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
@@ -654,7 +658,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateSidemenuTo$2(valueAnimator2);
+                TopicsTabsView.m2889$r8$lambda$Ouv9jPHE0DZAjZ_M6zd3mS0s(this.f$0, valueAnimator2);
             }
         });
         this.animator.addListener(new AnonymousClass5(z));
@@ -663,9 +667,10 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         this.animator.start();
     }
 
-    public void lambda$animateSidemenuTo$2(ValueAnimator valueAnimator) {
-        this.sidemenuT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        updateSidemenuPosition();
+    public static void m2889$r8$lambda$Ouv9jPHE0DZAjZ_M6zd3mS0s(TopicsTabsView topicsTabsView, ValueAnimator valueAnimator) {
+        topicsTabsView.getClass();
+        topicsTabsView.sidemenuT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        topicsTabsView.updateSidemenuPosition();
     }
 
     class AnonymousClass5 extends AnimatorListenerAdapter {
@@ -692,13 +697,13 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onAnimationEnd$0();
+                        TopicsTabsView.AnonymousClass5.$r8$lambda$qkMRXbWslKDkei0DJsDToQDQOL8(this.f$0);
                     }
                 });
             }
         }
 
-        public void lambda$onAnimationEnd$0() {
+        public static void $r8$lambda$qkMRXbWslKDkei0DJsDToQDQOL8(AnonymousClass5 anonymousClass5) {
             if (TopicsTabsView.this.isLoadingVisible()) {
                 TopicsTabsView.this.loadMore();
             }
@@ -720,14 +725,14 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateTabs$3();
+                TopicsTabsView.m2891$r8$lambda$chbCGYqgTG1VKxaseTE3IqgPAU(this.f$0);
             }
         });
     }
 
-    public void lambda$updateTabs$3() {
-        if (isLoadingVisible()) {
-            loadMore();
+    public static void m2891$r8$lambda$chbCGYqgTG1VKxaseTE3IqgPAU(TopicsTabsView topicsTabsView) {
+        if (topicsTabsView.isLoadingVisible()) {
+            topicsTabsView.loadMore();
         }
     }
 
@@ -796,11 +801,16 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             arrayList.add(VerticalTabView.Factory.asAll(z2, this.mono).setChecked(this.currentTopicId == 0));
         }
         if (topics != null) {
+            int size = topics.size();
+            int i = 0;
             z = false;
-            for (TLRPC.TL_forumTopic tL_forumTopic : topics) {
-                if (!this.bot || tL_forumTopic.id != 1) {
-                    if (!this.excludeTopics.contains(Integer.valueOf(tL_forumTopic.id))) {
-                        boolean z3 = tL_forumTopic.pinned;
+            while (i < size) {
+                TLRPC.TL_forumTopic tL_forumTopic = topics.get(i);
+                i++;
+                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
+                if (!this.bot || tL_forumTopic2.id != 1) {
+                    if (!this.excludeTopics.contains(Integer.valueOf(tL_forumTopic2.id))) {
+                        boolean z3 = tL_forumTopic2.pinned;
                         if (!z3 && z) {
                             universalAdapter.reorderSectionEnd();
                             z = false;
@@ -808,7 +818,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
                             universalAdapter.reorderSectionStart();
                             z = true;
                         }
-                        arrayList.add(VerticalTabView.Factory.asTab(this.dialogId, tL_forumTopic, this.mono).setChecked(this.currentTopicId == getTopicId(tL_forumTopic)));
+                        arrayList.add(VerticalTabView.Factory.asTab(this.dialogId, tL_forumTopic2, this.mono).setChecked(this.currentTopicId == getTopicId(tL_forumTopic2)));
                     }
                 }
             }
@@ -840,11 +850,16 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         boolean z = false;
         arrayList.add(HorizontalTabView.Factory.asAll(this.bot, this.mono).setChecked(this.currentTopicId == 0));
         if (topics != null) {
+            int size = topics.size();
+            int i = 0;
             boolean z2 = false;
-            for (TLRPC.TL_forumTopic tL_forumTopic : topics) {
-                if (!this.bot || tL_forumTopic.id != 1) {
-                    if (!this.excludeTopics.contains(Integer.valueOf(tL_forumTopic.id))) {
-                        boolean z3 = tL_forumTopic.pinned;
+            while (i < size) {
+                TLRPC.TL_forumTopic tL_forumTopic = topics.get(i);
+                i++;
+                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
+                if (!this.bot || tL_forumTopic2.id != 1) {
+                    if (!this.excludeTopics.contains(Integer.valueOf(tL_forumTopic2.id))) {
+                        boolean z3 = tL_forumTopic2.pinned;
                         if (!z3 && z2) {
                             if (!arrayList.isEmpty()) {
                                 ((UItem) arrayList.get(arrayList.size() - 1)).flags |= 8;
@@ -855,7 +870,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
                             universalAdapter.reorderSectionStart();
                             z2 = true;
                         }
-                        arrayList.add(HorizontalTabView.Factory.asTab(this.dialogId, tL_forumTopic, this.mono).setChecked(this.currentTopicId == getTopicId(tL_forumTopic)));
+                        arrayList.add(HorizontalTabView.Factory.asTab(this.dialogId, tL_forumTopic2, this.mono).setChecked(this.currentTopicId == getTopicId(tL_forumTopic2)));
                     }
                 }
             }
@@ -929,8 +944,9 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
     }
 
     public boolean onTabLongClick(UItem uItem, View view, int i, float f, float f2) {
-        final ItemOptions itemOptions;
-        final long j;
+        long j;
+        final TLRPC.Chat chat;
+        final TLRPC.User user;
         if (this.sideTabs.isReorderAllowed() || this.topTabs.isReorderAllowed()) {
             return false;
         }
@@ -941,102 +957,113 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         final TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj;
         final MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         long j2 = this.dialogId;
-        TLRPC.Chat chat = j2 < 0 ? messagesController.getChat(Long.valueOf(-j2)) : null;
+        final TLRPC.Chat chat2 = j2 < 0 ? messagesController.getChat(Long.valueOf(-j2)) : null;
         long j3 = this.dialogId;
-        TLRPC.User user = j3 > 0 ? messagesController.getUser(Long.valueOf(j3)) : null;
+        TLRPC.User user2 = j3 > 0 ? messagesController.getUser(Long.valueOf(j3)) : null;
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.fragment, view, true);
-        if (ChatObject.isMonoForum(chat)) {
+        if (ChatObject.isMonoForum(chat2)) {
             final long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-            if (peerDialogId == 0 || !ChatObject.canManageMonoForum(this.currentAccount, chat)) {
+            if (peerDialogId == 0 || !ChatObject.canManageMonoForum(this.currentAccount, chat2)) {
                 return false;
             }
-            itemOptions = itemOptionsMakeOptions;
-            final TLRPC.Chat chat2 = chat;
-            itemOptions.add(R.drawable.msg_clear, LocaleController.getString(R.string.ClearHistory), new Runnable() {
+            TLRPC.Chat chat3 = chat2;
+            itemOptionsMakeOptions.add(R.drawable.msg_clear, LocaleController.getString(R.string.ClearHistory), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onTabLongClick$5(itemOptionsMakeOptions, peerDialogId, chat2);
+                    TopicsTabsView.$r8$lambda$H3pg8oaliy71k8nUnLqYB3e0N5s(this.f$0, itemOptionsMakeOptions, peerDialogId, chat2);
                 }
             });
-            long j4 = chat.id;
-            if (ChatObject.isMonoForum(chat) && ChatObject.canManageMonoForum(this.currentAccount, chat)) {
-                long j5 = chat.linked_monoforum_id;
+            long j4 = chat3.id;
+            if (ChatObject.isMonoForum(chat3) && ChatObject.canManageMonoForum(this.currentAccount, chat3)) {
+                long j5 = chat3.linked_monoforum_id;
                 if (j5 != 0) {
                     j = j5;
-                } else {
-                    j = j4;
                 }
-            } else {
-                j = j4;
-            }
-            final TLRPC.Chat chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
-            final TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
-            if (user2 != null && ChatObject.canBlockUsers(chat3)) {
-                itemOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
-                final ActionBarMenuSubItem last = itemOptions.getLast();
-                last.setVisibility(8);
-                MessagesController.getInstance(this.currentAccount).checkIsInChat(true, chat3, user2, new MessagesController.IsInChatCheckedCallback() {
-                    @Override
-                    public final void run(boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-                        this.f$0.lambda$onTabLongClick$10(last, itemOptions, j, user2, chat3, z, tL_chatAdminRights, str);
-                    }
-                });
-            }
-        } else {
-            itemOptions = itemOptionsMakeOptions;
-            if (ChatObject.canManageTopics(chat) || UserObject.isBotForumWithEditableTopics(user)) {
-                boolean z = tL_forumTopic.pinned;
-                itemOptions.add(z ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z ? R.string.DialogUnpin : R.string.DialogPin), new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$onTabLongClick$11(itemOptions, messagesController, tL_forumTopic);
-                    }
-                });
-                if (tL_forumTopic.pinned) {
-                    itemOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.FilterReorder), new Runnable() {
+                chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
+                user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
+                if (user != null && ChatObject.canBlockUsers(chat)) {
+                    itemOptionsMakeOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
+                    final ActionBarMenuSubItem last = itemOptionsMakeOptions.getLast();
+                    last.setVisibility(8);
+                    final long j6 = j;
+                    MessagesController.getInstance(this.currentAccount).checkIsInChat(true, chat, user, new MessagesController.IsInChatCheckedCallback() {
                         @Override
-                        public final void run() {
-                            this.f$0.lambda$onTabLongClick$12();
+                        public final void run(boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
+                            TopicsTabsView.$r8$lambda$CHEE0iteoykqD1u0nq_vfkeDmI4(this.f$0, last, itemOptionsMakeOptions, j6, user, chat, z, tL_chatAdminRights, str);
                         }
                     });
                 }
             }
-            if (ChatObject.canManageTopics(chat) || UserObject.isBotForumWithEditableTopics(user)) {
-                itemOptions.add(R.drawable.outline_profile_edit_24, LocaleController.getString(R.string.EditTopic), new Runnable() {
+            j = j4;
+            chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
+            user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
+            if (user != null) {
+                itemOptionsMakeOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
+                final ActionBarMenuSubItem last2 = itemOptionsMakeOptions.getLast();
+                last2.setVisibility(8);
+                final long j7 = j;
+                MessagesController.getInstance(this.currentAccount).checkIsInChat(true, chat, user, new MessagesController.IsInChatCheckedCallback() {
                     @Override
-                    public final void run() {
-                        this.f$0.lambda$onTabLongClick$13(itemOptions, tL_forumTopic);
+                    public final void run(boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
+                        TopicsTabsView.$r8$lambda$CHEE0iteoykqD1u0nq_vfkeDmI4(this.f$0, last2, itemOptionsMakeOptions, j7, user, chat, z, tL_chatAdminRights, str);
                     }
                 });
             }
-            final ItemOptions itemOptionsAddAsItemOptions = ChatNotificationsPopupWrapper.addAsItemOptions(this.fragment, itemOptions, this.dialogId, tL_forumTopic.id);
+        } else {
+            TLRPC.Chat chat4 = chat2;
+            if (ChatObject.canManageTopics(chat4) || UserObject.isBotForumWithEditableTopics(user2)) {
+                boolean z = tL_forumTopic.pinned;
+                itemOptionsMakeOptions.add(z ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z ? R.string.DialogUnpin : R.string.DialogPin), new Runnable() {
+                    @Override
+                    public final void run() {
+                        TopicsTabsView.$r8$lambda$pqwEVMPm1UjEaaFUSeApc4D0y78(this.f$0, itemOptionsMakeOptions, messagesController, tL_forumTopic);
+                    }
+                });
+                if (tL_forumTopic.pinned) {
+                    itemOptionsMakeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.FilterReorder), new Runnable() {
+                        @Override
+                        public final void run() {
+                            TopicsTabsView.$r8$lambda$H_PX4rLQwsiyGCicQEU78JRZFso(this.f$0);
+                        }
+                    });
+                }
+            }
+            if (ChatObject.canManageTopics(chat4) || UserObject.isBotForumWithEditableTopics(user2)) {
+                itemOptionsMakeOptions.add(R.drawable.outline_profile_edit_24, LocaleController.getString(R.string.EditTopic), new Runnable() {
+                    @Override
+                    public final void run() {
+                        TopicsTabsView.$r8$lambda$0bkULLEAuZg9k06eb2dTmzKDyeA(this.f$0, itemOptionsMakeOptions, tL_forumTopic);
+                    }
+                });
+            }
+            final ItemOptions itemOptionsAddAsItemOptions = ChatNotificationsPopupWrapper.addAsItemOptions(this.fragment, itemOptionsMakeOptions, this.dialogId, tL_forumTopic.id);
             boolean zIsDialogMuted = messagesController.isDialogMuted(this.dialogId, tL_forumTopic.id);
-            itemOptions.add(zIsDialogMuted ? R.drawable.msg_unmute : R.drawable.msg_mute, LocaleController.getString(zIsDialogMuted ? R.string.Unmute : R.string.Mute), new Runnable() {
+            itemOptionsMakeOptions.add(zIsDialogMuted ? R.drawable.msg_unmute : R.drawable.msg_mute, LocaleController.getString(zIsDialogMuted ? R.string.Unmute : R.string.Mute), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onTabLongClick$14(messagesController, tL_forumTopic, itemOptions, itemOptionsAddAsItemOptions);
+                    TopicsTabsView.$r8$lambda$htwAUMZ30Grzge039tXNQqnqgnI(this.f$0, messagesController, tL_forumTopic, itemOptionsMakeOptions, itemOptionsAddAsItemOptions);
                 }
             });
-            if (ChatObject.canManageTopic(this.currentAccount, chat, tL_forumTopic) && !UserObject.isBotForum(user)) {
+            if (ChatObject.canManageTopic(this.currentAccount, chat4, tL_forumTopic) && !UserObject.isBotForum(user2)) {
                 boolean z2 = tL_forumTopic.closed;
-                itemOptions.add(z2 ? R.drawable.msg_topic_restart : R.drawable.msg_topic_close, LocaleController.getString(z2 ? R.string.RestartTopic : R.string.CloseTopic), new Runnable() {
+                itemOptionsMakeOptions.add(z2 ? R.drawable.msg_topic_restart : R.drawable.msg_topic_close, LocaleController.getString(z2 ? R.string.RestartTopic : R.string.CloseTopic), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onTabLongClick$15(itemOptions, tL_forumTopic);
+                        TopicsTabsView.$r8$lambda$OKOumX3GJZh5HAalSTnlZuV7xpc(this.f$0, itemOptionsMakeOptions, tL_forumTopic);
                     }
                 });
             }
-            if (ChatObject.canDeleteTopic(this.currentAccount, chat, tL_forumTopic)) {
-                itemOptions.add(R.drawable.msg_delete, LocaleController.getPluralString("DeleteTopics", 1), new Runnable() {
+            if (ChatObject.canDeleteTopic(this.currentAccount, chat4, tL_forumTopic)) {
+                itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getPluralString("DeleteTopics", 1), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onTabLongClick$17(itemOptions, tL_forumTopic);
+                        TopicsTabsView.m2892$r8$lambda$xefYQ3LMmbHgrxWAmYharA3yVQ(this.f$0, itemOptionsMakeOptions, tL_forumTopic);
                     }
                 });
             }
         }
         if (view instanceof HorizontalTabView) {
-            itemOptions.setScrimViewBackground(new Drawable() {
+            itemOptionsMakeOptions.setScrimViewBackground(new Drawable() {
                 private Paint paint = new Paint(1);
                 private RectF bound = new RectF();
 
@@ -1065,117 +1092,125 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
                     this.paint.setAlpha(i2);
                 }
             });
-            itemOptions.translate(AndroidUtilities.dp(16.0f), 0.0f);
+            itemOptionsMakeOptions.translate(AndroidUtilities.dp(16.0f), 0.0f);
         } else {
-            itemOptions.setScrimViewBackground(Theme.createRoundRectDrawable(0, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), 0, Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)));
+            itemOptionsMakeOptions.setScrimViewBackground(Theme.createRoundRectDrawable(0, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), 0, Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)));
         }
-        itemOptions.show();
+        itemOptionsMakeOptions.show();
         return true;
     }
 
-    public void lambda$onTabLongClick$5(ItemOptions itemOptions, final long j, TLRPC.Chat chat) {
+    public static void $r8$lambda$H3pg8oaliy71k8nUnLqYB3e0N5s(final TopicsTabsView topicsTabsView, ItemOptions itemOptions, final long j, TLRPC.Chat chat) {
+        topicsTabsView.getClass();
         itemOptions.dismiss();
-        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+        TLRPC.User user = MessagesController.getInstance(topicsTabsView.currentAccount).getUser(Long.valueOf(j));
         if (user != null) {
-            AlertsCreator.createClearDaysDialogAlert(this.fragment, -1, user, chat, true, new MessagesStorage.BooleanCallback() {
+            AlertsCreator.createClearDaysDialogAlert(topicsTabsView.fragment, -1, user, chat, true, new MessagesStorage.BooleanCallback() {
                 @Override
                 public final void run(boolean z) {
-                    this.f$0.lambda$onTabLongClick$4(j, z);
+                    TopicsTabsView.$r8$lambda$j9bSSRoBD7GWgREN02JpHt3eE0w(this.f$0, j, z);
                 }
-            }, this.fragment.getResourceProvider());
+            }, topicsTabsView.fragment.getResourceProvider());
         }
     }
 
-    public void lambda$onTabLongClick$4(long j, boolean z) {
-        BaseFragment baseFragment = this.fragment;
+    public static void $r8$lambda$j9bSSRoBD7GWgREN02JpHt3eE0w(TopicsTabsView topicsTabsView, long j, boolean z) {
+        BaseFragment baseFragment = topicsTabsView.fragment;
         if (baseFragment instanceof ChatActivity) {
             ((ChatActivity) baseFragment).performHistoryClear(j, false, true);
         }
     }
 
-    public void lambda$onTabLongClick$10(final ActionBarMenuSubItem actionBarMenuSubItem, final ItemOptions itemOptions, final long j, final TLRPC.User user, final TLRPC.Chat chat, final boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
+    public static void $r8$lambda$CHEE0iteoykqD1u0nq_vfkeDmI4(final TopicsTabsView topicsTabsView, final ActionBarMenuSubItem actionBarMenuSubItem, final ItemOptions itemOptions, final long j, final TLRPC.User user, final TLRPC.Chat chat, final boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
+        topicsTabsView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onTabLongClick$9(z, actionBarMenuSubItem, itemOptions, j, user, chat);
+                TopicsTabsView.$r8$lambda$M7WNlu3iI_DVX_SgSEj9sKBOh7A(this.f$0, z, actionBarMenuSubItem, itemOptions, j, user, chat);
             }
         });
     }
 
-    public void lambda$onTabLongClick$9(boolean z, ActionBarMenuSubItem actionBarMenuSubItem, final ItemOptions itemOptions, final long j, final TLRPC.User user, final TLRPC.Chat chat) {
+    public static void $r8$lambda$M7WNlu3iI_DVX_SgSEj9sKBOh7A(final TopicsTabsView topicsTabsView, boolean z, ActionBarMenuSubItem actionBarMenuSubItem, final ItemOptions itemOptions, final long j, final TLRPC.User user, final TLRPC.Chat chat) {
+        topicsTabsView.getClass();
         final boolean z2 = !z;
         actionBarMenuSubItem.setVisibility(0);
         actionBarMenuSubItem.setText(LocaleController.getString(!z ? R.string.UnbanUserMonoforum : R.string.BanUserMonoforum));
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$onTabLongClick$8(itemOptions, z2, j, user, chat, view);
+                TopicsTabsView.$r8$lambda$9Dgzy8NZ8X8PbgIJ5oU8CK4Pgek(this.f$0, itemOptions, z2, j, user, chat, view);
             }
         });
     }
 
-    public void lambda$onTabLongClick$8(ItemOptions itemOptions, boolean z, long j, TLRPC.User user, TLRPC.Chat chat, View view) {
+    public static void $r8$lambda$9Dgzy8NZ8X8PbgIJ5oU8CK4Pgek(final TopicsTabsView topicsTabsView, ItemOptions itemOptions, boolean z, long j, TLRPC.User user, TLRPC.Chat chat, View view) {
+        topicsTabsView.getClass();
         itemOptions.dismiss();
         if (!z) {
-            MessagesController.getInstance(this.currentAccount).deleteParticipantFromChat(j, user, (TLRPC.Chat) null, false, false);
+            MessagesController.getInstance(topicsTabsView.currentAccount).deleteParticipantFromChat(j, user, (TLRPC.Chat) null, false, false);
             return;
         }
         TLRPC.TL_channels_editBanned tL_channels_editBanned = new TLRPC.TL_channels_editBanned();
         tL_channels_editBanned.participant = MessagesController.getInputPeer(user);
         tL_channels_editBanned.channel = MessagesController.getInputChannel(chat);
         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_editBanned, new RequestDelegate() {
+        ConnectionsManager.getInstance(topicsTabsView.currentAccount).sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$onTabLongClick$7(tLObject, tL_error);
+                TopicsTabsView.$r8$lambda$CqwX8pfku09eHuRDy6_JO9_d5QM(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onTabLongClick$7(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$CqwX8pfku09eHuRDy6_JO9_d5QM(final TopicsTabsView topicsTabsView, TLObject tLObject, TLRPC.TL_error tL_error) {
+        topicsTabsView.getClass();
         if (tLObject != null) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
+            MessagesController.getInstance(topicsTabsView.currentAccount).processUpdates(updates, false);
             if (updates.chats.isEmpty()) {
                 return;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onTabLongClick$6(updates);
+                    TopicsTabsView.m2893$r8$lambda$zIF3WS6gBDJ7yjSwFuk0hefuu4(this.f$0, updates);
                 }
             }, 1000L);
         }
     }
 
-    public void lambda$onTabLongClick$6(TLRPC.Updates updates) {
-        MessagesController.getInstance(this.currentAccount).loadFullChat(updates.chats.get(0).id, 0, true);
+    public static void m2893$r8$lambda$zIF3WS6gBDJ7yjSwFuk0hefuu4(TopicsTabsView topicsTabsView, TLRPC.Updates updates) {
+        topicsTabsView.getClass();
+        MessagesController.getInstance(topicsTabsView.currentAccount).loadFullChat(updates.chats.get(0).id, 0, true);
     }
 
-    public void lambda$onTabLongClick$11(ItemOptions itemOptions, MessagesController messagesController, TLRPC.TL_forumTopic tL_forumTopic) {
+    public static void $r8$lambda$pqwEVMPm1UjEaaFUSeApc4D0y78(TopicsTabsView topicsTabsView, ItemOptions itemOptions, MessagesController messagesController, TLRPC.TL_forumTopic tL_forumTopic) {
+        topicsTabsView.getClass();
         itemOptions.dismiss();
-        messagesController.getTopicsController().pinTopic(-this.dialogId, tL_forumTopic.id, !tL_forumTopic.pinned, this.fragment);
+        messagesController.getTopicsController().pinTopic(-topicsTabsView.dialogId, tL_forumTopic.id, !tL_forumTopic.pinned, topicsTabsView.fragment);
     }
 
-    public void lambda$onTabLongClick$12() {
-        this.sideTabs.allowReorder(true);
-        this.topTabs.allowReorder(true);
-        this.animatorCloseButtonVisibility.setValue(true, true);
-        AndroidUtilities.updateVisibleRows(this.topTabs);
-        AndroidUtilities.updateVisibleRows(this.sideTabs);
+    public static void $r8$lambda$H_PX4rLQwsiyGCicQEU78JRZFso(TopicsTabsView topicsTabsView) {
+        topicsTabsView.sideTabs.allowReorder(true);
+        topicsTabsView.topTabs.allowReorder(true);
+        topicsTabsView.animatorCloseButtonVisibility.setValue(true, true);
+        AndroidUtilities.updateVisibleRows(topicsTabsView.topTabs);
+        AndroidUtilities.updateVisibleRows(topicsTabsView.sideTabs);
     }
 
-    public void lambda$onTabLongClick$13(ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
+    public static void $r8$lambda$0bkULLEAuZg9k06eb2dTmzKDyeA(TopicsTabsView topicsTabsView, ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
+        topicsTabsView.getClass();
         itemOptions.dismiss();
-        this.fragment.presentFragment(TopicCreateFragment.create(-this.dialogId, tL_forumTopic.id));
+        topicsTabsView.fragment.presentFragment(TopicCreateFragment.create(-topicsTabsView.dialogId, tL_forumTopic.id));
     }
 
-    public void lambda$onTabLongClick$14(MessagesController messagesController, TLRPC.TL_forumTopic tL_forumTopic, ItemOptions itemOptions, ItemOptions itemOptions2) {
-        if (messagesController.isDialogMuted(this.dialogId, tL_forumTopic.id)) {
+    public static void $r8$lambda$htwAUMZ30Grzge039tXNQqnqgnI(TopicsTabsView topicsTabsView, MessagesController messagesController, TLRPC.TL_forumTopic tL_forumTopic, ItemOptions itemOptions, ItemOptions itemOptions2) {
+        if (messagesController.isDialogMuted(topicsTabsView.dialogId, tL_forumTopic.id)) {
             itemOptions.dismiss();
-            NotificationsController.getInstance(this.currentAccount).muteDialog(this.dialogId, tL_forumTopic.id, false);
-            if (BulletinFactory.canShowBulletin(this.fragment)) {
-                BulletinFactory.createMuteBulletin(this.fragment, 4, 0, this.resourcesProvider).show();
+            NotificationsController.getInstance(topicsTabsView.currentAccount).muteDialog(topicsTabsView.dialogId, tL_forumTopic.id, false);
+            if (BulletinFactory.canShowBulletin(topicsTabsView.fragment)) {
+                BulletinFactory.createMuteBulletin(topicsTabsView.fragment, 4, 0, topicsTabsView.resourcesProvider).show();
                 return;
             }
             return;
@@ -1183,19 +1218,21 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         itemOptions.openSwipeback(itemOptions2);
     }
 
-    public void lambda$onTabLongClick$15(ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
+    public static void $r8$lambda$OKOumX3GJZh5HAalSTnlZuV7xpc(TopicsTabsView topicsTabsView, ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
+        topicsTabsView.getClass();
         itemOptions.dismiss();
-        MessagesController.getInstance(this.currentAccount).getTopicsController().toggleCloseTopic(-this.dialogId, tL_forumTopic.id, !tL_forumTopic.closed);
+        MessagesController.getInstance(topicsTabsView.currentAccount).getTopicsController().toggleCloseTopic(-topicsTabsView.dialogId, tL_forumTopic.id, !tL_forumTopic.closed);
     }
 
-    public void lambda$onTabLongClick$17(ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
+    public static void m2892$r8$lambda$xefYQ3LMmbHgrxWAmYharA3yVQ(TopicsTabsView topicsTabsView, ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
+        topicsTabsView.getClass();
         itemOptions.dismiss();
         HashSet hashSet = new HashSet();
         hashSet.add(Integer.valueOf(tL_forumTopic.id));
-        deleteTopics(hashSet, new Runnable() {
+        topicsTabsView.deleteTopics(hashSet, new Runnable() {
             @Override
             public final void run() {
-                TopicsTabsView.lambda$onTabLongClick$16();
+                TopicsTabsView.$r8$lambda$whz9_2q0Ul6L4zdHpqUqnJxFQVc();
             }
         });
     }
@@ -1205,9 +1242,14 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         if (topics == null) {
             return null;
         }
-        for (TLRPC.TL_forumTopic tL_forumTopic : topics) {
-            if (tL_forumTopic.id == j) {
-                return tL_forumTopic;
+        int size = topics.size();
+        int i = 0;
+        while (i < size) {
+            TLRPC.TL_forumTopic tL_forumTopic = topics.get(i);
+            i++;
+            TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
+            if (tL_forumTopic2.id == j) {
+                return tL_forumTopic2;
             }
         }
         return null;
@@ -1354,6 +1396,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
 
                 @Override
                 protected void dispatchDraw(Canvas canvas) {
+                    Canvas canvas2;
                     float f;
                     float f2;
                     float fIsNotEmpty = VerticalTabView.this.counterText.isNotEmpty();
@@ -1365,34 +1408,36 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
                     float fDp3 = AndroidUtilities.dp(12.0f);
                     float fMax = Math.max(fDp2 + fDp2, VerticalTabView.this.counterText.getCurrentWidth() + AndroidUtilities.dp(10.0f));
                     if (z) {
-                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                        f = fDp3;
+                        f2 = 2.0f;
+                        canvas2 = canvas;
+                        canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                    } else {
+                        canvas2 = canvas;
+                        f = fDp3;
+                        f2 = 2.0f;
                     }
                     super.dispatchDraw(canvas);
                     if (z) {
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f3 = fMax / 2.0f;
-                        f2 = width;
-                        f = fDp3;
-                        rectF.set((f2 - f3) - AndroidUtilities.dp(1.33f), f - fDp, f3 + f2 + AndroidUtilities.dp(1.33f), f + fDp);
+                        float f3 = fMax / f2;
+                        rectF.set((width - f3) - AndroidUtilities.dp(1.33f), f - fDp, f3 + width + AndroidUtilities.dp(1.33f), f + fDp);
                         AndroidUtilities.scaleRect(rectF, fIsNotEmpty);
                         float f4 = fDp * fIsNotEmpty;
-                        canvas.drawRoundRect(rectF, f4, f4, this.clipPaint);
-                        canvas.restore();
-                    } else {
-                        f = fDp3;
-                        f2 = width;
+                        canvas2.drawRoundRect(rectF, f4, f4, this.clipPaint);
+                        canvas2.restore();
                     }
                     if (fIsNotEmpty > 0.0f) {
-                        canvas.save();
-                        canvas.scale(fLerp, fLerp, f2, f);
+                        canvas2.save();
+                        canvas2.scale(fLerp, fLerp, width, f);
                         RectF rectF2 = AndroidUtilities.rectTmp;
-                        float f5 = fMax / 2.0f;
-                        rectF2.set(f2 - f5, f - fDp2, f2 + f5, f + fDp2);
-                        canvas.drawRoundRect(rectF2, fDp2, fDp2, this.backgroundPaint.setByKey(VerticalTabView.this.counterBackgroundColorKey, fIsNotEmpty));
+                        float f5 = fMax / f2;
+                        rectF2.set(width - f5, f - fDp2, width + f5, f + fDp2);
+                        canvas2.drawRoundRect(rectF2, fDp2, fDp2, this.backgroundPaint.setByKey(VerticalTabView.this.counterBackgroundColorKey, fIsNotEmpty));
                         VerticalTabView.this.counterText.setBounds(rectF2);
                         VerticalTabView.this.counterText.setAlpha((int) (fIsNotEmpty * 255.0f));
-                        VerticalTabView.this.counterText.draw(canvas);
-                        canvas.restore();
+                        VerticalTabView.this.counterText.draw(canvas2);
+                        canvas2.restore();
                     }
                 }
             };
@@ -1495,7 +1540,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$animateCounterBounce$0(valueAnimator2);
+                    TopicsTabsView.VerticalTabView.$r8$lambda$nUmeB4RAwrPjocveR25TZsEApvg(this.f$0, valueAnimator2);
                 }
             });
             this.counterAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1510,9 +1555,10 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             this.counterAnimator.start();
         }
 
-        public void lambda$animateCounterBounce$0(ValueAnimator valueAnimator) {
-            this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            this.imageLayoutView.invalidate();
+        public static void $r8$lambda$nUmeB4RAwrPjocveR25TZsEApvg(VerticalTabView verticalTabView, ValueAnimator valueAnimator) {
+            verticalTabView.getClass();
+            verticalTabView.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+            verticalTabView.imageLayoutView.invalidate();
         }
 
         public void setAll(boolean z, boolean z2, boolean z3) {
@@ -1620,8 +1666,9 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             }
             setSelected(z);
             updateImageColor();
-            setCounter(MessagesController.getInstance(this.currentAccount).isDialogMuted(j, tL_forumTopic.id), tL_forumTopic.unread_count, tL_forumTopic.unread_mentions_count > 0, tL_forumTopic.unread_reactions_count > 0, z2);
-            setPinned(tL_forumTopic.pinned, z2);
+            boolean z3 = z2;
+            setCounter(MessagesController.getInstance(this.currentAccount).isDialogMuted(j, tL_forumTopic.id), tL_forumTopic.unread_count, tL_forumTopic.unread_mentions_count > 0, tL_forumTopic.unread_reactions_count > 0, z3);
+            setPinned(tL_forumTopic.pinned, z3);
             updateState();
         }
 
@@ -1677,7 +1724,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setSelected$1(valueAnimator2);
+                    TopicsTabsView.VerticalTabView.$r8$lambda$oLmUvK2qIKlO7Aj_gF3CkoVIUHw(this.f$0, valueAnimator2);
                 }
             });
             this.selectAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1693,10 +1740,11 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             this.selectAnimator.start();
         }
 
-        public void lambda$setSelected$1(ValueAnimator valueAnimator) {
-            this.selectT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            updateState();
-            updateImageColor();
+        public static void $r8$lambda$oLmUvK2qIKlO7Aj_gF3CkoVIUHw(VerticalTabView verticalTabView, ValueAnimator valueAnimator) {
+            verticalTabView.getClass();
+            verticalTabView.selectT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            verticalTabView.updateState();
+            verticalTabView.updateImageColor();
         }
 
         public void updateState() {
@@ -2035,8 +2083,9 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             this.textView.setText(spannableStringBuilder);
             setSelected(z);
             updateTextColor();
-            setCounter(MessagesController.getInstance(this.currentAccount).isDialogMuted(j, this.topicId), tL_forumTopic.unread_count, false, false, z2);
-            setPinned(tL_forumTopic.pinned, z2);
+            boolean z3 = z2;
+            setCounter(MessagesController.getInstance(this.currentAccount).isDialogMuted(j, this.topicId), tL_forumTopic.unread_count, false, false, z3);
+            setPinned(tL_forumTopic.pinned, z3);
         }
 
         public void updateTextColor() {
@@ -2093,7 +2142,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setSelected$0(valueAnimator2);
+                    TopicsTabsView.HorizontalTabView.m2894$r8$lambda$TDsOFi3FwdP_MUlURVFg_7rA(this.f$0, valueAnimator2);
                 }
             });
             this.selectAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2108,9 +2157,10 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             this.selectAnimator.start();
         }
 
-        public void lambda$setSelected$0(ValueAnimator valueAnimator) {
-            this.selectT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            updateTextColor();
+        public static void m2894$r8$lambda$TDsOFi3FwdP_MUlURVFg_7rA(HorizontalTabView horizontalTabView, ValueAnimator valueAnimator) {
+            horizontalTabView.getClass();
+            horizontalTabView.selectT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            horizontalTabView.updateTextColor();
         }
 
         private void setCounter(boolean z, int i, boolean z2, boolean z3, boolean z4) {
@@ -2168,7 +2218,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$animateCounterBounce$1(valueAnimator2);
+                    TopicsTabsView.HorizontalTabView.$r8$lambda$CAUY9cu7iJQQ5ROLvCeKkqJLX6E(this.f$0, valueAnimator2);
                 }
             });
             this.counterAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2184,10 +2234,10 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             this.counterAnimator.start();
         }
 
-        public void lambda$animateCounterBounce$1(ValueAnimator valueAnimator) {
-            this.counterView.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-            this.counterView.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-            this.counterView.invalidate();
+        public static void $r8$lambda$CAUY9cu7iJQQ5ROLvCeKkqJLX6E(HorizontalTabView horizontalTabView, ValueAnimator valueAnimator) {
+            horizontalTabView.counterView.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+            horizontalTabView.counterView.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+            horizontalTabView.counterView.invalidate();
         }
 
         private int getMeasuringWidth() {
@@ -2303,7 +2353,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$deleteTopics$20(arrayList, j, hashSet, runnable, alertDialog, i);
+                TopicsTabsView.$r8$lambda$mNQdYxCjpevtYZt4zGmssfjlZ8U(this.f$0, arrayList, j, hashSet, runnable, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -2320,44 +2370,51 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         }
     }
 
-    public void lambda$deleteTopics$20(final ArrayList arrayList, final long j, final HashSet hashSet, final Runnable runnable, AlertDialog alertDialog, int i) {
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            if (j == ((Integer) it.next()).intValue()) {
-                selectTopic(0L, false);
+    public static void $r8$lambda$mNQdYxCjpevtYZt4zGmssfjlZ8U(final TopicsTabsView topicsTabsView, final ArrayList arrayList, final long j, final HashSet hashSet, final Runnable runnable, AlertDialog alertDialog, int i) {
+        topicsTabsView.getClass();
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            if (j == ((Integer) obj).intValue()) {
+                topicsTabsView.selectTopic(0L, false);
             }
         }
-        this.excludeTopics.addAll(hashSet);
-        updateTabs();
-        BulletinFactory.of(this.fragment).createUndoBulletin(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), new Runnable() {
+        topicsTabsView.excludeTopics.addAll(hashSet);
+        topicsTabsView.updateTabs();
+        BulletinFactory.of(topicsTabsView.fragment).createUndoBulletin(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteTopics$18(hashSet, arrayList, j);
+                TopicsTabsView.m2887$r8$lambda$J9vP3WN3JX9LdWejzzbScFixRI(this.f$0, hashSet, arrayList, j);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteTopics$19(arrayList, runnable);
+                TopicsTabsView.$r8$lambda$1m4OhoONJqhkVLEuLvPndGXLWUo(this.f$0, arrayList, runnable);
             }
         }).show();
         alertDialog.dismiss();
     }
 
-    public void lambda$deleteTopics$18(HashSet hashSet, ArrayList arrayList, long j) {
-        this.excludeTopics.removeAll(hashSet);
-        updateTabs();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            long jIntValue = ((Integer) it.next()).intValue();
+    public static void m2887$r8$lambda$J9vP3WN3JX9LdWejzzbScFixRI(TopicsTabsView topicsTabsView, HashSet hashSet, ArrayList arrayList, long j) {
+        topicsTabsView.excludeTopics.removeAll(hashSet);
+        topicsTabsView.updateTabs();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            long jIntValue = ((Integer) obj).intValue();
             if (j == jIntValue) {
-                selectTopic(jIntValue, false);
+                topicsTabsView.selectTopic(jIntValue, false);
                 return;
             }
         }
     }
 
-    public void lambda$deleteTopics$19(ArrayList arrayList, Runnable runnable) {
-        MessagesController.getInstance(this.currentAccount).getTopicsController().deleteTopics(-this.dialogId, arrayList);
+    public static void $r8$lambda$1m4OhoONJqhkVLEuLvPndGXLWUo(TopicsTabsView topicsTabsView, ArrayList arrayList, Runnable runnable) {
+        MessagesController.getInstance(topicsTabsView.currentAccount).getTopicsController().deleteTopics(-topicsTabsView.dialogId, arrayList);
         runnable.run();
     }
 

@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -83,7 +82,7 @@ public class PaidReactionButton extends View {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$focusTo$0(valueAnimator2);
+                    PaidReactionButton.PaidReactionButtonEffectsView.$r8$lambda$wLzUhkXaYEUt0hNtllAzyVWPbAM(this.f$0, valueAnimator2);
                 }
             });
             this.focusAnimator.addListener(new AnimatorListenerAdapter() {
@@ -103,9 +102,10 @@ public class PaidReactionButton extends View {
             this.focusAnimator.start();
         }
 
-        public void lambda$focusTo$0(ValueAnimator valueAnimator) {
-            this.focus = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+        public static void $r8$lambda$wLzUhkXaYEUt0hNtllAzyVWPbAM(PaidReactionButtonEffectsView paidReactionButtonEffectsView, ValueAnimator valueAnimator) {
+            paidReactionButtonEffectsView.getClass();
+            paidReactionButtonEffectsView.focus = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            paidReactionButtonEffectsView.invalidate();
         }
 
         public void showCounter(long j) {
@@ -143,15 +143,15 @@ public class PaidReactionButton extends View {
             this.hideCounterRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$1();
+                    PaidReactionButton.PaidReactionButtonEffectsView.m4332$r8$lambda$vpIAAgrDJtdfYngYmN4gFB_tSY(this.f$0);
                 }
             };
         }
 
-        public void lambda$new$1() {
-            this.counterShown = false;
-            invalidate();
-            hide();
+        public static void m4332$r8$lambda$vpIAAgrDJtdfYngYmN4gFB_tSY(PaidReactionButtonEffectsView paidReactionButtonEffectsView) {
+            paidReactionButtonEffectsView.counterShown = false;
+            paidReactionButtonEffectsView.invalidate();
+            paidReactionButtonEffectsView.hide();
         }
 
         public void updatePosition(PaidReactionButton paidReactionButton) {
@@ -212,10 +212,14 @@ public class PaidReactionButton extends View {
             invalidate();
         }
 
-        public void lambda$hide$2() {
-            Iterator it = this.effects.iterator();
-            while (it.hasNext()) {
-                ((RLottieDrawable) it.next()).recycle(true);
+        public void clearEffects() {
+            ArrayList arrayList = this.effects;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ((RLottieDrawable) obj).recycle(true);
             }
             this.effects.clear();
         }
@@ -229,7 +233,7 @@ public class PaidReactionButton extends View {
             focusTo(0.0f, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$hide$2();
+                    this.f$0.clearEffects();
                 }
             });
         }

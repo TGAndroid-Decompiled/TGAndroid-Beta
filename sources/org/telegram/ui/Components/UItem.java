@@ -644,27 +644,29 @@ public class UItem extends AdapterWithDiffUtils.Item {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
+        if (obj != null && getClass() == obj.getClass()) {
+            UItem uItem = (UItem) obj;
+            int i = this.viewType;
+            if (i != uItem.viewType) {
+                return false;
+            }
+            if (i != 36 && i != 35) {
+                if (i == 28) {
+                    return this.id == uItem.id;
+                }
+                if (i == 31) {
+                    return TextUtils.equals(this.text, uItem.text);
+                }
+                if (i >= factoryViewTypeStartsWith && (uItemFactoryFindFactory = findFactory(i)) != null) {
+                    return uItemFactoryFindFactory.equals(this, uItem);
+                }
+                return itemEquals(uItem);
+            }
+            if (this.id == uItem.id) {
+                return true;
+            }
         }
-        UItem uItem = (UItem) obj;
-        int i = this.viewType;
-        if (i != uItem.viewType) {
-            return false;
-        }
-        if (i == 36 || i == 35) {
-            return this.id == uItem.id;
-        }
-        if (i == 28) {
-            return this.id == uItem.id;
-        }
-        if (i == 31) {
-            return TextUtils.equals(this.text, uItem.text);
-        }
-        if (i >= factoryViewTypeStartsWith && (uItemFactoryFindFactory = findFactory(i)) != null) {
-            return uItemFactoryFindFactory.equals(this, uItem);
-        }
-        return itemEquals(uItem);
+        return false;
     }
 
     @Override
@@ -673,27 +675,30 @@ public class UItem extends AdapterWithDiffUtils.Item {
         if (this == item) {
             return true;
         }
-        if (item == null || getClass() != item.getClass()) {
-            return false;
+        if (item != null && getClass() == item.getClass()) {
+            UItem uItem = (UItem) item;
+            int i = this.viewType;
+            if (i != uItem.viewType) {
+                return false;
+            }
+            if (i == 31) {
+                return TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext);
+            }
+            if (i == 28) {
+                return this.intValue == uItem.intValue;
+            }
+            if (i == 35 || i == 37) {
+                if (this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked) {
+                    return true;
+                }
+            } else {
+                if (i >= factoryViewTypeStartsWith && (uItemFactoryFindFactory = findFactory(i)) != null) {
+                    return uItemFactoryFindFactory.contentsEquals(this, uItem);
+                }
+                return itemContentEquals(uItem);
+            }
         }
-        UItem uItem = (UItem) item;
-        int i = this.viewType;
-        if (i != uItem.viewType) {
-            return false;
-        }
-        if (i == 31) {
-            return TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext);
-        }
-        if (i == 28) {
-            return this.intValue == uItem.intValue;
-        }
-        if (i == 35 || i == 37) {
-            return this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked;
-        }
-        if (i >= factoryViewTypeStartsWith && (uItemFactoryFindFactory = findFactory(i)) != null) {
-            return uItemFactoryFindFactory.contentsEquals(this, uItem);
-        }
-        return itemContentEquals(uItem);
+        return false;
     }
 
     public boolean itemEquals(UItem uItem) {
@@ -771,8 +776,12 @@ public class UItem extends AdapterWithDiffUtils.Item {
             if (this.cache == null) {
                 this.cache = new ArrayList<>();
             }
-            for (int i4 = 0; i4 < this.cache.size() - i3; i4++) {
-                this.cache.add(createView(context, null, i, i2, resourcesProvider));
+            int i4 = 0;
+            while (i4 < this.cache.size() - i3) {
+                Context context2 = context;
+                this.cache.add(createView(context2, null, i, i2, resourcesProvider));
+                i4++;
+                context = context2;
             }
         }
 

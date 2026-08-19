@@ -126,7 +126,7 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
         this.prepareBlur = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$2();
+                ActionBarMenuSlider.$r8$lambda$glIfugGQY6ANHYokt6BzOWBZlk8(this.f$0);
             }
         };
         this.resourcesProvider = resourcesProvider;
@@ -198,7 +198,7 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setValue$0(valueAnimator2);
+                    ActionBarMenuSlider.$r8$lambda$59cvFoR3YGmETkIQolt6b0KxQHQ(this.f$0, valueAnimator2);
                 }
             });
             this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -226,9 +226,10 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
         this.fillPaint.setColor(getColorValue(fClamp));
     }
 
-    public void lambda$setValue$0(ValueAnimator valueAnimator) {
-        this.value = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$59cvFoR3YGmETkIQolt6b0KxQHQ(ActionBarMenuSlider actionBarMenuSlider, ValueAnimator valueAnimator) {
+        actionBarMenuSlider.getClass();
+        actionBarMenuSlider.value = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        actionBarMenuSlider.invalidate();
     }
 
     @Override
@@ -274,37 +275,37 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$new$2() {
-        this.preparingBlur = true;
+    public static void $r8$lambda$glIfugGQY6ANHYokt6BzOWBZlk8(final ActionBarMenuSlider actionBarMenuSlider) {
+        actionBarMenuSlider.preparingBlur = true;
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$1((Bitmap) obj);
+                ActionBarMenuSlider.$r8$lambda$MuyrIntDVgalfEX96cFLlqiTekw(this.f$0, (Bitmap) obj);
             }
         }, 8.0f);
     }
 
-    public void lambda$new$1(Bitmap bitmap) {
-        this.preparingBlur = false;
-        this.blurBitmap = bitmap;
+    public static void $r8$lambda$MuyrIntDVgalfEX96cFLlqiTekw(ActionBarMenuSlider actionBarMenuSlider, Bitmap bitmap) {
+        actionBarMenuSlider.preparingBlur = false;
+        actionBarMenuSlider.blurBitmap = bitmap;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.blurBitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-        Matrix matrix = this.blurBitmapMatrix;
+        actionBarMenuSlider.blurBitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+        Matrix matrix = actionBarMenuSlider.blurBitmapMatrix;
         if (matrix == null) {
-            this.blurBitmapMatrix = new Matrix();
+            actionBarMenuSlider.blurBitmapMatrix = new Matrix();
         } else {
             matrix.reset();
         }
-        this.blurBitmapMatrix.postScale(8.0f, 8.0f);
-        Matrix matrix2 = this.blurBitmapMatrix;
-        int[] iArr = this.location;
+        actionBarMenuSlider.blurBitmapMatrix.postScale(8.0f, 8.0f);
+        Matrix matrix2 = actionBarMenuSlider.blurBitmapMatrix;
+        int[] iArr = actionBarMenuSlider.location;
         matrix2.postTranslate(-iArr[0], -iArr[1]);
-        this.blurBitmapShader.setLocalMatrix(this.blurBitmapMatrix);
-        this.blurPaint.setShader(this.blurBitmapShader);
+        actionBarMenuSlider.blurBitmapShader.setLocalMatrix(actionBarMenuSlider.blurBitmapMatrix);
+        actionBarMenuSlider.blurPaint.setShader(actionBarMenuSlider.blurBitmapShader);
         ColorMatrix colorMatrix = new ColorMatrix();
         AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, -0.2f);
-        this.blurPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        invalidate();
+        actionBarMenuSlider.blurPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        actionBarMenuSlider.invalidate();
     }
 
     @Override

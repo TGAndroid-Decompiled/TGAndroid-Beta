@@ -54,7 +54,10 @@ public class ChatActivityTopPanelLayout extends AnimatedLinearLayout {
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         BlurredBackgroundDrawable blurredBackgroundDrawable;
-        return super.dispatchTouchEvent(motionEvent) || (motionEvent.getAction() == 0 && (blurredBackgroundDrawable = this.backgroundDrawable) != null && blurredBackgroundDrawable.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()));
+        if (super.dispatchTouchEvent(motionEvent)) {
+            return true;
+        }
+        return motionEvent.getAction() == 0 && (blurredBackgroundDrawable = this.backgroundDrawable) != null && blurredBackgroundDrawable.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
     }
 
     private void checkBoundsAndClipping() {
@@ -88,13 +91,17 @@ public class ChatActivityTopPanelLayout extends AnimatedLinearLayout {
 
     @Override
     protected boolean verifyDrawable(Drawable drawable) {
-        FragmentContextView fragmentContextView;
-        return super.verifyDrawable(drawable) || ((fragmentContextView = this.callFragmentContextView) != null && fragmentContextView.getCapsuleBlobDrawable() == drawable);
+        if (super.verifyDrawable(drawable)) {
+            return true;
+        }
+        FragmentContextView fragmentContextView = this.callFragmentContextView;
+        return fragmentContextView != null && fragmentContextView.getCapsuleBlobDrawable() == drawable;
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
         boolean z;
+        Canvas canvas2;
         FragmentContextView fragmentContextView;
         int currentStyle;
         FragmentContextView fragmentContextView2;
@@ -106,21 +113,22 @@ public class ChatActivityTopPanelLayout extends AnimatedLinearLayout {
             blurredBackgroundDrawable.draw(canvas);
         }
         FragmentContextView fragmentContextView3 = this.callFragmentContextView;
+        int i = 0;
         if (fragmentContextView3 == null || !((currentStyle = fragmentContextView3.getCurrentStyle()) == 3 || currentStyle == 1)) {
             z = false;
         } else {
             int entriesCount = getEntriesCount();
             z = false;
-            for (int i = 0; i < entriesCount; i++) {
-                ListAnimator.Entry entry = getEntry(i);
+            for (int i2 = 0; i2 < entriesCount; i2++) {
+                ListAnimator.Entry entry = getEntry(i2);
                 float paddingTop = getPaddingTop() + entry.getRectF().top;
                 View view = ((AnimatedLinearLayout.Holder) entry.item).view;
                 float visibility = entry.getVisibility();
                 if (visibility > 0.0f && ((fragmentContextView2 = this.callFragmentContextView) == view || fragmentContextView2.getParent() == view)) {
                     CapsuleBlobDrawable capsuleBlobDrawable = this.callFragmentContextView.getCapsuleBlobDrawable();
                     int requiredInset = capsuleBlobDrawable.getRequiredInset();
-                    int i2 = -requiredInset;
-                    capsuleBlobDrawable.setBounds(getPaddingLeft() - requiredInset, i2, (getMeasuredWidth() - getPaddingRight()) + requiredInset, AndroidUtilities.dp(36.0f) + (requiredInset * 2) + i2);
+                    int i3 = -requiredInset;
+                    capsuleBlobDrawable.setBounds(getPaddingLeft() - requiredInset, i3, (getMeasuredWidth() - getPaddingRight()) + requiredInset, AndroidUtilities.dp(36.0f) + (requiredInset * 2) + i3);
                     capsuleBlobDrawable.setAlpha((int) (visibility * 255.0f));
                     canvas.save();
                     canvas.translate(0.0f, paddingTop);
@@ -133,20 +141,28 @@ public class ChatActivityTopPanelLayout extends AnimatedLinearLayout {
         canvas.save();
         canvas.clipPath(this.clipPath);
         int entriesCount2 = getEntriesCount();
-        for (int i3 = 0; i3 < entriesCount2; i3++) {
-            ListAnimator.Entry entry2 = getEntry(i3);
+        while (i < entriesCount2) {
+            ListAnimator.Entry entry2 = getEntry(i);
             float paddingTop2 = getPaddingTop() + entry2.getRectF().top;
             View view2 = ((AnimatedLinearLayout.Holder) entry2.item).view;
             float visibility2 = entry2.getVisibility() * Math.min(1.0f, entry2.getPosition());
-            if (visibility2 > 0.0f && (!z || (fragmentContextView = this.callFragmentContextView) == null || (fragmentContextView != view2 && fragmentContextView.getParent() != view2))) {
+            if (visibility2 > 0.0f && !(z && (fragmentContextView = this.callFragmentContextView) != null && (fragmentContextView == view2 || fragmentContextView.getParent() == view2))) {
                 int alpha = Theme.dividerPaint.getAlpha();
                 Theme.dividerPaint.setAlpha((int) (alpha * visibility2));
                 float f = 1.0f - visibility2;
-                canvas.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f), paddingTop2, getWidth() - (getPaddingRight() + (AndroidUtilities.dp(16.0f) * f)), paddingTop2, Theme.dividerPaint);
+                float paddingLeft = getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f);
+                float paddingRight = getPaddingRight() + (AndroidUtilities.dp(16.0f) * f);
+                canvas2 = canvas;
+                canvas2.drawLine(paddingLeft, paddingTop2, getWidth() - paddingRight, paddingTop2, Theme.dividerPaint);
                 Theme.dividerPaint.setAlpha(alpha);
+            } else {
+                canvas2 = canvas;
             }
+            i++;
+            canvas = canvas2;
         }
-        super.dispatchDraw(canvas);
-        canvas.restore();
+        Canvas canvas3 = canvas;
+        super.dispatchDraw(canvas3);
+        canvas3.restore();
     }
 }

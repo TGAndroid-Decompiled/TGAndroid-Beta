@@ -139,30 +139,6 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
     public void showChatPreview(DialogCell dialogCell) {
     }
 
-    public static void access$3100(CommunitySheet communitySheet, UItem uItem, View view, int i, float f, float f2) {
-        communitySheet.onClickCommunity(uItem, view, i, f, f2);
-    }
-
-    public static void access$3200(CommunitySheet communitySheet, ArrayList arrayList, UniversalAdapter universalAdapter) {
-        communitySheet.fillItemsCommunity(arrayList, universalAdapter);
-    }
-
-    public static void access$4300(CommunitySheet communitySheet, UItem uItem, View view, int i, float f, float f2) {
-        communitySheet.onClickChatToAdd(uItem, view, i, f, f2);
-    }
-
-    public static void access$4400(CommunitySheet communitySheet, ArrayList arrayList, UniversalAdapter universalAdapter) {
-        communitySheet.fillItemsChatsToAdd(arrayList, universalAdapter);
-    }
-
-    public static void access$5600(CommunitySheet communitySheet, UItem uItem, View view, int i, float f, float f2) {
-        communitySheet.onClickRequest(uItem, view, i, f, f2);
-    }
-
-    public static void access$5700(CommunitySheet communitySheet, ArrayList arrayList, UniversalAdapter universalAdapter) {
-        communitySheet.fillItemsRequests(arrayList, universalAdapter);
-    }
-
     public CommunitySheet(BaseFragment baseFragment, long j) {
         this(baseFragment, j, null, null);
     }
@@ -298,7 +274,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             @Override
             public void goToMessage(MessageObject messageObject) {
                 CommunitySheet.this.parentFragment.presentFragment(SearchViewPager.createFragmentFromMessage(((BottomSheet) CommunitySheet.this).currentAccount, messageObject));
-                CommunitySheet.this.lambda$new$0();
+                CommunitySheet.this.dismiss();
             }
         });
         filteredSearchView.recyclerListView.setClipToPadding(false);
@@ -322,7 +298,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             @Override
             public void onClickGroupOwner(long j2) {
                 baseFragment.presentFragment(ChatActivity.of(j2));
-                CommunitySheet.this.lambda$new$0();
+                CommunitySheet.this.dismiss();
             }
         });
         this.communityId = j;
@@ -368,13 +344,13 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         fragmentSearchField.setCloseButtonOnClickListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                CommunitySheet.m4871$r8$lambda$WvdyAYi8jqcUyJM1b3tX6K0ka0(this.f$0);
             }
         });
         fragmentSearchField2.setCloseButtonOnClickListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                CommunitySheet.$r8$lambda$msKhrbZDqnNH6fTeH4olCsfkvMc(this.f$0);
             }
         });
         this.pendingRequestsList.loadNext();
@@ -428,20 +404,20 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         });
     }
 
-    public void lambda$new$0() {
-        this.communityPage.listView.layoutManager.scrollToPositionWithOffset(1, this.systemInsets.top);
-        this.animatorSearchMessagesVisible.setValue(false, true);
-        setAllowNestedScroll(true);
-        AndroidUtilities.hideKeyboard(this.messagesSearchView.editText);
-        this.messagesSearchView.editText.clearFocus();
+    public static void m4871$r8$lambda$WvdyAYi8jqcUyJM1b3tX6K0ka0(CommunitySheet communitySheet) {
+        communitySheet.communityPage.listView.layoutManager.scrollToPositionWithOffset(1, communitySheet.systemInsets.top);
+        communitySheet.animatorSearchMessagesVisible.setValue(false, true);
+        communitySheet.setAllowNestedScroll(true);
+        AndroidUtilities.hideKeyboard(communitySheet.messagesSearchView.editText);
+        communitySheet.messagesSearchView.editText.clearFocus();
     }
 
-    public void lambda$new$1() {
-        this.chatsPage.listView.layoutManager.scrollToPositionWithOffset(1, this.systemInsets.top);
-        this.animatorSearchChatsVisible.setValue(false, true);
-        setAllowNestedScroll(true);
-        AndroidUtilities.hideKeyboard(this.chatsSearchView.editText);
-        this.chatsSearchView.editText.clearFocus();
+    public static void $r8$lambda$msKhrbZDqnNH6fTeH4olCsfkvMc(CommunitySheet communitySheet) {
+        communitySheet.chatsPage.listView.layoutManager.scrollToPositionWithOffset(1, communitySheet.systemInsets.top);
+        communitySheet.animatorSearchChatsVisible.setValue(false, true);
+        communitySheet.setAllowNestedScroll(true);
+        AndroidUtilities.hideKeyboard(communitySheet.chatsSearchView.editText);
+        communitySheet.chatsSearchView.editText.clearFocus();
     }
 
     public void fillItemsCommunity(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -477,7 +453,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             arrayList.add(UItem.asShadow(1, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CommunityPendingRequestsInfo), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$fillItemsRequests$2();
+                    CommunitySheet.m4872$r8$lambda$ieBlMxOAwQFrTGMoOzqVdPqRoA(this.f$0);
                 }
             }), true)));
         } else {
@@ -488,11 +464,12 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         this.pendingRequestsList.fillItems(arrayList);
     }
 
-    public void lambda$fillItemsRequests$2() {
+    public static void m4872$r8$lambda$ieBlMxOAwQFrTGMoOzqVdPqRoA(CommunitySheet communitySheet) {
+        communitySheet.getClass();
         Bundle bundle = new Bundle();
-        bundle.putLong("community_id", this.communityId);
-        this.parentFragment.presentFragment(new CommunityEditActivity(bundle));
-        lambda$new$0();
+        bundle.putLong("community_id", communitySheet.communityId);
+        communitySheet.parentFragment.presentFragment(new CommunityEditActivity(bundle));
+        communitySheet.dismiss();
     }
 
     public void fillItemsChatsToAdd(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -505,13 +482,19 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
 
     private void fillItemsChatsToAddImpl(ArrayList arrayList, UniversalAdapter universalAdapter, boolean z) {
         String str;
+        int i = 0;
         if (!z) {
             arrayList.add(UItem.asSpace(99, (int) (AndroidUtilities.displaySize.y * 0.35f)));
             arrayList.add(UItem.asSpace(0, AndroidUtilities.dp(56.0f)));
         }
         if (this.chatsToAddToCommunity != null) {
             String lowerCase = (!z || (str = this.lastSearchChatsString) == null) ? null : str.toLowerCase();
-            for (TLRPC.Chat chat : this.chatsToAddToCommunity) {
+            ArrayList arrayList2 = this.chatsToAddToCommunity;
+            int size = arrayList2.size();
+            while (i < size) {
+                Object obj = arrayList2.get(i);
+                i++;
+                TLRPC.Chat chat = (TLRPC.Chat) obj;
                 if (z && !TextUtils.isEmpty(lowerCase)) {
                     String str2 = chat.title;
                     if (str2 != null && str2.toLowerCase().contains(lowerCase)) {
@@ -530,20 +513,17 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             final TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (this.onlyChatsMode) {
                 this.chatsToAddCallback.run(chat);
-                lambda$new$0();
+                dismiss();
             } else {
                 new CommunityAddOptionsSheet(getContext(), this.currentCommunity, -chat.id, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj2) {
-                        this.f$0.lambda$onClickChatToAdd$3(chat, (Boolean) obj2);
+                        CommunitySheet communitySheet = this.f$0;
+                        communitySheet.linkToCommunity(chat, communitySheet.communityId, ((Boolean) obj2).booleanValue());
                     }
                 }).show();
             }
         }
-    }
-
-    public void lambda$onClickChatToAdd$3(TLRPC.Chat chat, Boolean bool) {
-        linkToCommunity(chat, this.communityId, bool.booleanValue());
     }
 
     public void onClickCommunity(UItem uItem, View view, int i, float f, float f2) {
@@ -591,7 +571,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
                 TLRPC.Chat currentChat = ((ChatActivity) baseFragment).getCurrentChat();
                 TLRPC.User currentUser = ((ChatActivity) this.parentFragment).getCurrentUser();
                 if ((currentChat != null && currentChat.id == (-j)) || (currentUser != null && currentUser.id == j)) {
-                    lambda$new$0();
+                    dismiss();
                     return;
                 }
             }
@@ -612,7 +592,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             } else {
                 this.parentFragment.presentFragment(new ChatActivity(bundle));
             }
-            lambda$new$0();
+            dismiss();
             return;
         }
         if (communityChatType == CommunityChatType.YouCanSendJoinRequest) {
@@ -632,31 +612,30 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
     }
 
     public boolean onLongClickCommunity(UItem uItem, View view, int i, float f, float f2) {
+        long j;
         boolean zCanRemoveBotFromCommunity;
         final boolean z;
-        final long j;
         final boolean z2;
         Object obj = uItem.object;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            long j2 = -chat.id;
+            j = -chat.id;
             boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
             zCanRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, this.currentCommunity);
             z2 = zIsChannelAndNotMegaGroup;
-            j = j2;
             z = false;
         } else {
             if (!(obj instanceof TLRPC.User)) {
                 return false;
             }
             TLRPC.User user = (TLRPC.User) obj;
-            long j3 = user.id;
+            j = user.id;
             boolean zIsBot = UserObject.isBot(user);
             zCanRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, this.currentCommunity);
             z = zIsBot;
-            j = j3;
             z2 = false;
         }
+        final long j2 = j;
         if (!zCanRemoveBotFromCommunity) {
             return false;
         }
@@ -664,7 +643,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         itemOptionsMakeOptions.add(R.drawable.msg_cancel, (CharSequence) LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onLongClickCommunity$6(z, z2, j);
+                CommunitySheet.m4870$r8$lambda$NwvIrXTwjQ5JQIHS8WyfgDE18c(this.f$0, z, z2, j2);
             }
         });
         itemOptionsMakeOptions.setScrimViewBackground(this.communityPage.listView.getClipBackground(view, true));
@@ -672,10 +651,10 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         return true;
     }
 
-    public void lambda$onLongClickCommunity$6(boolean z, boolean z2, final long j) {
+    public static void m4870$r8$lambda$NwvIrXTwjQ5JQIHS8WyfgDE18c(final CommunitySheet communitySheet, boolean z, boolean z2, final long j) {
         int i;
-        Context context = getContext();
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Context context = communitySheet.getContext();
+        Theme.ResourcesProvider resourcesProvider = communitySheet.resourcesProvider;
         String string = LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity);
         if (z) {
             i = R.string.CommunityMenuRemoveBotFromCommunityConfirm;
@@ -687,23 +666,22 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         AlertsCreator.showSimpleConfirmAlert(context, resourcesProvider, string, LocaleController.getString(i), LocaleController.getString(R.string.Remove), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onLongClickCommunity$5(j);
+                CommunitySheet communitySheet2 = this.f$0;
+                MessagesController.getInstance(communitySheet2.currentAccount).unlinkCommunity(j, communitySheet2.communityId, new Utilities.Callback2() {
+                    @Override
+                    public final void run(Object obj, Object obj2) {
+                        CommunitySheet.m4869$r8$lambda$H2QIdSSp9VlgAhqn6a9ncCVFqc(communitySheet2, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                    }
+                });
             }
         });
     }
 
-    public void lambda$onLongClickCommunity$5(long j) {
-        MessagesController.getInstance(this.currentAccount).unlinkCommunity(j, this.communityId, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$onLongClickCommunity$4((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-            }
-        });
-    }
-
-    public void lambda$onLongClickCommunity$4(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void m4869$r8$lambda$H2QIdSSp9VlgAhqn6a9ncCVFqc(CommunitySheet communitySheet, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).showForError(tL_error);
+            BulletinFactory.of((FrameLayout) communitySheet.containerView, communitySheet.resourcesProvider).showForError(tL_error);
+        } else {
+            communitySheet.getClass();
         }
     }
 
@@ -730,14 +708,10 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         new CommunityInviteOnlySheet(getContext(), chat, data.requestFromUser, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkPendingRequestClick$7(data);
+                this.f$0.parentFragment.presentFragment(ChatActivity.of(data.requestFromUser.id));
             }
         }).show();
         return true;
-    }
-
-    public void lambda$checkPendingRequestClick$7(CommunityPendingRequestCell.Data data) {
-        this.parentFragment.presentFragment(ChatActivity.of(data.requestFromUser.id));
     }
 
     @Override
@@ -764,7 +738,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
     }
 
     @Override
-    public void lambda$openCrafting$8() {
+    public void onBackPressed() {
         if (this.viewPager.getCurrentPosition() > 0) {
             if (this.viewPager.getCurrentPosition() == 2 && this.animatorSearchChatsVisible.getValue()) {
                 this.chatsPage.listView.layoutManager.scrollToPositionWithOffset(1, this.systemInsets.top);
@@ -777,7 +751,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             this.viewPager.scrollToPosition(0);
             return;
         }
-        super.lambda$openCrafting$8();
+        super.onBackPressed();
     }
 
     @Override
@@ -846,17 +820,17 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, ((BottomSheet) CommunitySheet.this).currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    CommunitySheet.access$3200(communitySheet, (ArrayList) obj, (UniversalAdapter) obj2);
+                    communitySheet.fillItemsCommunity((ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    CommunitySheet.access$3100(communitySheet, (UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                    communitySheet.onClickCommunity((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
                 }
             }, new Utilities.Callback5Return() {
                 @Override
                 public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    return CommunitySheet.CommunityPage.lambda$new$2(communitySheet, (UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                    return Boolean.valueOf(communitySheet.onLongClickCommunity((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
                 }
             }, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.listView = universalRecyclerView;
@@ -884,7 +858,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
                         Bundle bundle = new Bundle();
                         bundle.putLong("community_id", CommunitySheet.this.communityId);
                         CommunitySheet.this.parentFragment.presentFragment(new CommunityEditActivity(bundle));
-                        CommunitySheet.this.lambda$new$0();
+                        CommunitySheet.this.dismiss();
                         return;
                     }
                     if (i == 3) {
@@ -927,19 +901,11 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             CommunitySheet.this.addChatToCommunityButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$3(view);
+                    CommunitySheet.this.onAddChatToCommunityButtonClick();
                 }
             });
             this.contentView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(12.0f)));
             afterInit();
-        }
-
-        public static Boolean lambda$new$2(CommunitySheet communitySheet, UItem uItem, View view, int i, float f, float f2) {
-            return Boolean.valueOf(communitySheet.onLongClickCommunity(uItem, view, i, f, f2));
-        }
-
-        public void lambda$new$3(View view) {
-            CommunitySheet.this.onAddChatToCommunityButtonClick();
         }
 
         @Override
@@ -956,7 +922,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
 
     public void onAddChatToCommunityButtonClick() {
         if (!ChatObject.canAddChatToCommunity(this.currentCommunity)) {
-            lambda$new$0();
+            dismiss();
         } else {
             loadChatsToAddToCommunity();
         }
@@ -970,24 +936,24 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         MessagesController.getInstance(this.currentAccount).fetchChatsToAddToCommunity(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$loadChatsToAddToCommunity$8((ArrayList) obj, (TLRPC.TL_error) obj2);
+                CommunitySheet.$r8$lambda$CMpEgDxxBkRIWOMWnQxcxeiowkE(this.f$0, (ArrayList) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$loadChatsToAddToCommunity$8(ArrayList arrayList, TLRPC.TL_error tL_error) {
-        this.addChatToCommunityButton.setLoading(false);
+    public static void $r8$lambda$CMpEgDxxBkRIWOMWnQxcxeiowkE(CommunitySheet communitySheet, ArrayList arrayList, TLRPC.TL_error tL_error) {
+        communitySheet.addChatToCommunityButton.setLoading(false);
         if (tL_error != null) {
-            BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).showForError(tL_error);
+            BulletinFactory.of((FrameLayout) communitySheet.containerView, communitySheet.resourcesProvider).showForError(tL_error);
             return;
         }
         if (arrayList != null) {
-            this.chatsToAddToCommunity = arrayList;
+            communitySheet.chatsToAddToCommunity = arrayList;
             if (arrayList.isEmpty()) {
-                BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createSimpleBulletin(R.raw.info, LocaleController.getString(R.string.CommunityNoChatsToAdd)).show();
+                BulletinFactory.of((FrameLayout) communitySheet.containerView, communitySheet.resourcesProvider).createSimpleBulletin(R.raw.info, LocaleController.getString(R.string.CommunityNoChatsToAdd)).show();
             } else {
-                this.chatsPage.listView.adapter.update(false);
-                this.viewPager.scrollToPosition(2);
+                communitySheet.chatsPage.listView.adapter.update(false);
+                communitySheet.viewPager.scrollToPosition(2);
             }
         }
     }
@@ -999,12 +965,12 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, ((BottomSheet) CommunitySheet.this).currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    CommunitySheet.access$4400(communitySheet, (ArrayList) obj, (UniversalAdapter) obj2);
+                    communitySheet.fillItemsChatsToAdd((ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    CommunitySheet.access$4300(communitySheet, (UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                    communitySheet.onClickChatToAdd((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
                 }
             }, null, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.listView = universalRecyclerView;
@@ -1033,7 +999,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
                             CommunitySheet.this.viewPager.scrollToPosition(0);
                             return;
                         } else {
-                            CommunitySheet.this.lambda$new$0();
+                            CommunitySheet.this.dismiss();
                             return;
                         }
                     }
@@ -1059,7 +1025,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             CommunitySheet.this.closeChatToCommunityButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$2(view);
+                    CommunitySheet.this.viewPager.scrollToPosition(0);
                 }
             });
             if (CommunitySheet.this.onlyChatsMode) {
@@ -1067,10 +1033,6 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             }
             this.contentView.addView(CommunitySheet.this.closeChatToCommunityButton, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(12.0f)));
             afterInit();
-        }
-
-        public void lambda$new$2(View view) {
-            CommunitySheet.this.viewPager.scrollToPosition(0);
         }
 
         @Override
@@ -1091,12 +1053,12 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, ((BottomSheet) CommunitySheet.this).currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    CommunitySheet.access$5700(communitySheet, (ArrayList) obj, (UniversalAdapter) obj2);
+                    communitySheet.fillItemsRequests((ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    CommunitySheet.access$5600(communitySheet, (UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                    communitySheet.onClickRequest((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
                 }
             }, null, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.listView = universalRecyclerView;
@@ -1144,7 +1106,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$2(view);
+                    CommunitySheet.this.pendingRequestsList.onResolveAllJoinRequests(false);
                 }
             });
             linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(0, 48, 1.0f, 0, 4, 0, 4, 0));
@@ -1154,24 +1116,16 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$3(view);
+                    CommunitySheet.this.pendingRequestsList.onResolveAllJoinRequests(true);
                 }
             });
             linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(0, 48, 1.0f, 0, 4, 0, 4, 0));
             this.contentView.addView(linearLayout, LayoutHelper.createFrameMarginPx(-1, -2.0f, 80, 0, 0, 0, AndroidUtilities.navigationBarHeight));
             afterInit();
         }
-
-        public void lambda$new$2(View view) {
-            CommunitySheet.this.pendingRequestsList.onResolveAllJoinRequests(false);
-        }
-
-        public void lambda$new$3(View view) {
-            CommunitySheet.this.pendingRequestsList.onResolveAllJoinRequests(true);
-        }
     }
 
-    private abstract class Page extends FrameLayout {
+    abstract class Page extends FrameLayout {
         protected ActionBar actionBar;
         protected final FrameLayout contentView;
         protected ChatActivityFadeView fadeView;
@@ -1331,7 +1285,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
             if (motionEvent.getAction() == 0 && motionEvent.getY() < this.top) {
-                CommunitySheet.this.lambda$new$0();
+                CommunitySheet.this.dismiss();
                 return true;
             }
             return super.dispatchTouchEvent(motionEvent);
@@ -1343,7 +1297,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         }
     }
 
-    private void linkToCommunity(TLRPC.Chat chat, final long j, final boolean z) {
+    public void linkToCommunity(TLRPC.Chat chat, final long j, final boolean z) {
         long j2 = -chat.id;
         final boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (!ChatObject.isChannel(chat)) {
@@ -1352,7 +1306,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             MessagesController.getInstance(this.currentAccount).convertToMegaGroup(getContext(), -j2, null, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j3) {
-                    this.f$0.lambda$linkToCommunity$9(alertDialog, j, z, j3);
+                    CommunitySheet.$r8$lambda$HhvkFjTDhK1OAVuc73gvSXxNcqw(this.f$0, alertDialog, j, z, j3);
                 }
             });
             return;
@@ -1360,30 +1314,32 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         MessagesController.getInstance(this.currentAccount).linkCommunity(j2, j, z, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$linkToCommunity$10(zIsChannelAndNotMegaGroup, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                CommunitySheet.$r8$lambda$703Ly0vA1DvUkxDrsGuHhygRv9s(this.f$0, zIsChannelAndNotMegaGroup, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$linkToCommunity$9(AlertDialog alertDialog, long j, boolean z, long j2) {
+    public static void $r8$lambda$HhvkFjTDhK1OAVuc73gvSXxNcqw(CommunitySheet communitySheet, AlertDialog alertDialog, long j, boolean z, long j2) {
+        communitySheet.getClass();
         alertDialog.dismiss();
         if (j2 == 0) {
             return;
         }
-        linkToCommunity(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j2)), j, z);
+        communitySheet.linkToCommunity(MessagesController.getInstance(communitySheet.currentAccount).getChat(Long.valueOf(j2)), j, z);
     }
 
-    public void lambda$linkToCommunity$10(boolean z, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$703Ly0vA1DvUkxDrsGuHhygRv9s(CommunitySheet communitySheet, boolean z, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
+            communitySheet.getClass();
             if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
-                onLinkSuccess(2, z);
+                communitySheet.onLinkSuccess(2, z);
                 return;
             } else {
-                BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).showForError(tL_error);
+                BulletinFactory.of((FrameLayout) communitySheet.containerView, communitySheet.resourcesProvider).showForError(tL_error);
                 return;
             }
         }
-        onLinkSuccess(1, z);
+        communitySheet.onLinkSuccess(1, z);
     }
 
     private void onLinkSuccess(int i, boolean z) {

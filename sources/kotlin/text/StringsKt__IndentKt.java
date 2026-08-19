@@ -1,7 +1,6 @@
 package kotlin.text;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import kotlin.collections.CollectionsKt;
 import kotlin.collections.CollectionsKt___CollectionsKt;
@@ -26,29 +25,32 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
         List listLines = StringsKt__StringsKt.lines(str);
         ArrayList arrayList = new ArrayList();
         for (Object obj : listLines) {
-            if (!StringsKt.isBlank((String) obj)) {
+            if (!StringsKt__StringsKt.isBlank((String) obj)) {
                 arrayList.add(obj);
             }
         }
         ArrayList arrayList2 = new ArrayList(CollectionsKt.collectionSizeOrDefault(arrayList, 10));
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            arrayList2.add(Integer.valueOf(indentWidth$StringsKt__IndentKt((String) it.next())));
+        int size = arrayList.size();
+        int i = 0;
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj2 = arrayList.get(i2);
+            i2++;
+            arrayList2.add(Integer.valueOf(indentWidth$StringsKt__IndentKt((String) obj2)));
         }
         Integer num = (Integer) CollectionsKt.minOrNull(arrayList2);
-        int i = 0;
         int iIntValue = num != null ? num.intValue() : 0;
         int length = str.length() + (newIndent.length() * listLines.size());
         Function1 indentFunction$StringsKt__IndentKt = getIndentFunction$StringsKt__IndentKt(newIndent);
         int lastIndex = CollectionsKt.getLastIndex(listLines);
         ArrayList arrayList3 = new ArrayList();
-        for (Object obj2 : listLines) {
-            int i2 = i + 1;
+        for (Object obj3 : listLines) {
+            int i3 = i + 1;
             if (i < 0) {
                 CollectionsKt.throwIndexOverflow();
             }
-            String str3 = (String) obj2;
-            if ((i == 0 || i == lastIndex) && StringsKt.isBlank(str3)) {
+            String str3 = (String) obj3;
+            if ((i == 0 || i == lastIndex) && StringsKt__StringsKt.isBlank(str3)) {
                 str3 = null;
             } else {
                 String strDrop = StringsKt___StringsKt.drop(str3, iIntValue);
@@ -59,7 +61,7 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
             if (str3 != null) {
                 arrayList3.add(str3);
             }
-            i = i2;
+            i = i3;
         }
         return ((StringBuilder) CollectionsKt___CollectionsKt.joinTo(arrayList3, new StringBuilder(length), (124 & 2) != 0 ? ", " : "\n", (124 & 4) != 0 ? "" : null, (124 & 8) == 0 ? null : "", (124 & 16) != 0 ? -1 : 0, (124 & 32) != 0 ? "..." : null, (124 & 64) != 0 ? null : null)).toString();
     }

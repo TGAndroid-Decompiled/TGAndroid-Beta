@@ -9,7 +9,10 @@ public class SegmentTree {
     }
 
     private boolean intersects(int i, int i2, int i3, int i4) {
-        return (i <= i3 && i2 >= i3) || (i >= i3 && i <= i4);
+        if (i > i3 || i2 < i3) {
+            return i >= i3 && i <= i4;
+        }
+        return true;
     }
 
     public SegmentTree(long[] jArr) {

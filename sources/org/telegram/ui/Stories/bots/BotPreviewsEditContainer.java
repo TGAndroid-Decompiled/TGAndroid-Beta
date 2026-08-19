@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -28,7 +29,6 @@ import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
@@ -186,8 +186,9 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         }
         StoriesController.BotPreviewsList botPreviewsList = (StoriesController.BotPreviewsList) longSparseArray.get(j);
         if (botPreviewsList == null) {
-            botPreviewsList = new StoriesController.BotPreviewsList(currentAccount, j, "", null);
-            longSparseArray.put(j, botPreviewsList);
+            StoriesController.BotPreviewsList botPreviewsList2 = new StoriesController.BotPreviewsList(currentAccount, j, "", null);
+            longSparseArray.put(j, botPreviewsList2);
+            botPreviewsList = botPreviewsList2;
         }
         this.mainList = botPreviewsList;
         ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context) {
@@ -256,9 +257,9 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             @Override
             public void bindView(View view, int i, int i2) {
                 BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) view;
-                StoriesController.BotPreviewsList botPreviewsList2 = i == 0 ? BotPreviewsEditContainer.this.mainList : (StoriesController.BotPreviewsList) BotPreviewsEditContainer.this.langLists.get(i - 1);
-                botPreviewsList2.load(true, 0, null);
-                botPreviewsEditLangContainer.setList(botPreviewsList2);
+                StoriesController.BotPreviewsList botPreviewsList3 = i == 0 ? BotPreviewsEditContainer.this.mainList : (StoriesController.BotPreviewsList) BotPreviewsEditContainer.this.langLists.get(i - 1);
+                botPreviewsList3.load(true, 0, null);
+                botPreviewsEditLangContainer.setList(botPreviewsList3);
                 botPreviewsEditLangContainer.setVisibleHeight(BotPreviewsEditContainer.this.visibleHeight);
             }
 
@@ -277,16 +278,17 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         tabsViewCreateTabsView.setPreTabClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                return this.f$0.lambda$new$0((Integer) obj, (Integer) obj2);
+                return BotPreviewsEditContainer.m4454$r8$lambda$DqBxhg5FKuU67rHBRd2Z8QOmJs(this.f$0, (Integer) obj, (Integer) obj2);
             }
         });
         addView(tabsViewCreateTabsView, LayoutHelper.createFrame(-1, 42, 48));
         updateLangs(false);
     }
 
-    public Boolean lambda$new$0(Integer num, Integer num2) {
+    public static Boolean m4454$r8$lambda$DqBxhg5FKuU67rHBRd2Z8QOmJs(BotPreviewsEditContainer botPreviewsEditContainer, Integer num, Integer num2) {
+        botPreviewsEditContainer.getClass();
         if (num.intValue() == -1) {
-            addTranslation();
+            botPreviewsEditContainer.addTranslation();
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -296,38 +298,38 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         new ChooseLanguageSheet(this.fragment, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$addTranslation$2((String) obj);
+                BotPreviewsEditContainer.$r8$lambda$NRJl3j2Ltd2OMTnuEfZnr91LSlo(this.f$0, (String) obj);
             }
         }).show();
     }
 
-    public void lambda$addTranslation$2(final String str) {
-        if (!this.localLangs.contains(str)) {
-            this.localLangs.add(str);
-            updateLangs(true);
+    public static void $r8$lambda$NRJl3j2Ltd2OMTnuEfZnr91LSlo(final BotPreviewsEditContainer botPreviewsEditContainer, final String str) {
+        if (!botPreviewsEditContainer.localLangs.contains(str)) {
+            botPreviewsEditContainer.localLangs.add(str);
+            botPreviewsEditContainer.updateLangs(true);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$addTranslation$1(str);
+                BotPreviewsEditContainer.m4455$r8$lambda$WiwNshCu0txWIeAQxYn8rqNx7k(this.f$0, str);
             }
         }, 120L);
     }
 
-    public void lambda$addTranslation$1(String str) {
+    public static void m4455$r8$lambda$WiwNshCu0txWIeAQxYn8rqNx7k(BotPreviewsEditContainer botPreviewsEditContainer, String str) {
         int i = 0;
         while (true) {
-            if (i >= this.langLists.size()) {
+            if (i >= botPreviewsEditContainer.langLists.size()) {
                 i = -1;
                 break;
-            } else if (TextUtils.equals(((StoriesController.BotPreviewsList) this.langLists.get(i)).lang_code, str)) {
+            } else if (TextUtils.equals(((StoriesController.BotPreviewsList) botPreviewsEditContainer.langLists.get(i)).lang_code, str)) {
                 break;
             } else {
                 i++;
             }
         }
         if (i >= 0) {
-            this.tabsView.scrollToTab(str.hashCode(), i + 1);
+            botPreviewsEditContainer.tabsView.scrollToTab(str.hashCode(), i + 1);
         }
     }
 
@@ -527,7 +529,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             int length2 = viewPages2.length;
             while (i3 < length2) {
                 View view3 = viewPages2[i3];
-                if ((view3 instanceof BotPreviewsEditLangContainer) && (view3 instanceof BotPreviewsEditLangContainer)) {
+                if ((view3 instanceof BotPreviewsEditLangContainer) && OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(view3)) {
                     ((BotPreviewsEditLangContainer) view3).adapter.notifyDataSetChanged();
                 }
                 i3++;
@@ -539,43 +541,55 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         StoriesController.BotPreviewsList botPreviewsList;
         StoryEntry storyEntry;
         ArrayList arrayList = new ArrayList(this.mainList.lang_codes);
-        for (String str : this.localLangs) {
+        ArrayList arrayList2 = this.localLangs;
+        int size = arrayList2.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList2.get(i);
+            i++;
+            String str = (String) obj;
             if (!arrayList.contains(str)) {
                 arrayList.add(str);
             }
         }
-        ArrayList<StoriesController.UploadingStory> uploadingStories = MessagesController.getInstance(this.currentAccount).getStoriesController().getUploadingStories(this.bot_id);
+        ArrayList uploadingStories = MessagesController.getInstance(this.currentAccount).getStoriesController().getUploadingStories(this.bot_id);
         if (uploadingStories != null) {
-            for (StoriesController.UploadingStory uploadingStory : uploadingStories) {
+            int size2 = uploadingStories.size();
+            int i2 = 0;
+            while (i2 < size2) {
+                Object obj2 = uploadingStories.get(i2);
+                i2++;
+                StoriesController.UploadingStory uploadingStory = (StoriesController.UploadingStory) obj2;
                 if (uploadingStory != null && (storyEntry = uploadingStory.entry) != null && storyEntry.botId == this.bot_id && !TextUtils.isEmpty(storyEntry.botLang) && !arrayList.contains(uploadingStory.entry.botLang)) {
                     arrayList.add(uploadingStory.entry.botLang);
                 }
             }
         }
-        ArrayList arrayList2 = new ArrayList(this.langLists);
+        ArrayList arrayList3 = new ArrayList(this.langLists);
         this.langLists.clear();
-        Iterator it = arrayList.iterator();
-        while (true) {
-            if (!it.hasNext()) {
-                break;
-            }
-            String str2 = (String) it.next();
-            int i = 0;
+        int size3 = arrayList.size();
+        int i3 = 0;
+        while (i3 < size3) {
+            Object obj3 = arrayList.get(i3);
+            i3++;
+            String str2 = (String) obj3;
+            int i4 = 0;
             while (true) {
-                if (i >= arrayList2.size()) {
+                if (i4 >= arrayList3.size()) {
                     botPreviewsList = null;
                     break;
                 } else {
-                    if (TextUtils.equals(((StoriesController.BotPreviewsList) arrayList2.get(i)).lang_code, str2)) {
-                        botPreviewsList = (StoriesController.BotPreviewsList) arrayList2.get(i);
+                    if (TextUtils.equals(((StoriesController.BotPreviewsList) arrayList3.get(i4)).lang_code, str2)) {
+                        botPreviewsList = (StoriesController.BotPreviewsList) arrayList3.get(i4);
                         break;
                     }
-                    i++;
+                    i4++;
                 }
             }
             if (botPreviewsList == null) {
-                botPreviewsList = new StoriesController.BotPreviewsList(this.currentAccount, this.bot_id, str2, null);
-                botPreviewsList.load(true, 0, null);
+                StoriesController.BotPreviewsList botPreviewsList2 = new StoriesController.BotPreviewsList(this.currentAccount, this.bot_id, str2, null);
+                botPreviewsList2.load(true, 0, null);
+                botPreviewsList = botPreviewsList2;
             }
             this.langLists.add(botPreviewsList);
         }
@@ -646,7 +660,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$updateTabs$3(valueAnimator2);
+                    BotPreviewsEditContainer.m4456$r8$lambda$ny00lQ3lqX_sga8u7GliUNtgA(this.f$0, valueAnimator2);
                 }
             });
             this.tabsAnimator.addListener(new AnimatorListenerAdapter() {
@@ -663,10 +677,11 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         }
     }
 
-    public void lambda$updateTabs$3(ValueAnimator valueAnimator) {
-        this.tabsAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.tabsView.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(42.0f), 0, this.tabsAlpha));
-        this.viewPager.setTranslationY(AndroidUtilities.lerp(0, AndroidUtilities.dp(42.0f), this.tabsAlpha));
+    public static void m4456$r8$lambda$ny00lQ3lqX_sga8u7GliUNtgA(BotPreviewsEditContainer botPreviewsEditContainer, ValueAnimator valueAnimator) {
+        botPreviewsEditContainer.getClass();
+        botPreviewsEditContainer.tabsAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        botPreviewsEditContainer.tabsView.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(42.0f), 0, botPreviewsEditContainer.tabsAlpha));
+        botPreviewsEditContainer.viewPager.setTranslationY(AndroidUtilities.lerp(0, AndroidUtilities.dp(42.0f), botPreviewsEditContainer.tabsAlpha));
     }
 
     @Override
@@ -831,7 +846,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         private final GridLayoutManager supportingLayoutManager;
         private final SharedMediaLayout.InternalListView supportingListView;
 
-        public static boolean lambda$new$5(View view, MotionEvent motionEvent) {
+        public static boolean $r8$lambda$UDXAPm1EybWHkcBQjKLVRqKyFb8(View view, MotionEvent motionEvent) {
             return true;
         }
 
@@ -870,7 +885,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateFooter$0();
+                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$ChVuz5yOLsPu0eiyIcIbuFvdhvY(this.f$0);
                 }
             };
             if (z || count <= 0) {
@@ -886,7 +901,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             footerView.set(str, string3, runnable, string2, (z || count <= 0) ? new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateFooter$1(z);
+                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.m4457$r8$lambda$b3iLNlcjIDsSOZXCIhCO0DT3M(this.f$0, z);
                 }
             } : null);
             if (z) {
@@ -906,29 +921,26 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                 this.emptyViewButton2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$updateFooter$2(view);
+                        BotPreviewsEditContainer.BotPreviewsEditLangContainer botPreviewsEditLangContainer = this.f$0;
+                        BotPreviewsEditContainer.this.deleteLang(botPreviewsEditLangContainer.list.lang_code);
                     }
                 });
             }
             this.emptyView.button.setVisibility(this.adapter.getItemCount() >= MessagesController.getInstance(BotPreviewsEditContainer.this.currentAccount).botPreviewMediasMax ? 8 : 0);
         }
 
-        public void lambda$updateFooter$0() {
+        public static void $r8$lambda$ChVuz5yOLsPu0eiyIcIbuFvdhvY(BotPreviewsEditLangContainer botPreviewsEditLangContainer) {
             BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
-            StoriesController.BotPreviewsList botPreviewsList = this.list;
+            StoriesController.BotPreviewsList botPreviewsList = botPreviewsEditLangContainer.list;
             botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
         }
 
-        public void lambda$updateFooter$1(boolean z) {
+        public static void m4457$r8$lambda$b3iLNlcjIDsSOZXCIhCO0DT3M(BotPreviewsEditLangContainer botPreviewsEditLangContainer, boolean z) {
             if (z) {
                 BotPreviewsEditContainer.this.addTranslation();
             } else {
-                BotPreviewsEditContainer.this.deleteLang(this.list.lang_code);
+                BotPreviewsEditContainer.this.deleteLang(botPreviewsEditLangContainer.list.lang_code);
             }
-        }
-
-        public void lambda$updateFooter$2(View view) {
-            BotPreviewsEditContainer.this.deleteLang(this.list.lang_code);
         }
 
         public void setVisibleHeight(int i) {
@@ -1103,13 +1115,13 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             sharedMediaListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i) {
-                    this.f$0.lambda$new$3(view, i);
+                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$7gUW4SiTeCe8OL8kAsNpKNN8oFg(this.f$0, view, i);
                 }
             });
             sharedMediaListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
                 @Override
                 public final boolean onItemClick(View view, int i) {
-                    return this.f$0.lambda$new$4(view, i);
+                    return BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$5DMNcAkV1cZvreBNXpuFaAmxJ3c(this.f$0, view, i);
                 }
             });
             SharedMediaLayout.InternalListView internalListView = new SharedMediaLayout.InternalListView(context);
@@ -1206,7 +1218,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             stickerEmptyView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
-                    return BotPreviewsEditContainer.BotPreviewsEditLangContainer.lambda$new$5(view, motionEvent);
+                    return BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$UDXAPm1EybWHkcBQjKLVRqKyFb8(view, motionEvent);
                 }
             });
             stickerEmptyView.showProgress(true, false);
@@ -1218,7 +1230,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             stickerEmptyView.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$6(view);
+                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$PbY7DccQtGmm4JcpfKTc2fVbbL8(this.f$0, view);
                 }
             });
             TextView textView = new TextView(context) {
@@ -1226,6 +1238,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
 
                 @Override
                 protected void dispatchDraw(Canvas canvas) {
+                    Canvas canvas2;
                     int height = (getHeight() / 2) + AndroidUtilities.dp(1.0f);
                     int iMax = Math.max(1, AndroidUtilities.dp(0.66f));
                     Layout layout = getLayout();
@@ -1235,10 +1248,13 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                         float f2 = iMax / 2.0f;
                         float f3 = f - f2;
                         float f4 = f + f2;
-                        canvas.drawRect(0.0f, f3, (getWidth() - (layout.getLineWidth(0) + AndroidUtilities.dp(16.0f))) / 2.0f, f4, this.paint);
-                        canvas.drawRect(((getWidth() + layout.getLineWidth(0)) + AndroidUtilities.dp(16.0f)) / 2.0f, f3, getWidth(), f4, this.paint);
+                        canvas2 = canvas;
+                        canvas2.drawRect(0.0f, f3, (getWidth() - (layout.getLineWidth(0) + AndroidUtilities.dp(16.0f))) / 2.0f, f4, this.paint);
+                        canvas2.drawRect(((getWidth() + layout.getLineWidth(0)) + AndroidUtilities.dp(16.0f)) / 2.0f, f3, getWidth(), f4, this.paint);
+                    } else {
+                        canvas2 = canvas;
                     }
-                    super.dispatchDraw(canvas);
+                    super.dispatchDraw(canvas2);
                 }
             };
             this.emptyViewOr = textView;
@@ -1315,7 +1331,8 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             addView(footerView, LayoutHelper.createFrame(-1, -2, 48));
         }
 
-        public void lambda$new$3(View view, int i) {
+        public static void $r8$lambda$7gUW4SiTeCe8OL8kAsNpKNN8oFg(BotPreviewsEditLangContainer botPreviewsEditLangContainer, View view, int i) {
+            botPreviewsEditLangContainer.getClass();
             if (view instanceof SharedPhotoVideoCell2) {
                 MessageObject messageObject = ((SharedPhotoVideoCell2) view).getMessageObject();
                 if (BotPreviewsEditContainer.this.isActionModeShowed()) {
@@ -1327,11 +1344,11 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                         return;
                     }
                 }
-                BotPreviewsEditContainer.this.fragment.getOrCreateStoryViewer().open(getContext(), messageObject.getId(), this.list, StoriesListPlaceProvider.of(this.listView).addBottomClip(((BotPreviewsEditContainer.this.fragment instanceof ProfileActivity) && ((ProfileActivity) BotPreviewsEditContainer.this.fragment).myProfile) ? AndroidUtilities.dp(68.0f) : 0));
+                BotPreviewsEditContainer.this.fragment.getOrCreateStoryViewer().open(botPreviewsEditLangContainer.getContext(), messageObject.getId(), botPreviewsEditLangContainer.list, StoriesListPlaceProvider.of(botPreviewsEditLangContainer.listView).addBottomClip(((BotPreviewsEditContainer.this.fragment instanceof ProfileActivity) && ((ProfileActivity) BotPreviewsEditContainer.this.fragment).myProfile) ? AndroidUtilities.dp(68.0f) : 0));
             }
         }
 
-        public boolean lambda$new$4(View view, int i) {
+        public static boolean $r8$lambda$5DMNcAkV1cZvreBNXpuFaAmxJ3c(BotPreviewsEditLangContainer botPreviewsEditLangContainer, View view, int i) {
             if (BotPreviewsEditContainer.this.isActionModeShowed() || !(view instanceof SharedPhotoVideoCell2)) {
                 return false;
             }
@@ -1344,9 +1361,9 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             return true;
         }
 
-        public void lambda$new$6(View view) {
+        public static void $r8$lambda$PbY7DccQtGmm4JcpfKTc2fVbbL8(BotPreviewsEditLangContainer botPreviewsEditLangContainer, View view) {
             BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
-            StoriesController.BotPreviewsList botPreviewsList = this.list;
+            StoriesController.BotPreviewsList botPreviewsList = botPreviewsEditLangContainer.list;
             botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
         }
 
@@ -1927,6 +1944,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
 
                     @Override
                     protected void dispatchDraw(Canvas canvas) {
+                        Canvas canvas2;
                         int height = (getHeight() / 2) + AndroidUtilities.dp(1.0f);
                         int iMax = Math.max(1, AndroidUtilities.dp(0.66f));
                         Layout layout = getLayout();
@@ -1936,10 +1954,13 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                             float f2 = iMax / 2.0f;
                             float f3 = f - f2;
                             float f4 = f + f2;
-                            canvas.drawRect(0.0f, f3, (getWidth() - (layout.getLineWidth(0) + AndroidUtilities.dp(16.0f))) / 2.0f, f4, this.paint);
-                            canvas.drawRect(((getWidth() + layout.getLineWidth(0)) + AndroidUtilities.dp(16.0f)) / 2.0f, f3, getWidth(), f4, this.paint);
+                            canvas2 = canvas;
+                            canvas2.drawRect(0.0f, f3, (getWidth() - (layout.getLineWidth(0) + AndroidUtilities.dp(16.0f))) / 2.0f, f4, this.paint);
+                            canvas2.drawRect(((getWidth() + layout.getLineWidth(0)) + AndroidUtilities.dp(16.0f)) / 2.0f, f3, getWidth(), f4, this.paint);
+                        } else {
+                            canvas2 = canvas;
                         }
-                        super.dispatchDraw(canvas);
+                        super.dispatchDraw(canvas2);
                     }
                 };
                 this.orTextView = textView2;
@@ -2008,21 +2029,21 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i2) {
-                    this.f$0.lambda$new$0(callback, view, i2);
+                    BotPreviewsEditContainer.ChooseLanguageSheet.$r8$lambda$jpu_D3FCYDqmJbx2e3IMJoTKxXY(this.f$0, callback, view, i2);
                 }
             });
         }
 
-        public void lambda$new$0(Utilities.Callback callback, View view, int i) {
+        public static void $r8$lambda$jpu_D3FCYDqmJbx2e3IMJoTKxXY(ChooseLanguageSheet chooseLanguageSheet, Utilities.Callback callback, View view, int i) {
             UItem item;
-            UniversalAdapter universalAdapter = this.adapter;
+            UniversalAdapter universalAdapter = chooseLanguageSheet.adapter;
             if (universalAdapter == null || (item = universalAdapter.getItem(i - 1)) == null) {
                 return;
             }
             Object obj = item.object;
             if (obj instanceof TranslateController.Language) {
                 callback.run(((TranslateController.Language) obj).code);
-                lambda$new$0();
+                chooseLanguageSheet.dismiss();
             }
         }
 
@@ -2045,9 +2066,13 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         }
 
         public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-            Iterator<TranslateController.Language> it = TranslateController.getLanguages().iterator();
-            while (it.hasNext()) {
-                arrayList.add(LanguageView.Factory.of(it.next()));
+            ArrayList<TranslateController.Language> languages = TranslateController.getLanguages();
+            int size = languages.size();
+            int i = 0;
+            while (i < size) {
+                TranslateController.Language language = languages.get(i);
+                i++;
+                arrayList.add(LanguageView.Factory.of(language));
             }
         }
 

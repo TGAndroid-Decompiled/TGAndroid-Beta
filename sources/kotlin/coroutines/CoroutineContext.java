@@ -28,7 +28,6 @@ public interface CoroutineContext {
         }
 
         public static CoroutineContext plus$lambda$0(CoroutineContext acc, Element element) {
-            CombinedContext combinedContext;
             Intrinsics.checkNotNullParameter(acc, "acc");
             Intrinsics.checkNotNullParameter(element, "element");
             CoroutineContext coroutineContextMinusKey = acc.minusKey(element.getKey());
@@ -39,15 +38,13 @@ public interface CoroutineContext {
             ContinuationInterceptor.Key key = ContinuationInterceptor.Key;
             ContinuationInterceptor continuationInterceptor = (ContinuationInterceptor) coroutineContextMinusKey.get(key);
             if (continuationInterceptor == null) {
-                combinedContext = new CombinedContext(coroutineContextMinusKey, element);
-            } else {
-                CoroutineContext coroutineContextMinusKey2 = coroutineContextMinusKey.minusKey(key);
-                if (coroutineContextMinusKey2 == emptyCoroutineContext) {
-                    return new CombinedContext(element, continuationInterceptor);
-                }
-                combinedContext = new CombinedContext(new CombinedContext(coroutineContextMinusKey2, element), continuationInterceptor);
+                return new CombinedContext(coroutineContextMinusKey, element);
             }
-            return combinedContext;
+            CoroutineContext coroutineContextMinusKey2 = coroutineContextMinusKey.minusKey(key);
+            if (coroutineContextMinusKey2 == emptyCoroutineContext) {
+                return new CombinedContext(element, continuationInterceptor);
+            }
+            return new CombinedContext(new CombinedContext(coroutineContextMinusKey2, element), continuationInterceptor);
         }
     }
 

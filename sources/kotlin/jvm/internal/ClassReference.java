@@ -1,5 +1,7 @@
 package kotlin.jvm.internal;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -81,8 +83,40 @@ public final class ClassReference implements KClass, ClassBasedDeclarationContai
         private Companion() {
         }
 
-        public final java.lang.String getClassSimpleName(java.lang.Class r7) {
-            throw new UnsupportedOperationException("Method not decompiled: kotlin.jvm.internal.ClassReference.Companion.getClassSimpleName(java.lang.Class):java.lang.String");
+        public final String getClassSimpleName(Class jClass) {
+            String str;
+            Intrinsics.checkNotNullParameter(jClass, "jClass");
+            String str2 = null;
+            if (jClass.isAnonymousClass()) {
+                return null;
+            }
+            if (jClass.isLocalClass()) {
+                String simpleName = jClass.getSimpleName();
+                Method enclosingMethod = jClass.getEnclosingMethod();
+                if (enclosingMethod != null) {
+                    Intrinsics.checkNotNull(simpleName);
+                    String strSubstringAfter$default = StringsKt.substringAfter$default(simpleName, enclosingMethod.getName() + '$', (String) null, 2, (Object) null);
+                    if (strSubstringAfter$default != null) {
+                        return strSubstringAfter$default;
+                    }
+                }
+                Constructor<?> enclosingConstructor = jClass.getEnclosingConstructor();
+                if (enclosingConstructor == null) {
+                    Intrinsics.checkNotNull(simpleName);
+                    return StringsKt.substringAfter$default(simpleName, '$', (String) null, 2, (Object) null);
+                }
+                Intrinsics.checkNotNull(simpleName);
+                return StringsKt.substringAfter$default(simpleName, enclosingConstructor.getName() + '$', (String) null, 2, (Object) null);
+            }
+            if (!jClass.isArray()) {
+                String str3 = (String) ClassReference.simpleNames.get(jClass.getName());
+                return str3 == null ? jClass.getSimpleName() : str3;
+            }
+            Class<?> componentType = jClass.getComponentType();
+            if (componentType.isPrimitive() && (str = (String) ClassReference.simpleNames.get(componentType.getName())) != null) {
+                str2 = str + "Array";
+            }
+            return str2 == null ? "Array" : str2;
         }
     }
 

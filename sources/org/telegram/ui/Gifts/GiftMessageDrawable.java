@@ -93,7 +93,7 @@ public class GiftMessageDrawable extends Drawable {
 
             @Override
             public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                this.f$0.lambda$new$0(i, f, f2, factorAnimator);
+                this.f$0.invalidateSelf();
             }
         }, CubicBezierInterpolator.EASE_OUT_QUINT, 320L, true);
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
@@ -191,8 +191,8 @@ public class GiftMessageDrawable extends Drawable {
                 for (int i5 = 0; i5 < staticLayout2.getLineCount(); i5++) {
                     fMax = Math.max(fMax, staticLayout2.getLineWidth(i5));
                 }
-                staticLayout = staticLayout2;
                 fMax2 = fMax;
+                staticLayout = staticLayout2;
             }
         }
         this.textLayout = staticLayout;
@@ -214,10 +214,6 @@ public class GiftMessageDrawable extends Drawable {
     @Override
     public int getMinimumHeight() {
         return this.measuredHeight;
-    }
-
-    public void lambda$new$0(int i, float f, float f2, FactorAnimator factorAnimator) {
-        invalidateSelf();
     }
 
     @Override

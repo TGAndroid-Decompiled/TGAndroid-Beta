@@ -266,7 +266,7 @@ public class VoIPPreNotificationService {
                     mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                         @Override
                         public final void onPrepared(MediaPlayer mediaPlayer2) {
-                            VoIPPreNotificationService.lambda$startRinging$0(mediaPlayer2);
+                            VoIPPreNotificationService.$r8$lambda$8xuOUE_SZMGh3Mddxb6Oo8iQDH4(mediaPlayer2);
                         }
                     });
                     ringtonePlayer.setLooping(true);
@@ -359,7 +359,7 @@ public class VoIPPreNotificationService {
         }
     }
 
-    public static void lambda$startRinging$0(MediaPlayer mediaPlayer) {
+    public static void $r8$lambda$8xuOUE_SZMGh3Mddxb6Oo8iQDH4(MediaPlayer mediaPlayer) {
         try {
             ringtonePlayer.start();
         } catch (Throwable th) {
@@ -406,13 +406,13 @@ public class VoIPPreNotificationService {
             acknowledge(context, intExtra, phoneCall, new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPPreNotificationService.lambda$show$1(intent, phoneCall, context, intExtra, longExtra, z);
+                    VoIPPreNotificationService.$r8$lambda$lDZeK9o170qagGUvU23zy7BTSdM(intent, phoneCall, context, intExtra, longExtra, z);
                 }
             });
         }
     }
 
-    public static void lambda$show$1(Intent intent, TL_phone.PhoneCall phoneCall, Context context, int i, long j, boolean z) {
+    public static void $r8$lambda$lDZeK9o170qagGUvU23zy7BTSdM(Intent intent, TL_phone.PhoneCall phoneCall, Context context, int i, long j, boolean z) {
         pendingVoIP = intent;
         pendingCall = phoneCall;
         ((NotificationManager) context.getSystemService("notification")).notify(203, makeNotification(context, i, j, phoneCall.id, z));
@@ -454,21 +454,17 @@ public class VoIPPreNotificationService {
         ConnectionsManager.getInstance(i).sendRequest(receivedcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                VoIPPreNotificationService.lambda$acknowledge$3(context, runnable, tLObject, tL_error);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        VoIPPreNotificationService.$r8$lambda$FKGlbdAziKn85Rug4hrUyX7sDaA(tLObject, tL_error, context, runnable);
+                    }
+                });
             }
         }, 2);
     }
 
-    public static void lambda$acknowledge$3(final Context context, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VoIPPreNotificationService.lambda$acknowledge$2(tLObject, tL_error, context, runnable);
-            }
-        });
-    }
-
-    public static void lambda$acknowledge$2(TLObject tLObject, TLRPC.TL_error tL_error, Context context, Runnable runnable) {
+    public static void $r8$lambda$FKGlbdAziKn85Rug4hrUyX7sDaA(TLObject tLObject, TLRPC.TL_error tL_error, Context context, Runnable runnable) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.w("(VoIPPreNotification) receivedCall response = " + tLObject);
         }
@@ -581,13 +577,13 @@ public class VoIPPreNotificationService {
         ConnectionsManager.getInstance(intExtra).sendRequest(discardcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                VoIPPreNotificationService.lambda$decline$4(intExtra, tLObject, tL_error);
+                VoIPPreNotificationService.m1170$r8$lambda$xd9f9h0l8PWlBVsXRSKfIBo_k(intExtra, tLObject, tL_error);
             }
         }, 2);
         dismiss(context, false);
     }
 
-    public static void lambda$decline$4(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1170$r8$lambda$xd9f9h0l8PWlBVsXRSKfIBo_k(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("(VoIPPreNotification) error on phone.discardCall: " + tL_error);
@@ -622,12 +618,12 @@ public class VoIPPreNotificationService {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPPreNotificationService.lambda$dismiss$5();
+                VoIPPreNotificationService.$r8$lambda$_XVfSiPmqqB3fzeto3OEFrjZsNA();
             }
         });
     }
 
-    public static void lambda$dismiss$5() {
+    public static void $r8$lambda$_XVfSiPmqqB3fzeto3OEFrjZsNA() {
         LaunchActivity launchActivity = LaunchActivity.instance;
         if (launchActivity != null && launchActivity.voipLaunchedInBackground && VoIPService.getSharedInstance() == null) {
             launchActivity.voipLaunchedInBackground = false;

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -50,13 +49,18 @@ public abstract class CommunityUtils {
         if (communityPeersDialogBuildCommunityPeers == null) {
             return;
         }
+        int i2 = 0;
         if (communityPeersDialogBuildCommunityPeers.chatsYouAreIn.isEmpty()) {
             z2 = false;
         } else {
             arrayList.add(UItem.asHeader(21, LocaleController.getString(R.string.CommunitySectionChatsYouAreIn)));
-            Iterator<MessagesController.CommunityPeerDialog> it = communityPeersDialogBuildCommunityPeers.chatsYouAreIn.iterator();
-            while (it.hasNext()) {
-                arrayList.add(DialogCellFactory.asCell(it.next(), dialogCellDelegate));
+            ArrayList<MessagesController.CommunityPeerDialog> arrayList2 = communityPeersDialogBuildCommunityPeers.chatsYouAreIn;
+            int size = arrayList2.size();
+            int i3 = 0;
+            while (i3 < size) {
+                MessagesController.CommunityPeerDialog communityPeerDialog = arrayList2.get(i3);
+                i3++;
+                arrayList.add(DialogCellFactory.asCell(communityPeerDialog, dialogCellDelegate));
             }
             z2 = z;
         }
@@ -65,9 +69,13 @@ public abstract class CommunityUtils {
                 arrayList.add(UItem.asSpace(22, AndroidUtilities.dp(12.0f)));
             }
             arrayList.add(UItem.asHeader(23, LocaleController.getString(R.string.CommunitySectionChatsYouCanView)));
-            Iterator<MessagesController.CommunityPeerDialog> it2 = communityPeersDialogBuildCommunityPeers.chatsYouCanView.iterator();
-            while (it2.hasNext()) {
-                arrayList.add(DialogCellFactory.asCell(it2.next(), dialogCellDelegate));
+            ArrayList<MessagesController.CommunityPeerDialog> arrayList3 = communityPeersDialogBuildCommunityPeers.chatsYouCanView;
+            int size2 = arrayList3.size();
+            int i4 = 0;
+            while (i4 < size2) {
+                MessagesController.CommunityPeerDialog communityPeerDialog2 = arrayList3.get(i4);
+                i4++;
+                arrayList.add(DialogCellFactory.asCell(communityPeerDialog2, dialogCellDelegate));
             }
             z2 = z;
         }
@@ -78,9 +86,13 @@ public abstract class CommunityUtils {
                 arrayList.add(UItem.asSpace(24, AndroidUtilities.dp(12.0f)));
             }
             arrayList.add(UItem.asHeader(25, LocaleController.getString(R.string.CommunitySectionChatsYouCanRequestToJoin)));
-            Iterator<MessagesController.CommunityPeerDialog> it3 = communityPeersDialogBuildCommunityPeers.chatsYouCanJoin.iterator();
-            while (it3.hasNext()) {
-                arrayList.add(DialogCellFactory.asCell(it3.next(), dialogCellDelegate));
+            ArrayList<MessagesController.CommunityPeerDialog> arrayList4 = communityPeersDialogBuildCommunityPeers.chatsYouCanJoin;
+            int size3 = arrayList4.size();
+            int i5 = 0;
+            while (i5 < size3) {
+                MessagesController.CommunityPeerDialog communityPeerDialog3 = arrayList4.get(i5);
+                i5++;
+                arrayList.add(DialogCellFactory.asCell(communityPeerDialog3, dialogCellDelegate));
             }
         }
         if (communityPeersDialogBuildCommunityPeers.chatsOther.isEmpty()) {
@@ -90,13 +102,17 @@ public abstract class CommunityUtils {
             arrayList.add(UItem.asSpace(26, AndroidUtilities.dp(12.0f)));
         }
         arrayList.add(UItem.asHeader(27, LocaleController.getString(R.string.CommunitySectionHiddenChats)));
-        Iterator<MessagesController.CommunityPeerDialog> it4 = communityPeersDialogBuildCommunityPeers.chatsOther.iterator();
-        while (it4.hasNext()) {
-            arrayList.add(DialogCellFactory.asCell(it4.next(), dialogCellDelegate));
+        ArrayList<MessagesController.CommunityPeerDialog> arrayList5 = communityPeersDialogBuildCommunityPeers.chatsOther;
+        int size4 = arrayList5.size();
+        while (i2 < size4) {
+            MessagesController.CommunityPeerDialog communityPeerDialog4 = arrayList5.get(i2);
+            i2++;
+            arrayList.add(DialogCellFactory.asCell(communityPeerDialog4, dialogCellDelegate));
         }
     }
 
     public static void fillPendingRequests(int i, ArrayList arrayList, ArrayList arrayList2, LongSparseArray longSparseArray, CommunityPendingRequestCell.ClickDelegate clickDelegate) {
+        CommunityPendingRequestCell.ClickDelegate clickDelegate2;
         if (arrayList2 == null || arrayList2.isEmpty()) {
             return;
         }
@@ -106,9 +122,13 @@ public abstract class CommunityUtils {
             TL_communities.CommunityPeerRequest communityPeerRequest = (TL_communities.CommunityPeerRequest) arrayList2.get(i2);
             long peerDialogId = DialogObject.getPeerDialogId(communityPeerRequest.peer);
             if (longSparseArray == null || !longSparseArray.containsKey(peerDialogId)) {
-                arrayList.add(CommunityPendingRequestCell.Factory.asPendingRequest(peerDialogId, MessagesController.getInstance(i).getUser(Long.valueOf(communityPeerRequest.requested_by)), !communityPeerRequest.visible, clickDelegate, i2 < size + (-1)));
+                clickDelegate2 = clickDelegate;
+                arrayList.add(CommunityPendingRequestCell.Factory.asPendingRequest(peerDialogId, MessagesController.getInstance(i).getUser(Long.valueOf(communityPeerRequest.requested_by)), !communityPeerRequest.visible, clickDelegate2, i2 < size + (-1)));
+            } else {
+                clickDelegate2 = clickDelegate;
             }
             i2++;
+            clickDelegate = clickDelegate2;
         }
     }
 
@@ -217,26 +237,26 @@ public abstract class CommunityUtils {
             MessagesController.getInstance(this.currentAccount).fetchCommunityPendingJoinRequests(this.communityId, this.nextOffset, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$loadNext$0((TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
+                    CommunityUtils.PendingRequests.$r8$lambda$JeJj1SduJpWIYrh2DMnuFjShmrA(this.f$0, (TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
 
-        public void lambda$loadNext$0(TL_communities.PeerLinkRequests peerLinkRequests, TLRPC.TL_error tL_error) {
-            this.loading = false;
+        public static void $r8$lambda$JeJj1SduJpWIYrh2DMnuFjShmrA(PendingRequests pendingRequests, TL_communities.PeerLinkRequests peerLinkRequests, TLRPC.TL_error tL_error) {
+            pendingRequests.loading = false;
             if (peerLinkRequests != null) {
-                ArrayList arrayList = this.pendingRequests;
+                ArrayList arrayList = pendingRequests.pendingRequests;
                 if (arrayList == null) {
-                    this.pendingRequests = new ArrayList(peerLinkRequests.requests);
+                    pendingRequests.pendingRequests = new ArrayList(peerLinkRequests.requests);
                 } else {
                     arrayList.addAll(peerLinkRequests.requests);
                 }
                 String str = peerLinkRequests.next_offset;
-                this.nextOffset = str;
-                this.totalCount = peerLinkRequests.total_count;
-                this.finished = str == null;
-                calcUnreadPendingRequests();
-                Delegate delegate = this.delegate;
+                pendingRequests.nextOffset = str;
+                pendingRequests.totalCount = peerLinkRequests.total_count;
+                pendingRequests.finished = str == null;
+                pendingRequests.calcUnreadPendingRequests();
+                Delegate delegate = pendingRequests.delegate;
                 if (delegate != null) {
                     delegate.updateAdapter();
                 }
@@ -278,7 +298,7 @@ public abstract class CommunityUtils {
             this.doCommitRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onResolveJoinRequest$2(j, z);
+                    CommunityUtils.PendingRequests.$r8$lambda$CtLOgEO5E3mVKInh4YQc3PilHW4(this.f$0, j, z);
                 }
             };
             Bulletin.UsersLayout usersLayout = new Bulletin.UsersLayout(this.context, false, this.resourcesProvider);
@@ -312,48 +332,50 @@ public abstract class CommunityUtils {
             usersLayout.setButton(new Bulletin.UndoButton(this.context, true, true, this.resourcesProvider).setText(LocaleController.getString(R.string.UndoNoCaps)).setUndoAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onResolveJoinRequest$3(j);
+                    CommunityUtils.PendingRequests.$r8$lambda$cwUXZac7x4NYm38qNmnUnLiHdhc(this.f$0, j);
                 }
             }).setDelayedAction(this.doCommitRunnable));
             this.bulletinFactory.create(usersLayout, 5000).show();
         }
 
-        public void lambda$onResolveJoinRequest$2(long j, boolean z) {
-            this.doCommitRunnable = null;
-            this.hiddenJoinRequests.remove(j);
-            ArrayList arrayList = this.pendingRequests;
+        public static void $r8$lambda$CtLOgEO5E3mVKInh4YQc3PilHW4(final PendingRequests pendingRequests, long j, boolean z) {
+            pendingRequests.doCommitRunnable = null;
+            pendingRequests.hiddenJoinRequests.remove(j);
+            ArrayList arrayList = pendingRequests.pendingRequests;
             if (arrayList != null) {
                 for (int size = arrayList.size() - 1; size >= 0; size--) {
-                    if (DialogObject.getPeerDialogId(((TL_communities.CommunityPeerRequest) this.pendingRequests.get(size)).peer) == j) {
-                        this.pendingRequests.remove(size);
+                    if (DialogObject.getPeerDialogId(((TL_communities.CommunityPeerRequest) pendingRequests.pendingRequests.get(size)).peer) == j) {
+                        pendingRequests.pendingRequests.remove(size);
                     }
                 }
             }
-            calcUnreadPendingRequests();
-            Delegate delegate = this.delegate;
+            pendingRequests.calcUnreadPendingRequests();
+            Delegate delegate = pendingRequests.delegate;
             if (delegate != null) {
                 delegate.updateAdapter();
             }
-            MessagesController.getInstance(this.currentAccount).resolveCommunityJoinPendingRequest(this.communityId, j, !z, new Utilities.Callback2() {
+            MessagesController.getInstance(pendingRequests.currentAccount).resolveCommunityJoinPendingRequest(pendingRequests.communityId, j, !z, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$onResolveJoinRequest$1((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                    CommunityUtils.PendingRequests.$r8$lambda$153yHgsCjzo5Y57l4F56qzaDET0(this.f$0, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
 
-        public void lambda$onResolveJoinRequest$1(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$153yHgsCjzo5Y57l4F56qzaDET0(PendingRequests pendingRequests, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
             if (tL_error != null) {
-                this.bulletinFactory.showForError(tL_error);
+                pendingRequests.bulletinFactory.showForError(tL_error);
+            } else {
+                pendingRequests.getClass();
             }
         }
 
-        public void lambda$onResolveJoinRequest$3(long j) {
-            this.doCommitRunnable = null;
-            this.hiddenJoinRequests.remove(j);
-            this.totalCount++;
-            calcUnreadPendingRequests();
-            Delegate delegate = this.delegate;
+        public static void $r8$lambda$cwUXZac7x4NYm38qNmnUnLiHdhc(PendingRequests pendingRequests, long j) {
+            pendingRequests.doCommitRunnable = null;
+            pendingRequests.hiddenJoinRequests.remove(j);
+            pendingRequests.totalCount++;
+            pendingRequests.calcUnreadPendingRequests();
+            Delegate delegate = pendingRequests.delegate;
             if (delegate != null) {
                 delegate.updateAdapter();
             }
@@ -363,14 +385,14 @@ public abstract class CommunityUtils {
             onResolveAllJoinRequests(z, true);
         }
 
-        private void onResolveAllJoinRequests(final boolean z, boolean z2) {
+        public void onResolveAllJoinRequests(final boolean z, boolean z2) {
             TextView textView;
             if (this.progressDialog == null && this.reqId == 0) {
                 if (z2) {
                     AlertDialog alertDialogCreateSimpleConfirmAlert = AlertsCreator.createSimpleConfirmAlert(this.context, this.resourcesProvider, LocaleController.getString(z ? R.string.CommunityAddAllChatsTitle : R.string.CommunityDeclineAllTitle), AndroidUtilities.replaceTags(LocaleController.formatPluralString(z ? "CommunityAddAllChatsMessage" : "CommunityDeclineAllMessage", this.totalCount, new Object[0])), LocaleController.getString(z ? R.string.Add : R.string.Decline), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onResolveAllJoinRequests$4(z);
+                            this.f$0.onResolveAllJoinRequests(z, false);
                         }
                     });
                     alertDialogCreateSimpleConfirmAlert.show();
@@ -386,38 +408,34 @@ public abstract class CommunityUtils {
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public final void onCancel(DialogInterface dialogInterface) {
-                        this.f$0.lambda$onResolveAllJoinRequests$5(dialogInterface);
+                        CommunityUtils.PendingRequests.m4883$r8$lambda$M7LZ1q1xTTTz9a3G1cNG5G1Bak(this.f$0, dialogInterface);
                     }
                 });
                 this.progressDialog.showDelayed(500L);
                 this.reqId = MessagesController.getInstance(this.currentAccount).resolveCommunityAllJoinPendingRequests(this.communityId, !z, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        this.f$0.lambda$onResolveAllJoinRequests$6((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                        CommunityUtils.PendingRequests.$r8$lambda$L7vaCPDS9VjraA9Hf1UTEqRdfkA(this.f$0, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                     }
                 });
             }
         }
 
-        public void lambda$onResolveAllJoinRequests$4(boolean z) {
-            onResolveAllJoinRequests(z, false);
+        public static void m4883$r8$lambda$M7LZ1q1xTTTz9a3G1cNG5G1Bak(PendingRequests pendingRequests, DialogInterface dialogInterface) {
+            ConnectionsManager.getInstance(pendingRequests.currentAccount).cancelRequest(pendingRequests.reqId, true);
+            pendingRequests.progressDialog = null;
+            pendingRequests.reqId = 0;
         }
 
-        public void lambda$onResolveAllJoinRequests$5(DialogInterface dialogInterface) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
-            this.progressDialog = null;
-            this.reqId = 0;
-        }
-
-        public void lambda$onResolveAllJoinRequests$6(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
-            this.progressDialog.dismiss();
-            this.progressDialog = null;
-            this.reqId = 0;
+        public static void $r8$lambda$L7vaCPDS9VjraA9Hf1UTEqRdfkA(PendingRequests pendingRequests, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+            pendingRequests.progressDialog.dismiss();
+            pendingRequests.progressDialog = null;
+            pendingRequests.reqId = 0;
             if (tL_error != null) {
-                this.bulletinFactory.showForError(tL_error);
+                pendingRequests.bulletinFactory.showForError(tL_error);
                 return;
             }
-            Delegate delegate = this.delegate;
+            Delegate delegate = pendingRequests.delegate;
             if (delegate != null) {
                 delegate.close();
             }
@@ -449,7 +467,7 @@ public abstract class CommunityUtils {
         final int iFetchChatsToAddToCommunity = MessagesController.getInstance(i).fetchChatsToAddToCommunity(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CommunityUtils.lambda$showChatsToAddToCommunity$0(alertDialogArr, baseFragment, i, chat, (ArrayList) obj, (TLRPC.TL_error) obj2);
+                CommunityUtils.m4882$r8$lambda$nraCHsVClHd7uy09LZY5LtrLA0(alertDialogArr, baseFragment, i, chat, (ArrayList) obj, (TLRPC.TL_error) obj2);
             }
         });
         ConnectionsManager.getInstance(i).bindRequestToGuid(iFetchChatsToAddToCommunity, baseFragment.getClassGuid());
@@ -459,12 +477,12 @@ public abstract class CommunityUtils {
         alertDialogArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                CommunityUtils.lambda$showChatsToAddToCommunity$1(i, iFetchChatsToAddToCommunity, alertDialogArr, dialogInterface);
+                CommunityUtils.m4879$r8$lambda$8dXqhjoQeLjKgpGYrpZ1Vx1dHc(i, iFetchChatsToAddToCommunity, alertDialogArr, dialogInterface);
             }
         });
     }
 
-    public static void lambda$showChatsToAddToCommunity$0(AlertDialog[] alertDialogArr, BaseFragment baseFragment, int i, TLRPC.Chat chat, ArrayList arrayList, TLRPC.TL_error tL_error) {
+    public static void m4882$r8$lambda$nraCHsVClHd7uy09LZY5LtrLA0(AlertDialog[] alertDialogArr, BaseFragment baseFragment, int i, TLRPC.Chat chat, ArrayList arrayList, TLRPC.TL_error tL_error) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog != null) {
             alertDialog.dismiss();
@@ -481,7 +499,7 @@ public abstract class CommunityUtils {
         }
     }
 
-    public static void lambda$showChatsToAddToCommunity$1(int i, int i2, AlertDialog[] alertDialogArr, DialogInterface dialogInterface) {
+    public static void m4879$r8$lambda$8dXqhjoQeLjKgpGYrpZ1Vx1dHc(int i, int i2, AlertDialog[] alertDialogArr, DialogInterface dialogInterface) {
         ConnectionsManager.getInstance(i).cancelRequest(i2, true);
         alertDialogArr[0] = null;
     }
@@ -491,25 +509,20 @@ public abstract class CommunityUtils {
             baseFragment.showDialog(new CommunitySheet(baseFragment, 0L, arrayList, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    CommunityUtils.lambda$showChatsToAddSheet$3(baseFragment, chat, i, (TLRPC.Chat) obj);
+                    BaseFragment baseFragment2 = baseFragment;
+                    TLRPC.Chat chat2 = chat;
+                    TLRPC.Chat chat3 = (TLRPC.Chat) obj;
+                    baseFragment2.showDialog(new CommunityAddOptionsSheet(baseFragment2.getContext(), chat2, -chat3.id, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj2) {
+                            CommunityUtils.linkToCommunityAndConvertIfNeeded(baseFragment2, i, chat3, chat2.id, ((Boolean) obj2).booleanValue());
+                        }
+                    }));
                 }
             }));
         } else {
             BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.info, "").show();
         }
-    }
-
-    public static void lambda$showChatsToAddSheet$3(final BaseFragment baseFragment, final TLRPC.Chat chat, final int i, final TLRPC.Chat chat2) {
-        baseFragment.showDialog(new CommunityAddOptionsSheet(baseFragment.getContext(), chat, -chat2.id, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                CommunityUtils.lambda$showChatsToAddSheet$2(baseFragment, i, chat2, chat, (Boolean) obj);
-            }
-        }));
-    }
-
-    public static void lambda$showChatsToAddSheet$2(BaseFragment baseFragment, int i, TLRPC.Chat chat, TLRPC.Chat chat2, Boolean bool) {
-        linkToCommunityAndConvertIfNeeded(baseFragment, i, chat, chat2.id, bool.booleanValue());
     }
 
     public static void linkToCommunityAndConvertIfNeeded(final BaseFragment baseFragment, final int i, TLRPC.Chat chat, final long j, final boolean z) {
@@ -519,7 +532,7 @@ public abstract class CommunityUtils {
             MessagesController.getInstance(i).convertToMegaGroup(baseFragment.getParentActivity(), chat.id, baseFragment, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j2) {
-                    CommunityUtils.lambda$linkToCommunityAndConvertIfNeeded$4(alertDialog, baseFragment, i, j, z, j2);
+                    CommunityUtils.m4880$r8$lambda$L38f6i3Rz4OotbEnUhizO9g0eQ(alertDialog, baseFragment, i, j, z, j2);
                 }
             });
             return;
@@ -527,7 +540,7 @@ public abstract class CommunityUtils {
         linkToCommunityWithoutConvert(baseFragment, i, chat.id, j, z);
     }
 
-    public static void lambda$linkToCommunityAndConvertIfNeeded$4(AlertDialog alertDialog, BaseFragment baseFragment, int i, long j, boolean z, long j2) {
+    public static void m4880$r8$lambda$L38f6i3Rz4OotbEnUhizO9g0eQ(AlertDialog alertDialog, BaseFragment baseFragment, int i, long j, boolean z, long j2) {
         alertDialog.dismiss();
         if (j2 == 0) {
             return;
@@ -539,12 +552,12 @@ public abstract class CommunityUtils {
         MessagesController.getInstance(i).linkCommunity(-j, j2, z, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CommunityUtils.lambda$linkToCommunityWithoutConvert$5(baseFragment, j, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                CommunityUtils.$r8$lambda$F03GPPe9DR9O_vJh6ow94AUudyw(baseFragment, j, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$linkToCommunityWithoutConvert$5(BaseFragment baseFragment, long j, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$F03GPPe9DR9O_vJh6ow94AUudyw(BaseFragment baseFragment, long j, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
                 onCommunityLinkSuccess(baseFragment, -j, 2);
@@ -597,7 +610,7 @@ public abstract class CommunityUtils {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity, zIsChannelAndNotMegaGroup);
+                            CommunityUtils.$r8$lambda$V7osAp95jpxjNUGaG8LtdLOutf8(i, chatActivity, zIsChannelAndNotMegaGroup);
                         }
                     }, 250L);
                     return;
@@ -619,7 +632,7 @@ public abstract class CommunityUtils {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity, zIsChannelAndNotMegaGroup);
+                    CommunityUtils.$r8$lambda$V7osAp95jpxjNUGaG8LtdLOutf8(i, chatActivity, zIsChannelAndNotMegaGroup);
                 }
             }, 250L);
             return;
@@ -630,7 +643,7 @@ public abstract class CommunityUtils {
         showCommunityLinkSuccessToast(BulletinFactory.global(), i, zIsChannelAndNotMegaGroup);
     }
 
-    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) {
+    public static void $r8$lambda$V7osAp95jpxjNUGaG8LtdLOutf8(int i, ChatActivity chatActivity, boolean z) {
         if (i != 2) {
             chatActivity.onPageDownClicked();
             chatActivity.startFireworks();
@@ -681,9 +694,14 @@ public abstract class CommunityUtils {
             user = null;
         }
         if (j2 != 0 && (chatFull = MessagesController.getInstance(i).getChatFull(j2)) != null && (arrayList = chatFull.linked_peers) != null) {
-            for (TL_communities.CommunityPeer communityPeer : arrayList) {
-                if (DialogObject.getPeerDialogId(communityPeer.peer) == j) {
-                    return getCommunityChatType(chat, user, user != null ? MessagesController.getInstance(i).getDialog(user.id) : null, communityPeer);
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                TL_communities.CommunityPeer communityPeer = arrayList.get(i2);
+                i2++;
+                TL_communities.CommunityPeer communityPeer2 = communityPeer;
+                if (DialogObject.getPeerDialogId(communityPeer2.peer) == j) {
+                    return getCommunityChatType(chat, user, user != null ? MessagesController.getInstance(i).getDialog(user.id) : null, communityPeer2);
                 }
             }
         }

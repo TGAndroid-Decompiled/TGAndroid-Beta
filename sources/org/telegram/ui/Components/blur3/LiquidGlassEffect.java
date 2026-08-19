@@ -60,9 +60,8 @@ public class LiquidGlassEffect {
         float f23 = f6 + f7;
         if (f23 > f18) {
             float f24 = f6 / f23;
-            float f25 = f18 * f24;
             f15 = f18 * (1.0f - f24);
-            f14 = f25;
+            f14 = f18 * f24;
         } else {
             f14 = f6;
             f15 = f7;

@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.Iterator;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -138,14 +138,14 @@ public class CollageLayoutButton extends ToggleButton2 {
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i) {
-                    this.f$0.lambda$new$0(view, i);
+                    CollageLayoutButton.CollageLayoutListView.m4468$r8$lambda$RXEKyEE9da3xj1oSzU_3fBV6HM(this.f$0, view, i);
                 }
             });
             addView(recyclerListView, LayoutHelper.createFrame(-1, 56.0f));
         }
 
-        public void lambda$new$0(View view, int i) {
-            Utilities.Callback callback = this.onLayoutClick;
+        public static void m4468$r8$lambda$RXEKyEE9da3xj1oSzU_3fBV6HM(CollageLayoutListView collageLayoutListView, View view, int i) {
+            Utilities.Callback callback = collageLayoutListView.onLayoutClick;
             if (callback != null) {
                 callback.run((CollageLayout) CollageLayout.getLayouts().get(i));
             }
@@ -188,7 +188,7 @@ public class CollageLayoutButton extends ToggleButton2 {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setVisible$1(valueAnimator2);
+                        CollageLayoutButton.CollageLayoutListView.m4469$r8$lambda$_GBIt8Plj4l0VSEWFSXYpMd9Hc(this.f$0, valueAnimator2);
                     }
                 });
                 this.visibleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -209,9 +209,10 @@ public class CollageLayoutButton extends ToggleButton2 {
             this.listView.setVisibility(z ? 0 : 8);
         }
 
-        public void lambda$setVisible$1(ValueAnimator valueAnimator) {
-            this.visibleProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.listView.invalidate();
+        public static void m4469$r8$lambda$_GBIt8Plj4l0VSEWFSXYpMd9Hc(CollageLayoutListView collageLayoutListView, ValueAnimator valueAnimator) {
+            collageLayoutListView.getClass();
+            collageLayoutListView.visibleProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            collageLayoutListView.listView.invalidate();
         }
     }
 
@@ -233,9 +234,6 @@ public class CollageLayoutButton extends ToggleButton2 {
         }
 
         public CollageLayoutDrawable(CollageLayout collageLayout, boolean z) {
-            char c;
-            float f;
-            int i = 1;
             Paint paint = new Paint(1);
             this.paint = paint;
             this.crossXferPaint = new Paint(1);
@@ -254,63 +252,56 @@ public class CollageLayoutButton extends ToggleButton2 {
             float fDpf8 = AndroidUtilities.dpf2(1.33f);
             path.setFillType(Path.FillType.EVEN_ODD);
             RectF rectF = AndroidUtilities.rectTmp;
-            float f2 = 2.0f;
             rectF.set((-fDpf2) / 2.0f, (-fDpf3) / 2.0f, fDpf2 / 2.0f, fDpf3 / 2.0f);
             path.addRoundRect(rectF, fDpf4, fDpf4, Path.Direction.CW);
-            Iterator it = collageLayout.parts.iterator();
-            while (it.hasNext()) {
-                CollageLayout.Part part = (CollageLayout.Part) it.next();
-                int i2 = collageLayout.columns[part.y];
-                int i3 = i2 - 1;
-                float fMax = (fDpf5 - (Math.max(0, i3) * fDpf8)) / i2;
-                float fMax2 = (fDpf6 - (Math.max(0, collageLayout.h - i) * fDpf8)) / collageLayout.h;
+            ArrayList arrayList = collageLayout.parts;
+            int size = arrayList.size();
+            int i = 0;
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList.get(i2);
+                i2++;
+                CollageLayout.Part part = (CollageLayout.Part) obj;
+                int i3 = collageLayout.columns[part.y];
+                int i4 = i3 - 1;
+                float fMax = (fDpf5 - (Math.max(i, i4) * fDpf8)) / i3;
+                float fMax2 = (fDpf6 - (Math.max(i, collageLayout.h - 1) * fDpf8)) / collageLayout.h;
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                float f3 = (-fDpf5) / f2;
-                int i4 = part.x;
-                float f4 = i4;
-                float f5 = f3 + (fMax * f4);
-                float f6 = f4 * fDpf8;
-                Iterator it2 = it;
-                float f7 = f5 + f6;
-                float f8 = fDpf5;
-                float f9 = (-fDpf6) / f2;
-                int i5 = part.y;
-                float f10 = fDpf6;
-                float f11 = i5;
-                float f12 = f9 + (fMax2 * f11);
-                float f13 = f11 * fDpf8;
-                float f14 = fDpf7;
-                rectF2.set(f7, f12 + f13, f3 + (fMax * (i4 + 1)) + f6, f9 + (fMax2 * (i5 + 1)) + f13);
+                float f = (-fDpf5) / 2.0f;
+                int i5 = part.x;
+                ArrayList arrayList2 = arrayList;
+                float f2 = i5;
+                float f3 = f + (fMax * f2);
+                float f4 = f2 * fDpf8;
+                float f5 = f3 + f4;
+                int i6 = size;
+                float f6 = (-fDpf6) / 2.0f;
+                int i7 = part.y;
+                float f7 = i7;
+                float f8 = f6 + (fMax2 * f7);
+                float f9 = f7 * fDpf8;
+                rectF2.set(f5, f8 + f9, f + (fMax * (i5 + 1)) + f4, f6 + (fMax2 * (i7 + 1)) + f9);
                 float[] fArr = this.radii;
-                int i6 = part.x;
-                float f15 = 0.0f;
-                if (i6 == 0 && part.y == 0) {
-                    f = f14;
-                    c = 1;
-                } else {
-                    c = 1;
-                    f = 0.0f;
+                int i8 = part.x;
+                float f10 = 0.0f;
+                float f11 = (i8 == 0 && part.y == 0) ? fDpf7 : 0.0f;
+                fArr[1] = f11;
+                fArr[0] = f11;
+                float f12 = (i8 == i4 && part.y == 0) ? fDpf7 : 0.0f;
+                fArr[3] = f12;
+                fArr[2] = f12;
+                float f13 = (i8 == i4 && part.y == collageLayout.h + (-1)) ? fDpf7 : 0.0f;
+                fArr[5] = f13;
+                fArr[4] = f13;
+                if (i8 == 0 && part.y == collageLayout.h - 1) {
+                    f10 = fDpf7;
                 }
-                fArr[c] = f;
-                fArr[0] = f;
-                float f16 = (i6 == i3 && part.y == 0) ? f14 : 0.0f;
-                fArr[3] = f16;
-                fArr[2] = f16;
-                float f17 = (i6 == i3 && part.y == collageLayout.h - 1) ? f14 : 0.0f;
-                fArr[5] = f17;
-                fArr[4] = f17;
-                if (i6 == 0 && part.y == collageLayout.h - 1) {
-                    f15 = f14;
-                }
-                fArr[7] = f15;
-                fArr[6] = f15;
+                fArr[7] = f10;
+                fArr[6] = f10;
                 this.path.addRoundRect(rectF2, fArr, Path.Direction.CW);
-                fDpf5 = f8;
-                it = it2;
-                fDpf6 = f10;
-                fDpf7 = f14;
-                i = 1;
-                f2 = 2.0f;
+                arrayList = arrayList2;
+                size = i6;
+                i = 0;
             }
             Paint paint2 = this.crossXferPaint;
             Paint.Style style = Paint.Style.STROKE;
@@ -326,18 +317,21 @@ public class CollageLayoutButton extends ToggleButton2 {
 
         @Override
         public void draw(Canvas canvas) {
+            Canvas canvas2;
             if (this.cross) {
                 canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255, 31);
+                canvas2 = canvas;
             } else {
-                canvas.save();
+                canvas2 = canvas;
+                canvas2.save();
             }
-            canvas.translate(getBounds().centerX(), getBounds().centerY());
-            canvas.drawPath(this.path, this.paint);
+            canvas2.translate(getBounds().centerX(), getBounds().centerY());
+            canvas2.drawPath(this.path, this.paint);
             if (this.cross) {
-                canvas.drawLine(-AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), this.crossXferPaint);
-                canvas.drawLine(-AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), this.crossPaint);
+                canvas2.drawLine(-AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), this.crossXferPaint);
+                canvas2.drawLine(-AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), AndroidUtilities.dp(8.66f), this.crossPaint);
             }
-            canvas.restore();
+            canvas2.restore();
         }
 
         @Override

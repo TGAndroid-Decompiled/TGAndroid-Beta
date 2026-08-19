@@ -164,7 +164,7 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
             return;
         }
         int iSaveLayerAlpha = canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, this.alpha);
-        iHeight = this.fadeHeight < 0 ? this.fadeHeight + bounds.height() : 0;
+        iHeight = this.fadeHeight < 0 ? bounds.height() + this.fadeHeight : 0;
         this.drawable.draw(canvas);
         canvas.translate(bounds.left, bounds.top + iHeight);
         canvas.drawRect(0.0f, -iHeight, bounds.width(), bounds.height() - iHeight, this.maskFadeGradientPaint);

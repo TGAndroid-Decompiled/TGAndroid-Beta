@@ -279,14 +279,16 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
         int i = this.curLineIdx + 1;
         this.curLineIdx = i;
         this.xPosition = 0.0f;
-        if (i < layout.getLineCount()) {
-            return false;
+        if (i >= layout.getLineCount()) {
+            int i2 = this.curBlockIdx + 1;
+            this.curBlockIdx = i2;
+            this.curLineIdx = 0;
+            this.xPosition = 0.0f;
+            if (i2 >= this.blocks.size()) {
+                return true;
+            }
         }
-        int i2 = this.curBlockIdx + 1;
-        this.curBlockIdx = i2;
-        this.curLineIdx = 0;
-        this.xPosition = 0.0f;
-        return i2 >= this.blocks.size();
+        return false;
     }
 
     private void recalcSpeed() {

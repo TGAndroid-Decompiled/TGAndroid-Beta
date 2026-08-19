@@ -40,7 +40,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
     private final ArrayList oldItems = new ArrayList();
     private final ArrayList items = new ArrayList();
 
-    public static void lambda$onFragmentDestroy$2(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$x7PpSkVpp4iYCjJtWj0kvH2q9_Q(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     @Override
@@ -90,7 +90,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$createView$1(view, i);
+                ArchiveSettingsActivity.m1310$r8$lambda$R3NmrF357752hjuPnasQdGiLrc(this.f$0, view, i);
             }
         });
         getContactsController().loadGlobalPrivacySetting();
@@ -103,56 +103,61 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         return this.fragmentView;
     }
 
-    public void lambda$createView$1(View view, int i) {
-        if (i < 0 || i >= this.items.size()) {
+    public static void m1310$r8$lambda$R3NmrF357752hjuPnasQdGiLrc(final ArchiveSettingsActivity archiveSettingsActivity, View view, int i) {
+        if (i < 0) {
+            archiveSettingsActivity.getClass();
             return;
         }
-        int i2 = ((ItemInner) this.items.get(i)).id;
+        if (i >= archiveSettingsActivity.items.size()) {
+            return;
+        }
+        int i2 = ((ItemInner) archiveSettingsActivity.items.get(i)).id;
         if (i2 == 1) {
-            TLRPC.GlobalPrivacySettings globalPrivacySettings = this.settings;
+            TLRPC.GlobalPrivacySettings globalPrivacySettings = archiveSettingsActivity.settings;
             boolean z = !globalPrivacySettings.keep_archived_unmuted;
             globalPrivacySettings.keep_archived_unmuted = z;
             ((TextCheckCell) view).setChecked(z);
-            this.changed = true;
+            archiveSettingsActivity.changed = true;
             return;
         }
         if (i2 == 4) {
-            TLRPC.GlobalPrivacySettings globalPrivacySettings2 = this.settings;
+            TLRPC.GlobalPrivacySettings globalPrivacySettings2 = archiveSettingsActivity.settings;
             boolean z2 = !globalPrivacySettings2.keep_archived_folders;
             globalPrivacySettings2.keep_archived_folders = z2;
             ((TextCheckCell) view).setChecked(z2);
-            this.changed = true;
+            archiveSettingsActivity.changed = true;
             return;
         }
         if (i2 == 7) {
-            if (!getUserConfig().isPremium() && !getMessagesController().autoarchiveAvailable && !this.settings.archive_and_mute_new_noncontact_peers) {
-                Bulletin.SimpleLayout simpleLayout = new Bulletin.SimpleLayout(getContext(), getResourceProvider());
-                simpleLayout.textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.UnlockPremium), Theme.key_undo_cancelColor, 0, new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$createView$0();
-                    }
-                }));
-                simpleLayout.textView.setSingleLine(false);
-                simpleLayout.textView.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-                simpleLayout.imageView.setImageResource(R.drawable.msg_settings_premium);
-                Bulletin.make(this, simpleLayout, 3500).show();
-                int i3 = -this.shiftDp;
-                this.shiftDp = i3;
-                AndroidUtilities.shakeViewSpring(view, i3);
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
+            if (archiveSettingsActivity.getUserConfig().isPremium() || archiveSettingsActivity.getMessagesController().autoarchiveAvailable || archiveSettingsActivity.settings.archive_and_mute_new_noncontact_peers) {
+                TLRPC.GlobalPrivacySettings globalPrivacySettings3 = archiveSettingsActivity.settings;
+                boolean z3 = !globalPrivacySettings3.archive_and_mute_new_noncontact_peers;
+                globalPrivacySettings3.archive_and_mute_new_noncontact_peers = z3;
+                ((TextCheckCell) view).setChecked(z3);
+                archiveSettingsActivity.changed = true;
                 return;
             }
-            TLRPC.GlobalPrivacySettings globalPrivacySettings3 = this.settings;
-            boolean z3 = !globalPrivacySettings3.archive_and_mute_new_noncontact_peers;
-            globalPrivacySettings3.archive_and_mute_new_noncontact_peers = z3;
-            ((TextCheckCell) view).setChecked(z3);
-            this.changed = true;
+            Bulletin.SimpleLayout simpleLayout = new Bulletin.SimpleLayout(archiveSettingsActivity.getContext(), archiveSettingsActivity.getResourceProvider());
+            simpleLayout.textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.UnlockPremium), Theme.key_undo_cancelColor, 0, new Runnable() {
+                @Override
+                public final void run() {
+                    ArchiveSettingsActivity.$r8$lambda$WjvtuRUm8C8_zAtnTYbM3sGO6iA(this.f$0);
+                }
+            }));
+            simpleLayout.textView.setSingleLine(false);
+            simpleLayout.textView.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+            simpleLayout.imageView.setImageResource(R.drawable.msg_settings_premium);
+            Bulletin.make(archiveSettingsActivity, simpleLayout, 3500).show();
+            int i3 = -archiveSettingsActivity.shiftDp;
+            archiveSettingsActivity.shiftDp = i3;
+            AndroidUtilities.shakeViewSpring(view, i3);
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
         }
     }
 
-    public void lambda$createView$0() {
-        presentFragment(new PremiumPreviewFragment("settings"));
+    public static void $r8$lambda$WjvtuRUm8C8_zAtnTYbM3sGO6iA(ArchiveSettingsActivity archiveSettingsActivity) {
+        archiveSettingsActivity.getClass();
+        archiveSettingsActivity.presentFragment(new PremiumPreviewFragment("settings"));
     }
 
     private void updateItems(boolean z) {
@@ -181,7 +186,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         }
     }
 
-    private static class ItemInner extends AdapterWithDiffUtils.Item {
+    static class ItemInner extends AdapterWithDiffUtils.Item {
         public int id;
         public CharSequence text;
 
@@ -195,11 +200,13 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
+            if (obj != null && getClass() == obj.getClass()) {
+                ItemInner itemInner = (ItemInner) obj;
+                if (this.id == itemInner.id && Objects.equals(this.text, itemInner.text)) {
+                    return true;
+                }
             }
-            ItemInner itemInner = (ItemInner) obj;
-            return this.id == itemInner.id && Objects.equals(this.text, itemInner.text);
+            return false;
         }
     }
 
@@ -304,7 +311,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
             getConnectionsManager().sendRequest(setglobalprivacysettings, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ArchiveSettingsActivity.lambda$onFragmentDestroy$2(tLObject, tL_error);
+                    ArchiveSettingsActivity.$r8$lambda$x7PpSkVpp4iYCjJtWj0kvH2q9_Q(tLObject, tL_error);
                 }
             });
             this.changed = false;

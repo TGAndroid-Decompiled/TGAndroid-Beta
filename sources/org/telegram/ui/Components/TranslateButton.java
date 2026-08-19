@@ -18,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
@@ -55,7 +54,7 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         return Theme.Colorable.CC.$default$getColorKeys(this);
     }
 
-    protected abstract void onButtonClick();
+    public abstract void onButtonClick();
 
     protected abstract void onCloseClick();
 
@@ -91,7 +90,7 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         animatedTextView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.onButtonClick();
             }
         });
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 3, 0.0f, 0.0f, 34.0f, 0.0f));
@@ -108,23 +107,20 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         this.menuView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(i, j, view);
+                TranslateButton.m2920$r8$lambda$QQQyhL7OcpQtlcZfjrU45JyzCY(this.f$0, i, j, view);
             }
         });
         addView(this.menuView, LayoutHelper.createFrame(30, 30.0f, 21, 0.0f, 0.0f, 7.0f, 0.0f));
         updateColors();
     }
 
-    public void lambda$new$0(View view) {
-        onButtonClick();
-    }
-
-    public void lambda$new$1(int i, long j, View view) {
+    public static void m2920$r8$lambda$QQQyhL7OcpQtlcZfjrU45JyzCY(TranslateButton translateButton, int i, long j, View view) {
+        translateButton.getClass();
         TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         if (UserConfig.getInstance(i).isPremium() || (chat != null && chat.autotranslation)) {
-            onMenuClick();
+            translateButton.onMenuClick();
         } else {
-            onCloseClick();
+            translateButton.onCloseClick();
         }
     }
 
@@ -198,7 +194,7 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TranslateButton.lambda$onMenuClick$2(actionBarPopupWindowLayout, view);
+                actionBarPopupWindowLayout.getSwipeBack().closeForeground();
             }
         });
         linearLayout.addView(actionBarMenuSubItem2);
@@ -214,13 +210,13 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onMenuClick$5(zArr, dialogTranslateTo, linearLayout2, suggestedLanguages, dialogDetectedLanguage, translateController, actionBarPopupWindow, languages);
+                TranslateButton.$r8$lambda$S6YUAHyEhACK94FZfGav61aNjvo(this.f$0, zArr, dialogTranslateTo, linearLayout2, suggestedLanguages, dialogDetectedLanguage, translateController, actionBarPopupWindow, languages);
             }
         };
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TranslateButton.lambda$onMenuClick$6(runnable, actionBarPopupWindowLayout, iAddViewToSwipeBack, view);
+                TranslateButton.$r8$lambda$esQe9JtamP7M9KjqxifYQ15wmgQ(runnable, actionBarPopupWindowLayout, iAddViewToSwipeBack, view);
             }
         });
         if (UserConfig.getInstance(this.currentAccount).isPremium() && strLanguageName != null) {
@@ -235,7 +231,7 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$onMenuClick$8(dialogDetectedLanguage, translateController, strLanguageName, actionBarPopupWindow, view);
+                    TranslateButton.m2916$r8$lambda$DGr92X8HJ2BzII3IsXEvwKXQ74(this.f$0, dialogDetectedLanguage, translateController, strLanguageName, actionBarPopupWindow, view);
                 }
             });
             actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
@@ -245,7 +241,7 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$onMenuClick$10(translateController, actionBarPopupWindow, view);
+                TranslateButton.m2918$r8$lambda$JBNq8SamY8vrVDMtwMmunhFYw(this.f$0, translateController, actionBarPopupWindow, view);
             }
         });
         actionBarPopupWindowLayout.addView(actionBarMenuSubItem4);
@@ -260,7 +256,7 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         CharSequence charSequenceConcat = TextUtils.concat(AndroidUtilities.replaceTags(LocaleController.getString(R.string.CocoonPoweredBy)), " ", AndroidUtilities.premiumText(LocaleController.getString(R.string.CocoonPoweredByLink), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onMenuClick$11(actionBarPopupWindow);
+                TranslateButton.$r8$lambda$SwKXGNGWSjaNAcjW7anUdMLGM_8(this.f$0, actionBarPopupWindow);
             }
         }));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("🥚");
@@ -272,7 +268,7 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         linksTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$onMenuClick$12(actionBarPopupWindow, view);
+                TranslateButton.m2917$r8$lambda$DfUfF2DRprwAPibhRYB_3QwYMs(this.f$0, actionBarPopupWindow, view);
             }
         });
         actionBarPopupWindowLayout.addView(linksTextView);
@@ -288,28 +284,27 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         actionBarPopupWindow.showAsDropDown(imageView, 0, (-imageView.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
     }
 
-    public static void lambda$onMenuClick$2(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, View view) {
-        actionBarPopupWindowLayout.getSwipeBack().closeForeground();
-    }
-
-    public void lambda$onMenuClick$5(boolean[] zArr, String str, LinearLayout linearLayout, ArrayList arrayList, String str2, final TranslateController translateController, final ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList2) {
+    public static void $r8$lambda$S6YUAHyEhACK94FZfGav61aNjvo(final TranslateButton translateButton, boolean[] zArr, String str, LinearLayout linearLayout, ArrayList arrayList, String str2, final TranslateController translateController, final ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList2) {
         String strCapitalFirst;
-        char c = 0;
+        translateButton.getClass();
         if (zArr[0]) {
             return;
         }
         if (str != null && (strCapitalFirst = TranslateAlert2.capitalFirst(TranslateAlert2.languageName(str))) != null) {
-            ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), 2, false, false, this.resourcesProvider);
+            ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(translateButton.getContext(), 2, false, false, translateButton.resourcesProvider);
             actionBarMenuSubItem.setChecked(true);
             actionBarMenuSubItem.setText(strCapitalFirst);
             linearLayout.addView(actionBarMenuSubItem);
         }
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            TranslateController.Language language = (TranslateController.Language) it.next();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            TranslateController.Language language = (TranslateController.Language) obj;
             final String str3 = language.code;
             if (!TextUtils.equals(str3, str2)) {
-                ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(getContext(), 2, false, false, this.resourcesProvider);
+                ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(translateButton.getContext(), 2, false, false, translateButton.resourcesProvider);
                 boolean z = str != null && str.equals(str3);
                 actionBarMenuSubItem2.setChecked(z);
                 actionBarMenuSubItem2.setText(language.displayName);
@@ -317,82 +312,81 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
                     actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onMenuClick$3(translateController, str3, actionBarPopupWindow, view);
+                            TranslateButton.m2915$r8$lambda$6PVsZqApLklcxkcPbFgBEYnANI(this.f$0, translateController, str3, actionBarPopupWindow, view);
                         }
                     });
                 }
                 linearLayout.addView(actionBarMenuSubItem2);
             }
         }
-        linearLayout.addView(new ActionBarPopupWindow.GapView(getContext(), this.resourcesProvider), LayoutHelper.createLinear(-1, 8));
-        Iterator it2 = arrayList2.iterator();
-        while (it2.hasNext()) {
-            TranslateController.Language language2 = (TranslateController.Language) it2.next();
+        linearLayout.addView(new ActionBarPopupWindow.GapView(translateButton.getContext(), translateButton.resourcesProvider), LayoutHelper.createLinear(-1, 8));
+        int size2 = arrayList2.size();
+        int i2 = 0;
+        while (i2 < size2) {
+            Object obj2 = arrayList2.get(i2);
+            i2++;
+            TranslateController.Language language2 = (TranslateController.Language) obj2;
             final String str4 = language2.code;
             if (!TextUtils.equals(str4, str2)) {
                 boolean z2 = str != null && str.equals(str4);
-                ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getContext(), 2, false, false, this.resourcesProvider);
+                ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(translateButton.getContext(), 2, false, false, translateButton.resourcesProvider);
                 actionBarMenuSubItem3.setChecked(z2);
                 actionBarMenuSubItem3.setText(language2.displayName);
                 if (!z2) {
                     actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onMenuClick$4(translateController, str4, actionBarPopupWindow, view);
+                            TranslateButton.m2921$r8$lambda$etgc7kPk_JiQzNNOGQ2ZSPsnFg(this.f$0, translateController, str4, actionBarPopupWindow, view);
                         }
                     });
                 }
                 linearLayout.addView(actionBarMenuSubItem3);
-                c = 0;
             }
         }
-        zArr[c] = true;
+        zArr[0] = true;
     }
 
-    public void lambda$onMenuClick$3(TranslateController translateController, String str, ActionBarPopupWindow actionBarPopupWindow, View view) {
-        translateController.setDialogTranslateTo(this.dialogId, str);
+    public static void m2915$r8$lambda$6PVsZqApLklcxkcPbFgBEYnANI(TranslateButton translateButton, TranslateController translateController, String str, ActionBarPopupWindow actionBarPopupWindow, View view) {
+        translateController.setDialogTranslateTo(translateButton.dialogId, str);
         actionBarPopupWindow.dismiss();
-        updateText();
+        translateButton.updateText();
     }
 
-    public void lambda$onMenuClick$4(TranslateController translateController, String str, ActionBarPopupWindow actionBarPopupWindow, View view) {
-        translateController.setDialogTranslateTo(this.dialogId, str);
+    public static void m2921$r8$lambda$etgc7kPk_JiQzNNOGQ2ZSPsnFg(TranslateButton translateButton, TranslateController translateController, String str, ActionBarPopupWindow actionBarPopupWindow, View view) {
+        translateController.setDialogTranslateTo(translateButton.dialogId, str);
         actionBarPopupWindow.dismiss();
-        updateText();
+        translateButton.updateText();
     }
 
-    public static void lambda$onMenuClick$6(Runnable runnable, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i, View view) {
+    public static void $r8$lambda$esQe9JtamP7M9KjqxifYQ15wmgQ(Runnable runnable, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i, View view) {
         runnable.run();
         actionBarPopupWindowLayout.getSwipeBack().openForeground(i);
     }
 
-    public void lambda$onMenuClick$8(String str, TranslateController translateController, String str2, ActionBarPopupWindow actionBarPopupWindow, View view) {
+    public static void m2916$r8$lambda$DGr92X8HJ2BzII3IsXEvwKXQ74(final TranslateButton translateButton, String str, TranslateController translateController, String str2, ActionBarPopupWindow actionBarPopupWindow, View view) {
         String string;
+        translateButton.getClass();
         RestrictedLanguagesSelectActivity.toggleLanguage(str, true);
         translateController.checkRestrictedLanguagesUpdate();
-        translateController.setHideTranslateDialog(this.dialogId, true);
-        if (this.accusative[0]) {
+        translateController.setHideTranslateDialog(translateButton.dialogId, true);
+        if (translateButton.accusative[0]) {
             string = LocaleController.formatString(R.string.AddedToDoNotTranslate, str2);
         } else {
             string = LocaleController.formatString(R.string.AddedToDoNotTranslateOther, str2);
         }
-        BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.msg_translate, TranslateAlert2.capitalFirst(AndroidUtilities.replaceTags(string)), LocaleController.getString(R.string.Settings), new Runnable() {
+        BulletinFactory.of(translateButton.fragment).createSimpleBulletin(R.raw.msg_translate, TranslateAlert2.capitalFirst(AndroidUtilities.replaceTags(string)), LocaleController.getString(R.string.Settings), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onMenuClick$7();
+                this.f$0.fragment.presentFragment(new RestrictedLanguagesSelectActivity());
             }
         }).show();
         actionBarPopupWindow.dismiss();
     }
 
-    public void lambda$onMenuClick$7() {
-        this.fragment.presentFragment(new RestrictedLanguagesSelectActivity());
-    }
-
-    public void lambda$onMenuClick$10(final TranslateController translateController, ActionBarPopupWindow actionBarPopupWindow, View view) {
+    public static void m2918$r8$lambda$JBNq8SamY8vrVDMtwMmunhFYw(final TranslateButton translateButton, final TranslateController translateController, ActionBarPopupWindow actionBarPopupWindow, View view) {
         String string;
-        translateController.setHideTranslateDialog(this.dialogId, true);
-        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+        translateController.setHideTranslateDialog(translateButton.dialogId, true);
+        TLRPC.Chat chat = MessagesController.getInstance(translateButton.currentAccount).getChat(Long.valueOf(-translateButton.dialogId));
         if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat)) {
             string = LocaleController.getString(R.string.TranslationBarHiddenForChannel);
         } else if (chat != null) {
@@ -400,27 +394,25 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         } else {
             string = LocaleController.getString(R.string.TranslationBarHiddenForChat);
         }
-        BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.msg_translate, AndroidUtilities.replaceTags(string), LocaleController.getString(R.string.UndoNoCaps), new Runnable() {
+        BulletinFactory.of(translateButton.fragment).createSimpleBulletin(R.raw.msg_translate, AndroidUtilities.replaceTags(string), LocaleController.getString(R.string.UndoNoCaps), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onMenuClick$9(translateController);
+                translateController.setHideTranslateDialog(this.f$0.dialogId, false);
             }
         }).show();
         actionBarPopupWindow.dismiss();
     }
 
-    public void lambda$onMenuClick$9(TranslateController translateController) {
-        translateController.setHideTranslateDialog(this.dialogId, false);
+    public static void $r8$lambda$SwKXGNGWSjaNAcjW7anUdMLGM_8(TranslateButton translateButton, ActionBarPopupWindow actionBarPopupWindow) {
+        translateButton.getClass();
+        actionBarPopupWindow.dismiss();
+        showCocoonAlert(translateButton.getContext(), translateButton.resourcesProvider);
     }
 
-    public void lambda$onMenuClick$11(ActionBarPopupWindow actionBarPopupWindow) {
+    public static void m2917$r8$lambda$DfUfF2DRprwAPibhRYB_3QwYMs(TranslateButton translateButton, ActionBarPopupWindow actionBarPopupWindow, View view) {
+        translateButton.getClass();
         actionBarPopupWindow.dismiss();
-        showCocoonAlert(getContext(), this.resourcesProvider);
-    }
-
-    public void lambda$onMenuClick$12(ActionBarPopupWindow actionBarPopupWindow, View view) {
-        actionBarPopupWindow.dismiss();
-        showCocoonAlert(getContext(), this.resourcesProvider);
+        showCocoonAlert(translateButton.getContext(), translateButton.resourcesProvider);
     }
 
     public void updateText() {
@@ -467,7 +459,6 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         frameLayout.setBackground(gradientDrawable);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
-        int i = -1;
         frameLayout.addView(linearLayout2, LayoutHelper.createFrame(-1, -1, 119));
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -482,11 +473,8 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         textView.setGravity(17);
         SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.CocoonSubtitle));
         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) spannableStringBuilderReplaceTags.getSpans(0, spannableStringBuilderReplaceTags.length(), TypefaceSpan.class);
-        int i2 = 0;
-        while (i2 < typefaceSpanArr.length) {
-            spannableStringBuilderReplaceTags.setSpan(new ForegroundColorSpan(i), spannableStringBuilderReplaceTags.getSpanStart(typefaceSpanArr[i2]), spannableStringBuilderReplaceTags.getSpanEnd(typefaceSpanArr[i2]), spannableStringBuilderReplaceTags.getSpanFlags(typefaceSpanArr[i2]));
-            i2++;
-            i = -1;
+        for (int i = 0; i < typefaceSpanArr.length; i++) {
+            spannableStringBuilderReplaceTags.setSpan(new ForegroundColorSpan(-1), spannableStringBuilderReplaceTags.getSpanStart(typefaceSpanArr[i]), spannableStringBuilderReplaceTags.getSpanEnd(typefaceSpanArr[i]), spannableStringBuilderReplaceTags.getSpanFlags(typefaceSpanArr[i]));
         }
         textView.setText(spannableStringBuilderReplaceTags);
         linearLayout2.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 49, 32.0f, 14.0f, 32.0f, 20.0f));
@@ -494,14 +482,14 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         linearLayout.addView(new ChannelMonetizationLayout.FeatureCell(context, R.drawable.menu_privacy, LocaleController.getString(R.string.CocoonFeature1Title), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CocoonFeature1Text), new Runnable() {
             @Override
             public final void run() {
-                TranslateButton.lambda$showCocoonAlert$13(bottomSheetArr, context);
+                TranslateButton.$r8$lambda$7IrBAcGxwA9QBQqZsA5EUoMbDQM(bottomSheetArr, context);
             }
         }), resourcesProvider), LayoutHelper.createLinear(-1, -2, 49, 32, 16, 32, 16));
         linearLayout.addView(new ChannelMonetizationLayout.FeatureCell(context, R.drawable.msg_stats, LocaleController.getString(R.string.CocoonFeature2Title), LocaleController.getString(R.string.CocoonFeature2Text), resourcesProvider), LayoutHelper.createLinear(-1, -2, 49, 32, 0, 32, 16));
         linearLayout.addView(new ChannelMonetizationLayout.FeatureCell(context, R.drawable.menu_gift, LocaleController.getString(R.string.CocoonFeature3Title), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CocoonFeature3Text), new Runnable() {
             @Override
             public final void run() {
-                TranslateButton.lambda$showCocoonAlert$14(bottomSheetArr, context);
+                TranslateButton.m2923$r8$lambda$wIFbvScs9SbeMJEoA7JlxUZaR8(bottomSheetArr, context);
             }
         }), resourcesProvider), LayoutHelper.createLinear(-1, -2, 49, 32, 0, 32, 16));
         View view = new View(context);
@@ -515,7 +503,7 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CocoonFooter), new Runnable() {
             @Override
             public final void run() {
-                TranslateButton.lambda$showCocoonAlert$15(bottomSheetArr, context);
+                TranslateButton.$r8$lambda$TD2I6POaZ7CKHW15KPwYGNPXWkY(bottomSheetArr, context);
             }
         }));
         linksTextView.setPadding(0, AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f));
@@ -526,7 +514,7 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TranslateButton.lambda$showCocoonAlert$16(bottomSheetArr, view2);
+                bottomSheetArr[0].dismiss();
             }
         });
         linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 7, 16, 0, 16, 16));
@@ -537,22 +525,18 @@ public abstract class TranslateButton extends FrameLayout implements Theme.Color
         bottomSheetArr[0].show();
     }
 
-    public static void lambda$showCocoonAlert$13(BottomSheet[] bottomSheetArr, Context context) {
-        bottomSheetArr[0].lambda$new$0();
+    public static void $r8$lambda$7IrBAcGxwA9QBQqZsA5EUoMbDQM(BottomSheet[] bottomSheetArr, Context context) {
+        bottomSheetArr[0].dismiss();
         Browser.openUrl(context, LocaleController.getString(R.string.CocoonFeature1TextLink));
     }
 
-    public static void lambda$showCocoonAlert$14(BottomSheet[] bottomSheetArr, Context context) {
-        bottomSheetArr[0].lambda$new$0();
+    public static void m2923$r8$lambda$wIFbvScs9SbeMJEoA7JlxUZaR8(BottomSheet[] bottomSheetArr, Context context) {
+        bottomSheetArr[0].dismiss();
         Browser.openUrlInSystemBrowser(context, LocaleController.getString(R.string.CocoonFeature3TextLink));
     }
 
-    public static void lambda$showCocoonAlert$15(BottomSheet[] bottomSheetArr, Context context) {
-        bottomSheetArr[0].lambda$new$0();
+    public static void $r8$lambda$TD2I6POaZ7CKHW15KPwYGNPXWkY(BottomSheet[] bottomSheetArr, Context context) {
+        bottomSheetArr[0].dismiss();
         Browser.openUrl(context, LocaleController.getString(R.string.CocoonFooterLink));
-    }
-
-    public static void lambda$showCocoonAlert$16(BottomSheet[] bottomSheetArr, View view) {
-        bottomSheetArr[0].lambda$new$0();
     }
 }

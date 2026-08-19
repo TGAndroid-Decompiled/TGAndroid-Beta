@@ -77,7 +77,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.requestPreview = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$7();
+                StoryLinkSheet.m4578$r8$lambda$TFhJVauuAvysAoyO1YAHMgfn70(this.f$0);
             }
         };
         this.whenDone = callback;
@@ -112,13 +112,13 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0(str, textView);
+                StoryLinkSheet.$r8$lambda$KdNv_Pl_g3ioDTxEalYcHAfBcCI(this.f$0, str, textView);
             }
         };
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(runnable, view);
+                StoryLinkSheet.$r8$lambda$y6jMhzSaEZHiRK9pggOhEerdzUU(this.f$0, runnable, view);
             }
         });
         runnable.run();
@@ -175,7 +175,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                this.f$0.processDone();
             }
         });
         this.button.setEnabled(containsURL(this.urlEditText.getText().toString()));
@@ -202,7 +202,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$4(context, previewView, view, i2);
+                StoryLinkSheet.$r8$lambda$O3Ei4aCLYVIBOTzy_USSM57__8c(this.f$0, context, previewView, view, i2);
             }
         });
         UniversalAdapter universalAdapter = this.adapter;
@@ -211,50 +211,46 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         }
     }
 
-    public void lambda$new$0(String str, TextView textView) {
-        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
-        boolean z = (TextUtils.isEmpty(this.urlEditText.editText.getText()) || TextUtils.equals(this.urlEditText.editText.getText(), str) || TextUtils.isEmpty(this.urlEditText.editText.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip();
+    public static void $r8$lambda$KdNv_Pl_g3ioDTxEalYcHAfBcCI(StoryLinkSheet storyLinkSheet, String str, TextView textView) {
+        ClipboardManager clipboardManager = (ClipboardManager) storyLinkSheet.getContext().getSystemService("clipboard");
+        boolean z = (TextUtils.isEmpty(storyLinkSheet.urlEditText.editText.getText()) || TextUtils.equals(storyLinkSheet.urlEditText.editText.getText(), str) || TextUtils.isEmpty(storyLinkSheet.urlEditText.editText.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip();
         textView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.7f).scaleY(z ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(300L).start();
     }
 
-    public void lambda$new$1(Runnable runnable, View view) {
+    public static void $r8$lambda$y6jMhzSaEZHiRK9pggOhEerdzUU(StoryLinkSheet storyLinkSheet, Runnable runnable, View view) {
         CharSequence charSequenceCoerceToText;
         try {
-            charSequenceCoerceToText = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
+            charSequenceCoerceToText = ((ClipboardManager) storyLinkSheet.getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(storyLinkSheet.getContext());
         } catch (Exception e) {
             FileLog.e(e);
             charSequenceCoerceToText = null;
         }
         if (charSequenceCoerceToText != null) {
-            this.urlEditText.editText.setText(charSequenceCoerceToText.toString());
-            EditTextCaption editTextCaption = this.urlEditText.editText;
+            storyLinkSheet.urlEditText.editText.setText(charSequenceCoerceToText.toString());
+            EditTextCaption editTextCaption = storyLinkSheet.urlEditText.editText;
             editTextCaption.setSelection(0, editTextCaption.getText().length());
         }
         runnable.run();
     }
 
-    public void lambda$new$2(View view) {
-        processDone();
-    }
-
-    public void lambda$new$4(Context context, PreviewView previewView, View view, int i) {
+    public static void $r8$lambda$O3Ei4aCLYVIBOTzy_USSM57__8c(final StoryLinkSheet storyLinkSheet, Context context, PreviewView previewView, View view, int i) {
         TLRPC.WebPage webPage;
-        UItem item = this.adapter.getItem(i - 1);
+        UItem item = storyLinkSheet.adapter.getItem(i - 1);
         if (item == null) {
             return;
         }
-        if (item.instanceOf(WebpagePreviewView.Factory.class) && (webPage = this.webpage) != null && !isPreviewEmpty(webPage)) {
-            StoryLinkPreviewDialog storyLinkPreviewDialog = new StoryLinkPreviewDialog(context, this.currentAccount);
+        if (item.instanceOf(WebpagePreviewView.Factory.class) && (webPage = storyLinkSheet.webpage) != null && !isPreviewEmpty(webPage)) {
+            StoryLinkPreviewDialog storyLinkPreviewDialog = new StoryLinkPreviewDialog(context, storyLinkSheet.currentAccount);
             LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
-            webPagePreview.url = this.urlEditText.editText.getText().toString();
-            webPagePreview.name = this.nameOpen ? this.nameEditText.editText.getText().toString() : null;
-            webPagePreview.webpage = this.webpage;
-            webPagePreview.largePhoto = this.photoLarge;
-            webPagePreview.captionAbove = this.captionAbove;
+            webPagePreview.url = storyLinkSheet.urlEditText.editText.getText().toString();
+            webPagePreview.name = storyLinkSheet.nameOpen ? storyLinkSheet.nameEditText.editText.getText().toString() : null;
+            webPagePreview.webpage = storyLinkSheet.webpage;
+            webPagePreview.largePhoto = storyLinkSheet.photoLarge;
+            webPagePreview.captionAbove = storyLinkSheet.captionAbove;
             storyLinkPreviewDialog.set(webPagePreview, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$new$3((LinkPreview.WebPagePreview) obj);
+                    StoryLinkSheet.$r8$lambda$ByFZrGZjmVP4Eq3mIvHBqcqpjCs(this.f$0, (LinkPreview.WebPagePreview) obj);
                 }
             });
             storyLinkPreviewDialog.setStoryPreviewView(previewView);
@@ -262,25 +258,26 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             return;
         }
         if (item.id == 2 && (view instanceof TextCheckCell)) {
-            boolean z = !this.nameOpen;
-            this.nameOpen = z;
+            boolean z = !storyLinkSheet.nameOpen;
+            storyLinkSheet.nameOpen = z;
             ((TextCheckCell) view).setChecked(z);
-            this.adapter.update(true);
-            if (this.nameOpen) {
-                this.nameEditText.requestFocus();
+            storyLinkSheet.adapter.update(true);
+            if (storyLinkSheet.nameOpen) {
+                storyLinkSheet.nameEditText.requestFocus();
             } else {
-                this.urlEditText.requestFocus();
+                storyLinkSheet.urlEditText.requestFocus();
             }
         }
     }
 
-    public void lambda$new$3(LinkPreview.WebPagePreview webPagePreview) {
+    public static void $r8$lambda$ByFZrGZjmVP4Eq3mIvHBqcqpjCs(StoryLinkSheet storyLinkSheet, LinkPreview.WebPagePreview webPagePreview) {
         if (webPagePreview == null) {
-            closePreview(null);
-        } else {
-            this.photoLarge = webPagePreview.largePhoto;
-            this.captionAbove = webPagePreview.captionAbove;
+            storyLinkSheet.closePreview(null);
+            return;
         }
+        storyLinkSheet.getClass();
+        storyLinkSheet.photoLarge = webPagePreview.largePhoto;
+        storyLinkSheet.captionAbove = webPagePreview.captionAbove;
     }
 
     public void processDone() {
@@ -295,7 +292,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
                 this.whenDone.run(webPagePreview);
                 this.whenDone = null;
             }
-            lambda$new$0();
+            dismiss();
         }
     }
 
@@ -407,32 +404,35 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.button.setEnabled(zContainsURL);
     }
 
-    public void lambda$new$7() {
+    public static void m4578$r8$lambda$TFhJVauuAvysAoyO1YAHMgfn70(final StoryLinkSheet storyLinkSheet) {
+        storyLinkSheet.getClass();
         TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
-        getwebpagepreview.message = this.urlEditText.editText.getText().toString();
-        this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getwebpagepreview, new RequestDelegate() {
+        getwebpagepreview.message = storyLinkSheet.urlEditText.editText.getText().toString();
+        storyLinkSheet.reqId = ConnectionsManager.getInstance(storyLinkSheet.currentAccount).sendRequest(getwebpagepreview, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$new$6(tLObject, tL_error);
+                StoryLinkSheet.m4576$r8$lambda$oVy1tiKl5OTXZVuOtczggGXN_M(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$6(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4576$r8$lambda$oVy1tiKl5OTXZVuOtczggGXN_M(final StoryLinkSheet storyLinkSheet, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        storyLinkSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$5(tLObject);
+                StoryLinkSheet.$r8$lambda$zZMrhBagZSF_gWLhS9zj6GNSM34(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$new$5(TLObject tLObject) {
+    public static void $r8$lambda$zZMrhBagZSF_gWLhS9zj6GNSM34(StoryLinkSheet storyLinkSheet, TLObject tLObject) {
         TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage;
+        storyLinkSheet.getClass();
         if (tLObject instanceof TL_account.webPagePreview) {
             TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(webpagepreview.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(webpagepreview.chats, false);
+            MessagesController.getInstance(storyLinkSheet.currentAccount).putUsers(webpagepreview.users, false);
+            MessagesController.getInstance(storyLinkSheet.currentAccount).putChats(webpagepreview.chats, false);
             TLRPC.MessageMedia messageMedia = webpagepreview.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                 tL_messageMediaWebPage = (TLRPC.TL_messageMediaWebPage) messageMedia;
@@ -444,20 +444,20 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         }
         if (tL_messageMediaWebPage != null) {
             TLRPC.WebPage webPage = tL_messageMediaWebPage.webpage;
-            this.webpage = webPage;
+            storyLinkSheet.webpage = webPage;
             if (isPreviewEmpty(webPage)) {
-                TLRPC.WebPage webPage2 = this.webpage;
-                this.webpageId = webPage2 == null ? 0L : webPage2.id;
-                this.webpage = null;
+                TLRPC.WebPage webPage2 = storyLinkSheet.webpage;
+                storyLinkSheet.webpageId = webPage2 == null ? 0L : webPage2.id;
+                storyLinkSheet.webpage = null;
             } else {
-                this.webpageId = 0L;
+                storyLinkSheet.webpageId = 0L;
             }
         } else {
-            this.webpage = null;
-            this.webpageId = 0L;
+            storyLinkSheet.webpage = null;
+            storyLinkSheet.webpageId = 0L;
         }
-        this.loading = this.webpageId != 0;
-        UniversalAdapter universalAdapter = this.adapter;
+        storyLinkSheet.loading = storyLinkSheet.webpageId != 0;
+        UniversalAdapter universalAdapter = storyLinkSheet.adapter;
         if (universalAdapter != null) {
             universalAdapter.update(true);
         }
@@ -644,7 +644,10 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
     }
 
     public static boolean isPreviewEmpty(TLRPC.WebPage webPage) {
-        return (webPage instanceof TLRPC.TL_webPagePending) || (TextUtils.isEmpty(webPage.title) && TextUtils.isEmpty(webPage.description));
+        if (webPage instanceof TLRPC.TL_webPagePending) {
+            return true;
+        }
+        return TextUtils.isEmpty(webPage.title) && TextUtils.isEmpty(webPage.description);
     }
 
     @Override
@@ -654,23 +657,23 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$8();
+                StoryLinkSheet.m4577$r8$lambda$S3KrucBAHa9RZ7odv03RayBOSA(this.f$0);
             }
         }, 150L);
     }
 
-    public void lambda$show$8() {
-        if (isShowing()) {
-            this.urlEditText.editText.requestFocus();
-            AndroidUtilities.showKeyboard(this.urlEditText.editText);
+    public static void m4577$r8$lambda$S3KrucBAHa9RZ7odv03RayBOSA(StoryLinkSheet storyLinkSheet) {
+        if (storyLinkSheet.isShowing()) {
+            storyLinkSheet.urlEditText.editText.requestFocus();
+            AndroidUtilities.showKeyboard(storyLinkSheet.urlEditText.editText);
         }
     }
 
     @Override
-    public void lambda$new$0() {
+    public void dismiss() {
         AndroidUtilities.hideKeyboard(this.urlEditText.editText);
         AndroidUtilities.hideKeyboard(this.nameEditText.editText);
-        super.lambda$new$0();
+        super.dismiss();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
     }
 }

@@ -28,21 +28,25 @@ public class UserObject {
     }
 
     public static boolean isContact(TLRPC.User user) {
-        return user != null && ((user instanceof TLRPC.TL_userContact_old2) || user.contact || user.mutual_contact);
+        if (user != null) {
+            return (user instanceof TLRPC.TL_userContact_old2) || user.contact || user.mutual_contact;
+        }
+        return false;
     }
 
     public static boolean isUserSelf(TLRPC.User user) {
-        return user != null && ((user instanceof TLRPC.TL_userSelf_old3) || user.self);
+        if (user != null) {
+            return (user instanceof TLRPC.TL_userSelf_old3) || user.self;
+        }
+        return false;
     }
 
     public static boolean isReplyUser(TLRPC.User user) {
-        if (user != null) {
-            long j = user.id;
-            if (j == 708513 || j == 1271266957) {
-                return true;
-            }
+        if (user == null) {
+            return false;
         }
-        return false;
+        long j = user.id;
+        return j == 708513 || j == 1271266957;
     }
 
     public static boolean isAnonymous(TLRPC.User user) {

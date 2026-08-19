@@ -152,7 +152,7 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createPremiumLayout$0(view);
+                SearchTagsList.$r8$lambda$AHASRBN4Kvqnp4CDHTQ0EtWjGQM(this.f$0, view);
             }
         });
         this.premiumLayout.setOrientation(0);
@@ -225,8 +225,9 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         addView(this.premiumLayout, LayoutHelper.createFrame(-2, -1.0f, 19, 5.0f, 0.0f, 5.0f, 0.0f));
     }
 
-    public void lambda$createPremiumLayout$0(View view) {
-        new PremiumFeatureBottomSheet(this.fragment, 24, true).show();
+    public static void $r8$lambda$AHASRBN4Kvqnp4CDHTQ0EtWjGQM(SearchTagsList searchTagsList, View view) {
+        searchTagsList.getClass();
+        new PremiumFeatureBottomSheet(searchTagsList.fragment, 24, true).show();
     }
 
     public SearchTagsList(Context context, final BaseFragment baseFragment, final int i, long j, final Theme.ResourcesProvider resourcesProvider) {
@@ -267,13 +268,13 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$2(i, baseFragment, view, i2);
+                SearchTagsList.m2722$r8$lambda$tu8GnLCrzWmRY9LIh7t4g7afY(this.f$0, i, baseFragment, view, i2);
             }
         });
         recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                return this.f$0.lambda$new$4(i, baseFragment, resourcesProvider, view, i2);
+                return SearchTagsList.m2725$r8$lambda$bGblWiYTzLdUxNnt5FZNLEem0(this.f$0, i, baseFragment, resourcesProvider, view, i2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
@@ -315,51 +316,59 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         updateTags(false);
     }
 
-    public void lambda$new$2(int i, BaseFragment baseFragment, View view, int i2) {
-        if (i2 < 0 || i2 >= this.items.size()) {
+    public static void m2722$r8$lambda$tu8GnLCrzWmRY9LIh7t4g7afY(SearchTagsList searchTagsList, int i, BaseFragment baseFragment, View view, int i2) {
+        if (i2 < 0) {
+            searchTagsList.getClass();
+            return;
+        }
+        if (i2 >= searchTagsList.items.size()) {
             return;
         }
         if (!UserConfig.getInstance(i).isPremium()) {
             new PremiumFeatureBottomSheet(baseFragment, 24, true).show();
             return;
         }
-        long jHash = ((Item) this.items.get(i2)).hash();
-        if (setFilter(this.chosen == jHash ? null : ((Item) this.items.get(i2)).reaction)) {
+        long jHash = ((Item) searchTagsList.items.get(i2)).hash();
+        if (searchTagsList.setFilter(searchTagsList.chosen == jHash ? null : ((Item) searchTagsList.items.get(i2)).reaction)) {
             int i3 = 0;
-            while (i3 < this.listView.getChildCount()) {
-                if (this.listView.getChildAt(i3) == view) {
+            while (i3 < searchTagsList.listView.getChildCount()) {
+                if (searchTagsList.listView.getChildAt(i3) == view) {
                     if (i3 <= 1) {
-                        this.listView.smoothScrollBy(-AndroidUtilities.dp(i3 == 0 ? 90.0f : 50.0f), 0);
-                    } else if (i3 >= this.listView.getChildCount() - 2) {
-                        RecyclerListView recyclerListView = this.listView;
+                        searchTagsList.listView.smoothScrollBy(-AndroidUtilities.dp(i3 == 0 ? 90.0f : 50.0f), 0);
+                    } else if (i3 >= searchTagsList.listView.getChildCount() - 2) {
+                        RecyclerListView recyclerListView = searchTagsList.listView;
                         recyclerListView.smoothScrollBy(AndroidUtilities.dp(i3 == recyclerListView.getChildCount() - 1 ? 80.0f : 50.0f), 0);
                     }
                 }
                 i3++;
             }
-            this.listView.forAllChild(new Consumer() {
+            searchTagsList.listView.forAllChild(new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    SearchTagsList.lambda$new$1((View) obj);
+                    SearchTagsList.$r8$lambda$AIrlCZo9e97YPO_9DFpSvQUCLLw((View) obj);
                 }
             });
-            if (this.chosen == jHash) {
-                this.chosen = 0L;
+            if (searchTagsList.chosen == jHash) {
+                searchTagsList.chosen = 0L;
             } else {
-                this.chosen = jHash;
+                searchTagsList.chosen = jHash;
                 ((TagButton) view).setChosen(true, true);
             }
         }
     }
 
-    public static void lambda$new$1(View view) {
+    public static void $r8$lambda$AIrlCZo9e97YPO_9DFpSvQUCLLw(View view) {
         if (view instanceof TagButton) {
             ((TagButton) view).setChosen(false, true);
         }
     }
 
-    public boolean lambda$new$4(final int i, BaseFragment baseFragment, final Theme.ResourcesProvider resourcesProvider, View view, int i2) {
-        if (i2 < 0 || i2 >= this.items.size() || !UserConfig.getInstance(i).isPremium()) {
+    public static boolean m2725$r8$lambda$bGblWiYTzLdUxNnt5FZNLEem0(final SearchTagsList searchTagsList, final int i, BaseFragment baseFragment, final Theme.ResourcesProvider resourcesProvider, View view, int i2) {
+        if (i2 < 0) {
+            searchTagsList.getClass();
+            return false;
+        }
+        if (i2 >= searchTagsList.items.size() || !UserConfig.getInstance(i).isPremium()) {
             return false;
         }
         if (!UserConfig.getInstance(i).isPremium()) {
@@ -370,18 +379,15 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         if (reactionButton != null) {
             reactionButton.startAnimation();
         }
-        final Item item = (Item) this.items.get(i2);
+        final Item item = (Item) searchTagsList.items.get(i2);
         ItemOptions.makeOptions(baseFragment, view).setGravity(3).add(R.drawable.menu_tag_rename, LocaleController.getString(TextUtils.isEmpty(item.name) ? R.string.SavedTagLabelTag : R.string.SavedTagRenameTag), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$3(i, item, resourcesProvider);
+                SearchTagsList searchTagsList2 = this.f$0;
+                SearchTagsList.openRenameTagAlert(searchTagsList2.getContext(), i, item.reaction.toTLReaction(), resourcesProvider, false);
             }
         }).show();
         return true;
-    }
-
-    public void lambda$new$3(int i, Item item, Theme.ResourcesProvider resourcesProvider) {
-        openRenameTagAlert(getContext(), i, item.reaction.toTLReaction(), resourcesProvider, false);
     }
 
     @Override
@@ -414,20 +420,19 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
 
     public static void openRenameTagAlert(Context context, final int i, final TLRPC.Reaction reaction, final Theme.ResourcesProvider resourcesProvider, boolean z) {
         Object builder;
-        ?? r1;
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         final View currentFocus = activityFindActivity != null ? activityFindActivity.getCurrentFocus() : null;
         boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
-        final ?? r14 = new AlertDialog[1];
+        final AlertDialog[] alertDialogArr = new AlertDialog[1];
         if (z2) {
             builder = new AlertDialogDecor.Builder(context, resourcesProvider);
         } else {
             builder = new AlertDialog.Builder(context, resourcesProvider);
         }
-        ?? r15 = builder;
+        ?? r12 = builder;
         String savedTagName = MessagesController.getInstance(i).getSavedTagName(reaction);
-        r15.setTitle(new SpannableStringBuilder(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction).toCharSequence(20)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(TextUtils.isEmpty(savedTagName) ? R.string.SavedTagLabelTag : R.string.SavedTagRenameTag)));
+        r12.setTitle(new SpannableStringBuilder(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction).toCharSequence(20)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(TextUtils.isEmpty(savedTagName) ? R.string.SavedTagLabelTag : R.string.SavedTagRenameTag)));
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             AnimatedTextView.AnimatedTextDrawable limit;
             AnimatedColor limitColor = new AnimatedColor(this);
@@ -475,7 +480,6 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
                 super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
             }
         };
-        final View view = currentFocus;
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
@@ -488,16 +492,16 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
                     return true;
                 }
                 MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction), string);
-                AlertDialog alertDialog = r14[0];
+                AlertDialog alertDialog = alertDialogArr[0];
                 if (alertDialog != null) {
                     alertDialog.dismiss();
                 }
-                if (r14[0] == SearchTagsList.currentDialog) {
+                if (alertDialogArr[0] == SearchTagsList.currentDialog) {
                     AlertDialog unused = SearchTagsList.currentDialog = null;
                 }
-                View view2 = view;
-                if (view2 != null) {
-                    view2.requestFocus();
+                View view = currentFocus;
+                if (view != null) {
+                    view.requestFocus();
                 }
                 return true;
             }
@@ -527,61 +531,59 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         textView.setText(LocaleController.getString(R.string.SavedTagLabelTagText));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
         linearLayout.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
-        r15.setView(linearLayout);
-        r15.setWidth(AndroidUtilities.dp(292.0f));
-        r15.setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
+        r12.setView(linearLayout);
+        r12.setWidth(AndroidUtilities.dp(292.0f));
+        r12.setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
-                SearchTagsList.lambda$openRenameTagAlert$5(editTextBoldCursor, i, reaction, alertDialog, i3);
+                SearchTagsList.$r8$lambda$4wvGjXhRjmG_WOflWr5b0apO6zw(editTextBoldCursor, i, reaction, alertDialog, i3);
             }
         });
-        r15.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
+        r12.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
                 alertDialog.dismiss();
             }
         });
         if (z2) {
-            AlertDialog alertDialogCreate = r15.create();
+            AlertDialog alertDialogCreate = r12.create();
             currentDialog = alertDialogCreate;
-            r14[0] = alertDialogCreate;
+            alertDialogArr[0] = alertDialogCreate;
             alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    SearchTagsList.lambda$openRenameTagAlert$7(currentFocus, dialogInterface);
+                    SearchTagsList.m2724$r8$lambda$QWtQVpfjJxod0CvJzmeboPJIgY(currentFocus, dialogInterface);
                 }
             });
             currentDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    SearchTagsList.lambda$openRenameTagAlert$8(editTextBoldCursor, dialogInterface);
+                    SearchTagsList.$r8$lambda$dh0TSP2Zj2uu1ZZr7I2uWapo21Q(editTextBoldCursor, dialogInterface);
                 }
             });
             currentDialog.showDelayed(250L);
-            r1 = 0;
         } else {
-            AlertDialog alertDialogCreate2 = r15.create();
-            r1 = 0;
-            r14[0] = alertDialogCreate2;
+            AlertDialog alertDialogCreate2 = r12.create();
+            alertDialogArr[0] = alertDialogCreate2;
             alertDialogCreate2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(editTextBoldCursor);
                 }
             });
-            r14[0].setOnShowListener(new DialogInterface.OnShowListener() {
+            alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    SearchTagsList.lambda$openRenameTagAlert$10(editTextBoldCursor, dialogInterface);
+                    SearchTagsList.$r8$lambda$ZVIFMK5YKMHE9zPrITMm8IiF_vQ(editTextBoldCursor, dialogInterface);
                 }
             });
-            r14[0].show();
+            alertDialogArr[0].show();
         }
-        r14[r1].setDismissDialogByButtons(r1);
+        alertDialogArr[0].setDismissDialogByButtons(false);
         editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
     }
 
-    public static void lambda$openRenameTagAlert$5(EditTextBoldCursor editTextBoldCursor, int i, TLRPC.Reaction reaction, AlertDialog alertDialog, int i2) {
+    public static void $r8$lambda$4wvGjXhRjmG_WOflWr5b0apO6zw(EditTextBoldCursor editTextBoldCursor, int i, TLRPC.Reaction reaction, AlertDialog alertDialog, int i2) {
         String string = editTextBoldCursor.getText().toString();
         if (string.length() > 12) {
             AndroidUtilities.shakeView(editTextBoldCursor);
@@ -591,17 +593,17 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         }
     }
 
-    public static void lambda$openRenameTagAlert$7(View view, DialogInterface dialogInterface) {
+    public static void m2724$r8$lambda$QWtQVpfjJxod0CvJzmeboPJIgY(View view, DialogInterface dialogInterface) {
         currentDialog = null;
         view.requestFocus();
     }
 
-    public static void lambda$openRenameTagAlert$8(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void $r8$lambda$dh0TSP2Zj2uu1ZZr7I2uWapo21Q(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void lambda$openRenameTagAlert$10(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void $r8$lambda$ZVIFMK5YKMHE9zPrITMm8IiF_vQ(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
@@ -614,13 +616,13 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         this.listView.forAllChild(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                SearchTagsList.lambda$clear$11((View) obj);
+                SearchTagsList.m2726$r8$lambda$bnK_fL57Bm_UKP5v67jy7uz8dA((View) obj);
             }
         });
         this.chosen = 0L;
     }
 
-    public static void lambda$clear$11(View view) {
+    public static void m2726$r8$lambda$bnK_fL57Bm_UKP5v67jy7uz8dA(View view) {
         if (view instanceof TagButton) {
             ((TagButton) view).setChosen(false, true);
         }
@@ -731,7 +733,7 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
                 linearLayout.animate().alpha(0.0f).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$updateTags$12();
+                        this.f$0.premiumLayout.setVisibility(8);
                     }
                 }).start();
             } else {
@@ -739,10 +741,6 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
                 this.premiumLayout.setVisibility(0);
             }
         }
-    }
-
-    public void lambda$updateTags$12() {
-        this.premiumLayout.setVisibility(8);
     }
 
     @Override
@@ -778,7 +776,7 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$show$13(valueAnimator2);
+                SearchTagsList.$r8$lambda$lSbkny4cl0XPuBjsHmeR_OdjIfA(this.f$0, valueAnimator2);
             }
         });
         this.actionBarTagsAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -801,11 +799,12 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         this.actionBarTagsAnimator.start();
     }
 
-    public void lambda$show$13(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$lSbkny4cl0XPuBjsHmeR_OdjIfA(SearchTagsList searchTagsList, ValueAnimator valueAnimator) {
+        searchTagsList.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.actionBarTagsT = fFloatValue;
-        setShown(fFloatValue);
-        onShownUpdate(false);
+        searchTagsList.actionBarTagsT = fFloatValue;
+        searchTagsList.setShown(fFloatValue);
+        searchTagsList.onShownUpdate(false);
     }
 
     public boolean shown() {
@@ -857,7 +856,7 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         }
     }
 
-    private class TagButton extends View {
+    class TagButton extends View {
         private boolean attached;
         private BlurredBackgroundDrawable blurredDrawable;
         private boolean chosen;
@@ -881,12 +880,14 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         }
 
         public void set(Item item) {
+            TagButton tagButton;
             ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.lastReaction;
             boolean z = visibleReaction == null || !visibleReaction.equals(item.reaction);
             if (z) {
                 TLRPC.TL_reactionCount tL_reactionCount = new TLRPC.TL_reactionCount();
                 tL_reactionCount.reaction = item.reaction.toTLReaction();
                 tL_reactionCount.count = item.count;
+                tagButton = this;
                 ReactionsLayoutInBubble.ReactionButton reactionButton = new ReactionsLayoutInBubble.ReactionButton(null, SearchTagsList.this.currentAccount, this, tL_reactionCount, false, true, SearchTagsList.this.resourcesProvider) {
                     @Override
                     protected boolean drawTextWithCounter() {
@@ -917,22 +918,23 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
                         return this.count > 0 || this.hasName || this.counterDrawable.countChangeProgress != 1.0f;
                     }
                 };
-                this.reactionButton = reactionButton;
+                tagButton.reactionButton = reactionButton;
                 reactionButton.counterDrawable.setSize(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(100.0f));
-                ReactionsLayoutInBubble.ReactionButton reactionButton2 = this.reactionButton;
+                ReactionsLayoutInBubble.ReactionButton reactionButton2 = tagButton.reactionButton;
                 reactionButton2.drawBgOnlyIfChosen = true;
                 reactionButton2.isTag = true;
             } else {
-                this.reactionButton.count = item.count;
+                tagButton = this;
+                tagButton.reactionButton.count = item.count;
             }
-            this.lastReaction = item.reaction;
+            tagButton.lastReaction = item.reaction;
             if (!z) {
-                ReactionsLayoutInBubble.ReactionButton reactionButton3 = this.reactionButton;
+                ReactionsLayoutInBubble.ReactionButton reactionButton3 = tagButton.reactionButton;
                 reactionButton3.animateFromWidth = reactionButton3.width;
             }
-            this.reactionButton.width = AndroidUtilities.dp(44.33f);
-            this.reactionButton.hasName = true ^ TextUtils.isEmpty(item.name);
-            ReactionsLayoutInBubble.ReactionButton reactionButton4 = this.reactionButton;
+            tagButton.reactionButton.width = AndroidUtilities.dp(44.33f);
+            tagButton.reactionButton.hasName = true ^ TextUtils.isEmpty(item.name);
+            ReactionsLayoutInBubble.ReactionButton reactionButton4 = tagButton.reactionButton;
             if (reactionButton4.hasName) {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = reactionButton4.textDrawable;
                 animatedTextDrawable.setText(Emoji.replaceEmoji(item.name, animatedTextDrawable.getPaint().getFontMetricsInt(), false), !z);
@@ -942,21 +944,21 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
                     animatedTextDrawable2.setText("", !z);
                 }
             }
-            this.reactionButton.countText = Integer.toString(item.count);
-            this.reactionButton.counterDrawable.setCount(item.count, !z);
-            ReactionsLayoutInBubble.ReactionButton reactionButton5 = this.reactionButton;
+            tagButton.reactionButton.countText = Integer.toString(item.count);
+            tagButton.reactionButton.counterDrawable.setCount(item.count, !z);
+            ReactionsLayoutInBubble.ReactionButton reactionButton5 = tagButton.reactionButton;
             CounterView.CounterDrawable counterDrawable = reactionButton5.counterDrawable;
             if (counterDrawable != null && (reactionButton5.count > 0 || reactionButton5.hasName)) {
-                reactionButton5.width = (int) (reactionButton5.width + counterDrawable.getCurrentWidth() + AndroidUtilities.dp(this.reactionButton.hasName ? 4.0f : 0.0f) + this.reactionButton.textDrawable.getAnimateToWidth());
+                reactionButton5.width = (int) (reactionButton5.width + counterDrawable.getCurrentWidth() + AndroidUtilities.dp(tagButton.reactionButton.hasName ? 4.0f : 0.0f) + tagButton.reactionButton.textDrawable.getAnimateToWidth());
             }
             if (z) {
-                ReactionsLayoutInBubble.ReactionButton reactionButton6 = this.reactionButton;
+                ReactionsLayoutInBubble.ReactionButton reactionButton6 = tagButton.reactionButton;
                 reactionButton6.animateFromWidth = reactionButton6.width;
             }
-            this.reactionButton.height = AndroidUtilities.dp(28.0f);
-            ReactionsLayoutInBubble.ReactionButton reactionButton7 = this.reactionButton;
-            reactionButton7.choosen = this.chosen;
-            if (this.attached) {
+            tagButton.reactionButton.height = AndroidUtilities.dp(28.0f);
+            ReactionsLayoutInBubble.ReactionButton reactionButton7 = tagButton.reactionButton;
+            reactionButton7.choosen = tagButton.chosen;
+            if (tagButton.attached) {
                 reactionButton7.attach();
             }
             if (z) {

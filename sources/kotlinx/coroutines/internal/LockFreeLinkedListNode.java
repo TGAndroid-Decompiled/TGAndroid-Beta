@@ -146,47 +146,49 @@ public class LockFreeLinkedListNode {
     }
 
     private final LockFreeLinkedListNode correctPrev(OpDescriptor opDescriptor) {
+        LockFreeLinkedListNode lockFreeLinkedListNode;
         Object obj;
-        while (true) {
-            LockFreeLinkedListNode lockFreeLinkedListNode = (LockFreeLinkedListNode) _prev$volatile$FU.get(this);
-            LockFreeLinkedListNode lockFreeLinkedListNode2 = lockFreeLinkedListNode;
+        loop0: while (true) {
+            LockFreeLinkedListNode lockFreeLinkedListNode2 = (LockFreeLinkedListNode) _prev$volatile$FU.get(this);
+            lockFreeLinkedListNode = lockFreeLinkedListNode2;
             while (true) {
                 LockFreeLinkedListNode lockFreeLinkedListNode3 = null;
                 while (true) {
-                    obj = _next$volatile$FU.get(lockFreeLinkedListNode2);
+                    obj = _next$volatile$FU.get(lockFreeLinkedListNode);
                     if (obj == this) {
-                        if (lockFreeLinkedListNode != lockFreeLinkedListNode2 && !AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_prev$volatile$FU, this, lockFreeLinkedListNode, lockFreeLinkedListNode2)) {
+                        if (lockFreeLinkedListNode2 != lockFreeLinkedListNode && !AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_prev$volatile$FU, this, lockFreeLinkedListNode2, lockFreeLinkedListNode)) {
                             break;
                         }
-                        return lockFreeLinkedListNode2;
+                        break;
                     }
                     if (isRemoved()) {
                         return null;
                     }
                     if (obj == opDescriptor) {
-                        return lockFreeLinkedListNode2;
+                        break loop0;
                     }
                     if (obj instanceof OpDescriptor) {
-                        ((OpDescriptor) obj).perform(lockFreeLinkedListNode2);
+                        ((OpDescriptor) obj).perform(lockFreeLinkedListNode);
                         break;
                     }
                     if (!(obj instanceof Removed)) {
                         Intrinsics.checkNotNull(obj, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");
-                        lockFreeLinkedListNode3 = lockFreeLinkedListNode2;
-                        lockFreeLinkedListNode2 = (LockFreeLinkedListNode) obj;
+                        lockFreeLinkedListNode3 = lockFreeLinkedListNode;
+                        lockFreeLinkedListNode = (LockFreeLinkedListNode) obj;
                     } else {
                         if (lockFreeLinkedListNode3 != null) {
                             break;
                         }
-                        lockFreeLinkedListNode2 = (LockFreeLinkedListNode) _prev$volatile$FU.get(lockFreeLinkedListNode2);
+                        lockFreeLinkedListNode = (LockFreeLinkedListNode) _prev$volatile$FU.get(lockFreeLinkedListNode);
                     }
                 }
-                if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, lockFreeLinkedListNode3, lockFreeLinkedListNode2, ((Removed) obj).ref)) {
+                if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, lockFreeLinkedListNode3, lockFreeLinkedListNode, ((Removed) obj).ref)) {
                     break;
                 }
-                lockFreeLinkedListNode2 = lockFreeLinkedListNode3;
+                lockFreeLinkedListNode = lockFreeLinkedListNode3;
             }
         }
+        return lockFreeLinkedListNode;
     }
 
     public String toString() {

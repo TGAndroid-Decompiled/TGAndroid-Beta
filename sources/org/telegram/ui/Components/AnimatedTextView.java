@@ -108,7 +108,7 @@ public class AnimatedTextView extends View {
             this.splitByWords = z;
         }
 
-        private class Part {
+        class Part {
             AnimatedEmojiSpan.EmojiGroupedSpans emoji;
             StaticLayout layout;
             float left;
@@ -221,7 +221,7 @@ public class AnimatedTextView extends View {
         }
 
         @Override
-        public void draw(android.graphics.Canvas r26) {
+        public void draw(android.graphics.Canvas r21) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedTextView.AnimatedTextDrawable.draw(android.graphics.Canvas):void");
         }
 
@@ -292,17 +292,17 @@ public class AnimatedTextView extends View {
                 diff(this.splitByWords ? new WordSequence(this.oldText) : this.oldText, this.splitByWords ? new WordSequence(this.currentText) : this.currentText, new RegionCallback() {
                     @Override
                     public final void run(CharSequence charSequence2, int i, int i2) {
-                        this.f$0.lambda$setText$0(iWidth, arrayList2, arrayList, charSequence2, i, i2);
+                        AnimatedTextView.AnimatedTextDrawable.$r8$lambda$SLScjo_R7tU5y4h83X_gX0VfJi8(this.f$0, iWidth, arrayList2, arrayList, charSequence2, i, i2);
                     }
                 }, new RegionCallback() {
                     @Override
                     public final void run(CharSequence charSequence2, int i, int i2) {
-                        this.f$0.lambda$setText$1(iWidth, arrayList, charSequence2, i, i2);
+                        AnimatedTextView.AnimatedTextDrawable.$r8$lambda$M2CV3gkxLclziwRObL7GM8iwNrY(this.f$0, iWidth, arrayList, charSequence2, i, i2);
                     }
                 }, new RegionCallback() {
                     @Override
                     public final void run(CharSequence charSequence2, int i, int i2) {
-                        this.f$0.lambda$setText$2(iWidth, arrayList2, charSequence2, i, i2);
+                        AnimatedTextView.AnimatedTextDrawable.m2013$r8$lambda$KKkvb9IRV3ogkhBtOR_yxzWLFc(this.f$0, iWidth, arrayList2, charSequence2, i, i2);
                     }
                 });
                 clearCurrentParts();
@@ -331,7 +331,7 @@ public class AnimatedTextView extends View {
                 this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        this.f$0.lambda$setText$3(valueAnimator3);
+                        AnimatedTextView.AnimatedTextDrawable.$r8$lambda$7i8VgoS5J0WyZU8aC9AZOrQ99KI(this.f$0, valueAnimator3);
                     }
                 });
                 this.animator.addListener(new AnimatorListenerAdapter() {
@@ -393,39 +393,40 @@ public class AnimatedTextView extends View {
             }
         }
 
-        public void lambda$setText$0(int i, ArrayList arrayList, ArrayList arrayList2, CharSequence charSequence, int i2, int i3) {
-            StaticLayout staticLayoutMakeLayout = makeLayout(charSequence, i - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth))));
-            Part part = new Part(staticLayoutMakeLayout, this.currentWidth, arrayList.size());
-            Part part2 = new Part(staticLayoutMakeLayout, this.oldWidth, arrayList.size());
+        public static void $r8$lambda$SLScjo_R7tU5y4h83X_gX0VfJi8(AnimatedTextDrawable animatedTextDrawable, int i, ArrayList arrayList, ArrayList arrayList2, CharSequence charSequence, int i2, int i3) {
+            StaticLayout staticLayoutMakeLayout = animatedTextDrawable.makeLayout(charSequence, i - ((int) Math.ceil(Math.min(animatedTextDrawable.currentWidth, animatedTextDrawable.oldWidth))));
+            Part part = animatedTextDrawable.new Part(staticLayoutMakeLayout, animatedTextDrawable.currentWidth, arrayList.size());
+            Part part2 = animatedTextDrawable.new Part(staticLayoutMakeLayout, animatedTextDrawable.oldWidth, arrayList.size());
             arrayList2.add(part);
             arrayList.add(part2);
             float f = part.width;
-            this.currentWidth += f;
-            this.oldWidth += f;
-            this.currentHeight = Math.max(this.currentHeight, staticLayoutMakeLayout.getHeight());
-            this.oldHeight = Math.max(this.oldHeight, staticLayoutMakeLayout.getHeight());
+            animatedTextDrawable.currentWidth += f;
+            animatedTextDrawable.oldWidth += f;
+            animatedTextDrawable.currentHeight = Math.max(animatedTextDrawable.currentHeight, staticLayoutMakeLayout.getHeight());
+            animatedTextDrawable.oldHeight = Math.max(animatedTextDrawable.oldHeight, staticLayoutMakeLayout.getHeight());
         }
 
-        public void lambda$setText$1(int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
-            StaticLayout staticLayoutMakeLayout = makeLayout(charSequence, i - ((int) Math.ceil(this.currentWidth)));
-            Part part = new Part(staticLayoutMakeLayout, this.currentWidth, -1);
+        public static void $r8$lambda$M2CV3gkxLclziwRObL7GM8iwNrY(AnimatedTextDrawable animatedTextDrawable, int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
+            StaticLayout staticLayoutMakeLayout = animatedTextDrawable.makeLayout(charSequence, i - ((int) Math.ceil(animatedTextDrawable.currentWidth)));
+            Part part = animatedTextDrawable.new Part(staticLayoutMakeLayout, animatedTextDrawable.currentWidth, -1);
             arrayList.add(part);
-            this.currentWidth += part.width;
-            this.currentHeight = Math.max(this.currentHeight, staticLayoutMakeLayout.getHeight());
+            animatedTextDrawable.currentWidth += part.width;
+            animatedTextDrawable.currentHeight = Math.max(animatedTextDrawable.currentHeight, staticLayoutMakeLayout.getHeight());
         }
 
-        public void lambda$setText$2(int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
-            StaticLayout staticLayoutMakeLayout = makeLayout(charSequence, i - ((int) Math.ceil(this.oldWidth)));
-            Part part = new Part(staticLayoutMakeLayout, this.oldWidth, -1);
+        public static void m2013$r8$lambda$KKkvb9IRV3ogkhBtOR_yxzWLFc(AnimatedTextDrawable animatedTextDrawable, int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
+            StaticLayout staticLayoutMakeLayout = animatedTextDrawable.makeLayout(charSequence, i - ((int) Math.ceil(animatedTextDrawable.oldWidth)));
+            Part part = animatedTextDrawable.new Part(staticLayoutMakeLayout, animatedTextDrawable.oldWidth, -1);
             arrayList.add(part);
-            this.oldWidth += part.width;
-            this.oldHeight = Math.max(this.oldHeight, staticLayoutMakeLayout.getHeight());
+            animatedTextDrawable.oldWidth += part.width;
+            animatedTextDrawable.oldHeight = Math.max(animatedTextDrawable.oldHeight, staticLayoutMakeLayout.getHeight());
         }
 
-        public void lambda$setText$3(ValueAnimator valueAnimator) {
-            this.t = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidateSelf();
-            Runnable runnable = this.widthUpdatedListener;
+        public static void $r8$lambda$7i8VgoS5J0WyZU8aC9AZOrQ99KI(AnimatedTextDrawable animatedTextDrawable, ValueAnimator valueAnimator) {
+            animatedTextDrawable.getClass();
+            animatedTextDrawable.t = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            animatedTextDrawable.invalidateSelf();
+            Runnable runnable = animatedTextDrawable.widthUpdatedListener;
             if (runnable != null) {
                 runnable.run();
             }
@@ -855,7 +856,7 @@ public class AnimatedTextView extends View {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setTextColor$9(textColor, i, valueAnimator2);
+                    AnimatedTextView.AnimatedTextDrawable.m2012$r8$lambda$5Xa8UhjvezF5loJshRleRQfmEQ(this.f$0, textColor, i, valueAnimator2);
                 }
             });
             this.colorAnimator.addListener(new AnimatorListenerAdapter() {
@@ -869,9 +870,10 @@ public class AnimatedTextView extends View {
             this.colorAnimator.start();
         }
 
-        public void lambda$setTextColor$9(int i, int i2, ValueAnimator valueAnimator) {
-            setTextColor(ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-            invalidateSelf();
+        public static void m2012$r8$lambda$5Xa8UhjvezF5loJshRleRQfmEQ(AnimatedTextDrawable animatedTextDrawable, int i, int i2, ValueAnimator valueAnimator) {
+            animatedTextDrawable.getClass();
+            animatedTextDrawable.setTextColor(ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+            animatedTextDrawable.invalidateSelf();
         }
 
         public void setEmojiColorFilter(ColorFilter colorFilter) {
@@ -991,17 +993,17 @@ public class AnimatedTextView extends View {
         animatedTextDrawable.setOnAnimationFinishListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                AnimatedTextView.$r8$lambda$0UUVbfDPU84VoauByw27C_QM3mA(this.f$0);
             }
         });
     }
 
-    public void lambda$new$0() {
-        CharSequence charSequence = this.toSetText;
+    public static void $r8$lambda$0UUVbfDPU84VoauByw27C_QM3mA(AnimatedTextView animatedTextView) {
+        CharSequence charSequence = animatedTextView.toSetText;
         if (charSequence != null) {
-            setText(charSequence, this.toSetMoveDown, true);
-            this.toSetText = null;
-            this.toSetMoveDown = false;
+            animatedTextView.setText(charSequence, animatedTextView.toSetMoveDown, true);
+            animatedTextView.toSetText = null;
+            animatedTextView.toSetMoveDown = false;
         }
     }
 

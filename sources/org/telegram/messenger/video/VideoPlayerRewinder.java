@@ -200,7 +200,7 @@ public class VideoPlayerRewinder {
                     videoPlayer2.seekTo(j, false, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$updateRewindSpeed$0();
+                            VideoPlayerRewinder.m1153$r8$lambda$fEERfiqyKnmLcZ80xcHeqUUew(this.f$0);
                         }
                     });
                 }
@@ -209,8 +209,8 @@ public class VideoPlayerRewinder {
         setPlaybackSpeed(this.playSpeed * rewindSpeed);
     }
 
-    public void lambda$updateRewindSpeed$0() {
-        VideoFramesRewinder videoFramesRewinder = this.framesRewinder;
+    public static void m1153$r8$lambda$fEERfiqyKnmLcZ80xcHeqUUew(VideoPlayerRewinder videoPlayerRewinder) {
+        VideoFramesRewinder videoFramesRewinder = videoPlayerRewinder.framesRewinder;
         if (videoFramesRewinder != null) {
             videoFramesRewinder.clearCurrent();
         }
@@ -240,7 +240,7 @@ public class VideoPlayerRewinder {
                         videoPlayer.seekTo(this.rewindBackSeekPlayerPosition, false, new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$cancelRewind$1();
+                                VideoPlayerRewinder.$r8$lambda$e0LDp0ifZxxK34aHVJNPRZekzhc(this.f$0);
                             }
                         });
                         z = true;
@@ -274,8 +274,8 @@ public class VideoPlayerRewinder {
         }
     }
 
-    public void lambda$cancelRewind$1() {
-        VideoFramesRewinder videoFramesRewinder = this.framesRewinder;
+    public static void $r8$lambda$e0LDp0ifZxxK34aHVJNPRZekzhc(VideoPlayerRewinder videoPlayerRewinder) {
+        VideoFramesRewinder videoFramesRewinder = videoPlayerRewinder.framesRewinder;
         if (videoFramesRewinder != null) {
             videoFramesRewinder.release();
         }

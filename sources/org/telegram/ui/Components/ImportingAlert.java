@@ -101,11 +101,11 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         }
     }
 
-    public void lambda$new$0() {
-        if (this.completed) {
-            this.imageView.getAnimatedDrawable().setAutoRepeat(0);
-            this.imageView.setAnimation(this.completedDrawable);
-            this.imageView.playAnimation();
+    public static void $r8$lambda$0fDImwMlsROjsm2DxSXGEhJncDs(ImportingAlert importingAlert) {
+        if (importingAlert.completed) {
+            importingAlert.imageView.getAnimatedDrawable().setAutoRepeat(0);
+            importingAlert.imageView.setAnimation(importingAlert.completedDrawable);
+            importingAlert.imageView.playAnimation();
         }
     }
 
@@ -116,7 +116,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                ImportingAlert.$r8$lambda$0fDImwMlsROjsm2DxSXGEhJncDs(this.f$0);
             }
         };
         this.onFinishCallback = runnable;
@@ -164,7 +164,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         this.cell.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.dismiss();
             }
         });
         this.cell.background.setPivotY(AndroidUtilities.dp(48.0f));
@@ -211,10 +211,6 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.stickersImportProgressChanged);
     }
 
-    public void lambda$new$1(View view) {
-        lambda$new$0();
-    }
-
     public void setCompleted() {
         this.completed = true;
         this.imageView.setAutoRepeat(false);
@@ -238,7 +234,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.historyImportProgressChanged) {
             if (objArr.length > 1) {
-                lambda$new$0();
+                dismiss();
                 return;
             }
             SendMessagesHelper.ImportingHistory importingHistory = this.parentFragment.getSendMessagesHelper().getImportingHistory(this.parentFragment.getDialogId());
@@ -257,7 +253,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         }
         if (i == NotificationCenter.stickersImportProgressChanged) {
             if (objArr.length > 1) {
-                lambda$new$0();
+                dismiss();
                 return;
             }
             SendMessagesHelper.ImportingStickers importingStickers = SendMessagesHelper.getInstance(this.currentAccount).getImportingStickers(this.stickersShortName);

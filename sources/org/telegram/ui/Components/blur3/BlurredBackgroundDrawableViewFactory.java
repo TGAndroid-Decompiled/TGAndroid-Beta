@@ -88,7 +88,7 @@ public class BlurredBackgroundDrawableViewFactory {
             viewPositionWatcher.subscribe(view, viewGroup, new ViewPositionWatcher.OnChangedListener() {
                 @Override
                 public final void onPositionChanged(View view2, RectF rectF) {
-                    BlurredBackgroundDrawableViewFactory.lambda$create$0(blurredBackgroundDrawableCreateDrawable, view, view2, rectF);
+                    BlurredBackgroundDrawableViewFactory.$r8$lambda$KlkDkPNqm1NlPxDBLpOPdS98yZM(blurredBackgroundDrawableCreateDrawable, view, view2, rectF);
                 }
             }, z);
         }
@@ -99,7 +99,7 @@ public class BlurredBackgroundDrawableViewFactory {
         return blurredBackgroundDrawableCreateDrawable;
     }
 
-    public static void lambda$create$0(BlurredBackgroundDrawable blurredBackgroundDrawable, View view, View view2, RectF rectF) {
+    public static void $r8$lambda$KlkDkPNqm1NlPxDBLpOPdS98yZM(BlurredBackgroundDrawable blurredBackgroundDrawable, View view, View view2, RectF rectF) {
         blurredBackgroundDrawable.setSourceOffset(rectF.left, rectF.top);
         view.invalidate();
     }

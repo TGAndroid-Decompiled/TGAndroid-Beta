@@ -28,7 +28,7 @@ public class BetaUpdaterController {
     private final Runnable scheduledUpdateCheck = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$0();
+            this.f$0.checkForUpdate(false, null);
         }
     };
 
@@ -96,10 +96,6 @@ public class BetaUpdaterController {
         editorEdit.apply();
     }
 
-    public void lambda$new$0() {
-        checkForUpdate(false, null);
-    }
-
     public void checkForUpdate(boolean z, final Runnable runnable) {
         long j;
         if (this.checkingForUpdate) {
@@ -128,127 +124,128 @@ public class BetaUpdaterController {
         new HttpGetTask(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$checkForUpdate$2(runnable, (String) obj);
+                BetaUpdaterController.$r8$lambda$zmJCbdiPRh9mZUyBhIkpFLCyoBs(this.f$0, runnable, (String) obj);
             }
         }).execute("https://telegram.org/dl/android/apk-public-beta.json");
     }
 
-    public void lambda$checkForUpdate$2(final Runnable runnable, final String str) {
+    public static void $r8$lambda$zmJCbdiPRh9mZUyBhIkpFLCyoBs(final BetaUpdaterController betaUpdaterController, final Runnable runnable, final String str) {
+        betaUpdaterController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkForUpdate$1(str, runnable);
+                BetaUpdaterController.m359$r8$lambda$fsz3n_NR6ZdjRTY4e6lYYhKrkM(this.f$0, str, runnable);
             }
         });
     }
 
-    public void lambda$checkForUpdate$1(String str, Runnable runnable) {
+    public static void m359$r8$lambda$fsz3n_NR6ZdjRTY4e6lYYhKrkM(BetaUpdaterController betaUpdaterController, String str, Runnable runnable) {
         String str2;
-        this.checkingForUpdate = false;
+        betaUpdaterController.checkingForUpdate = false;
         try {
             JSONObject jSONObject = new JSONObject(str);
             String string = jSONObject.getString("version");
             int i = jSONObject.getInt("version_code");
             String string2 = jSONObject.getString("file_url");
             String strOptString = jSONObject.optString("changelog", null);
-            int i2 = this.versionCode;
-            String str3 = this.version;
-            if (str3 == null || (SharedConfig.versionBiggerOrEqual(string, str3) && i > this.versionCode)) {
-                if (SharedConfig.versionBiggerOrEqual(string, getCurrentVersion()) && i > getCurrentVersionCode()) {
-                    if (!TextUtils.isEmpty(this.path)) {
+            int i2 = betaUpdaterController.versionCode;
+            String str3 = betaUpdaterController.version;
+            if (str3 == null || (SharedConfig.versionBiggerOrEqual(string, str3) && i > betaUpdaterController.versionCode)) {
+                if (SharedConfig.versionBiggerOrEqual(string, betaUpdaterController.getCurrentVersion()) && i > betaUpdaterController.getCurrentVersionCode()) {
+                    if (!TextUtils.isEmpty(betaUpdaterController.path)) {
                         try {
-                            new File(this.path).delete();
+                            new File(betaUpdaterController.path).delete();
                         } catch (Exception e) {
                             FileLog.e(e);
                         }
                     }
-                    this.path = null;
-                    this.version = string;
-                    this.versionCode = i;
-                    this.fileUrl = string2;
-                    this.changelog = strOptString;
+                    betaUpdaterController.path = null;
+                    betaUpdaterController.version = string;
+                    betaUpdaterController.versionCode = i;
+                    betaUpdaterController.fileUrl = string2;
+                    betaUpdaterController.changelog = strOptString;
                 } else {
-                    str2 = this.version;
-                    if (str2 == null && this.versionCode != 0 && SharedConfig.versionBiggerOrEqual(str2, string) && this.versionCode == i) {
-                        this.fileUrl = string2;
-                        this.changelog = strOptString;
+                    str2 = betaUpdaterController.version;
+                    if (str2 == null && betaUpdaterController.versionCode != 0 && SharedConfig.versionBiggerOrEqual(str2, string) && betaUpdaterController.versionCode == i) {
+                        betaUpdaterController.fileUrl = string2;
+                        betaUpdaterController.changelog = strOptString;
                     } else {
-                        if (!TextUtils.isEmpty(this.path)) {
+                        if (!TextUtils.isEmpty(betaUpdaterController.path)) {
                             try {
-                                new File(this.path).delete();
+                                new File(betaUpdaterController.path).delete();
                             } catch (Exception e2) {
                                 FileLog.e(e2);
                             }
                         }
-                        this.path = null;
-                        if (!SharedConfig.versionBiggerOrEqual(getCurrentVersion(), string) && getCurrentVersionCode() < i) {
-                            this.version = string;
-                            this.versionCode = i;
-                            this.fileUrl = string2;
-                            this.changelog = strOptString;
+                        betaUpdaterController.path = null;
+                        if (!SharedConfig.versionBiggerOrEqual(betaUpdaterController.getCurrentVersion(), string) && betaUpdaterController.getCurrentVersionCode() < i) {
+                            betaUpdaterController.version = string;
+                            betaUpdaterController.versionCode = i;
+                            betaUpdaterController.fileUrl = string2;
+                            betaUpdaterController.changelog = strOptString;
                         } else {
-                            this.version = null;
-                            this.versionCode = 0;
-                            this.fileUrl = null;
-                            this.changelog = null;
+                            betaUpdaterController.version = null;
+                            betaUpdaterController.versionCode = 0;
+                            betaUpdaterController.fileUrl = null;
+                            betaUpdaterController.changelog = null;
                         }
                     }
                 }
             } else {
-                str2 = this.version;
+                str2 = betaUpdaterController.version;
                 if (str2 == null) {
-                    if (!TextUtils.isEmpty(this.path)) {
-                        new File(this.path).delete();
+                    if (!TextUtils.isEmpty(betaUpdaterController.path)) {
+                        new File(betaUpdaterController.path).delete();
                     }
-                    this.path = null;
-                    if (!SharedConfig.versionBiggerOrEqual(getCurrentVersion(), string)) {
-                        this.version = null;
-                        this.versionCode = 0;
-                        this.fileUrl = null;
-                        this.changelog = null;
+                    betaUpdaterController.path = null;
+                    if (!SharedConfig.versionBiggerOrEqual(betaUpdaterController.getCurrentVersion(), string)) {
+                        betaUpdaterController.version = null;
+                        betaUpdaterController.versionCode = 0;
+                        betaUpdaterController.fileUrl = null;
+                        betaUpdaterController.changelog = null;
                     } else {
-                        this.version = null;
-                        this.versionCode = 0;
-                        this.fileUrl = null;
-                        this.changelog = null;
+                        betaUpdaterController.version = null;
+                        betaUpdaterController.versionCode = 0;
+                        betaUpdaterController.fileUrl = null;
+                        betaUpdaterController.changelog = null;
                     }
                 } else {
-                    if (!TextUtils.isEmpty(this.path)) {
-                        new File(this.path).delete();
+                    if (!TextUtils.isEmpty(betaUpdaterController.path)) {
+                        new File(betaUpdaterController.path).delete();
                     }
-                    this.path = null;
-                    if (!SharedConfig.versionBiggerOrEqual(getCurrentVersion(), string)) {
-                        this.version = null;
-                        this.versionCode = 0;
-                        this.fileUrl = null;
-                        this.changelog = null;
+                    betaUpdaterController.path = null;
+                    if (!SharedConfig.versionBiggerOrEqual(betaUpdaterController.getCurrentVersion(), string)) {
+                        betaUpdaterController.version = null;
+                        betaUpdaterController.versionCode = 0;
+                        betaUpdaterController.fileUrl = null;
+                        betaUpdaterController.changelog = null;
                     } else {
-                        this.version = null;
-                        this.versionCode = 0;
-                        this.fileUrl = null;
-                        this.changelog = null;
+                        betaUpdaterController.version = null;
+                        betaUpdaterController.versionCode = 0;
+                        betaUpdaterController.fileUrl = null;
+                        betaUpdaterController.changelog = null;
                     }
                 }
             }
-            this.lastCheck = System.currentTimeMillis();
-            save();
-            if (this.versionCode != i2) {
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+            betaUpdaterController.lastCheck = System.currentTimeMillis();
+            betaUpdaterController.save();
+            if (betaUpdaterController.versionCode != i2) {
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.appUpdateAvailable, new Object[0]);
             }
-            AndroidUtilities.cancelRunOnUIThread(this.scheduledUpdateCheck);
-            AndroidUtilities.runOnUIThread(this.scheduledUpdateCheck, BuildVars.DEBUG_PRIVATE_VERSION ? 240000L : 1200000L);
+            AndroidUtilities.cancelRunOnUIThread(betaUpdaterController.scheduledUpdateCheck);
+            AndroidUtilities.runOnUIThread(betaUpdaterController.scheduledUpdateCheck, BuildVars.DEBUG_PRIVATE_VERSION ? 240000L : 1200000L);
             if (runnable != null) {
                 runnable.run();
                 return;
             }
-            if (this.versionCode == i2 || ApplicationLoader.mainInterfacePaused) {
+            if (betaUpdaterController.versionCode == i2 || ApplicationLoader.mainInterfacePaused) {
                 return;
             }
             Context context = LaunchActivity.instance;
             if (context == null) {
                 context = ApplicationLoader.applicationContext;
             }
-            BetaUpdate update = getUpdate();
+            BetaUpdate update = betaUpdaterController.getUpdate();
             if (context == null || update == null) {
                 return;
             }
@@ -271,23 +268,23 @@ public class BetaUpdaterController {
         downloadUpdate(false);
     }
 
-    private void downloadUpdate(boolean z) {
+    public void downloadUpdate(boolean z) {
         if (this.downloading || !TextUtils.isEmpty(this.path)) {
             return;
         }
         this.downloading = true;
         this.downloadingProgress = 0.0f;
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$downloadUpdate$5((File) obj);
+                    BetaUpdaterController.m360$r8$lambda$rWrbCAumhAkPQje3pEdS8p0L_M(this.f$0, (File) obj);
                 }
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$downloadUpdate$6((Float) obj);
+                    BetaUpdaterController.$r8$lambda$y2Q4LVbQ8eFUoryuszvKafy_Ogk(this.f$0, (Float) obj);
                 }
             }).setOverrideExtension("apk");
             this.downloadingTask = overrideExtension;
@@ -296,7 +293,7 @@ public class BetaUpdaterController {
             checkForUpdate(true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$downloadUpdate$3();
+                    this.f$0.downloadUpdate(true);
                 }
             });
         } else {
@@ -304,42 +301,40 @@ public class BetaUpdaterController {
         }
     }
 
-    public void lambda$downloadUpdate$3() {
-        downloadUpdate(true);
-    }
-
-    public void lambda$downloadUpdate$5(final File file) {
+    public static void m360$r8$lambda$rWrbCAumhAkPQje3pEdS8p0L_M(final BetaUpdaterController betaUpdaterController, final File file) {
+        betaUpdaterController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$downloadUpdate$4(file);
+                BetaUpdaterController.m358$r8$lambda$7jnCGEmKStos3SMukfEyKvZNu8(this.f$0, file);
             }
         });
     }
 
-    public void lambda$downloadUpdate$4(File file) {
+    public static void m358$r8$lambda$7jnCGEmKStos3SMukfEyKvZNu8(BetaUpdaterController betaUpdaterController, File file) {
         if (file != null) {
-            if (!TextUtils.isEmpty(this.path)) {
+            if (!TextUtils.isEmpty(betaUpdaterController.path)) {
                 try {
-                    new File(this.path).delete();
+                    new File(betaUpdaterController.path).delete();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             }
-            this.path = file.getAbsolutePath();
-            save();
-            this.downloadingProgress = 1.0f;
-            this.downloading = false;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+            betaUpdaterController.path = file.getAbsolutePath();
+            betaUpdaterController.save();
+            betaUpdaterController.downloadingProgress = 1.0f;
+            betaUpdaterController.downloading = false;
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.appUpdateAvailable, new Object[0]);
             return;
         }
-        this.downloading = false;
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+        betaUpdaterController.downloading = false;
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.appUpdateAvailable, new Object[0]);
     }
 
-    public void lambda$downloadUpdate$6(Float f) {
-        this.downloadingProgress = f.floatValue();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
+    public static void $r8$lambda$y2Q4LVbQ8eFUoryuszvKafy_Ogk(BetaUpdaterController betaUpdaterController, Float f) {
+        betaUpdaterController.getClass();
+        betaUpdaterController.downloadingProgress = f.floatValue();
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.appUpdateLoading, new Object[0]);
     }
 
     public void cancelDownloadingUpdate() {
@@ -349,7 +344,7 @@ public class BetaUpdaterController {
                 httpGetFileTask.cancel(false);
             }
             this.downloading = false;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.appUpdateAvailable, new Object[0]);
         }
     }
 

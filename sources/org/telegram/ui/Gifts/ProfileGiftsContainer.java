@@ -168,7 +168,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     AndroidUtilities.doOnLayout(page.listView, new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.lambda$setPaddingTop$0(page, paddingTop2);
+                            page.listView.scrollBy(0, paddingTop2);
                         }
                     });
                 }
@@ -176,10 +176,6 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             updateTabsY();
             updateButton();
         }
-    }
-
-    public static void lambda$setPaddingTop$0(Page page, int i) {
-        page.listView.scrollBy(0, i);
     }
 
     public static class Page extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -501,7 +497,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 this.emptyView1Button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$updateEmptyView$0(view);
+                        ProfileGiftsContainer.Page.m3229$r8$lambda$r7UCm0UBKiqRUvT2lVOdhhAc0(this.f$0, view);
                     }
                 });
                 this.emptyView1Button.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f));
@@ -541,7 +537,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             this.emptyView2Button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$updateEmptyView$1(view);
+                    this.f$0.parent.addGifts();
                 }
             });
             addView(this.emptyView2, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, -12.0f, 0.0f, 0.0f));
@@ -552,15 +548,11 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
         }
 
-        public void lambda$updateEmptyView$0(View view) {
-            StarsController.GiftsList giftsList = this.list;
+        public static void m3229$r8$lambda$r7UCm0UBKiqRUvT2lVOdhhAc0(Page page, View view) {
+            StarsController.GiftsList giftsList = page.list;
             if (giftsList != null) {
                 giftsList.resetFilters();
             }
-        }
-
-        public void lambda$updateEmptyView$1(View view) {
-            this.parent.addGifts();
         }
 
         public boolean isLoadingVisible() {
@@ -596,15 +588,11 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileGiftsContainer.Page.lambda$setReordering$2(safeLastFragment);
+                            ((ProfileActivity) safeLastFragment).scrollToSharedMedia(true);
                         }
                     });
                 }
             }
-        }
-
-        public static void lambda$setReordering$2(BaseFragment baseFragment) {
-            ((ProfileActivity) baseFragment).scrollToSharedMedia(true);
         }
 
         public void resetReordering() {
@@ -666,14 +654,18 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             final int iMax = Math.max(1, (giftsList3 == null || (i2 = giftsList3.totalCount) == 0) ? 3 : Math.min(3, i2));
             StarsController.GiftsList giftsList4 = this.list;
             if (giftsList4 != null) {
-                Iterator it = giftsList4.gifts.iterator();
+                ArrayList arrayList2 = giftsList4.gifts;
+                int size = arrayList2.size();
+                int i3 = 0;
                 loop0: while (true) {
                     i = 3;
                     while (true) {
-                        if (!it.hasNext()) {
+                        if (i3 >= size) {
                             break loop0;
                         }
-                        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
+                        Object obj = arrayList2.get(i3);
+                        i3++;
+                        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                         arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift, true, false, this.isCollection).setReordering(this.reordering && (this.list != this.parent.list || savedStarGift.pinned_to_top)));
                         i--;
                         if (i == 0) {
@@ -682,13 +674,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 }
                 StarsController.GiftsList giftsList5 = this.list;
                 if (giftsList5.loading || !giftsList5.endReached) {
-                    int i3 = 0;
+                    int i4 = 0;
                     while (true) {
-                        if (i3 >= (i <= 0 ? 3 : i)) {
+                        if (i4 >= (i <= 0 ? 3 : i)) {
                             break;
                         }
-                        i3++;
-                        arrayList.add(UItem.asFlicker(i3, 34).setSpanCount(1));
+                        i4++;
+                        arrayList.add(UItem.asFlicker(i4, 34).setSpanCount(1));
                     }
                 }
             }
@@ -708,7 +700,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$fillItems$3(iMax);
+                        ProfileGiftsContainer.Page.$r8$lambda$Z7amVsYW_UG8VPYOeJYnupeOwHw(this.f$0, iMax);
                     }
                 });
             }
@@ -726,8 +718,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
         }
 
-        public void lambda$fillItems$3(int i) {
-            UniversalRecyclerView universalRecyclerView = this.listView;
+        public static void $r8$lambda$Z7amVsYW_UG8VPYOeJYnupeOwHw(Page page, int i) {
+            UniversalRecyclerView universalRecyclerView = page.listView;
             if (universalRecyclerView != null) {
                 universalRecyclerView.setSpanCount(i);
             }
@@ -765,28 +757,24 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 new StarGiftSheet(getContext(), this.currentAccount, this.parent.dialogId, this.resourcesProvider).setOnGiftUpdatedListener(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemClick$4();
+                        this.f$0.update(false);
                     }
                 }).setOnBoughtGift(new StarGiftSheet.BoughtGiftCallback() {
                     @Override
                     public final void onBoughtGift(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, boolean z3) {
-                        this.f$0.lambda$onItemClick$5(savedStarGift, tL_starGiftUnique, j, z3);
+                        ProfileGiftsContainer.Page.$r8$lambda$yqZwdVAm3lL53bxx4s379M06_NY(this.f$0, savedStarGift, tL_starGiftUnique, j, z3);
                     }
                 }).set(savedStarGift, this.list).show();
             }
         }
 
-        public void lambda$onItemClick$4() {
-            update(false);
-        }
-
-        public void lambda$onItemClick$5(TL_stars.SavedStarGift savedStarGift, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, boolean z) {
-            this.list.gifts.remove(savedStarGift);
-            update(true);
-            if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                BulletinFactory.of(this.parent.fragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftTitle), LocaleController.formatString(R.string.BoughtResoldGiftText, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','))).hideAfterBottomSheet(false).show();
+        public static void $r8$lambda$yqZwdVAm3lL53bxx4s379M06_NY(Page page, TL_stars.SavedStarGift savedStarGift, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, boolean z) {
+            page.list.gifts.remove(savedStarGift);
+            page.update(true);
+            if (j == UserConfig.getInstance(page.currentAccount).getClientUserId()) {
+                BulletinFactory.of(page.parent.fragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftTitle), LocaleController.formatString(R.string.BoughtResoldGiftText, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','))).hideAfterBottomSheet(false).show();
             } else {
-                BulletinFactory.of(this.parent.fragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, j))).hideAfterBottomSheet(false).show();
+                BulletinFactory.of(page.parent.fragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(page.currentAccount, j))).hideAfterBottomSheet(false).show();
             }
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity != null) {
@@ -798,6 +786,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             boolean z;
             boolean z2;
             final String str;
+            float f3;
             int i2 = 0;
             if (this.list == null || !(view instanceof GiftSheet.GiftCell)) {
                 return false;
@@ -833,32 +822,37 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 scrollView.addView(linearLayout);
                 linearLayout.setOrientation(1);
                 itemOptionsMakeSwipeback.addView(scrollView, LayoutHelper.createLinear(-1, -2));
-                float f3 = 0.12f;
                 if (this.parent.collections.getCollections().size() + 1 < MessagesController.getInstance(this.currentAccount).config.stargiftsCollectionsLimit.get()) {
                     ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), false, false, this.resourcesProvider);
                     actionBarMenuSubItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
                     int i3 = Theme.key_actionBarDefaultSubmenuItem;
+                    f3 = 18.0f;
                     actionBarMenuSubItem.setColors(Theme.getColor(i3, this.resourcesProvider), Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, this.resourcesProvider));
                     actionBarMenuSubItem.setSelectorColor(Theme.multAlpha(Theme.getColor(i3, this.resourcesProvider), 0.12f));
                     actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.Gift2NewCollection), R.drawable.menu_folder_add);
                     actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            this.f$0.lambda$onItemLongPress$9(itemOptionsMakeOptions, savedStarGift, view2);
+                            ProfileGiftsContainer.Page.$r8$lambda$gsNSXepkzRMHwxJ28XR3xVrTcuM(this.f$0, itemOptionsMakeOptions, savedStarGift, view2);
                         }
                     });
                     linearLayout.addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, -2));
+                } else {
+                    f3 = 18.0f;
                 }
-                Iterator it = this.parent.collections.getCollections().iterator();
-                while (it.hasNext()) {
-                    final TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) it.next();
+                ArrayList collections = this.parent.collections.getCollections();
+                int size = collections.size();
+                int i4 = 0;
+                while (i4 < size) {
+                    int i5 = i4 + 1;
+                    final TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) collections.get(i4);
                     final boolean zContains = this.parent.collections.getListById(tL_starGiftCollection.collection_id).contains(savedStarGift);
                     ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(getContext(), 2, false, false, this.resourcesProvider);
                     actionBarMenuSubItem2.setChecked(zContains);
-                    actionBarMenuSubItem2.setPadding(AndroidUtilities.dp(18.0f), i2, AndroidUtilities.dp(18.0f), i2);
-                    int i4 = Theme.key_actionBarDefaultSubmenuItem;
-                    actionBarMenuSubItem2.setColors(Theme.getColor(i4, this.resourcesProvider), Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, this.resourcesProvider));
-                    actionBarMenuSubItem2.setSelectorColor(Theme.multAlpha(Theme.getColor(i4, this.resourcesProvider), f3));
+                    actionBarMenuSubItem2.setPadding(AndroidUtilities.dp(f3), i2, AndroidUtilities.dp(f3), i2);
+                    int i6 = Theme.key_actionBarDefaultSubmenuItem;
+                    actionBarMenuSubItem2.setColors(Theme.getColor(i6, this.resourcesProvider), Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, this.resourcesProvider));
+                    actionBarMenuSubItem2.setSelectorColor(Theme.multAlpha(Theme.getColor(i6, this.resourcesProvider), 0.12f));
                     if (tL_starGiftCollection.icon != null) {
                         AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(3, this.currentAccount, tL_starGiftCollection.icon) {
                             @Override
@@ -879,12 +873,11 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            this.f$0.lambda$onItemLongPress$10(zContains, tL_starGiftCollection, savedStarGift, itemOptionsMakeOptions, view2);
+                            ProfileGiftsContainer.Page.$r8$lambda$IrBRExhSkIiff6P_cKay1kcH2lE(this.f$0, zContains, tL_starGiftCollection, savedStarGift, itemOptionsMakeOptions, view2);
                         }
                     });
                     linearLayout.addView(actionBarMenuSubItem2, LayoutHelper.createLinear(-1, -2));
-                    it = it;
-                    f3 = 0.12f;
+                    i4 = i5;
                     i2 = 0;
                 }
                 itemOptionsMakeOptions.add(R.drawable.msg_addfolder, LocaleController.getString(R.string.Gift2AddToCollection), new Runnable() {
@@ -901,20 +894,20 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     itemOptionsMakeOptions.add(z3 ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z3 ? R.string.Gift2Unpin : R.string.Gift2Pin), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onItemLongPress$13(savedStarGift, giftCell, view);
+                            ProfileGiftsContainer.Page.$r8$lambda$NmMafLmZUQ_uhp7q9xhzhRGfNys(this.f$0, savedStarGift, giftCell, view);
                         }
                     });
                     itemOptionsMakeOptions.addIf(savedStarGift.pinned_to_top, R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onItemLongPress$14();
+                            this.f$0.setReordering(true);
                         }
                     });
                 } else if (this.parent.canReorder() && this.isCollection) {
                     itemOptionsMakeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onItemLongPress$15();
+                            this.f$0.setReordering(true);
                         }
                     });
                 }
@@ -930,27 +923,27 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     itemOptionsMakeOptions.add(zIsWorn ? R.drawable.menu_takeoff : R.drawable.menu_wear, LocaleController.getString(zIsWorn ? R.string.Gift2Unwear : R.string.Gift2Wear), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onItemLongPress$16(savedStarGift);
+                            ProfileGiftsContainer.Page.m3219$r8$lambda$22Zu72yvascISDCaFcGuXSK9Co(this.f$0, savedStarGift);
                         }
                     });
                 }
                 itemOptionsMakeOptions.addIf(str != null, R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemLongPress$17(str);
+                        ProfileGiftsContainer.Page.$r8$lambda$Q9jx5wy94RN0WjaZIWVsi3GGGrY(this.f$0, str);
                     }
                 });
                 itemOptionsMakeOptions.addIf(str != null, R.drawable.msg_share, LocaleController.getString(R.string.ShareFile), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemLongPress$18(savedStarGift);
+                        ProfileGiftsContainer.Page.m3223$r8$lambda$BjZEjQRhu0EVIM2b9dGbCKJIcI(this.f$0, savedStarGift);
                     }
                 });
             } else if (this.parent.canReorder() && this.isCollection) {
                 itemOptionsMakeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2Reorder), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemLongPress$19();
+                        this.f$0.setReordering(true);
                     }
                 });
             }
@@ -959,7 +952,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 itemOptionsMakeOptions.add(z4 ? R.drawable.msg_message : R.drawable.menu_hide_gift, LocaleController.getString(z4 ? R.string.Gift2ShowGift : R.string.Gift2HideGift), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemLongPress$20(savedStarGift, giftCell);
+                        ProfileGiftsContainer.Page.m3225$r8$lambda$Cl4M4mawd6yFaa2_xBdqB_GKI8(this.f$0, savedStarGift, giftCell);
                     }
                 });
             }
@@ -968,28 +961,31 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 itemOptionsMakeOptions.addIf(DialogObject.getPeerDialogId(((TL_stars.TL_starGiftUnique) starGift2).owner_id) == UserConfig.getInstance(this.currentAccount).getClientUserId(), R.drawable.menu_transfer, LocaleController.getString(R.string.Gift2TransferOption), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemLongPress$21(savedStarGift);
+                        ProfileGiftsContainer.Page.m3224$r8$lambda$CehAtahLdAkMlaP_9tgjrzAew(this.f$0, savedStarGift);
                     }
                 });
             }
             if (this.parent.collections.isMine() && this.isCollection) {
-                z2 = true;
-                z = false;
-                itemOptionsMakeOptions.add(R.drawable.msg_removefolder, (CharSequence) LocaleController.getString(R.string.Gift2RemoveFromCollection), true, new Runnable() {
+                int i7 = R.drawable.msg_removefolder;
+                String string = LocaleController.getString(R.string.Gift2RemoveFromCollection);
+                Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemLongPress$22(savedStarGift, itemOptionsMakeOptions);
+                        ProfileGiftsContainer.Page.$r8$lambda$Rq9AYj9DSvTbJ41LS_QJsaeHnQA(this.f$0, savedStarGift, itemOptionsMakeOptions);
                     }
-                }).makeMultiline(false).cutTextInFancyHalf();
+                };
+                z = true;
+                z2 = false;
+                itemOptionsMakeOptions.add(i7, (CharSequence) string, true, runnable).makeMultiline(false).cutTextInFancyHalf();
             } else {
-                z = false;
-                z2 = true;
+                z = true;
+                z2 = false;
             }
             if (itemOptionsMakeOptions.getItemsCount() <= 0) {
-                return z;
+                return z2;
             }
             itemOptionsMakeOptions.setGravity(5);
-            itemOptionsMakeOptions.setBlur(z2);
+            itemOptionsMakeOptions.setBlur(z);
             itemOptionsMakeOptions.allowMoveScrim();
             Point point = AndroidUtilities.displaySize;
             int iMin = Math.min(point.x, point.y);
@@ -1001,95 +997,88 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             return true;
         }
 
-        public void lambda$onItemLongPress$9(ItemOptions itemOptions, final TL_stars.SavedStarGift savedStarGift, View view) {
+        public static void $r8$lambda$gsNSXepkzRMHwxJ28XR3xVrTcuM(final Page page, ItemOptions itemOptions, final TL_stars.SavedStarGift savedStarGift, View view) {
+            page.getClass();
             itemOptions.dismiss();
-            this.parent.openEnterNameAlert(null, new Utilities.Callback() {
+            page.parent.openEnterNameAlert(null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onItemLongPress$8(savedStarGift, (String) obj);
+                    ProfileGiftsContainer.Page page2 = this.f$0;
+                    page2.parent.collections.createCollection((String) obj, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj2) {
+                            ProfileGiftsContainer.Page.$r8$lambda$LVzc1fU4JWmf4dww4iE92nc8t0U(page2, savedStarGift, (TL_stars.TL_starGiftCollection) obj2);
+                        }
+                    });
                 }
             });
         }
 
-        public void lambda$onItemLongPress$8(final TL_stars.SavedStarGift savedStarGift, String str) {
-            this.parent.collections.createCollection(str, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    this.f$0.lambda$onItemLongPress$7(savedStarGift, (TL_stars.TL_starGiftCollection) obj);
-                }
-            });
-        }
-
-        public void lambda$onItemLongPress$7(TL_stars.SavedStarGift savedStarGift, TL_stars.TL_starGiftCollection tL_starGiftCollection) {
-            this.parent.collections.addGift(tL_starGiftCollection.collection_id, savedStarGift, true);
-            this.parent.fillTabs(true);
-            ViewPagerFixed.TabsView tabsView = this.parent.tabsView;
+        public static void $r8$lambda$LVzc1fU4JWmf4dww4iE92nc8t0U(Page page, TL_stars.SavedStarGift savedStarGift, TL_stars.TL_starGiftCollection tL_starGiftCollection) {
+            page.parent.collections.addGift(tL_starGiftCollection.collection_id, savedStarGift, true);
+            page.parent.fillTabs(true);
+            ViewPagerFixed.TabsView tabsView = page.parent.tabsView;
             int i = tL_starGiftCollection.collection_id;
-            tabsView.scrollToTab(i, this.parent.collections.indexOf(i) + 1);
-            if (this.parent.fragment instanceof ProfileActivity) {
-                ((ProfileActivity) this.parent.fragment).scrollToSharedMedia(true);
+            tabsView.scrollToTab(i, page.parent.collections.indexOf(i) + 1);
+            if (page.parent.fragment instanceof ProfileActivity) {
+                ((ProfileActivity) page.parent.fragment).scrollToSharedMedia(true);
             }
-            this.parent.updateTabsShown(true);
-            BulletinFactory.of(this.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
+            page.parent.updateTabsShown(true);
+            BulletinFactory.of(page.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
         }
 
-        public void lambda$onItemLongPress$10(boolean z, TL_stars.TL_starGiftCollection tL_starGiftCollection, TL_stars.SavedStarGift savedStarGift, ItemOptions itemOptions, View view) {
+        public static void $r8$lambda$IrBRExhSkIiff6P_cKay1kcH2lE(Page page, boolean z, TL_stars.TL_starGiftCollection tL_starGiftCollection, TL_stars.SavedStarGift savedStarGift, ItemOptions itemOptions, View view) {
             if (!z) {
-                this.parent.collections.addGift(tL_starGiftCollection.collection_id, savedStarGift, true);
-                BulletinFactory.of(this.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
+                page.parent.collections.addGift(tL_starGiftCollection.collection_id, savedStarGift, true);
+                BulletinFactory.of(page.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
             } else {
-                this.parent.collections.removeGift(tL_starGiftCollection.collection_id, savedStarGift);
-                BulletinFactory.of(this.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
+                page.parent.collections.removeGift(tL_starGiftCollection.collection_id, savedStarGift);
+                BulletinFactory.of(page.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
             }
             itemOptions.dismiss();
-            this.parent.updateTabsShown(true);
+            page.parent.updateTabsShown(true);
         }
 
-        public void lambda$onItemLongPress$13(TL_stars.SavedStarGift savedStarGift, GiftSheet.GiftCell giftCell, final View view) {
+        public static void $r8$lambda$NmMafLmZUQ_uhp7q9xhzhRGfNys(final Page page, TL_stars.SavedStarGift savedStarGift, GiftSheet.GiftCell giftCell, final View view) {
+            page.getClass();
             if (savedStarGift.unsaved) {
                 savedStarGift.unsaved = false;
                 giftCell.setStarsGift(savedStarGift, true, false);
                 TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
-                savestargift.stargift = this.list.getInput(savedStarGift);
+                savestargift.stargift = page.list.getInput(savedStarGift);
                 savestargift.unsave = savedStarGift.unsaved;
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(savestargift, null, 64);
+                ConnectionsManager.getInstance(page.currentAccount).sendRequest(savestargift, null, 64);
             }
             boolean z = savedStarGift.pinned_to_top;
             final boolean z2 = !z;
-            if (this.list.togglePinned(savedStarGift, z2, false)) {
-                new UnpinSheet(getContext(), this.parent.dialogId, savedStarGift, this.resourcesProvider, new Utilities.Callback0Return() {
+            if (page.list.togglePinned(savedStarGift, z2, false)) {
+                new UnpinSheet(page.getContext(), page.parent.dialogId, savedStarGift, page.resourcesProvider, new Utilities.Callback0Return() {
                     @Override
                     public final Object run() {
-                        return this.f$0.lambda$onItemLongPress$12(view, z2);
+                        return ProfileGiftsContainer.Page.m3226$r8$lambda$E5J4QxWroAcuPvxCjutkkaJKVY(this.f$0, view, z2);
                     }
                 }).show();
                 return;
             }
             if (!z) {
-                BulletinFactory.of(this.parent.fragment).createSimpleBulletin(R.raw.ic_pin, LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle)).show();
+                BulletinFactory.of(page.parent.fragment).createSimpleBulletin(R.raw.ic_pin, LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle)).show();
             } else {
-                BulletinFactory.of(this.parent.fragment).createSimpleBulletin(R.raw.ic_unpin, LocaleController.getString(R.string.Gift2Unpinned)).show();
+                BulletinFactory.of(page.parent.fragment).createSimpleBulletin(R.raw.ic_unpin, LocaleController.getString(R.string.Gift2Unpinned)).show();
             }
             ((GiftSheet.GiftCell) view).setPinned(z2, true);
-            this.listView.scrollToPosition(0);
+            page.listView.scrollToPosition(0);
         }
 
-        public BulletinFactory lambda$onItemLongPress$12(View view, boolean z) {
+        public static BulletinFactory m3226$r8$lambda$E5J4QxWroAcuPvxCjutkkaJKVY(Page page, View view, boolean z) {
+            page.getClass();
             ((GiftSheet.GiftCell) view).setPinned(z, true);
-            this.listView.scrollToPosition(0);
-            return BulletinFactory.of(this.parent.fragment);
+            page.listView.scrollToPosition(0);
+            return BulletinFactory.of(page.parent.fragment);
         }
 
-        public void lambda$onItemLongPress$14() {
-            setReordering(true);
-        }
-
-        public void lambda$onItemLongPress$15() {
-            setReordering(true);
-        }
-
-        public void lambda$onItemLongPress$16(TL_stars.SavedStarGift savedStarGift) {
-            new StarGiftSheet(getContext(), this.currentAccount, this.parent.dialogId, this.resourcesProvider) {
+        public static void m3219$r8$lambda$22Zu72yvascISDCaFcGuXSK9Co(Page page, TL_stars.SavedStarGift savedStarGift) {
+            page.getClass();
+            new StarGiftSheet(page.getContext(), page.currentAccount, page.parent.dialogId, page.resourcesProvider) {
                 @Override
                 public BulletinFactory getBulletinFactory() {
                     return BulletinFactory.of(Page.this.parent.fragment);
@@ -1097,13 +1086,15 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }.set(savedStarGift, (StarsController.IGiftsList) null).toggleWear(false);
         }
 
-        public void lambda$onItemLongPress$17(String str) {
+        public static void $r8$lambda$Q9jx5wy94RN0WjaZIWVsi3GGGrY(Page page, String str) {
+            page.getClass();
             AndroidUtilities.addToClipboard(str);
-            BulletinFactory.of(this.parent.fragment).createCopyLinkBulletin(false).show();
+            BulletinFactory.of(page.parent.fragment).createCopyLinkBulletin(false).show();
         }
 
-        public void lambda$onItemLongPress$18(TL_stars.SavedStarGift savedStarGift) {
-            new StarGiftSheet(getContext(), this.currentAccount, this.parent.dialogId, this.resourcesProvider) {
+        public static void m3223$r8$lambda$BjZEjQRhu0EVIM2b9dGbCKJIcI(Page page, TL_stars.SavedStarGift savedStarGift) {
+            page.getClass();
+            new StarGiftSheet(page.getContext(), page.currentAccount, page.parent.dialogId, page.resourcesProvider) {
                 @Override
                 public BulletinFactory getBulletinFactory() {
                     return BulletinFactory.of(Page.this.parent.fragment);
@@ -1111,26 +1102,23 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }.set(savedStarGift, (StarsController.IGiftsList) null).onSharePressed(null);
         }
 
-        public void lambda$onItemLongPress$19() {
-            setReordering(true);
-        }
-
-        public void lambda$onItemLongPress$20(TL_stars.SavedStarGift savedStarGift, GiftSheet.GiftCell giftCell) {
-            if (!this.isCollection && savedStarGift.pinned_to_top && !savedStarGift.unsaved) {
+        public static void m3225$r8$lambda$Cl4M4mawd6yFaa2_xBdqB_GKI8(Page page, TL_stars.SavedStarGift savedStarGift, GiftSheet.GiftCell giftCell) {
+            if (!page.isCollection && savedStarGift.pinned_to_top && !savedStarGift.unsaved) {
                 giftCell.setPinned(false, true);
-                this.list.togglePinned(savedStarGift, false, false);
+                page.list.togglePinned(savedStarGift, false, false);
             }
             savedStarGift.unsaved = !savedStarGift.unsaved;
-            giftCell.setStarsGift(savedStarGift, true, this.isCollection);
-            this.parent.collections.updateGiftsUnsaved(savedStarGift, savedStarGift.unsaved);
+            giftCell.setStarsGift(savedStarGift, true, page.isCollection);
+            page.parent.collections.updateGiftsUnsaved(savedStarGift, savedStarGift.unsaved);
             TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
-            savestargift.stargift = this.list.getInput(savedStarGift);
+            savestargift.stargift = page.list.getInput(savedStarGift);
             savestargift.unsave = savedStarGift.unsaved;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(savestargift, null);
+            ConnectionsManager.getInstance(page.currentAccount).sendRequest(savestargift, null);
         }
 
-        public void lambda$onItemLongPress$21(TL_stars.SavedStarGift savedStarGift) {
-            new StarGiftSheet(getContext(), this.currentAccount, this.parent.dialogId, this.resourcesProvider) {
+        public static void m3224$r8$lambda$CehAtahLdAkMlaP_9tgjrzAew(Page page, TL_stars.SavedStarGift savedStarGift) {
+            page.getClass();
+            new StarGiftSheet(page.getContext(), page.currentAccount, page.parent.dialogId, page.resourcesProvider) {
                 @Override
                 public BulletinFactory getBulletinFactory() {
                     return BulletinFactory.of(Page.this.parent.fragment);
@@ -1138,13 +1126,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }.set(savedStarGift, (StarsController.IGiftsList) null).openTransfer();
         }
 
-        public void lambda$onItemLongPress$22(TL_stars.SavedStarGift savedStarGift, ItemOptions itemOptions) {
-            this.parent.collections.removeGift(this.list.collectionId, savedStarGift);
+        public static void $r8$lambda$Rq9AYj9DSvTbJ41LS_QJsaeHnQA(Page page, TL_stars.SavedStarGift savedStarGift, ItemOptions itemOptions) {
+            page.parent.collections.removeGift(page.list.collectionId, savedStarGift);
             itemOptions.dismiss();
-            this.parent.updateTabsShown(true);
-            TL_stars.TL_starGiftCollection tL_starGiftCollectionFindById = this.parent.collections.findById(this.list.collectionId);
+            page.parent.updateTabsShown(true);
+            TL_stars.TL_starGiftCollection tL_starGiftCollectionFindById = page.parent.collections.findById(page.list.collectionId);
             if (tL_starGiftCollectionFindById != null) {
-                BulletinFactory.of(this.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollectionFindById.title))).show();
+                BulletinFactory.of(page.parent.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollectionFindById.title))).show();
             }
         }
 
@@ -1180,7 +1168,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         this.sendCollectionsOrder = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$12();
+                this.f$0.collections.sendOrder();
             }
         };
         this.animatorBottomButtonVisibility = new BoolAnimator(0, new FactorAnimator.Target() {
@@ -1191,7 +1179,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
             @Override
             public final void onFactorChanged(int i4, float f, float f2, FactorAnimator factorAnimator) {
-                this.f$0.lambda$new$14(i4, f, f2, factorAnimator);
+                this.f$0.updateButton();
             }
         }, CubicBezierInterpolator.EASE_OUT_QUINT, 380L, true);
         this.visibleHeight = AndroidUtilities.displaySize.y;
@@ -1332,9 +1320,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             @Override
             public void applyReorder(ArrayList arrayList) {
                 ArrayList arrayList2 = new ArrayList();
-                Iterator it = arrayList.iterator();
-                while (it.hasNext()) {
-                    Integer num = (Integer) it.next();
+                int size = arrayList.size();
+                int i4 = 0;
+                while (i4 < size) {
+                    Object obj = arrayList.get(i4);
+                    i4++;
+                    Integer num = (Integer) obj;
                     int iIntValue = num.intValue();
                     if (iIntValue != -1 && iIntValue != -2) {
                         arrayList2.add(num);
@@ -1343,7 +1334,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 ProfileGiftsContainer.this.collections.reorder(arrayList2);
                 Page currentPage = ProfileGiftsContainer.this.getCurrentPage();
                 if (currentPage != null) {
-                    int iIndexOf = !currentPage.isCollection ? 0 : ProfileGiftsContainer.this.collections.indexOf(currentPage.list.collectionId) + 1;
+                    int iIndexOf = currentPage.isCollection ? ProfileGiftsContainer.this.collections.indexOf(currentPage.list.collectionId) + 1 : 0;
                     ProfileGiftsContainer.this.tabsView.selectTab(iIndexOf, iIndexOf, 0.0f);
                 }
                 AndroidUtilities.cancelRunOnUIThread(ProfileGiftsContainer.this.sendCollectionsOrder);
@@ -1360,13 +1351,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         tabsViewCreateTabsView.setPreTabClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                return this.f$0.lambda$new$1((Integer) obj, (Integer) obj2);
+                return ProfileGiftsContainer.m3218$r8$lambda$nqMuvew_6VlglUV0Nu5O9lHCPo(this.f$0, (Integer) obj, (Integer) obj2);
             }
         });
         tabsViewCreateTabsView.setOnTabLongClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                return this.f$0.lambda$new$7(i, baseFragment, context, resourcesProvider, (Integer) obj, (View) obj2);
+                return ProfileGiftsContainer.$r8$lambda$iNCuUGGvJ_hcvtZVhlYkighZiNw(this.f$0, i, baseFragment, context, resourcesProvider, (Integer) obj, (View) obj2);
             }
         });
         addView(tabsViewCreateTabsView, LayoutHelper.createFrame(-1, 42, 48));
@@ -1412,7 +1403,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$10(baseFragment, i, view);
+                ProfileGiftsContainer.$r8$lambda$knJkllwhqy7jjL3FgBDFE0n1qwE(this.f$0, baseFragment, i, view);
             }
         });
         Boolean bool = profileGiftsList.chat_notifications_enabled;
@@ -1448,7 +1439,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$11(z, i, view);
+                    ProfileGiftsContainer.m3208$r8$lambda$5u9VbnJFYji5X9X63yk70xCBNk(this.f$0, z, i, view);
                 }
             });
             if (canSwitchNotify()) {
@@ -1483,7 +1474,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$11(z, i, view);
+                ProfileGiftsContainer.m3208$r8$lambda$5u9VbnJFYji5X9X63yk70xCBNk(this.f$0, z, i, view);
             }
         });
         if (canSwitchNotify()) {
@@ -1499,42 +1490,40 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         updateTabsShown(false);
     }
 
-    public Boolean lambda$new$1(Integer num, Integer num2) {
-        resetReordering();
+    public static Boolean m3218$r8$lambda$nqMuvew_6VlglUV0Nu5O9lHCPo(ProfileGiftsContainer profileGiftsContainer, Integer num, Integer num2) {
+        profileGiftsContainer.resetReordering();
         if (num.intValue() == -1) {
-            createCollection();
+            profileGiftsContainer.createCollection();
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
-    public Boolean lambda$new$7(final int i, final BaseFragment baseFragment, final Context context, final Theme.ResourcesProvider resourcesProvider, Integer num, View view) {
+    public static Boolean $r8$lambda$iNCuUGGvJ_hcvtZVhlYkighZiNw(final ProfileGiftsContainer profileGiftsContainer, final int i, final BaseFragment baseFragment, final Context context, final Theme.ResourcesProvider resourcesProvider, Integer num, View view) {
         final TL_stars.TL_starGiftCollection tL_starGiftCollection;
-        int i2;
-        if (num.intValue() == -1 || num.intValue() == -2 || num.intValue() == 0 || this.reorderingCollections) {
+        profileGiftsContainer.getClass();
+        final int i2 = -1;
+        if (num.intValue() == -1 || num.intValue() == -2 || num.intValue() == 0 || profileGiftsContainer.reorderingCollections) {
             return Boolean.FALSE;
         }
         int i3 = 0;
         while (true) {
-            if (i3 >= this.collections.getCollections().size()) {
+            if (i3 >= profileGiftsContainer.collections.getCollections().size()) {
                 tL_starGiftCollection = null;
-                i2 = -1;
                 break;
             }
-            if (((TL_stars.TL_starGiftCollection) this.collections.getCollections().get(i3)).collection_id == num.intValue()) {
+            if (((TL_stars.TL_starGiftCollection) profileGiftsContainer.collections.getCollections().get(i3)).collection_id == num.intValue()) {
+                tL_starGiftCollection = (TL_stars.TL_starGiftCollection) profileGiftsContainer.collections.getCollections().get(i3);
                 i2 = i3;
-                tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.collections.getCollections().get(i3);
                 break;
             }
             i3++;
         }
-        final String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i).getUserOrChat(this.dialogId));
-        boolean zIsMine = this.collections.isMine();
+        final String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i).getUserOrChat(profileGiftsContainer.dialogId));
+        boolean zIsMine = profileGiftsContainer.collections.isMine();
         if (TextUtils.isEmpty(publicUsername) && !zIsMine) {
             return Boolean.FALSE;
         }
-        final TL_stars.TL_starGiftCollection tL_starGiftCollection2 = tL_starGiftCollection;
-        final int i4 = i2;
         ItemOptions itemOptionsAddIf = ItemOptions.makeOptions(baseFragment, view).setScrimViewBackground(new Drawable() {
             private final Drawable bg;
             private final Rect bgBounds = new Rect();
@@ -1561,8 +1550,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
 
             @Override
-            public void setAlpha(int i5) {
-                this.bg.setAlpha(i5);
+            public void setAlpha(int i4) {
+                this.bg.setAlpha(i4);
             }
         }).addIf(zIsMine, R.drawable.menu_gift_add, LocaleController.getString(R.string.Gift2CollectionsAdd), new Runnable() {
             @Override
@@ -1572,30 +1561,31 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }).addIf(!TextUtils.isEmpty(publicUsername), R.drawable.msg_share, LocaleController.getString(R.string.Gift2CollectionsShare), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$2(i, publicUsername, tL_starGiftCollection2, context, resourcesProvider, baseFragment);
+                ProfileGiftsContainer.$r8$lambda$ItGKC0q6jYyNj8CmF3DK6YWucmM(this.f$0, i, publicUsername, tL_starGiftCollection, context, resourcesProvider, baseFragment);
             }
         }).addIf(zIsMine, R.drawable.msg_edit, LocaleController.getString(R.string.Gift2CollectionsRename), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$4(tL_starGiftCollection);
+                ProfileGiftsContainer.$r8$lambda$pbVQKPliF9W73NVDudVT3BJDA4U(this.f$0, tL_starGiftCollection);
             }
         }).addIf(zIsMine, R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2CollectionsReorder), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$5();
+                this.f$0.setReorderingCollections(true);
             }
         }).addIf(zIsMine, R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Gift2CollectionsDelete), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$6(i4, tL_starGiftCollection);
+                ProfileGiftsContainer.$r8$lambda$Io6EIMLsRSpnqPtoHV2mKImOUKo(this.f$0, i2, tL_starGiftCollection);
             }
         });
-        this.currentMenu = itemOptionsAddIf;
+        profileGiftsContainer.currentMenu = itemOptionsAddIf;
         itemOptionsAddIf.show();
         return Boolean.TRUE;
     }
 
-    public void lambda$new$2(int i, String str, TL_stars.TL_starGiftCollection tL_starGiftCollection, Context context, Theme.ResourcesProvider resourcesProvider, final BaseFragment baseFragment) {
+    public static void $r8$lambda$ItGKC0q6jYyNj8CmF3DK6YWucmM(ProfileGiftsContainer profileGiftsContainer, int i, String str, TL_stars.TL_starGiftCollection tL_starGiftCollection, Context context, Theme.ResourcesProvider resourcesProvider, final BaseFragment baseFragment) {
+        profileGiftsContainer.getClass();
         String str2 = MessagesController.getInstance(i).linkPrefix + "/" + str + "/c/" + tL_starGiftCollection.collection_id;
         new ShareAlert(context, null, str2, false, str2, false, resourcesProvider) {
             @Override
@@ -1623,80 +1613,80 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }.show();
     }
 
-    public void lambda$new$4(final TL_stars.TL_starGiftCollection tL_starGiftCollection) {
-        openEnterNameAlert(tL_starGiftCollection.title, new Utilities.Callback() {
+    public static void $r8$lambda$pbVQKPliF9W73NVDudVT3BJDA4U(final ProfileGiftsContainer profileGiftsContainer, final TL_stars.TL_starGiftCollection tL_starGiftCollection) {
+        profileGiftsContainer.getClass();
+        profileGiftsContainer.openEnterNameAlert(tL_starGiftCollection.title, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$3(tL_starGiftCollection, (String) obj);
+                ProfileGiftsContainer.m3216$r8$lambda$ln7RHkliEqD8aJkdyIHSL50q5Y(this.f$0, tL_starGiftCollection, (String) obj);
             }
         });
     }
 
-    public void lambda$new$3(TL_stars.TL_starGiftCollection tL_starGiftCollection, String str) {
-        this.collections.rename(tL_starGiftCollection.collection_id, str);
+    public static void m3216$r8$lambda$ln7RHkliEqD8aJkdyIHSL50q5Y(ProfileGiftsContainer profileGiftsContainer, TL_stars.TL_starGiftCollection tL_starGiftCollection, String str) {
+        profileGiftsContainer.collections.rename(tL_starGiftCollection.collection_id, str);
         tL_starGiftCollection.title = str;
-        fillTabs(true);
+        profileGiftsContainer.fillTabs(true);
     }
 
-    public void lambda$new$5() {
-        setReorderingCollections(true);
-    }
-
-    public void lambda$new$6(int i, TL_stars.TL_starGiftCollection tL_starGiftCollection) {
-        if (i != -1) {
-            this.collections.removeCollection(tL_starGiftCollection.collection_id);
-            fillTabs(true);
-            ViewPagerFixed.TabsView tabsView = this.tabsView;
-            if (i < this.collections.getCollections().size()) {
-                i++;
-            }
-            tabsView.scrollToTab(-1, i);
-            updateTabsShown(true);
+    public static void $r8$lambda$Io6EIMLsRSpnqPtoHV2mKImOUKo(ProfileGiftsContainer profileGiftsContainer, int i, TL_stars.TL_starGiftCollection tL_starGiftCollection) {
+        if (i == -1) {
+            profileGiftsContainer.getClass();
+            return;
         }
+        profileGiftsContainer.collections.removeCollection(tL_starGiftCollection.collection_id);
+        profileGiftsContainer.fillTabs(true);
+        ViewPagerFixed.TabsView tabsView = profileGiftsContainer.tabsView;
+        if (i < profileGiftsContainer.collections.getCollections().size()) {
+            i++;
+        }
+        tabsView.scrollToTab(-1, i);
+        profileGiftsContainer.updateTabsShown(true);
     }
 
-    public void lambda$new$10(final BaseFragment baseFragment, int i, View view) {
-        CheckBox2 checkBox2 = this.checkbox;
+    public static void $r8$lambda$knJkllwhqy7jjL3FgBDFE0n1qwE(final ProfileGiftsContainer profileGiftsContainer, final BaseFragment baseFragment, int i, View view) {
+        CheckBox2 checkBox2 = profileGiftsContainer.checkbox;
         checkBox2.setChecked(!checkBox2.isChecked(), true);
-        boolean zIsChecked = this.checkbox.isChecked();
+        boolean zIsChecked = profileGiftsContainer.checkbox.isChecked();
         BulletinFactory.of(baseFragment).createSimpleBulletinDetail(zIsChecked ? R.raw.silent_unmute : R.raw.silent_mute, LocaleController.getString(zIsChecked ? R.string.Gift2ChannelNotifyChecked : R.string.Gift2ChannelNotifyNotChecked)).show();
-        this.list.chat_notifications_enabled = Boolean.valueOf(zIsChecked);
-        if (this.checkboxRequestId >= 0) {
-            ConnectionsManager.getInstance(i).cancelRequest(this.checkboxRequestId, true);
-            this.checkboxRequestId = -1;
+        profileGiftsContainer.list.chat_notifications_enabled = Boolean.valueOf(zIsChecked);
+        if (profileGiftsContainer.checkboxRequestId >= 0) {
+            ConnectionsManager.getInstance(i).cancelRequest(profileGiftsContainer.checkboxRequestId, true);
+            profileGiftsContainer.checkboxRequestId = -1;
         }
         TL_stars.toggleChatStarGiftNotifications togglechatstargiftnotifications = new TL_stars.toggleChatStarGiftNotifications();
-        togglechatstargiftnotifications.peer = MessagesController.getInstance(i).getInputPeer(this.dialogId);
+        togglechatstargiftnotifications.peer = MessagesController.getInstance(i).getInputPeer(profileGiftsContainer.dialogId);
         togglechatstargiftnotifications.enabled = zIsChecked;
         ConnectionsManager.getInstance(i).sendRequest(togglechatstargiftnotifications, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$new$9(baseFragment, tLObject, tL_error);
+                ProfileGiftsContainer.$r8$lambda$z8BNUWEdK7MuTk_xgGllt0lhCyA(this.f$0, baseFragment, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$9(final BaseFragment baseFragment, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$z8BNUWEdK7MuTk_xgGllt0lhCyA(final ProfileGiftsContainer profileGiftsContainer, final BaseFragment baseFragment, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        profileGiftsContainer.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$8(tL_error, baseFragment);
+                ProfileGiftsContainer.$r8$lambda$RLwQZlri75BAIVuT550QNAMFLlE(this.f$0, tL_error, baseFragment);
             }
         });
     }
 
-    public void lambda$new$8(TLRPC.TL_error tL_error, BaseFragment baseFragment) {
-        this.checkboxRequestId = -1;
+    public static void $r8$lambda$RLwQZlri75BAIVuT550QNAMFLlE(ProfileGiftsContainer profileGiftsContainer, TLRPC.TL_error tL_error, BaseFragment baseFragment) {
+        profileGiftsContainer.checkboxRequestId = -1;
         if (tL_error != null) {
             BulletinFactory.of(baseFragment).showForError(tL_error);
         }
     }
 
-    public void lambda$new$11(boolean z, int i, View view) {
-        if (this.collections.isMine() && this.viewPager.getCurrentPosition() != 0) {
-            addGifts();
+    public static void m3208$r8$lambda$5u9VbnJFYji5X9X63yk70xCBNk(ProfileGiftsContainer profileGiftsContainer, boolean z, int i, View view) {
+        if (profileGiftsContainer.collections.isMine() && profileGiftsContainer.viewPager.getCurrentPosition() != 0) {
+            profileGiftsContainer.addGifts();
         } else if (z) {
-            new GiftSheet(getContext(), i, this.dialogId, null, null).setBirthday(BirthdayController.getInstance(i).isToday(this.dialogId)).show();
+            new GiftSheet(profileGiftsContainer.getContext(), i, profileGiftsContainer.dialogId, null, null).setBirthday(BirthdayController.getInstance(i).isToday(profileGiftsContainer.dialogId)).show();
         } else {
             UserSelectorBottomSheet.open(2, 0L, BirthdayController.getInstance(i).getState());
         }
@@ -1808,10 +1798,6 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         this.tabsView.scrollToTab(tL_starGiftCollection.collection_id, i + 1);
     }
 
-    public void lambda$new$12() {
-        this.collections.sendOrder();
-    }
-
     public void setReorderingCollections(boolean z) {
         if (this.reorderingCollections == z) {
             return;
@@ -1826,7 +1812,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.lambda$setReorderingCollections$13(safeLastFragment);
+                        ((ProfileActivity) safeLastFragment).scrollToSharedMedia(true);
                     }
                 });
             }
@@ -1836,10 +1822,6 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
         AndroidUtilities.cancelRunOnUIThread(this.sendCollectionsOrder);
         AndroidUtilities.runOnUIThread(this.sendCollectionsOrder);
-    }
-
-    public static void lambda$setReorderingCollections$13(BaseFragment baseFragment) {
-        ((ProfileActivity) baseFragment).scrollToSharedMedia(true);
     }
 
     public void resetReordering() {
@@ -1864,10 +1846,6 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             return true;
         }
         return listByIndex.gifts.isEmpty();
-    }
-
-    public void lambda$new$14(int i, float f, float f2, FactorAnimator factorAnimator) {
-        updateButton();
     }
 
     public void updateButton() {
@@ -2196,12 +2174,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$new$0(profileGiftsList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    ProfileGiftsContainer.UnpinSheet.$r8$lambda$H2kIg_bpVwz0vNtLLQ9jICs4F9g(this.f$0, profileGiftsList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    this.f$0.lambda$new$1(buttonWithCounterView, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    ProfileGiftsContainer.UnpinSheet.$r8$lambda$LhIG8GHn3VvY_40ORQaJjKX6EAs(this.f$0, buttonWithCounterView, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null, resourcesProvider) {
                 @Override
@@ -2219,42 +2197,51 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$2(profileGiftsList, savedStarGift, callback0Return, view);
+                    ProfileGiftsContainer.UnpinSheet.$r8$lambda$6pIFgVTl_FsF9f0TO8OvnwRE7lc(this.f$0, profileGiftsList, savedStarGift, callback0Return, view);
                 }
             });
             setCustomView(linearLayout);
         }
 
-        public void lambda$new$0(StarsController.GiftsList giftsList, ArrayList arrayList, UniversalAdapter universalAdapter) {
-            for (TL_stars.SavedStarGift savedStarGift : giftsList.gifts) {
+        public static void $r8$lambda$H2kIg_bpVwz0vNtLLQ9jICs4F9g(UnpinSheet unpinSheet, StarsController.GiftsList giftsList, ArrayList arrayList, UniversalAdapter universalAdapter) {
+            unpinSheet.getClass();
+            ArrayList arrayList2 = giftsList.gifts;
+            int size = arrayList2.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList2.get(i);
+                i++;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (savedStarGift.pinned_to_top) {
-                    arrayList.add(PeerColorActivity.GiftCell.Factory.asGiftCell(savedStarGift).setChecked(this.selectedGift == savedStarGift.gift.id).setSpanCount(1));
+                    arrayList.add(PeerColorActivity.GiftCell.Factory.asGiftCell(savedStarGift).setChecked(unpinSheet.selectedGift == savedStarGift.gift.id).setSpanCount(1));
                 }
             }
         }
 
-        public void lambda$new$1(ButtonWithCounterView buttonWithCounterView, UItem uItem, View view, Integer num, Float f, Float f2) {
+        public static void $r8$lambda$LhIG8GHn3VvY_40ORQaJjKX6EAs(UnpinSheet unpinSheet, ButtonWithCounterView buttonWithCounterView, UItem uItem, View view, Integer num, Float f, Float f2) {
+            unpinSheet.getClass();
             long j = ((TL_stars.SavedStarGift) uItem.object).gift.id;
-            if (this.selectedGift == j) {
-                this.selectedGift = 0L;
+            if (unpinSheet.selectedGift == j) {
+                unpinSheet.selectedGift = 0L;
             } else {
-                this.selectedGift = j;
+                unpinSheet.selectedGift = j;
             }
-            buttonWithCounterView.setEnabled(this.selectedGift != 0);
+            buttonWithCounterView.setEnabled(unpinSheet.selectedGift != 0);
             if (view.getParent() instanceof ViewGroup) {
                 ViewGroup viewGroup = (ViewGroup) view.getParent();
                 for (int i = 0; i < viewGroup.getChildCount(); i++) {
                     View childAt = viewGroup.getChildAt(i);
                     if (childAt instanceof PeerColorActivity.GiftCell) {
                         PeerColorActivity.GiftCell giftCell = (PeerColorActivity.GiftCell) childAt;
-                        giftCell.setSelected(this.selectedGift == giftCell.getGiftId(), true);
+                        giftCell.setSelected(unpinSheet.selectedGift == giftCell.getGiftId(), true);
                     }
                 }
             }
         }
 
-        public void lambda$new$2(StarsController.GiftsList giftsList, TL_stars.SavedStarGift savedStarGift, Utilities.Callback0Return callback0Return, View view) {
+        public static void $r8$lambda$6pIFgVTl_FsF9f0TO8OvnwRE7lc(UnpinSheet unpinSheet, StarsController.GiftsList giftsList, TL_stars.SavedStarGift savedStarGift, Utilities.Callback0Return callback0Return, View view) {
             TL_stars.SavedStarGift savedStarGift2;
+            unpinSheet.getClass();
             ArrayList pinned = giftsList.getPinned();
             int i = 0;
             while (true) {
@@ -2263,7 +2250,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     savedStarGift2 = null;
                     break;
                 } else {
-                    if (((TL_stars.SavedStarGift) pinned.get(i)).gift.id == this.selectedGift) {
+                    if (((TL_stars.SavedStarGift) pinned.get(i)).gift.id == unpinSheet.selectedGift) {
                         savedStarGift2 = (TL_stars.SavedStarGift) pinned.get(i);
                         break;
                     }
@@ -2277,7 +2264,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             pinned.set(i, savedStarGift);
             savedStarGift.pinned_to_top = true;
             giftsList.setPinned(pinned);
-            lambda$new$0();
+            unpinSheet.dismiss();
             ((BulletinFactory) callback0Return.run()).createSimpleBulletin(R.raw.ic_pin, LocaleController.formatString(R.string.Gift2ReplacedPinTitle, StarGiftSheet.getGiftName(savedStarGift.gift)), LocaleController.formatString(R.string.Gift2ReplacedPinSubtitle, StarGiftSheet.getGiftName(savedStarGift2.gift))).show();
         }
     }
@@ -2407,7 +2394,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         builder.setPositiveButton(LocaleController.getString(str != null ? R.string.Edit : R.string.Create), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ProfileGiftsContainer.lambda$openEnterNameAlert$15(editTextCaption, callback, alertDialog, i);
+                ProfileGiftsContainer.$r8$lambda$HGXLJ2bQdDYNtuoDGUnONnEuUXI(editTextCaption, callback, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -2425,13 +2412,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$openEnterNameAlert$17(editTextCaption, activityFindActivity, dialogInterface);
+                ProfileGiftsContainer.$r8$lambda$KpN26ErhhEMNb2M5wC34bqmpPN0(this.f$0, editTextCaption, activityFindActivity, dialogInterface);
             }
         });
         alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                ProfileGiftsContainer.lambda$openEnterNameAlert$18(editTextCaption, dialogInterface);
+                ProfileGiftsContainer.m3214$r8$lambda$Y_hy7wxb_R6l3jqf9bz9a6WDA(editTextCaption, dialogInterface);
             }
         });
         alertDialogArr[0].show();
@@ -2440,7 +2427,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         editTextCaption.setSelection(editTextCaption.getText().length());
     }
 
-    public static void lambda$openEnterNameAlert$15(EditTextCaption editTextCaption, Utilities.Callback callback, AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$HGXLJ2bQdDYNtuoDGUnONnEuUXI(EditTextCaption editTextCaption, Utilities.Callback callback, AlertDialog alertDialog, int i) {
         String string = editTextCaption.getText().toString();
         if (string.length() <= 0 || string.length() > 12) {
             AndroidUtilities.shakeView(editTextCaption);
@@ -2450,12 +2437,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
     }
 
-    public void lambda$openEnterNameAlert$17(EditTextCaption editTextCaption, Activity activity, DialogInterface dialogInterface) {
+    public static void $r8$lambda$KpN26ErhhEMNb2M5wC34bqmpPN0(ProfileGiftsContainer profileGiftsContainer, EditTextCaption editTextCaption, Activity activity, DialogInterface dialogInterface) {
+        profileGiftsContainer.getClass();
         AndroidUtilities.hideKeyboard(editTextCaption);
-        AndroidUtilities.requestAdjustResize(activity, this.fragment.getClassGuid());
+        AndroidUtilities.requestAdjustResize(activity, profileGiftsContainer.fragment.getClassGuid());
     }
 
-    public static void lambda$openEnterNameAlert$18(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+    public static void m3214$r8$lambda$Y_hy7wxb_R6l3jqf9bz9a6WDA(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
         editTextCaption.requestFocus();
         AndroidUtilities.showKeyboard(editTextCaption);
     }
@@ -2464,30 +2452,27 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         openEnterNameAlert(null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$createCollection$20((String) obj);
+                ProfileGiftsContainer profileGiftsContainer = this.f$0;
+                profileGiftsContainer.collections.createCollection((String) obj, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj2) {
+                        ProfileGiftsContainer.m3209$r8$lambda$KN1YaDbg7zlBj3GSgHPGTim04(profileGiftsContainer, (TL_stars.TL_starGiftCollection) obj2);
+                    }
+                });
             }
         });
     }
 
-    public void lambda$createCollection$20(String str) {
-        this.collections.createCollection(str, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                this.f$0.lambda$createCollection$19((TL_stars.TL_starGiftCollection) obj);
-            }
-        });
-    }
-
-    public void lambda$createCollection$19(TL_stars.TL_starGiftCollection tL_starGiftCollection) {
-        fillTabs(true);
-        ViewPagerFixed.TabsView tabsView = this.tabsView;
+    public static void m3209$r8$lambda$KN1YaDbg7zlBj3GSgHPGTim04(ProfileGiftsContainer profileGiftsContainer, TL_stars.TL_starGiftCollection tL_starGiftCollection) {
+        profileGiftsContainer.fillTabs(true);
+        ViewPagerFixed.TabsView tabsView = profileGiftsContainer.tabsView;
         int i = tL_starGiftCollection.collection_id;
-        tabsView.scrollToTab(i, this.collections.indexOf(i) + 1);
-        BaseFragment baseFragment = this.fragment;
+        tabsView.scrollToTab(i, profileGiftsContainer.collections.indexOf(i) + 1);
+        BaseFragment baseFragment = profileGiftsContainer.fragment;
         if (baseFragment instanceof ProfileActivity) {
             ((ProfileActivity) baseFragment).scrollToSharedMedia(true);
         }
-        updateTabsShown(true);
+        profileGiftsContainer.updateTabsShown(true);
     }
 
     public void addGifts() {
@@ -2500,27 +2485,27 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         new SelectGiftsBottomSheet(this.fragment, this.dialogId, i, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$addGifts$21(i, currentPage, (ArrayList) obj);
+                ProfileGiftsContainer.m3213$r8$lambda$Ue3HPN3KWnvCgt7PGnou2FpIfc(this.f$0, i, currentPage, (ArrayList) obj);
             }
         }).show();
     }
 
-    public void lambda$addGifts$21(int i, Page page, ArrayList arrayList) {
-        this.collections.addGifts(i, arrayList, true);
+    public static void m3213$r8$lambda$Ue3HPN3KWnvCgt7PGnou2FpIfc(ProfileGiftsContainer profileGiftsContainer, int i, Page page, ArrayList arrayList) {
+        profileGiftsContainer.collections.addGifts(i, arrayList, true);
         page.update(true);
-        fillTabs(true);
-        updateTabsShown(true);
-        TL_stars.TL_starGiftCollection tL_starGiftCollectionFindById = this.collections.findById(i);
+        profileGiftsContainer.fillTabs(true);
+        profileGiftsContainer.updateTabsShown(true);
+        TL_stars.TL_starGiftCollection tL_starGiftCollectionFindById = profileGiftsContainer.collections.findById(i);
         if (tL_starGiftCollectionFindById != null) {
             if (arrayList.size() > 1) {
-                Bulletin bulletinCreateSimpleMultiBulletin = BulletinFactory.of(this.fragment).createSimpleMultiBulletin(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), tL_starGiftCollectionFindById.title)));
+                Bulletin bulletinCreateSimpleMultiBulletin = BulletinFactory.of(profileGiftsContainer.fragment).createSimpleMultiBulletin(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), tL_starGiftCollectionFindById.title)));
                 bulletinCreateSimpleMultiBulletin.hideAfterBottomSheet = false;
                 bulletinCreateSimpleMultiBulletin.show();
                 return;
             }
             if (arrayList.size() == 1) {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
-                Bulletin bulletinCreateSimpleMultiBulletin2 = BulletinFactory.of(this.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollectionFindById.title)));
+                Bulletin bulletinCreateSimpleMultiBulletin2 = BulletinFactory.of(profileGiftsContainer.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollectionFindById.title)));
                 bulletinCreateSimpleMultiBulletin2.hideAfterBottomSheet = false;
                 bulletinCreateSimpleMultiBulletin2.show();
             }
@@ -2565,7 +2550,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$new$0(callback, view2);
+                    ProfileGiftsContainer.SelectGiftsBottomSheet.m3231$r8$lambda$Dl2KMO6KZDYNJexOVjsPeoWN38(this.f$0, callback, view2);
                 }
             });
             frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, (1.0f / AndroidUtilities.density) + 10.0f, 10.0f, 10.0f));
@@ -2589,7 +2574,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view2, int i3) {
-                    this.f$0.lambda$new$1(view2, i3);
+                    ProfileGiftsContainer.SelectGiftsBottomSheet.$r8$lambda$6kek0Y656Ab2fw4vKC0lusCPj1k(this.f$0, view2, i3);
                 }
             });
             this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -2621,13 +2606,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
             @Override
             public void onItemClick(int i) {
-                boolean zCanUserDoAction;
-                ActionBarMenuSubItem actionBarMenuSubItem;
-                ActionBarMenuSubItem actionBarMenuSubItem2;
-                final Runnable runnable;
+                final boolean zCanUserDoAction;
+                final ActionBarMenuSubItem actionBarMenuSubItem;
+                final ActionBarMenuSubItem actionBarMenuSubItem2;
                 if (i != 1) {
                     if (i == -1) {
-                        SelectGiftsBottomSheet.this.lambda$new$0();
+                        SelectGiftsBottomSheet.this.dismiss();
                         return;
                     }
                     return;
@@ -2658,45 +2642,39 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     actionBarMenuSubItemAddChecked5.setText(LocaleController.getString(R.string.Gift2FilterDisplayed));
                     ActionBarMenuSubItem actionBarMenuSubItemAddChecked6 = itemOptions.addChecked();
                     actionBarMenuSubItemAddChecked6.setText(LocaleController.getString(R.string.Gift2FilterHidden));
-                    actionBarMenuSubItem2 = actionBarMenuSubItemAddChecked5;
-                    actionBarMenuSubItem = actionBarMenuSubItemAddChecked6;
+                    actionBarMenuSubItem2 = actionBarMenuSubItemAddChecked6;
+                    actionBarMenuSubItem = actionBarMenuSubItemAddChecked5;
                 } else {
                     actionBarMenuSubItem = null;
                     actionBarMenuSubItem2 = null;
                 }
-                final ActionBarMenuSubItem actionBarMenuSubItem3 = actionBarMenuSubItem;
-                final ActionBarMenuSubItem actionBarMenuSubItem4 = actionBarMenuSubItem2;
-                final boolean z = zCanUserDoAction;
-                Runnable runnable2 = new Runnable() {
+                final Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemClick$0(actionBarMenuSubItemAdd, actionBarMenuSubItemAddChecked, actionBarMenuSubItemAddChecked2, actionBarMenuSubItemAddChecked3, actionBarMenuSubItemAddChecked4, z, actionBarMenuSubItem4, actionBarMenuSubItem3);
+                        ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.$r8$lambda$IcdlJC7TVfsKOHnB6Be7V6jgB84(this.f$0, actionBarMenuSubItemAdd, actionBarMenuSubItemAddChecked, actionBarMenuSubItemAddChecked2, actionBarMenuSubItemAddChecked3, actionBarMenuSubItemAddChecked4, zCanUserDoAction, actionBarMenuSubItem, actionBarMenuSubItem2);
                     }
                 };
-                runnable2.run();
+                runnable.run();
                 if (actionBarMenuSubItemAdd != null) {
-                    runnable = runnable2;
                     actionBarMenuSubItemAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onItemClick$1(runnable, view);
+                            ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.$r8$lambda$XRhR24oKa1QANegvfiMTd7fTHmo(this.f$0, runnable, view);
                         }
                     });
-                } else {
-                    runnable = runnable2;
                 }
                 ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItemAddChecked, SelectGiftsBottomSheet.this.list, runnable, 1);
                 ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItemAddChecked2, SelectGiftsBottomSheet.this.list, runnable, 2);
                 ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItemAddChecked3, SelectGiftsBottomSheet.this.list, runnable, 4);
                 ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItemAddChecked4, SelectGiftsBottomSheet.this.list, runnable, 8);
                 if (zCanUserDoAction) {
-                    ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItem4, SelectGiftsBottomSheet.this.list, runnable, 256);
-                    ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItem3, SelectGiftsBottomSheet.this.list, runnable, 512);
+                    ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItem, SelectGiftsBottomSheet.this.list, runnable, 256);
+                    ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItem2, SelectGiftsBottomSheet.this.list, runnable, 512);
                 }
                 itemOptions.setOnTopOfScrim().setDismissWithButtons(false).setDimAlpha(0).show();
             }
 
-            public void lambda$onItemClick$0(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, ActionBarMenuSubItem actionBarMenuSubItem3, ActionBarMenuSubItem actionBarMenuSubItem4, ActionBarMenuSubItem actionBarMenuSubItem5, boolean z, ActionBarMenuSubItem actionBarMenuSubItem6, ActionBarMenuSubItem actionBarMenuSubItem7) {
+            public static void $r8$lambda$IcdlJC7TVfsKOHnB6Be7V6jgB84(AnonymousClass1 anonymousClass1, ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, ActionBarMenuSubItem actionBarMenuSubItem3, ActionBarMenuSubItem actionBarMenuSubItem4, ActionBarMenuSubItem actionBarMenuSubItem5, boolean z, ActionBarMenuSubItem actionBarMenuSubItem6, ActionBarMenuSubItem actionBarMenuSubItem7) {
                 if (actionBarMenuSubItem != null) {
                     actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(SelectGiftsBottomSheet.this.list.sort_by_date ? R.string.Gift2FilterSortByValue : R.string.Gift2FilterSortByDate), SelectGiftsBottomSheet.this.list.sort_by_date ? R.drawable.menu_sort_value : R.drawable.menu_sort_date);
                 }
@@ -2710,31 +2688,35 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 }
             }
 
-            public void lambda$onItemClick$1(Runnable runnable, View view) {
+            public static void $r8$lambda$XRhR24oKa1QANegvfiMTd7fTHmo(AnonymousClass1 anonymousClass1, Runnable runnable, View view) {
                 SelectGiftsBottomSheet.this.list.sort_by_date = !SelectGiftsBottomSheet.this.list.sort_by_date;
                 runnable.run();
                 SelectGiftsBottomSheet.this.list.invalidate(true);
             }
         }
 
-        public void lambda$new$0(Utilities.Callback callback, View view) {
+        public static void m3231$r8$lambda$Dl2KMO6KZDYNJexOVjsPeoWN38(SelectGiftsBottomSheet selectGiftsBottomSheet, Utilities.Callback callback, View view) {
             TL_stars.SavedStarGift savedStarGift;
-            if (this.selectedGiftIds.isEmpty()) {
+            if (selectGiftsBottomSheet.selectedGiftIds.isEmpty()) {
                 return;
             }
             ArrayList arrayList = new ArrayList();
-            Iterator it = this.selectedGiftIds.iterator();
+            Iterator it = selectGiftsBottomSheet.selectedGiftIds.iterator();
             while (it.hasNext()) {
                 long jLongValue = ((Long) it.next()).longValue();
-                Iterator it2 = this.list.gifts.iterator();
+                ArrayList arrayList2 = selectGiftsBottomSheet.list.gifts;
+                int size = arrayList2.size();
+                int i = 0;
                 do {
-                    if (!it2.hasNext()) {
+                    if (i >= size) {
                         savedStarGift = null;
                         break;
                     }
-                    savedStarGift = (TL_stars.SavedStarGift) it2.next();
-                    int i = savedStarGift.msg_id;
-                    if (i != 0 && i == jLongValue) {
+                    Object obj = arrayList2.get(i);
+                    i++;
+                    savedStarGift = (TL_stars.SavedStarGift) obj;
+                    int i2 = savedStarGift.msg_id;
+                    if (i2 != 0 && i2 == jLongValue) {
                         break;
                     }
                 } while (savedStarGift.saved_id != jLongValue);
@@ -2743,12 +2725,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 }
             }
             callback.run(arrayList);
-            lambda$new$0();
+            selectGiftsBottomSheet.dismiss();
         }
 
-        public void lambda$new$1(View view, int i) {
+        public static void $r8$lambda$6kek0Y656Ab2fw4vKC0lusCPj1k(SelectGiftsBottomSheet selectGiftsBottomSheet, View view, int i) {
             UItem item;
-            UniversalAdapter universalAdapter = this.adapter;
+            UniversalAdapter universalAdapter = selectGiftsBottomSheet.adapter;
             if (universalAdapter == null || (item = universalAdapter.getItem(i - 1)) == null) {
                 return;
             }
@@ -2757,15 +2739,15 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 int i2 = savedStarGift.msg_id;
                 long j = i2 == 0 ? savedStarGift.saved_id : i2;
-                if (this.selectedGiftIds.contains(Long.valueOf(j))) {
-                    this.selectedGiftIds.remove(Long.valueOf(j));
+                if (selectGiftsBottomSheet.selectedGiftIds.contains(Long.valueOf(j))) {
+                    selectGiftsBottomSheet.selectedGiftIds.remove(Long.valueOf(j));
                     ((GiftSheet.GiftCell) view).setChecked(false, true);
                 } else {
-                    this.selectedGiftIds.add(Long.valueOf(j));
+                    selectGiftsBottomSheet.selectedGiftIds.add(Long.valueOf(j));
                     ((GiftSheet.GiftCell) view).setChecked(true, true);
                 }
-                this.button.setEnabled(this.selectedGiftIds.size() > 0);
-                this.button.setCount(this.selectedGiftIds.size(), true);
+                selectGiftsBottomSheet.button.setEnabled(selectGiftsBottomSheet.selectedGiftIds.size() > 0);
+                selectGiftsBottomSheet.button.setCount(selectGiftsBottomSheet.selectedGiftIds.size(), true);
             }
         }
 
@@ -2794,9 +2776,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
 
         @Override
-        public void lambda$new$0() {
+        public void dismiss() {
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-            super.lambda$new$0();
+            super.dismiss();
         }
 
         @Override
@@ -2819,7 +2801,6 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
         public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
             int i;
-            int i2;
             if (this.list == null) {
                 return;
             }
@@ -2836,20 +2817,24 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 arrayList.add(UItem.asFlicker(8, 34).setSpanCount(1));
                 arrayList.add(UItem.asFlicker(9, 34).setSpanCount(1));
             } else {
-                Iterator it = this.list.gifts.iterator();
+                ArrayList arrayList2 = this.list.gifts;
+                int size = arrayList2.size();
+                int i2 = 0;
+                int i3 = 0;
                 loop0: while (true) {
                     i = 3;
                     while (true) {
-                        i2 = 0;
-                        if (!it.hasNext()) {
+                        if (i3 >= size) {
                             break loop0;
                         }
-                        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
+                        Object obj = arrayList2.get(i3);
+                        i3++;
+                        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                         if (!savedStarGift.collection_id.contains(Integer.valueOf(this.collectionId))) {
                             UItem uItemAsStarGift = GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift, true, true, false);
                             HashSet hashSet = this.selectedGiftIds;
-                            int i3 = savedStarGift.msg_id;
-                            arrayList.add(uItemAsStarGift.setChecked(hashSet.contains(Long.valueOf(i3 == 0 ? savedStarGift.saved_id : i3))).setSpanCount(1));
+                            int i4 = savedStarGift.msg_id;
+                            arrayList.add(uItemAsStarGift.setChecked(hashSet.contains(Long.valueOf(i4 == 0 ? savedStarGift.saved_id : i4))).setSpanCount(1));
                             i--;
                             if (i == 0) {
                                 break;
@@ -2876,23 +2861,23 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$22(giftsList, i, runnable, view2);
+                ProfileGiftsContainer.$r8$lambda$tYVcLJaoSuZkHNIzrEi_rPUek2E(giftsList, i, runnable, view2);
             }
         });
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view2) {
-                return ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$23(giftsList, i, runnable, view2);
+                return ProfileGiftsContainer.$r8$lambda$bEzDNpga9c41IzwYlyeh3jZ7Fbo(giftsList, i, runnable, view2);
             }
         });
     }
 
-    public static void lambda$setGiftFilterOptionsClickListeners$22(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
+    public static void $r8$lambda$tYVcLJaoSuZkHNIzrEi_rPUek2E(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
         giftsList.toggleTypeIncludeFlag(i);
         runnable.run();
     }
 
-    public static boolean lambda$setGiftFilterOptionsClickListeners$23(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
+    public static boolean $r8$lambda$bEzDNpga9c41IzwYlyeh3jZ7Fbo(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
         giftsList.forceTypeIncludeFlag(i, true);
         runnable.run();
         return true;
@@ -2903,7 +2888,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         this.iBlur3Capture = new IBlur3Capture() {
             @Override
             public final void capture(Canvas canvas, RectF rectF) {
-                this.f$0.lambda$initBlurCapture$24(canvas, rectF);
+                ProfileGiftsContainer.m3217$r8$lambda$mXcSTQyN3FqX_PyRQqOzAu7dhY(this.f$0, canvas, rectF);
             }
 
             @Override
@@ -2913,13 +2898,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         };
     }
 
-    public void lambda$initBlurCapture$24(Canvas canvas, RectF rectF) {
-        for (View view : this.viewPager.getViewPages()) {
+    public static void m3217$r8$lambda$mXcSTQyN3FqX_PyRQqOzAu7dhY(ProfileGiftsContainer profileGiftsContainer, Canvas canvas, RectF rectF) {
+        for (View view : profileGiftsContainer.viewPager.getViewPages()) {
             if (view instanceof Page) {
                 Page page = (Page) view;
                 if (page.iBlur3Capture == null) {
                     UniversalRecyclerView universalRecyclerView = page.listView;
-                    ViewGroup viewGroup = this.iBlur3CaptureParent;
+                    ViewGroup viewGroup = profileGiftsContainer.iBlur3CaptureParent;
                     UniversalRecyclerView universalRecyclerView2 = page.listView;
                     Objects.requireNonNull(universalRecyclerView2);
                     page.iBlur3Capture = new ViewGroupPartRenderer(universalRecyclerView, viewGroup, new CallLogActivity$$ExternalSyntheticLambda6(universalRecyclerView2));

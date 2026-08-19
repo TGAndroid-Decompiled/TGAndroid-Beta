@@ -92,7 +92,7 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$0(view2);
+                RichMapCell.$r8$lambda$oAtZD4Guvuz8abQ26JVD59i2l7c(this.f$0, view2);
             }
         });
         addView(view, LayoutHelper.createFrame(-1, -2, 51));
@@ -167,10 +167,10 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
         updateColors();
     }
 
-    public void lambda$new$0(View view) {
+    public static void $r8$lambda$oAtZD4Guvuz8abQ26JVD59i2l7c(RichMapCell richMapCell, View view) {
         Delegate delegate;
-        BlockRow blockRow = this.currentRow;
-        if (blockRow == null || (delegate = this.delegate) == null) {
+        BlockRow blockRow = richMapCell.currentRow;
+        if (blockRow == null || (delegate = richMapCell.delegate) == null) {
             return;
         }
         delegate.onPickLocation(blockRow);
@@ -325,8 +325,10 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Canvas canvas2;
         if (getMap() != null) {
-            canvas.drawRect(this.imageReceiver.getImageX(), this.imageReceiver.getImageY(), this.imageReceiver.getImageX2(), this.imageReceiver.getImageY2(), this.backgroundPaint);
+            canvas2 = canvas;
+            canvas2.drawRect(this.imageReceiver.getImageX(), this.imageReceiver.getImageY(), this.imageReceiver.getImageX2(), this.imageReceiver.getImageY2(), this.backgroundPaint);
             int centerX = (int) this.imageReceiver.getCenterX();
             int centerY = (int) this.imageReceiver.getCenterY();
             Drawable drawable = this.placeholderIcon;
@@ -335,10 +337,10 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
                 int intrinsicHeight = centerY - (this.placeholderIcon.getIntrinsicHeight() / 2);
                 Drawable drawable2 = this.placeholderIcon;
                 drawable2.setBounds(intrinsicWidth, intrinsicHeight, drawable2.getIntrinsicWidth() + intrinsicWidth, this.placeholderIcon.getIntrinsicHeight() + intrinsicHeight);
-                this.placeholderIcon.draw(canvas);
+                this.placeholderIcon.draw(canvas2);
             }
             if (hasLocation()) {
-                this.imageReceiver.draw(canvas);
+                this.imageReceiver.draw(canvas2);
                 if (this.currentMapProvider == 2 && this.imageReceiver.hasNotThumb()) {
                     if (this.redPinIcon == null) {
                         this.redPinIcon = getContext().getResources().getDrawable(R.drawable.map_pin).mutate();
@@ -349,12 +351,14 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
                     int centerY2 = (int) (this.imageReceiver.getCenterY() - intrinsicHeight2);
                     this.redPinIcon.setAlpha((int) (this.imageReceiver.getCurrentAlpha() * 255.0f));
                     this.redPinIcon.setBounds(centerX2, centerY2, intrinsicWidth2 + centerX2, intrinsicHeight2 + centerY2);
-                    this.redPinIcon.draw(canvas);
+                    this.redPinIcon.draw(canvas2);
                 }
             }
+        } else {
+            canvas2 = canvas;
         }
         if (isCellSelected()) {
-            canvas.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.mapImageH, this.selectionPaint);
+            canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.mapImageH, this.selectionPaint);
         }
     }
 

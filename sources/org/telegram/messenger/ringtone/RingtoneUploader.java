@@ -45,29 +45,31 @@ public class RingtoneUploader implements NotificationCenter.NotificationCenterDe
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(uploadringtone, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$didReceivedNotification$1(tLObject, tL_error);
+                        RingtoneUploader.m1123$r8$lambda$jbOppAXzptJ_jvu9jIeUDTVp9Q(this.f$0, tLObject, tL_error);
                     }
                 });
             }
         }
     }
 
-    public void lambda$didReceivedNotification$1(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1123$r8$lambda$jbOppAXzptJ_jvu9jIeUDTVp9Q(final RingtoneUploader ringtoneUploader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        ringtoneUploader.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didReceivedNotification$0(tLObject, tL_error);
+                RingtoneUploader.m1122$r8$lambda$SeRFJ9lbeJZGK6JbUejxBryK_s(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$0(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1122$r8$lambda$SeRFJ9lbeJZGK6JbUejxBryK_s(RingtoneUploader ringtoneUploader, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
-            onComplete((TLRPC.Document) tLObject);
+            ringtoneUploader.getClass();
+            ringtoneUploader.onComplete((TLRPC.Document) tLObject);
         } else {
-            error(tL_error);
+            ringtoneUploader.error(tL_error);
         }
-        unsubscribe();
+        ringtoneUploader.unsubscribe();
     }
 
     private void subscribe() {
@@ -98,19 +100,20 @@ public class RingtoneUploader implements NotificationCenter.NotificationCenterDe
             NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$error$2(tL_error);
+                    RingtoneUploader.$r8$lambda$KGu6YqtdvxlF9yXjggKm_1ETfBc(this.f$0, tL_error);
                 }
             });
         }
     }
 
-    public void lambda$error$2(TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$KGu6YqtdvxlF9yXjggKm_1ETfBc(RingtoneUploader ringtoneUploader, TLRPC.TL_error tL_error) {
+        ringtoneUploader.getClass();
         if (tL_error.text.equals("RINGTONE_DURATION_TOO_LONG")) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 4, LocaleController.formatString("TooLongError", R.string.TooLongError, new Object[0]), LocaleController.formatString("ErrorRingtoneDurationTooLong", R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(this.currentAccount).ringtoneDurationMax)));
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 4, LocaleController.formatString("TooLongError", R.string.TooLongError, new Object[0]), LocaleController.formatString("ErrorRingtoneDurationTooLong", R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(ringtoneUploader.currentAccount).ringtoneDurationMax)));
         } else if (tL_error.text.equals("RINGTONE_SIZE_TOO_BIG")) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 4, LocaleController.formatString("TooLargeError", R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(this.currentAccount).ringtoneSizeMax / 1024)));
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 4, LocaleController.formatString("TooLargeError", R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(ringtoneUploader.currentAccount).ringtoneSizeMax / 1024)));
         } else {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 4, LocaleController.formatString("InvalidFormatError", R.string.InvalidFormatError, new Object[0]), LocaleController.getString(R.string.ErrorRingtoneInvalidFormat));
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 4, LocaleController.formatString("InvalidFormatError", R.string.InvalidFormatError, new Object[0]), LocaleController.getString(R.string.ErrorRingtoneInvalidFormat));
         }
     }
 }

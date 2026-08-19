@@ -80,12 +80,12 @@ public abstract class PhotoViewerWebView extends FrameLayout {
     public void showControls() {
     }
 
-    public void lambda$new$0() {
-        if (this.isYouTube) {
-            runJsCode("pollPosition();");
+    public static void $r8$lambda$409kiaar7EZyRtl7vZWqg2zHetk(PhotoViewerWebView photoViewerWebView) {
+        if (photoViewerWebView.isYouTube) {
+            photoViewerWebView.runJsCode("pollPosition();");
         }
-        if (this.isPlaying) {
-            AndroidUtilities.runOnUIThread(this.progressRunnable, 500L);
+        if (photoViewerWebView.isPlaying) {
+            AndroidUtilities.runOnUIThread(photoViewerWebView.progressRunnable, 500L);
         }
     }
 
@@ -98,12 +98,12 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onPlayerLoaded$0();
+                    PhotoViewerWebView.YoutubeProxy.$r8$lambda$V4YoBIad235lmaYXoh4Mrz9eFxo(this.f$0);
                 }
             });
         }
 
-        public void lambda$onPlayerLoaded$0() {
+        public static void $r8$lambda$V4YoBIad235lmaYXoh4Mrz9eFxo(YoutubeProxy youtubeProxy) {
             PhotoViewerWebView.this.progressBar.setVisibility(4);
             if (PhotoViewerWebView.this.setPlaybackSpeed) {
                 PhotoViewerWebView.this.setPlaybackSpeed = false;
@@ -123,12 +123,12 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onPlayerError$2(i);
+                    PhotoViewerWebView.YoutubeProxy.m2556$r8$lambda$L7ZujLweiIYoSKzRI9Fp6Ljv5M(this.f$0, i);
                 }
             });
         }
 
-        public void lambda$onPlayerError$2(int i) {
+        public static void m2556$r8$lambda$L7ZujLweiIYoSKzRI9Fp6Ljv5M(final YoutubeProxy youtubeProxy, int i) {
             PhotoViewerWebView.this.errorButton.setVisibility(8);
             PhotoViewerWebView.this.webView.setVisibility(8);
             if (PhotoViewerWebView.this.errorLayout.getVisibility() == 8) {
@@ -173,7 +173,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
                 PhotoViewerWebView.this.errorButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$onPlayerError$1(view);
+                        PhotoViewerWebView.YoutubeProxy.m2558$r8$lambda$HlR0aBk4wXDwLYWN5pxqpHYeQ0(this.f$0, view);
                     }
                 });
                 return;
@@ -181,7 +181,8 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             PhotoViewerWebView.this.errorMessage.setText(LocaleController.getString(R.string.YouTubeVideoErrorHTML));
         }
 
-        public void lambda$onPlayerError$1(View view) {
+        public static void m2558$r8$lambda$HlR0aBk4wXDwLYWN5pxqpHYeQ0(YoutubeProxy youtubeProxy, View view) {
+            youtubeProxy.getClass();
             view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(PhotoViewerWebView.this.currentWebpage.url)));
         }
 
@@ -210,24 +211,16 @@ public abstract class PhotoViewerWebView extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onPlayerStateChange$3();
+                        PhotoViewerWebView.this.progressBarBlackBackground.setVisibility(4);
                     }
                 }, 300L);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onPlayerStateChange$4(z2, i2);
+                    PhotoViewerWebView.this.photoViewer.updateWebPlayerState(z2, i2);
                 }
             });
-        }
-
-        public void lambda$onPlayerStateChange$3() {
-            PhotoViewerWebView.this.progressBarBlackBackground.setVisibility(4);
-        }
-
-        public void lambda$onPlayerStateChange$4(boolean z, int i) {
-            PhotoViewerWebView.this.photoViewer.updateWebPlayerState(z, i);
         }
 
         @JavascriptInterface
@@ -258,7 +251,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         this.progressRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                PhotoViewerWebView.$r8$lambda$409kiaar7EZyRtl7vZWqg2zHetk(this.f$0);
             }
         };
         this.photoViewer = photoViewer;
@@ -363,15 +356,16 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             Utilities.externalNetworkQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$shouldInterceptRequest$0(string, webResourceRequest);
+                    PhotoViewerWebView.AnonymousClass2.$r8$lambda$5oTX3ciEI7nGbMYoR33CmCaXIjI(this.f$0, string, webResourceRequest);
                 }
             });
             return null;
         }
 
-        public void lambda$shouldInterceptRequest$0(String str, WebResourceRequest webResourceRequest) {
+        public static void $r8$lambda$5oTX3ciEI7nGbMYoR33CmCaXIjI(AnonymousClass2 anonymousClass2, String str, WebResourceRequest webResourceRequest) {
             JSONObject jSONObjectOptJSONObject;
             String strOptString;
+            anonymousClass2.getClass();
             try {
                 HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -567,7 +561,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$seekTo$1(j, z);
+                    PhotoViewerWebView.$r8$lambda$bMyoKEu8UHKXcUPDple45jAYiyY(this.f$0, j, z);
                 }
             }, 100L);
             return;
@@ -575,8 +569,9 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         runJsCode("seekTo(" + Math.round(j / 1000.0f) + ", " + z + ");");
     }
 
-    public void lambda$seekTo$1(long j, boolean z) {
-        runJsCode("seekTo(" + Math.round(j / 1000.0f) + ", " + z + ");");
+    public static void $r8$lambda$bMyoKEu8UHKXcUPDple45jAYiyY(final PhotoViewerWebView photoViewerWebView, long j, boolean z) {
+        photoViewerWebView.getClass();
+        photoViewerWebView.runJsCode("seekTo(" + Math.round(j / 1000.0f) + ", " + z + ");");
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

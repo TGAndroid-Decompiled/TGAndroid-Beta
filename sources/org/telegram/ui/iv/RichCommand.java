@@ -64,7 +64,13 @@ public class RichCommand {
         }
         String lowerCase = strTrim.toLowerCase();
         ArrayList arrayList = new ArrayList();
-        for (RichCommand richCommand : get()) {
+        ArrayList arrayList2 = get();
+        int size = arrayList2.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList2.get(i);
+            i++;
+            RichCommand richCommand = (RichCommand) obj;
             if (lowerCase.isEmpty() || richCommand.matches(lowerCase)) {
                 arrayList.add(richCommand);
             }

@@ -29,7 +29,6 @@ import j$.util.Comparator$CC;
 import j$.util.List;
 import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.function.ToDoubleFunction;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
@@ -110,27 +109,27 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
     private final StarGiftSheet.TopView topView;
     private final ViewGroupPartRenderer viewGroupPartRenderer;
 
-    private enum Mode {
+    enum Mode {
         RANDOM,
         SELECTED
     }
 
-    public static void lambda$new$0(View view) {
+    public static void m4095$r8$lambda$4FWGrWE3omtJROED_SUH0Jjw8(View view) {
     }
 
-    public static void lambda$new$1(View view) {
+    public static void $r8$lambda$6dDAB4oCjfBKUgjWLOcaEjDuSkE(View view) {
     }
 
-    public static void lambda$new$2(View view) {
+    public static void $r8$lambda$KA5_ktOev1iK_ZrKmafS83L4Id0(View view) {
     }
 
-    public static void lambda$new$3(View view) {
+    public static void $r8$lambda$KnSj2HOwjZNsG6702N0SOUDyuqk(View view) {
     }
 
-    public static void lambda$new$4(View view) {
+    public static void $r8$lambda$XzRzPJ0E1kCKde_hMMjhveM1TV8(View view) {
     }
 
-    public static void lambda$new$5(View view) {
+    public static void $r8$lambda$yxN4xk9JINfkJndZctv0O4QuA2I(View view) {
     }
 
     @Override
@@ -304,37 +303,37 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         StarGiftSheet.TopView topView = new StarGiftSheet.TopView(context, resourcesProvider, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openCrafting$8();
+                this.f$0.onBackPressed();
             }
         }, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftPreviewSheet.lambda$new$0(view);
+                StarGiftPreviewSheet.$r8$lambda$6dDAB4oCjfBKUgjWLOcaEjDuSkE(view);
             }
         }, null, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftPreviewSheet.lambda$new$1(view);
+                StarGiftPreviewSheet.$r8$lambda$KnSj2HOwjZNsG6702N0SOUDyuqk(view);
             }
         }, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftPreviewSheet.lambda$new$2(view);
+                StarGiftPreviewSheet.$r8$lambda$yxN4xk9JINfkJndZctv0O4QuA2I(view);
             }
         }, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftPreviewSheet.lambda$new$3(view);
+                StarGiftPreviewSheet.$r8$lambda$XzRzPJ0E1kCKde_hMMjhveM1TV8(view);
             }
         }, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftPreviewSheet.lambda$new$4(view);
+                StarGiftPreviewSheet.m4095$r8$lambda$4FWGrWE3omtJROED_SUH0Jjw8(view);
             }
         }, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftPreviewSheet.lambda$new$5(view);
+                StarGiftPreviewSheet.$r8$lambda$KA5_ktOev1iK_ZrKmafS83L4Id0(view);
             }
         }) {
             final float[] hsv = new float[3];
@@ -422,7 +421,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$6(view);
+                this.f$0.dismiss();
             }
         });
         ScaleStateListAnimator.apply(imageView);
@@ -435,7 +434,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$7(arrayList, view);
+                StarGiftPreviewSheet.m4094$r8$lambda$2kH6_qyfMTIz4Tva5xalY78F6A(this.f$0, arrayList, view);
             }
         });
         ScaleStateListAnimator.apply(imageView2);
@@ -463,7 +462,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         this.tabsSelectorView = new TabsSelectorView(context, resourcesProvider, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$8((Integer) obj);
+                StarGiftPreviewSheet.m4096$r8$lambda$gqE2otbWzJmsUuOECWCvtKXdSU(this.f$0, (Integer) obj);
             }
         });
         final int i4 = 0;
@@ -482,7 +481,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                 this.buttons[i4].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$9(i4, view);
+                        this.f$0.tabsSelectorView.selectTab(i4);
                     }
                 });
                 this.buttons[i4].setBackground(Theme.createRadSelectorDrawable(0, 285212671, 10, 10));
@@ -516,31 +515,23 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$new$6(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$new$7(ArrayList arrayList, View view) {
-        Mode mode = this.mode;
+    public static void m4094$r8$lambda$2kH6_qyfMTIz4Tva5xalY78F6A(StarGiftPreviewSheet starGiftPreviewSheet, ArrayList arrayList, View view) {
+        Mode mode = starGiftPreviewSheet.mode;
         Mode mode2 = Mode.SELECTED;
         if (mode == mode2) {
-            this.topView.setPreviewingAttributes(arrayList);
-            setMode(Mode.RANDOM);
+            starGiftPreviewSheet.topView.setPreviewingAttributes(arrayList);
+            starGiftPreviewSheet.setMode(Mode.RANDOM);
         } else if (mode == Mode.RANDOM) {
-            Attributes attributes = new Attributes(this.topView.getUpgradeBackdropAttribute(), this.topView.getUpgradePatternAttribute(), this.topView.getUpgradeImageViewAttribute());
-            this.selectedAttributes = attributes;
-            this.topView.setPreviewAttributes(attributes);
-            setMode(mode2);
+            Attributes attributes = new Attributes(starGiftPreviewSheet.topView.getUpgradeBackdropAttribute(), starGiftPreviewSheet.topView.getUpgradePatternAttribute(), starGiftPreviewSheet.topView.getUpgradeImageViewAttribute());
+            starGiftPreviewSheet.selectedAttributes = attributes;
+            starGiftPreviewSheet.topView.setPreviewAttributes(attributes);
+            starGiftPreviewSheet.setMode(mode2);
         }
     }
 
-    public void lambda$new$8(Integer num) {
-        this.itemAnimator.endAnimations();
-        this.adapter.update(true);
-    }
-
-    public void lambda$new$9(int i, View view) {
-        this.tabsSelectorView.selectTab(i);
+    public static void m4096$r8$lambda$gqE2otbWzJmsUuOECWCvtKXdSU(StarGiftPreviewSheet starGiftPreviewSheet, Integer num) {
+        starGiftPreviewSheet.itemAnimator.endAnimations();
+        starGiftPreviewSheet.adapter.update(true);
     }
 
     class AnonymousClass5 extends UniversalAdapter {
@@ -559,13 +550,13 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                 giftAttributeCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$onBindViewHolder$0(attributes, view2);
+                        StarGiftPreviewSheet.AnonymousClass5.$r8$lambda$R23LOsVTadFg7msTyVqP7t7_r10(this.f$0, attributes, view2);
                     }
                 });
             }
         }
 
-        public void lambda$onBindViewHolder$0(Attributes attributes, View view) {
+        public static void $r8$lambda$R23LOsVTadFg7msTyVqP7t7_r10(AnonymousClass5 anonymousClass5, Attributes attributes, View view) {
             if (StarGiftPreviewSheet.this.mode == Mode.RANDOM) {
                 StarGiftPreviewSheet starGiftPreviewSheet = StarGiftPreviewSheet.this;
                 starGiftPreviewSheet.selectedAttributes = new Attributes(starGiftPreviewSheet.topView.getUpgradeBackdropAttribute(), StarGiftPreviewSheet.this.topView.getUpgradePatternAttribute(), StarGiftPreviewSheet.this.topView.getUpgradeImageViewAttribute());
@@ -635,7 +626,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                 this.gradientTop.animate().alpha(z2 ? 1.0f : 0.0f).setDuration(200L).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$updateTranslationHeader$10(z2);
+                        StarGiftPreviewSheet.m4099$r8$lambda$woo__beTC8g7j3CXnwM35BwJGg(this.f$0, z2);
                     }
                 }).start();
             }
@@ -646,11 +637,12 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$updateTranslationHeader$10(boolean z) {
+    public static void m4099$r8$lambda$woo__beTC8g7j3CXnwM35BwJGg(StarGiftPreviewSheet starGiftPreviewSheet, boolean z) {
         if (z) {
-            return;
+            starGiftPreviewSheet.getClass();
+        } else {
+            starGiftPreviewSheet.gradientTop.setVisibility(8);
         }
-        this.gradientTop.setVisibility(8);
     }
 
     public void updateHeaderAttributes(boolean z) {
@@ -674,35 +666,49 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         this.rPatterns.reset();
         this.rModels.reset();
         int selectedTab = this.tabsSelectorView.getSelectedTab();
+        int i = 0;
         if (selectedTab == 0) {
             arrayList.add(UItem.asCenterShadow(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma(this.crafting ? "GiftPreviewCountModelsCrafting" : "GiftPreviewCountModels", this.models.size()))));
-            Iterator it = this.models.iterator();
-            while (it.hasNext()) {
-                arrayList.add(GiftAttributeCell.Factory.asAttribute(selectedTab, new Attributes((TL_stars.starGiftAttributeBackdrop) this.rBackdrops.next(), (TL_stars.starGiftAttributePattern) this.rPatterns.next(), (TL_stars.starGiftAttributeModel) it.next())));
+            ArrayList arrayList2 = this.models;
+            int size = arrayList2.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList2.get(i2);
+                i2++;
+                arrayList.add(GiftAttributeCell.Factory.asAttribute(selectedTab, new Attributes((TL_stars.starGiftAttributeBackdrop) this.rBackdrops.next(), (TL_stars.starGiftAttributePattern) this.rPatterns.next(), (TL_stars.starGiftAttributeModel) obj)));
             }
             if (this.simpleModels.isEmpty()) {
                 return;
             }
             arrayList.add(UItem.asCenterShadow(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma(this.crafting ? "GiftPreviewCountModelsCrafting2" : "GiftPreviewCountModels", this.models.size()))));
-            Iterator it2 = this.simpleModels.iterator();
-            while (it2.hasNext()) {
-                arrayList.add(GiftAttributeCell.Factory.asAttribute(selectedTab, new Attributes((TL_stars.starGiftAttributeBackdrop) this.rBackdrops.next(), (TL_stars.starGiftAttributePattern) this.rPatterns.next(), (TL_stars.starGiftAttributeModel) it2.next())));
+            ArrayList arrayList3 = this.simpleModels;
+            int size2 = arrayList3.size();
+            while (i < size2) {
+                Object obj2 = arrayList3.get(i);
+                i++;
+                arrayList.add(GiftAttributeCell.Factory.asAttribute(selectedTab, new Attributes((TL_stars.starGiftAttributeBackdrop) this.rBackdrops.next(), (TL_stars.starGiftAttributePattern) this.rPatterns.next(), (TL_stars.starGiftAttributeModel) obj2)));
             }
             return;
         }
         if (selectedTab == 1) {
             arrayList.add(UItem.asCenterShadow(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("GiftPreviewCountBackdrops", this.backdrops.size()))));
-            Iterator it3 = this.backdrops.iterator();
-            while (it3.hasNext()) {
-                arrayList.add(GiftAttributeCell.Factory.asAttribute(selectedTab, new Attributes((TL_stars.starGiftAttributeBackdrop) it3.next(), (TL_stars.starGiftAttributePattern) this.rPatterns.next(), (TL_stars.starGiftAttributeModel) this.rModels.next())));
+            ArrayList arrayList4 = this.backdrops;
+            int size3 = arrayList4.size();
+            while (i < size3) {
+                Object obj3 = arrayList4.get(i);
+                i++;
+                arrayList.add(GiftAttributeCell.Factory.asAttribute(selectedTab, new Attributes((TL_stars.starGiftAttributeBackdrop) obj3, (TL_stars.starGiftAttributePattern) this.rPatterns.next(), (TL_stars.starGiftAttributeModel) this.rModels.next())));
             }
             return;
         }
         if (selectedTab == 2) {
             arrayList.add(UItem.asCenterShadow(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("GiftPreviewCountSymbols", this.patterns.size()))));
-            Iterator it4 = this.patterns.iterator();
-            while (it4.hasNext()) {
-                arrayList.add(GiftAttributeCell.Factory.asAttribute(selectedTab, new Attributes((TL_stars.starGiftAttributeBackdrop) this.rBackdrops.next(), (TL_stars.starGiftAttributePattern) it4.next(), (TL_stars.starGiftAttributeModel) this.rModels.next())));
+            ArrayList arrayList5 = this.patterns;
+            int size4 = arrayList5.size();
+            while (i < size4) {
+                Object obj4 = arrayList5.get(i);
+                i++;
+                arrayList.add(GiftAttributeCell.Factory.asAttribute(selectedTab, new Attributes((TL_stars.starGiftAttributeBackdrop) this.rBackdrops.next(), (TL_stars.starGiftAttributePattern) obj4, (TL_stars.starGiftAttributeModel) this.rModels.next())));
             }
         }
     }
@@ -1049,7 +1055,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                     this.tabs[i2].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$new$0(i2, view);
+                            this.f$0.selectTab(i2);
                         }
                     });
                     i2++;
@@ -1058,10 +1064,6 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                     return;
                 }
             }
-        }
-
-        public void lambda$new$0(int i, View view) {
-            selectTab(i);
         }
 
         public void selectTab(int i) {
@@ -1134,16 +1136,18 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         }
         int selectedTab = this.tabsSelectorView.getSelectedTab();
         Attributes attributes2 = this.selectedAttributes;
-        if (attributes2 == null) {
-            return false;
+        if (attributes2 != null) {
+            if (selectedTab == 1) {
+                return attributes.backdrop == attributes2.backdrop;
+            }
+            if (selectedTab == 2) {
+                return attributes.pattern == attributes2.pattern;
+            }
+            if (selectedTab == 0 && attributes.model == attributes2.model) {
+                return true;
+            }
         }
-        if (selectedTab == 1) {
-            return attributes.backdrop == attributes2.backdrop;
-        }
-        if (selectedTab == 2) {
-            return attributes.pattern == attributes2.pattern;
-        }
-        return selectedTab == 0 && attributes.model == attributes2.model;
+        return false;
     }
 
     public Attributes newSelectedWithCurrentTab(Attributes attributes) {

@@ -62,15 +62,16 @@ public class AddReactionsSpan extends ReplacementSpan {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$show$0(view, valueAnimator);
+                AddReactionsSpan.$r8$lambda$0OeviAZXrV0dLH3lplfC2qgV6fs(this.f$0, view, valueAnimator);
             }
         });
         valueAnimatorOfInt.setDuration(200L);
         valueAnimatorOfInt.start();
     }
 
-    public void lambda$show$0(View view, ValueAnimator valueAnimator) {
-        this.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+    public static void $r8$lambda$0OeviAZXrV0dLH3lplfC2qgV6fs(AddReactionsSpan addReactionsSpan, View view, ValueAnimator valueAnimator) {
+        addReactionsSpan.getClass();
+        addReactionsSpan.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         view.invalidate();
     }
 
@@ -79,7 +80,7 @@ public class AddReactionsSpan extends ReplacementSpan {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$hide$1(view, valueAnimator);
+                AddReactionsSpan.m2690$r8$lambda$aIE8q3SgfDMxNMOnVXv54JQ85U(this.f$0, view, valueAnimator);
             }
         });
         valueAnimatorOfInt.addListener(new AnimatorListenerAdapter() {
@@ -92,8 +93,9 @@ public class AddReactionsSpan extends ReplacementSpan {
         valueAnimatorOfInt.start();
     }
 
-    public void lambda$hide$1(View view, ValueAnimator valueAnimator) {
-        this.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+    public static void m2690$r8$lambda$aIE8q3SgfDMxNMOnVXv54JQ85U(AddReactionsSpan addReactionsSpan, View view, ValueAnimator valueAnimator) {
+        addReactionsSpan.getClass();
+        addReactionsSpan.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         view.invalidate();
     }
 }

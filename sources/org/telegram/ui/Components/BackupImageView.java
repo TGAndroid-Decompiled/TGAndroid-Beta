@@ -51,7 +51,7 @@ public class BackupImageView extends View {
         this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                this.f$0.lambda$new$0(imageReceiver, z, z2, z3);
+                BackupImageView.$r8$lambda$SSpwY9JIva09_zn1IctmCr81d6o(this.f$0, imageReceiver, z, z2, z3);
             }
 
             @Override
@@ -66,11 +66,12 @@ public class BackupImageView extends View {
         });
     }
 
-    public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void $r8$lambda$SSpwY9JIva09_zn1IctmCr81d6o(BackupImageView backupImageView, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        backupImageView.getClass();
         if (!z || z2) {
             return;
         }
-        checkCreateBlurredImage();
+        backupImageView.checkCreateBlurredImage();
     }
 
     protected ImageReceiver createImageReciever() {

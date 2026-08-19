@@ -16,14 +16,14 @@ public class Tooltip extends TextView {
     Runnable dismissRunnable;
     private boolean showing;
 
-    public void lambda$new$0() {
-        ViewPropertyAnimator duration = animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+    public static void $r8$lambda$w_wKlM1fYPm5O3hWM05eoptY7jk(Tooltip tooltip) {
+        ViewPropertyAnimator duration = tooltip.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 Tooltip.this.setVisibility(8);
             }
         }).setDuration(300L);
-        this.animator = duration;
+        tooltip.animator = duration;
         duration.start();
     }
 
@@ -32,7 +32,7 @@ public class Tooltip extends TextView {
         this.dismissRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                Tooltip.$r8$lambda$w_wKlM1fYPm5O3hWM05eoptY7jk(this.f$0);
             }
         };
         setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(3.0f), i));

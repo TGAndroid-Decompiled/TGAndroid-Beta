@@ -24,7 +24,7 @@ public class CapsuleBlobDrawable extends Drawable {
     private static final TimeInterpolator SMOOTHER = new TimeInterpolator() {
         @Override
         public final float getInterpolation(float f) {
-            return CapsuleBlobDrawable.lambda$static$0(f);
+            return CapsuleBlobDrawable.$r8$lambda$UdYoPCaMa_YR8vttLQa0v7_hpD4(f);
         }
     };
     private float amplitude;
@@ -62,12 +62,12 @@ public class CapsuleBlobDrawable extends Drawable {
     private final Runnable mInvalidateSelf = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$1();
+            CapsuleBlobDrawable.$r8$lambda$w5XISAyYoo2Jk4lclLqmDPvqAfE(this.f$0);
         }
     };
     private int mAlpha = 255;
 
-    public static float lambda$static$0(float f) {
+    public static float $r8$lambda$UdYoPCaMa_YR8vttLQa0v7_hpD4(float f) {
         return f * f * f * ((f * ((6.0f * f) - 15.0f)) + 10.0f);
     }
 
@@ -179,9 +179,10 @@ public class CapsuleBlobDrawable extends Drawable {
         return Math.max(f5, layer2.pushMax + (f2 * layer2.breathScale) + (f4 * layer2.waveScale));
     }
 
-    public void lambda$new$1() {
+    public static void $r8$lambda$w5XISAyYoo2Jk4lclLqmDPvqAfE(CapsuleBlobDrawable capsuleBlobDrawable) {
+        capsuleBlobDrawable.getClass();
         if (LiteMode.isEnabled(512)) {
-            invalidateSelf();
+            capsuleBlobDrawable.invalidateSelf();
         }
     }
 

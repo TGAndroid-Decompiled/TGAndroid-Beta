@@ -65,29 +65,30 @@ public class UserNameResolver {
         final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$resolve$1(str, tLObject2, tL_error);
+                UserNameResolver.m1089$r8$lambda$1Yk5ZpB3LxtubF9sBJ2DTAOZIo(this.f$0, str, tLObject2, tL_error);
             }
         });
         return new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$resolve$2(str, iSendRequest);
+                UserNameResolver.$r8$lambda$SwNCHeKztFg6UdM4dVAQNfxrqnM(this.f$0, str, iSendRequest);
             }
         };
     }
 
-    public void lambda$resolve$1(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1089$r8$lambda$1Yk5ZpB3LxtubF9sBJ2DTAOZIo(final UserNameResolver userNameResolver, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        userNameResolver.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$resolve$0(str, tL_error, tLObject);
+                UserNameResolver.m1090$r8$lambda$N_TP1RdEDy8CFh9lbHlZ7xPnqw(this.f$0, str, tL_error, tLObject);
             }
         }, 2L);
     }
 
-    public void lambda$resolve$0(String str, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m1090$r8$lambda$N_TP1RdEDy8CFh9lbHlZ7xPnqw(UserNameResolver userNameResolver, String str, TLRPC.TL_error tL_error, TLObject tLObject) {
         BaseFragment lastFragment;
-        ArrayList<Consumer> arrayListRemove = this.resolvingConsumers.remove(str);
+        ArrayList<Consumer> arrayListRemove = userNameResolver.resolvingConsumers.remove(str);
         if (arrayListRemove == null) {
             return;
         }
@@ -113,20 +114,20 @@ public class UserNameResolver {
             return;
         }
         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
-        MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);
-        MessagesController.getInstance(this.currentAccount).putChats(tL_contacts_resolvedPeer.chats, false);
-        MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
+        MessagesController.getInstance(userNameResolver.currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);
+        MessagesController.getInstance(userNameResolver.currentAccount).putChats(tL_contacts_resolvedPeer.chats, false);
+        MessagesStorage.getInstance(userNameResolver.currentAccount).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
         long peerId = MessageObject.getPeerId(tL_contacts_resolvedPeer.peer);
-        this.resolvedCache.put(str, new CachedPeer(peerId));
+        userNameResolver.resolvedCache.put(str, userNameResolver.new CachedPeer(peerId));
         while (i < arrayListRemove.size()) {
             arrayListRemove.get(i).accept(Long.valueOf(peerId));
             i++;
         }
     }
 
-    public void lambda$resolve$2(String str, int i) {
-        this.resolvingConsumers.remove(str);
-        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
+    public static void $r8$lambda$SwNCHeKztFg6UdM4dVAQNfxrqnM(UserNameResolver userNameResolver, String str, int i) {
+        userNameResolver.resolvingConsumers.remove(str);
+        ConnectionsManager.getInstance(userNameResolver.currentAccount).cancelRequest(i, true);
     }
 
     public void update(TLRPC.User user, TLRPC.User user2) {
@@ -153,7 +154,7 @@ public class UserNameResolver {
         }
     }
 
-    private class CachedPeer {
+    class CachedPeer {
         final long peerId;
         final long time = System.currentTimeMillis();
 

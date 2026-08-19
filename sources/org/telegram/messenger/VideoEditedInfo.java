@@ -805,19 +805,24 @@ public class VideoEditedInfo {
                 return null;
             }
             ArrayList<StoryEntry> arrayList2 = new ArrayList<>();
-            for (Part part : arrayList) {
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Part part = arrayList.get(i);
+                i++;
+                Part part2 = part;
                 StoryEntry storyEntry = new StoryEntry();
-                storyEntry.isVideo = part.isVideo;
-                storyEntry.muted = part.muted;
-                storyEntry.file = new File(part.path);
-                storyEntry.videoVolume = part.volume;
-                storyEntry.videoLoop = part.loop;
-                storyEntry.videoOffset = part.offset;
-                storyEntry.videoLeft = part.left;
-                storyEntry.videoRight = part.right;
-                storyEntry.width = part.width;
-                storyEntry.height = part.height;
-                storyEntry.duration = part.duration;
+                storyEntry.isVideo = part2.isVideo;
+                storyEntry.muted = part2.muted;
+                storyEntry.file = new File(part2.path);
+                storyEntry.videoVolume = part2.volume;
+                storyEntry.videoLoop = part2.loop;
+                storyEntry.videoOffset = part2.offset;
+                storyEntry.videoLeft = part2.left;
+                storyEntry.videoRight = part2.right;
+                storyEntry.width = part2.width;
+                storyEntry.height = part2.height;
+                storyEntry.duration = part2.duration;
                 arrayList2.add(storyEntry);
             }
             return arrayList2;

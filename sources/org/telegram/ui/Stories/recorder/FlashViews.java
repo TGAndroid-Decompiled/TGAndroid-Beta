@@ -99,41 +99,39 @@ public class FlashViews {
         flashTo(1.0f, 320L, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$flash$3(callback);
+                FlashViews.$r8$lambda$R08TOrHUpyDLFbpjF4ZVOXU5rzw(this.f$0, callback);
             }
         });
     }
 
-    public void lambda$flash$3(final Utilities.Callback callback) {
+    public static void $r8$lambda$R08TOrHUpyDLFbpjF4ZVOXU5rzw(final FlashViews flashViews, final Utilities.Callback callback) {
+        flashViews.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$flash$2(callback);
+                FlashViews.$r8$lambda$YsGBG9l6lJie_KgZSTuJU0GjGJQ(this.f$0, callback);
             }
         }, 320L);
     }
 
-    public void lambda$flash$2(Utilities.Callback callback) {
+    public static void $r8$lambda$YsGBG9l6lJie_KgZSTuJU0GjGJQ(final FlashViews flashViews, Utilities.Callback callback) {
+        flashViews.getClass();
         callback.run(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$flash$1((Runnable) obj);
+                FlashViews.m4490$r8$lambda$3ObZRIGMTKpzqpmiu2tFCI0xNU(this.f$0, (Runnable) obj);
             }
         });
     }
 
-    public void lambda$flash$1(final Runnable runnable) {
-        setScreenBrightness(-1.0f);
+    public static void m4490$r8$lambda$3ObZRIGMTKpzqpmiu2tFCI0xNU(final FlashViews flashViews, final Runnable runnable) {
+        flashViews.setScreenBrightness(-1.0f);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$flash$0(runnable);
+                this.f$0.flashTo(0.0f, 240L, runnable);
             }
         }, 80L);
-    }
-
-    public void lambda$flash$0(Runnable runnable) {
-        flashTo(0.0f, 240L, runnable);
     }
 
     private void setScreenBrightness(float f) {
@@ -179,7 +177,7 @@ public class FlashViews {
         flashTo(0.0f, 240L, null);
     }
 
-    private void flashTo(final float f, long j, final Runnable runnable) {
+    public void flashTo(final float f, long j, final Runnable runnable) {
         ValueAnimator valueAnimator = this.animator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -199,7 +197,7 @@ public class FlashViews {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$flashTo$4(valueAnimator2);
+                FlashViews.$r8$lambda$7KhwyhqbluvfMfmdkYhyrOcH6HY(this.f$0, valueAnimator2);
             }
         });
         this.animator.addListener(new AnimatorListenerAdapter() {
@@ -218,9 +216,10 @@ public class FlashViews {
         this.animator.start();
     }
 
-    public void lambda$flashTo$4(ValueAnimator valueAnimator) {
-        this.invert = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        update();
+    public static void $r8$lambda$7KhwyhqbluvfMfmdkYhyrOcH6HY(FlashViews flashViews, ValueAnimator valueAnimator) {
+        flashViews.getClass();
+        flashViews.invert = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        flashViews.update();
     }
 
     public void update() {
@@ -282,7 +281,7 @@ public class FlashViews {
         } else {
             int i3 = this.lastWidth;
             int i4 = this.lastHeight;
-            this.gradient = new RadialGradient(i3 * 0.5f, 0.4f * i4, (Math.min(i3, i4) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            this.gradient = new RadialGradient(i3 * 0.5f, i4 * 0.4f, (Math.min(i3, i4) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         }
         this.paint.setShader(this.gradient);
         invalidate();

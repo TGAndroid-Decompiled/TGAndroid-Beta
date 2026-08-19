@@ -93,7 +93,7 @@ public class ChatMessagesMetadataController {
             this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$loadStoriesForMessages$2(i3, messageObject, j2, tLObject, tL_error);
+                    ChatMessagesMetadataController.$r8$lambda$gBMPgfVvbMyor0kZPTdBTkf916Y(this.f$0, i3, messageObject, j2, tLObject, tL_error);
                 }
             })));
         }
@@ -102,7 +102,8 @@ public class ChatMessagesMetadataController {
         }
     }
 
-    public void lambda$loadStoriesForMessages$2(int i, final MessageObject messageObject, final long j, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$gBMPgfVvbMyor0kZPTdBTkf916Y(final ChatMessagesMetadataController chatMessagesMetadataController, int i, final MessageObject messageObject, final long j, TLObject tLObject, TLRPC.TL_error tL_error) {
+        chatMessagesMetadataController.getClass();
         if (tLObject != null) {
             TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
             TL_stories.StoryItem tL_storyItemDeleted = tL_stories_stories.stories.size() > 0 ? tL_stories_stories.stories.get(0) : null;
@@ -115,33 +116,30 @@ public class ChatMessagesMetadataController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadStoriesForMessages$1(messageObject, j, storyItem);
+                    ChatMessagesMetadataController.$r8$lambda$NMt7yqqhKoev3YOznq0ba2GPiAQ(this.f$0, messageObject, j, storyItem);
                 }
             });
         }
     }
 
-    public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) {
+    public static void $r8$lambda$NMt7yqqhKoev3YOznq0ba2GPiAQ(final ChatMessagesMetadataController chatMessagesMetadataController, MessageObject messageObject, long j, TL_stories.StoryItem storyItem) {
+        chatMessagesMetadataController.getClass();
         boolean zIsExpiredStory = messageObject.isExpiredStory();
-        StoriesStorage.applyStory(this.chatActivity.getCurrentAccount(), j, messageObject, storyItem);
+        StoriesStorage.applyStory(chatMessagesMetadataController.chatActivity.getCurrentAccount(), j, messageObject, storyItem);
         final ArrayList arrayList = new ArrayList();
         messageObject.forceUpdate = true;
         arrayList.add(messageObject);
-        this.chatActivity.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+        chatMessagesMetadataController.chatActivity.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadStoriesForMessages$0(arrayList);
+                this.f$0.chatActivity.getMessagesController().getStoriesController().getStoriesStorage().updateMessagesWithStories(arrayList);
             }
         });
         if (!zIsExpiredStory && messageObject.isExpiredStory() && messageObject.type == 24) {
-            this.chatActivity.updateMessages(arrayList, true);
+            chatMessagesMetadataController.chatActivity.updateMessages(arrayList, true);
         } else {
-            this.chatActivity.updateMessages(arrayList, false);
+            chatMessagesMetadataController.chatActivity.updateMessages(arrayList, false);
         }
-    }
-
-    public void lambda$loadStoriesForMessages$0(ArrayList arrayList) {
-        this.chatActivity.getMessagesController().getStoriesController().getStoriesStorage().lambda$fillMessagesWithStories$13(arrayList);
     }
 
     public void loadReactionsForMessages(long j, ArrayList<MessageObject> arrayList) {
@@ -156,7 +154,7 @@ public class ChatMessagesMetadataController {
         this.reactionsRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getMessagesReactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadReactionsForMessages$3(tLObject, tL_error);
+                ChatMessagesMetadataController.m369$r8$lambda$xbfr_rJ_Vv3SlLBtnioI0_HMa8(this.f$0, tLObject, tL_error);
             }
         })));
         if (this.reactionsRequests.size() > 5) {
@@ -164,7 +162,8 @@ public class ChatMessagesMetadataController {
         }
     }
 
-    public void lambda$loadReactionsForMessages$3(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m369$r8$lambda$xbfr_rJ_Vv3SlLBtnioI0_HMa8(ChatMessagesMetadataController chatMessagesMetadataController, TLObject tLObject, TLRPC.TL_error tL_error) {
+        chatMessagesMetadataController.getClass();
         if (tL_error == null) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             for (int i = 0; i < updates.updates.size(); i++) {
@@ -172,7 +171,7 @@ public class ChatMessagesMetadataController {
                     ((TL_update.TL_updateMessageReactions) updates.updates.get(i)).updateUnreadState = false;
                 }
             }
-            this.chatActivity.getMessagesController().processUpdates(updates, false);
+            chatMessagesMetadataController.chatActivity.getMessagesController().processUpdates(updates, false);
         }
     }
 
@@ -188,7 +187,7 @@ public class ChatMessagesMetadataController {
         this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getExtendedMedia, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadExtendedMediaForMessages$4(tLObject, tL_error);
+                ChatMessagesMetadataController.$r8$lambda$oTLsHhIz8bp2ojpwkYylDNogmfE(this.f$0, tLObject, tL_error);
             }
         })));
         if (this.extendedMediaRequests.size() > 10) {
@@ -196,9 +195,11 @@ public class ChatMessagesMetadataController {
         }
     }
 
-    public void lambda$loadExtendedMediaForMessages$4(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$oTLsHhIz8bp2ojpwkYylDNogmfE(ChatMessagesMetadataController chatMessagesMetadataController, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
-            this.chatActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+            chatMessagesMetadataController.chatActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+        } else {
+            chatMessagesMetadataController.getClass();
         }
     }
 

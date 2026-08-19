@@ -176,71 +176,87 @@ public class SharingLiveLocationCell extends FrameLayout {
     }
 
     private CharSequence getName(final double d, final double d2) {
+        final SharingLiveLocationCell sharingLiveLocationCell;
         if (this.loading) {
             return this.lastName;
         }
         if (Math.abs(this.lastLat - d) > 1.0E-6d || Math.abs(this.lastLong - d2) > 1.0E-6d || TextUtils.isEmpty(this.lastName)) {
             this.loading = true;
+            sharingLiveLocationCell = this;
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$getName$1(d, d2);
+                    SharingLiveLocationCell.$r8$lambda$PA3dKh2MIeWGAHlym3JnYi7r18E(this.f$0, d, d2);
                 }
             });
+        } else {
+            sharingLiveLocationCell = this;
         }
-        return this.lastName;
+        return sharingLiveLocationCell.lastName;
     }
 
-    public void lambda$getName$1(final double d, final double d2) {
+    public static void $r8$lambda$PA3dKh2MIeWGAHlym3JnYi7r18E(final SharingLiveLocationCell sharingLiveLocationCell, double d, double d2) {
+        double d3;
+        double d4;
+        sharingLiveLocationCell.getClass();
         try {
-            List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocation(d, d2, 1);
-            if (fromLocation.isEmpty()) {
-                String strDetectOcean = LocationController.detectOcean(d2, d);
-                this.lastName = strDetectOcean;
-                if (strDetectOcean == null) {
-                    this.lastName = "";
+            d3 = d;
+            d4 = d2;
+            try {
+                List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocation(d3, d4, 1);
+                if (fromLocation.isEmpty()) {
+                    String strDetectOcean = LocationController.detectOcean(d4, d3);
+                    sharingLiveLocationCell.lastName = strDetectOcean;
+                    if (strDetectOcean == null) {
+                        sharingLiveLocationCell.lastName = "";
+                    } else {
+                        sharingLiveLocationCell.lastName = "🌊 " + ((Object) sharingLiveLocationCell.lastName);
+                    }
                 } else {
-                    this.lastName = "🌊 " + ((Object) this.lastName);
-                }
-            } else {
-                Address address = fromLocation.get(0);
-                StringBuilder sb = new StringBuilder();
-                HashSet<String> hashSet = new HashSet();
-                hashSet.add(address.getSubAdminArea());
-                hashSet.add(address.getAdminArea());
-                hashSet.add(address.getLocality());
-                hashSet.add(address.getCountryName());
-                for (String str : hashSet) {
-                    if (!TextUtils.isEmpty(str)) {
-                        if (sb.length() > 0) {
-                            sb.append(", ");
+                    Address address = fromLocation.get(0);
+                    StringBuilder sb = new StringBuilder();
+                    HashSet<String> hashSet = new HashSet();
+                    hashSet.add(address.getSubAdminArea());
+                    hashSet.add(address.getAdminArea());
+                    hashSet.add(address.getLocality());
+                    hashSet.add(address.getCountryName());
+                    for (String str : hashSet) {
+                        if (!TextUtils.isEmpty(str)) {
+                            if (sb.length() > 0) {
+                                sb.append(", ");
+                            }
+                            sb.append(str);
                         }
-                        sb.append(str);
+                    }
+                    sharingLiveLocationCell.lastName = sb.toString();
+                    String strCountryCodeToEmoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                    if (strCountryCodeToEmoji != null && Emoji.getEmojiDrawable(strCountryCodeToEmoji) != null) {
+                        sharingLiveLocationCell.lastName = strCountryCodeToEmoji + " " + ((Object) sharingLiveLocationCell.lastName);
                     }
                 }
-                this.lastName = sb.toString();
-                String strCountryCodeToEmoji = LocationController.countryCodeToEmoji(address.getCountryCode());
-                if (strCountryCodeToEmoji != null && Emoji.getEmojiDrawable(strCountryCodeToEmoji) != null) {
-                    this.lastName = strCountryCodeToEmoji + " " + ((Object) this.lastName);
-                }
+            } catch (Exception unused) {
             }
-        } catch (Exception unused) {
+        } catch (Exception unused2) {
+            d3 = d;
+            d4 = d2;
         }
+        final double d5 = d4;
+        final double d6 = d3;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$getName$0(d, d2);
+                SharingLiveLocationCell.m1502$r8$lambda$EeQTBbrkxpQ9t5wAdtyVVa9Sro(this.f$0, d6, d5);
             }
         });
     }
 
-    public void lambda$getName$0(double d, double d2) {
-        this.lastLat = d;
-        this.lastLong = d2;
-        this.loading = false;
-        CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(this.lastName, this.nameTextView.getPaint().getFontMetricsInt(), false);
-        this.lastName = charSequenceReplaceEmoji;
-        this.nameTextView.setText(charSequenceReplaceEmoji);
+    public static void m1502$r8$lambda$EeQTBbrkxpQ9t5wAdtyVVa9Sro(SharingLiveLocationCell sharingLiveLocationCell, double d, double d2) {
+        sharingLiveLocationCell.lastLat = d;
+        sharingLiveLocationCell.lastLong = d2;
+        sharingLiveLocationCell.loading = false;
+        CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(sharingLiveLocationCell.lastName, sharingLiveLocationCell.nameTextView.getPaint().getFontMetricsInt(), false);
+        sharingLiveLocationCell.lastName = charSequenceReplaceEmoji;
+        sharingLiveLocationCell.nameTextView.setText(charSequenceReplaceEmoji);
     }
 
     public void setDialog(MessageObject messageObject, Location location, boolean z) {
@@ -416,10 +432,11 @@ public class SharingLiveLocationCell extends FrameLayout {
             i = message.media.period;
             i2 = i3 + i;
         }
+        int i4 = i2;
         boolean z = i == Integer.MAX_VALUE;
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-        if (i2 >= currentTime || z) {
-            float fAbs = z ? 1.0f : Math.abs(i2 - currentTime) / i;
+        if (i4 >= currentTime || z) {
+            float fAbs = z ? 1.0f : Math.abs(i4 - currentTime) / i;
             if (LocaleController.isRTL) {
                 this.rect.set(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView != null ? 18.0f : 12.0f), AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView != null ? 48.0f : 42.0f));
             } else {
@@ -452,7 +469,7 @@ public class SharingLiveLocationCell extends FrameLayout {
                 this.foreverDrawable.draw(canvas);
                 return;
             }
-            String locationLeftTime = LocaleController.formatLocationLeftTime(i2 - currentTime);
+            String locationLeftTime = LocaleController.formatLocationLeftTime(i4 - currentTime);
             canvas.drawText(locationLeftTime, this.rect.centerX() - (Theme.chat_livePaint.measureText(locationLeftTime) / 2.0f), AndroidUtilities.dp(this.distanceTextView != null ? 37.0f : 31.0f), Theme.chat_livePaint);
         }
     }

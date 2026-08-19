@@ -435,7 +435,7 @@ public class WebRtcAudioRecord {
         Callable callable = new Callable() {
             @Override
             public final Object call() {
-                return this.f$0.lambda$scheduleLogRecordingConfigurationsTask$0(audioRecord);
+                return WebRtcAudioRecord.$r8$lambda$diScS9KLur04ciuoTfC5OpQrgtU(this.f$0, audioRecord);
             }
         };
         ScheduledFuture<String> scheduledFuture = this.future;
@@ -445,9 +445,9 @@ public class WebRtcAudioRecord {
         this.future = this.executor.schedule(callable, 100L, TimeUnit.MILLISECONDS);
     }
 
-    public String lambda$scheduleLogRecordingConfigurationsTask$0(AudioRecord audioRecord) {
-        if (this.audioRecord == audioRecord) {
-            logRecordingConfigurations(audioRecord, true);
+    public static String $r8$lambda$diScS9KLur04ciuoTfC5OpQrgtU(WebRtcAudioRecord webRtcAudioRecord, AudioRecord audioRecord) {
+        if (webRtcAudioRecord.audioRecord == audioRecord) {
+            webRtcAudioRecord.logRecordingConfigurations(audioRecord, true);
             return "Scheduled task is done";
         }
         Logging.d("WebRtcAudioRecordExternal", "audio record has changed");

@@ -33,7 +33,7 @@ public class DownscaleScrollableNoiseSuppressor {
 
     public static float convertRadiusToSigma(float f) {
         if (f > 0.0f) {
-            return 0.5f + (f * 0.57735f);
+            return (f * 0.57735f) + 0.5f;
         }
         return 0.0f;
     }
@@ -200,7 +200,6 @@ public class DownscaleScrollableNoiseSuppressor {
                 return;
             }
             this.lastHash = jCalcHash;
-            int i2 = 0;
             this.renderNodeOriginalWithOffset.setPosition(0, 0, width, height);
             this.renderNodeOriginalWithOffset.beginRecording(width, height).drawRenderNode(renderNode);
             this.renderNodeOriginalWithOffset.endRecording();
@@ -209,35 +208,34 @@ public class DownscaleScrollableNoiseSuppressor {
             recordingCanvasBeginRecording.scale(f4, f6);
             recordingCanvasBeginRecording.drawRenderNode(this.renderNodeOriginalWithOffset);
             this.renderNodeDownsampled[0].endRecording();
-            int i3 = 0;
+            int i2 = 0;
             while (true) {
                 RenderNode[] renderNodeArr2 = this.renderNodeDownsampled;
-                if (i3 >= renderNodeArr2.length) {
+                if (i2 >= renderNodeArr2.length) {
                     return;
                 }
-                renderNodeArr2[i3].setPosition(i2, i2, iRound, iRound2);
-                RecordingCanvas recordingCanvasBeginRecording2 = this.renderNodeDownsampled[i3].beginRecording(iRound, iRound2);
-                if (i3 > 0) {
-                    recordingCanvasBeginRecording2.drawRenderNode(this.renderNodeDownsampled[i2]);
+                renderNodeArr2[i2].setPosition(0, 0, iRound, iRound2);
+                RecordingCanvas recordingCanvasBeginRecording2 = this.renderNodeDownsampled[i2].beginRecording(iRound, iRound2);
+                if (i2 > 0) {
+                    recordingCanvasBeginRecording2.drawRenderNode(this.renderNodeDownsampled[0]);
                 } else {
                     recordingCanvasBeginRecording2.scale(f4, f6);
                     recordingCanvasBeginRecording2.drawRenderNode(this.renderNodeOriginalWithOffset);
                 }
-                this.renderNodeDownsampled[i3].endRecording();
+                this.renderNodeDownsampled[i2].endRecording();
                 if (this.simpleMode) {
-                    this.renderNodeDownsampled[i3].setScaleX(f7);
-                    this.renderNodeDownsampled[i3].setScaleY(f8);
-                    this.renderNodeDownsampled[i3].setPivotX(0.0f);
-                    this.renderNodeDownsampled[i3].setPivotY(0.0f);
+                    this.renderNodeDownsampled[i2].setScaleX(f7);
+                    this.renderNodeDownsampled[i2].setScaleY(f8);
+                    this.renderNodeDownsampled[i2].setPivotX(0.0f);
+                    this.renderNodeDownsampled[i2].setPivotY(0.0f);
                 } else {
-                    this.renderNodeRestored[i3].setPosition(0, 0, width, height);
-                    RecordingCanvas recordingCanvasBeginRecording3 = this.renderNodeRestored[i3].beginRecording(width, height);
+                    this.renderNodeRestored[i2].setPosition(0, 0, width, height);
+                    RecordingCanvas recordingCanvasBeginRecording3 = this.renderNodeRestored[i2].beginRecording(width, height);
                     recordingCanvasBeginRecording3.scale(f7, f8);
-                    recordingCanvasBeginRecording3.drawRenderNode(this.renderNodeDownsampled[i3]);
-                    this.renderNodeRestored[i3].endRecording();
+                    recordingCanvasBeginRecording3.drawRenderNode(this.renderNodeDownsampled[i2]);
+                    this.renderNodeRestored[i2].endRecording();
                 }
-                i3++;
-                i2 = 0;
+                i2++;
             }
         }
 

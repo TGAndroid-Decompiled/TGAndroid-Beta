@@ -44,7 +44,7 @@ public class QuickShareSelectorOverlayLayout extends View {
         QuickShareSelectorDrawable quickShareSelectorDrawable = new QuickShareSelectorDrawable(this, chatMessageCell, removeDuplicates(this.dialogs), strKey, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$open$0(strKey);
+                QuickShareSelectorOverlayLayout.$r8$lambda$TfLisoI1U3C3DWGzHII5TBGZ2KQ(this.f$0, strKey);
             }
         });
         quickShareSelectorDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
@@ -55,9 +55,9 @@ public class QuickShareSelectorOverlayLayout extends View {
         this.drawableHashMap.put(strKey, quickShareSelectorDrawable);
     }
 
-    public void lambda$open$0(String str) {
-        this.drawablesForRemove.add(str);
-        invalidate();
+    public static void $r8$lambda$TfLisoI1U3C3DWGzHII5TBGZ2KQ(QuickShareSelectorOverlayLayout quickShareSelectorOverlayLayout, String str) {
+        quickShareSelectorOverlayLayout.drawablesForRemove.add(str);
+        quickShareSelectorOverlayLayout.invalidate();
     }
 
     public boolean isActive() {
@@ -138,9 +138,13 @@ public class QuickShareSelectorOverlayLayout extends View {
         if (this.drawablesForRemove.isEmpty()) {
             return;
         }
-        Iterator it2 = this.drawablesForRemove.iterator();
-        while (it2.hasNext()) {
-            QuickShareSelectorDrawable quickShareSelectorDrawable = (QuickShareSelectorDrawable) this.drawableHashMap.remove((String) it2.next());
+        ArrayList arrayList = this.drawablesForRemove;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            QuickShareSelectorDrawable quickShareSelectorDrawable = (QuickShareSelectorDrawable) this.drawableHashMap.remove((String) obj);
             if (quickShareSelectorDrawable != null) {
                 quickShareSelectorDrawable.destroy();
             }
@@ -155,17 +159,23 @@ public class QuickShareSelectorOverlayLayout extends View {
         long j = userConfig.clientUserId;
         this.dialogs.add(Long.valueOf(j));
         if (userConfig.suggestContacts) {
-            for (TLRPC.TL_topPeer tL_topPeer : MediaDataController.getInstance(this.currentAccount).hints) {
-                long j2 = tL_topPeer.peer.user_id;
-                if (j2 != 0 && MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_topPeer.peer.user_id)) != null) {
+            ArrayList<TLRPC.TL_topPeer> arrayList = MediaDataController.getInstance(this.currentAccount).hints;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TLRPC.TL_topPeer tL_topPeer = arrayList.get(i);
+                i++;
+                TLRPC.TL_topPeer tL_topPeer2 = tL_topPeer;
+                long j2 = tL_topPeer2.peer.user_id;
+                if (j2 != 0 && MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_topPeer2.peer.user_id)) != null) {
                     this.dialogs.add(Long.valueOf(j2));
                 }
             }
         }
-        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
         ArrayList<TLRPC.Dialog> allDialogs = MessagesController.getInstance(this.currentAccount).getAllDialogs();
-        for (int i = 0; i < allDialogs.size(); i++) {
-            TLRPC.Dialog dialog = allDialogs.get(i);
+        for (int i2 = 0; i2 < allDialogs.size(); i2++) {
+            TLRPC.Dialog dialog = allDialogs.get(i2);
             if (dialog instanceof TLRPC.TL_dialog) {
                 long j3 = dialog.id;
                 if (j3 != j && !DialogObject.isEncryptedDialog(j3)) {
@@ -173,7 +183,7 @@ public class QuickShareSelectorOverlayLayout extends View {
                         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialog.id));
                         if (user != null && !UserObject.isBot(user) && !UserObject.isDeleted(user) && !UserObject.isService(user.id)) {
                             if (dialog.folder_id == 1) {
-                                arrayList.add(Long.valueOf(dialog.id));
+                                arrayList2.add(Long.valueOf(dialog.id));
                             } else {
                                 this.dialogs.add(Long.valueOf(dialog.id));
                             }
@@ -182,7 +192,7 @@ public class QuickShareSelectorOverlayLayout extends View {
                         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id));
                         if (chat != null && !chat.forum && !ChatObject.isNotInChat(chat) && ((!chat.gigagroup || ChatObject.hasAdminRights(chat)) && (!ChatObject.isChannel(chat) || chat.creator || (((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.post_messages) || chat.megagroup)))) {
                             if (dialog.folder_id == 1) {
-                                arrayList.add(Long.valueOf(dialog.id));
+                                arrayList2.add(Long.valueOf(dialog.id));
                             } else {
                                 this.dialogs.add(Long.valueOf(dialog.id));
                             }
@@ -191,7 +201,7 @@ public class QuickShareSelectorOverlayLayout extends View {
                 }
             }
         }
-        this.dialogs.addAll(arrayList);
+        this.dialogs.addAll(arrayList2);
     }
 
     private static String key(ChatMessageCell chatMessageCell) {
@@ -205,9 +215,12 @@ public class QuickShareSelectorOverlayLayout extends View {
     private static ArrayList removeDuplicates(ArrayList arrayList) {
         HashSet hashSet = new HashSet();
         ArrayList arrayList2 = new ArrayList();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            Long l = (Long) it.next();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Long l = (Long) obj;
             if (hashSet.add(l) && DialogObject.isUserDialog(l.longValue())) {
                 arrayList2.add(l);
             }

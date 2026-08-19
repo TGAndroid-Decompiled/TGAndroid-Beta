@@ -95,6 +95,7 @@ public class AudioRecordJNI {
     }
 
     private boolean tryInit(int i, int i2) {
+        int i3;
         AudioRecord audioRecord = this.audioRecord;
         if (audioRecord != null) {
             try {
@@ -104,11 +105,18 @@ public class AudioRecordJNI {
         }
         VLog.i("Trying to initialize AudioRecord with source=" + i + " and sample rate=" + i2);
         try {
-            this.audioRecord = new AudioRecord(i, i2, 16, 2, getBufferSize(this.bufferSize, 48000));
-        } catch (Exception e) {
-            VLog.e("AudioRecord init failed!", e);
+            i3 = i2;
+            try {
+                this.audioRecord = new AudioRecord(i, i3, 16, 2, getBufferSize(this.bufferSize, 48000));
+            } catch (Exception e) {
+                e = e;
+                VLog.e("AudioRecord init failed!", e);
+            }
+        } catch (Exception e2) {
+            e = e2;
+            i3 = i2;
         }
-        this.needResampling = i2 != 48000;
+        this.needResampling = i3 != 48000;
         AudioRecord audioRecord2 = this.audioRecord;
         return audioRecord2 != null && audioRecord2.getState() == 1;
     }
@@ -187,27 +195,27 @@ public class AudioRecordJNI {
         Thread thread = new Thread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$startThread$0(byteBufferAllocateDirect);
+                AudioRecordJNI.$r8$lambda$oMshtME2Pii1Z3ZKpPH1ohR0gNM(this.f$0, byteBufferAllocateDirect);
             }
         });
         this.thread = thread;
         thread.start();
     }
 
-    public void lambda$startThread$0(ByteBuffer byteBuffer) {
-        while (this.running) {
+    public static void $r8$lambda$oMshtME2Pii1Z3ZKpPH1ohR0gNM(AudioRecordJNI audioRecordJNI, ByteBuffer byteBuffer) {
+        while (audioRecordJNI.running) {
             try {
-                if (!this.needResampling) {
-                    this.audioRecord.read(this.buffer, 1920);
+                if (!audioRecordJNI.needResampling) {
+                    audioRecordJNI.audioRecord.read(audioRecordJNI.buffer, 1920);
                 } else {
-                    this.audioRecord.read(byteBuffer, 1764);
-                    Resampler.convert44to48(byteBuffer, this.buffer);
+                    audioRecordJNI.audioRecord.read(byteBuffer, 1764);
+                    Resampler.convert44to48(byteBuffer, audioRecordJNI.buffer);
                 }
-                if (!this.running) {
-                    this.audioRecord.stop();
+                if (!audioRecordJNI.running) {
+                    audioRecordJNI.audioRecord.stop();
                     break;
                 }
-                nativeCallback(this.buffer);
+                audioRecordJNI.nativeCallback(audioRecordJNI.buffer);
             } catch (Exception e) {
                 VLog.e(e);
             }

@@ -12,11 +12,17 @@ public abstract class ProgressionUtilKt {
 
     public static final int getProgressionLastElement(int i, int i2, int i3) {
         if (i3 > 0) {
-            return i >= i2 ? i2 : i2 - differenceModulo(i2, i, i3);
+            if (i < i2) {
+                return i2 - differenceModulo(i2, i, i3);
+            }
+        } else {
+            if (i3 >= 0) {
+                throw new IllegalArgumentException("Step is zero.");
+            }
+            if (i > i2) {
+                return i2 + differenceModulo(i, i2, -i3);
+            }
         }
-        if (i3 < 0) {
-            return i <= i2 ? i2 : i2 + differenceModulo(i, i2, -i3);
-        }
-        throw new IllegalArgumentException("Step is zero.");
+        return i2;
     }
 }

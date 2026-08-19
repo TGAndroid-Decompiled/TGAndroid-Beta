@@ -159,7 +159,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$addIconTab$0(i, view);
+                PagerSlidingTabStrip.$r8$lambda$fXfj9wgwaJ2taMvgKFD27LkgG5Y(this.f$0, i, view);
             }
         });
         this.tabsContainer.addView(imageView);
@@ -167,9 +167,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         imageView.setContentDescription(charSequence);
     }
 
-    public void lambda$addIconTab$0(int i, View view) {
-        if (!(this.pager.getAdapter() instanceof IconTabProvider) || ((IconTabProvider) this.pager.getAdapter()).canScrollToTab(i)) {
-            this.pager.setCurrentItem(i, false);
+    public static void $r8$lambda$fXfj9wgwaJ2taMvgKFD27LkgG5Y(PagerSlidingTabStrip pagerSlidingTabStrip, int i, View view) {
+        if (!(pagerSlidingTabStrip.pager.getAdapter() instanceof IconTabProvider) || ((IconTabProvider) pagerSlidingTabStrip.pager.getAdapter()).canScrollToTab(i)) {
+            pagerSlidingTabStrip.pager.setCurrentItem(i, false);
         }
     }
 
@@ -185,7 +185,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         textTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$addTab$1(i, view);
+                PagerSlidingTabStrip.m2459$r8$lambda$fjdAuTl2r62GqZaqZHorv5fjsI(this.f$0, i, view);
             }
         });
         textTab.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
@@ -193,9 +193,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         textTab.setSelected(i == this.currentPosition);
     }
 
-    public void lambda$addTab$1(int i, View view) {
-        if (!(this.pager.getAdapter() instanceof IconTabProvider) || ((IconTabProvider) this.pager.getAdapter()).canScrollToTab(i)) {
-            this.pager.setCurrentItem(i, false);
+    public static void m2459$r8$lambda$fjdAuTl2r62GqZaqZHorv5fjsI(PagerSlidingTabStrip pagerSlidingTabStrip, int i, View view) {
+        if (!(pagerSlidingTabStrip.pager.getAdapter() instanceof IconTabProvider) || ((IconTabProvider) pagerSlidingTabStrip.pager.getAdapter()).canScrollToTab(i)) {
+            pagerSlidingTabStrip.pager.setCurrentItem(i, false);
         }
     }
 

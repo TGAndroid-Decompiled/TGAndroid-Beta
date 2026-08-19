@@ -27,10 +27,10 @@ public class ChatActivityActionsButtonsLayout extends LinearLayout {
     private final Theme.ResourcesProvider resourcesProvider;
     private float totalVisibilityFactor;
 
-    public static void lambda$new$0(View view) {
+    public static void m2951$r8$lambda$93jBtX9Pu1HgVxuSin9Qptiq48(View view) {
     }
 
-    public static void lambda$new$1(View view) {
+    public static void m2952$r8$lambda$hGVeBG6LPQS6sq_sAAeOPhOqg(View view) {
     }
 
     public ChatActivityActionsButtonsLayout(Context context, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundColorProvider blurredBackgroundColorProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
@@ -45,7 +45,7 @@ public class ChatActivityActionsButtonsLayout extends LinearLayout {
         chatActivityBlurredRoundButtonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatActivityActionsButtonsLayout.lambda$new$0(view);
+                ChatActivityActionsButtonsLayout.m2951$r8$lambda$93jBtX9Pu1HgVxuSin9Qptiq48(view);
             }
         });
         ScaleStateListAnimator.apply(buttonHolder.button, 0.065f, 2.0f);
@@ -54,7 +54,7 @@ public class ChatActivityActionsButtonsLayout extends LinearLayout {
         chatActivityBlurredRoundButtonCreate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatActivityActionsButtonsLayout.lambda$new$1(view);
+                ChatActivityActionsButtonsLayout.m2952$r8$lambda$hGVeBG6LPQS6sq_sAAeOPhOqg(view);
             }
         });
         ScaleStateListAnimator.apply(buttonHolder2.button, 0.065f, 2.0f);

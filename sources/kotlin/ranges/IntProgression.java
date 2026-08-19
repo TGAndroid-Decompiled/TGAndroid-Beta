@@ -41,25 +41,20 @@ public class IntProgression implements Iterable {
 
     public boolean isEmpty() {
         if (this.step > 0) {
-            if (this.first <= this.last) {
-                return false;
-            }
-        } else if (this.first >= this.last) {
-            return false;
+            return this.first > this.last;
         }
-        return true;
+        return this.first < this.last;
     }
 
     public boolean equals(Object obj) {
-        if (obj instanceof IntProgression) {
-            if (!isEmpty() || !((IntProgression) obj).isEmpty()) {
-                IntProgression intProgression = (IntProgression) obj;
-                if (this.first != intProgression.first || this.last != intProgression.last || this.step != intProgression.step) {
-                }
-            }
+        if (!(obj instanceof IntProgression)) {
+            return false;
+        }
+        if (isEmpty() && ((IntProgression) obj).isEmpty()) {
             return true;
         }
-        return false;
+        IntProgression intProgression = (IntProgression) obj;
+        return this.first == intProgression.first && this.last == intProgression.last && this.step == intProgression.step;
     }
 
     public int hashCode() {

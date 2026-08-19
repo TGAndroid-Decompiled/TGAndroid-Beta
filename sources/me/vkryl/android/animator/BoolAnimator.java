@@ -64,6 +64,7 @@ public class BoolAnimator implements FactorAnimator.Target {
     }
 
     public void setValue(boolean z, boolean z2, View view) {
+        BoolAnimator boolAnimator;
         if (this.value == z && z2) {
             return;
         }
@@ -71,14 +72,17 @@ public class BoolAnimator implements FactorAnimator.Target {
         float f = z ? 1.0f : 0.0f;
         if (z2) {
             if (this.animator == null) {
-                FactorAnimator factorAnimator = new FactorAnimator(0, this, this.interpolator, this.duration, this.floatValue);
-                this.animator = factorAnimator;
-                long j = this.startDelay;
+                boolAnimator = this;
+                FactorAnimator factorAnimator = new FactorAnimator(0, boolAnimator, this.interpolator, this.duration, this.floatValue);
+                boolAnimator.animator = factorAnimator;
+                long j = boolAnimator.startDelay;
                 if (j != 0) {
                     factorAnimator.setStartDelay(j);
                 }
+            } else {
+                boolAnimator = this;
             }
-            this.animator.animateTo(f, view);
+            boolAnimator.animator.animateTo(f, view);
             return;
         }
         FactorAnimator factorAnimator2 = this.animator;

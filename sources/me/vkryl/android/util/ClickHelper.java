@@ -128,7 +128,7 @@ public class ClickHelper {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$scheduleLongPress$0(view);
+                    ClickHelper.$r8$lambda$3tzcHsM9ABuTHt50RGYGJT8fSbg(this.f$0, view);
                 }
             };
             this.longPressCallback = runnable;
@@ -136,15 +136,15 @@ public class ClickHelper {
         }
     }
 
-    public void lambda$scheduleLongPress$0(View view) {
-        if ((this.flags & 2) != 0) {
-            if (this.delegate.onLongPressRequestedAt(view, this.startX, this.startY)) {
-                this.flags &= -3;
-                this.longPressCallback = null;
-                onLongPress(view, this.startX, this.startY);
+    public static void $r8$lambda$3tzcHsM9ABuTHt50RGYGJT8fSbg(ClickHelper clickHelper, View view) {
+        if ((clickHelper.flags & 2) != 0) {
+            if (clickHelper.delegate.onLongPressRequestedAt(view, clickHelper.startX, clickHelper.startY)) {
+                clickHelper.flags &= -3;
+                clickHelper.longPressCallback = null;
+                clickHelper.onLongPress(view, clickHelper.startX, clickHelper.startY);
                 return;
             }
-            this.flags |= 8;
+            clickHelper.flags |= 8;
         }
     }
 

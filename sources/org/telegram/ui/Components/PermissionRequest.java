@@ -51,7 +51,7 @@ public abstract class PermissionRequest {
                 new AlertDialog.Builder(activityFindActivity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i3) {
-                        PermissionRequest.lambda$ensureEitherPermission$0(activityFindActivity, alertDialog, i3);
+                        PermissionRequest.$r8$lambda$q0hX_pJpuHZP4mTkT6vEQnDXWEE(activityFindActivity, alertDialog, i3);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
                 if (callback != null) {
@@ -64,12 +64,12 @@ public abstract class PermissionRequest {
         requestPermissions(strArr2, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PermissionRequest.lambda$ensureEitherPermission$1(strArr2, activityFindActivity, callback, (int[]) obj);
+                PermissionRequest.$r8$lambda$q9ATOAOAN4Qvrdb6vy7_1KuGHfs(strArr2, activityFindActivity, callback, (int[]) obj);
             }
         });
     }
 
-    public static void lambda$ensureEitherPermission$0(Activity activity, AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$q0hX_pJpuHZP4mTkT6vEQnDXWEE(Activity activity, AlertDialog alertDialog, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -79,7 +79,7 @@ public abstract class PermissionRequest {
         }
     }
 
-    public static void lambda$ensureEitherPermission$1(String[] strArr, Activity activity, Utilities.Callback callback, int[] iArr) {
+    public static void $r8$lambda$q9ATOAOAN4Qvrdb6vy7_1KuGHfs(String[] strArr, Activity activity, Utilities.Callback callback, int[] iArr) {
         boolean z = false;
         for (String str : strArr) {
             if (activity.checkSelfPermission(str) == 0) {
@@ -118,7 +118,7 @@ public abstract class PermissionRequest {
                         new AlertDialog.Builder(activityFindActivity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
                             @Override
                             public final void onClick(AlertDialog alertDialog, int i3) {
-                                PermissionRequest.lambda$ensureAllPermissions$2(activityFindActivity, alertDialog, i3);
+                                PermissionRequest.m2542$r8$lambda$rqSIchz3KrqjwF9F5tplg1vFfk(activityFindActivity, alertDialog, i3);
                             }
                         }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
                         if (callback != null) {
@@ -131,7 +131,7 @@ public abstract class PermissionRequest {
                 requestPermissions(strArr2, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        PermissionRequest.lambda$ensureAllPermissions$3(strArr2, activityFindActivity, callback, (int[]) obj);
+                        PermissionRequest.$r8$lambda$xa6dWFIyXHQ433VJXZn8tMIv4bE(strArr2, activityFindActivity, callback, (int[]) obj);
                     }
                 });
                 return;
@@ -142,7 +142,7 @@ public abstract class PermissionRequest {
         }
     }
 
-    public static void lambda$ensureAllPermissions$2(Activity activity, AlertDialog alertDialog, int i) {
+    public static void m2542$r8$lambda$rqSIchz3KrqjwF9F5tplg1vFfk(Activity activity, AlertDialog alertDialog, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -152,7 +152,7 @@ public abstract class PermissionRequest {
         }
     }
 
-    public static void lambda$ensureAllPermissions$3(String[] strArr, Activity activity, Utilities.Callback callback, int[] iArr) {
+    public static void $r8$lambda$xa6dWFIyXHQ433VJXZn8tMIv4bE(String[] strArr, Activity activity, Utilities.Callback callback, int[] iArr) {
         int length = strArr.length;
         boolean z = false;
         int i = 0;
@@ -175,12 +175,12 @@ public abstract class PermissionRequest {
         requestPermissions(new String[]{str}, callback != null ? new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PermissionRequest.lambda$requestPermission$4(callback, (int[]) obj);
+                PermissionRequest.m2541$r8$lambda$iRU0goqpimQBvdfDKQXDlUe4eE(callback, (int[]) obj);
             }
         } : null);
     }
 
-    public static void lambda$requestPermission$4(Utilities.Callback callback, int[] iArr) {
+    public static void m2541$r8$lambda$iRU0goqpimQBvdfDKQXDlUe4eE(Utilities.Callback callback, int[] iArr) {
         boolean z = false;
         if (iArr.length >= 1 && iArr[0] == 0) {
             z = true;

@@ -1,10 +1,11 @@
 package org.telegram.messenger;
 
-import org.telegram.ui.ActionBar.Theme;
+import java.util.HashSet;
+import java.util.function.Supplier;
 
-public final class MessagesController$$ExternalSyntheticLambda102 implements Runnable {
+public final class MessagesController$$ExternalSyntheticLambda102 implements Supplier {
     @Override
-    public final void run() {
-        Theme.checkAutoNightThemeConditions();
+    public final Object get() {
+        return new HashSet();
     }
 }

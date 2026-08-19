@@ -42,14 +42,14 @@ public class WebAppDisclaimerAlert {
         webAppDisclaimerAlert.cell.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebAppDisclaimerCheck), new Runnable() {
             @Override
             public final void run() {
-                WebAppDisclaimerAlert.lambda$show$0(context);
+                Browser.openUrl(context, LocaleController.getString(R.string.WebAppDisclaimerUrl));
             }
         }), "", false, false);
         builder.setView(linearLayout);
         builder.setPositiveButton(LocaleController.getString(R.string.Continue), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                WebAppDisclaimerAlert.lambda$show$1(consumer, zArr, alertDialog, i);
+                WebAppDisclaimerAlert.$r8$lambda$ieZxLpbNUQex9tFQgbaeiuh1B5I(consumer, zArr, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -68,36 +68,32 @@ public class WebAppDisclaimerAlert {
         webAppDisclaimerAlert.cell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WebAppDisclaimerAlert.lambda$show$3(this.f$0, view);
+                WebAppDisclaimerAlert.m4793$r8$lambda$ICLm3wirtfJP4fPzJ1h4N5G00Y(this.f$0, view);
             }
         });
         webAppDisclaimerAlert.cell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));
         webAppDisclaimerAlert.alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                WebAppDisclaimerAlert.lambda$show$4(zArr, runnable, dialogInterface);
+                WebAppDisclaimerAlert.$r8$lambda$LOJMvwvnO12EwW70_zmwaJs0cc4(zArr, runnable, dialogInterface);
             }
         });
     }
 
-    public static void lambda$show$0(Context context) {
-        Browser.openUrl(context, LocaleController.getString(R.string.WebAppDisclaimerUrl));
-    }
-
-    public static void lambda$show$1(Consumer consumer, boolean[] zArr, AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$ieZxLpbNUQex9tFQgbaeiuh1B5I(Consumer consumer, boolean[] zArr, AlertDialog alertDialog, int i) {
         consumer.accept(Boolean.TRUE);
         zArr[0] = true;
         alertDialog.dismiss();
     }
 
-    public static void lambda$show$3(WebAppDisclaimerAlert webAppDisclaimerAlert, View view) {
+    public static void m4793$r8$lambda$ICLm3wirtfJP4fPzJ1h4N5G00Y(WebAppDisclaimerAlert webAppDisclaimerAlert, View view) {
         CheckBoxCell checkBoxCell = webAppDisclaimerAlert.cell;
         checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
         webAppDisclaimerAlert.positiveButton.setEnabled(webAppDisclaimerAlert.cell.isChecked());
         webAppDisclaimerAlert.positiveButton.animate().alpha(webAppDisclaimerAlert.cell.isChecked() ? 1.0f : 0.5f).start();
     }
 
-    public static void lambda$show$4(boolean[] zArr, Runnable runnable, DialogInterface dialogInterface) {
+    public static void $r8$lambda$LOJMvwvnO12EwW70_zmwaJs0cc4(boolean[] zArr, Runnable runnable, DialogInterface dialogInterface) {
         if (zArr[0]) {
             return;
         }

@@ -113,7 +113,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         this.groupInfoContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                GroupCallPipAlertView.$r8$lambda$oQInfJBupbDg1HH3CacNLyheGM0(this.f$0, view);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
@@ -139,7 +139,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         this.soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(context, view);
+                GroupCallPipAlertView.$r8$lambda$kWQe1Uj8kh6vBmp5RRVUohtY070(this.f$0, context, view);
             }
         });
         this.soundButton.setCheckable(true);
@@ -150,7 +150,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         this.muteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(context, view);
+                GroupCallPipAlertView.$r8$lambda$R8FugTcyvKdXDOrH2w7v5tNdCJg(this.f$0, context, view);
             }
         });
         VoIPToggleButton voIPToggleButton3 = new VoIPToggleButton(context, 44.0f);
@@ -160,7 +160,14 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         this.leaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$4(context, view);
+                GroupCallPipAlertView groupCallPipAlertView = this.f$0;
+                Context context2 = context;
+                GroupCallActivity.onLeaveClick(groupCallPipAlertView.getContext(), new Runnable() {
+                    @Override
+                    public final void run() {
+                        GroupCallPip.updateVisibility(context2);
+                    }
+                }, Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(context2));
             }
         });
         VoIPButtonsLayout voIPButtonsLayout = new VoIPButtonsLayout(context);
@@ -173,25 +180,28 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         addView(voIPButtonsLayout, LayoutHelper.createLinear(-1, -2, 0, 6, 0, 6, 0));
     }
 
-    public void lambda$new$0(View view) {
+    public static void $r8$lambda$oQInfJBupbDg1HH3CacNLyheGM0(GroupCallPipAlertView groupCallPipAlertView, View view) {
+        groupCallPipAlertView.getClass();
         if (VoIPService.getSharedInstance() != null) {
-            Intent action = new Intent(getContext(), (Class<?>) LaunchActivity.class).setAction("voip_chat");
+            Intent action = new Intent(groupCallPipAlertView.getContext(), (Class<?>) LaunchActivity.class).setAction("voip_chat");
             action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
-            getContext().startActivity(action);
+            groupCallPipAlertView.getContext().startActivity(action);
         }
     }
 
-    public void lambda$new$1(Context context, View view) {
+    public static void $r8$lambda$kWQe1Uj8kh6vBmp5RRVUohtY070(GroupCallPipAlertView groupCallPipAlertView, Context context, View view) {
+        groupCallPipAlertView.getClass();
         if (VoIPService.getSharedInstance() == null) {
             return;
         }
-        VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(getContext(), Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(context));
+        VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(groupCallPipAlertView.getContext(), Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(context));
     }
 
-    public void lambda$new$2(Context context, View view) {
+    public static void $r8$lambda$R8FugTcyvKdXDOrH2w7v5tNdCJg(GroupCallPipAlertView groupCallPipAlertView, Context context, View view) {
+        groupCallPipAlertView.getClass();
         if (VoIPService.getSharedInstance() != null) {
             if (VoIPService.getSharedInstance().mutedByAdmin()) {
-                this.muteButton.shakeView();
+                groupCallPipAlertView.muteButton.shakeView();
                 try {
                     Vibrator vibrator = (Vibrator) context.getSystemService("vibrator");
                     if (vibrator != null) {
@@ -206,15 +216,6 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
             }
             VoIPService.getSharedInstance().setMicMute(!VoIPService.getSharedInstance().isMicMute(), false, true);
         }
-    }
-
-    public void lambda$new$4(final Context context, View view) {
-        GroupCallActivity.onLeaveClick(getContext(), new Runnable() {
-            @Override
-            public final void run() {
-                GroupCallPip.updateVisibility(context);
-            }
-        }, Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(context));
     }
 
     @Override

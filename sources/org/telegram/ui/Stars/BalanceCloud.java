@@ -51,16 +51,12 @@ public class BalanceCloud extends LinearLayout implements NotificationCenter.Not
         linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new Runnable() {
             @Override
             public final void run() {
-                BalanceCloud.lambda$new$0(context, resourcesProvider);
+                new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
             }
         }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
         linksTextView.setGravity(17);
         addView(linksTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 17, 0, 1, 0, 0));
         updateBalance(false);
-    }
-
-    public static void lambda$new$0(Context context, Theme.ResourcesProvider resourcesProvider) {
-        new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
     }
 
     public void setCurrency(AmountUtils$Currency amountUtils$Currency, boolean z) {
@@ -82,7 +78,7 @@ public class BalanceCloud extends LinearLayout implements NotificationCenter.Not
             this.textView2.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateBalance$1();
+                    BalanceCloud.$r8$lambda$tJ3wfEqmP72qkfS94rHIzIfiAkk(this.f$0);
                 }
             }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
             return;
@@ -103,8 +99,9 @@ public class BalanceCloud extends LinearLayout implements NotificationCenter.Not
         }
     }
 
-    public void lambda$updateBalance$1() {
-        new StarsIntroActivity.StarsOptionsSheet(getContext(), this.resourcesProvider).show();
+    public static void $r8$lambda$tJ3wfEqmP72qkfS94rHIzIfiAkk(BalanceCloud balanceCloud) {
+        balanceCloud.getClass();
+        new StarsIntroActivity.StarsOptionsSheet(balanceCloud.getContext(), balanceCloud.resourcesProvider).show();
     }
 
     @Override

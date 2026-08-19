@@ -49,7 +49,7 @@ public abstract class CropInlineEditor extends FrameLayout {
     private final int[] thisLocation;
     public final CropRotationWheel wheel;
 
-    protected abstract void close();
+    public abstract void close();
 
     public int getCurrentWidth() {
         PhotoView photoView = this.photoView;
@@ -169,7 +169,7 @@ public abstract class CropInlineEditor extends FrameLayout {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.close();
             }
         });
         TextView textView2 = new TextView(context);
@@ -184,7 +184,7 @@ public abstract class CropInlineEditor extends FrameLayout {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                CropInlineEditor.m4475$r8$lambda$qJX8RxU0Lrm6P1q7BYN6tO1wCE(this.f$0, view);
             }
         });
         TextView textView3 = new TextView(context);
@@ -199,26 +199,22 @@ public abstract class CropInlineEditor extends FrameLayout {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                CropInlineEditor.m4474$r8$lambda$mLhTaRudlM7ytsoxAbv8R86FZQ(this.f$0, view);
             }
         });
         this.shapesLayout = new LinearLayout(context);
     }
 
-    public void lambda$new$0(View view) {
-        close();
+    public static void m4475$r8$lambda$qJX8RxU0Lrm6P1q7BYN6tO1wCE(CropInlineEditor cropInlineEditor, View view) {
+        cropInlineEditor.cropView.reset(true);
+        cropInlineEditor.wheel.setRotated(false);
+        cropInlineEditor.wheel.setMirrored(false);
+        cropInlineEditor.wheel.setRotation(0.0f, true);
     }
 
-    public void lambda$new$1(View view) {
-        this.cropView.reset(true);
-        this.wheel.setRotated(false);
-        this.wheel.setMirrored(false);
-        this.wheel.setRotation(0.0f, true);
-    }
-
-    public void lambda$new$2(View view) {
-        apply();
-        close();
+    public static void m4474$r8$lambda$mLhTaRudlM7ytsoxAbv8R86FZQ(CropInlineEditor cropInlineEditor, View view) {
+        cropInlineEditor.apply();
+        cropInlineEditor.close();
     }
 
     @Override
@@ -244,13 +240,14 @@ public abstract class CropInlineEditor extends FrameLayout {
         if (cropState == null) {
             cropState = null;
         }
-        this.cropView.start(photoView.getOrientation(), true, false, this.cropTransform, cropState);
+        MediaController.CropState cropState2 = cropState;
+        this.cropView.start(photoView.getOrientation(), true, false, this.cropTransform, cropState2);
         this.wheel.setRotation(this.cropView.getRotation());
-        if (cropState != null) {
-            this.wheel.setRotation(cropState.cropRotate, false);
-            this.wheel.setRotated(cropState.transformRotation != 0);
-            this.wheel.setMirrored(cropState.mirrored);
-            this.animatedMirror.set(cropState.mirrored, false);
+        if (cropState2 != null) {
+            this.wheel.setRotation(cropState2.cropRotate, false);
+            this.wheel.setRotated(cropState2.transformRotation != 0);
+            this.wheel.setMirrored(cropState2.mirrored);
+            this.animatedMirror.set(cropState2.mirrored, false);
         } else {
             this.wheel.setRotation(0.0f, false);
             this.wheel.setRotated(false);
@@ -291,17 +288,17 @@ public abstract class CropInlineEditor extends FrameLayout {
         this.photoView.containerView.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$apply$3();
+                CropInlineEditor.$r8$lambda$Zmi0VjOXwK3iY_duU7tmLskfkgM(this.f$0);
             }
         });
     }
 
-    public void lambda$apply$3() {
-        EntityView.SelectionView selectionView = this.photoView.selectionView;
+    public static void $r8$lambda$Zmi0VjOXwK3iY_duU7tmLskfkgM(CropInlineEditor cropInlineEditor) {
+        EntityView.SelectionView selectionView = cropInlineEditor.photoView.selectionView;
         if (selectionView != null) {
             selectionView.updatePosition();
         }
-        this.photoView.updatePosition();
+        cropInlineEditor.photoView.updatePosition();
     }
 
     public float getAppearProgress() {

@@ -33,7 +33,7 @@ public abstract class ReadAllMentionsMenu {
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ReadAllMentionsMenu.lambda$show$0(runnable, view2);
+                ReadAllMentionsMenu.$r8$lambda$DrkfNM6Yt5Is8WakSteytf1ehao(runnable, view2);
             }
         });
         actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
@@ -61,7 +61,7 @@ public abstract class ReadAllMentionsMenu {
         return actionBarPopupWindow;
     }
 
-    public static void lambda$show$0(Runnable runnable, View view) {
+    public static void $r8$lambda$DrkfNM6Yt5Is8WakSteytf1ehao(Runnable runnable, View view) {
         if (runnable != null) {
             runnable.run();
         }

@@ -130,7 +130,7 @@ public final class ExtendedDefaultDataSource implements DataSource {
     @Override
     public Map<String, List<String>> getResponseHeaders() {
         DataSource dataSource = this.dataSource;
-        return dataSource == null ? Collections.emptyMap() : dataSource.getResponseHeaders();
+        return dataSource == null ? Collections.EMPTY_MAP : dataSource.getResponseHeaders();
     }
 
     @Override

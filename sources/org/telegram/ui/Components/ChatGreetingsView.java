@@ -148,7 +148,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
                     this.premiumIconView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$setPremiumLock$0(view);
+                            ChatGreetingsView.$r8$lambda$06XqzI5PQJZLi1lFTz35DaWMwKg(this.f$0, view);
                         }
                     });
                 }
@@ -230,9 +230,9 @@ public abstract class ChatGreetingsView extends LinearLayout {
         updateLayout();
     }
 
-    public void lambda$setPremiumLock$0(View view) {
-        this.premiumIconView.setProgress(0.0f);
-        this.premiumIconView.playAnimation();
+    public static void $r8$lambda$06XqzI5PQJZLi1lFTz35DaWMwKg(ChatGreetingsView chatGreetingsView, View view) {
+        chatGreetingsView.premiumIconView.setProgress(0.0f);
+        chatGreetingsView.premiumIconView.playAnimation();
     }
 
     private void updateLayout() {
@@ -256,7 +256,8 @@ public abstract class ChatGreetingsView extends LinearLayout {
         addView(this.stickerContainer, LayoutHelper.createLinear(112, 112, 1, 16, 10, 16, 16));
     }
 
-    public void setSticker(final TLRPC.Document document) {
+    public void setSticker(TLRPC.Document document) {
+        final TLRPC.Document document2;
         if (document == null) {
             return;
         }
@@ -264,20 +265,22 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.nextStickerToSendView.clearImage();
         SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, Theme.key_chat_serviceBackground, 1.0f);
         if (svgThumb != null) {
-            this.stickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), svgThumb, 0, document);
+            document2 = document;
+            this.stickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), svgThumb, 0, document2);
         } else {
             this.stickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, 0, document);
+            document2 = document;
         }
         this.stickerToSendView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$setSticker$1(document, view);
+                ChatGreetingsView.$r8$lambda$flfrJ0LaBGFFJqtR9RCK7UdR_5E(this.f$0, document2, view);
             }
         });
     }
 
-    public void lambda$setSticker$1(TLRPC.Document document, View view) {
-        Listener listener = this.listener;
+    public static void $r8$lambda$flfrJ0LaBGFFJqtR9RCK7UdR_5E(ChatGreetingsView chatGreetingsView, TLRPC.Document document, View view) {
+        Listener listener = chatGreetingsView.listener;
         if (listener != null) {
             listener.onGreetings(document);
         }
@@ -292,7 +295,8 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.stickerToSendView.setImage(ImageLocation.getForPath(str), "256_256", (ImageLocation) null, (String) null, 0, (Object) null);
     }
 
-    public void setNextSticker(final TLRPC.Document document, Runnable runnable) {
+    public void setNextSticker(TLRPC.Document document, Runnable runnable) {
+        final TLRPC.Document document2;
         if (document == null) {
             return;
         }
@@ -303,14 +307,16 @@ public abstract class ChatGreetingsView extends LinearLayout {
         this.nextStickerToSendView.getImageReceiver().setDelegate(new AnonymousClass2(runnable));
         SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, Theme.key_chat_serviceBackground, 1.0f);
         if (svgThumb != null) {
-            this.nextStickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), svgThumb, 0, document);
+            document2 = document;
+            this.nextStickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), svgThumb, 0, document2);
         } else {
             this.nextStickerToSendView.setImage(ImageLocation.getForDocument(document), createFilter(document), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, 0, document);
+            document2 = document;
         }
         this.nextStickerToSendView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$setNextSticker$2(document, view);
+                ChatGreetingsView.$r8$lambda$sE5lOh5buuYAbmETqF9wS7ZFYT0(this.f$0, document2, view);
             }
         });
     }
@@ -354,13 +360,13 @@ public abstract class ChatGreetingsView extends LinearLayout {
                 rLottieDrawable.whenCacheDone = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$didSetImageBitmap$0(runnable2);
+                        ChatGreetingsView.AnonymousClass2.$r8$lambda$LnOldy349nLDS3inONUcbmDOCfw(this.f$0, runnable2);
                     }
                 };
             }
         }
 
-        public void lambda$didSetImageBitmap$0(Runnable runnable) {
+        public static void $r8$lambda$LnOldy349nLDS3inONUcbmDOCfw(AnonymousClass2 anonymousClass2, Runnable runnable) {
             ChatGreetingsView.this.toggleToNextSticker();
             if (runnable != null) {
                 runnable.run();
@@ -368,8 +374,8 @@ public abstract class ChatGreetingsView extends LinearLayout {
         }
     }
 
-    public void lambda$setNextSticker$2(TLRPC.Document document, View view) {
-        Listener listener = this.listener;
+    public static void $r8$lambda$sE5lOh5buuYAbmETqF9wS7ZFYT0(ChatGreetingsView chatGreetingsView, TLRPC.Document document, View view) {
+        Listener listener = chatGreetingsView.listener;
         if (listener != null) {
             listener.onGreetings(document);
         }
@@ -410,18 +416,16 @@ public abstract class ChatGreetingsView extends LinearLayout {
             }
         });
         AnimatorSet animatorSet3 = this.togglingStickersAnimator;
-        BackupImageView backupImageView = this.nextStickerToSendView;
         Property property = View.ALPHA;
-        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(backupImageView, (Property<BackupImageView, Float>) property, 0.0f, 1.0f);
-        BackupImageView backupImageView2 = this.nextStickerToSendView;
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this.nextStickerToSendView, (Property<BackupImageView, Float>) property, 0.0f, 1.0f);
         Property property2 = View.SCALE_X;
-        ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(backupImageView2, (Property<BackupImageView, Float>) property2, 0.7f, 1.0f);
-        BackupImageView backupImageView3 = this.nextStickerToSendView;
+        ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this.nextStickerToSendView, (Property<BackupImageView, Float>) property2, 0.7f, 1.0f);
         Property property3 = View.SCALE_Y;
-        ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(backupImageView3, (Property<BackupImageView, Float>) property3, 0.7f, 1.0f);
-        BackupImageView backupImageView4 = this.nextStickerToSendView;
+        ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(this.nextStickerToSendView, (Property<BackupImageView, Float>) property3, 0.7f, 1.0f);
+        BackupImageView backupImageView = this.nextStickerToSendView;
+        float[] fArr = {-AndroidUtilities.dp(24.0f), 0.0f};
         Property property4 = View.TRANSLATION_Y;
-        animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, ObjectAnimator.ofFloat(backupImageView4, (Property<BackupImageView, Float>) property4, -AndroidUtilities.dp(24.0f), 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property2, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property3, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property4, 0.0f, AndroidUtilities.dp(24.0f)));
+        animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, ObjectAnimator.ofFloat(backupImageView, (Property<BackupImageView, Float>) property4, fArr), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property2, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property3, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property4, 0.0f, AndroidUtilities.dp(24.0f)));
         this.togglingStickersAnimator.start();
     }
 
@@ -537,20 +541,24 @@ public abstract class ChatGreetingsView extends LinearLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        if (!this.disableBackground) {
+        Canvas canvas2;
+        if (this.disableBackground) {
+            canvas2 = canvas;
+        } else {
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             if (resourcesProvider != null) {
                 resourcesProvider.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + AndroidUtilities.dp(4.0f));
             } else {
                 Theme.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + AndroidUtilities.dp(4.0f));
             }
-            canvas.drawRoundRect(0.0f, 0.0f, getWidth(), getHeight(), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackground", this.resourcesProvider));
+            canvas2 = canvas;
+            canvas2.drawRoundRect(0.0f, 0.0f, getWidth(), getHeight(), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackground", this.resourcesProvider));
         }
         if (!this.wasDraw) {
             this.wasDraw = true;
             setSticker(this.preloadedGreetingsSticker);
         }
-        super.dispatchDraw(canvas);
+        super.dispatchDraw(canvas2);
     }
 
     @Override
@@ -631,7 +639,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
             premiumButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatGreetingsView.lambda$showPremiumSheet$3(bottomSheet, view);
+                    ChatGreetingsView.$r8$lambda$13a8CLbV7ZHYOY05YUpOVmneXOw(bottomSheet, view);
                 }
             });
             premiumButtonView.setOverlayText(LocaleController.getString(R.string.PremiumMessageButton), false, false);
@@ -641,11 +649,11 @@ public abstract class ChatGreetingsView extends LinearLayout {
         bottomSheet.show();
     }
 
-    public static void lambda$showPremiumSheet$3(BottomSheet bottomSheet, View view) {
+    public static void $r8$lambda$13a8CLbV7ZHYOY05YUpOVmneXOw(BottomSheet bottomSheet, View view) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment != null) {
             lastFragment.presentFragment(new PremiumPreviewFragment("contact"));
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
         }
     }
 }

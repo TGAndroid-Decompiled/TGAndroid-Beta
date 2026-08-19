@@ -74,7 +74,7 @@ public class EllipsizeSpanAnimator {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$createEllipsizeAnimator$0(textAlphaSpan, valueAnimator);
+                EllipsizeSpanAnimator.m2276$r8$lambda$iHwWtVX_42rEiWcqkESIxAFijs(this.f$0, textAlphaSpan, valueAnimator);
             }
         });
         valueAnimatorOfInt.setDuration(i4);
@@ -83,11 +83,12 @@ public class EllipsizeSpanAnimator {
         return valueAnimatorOfInt;
     }
 
-    public void lambda$createEllipsizeAnimator$0(TextAlphaSpan textAlphaSpan, ValueAnimator valueAnimator) {
+    public static void m2276$r8$lambda$iHwWtVX_42rEiWcqkESIxAFijs(EllipsizeSpanAnimator ellipsizeSpanAnimator, TextAlphaSpan textAlphaSpan, ValueAnimator valueAnimator) {
+        ellipsizeSpanAnimator.getClass();
         textAlphaSpan.setAlpha(((Integer) valueAnimator.getAnimatedValue()).intValue());
-        for (int i = 0; i < this.ellipsizedViews.size(); i++) {
+        for (int i = 0; i < ellipsizeSpanAnimator.ellipsizedViews.size(); i++) {
             if (!HwEmojis.isHwEnabled()) {
-                ((View) this.ellipsizedViews.get(i)).invalidate();
+                ((View) ellipsizeSpanAnimator.ellipsizedViews.get(i)).invalidate();
             }
         }
     }

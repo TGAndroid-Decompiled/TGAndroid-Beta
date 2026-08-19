@@ -209,11 +209,13 @@ public class ThemeDescription {
     }
 
     private boolean checkTag(int i, View view) {
-        if (i < 0 || view == null) {
-            return false;
+        if (i >= 0 && view != null) {
+            Object tag = view.getTag();
+            if ((tag instanceof Integer) && ((Integer) tag).intValue() == i) {
+                return true;
+            }
         }
-        Object tag = view.getTag();
-        return (tag instanceof Integer) && ((Integer) tag).intValue() == i;
+        return false;
     }
 
     public void setColor(int i, boolean z, boolean z2) {

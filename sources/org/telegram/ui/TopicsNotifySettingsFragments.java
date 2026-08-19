@@ -41,7 +41,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
     ArrayList items;
     RecyclerListView recyclerListView;
 
-    public static void lambda$removeException$0(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4716$r8$lambda$c3dNfmvd9QA3F1Dmf28JyLaDVg(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public TopicsNotifySettingsFragments(Bundle bundle) {
@@ -99,7 +99,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 topicsFragment.setOnTopicSelectedListener(new TopicsFragment.OnTopicSelectedListener() {
                     @Override
                     public final void onTopicSelected(TLRPC.TL_forumTopic tL_forumTopic) {
-                        this.f$0.lambda$onItemClick$1(tL_forumTopic);
+                        TopicsNotifySettingsFragments.AnonymousClass2.$r8$lambda$M7Nb6HhFphb7Ariw5puStxw6X4o(this.f$0, tL_forumTopic);
                     }
                 });
                 TopicsNotifySettingsFragments.this.presentFragment(topicsFragment);
@@ -121,7 +121,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        this.f$0.lambda$onItemClick$2(alertDialog, i2);
+                        TopicsNotifySettingsFragments.AnonymousClass2.$r8$lambda$_Y3AQ8YuoBDBInKqx_BH_yra4RY(this.f$0, alertDialog, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -134,7 +134,8 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             }
         }
 
-        public void lambda$onItemClick$1(final TLRPC.TL_forumTopic tL_forumTopic) {
+        public static void $r8$lambda$M7Nb6HhFphb7Ariw5puStxw6X4o(final AnonymousClass2 anonymousClass2, final TLRPC.TL_forumTopic tL_forumTopic) {
+            anonymousClass2.getClass();
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", TopicsNotifySettingsFragments.this.dialogId);
             bundle.putLong("topic_id", tL_forumTopic.id);
@@ -143,7 +144,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
                 @Override
                 public final void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException) {
-                    this.f$0.lambda$onItemClick$0(tL_forumTopic, notificationException);
+                    TopicsNotifySettingsFragments.AnonymousClass2.$r8$lambda$bny6dTXjOK9S6LdP0PrfrGXMDdk(this.f$0, tL_forumTopic, notificationException);
                 }
 
                 @Override
@@ -154,7 +155,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             TopicsNotifySettingsFragments.this.presentFragment(profileNotificationsActivity);
         }
 
-        public void lambda$onItemClick$0(TLRPC.TL_forumTopic tL_forumTopic, NotificationsSettingsActivity.NotificationException notificationException) {
+        public static void $r8$lambda$bny6dTXjOK9S6LdP0PrfrGXMDdk(AnonymousClass2 anonymousClass2, TLRPC.TL_forumTopic tL_forumTopic, NotificationsSettingsActivity.NotificationException notificationException) {
             TopicsNotifySettingsFragments.this.exceptionsTopics.add(Integer.valueOf(tL_forumTopic.id));
             TopicsNotifySettingsFragments.this.updateRows();
         }
@@ -177,18 +178,18 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$didRemoveException$0(tL_forumTopic);
+                        TopicsNotifySettingsFragments.AnonymousClass2.AnonymousClass1.$r8$lambda$SAVUfCa69EEOUbk11ZLt93QHbuI(this.f$0, tL_forumTopic);
                     }
                 }, 300L);
             }
 
-            public void lambda$didRemoveException$0(TLRPC.TL_forumTopic tL_forumTopic) {
+            public static void $r8$lambda$SAVUfCa69EEOUbk11ZLt93QHbuI(AnonymousClass1 anonymousClass1, TLRPC.TL_forumTopic tL_forumTopic) {
                 TopicsNotifySettingsFragments.this.exceptionsTopics.remove(Integer.valueOf(tL_forumTopic.id));
                 TopicsNotifySettingsFragments.this.updateRows();
             }
         }
 
-        public void lambda$onItemClick$2(AlertDialog alertDialog, int i) {
+        public static void $r8$lambda$_Y3AQ8YuoBDBInKqx_BH_yra4RY(AnonymousClass2 anonymousClass2, AlertDialog alertDialog, int i) {
             Iterator it = TopicsNotifySettingsFragments.this.exceptionsTopics.iterator();
             while (it.hasNext()) {
                 TopicsNotifySettingsFragments.this.removeException(((Integer) it.next()).intValue());
@@ -209,7 +210,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         getConnectionsManager().sendRequest(updatenotifysettings, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TopicsNotifySettingsFragments.lambda$removeException$0(tLObject, tL_error);
+                TopicsNotifySettingsFragments.m4716$r8$lambda$c3dNfmvd9QA3F1Dmf28JyLaDVg(tLObject, tL_error);
             }
         });
     }

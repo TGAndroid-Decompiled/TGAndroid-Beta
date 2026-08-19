@@ -42,83 +42,82 @@ public abstract class CastSync {
             return;
         }
         try {
-            if (getContext() == null || (sharedInstance = CastContext.getSharedInstance(getContext())) == null) {
-                return;
+            if (getContext() != null && (sharedInstance = CastContext.getSharedInstance(getContext())) != null) {
+                sharedInstance.getSessionManager().addSessionManagerListener(new SessionManagerListener() {
+                    @Override
+                    public void onSessionResumeFailed(CastSession castSession, int i2) {
+                    }
+
+                    @Override
+                    public void onSessionResumed(CastSession castSession, boolean z) {
+                    }
+
+                    @Override
+                    public void onSessionResuming(CastSession castSession, String str) {
+                    }
+
+                    @Override
+                    public void onSessionStartFailed(CastSession castSession, int i2) {
+                    }
+
+                    @Override
+                    public void onSessionStarting(CastSession castSession) {
+                    }
+
+                    @Override
+                    public void onSessionSuspended(CastSession castSession, int i2) {
+                    }
+
+                    @Override
+                    public void onSessionEnded(CastSession castSession, int i2) {
+                        CastSync.doSyncVolume(false);
+                        CastSync.syncInterface();
+                    }
+
+                    @Override
+                    public void onSessionEnding(CastSession castSession) {
+                        CastSync.doSyncVolume(false);
+                        CastSync.syncInterface();
+                    }
+
+                    @Override
+                    public void onSessionStarted(CastSession castSession, String str) {
+                        RemoteMediaClient remoteMediaClient;
+                        long currentPosition;
+                        if (castSession == null || (remoteMediaClient = castSession.getRemoteMediaClient()) == null) {
+                            return;
+                        }
+                        AtomicInteger atomicInteger = CastSync.pending;
+                        if (atomicInteger != null) {
+                            atomicInteger.set(0);
+                        }
+                        remoteMediaClient.registerCallback(new RemoteMediaClient.Callback() {
+                            @Override
+                            public void onStatusUpdated() {
+                                FileLog.d("onStatusUpdated");
+                                CastSync.syncInterface();
+                            }
+
+                            @Override
+                            public void onMediaError(MediaError mediaError) {
+                                FileLog.e("Chromecast Media Error: " + mediaError);
+                            }
+                        });
+                        remoteMediaClient.queueSetRepeatMode(2, null);
+                        int i2 = i;
+                        if (i2 == 0) {
+                            currentPosition = PhotoViewer.getInstance().getCurrentPosition();
+                        } else {
+                            currentPosition = i2 == 1 ? MediaController.getInstance().getCurrentPosition() : -1L;
+                        }
+                        if (currentPosition >= 0) {
+                            CastSync.seekTo(currentPosition);
+                        }
+                        CastSync.doSyncVolume(true);
+                    }
+                }, CastSession.class);
+                listened = true;
             }
-            sharedInstance.getSessionManager().addSessionManagerListener(new SessionManagerListener() {
-                @Override
-                public void onSessionResumeFailed(CastSession castSession, int i2) {
-                }
-
-                @Override
-                public void onSessionResumed(CastSession castSession, boolean z) {
-                }
-
-                @Override
-                public void onSessionResuming(CastSession castSession, String str) {
-                }
-
-                @Override
-                public void onSessionStartFailed(CastSession castSession, int i2) {
-                }
-
-                @Override
-                public void onSessionStarting(CastSession castSession) {
-                }
-
-                @Override
-                public void onSessionSuspended(CastSession castSession, int i2) {
-                }
-
-                @Override
-                public void onSessionEnded(CastSession castSession, int i2) {
-                    CastSync.doSyncVolume(false);
-                    CastSync.syncInterface();
-                }
-
-                @Override
-                public void onSessionEnding(CastSession castSession) {
-                    CastSync.doSyncVolume(false);
-                    CastSync.syncInterface();
-                }
-
-                @Override
-                public void onSessionStarted(CastSession castSession, String str) {
-                    RemoteMediaClient remoteMediaClient;
-                    long currentPosition;
-                    if (castSession == null || (remoteMediaClient = castSession.getRemoteMediaClient()) == null) {
-                        return;
-                    }
-                    AtomicInteger atomicInteger = CastSync.pending;
-                    if (atomicInteger != null) {
-                        atomicInteger.set(0);
-                    }
-                    remoteMediaClient.registerCallback(new RemoteMediaClient.Callback() {
-                        @Override
-                        public void onStatusUpdated() {
-                            FileLog.d("onStatusUpdated");
-                            CastSync.syncInterface();
-                        }
-
-                        @Override
-                        public void onMediaError(MediaError mediaError) {
-                            FileLog.e("Chromecast Media Error: " + mediaError);
-                        }
-                    });
-                    remoteMediaClient.queueSetRepeatMode(2, null);
-                    int i2 = i;
-                    if (i2 == 0) {
-                        currentPosition = PhotoViewer.getInstance().getCurrentPosition();
-                    } else {
-                        currentPosition = i2 == 1 ? MediaController.getInstance().getCurrentPosition() : -1L;
-                    }
-                    if (currentPosition >= 0) {
-                        CastSync.seekTo(currentPosition);
-                    }
-                    CastSync.doSyncVolume(true);
-                }
-            }, CastSession.class);
-            listened = true;
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -146,10 +145,7 @@ public abstract class CastSync {
         }
         try {
             CastContext sharedInstance = CastContext.getSharedInstance(getContext());
-            if (sharedInstance == null || (currentCastSession = sharedInstance.getSessionManager().getCurrentCastSession()) == null) {
-                return false;
-            }
-            return currentCastSession.isConnecting() || currentCastSession.isConnected();
+            return (sharedInstance == null || (currentCastSession = sharedInstance.getSessionManager().getCurrentCastSession()) == null || (!currentCastSession.isConnecting() && !currentCastSession.isConnected())) ? false : true;
         } catch (Exception e) {
             FileLog.e(e);
             return false;
@@ -192,13 +188,9 @@ public abstract class CastSync {
         client.seek(new MediaSeekOptions.Builder().setPosition(j).build()).addStatusListener(new PendingResult.StatusListener() {
             @Override
             public final void onComplete(Status status) {
-                CastSync.lambda$seekTo$0(status);
+                CastSync.pending.decrementAndGet();
             }
         });
-    }
-
-    public static void lambda$seekTo$0(Status status) {
-        pending.decrementAndGet();
     }
 
     public static void syncPosition(long j) {
@@ -223,13 +215,9 @@ public abstract class CastSync {
         client.setStreamVolume(f).addStatusListener(new PendingResult.StatusListener() {
             @Override
             public final void onComplete(Status status) {
-                CastSync.lambda$setVolume$1(status);
+                CastSync.pending.decrementAndGet();
             }
         });
-    }
-
-    public static void lambda$setVolume$1(Status status) {
-        pending.decrementAndGet();
     }
 
     public static float getVolume() {
@@ -265,25 +253,17 @@ public abstract class CastSync {
             client.play().addStatusListener(new PendingResult.StatusListener() {
                 @Override
                 public final void onComplete(Status status) {
-                    CastSync.lambda$setPlaying$2(status);
+                    CastSync.pending.decrementAndGet();
                 }
             });
         } else {
             client.pause().addStatusListener(new PendingResult.StatusListener() {
                 @Override
                 public final void onComplete(Status status) {
-                    CastSync.lambda$setPlaying$3(status);
+                    CastSync.pending.decrementAndGet();
                 }
             });
         }
-    }
-
-    public static void lambda$setPlaying$2(Status status) {
-        pending.decrementAndGet();
-    }
-
-    public static void lambda$setPlaying$3(Status status) {
-        pending.decrementAndGet();
     }
 
     public static void setSpeed(float f) {
@@ -298,13 +278,9 @@ public abstract class CastSync {
         client.setPlaybackRate(f).addStatusListener(new PendingResult.StatusListener() {
             @Override
             public final void onComplete(Status status) {
-                CastSync.lambda$setSpeed$4(status);
+                CastSync.pending.decrementAndGet();
             }
         });
-    }
-
-    public static void lambda$setSpeed$4(Status status) {
-        pending.decrementAndGet();
     }
 
     public static boolean isUpdatePending() {

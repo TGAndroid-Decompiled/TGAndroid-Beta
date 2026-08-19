@@ -64,7 +64,7 @@ public class MemberRequestsActivity extends BaseFragment {
         actionBarMenuItemSearchListener.setVisibility(8);
         FrameLayout rootLayout = this.delegate.getRootLayout();
         this.actionBar.setAdaptiveBackground(this.delegate.getRecyclerView(), false);
-        this.delegate.lambda$new$8();
+        this.delegate.loadMembers();
         this.fragmentView = rootLayout;
         return rootLayout;
     }

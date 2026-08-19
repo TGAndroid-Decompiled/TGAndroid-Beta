@@ -25,7 +25,7 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
     private ImageReceiver imageReceiver;
     private int width;
 
-    public static void lambda$new$2() {
+    public static void $r8$lambda$njb1CVCkH53R0cVT72Kh89O4uj4() {
     }
 
     public TextPaintImageReceiverSpan(View view, TLRPC.Document document, Object obj, int i, int i2, boolean z, boolean z2) {
@@ -39,7 +39,7 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
             this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                 @Override
                 public final void didSetImage(ImageReceiver imageReceiver2, boolean z3, boolean z4, boolean z5) {
-                    TextPaintImageReceiverSpan.lambda$new$0(imageReceiver2, z3, z4, z5);
+                    TextPaintImageReceiverSpan.$r8$lambda$4MMEUN7lGItDcmEJ4PJPQuQdpRk(imageReceiver2, z3, z4, z5);
                 }
 
                 @Override
@@ -57,7 +57,7 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
         this.alignTop = z;
     }
 
-    public static void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void $r8$lambda$4MMEUN7lGItDcmEJ4PJPQuQdpRk(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         if (imageReceiver.canInvertBitmap()) {
             imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
         }
@@ -73,7 +73,7 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
             this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                 @Override
                 public final void didSetImage(ImageReceiver imageReceiver2, boolean z3, boolean z4, boolean z5) {
-                    TextPaintImageReceiverSpan.lambda$new$1(imageReceiver2, z3, z4, z5);
+                    TextPaintImageReceiverSpan.$r8$lambda$hL00ZSraoBvcqklhxroC5of8_Ck(imageReceiver2, z3, z4, z5);
                 }
 
                 @Override
@@ -90,13 +90,13 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
         WebInstantView.loadPhoto(webPhoto, this.imageReceiver, new Runnable() {
             @Override
             public final void run() {
-                TextPaintImageReceiverSpan.lambda$new$2();
+                TextPaintImageReceiverSpan.$r8$lambda$njb1CVCkH53R0cVT72Kh89O4uj4();
             }
         });
         this.alignTop = z;
     }
 
-    public static void lambda$new$1(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void $r8$lambda$hL00ZSraoBvcqklhxroC5of8_Ck(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         if (imageReceiver.canInvertBitmap()) {
             imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
         }

@@ -16,15 +16,14 @@ public final class CharRange extends CharProgression {
     }
 
     public boolean equals(Object obj) {
-        if (obj instanceof CharRange) {
-            if (!isEmpty() || !((CharRange) obj).isEmpty()) {
-                CharRange charRange = (CharRange) obj;
-                if (getFirst() != charRange.getFirst() || getLast() != charRange.getLast()) {
-                }
-            }
+        if (!(obj instanceof CharRange)) {
+            return false;
+        }
+        if (isEmpty() && ((CharRange) obj).isEmpty()) {
             return true;
         }
-        return false;
+        CharRange charRange = (CharRange) obj;
+        return getFirst() == charRange.getFirst() && getLast() == charRange.getLast();
     }
 
     public int hashCode() {

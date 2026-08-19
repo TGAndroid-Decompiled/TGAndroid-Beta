@@ -90,7 +90,7 @@ public class TableView extends android.widget.TableLayout {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    TableView.lambda$addRowMonospaced$0(charSequence2, runnable, view);
+                    TableView.m2864$r8$lambda$94D2tet7nd1WDBXBAcVpSQDBqE(charSequence2, runnable, view);
                 }
             });
             ScaleStateListAnimator.apply(imageView);
@@ -100,7 +100,7 @@ public class TableView extends android.widget.TableLayout {
         return addRowUnpadded(charSequence, frameLayout);
     }
 
-    public static void lambda$addRowMonospaced$0(CharSequence charSequence, Runnable runnable, View view) {
+    public static void m2864$r8$lambda$94D2tet7nd1WDBXBAcVpSQDBqE(CharSequence charSequence, Runnable runnable, View view) {
         AndroidUtilities.addToClipboard(charSequence);
         runnable.run();
     }
@@ -213,7 +213,7 @@ public class TableView extends android.widget.TableLayout {
         Utilities.Callback<Object[]> callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                TableView.lambda$addRowUserWithEmojiStatus$1(j, i, swapAnimatedEmojiDrawable, linksSimpleTextView, drawableMutate, color, (Object[]) obj);
+                TableView.$r8$lambda$rEbVSy3GeF1keOVG62K5kjVlt_A(j, i, swapAnimatedEmojiDrawable, linksSimpleTextView, drawableMutate, color, (Object[]) obj);
             }
         };
         callback.run(null);
@@ -224,7 +224,7 @@ public class TableView extends android.widget.TableLayout {
         return addRowUnpadded(charSequence, linksSimpleTextView);
     }
 
-    public static void lambda$addRowUserWithEmojiStatus$1(long j, int i, AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable, LinkSpanDrawable.LinksSimpleTextView linksSimpleTextView, Drawable drawable, int i2, Object[] objArr) {
+    public static void $r8$lambda$rEbVSy3GeF1keOVG62K5kjVlt_A(long j, int i, AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable, LinkSpanDrawable.LinksSimpleTextView linksSimpleTextView, Drawable drawable, int i2, Object[] objArr) {
         TLRPC.EmojiStatus emojiStatus;
         boolean z;
         long emojiStatusDocumentId;
@@ -491,10 +491,13 @@ public class TableView extends android.widget.TableLayout {
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             if (!this.first && !this.last) {
-                canvas.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.backgroundPaint);
-                canvas.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
+                canvas2 = canvas;
+                canvas2.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.backgroundPaint);
+                canvas2.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
             } else {
+                canvas2 = canvas;
                 float fDp = AndroidUtilities.dp(10.0f);
                 float[] fArr = this.table.radii;
                 float[] fArr2 = this.table.radii;
@@ -518,10 +521,10 @@ public class TableView extends android.widget.TableLayout {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + (this.table.hw * AndroidUtilities.dp(this.last ? -1.0f : 1.0f)));
                 this.table.path.addRoundRect(rectF, this.table.radii, Path.Direction.CW);
-                canvas.drawPath(this.table.path, this.table.backgroundPaint);
-                canvas.drawPath(this.table.path, this.table.borderPaint);
+                canvas2.drawPath(this.table.path, this.table.backgroundPaint);
+                canvas2.drawPath(this.table.path, this.table.borderPaint);
             }
-            super.onDraw(canvas);
+            super.onDraw(canvas2);
         }
     }
 
@@ -562,7 +565,9 @@ public class TableView extends android.widget.TableLayout {
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             if (this.first || this.last) {
+                canvas2 = canvas;
                 float fDp = AndroidUtilities.dp(10.0f);
                 float[] fArr = this.table.radii;
                 float[] fArr2 = this.table.radii;
@@ -591,16 +596,19 @@ public class TableView extends android.widget.TableLayout {
                 rectF.set(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + (this.table.hw * AndroidUtilities.dp(this.last ? -1.0f : 1.0f)));
                 this.table.path.addRoundRect(rectF, this.table.radii, Path.Direction.CW);
                 if (this.filled) {
-                    canvas.drawPath(this.table.path, this.table.backgroundPaint);
+                    canvas2.drawPath(this.table.path, this.table.backgroundPaint);
                 }
-                canvas.drawPath(this.table.path, this.table.borderPaint);
+                canvas2.drawPath(this.table.path, this.table.borderPaint);
             } else {
                 if (this.filled) {
-                    canvas.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.backgroundPaint);
+                    canvas2 = canvas;
+                    canvas2.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.backgroundPaint);
+                } else {
+                    canvas2 = canvas;
                 }
-                canvas.drawRect(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
+                canvas2.drawRect(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
             }
-            super.onDraw(canvas);
+            super.onDraw(canvas2);
         }
     }
 
@@ -649,9 +657,12 @@ public class TableView extends android.widget.TableLayout {
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             if (!this.first && !this.last) {
-                canvas.drawRect(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
+                canvas2 = canvas;
+                canvas2.drawRect(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
             } else {
+                canvas2 = canvas;
                 float fDp = AndroidUtilities.dp(10.0f);
                 float[] fArr = this.table.radii;
                 float[] fArr2 = this.table.radii;
@@ -682,9 +693,9 @@ public class TableView extends android.widget.TableLayout {
                     rectF.right += this.table.w;
                 }
                 this.table.path.addRoundRect(rectF, this.table.radii, Path.Direction.CW);
-                canvas.drawPath(this.table.path, this.table.borderPaint);
+                canvas2.drawPath(this.table.path, this.table.borderPaint);
             }
-            super.onDraw(canvas);
+            super.onDraw(canvas2);
         }
     }
 

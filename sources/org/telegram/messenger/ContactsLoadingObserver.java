@@ -12,7 +12,7 @@ public final class ContactsLoadingObserver {
     private final NotificationCenter.NotificationCenterDelegate observer = new NotificationCenter.NotificationCenterDelegate() {
         @Override
         public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-            this.f$0.lambda$new$0(i, i2, objArr);
+            ContactsLoadingObserver.$r8$lambda$U2XpPtohMROBuh2rWH3LHh87PCE(this.f$0, i, i2, objArr);
         }
     };
     private final Runnable releaseRunnable;
@@ -26,9 +26,10 @@ public final class ContactsLoadingObserver {
         new ContactsLoadingObserver(callback).start(j);
     }
 
-    public void lambda$new$0(int i, int i2, Object[] objArr) {
+    public static void $r8$lambda$U2XpPtohMROBuh2rWH3LHh87PCE(ContactsLoadingObserver contactsLoadingObserver, int i, int i2, Object[] objArr) {
+        contactsLoadingObserver.getClass();
         if (i == NotificationCenter.contactsDidLoad) {
-            onContactsLoadingStateUpdated(i2, false);
+            contactsLoadingObserver.onContactsLoadingStateUpdated(i2, false);
         }
     }
 
@@ -39,16 +40,13 @@ public final class ContactsLoadingObserver {
         this.releaseRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                ContactsLoadingObserver contactsLoadingObserver = this.f$0;
+                contactsLoadingObserver.onContactsLoadingStateUpdated(contactsLoadingObserver.currentAccount, true);
             }
         };
         this.contactsController = ContactsController.getInstance(i);
         this.notificationCenter = NotificationCenter.getInstance(i);
         this.handler = new Handler(Looper.myLooper());
-    }
-
-    public void lambda$new$1() {
-        onContactsLoadingStateUpdated(this.currentAccount, true);
     }
 
     public void start(long j) {
@@ -74,7 +72,7 @@ public final class ContactsLoadingObserver {
         this.released = true;
     }
 
-    private boolean onContactsLoadingStateUpdated(int i, boolean z) {
+    public boolean onContactsLoadingStateUpdated(int i, boolean z) {
         if (this.released) {
             return false;
         }

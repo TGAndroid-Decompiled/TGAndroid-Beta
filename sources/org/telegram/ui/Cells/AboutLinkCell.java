@@ -186,7 +186,7 @@ public abstract class AboutLinkCell extends FrameLayout {
         this.showMoreTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.updateCollapse(true, true);
             }
         });
         this.showMoreTextView.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
@@ -202,10 +202,6 @@ public abstract class AboutLinkCell extends FrameLayout {
         addView(frameLayout3, LayoutHelper.createFrame(-2, -2.0f, 85, 18.0f - (frameLayout3.getPaddingLeft() / AndroidUtilities.density), 0.0f, 18.0f - (this.showMoreTextBackgroundView.getPaddingRight() / AndroidUtilities.density), 6.0f));
         this.backgroundPaint.setColor(Theme.getColor(i, resourcesProvider));
         setWillNotDraw(false);
-    }
-
-    public void lambda$new$0(View view) {
-        updateCollapse(true, true);
     }
 
     public void updateColors() {
@@ -289,6 +285,8 @@ public abstract class AboutLinkCell extends FrameLayout {
     }
 
     private void drawText(Canvas canvas) {
+        StaticLayout staticLayout;
+        int i;
         canvas.save();
         canvas.clipRect(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f), getWidth() - AndroidUtilities.dp(18.0f), getHeight());
         int iDp = AndroidUtilities.dp(18.0f);
@@ -304,50 +302,54 @@ public abstract class AboutLinkCell extends FrameLayout {
         canvas.translate(0.0f, iDp2);
         try {
             Theme.profile_aboutTextPaint.linkColor = processColor(Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider));
-            StaticLayout staticLayout = this.firstThreeLinesLayout;
-            if (staticLayout == null || !this.shouldExpand) {
-                StaticLayout staticLayout2 = this.textLayout;
-                if (staticLayout2 != null) {
-                    staticLayout2.draw(canvas);
+            StaticLayout staticLayout2 = this.firstThreeLinesLayout;
+            if (staticLayout2 == null || !this.shouldExpand) {
+                StaticLayout staticLayout3 = this.textLayout;
+                if (staticLayout3 != null) {
+                    staticLayout3.draw(canvas);
                 }
             } else {
-                staticLayout.draw(canvas);
+                staticLayout2.draw(canvas);
                 int lineCount = this.firstThreeLinesLayout.getLineCount() - 1;
                 float lineTop = this.firstThreeLinesLayout.getLineTop(lineCount) + this.firstThreeLinesLayout.getTopPadding();
                 float lineRight = this.firstThreeLinesLayout.getLineRight(lineCount) + (this.needSpace ? this.SPACE : 0.0f);
                 float lineBottom = (this.firstThreeLinesLayout.getLineBottom(lineCount) - this.firstThreeLinesLayout.getLineTop(lineCount)) - this.firstThreeLinesLayout.getBottomPadding();
+                float f2 = 1.0f;
                 float fEaseInOutCubic = easeInOutCubic(1.0f - ((float) Math.pow(this.expandT, 0.25d)));
                 if (this.nextLinesLayouts != null) {
                     float lineRight2 = lineRight;
-                    int i = 0;
+                    int i2 = 0;
                     while (true) {
                         StaticLayout[] staticLayoutArr = this.nextLinesLayouts;
-                        if (i >= staticLayoutArr.length) {
+                        if (i2 >= staticLayoutArr.length) {
                             break;
                         }
-                        StaticLayout staticLayout3 = staticLayoutArr[i];
-                        if (staticLayout3 != null) {
+                        StaticLayout staticLayout4 = staticLayoutArr[i2];
+                        if (staticLayout4 != null) {
                             int iSave = canvas.save();
-                            Point point = this.nextLinesLayoutsPositions[i];
+                            Point point = this.nextLinesLayoutsPositions[i2];
                             if (point != null) {
-                                point.set((int) (this.textX + (lineRight2 * fEaseInOutCubic)), (int) (this.textY + lineTop + ((1.0f - fEaseInOutCubic) * lineBottom)));
+                                point.set((int) (this.textX + (lineRight2 * fEaseInOutCubic)), (int) (this.textY + lineTop + ((f2 - fEaseInOutCubic) * lineBottom)));
                             }
-                            int i2 = this.lastInlineLine;
-                            if (i2 != -1 && i2 <= i) {
+                            int i3 = this.lastInlineLine;
+                            if (i3 != -1 && i3 <= i2) {
                                 canvas.translate(f, lineTop + lineBottom);
-                                canvas.saveLayerAlpha(0.0f, 0.0f, staticLayout3.getWidth(), staticLayout3.getHeight(), (int) (this.expandT * 255.0f), 31);
+                                staticLayout = staticLayout4;
+                                i = iSave;
+                                canvas.saveLayerAlpha(0.0f, 0.0f, staticLayout4.getWidth(), staticLayout4.getHeight(), (int) (this.expandT * 255.0f), 31);
                             } else {
+                                staticLayout = staticLayout4;
+                                i = iSave;
                                 canvas.translate(lineRight2 * fEaseInOutCubic, ((1.0f - fEaseInOutCubic) * lineBottom) + lineTop);
                             }
-                            staticLayout3.draw(canvas);
-                            canvas.restoreToCount(iSave);
-                            lineRight2 += staticLayout3.getLineRight(0) + this.SPACE;
-                            lineBottom += (staticLayout3.getLineBottom(0) + staticLayout3.getTopPadding()) - 1;
-                        } else {
-                            i = i;
+                            staticLayout.draw(canvas);
+                            canvas.restoreToCount(i);
+                            lineRight2 += staticLayout.getLineRight(0) + this.SPACE;
+                            lineBottom += (staticLayout.getLineBottom(0) + staticLayout.getTopPadding()) - 1;
                         }
-                        i++;
+                        i2++;
                         f = 0.0f;
+                        f2 = 1.0f;
                     }
                 }
             }
@@ -403,6 +405,7 @@ public abstract class AboutLinkCell extends FrameLayout {
         @Override
         public void run() {
             String url;
+            final AnonymousClass2 anonymousClass2;
             if (AboutLinkCell.this.pressedLink != null) {
                 if (AboutLinkCell.this.pressedLink.getSpan() instanceof URLSpanNoUnderline) {
                     url = ((URLSpanNoUnderline) AboutLinkCell.this.pressedLink.getSpan()).getURL();
@@ -420,29 +423,33 @@ public abstract class AboutLinkCell extends FrameLayout {
                     final ClickableSpan clickableSpan = (ClickableSpan) AboutLinkCell.this.pressedLink.getSpan();
                     BottomSheet.Builder builder = new BottomSheet.Builder(AboutLinkCell.this.getContext());
                     builder.setTitle(str);
+                    anonymousClass2 = this;
                     builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
-                            this.f$0.lambda$run$0(clickableSpan, layout, f, str, dialogInterface, i);
+                            AboutLinkCell.AnonymousClass2.$r8$lambda$wCnX5r6qrprILMj37YdEP_Tl_z4(this.f$0, clickableSpan, layout, f, str, dialogInterface, i);
                         }
                     });
                     builder.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            this.f$0.lambda$run$1(dialogInterface);
+                            AboutLinkCell.this.resetPressedLink();
                         }
                     });
                     builder.show();
+                } else {
+                    anonymousClass2 = this;
                 }
                 AboutLinkCell.this.pressedLink = null;
             }
         }
 
-        public void lambda$run$0(ClickableSpan clickableSpan, Layout layout, float f, String str, DialogInterface dialogInterface, int i) {
+        public static void $r8$lambda$wCnX5r6qrprILMj37YdEP_Tl_z4(AnonymousClass2 anonymousClass2, ClickableSpan clickableSpan, Layout layout, float f, String str, DialogInterface dialogInterface, int i) {
             if (i == 0) {
                 AboutLinkCell.this.onLinkClick(clickableSpan, layout, f);
                 return;
             }
+            anonymousClass2.getClass();
             if (i == 1) {
                 AndroidUtilities.addToClipboard(str);
                 if (AndroidUtilities.shouldShowClipboardToast()) {
@@ -456,13 +463,12 @@ public abstract class AboutLinkCell extends FrameLayout {
                 }
             }
         }
-
-        public void lambda$run$1(DialogInterface dialogInterface) {
-            AboutLinkCell.this.resetPressedLink();
-        }
     }
 
     private LinkSpanDrawable hitLink(int i, int i2) {
+        AboutLinkCell aboutLinkCell;
+        int i3;
+        int i4;
         if (i >= this.showMoreTextView.getLeft() && i <= this.showMoreTextView.getRight() && i2 >= this.showMoreTextView.getTop() && i2 <= this.showMoreTextView.getBottom()) {
             return null;
         }
@@ -471,29 +477,36 @@ public abstract class AboutLinkCell extends FrameLayout {
         }
         StaticLayout staticLayout = this.firstThreeLinesLayout;
         if (staticLayout != null && this.expandT < 1.0f && this.shouldExpand) {
-            LinkSpanDrawable linkSpanDrawableCheckTouchTextLayout = checkTouchTextLayout(staticLayout, this.textX, this.textY, i, i2);
+            aboutLinkCell = this;
+            i3 = i;
+            i4 = i2;
+            LinkSpanDrawable linkSpanDrawableCheckTouchTextLayout = aboutLinkCell.checkTouchTextLayout(staticLayout, this.textX, this.textY, i3, i4);
             if (linkSpanDrawableCheckTouchTextLayout == null) {
-                if (this.nextLinesLayouts != null) {
-                    int i3 = 0;
+                if (aboutLinkCell.nextLinesLayouts != null) {
+                    int i5 = 0;
                     while (true) {
-                        StaticLayout[] staticLayoutArr = this.nextLinesLayouts;
-                        if (i3 >= staticLayoutArr.length) {
+                        StaticLayout[] staticLayoutArr = aboutLinkCell.nextLinesLayouts;
+                        if (i5 >= staticLayoutArr.length) {
                             break;
                         }
-                        StaticLayout staticLayout2 = staticLayoutArr[i3];
-                        Point point = this.nextLinesLayoutsPositions[i3];
-                        LinkSpanDrawable linkSpanDrawableCheckTouchTextLayout2 = checkTouchTextLayout(staticLayout2, point.x, point.y, i, i2);
+                        StaticLayout staticLayout2 = staticLayoutArr[i5];
+                        Point point = aboutLinkCell.nextLinesLayoutsPositions[i5];
+                        LinkSpanDrawable linkSpanDrawableCheckTouchTextLayout2 = aboutLinkCell.checkTouchTextLayout(staticLayout2, point.x, point.y, i3, i4);
                         if (linkSpanDrawableCheckTouchTextLayout2 != null) {
                             return linkSpanDrawableCheckTouchTextLayout2;
                         }
-                        i3++;
+                        i5++;
                     }
                 }
             } else {
                 return linkSpanDrawableCheckTouchTextLayout;
             }
+        } else {
+            aboutLinkCell = this;
+            i3 = i;
+            i4 = i2;
         }
-        LinkSpanDrawable linkSpanDrawableCheckTouchTextLayout3 = checkTouchTextLayout(this.textLayout, this.textX, this.textY, i, i2);
+        LinkSpanDrawable linkSpanDrawableCheckTouchTextLayout3 = aboutLinkCell.checkTouchTextLayout(aboutLinkCell.textLayout, aboutLinkCell.textX, aboutLinkCell.textY, i3, i4);
         if (linkSpanDrawableCheckTouchTextLayout3 != null) {
             return linkSpanDrawableCheckTouchTextLayout3;
         }
@@ -597,14 +610,14 @@ public abstract class AboutLinkCell extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$end$0();
+                    AboutLinkCell.AnonymousClass3.m1469$r8$lambda$kreJ2xNgwXZ5aC2Ca76LOUDrNo(this.f$0);
                 }
             }, z ? 0L : 350L);
         }
 
-        public void lambda$end$0() {
-            if (this.thisLoading != null) {
-                AboutLinkCell.this.links.removeLoading(this.thisLoading, true);
+        public static void m1469$r8$lambda$kreJ2xNgwXZ5aC2Ca76LOUDrNo(AnonymousClass3 anonymousClass3) {
+            if (anonymousClass3.thisLoading != null) {
+                AboutLinkCell.this.links.removeLoading(anonymousClass3.thisLoading, true);
             }
         }
     }
@@ -671,7 +684,7 @@ public abstract class AboutLinkCell extends FrameLayout {
             this.collapseAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$updateCollapse$1(atomicReference, f, f2, springInterpolator, valueAnimator2);
+                    AboutLinkCell.$r8$lambda$tn0ed72N8pxyBlbef1uqnjz6cI4(this.f$0, atomicReference, f, f2, springInterpolator, valueAnimator2);
                 }
             });
             this.collapseAnimator.addListener(new AnimatorListenerAdapter() {
@@ -697,19 +710,20 @@ public abstract class AboutLinkCell extends FrameLayout {
         forceLayout();
     }
 
-    public void lambda$updateCollapse$1(AtomicReference atomicReference, float f, float f2, SpringInterpolator springInterpolator, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$tn0ed72N8pxyBlbef1uqnjz6cI4(AboutLinkCell aboutLinkCell, AtomicReference atomicReference, float f, float f2, SpringInterpolator springInterpolator, ValueAnimator valueAnimator) {
+        aboutLinkCell.getClass();
         Float f3 = (Float) valueAnimator.getAnimatedValue();
         float fFloatValue = (f3.floatValue() - ((Float) atomicReference.getAndSet(f3)).floatValue()) * 1000.0f * 8.0f;
-        this.rawCollapseT = AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        aboutLinkCell.rawCollapseT = AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
         float fLerp = AndroidUtilities.lerp(f, f2, springInterpolator.getValue(fFloatValue));
-        this.expandT = fLerp;
-        if (fLerp > 0.8f && this.container.getBackground() == null) {
-            this.container.setBackground(this.rippleBackground);
+        aboutLinkCell.expandT = fLerp;
+        if (fLerp > 0.8f && aboutLinkCell.container.getBackground() == null) {
+            aboutLinkCell.container.setBackground(aboutLinkCell.rippleBackground);
         }
-        this.showMoreTextBackgroundView.setAlpha(1.0f - this.expandT);
-        this.bottomShadow.setAlpha((float) Math.pow(1.0f - this.expandT, 2.0d));
-        updateHeight();
-        this.container.invalidate();
+        aboutLinkCell.showMoreTextBackgroundView.setAlpha(1.0f - aboutLinkCell.expandT);
+        aboutLinkCell.bottomShadow.setAlpha((float) Math.pow(1.0f - aboutLinkCell.expandT, 2.0d));
+        aboutLinkCell.updateHeight();
+        aboutLinkCell.container.invalidate();
     }
 
     private int fromHeight() {

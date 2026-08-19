@@ -135,27 +135,29 @@ public class TopicSeparator {
 
     public void draw(Canvas canvas, int i, float f, float f2, float f3, float f4, boolean z) {
         float f5;
+        float f6;
         Text text = this.text;
         if (text == null) {
             return;
         }
         text.ellipsize(i - AndroidUtilities.dp(144.66f));
         float fDp = AndroidUtilities.dp(48.66f) + this.text.getWidth();
-        float f6 = i;
-        float f7 = (f6 - fDp) / 2.0f;
+        float f7 = i;
+        float f8 = (f7 - fDp) / 2.0f;
         int i2 = (int) fDp;
         if (this.pathWidth == i2 && this.pathParentWidth == i && this.pathWithCenter == z && this.pathWithDots == this.withDots) {
             f5 = fDp;
+            f6 = 2.0f;
         } else {
             this.path.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f7, AndroidUtilities.dp(4.5f), f7 + fDp, AndroidUtilities.dp(28.5f));
+            rectF.set(f8, AndroidUtilities.dp(4.5f), f8 + fDp, AndroidUtilities.dp(28.5f));
             if (z) {
                 this.path.addRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
             }
             if (this.withDots) {
-                float f8 = f6 / 2.0f;
-                float fDp2 = f8 - AndroidUtilities.dp(1.833f);
+                float f9 = f7 / 2.0f;
+                float fDp2 = f9 - AndroidUtilities.dp(1.833f);
                 while (fDp2 > 0.0f) {
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     rectF2.set(fDp2 - AndroidUtilities.dp(3.66f), AndroidUtilities.dp(15.5f), fDp2, AndroidUtilities.dp(17.5f));
@@ -164,13 +166,21 @@ public class TopicSeparator {
                     fDp = fDp;
                 }
                 f5 = fDp;
-                for (float fDp3 = f8 + AndroidUtilities.dp(1.833f); fDp3 < f6; fDp3 += AndroidUtilities.dp(8.33f)) {
+                f6 = 2.0f;
+                int iDp = AndroidUtilities.dp(1.833f);
+                while (true) {
+                    f9 += iDp;
+                    if (f9 >= f7) {
+                        break;
+                    }
                     RectF rectF3 = AndroidUtilities.rectTmp;
-                    rectF3.set(fDp3, AndroidUtilities.dp(15.5f), AndroidUtilities.dp(3.66f) + fDp3, AndroidUtilities.dp(17.5f));
+                    rectF3.set(f9, AndroidUtilities.dp(15.5f), AndroidUtilities.dp(3.66f) + f9, AndroidUtilities.dp(17.5f));
                     this.path.addRoundRect(rectF3, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), Path.Direction.CW);
+                    iDp = AndroidUtilities.dp(8.33f);
                 }
             } else {
                 f5 = fDp;
+                f6 = 2.0f;
             }
             this.pathWidth = i2;
             this.pathParentWidth = i;
@@ -178,8 +188,8 @@ public class TopicSeparator {
             this.pathWithCenter = z;
         }
         canvas.save();
-        float f9 = f / 2.0f;
-        canvas.translate(f9, f2);
+        float f10 = f / f6;
+        canvas.translate(f10, f2);
         Paint themePaint = Theme.getThemePaint("paintChatActionBackground", this.resourcesProvider);
         int alpha = themePaint.getAlpha();
         themePaint.setAlpha((int) (alpha * f4 * f3));
@@ -194,24 +204,24 @@ public class TopicSeparator {
             themePaint2.setAlpha(alpha2);
         }
         canvas.restore();
-        float f10 = f9 + f7;
-        float f11 = f10 + f5;
-        this.clickBounds.set(f10 - AndroidUtilities.dp(4.0f), f2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + f11, AndroidUtilities.dp(32.0f) + f2);
+        float f11 = f10 + f8;
+        float f12 = f11 + f5;
+        this.clickBounds.set(f11 - AndroidUtilities.dp(4.0f), f2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + f12, AndroidUtilities.dp(32.0f) + f2);
         if (z) {
             AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiImage;
             if (animatedEmojiDrawable != null) {
-                animatedEmojiDrawable.setBounds((int) (AndroidUtilities.dp(2.66f) + f10), (int) (AndroidUtilities.dp(6.5f) + f2), (int) (AndroidUtilities.dp(22.66f) + f10), (int) (AndroidUtilities.dp(26.5f) + f2));
+                animatedEmojiDrawable.setBounds((int) (AndroidUtilities.dp(2.66f) + f11), (int) (AndroidUtilities.dp(6.5f) + f2), (int) (AndroidUtilities.dp(22.66f) + f11), (int) (AndroidUtilities.dp(26.5f) + f2));
                 this.emojiImage.setAlpha((int) (255.0f * f4));
                 this.emojiImage.draw(canvas);
             } else {
-                this.image.setImageCoords(AndroidUtilities.dp(2.66f) + f10, AndroidUtilities.dp(6.5f) + f2, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
+                this.image.setImageCoords(AndroidUtilities.dp(2.66f) + f11, AndroidUtilities.dp(6.5f) + f2, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
                 this.image.setAlpha(f4);
                 this.image.draw(canvas);
             }
             int color = Theme.getColor(Theme.key_chat_serviceText, this.resourcesProvider);
-            this.text.draw(canvas, AndroidUtilities.dp(27.66f) + f10, f2 + AndroidUtilities.dp(16.5f), color, f4);
+            this.text.draw(canvas, f11 + AndroidUtilities.dp(27.66f), AndroidUtilities.dp(16.5f) + f2, color, f4);
             canvas.save();
-            canvas.translate(f11 - AndroidUtilities.dp(11.25f), AndroidUtilities.dp(16.5f) + f2);
+            canvas.translate(f12 - AndroidUtilities.dp(11.25f), AndroidUtilities.dp(16.5f) + f2);
             this.arrowPaint.setColor(Theme.multAlpha(color, 0.75f * f4));
             this.arrowPaint.setStrokeWidth(AndroidUtilities.dp(1.66f));
             canvas.drawPath(this.arrowPath, this.arrowPaint);
@@ -262,15 +272,15 @@ public class TopicSeparator {
             topicSeparator.setOnClickListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0();
+                    TopicSeparator.Cell.$r8$lambda$RERU68Rub88bhiZazrURoMl81jQ(this.f$0);
                 }
             });
         }
 
-        public void lambda$new$0() {
-            Utilities.Callback callback = this.onClickListener;
+        public static void $r8$lambda$RERU68Rub88bhiZazrURoMl81jQ(Cell cell) {
+            Utilities.Callback callback = cell.onClickListener;
             if (callback != null) {
-                callback.run(Long.valueOf(this.separator.topicId));
+                callback.run(Long.valueOf(cell.separator.topicId));
             }
         }
 

@@ -215,7 +215,7 @@ public class DataUsage2Activity extends BaseFragment {
             setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i) {
-                    this.f$0.lambda$new$1(view, i);
+                    DataUsage2Activity.ListView.$r8$lambda$twh733hU_y609w5zU4Fub3d9oY0(this.f$0, view, i);
                 }
             });
             DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -226,19 +226,20 @@ public class DataUsage2Activity extends BaseFragment {
             setItemAnimator(defaultItemAnimator);
         }
 
-        public void lambda$new$1(View view, int i) {
-            if ((view instanceof Cell) && i >= 0 && i < this.itemInners.size()) {
-                ItemInner itemInner = (ItemInner) this.itemInners.get(i);
+        public static void $r8$lambda$twh733hU_y609w5zU4Fub3d9oY0(final ListView listView, View view, int i) {
+            listView.getClass();
+            if ((view instanceof Cell) && i >= 0 && i < listView.itemInners.size()) {
+                ItemInner itemInner = (ItemInner) listView.itemInners.get(i);
                 if (itemInner != null) {
                     int i2 = itemInner.index;
                     if (i2 >= 0) {
-                        boolean[] zArr = this.collapsed;
+                        boolean[] zArr = listView.collapsed;
                         zArr[i2] = !zArr[i2];
-                        updateRows(true);
+                        listView.updateRows(true);
                         return;
                     } else {
                         if (i2 == -2) {
-                            DataUsage2Activity.this.presentFragment(new DataAutoDownloadActivity(this.currentType - 1));
+                            DataUsage2Activity.this.presentFragment(new DataAutoDownloadActivity(listView.currentType - 1));
                             return;
                         }
                         return;
@@ -253,7 +254,7 @@ public class DataUsage2Activity extends BaseFragment {
                 builder.setPositiveButton(LocaleController.getString(R.string.Reset), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i3) {
-                        this.f$0.lambda$new$0(alertDialog, i3);
+                        DataUsage2Activity.ListView.$r8$lambda$LkDBR7gWcjd0jk81TL6dqOZFtHo(this.f$0, alertDialog, i3);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -266,23 +267,23 @@ public class DataUsage2Activity extends BaseFragment {
             }
         }
 
-        public void lambda$new$0(AlertDialog alertDialog, int i) {
-            this.removedSegments.clear();
+        public static void $r8$lambda$LkDBR7gWcjd0jk81TL6dqOZFtHo(ListView listView, AlertDialog alertDialog, int i) {
+            listView.removedSegments.clear();
             int i2 = 0;
             while (true) {
-                Size[] sizeArr = this.segments;
+                Size[] sizeArr = listView.segments;
                 if (i2 >= sizeArr.length) {
                     StatsController.getInstance(((BaseFragment) DataUsage2Activity.this).currentAccount).resetStats(0);
                     StatsController.getInstance(((BaseFragment) DataUsage2Activity.this).currentAccount).resetStats(1);
                     StatsController.getInstance(((BaseFragment) DataUsage2Activity.this).currentAccount).resetStats(2);
-                    this.animateChart = true;
-                    setup();
-                    updateRows(true);
+                    listView.animateChart = true;
+                    listView.setup();
+                    listView.updateRows(true);
                     return;
                 }
                 Size size = sizeArr[i2];
                 if (size.size > 0) {
-                    this.removedSegments.add(Integer.valueOf(size.index));
+                    listView.removedSegments.add(Integer.valueOf(size.index));
                 }
                 i2++;
             }
@@ -318,15 +319,11 @@ public class DataUsage2Activity extends BaseFragment {
             Arrays.sort(this.segments, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return DataUsage2Activity.ListView.lambda$setup$2((DataUsage2Activity.ListView.Size) obj, (DataUsage2Activity.ListView.Size) obj2);
+                    return Long.compare(((DataUsage2Activity.ListView.Size) obj2).size, ((DataUsage2Activity.ListView.Size) obj).size);
                 }
             });
             AndroidUtilities.roundPercents(this.tempSizes, this.tempPercents);
             Arrays.fill(this.collapsed, true);
-        }
-
-        public static int lambda$setup$2(Size size, Size size2) {
-            return Long.compare(size2.size, size.size);
         }
 
         private String formatPercent(int i) {
@@ -384,8 +381,11 @@ public class DataUsage2Activity extends BaseFragment {
                     arrayList.add(ItemInner.asCell(i, DataUsage2Activity.particles[i2], DataUsage2Activity.colors2[i2][0], DataUsage2Activity.colors2[i2][1], j2 == j ? LocaleController.getString(DataUsage2Activity.titles[i2]) : TextUtils.concat(LocaleController.getString(DataUsage2Activity.titles[i2]), "  ", spannableString), AndroidUtilities.formatFileSize(j2)));
                 }
                 i++;
-                j = 0;
+                j = j;
+                string = string;
             }
+            String str = string;
+            long j3 = j;
             if (!arrayList.isEmpty()) {
                 SpannableString spannableString2 = new SpannableString("^");
                 Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_upload).mutate();
@@ -406,29 +406,29 @@ public class DataUsage2Activity extends BaseFragment {
                     if (i5 >= 0 && !this.collapsed[i5]) {
                         Size size2 = this.segments[i5];
                         if (DataUsage2Activity.stats[size2.index] == 0) {
-                            if (size2.outSize > 0 || size2.outCount > 0) {
+                            if (size2.outSize > j3 || size2.outCount > 0) {
                                 i4++;
                                 arrayList.add(i4, ItemInner.asCell(-1, 0, 0, LocaleController.formatPluralStringComma("OutgoingCallsCount", size2.outCount), AndroidUtilities.formatFileSize(size2.outSize)));
                             }
-                            if (size2.inSize > 0 || size2.inCount > 0) {
+                            if (size2.inSize > j3 || size2.inCount > 0) {
                                 i4++;
                                 arrayList.add(i4, ItemInner.asCell(-1, 0, 0, LocaleController.formatPluralStringComma("IncomingCallsCount", size2.inCount), AndroidUtilities.formatFileSize(size2.inSize)));
                             }
                         } else if (DataUsage2Activity.stats[size2.index] != 1) {
-                            if (size2.outSize > 0 || size2.outCount > 0) {
+                            if (size2.outSize > j3 || size2.outCount > 0) {
                                 i4++;
                                 arrayList.add(i4, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesSentCount", size2.outCount))), AndroidUtilities.formatFileSize(size2.outSize)));
                             }
-                            if (size2.inSize > 0 || size2.inCount > 0) {
+                            if (size2.inSize > j3 || size2.inCount > 0) {
                                 i4++;
                                 arrayList.add(i4, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesReceivedCount", size2.inCount))), AndroidUtilities.formatFileSize(size2.inSize)));
                             }
                         } else {
-                            if (size2.outSize > 0 || size2.outCount > 0) {
+                            if (size2.outSize > j3 || size2.outCount > 0) {
                                 i4++;
                                 arrayList.add(i4, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", LocaleController.getString(R.string.BytesSent)), AndroidUtilities.formatFileSize(size2.outSize)));
                             }
-                            if (size2.inSize > 0 || size2.inCount > 0) {
+                            if (size2.inSize > j3 || size2.inCount > 0) {
                                 i4++;
                                 arrayList.add(i4, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", LocaleController.getString(R.string.BytesReceived)), AndroidUtilities.formatFileSize(size2.inSize)));
                             }
@@ -447,7 +447,7 @@ public class DataUsage2Activity extends BaseFragment {
                 this.itemInners.add(ItemInner.asCell(-1, R.drawable.msg_filled_data_received, -11154873, -14175180, LocaleController.getString(R.string.BytesReceived), AndroidUtilities.formatFileSize(this.totalSizeIn)));
             }
             if (!arrayList.isEmpty()) {
-                this.itemInners.add(ItemInner.asSeparator(string));
+                this.itemInners.add(ItemInner.asSeparator(str));
             }
             if (this.currentType != 0) {
                 if (arrayList.isEmpty()) {
@@ -482,19 +482,19 @@ public class DataUsage2Activity extends BaseFragment {
             highlightRow(new RecyclerListView.IntReturnCallback() {
                 @Override
                 public final int run() {
-                    return this.f$0.lambda$scrollTo$3(i);
+                    return DataUsage2Activity.ListView.m3039$r8$lambda$O6gB0sgzbu5JObAjeE9R53Fro8(this.f$0, i);
                 }
             });
         }
 
-        public int lambda$scrollTo$3(int i) {
+        public static int m3039$r8$lambda$O6gB0sgzbu5JObAjeE9R53Fro8(ListView listView, int i) {
             int i2 = 0;
             while (true) {
-                if (i2 >= this.itemInners.size()) {
+                if (i2 >= listView.itemInners.size()) {
                     i2 = -1;
                     break;
                 }
-                if (((ItemInner) this.itemInners.get(i2)).viewType == i) {
+                if (((ItemInner) listView.itemInners.get(i2)).viewType == i) {
                     break;
                 }
                 i2++;
@@ -502,7 +502,7 @@ public class DataUsage2Activity extends BaseFragment {
             if (i2 < 0) {
                 return -1;
             }
-            this.layoutManager.scrollToPositionWithOffset(i2, AndroidUtilities.dp(60.0f));
+            listView.layoutManager.scrollToPositionWithOffset(i2, AndroidUtilities.dp(60.0f));
             return i2;
         }
 
@@ -511,7 +511,7 @@ public class DataUsage2Activity extends BaseFragment {
             }
 
             class AnonymousClass1 extends CacheChart {
-                public static int lambda$onSectionDown$0(int i) {
+                public static int $r8$lambda$ucK5uk8HNpiH2ZmDh4izJakau6w(int i) {
                     return i;
                 }
 
@@ -559,7 +559,7 @@ public class DataUsage2Activity extends BaseFragment {
                             ListView.this.highlightRow(new RecyclerListView.IntReturnCallback() {
                                 @Override
                                 public final int run() {
-                                    return DataUsage2Activity.ListView.Adapter.AnonymousClass1.lambda$onSectionDown$0(i2);
+                                    return DataUsage2Activity.ListView.Adapter.AnonymousClass1.$r8$lambda$ucK5uk8HNpiH2ZmDh4izJakau6w(i2);
                                 }
                             }, 0);
                             return;
@@ -575,6 +575,7 @@ public class DataUsage2Activity extends BaseFragment {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View subtitleCell;
+                View view;
                 View textInfoPrivacyCell;
                 if (i == 0) {
                     ListView.this.chart = new AnonymousClass1(ListView.this.getContext(), DataUsage2Activity.colors.length, DataUsage2Activity.colors, 1, DataUsage2Activity.particles);
@@ -582,42 +583,45 @@ public class DataUsage2Activity extends BaseFragment {
                     subtitleCell = ListView.this.chart;
                     subtitleCell.setTag(-33024);
                 } else {
-                    if (i == 1) {
-                        ListView listView = ListView.this;
-                        subtitleCell = DataUsage2Activity.this.new SubtitleCell(listView.getContext());
-                        subtitleCell.setTag(-33024);
-                    } else if (i == 3) {
-                        textInfoPrivacyCell = new TextInfoPrivacyCell(ListView.this.getContext());
-                    } else if (i == 4) {
-                        HeaderCell headerCell = new HeaderCell(ListView.this.getContext());
-                        headerCell.setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                        textInfoPrivacyCell = headerCell;
-                    } else if (i == 5) {
-                        TextCell textCell = new TextCell(ListView.this.getContext());
-                        textCell.setTextColor(ListView.this.getThemedColor(Theme.key_text_RedRegular));
-                        textCell.setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                        textInfoPrivacyCell = textCell;
-                    } else if (i == 6) {
-                        textInfoPrivacyCell = new RoundingCell(ListView.this.getContext());
-                    } else if (i == 7) {
-                        textInfoPrivacyCell = new View(ListView.this.getContext()) {
-                            {
-                                setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                            }
+                    if (i != 1) {
+                        if (i == 3) {
+                            textInfoPrivacyCell = new TextInfoPrivacyCell(ListView.this.getContext());
+                        } else if (i == 4) {
+                            HeaderCell headerCell = new HeaderCell(ListView.this.getContext());
+                            headerCell.setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                            textInfoPrivacyCell = headerCell;
+                        } else if (i == 5) {
+                            TextCell textCell = new TextCell(ListView.this.getContext());
+                            textCell.setTextColor(ListView.this.getThemedColor(Theme.key_text_RedRegular));
+                            textCell.setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                            textInfoPrivacyCell = textCell;
+                        } else if (i == 6) {
+                            textInfoPrivacyCell = new RoundingCell(ListView.this.getContext());
+                        } else if (i == 7) {
+                            textInfoPrivacyCell = new View(ListView.this.getContext()) {
+                                {
+                                    setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                                }
 
-                            @Override
-                            protected void onMeasure(int i2, int i3) {
-                                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
-                            }
-                        };
+                                @Override
+                                protected void onMeasure(int i2, int i3) {
+                                    super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
+                                }
+                            };
+                        } else {
+                            ListView listView = ListView.this;
+                            textInfoPrivacyCell = DataUsage2Activity.this.new Cell(listView.getContext());
+                        }
+                        view = textInfoPrivacyCell;
                     } else {
                         ListView listView2 = ListView.this;
-                        textInfoPrivacyCell = DataUsage2Activity.this.new Cell(listView2.getContext());
+                        subtitleCell = DataUsage2Activity.this.new SubtitleCell(listView2.getContext());
+                        subtitleCell.setTag(-33024);
                     }
-                    return new RecyclerListView.Holder(textInfoPrivacyCell);
+                    return new RecyclerListView.Holder(view);
                 }
-                textInfoPrivacyCell = subtitleCell;
-                return new RecyclerListView.Holder(textInfoPrivacyCell);
+                view = subtitleCell;
+                return new RecyclerListView.Holder(view);
             }
 
             @Override
@@ -671,7 +675,10 @@ public class DataUsage2Activity extends BaseFragment {
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
                 ItemInner itemInner = (ItemInner) ListView.this.itemInners.get(viewHolder.getAdapterPosition());
                 int i = itemInner.viewType;
-                return i == 5 || (i == 2 && itemInner.index != -1);
+                if (i != 5) {
+                    return i == 2 && itemInner.index != -1;
+                }
+                return true;
             }
         }
 
@@ -723,7 +730,7 @@ public class DataUsage2Activity extends BaseFragment {
         }
     }
 
-    private static class ItemInner extends AdapterWithDiffUtils.Item {
+    static class ItemInner extends AdapterWithDiffUtils.Item {
         public int imageColorBottom;
         public int imageColorTop;
         public int imageResId;
@@ -997,7 +1004,7 @@ public class DataUsage2Activity extends BaseFragment {
     public void onTransitionAnimationProgress(boolean z, float f) {
         if (f > 0.5f && !this.changeStatusBar) {
             this.changeStatusBar = true;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         }
         super.onTransitionAnimationProgress(z, f);
     }

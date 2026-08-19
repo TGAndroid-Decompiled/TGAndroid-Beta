@@ -96,7 +96,8 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                this.f$0.lambda$new$0(view, z);
+                SellGiftEnterPriceSheet sellGiftEnterPriceSheet = this.f$0;
+                sellGiftEnterPriceSheet.starsCountEditOutline.animateSelection(z, !TextUtils.isEmpty(sellGiftEnterPriceSheet.starsCountEditField.getText()));
             }
         });
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
@@ -129,7 +130,7 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         textCheckbox2Cell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                SellGiftEnterPriceSheet.$r8$lambda$rNAybA0P1_q4PTytCX4sdqeYDNs(this.f$0, view);
             }
         });
         linearLayout3.addView(textCheckbox2Cell, LayoutHelper.createLinear(-1, -2, 55, 0, 16, 0, 16));
@@ -141,7 +142,7 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(callback, view);
+                SellGiftEnterPriceSheet.$r8$lambda$HLzrb40PgDmxwfavqQ0pDGAfwt0(this.f$0, callback, view);
             }
         });
         round.setText(LocaleController.getString(R.string.ResellGiftButton), false);
@@ -175,27 +176,23 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         });
     }
 
-    public void lambda$new$0(View view, boolean z) {
-        this.starsCountEditOutline.animateSelection(z, !TextUtils.isEmpty(this.starsCountEditField.getText()));
-    }
-
-    public void lambda$new$1(View view) {
-        AmountUtils$Currency amountUtils$Currency = this.inputAmount.currency;
+    public static void $r8$lambda$rNAybA0P1_q4PTytCX4sdqeYDNs(SellGiftEnterPriceSheet sellGiftEnterPriceSheet, View view) {
+        AmountUtils$Currency amountUtils$Currency = sellGiftEnterPriceSheet.inputAmount.currency;
         AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.TON;
         if (amountUtils$Currency == amountUtils$Currency2) {
             amountUtils$Currency2 = AmountUtils$Currency.STARS;
         }
-        setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency2), true, false, true);
-        this.starsCountEditField.setText("");
+        sellGiftEnterPriceSheet.setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency2), true, false, true);
+        sellGiftEnterPriceSheet.starsCountEditField.setText("");
     }
 
-    public void lambda$new$2(Utilities.Callback callback, View view) {
-        if (!this.buttonView.isEnabled() || this.buttonView.isLoading()) {
+    public static void $r8$lambda$HLzrb40PgDmxwfavqQ0pDGAfwt0(SellGiftEnterPriceSheet sellGiftEnterPriceSheet, Utilities.Callback callback, View view) {
+        if (!sellGiftEnterPriceSheet.buttonView.isEnabled() || sellGiftEnterPriceSheet.buttonView.isLoading()) {
             return;
         }
-        AndroidUtilities.hideKeyboard(this.starsCountEditField);
-        this.buttonView.setLoading(true);
-        callback.run(this.inputAmount);
+        AndroidUtilities.hideKeyboard(sellGiftEnterPriceSheet.starsCountEditField);
+        sellGiftEnterPriceSheet.buttonView.setLoading(true);
+        callback.run(sellGiftEnterPriceSheet.inputAmount);
     }
 
     public void setAmount(AmountUtils$Amount amountUtils$Amount, boolean z, boolean z2, boolean z3) {
@@ -331,12 +328,8 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$3();
+                AndroidUtilities.showKeyboard(this.f$0.starsCountEditField);
             }
         }, 50L);
-    }
-
-    public void lambda$show$3() {
-        AndroidUtilities.showKeyboard(this.starsCountEditField);
     }
 }

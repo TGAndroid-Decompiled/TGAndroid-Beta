@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
@@ -93,19 +92,22 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         fetcher.fetch(i, Integer.valueOf(i2), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StickerCategoriesListView.lambda$preload$0(i, (TLRPC.TL_messages_emojiGroups) obj);
+                StickerCategoriesListView.m2824$r8$lambda$ZDQ_VKiRHbBVs7puOYEMcaxZQ(i, (TLRPC.TL_messages_emojiGroups) obj);
             }
         });
     }
 
-    public static void lambda$preload$0(int i, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
+    public static void m2824$r8$lambda$ZDQ_VKiRHbBVs7puOYEMcaxZQ(int i, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
         ArrayList<TLRPC.EmojiGroup> arrayList;
         if (tL_messages_emojiGroups == null || (arrayList = tL_messages_emojiGroups.groups) == null) {
             return;
         }
-        Iterator<TLRPC.EmojiGroup> it = arrayList.iterator();
-        while (it.hasNext()) {
-            AnimatedEmojiDrawable.getDocumentFetcher(i).fetchDocument(it.next().icon_emoji_id, null);
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            TLRPC.EmojiGroup emojiGroup = arrayList.get(i2);
+            i2++;
+            AnimatedEmojiDrawable.getDocumentFetcher(i).fetchDocument(emojiGroup.icon_emoji_id, null);
         }
     }
 
@@ -147,52 +149,54 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                this.f$0.lambda$new$1(view, i3);
+                this.f$0.onItemClick(i3, view);
             }
         });
         final long jCurrentTimeMillis = System.currentTimeMillis();
         fetcher.fetch(UserConfig.selectedAccount, Integer.valueOf(i), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$3(emojiCategoryArr, jCurrentTimeMillis, (TLRPC.TL_messages_emojiGroups) obj);
+                StickerCategoriesListView.m2825$r8$lambda$ebTGacH_rg6j1j9Z08XhIZUViI(this.f$0, emojiCategoryArr, jCurrentTimeMillis, (TLRPC.TL_messages_emojiGroups) obj);
             }
         });
     }
 
-    public void lambda$new$3(final EmojiCategory[] emojiCategoryArr, final long j, final TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
+    public static void m2825$r8$lambda$ebTGacH_rg6j1j9Z08XhIZUViI(final StickerCategoriesListView stickerCategoriesListView, final EmojiCategory[] emojiCategoryArr, final long j, final TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
+        stickerCategoriesListView.getClass();
         if (tL_messages_emojiGroups != null) {
             NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$2(emojiCategoryArr, tL_messages_emojiGroups, j);
+                    StickerCategoriesListView.$r8$lambda$m2HdIcq8gv4PxwYaq1vSwfIxu3k(this.f$0, emojiCategoryArr, tL_messages_emojiGroups, j);
                 }
             });
         }
     }
 
-    public void lambda$new$2(EmojiCategory[] emojiCategoryArr, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, long j) {
-        this.categories = new EmojiCategory[(emojiCategoryArr == null ? 0 : emojiCategoryArr.length) + tL_messages_emojiGroups.groups.size()];
+    public static void $r8$lambda$m2HdIcq8gv4PxwYaq1vSwfIxu3k(StickerCategoriesListView stickerCategoriesListView, EmojiCategory[] emojiCategoryArr, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, long j) {
+        stickerCategoriesListView.getClass();
+        stickerCategoriesListView.categories = new EmojiCategory[(emojiCategoryArr == null ? 0 : emojiCategoryArr.length) + tL_messages_emojiGroups.groups.size()];
         int i = 0;
         if (emojiCategoryArr != null) {
             while (i < emojiCategoryArr.length) {
-                this.categories[i] = emojiCategoryArr[i];
+                stickerCategoriesListView.categories[i] = emojiCategoryArr[i];
                 i++;
             }
         }
         for (int i2 = 0; i2 < tL_messages_emojiGroups.groups.size(); i2++) {
-            this.categories[i + i2] = EmojiCategory.remote(tL_messages_emojiGroups.groups.get(i2));
+            stickerCategoriesListView.categories[i + i2] = EmojiCategory.remote(tL_messages_emojiGroups.groups.get(i2));
         }
-        this.categories = preprocessCategories(this.categories);
-        this.adapter.notifyDataSetChanged();
-        setCategoriesShownT(0.0f);
-        updateCategoriesShown(this.categoriesShouldShow, System.currentTimeMillis() - j > 16);
+        stickerCategoriesListView.categories = stickerCategoriesListView.preprocessCategories(stickerCategoriesListView.categories);
+        stickerCategoriesListView.adapter.notifyDataSetChanged();
+        stickerCategoriesListView.setCategoriesShownT(0.0f);
+        stickerCategoriesListView.updateCategoriesShown(stickerCategoriesListView.categoriesShouldShow, System.currentTimeMillis() - j > 16);
     }
 
     public void setShownButtonsAtStart(float f) {
         this.shownButtonsAtStart = f;
     }
 
-    public void lambda$new$1(int i, View view) {
+    public void onItemClick(int i, View view) {
         EmojiCategory[] emojiCategoryArr;
         if (i >= 1 && (emojiCategoryArr = this.categories) != null) {
             EmojiCategory emojiCategory = emojiCategoryArr[i - 1];
@@ -230,13 +234,9 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$scrollToSelected$4(iMax);
+                this.f$0.onScrolled(iMax, 0);
             }
         });
-    }
-
-    public void lambda$scrollToSelected$4(int i) {
-        onScrolled(i, 0);
     }
 
     public void selectCategory(EmojiCategory emojiCategory) {
@@ -320,7 +320,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$updateCategoriesShown$5(valueAnimator2);
+                    StickerCategoriesListView.m2821$r8$lambda$6JNOjg6kUpFBK4YSQL_woFWINc(this.f$0, valueAnimator2);
                 }
             });
             this.categoriesShownAnimator.addListener(new AnimatorListenerAdapter() {
@@ -341,8 +341,9 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         setCategoriesShownT(r5 != 0 ? 1.0f : 0.0f);
     }
 
-    public void lambda$updateCategoriesShown$5(ValueAnimator valueAnimator) {
-        setCategoriesShownT(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public static void m2821$r8$lambda$6JNOjg6kUpFBK4YSQL_woFWINc(StickerCategoriesListView stickerCategoriesListView, ValueAnimator valueAnimator) {
+        stickerCategoriesListView.getClass();
+        stickerCategoriesListView.setCategoriesShownT(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public void setCategoriesShownT(float f) {
@@ -445,6 +446,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
 
     @Override
     public void draw(Canvas canvas) {
+        Canvas canvas2;
         Drawable drawable;
         if (this.backgroundPaint != null) {
             int iMin = Integer.MAX_VALUE;
@@ -459,24 +461,29 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             if (iMin < iMax) {
                 int width = (int) (iMin + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
                 int width2 = (int) (iMax + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
-                canvas.drawRect(width, 0.0f, width2, getHeight(), this.backgroundPaint);
+                canvas2 = canvas;
+                canvas2.drawRect(width, 0.0f, width2, getHeight(), this.backgroundPaint);
                 if (width2 < getWidth() && (drawable = this.leftBoundDrawable) != null) {
                     drawable.setAlpha(255);
                     Drawable drawable2 = this.leftBoundDrawable;
                     drawable2.setBounds(width2, 0, drawable2.getIntrinsicWidth() + width2, getHeight());
-                    this.leftBoundDrawable.draw(canvas);
+                    this.leftBoundDrawable.draw(canvas2);
                 }
+            } else {
+                canvas2 = canvas;
             }
+        } else {
+            canvas2 = canvas;
         }
-        drawSelectedHighlight(canvas);
-        super.draw(canvas);
+        drawSelectedHighlight(canvas2);
+        super.draw(canvas2);
         Drawable drawable3 = this.leftBoundDrawable;
         if (drawable3 != null) {
             drawable3.setAlpha((int) (255.0f * this.leftBoundAlpha.set((canScrollHorizontally(-1) && this.scrolledFully) ? 1.0f : 0.0f) * this.categoriesShownT));
             if (this.leftBoundDrawable.getAlpha() > 0) {
                 Drawable drawable4 = this.leftBoundDrawable;
                 drawable4.setBounds(0, 0, drawable4.getIntrinsicWidth(), getHeight());
-                this.leftBoundDrawable.draw(canvas);
+                this.leftBoundDrawable.draw(canvas2);
             }
         }
     }
@@ -537,7 +544,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    private class Adapter extends RecyclerListView.SelectionAdapter {
+    class Adapter extends RecyclerListView.SelectionAdapter {
         private int lastItemCount;
 
         @Override
@@ -661,13 +668,13 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                 AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).fetchDocument(emojiCategory.documentId, new AnimatedEmojiDrawable.ReceivedDocument() {
                     @Override
                     public final void run(TLRPC.Document document) {
-                        this.f$0.lambda$set$0(zIsTabIconsAnimationEnabled, document);
+                        StickerCategoriesListView.CategoryButton.$r8$lambda$5E4_ogyFdNd56291g2oNdZyDnZ4(this.f$0, zIsTabIconsAnimationEnabled, document);
                     }
                 });
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$set$1();
+                        StickerCategoriesListView.CategoryButton.$r8$lambda$gEMFKTsWBVlNDwS0LHZUSf6OYfs(this.f$0);
                     }
                 }, 60L);
             } else if (emojiCategory.animated) {
@@ -684,17 +691,17 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             setSelected(z, false);
         }
 
-        public void lambda$set$0(boolean z, TLRPC.Document document) {
-            setOnlyLastFrame(!z);
-            setAnimation(document, 24, 24);
-            playAnimation();
+        public static void $r8$lambda$5E4_ogyFdNd56291g2oNdZyDnZ4(CategoryButton categoryButton, boolean z, TLRPC.Document document) {
+            categoryButton.setOnlyLastFrame(!z);
+            categoryButton.setAnimation(document, 24, 24);
+            categoryButton.playAnimation();
         }
 
-        public void lambda$set$1() {
-            if (this.loaded) {
+        public static void $r8$lambda$gEMFKTsWBVlNDwS0LHZUSf6OYfs(CategoryButton categoryButton) {
+            if (categoryButton.loaded) {
                 return;
             }
-            this.loadProgress = 0.0f;
+            categoryButton.loadProgress = 0.0f;
         }
 
         @Override
@@ -711,7 +718,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$onLoaded$2(valueAnimator2);
+                        StickerCategoriesListView.CategoryButton.m2826$r8$lambda$U5F_BfWS_GPWXrSJCnEY6lDDYw(this.f$0, valueAnimator2);
                     }
                 });
                 this.loadAnimator.addListener(new AnimatorListenerAdapter() {
@@ -729,9 +736,10 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             }
         }
 
-        public void lambda$onLoaded$2(ValueAnimator valueAnimator) {
-            this.loadProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+        public static void m2826$r8$lambda$U5F_BfWS_GPWXrSJCnEY6lDDYw(CategoryButton categoryButton, ValueAnimator valueAnimator) {
+            categoryButton.getClass();
+            categoryButton.loadProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            categoryButton.invalidate();
         }
 
         public void setSelected(boolean z, boolean z2) {
@@ -747,7 +755,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            this.f$0.lambda$setSelected$3(valueAnimator2);
+                            StickerCategoriesListView.CategoryButton.m2827$r8$lambda$aA2TeOugb7SPCGBt3SF2PnedcQ(this.f$0, valueAnimator2);
                         }
                     });
                     this.selectedAnimator.addListener(new AnimatorListenerAdapter() {
@@ -767,8 +775,9 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             }
         }
 
-        public void lambda$setSelected$3(ValueAnimator valueAnimator) {
-            updateSelectedT(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        public static void m2827$r8$lambda$aA2TeOugb7SPCGBt3SF2PnedcQ(CategoryButton categoryButton, ValueAnimator valueAnimator) {
+            categoryButton.getClass();
+            categoryButton.updateSelectedT(((Float) valueAnimator.getAnimatedValue()).floatValue());
         }
 
         public void updateSelectedT(float f) {
@@ -863,7 +872,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            this.f$0.lambda$setPressed$4(valueAnimator2);
+                            StickerCategoriesListView.CategoryButton.$r8$lambda$W9Qj9Xa7YvSGwcVW4kyx2BHAnC8(this.f$0, valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
@@ -880,9 +889,10 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             }
         }
 
-        public void lambda$setPressed$4(ValueAnimator valueAnimator) {
-            this.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            invalidate();
+        public static void $r8$lambda$W9Qj9Xa7YvSGwcVW4kyx2BHAnC8(CategoryButton categoryButton, ValueAnimator valueAnimator) {
+            categoryButton.getClass();
+            categoryButton.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            categoryButton.invalidate();
         }
     }
 
@@ -939,12 +949,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             ConnectionsManager.getInstance(i).sendRequest(tLObject, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    StickerCategoriesListView.EmojiGroupFetcher.lambda$getRemote$0(callback4, tLObject2, tL_error);
+                    StickerCategoriesListView.EmojiGroupFetcher.$r8$lambda$hoVrwIB0C7JCXIxZyF899CAsQ48(callback4, tLObject2, tL_error);
                 }
             });
         }
 
-        public static void lambda$getRemote$0(Utilities.Callback4 callback4, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$hoVrwIB0C7JCXIxZyF899CAsQ48(Utilities.Callback4 callback4, TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified) {
                 Boolean bool = Boolean.TRUE;
                 callback4.run(bool, null, 0L, bool);
@@ -961,12 +971,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    StickerCategoriesListView.EmojiGroupFetcher.lambda$getLocal$1(i, num, callback2);
+                    StickerCategoriesListView.EmojiGroupFetcher.$r8$lambda$d9VgXuQKrOQ1qkFLkDr7Mpark10(i, num, callback2);
                 }
             });
         }
 
-        public static void lambda$getLocal$1(int i, Integer num, Utilities.Callback2 callback2) throws Throwable {
+        public static void $r8$lambda$d9VgXuQKrOQ1qkFLkDr7Mpark10(int i, Integer num, Utilities.Callback2 callback2) throws Throwable {
             SQLiteCursor sQLiteCursorQueryFinalized;
             TLRPC.messages_EmojiGroups messages_emojigroupsTLdeserialize;
             NativeByteBuffer nativeByteBufferByteBufferValue;
@@ -997,20 +1007,20 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                                 e = e;
                                 FileLog.e(e);
                                 callback2.run(0L, null);
-                                if (sQLiteCursorQueryFinalized == null) {
+                                if (sQLiteCursorQueryFinalized != null) {
+                                    sQLiteCursorQueryFinalized.dispose();
                                     return;
-                                } else {
-                                    sQLiteCursor2 = sQLiteCursorQueryFinalized;
                                 }
+                                return;
                             }
                         } catch (Exception e2) {
                             e = e2;
                             sQLiteCursorQueryFinalized = null;
                             FileLog.e(e);
                             callback2.run(0L, null);
-                            if (sQLiteCursorQueryFinalized == null) {
-                                sQLiteCursor2 = sQLiteCursorQueryFinalized;
-                                sQLiteCursor2.dispose();
+                            if (sQLiteCursorQueryFinalized != null) {
+                                sQLiteCursorQueryFinalized.dispose();
+                                return;
                             }
                             return;
                         } catch (Throwable th) {
@@ -1021,8 +1031,8 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                             throw th;
                         }
                     }
-                    if (sQLiteCursor2 == null) {
-                        return;
+                    if (sQLiteCursor2 != null) {
+                        sQLiteCursor2.dispose();
                     }
                 } catch (Throwable th2) {
                     th = th2;
@@ -1033,7 +1043,6 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             } catch (Throwable th3) {
                 th = th3;
             }
-            sQLiteCursor2.dispose();
         }
 
         @Override
@@ -1041,28 +1050,28 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    StickerCategoriesListView.EmojiGroupFetcher.lambda$setLocal$2(i, tL_messages_emojiGroups, num);
+                    StickerCategoriesListView.EmojiGroupFetcher.$r8$lambda$ItTxN5yQgcyJ0ciauXDJGTpsOXk(i, tL_messages_emojiGroups, num);
                 }
             });
         }
 
-        public static void lambda$setLocal$2(int i, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, Integer num) {
+        public static void $r8$lambda$ItTxN5yQgcyJ0ciauXDJGTpsOXk(int i, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, Integer num) {
             try {
                 SQLiteDatabase database = MessagesStorage.getInstance(i).getDatabase();
                 if (database != null) {
                     if (tL_messages_emojiGroups == null) {
                         database.executeFast("DELETE FROM emoji_groups WHERE type = " + num).stepThis().dispose();
-                    } else {
-                        SQLitePreparedStatement sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO emoji_groups VALUES(?, ?)");
-                        sQLitePreparedStatementExecuteFast.requery();
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_messages_emojiGroups.getObjectSize());
-                        tL_messages_emojiGroups.serializeToStream(nativeByteBuffer);
-                        sQLitePreparedStatementExecuteFast.bindInteger(1, num.intValue());
-                        sQLitePreparedStatementExecuteFast.bindByteBuffer(2, nativeByteBuffer);
-                        sQLitePreparedStatementExecuteFast.step();
-                        nativeByteBuffer.reuse();
-                        sQLitePreparedStatementExecuteFast.dispose();
+                        return;
                     }
+                    SQLitePreparedStatement sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO emoji_groups VALUES(?, ?)");
+                    sQLitePreparedStatementExecuteFast.requery();
+                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_messages_emojiGroups.getObjectSize());
+                    tL_messages_emojiGroups.serializeToStream(nativeByteBuffer);
+                    sQLitePreparedStatementExecuteFast.bindInteger(1, num.intValue());
+                    sQLitePreparedStatementExecuteFast.bindByteBuffer(2, nativeByteBuffer);
+                    sQLitePreparedStatementExecuteFast.step();
+                    nativeByteBuffer.reuse();
+                    sQLitePreparedStatementExecuteFast.dispose();
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -1082,12 +1091,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             ConnectionsManager.getInstance(i).sendRequest(tL_messages_searchCustomEmoji, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickerCategoriesListView.EmojiSearch.lambda$getRemote$0(callback4, tLObject, tL_error);
+                    StickerCategoriesListView.EmojiSearch.m2828$r8$lambda$S8qTPEYrUlxmW8suBrCSOYi_S0(callback4, tLObject, tL_error);
                 }
             });
         }
 
-        public static void lambda$getRemote$0(Utilities.Callback4 callback4, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m2828$r8$lambda$S8qTPEYrUlxmW8suBrCSOYi_S0(Utilities.Callback4 callback4, TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject instanceof TLRPC.TL_emojiListNotModified) {
                 Boolean bool = Boolean.TRUE;
                 callback4.run(bool, null, 0L, bool);

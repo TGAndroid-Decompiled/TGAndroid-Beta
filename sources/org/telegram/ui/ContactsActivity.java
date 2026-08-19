@@ -165,7 +165,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         void didSelectContact(TLRPC.User user, String str, ContactsActivity contactsActivity);
     }
 
-    public static boolean lambda$createView$1(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$JKMMNZVbhnScE5UBvbHjndBG4o0(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -327,7 +327,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             this.actionModeCloseView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$createView$0(view);
+                    this.f$0.hideActionMode();
                 }
             });
             actionBarMenuCreateActionMode.addView(this.actionModeCloseView, LayoutHelper.createLinear(54, 54, 16));
@@ -341,7 +341,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         this.selectedContactsCountTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return ContactsActivity.lambda$createView$1(view, motionEvent);
+                return ContactsActivity.$r8$lambda$JKMMNZVbhnScE5UBvbHjndBG4o0(view, motionEvent);
             }
         });
         actionBarMenuCreateActionMode.addItemWithWidth(100, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Delete));
@@ -430,7 +430,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         } else {
             CanUserDoAdminAction = 0;
         }
-        ContactsAdapter contactsAdapter = new ContactsAdapter(context, this, this.onlyUsers ? 1 : 0, this.needPhonebook, this.ignoreUsers, this.selectedContacts, CanUserDoAdminAction == true ? 1 : 0) {
+        ContactsAdapter contactsAdapter = new ContactsAdapter(context, this, this.onlyUsers ? 1 : 0, this.needPhonebook, this.ignoreUsers, this.selectedContacts, CanUserDoAdminAction) {
             @Override
             public void notifyDataSetChanged() {
                 super.notifyDataSetChanged();
@@ -467,7 +467,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 if (Build.VERSION.SDK_INT >= 31 && ContactsActivity.this.scrollableViewNoiseSuppressor != null) {
-                    ContactsActivity.this.lambda$createView$2();
+                    ContactsActivity.this.blur3_InvalidateBlur();
                     int measuredWidth = getMeasuredWidth();
                     int measuredHeight = getMeasuredHeight();
                     if (ContactsActivity.this.iBlur3SourceGlassFrosted != null && !ContactsActivity.this.iBlur3SourceGlassFrosted.inRecording()) {
@@ -534,7 +534,13 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         this.listView.addEdgeEffectListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$3();
+                ContactsActivity contactsActivity = this.f$0;
+                contactsActivity.listView.postOnAnimation(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.blur3_InvalidateBlur();
+                    }
+                });
             }
         });
         this.listView.setSections(true);
@@ -569,7 +575,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         recyclerAnimationScrollHelper.setScrollListener(new RecyclerAnimationScrollHelper.ScrollListener() {
             @Override
             public final void onScroll() {
-                this.f$0.lambda$createView$2();
+                this.f$0.blur3_InvalidateBlur();
             }
         });
         SizeNotifierFrameLayout sizeNotifierFrameLayout2 = this.contentView;
@@ -592,13 +598,13 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
 
             @Override
             public final void onItemClick(View view, int i2, float f2, float f3) {
-                this.f$0.lambda$createView$5(CanUserDoAdminAction, view, i2, f2, f3);
+                ContactsActivity.$r8$lambda$Gak5Ogs_8AfUbFeRHcrD8QY_49s(this.f$0, CanUserDoAdminAction, view, i2, f2, f3);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                return this.f$0.lambda$createView$6(view, i2);
+                return ContactsActivity.$r8$lambda$IzfRQCOCAqRbA4DAtWyDslWNFps(this.f$0, view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -635,7 +641,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 this.lastScrollToDown = i3 < 0;
                 if (Build.VERSION.SDK_INT >= 31 && ContactsActivity.this.scrollableViewNoiseSuppressor != null) {
                     ContactsActivity.this.scrollableViewNoiseSuppressor.onScrolled(i2, i3);
-                    ContactsActivity.this.lambda$createView$2();
+                    ContactsActivity.this.blur3_InvalidateBlur();
                 }
                 ContactsActivity.this.checkUi_searchFieldY();
             }
@@ -647,7 +653,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             this.floatingButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$createView$7(view);
+                    ContactsActivity.$r8$lambda$jAdSKV_uusTO2ChVf2F8WWBkx2E(this.f$0, view);
                 }
             });
             this.floatingButton.setAnimation(R.raw.write_contacts_fab_icon, 44);
@@ -724,10 +730,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view) {
-        hideActionMode();
-    }
-
     class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
         AnonymousClass1() {
         }
@@ -759,30 +761,21 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 AndroidUtilities.doOnPreDraw(ContactsActivity.this.searchField.editText, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemClick$0();
+                        ContactsActivity.AnonymousClass1.$r8$lambda$BbfyQLdfmyLfmczyBdeZhOyoIMU(this.f$0);
                     }
                 });
             }
         }
 
-        public void lambda$onItemClick$0() {
+        public static void $r8$lambda$BbfyQLdfmyLfmczyBdeZhOyoIMU(AnonymousClass1 anonymousClass1) {
             ContactsActivity.this.searchField.editText.requestFocus();
             AndroidUtilities.showKeyboard(ContactsActivity.this.searchField.editText);
         }
     }
 
-    public void lambda$createView$3() {
-        this.listView.postOnAnimation(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$createView$2();
-            }
-        });
-    }
-
-    public void lambda$createView$5(int i, View view, int i2, float f, float f2) {
-        RecyclerView.Adapter adapter = this.listView.getAdapter();
-        SearchAdapter searchAdapter = this.searchListViewAdapter;
+    public static void $r8$lambda$Gak5Ogs_8AfUbFeRHcrD8QY_49s(final ContactsActivity contactsActivity, int i, View view, int i2, float f, float f2) {
+        RecyclerView.Adapter adapter = contactsActivity.listView.getAdapter();
+        SearchAdapter searchAdapter = contactsActivity.searchListViewAdapter;
         if (adapter == searchAdapter) {
             if (searchAdapter.includeSearch) {
                 if (i2 == 0) {
@@ -792,42 +785,42 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 }
             }
             Object item = searchAdapter.getItem(i2);
-            if (!this.selectedContacts.isEmpty() && (view instanceof ProfileSearchCell)) {
+            if (!contactsActivity.selectedContacts.isEmpty() && (view instanceof ProfileSearchCell)) {
                 ProfileSearchCell profileSearchCell = (ProfileSearchCell) view;
                 if (profileSearchCell.getUser() == null || !profileSearchCell.getUser().contact) {
                     return;
                 }
-                showOrUpdateActionMode(profileSearchCell);
+                contactsActivity.showOrUpdateActionMode(profileSearchCell);
                 return;
             }
             if (item instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) item;
-                if (this.searchListViewAdapter.isGlobalSearch(i2)) {
+                if (contactsActivity.searchListViewAdapter.isGlobalSearch(i2)) {
                     ArrayList<TLRPC.User> arrayList = new ArrayList<>();
                     arrayList.add(user);
-                    getMessagesController().putUsers(arrayList, false);
-                    MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(arrayList, null, false, true);
+                    contactsActivity.getMessagesController().putUsers(arrayList, false);
+                    MessagesStorage.getInstance(contactsActivity.currentAccount).putUsersAndChats(arrayList, null, false, true);
                 }
-                if (this.returnAsResult) {
-                    LongSparseArray longSparseArray = this.ignoreUsers;
+                if (contactsActivity.returnAsResult) {
+                    LongSparseArray longSparseArray = contactsActivity.ignoreUsers;
                     if (longSparseArray == null || longSparseArray.indexOfKey(user.id) < 0) {
-                        didSelectResult(user, true, null);
+                        contactsActivity.didSelectResult(user, true, null);
                         return;
                     }
                     return;
                 }
-                if (this.createSecretChat) {
-                    if (user.id == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                if (contactsActivity.createSecretChat) {
+                    if (user.id == UserConfig.getInstance(contactsActivity.currentAccount).getClientUserId()) {
                         return;
                     }
-                    this.creatingChat = true;
-                    SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), user);
+                    contactsActivity.creatingChat = true;
+                    SecretChatHelper.getInstance(contactsActivity.currentAccount).startSecretChat(contactsActivity.getParentActivity(), user);
                     return;
                 }
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", user.id);
-                if (getMessagesController().checkCanOpenChat(bundle, this)) {
-                    presentFragment(new ChatActivity(bundle), this.needFinishFragment);
+                if (contactsActivity.getMessagesController().checkCanOpenChat(bundle, contactsActivity)) {
+                    contactsActivity.presentFragment(new ChatActivity(bundle), contactsActivity.needFinishFragment);
                     return;
                 }
                 return;
@@ -837,23 +830,23 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 if (str.equals("section")) {
                     return;
                 }
-                if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
-                    AccountFrozenAlert.show(this.currentAccount);
+                if (MessagesController.getInstance(contactsActivity.currentAccount).isFrozen()) {
+                    AccountFrozenAlert.show(contactsActivity.currentAccount);
                     return;
                 }
-                NewContactBottomSheet newContactBottomSheet = new NewContactBottomSheet(this, getContext());
+                NewContactBottomSheet newContactBottomSheet = new NewContactBottomSheet(contactsActivity, contactsActivity.getContext());
                 newContactBottomSheet.setInitialPhoneNumber(str, true);
                 newContactBottomSheet.show();
                 return;
             }
             if (item instanceof ContactsController.Contact) {
                 ContactsController.Contact contact = (ContactsController.Contact) item;
-                AlertsCreator.createContactInviteDialog(this, contact.first_name, contact.last_name, contact.phones.get(0));
+                AlertsCreator.createContactInviteDialog(contactsActivity, contact.first_name, contact.last_name, contact.phones.get(0));
                 return;
             }
             return;
         }
-        ContactsAdapter contactsAdapter = this.listViewAdapter;
+        ContactsAdapter contactsAdapter = contactsActivity.listViewAdapter;
         if (contactsAdapter.includeSearch) {
             if (i2 == 0) {
                 return;
@@ -862,101 +855,101 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             }
         }
         int sectionForPosition = contactsAdapter.getSectionForPosition(i2);
-        int positionInSectionForPosition = this.listViewAdapter.getPositionInSectionForPosition(i2);
+        int positionInSectionForPosition = contactsActivity.listViewAdapter.getPositionInSectionForPosition(i2);
         if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
             return;
         }
         if ((view instanceof ViewGroup) && (((ViewGroup) view).getChildAt(0) instanceof ContactsEmptyView)) {
-            FragmentFloatingButton fragmentFloatingButton = this.floatingButton;
+            FragmentFloatingButton fragmentFloatingButton = contactsActivity.floatingButton;
             if (fragmentFloatingButton != null) {
                 fragmentFloatingButton.performClick();
                 return;
             }
             return;
         }
-        if (!this.selectedContacts.isEmpty() && (view instanceof UserCell)) {
-            showOrUpdateActionMode((UserCell) view);
+        if (!contactsActivity.selectedContacts.isEmpty() && (view instanceof UserCell)) {
+            contactsActivity.showOrUpdateActionMode((UserCell) view);
             return;
         }
-        if ((!this.onlyUsers || i != 0) && sectionForPosition == 0) {
-            if (this.needPhonebook) {
+        if ((!contactsActivity.onlyUsers || i != 0) && sectionForPosition == 0) {
+            if (contactsActivity.needPhonebook) {
                 if (positionInSectionForPosition != 0) {
                     if (positionInSectionForPosition == 1) {
-                        presentFragment(new CallLogActivity());
+                        contactsActivity.presentFragment(new CallLogActivity());
                         return;
                     }
                     return;
-                } else if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
-                    AccountFrozenAlert.show(this.currentAccount);
+                } else if (MessagesController.getInstance(contactsActivity.currentAccount).isFrozen()) {
+                    AccountFrozenAlert.show(contactsActivity.currentAccount);
                     return;
                 } else {
-                    presentFragment(new InviteContactsActivity());
+                    contactsActivity.presentFragment(new InviteContactsActivity());
                     return;
                 }
             }
             if (i != 0) {
                 if (positionInSectionForPosition == 0) {
-                    if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
-                        AccountFrozenAlert.show(this.currentAccount);
+                    if (MessagesController.getInstance(contactsActivity.currentAccount).isFrozen()) {
+                        AccountFrozenAlert.show(contactsActivity.currentAccount);
                         return;
                     }
-                    long j = this.chatId;
+                    long j = contactsActivity.chatId;
                     if (j == 0) {
-                        j = this.channelId;
+                        j = contactsActivity.channelId;
                     }
-                    presentFragment(new GroupInviteActivity(j));
+                    contactsActivity.presentFragment(new GroupInviteActivity(j));
                     return;
                 }
                 return;
             }
             if (positionInSectionForPosition == 0) {
-                if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
-                    AccountFrozenAlert.show(this.currentAccount);
+                if (MessagesController.getInstance(contactsActivity.currentAccount).isFrozen()) {
+                    AccountFrozenAlert.show(contactsActivity.currentAccount);
                     return;
                 } else {
-                    presentFragment(new GroupCreateActivity(new Bundle()), false);
+                    contactsActivity.presentFragment(new GroupCreateActivity(new Bundle()), false);
                     return;
                 }
             }
             if (positionInSectionForPosition == 1) {
-                if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
-                    AccountFrozenAlert.show(this.currentAccount);
+                if (MessagesController.getInstance(contactsActivity.currentAccount).isFrozen()) {
+                    AccountFrozenAlert.show(contactsActivity.currentAccount);
                     return;
                 }
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                 if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
                     Bundle bundle2 = new Bundle();
                     bundle2.putInt("step", 0);
-                    presentFragment(new ChannelCreateActivity(bundle2));
+                    contactsActivity.presentFragment(new ChannelCreateActivity(bundle2));
                     return;
                 } else {
-                    presentFragment(new ActionIntroActivity(0));
+                    contactsActivity.presentFragment(new ActionIntroActivity(0));
                     globalMainSettings.edit().putBoolean("channel_intro", true).commit();
                     return;
                 }
             }
             return;
         }
-        Object item2 = this.listViewAdapter.getItem(this.listViewAdapter.getSectionForPosition(i2), this.listViewAdapter.getPositionInSectionForPosition(i2));
+        Object item2 = contactsActivity.listViewAdapter.getItem(contactsActivity.listViewAdapter.getSectionForPosition(i2), contactsActivity.listViewAdapter.getPositionInSectionForPosition(i2));
         if (item2 instanceof TLRPC.User) {
             TLRPC.User user2 = (TLRPC.User) item2;
-            if (this.returnAsResult) {
-                LongSparseArray longSparseArray2 = this.ignoreUsers;
+            if (contactsActivity.returnAsResult) {
+                LongSparseArray longSparseArray2 = contactsActivity.ignoreUsers;
                 if (longSparseArray2 == null || longSparseArray2.indexOfKey(user2.id) < 0) {
-                    didSelectResult(user2, true, null);
+                    contactsActivity.didSelectResult(user2, true, null);
                     return;
                 }
                 return;
             }
-            if (this.createSecretChat) {
-                this.creatingChat = true;
-                SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), user2);
+            if (contactsActivity.createSecretChat) {
+                contactsActivity.creatingChat = true;
+                SecretChatHelper.getInstance(contactsActivity.currentAccount).startSecretChat(contactsActivity.getParentActivity(), user2);
                 return;
             }
             Bundle bundle3 = new Bundle();
             bundle3.putLong("user_id", user2.id);
-            if (getMessagesController().checkCanOpenChat(bundle3, this)) {
-                presentFragment(new ChatActivity(bundle3), this.needFinishFragment);
+            if (contactsActivity.getMessagesController().checkCanOpenChat(bundle3, contactsActivity)) {
+                contactsActivity.presentFragment(new ChatActivity(bundle3), contactsActivity.needFinishFragment);
                 return;
             }
             return;
@@ -964,39 +957,40 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         if (item2 instanceof ContactsController.Contact) {
             ContactsController.Contact contact2 = (ContactsController.Contact) item2;
             final String str2 = !contact2.phones.isEmpty() ? contact2.phones.get(0) : null;
-            if (str2 == null || getParentActivity() == null) {
+            if (str2 == null || contactsActivity.getParentActivity() == null) {
                 return;
             }
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            AlertDialog.Builder builder = new AlertDialog.Builder(contactsActivity.getParentActivity());
             builder.setMessage(LocaleController.getString(R.string.InviteUser));
             builder.setTitle(LocaleController.getString(R.string.AppName));
             builder.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
-                    this.f$0.lambda$createView$4(str2, alertDialog, i3);
+                    ContactsActivity.$r8$lambda$fJI2d59OhHdfroR_XTL8caPvJwQ(this.f$0, str2, alertDialog, i3);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            showDialog(builder.create());
+            contactsActivity.showDialog(builder.create());
         }
     }
 
-    public void lambda$createView$4(String str, AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$fJI2d59OhHdfroR_XTL8caPvJwQ(ContactsActivity contactsActivity, String str, AlertDialog alertDialog, int i) {
+        contactsActivity.getClass();
         try {
             Intent intent = new Intent("android.intent.action.VIEW", Uri.fromParts("sms", str, null));
-            intent.putExtra("sms_body", ContactsController.getInstance(this.currentAccount).getInviteText(1));
-            getParentActivity().startActivityForResult(intent, 500);
+            intent.putExtra("sms_body", ContactsController.getInstance(contactsActivity.currentAccount).getInviteText(1));
+            contactsActivity.getParentActivity().startActivityForResult(intent, 500);
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
-    public boolean lambda$createView$6(View view, int i) {
-        RecyclerView.Adapter adapter = this.listView.getAdapter();
-        ContactsAdapter contactsAdapter = this.listViewAdapter;
+    public static boolean $r8$lambda$IzfRQCOCAqRbA4DAtWyDslWNFps(ContactsActivity contactsActivity, View view, int i) {
+        RecyclerView.Adapter adapter = contactsActivity.listView.getAdapter();
+        ContactsAdapter contactsAdapter = contactsActivity.listViewAdapter;
         if (adapter == contactsAdapter) {
             int sectionForPosition = contactsAdapter.getSectionForPosition(i);
-            int positionInSectionForPosition = this.listViewAdapter.getPositionInSectionForPosition(i);
+            int positionInSectionForPosition = contactsActivity.listViewAdapter.getPositionInSectionForPosition(i);
             if (Bulletin.getVisibleBulletin() != null) {
                 Bulletin.getVisibleBulletin().hide();
             }
@@ -1004,26 +998,26 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 return false;
             }
         }
-        boolean z = this.returnAsResult;
-        if (!z && !this.createSecretChat && (view instanceof UserCell)) {
-            showOrUpdateActionMode((UserCell) view);
+        boolean z = contactsActivity.returnAsResult;
+        if (!z && !contactsActivity.createSecretChat && (view instanceof UserCell)) {
+            contactsActivity.showOrUpdateActionMode((UserCell) view);
             return true;
         }
-        if (z || this.createSecretChat || !(view instanceof ProfileSearchCell)) {
+        if (z || contactsActivity.createSecretChat || !(view instanceof ProfileSearchCell)) {
             return false;
         }
         ProfileSearchCell profileSearchCell = (ProfileSearchCell) view;
         if (profileSearchCell.getUser() != null && profileSearchCell.getUser().contact) {
-            showOrUpdateActionMode(profileSearchCell);
+            contactsActivity.showOrUpdateActionMode(profileSearchCell);
         }
         return true;
     }
 
-    public void lambda$createView$7(View view) {
-        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
-            AccountFrozenAlert.show(this.currentAccount);
+    public static void $r8$lambda$jAdSKV_uusTO2ChVf2F8WWBkx2E(ContactsActivity contactsActivity, View view) {
+        if (MessagesController.getInstance(contactsActivity.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(contactsActivity.currentAccount);
         } else {
-            new NewContactBottomSheet(this, getContext()).show();
+            new NewContactBottomSheet(contactsActivity, contactsActivity.getContext()).show();
         }
     }
 
@@ -1122,7 +1116,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$performSelectedContactsDelete$8(alertDialog, i);
+                ContactsActivity.m3022$r8$lambda$__kvoP7XTtg3KRbDoIrtIfdKJA(this.f$0, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -1136,13 +1130,14 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         alertDialogCreate.redPositive();
     }
 
-    public void lambda$performSelectedContactsDelete$8(AlertDialog alertDialog, int i) {
-        ArrayList<TLRPC.User> arrayList = new ArrayList<>(this.selectedContacts.size());
-        for (int i2 = 0; i2 < this.selectedContacts.size(); i2++) {
-            arrayList.add((TLRPC.User) this.selectedContacts.get(this.selectedContacts.keyAt(i2)));
+    public static void m3022$r8$lambda$__kvoP7XTtg3KRbDoIrtIfdKJA(ContactsActivity contactsActivity, AlertDialog alertDialog, int i) {
+        contactsActivity.getClass();
+        ArrayList<TLRPC.User> arrayList = new ArrayList<>(contactsActivity.selectedContacts.size());
+        for (int i2 = 0; i2 < contactsActivity.selectedContacts.size(); i2++) {
+            arrayList.add((TLRPC.User) contactsActivity.selectedContacts.get(contactsActivity.selectedContacts.keyAt(i2)));
         }
-        getContactsController().deleteContactsUndoable(getContext(), this, arrayList);
-        hideActionMode();
+        contactsActivity.getContactsController().deleteContactsUndoable(contactsActivity.getContext(), contactsActivity, arrayList);
+        contactsActivity.hideActionMode();
     }
 
     private void didSelectResult(final TLRPC.User user, boolean z, final String str) {
@@ -1170,7 +1165,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                         builder.setPositiveButton(LocaleController.getString(R.string.AddAsAdmin), new AlertDialog.OnButtonClickListener() {
                             @Override
                             public final void onClick(AlertDialog alertDialog, int i) {
-                                this.f$0.lambda$didSelectResult$10(user, str, alertDialog, i);
+                                ContactsActivity.$r8$lambda$XhXoT6kbKT5h4mKdittkdNcjim4(this.f$0, user, str, alertDialog, i);
                             }
                         });
                         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1210,24 +1205,28 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                     public void afterTextChanged(Editable editable) {
                         try {
                             String string = editable.toString();
-                            if (!string.isEmpty()) {
-                                int iIntValue = Utilities.parseInt((CharSequence) string).intValue();
-                                if (iIntValue < 0) {
-                                    editTextBoldCursor.setText("0");
-                                    EditText editText = editTextBoldCursor;
-                                    editText.setSelection(editText.length());
-                                } else if (iIntValue > 300) {
-                                    editTextBoldCursor.setText("300");
-                                    EditText editText2 = editTextBoldCursor;
-                                    editText2.setSelection(editText2.length());
-                                } else {
-                                    if (!string.equals("" + iIntValue)) {
-                                        editTextBoldCursor.setText("" + iIntValue);
-                                        EditText editText3 = editTextBoldCursor;
-                                        editText3.setSelection(editText3.length());
-                                    }
-                                }
+                            if (string.isEmpty()) {
+                                return;
                             }
+                            int iIntValue = Utilities.parseInt((CharSequence) string).intValue();
+                            if (iIntValue < 0) {
+                                editTextBoldCursor.setText("0");
+                                EditText editText = editTextBoldCursor;
+                                editText.setSelection(editText.length());
+                                return;
+                            }
+                            if (iIntValue > 300) {
+                                editTextBoldCursor.setText("300");
+                                EditText editText2 = editTextBoldCursor;
+                                editText2.setSelection(editText2.length());
+                                return;
+                            }
+                            if (string.equals("" + iIntValue)) {
+                                return;
+                            }
+                            editTextBoldCursor.setText("" + iIntValue);
+                            EditText editText3 = editTextBoldCursor;
+                            editText3.setSelection(editText3.length());
                         } catch (Exception e2) {
                             FileLog.e(e2);
                         }
@@ -1239,7 +1238,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             builder2.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$didSelectResult$11(user, editTextBoldCursor, alertDialog, i);
+                    ContactsActivity.$r8$lambda$BWVpHCjRUk60ntdJzoJmQKQ3RqY(this.f$0, user, editTextBoldCursor, alertDialog, i);
                 }
             });
             builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1273,16 +1272,23 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         }
     }
 
-    public void lambda$didSelectResult$10(TLRPC.User user, String str, AlertDialog alertDialog, int i) {
-        ContactsActivityDelegate contactsActivityDelegate = this.delegate;
+    public static void $r8$lambda$XhXoT6kbKT5h4mKdittkdNcjim4(ContactsActivity contactsActivity, TLRPC.User user, String str, AlertDialog alertDialog, int i) {
+        ContactsActivityDelegate contactsActivityDelegate = contactsActivity.delegate;
         if (contactsActivityDelegate != null) {
-            contactsActivityDelegate.didSelectContact(user, str, this);
-            this.delegate = null;
+            contactsActivityDelegate.didSelectContact(user, str, contactsActivity);
+            contactsActivity.delegate = null;
         }
     }
 
-    public void lambda$didSelectResult$11(TLRPC.User user, EditText editText, AlertDialog alertDialog, int i) {
-        didSelectResult(user, false, editText != null ? editText.getText().toString() : "0");
+    public static void $r8$lambda$BWVpHCjRUk60ntdJzoJmQKQ3RqY(ContactsActivity contactsActivity, TLRPC.User user, EditText editText, AlertDialog alertDialog, int i) {
+        String string;
+        if (editText != null) {
+            contactsActivity.getClass();
+            string = editText.getText().toString();
+        } else {
+            string = "0";
+        }
+        contactsActivity.didSelectResult(user, false, string);
     }
 
     @Override
@@ -1324,7 +1330,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 AlertDialog alertDialogCreate = AlertsCreator.createContactsPermissionDialog(parentActivity, new MessagesStorage.IntCallback() {
                     @Override
                     public final void run(int i) {
-                        this.f$0.lambda$onBecomeFullyVisible$12(i);
+                        ContactsActivity.$r8$lambda$whaBFWIlZvCXTaOeAe3Jx2VD034(this.f$0, i);
                     }
                 }).create();
                 this.permissionDialog = alertDialogCreate;
@@ -1335,12 +1341,13 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         }
     }
 
-    public void lambda$onBecomeFullyVisible$12(int i) {
-        this.askAboutContacts = i != 0;
+    public static void $r8$lambda$whaBFWIlZvCXTaOeAe3Jx2VD034(ContactsActivity contactsActivity, int i) {
+        contactsActivity.getClass();
+        contactsActivity.askAboutContacts = i != 0;
         if (i == 0) {
             return;
         }
-        askForPermissons(false);
+        contactsActivity.askForPermissons(false);
     }
 
     protected RecyclerListView getListView() {
@@ -1366,7 +1373,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             showDialog(AlertsCreator.createContactsPermissionDialog(parentActivity, new MessagesStorage.IntCallback() {
                 @Override
                 public final void run(int i) {
-                    this.f$0.lambda$askForPermissons$13(i);
+                    ContactsActivity.$r8$lambda$a8YHh04iOV2UXfYdUE92LTSCQuk(this.f$0, i);
                 }
             }).create());
             return;
@@ -1383,14 +1390,15 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         }
     }
 
-    public void lambda$askForPermissons$13(int i) {
+    public static void $r8$lambda$a8YHh04iOV2UXfYdUE92LTSCQuk(ContactsActivity contactsActivity, int i) {
+        contactsActivity.getClass();
         MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts2", false).commit();
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.contactsPermissionBadgeCheck, new Object[0]);
-        this.askAboutContacts = i != 0;
+        NotificationCenter.getInstance(contactsActivity.currentAccount).postNotificationName(NotificationCenter.contactsPermissionBadgeCheck, new Object[0]);
+        contactsActivity.askAboutContacts = i != 0;
         if (i == 0) {
             return;
         }
-        askForPermissons(false);
+        contactsActivity.askForPermissons(false);
     }
 
     @Override
@@ -1468,7 +1476,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) objArr[0];
                 Bundle bundle = new Bundle();
                 bundle.putInt("enc_id", encryptedChat.id);
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.closeChats, new Object[0]);
                 presentFragment(new ChatActivity(bundle), false);
                 return;
             }
@@ -1516,7 +1524,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$14();
+                ContactsActivity.m3021$r8$lambda$UpOTdt0KrQWX_SssImVX0bUXlA(this.f$0);
             }
 
             @Override
@@ -1552,7 +1560,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundBlue));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundPink));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueText2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKTAG | ThemeDescription.FLAG_TEXTCOLOR, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueText2));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayIcon));
         if (this.floatingButton != null) {
             arrayList.add(new ThemeDescription(this.floatingButton.imageView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_chats_actionIcon));
@@ -1572,12 +1580,12 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$14() {
-        RecyclerListView recyclerListView = this.listView;
+    public static void m3021$r8$lambda$UpOTdt0KrQWX_SssImVX0bUXlA(ContactsActivity contactsActivity) {
+        RecyclerListView recyclerListView = contactsActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
             for (int i = 0; i < childCount; i++) {
-                View childAt = this.listView.getChildAt(i);
+                View childAt = contactsActivity.listView.getChildAt(i);
                 if (childAt instanceof UserCell) {
                     ((UserCell) childAt).update(0);
                 } else if (childAt instanceof ProfileSearchCell) {
@@ -1585,18 +1593,18 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 }
             }
         }
-        ImageView imageView = this.actionModeCloseView;
+        ImageView imageView = contactsActivity.actionModeCloseView;
         if (imageView != null) {
-            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), PorterDuff.Mode.MULTIPLY));
-            this.actionModeCloseView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_actionBarActionModeDefaultSelector)));
+            imageView.setColorFilter(new PorterDuffColorFilter(contactsActivity.getThemedColor(Theme.key_actionBarActionModeDefaultIcon), PorterDuff.Mode.MULTIPLY));
+            contactsActivity.actionModeCloseView.setBackground(Theme.createSelectorDrawable(contactsActivity.getThemedColor(Theme.key_actionBarActionModeDefaultSelector)));
         }
-        ActionBar actionBar = this.actionBar;
+        ActionBar actionBar = contactsActivity.actionBar;
         if (actionBar != null) {
             actionBar.updateColors();
         }
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = this.contentView;
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = contactsActivity.contentView;
         if (sizeNotifierFrameLayout != null) {
-            sizeNotifierFrameLayout.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
+            sizeNotifierFrameLayout.setBackgroundColor(contactsActivity.getThemedColor(Theme.key_windowBackgroundGray));
         }
     }
 
@@ -1712,7 +1720,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         fragmentFloatingButton.setButtonVisible((!this.floatingButtonVisibleByScroll || this.searching || contactsAdapter.isEmpty()) ? false : true, true);
     }
 
-    public void lambda$createView$2() {
+    public void blur3_InvalidateBlur() {
         if (Build.VERSION.SDK_INT < 31 || this.scrollableViewNoiseSuppressor == null) {
             return;
         }

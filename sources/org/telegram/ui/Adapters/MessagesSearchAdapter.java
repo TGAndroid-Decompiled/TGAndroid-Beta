@@ -60,7 +60,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
     private Runnable loadStories = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$0();
+            MessagesSearchAdapter.$r8$lambda$G4xvCFC6MFtETBGY0SBKqEa1Itk(this.f$0);
         }
     };
 
@@ -72,8 +72,8 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         this.isSavedMessages = z;
     }
 
-    public void lambda$new$0() {
-        StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
+    public static void $r8$lambda$G4xvCFC6MFtETBGY0SBKqEa1Itk(MessagesSearchAdapter messagesSearchAdapter) {
+        StoriesController.SearchStoriesList searchStoriesList = messagesSearchAdapter.storiesList;
         if (searchStoriesList != null) {
             searchStoriesList.load(true, 3);
         }
@@ -218,21 +218,21 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
             int i5 = messageObject.messageOwner.date;
             if (this.isSavedMessages) {
                 dialogCell.isSavedDialog = true;
-                dialogId = messageObject.getSavedDialogId();
+                long savedDialogId = messageObject.getSavedDialogId();
                 TLRPC.Message message = messageObject.messageOwner;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                 if (messageFwdHeader == null || ((i4 = messageFwdHeader.date) == 0 && messageFwdHeader.saved_date == 0)) {
                     i3 = message.date;
+                } else if (i4 == 0) {
+                    i3 = messageFwdHeader.saved_date;
                 } else {
-                    if (i4 == 0) {
-                        i3 = messageFwdHeader.saved_date;
-                    } else {
-                        i2 = i4;
-                    }
+                    dialogId = savedDialogId;
+                    i2 = i4;
                     z = false;
                 }
                 i2 = i3;
                 z = false;
+                dialogId = savedDialogId;
             } else {
                 if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.currentAccount, dialogId)) {
                     dialogId = messageObject.getFromChatId();

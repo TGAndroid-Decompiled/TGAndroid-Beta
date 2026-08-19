@@ -301,11 +301,10 @@ public class TeXParser {
         int i;
         char cCharAt;
         NewCommandMacro.reset();
-        int i2 = 0;
         lastpassExpansions = 0;
         if (this.len != 0) {
             firstpassExpansionWork = 0L;
-            int i3 = 0;
+            int i2 = 0;
             while (this.pos < this.len) {
                 if (this.parseString.length() > 65536) {
                     throw new ParseException("Formula too large after macro expansion");
@@ -319,198 +318,198 @@ public class TeXParser {
                                     if (cCharAt2 != 178) {
                                         if (cCharAt2 == 179) {
                                             StringBuffer stringBuffer = this.parseString;
-                                            int i4 = this.pos;
-                                            stringBuffer.replace(i4, i4 + 1, "\\jlatexmathcumsup{3}");
+                                            int i3 = this.pos;
+                                            stringBuffer.replace(i3, i3 + 1, "\\jlatexmathcumsup{3}");
                                             this.len = this.parseString.length();
                                             this.pos++;
                                         } else {
                                             switch (cCharAt2) {
                                                 case 8308:
                                                     StringBuffer stringBuffer2 = this.parseString;
-                                                    int i5 = this.pos;
-                                                    stringBuffer2.replace(i5, i5 + 1, "\\jlatexmathcumsup{4}");
+                                                    int i4 = this.pos;
+                                                    stringBuffer2.replace(i4, i4 + 1, "\\jlatexmathcumsup{4}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8309:
                                                     StringBuffer stringBuffer3 = this.parseString;
-                                                    int i6 = this.pos;
-                                                    stringBuffer3.replace(i6, i6 + 1, "\\jlatexmathcumsup{5}");
+                                                    int i5 = this.pos;
+                                                    stringBuffer3.replace(i5, i5 + 1, "\\jlatexmathcumsup{5}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8310:
                                                     StringBuffer stringBuffer4 = this.parseString;
-                                                    int i7 = this.pos;
-                                                    stringBuffer4.replace(i7, i7 + 1, "\\jlatexmathcumsup{6}");
+                                                    int i6 = this.pos;
+                                                    stringBuffer4.replace(i6, i6 + 1, "\\jlatexmathcumsup{6}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8311:
                                                     StringBuffer stringBuffer5 = this.parseString;
-                                                    int i8 = this.pos;
-                                                    stringBuffer5.replace(i8, i8 + 1, "\\jlatexmathcumsup{7}");
+                                                    int i7 = this.pos;
+                                                    stringBuffer5.replace(i7, i7 + 1, "\\jlatexmathcumsup{7}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8312:
                                                     StringBuffer stringBuffer6 = this.parseString;
-                                                    int i9 = this.pos;
-                                                    stringBuffer6.replace(i9, i9 + 1, "\\jlatexmathcumsup{8}");
+                                                    int i8 = this.pos;
+                                                    stringBuffer6.replace(i8, i8 + 1, "\\jlatexmathcumsup{8}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8313:
                                                     StringBuffer stringBuffer7 = this.parseString;
-                                                    int i10 = this.pos;
-                                                    stringBuffer7.replace(i10, i10 + 1, "\\jlatexmathcumsup{9}");
+                                                    int i9 = this.pos;
+                                                    stringBuffer7.replace(i9, i9 + 1, "\\jlatexmathcumsup{9}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8314:
                                                     StringBuffer stringBuffer8 = this.parseString;
-                                                    int i11 = this.pos;
-                                                    stringBuffer8.replace(i11, i11 + 1, "\\jlatexmathcumsup{+}");
+                                                    int i10 = this.pos;
+                                                    stringBuffer8.replace(i10, i10 + 1, "\\jlatexmathcumsup{+}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8315:
                                                     StringBuffer stringBuffer9 = this.parseString;
-                                                    int i12 = this.pos;
-                                                    stringBuffer9.replace(i12, i12 + 1, "\\jlatexmathcumsup{-}");
+                                                    int i11 = this.pos;
+                                                    stringBuffer9.replace(i11, i11 + 1, "\\jlatexmathcumsup{-}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8316:
                                                     StringBuffer stringBuffer10 = this.parseString;
-                                                    int i13 = this.pos;
-                                                    stringBuffer10.replace(i13, i13 + 1, "\\jlatexmathcumsup{=}");
+                                                    int i12 = this.pos;
+                                                    stringBuffer10.replace(i12, i12 + 1, "\\jlatexmathcumsup{=}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8317:
                                                     StringBuffer stringBuffer11 = this.parseString;
-                                                    int i14 = this.pos;
-                                                    stringBuffer11.replace(i14, i14 + 1, "\\jlatexmathcumsup{(}");
+                                                    int i13 = this.pos;
+                                                    stringBuffer11.replace(i13, i13 + 1, "\\jlatexmathcumsup{(}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8318:
                                                     StringBuffer stringBuffer12 = this.parseString;
-                                                    int i15 = this.pos;
-                                                    stringBuffer12.replace(i15, i15 + 1, "\\jlatexmathcumsup{)}");
+                                                    int i14 = this.pos;
+                                                    stringBuffer12.replace(i14, i14 + 1, "\\jlatexmathcumsup{)}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8319:
                                                     StringBuffer stringBuffer13 = this.parseString;
-                                                    int i16 = this.pos;
-                                                    stringBuffer13.replace(i16, i16 + 1, "\\jlatexmathcumsup{n}");
+                                                    int i15 = this.pos;
+                                                    stringBuffer13.replace(i15, i15 + 1, "\\jlatexmathcumsup{n}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8320:
                                                     StringBuffer stringBuffer14 = this.parseString;
-                                                    int i17 = this.pos;
-                                                    stringBuffer14.replace(i17, i17 + 1, "\\jlatexmathcumsub{0}");
+                                                    int i16 = this.pos;
+                                                    stringBuffer14.replace(i16, i16 + 1, "\\jlatexmathcumsub{0}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8321:
                                                     StringBuffer stringBuffer15 = this.parseString;
-                                                    int i18 = this.pos;
-                                                    stringBuffer15.replace(i18, i18 + 1, "\\jlatexmathcumsub{1}");
+                                                    int i17 = this.pos;
+                                                    stringBuffer15.replace(i17, i17 + 1, "\\jlatexmathcumsub{1}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8322:
                                                     StringBuffer stringBuffer16 = this.parseString;
-                                                    int i19 = this.pos;
-                                                    stringBuffer16.replace(i19, i19 + 1, "\\jlatexmathcumsub{2}");
+                                                    int i18 = this.pos;
+                                                    stringBuffer16.replace(i18, i18 + 1, "\\jlatexmathcumsub{2}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8323:
                                                     StringBuffer stringBuffer17 = this.parseString;
-                                                    int i20 = this.pos;
-                                                    stringBuffer17.replace(i20, i20 + 1, "\\jlatexmathcumsub{3}");
+                                                    int i19 = this.pos;
+                                                    stringBuffer17.replace(i19, i19 + 1, "\\jlatexmathcumsub{3}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8324:
                                                     StringBuffer stringBuffer18 = this.parseString;
-                                                    int i21 = this.pos;
-                                                    stringBuffer18.replace(i21, i21 + 1, "\\jlatexmathcumsub{4}");
+                                                    int i20 = this.pos;
+                                                    stringBuffer18.replace(i20, i20 + 1, "\\jlatexmathcumsub{4}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8325:
                                                     StringBuffer stringBuffer19 = this.parseString;
-                                                    int i22 = this.pos;
-                                                    stringBuffer19.replace(i22, i22 + 1, "\\jlatexmathcumsub{5}");
+                                                    int i21 = this.pos;
+                                                    stringBuffer19.replace(i21, i21 + 1, "\\jlatexmathcumsub{5}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8326:
                                                     StringBuffer stringBuffer20 = this.parseString;
-                                                    int i23 = this.pos;
-                                                    stringBuffer20.replace(i23, i23 + 1, "\\jlatexmathcumsub{6}");
+                                                    int i22 = this.pos;
+                                                    stringBuffer20.replace(i22, i22 + 1, "\\jlatexmathcumsub{6}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8327:
                                                     StringBuffer stringBuffer21 = this.parseString;
-                                                    int i24 = this.pos;
-                                                    stringBuffer21.replace(i24, i24 + 1, "\\jlatexmathcumsub{7}");
+                                                    int i23 = this.pos;
+                                                    stringBuffer21.replace(i23, i23 + 1, "\\jlatexmathcumsub{7}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8328:
                                                     StringBuffer stringBuffer22 = this.parseString;
-                                                    int i25 = this.pos;
-                                                    stringBuffer22.replace(i25, i25 + 1, "\\jlatexmathcumsub{8}");
+                                                    int i24 = this.pos;
+                                                    stringBuffer22.replace(i24, i24 + 1, "\\jlatexmathcumsub{8}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8329:
                                                     StringBuffer stringBuffer23 = this.parseString;
-                                                    int i26 = this.pos;
-                                                    stringBuffer23.replace(i26, i26 + 1, "\\jlatexmathcumsub{9}");
+                                                    int i25 = this.pos;
+                                                    stringBuffer23.replace(i25, i25 + 1, "\\jlatexmathcumsub{9}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8330:
                                                     StringBuffer stringBuffer24 = this.parseString;
-                                                    int i27 = this.pos;
-                                                    stringBuffer24.replace(i27, i27 + 1, "\\jlatexmathcumsub{+}");
+                                                    int i26 = this.pos;
+                                                    stringBuffer24.replace(i26, i26 + 1, "\\jlatexmathcumsub{+}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8331:
                                                     StringBuffer stringBuffer25 = this.parseString;
-                                                    int i28 = this.pos;
-                                                    stringBuffer25.replace(i28, i28 + 1, "\\jlatexmathcumsub{-}");
+                                                    int i27 = this.pos;
+                                                    stringBuffer25.replace(i27, i27 + 1, "\\jlatexmathcumsub{-}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8332:
                                                     StringBuffer stringBuffer26 = this.parseString;
-                                                    int i29 = this.pos;
-                                                    stringBuffer26.replace(i29, i29 + 1, "\\jlatexmathcumsub{=}");
+                                                    int i28 = this.pos;
+                                                    stringBuffer26.replace(i28, i28 + 1, "\\jlatexmathcumsub{=}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8333:
                                                     StringBuffer stringBuffer27 = this.parseString;
-                                                    int i30 = this.pos;
-                                                    stringBuffer27.replace(i30, i30 + 1, "\\jlatexmathcumsub{(}");
+                                                    int i29 = this.pos;
+                                                    stringBuffer27.replace(i29, i29 + 1, "\\jlatexmathcumsub{(}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
                                                 case 8334:
                                                     StringBuffer stringBuffer28 = this.parseString;
-                                                    int i31 = this.pos;
-                                                    stringBuffer28.replace(i31, i31 + 1, "\\jlatexmathcumsub{)}");
+                                                    int i30 = this.pos;
+                                                    stringBuffer28.replace(i30, i30 + 1, "\\jlatexmathcumsub{)}");
                                                     this.len = this.parseString.length();
                                                     this.pos++;
                                                     break;
@@ -521,29 +520,29 @@ public class TeXParser {
                                         }
                                     } else {
                                         StringBuffer stringBuffer29 = this.parseString;
-                                        int i32 = this.pos;
-                                        stringBuffer29.replace(i32, i32 + 1, "\\jlatexmathcumsup{2}");
+                                        int i31 = this.pos;
+                                        stringBuffer29.replace(i31, i31 + 1, "\\jlatexmathcumsup{2}");
                                         this.len = this.parseString.length();
                                         this.pos++;
                                     }
                                 } else {
                                     StringBuffer stringBuffer30 = this.parseString;
-                                    int i33 = this.pos;
-                                    stringBuffer30.replace(i33, i33 + 1, "\\jlatexmathcumsup{0}");
+                                    int i32 = this.pos;
+                                    stringBuffer30.replace(i32, i32 + 1, "\\jlatexmathcumsup{0}");
                                     this.len = this.parseString.length();
                                     this.pos++;
                                 }
                             } else {
                                 StringBuffer stringBuffer31 = this.parseString;
-                                int i34 = this.pos;
-                                stringBuffer31.replace(i34, i34 + 1, "\\jlatexmathcumsup{1}");
+                                int i33 = this.pos;
+                                stringBuffer31.replace(i33, i33 + 1, "\\jlatexmathcumsup{1}");
                                 this.len = this.parseString.length();
                                 this.pos++;
                             }
                         } else {
                             StringBuffer stringBuffer32 = this.parseString;
-                            int i35 = this.pos;
-                            stringBuffer32.replace(i35, i35 + 1, "^{\\circ}");
+                            int i34 = this.pos;
+                            stringBuffer32.replace(i34, i34 + 1, "^{\\circ}");
                             this.len = this.parseString.length();
                             this.pos++;
                         }
@@ -562,8 +561,8 @@ public class TeXParser {
                             this.len = this.parseString.length();
                             this.pos = length;
                         } else if (NewCommandMacro.isMacro(command)) {
-                            i3++;
-                            if (i3 > 10000) {
+                            i2++;
+                            if (i2 > 10000) {
                                 throw new ParseException("Macro expansion limit exceeded");
                             }
                             long j = firstpassExpansionWork + ((long) this.len);
@@ -573,7 +572,7 @@ public class TeXParser {
                             }
                             MacroInfo macroInfo = MacroInfo.Commands.get(command);
                             String[] optsArgs = getOptsArgs(macroInfo.nbArgs, macroInfo.hasOptions ? 1 : 0);
-                            optsArgs[i2] = command;
+                            optsArgs[0] = command;
                             try {
                                 this.parseString.replace(length, this.pos, (String) macroInfo.invoke(this, optsArgs));
                             } catch (ParseException e2) {
@@ -585,15 +584,15 @@ public class TeXParser {
                             this.len = this.parseString.length();
                             this.pos = length;
                         } else if ("begin".equals(command)) {
-                            String[] optsArgs2 = getOptsArgs(1, i2);
+                            String[] optsArgs2 = getOptsArgs(1, 0);
                             MacroInfo macroInfo2 = MacroInfo.Commands.get(optsArgs2[1] + "@env");
                             if (macroInfo2 == null) {
                                 if (!this.isPartial) {
                                     throw new ParseException("Unknown environment: " + optsArgs2[1] + " at position " + getLine() + ":" + getCol());
                                 }
                             } else {
-                                int i36 = i3 + 1;
-                                if (i36 > 10000) {
+                                i2++;
+                                if (i2 > 10000) {
                                     throw new ParseException("Macro expansion limit exceeded");
                                 }
                                 long j2 = firstpassExpansionWork + ((long) this.len);
@@ -605,8 +604,8 @@ public class TeXParser {
                                     String[] optsArgs3 = getOptsArgs(macroInfo2.nbArgs - 1, 0);
                                     String group = getGroup("\\begin{" + optsArgs2[1] + "}", "\\end{" + optsArgs2[1] + "}");
                                     String str = "{\\makeatletter \\" + optsArgs2[1] + "@env";
-                                    for (int i37 = 1; i37 <= macroInfo2.nbArgs - 1; i37++) {
-                                        str = str + "{" + optsArgs3[i37] + "}";
+                                    for (int i35 = 1; i35 <= macroInfo2.nbArgs - 1; i35++) {
+                                        str = str + "{" + optsArgs3[i35] + "}";
                                     }
                                     this.parseString.replace(length, this.pos, str + "{" + group + "}\\makeatother}");
                                     this.len = this.parseString.length();
@@ -616,7 +615,6 @@ public class TeXParser {
                                         throw e3;
                                     }
                                 }
-                                i3 = i36;
                             }
                         } else if ("makeatletter".equals(command)) {
                             this.atIsLetter++;
@@ -627,14 +625,14 @@ public class TeXParser {
                         }
                     }
                 } else {
-                    int i38 = this.pos;
-                    this.pos = i38 + 1;
+                    int i36 = this.pos;
+                    this.pos = i36 + 1;
                     do {
-                        int i39 = this.pos;
-                        if (i39 < this.len) {
+                        int i37 = this.pos;
+                        if (i37 < this.len) {
                             StringBuffer stringBuffer33 = this.parseString;
-                            this.pos = i39 + 1;
-                            cCharAt = stringBuffer33.charAt(i39);
+                            this.pos = i37 + 1;
+                            cCharAt = stringBuffer33.charAt(i37);
                             if (cCharAt != '\r') {
                             }
                         }
@@ -642,19 +640,18 @@ public class TeXParser {
                         if (i < this.len) {
                             this.pos = i - 1;
                         }
-                        this.parseString.replace(i38, this.pos, "");
+                        this.parseString.replace(i36, this.pos, "");
                         this.len = this.parseString.length();
-                        this.pos = i38;
+                        this.pos = i36;
                     } while (cCharAt != '\n');
                     i = this.pos;
                     if (i < this.len) {
                         this.pos = i - 1;
                     }
-                    this.parseString.replace(i38, this.pos, "");
+                    this.parseString.replace(i36, this.pos, "");
                     this.len = this.parseString.length();
-                    this.pos = i38;
+                    this.pos = i36;
                 }
-                i2 = 0;
             }
             this.pos = 0;
             this.len = this.parseString.length();
@@ -662,6 +659,7 @@ public class TeXParser {
     }
 
     public void parse() {
+        TeXFormula teXFormula;
         int i;
         boolean z;
         char cCharAt;
@@ -767,10 +765,7 @@ public class TeXParser {
                                         if (i7 == -1) {
                                             throw new ParseException("Found a closing '}' without an opening '{'!");
                                         }
-                                        parseDepth--;
-                                        return;
-                                    }
-                                    if (cCharAt2 == '~') {
+                                    } else if (cCharAt2 == '~') {
                                         this.formula.add(new SpaceAtom());
                                         this.pos++;
                                     } else {
@@ -794,10 +789,15 @@ public class TeXParser {
                     }
                     this.pos++;
                 }
-            }
-            TeXFormula teXFormula = this.formula;
-            if (teXFormula.root == null && !this.arrayMode) {
-                teXFormula.add(new EmptyAtom());
+                teXFormula = this.formula;
+                if (teXFormula.root == null && !this.arrayMode) {
+                    teXFormula.add(new EmptyAtom());
+                }
+            } else {
+                teXFormula = this.formula;
+                if (teXFormula.root == null) {
+                    teXFormula.add(new EmptyAtom());
+                }
             }
             parseDepth--;
         } catch (Throwable th) {
@@ -950,13 +950,13 @@ public class TeXParser {
                 StringBuffer stringBuffer3 = this.parseString;
                 int i7 = this.pos - 1;
                 this.pos = i7;
-                char cCharAt2 = stringBuffer3.charAt(i7);
-                if (isValidCharacterInCommand(c) && isValidCharacterInCommand(cCharAt2)) {
-                    c = cCharAt2;
+                cCharAt = stringBuffer3.charAt(i7);
+                if (isValidCharacterInCommand(c) && isValidCharacterInCommand(cCharAt)) {
+                    c = cCharAt;
                     i3 = 0;
                     i4 = 0;
                 } else {
-                    c = cCharAt2;
+                    c = cCharAt;
                 }
             }
             i3 = c == str.charAt(i3) ? i3 + 1 : 0;
@@ -970,15 +970,15 @@ public class TeXParser {
             }
             int i8 = this.pos;
             if (i8 + 1 < this.len) {
-                char cCharAt3 = this.parseString.charAt(i8 + 1);
+                char cCharAt2 = this.parseString.charAt(i8 + 1);
                 if (i3 == length) {
-                    if (!zIsValidCharacterInCommand || !isValidCharacterInCommand(cCharAt3)) {
+                    if (!zIsValidCharacterInCommand || !isValidCharacterInCommand(cCharAt2)) {
                         i++;
                     }
                     i3 = 0;
                 }
                 if (i4 == length2) {
-                    if (!zIsValidCharacterInCommand2 || !isValidCharacterInCommand(cCharAt3)) {
+                    if (!zIsValidCharacterInCommand2 || !isValidCharacterInCommand(cCharAt2)) {
                         i--;
                     }
                     i4 = 0;
@@ -1089,9 +1089,10 @@ public class TeXParser {
         } else {
             strSubstring = this.parseString.substring(i2, i);
         }
-        if (c == '&' || c == '\\' || c == '}') {
-            this.pos--;
+        if (c != '&' && c != '\\' && c != '}') {
+            return strSubstring;
         }
+        this.pos--;
         return strSubstring;
     }
 
@@ -1379,7 +1380,10 @@ public class TeXParser {
     }
 
     public final boolean isValidCharacterInCommand(char c) {
-        return Character.isLetter(c) || (this.atIsLetter != 0 && c == '@');
+        if (Character.isLetter(c)) {
+            return true;
+        }
+        return this.atIsLetter != 0 && c == '@';
     }
 
     private final void skipWhiteSpace() {

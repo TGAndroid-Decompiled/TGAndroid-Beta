@@ -223,7 +223,7 @@ public class MatrixAtom extends Atom {
                     }
                     i3++;
                 }
-                return boxArr;
+                break;
             case 1:
             case 5:
                 Box box = nullBox;
@@ -234,7 +234,7 @@ public class MatrixAtom extends Atom {
                     boxArr[i4] = boxCreateBox4;
                     i4++;
                 }
-                return boxArr;
+                break;
             case 2:
             case 6:
                 Box boxCreateBox5 = align.createBox(teXEnvironment);
@@ -251,22 +251,32 @@ public class MatrixAtom extends Atom {
                         boxArr[i5] = boxCreateBox5;
                     }
                 }
+                if (textwidth == Float.POSITIVE_INFINITY) {
+                    Box box2 = nullBox;
+                    boxArr[0] = box2;
+                    boxArr[i] = box2;
+                }
                 break;
             case 3:
             case 7:
                 float fMax = textwidth != Float.POSITIVE_INFINITY ? Math.max((textwidth - f) / 2.0f, 0.0f) : 0.0f;
                 Box boxCreateBox6 = align.createBox(teXEnvironment);
-                Box box2 = nullBox;
+                Box box3 = nullBox;
                 StrutBox strutBox2 = new StrutBox(fMax, 0.0f, 0.0f, 0.0f);
                 boxArr[0] = strutBox2;
                 boxArr[i] = strutBox2;
                 while (i4 < i) {
                     if (i4 % 2 == 0) {
-                        boxArr[i4] = box2;
+                        boxArr[i4] = box3;
                     } else {
                         boxArr[i4] = boxCreateBox6;
                     }
                     i4++;
+                }
+                if (textwidth == Float.POSITIVE_INFINITY) {
+                    Box box4 = nullBox;
+                    boxArr[0] = box4;
+                    boxArr[i] = box4;
                 }
                 break;
             case 4:
@@ -276,9 +286,9 @@ public class MatrixAtom extends Atom {
                 } else {
                     boxCreateBox2 = hsep.createBox(teXEnvironment);
                 }
-                Box box3 = nullBox;
-                boxArr[0] = box3;
-                boxArr[i] = box3;
+                Box box5 = nullBox;
+                boxArr[0] = box5;
+                boxArr[i] = box5;
                 while (i4 < i) {
                     if (i4 % 2 == 0) {
                         boxArr[i4] = boxCreateBox2;
@@ -287,314 +297,316 @@ public class MatrixAtom extends Atom {
                     }
                     i4++;
                 }
+                if (textwidth == Float.POSITIVE_INFINITY) {
+                    Box box6 = nullBox;
+                    boxArr[0] = box6;
+                    boxArr[i] = box6;
+                }
                 break;
-        }
-        if (textwidth == Float.POSITIVE_INFINITY) {
-            Box box4 = nullBox;
-            boxArr[0] = box4;
-            boxArr[i] = box4;
+            default:
+                if (textwidth == Float.POSITIVE_INFINITY) {
+                    Box box7 = nullBox;
+                    boxArr[0] = box7;
+                    boxArr[i] = box7;
+                }
+                break;
         }
         return boxArr;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        TeXEnvironment teXEnvironment2;
-        VerticalBox verticalBox;
-        float f;
-        HorizontalBox horizontalBox;
-        boolean zHasRightVline;
+        TeXEnvironment teXEnvironmentCopy;
         int i;
+        HorizontalBox horizontalBox;
+        float[] fArr;
+        boolean zHasRightVline;
         int i2;
         Box boxCreateBox;
         int i3;
+        int i4;
         Atom atom;
-        ArrayOfAtoms arrayOfAtoms = this.matrix;
-        int i4 = arrayOfAtoms.row;
-        int i5 = arrayOfAtoms.col;
-        Integer num = 0;
-        Box[][] boxArr = (Box[][]) Array.newInstance((Class<?>) Box.class, i4, i5);
-        float[] fArr = new float[i4];
-        float[] fArr2 = new float[i4];
+        MatrixAtom matrixAtom = this;
+        ArrayOfAtoms arrayOfAtoms = matrixAtom.matrix;
+        int i5 = arrayOfAtoms.row;
+        int i6 = arrayOfAtoms.col;
+        Box[][] boxArr = (Box[][]) Array.newInstance((Class<?>) Box.class, i5, i6);
+        float[] fArr2 = new float[i5];
         float[] fArr3 = new float[i5];
+        float[] fArr4 = new float[i6];
         float defaultRuleThickness = teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle());
-        if (this.type == 5) {
-            TeXEnvironment teXEnvironmentCopy = teXEnvironment.copy();
+        if (matrixAtom.type == 5) {
+            teXEnvironmentCopy = teXEnvironment.copy();
             teXEnvironmentCopy.setStyle(4);
-            teXEnvironment2 = teXEnvironmentCopy;
         } else {
-            teXEnvironment2 = teXEnvironment;
+            teXEnvironmentCopy = teXEnvironment;
         }
         ArrayList arrayList = new ArrayList();
-        for (int i6 = 0; i6 < i4; i6++) {
-            fArr[i6] = 0.0f;
-            fArr2[i6] = 0.0f;
-            int i7 = 0;
-            while (i7 < i5) {
+        for (int i7 = 0; i7 < i5; i7++) {
+            fArr2[i7] = 0.0f;
+            fArr3[i7] = 0.0f;
+            int i8 = 0;
+            while (i8 < i6) {
                 try {
-                    atom = this.matrix.array.get(i6).get(i7);
+                    atom = matrixAtom.matrix.array.get(i7).get(i8);
                 } catch (Exception unused) {
-                    boxArr[i6][i7 - 1].type = 11;
-                    i7 = i5 - 1;
+                    boxArr[i7][i8 - 1].type = 11;
+                    i8 = i6 - 1;
                     atom = null;
                 }
-                boxArr[i6][i7] = atom == null ? nullBox : atom.createBox(teXEnvironment2);
-                fArr[i6] = Math.max(boxArr[i6][i7].getDepth(), fArr[i6]);
-                fArr2[i6] = Math.max(boxArr[i6][i7].getHeight(), fArr2[i6]);
-                Box box = boxArr[i6][i7];
+                boxArr[i7][i8] = atom == null ? nullBox : atom.createBox(teXEnvironmentCopy);
+                fArr2[i7] = Math.max(boxArr[i7][i8].getDepth(), fArr2[i7]);
+                fArr3[i7] = Math.max(boxArr[i7][i8].getHeight(), fArr3[i7]);
+                Box box = boxArr[i7][i8];
+                float[] fArr5 = fArr4;
                 if (box.type != 12) {
-                    fArr3[i7] = Math.max(box.getWidth(), fArr3[i7]);
+                    fArr5[i8] = Math.max(box.getWidth(), fArr5[i8]);
                 } else {
                     MulticolumnAtom multicolumnAtom = (MulticolumnAtom) atom;
-                    multicolumnAtom.setRowColumn(i6, i7);
+                    multicolumnAtom.setRowColumn(i7, i8);
                     arrayList.add(multicolumnAtom);
                 }
-                i7++;
+                i8++;
+                fArr4 = fArr5;
             }
         }
-        for (int i8 = 0; i8 < arrayList.size(); i8++) {
-            MulticolumnAtom multicolumnAtom2 = (MulticolumnAtom) arrayList.get(i8);
+        float[] fArr6 = fArr4;
+        for (int i9 = 0; i9 < arrayList.size(); i9++) {
+            MulticolumnAtom multicolumnAtom2 = (MulticolumnAtom) arrayList.get(i9);
             int col = multicolumnAtom2.getCol();
             int row = multicolumnAtom2.getRow();
             int skipped = multicolumnAtom2.getSkipped();
-            int i9 = col;
-            float f2 = 0.0f;
+            int i10 = col;
+            float f = 0.0f;
             while (true) {
-                i3 = col + skipped;
-                if (i9 >= i3) {
+                i4 = col + skipped;
+                if (i10 >= i4) {
                     break;
                 }
-                f2 += fArr3[i9];
-                i9++;
+                f += fArr6[i10];
+                i10++;
             }
-            if (boxArr[row][col].getWidth() > f2) {
-                float width = (boxArr[row][col].getWidth() - f2) / skipped;
-                while (col < i3) {
-                    fArr3[col] = fArr3[col] + width;
+            if (boxArr[row][col].getWidth() > f) {
+                float width = (boxArr[row][col].getWidth() - f) / skipped;
+                while (col < i4) {
+                    fArr6[col] = fArr6[col] + width;
                     col++;
                 }
             }
         }
-        float f3 = 0.0f;
-        for (int i10 = 0; i10 < i5; i10++) {
-            f3 += fArr3[i10];
+        float f2 = 0.0f;
+        for (int i11 = 0; i11 < i6; i11++) {
+            f2 += fArr6[i11];
         }
-        Box[] columnSep = getColumnSep(teXEnvironment2, f3);
-        float width2 = f3;
-        for (int i11 = 0; i11 < i5 + 1; i11++) {
-            width2 += columnSep[i11].getWidth();
-            if (this.vlines.get(Integer.valueOf(i11)) != null) {
-                width2 += this.vlines.get(Integer.valueOf(i11)).getWidth(teXEnvironment2);
+        Box[] columnSep = matrixAtom.getColumnSep(teXEnvironmentCopy, f2);
+        float width2 = f2;
+        for (int i12 = 0; i12 < i6 + 1; i12++) {
+            width2 += columnSep[i12].getWidth();
+            if (matrixAtom.vlines.get(Integer.valueOf(i12)) != null) {
+                width2 += matrixAtom.vlines.get(Integer.valueOf(i12)).getWidth(teXEnvironmentCopy);
             }
         }
-        VerticalBox verticalBox2 = new VerticalBox();
-        Box boxCreateBox2 = vsep_in.createBox(teXEnvironment2);
-        verticalBox2.add(vsep_ext_top.createBox(teXEnvironment2));
-        int i12 = 0;
-        while (i12 < i4) {
+        VerticalBox verticalBox = new VerticalBox();
+        Box boxCreateBox2 = vsep_in.createBox(teXEnvironmentCopy);
+        verticalBox.add(vsep_ext_top.createBox(teXEnvironmentCopy));
+        int i13 = 0;
+        while (i13 < i5) {
             HorizontalBox horizontalBox2 = new HorizontalBox();
-            int i13 = 0;
-            while (i13 < i5) {
-                int i14 = i4;
-                int i15 = boxArr[i12][i13].type;
-                VerticalBox verticalBox3 = verticalBox2;
-                if (i15 == -1) {
-                    f = width2;
-                    if (i13 != 0) {
-                        if (this.vlines.get(num) != null) {
-                            VlineAtom vlineAtom = this.vlines.get(num);
-                            vlineAtom.setHeight(fArr2[i12] + fArr[i12] + boxCreateBox2.getHeight());
-                            vlineAtom.setShift(fArr[i12] + (boxCreateBox2.getHeight() / 2.0f));
-                            Box boxCreateBox3 = vlineAtom.createBox(teXEnvironment2);
-                            horizontalBox2.add(new HorizontalBox(boxCreateBox3, columnSep[0].getWidth() + boxCreateBox3.getWidth(), 0));
+            int skipped2 = 0;
+            while (skipped2 < i6) {
+                Box[] boxArr2 = columnSep;
+                int i14 = boxArr[i13][skipped2].type;
+                int i15 = i5;
+                if (i14 == -1) {
+                    i = i13;
+                    if (skipped2 != 0) {
+                        if (matrixAtom.vlines.get(0) != null) {
+                            VlineAtom vlineAtom = matrixAtom.vlines.get(0);
+                            vlineAtom.setHeight(fArr3[i] + fArr2[i] + boxCreateBox2.getHeight());
+                            vlineAtom.setShift(fArr2[i] + (boxCreateBox2.getHeight() / 2.0f));
+                            Box boxCreateBox3 = vlineAtom.createBox(teXEnvironmentCopy);
+                            horizontalBox2.add(new HorizontalBox(boxCreateBox3, boxArr2[0].getWidth() + boxCreateBox3.getWidth(), 0));
                         } else {
-                            horizontalBox2.add(columnSep[0]);
+                            horizontalBox2.add(boxArr2[0]);
                         }
                     }
-                    if (boxArr[i12][i13].type == -1) {
-                        horizontalBox2.add(new HorizontalBox(boxArr[i12][i13], fArr3[i13], this.position[i13]));
+                    if (boxArr[i][skipped2].type == -1) {
+                        horizontalBox2.add(new HorizontalBox(boxArr[i][skipped2], fArr6[skipped2], matrixAtom.position[skipped2]));
                         horizontalBox = horizontalBox2;
-                        i12 = i12;
+                        fArr = fArr6;
+                        i13 = i;
                         zHasRightVline = true;
                     } else {
-                        int i16 = i13;
                         horizontalBox = horizontalBox2;
-                        i12 = i12;
-                        Box boxGenerateMulticolumn = generateMulticolumn(teXEnvironment2, columnSep, fArr3, i12, i16);
-                        MulticolumnAtom multicolumnAtom3 = (MulticolumnAtom) this.matrix.array.get(i12).get(i16);
-                        int skipped2 = (multicolumnAtom3.getSkipped() - 1) + i16;
+                        fArr = fArr6;
+                        i13 = i;
+                        Box boxGenerateMulticolumn = matrixAtom.generateMulticolumn(teXEnvironmentCopy, boxArr2, fArr, i13, skipped2);
+                        MulticolumnAtom multicolumnAtom3 = (MulticolumnAtom) matrixAtom.matrix.array.get(i13).get(skipped2);
+                        skipped2 += multicolumnAtom3.getSkipped() - 1;
                         horizontalBox.add(boxGenerateMulticolumn);
                         zHasRightVline = multicolumnAtom3.hasRightVline();
-                        i13 = skipped2;
                     }
                     if (zHasRightVline) {
-                        i2 = i13 + 1;
-                        if (this.vlines.get(Integer.valueOf(i2)) != null) {
-                            VlineAtom vlineAtom2 = this.vlines.get(Integer.valueOf(i2));
-                            vlineAtom2.setHeight(fArr2[i12] + fArr[i12] + boxCreateBox2.getHeight());
-                            vlineAtom2.setShift(fArr[i12] + (boxCreateBox2.getHeight() / 2.0f));
-                            boxCreateBox = vlineAtom2.createBox(teXEnvironment2);
-                            if (i13 < i5 - 1) {
-                                horizontalBox.add(new HorizontalBox(boxCreateBox, columnSep[i2].getWidth() + boxCreateBox.getWidth(), 2));
+                        teXEnvironmentCopy = teXEnvironmentCopy;
+                        i2 = skipped2 + 1;
+                        fArr6 = fArr;
+                        if (matrixAtom.vlines.get(Integer.valueOf(i2)) != null) {
+                            VlineAtom vlineAtom2 = matrixAtom.vlines.get(Integer.valueOf(i2));
+                            vlineAtom2.setHeight(fArr3[i13] + fArr2[i13] + boxCreateBox2.getHeight());
+                            vlineAtom2.setShift(fArr2[i13] + (boxCreateBox2.getHeight() / 2.0f));
+                            boxCreateBox = vlineAtom2.createBox(teXEnvironmentCopy);
+                            if (skipped2 < i6 - 1) {
+                                teXEnvironmentCopy = teXEnvironmentCopy;
+                                horizontalBox.add(new HorizontalBox(boxCreateBox, boxArr2[i2].getWidth() + boxCreateBox.getWidth(), 2));
                             } else {
-                                horizontalBox.add(new HorizontalBox(boxCreateBox, columnSep[i2].getWidth() + boxCreateBox.getWidth(), 1));
+                                teXEnvironmentCopy = teXEnvironmentCopy;
+                                horizontalBox.add(new HorizontalBox(boxCreateBox, boxArr2[i2].getWidth() + boxCreateBox.getWidth(), 1));
                             }
-                        } else {
-                            horizontalBox.add(columnSep[i13 + 1]);
                         }
+                        horizontalBox2 = horizontalBox;
                     } else {
-                        horizontalBox.add(columnSep[i13 + 1]);
+                        teXEnvironmentCopy = teXEnvironmentCopy;
+                        teXEnvironmentCopy = teXEnvironmentCopy;
+                        fArr6 = fArr;
                     }
+                    teXEnvironmentCopy = teXEnvironmentCopy;
+                    horizontalBox.add(boxArr2[skipped2 + 1]);
                     horizontalBox2 = horizontalBox;
-                    i = 1;
                 } else {
-                    switch (i15) {
+                    switch (i14) {
                         case 11:
-                            f = width2;
-                            float textwidth = teXEnvironment2.getTextwidth();
+                            int i16 = i13;
+                            float textwidth = teXEnvironmentCopy.getTextwidth();
                             if (textwidth == Float.POSITIVE_INFINITY) {
-                                textwidth = fArr3[i13];
+                                textwidth = fArr6[skipped2];
                             }
-                            HorizontalBox horizontalBox3 = new HorizontalBox(boxArr[i12][i13], textwidth, 0);
-                            i13 = i5 - 1;
+                            HorizontalBox horizontalBox3 = new HorizontalBox(boxArr[i16][skipped2], textwidth, 0);
+                            skipped2 = i6 - 1;
                             horizontalBox2 = horizontalBox3;
-                            num = num;
-                            i = 1;
-                            teXEnvironment2 = teXEnvironment2;
+                            i13 = i16;
+                            i6 = i6;
                             break;
                         case 12:
-                            f = width2;
-                            if (i13 != 0) {
-                                if (this.vlines.get(num) != null) {
-                                    VlineAtom vlineAtom3 = this.vlines.get(num);
-                                    vlineAtom3.setHeight(fArr2[i12] + fArr[i12] + boxCreateBox2.getHeight());
-                                    vlineAtom3.setShift(fArr[i12] + (boxCreateBox2.getHeight() / 2.0f));
-                                    Box boxCreateBox4 = vlineAtom3.createBox(teXEnvironment2);
-                                    horizontalBox2.add(new HorizontalBox(boxCreateBox4, columnSep[0].getWidth() + boxCreateBox4.getWidth(), 0));
+                            i = i13;
+                            if (skipped2 != 0) {
+                                if (matrixAtom.vlines.get(0) != null) {
+                                    VlineAtom vlineAtom3 = matrixAtom.vlines.get(0);
+                                    vlineAtom3.setHeight(fArr3[i] + fArr2[i] + boxCreateBox2.getHeight());
+                                    vlineAtom3.setShift(fArr2[i] + (boxCreateBox2.getHeight() / 2.0f));
+                                    Box boxCreateBox4 = vlineAtom3.createBox(teXEnvironmentCopy);
+                                    horizontalBox2.add(new HorizontalBox(boxCreateBox4, boxArr2[0].getWidth() + boxCreateBox4.getWidth(), 0));
                                 } else {
-                                    horizontalBox2.add(columnSep[0]);
+                                    horizontalBox2.add(boxArr2[0]);
                                 }
                             }
-                            if (boxArr[i12][i13].type == -1) {
-                                horizontalBox2.add(new HorizontalBox(boxArr[i12][i13], fArr3[i13], this.position[i13]));
+                            if (boxArr[i][skipped2].type == -1) {
+                                horizontalBox2.add(new HorizontalBox(boxArr[i][skipped2], fArr6[skipped2], matrixAtom.position[skipped2]));
                                 horizontalBox = horizontalBox2;
-                                i12 = i12;
+                                fArr = fArr6;
+                                i13 = i;
                                 zHasRightVline = true;
                             } else {
-                                int i17 = i13;
                                 horizontalBox = horizontalBox2;
-                                i12 = i12;
-                                Box boxGenerateMulticolumn2 = generateMulticolumn(teXEnvironment2, columnSep, fArr3, i12, i17);
-                                MulticolumnAtom multicolumnAtom4 = (MulticolumnAtom) this.matrix.array.get(i12).get(i17);
-                                int skipped3 = (multicolumnAtom4.getSkipped() - 1) + i17;
+                                fArr = fArr6;
+                                i13 = i;
+                                Box boxGenerateMulticolumn2 = matrixAtom.generateMulticolumn(teXEnvironmentCopy, boxArr2, fArr, i13, skipped2);
+                                MulticolumnAtom multicolumnAtom4 = (MulticolumnAtom) matrixAtom.matrix.array.get(i13).get(skipped2);
+                                skipped2 += multicolumnAtom4.getSkipped() - 1;
                                 horizontalBox.add(boxGenerateMulticolumn2);
                                 zHasRightVline = multicolumnAtom4.hasRightVline();
-                                i13 = skipped3;
                             }
                             if (zHasRightVline) {
-                                i2 = i13 + 1;
-                                if (this.vlines.get(Integer.valueOf(i2)) != null) {
-                                    VlineAtom vlineAtom4 = this.vlines.get(Integer.valueOf(i2));
-                                    vlineAtom4.setHeight(fArr2[i12] + fArr[i12] + boxCreateBox2.getHeight());
-                                    vlineAtom4.setShift(fArr[i12] + (boxCreateBox2.getHeight() / 2.0f));
-                                    boxCreateBox = vlineAtom4.createBox(teXEnvironment2);
-                                    if (i13 < i5 - 1) {
-                                        horizontalBox.add(new HorizontalBox(boxCreateBox, columnSep[i2].getWidth() + boxCreateBox.getWidth(), 2));
+                                teXEnvironmentCopy = teXEnvironmentCopy;
+                                i2 = skipped2 + 1;
+                                fArr6 = fArr;
+                                if (matrixAtom.vlines.get(Integer.valueOf(i2)) != null) {
+                                    VlineAtom vlineAtom4 = matrixAtom.vlines.get(Integer.valueOf(i2));
+                                    vlineAtom4.setHeight(fArr3[i13] + fArr2[i13] + boxCreateBox2.getHeight());
+                                    vlineAtom4.setShift(fArr2[i13] + (boxCreateBox2.getHeight() / 2.0f));
+                                    boxCreateBox = vlineAtom4.createBox(teXEnvironmentCopy);
+                                    if (skipped2 < i6 - 1) {
+                                        teXEnvironmentCopy = teXEnvironmentCopy;
+                                        horizontalBox.add(new HorizontalBox(boxCreateBox, boxArr2[i2].getWidth() + boxCreateBox.getWidth(), 2));
                                     } else {
-                                        horizontalBox.add(new HorizontalBox(boxCreateBox, columnSep[i2].getWidth() + boxCreateBox.getWidth(), 1));
+                                        teXEnvironmentCopy = teXEnvironmentCopy;
+                                        horizontalBox.add(new HorizontalBox(boxCreateBox, boxArr2[i2].getWidth() + boxCreateBox.getWidth(), 1));
                                     }
-                                } else {
-                                    horizontalBox.add(columnSep[i13 + 1]);
                                 }
+                                horizontalBox2 = horizontalBox;
                             } else {
-                                horizontalBox.add(columnSep[i13 + 1]);
+                                teXEnvironmentCopy = teXEnvironmentCopy;
+                                teXEnvironmentCopy = teXEnvironmentCopy;
+                                fArr6 = fArr;
                             }
+                            teXEnvironmentCopy = teXEnvironmentCopy;
+                            horizontalBox.add(boxArr2[skipped2 + 1]);
                             horizontalBox2 = horizontalBox;
-                            i = 1;
                             break;
                         case 13:
-                            HlineAtom hlineAtom = (HlineAtom) this.matrix.array.get(i12).get(i13);
+                            HlineAtom hlineAtom = (HlineAtom) matrixAtom.matrix.array.get(i13).get(skipped2);
                             hlineAtom.setWidth(width2);
-                            if (i12 >= 1) {
-                                f = width2;
-                                if (this.matrix.array.get(i12 - 1).get(i13) instanceof HlineAtom) {
+                            if (i13 >= 1) {
+                                i3 = i13;
+                                if (matrixAtom.matrix.array.get(i3 - 1).get(skipped2) instanceof HlineAtom) {
                                     horizontalBox2.add(new StrutBox(0.0f, defaultRuleThickness * 2.0f, 0.0f, 0.0f));
                                     hlineAtom.setShift(((-boxCreateBox2.getHeight()) / 2.0f) + defaultRuleThickness);
                                 }
-                                horizontalBox2.add(hlineAtom.createBox(teXEnvironment2));
-                                i13 = i5;
-                                num = num;
-                                i = 1;
-                                teXEnvironment2 = teXEnvironment2;
+                                horizontalBox2.add(hlineAtom.createBox(teXEnvironmentCopy));
+                                skipped2 = i6;
+                                i13 = i3;
+                                fArr6 = fArr6;
+                                i6 = skipped2;
                             } else {
-                                f = width2;
+                                i3 = i13;
                             }
                             hlineAtom.setShift((-boxCreateBox2.getHeight()) / 2.0f);
-                            horizontalBox2.add(hlineAtom.createBox(teXEnvironment2));
-                            i13 = i5;
-                            num = num;
-                            i = 1;
-                            teXEnvironment2 = teXEnvironment2;
+                            horizontalBox2.add(hlineAtom.createBox(teXEnvironmentCopy));
+                            skipped2 = i6;
+                            i13 = i3;
+                            fArr6 = fArr6;
+                            i6 = skipped2;
                             break;
                         default:
-                            f = width2;
-                            num = num;
-                            i = 1;
-                            teXEnvironment2 = teXEnvironment2;
+                            i6 = i6;
                             break;
                     }
                 }
-                i13 += i;
-                i12 = i12;
-                teXEnvironment2 = teXEnvironment2;
-                verticalBox2 = verticalBox3;
-                i4 = i14;
-                width2 = f;
-                num = num;
-                boxCreateBox2 = boxCreateBox2;
-                fArr3 = fArr3;
+                skipped2++;
+                matrixAtom = this;
+                i6 = i6;
+                i5 = i15;
+                columnSep = boxArr2;
+                fArr6 = fArr6;
             }
-            Box box2 = boxCreateBox2;
-            float[] fArr4 = fArr3;
-            int i18 = i4;
-            float f4 = width2;
-            VerticalBox verticalBox4 = verticalBox2;
-            Integer num2 = num;
+            Box[] boxArr3 = columnSep;
+            int i17 = i5;
+            float[] fArr7 = fArr6;
             HorizontalBox horizontalBox4 = horizontalBox2;
-            int i19 = i12;
-            TeXEnvironment teXEnvironment3 = teXEnvironment2;
-            if (boxArr[i19][0].type != 13) {
-                horizontalBox4.setHeight(fArr2[i19]);
-                horizontalBox4.setDepth(fArr[i19]);
-                verticalBox = verticalBox4;
+            int i18 = i6;
+            if (boxArr[i13][0].type != 13) {
+                horizontalBox4.setHeight(fArr3[i13]);
+                horizontalBox4.setDepth(fArr2[i13]);
                 verticalBox.add(horizontalBox4);
-                boxCreateBox2 = box2;
-                if (i19 < i18 - 1) {
+                if (i13 < i17 - 1) {
                     verticalBox.add(boxCreateBox2);
                 }
             } else {
-                verticalBox = verticalBox4;
-                boxCreateBox2 = box2;
                 verticalBox.add(horizontalBox4);
             }
-            int i20 = i19 + 1;
-            verticalBox2 = verticalBox;
-            i12 = i20;
-            teXEnvironment2 = teXEnvironment3;
-            i4 = i18;
-            width2 = f4;
-            num = num2;
-            fArr3 = fArr4;
+            i13++;
+            matrixAtom = this;
+            i6 = i18;
+            i5 = i17;
+            columnSep = boxArr3;
+            fArr6 = fArr7;
         }
-        TeXEnvironment teXEnvironment4 = teXEnvironment2;
-        VerticalBox verticalBox5 = verticalBox2;
-        verticalBox5.add(vsep_ext_bot.createBox(teXEnvironment4));
-        float height = verticalBox5.getHeight() + verticalBox5.getDepth();
-        float axisHeight = teXEnvironment4.getTeXFont().getAxisHeight(teXEnvironment4.getStyle());
-        float f5 = height / 2.0f;
-        verticalBox5.setHeight(f5 + axisHeight);
-        verticalBox5.setDepth(f5 - axisHeight);
-        return verticalBox5;
+        verticalBox.add(vsep_ext_bot.createBox(teXEnvironmentCopy));
+        float height = verticalBox.getHeight() + verticalBox.getDepth();
+        float axisHeight = teXEnvironmentCopy.getTeXFont().getAxisHeight(teXEnvironmentCopy.getStyle());
+        float f3 = height / 2.0f;
+        verticalBox.setHeight(f3 + axisHeight);
+        verticalBox.setDepth(f3 - axisHeight);
+        return verticalBox;
     }
 
     private Box generateMulticolumn(TeXEnvironment teXEnvironment, Box[] boxArr, float[] fArr, int i, int i2) {

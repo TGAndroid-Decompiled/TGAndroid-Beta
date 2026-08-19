@@ -130,7 +130,7 @@ public class HashtagHistoryView extends FrameLayout {
         builder.setPositiveButton(LocaleController.getString(R.string.ClearSearchRemove), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
-                this.f$0.lambda$onLongClick$0(str, alertDialog, i3);
+                HashtagHistoryView.$r8$lambda$5aLkB4S7nkCy6f3OdDaXHR3hOmk(this.f$0, str, alertDialog, i3);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -138,8 +138,8 @@ public class HashtagHistoryView extends FrameLayout {
         return true;
     }
 
-    public void lambda$onLongClick$0(String str, AlertDialog alertDialog, int i) {
-        HashtagSearchController.getInstance(this.currentAccount).removeHashtagFromHistory(str);
-        update();
+    public static void $r8$lambda$5aLkB4S7nkCy6f3OdDaXHR3hOmk(HashtagHistoryView hashtagHistoryView, String str, AlertDialog alertDialog, int i) {
+        HashtagSearchController.getInstance(hashtagHistoryView.currentAccount).removeHashtagFromHistory(str);
+        hashtagHistoryView.update();
     }
 }

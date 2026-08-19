@@ -268,7 +268,7 @@ class BotButton {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setPressed$0(valueAnimator2);
+                        BotButton.$r8$lambda$cveLHbhNfBQ3Ml3CjE2mKOssbCo(this.f$0, valueAnimator2);
                     }
                 });
                 this.pressAnimator.addListener(new AnimatorListenerAdapter() {
@@ -285,9 +285,10 @@ class BotButton {
         }
     }
 
-    public void lambda$setPressed$0(ValueAnimator valueAnimator) {
-        this.pressT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.invalidateRunnable.run();
+    public static void $r8$lambda$cveLHbhNfBQ3Ml3CjE2mKOssbCo(BotButton botButton, ValueAnimator valueAnimator) {
+        botButton.getClass();
+        botButton.pressT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        botButton.invalidateRunnable.run();
     }
 
     public boolean hasPositionFlag(int i) {

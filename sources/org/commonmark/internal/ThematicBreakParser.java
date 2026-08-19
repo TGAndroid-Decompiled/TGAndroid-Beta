@@ -55,6 +55,12 @@ public class ThematicBreakParser extends AbstractBlockParser {
             }
             i++;
         }
-        return (i2 >= 3 && i3 == 0 && i4 == 0) || (i3 >= 3 && i2 == 0 && i4 == 0) || (i4 >= 3 && i2 == 0 && i3 == 0);
+        if (i2 >= 3 && i3 == 0 && i4 == 0) {
+            return true;
+        }
+        if (i3 >= 3 && i2 == 0 && i4 == 0) {
+            return true;
+        }
+        return i4 >= 3 && i2 == 0 && i3 == 0;
     }
 }

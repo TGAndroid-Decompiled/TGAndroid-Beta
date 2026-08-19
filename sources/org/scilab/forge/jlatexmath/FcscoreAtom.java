@@ -21,6 +21,6 @@ public class FcscoreAtom extends Atom {
     public Box createBox(TeXEnvironment teXEnvironment) {
         float factor = SpaceAtom.getFactor(5, teXEnvironment) * 12.0f;
         int i = this.N;
-        return new FcscoreBox(i == 5 ? 4 : i, 1.0f * factor, 0.07f * factor, 0.125f * factor, i == 5);
+        return new FcscoreBox(i == 5 ? 4 : i, 1.0f * factor, 0.07f * factor, factor * 0.125f, i == 5);
     }
 }

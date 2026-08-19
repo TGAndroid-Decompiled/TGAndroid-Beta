@@ -82,15 +82,19 @@ public class StoryLinkPreviewDialog extends Dialog {
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
-                if (StoryLinkPreviewDialog.this.openProgress > 0.0f && StoryLinkPreviewDialog.this.blurBitmapPaint != null) {
+                Canvas canvas2;
+                if (StoryLinkPreviewDialog.this.openProgress <= 0.0f || StoryLinkPreviewDialog.this.blurBitmapPaint == null) {
+                    canvas2 = canvas;
+                } else {
                     StoryLinkPreviewDialog.this.blurMatrix.reset();
                     float width = getWidth() / StoryLinkPreviewDialog.this.blurBitmap.getWidth();
                     StoryLinkPreviewDialog.this.blurMatrix.postScale(width, width);
                     StoryLinkPreviewDialog.this.blurBitmapShader.setLocalMatrix(StoryLinkPreviewDialog.this.blurMatrix);
                     StoryLinkPreviewDialog.this.blurBitmapPaint.setAlpha((int) (StoryLinkPreviewDialog.this.openProgress * 255.0f));
-                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), StoryLinkPreviewDialog.this.blurBitmapPaint);
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), StoryLinkPreviewDialog.this.blurBitmapPaint);
                 }
-                super.dispatchDraw(canvas);
+                super.dispatchDraw(canvas2);
             }
 
             @Override
@@ -106,7 +110,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.onBackPressed();
             }
         });
         LinearLayout linearLayout = new LinearLayout(context) {
@@ -204,7 +208,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         toggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(i, view);
+                StoryLinkPreviewDialog.$r8$lambda$EhR8HWrum4XC8mMTxOzkxYiikxE(this.f$0, i, view);
             }
         });
         itemOptionsMakeOptions.addView(toggleButton);
@@ -213,7 +217,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         toggleButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(i, view);
+                StoryLinkPreviewDialog.m2531$r8$lambda$ALT2h9uMvRgCMrKTv_S0I2OkCY(this.f$0, i, view);
             }
         });
         itemOptionsMakeOptions.addView(toggleButton2);
@@ -227,7 +231,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DoNotLinkPreview), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$3();
+                StoryLinkPreviewDialog.$r8$lambda$8auzwqAe7X70owiPMRuwoOCdpGc(this.f$0);
             }
         });
         linearLayout.addView(itemOptionsMakeOptions.getLayout(), LayoutHelper.createLinear(-2, -2, 0.0f, 85));
@@ -252,33 +256,29 @@ public class StoryLinkPreviewDialog extends Dialog {
         });
     }
 
-    public void lambda$new$0(View view) {
-        onBackPressed();
-    }
-
-    public void lambda$new$1(int i, View view) {
-        LinkPreview.WebPagePreview webPagePreview = this.link;
+    public static void $r8$lambda$EhR8HWrum4XC8mMTxOzkxYiikxE(StoryLinkPreviewDialog storyLinkPreviewDialog, int i, View view) {
+        LinkPreview.WebPagePreview webPagePreview = storyLinkPreviewDialog.link;
         boolean z = webPagePreview.captionAbove;
         webPagePreview.captionAbove = !z;
-        this.captionButton.setState(z, true);
-        this.linkView.set(i, this.link, true);
+        storyLinkPreviewDialog.captionButton.setState(z, true);
+        storyLinkPreviewDialog.linkView.set(i, storyLinkPreviewDialog.link, true);
     }
 
-    public void lambda$new$2(int i, View view) {
-        LinkPreview.WebPagePreview webPagePreview = this.link;
+    public static void m2531$r8$lambda$ALT2h9uMvRgCMrKTv_S0I2OkCY(StoryLinkPreviewDialog storyLinkPreviewDialog, int i, View view) {
+        LinkPreview.WebPagePreview webPagePreview = storyLinkPreviewDialog.link;
         boolean z = webPagePreview.largePhoto;
         webPagePreview.largePhoto = !z;
-        this.photoButton.setState(z, true);
-        this.linkView.set(i, this.link, true);
+        storyLinkPreviewDialog.photoButton.setState(z, true);
+        storyLinkPreviewDialog.linkView.set(i, storyLinkPreviewDialog.link, true);
     }
 
-    public void lambda$new$3() {
-        Utilities.Callback callback = this.whenDone;
+    public static void $r8$lambda$8auzwqAe7X70owiPMRuwoOCdpGc(StoryLinkPreviewDialog storyLinkPreviewDialog) {
+        Utilities.Callback callback = storyLinkPreviewDialog.whenDone;
         if (callback != null) {
             callback.run(null);
-            this.whenDone = null;
+            storyLinkPreviewDialog.whenDone = null;
         }
-        dismiss();
+        storyLinkPreviewDialog.dismiss();
     }
 
     @Override
@@ -315,7 +315,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateOpenTo$4(valueAnimator2);
+                StoryLinkPreviewDialog.$r8$lambda$bUrScP378Y3i95ZEa8b2EOdDu2c(this.f$0, valueAnimator2);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -337,13 +337,14 @@ public class StoryLinkPreviewDialog extends Dialog {
         this.openAnimator.start();
     }
 
-    public void lambda$animateOpenTo$4(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$bUrScP378Y3i95ZEa8b2EOdDu2c(StoryLinkPreviewDialog storyLinkPreviewDialog, ValueAnimator valueAnimator) {
+        storyLinkPreviewDialog.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.openProgress = fFloatValue;
-        this.containerView.setAlpha(fFloatValue);
-        this.containerView.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, this.openProgress));
-        this.containerView.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, this.openProgress));
-        this.windowView.invalidate();
+        storyLinkPreviewDialog.openProgress = fFloatValue;
+        storyLinkPreviewDialog.containerView.setAlpha(fFloatValue);
+        storyLinkPreviewDialog.containerView.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, storyLinkPreviewDialog.openProgress));
+        storyLinkPreviewDialog.containerView.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, storyLinkPreviewDialog.openProgress));
+        storyLinkPreviewDialog.windowView.invalidate();
     }
 
     private void prepareBlur(final View view) {
@@ -353,28 +354,29 @@ public class StoryLinkPreviewDialog extends Dialog {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$prepareBlur$5(view, (Bitmap) obj);
+                StoryLinkPreviewDialog.$r8$lambda$R8S2bWp07ZAq7fxHtzr9OTH6tdY(this.f$0, view, (Bitmap) obj);
             }
         }, 14.0f);
     }
 
-    public void lambda$prepareBlur$5(View view, Bitmap bitmap) {
+    public static void $r8$lambda$R8S2bWp07ZAq7fxHtzr9OTH6tdY(StoryLinkPreviewDialog storyLinkPreviewDialog, View view, Bitmap bitmap) {
         if (view != null) {
+            storyLinkPreviewDialog.getClass();
             view.setVisibility(0);
         }
-        this.blurBitmap = bitmap;
+        storyLinkPreviewDialog.blurBitmap = bitmap;
         Paint paint = new Paint(1);
-        this.blurBitmapPaint = paint;
-        Bitmap bitmap2 = this.blurBitmap;
+        storyLinkPreviewDialog.blurBitmapPaint = paint;
+        Bitmap bitmap2 = storyLinkPreviewDialog.blurBitmap;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-        this.blurBitmapShader = bitmapShader;
+        storyLinkPreviewDialog.blurBitmapShader = bitmapShader;
         paint.setShader(bitmapShader);
         ColorMatrix colorMatrix = new ColorMatrix();
         AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.08f : 0.25f);
         AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.02f : -0.07f);
-        this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        this.blurMatrix = new Matrix();
+        storyLinkPreviewDialog.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        storyLinkPreviewDialog.blurMatrix = new Matrix();
     }
 
     @Override
@@ -405,21 +407,18 @@ public class StoryLinkPreviewDialog extends Dialog {
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$dismiss$7();
+                StoryLinkPreviewDialog.$r8$lambda$gn54f_OwkNLlbATnsZrijKtc5Yg(this.f$0);
             }
         });
         this.windowView.invalidate();
     }
 
-    public void lambda$dismiss$6() {
-        super.dismiss();
-    }
-
-    public void lambda$dismiss$7() {
+    public static void $r8$lambda$gn54f_OwkNLlbATnsZrijKtc5Yg(final StoryLinkPreviewDialog storyLinkPreviewDialog) {
+        storyLinkPreviewDialog.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$dismiss$6();
+                super/*android.app.Dialog*/.dismiss();
             }
         });
     }

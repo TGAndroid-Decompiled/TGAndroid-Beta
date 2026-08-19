@@ -45,25 +45,21 @@ public class VoipAudioManager {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$isBluetoothAndSpeakerOnAsync$2(callback2);
+                VoipAudioManager.m1209$r8$lambda$GkupENbEtcGx9B_eS_5XMimzM(this.f$0, callback2);
             }
         });
     }
 
-    public void lambda$isBluetoothAndSpeakerOnAsync$2(final Utilities.Callback2 callback2) {
-        AudioManager audioManager = getAudioManager();
+    public static void m1209$r8$lambda$GkupENbEtcGx9B_eS_5XMimzM(VoipAudioManager voipAudioManager, final Utilities.Callback2 callback2) {
+        AudioManager audioManager = voipAudioManager.getAudioManager();
         final boolean zIsBluetoothScoOn = audioManager.isBluetoothScoOn();
         final boolean zIsSpeakerphoneOn = audioManager.isSpeakerphoneOn();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$1(callback2, zIsBluetoothScoOn, zIsSpeakerphoneOn);
+                callback2.run(Boolean.valueOf(zIsBluetoothScoOn), Boolean.valueOf(zIsSpeakerphoneOn));
             }
         });
-    }
-
-    public static void lambda$isBluetoothAndSpeakerOnAsync$1(Utilities.Callback2 callback2, boolean z, boolean z2) {
-        callback2.run(Boolean.valueOf(z), Boolean.valueOf(z2));
     }
 
     private AudioManager getAudioManager() {

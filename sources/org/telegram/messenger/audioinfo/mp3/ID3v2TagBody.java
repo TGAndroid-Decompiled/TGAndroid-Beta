@@ -35,7 +35,6 @@ public class ID3v2TagBody {
     }
 
     public ID3v2FrameBody frameBody(ID3v2FrameHeader iD3v2FrameHeader) throws IOException, ID3v2Exception {
-        int dataLengthIndicator;
         InputStream inflaterInputStream;
         int bodySize = iD3v2FrameHeader.getBodySize();
         InputStream byteArrayInputStream = this.input;
@@ -59,13 +58,12 @@ public class ID3v2TagBody {
             throw new ID3v2Exception("Frame encryption is not supported");
         }
         if (iD3v2FrameHeader.isCompression()) {
-            dataLengthIndicator = iD3v2FrameHeader.getDataLengthIndicator();
+            bodySize = iD3v2FrameHeader.getDataLengthIndicator();
             inflaterInputStream = new InflaterInputStream(byteArrayInputStream);
         } else {
-            dataLengthIndicator = bodySize;
             inflaterInputStream = byteArrayInputStream;
         }
-        return new ID3v2FrameBody(inflaterInputStream, iD3v2FrameHeader.getHeaderSize(), dataLengthIndicator, this.tagHeader, iD3v2FrameHeader);
+        return new ID3v2FrameBody(inflaterInputStream, iD3v2FrameHeader.getHeaderSize(), bodySize, this.tagHeader, iD3v2FrameHeader);
     }
 
     public String toString() {

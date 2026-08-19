@@ -84,7 +84,7 @@ public class SpoilerEffect extends Drawable {
     private boolean suppressUpdates;
     private RectF visibleRect;
 
-    public static float lambda$new$0(float f) {
+    public static float $r8$lambda$DlWWdeTSSSqeRn6DubqCDzjPfOU(float f) {
         return f;
     }
 
@@ -123,7 +123,7 @@ public class SpoilerEffect extends Drawable {
         this.rippleInterpolator = new TimeInterpolator() {
             @Override
             public final float getInterpolation(float f) {
-                return SpoilerEffect.lambda$new$0(f);
+                return SpoilerEffect.$r8$lambda$DlWWdeTSSSqeRn6DubqCDzjPfOU(f);
             }
         };
         this.boundsFWithInset = new RectF();
@@ -184,7 +184,7 @@ public class SpoilerEffect extends Drawable {
         this.rippleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$startRipple$1(alpha, valueAnimator2);
+                SpoilerEffect.$r8$lambda$Bw7XpHB9YmMEfXpK99wL0DSN4Ag(this.f$0, alpha, valueAnimator2);
             }
         });
         this.rippleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -210,12 +210,13 @@ public class SpoilerEffect extends Drawable {
         invalidateSelf();
     }
 
-    public void lambda$startRipple$1(int i, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$Bw7XpHB9YmMEfXpK99wL0DSN4Ag(SpoilerEffect spoilerEffect, int i, ValueAnimator valueAnimator) {
+        spoilerEffect.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.rippleProgress = fFloatValue;
-        setAlpha((int) (i * (1.0f - fFloatValue)));
-        this.shouldInvalidateColor = true;
-        invalidateSelf();
+        spoilerEffect.rippleProgress = fFloatValue;
+        spoilerEffect.setAlpha((int) (i * (1.0f - fFloatValue)));
+        spoilerEffect.shouldInvalidateColor = true;
+        spoilerEffect.invalidateSelf();
     }
 
     public void setRippleInterpolator(TimeInterpolator timeInterpolator) {
@@ -325,11 +326,11 @@ public class SpoilerEffect extends Drawable {
             int size = arrayList.size();
             int i7 = 0;
             while (i7 < size) {
-                int i8 = length2;
+                int i8 = size;
                 Particle particle = (Particle) arrayList.get(i7);
-                float f13 = f2;
-                float f14 = f11;
-                float fMin = Math.min(particle.currentTime + f11, particle.lifeTime);
+                float f13 = f11;
+                float f14 = fHeight;
+                float fMin = Math.min(particle.currentTime + f13, particle.lifeTime);
                 particle.currentTime = fMin;
                 float f15 = particle.x;
                 float f16 = particle.y;
@@ -338,137 +339,132 @@ public class SpoilerEffect extends Drawable {
                     if (stack.size() < i6) {
                         stack.push(particle);
                     }
-                    int i9 = size - 1;
+                    int i9 = i8 - 1;
                     if (i7 != i9) {
                         arrayList.set(i7, (Particle) arrayList.get(i9));
                     }
                     arrayList.remove(i9);
-                    size--;
+                    size = i8 - 1;
                     i7--;
                 } else {
                     float f17 = particle.velocity * f12;
                     particle.x = f15 + (particle.vecX * f17);
                     particle.y = f16 + (particle.vecY * f17);
+                    size = i8;
                 }
                 i7++;
-                f11 = f14;
-                length2 = i8;
-                f2 = f13;
+                fHeight = f14;
+                f11 = f13;
             }
-            int i10 = length2;
-            float f18 = f2;
+            float f18 = fHeight;
             int size2 = arrayList.size();
             if (size2 < i6) {
-                int i11 = i6 - size2;
-                int i12 = 14;
+                int i10 = i6 - size2;
                 float f19 = -1.0f;
-                Arrays.fill(this.particleRands, 0, Math.min(i11, 14), -1.0f);
-                int i13 = 0;
-                int i14 = 0;
-                while (i13 < i11) {
-                    float fNextFloat = this.particleRands[i14];
+                Arrays.fill(this.particleRands, 0, Math.min(i10, 14), -1.0f);
+                int i11 = 0;
+                int i12 = 0;
+                while (i11 < i10) {
+                    float fNextFloat = this.particleRands[i12];
                     if (fNextFloat == f19) {
                         fNextFloat = Utilities.fastRandom.nextFloat();
-                        this.particleRands[i14] = fNextFloat;
+                        this.particleRands[i12] = fNextFloat;
                     }
-                    int i15 = i14 + 1;
-                    if (i15 == i12) {
-                        i15 = 0;
+                    int i13 = i12 + 1;
+                    if (i13 == 14) {
+                        i13 = 0;
                     }
                     Particle particle2 = !stack.isEmpty() ? (Particle) stack.pop() : new Particle();
-                    int i16 = 0;
+                    int i14 = 0;
                     while (true) {
-                        i5 = i15;
                         particle2.x = f + (Utilities.fastRandom.nextFloat() * fWidth);
-                        particle2.y = f18 + (Utilities.fastRandom.nextFloat() * fHeight);
-                        i16++;
-                        if ((particle2.x >= f3 && particle2.x <= f5 && particle2.y >= f4 && particle2.y <= f6) || i16 >= 4) {
+                        particle2.y = (Utilities.fastRandom.nextFloat() * f18) + f2;
+                        i14++;
+                        if (particle2.x >= f3 && particle2.x <= f5 && particle2.y >= f4 && particle2.y <= f6) {
+                            i5 = i13;
+                            break;
+                        }
+                        i5 = i13;
+                        if (i14 >= 4) {
                             break;
                         } else {
-                            i15 = i5;
+                            i13 = i5;
                         }
                     }
-                    Stack stack2 = stack;
-                    int i17 = i11;
                     double d = ((((double) fNextFloat) * 3.141592653589793d) * 2.0d) - 3.141592653589793d;
                     particle2.vecX = (float) Math.cos(d);
                     particle2.vecY = (float) Math.sin(d);
                     particle2.currentTime = 0.0f;
                     particle2.lifeTime = Utilities.fastRandom.nextInt(2000) + 1000;
                     particle2.velocity = (fNextFloat * 6.0f) + 4.0f;
-                    particle2.alpha = Utilities.fastRandom.nextInt(i10);
+                    particle2.alpha = Utilities.fastRandom.nextInt(length2);
                     arrayList.add(particle2);
-                    i13++;
-                    i11 = i17;
-                    f = f;
-                    fHeight = fHeight;
-                    i12 = 14;
+                    i11++;
+                    i12 = i5;
                     f19 = -1.0f;
-                    stack = stack2;
-                    i14 = i5;
                 }
                 size2 = arrayList.size();
             }
-            for (int i18 = 0; i18 < i10; i18++) {
-                this.renderCount[i18] = 0;
+            for (int i15 = 0; i15 < length2; i15++) {
+                this.renderCount[i15] = 0;
             }
-            int i19 = this.bitmapSize;
-            int i20 = 0;
-            while (i20 < size2) {
-                Particle particle3 = (Particle) arrayList.get(i20);
+            int i16 = this.bitmapSize;
+            int i17 = 0;
+            while (i17 < size2) {
+                Particle particle3 = (Particle) arrayList.get(i17);
                 float f20 = particle3.x;
                 float f21 = particle3.y;
                 if (f20 < f7 || f20 > f9 || f21 < f8 || f21 > f10) {
                     i = size2;
                 } else {
-                    int i21 = particle3.alpha;
-                    float[] fArr2 = particlePoints[i21];
+                    int i18 = particle3.alpha;
+                    float[] fArr2 = particlePoints[i18];
                     int[] iArr = this.renderCount;
-                    int i22 = iArr[i21];
-                    int i23 = i22 + 1;
-                    if (i23 >= fArr2.length) {
+                    int i19 = iArr[i18];
+                    int i20 = i19 + 1;
+                    if (i20 >= fArr2.length) {
                         i = size2;
                     } else {
-                        fArr2[i22] = f20;
-                        fArr2[i23] = f21;
-                        int i24 = i22 + 2;
-                        float f22 = this.halfStrokeWidths[i21];
-                        if (f20 < f22 && (i4 = i22 + 3) < fArr2.length) {
-                            fArr2[i24] = i19 + f20;
+                        fArr2[i19] = f20;
+                        fArr2[i20] = f21;
+                        int i21 = i19 + 2;
+                        float f22 = this.halfStrokeWidths[i18];
+                        if (f20 < f22 && (i4 = i19 + 3) < fArr2.length) {
+                            fArr2[i21] = i16 + f20;
                             fArr2[i4] = f21;
-                            i24 = i22 + 4;
+                            i21 = i19 + 4;
                         }
-                        float f23 = i19;
+                        float f23 = i16;
                         float f24 = f23 - f22;
                         if (f20 > f24) {
-                            int i25 = i24 + 1;
+                            int i22 = i21 + 1;
                             i = size2;
-                            if (i25 < fArr2.length) {
-                                fArr2[i24] = f20 - f23;
-                                fArr2[i25] = f21;
-                                i24 += 2;
+                            if (i22 < fArr2.length) {
+                                fArr2[i21] = f20 - f23;
+                                fArr2[i22] = f21;
+                                i21 += 2;
                             }
                         } else {
                             i = size2;
                         }
-                        if (f21 < f22 && (i3 = i24 + 1) < fArr2.length) {
-                            fArr2[i24] = f20;
+                        if (f21 < f22 && (i3 = i21 + 1) < fArr2.length) {
+                            fArr2[i21] = f20;
                             fArr2[i3] = f21 + f23;
-                            i24 += 2;
+                            i21 += 2;
                         }
-                        if (f21 > f24 && (i2 = i24 + 1) < fArr2.length) {
-                            fArr2[i24] = f20;
+                        if (f21 > f24 && (i2 = i21 + 1) < fArr2.length) {
+                            fArr2[i21] = f20;
                             fArr2[i2] = f21 - f23;
-                            i24 += 2;
+                            i21 += 2;
                         }
-                        iArr[i21] = i24;
+                        iArr[i18] = i21;
                     }
                 }
-                i20++;
+                i17++;
                 size2 = i;
             }
-            for (int i26 = 0; i26 < i10; i26++) {
-                pointsBufferArr[i26].addPoints(particlePoints[i26], 0, this.renderCount[i26]);
+            for (int i23 = 0; i23 < length2; i23++) {
+                pointsBufferArr[i23].addPoints(particlePoints[i23], 0, this.renderCount[i23]);
             }
         }
     }
@@ -596,29 +592,31 @@ public class SpoilerEffect extends Drawable {
     }
 
     public static void addSpoilers(View view, Layout layout, int i, int i2, Spanned spanned, Stack stack, List list, ArrayList arrayList) {
-        int iMin;
-        int iMax;
+        int i3;
+        int i4;
         if (layout == null) {
             return;
         }
         TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) spanned.getSpans(0, layout.getText().length(), TextStyleSpan.class);
-        for (int i3 = 0; i3 < Math.min(100, textStyleSpanArr.length); i3++) {
-            if (textStyleSpanArr[i3].isSpoiler()) {
-                int spanStart = spanned.getSpanStart(textStyleSpanArr[i3]);
-                int spanEnd = spanned.getSpanEnd(textStyleSpanArr[i3]);
+        for (int i5 = 0; i5 < Math.min(100, textStyleSpanArr.length); i5++) {
+            if (textStyleSpanArr[i5].isSpoiler()) {
+                int spanStart = spanned.getSpanStart(textStyleSpanArr[i5]);
+                int spanEnd = spanned.getSpanEnd(textStyleSpanArr[i5]);
                 if (i == -1 && i2 == -1) {
                     int lineForOffset = layout.getLineForOffset(spanEnd);
-                    iMin = Integer.MAX_VALUE;
-                    iMax = Integer.MIN_VALUE;
+                    int iMin = Integer.MAX_VALUE;
+                    int iMax = Integer.MIN_VALUE;
                     for (int lineForOffset2 = layout.getLineForOffset(spanStart); lineForOffset2 <= lineForOffset; lineForOffset2++) {
                         iMin = Math.min(iMin, (int) layout.getLineLeft(lineForOffset2));
                         iMax = Math.max(iMax, (int) layout.getLineRight(lineForOffset2));
                     }
+                    i3 = iMin;
+                    i4 = iMax;
                 } else {
-                    iMin = i;
-                    iMax = i2;
+                    i3 = i;
+                    i4 = i2;
                 }
-                addSpoilerRangesInternal(view, layout, iMin, iMax, spanStart, spanEnd, stack, list, arrayList);
+                addSpoilerRangesInternal(view, layout, i3, i4, spanStart, spanEnd, stack, list, arrayList);
             }
         }
         if (!(view instanceof TextView) || stack == null) {
@@ -705,9 +703,9 @@ public class SpoilerEffect extends Drawable {
             layoutDrawMaybe(layout, canvas);
             return;
         }
-        Layout layout2 = (Layout) atomicReference.get();
+        Layout layoutBuild = (Layout) atomicReference.get();
         int i5 = 0;
-        if (layout2 == null || !layout.getText().toString().equals(layout2.getText().toString()) || layout.getWidth() != layout2.getWidth() || layout.getHeight() != layout2.getHeight()) {
+        if (layoutBuild == null || !layout.getText().toString().equals(layoutBuild.getText().toString()) || layout.getWidth() != layoutBuild.getWidth() || layout.getHeight() != layoutBuild.getHeight()) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(layout.getText());
             if (layout.getText() instanceof Spanned) {
                 Spanned spanned = (Spanned) layout.getText();
@@ -736,34 +734,40 @@ public class SpoilerEffect extends Drawable {
                             spannableStringBuilder.removeSpan(emojiSpan);
                             i5++;
                             textStyleSpanArr2 = textStyleSpanArr3;
+                            i6 = i6;
                             length = length;
                             emojiSpanArr = emojiSpanArr;
                         }
                         textStyleSpanArr = textStyleSpanArr2;
+                        i4 = i6;
                         spannableStringBuilder.setSpan(new ForegroundColorSpan(0), spanStart, spanEnd, spanned.getSpanFlags(textStyleSpan));
                         spannableStringBuilder.removeSpan(textStyleSpan);
                     } else {
                         textStyleSpanArr = textStyleSpanArr2;
+                        i4 = i6;
                     }
-                    i6++;
+                    i6 = i4 + 1;
                     textStyleSpanArr2 = textStyleSpanArr;
                     i5 = 0;
                 }
             }
             if (i3 == 1) {
                 staticLayout = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(1.66f), false);
-            } else if (Build.VERSION.SDK_INT >= 24) {
-                staticLayout = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), layout.getPaint(), layout.getWidth()).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(layout.getAlignment()).setLineSpacing(layout.getSpacingAdd(), layout.getSpacingMultiplier()).build();
             } else {
-                staticLayout = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), layout.getAlignment(), layout.getSpacingMultiplier(), layout.getSpacingAdd(), false);
+                if (Build.VERSION.SDK_INT >= 24) {
+                    layoutBuild = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), layout.getPaint(), layout.getWidth()).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(layout.getAlignment()).setLineSpacing(layout.getSpacingAdd(), layout.getSpacingMultiplier()).build();
+                } else {
+                    staticLayout = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), layout.getAlignment(), layout.getSpacingMultiplier(), layout.getSpacingAdd(), false);
+                }
+                atomicReference.set(layoutBuild);
             }
-            layout2 = staticLayout;
-            atomicReference.set(layout2);
+            layoutBuild = staticLayout;
+            atomicReference.set(layoutBuild);
         }
         if (!list.isEmpty()) {
             canvas.save();
             canvas.translate(0.0f, i2);
-            layout2.draw(canvas);
+            layoutBuild.draw(canvas);
             canvas.restore();
         } else {
             layoutDrawMaybe(layout, canvas);
@@ -777,26 +781,22 @@ public class SpoilerEffect extends Drawable {
             Rect bounds = ((SpoilerEffect) it.next()).getBounds();
             tempPath.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
         }
-        if (list.isEmpty()) {
-            i4 = 0;
-        } else {
-            i4 = 0;
-            if (((SpoilerEffect) list.get(0)).rippleProgress != -1.0f) {
-                canvas.save();
-                Path path = tempPath;
-                canvas.clipPath(path);
-                path.rewind();
-                if (!list.isEmpty()) {
-                    ((SpoilerEffect) list.get(0)).getRipplePath(path);
-                }
-                canvas.clipPath(path);
-                canvas.translate(0.0f, -view.getPaddingTop());
-                layoutDrawMaybe(layout, canvas);
-                canvas.restore();
-                i4 = 0;
+        int i7 = 0;
+        if (!list.isEmpty() && ((SpoilerEffect) list.get(0)).rippleProgress != -1.0f) {
+            canvas.save();
+            Path path = tempPath;
+            canvas.clipPath(path);
+            path.rewind();
+            if (!list.isEmpty()) {
+                ((SpoilerEffect) list.get(0)).getRipplePath(path);
             }
+            canvas.clipPath(path);
+            canvas.translate(0.0f, -view.getPaddingTop());
+            layoutDrawMaybe(layout, canvas);
+            canvas.restore();
+            i7 = 0;
         }
-        boolean z3 = ((SpoilerEffect) list.get(i4)).rippleProgress != -1.0f;
+        boolean z3 = ((SpoilerEffect) list.get(i7)).rippleProgress != -1.0f;
         if (z3) {
             int measuredWidth = view.getMeasuredWidth();
             if (z2 && (view.getParent() instanceof View)) {

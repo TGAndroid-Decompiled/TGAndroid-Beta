@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -86,7 +85,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         this.hideHint = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$2();
+                MultipleStoriesSelector.m4511$r8$lambda$cdCjhFGO0deaP4r_YAigmZnDGw(this.f$0);
             }
         };
         this.buttonBounce = new ButtonBounce(this);
@@ -160,12 +159,13 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             AndroidUtilities.forEachViews((RecyclerView) MultipleStoriesSelector.this.listView, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    this.f$0.lambda$swappedElements$0((View) obj);
+                    MultipleStoriesSelector.AnonymousClass1.m4513$r8$lambda$OBw0HtHC8Ji9WLVn6rrfE0aP7c(this.f$0, (View) obj);
                 }
             });
         }
 
-        public void lambda$swappedElements$0(View view) {
+        public static void m4513$r8$lambda$OBw0HtHC8Ji9WLVn6rrfE0aP7c(AnonymousClass1 anonymousClass1, View view) {
+            anonymousClass1.getClass();
             if (view instanceof EntryView) {
                 MultipleStoriesSelector multipleStoriesSelector = MultipleStoriesSelector.this;
                 ((EntryView) view).setPosition(multipleStoriesSelector.getPositionOf(multipleStoriesSelector.listView.getChildAdapterPosition(view)));
@@ -181,9 +181,12 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
 
     public void whenReordered(int i, ArrayList arrayList) {
         this.selectedOrder.clear();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            this.selectedOrder.add(Integer.valueOf(((UItem) it.next()).id));
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            this.selectedOrder.add(Integer.valueOf(((UItem) obj).id));
         }
         updateItemsAnimated();
     }
@@ -192,21 +195,22 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                this.f$0.lambda$updateItemsAnimated$0((View) obj);
+                MultipleStoriesSelector.$r8$lambda$lLhX0fiLt76UPkXm4nBQnMwwJto(this.f$0, (View) obj);
             }
         });
     }
 
-    public void lambda$updateItemsAnimated$0(View view) {
+    public static void $r8$lambda$lLhX0fiLt76UPkXm4nBQnMwwJto(MultipleStoriesSelector multipleStoriesSelector, View view) {
         int childAdapterPosition;
         UItem item;
-        if (!(view instanceof EntryView) || (item = this.listView.adapter.getItem((childAdapterPosition = this.listView.getChildAdapterPosition(view)))) == null) {
+        multipleStoriesSelector.getClass();
+        if (!(view instanceof EntryView) || (item = multipleStoriesSelector.listView.adapter.getItem((childAdapterPosition = multipleStoriesSelector.listView.getChildAdapterPosition(view)))) == null) {
             return;
         }
         EntryView entryView = (EntryView) view;
-        entryView.setPosition(getPositionOf(childAdapterPosition));
-        entryView.setSelected(this.selectedStory == item.id, true);
-        entryView.setChecked(this.selectedStories.contains(Integer.valueOf(item.id)), true);
+        entryView.setPosition(multipleStoriesSelector.getPositionOf(childAdapterPosition));
+        entryView.setSelected(multipleStoriesSelector.selectedStory == item.id, true);
+        entryView.setChecked(multipleStoriesSelector.selectedStories.contains(Integer.valueOf(item.id)), true);
         view.setPressed(false);
     }
 
@@ -219,7 +223,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             arrayList.add(EntryView.Factory.asStoryEntry(iIntValue, i, (StoryEntry) this.stories.get(iIntValue)).setChecked(this.selectedStory == iIntValue).setCollapsed(this.selectedStories.contains(num)).setClickCallback(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$fillItems$1(iIntValue, view);
+                    MultipleStoriesSelector.$r8$lambda$iP6saSPjNR4ILdhYQAD3QBdWUOQ(this.f$0, iIntValue, view);
                 }
             }));
             if (this.selectedStories.contains(num)) {
@@ -229,17 +233,17 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         universalAdapter.reorderSectionEnd();
     }
 
-    public void lambda$fillItems$1(int i, View view) {
-        if (this.selectedStories.contains(Integer.valueOf(i))) {
-            if (this.selectedStories.size() <= 1) {
+    public static void $r8$lambda$iP6saSPjNR4ILdhYQAD3QBdWUOQ(MultipleStoriesSelector multipleStoriesSelector, int i, View view) {
+        if (multipleStoriesSelector.selectedStories.contains(Integer.valueOf(i))) {
+            if (multipleStoriesSelector.selectedStories.size() <= 1) {
                 return;
             } else {
-                this.selectedStories.remove(Integer.valueOf(i));
+                multipleStoriesSelector.selectedStories.remove(Integer.valueOf(i));
             }
         } else {
-            this.selectedStories.add(Integer.valueOf(i));
+            multipleStoriesSelector.selectedStories.add(Integer.valueOf(i));
         }
-        updateItemsAnimated();
+        multipleStoriesSelector.updateItemsAnimated();
     }
 
     public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
@@ -256,10 +260,10 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         this.listView.adapter.update(false);
     }
 
-    public void lambda$new$2() {
-        if (this.hintShown) {
-            this.hintShown = false;
-            invalidate();
+    public static void m4511$r8$lambda$cdCjhFGO0deaP4r_YAigmZnDGw(MultipleStoriesSelector multipleStoriesSelector) {
+        if (multipleStoriesSelector.hintShown) {
+            multipleStoriesSelector.hintShown = false;
+            multipleStoriesSelector.invalidate();
         }
     }
 
@@ -283,19 +287,20 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                this.f$0.lambda$setSelected$3(i, (View) obj);
+                MultipleStoriesSelector.m4512$r8$lambda$lHkKEmnJSDx2_w_YKtBtEdPFjM(this.f$0, i, (View) obj);
             }
         });
     }
 
-    public void lambda$setSelected$3(int i, View view) {
+    public static void m4512$r8$lambda$lHkKEmnJSDx2_w_YKtBtEdPFjM(MultipleStoriesSelector multipleStoriesSelector, int i, View view) {
         int childAdapterPosition;
         UItem item;
-        if (!(view instanceof EntryView) || (item = this.listView.adapter.getItem((childAdapterPosition = this.listView.getChildAdapterPosition(view)))) == null) {
+        multipleStoriesSelector.getClass();
+        if (!(view instanceof EntryView) || (item = multipleStoriesSelector.listView.adapter.getItem((childAdapterPosition = multipleStoriesSelector.listView.getChildAdapterPosition(view)))) == null) {
             return;
         }
         EntryView entryView = (EntryView) view;
-        entryView.setPosition(getPositionOf(childAdapterPosition));
+        entryView.setPosition(multipleStoriesSelector.getPositionOf(childAdapterPosition));
         entryView.setSelected(i == item.id, true);
         view.setPressed(false);
     }
@@ -408,7 +413,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                 canvas.save();
                 RectF rectF16 = this.hintBounds;
                 canvas.scale(fLerp, fLerp, rectF16.right, rectF16.bottom);
-                this.hint.draw(canvas, AndroidUtilities.dp(11.0f) + (this.buttonBounds.right - fDp), (this.buttonBounds.top - AndroidUtilities.dp(9.66f)) - (fDp2 / 2.0f), -1, f);
+                this.hint.draw(canvas, (this.buttonBounds.right - fDp) + AndroidUtilities.dp(11.0f), (this.buttonBounds.top - AndroidUtilities.dp(9.66f)) - (fDp2 / 2.0f), -1, f);
                 canvas.restore();
             }
         }
@@ -476,7 +481,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             }).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$showList$4(valueAnimator);
+                    this.f$0.invalidate();
                 }
             }).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(360L).start();
         } else {
@@ -490,10 +495,6 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             this.hintShown = false;
             invalidate();
         }
-    }
-
-    public void lambda$showList$4(ValueAnimator valueAnimator) {
-        invalidate();
     }
 
     public boolean onBackPressed() {
@@ -664,7 +665,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$set$1(storyEntry);
+                        MultipleStoriesSelector.EntryView.m4517$r8$lambda$oYbLqD9yWkVkEsTrwDgEu53VM(this.f$0, storyEntry);
                     }
                 });
                 return;
@@ -704,12 +705,13 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$set$3(storyEntry);
+                    MultipleStoriesSelector.EntryView.m4515$r8$lambda$Slf_HtSQFxJS0VJPc1V0kTEeY(this.f$0, storyEntry);
                 }
             });
         }
 
-        public void lambda$set$1(StoryEntry storyEntry) {
+        public static void m4517$r8$lambda$oYbLqD9yWkVkEsTrwDgEu53VM(final EntryView entryView, StoryEntry storyEntry) {
+            entryView.getClass();
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(storyEntry.draftThumbFile.getPath(), options);
@@ -721,16 +723,13 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$set$0(bitmapDecodeFile);
+                    this.f$0.imageReceiver.setImageBitmap(bitmapDecodeFile);
                 }
             });
         }
 
-        public void lambda$set$0(Bitmap bitmap) {
-            this.imageReceiver.setImageBitmap(bitmap);
-        }
-
-        public void lambda$set$3(StoryEntry storyEntry) {
+        public static void m4515$r8$lambda$Slf_HtSQFxJS0VJPc1V0kTEeY(final EntryView entryView, StoryEntry storyEntry) {
+            entryView.getClass();
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(storyEntry.file.getPath(), options);
@@ -742,13 +741,9 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$set$2(bitmapDecodeFile);
+                    this.f$0.imageReceiver.setImageBitmap(bitmapDecodeFile);
                 }
             });
-        }
-
-        public void lambda$set$2(Bitmap bitmap) {
-            this.imageReceiver.setImageBitmap(bitmap);
         }
 
         @Override

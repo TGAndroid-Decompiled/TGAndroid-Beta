@@ -159,6 +159,7 @@ public class LinkView extends EntityView {
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             super.onDraw(canvas);
             int saveCount = canvas.getSaveCount();
             float showAlpha = getShowAlpha();
@@ -166,7 +167,11 @@ public class LinkView extends EntityView {
                 return;
             }
             if (showAlpha < 1.0f) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
+                int i = (int) (showAlpha * 255.0f);
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), i, 31);
+            } else {
+                canvas2 = canvas;
             }
             float fDp = AndroidUtilities.dp(2.0f);
             float fDpf2 = AndroidUtilities.dpf2(5.66f);
@@ -192,20 +197,20 @@ public class LinkView extends EntityView {
             float f9 = f2 - f5;
             rectF.set(f9, fDp2, f2, f8);
             this.path.arcTo(rectF, 270.0f, 90.0f);
-            canvas.drawPath(this.path, this.paint);
+            canvas2.drawPath(this.path, this.paint);
             this.path.rewind();
             float f10 = f3 - f7;
             rectF.set(fDp2, f10, f6, f3);
             this.path.arcTo(rectF, 180.0f, -90.0f);
             rectF.set(f9, f10, f2, f3);
             this.path.arcTo(rectF, 90.0f, -90.0f);
-            canvas.drawPath(this.path, this.paint);
+            canvas2.drawPath(this.path, this.paint);
             float f11 = fDp2 + f4;
-            canvas.drawCircle(fDp2, f11, fDpf2, this.dotStrokePaint);
-            canvas.drawCircle(fDp2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas.drawCircle(f2, f11, fDpf2, this.dotStrokePaint);
-            canvas.drawCircle(f2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            canvas2.drawCircle(fDp2, f11, fDpf2, this.dotStrokePaint);
+            canvas2.drawCircle(fDp2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            canvas2.drawCircle(f2, f11, fDpf2, this.dotStrokePaint);
+            canvas2.drawCircle(f2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             float f12 = fDp2 + fMin2;
             float f13 = f3 - fMin2;
             canvas.drawLine(fDp2, f12, fDp2, f13, this.paint);

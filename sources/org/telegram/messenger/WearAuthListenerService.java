@@ -27,13 +27,13 @@ public class WearAuthListenerService extends WearableListenerService {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WearAuthListenerService.lambda$onMessageReceived$0(path, sourceNodeId, data);
+                WearAuthListenerService.m1093$r8$lambda$ZoaD8uzVx54e8TEk1oIZnY6L8g(path, sourceNodeId, data);
             }
         });
     }
 
-    public static void lambda$onMessageReceived$0(String str, String str2, byte[] bArr) {
-        str.hashCode();
+    public static void m1093$r8$lambda$ZoaD8uzVx54e8TEk1oIZnY6L8g(String str, String str2, byte[] bArr) {
+        str.getClass();
         if (str.equals("/tg-wear-auth/offer")) {
             FileLog.d("wear-auth: offer from " + str2 + " (" + bArr.length + " bytes)");
             WearAuthSheet.onOfferReceived(bArr, str2);

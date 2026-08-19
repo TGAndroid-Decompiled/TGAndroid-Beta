@@ -611,6 +611,7 @@ enum TokeniserState {
                                     tokeniser.tagPending.appendAttributeName(cConsume);
                                     break;
                             }
+                            return;
                         }
                     }
                     tokeniser.error(this);
@@ -843,6 +844,7 @@ enum TokeniserState {
                                         tokeniser.tagPending.appendAttributeValue(cConsume);
                                         break;
                                 }
+                                return;
                             }
                         }
                     }

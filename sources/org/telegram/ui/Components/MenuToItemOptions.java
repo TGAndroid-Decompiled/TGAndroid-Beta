@@ -133,17 +133,13 @@ public class MenuToItemOptions implements Menu {
         this.itemOptions.add(charSequence, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$add$0(i2);
+                this.f$0.onMenuClicked.run(Integer.valueOf(i2));
             }
         });
         if (this.premiumLock != null && FloatingToolbar.premiumOptions.contains(Integer.valueOf(i2))) {
             this.itemOptions.putPremiumLock(this.premiumLock);
         }
         return null;
-    }
-
-    public void lambda$add$0(int i) {
-        this.onMenuClicked.run(Integer.valueOf(i));
     }
 
     @Override

@@ -52,7 +52,10 @@ public class RichMediaItem {
 
     public boolean hasImage() {
         MediaUploadState mediaUploadState = this.media;
-        return mediaUploadState != null && (mediaUploadState.localPath != null || mediaUploadState.isReady());
+        if (mediaUploadState != null) {
+            return mediaUploadState.localPath != null || mediaUploadState.isReady();
+        }
+        return false;
     }
 
     public void setRoundRadius(int i, int i2, int i3, int i4) {
@@ -75,9 +78,12 @@ public class RichMediaItem {
     }
 
     private boolean isLocalRotated90() {
-        int i;
         MediaUploadState mediaUploadState = this.media;
-        return (mediaUploadState == null || mediaUploadState.isVideo || mediaUploadState.isReady() || ((i = this.media.orientation) != 90 && i != 270)) ? false : true;
+        if (mediaUploadState == null || mediaUploadState.isVideo || mediaUploadState.isReady()) {
+            return false;
+        }
+        int i = this.media.orientation;
+        return i == 90 || i == 270;
     }
 
     public void attach() {
@@ -127,21 +133,23 @@ public class RichMediaItem {
 
     private boolean ensureBlur() {
         Bitmap bitmap;
-        if (!hasImage() || (bitmap = this.imageReceiver.getBitmap()) == null || bitmap.isRecycled()) {
-            return false;
-        }
-        if ((this.blurImageReceiver.getBitmap() == null || this.imageReceiver.getAnimation() == null) && (bitmap != this.blurSource || this.blurImageReceiver.getBitmap() == null)) {
-            this.blurSource = bitmap;
-            this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap, false));
-            if (fancyBlurFilter == null) {
-                ColorMatrix colorMatrix = new ColorMatrix();
-                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.9f);
-                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.6f);
-                fancyBlurFilter = new ColorMatrixColorFilter(colorMatrix);
+        if (hasImage() && (bitmap = this.imageReceiver.getBitmap()) != null && !bitmap.isRecycled()) {
+            if ((this.blurImageReceiver.getBitmap() == null || this.imageReceiver.getAnimation() == null) && (bitmap != this.blurSource || this.blurImageReceiver.getBitmap() == null)) {
+                this.blurSource = bitmap;
+                this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap, false));
+                if (fancyBlurFilter == null) {
+                    ColorMatrix colorMatrix = new ColorMatrix();
+                    AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.9f);
+                    AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.6f);
+                    fancyBlurFilter = new ColorMatrixColorFilter(colorMatrix);
+                }
+                this.blurImageReceiver.setColorFilter(fancyBlurFilter);
             }
-            this.blurImageReceiver.setColorFilter(fancyBlurFilter);
+            if (this.blurImageReceiver.getBitmap() != null) {
+                return true;
+            }
         }
-        return this.blurImageReceiver.getBitmap() != null;
+        return false;
     }
 
     public void drawBlurBackground(Canvas canvas, RectF rectF) {
@@ -161,6 +169,7 @@ public class RichMediaItem {
     }
 
     public void drawSpoiler(Canvas canvas, RectF rectF, SpoilerEffect2 spoilerEffect2, View view) {
+        Canvas canvas2;
         canvas.save();
         canvas.clipRect(rectF);
         if (ensureBlur()) {
@@ -170,9 +179,12 @@ public class RichMediaItem {
         }
         if (spoilerEffect2 != null) {
             canvas.translate(rectF.left, rectF.top);
-            spoilerEffect2.draw(canvas, view, Math.round(rectF.width()), Math.round(rectF.height()), this.imageReceiver.getCurrentAlpha());
+            canvas2 = canvas;
+            spoilerEffect2.draw(canvas2, view, Math.round(rectF.width()), Math.round(rectF.height()), this.imageReceiver.getCurrentAlpha());
+        } else {
+            canvas2 = canvas;
         }
-        canvas.restore();
+        canvas2.restore();
     }
 
     private void drawProgress(Canvas canvas, RectF rectF) {

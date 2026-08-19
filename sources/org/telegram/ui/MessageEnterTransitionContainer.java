@@ -16,17 +16,13 @@ public class MessageEnterTransitionContainer extends View {
         void onDraw(Canvas canvas);
     }
 
-    public void lambda$new$0() {
-        setVisibility(8);
-    }
-
     public MessageEnterTransitionContainer(ViewGroup viewGroup, int i) {
         super(viewGroup.getContext());
         this.transitions = new ArrayList();
         this.hideRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.setVisibility(8);
             }
         };
         this.parent = viewGroup;

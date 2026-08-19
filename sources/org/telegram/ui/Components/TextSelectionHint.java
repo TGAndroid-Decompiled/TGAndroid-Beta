@@ -137,6 +137,11 @@ public abstract class TextSelectionHint extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        float f;
+        Path.Direction direction;
+        float f2;
+        float f3;
+        int i;
         if (this.textLayout == null) {
             return;
         }
@@ -151,39 +156,50 @@ public abstract class TextSelectionHint extends View {
         int lineForOffset = this.textLayout.getLineForOffset(this.currentEnd);
         this.textLayout.getPrimaryHorizontal(this.currentEnd);
         int lineBottom = this.textLayout.getLineBottom(lineForOffset);
-        int i = this.currentEnd;
-        int i2 = this.animateToEnd;
-        if (i == i2) {
-            roundedRect(this.path, this.textLayout.getPrimaryHorizontal(i2), this.textLayout.getLineTop(lineForOffset), this.textLayout.getPrimaryHorizontal(this.animateToEnd) + AndroidUtilities.dpf2(4.0f), this.textLayout.getLineBottom(lineForOffset), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), false, true);
+        int i2 = this.currentEnd;
+        int i3 = this.animateToEnd;
+        if (i2 == i3) {
+            roundedRect(this.path, this.textLayout.getPrimaryHorizontal(i3), this.textLayout.getLineTop(lineForOffset), this.textLayout.getPrimaryHorizontal(this.animateToEnd) + AndroidUtilities.dpf2(4.0f), this.textLayout.getLineBottom(lineForOffset), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), false, true);
             canvas.drawPath(this.path, this.selectionPaint);
         }
         float interpolation = this.interpolator.getInterpolation(this.enterValue);
         int primaryHorizontal = (int) (this.textLayout.getPrimaryHorizontal(this.animateToEnd) + (AndroidUtilities.dpf2(4.0f) * (1.0f - this.endOffsetValue)) + ((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue));
         canvas.save();
         canvas.translate(primaryHorizontal, lineBottom);
-        float f = iDp;
-        float f2 = f / 2.0f;
-        canvas.scale(interpolation, interpolation, f2, f2);
+        float f4 = iDp;
+        float f5 = f4 / 2.0f;
+        canvas.scale(interpolation, interpolation, f5, f5);
         this.path.reset();
         Path path = this.path;
-        Path.Direction direction = Path.Direction.CCW;
-        path.addCircle(f2, f2, f2, direction);
-        this.path.addRect(0.0f, 0.0f, f2, f2, direction);
+        Path.Direction direction2 = Path.Direction.CCW;
+        path.addCircle(f5, f5, f5, direction2);
+        this.path.addRect(0.0f, 0.0f, f5, f5, direction2);
         canvas.drawPath(this.path, this.textPaint);
         canvas.restore();
         int lineForOffset2 = this.textLayout.getLineForOffset(this.currentStart);
         this.textLayout.getPrimaryHorizontal(this.currentStart);
         int lineBottom2 = this.textLayout.getLineBottom(lineForOffset2);
         if (this.currentStart == this.animateToStart) {
+            f = f5;
+            direction = direction2;
+            f2 = 1.0f;
+            f3 = 4.0f;
+            i = lineBottom2;
             roundedRect(this.path, -AndroidUtilities.dp(4.0f), this.textLayout.getLineTop(lineForOffset2), 0.0f, this.textLayout.getLineBottom(lineForOffset2), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), true, false);
             canvas.drawPath(this.path, this.selectionPaint);
+        } else {
+            f = f5;
+            direction = direction2;
+            f2 = 1.0f;
+            f3 = 4.0f;
+            i = lineBottom2;
         }
         canvas.save();
-        canvas.translate(((int) ((this.textLayout.getPrimaryHorizontal(this.animateToStart) - (AndroidUtilities.dp(4.0f) * (1.0f - this.startOffsetValue))) + ((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(this.animateToStart)) * this.startOffsetValue))) - iDp, lineBottom2);
-        canvas.scale(interpolation, interpolation, f2, f2);
+        canvas.translate(((int) ((this.textLayout.getPrimaryHorizontal(this.animateToStart) - (AndroidUtilities.dp(f3) * (f2 - this.startOffsetValue))) + ((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(this.animateToStart)) * this.startOffsetValue))) - iDp, i);
+        canvas.scale(interpolation, interpolation, f, f);
         this.path.reset();
-        this.path.addCircle(f2, f2, f2, direction);
-        this.path.addRect(f2, 0.0f, f, f2, direction);
+        this.path.addCircle(f, f, f, direction);
+        this.path.addRect(f, 0.0f, f4, f, direction);
         canvas.drawPath(this.path, this.textPaint);
         canvas.restore();
         canvas.restore();
@@ -280,7 +296,7 @@ public abstract class TextSelectionHint extends View {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$show$0(valueAnimator);
+                TextSelectionHint.m2875$r8$lambda$Lje4aq515RDuOBWPgbN3oY167c(this.f$0, valueAnimator);
             }
         });
         valueAnimatorOfFloat.setDuration(210L);
@@ -289,7 +305,7 @@ public abstract class TextSelectionHint extends View {
         valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$show$1(valueAnimator);
+                TextSelectionHint.$r8$lambda$eiI_o2taub1i_SBOidZZW_o77i0(this.f$0, valueAnimator);
             }
         });
         valueAnimatorOfFloat2.setStartDelay(600L);
@@ -299,7 +315,7 @@ public abstract class TextSelectionHint extends View {
         valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$show$2(valueAnimator);
+                TextSelectionHint.m2873$r8$lambda$0XPTaIbGpU35GKdRoLzsnVJoE(this.f$0, valueAnimator);
             }
         });
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
@@ -310,7 +326,7 @@ public abstract class TextSelectionHint extends View {
         valueAnimatorOfFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$show$3(valueAnimator);
+                TextSelectionHint.$r8$lambda$pQFFxa2WNs_kH4Mux610U7CbtVw(this.f$0, valueAnimator);
             }
         });
         valueAnimatorOfFloat4.setInterpolator(cubicBezierInterpolator);
@@ -322,30 +338,34 @@ public abstract class TextSelectionHint extends View {
         AndroidUtilities.runOnUIThread(this.dismissTunnable, 5000L);
     }
 
-    public void lambda$show$0(ValueAnimator valueAnimator) {
-        this.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void m2875$r8$lambda$Lje4aq515RDuOBWPgbN3oY167c(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
+        textSelectionHint.getClass();
+        textSelectionHint.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        textSelectionHint.invalidate();
     }
 
-    public void lambda$show$1(ValueAnimator valueAnimator) {
-        this.enterValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$eiI_o2taub1i_SBOidZZW_o77i0(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
+        textSelectionHint.getClass();
+        textSelectionHint.enterValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        textSelectionHint.invalidate();
     }
 
-    public void lambda$show$2(ValueAnimator valueAnimator) {
+    public static void m2873$r8$lambda$0XPTaIbGpU35GKdRoLzsnVJoE(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
+        textSelectionHint.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.startOffsetValue = fFloatValue;
-        int i = this.animateToStart;
-        this.currentStart = (int) (i + ((this.start - i) * fFloatValue));
-        invalidate();
+        textSelectionHint.startOffsetValue = fFloatValue;
+        int i = textSelectionHint.animateToStart;
+        textSelectionHint.currentStart = (int) (i + ((textSelectionHint.start - i) * fFloatValue));
+        textSelectionHint.invalidate();
     }
 
-    public void lambda$show$3(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$pQFFxa2WNs_kH4Mux610U7CbtVw(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
+        textSelectionHint.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.endOffsetValue = fFloatValue;
-        int i = this.animateToEnd;
-        this.currentEnd = i + ((int) Math.ceil((this.end - i) * fFloatValue));
-        invalidate();
+        textSelectionHint.endOffsetValue = fFloatValue;
+        int i = textSelectionHint.animateToEnd;
+        textSelectionHint.currentEnd = i + ((int) Math.ceil((textSelectionHint.end - i) * fFloatValue));
+        textSelectionHint.invalidate();
     }
 
     public void hide() {
@@ -364,7 +384,7 @@ public abstract class TextSelectionHint extends View {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$hideInternal$4(valueAnimator);
+                TextSelectionHint.$r8$lambda$JZH_qX8HL10Mi2jkTC2GA24iz4A(this.f$0, valueAnimator);
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -377,9 +397,10 @@ public abstract class TextSelectionHint extends View {
         valueAnimatorOfFloat.start();
     }
 
-    public void lambda$hideInternal$4(ValueAnimator valueAnimator) {
-        this.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$JZH_qX8HL10Mi2jkTC2GA24iz4A(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
+        textSelectionHint.getClass();
+        textSelectionHint.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        textSelectionHint.invalidate();
     }
 
     public float getPrepareProgress() {

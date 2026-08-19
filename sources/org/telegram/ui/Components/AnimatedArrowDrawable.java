@@ -139,18 +139,12 @@ public class AnimatedArrowDrawable extends Drawable {
     @Override
     public int getIntrinsicWidth() {
         float f = this.customWidthDp;
-        if (f <= 0.0f) {
-            f = 26.0f;
-        }
-        return AndroidUtilities.dp(f);
+        return f > 0.0f ? AndroidUtilities.dp(f) : AndroidUtilities.dp(26.0f);
     }
 
     @Override
     public int getIntrinsicHeight() {
         float f = this.customHeightDp;
-        if (f <= 0.0f) {
-            f = 26.0f;
-        }
-        return AndroidUtilities.dp(f);
+        return f > 0.0f ? AndroidUtilities.dp(f) : AndroidUtilities.dp(26.0f);
     }
 }

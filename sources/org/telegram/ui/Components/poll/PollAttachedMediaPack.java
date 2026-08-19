@@ -247,9 +247,10 @@ public class PollAttachedMediaPack {
             if (queryParameter != null) {
                 return Base64.decode(queryParameter, 9);
             }
+            return null;
         } catch (Throwable unused) {
+            return null;
         }
-        return null;
     }
 
     public static boolean hasWrongInputMediaTypes(TLRPC.TL_inputMediaPoll tL_inputMediaPoll) {

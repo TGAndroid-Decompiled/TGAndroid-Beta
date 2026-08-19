@@ -39,13 +39,13 @@ public class PasskeysController {
             ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.initPasskeyRegistration(), new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    PasskeysController.lambda$create$9(alertDialog, callback2, credentialManagerCreate, context, i, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
+                    PasskeysController.m962$r8$lambda$uzlz7C9RirnBVnV8ty3z_v7jkQ(alertDialog, callback2, credentialManagerCreate, context, i, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
     }
 
-    public static void lambda$create$9(AlertDialog alertDialog, final Utilities.Callback2 callback2, CredentialManager credentialManager, final Context context, final int i, TL_account.passkeyRegistrationOptions passkeyregistrationoptions, TLRPC.TL_error tL_error) {
+    public static void m962$r8$lambda$uzlz7C9RirnBVnV8ty3z_v7jkQ(AlertDialog alertDialog, final Utilities.Callback2 callback2, CredentialManager credentialManager, final Context context, final int i, TL_account.passkeyRegistrationOptions passkeyregistrationoptions, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (tL_error != null) {
             callback2.run(null, tL_error.text);
@@ -56,7 +56,7 @@ public class PasskeysController {
                 credentialManager.createCredential(context, new CreatePublicKeyCredentialRequest(new JSONObject(passkeyregistrationoptions.options.data).getJSONObject("publicKey").toString()), ktxCallback(new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        PasskeysController.lambda$create$7(callback2, context, i, (CreateCredentialResponse) obj, (Throwable) obj2);
+                        PasskeysController.$r8$lambda$UFW9mxCL6OVJAvCzDQKgbaWCx_g(callback2, context, i, (CreateCredentialResponse) obj, (Throwable) obj2);
                     }
                 }));
             } catch (Exception e) {
@@ -64,7 +64,7 @@ public class PasskeysController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PasskeysController.lambda$create$8(callback2, e);
+                        callback2.run(null, e.getMessage());
                     }
                 });
             }
@@ -74,7 +74,7 @@ public class PasskeysController {
         }
     }
 
-    public static void lambda$create$7(final Utilities.Callback2 callback2, final Context context, final int i, CreateCredentialResponse createCredentialResponse, final Throwable th) {
+    public static void $r8$lambda$UFW9mxCL6OVJAvCzDQKgbaWCx_g(final Utilities.Callback2 callback2, final Context context, final int i, CreateCredentialResponse createCredentialResponse, final Throwable th) {
         if ((th instanceof CreateCredentialCancellationException) || (th instanceof CreateCredentialInterruptedException)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -98,7 +98,7 @@ public class PasskeysController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PasskeysController.lambda$create$2(callback2, th);
+                    callback2.run(null, th.getMessage());
                 }
             });
             return;
@@ -121,7 +121,7 @@ public class PasskeysController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PasskeysController.lambda$create$6(context, i, registerpasskey, callback2);
+                    PasskeysController.$r8$lambda$y0t8xdzxstUVdPjML0pMI_yGUOg(context, i, registerpasskey, callback2);
                 }
             });
         } catch (Exception e) {
@@ -129,38 +129,30 @@ public class PasskeysController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PasskeysController.lambda$create$3(callback2, e);
+                    callback2.run(null, e.getMessage());
                 }
             });
         }
     }
 
-    public static void lambda$create$2(Utilities.Callback2 callback2, Throwable th) {
-        callback2.run(null, th.getMessage());
-    }
-
-    public static void lambda$create$3(Utilities.Callback2 callback2, Exception exc) {
-        callback2.run(null, exc.getMessage());
-    }
-
-    public static void lambda$create$6(Context context, final int i, TL_account.registerPasskey registerpasskey, final Utilities.Callback2 callback2) {
+    public static void $r8$lambda$y0t8xdzxstUVdPjML0pMI_yGUOg(Context context, final int i, TL_account.registerPasskey registerpasskey, final Utilities.Callback2 callback2) {
         final AlertDialog alertDialog = new AlertDialog(context, 3);
         alertDialog.showDelayed(500L);
         final int iSendRequestTyped = ConnectionsManager.getInstance(i).sendRequestTyped(registerpasskey, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PasskeysController.lambda$create$4(alertDialog, callback2, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.$r8$lambda$9XpDvasej2ZlaH5A73JOyh8A3uo(alertDialog, callback2, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
             }
         });
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                PasskeysController.lambda$create$5(i, iSendRequestTyped, callback2, dialogInterface);
+                PasskeysController.$r8$lambda$nn76CV_Y1sHdcydbtd3_ZJgwwi4(i, iSendRequestTyped, callback2, dialogInterface);
             }
         });
     }
 
-    public static void lambda$create$4(AlertDialog alertDialog, Utilities.Callback2 callback2, TL_account.Passkey passkey, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$9XpDvasej2ZlaH5A73JOyh8A3uo(AlertDialog alertDialog, Utilities.Callback2 callback2, TL_account.Passkey passkey, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (tL_error != null) {
             callback2.run(null, tL_error.text);
@@ -169,13 +161,9 @@ public class PasskeysController {
         }
     }
 
-    public static void lambda$create$5(int i, int i2, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
+    public static void $r8$lambda$nn76CV_Y1sHdcydbtd3_ZJgwwi4(int i, int i2, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
         ConnectionsManager.getInstance(i).cancelRequest(i2, true);
         callback2.run(null, "CANCELLED");
-    }
-
-    public static void lambda$create$8(Utilities.Callback2 callback2, Exception exc) {
-        callback2.run(null, exc.getMessage());
     }
 
     public static Runnable login(final Context context, final int i, final boolean z, final Utilities.Callback3<Long, TLRPC.auth_Authorization, String> callback3) {
@@ -190,24 +178,24 @@ public class PasskeysController {
         final int iSendRequestTyped = ConnectionsManager.getInstance(i).sendRequestTyped(initpasskeylogin, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PasskeysController.lambda$login$10(zArr, callback3, z, credentialManagerCreate, context, i, runnableArr, (TL_account.passkeyLoginOptions) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.$r8$lambda$3L4sUw_47wNxWVaSQ6GIWRaiOEQ(zArr, callback3, z, credentialManagerCreate, context, i, runnableArr, (TL_account.passkeyLoginOptions) obj, (TLRPC.TL_error) obj2);
             }
         }, 8);
         final Runnable[] runnableArr = {new Runnable() {
             @Override
             public final void run() {
-                PasskeysController.lambda$login$11(i, iSendRequestTyped);
+                ConnectionsManager.getInstance(i).cancelRequest(iSendRequestTyped, true);
             }
         }};
         return new Runnable() {
             @Override
             public final void run() {
-                PasskeysController.lambda$login$12(zArr, runnableArr);
+                PasskeysController.m961$r8$lambda$r0BjSG3ZEIMsdcfxhA6pR0B2FM(zArr, runnableArr);
             }
         };
     }
 
-    public static void lambda$login$10(boolean[] zArr, Utilities.Callback3 callback3, boolean z, CredentialManager credentialManager, Context context, int i, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$3L4sUw_47wNxWVaSQ6GIWRaiOEQ(boolean[] zArr, Utilities.Callback3 callback3, boolean z, CredentialManager credentialManager, Context context, int i, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
         if (zArr[0]) {
             return;
         }
@@ -283,7 +271,7 @@ public class PasskeysController {
                 final int iSendRequestTyped = connectionsManager.sendRequestTyped(finishpasskeylogin, aiTonesController$$ExternalSyntheticLambda0, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        PasskeysController.AnonymousClass1.lambda$onResult$0(alertDialog, callback3, j, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
+                        PasskeysController.AnonymousClass1.$r8$lambda$gx4vqzEbMkPbuY3kEBWRgHgji2Q(alertDialog, callback3, j, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
                     }
                 }, i, 72);
                 final int i2 = this.val$currentAccount;
@@ -291,7 +279,7 @@ public class PasskeysController {
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public final void onCancel(DialogInterface dialogInterface) {
-                        PasskeysController.AnonymousClass1.lambda$onResult$1(i2, iSendRequestTyped, callback4, j, dialogInterface);
+                        PasskeysController.AnonymousClass1.$r8$lambda$aD_TSB9_08HxxMQbIkVP1CwvnZ0(i2, iSendRequestTyped, callback4, j, dialogInterface);
                     }
                 });
             } catch (Exception e) {
@@ -300,7 +288,7 @@ public class PasskeysController {
             }
         }
 
-        public static void lambda$onResult$0(AlertDialog alertDialog, Utilities.Callback3 callback3, long j, TLRPC.auth_Authorization auth_authorization, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$gx4vqzEbMkPbuY3kEBWRgHgji2Q(AlertDialog alertDialog, Utilities.Callback3 callback3, long j, TLRPC.auth_Authorization auth_authorization, TLRPC.TL_error tL_error) {
             alertDialog.dismiss();
             if (tL_error != null) {
                 callback3.run(Long.valueOf(j), null, tL_error.text);
@@ -309,7 +297,7 @@ public class PasskeysController {
             }
         }
 
-        public static void lambda$onResult$1(int i, int i2, Utilities.Callback3 callback3, long j, DialogInterface dialogInterface) {
+        public static void $r8$lambda$aD_TSB9_08HxxMQbIkVP1CwvnZ0(int i, int i2, Utilities.Callback3 callback3, long j, DialogInterface dialogInterface) {
             ConnectionsManager.getInstance(i).cancelRequest(i2, true);
             callback3.run(Long.valueOf(j), null, "CANCELLED");
         }
@@ -330,11 +318,7 @@ public class PasskeysController {
         }
     }
 
-    public static void lambda$login$11(int i, int i2) {
-        ConnectionsManager.getInstance(i).cancelRequest(i2, true);
-    }
-
-    public static void lambda$login$12(boolean[] zArr, Runnable[] runnableArr) {
+    public static void m961$r8$lambda$r0BjSG3ZEIMsdcfxhA6pR0B2FM(boolean[] zArr, Runnable[] runnableArr) {
         zArr[0] = true;
         Runnable runnable = runnableArr[0];
         if (runnable != null) {

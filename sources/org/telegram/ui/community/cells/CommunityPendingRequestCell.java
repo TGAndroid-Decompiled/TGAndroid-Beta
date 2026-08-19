@@ -62,7 +62,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         void onClickGroupOwner(long j);
     }
 
-    public static void lambda$set$4() {
+    public static void m4884$r8$lambda$iKAnBjVDjZkfG3zWlAGUhGTF0() {
     }
 
     public int[] getColorKeys() {
@@ -124,7 +124,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         backupImageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                CommunityPendingRequestCell.$r8$lambda$gK9q3Qn_P46I_fBulH85Nd9pSCs(this.f$0, view);
             }
         });
         addView(backupImageView2, LayoutHelper.createFrame(16, 16.0f, 51, 75.0f, 35.0f, 0.0f, 0.0f));
@@ -136,7 +136,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                CommunityPendingRequestCell.$r8$lambda$4B07SMGKAy9Ni44ywcyJOnZwox8(this.f$0, view);
             }
         });
         linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 0.0f, 1.33f));
@@ -168,7 +168,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                CommunityPendingRequestCell.m4886$r8$lambda$lcOxsW5NAQvrDANF7AeSQcNj7g(this.f$0, view);
             }
         });
         linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 30, 0.0f, 16, 0, 0, 4, 0));
@@ -181,7 +181,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$3(view);
+                CommunityPendingRequestCell.m4885$r8$lambda$3YrE6nLsEz1kpJGlMYqdv3H21k(this.f$0, view);
             }
         });
         linearLayout2.addView(buttonWithCounterView2, LayoutHelper.createLinear(-2, 30, 0.0f, 16, 4, 0, 0, 0));
@@ -190,31 +190,31 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         updateColors();
     }
 
-    public void lambda$new$0(View view) {
-        ClickDelegate clickDelegate = this.delegate;
+    public static void $r8$lambda$gK9q3Qn_P46I_fBulH85Nd9pSCs(CommunityPendingRequestCell communityPendingRequestCell, View view) {
+        ClickDelegate clickDelegate = communityPendingRequestCell.delegate;
         if (clickDelegate != null) {
-            clickDelegate.onClickGroupOwner(this.userDialogId);
+            clickDelegate.onClickGroupOwner(communityPendingRequestCell.userDialogId);
         }
     }
 
-    public void lambda$new$1(View view) {
-        ClickDelegate clickDelegate = this.delegate;
+    public static void $r8$lambda$4B07SMGKAy9Ni44ywcyJOnZwox8(CommunityPendingRequestCell communityPendingRequestCell, View view) {
+        ClickDelegate clickDelegate = communityPendingRequestCell.delegate;
         if (clickDelegate != null) {
-            clickDelegate.onClickGroupOwner(this.userDialogId);
+            clickDelegate.onClickGroupOwner(communityPendingRequestCell.userDialogId);
         }
     }
 
-    public void lambda$new$2(View view) {
-        ClickDelegate clickDelegate = this.delegate;
+    public static void m4886$r8$lambda$lcOxsW5NAQvrDANF7AeSQcNj7g(CommunityPendingRequestCell communityPendingRequestCell, View view) {
+        ClickDelegate clickDelegate = communityPendingRequestCell.delegate;
         if (clickDelegate != null) {
-            clickDelegate.onClickDecline(this.groupDialogId);
+            clickDelegate.onClickDecline(communityPendingRequestCell.groupDialogId);
         }
     }
 
-    public void lambda$new$3(View view) {
-        ClickDelegate clickDelegate = this.delegate;
+    public static void m4885$r8$lambda$3YrE6nLsEz1kpJGlMYqdv3H21k(CommunityPendingRequestCell communityPendingRequestCell, View view) {
+        ClickDelegate clickDelegate = communityPendingRequestCell.delegate;
         if (clickDelegate != null) {
-            clickDelegate.onClickApprove(this.groupDialogId);
+            clickDelegate.onClickApprove(communityPendingRequestCell.groupDialogId);
         }
     }
 
@@ -247,10 +247,14 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
         if (this.needDivider) {
-            canvas.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, Theme.dividerPaint);
+            canvas2 = canvas;
+            canvas2.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, Theme.dividerPaint);
+        } else {
+            canvas2 = canvas;
         }
-        super.dispatchDraw(canvas);
+        super.dispatchDraw(canvas2);
     }
 
     public void set(long j, TLRPC.User user, ClickDelegate clickDelegate, boolean z, boolean z2) {
@@ -272,7 +276,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         textView.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i, DialogObject.getShortName(user)), Theme.getColor(Theme.key_telegram_color_text), new Runnable() {
             @Override
             public final void run() {
-                CommunityPendingRequestCell.lambda$set$4();
+                CommunityPendingRequestCell.m4884$r8$lambda$iKAnBjVDjZkfG3zWlAGUhGTF0();
             }
         }));
         if (user2 == null && chat != null && chat.participants_count > 0) {

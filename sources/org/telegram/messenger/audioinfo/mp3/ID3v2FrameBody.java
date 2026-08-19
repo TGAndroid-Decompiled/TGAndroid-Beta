@@ -92,17 +92,20 @@ public class ID3v2FrameBody {
         int iMin = Math.min(i, (int) getRemainingLength());
         byte[] bArrBytes = ((Buffer) textBuffer.get()).bytes(iMin);
         int i2 = 0;
-        for (int i3 = 0; i3 < iMin; i3++) {
+        int i3 = 0;
+        while (i2 < iMin) {
             byte b = this.data.readByte();
-            bArrBytes[i3] = b;
-            if (b != 0 || (iD3v2Encoding == ID3v2Encoding.UTF_16 && i2 == 0 && i3 % 2 != 0)) {
-                i2 = 0;
+            bArrBytes[i2] = b;
+            if (b != 0 || (iD3v2Encoding == ID3v2Encoding.UTF_16 && i3 == 0 && i2 % 2 != 0)) {
+                i3 = 0;
             } else {
-                i2++;
-                if (i2 == iD3v2Encoding.getZeroBytes()) {
-                    return extractString(bArrBytes, 0, (i3 + 1) - iD3v2Encoding.getZeroBytes(), iD3v2Encoding, false);
+                i3++;
+                if (i3 == iD3v2Encoding.getZeroBytes()) {
+                    return extractString(bArrBytes, 0, (i2 + 1) - iD3v2Encoding.getZeroBytes(), iD3v2Encoding, false);
                 }
             }
+            i2++;
+            iD3v2Encoding = iD3v2Encoding;
         }
         throw new ID3v2Exception("Could not read zero-termiated string");
     }

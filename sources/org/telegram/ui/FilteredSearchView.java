@@ -260,14 +260,14 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                             int iDp = (childAt instanceof SharedDocumentCell ? AndroidUtilities.dp(8.0f) : 0) - placeProviderObject.viewY;
                             if (iDp > childAt.getHeight()) {
                                 recyclerListView.scrollBy(0, -(iDp + pinnedHeader.getHeight()));
-                            } else {
-                                int height = placeProviderObject.viewY - recyclerListView.getHeight();
-                                if (childAt instanceof SharedDocumentCell) {
-                                    height -= AndroidUtilities.dp(8.0f);
-                                }
-                                if (height >= 0) {
-                                    recyclerListView.scrollBy(0, height + childAt.getHeight());
-                                }
+                                return placeProviderObject;
+                            }
+                            int height = placeProviderObject.viewY - recyclerListView.getHeight();
+                            if (childAt instanceof SharedDocumentCell) {
+                                height -= AndroidUtilities.dp(8.0f);
+                            }
+                            if (height >= 0) {
+                                recyclerListView.scrollBy(0, height + childAt.getHeight());
                             }
                         }
                         return placeProviderObject;
@@ -291,7 +291,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.hideFloatingDateRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.hideFloatingDateView();
             }
         };
         this.parentFragment = baseFragment;
@@ -327,7 +327,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$new$1(view, i);
+                FilteredSearchView.m3164$r8$lambda$MqR83hxs2tPOACNjTbZC6WEEMA(this.f$0, view, i);
             }
         });
         recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
@@ -397,21 +397,22 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         checkUi_floatingDateView();
     }
 
-    public void lambda$new$1(View view, int i) {
+    public static void m3164$r8$lambda$MqR83hxs2tPOACNjTbZC6WEEMA(FilteredSearchView filteredSearchView, View view, int i) {
+        filteredSearchView.getClass();
         if (view instanceof SharedDocumentCell) {
-            onItemClick(i, view, ((SharedDocumentCell) view).getMessage(), 0);
+            filteredSearchView.onItemClick(i, view, ((SharedDocumentCell) view).getMessage(), 0);
             return;
         }
         if (view instanceof SharedLinkCell) {
-            onItemClick(i, view, ((SharedLinkCell) view).getMessage(), 0);
+            filteredSearchView.onItemClick(i, view, ((SharedLinkCell) view).getMessage(), 0);
             return;
         }
         if (view instanceof SharedAudioCell) {
-            onItemClick(i, view, ((SharedAudioCell) view).getMessage(), 0);
+            filteredSearchView.onItemClick(i, view, ((SharedAudioCell) view).getMessage(), 0);
         } else if (view instanceof ContextLinkCell) {
-            onItemClick(i, view, ((ContextLinkCell) view).getMessageObject(), 0);
+            filteredSearchView.onItemClick(i, view, ((ContextLinkCell) view).getMessageObject(), 0);
         } else if (view instanceof DialogCell) {
-            onItemClick(i, view, ((DialogCell) view).getMessage(), 0);
+            filteredSearchView.onItemClick(i, view, ((DialogCell) view).getMessage(), 0);
         }
     }
 
@@ -442,7 +443,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onScrolled$0();
+                            FilteredSearchView.AnonymousClass6.$r8$lambda$QHmlnPQ_wqycaekL_lVZfdKGImI(this.f$0);
                         }
                     });
                 }
@@ -475,11 +476,11 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         return;
                     }
                 }
-                FilteredSearchView.this.lambda$new$0();
+                FilteredSearchView.this.hideFloatingDateView();
             }
         }
 
-        public void lambda$onScrolled$0() {
+        public static void $r8$lambda$QHmlnPQ_wqycaekL_lVZfdKGImI(AnonymousClass6 anonymousClass6) {
             FilteredSearchView filteredSearchView = FilteredSearchView.this;
             filteredSearchView.search(filteredSearchView.currentSearchDialogId, filteredSearchView.currentSearchCommunityId, filteredSearchView.currentSearchMinDate, filteredSearchView.currentSearchMaxDate, filteredSearchView.currentSearchFilter, filteredSearchView.currentIncludeFolder, filteredSearchView.lastMessagesSearchString, false);
         }
@@ -596,12 +597,35 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     }
 
     public void search(final long j, final long j2, final long j3, final long j4, final FiltersView.MediaFilterData mediaFilterData, final boolean z, String str, boolean z2) {
-        boolean z3 = true;
-        final String str2 = str == null ? "" : str;
-        final String str3 = String.format(Locale.ENGLISH, "%d%d%d%d%d%s%s", Long.valueOf(j), Long.valueOf(j2), Long.valueOf(j3), Long.valueOf(j4), Integer.valueOf(mediaFilterData == null ? -1 : mediaFilterData.filterType), str2, Boolean.valueOf(z));
+        char c;
+        int i;
+        String str2 = str == null ? "" : str;
+        Locale locale = Locale.ENGLISH;
+        Long lValueOf = Long.valueOf(j);
+        Long lValueOf2 = Long.valueOf(j2);
+        Long lValueOf3 = Long.valueOf(j3);
+        Long lValueOf4 = Long.valueOf(j4);
+        if (mediaFilterData == null) {
+            i = -1;
+            c = 3;
+        } else {
+            c = 3;
+            i = mediaFilterData.filterType;
+        }
+        Integer numValueOf = Integer.valueOf(i);
+        Boolean boolValueOf = Boolean.valueOf(z);
+        Object[] objArr = new Object[7];
+        objArr[0] = lValueOf;
+        objArr[1] = lValueOf2;
+        objArr[2] = lValueOf3;
+        objArr[c] = lValueOf4;
+        objArr[4] = numValueOf;
+        objArr[5] = str2;
+        objArr[6] = boolValueOf;
+        final String str3 = String.format(locale, "%d%d%d%d%d%s%s", objArr);
         String str4 = this.lastSearchFilterQueryString;
-        boolean z4 = str4 != null && str4.equals(str3);
-        boolean z5 = !z4 && z2;
+        final boolean z3 = str4 != null && str4.equals(str3);
+        boolean z4 = !z3 && z2;
         this.currentSearchFilter = mediaFilterData;
         this.currentSearchDialogId = j;
         this.currentSearchCommunityId = j2;
@@ -614,10 +638,10 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             AndroidUtilities.cancelRunOnUIThread(runnable);
         }
         AndroidUtilities.cancelRunOnUIThread(this.clearCurrentResultsRunnable);
-        if (z4 && z2) {
+        if (z3 && z2) {
             return;
         }
-        if (z5 || (mediaFilterData == null && j2 == 0 && j == 0 && j3 == 0 && j4 == 0)) {
+        if (z4 || (mediaFilterData == null && j2 == 0 && j == 0 && j3 == 0 && j4 == 0)) {
             this.messages.clear();
             this.sections.clear();
             this.sectionArrays.clear();
@@ -634,22 +658,20 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             }
             this.localTipChats.clear();
             this.localTipDates.clear();
-            if (!z5) {
+            if (!z4) {
                 return;
-            } else {
-                z3 = true;
             }
         } else if (z2 && !this.messages.isEmpty()) {
             return;
         }
-        this.isLoading = z3;
+        this.isLoading = true;
         RecyclerView.Adapter adapter2 = this.adapter;
         if (adapter2 != null) {
             adapter2.notifyDataSetChanged();
         }
-        if (!z4) {
+        if (!z3) {
             this.clearCurrentResultsRunnable.run();
-            this.emptyView.showProgress(z3, !z2);
+            this.emptyView.showProgress(true, !z2);
         }
         if (TextUtils.isEmpty(str2)) {
             this.localTipDates.clear();
@@ -659,24 +681,24 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 delegate.updateFiltersView(false, null, null, false);
             }
         }
-        final int i = this.requestIndex + 1;
-        this.requestIndex = i;
-        final int i2 = UserConfig.selectedAccount;
-        final boolean z6 = z4;
+        final int i2 = this.requestIndex + 1;
+        this.requestIndex = i2;
+        final int i3 = UserConfig.selectedAccount;
+        final String str5 = str2;
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$search$4(j, j2, str2, mediaFilterData, i2, j3, j4, z6, z, str3, i);
+                FilteredSearchView.$r8$lambda$3N1pWjHdryo7vAw8TmpdQzRs29M(this.f$0, j, j2, str5, mediaFilterData, i3, j3, j4, z3, z, str3, i2);
             }
         };
         this.searchRunnable = runnable2;
-        AndroidUtilities.runOnUIThread(runnable2, (!z4 || this.messages.isEmpty()) ? 350L : 0L);
+        AndroidUtilities.runOnUIThread(runnable2, (!z3 || this.messages.isEmpty()) ? 350L : 0L);
         if (mediaFilterData == null) {
             this.loadingView.setViewType(1);
             return;
         }
-        int i3 = mediaFilterData.filterType;
-        if (i3 == 0) {
+        int i4 = mediaFilterData.filterType;
+        if (i4 == 0) {
             if (!TextUtils.isEmpty(this.currentSearchString)) {
                 this.loadingView.setViewType(1);
                 return;
@@ -685,19 +707,20 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 return;
             }
         }
-        if (i3 == 1) {
+        if (i4 == 1) {
             this.loadingView.setViewType(3);
             return;
         }
-        if (i3 == 3 || i3 == 5) {
+        if (i4 == 3 || i4 == 5) {
             this.loadingView.setViewType(4);
-        } else if (i3 == 2) {
+        } else if (i4 == 2) {
             this.loadingView.setViewType(5);
         }
     }
 
-    public void lambda$search$4(final long j, long j2, final String str, final FiltersView.MediaFilterData mediaFilterData, final int i, final long j3, long j4, final boolean z, boolean z2, String str2, final int i2) {
+    public static void $r8$lambda$3N1pWjHdryo7vAw8TmpdQzRs29M(final FilteredSearchView filteredSearchView, final long j, long j2, final String str, final FiltersView.MediaFilterData mediaFilterData, final int i, final long j3, long j4, final boolean z, boolean z2, String str2, final int i2) {
         Object obj;
+        filteredSearchView.getClass();
         ArrayList<Object> arrayList = null;
         if (j != 0 && j2 == 0) {
             TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
@@ -711,8 +734,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (j4 > 0) {
                 tL_messages_search.max_date = (int) (j4 / 1000);
             }
-            if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
-                ArrayList arrayList2 = this.messages;
+            if (z && str.equals(filteredSearchView.lastMessagesSearchString) && !filteredSearchView.messages.isEmpty()) {
+                ArrayList arrayList2 = filteredSearchView.messages;
                 tL_messages_search.offset_id = ((MessageObject) arrayList2.get(arrayList2.size() - 1)).getId();
             } else {
                 tL_messages_search.offset_id = 0;
@@ -720,8 +743,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             obj = tL_messages_search;
         } else {
             if (!TextUtils.isEmpty(str)) {
-                arrayList = new ArrayList<>();
-                MessagesStorage.getInstance(i).localSearch(0, str, arrayList, new ArrayList<>(), new ArrayList<>(), null, z2 ? 1 : 0);
+                ArrayList<Object> arrayList3 = new ArrayList<>();
+                MessagesStorage.getInstance(i).localSearch(0, str, arrayList3, new ArrayList<>(), new ArrayList<>(), null, z2 ? 1 : 0);
+                arrayList = arrayList3;
             }
             TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
             tL_messages_searchGlobal.limit = 20;
@@ -734,11 +758,11 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (j4 > 0) {
                 tL_messages_searchGlobal.max_date = (int) (j4 / 1000);
             }
-            if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
-                ArrayList arrayList3 = this.messages;
-                MessageObject messageObject = (MessageObject) arrayList3.get(arrayList3.size() - 1);
+            if (z && str.equals(filteredSearchView.lastMessagesSearchString) && !filteredSearchView.messages.isEmpty()) {
+                ArrayList arrayList4 = filteredSearchView.messages;
+                MessageObject messageObject = (MessageObject) arrayList4.get(arrayList4.size() - 1);
                 tL_messages_searchGlobal.offset_id = messageObject.getId();
-                tL_messages_searchGlobal.offset_rate = this.nextSearchRate;
+                tL_messages_searchGlobal.offset_rate = filteredSearchView.nextSearchRate;
                 tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(i).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
             } else {
                 tL_messages_searchGlobal.offset_rate = 0;
@@ -749,20 +773,21 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             tL_messages_searchGlobal.folder_id = z2 ? 1 : 0;
             obj = tL_messages_searchGlobal;
         }
-        final ArrayList<Object> arrayList4 = arrayList;
-        this.lastMessagesSearchString = str;
-        this.lastSearchFilterQueryString = str2;
+        filteredSearchView.lastMessagesSearchString = str;
+        filteredSearchView.lastSearchFilterQueryString = str2;
         final ArrayList arrayList5 = new ArrayList();
-        FiltersView.fillTipDates(this.lastMessagesSearchString, arrayList5);
+        FiltersView.fillTipDates(filteredSearchView.lastMessagesSearchString, arrayList5);
+        final ArrayList<Object> arrayList6 = arrayList;
         ConnectionsManager.getInstance(i).sendRequestTyped(obj, new Utilities.Callback2() {
             @Override
             public final void run(Object obj2, Object obj3) {
-                this.f$0.lambda$search$3(i, str, i2, z, mediaFilterData, j, j3, arrayList4, arrayList5, (TLRPC.messages_Messages) obj2, (TLRPC.TL_error) obj3);
+                FilteredSearchView.m3165$r8$lambda$pNiV7h7hy8WrMs6XcZUUAiYPTs(this.f$0, i, str, i2, z, mediaFilterData, j, j3, arrayList6, arrayList5, (TLRPC.messages_Messages) obj2, (TLRPC.TL_error) obj3);
             }
         });
     }
 
-    public void lambda$search$3(final int i, final String str, final int i2, final boolean z, final FiltersView.MediaFilterData mediaFilterData, final long j, final long j2, final ArrayList arrayList, final ArrayList arrayList2, final TLRPC.messages_Messages messages_messages, final TLRPC.TL_error tL_error) {
+    public static void m3165$r8$lambda$pNiV7h7hy8WrMs6XcZUUAiYPTs(final FilteredSearchView filteredSearchView, final int i, final String str, final int i2, final boolean z, final FiltersView.MediaFilterData mediaFilterData, final long j, final long j2, final ArrayList arrayList, final ArrayList arrayList2, final TLRPC.messages_Messages messages_messages, final TLRPC.TL_error tL_error) {
+        filteredSearchView.getClass();
         final ArrayList arrayList3 = new ArrayList();
         if (tL_error == null) {
             int size = messages_messages.messages.size();
@@ -775,61 +800,61 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$search$2(i2, tL_error, messages_messages, i, z, str, arrayList3, mediaFilterData, j, j2, arrayList, arrayList2);
+                FilteredSearchView.m3163$r8$lambda$2ug52XQSTS8sNwyuwDe18gqb8A(this.f$0, i2, tL_error, messages_messages, i, z, str, arrayList3, mediaFilterData, j, j2, arrayList, arrayList2);
             }
         });
     }
 
-    public void lambda$search$2(int i, TLRPC.TL_error tL_error, TLRPC.messages_Messages messages_messages, int i2, boolean z, String str, ArrayList arrayList, FiltersView.MediaFilterData mediaFilterData, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
+    public static void m3163$r8$lambda$2ug52XQSTS8sNwyuwDe18gqb8A(FilteredSearchView filteredSearchView, int i, TLRPC.TL_error tL_error, TLRPC.messages_Messages messages_messages, int i2, boolean z, String str, ArrayList arrayList, FiltersView.MediaFilterData mediaFilterData, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
         String string;
-        if (i != this.requestIndex) {
+        if (i != filteredSearchView.requestIndex) {
             return;
         }
-        this.isLoading = false;
+        filteredSearchView.isLoading = false;
         if (tL_error != null) {
-            this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
-            this.emptyView.subtitle.setVisibility(0);
-            this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-            this.emptyView.showProgress(false, true);
+            filteredSearchView.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
+            filteredSearchView.emptyView.subtitle.setVisibility(0);
+            filteredSearchView.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+            filteredSearchView.emptyView.showProgress(false, true);
             return;
         }
-        this.emptyView.showProgress(false);
-        this.nextSearchRate = messages_messages.next_rate;
+        filteredSearchView.emptyView.showProgress(false);
+        filteredSearchView.nextSearchRate = messages_messages.next_rate;
         MessagesStorage.getInstance(i2).putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
         MessagesController.getInstance(i2).putUsers(messages_messages.users, false);
         MessagesController.getInstance(i2).putChats(messages_messages.chats, false);
         if (!z) {
-            this.messages.clear();
-            this.messagesById.clear();
-            this.sections.clear();
-            this.sectionArrays.clear();
+            filteredSearchView.messages.clear();
+            filteredSearchView.messagesById.clear();
+            filteredSearchView.sections.clear();
+            filteredSearchView.sectionArrays.clear();
         }
-        this.totalCount = messages_messages.count;
-        this.currentDataQuery = str;
+        filteredSearchView.totalCount = messages_messages.count;
+        filteredSearchView.currentDataQuery = str;
         int size = arrayList.size();
         for (int i3 = 0; i3 < size; i3++) {
             MessageObject messageObject = (MessageObject) arrayList.get(i3);
-            ArrayList arrayList4 = (ArrayList) this.sectionArrays.get(messageObject.monthKey);
+            ArrayList arrayList4 = (ArrayList) filteredSearchView.sectionArrays.get(messageObject.monthKey);
             if (arrayList4 == null) {
                 arrayList4 = new ArrayList();
-                this.sectionArrays.put(messageObject.monthKey, arrayList4);
-                this.sections.add(messageObject.monthKey);
+                filteredSearchView.sectionArrays.put(messageObject.monthKey, arrayList4);
+                filteredSearchView.sections.add(messageObject.monthKey);
             }
             arrayList4.add(messageObject);
-            this.messages.add(messageObject);
-            this.messagesById.put(messageObject.getId(), messageObject);
+            filteredSearchView.messages.add(messageObject);
+            filteredSearchView.messagesById.put(messageObject.getId(), messageObject);
             if (PhotoViewer.getInstance().isVisible()) {
-                PhotoViewer.getInstance().addPhoto(messageObject, this.photoViewerClassGuid);
+                PhotoViewer.getInstance().addPhoto(messageObject, filteredSearchView.photoViewerClassGuid);
             }
         }
-        if (this.messages.size() > this.totalCount) {
-            this.totalCount = this.messages.size();
+        if (filteredSearchView.messages.size() > filteredSearchView.totalCount) {
+            filteredSearchView.totalCount = filteredSearchView.messages.size();
         }
-        this.endReached = this.messages.size() >= this.totalCount;
-        if (this.messages.isEmpty()) {
+        filteredSearchView.endReached = filteredSearchView.messages.size() >= filteredSearchView.totalCount;
+        if (filteredSearchView.messages.isEmpty()) {
             if (mediaFilterData != null) {
-                if (TextUtils.isEmpty(this.currentDataQuery) && j == 0 && j2 == 0) {
-                    this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle));
+                if (TextUtils.isEmpty(filteredSearchView.currentDataQuery) && j == 0 && j2 == 0) {
+                    filteredSearchView.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle));
                     int i4 = mediaFilterData.filterType;
                     if (i4 == 1) {
                         string = LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitleFiles);
@@ -842,89 +867,89 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     } else {
                         string = LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitleVoice);
                     }
-                    this.emptyView.subtitle.setVisibility(0);
-                    this.emptyView.subtitle.setText(string);
+                    filteredSearchView.emptyView.subtitle.setVisibility(0);
+                    filteredSearchView.emptyView.subtitle.setText(string);
                 } else {
-                    this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
-                    this.emptyView.subtitle.setVisibility(0);
-                    this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+                    filteredSearchView.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
+                    filteredSearchView.emptyView.subtitle.setVisibility(0);
+                    filteredSearchView.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
                 }
             } else {
-                this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
-                this.emptyView.subtitle.setVisibility(8);
+                filteredSearchView.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
+                filteredSearchView.emptyView.subtitle.setVisibility(8);
             }
         }
         if (mediaFilterData != null) {
             int i5 = mediaFilterData.filterType;
             if (i5 != 0) {
                 if (i5 == 1) {
-                    this.adapter = this.sharedDocumentsAdapter;
+                    filteredSearchView.adapter = filteredSearchView.sharedDocumentsAdapter;
                 } else if (i5 == 2) {
-                    this.adapter = this.sharedLinksAdapter;
+                    filteredSearchView.adapter = filteredSearchView.sharedLinksAdapter;
                 } else if (i5 == 3) {
-                    this.adapter = this.sharedAudioAdapter;
+                    filteredSearchView.adapter = filteredSearchView.sharedAudioAdapter;
                 } else if (i5 == 5) {
-                    this.adapter = this.sharedVoiceAdapter;
+                    filteredSearchView.adapter = filteredSearchView.sharedVoiceAdapter;
                 }
-            } else if (TextUtils.isEmpty(this.currentDataQuery)) {
-                this.adapter = this.sharedPhotoVideoAdapter;
+            } else if (TextUtils.isEmpty(filteredSearchView.currentDataQuery)) {
+                filteredSearchView.adapter = filteredSearchView.sharedPhotoVideoAdapter;
             } else {
-                this.adapter = this.dialogsAdapter;
+                filteredSearchView.adapter = filteredSearchView.dialogsAdapter;
             }
         } else {
-            this.adapter = this.dialogsAdapter;
+            filteredSearchView.adapter = filteredSearchView.dialogsAdapter;
         }
-        RecyclerView.Adapter adapter = this.recyclerListView.getAdapter();
-        RecyclerView.Adapter adapter2 = this.adapter;
+        RecyclerView.Adapter adapter = filteredSearchView.recyclerListView.getAdapter();
+        RecyclerView.Adapter adapter2 = filteredSearchView.adapter;
         if (adapter != adapter2) {
-            this.recyclerListView.setAdapter(adapter2);
+            filteredSearchView.recyclerListView.setAdapter(adapter2);
         }
         if (!z) {
-            this.localTipChats.clear();
+            filteredSearchView.localTipChats.clear();
             if (arrayList2 != null) {
-                this.localTipChats.addAll(arrayList2);
+                filteredSearchView.localTipChats.addAll(arrayList2);
             }
             if (str != null && str.length() >= 3 && (LocaleController.getString(R.string.SavedMessages).toLowerCase().startsWith(str) || "saved messages".startsWith(str))) {
                 int i6 = 0;
                 while (true) {
-                    if (i6 < this.localTipChats.size()) {
-                        if ((this.localTipChats.get(i6) instanceof TLRPC.User) && UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == ((TLRPC.User) this.localTipChats.get(i6)).id) {
+                    if (i6 < filteredSearchView.localTipChats.size()) {
+                        if ((filteredSearchView.localTipChats.get(i6) instanceof TLRPC.User) && UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == ((TLRPC.User) filteredSearchView.localTipChats.get(i6)).id) {
                             break;
                         } else {
                             i6++;
                         }
                     } else {
-                        this.localTipChats.add(0, UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
+                        filteredSearchView.localTipChats.add(0, UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
                         break;
                     }
                 }
             }
-            this.localTipDates.clear();
-            this.localTipDates.addAll(arrayList3);
-            this.localTipArchive = false;
+            filteredSearchView.localTipDates.clear();
+            filteredSearchView.localTipDates.addAll(arrayList3);
+            filteredSearchView.localTipArchive = false;
             if (str != null && str.length() >= 3 && (LocaleController.getString(R.string.ArchiveSearchFilter).toLowerCase().startsWith(str) || "archive".startsWith(str))) {
-                this.localTipArchive = true;
+                filteredSearchView.localTipArchive = true;
             }
-            Delegate delegate = this.delegate;
+            Delegate delegate = filteredSearchView.delegate;
             if (delegate != null) {
-                delegate.updateFiltersView(TextUtils.isEmpty(this.currentDataQuery), this.localTipChats, this.localTipDates, this.localTipArchive);
+                delegate.updateFiltersView(TextUtils.isEmpty(filteredSearchView.currentDataQuery), filteredSearchView.localTipChats, filteredSearchView.localTipDates, filteredSearchView.localTipArchive);
             }
         }
-        this.firstLoading = false;
+        filteredSearchView.firstLoading = false;
         final View view = null;
         final int childAdapterPosition = -1;
         for (int i7 = 0; i7 < size; i7++) {
-            View childAt = this.recyclerListView.getChildAt(i7);
+            View childAt = filteredSearchView.recyclerListView.getChildAt(i7);
             if (childAt instanceof FlickerLoadingView) {
-                childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
+                childAdapterPosition = filteredSearchView.recyclerListView.getChildAdapterPosition(childAt);
                 view = childAt;
             }
         }
         if (view != null) {
-            this.recyclerListView.removeView(view);
+            filteredSearchView.recyclerListView.removeView(view);
         }
-        if ((this.loadingView.getVisibility() == 0 && this.recyclerListView.getChildCount() == 0) || (this.recyclerListView.getAdapter() != this.sharedPhotoVideoAdapter && view != null)) {
-            getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+        if ((filteredSearchView.loadingView.getVisibility() == 0 && filteredSearchView.recyclerListView.getChildCount() == 0) || (filteredSearchView.recyclerListView.getAdapter() != filteredSearchView.sharedPhotoVideoAdapter && view != null)) {
+            filteredSearchView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                 @Override
                 public boolean onPreDraw() {
                     FilteredSearchView.this.getViewTreeObserver().removeOnPreDrawListener(this);
@@ -973,7 +998,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 }
             });
         }
-        this.adapter.notifyDataSetChanged();
+        filteredSearchView.adapter.notifyDataSetChanged();
     }
 
     public void setPagesPaddings(int i, int i2) {
@@ -1043,7 +1068,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         adapter.notifyDataSetChanged();
     }
 
-    private class SharedPhotoVideoAdapter extends RecyclerListView.SelectionAdapter {
+    class SharedPhotoVideoAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         @Override
@@ -1300,17 +1325,18 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        this.f$0.lambda$onLinkPress$0(str, dialogInterface, i);
+                        FilteredSearchView.SharedLinksAdapter.AnonymousClass1.$r8$lambda$tsiaTV81Ru23o9R9AwvA07hbbPQ(this.f$0, str, dialogInterface, i);
                     }
                 });
                 FilteredSearchView.this.parentFragment.showDialog(builder.create());
             }
 
-            public void lambda$onLinkPress$0(String str, DialogInterface dialogInterface, int i) {
+            public static void $r8$lambda$tsiaTV81Ru23o9R9AwvA07hbbPQ(AnonymousClass1 anonymousClass1, String str, DialogInterface dialogInterface, int i) {
                 if (i == 0) {
                     FilteredSearchView.this.openUrl(str);
                     return;
                 }
+                anonymousClass1.getClass();
                 if (i == 1) {
                     if (str.startsWith("mailto:")) {
                         str = str.substring(7);
@@ -1441,7 +1467,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
     }
 
-    private class SharedDocumentsAdapter extends RecyclerListView.SectionsAdapter {
+    class SharedDocumentsAdapter extends RecyclerListView.SectionsAdapter {
         private int currentType;
         private Context mContext;
 
@@ -1707,11 +1733,13 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
+            if (obj != null && getClass() == obj.getClass()) {
+                MessageHashId messageHashId = (MessageHashId) obj;
+                if (this.dialogId == messageHashId.dialogId && this.messageId == messageHashId.messageId) {
+                    return true;
+                }
             }
-            MessageHashId messageHashId = (MessageHashId) obj;
-            return this.dialogId == messageHashId.dialogId && this.messageId == messageHashId.messageId;
+            return false;
         }
 
         public int hashCode() {
@@ -1834,7 +1862,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.animatorFloatingDataVisible.setValue(true, true);
     }
 
-    public void lambda$new$0() {
+    public void hideFloatingDateView() {
         AndroidUtilities.cancelRunOnUIThread(this.hideFloatingDateRunnable);
         this.animatorFloatingDataVisible.setValue(false, true);
     }
@@ -1857,7 +1885,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.chatPreviewDelegate = chatPreviewDelegate;
     }
 
-    private static class FloatingDateView extends View {
+    static class FloatingDateView extends View {
         private BlurredBackgroundDrawable bgDrawable;
         private final AnimatedTextView.AnimatedTextDrawable mDrawable;
         private String text;
@@ -1928,7 +1956,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$5();
+                FilteredSearchView.$r8$lambda$KDrR3LiA_QtBD8mr5SGRbBf6xyE(this.f$0);
             }
 
             @Override
@@ -2012,8 +2040,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$5() {
-        FloatingDateView floatingDateView = this.floatingDateView;
+    public static void $r8$lambda$KDrR3LiA_QtBD8mr5SGRbBf6xyE(FilteredSearchView filteredSearchView) {
+        FloatingDateView floatingDateView = filteredSearchView.floatingDateView;
         if (floatingDateView != null) {
             floatingDateView.updateColors();
         }

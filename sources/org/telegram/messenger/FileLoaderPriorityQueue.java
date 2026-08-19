@@ -18,13 +18,13 @@ public class FileLoaderPriorityQueue {
     Runnable checkOperationsRunnable = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$0();
+            FileLoaderPriorityQueue.$r8$lambda$CqAM6dapKe9aCYZCS4iNuptLnQg(this.f$0);
         }
     };
 
-    public void lambda$new$0() {
-        checkLoadingOperationInternal();
-        this.checkOperationsScheduled = false;
+    public static void $r8$lambda$CqAM6dapKe9aCYZCS4iNuptLnQg(FileLoaderPriorityQueue fileLoaderPriorityQueue) {
+        fileLoaderPriorityQueue.checkLoadingOperationInternal();
+        fileLoaderPriorityQueue.checkOperationsScheduled = false;
     }
 
     FileLoaderPriorityQueue(int i, String str, int i2, DispatchQueue dispatchQueue) {

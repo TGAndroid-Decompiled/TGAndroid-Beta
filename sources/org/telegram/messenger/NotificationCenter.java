@@ -388,7 +388,7 @@ public class NotificationCenter {
         boolean needPostpone(int i, int i2, Object[] objArr);
     }
 
-    public static void lambda$listen$3() {
+    public static void $r8$lambda$x0wyvvU9O011L3KAnB6Ogh8o99k() {
     }
 
     private static class DelayedPost {
@@ -402,38 +402,42 @@ public class NotificationCenter {
     }
 
     public static NotificationCenter getInstance(int i) {
-        NotificationCenter notificationCenter = Instance[i];
-        if (notificationCenter == null) {
-            synchronized (NotificationCenter.class) {
-                try {
-                    notificationCenter = Instance[i];
-                    if (notificationCenter == null) {
-                        NotificationCenter[] notificationCenterArr = Instance;
-                        NotificationCenter notificationCenter2 = new NotificationCenter(i);
-                        notificationCenterArr[i] = notificationCenter2;
-                        notificationCenter = notificationCenter2;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        NotificationCenter notificationCenter;
+        NotificationCenter notificationCenter2 = Instance[i];
+        if (notificationCenter2 != null) {
+            return notificationCenter2;
+        }
+        synchronized (NotificationCenter.class) {
+            try {
+                notificationCenter = Instance[i];
+                if (notificationCenter == null) {
+                    NotificationCenter[] notificationCenterArr = Instance;
+                    NotificationCenter notificationCenter3 = new NotificationCenter(i);
+                    notificationCenterArr[i] = notificationCenter3;
+                    notificationCenter = notificationCenter3;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return notificationCenter;
     }
 
     public static NotificationCenter getGlobalInstance() {
-        NotificationCenter notificationCenter = globalInstance;
-        if (notificationCenter == null) {
-            synchronized (NotificationCenter.class) {
-                try {
-                    notificationCenter = globalInstance;
-                    if (notificationCenter == null) {
-                        notificationCenter = new NotificationCenter(-1);
-                        globalInstance = notificationCenter;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        NotificationCenter notificationCenter;
+        NotificationCenter notificationCenter2 = globalInstance;
+        if (notificationCenter2 != null) {
+            return notificationCenter2;
+        }
+        synchronized (NotificationCenter.class) {
+            try {
+                notificationCenter = globalInstance;
+                if (notificationCenter == null) {
+                    notificationCenter = new NotificationCenter(-1);
+                    globalInstance = notificationCenter;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return notificationCenter;
@@ -450,7 +454,7 @@ public class NotificationCenter {
     public int setAnimationInProgress(int i, int[] iArr, boolean z) {
         onAnimationFinish(i);
         if (this.heavyOperationsCounter.isEmpty() && z) {
-            getGlobalInstance().lambda$postNotificationNameOnUIThread$1(stopAllHeavyOperations, 512);
+            getGlobalInstance().postNotificationName(stopAllHeavyOperations, 512);
         }
         this.animationInProgressCount++;
         int i2 = this.animationInProgressPointer + 1;
@@ -497,14 +501,15 @@ public class NotificationCenter {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$checkForExpiredNotifications$0();
+                    NotificationCenter.m935$r8$lambda$rjjOb3EwFrCuVgFj9STYS4xdM(this.f$0);
                 }
             }, Math.max(17L, 5017 - (jElapsedRealtime - jMin)));
         }
     }
 
-    public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda5(this);
+    public static void m935$r8$lambda$rjjOb3EwFrCuVgFj9STYS4xdM(NotificationCenter notificationCenter) {
+        notificationCenter.getClass();
+        notificationCenter.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda5(notificationCenter);
     }
 
     public void updateAllowedNotifications(int i, int[] iArr) {
@@ -522,7 +527,7 @@ public class NotificationCenter {
             if (!this.heavyOperationsCounter.isEmpty()) {
                 this.heavyOperationsCounter.remove(Integer.valueOf(i));
                 if (this.heavyOperationsCounter.isEmpty()) {
-                    getGlobalInstance().lambda$postNotificationNameOnUIThread$1(startAllHeavyOperations, 512);
+                    getGlobalInstance().postNotificationName(startAllHeavyOperations, 512);
                 }
             }
             if (this.animationInProgressCount == 0) {
@@ -575,12 +580,12 @@ public class NotificationCenter {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$postNotificationNameOnUIThread$1(i, objArr);
+                this.f$0.postNotificationName(i, objArr);
             }
         });
     }
 
-    public void lambda$postNotificationNameOnUIThread$1(int i, Object... objArr) {
+    public void postNotificationName(int i, Object... objArr) {
         boolean z = true;
         boolean z2 = i == startAllHeavyOperations || i == stopAllHeavyOperations || i == didReplacedPhotoInMemCache || i == closeChats || i == invalidateMotionBackground || i == needCheckSystemBarColors || i == messageReceivedByServer2;
         ArrayList arrayList = null;
@@ -638,16 +643,16 @@ public class NotificationCenter {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$postNotificationDebounced$2(i, objArr, iHashCode);
+                NotificationCenter.$r8$lambda$N33TWtVfjYeM5ka4oNG7jySnpIQ(this.f$0, i, objArr, iHashCode);
             }
         };
         this.alreadyPostedRunnubles.put(iHashCode, runnable);
         AndroidUtilities.runOnUIThread(runnable, 250L);
     }
 
-    public void lambda$postNotificationDebounced$2(int i, Object[] objArr, int i2) {
-        postNotificationNameInternal(i, false, objArr);
-        this.alreadyPostedRunnubles.remove(i2);
+    public static void $r8$lambda$N33TWtVfjYeM5ka4oNG7jySnpIQ(NotificationCenter notificationCenter, int i, Object[] objArr, int i2) {
+        notificationCenter.postNotificationNameInternal(i, false, objArr);
+        notificationCenter.alreadyPostedRunnubles.remove(i2);
     }
 
     private boolean shouldDebounce(int i, Object[] objArr) {
@@ -739,8 +744,14 @@ public class NotificationCenter {
         }
 
         public void removeAllObservers() {
-            for (Observer observer : this.observers) {
-                this.notificationCenter.removeObserver(observer.observer, observer.id);
+            ArrayList<Observer> arrayList = this.observers;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Observer observer = arrayList.get(i);
+                i++;
+                Observer observer2 = observer;
+                this.notificationCenter.removeObserver(observer2.observer, observer2.id);
             }
             this.observers.clear();
             this.notificationCenter = null;
@@ -858,14 +869,14 @@ public class NotificationCenter {
             return new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationCenter.lambda$listen$3();
+                    NotificationCenter.$r8$lambda$x0wyvvU9O011L3KAnB6Ogh8o99k();
                 }
             };
         }
         final NotificationCenterDelegate notificationCenterDelegate = new NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
-                NotificationCenter.lambda$listen$4(i, callback, i2, i3, objArr);
+                NotificationCenter.$r8$lambda$VGHAYRtonj4FbETBz8XLZzMdH_8(i, callback, i2, i3, objArr);
             }
         };
         final View.OnAttachStateChangeListener onAttachStateChangeListener = new View.OnAttachStateChangeListener() {
@@ -883,20 +894,21 @@ public class NotificationCenter {
         return new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$listen$5(view, onAttachStateChangeListener, notificationCenterDelegate, i);
+                NotificationCenter.$r8$lambda$jzBKI8_O1GuvrsFXpHZfYGMz4gY(this.f$0, view, onAttachStateChangeListener, notificationCenterDelegate, i);
             }
         };
     }
 
-    public static void lambda$listen$4(int i, Utilities.Callback callback, int i2, int i3, Object[] objArr) {
+    public static void $r8$lambda$VGHAYRtonj4FbETBz8XLZzMdH_8(int i, Utilities.Callback callback, int i2, int i3, Object[] objArr) {
         if (i2 == i) {
             callback.run(objArr);
         }
     }
 
-    public void lambda$listen$5(View view, View.OnAttachStateChangeListener onAttachStateChangeListener, NotificationCenterDelegate notificationCenterDelegate, int i) {
+    public static void $r8$lambda$jzBKI8_O1GuvrsFXpHZfYGMz4gY(NotificationCenter notificationCenter, View view, View.OnAttachStateChangeListener onAttachStateChangeListener, NotificationCenterDelegate notificationCenterDelegate, int i) {
+        notificationCenter.getClass();
         view.removeOnAttachStateChangeListener(onAttachStateChangeListener);
-        removeObserver(notificationCenterDelegate, i);
+        notificationCenter.removeObserver(notificationCenterDelegate, i);
     }
 
     public static void listenEmojiLoading(final View view) {

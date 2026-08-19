@@ -294,22 +294,22 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setTimer$0(runnable);
+                ButtonWithCounterView.$r8$lambda$MS9J757RkQKiX4uSaqm0klUbeNQ(this.f$0, runnable);
             }
         };
         this.tick = runnable2;
         AndroidUtilities.runOnUIThread(runnable2, 1000L);
     }
 
-    public void lambda$setTimer$0(Runnable runnable) {
-        int i = this.timerSeconds - 1;
-        this.timerSeconds = i;
-        setCount(i, true);
-        if (this.timerSeconds > 0) {
-            AndroidUtilities.runOnUIThread(this.tick, 1000L);
+    public static void $r8$lambda$MS9J757RkQKiX4uSaqm0klUbeNQ(ButtonWithCounterView buttonWithCounterView, Runnable runnable) {
+        int i = buttonWithCounterView.timerSeconds - 1;
+        buttonWithCounterView.timerSeconds = i;
+        buttonWithCounterView.setCount(i, true);
+        if (buttonWithCounterView.timerSeconds > 0) {
+            AndroidUtilities.runOnUIThread(buttonWithCounterView.tick, 1000L);
             return;
         }
-        setClickable(true);
+        buttonWithCounterView.setClickable(true);
         if (runnable != null) {
             runnable.run();
         }
@@ -362,7 +362,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$setSubText$1(valueAnimator);
+                    ButtonWithCounterView.m4458$r8$lambda$gtZ1_cao5dYLT3r28lqOPplaIM(this.f$0, valueAnimator);
                 }
             });
             this.subTextVisibleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -388,7 +388,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$setSubText$2(valueAnimator);
+                ButtonWithCounterView.$r8$lambda$s8XVyzKXBhnantO7e32dW54gf_Q(this.f$0, valueAnimator);
             }
         });
         this.subTextVisibleAnimator.setDuration(200L);
@@ -396,14 +396,16 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         this.subTextVisibleAnimator.start();
     }
 
-    public void lambda$setSubText$1(ValueAnimator valueAnimator) {
-        this.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void m4458$r8$lambda$gtZ1_cao5dYLT3r28lqOPplaIM(ButtonWithCounterView buttonWithCounterView, ValueAnimator valueAnimator) {
+        buttonWithCounterView.getClass();
+        buttonWithCounterView.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        buttonWithCounterView.invalidate();
     }
 
-    public void lambda$setSubText$2(ValueAnimator valueAnimator) {
-        this.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$s8XVyzKXBhnantO7e32dW54gf_Q(ButtonWithCounterView buttonWithCounterView, ValueAnimator valueAnimator) {
+        buttonWithCounterView.getClass();
+        buttonWithCounterView.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        buttonWithCounterView.invalidate();
     }
 
     @Override
@@ -426,7 +428,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setLoading$3(valueAnimator2);
+                    ButtonWithCounterView.m4459$r8$lambda$rynekNmEGsmy05tO9wSGvngw8w(this.f$0, valueAnimator2);
                 }
             });
             this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -442,9 +444,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
     }
 
-    public void lambda$setLoading$3(ValueAnimator valueAnimator) {
-        this.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void m4459$r8$lambda$rynekNmEGsmy05tO9wSGvngw8w(ButtonWithCounterView buttonWithCounterView, ValueAnimator valueAnimator) {
+        buttonWithCounterView.getClass();
+        buttonWithCounterView.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        buttonWithCounterView.invalidate();
     }
 
     public void setFlickeringLoading(boolean z) {
@@ -467,7 +470,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateCount$4(valueAnimator2);
+                ButtonWithCounterView.$r8$lambda$mn_nGvut4lceCfu_MnnTi8fV6vI(this.f$0, valueAnimator2);
             }
         });
         this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -482,9 +485,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         this.countAnimator.start();
     }
 
-    public void lambda$animateCount$4(ValueAnimator valueAnimator) {
-        this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        invalidate();
+    public static void $r8$lambda$mn_nGvut4lceCfu_MnnTi8fV6vI(ButtonWithCounterView buttonWithCounterView, ValueAnimator valueAnimator) {
+        buttonWithCounterView.getClass();
+        buttonWithCounterView.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        buttonWithCounterView.invalidate();
     }
 
     public void withCounterIcon() {
@@ -527,7 +531,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setEnabled$5(valueAnimator2);
+                    ButtonWithCounterView.$r8$lambda$doRsinmIf4Do6KPrAd3Nr3xw0Zc(this.f$0, valueAnimator2);
                 }
             });
             this.enabledAnimator.start();
@@ -535,9 +539,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         super.setEnabled(z);
     }
 
-    public void lambda$setEnabled$5(ValueAnimator valueAnimator) {
-        this.enabledT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$doRsinmIf4Do6KPrAd3Nr3xw0Zc(ButtonWithCounterView buttonWithCounterView, ValueAnimator valueAnimator) {
+        buttonWithCounterView.getClass();
+        buttonWithCounterView.enabledT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        buttonWithCounterView.invalidate();
     }
 
     @Override

@@ -76,7 +76,7 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
         linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.SearchAdsAbout2Title), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(zIsPremium ? R.string.SearchAdsAbout2SubtitlePremium : R.string.SearchAdsAbout2Subtitle), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0(zIsPremium, runnable);
+                SearchAdsInfoBottomSheet.$r8$lambda$cP11mBLI7UsZJfiN07B6PKcgzyE(this.f$0, zIsPremium, runnable);
             }
         }), true)), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
@@ -95,7 +95,7 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
         SpannableStringBuilder spannableStringBuilderReplaceCharSequence = AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.SearchAdsAboutLaunchSubtitle)), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SearchAdsAboutLaunchLearnMore), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                SearchAdsInfoBottomSheet.$r8$lambda$2aVPqJyJSE9Nm6GxR3ptZdle81U(this.f$0);
             }
         }), true));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
@@ -119,18 +119,19 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$2(view2);
+                this.f$0.dismiss();
             }
         });
         linearLayout.addView(textView4, LayoutHelper.createLinear(-1, 48, 0, 14, 22, 14, 14));
         this.adapter.update(false);
     }
 
-    public void lambda$new$0(boolean z, Runnable runnable) {
+    public static void $r8$lambda$cP11mBLI7UsZJfiN07B6PKcgzyE(SearchAdsInfoBottomSheet searchAdsInfoBottomSheet, boolean z, Runnable runnable) {
         if (z) {
-            MessagesController.getInstance(this.currentAccount).disableAds(true);
+            MessagesController.getInstance(searchAdsInfoBottomSheet.currentAccount).disableAds(true);
             runnable.run();
         } else {
+            searchAdsInfoBottomSheet.getClass();
             BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
             if (safeLastFragment == null) {
                 return;
@@ -138,16 +139,12 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
                 safeLastFragment.presentFragment(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(3)));
             }
         }
-        lambda$new$0();
+        searchAdsInfoBottomSheet.dismiss();
     }
 
-    public void lambda$new$1() {
-        lambda$new$0();
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.PromoteUrl));
-    }
-
-    public void lambda$new$2(View view) {
-        lambda$new$0();
+    public static void $r8$lambda$2aVPqJyJSE9Nm6GxR3ptZdle81U(SearchAdsInfoBottomSheet searchAdsInfoBottomSheet) {
+        searchAdsInfoBottomSheet.dismiss();
+        Browser.openUrl(searchAdsInfoBottomSheet.getContext(), LocaleController.getString(R.string.PromoteUrl));
     }
 
     private class FeatureCell extends FrameLayout {

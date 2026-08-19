@@ -1,5 +1,6 @@
 package kotlinx.coroutines;
 
+import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
 import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
@@ -78,14 +79,12 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
     }
 
     private final boolean isReusable() {
-        if (DispatchedTaskKt.isReusableMode(this.resumeMode)) {
-            Continuation continuation = this.delegate;
-            Intrinsics.checkNotNull(continuation, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<*>");
-            if (((DispatchedContinuation) continuation).isReusable$kotlinx_coroutines_core()) {
-                return true;
-            }
+        if (!DispatchedTaskKt.isReusableMode(this.resumeMode)) {
+            return false;
         }
-        return false;
+        Continuation continuation = this.delegate;
+        Intrinsics.checkNotNull(continuation, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<*>");
+        return ((DispatchedContinuation) continuation).isReusable$kotlinx_coroutines_core();
     }
 
     public final boolean resetStateReusable() {
@@ -115,6 +114,7 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
 
     @Override
     public void cancelCompletedResult$kotlinx_coroutines_core(Object obj, Throwable th) {
+        Throwable th2;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$volatile$FU;
         while (true) {
             Object obj2 = atomicReferenceFieldUpdater.get(this);
@@ -129,13 +129,19 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
                 if (completedContinuation.getCancelled()) {
                     throw new IllegalStateException("Must be called at most once");
                 }
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, obj2, CompletedContinuation.copy$default(completedContinuation, null, null, null, null, th, 15, null))) {
-                    completedContinuation.invokeHandlers(this, th);
+                Throwable th3 = th;
+                th2 = th3;
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, obj2, CompletedContinuation.copy$default(completedContinuation, null, null, null, null, th3, 15, null))) {
+                    completedContinuation.invokeHandlers(this, th2);
                     return;
                 }
-            } else if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, obj2, new CompletedContinuation(obj2, null, null, null, th, 14, null))) {
-                return;
+            } else {
+                th2 = th;
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, obj2, new CompletedContinuation(obj2, null, null, null, th2, 14, null))) {
+                    return;
+                }
             }
+            th = th2;
         }
     }
 
@@ -339,7 +345,7 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
                             multipleHandlersError(obj, obj2);
                         }
                         if (obj2 instanceof CancelledContinuation) {
-                            if (!(obj2 instanceof CompletedExceptionally)) {
+                            if (!OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(obj2)) {
                                 completedExceptionally = null;
                             }
                             Throwable th = completedExceptionally != null ? completedExceptionally.cause : null;
@@ -401,38 +407,46 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
         if (obj instanceof CompletedExceptionally) {
             return obj;
         }
-        if (!DispatchedTaskKt.isCancellableMode(i) && obj2 == null) {
-            return obj;
+        if ((DispatchedTaskKt.isCancellableMode(i) || obj2 != null) && !(function1 == null && !(notCompleted instanceof CancelHandler) && obj2 == null)) {
+            return new CompletedContinuation(obj, notCompleted instanceof CancelHandler ? (CancelHandler) notCompleted : null, function1, obj2, null, 16, null);
         }
-        if (function1 == null && !(notCompleted instanceof CancelHandler) && obj2 == null) {
-            return obj;
-        }
-        return new CompletedContinuation(obj, notCompleted instanceof CancelHandler ? (CancelHandler) notCompleted : null, function1, obj2, null, 16, null);
+        return obj;
     }
 
     private final void resumeImpl(Object obj, int i, Function1 function1) {
-        Object obj2;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$volatile$FU;
-        do {
-            obj2 = atomicReferenceFieldUpdater.get(this);
+        while (true) {
+            Object obj2 = atomicReferenceFieldUpdater.get(this);
             if (obj2 instanceof NotCompleted) {
+                Object obj3 = obj;
+                int i2 = i;
+                Function1 function2 = function1;
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, obj2, resumedState((NotCompleted) obj2, obj3, i2, function2, null))) {
+                    detachChildIfNonResuable();
+                    dispatchResume(i2);
+                    return;
+                } else {
+                    obj = obj3;
+                    i = i2;
+                    function1 = function2;
+                }
             } else {
+                Object obj4 = obj;
+                Function1 function3 = function1;
                 if (obj2 instanceof CancelledContinuation) {
                     CancelledContinuation cancelledContinuation = (CancelledContinuation) obj2;
                     if (cancelledContinuation.makeResumed()) {
-                        if (function1 != null) {
-                            callOnCancellation(function1, cancelledContinuation.cause);
+                        if (function3 != null) {
+                            callOnCancellation(function3, cancelledContinuation.cause);
                             return;
                         }
                         return;
                     }
                 }
-                alreadyResumedError(obj);
+                alreadyResumedError(obj4);
                 throw new KotlinNothingValueException();
             }
-        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, obj2, resumedState((NotCompleted) obj2, obj, i, function1, null)));
-        detachChildIfNonResuable();
-        dispatchResume(i);
+        }
     }
 
     static void resumeImpl$default(CancellableContinuationImpl cancellableContinuationImpl, Object obj, int i, Function1 function1, int i2, Object obj2) {
@@ -446,20 +460,28 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
     }
 
     private final Symbol tryResumeImpl(Object obj, Object obj2, Function1 function1) {
-        Object obj3;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$volatile$FU;
-        do {
-            obj3 = atomicReferenceFieldUpdater.get(this);
+        while (true) {
+            Object obj3 = atomicReferenceFieldUpdater.get(this);
             if (obj3 instanceof NotCompleted) {
+                Object obj4 = obj;
+                Object obj5 = obj2;
+                Function1 function2 = function1;
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, obj3, resumedState((NotCompleted) obj3, obj4, this.resumeMode, function2, obj5))) {
+                    detachChildIfNonResuable();
+                    return CancellableContinuationImplKt.RESUME_TOKEN;
+                }
+                obj = obj4;
+                function1 = function2;
+                obj2 = obj5;
             } else {
-                if ((obj3 instanceof CompletedContinuation) && obj2 != null && ((CompletedContinuation) obj3).idempotentResume == obj2) {
+                Object obj6 = obj2;
+                if ((obj3 instanceof CompletedContinuation) && obj6 != null && ((CompletedContinuation) obj3).idempotentResume == obj6) {
                     return CancellableContinuationImplKt.RESUME_TOKEN;
                 }
                 return null;
             }
-        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, obj3, resumedState((NotCompleted) obj3, obj, this.resumeMode, function1, obj2)));
-        detachChildIfNonResuable();
-        return CancellableContinuationImplKt.RESUME_TOKEN;
+        }
     }
 
     private final Void alreadyResumedError(Object obj) {

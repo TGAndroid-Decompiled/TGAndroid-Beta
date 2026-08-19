@@ -186,7 +186,7 @@ public class SelfStoryViewsView extends FrameLayout {
             SelfStoryViewsPage selfStoryViewsPage = new SelfStoryViewsPage(this.val$storyViewer, this.val$context, SelfStoryViewsView.this.sharedFilterState, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    this.f$0.lambda$instantiateItem$0((SelfStoryViewsPage) obj);
+                    SelfStoryViewsView.AnonymousClass4.$r8$lambda$rI5OhLHjsORBJxvM7zSURaPfBhg(this.f$0, (SelfStoryViewsPage) obj);
                 }
             }) {
                 @Override
@@ -210,7 +210,7 @@ public class SelfStoryViewsView extends FrameLayout {
             return selfStoryViewsPage;
         }
 
-        public void lambda$instantiateItem$0(SelfStoryViewsPage selfStoryViewsPage) {
+        public static void $r8$lambda$rI5OhLHjsORBJxvM7zSURaPfBhg(AnonymousClass4 anonymousClass4, SelfStoryViewsPage selfStoryViewsPage) {
             for (int i = 0; i < SelfStoryViewsView.this.itemViews.size(); i++) {
                 if (selfStoryViewsPage != SelfStoryViewsView.this.itemViews.get(i)) {
                     ((SelfStoryViewsPage) SelfStoryViewsView.this.itemViews.get(i)).updateSharedState();
@@ -240,7 +240,7 @@ public class SelfStoryViewsView extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$setKeyboardHeight$0(valueAnimator);
+                    SelfStoryViewsView.$r8$lambda$QgG0ic4GB2HmpBjBY667gawqToc(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
@@ -254,9 +254,10 @@ public class SelfStoryViewsView extends FrameLayout {
         currentPage.onKeyboardShown();
     }
 
-    public void lambda$setKeyboardHeight$0(ValueAnimator valueAnimator) {
-        this.progressToKeyboard = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        updateTranslation();
+    public static void $r8$lambda$QgG0ic4GB2HmpBjBY667gawqToc(SelfStoryViewsView selfStoryViewsView, ValueAnimator valueAnimator) {
+        selfStoryViewsView.getClass();
+        selfStoryViewsView.progressToKeyboard = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        selfStoryViewsView.updateTranslation();
     }
 
     @Override

@@ -62,7 +62,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                NotificationPermissionDialog.$r8$lambda$kly25Wl2ipYtG75BidLLw2jShyE(this.f$0, view);
             }
         });
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 110));
@@ -97,7 +97,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                NotificationPermissionDialog.$r8$lambda$np4JoDR7oYQ5VoCE8iBDrsXm5do(this.f$0, view);
             }
         });
         linearLayout.addView(textView3, LayoutHelper.createLinear(-1, 48, 14.0f, 14.0f, 14.0f, 10.0f));
@@ -109,21 +109,21 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         }
     }
 
-    public void lambda$new$0(View view) {
-        if (this.rLottieImageView.isPlaying()) {
+    public static void $r8$lambda$kly25Wl2ipYtG75BidLLw2jShyE(NotificationPermissionDialog notificationPermissionDialog, View view) {
+        if (notificationPermissionDialog.rLottieImageView.isPlaying()) {
             return;
         }
-        this.rLottieImageView.setProgress(0.0f);
-        this.rLottieImageView.playAnimation();
+        notificationPermissionDialog.rLottieImageView.setProgress(0.0f);
+        notificationPermissionDialog.rLottieImageView.playAnimation();
     }
 
-    public void lambda$new$1(View view) {
-        Utilities.Callback callback = this.whenGranted;
+    public static void $r8$lambda$np4JoDR7oYQ5VoCE8iBDrsXm5do(NotificationPermissionDialog notificationPermissionDialog, View view) {
+        Utilities.Callback callback = notificationPermissionDialog.whenGranted;
         if (callback != null) {
             callback.run(Boolean.TRUE);
-            this.whenGranted = null;
+            notificationPermissionDialog.whenGranted = null;
         }
-        lambda$new$0();
+        notificationPermissionDialog.dismiss();
     }
 
     @Override
@@ -156,8 +156,8 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
     }
 
     @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
+    public void dismiss() {
+        super.dismiss();
         Utilities.Callback callback = this.whenGranted;
         if (callback != null) {
             callback.run(Boolean.FALSE);
@@ -236,7 +236,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$animateBounce$0(valueAnimator2);
+                    NotificationPermissionDialog.CounterView.m3564$r8$lambda$DkepYEpaFmy9K12nAn4_1IhwTI(this.f$0, valueAnimator2);
                 }
             });
             this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -251,9 +251,10 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
             this.countAnimator.start();
         }
 
-        public void lambda$animateBounce$0(ValueAnimator valueAnimator) {
-            this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            invalidate();
+        public static void m3564$r8$lambda$DkepYEpaFmy9K12nAn4_1IhwTI(CounterView counterView, ValueAnimator valueAnimator) {
+            counterView.getClass();
+            counterView.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+            counterView.invalidate();
         }
 
         @Override
@@ -307,12 +308,11 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
     }
 
     public static boolean shouldAsk(Activity activity) {
-        if (activity == null || Build.VERSION.SDK_INT < 23 || activity.checkSelfPermission("android.permission.POST_NOTIFICATIONS") == 0) {
-            return false;
-        }
-        long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsAfter", -1L);
-        if (j != -2) {
-            return j < 0 || System.currentTimeMillis() >= j;
+        if (activity != null && Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission("android.permission.POST_NOTIFICATIONS") != 0) {
+            long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsAfter", -1L);
+            if (j != -2 && (j < 0 || System.currentTimeMillis() >= j)) {
+                return true;
+            }
         }
         return false;
     }

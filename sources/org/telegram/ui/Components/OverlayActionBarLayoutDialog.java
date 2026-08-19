@@ -72,7 +72,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
             this.frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    this.f$0.onBackPressed();
                 }
             });
             this.actionBarLayout.setRemoveActionBarExtraHeight(true);
@@ -82,10 +82,6 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         this.passcodeView = passcodeView;
         this.frameLayout.addView(passcodeView, LayoutHelper.createFrame(-1, -1.0f));
         setContentView(this.frameLayout);
-    }
-
-    public void lambda$new$0(View view) {
-        onBackPressed();
     }
 
     @Override
@@ -150,7 +146,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         this.frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                return OverlayActionBarLayoutDialog.lambda$onCreate$1(view, windowInsets);
+                return OverlayActionBarLayoutDialog.m2458$r8$lambda$AKWEMZGytT31G2x4IT_NdAkiqA(view, windowInsets);
             }
         });
         if (i >= 26) {
@@ -158,7 +154,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         }
     }
 
-    public static WindowInsets lambda$onCreate$1(View view, WindowInsets windowInsets) {
+    public static WindowInsets m2458$r8$lambda$AKWEMZGytT31G2x4IT_NdAkiqA(View view, WindowInsets windowInsets) {
         view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
         return windowInsets;
     }

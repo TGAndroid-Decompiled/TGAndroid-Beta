@@ -76,15 +76,15 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
     private Theme.ThemeAccent themeAccent;
     private Theme.ThemeInfo themeInfo;
 
-    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$9F2QPjxo3d7hGo8cmeoLMEQrv2k(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static boolean lambda$createView$4(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$DWn6sZJY_TsiSUvdfL784DYXAkY(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static void lambda$saveTheme$9(DialogInterface dialogInterface) {
+    public static void m4691$r8$lambda$LXgT_wPVPAMcRFpYW0PgPXyOUY(DialogInterface dialogInterface) {
     }
 
     public class LinkSpan extends ClickableSpan {
@@ -121,9 +121,10 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         public boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
             try {
                 boolean zOnTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
-                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    Selection.removeSelection(spannable);
+                if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                    return zOnTouchEvent;
                 }
+                Selection.removeSelection(spannable);
                 return zOnTouchEvent;
             } catch (Exception e) {
                 FileLog.e(e);
@@ -182,7 +183,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return ThemeSetUrlActivity.lambda$createView$0(view, motionEvent);
+                return ThemeSetUrlActivity.$r8$lambda$DWn6sZJY_TsiSUvdfL784DYXAkY(view, motionEvent);
             }
         });
         LinearLayout linearLayout3 = new LinearLayout(context);
@@ -220,7 +221,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.nameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-                return this.f$0.lambda$createView$1(textView, i3, keyEvent);
+                return ThemeSetUrlActivity.$r8$lambda$IoETPy9X9azpmf4Jn6TOoT22JPI(this.f$0, textView, i3, keyEvent);
             }
         });
         View view = new View(context) {
@@ -269,7 +270,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.linkField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-                return this.f$0.lambda$createView$2(textView, i3, keyEvent);
+                return ThemeSetUrlActivity.$r8$lambda$UoBvDBylZdLQZBY7AVHY1jgsnD8(this.f$0, textView, i3, keyEvent);
             }
         });
         this.linkField.addTextChangedListener(new TextWatcher() {
@@ -309,7 +310,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             this.linkField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public final void onFocusChange(View view2, boolean z) {
-                    this.f$0.lambda$createView$3(view2, z);
+                    ThemeSetUrlActivity.$r8$lambda$ICoedrlo6zglMBX918f3pXpmPNE(this.f$0, view2, z);
                 }
             });
         }
@@ -347,7 +348,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             this.createCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$createView$5(context, view2);
+                    ThemeSetUrlActivity.m4692$r8$lambda$R_895X093gjqVQ1GmckfwXIvKw(this.f$0, context, view2);
                 }
             });
             TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context);
@@ -372,36 +373,41 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         return this.fragmentView;
     }
 
-    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 6) {
-            return false;
+    public static boolean $r8$lambda$IoETPy9X9azpmf4Jn6TOoT22JPI(ThemeSetUrlActivity themeSetUrlActivity, TextView textView, int i, KeyEvent keyEvent) {
+        if (i == 6) {
+            AndroidUtilities.hideKeyboard(themeSetUrlActivity.nameField);
+            return true;
         }
-        AndroidUtilities.hideKeyboard(this.nameField);
-        return true;
+        themeSetUrlActivity.getClass();
+        return false;
     }
 
-    public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
-        View view;
-        if (i != 6 || (view = this.doneButton) == null) {
+    public static boolean $r8$lambda$UoBvDBylZdLQZBY7AVHY1jgsnD8(ThemeSetUrlActivity themeSetUrlActivity, TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 6) {
+            themeSetUrlActivity.getClass();
+            return false;
+        }
+        View view = themeSetUrlActivity.doneButton;
+        if (view == null) {
             return false;
         }
         view.performClick();
         return true;
     }
 
-    public void lambda$createView$3(View view, boolean z) {
+    public static void $r8$lambda$ICoedrlo6zglMBX918f3pXpmPNE(ThemeSetUrlActivity themeSetUrlActivity, View view, boolean z) {
         if (z) {
-            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
+            themeSetUrlActivity.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
         } else {
-            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
+            themeSetUrlActivity.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
         }
     }
 
-    public void lambda$createView$5(Context context, View view) {
-        if (getParentActivity() == null) {
+    public static void m4692$r8$lambda$R_895X093gjqVQ1GmckfwXIvKw(ThemeSetUrlActivity themeSetUrlActivity, Context context, View view) {
+        if (themeSetUrlActivity.getParentActivity() == null) {
             return;
         }
-        final BottomSheet.Builder builder = new BottomSheet.Builder(getParentActivity(), false);
+        final BottomSheet.Builder builder = new BottomSheet.Builder(themeSetUrlActivity.getParentActivity(), false);
         builder.setApplyBottomPadding(false);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -414,7 +420,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                return ThemeSetUrlActivity.lambda$createView$4(view2, motionEvent);
+                return ThemeSetUrlActivity.$r8$lambda$9F2QPjxo3d7hGo8cmeoLMEQrv2k(view2, motionEvent);
             }
         });
         builder.setCustomView(linearLayout);
@@ -427,15 +433,15 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 arrayList.add(themeInfo);
             }
         }
-        ThemesHorizontalListCell themesHorizontalListCell = new ThemesHorizontalListCell(context, this, 2, arrayList, new ArrayList()) {
+        ThemesHorizontalListCell themesHorizontalListCell = new ThemesHorizontalListCell(context, themeSetUrlActivity, 2, arrayList, new ArrayList()) {
             @Override
             protected void updateRows() {
                 builder.getDismissRunnable().run();
             }
         };
         linearLayout.addView(themesHorizontalListCell, LayoutHelper.createLinear(-1, 148, 0.0f, 7.0f, 0.0f, 1.0f));
-        themesHorizontalListCell.scrollToCurrentTheme(this.fragmentView.getMeasuredWidth(), false);
-        showDialog(builder.create());
+        themesHorizontalListCell.scrollToCurrentTheme(themeSetUrlActivity.fragmentView.getMeasuredWidth(), false);
+        themeSetUrlActivity.showDialog(builder.create());
     }
 
     @Override
@@ -550,7 +556,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$checkUrl$8(str);
+                    ThemeSetUrlActivity.m4693$r8$lambda$fEguy23oWCjJu6LgOOhTgMwkO0(this.f$0, str);
                 }
             };
             this.checkRunnable = runnable2;
@@ -559,40 +565,42 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         return true;
     }
 
-    public void lambda$checkUrl$8(final String str) {
+    public static void m4693$r8$lambda$fEguy23oWCjJu6LgOOhTgMwkO0(final ThemeSetUrlActivity themeSetUrlActivity, final String str) {
+        themeSetUrlActivity.getClass();
         TL_account.createTheme createtheme = new TL_account.createTheme();
         createtheme.slug = str;
         createtheme.title = "";
         createtheme.document = new TLRPC.TL_inputDocumentEmpty();
-        this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(createtheme, new RequestDelegate() {
+        themeSetUrlActivity.checkReqId = ConnectionsManager.getInstance(themeSetUrlActivity.currentAccount).sendRequest(createtheme, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$checkUrl$7(str, tLObject, tL_error);
+                ThemeSetUrlActivity.$r8$lambda$oVFWUvPaVoMp2VAvOK2KjWtfyp0(this.f$0, str, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public void lambda$checkUrl$7(final String str, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$oVFWUvPaVoMp2VAvOK2KjWtfyp0(final ThemeSetUrlActivity themeSetUrlActivity, final String str, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        themeSetUrlActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkUrl$6(str, tL_error);
+                ThemeSetUrlActivity.$r8$lambda$bilYh8ATrUrt9uMoARPyKhqT1nw(this.f$0, str, tL_error);
             }
         });
     }
 
-    public void lambda$checkUrl$6(String str, TLRPC.TL_error tL_error) {
-        this.checkReqId = 0;
-        String str2 = this.lastCheckName;
+    public static void $r8$lambda$bilYh8ATrUrt9uMoARPyKhqT1nw(ThemeSetUrlActivity themeSetUrlActivity, String str, TLRPC.TL_error tL_error) {
+        themeSetUrlActivity.checkReqId = 0;
+        String str2 = themeSetUrlActivity.lastCheckName;
         if (str2 == null || !str2.equals(str)) {
             return;
         }
         if (tL_error == null || (!"THEME_SLUG_INVALID".equals(tL_error.text) && !"THEME_SLUG_OCCUPIED".equals(tL_error.text))) {
-            setCheckText(LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str), Theme.key_windowBackgroundWhiteGreenText);
-            this.lastNameAvailable = true;
+            themeSetUrlActivity.setCheckText(LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str), Theme.key_windowBackgroundWhiteGreenText);
+            themeSetUrlActivity.lastNameAvailable = true;
         } else {
-            setCheckText(LocaleController.getString(R.string.SetUrlInUse), Theme.key_text_RedRegular);
-            this.lastNameAvailable = false;
+            themeSetUrlActivity.setCheckText(LocaleController.getString(R.string.SetUrlInUse), Theme.key_text_RedRegular);
+            themeSetUrlActivity.lastNameAvailable = false;
         }
     }
 
@@ -631,7 +639,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public final void onCancel(DialogInterface dialogInterface) {
-                        ThemeSetUrlActivity.lambda$saveTheme$9(dialogInterface);
+                        ThemeSetUrlActivity.m4691$r8$lambda$LXgT_wPVPAMcRFpYW0PgPXyOUY(dialogInterface);
                     }
                 });
                 this.progressDialog.show();
@@ -672,62 +680,61 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatetheme, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$saveTheme$12(updatetheme, tLObject, tL_error);
+                    ThemeSetUrlActivity.$r8$lambda$hbC9Pq27KxFwmghmhab8wyztcpk(this.f$0, updatetheme, tLObject, tL_error);
                 }
             }, 2);
             ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(iSendRequest, this.classGuid);
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    this.f$0.lambda$saveTheme$13(iSendRequest, dialogInterface);
+                    ConnectionsManager.getInstance(this.f$0.currentAccount).cancelRequest(iSendRequest, true);
                 }
             });
             this.progressDialog.show();
         }
     }
 
-    public void lambda$saveTheme$12(final TL_account.updateTheme updatetheme, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$hbC9Pq27KxFwmghmhab8wyztcpk(final ThemeSetUrlActivity themeSetUrlActivity, final TL_account.updateTheme updatetheme, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        themeSetUrlActivity.getClass();
         if (tLObject instanceof TLRPC.TL_theme) {
             final TLRPC.TL_theme tL_theme = (TLRPC.TL_theme) tLObject;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$saveTheme$10(tL_theme);
+                    ThemeSetUrlActivity.m4690$r8$lambda$KkFSJjRABY16NuH6yZ8TsysW7o(this.f$0, tL_theme);
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$saveTheme$11(tL_error, updatetheme);
+                    ThemeSetUrlActivity.$r8$lambda$KojrL1evDWhXiPiyFXEbbd9L1wM(this.f$0, tL_error, updatetheme);
                 }
             });
         }
     }
 
-    public void lambda$saveTheme$10(TLRPC.TL_theme tL_theme) {
+    public static void m4690$r8$lambda$KkFSJjRABY16NuH6yZ8TsysW7o(ThemeSetUrlActivity themeSetUrlActivity, TLRPC.TL_theme tL_theme) {
+        themeSetUrlActivity.getClass();
         try {
-            this.progressDialog.dismiss();
-            this.progressDialog = null;
+            themeSetUrlActivity.progressDialog.dismiss();
+            themeSetUrlActivity.progressDialog = null;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        Theme.setThemeUploadInfo(this.themeInfo, this.themeAccent, tL_theme, this.currentAccount, false);
-        finishFragment();
+        Theme.setThemeUploadInfo(themeSetUrlActivity.themeInfo, themeSetUrlActivity.themeAccent, tL_theme, themeSetUrlActivity.currentAccount, false);
+        themeSetUrlActivity.finishFragment();
     }
 
-    public void lambda$saveTheme$11(TLRPC.TL_error tL_error, TL_account.updateTheme updatetheme) {
+    public static void $r8$lambda$KojrL1evDWhXiPiyFXEbbd9L1wM(ThemeSetUrlActivity themeSetUrlActivity, TLRPC.TL_error tL_error, TL_account.updateTheme updatetheme) {
+        themeSetUrlActivity.getClass();
         try {
-            this.progressDialog.dismiss();
-            this.progressDialog = null;
+            themeSetUrlActivity.progressDialog.dismiss();
+            themeSetUrlActivity.progressDialog = null;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        AlertsCreator.processError(this.currentAccount, tL_error, this, updatetheme, new Object[0]);
-    }
-
-    public void lambda$saveTheme$13(int i, DialogInterface dialogInterface) {
-        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
+        AlertsCreator.processError(themeSetUrlActivity.currentAccount, tL_error, themeSetUrlActivity, updatetheme, new Object[0]);
     }
 
     @Override

@@ -407,7 +407,7 @@ public class MotionBackgroundDrawable extends Drawable {
             ((View) this.parentView.get()).invalidate();
         }
         if (this.postInvalidateParent) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.invalidateMotionBackground, new Object[0]);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.invalidateMotionBackground, new Object[0]);
             updateAnimation();
             AndroidUtilities.cancelRunOnUIThread(this.updateAnimationRunnable);
             AndroidUtilities.runOnUIThread(this.updateAnimationRunnable, 16L);

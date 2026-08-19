@@ -73,15 +73,11 @@ public class DraftSavedHint extends View {
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$0();
+                this.f$0.hide(true);
             }
         };
         this.hideRunnable = runnable2;
         AndroidUtilities.runOnUIThread(runnable2, 3500L);
-    }
-
-    public void lambda$show$0() {
-        hide(true);
     }
 
     @Override

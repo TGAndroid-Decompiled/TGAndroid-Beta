@@ -53,12 +53,8 @@ public class BookmarksFragment extends UniversalFragment {
     public HashSet selected = new HashSet();
     private final HashSet addedUrls = new HashSet();
 
-    public static boolean lambda$createView$2(View view, MotionEvent motionEvent) {
+    public static boolean m5023$r8$lambda$0Ef0Z7zGzug8jwvT6D_zo0aJ0(View view, MotionEvent motionEvent) {
         return true;
-    }
-
-    public static void access$400(BookmarksFragment bookmarksFragment) {
-        bookmarksFragment.updateWithOffset();
     }
 
     public boolean isSelected(MessageObject messageObject) {
@@ -83,11 +79,18 @@ public class BookmarksFragment extends UniversalFragment {
         Iterator it = this.selected.iterator();
         while (true) {
             MessageObject messageObject = null;
+            int i = 0;
             if (!it.hasNext()) {
                 break;
             }
             int iIntValue = ((Integer) it.next()).intValue();
-            for (MessageObject messageObject2 : this.list.links) {
+            ArrayList arrayList2 = this.list.links;
+            int size = arrayList2.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList2.get(i2);
+                i2++;
+                MessageObject messageObject2 = (MessageObject) obj;
                 if (messageObject2 != null && messageObject2.getId() == iIntValue) {
                     messageObject = messageObject2;
                     break;
@@ -95,7 +98,12 @@ public class BookmarksFragment extends UniversalFragment {
             }
             AddressBarList.BookmarksList bookmarksList = this.searchList;
             if (bookmarksList != null && messageObject == null) {
-                for (MessageObject messageObject3 : bookmarksList.links) {
+                ArrayList arrayList3 = bookmarksList.links;
+                int size2 = arrayList3.size();
+                while (i < size2) {
+                    Object obj2 = arrayList3.get(i);
+                    i++;
+                    MessageObject messageObject3 = (MessageObject) obj2;
                     if (messageObject3 != null && messageObject3.getId() == iIntValue) {
                         messageObject = messageObject3;
                         break;
@@ -110,22 +118,22 @@ public class BookmarksFragment extends UniversalFragment {
         }
         new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.formatPluralString("DeleteOptionsTitle", hashSet2.size(), new Object[0])).setMessage(LocaleController.getString(hashSet2.size() == 1 ? "AreYouSureUnsaveSingleMessage" : "AreYouSureUnsaveFewMessages")).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$deleteSelectedMessages$0(hashSet2, alertDialog, i);
+            public final void onClick(AlertDialog alertDialog, int i3) {
+                BookmarksFragment.$r8$lambda$r3rVwHkXykLYszWA4pqNRo0nuBw(this.f$0, hashSet2, alertDialog, i3);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
 
-    public void lambda$deleteSelectedMessages$0(HashSet hashSet, AlertDialog alertDialog, int i) {
-        MessagesController.getInstance(this.currentAccount).deleteMessages(new ArrayList<>(hashSet), null, null, UserConfig.getInstance(this.currentAccount).getClientUserId(), 0, true, 0);
-        this.list.delete(new ArrayList(hashSet));
-        AddressBarList.BookmarksList bookmarksList = this.searchList;
+    public static void $r8$lambda$r3rVwHkXykLYszWA4pqNRo0nuBw(BookmarksFragment bookmarksFragment, HashSet hashSet, AlertDialog alertDialog, int i) {
+        MessagesController.getInstance(bookmarksFragment.currentAccount).deleteMessages(new ArrayList<>(hashSet), null, null, UserConfig.getInstance(bookmarksFragment.currentAccount).getClientUserId(), 0, true, 0);
+        bookmarksFragment.list.delete(new ArrayList(hashSet));
+        AddressBarList.BookmarksList bookmarksList = bookmarksFragment.searchList;
         if (bookmarksList != null) {
             bookmarksList.delete(new ArrayList(hashSet));
         }
-        this.selected.clear();
-        this.actionBar.hideActionMode();
-        this.listView.adapter.update(true);
+        bookmarksFragment.selected.clear();
+        bookmarksFragment.actionBar.hideActionMode();
+        bookmarksFragment.listView.adapter.update(true);
     }
 
     public void gotoMessage() {
@@ -142,12 +150,12 @@ public class BookmarksFragment extends UniversalFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BookmarksFragment.lambda$gotoMessage$1(clientUserId, iIntValue);
+                BookmarksFragment.$r8$lambda$9pLNWt4i1abWYTli34IBZry2f6c(clientUserId, iIntValue);
             }
         }, 80L);
     }
 
-    public static void lambda$gotoMessage$1(long j, int i) {
+    public static void $r8$lambda$9pLNWt4i1abWYTli34IBZry2f6c(long j, int i) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
             safeLastFragment.presentFragment(ChatActivity.of(j, i));
@@ -184,7 +192,7 @@ public class BookmarksFragment extends UniversalFragment {
         this.selectedCount.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return BookmarksFragment.lambda$createView$2(view, motionEvent);
+                return BookmarksFragment.m5023$r8$lambda$0Ef0Z7zGzug8jwvT6D_zo0aJ0(view, motionEvent);
             }
         });
         actionBarMenuCreateActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
@@ -241,7 +249,7 @@ public class BookmarksFragment extends UniversalFragment {
                     AndroidUtilities.forEachViews((RecyclerView) BookmarksFragment.this.listView, new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            BookmarksFragment.AnonymousClass1.lambda$onItemClick$0((View) obj);
+                            BookmarksFragment.AnonymousClass1.$r8$lambda$zxfcA_nqyu0i6_159jgYkj8d1bM((View) obj);
                         }
                     });
                     return;
@@ -256,7 +264,7 @@ public class BookmarksFragment extends UniversalFragment {
             }
         }
 
-        public static void lambda$onItemClick$0(View view) {
+        public static void $r8$lambda$zxfcA_nqyu0i6_159jgYkj8d1bM(View view) {
             if (view instanceof AddressBarList.BookmarkView) {
                 ((AddressBarList.BookmarkView) view).setChecked(false);
             }
@@ -267,7 +275,7 @@ public class BookmarksFragment extends UniversalFragment {
         private Runnable applySearch = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$$1();
+                BookmarksFragment.AnonymousClass2.m5025$r8$lambda$22sKrybv2fQ38iu4YIXC2RA8Xw(this.f$0);
             }
         };
 
@@ -310,7 +318,7 @@ public class BookmarksFragment extends UniversalFragment {
                 bookmarksFragment.searchList = new AddressBarList.BookmarksList(i, string, new Runnable() {
                     @Override
                     public final void run() {
-                        BookmarksFragment.access$400(bookmarksFragment2);
+                        bookmarksFragment2.updateWithOffset();
                     }
                 });
                 BookmarksFragment.this.searchList.attach();
@@ -330,7 +338,7 @@ public class BookmarksFragment extends UniversalFragment {
             AndroidUtilities.runOnUIThread(this.applySearch, 500L);
         }
 
-        public void lambda$$1() {
+        public static void m5025$r8$lambda$22sKrybv2fQ38iu4YIXC2RA8Xw(AnonymousClass2 anonymousClass2) {
             AddressBarList.BookmarksList bookmarksList = BookmarksFragment.this.searchList;
             if (bookmarksList != null) {
                 bookmarksList.load();
@@ -357,11 +365,18 @@ public class BookmarksFragment extends UniversalFragment {
 
     @Override
     protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        String str;
         TLRPC.Message message;
         TLRPC.MessageMedia messageMedia;
         this.addedUrls.clear();
         if (TextUtils.isEmpty(this.query)) {
-            for (MessageObject messageObject : this.list.links) {
+            ArrayList arrayList2 = this.list.links;
+            int size = arrayList2.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList2.get(i);
+                i++;
+                MessageObject messageObject = (MessageObject) obj;
                 String link = AddressBarList.getLink(messageObject);
                 if (!TextUtils.isEmpty(link) && !link.startsWith("#") && !link.startsWith("$") && !link.startsWith("@")) {
                     this.addedUrls.add(link);
@@ -374,21 +389,37 @@ public class BookmarksFragment extends UniversalFragment {
                 arrayList.add(UItem.asFlicker(arrayList.size(), 32));
             }
         } else {
-            for (MessageObject messageObject2 : this.list.links) {
+            ArrayList arrayList3 = this.list.links;
+            int size2 = arrayList3.size();
+            int i2 = 0;
+            while (i2 < size2) {
+                Object obj2 = arrayList3.get(i2);
+                i2++;
+                MessageObject messageObject2 = (MessageObject) obj2;
                 String link2 = AddressBarList.getLink(messageObject2);
                 if (!TextUtils.isEmpty(link2) && !link2.startsWith("#") && !link2.startsWith("$") && !link2.startsWith("@")) {
                     this.addedUrls.add(link2);
                     String hostAuthority = AndroidUtilities.getHostAuthority(link2, true);
                     WebMetadataCache.WebMetadata webMetadata = WebMetadataCache.getInstance().get(hostAuthority);
                     TLRPC.WebPage webPage = (messageObject2 == null || (message = messageObject2.messageOwner) == null || (messageMedia = message.media) == null) ? null : messageMedia.webpage;
-                    String str = (webPage == null || TextUtils.isEmpty(webPage.site_name)) ? (webMetadata == null || TextUtils.isEmpty(webMetadata.sitename)) ? null : webMetadata.sitename : webPage.site_name;
+                    if (webPage == null || TextUtils.isEmpty(webPage.site_name)) {
+                        str = (webMetadata == null || TextUtils.isEmpty(webMetadata.sitename)) ? null : webMetadata.sitename;
+                    } else {
+                        str = webPage.site_name;
+                    }
                     String str2 = (webPage == null || TextUtils.isEmpty(webPage.title)) ? null : webPage.title;
                     if (matches(hostAuthority, this.query) || matches(str, this.query) || matches(str2, this.query)) {
                         arrayList.add(AddressBarList.BookmarkView.Factory.as(messageObject2, false, this.query).setChecked(isSelected(messageObject2)));
                     }
                 }
             }
-            for (MessageObject messageObject3 : this.searchList.links) {
+            ArrayList arrayList4 = this.searchList.links;
+            int size3 = arrayList4.size();
+            int i3 = 0;
+            while (i3 < size3) {
+                Object obj3 = arrayList4.get(i3);
+                i3++;
+                MessageObject messageObject3 = (MessageObject) obj3;
                 String link3 = AddressBarList.getLink(messageObject3);
                 if (!TextUtils.isEmpty(link3) && !link3.startsWith("#") && !link3.startsWith("$") && !link3.startsWith("@")) {
                     this.addedUrls.add(link3);
@@ -425,7 +456,6 @@ public class BookmarksFragment extends UniversalFragment {
                             }
                         }
                     }
-                    return true;
                 }
             }
         }

@@ -39,10 +39,8 @@ public abstract class FragmentUsernameBottomSheet {
     public static void open(final Context context, final int i, String str, TLObject tLObject, final TL_fragment.TL_collectibleInfo tL_collectibleInfo, final Theme.ResourcesProvider resourcesProvider) {
         String userName;
         String string;
-        String str2;
         String string2;
-        final String str3;
-        String str4;
+        final String str2;
         final BottomSheet bottomSheet = new BottomSheet(context, false, resourcesProvider);
         bottomSheet.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -64,6 +62,7 @@ public abstract class FragmentUsernameBottomSheet {
             rLottieImageView.setTranslationY(AndroidUtilities.dp(2.0f));
         }
         frameLayout.addView(rLottieImageView, LayoutHelper.createLinear(-1, -1, 17));
+        String str3 = "";
         if (tLObject instanceof TLRPC.User) {
             userName = UserObject.getUserName((TLRPC.User) tLObject);
         } else {
@@ -75,13 +74,11 @@ public abstract class FragmentUsernameBottomSheet {
             string = LocaleController.formatString(R.string.FragmentUsernameTitle, "@" + str);
             int i3 = R.string.FragmentUsernameMessage;
             String shortDateTime = LocaleController.formatShortDateTime((long) tL_collectibleInfo.purchase_date);
-            if (TextUtils.isEmpty(currency)) {
-                str4 = "";
-            } else {
-                str4 = "(" + currency + ")";
+            if (!TextUtils.isEmpty(currency)) {
+                str3 = "(" + currency + ")";
             }
-            string2 = LocaleController.formatString(i3, shortDateTime, currency2, str4);
-            str3 = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/" + str;
+            string2 = LocaleController.formatString(i3, shortDateTime, currency2, str3);
+            str2 = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/" + str;
         } else {
             if (i != 1) {
                 return;
@@ -89,18 +86,16 @@ public abstract class FragmentUsernameBottomSheet {
             string = LocaleController.formatString(R.string.FragmentPhoneTitle, PhoneFormat.getInstance().format("+" + str));
             int i4 = R.string.FragmentPhoneMessage;
             String shortDateTime2 = LocaleController.formatShortDateTime((long) tL_collectibleInfo.purchase_date);
-            if (TextUtils.isEmpty(currency)) {
-                str2 = "";
-            } else {
-                str2 = "(" + currency + ")";
+            if (!TextUtils.isEmpty(currency)) {
+                str3 = "(" + currency + ")";
             }
-            string2 = LocaleController.formatString(i4, shortDateTime2, currency2, str2);
-            str3 = PhoneFormat.getInstance().format("+" + str);
+            string2 = LocaleController.formatString(i4, shortDateTime2, currency2, str3);
+            str2 = PhoneFormat.getInstance().format("+" + str);
         }
-        final Runnable runnable = str3 != null ? new Runnable() {
+        final Runnable runnable = str2 != null ? new Runnable() {
             @Override
             public final void run() {
-                FragmentUsernameBottomSheet.lambda$open$0(str3, i, bottomSheet, resourcesProvider);
+                FragmentUsernameBottomSheet.m3177$r8$lambda$S7LCnu5wH87poy8I9lr8lGS5EI(str2, i, bottomSheet, resourcesProvider);
             }
         } : null;
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(string, runnable);
@@ -144,7 +139,7 @@ public abstract class FragmentUsernameBottomSheet {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                FragmentUsernameBottomSheet.lambda$open$1(context, tL_collectibleInfo, view);
+                Browser.openUrl(context, tL_collectibleInfo.url);
             }
         });
         linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 6.0f, 0.0f, 6.0f, 0.0f));
@@ -154,7 +149,7 @@ public abstract class FragmentUsernameBottomSheet {
             neutral.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FragmentUsernameBottomSheet.lambda$open$2(runnable, bottomSheet, view);
+                    FragmentUsernameBottomSheet.$r8$lambda$djU1LRUXrKOTL5H3dgsGNzwLXMk(runnable, bottomSheet, view);
                 }
             });
             linearLayout.addView(neutral, LayoutHelper.createLinear(-1, 48, 6.0f, 6.0f, 6.0f, 0.0f));
@@ -163,7 +158,7 @@ public abstract class FragmentUsernameBottomSheet {
         bottomSheet.show();
     }
 
-    public static void lambda$open$0(String str, int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider) {
+    public static void m3177$r8$lambda$S7LCnu5wH87poy8I9lr8lGS5EI(String str, int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider) {
         AndroidUtilities.addToClipboard(str);
         if (i == 1) {
             BulletinFactory.of(bottomSheet.getContainer(), resourcesProvider).createCopyBulletin(LocaleController.getString(R.string.PhoneCopied)).show();
@@ -172,12 +167,8 @@ public abstract class FragmentUsernameBottomSheet {
         }
     }
 
-    public static void lambda$open$1(Context context, TL_fragment.TL_collectibleInfo tL_collectibleInfo, View view) {
-        Browser.openUrl(context, tL_collectibleInfo.url);
-    }
-
-    public static void lambda$open$2(Runnable runnable, BottomSheet bottomSheet, View view) {
+    public static void $r8$lambda$djU1LRUXrKOTL5H3dgsGNzwLXMk(Runnable runnable, BottomSheet bottomSheet, View view) {
         runnable.run();
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
     }
 }

@@ -211,7 +211,7 @@ public abstract class SelectorSearchCell extends ScrollView {
                         groupCreateSpan2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$updateSpans$0(hashSet, runnable, view);
+                                this.f$0.onDeleteSpanClicked(view, hashSet, runnable);
                             }
                         });
                         arrayList2.add(groupCreateSpan2);
@@ -239,7 +239,7 @@ public abstract class SelectorSearchCell extends ScrollView {
                         this.wasEmpty = SelectorSearchCell.this.editText.length() == 0;
                     } else if (keyEvent.getAction() == 1 && this.wasEmpty && !SelectorSearchCell.this.allSpans.isEmpty()) {
                         ArrayList arrayList3 = SelectorSearchCell.this.allSpans;
-                        SelectorSearchCell.this.lambda$updateSpans$0((GroupCreateSpan) arrayList3.get(arrayList3.size() - 1), hashSet, runnable);
+                        SelectorSearchCell.this.onDeleteSpanClicked((GroupCreateSpan) arrayList3.get(arrayList3.size() - 1), hashSet, runnable);
                         return true;
                     }
                 }
@@ -248,7 +248,7 @@ public abstract class SelectorSearchCell extends ScrollView {
         });
     }
 
-    public void lambda$updateSpans$0(View view, HashSet hashSet, Runnable runnable) {
+    public void onDeleteSpanClicked(View view, HashSet hashSet, Runnable runnable) {
         if (this.allSpans.contains(view)) {
             GroupCreateSpan groupCreateSpan = (GroupCreateSpan) view;
             if (groupCreateSpan.isDeleting()) {
@@ -336,14 +336,15 @@ public abstract class SelectorSearchCell extends ScrollView {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$getContainerHeightAnimator$1(valueAnimator);
+                SelectorSearchCell.$r8$lambda$GHOy8WQyguNqUkRMm8oqYQoNwOI(this.f$0, valueAnimator);
             }
         });
         return valueAnimatorOfFloat;
     }
 
-    public void lambda$getContainerHeightAnimator$1(ValueAnimator valueAnimator) {
-        setContainerHeight(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public static void $r8$lambda$GHOy8WQyguNqUkRMm8oqYQoNwOI(SelectorSearchCell selectorSearchCell, ValueAnimator valueAnimator) {
+        selectorSearchCell.getClass();
+        selectorSearchCell.setContainerHeight(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public class SpansContainer extends ViewGroup {
@@ -373,20 +374,26 @@ public abstract class SelectorSearchCell extends ScrollView {
 
         @Override
         protected void onMeasure(int i, int i2) {
+            Property property;
+            Property property2;
             int iMin;
             int childCount = getChildCount();
             int size = View.MeasureSpec.getSize(i);
-            float f = 28.0f;
             int iDp = size - AndroidUtilities.dp(28.0f);
             int iDp2 = AndroidUtilities.dp(10.0f);
             int iDp3 = AndroidUtilities.dp(10.0f);
             int i3 = 0;
             int measuredWidth = 0;
             int measuredWidth2 = 0;
-            while (i3 < childCount) {
+            while (true) {
+                property = View.TRANSLATION_Y;
+                property2 = View.TRANSLATION_X;
+                if (i3 >= childCount) {
+                    break;
+                }
                 View childAt = getChildAt(i3);
                 if (childAt instanceof GroupCreateSpan) {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f), 1073741824));
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
                     boolean zContains = this.removingSpans.contains(childAt);
                     if (!zContains && childAt.getMeasuredWidth() + measuredWidth > iDp) {
                         iDp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(4.0f);
@@ -408,13 +415,13 @@ public abstract class SelectorSearchCell extends ScrollView {
                         childAt.setTranslationX(iDp4);
                         childAt.setTranslationY(iDp2);
                     } else {
-                        float f2 = iDp4;
-                        if (childAt.getTranslationX() != f2) {
-                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_X, f2));
+                        float f = iDp4;
+                        if (childAt.getTranslationX() != f) {
+                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property2, f));
                         }
-                        float f3 = iDp2;
-                        if (childAt.getTranslationY() != f3) {
-                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_Y, f3));
+                        float f2 = iDp2;
+                        if (childAt.getTranslationY() != f2) {
+                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property, f2));
                         }
                     }
                     if (!zContains) {
@@ -426,7 +433,6 @@ public abstract class SelectorSearchCell extends ScrollView {
                 }
                 i3++;
                 childCount = childCount;
-                f = 28.0f;
             }
             if (AndroidUtilities.isTablet()) {
                 iMin = AndroidUtilities.dp(376.0f) / 3;
@@ -451,16 +457,16 @@ public abstract class SelectorSearchCell extends ScrollView {
                     int iDp7 = iDp2 + AndroidUtilities.dp(38.0f);
                     SelectorSearchCell selectorSearchCell = SelectorSearchCell.this;
                     selectorSearchCell.resultContainerHeight = iDp7;
-                    float f4 = iDp7;
-                    if (selectorSearchCell.containerHeight != f4) {
-                        this.animators.add(selectorSearchCell.getContainerHeightAnimator(f4));
+                    float f3 = iDp7;
+                    if (selectorSearchCell.containerHeight != f3) {
+                        this.animators.add(selectorSearchCell.getContainerHeightAnimator(f3));
                     }
-                    float f5 = iDp6;
-                    if (SelectorSearchCell.this.editText.getTranslationX() != f5) {
-                        this.animators.add(ObjectAnimator.ofFloat(SelectorSearchCell.this.editText, (Property<EditTextBoldCursor, Float>) View.TRANSLATION_X, f5));
+                    float f4 = iDp6;
+                    if (SelectorSearchCell.this.editText.getTranslationX() != f4) {
+                        this.animators.add(ObjectAnimator.ofFloat(SelectorSearchCell.this.editText, (Property<EditTextBoldCursor, Float>) property2, f4));
                     }
                     if (SelectorSearchCell.this.editText.getTranslationY() != SelectorSearchCell.this.fieldY) {
-                        this.animators.add(ObjectAnimator.ofFloat(SelectorSearchCell.this.editText, (Property<EditTextBoldCursor, Float>) View.TRANSLATION_Y, SelectorSearchCell.this.fieldY));
+                        this.animators.add(ObjectAnimator.ofFloat(SelectorSearchCell.this.editText, (Property<EditTextBoldCursor, Float>) property, SelectorSearchCell.this.fieldY));
                     }
                     SelectorSearchCell.this.editText.setAllowDrawCursor(false);
                     this.currentAnimation.playTogether(this.animators);
@@ -484,7 +490,7 @@ public abstract class SelectorSearchCell extends ScrollView {
                         post(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$onMeasure$0();
+                                SelectorSearchCell.this.fullScroll(130);
                             }
                         });
                         SelectorSearchCell.this.scroll = false;
@@ -502,10 +508,6 @@ public abstract class SelectorSearchCell extends ScrollView {
                 }
             }
             setMeasuredDimension(size, (int) SelectorSearchCell.this.containerHeight);
-        }
-
-        public void lambda$onMeasure$0() {
-            SelectorSearchCell.this.fullScroll(130);
         }
 
         @Override
@@ -555,6 +557,9 @@ public abstract class SelectorSearchCell extends ScrollView {
         }
 
         public void updateSpans(final ArrayList arrayList, ArrayList arrayList2, boolean z) {
+            Property property;
+            Property property2;
+            Property property3;
             SelectorSearchCell.this.ignoreScrollEvent = true;
             SelectorSearchCell.this.allSpans.removeAll(arrayList);
             SelectorSearchCell.this.allSpans.addAll(arrayList2);
@@ -591,19 +596,28 @@ public abstract class SelectorSearchCell extends ScrollView {
                 this.animators.clear();
                 this.animAddingSpans.clear();
                 this.animRemovingSpans.clear();
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                int i2 = 0;
+                while (true) {
+                    int size = arrayList.size();
+                    property = View.ALPHA;
+                    property2 = View.SCALE_Y;
+                    property3 = View.SCALE_X;
+                    if (i2 >= size) {
+                        break;
+                    }
                     GroupCreateSpan groupCreateSpan = (GroupCreateSpan) arrayList.get(i2);
                     this.animRemovingSpans.add(groupCreateSpan);
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) property3, 1.0f, 0.01f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) property2, 1.0f, 0.01f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) property, 1.0f, 0.0f));
+                    i2++;
                 }
                 for (int i3 = 0; i3 < arrayList2.size(); i3++) {
                     GroupCreateSpan groupCreateSpan2 = (GroupCreateSpan) arrayList2.get(i3);
                     this.animAddingSpans.add(groupCreateSpan2);
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) View.SCALE_X, 0.01f, 1.0f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 0.01f, 1.0f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) View.ALPHA, 0.0f, 1.0f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) property3, 0.01f, 1.0f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) property2, 0.01f, 1.0f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) property, 0.0f, 1.0f));
                 }
             } else {
                 for (int i4 = 0; i4 < arrayList.size(); i4++) {

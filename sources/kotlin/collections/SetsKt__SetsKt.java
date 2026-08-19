@@ -19,6 +19,6 @@ public abstract class SetsKt__SetsKt extends SetsKt__SetsJVMKt {
         if (size != 0) {
             return size != 1 ? set : SetsKt__SetsJVMKt.setOf(set.iterator().next());
         }
-        return SetsKt.emptySet();
+        return emptySet();
     }
 }

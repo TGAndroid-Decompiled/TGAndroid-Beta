@@ -17,28 +17,24 @@ public abstract class ChannelKt {
     }
 
     public static final Channel Channel(int i, BufferOverflow bufferOverflow, Function1 function1) {
-        Channel bufferedChannel;
         if (i == -2) {
-            bufferedChannel = bufferOverflow == BufferOverflow.SUSPEND ? new BufferedChannel(Channel.Factory.getCHANNEL_DEFAULT_CAPACITY$kotlinx_coroutines_core(), function1) : new ConflatedBufferedChannel(1, bufferOverflow, function1);
-        } else {
-            if (i == -1) {
-                if (bufferOverflow != BufferOverflow.SUSPEND) {
-                    throw new IllegalArgumentException("CONFLATED capacity cannot be used with non-default onBufferOverflow");
-                }
-                return new ConflatedBufferedChannel(1, BufferOverflow.DROP_OLDEST, function1);
-            }
-            if (i != 0) {
-                if (i != Integer.MAX_VALUE) {
-                    return bufferOverflow == BufferOverflow.SUSPEND ? new BufferedChannel(i, function1) : new ConflatedBufferedChannel(i, bufferOverflow, function1);
-                }
-                return new BufferedChannel(Integer.MAX_VALUE, function1);
-            }
-            if (bufferOverflow == BufferOverflow.SUSPEND) {
-                bufferedChannel = new BufferedChannel(0, function1);
-            } else {
-                bufferedChannel = new ConflatedBufferedChannel(1, bufferOverflow, function1);
-            }
+            return bufferOverflow == BufferOverflow.SUSPEND ? new BufferedChannel(Channel.Factory.getCHANNEL_DEFAULT_CAPACITY$kotlinx_coroutines_core(), function1) : new ConflatedBufferedChannel(1, bufferOverflow, function1);
         }
-        return bufferedChannel;
+        if (i == -1) {
+            if (bufferOverflow != BufferOverflow.SUSPEND) {
+                throw new IllegalArgumentException("CONFLATED capacity cannot be used with non-default onBufferOverflow");
+            }
+            return new ConflatedBufferedChannel(1, BufferOverflow.DROP_OLDEST, function1);
+        }
+        if (i != 0) {
+            if (i != Integer.MAX_VALUE) {
+                return bufferOverflow == BufferOverflow.SUSPEND ? new BufferedChannel(i, function1) : new ConflatedBufferedChannel(i, bufferOverflow, function1);
+            }
+            return new BufferedChannel(Integer.MAX_VALUE, function1);
+        }
+        if (bufferOverflow == BufferOverflow.SUSPEND) {
+            return new BufferedChannel(0, function1);
+        }
+        return new ConflatedBufferedChannel(1, bufferOverflow, function1);
     }
 }

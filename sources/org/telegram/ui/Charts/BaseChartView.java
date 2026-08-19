@@ -23,7 +23,6 @@ import android.view.ViewConfiguration;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -178,14 +177,16 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         INTERPOLATOR = new FastOutSlowInInterpolator();
     }
 
-    public void lambda$new$0(ValueAnimator valueAnimator) {
-        this.currentMaxHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$T3QCHM6hA3ZUdXCIt6AYOrLQ7J0(BaseChartView baseChartView, ValueAnimator valueAnimator) {
+        baseChartView.getClass();
+        baseChartView.currentMaxHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        baseChartView.invalidate();
     }
 
-    public void lambda$new$1(ValueAnimator valueAnimator) {
-        this.currentMinHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void m1582$r8$lambda$l2zuMU38wWH2AefNKR5hI652s(BaseChartView baseChartView, ValueAnimator valueAnimator) {
+        baseChartView.getClass();
+        baseChartView.currentMinHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        baseChartView.invalidate();
     }
 
     public BaseChartView(Context context) {
@@ -253,13 +254,13 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         this.heightUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$new$0(valueAnimator);
+                BaseChartView.$r8$lambda$T3QCHM6hA3ZUdXCIt6AYOrLQ7J0(this.f$0, valueAnimator);
             }
         };
         this.minHeightUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$new$1(valueAnimator);
+                BaseChartView.m1582$r8$lambda$l2zuMU38wWH2AefNKR5hI652s(this.f$0, valueAnimator);
             }
         };
         this.selectionAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {
@@ -342,16 +343,20 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         this.chartActiveLineAlpha = this.selectedLinePaint.getAlpha();
         this.signaturePaintAlpha = this.signaturePaint.getAlpha() / 255.0f;
         this.bottomSignaturePaintAlpha = this.bottomSignaturePaint.getAlpha() / 255.0f;
-        Iterator it = this.lines.iterator();
-        while (it.hasNext()) {
-            ((LineViewData) it.next()).updateColors();
+        ArrayList arrayList = this.lines;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((LineViewData) obj).updateColors();
         }
         if (this.legendShowing) {
-            int i = this.selectedIndex;
+            int i2 = this.selectedIndex;
             ChartData chartData = this.chartData;
             long[] jArr = chartData.x;
-            if (i < jArr.length) {
-                this.legendSignatureView.setData(i, jArr[i], this.lines, false, chartData.yTooltipFormatter, chartData.yRate);
+            if (i2 < jArr.length) {
+                this.legendSignatureView.setData(i2, jArr[i2], this.lines, false, chartData.yTooltipFormatter, chartData.yRate);
             }
         }
         this.invalidatePickerChart = true;
@@ -696,17 +701,23 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         int i2 = SIGNATURE_TEXT_HEIGHT;
         int i3 = measuredHeight - i2;
         int textSize = (int) (i2 - this.signaturePaint.getTextSize());
-        for (int i4 = 1 ^ (this.useMinHeight ? 1 : 0); i4 < length; i4++) {
+        int i4 = 1 ^ (this.useMinHeight ? 1 : 0);
+        while (i4 < length) {
             float measuredHeight2 = getMeasuredHeight() - this.chartBottom;
             float f4 = chartHorizontalLinesData.values[i4];
             float f5 = this.currentMinHeight;
             int i5 = (int) (measuredHeight2 - (i3 * ((f4 - f5) / (this.currentMaxHeight - f5))));
             float f6 = HORIZONTAL_PADDING;
             float f7 = i5 - textSize;
-            chartHorizontalLinesData.drawText(canvas, 0, i4, f6, f7, this.signaturePaint);
-            if (chartHorizontalLinesData.valuesStr2 != null) {
-                chartHorizontalLinesData.drawText(canvas, 1, i4, getMeasuredWidth() - f6, f7, this.signaturePaint2);
+            Canvas canvas2 = canvas;
+            ChartHorizontalLinesData chartHorizontalLinesData2 = chartHorizontalLinesData;
+            chartHorizontalLinesData2.drawText(canvas2, 0, i4, f6, f7, this.signaturePaint);
+            if (chartHorizontalLinesData2.valuesStr2 != null) {
+                chartHorizontalLinesData2.drawText(canvas2, 1, i4, getMeasuredWidth() - f6, f7, this.signaturePaint2);
             }
+            i4++;
+            chartHorizontalLinesData = chartHorizontalLinesData2;
+            canvas = canvas2;
         }
     }
 
@@ -714,6 +725,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         float f;
         int i;
         int i2;
+        Canvas canvas2;
         ChartPickerDelegate.CapturesData middleCaptured;
         int i3;
         int i4;
@@ -785,7 +797,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                     drawPickerChart(this.bottomChartCanvas);
                     this.invalidatePickerChart = false;
                 }
-                if (!z) {
+                if (z) {
                     i5 = this.transitionMode;
                     if (i5 == 2) {
                         float f9 = HORIZONTAL_PADDING;
@@ -829,15 +841,17 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                 int i15 = DP_12;
                 float f18 = i8;
                 canvas.drawRect(f16, f17, i2 + i15, f18, this.unactiveBottomChartPaint);
-                canvas.drawRect(i - i15, f17, getMeasuredWidth() - f16, f18, this.unactiveBottomChartPaint);
+                canvas2 = canvas;
+                canvas2.drawRect(i - i15, f17, getMeasuredWidth() - f16, f18, this.unactiveBottomChartPaint);
             } else {
-                canvas.drawRect(f5, measuredHeight2, getMeasuredWidth() - f5, i8, this.unactiveBottomChartPaint);
+                canvas2 = canvas;
+                canvas2.drawRect(f5, measuredHeight2, getMeasuredWidth() - f5, i8, this.unactiveBottomChartPaint);
             }
             SharedUiComponents sharedUiComponents = this.sharedUiComponents;
             int i16 = this.pikerHeight;
             float measuredWidth = getMeasuredWidth();
             float f19 = HORIZONTAL_PADDING;
-            canvas.drawBitmap(sharedUiComponents.getPickerMaskBitmap(i16, (int) (measuredWidth - (f19 * 2.0f))), f19, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+            canvas2.drawBitmap(sharedUiComponents.getPickerMaskBitmap(i16, (int) (measuredWidth - (2.0f * f19))), f19, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
             if (this.chartData != null) {
                 this.pickerRect.set(i2, measuredHeight2, i, i8);
                 this.pickerDelegate.middlePickerArea.set(this.pickerRect);
@@ -849,15 +863,15 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                 int i20 = DP_12;
                 float f20 = rect.bottom + i19;
                 float f21 = DP_8;
-                canvas.drawPath(RoundedRect(path, i17, i18 - i19, i17 + i20, f20, f21, f21, true, false, false, true), this.pickerSelectorPaint);
+                canvas2.drawPath(RoundedRect(path, i17, i18 - i19, i17 + i20, f20, f21, f21, true, false, false, true), this.pickerSelectorPaint);
                 Path path2 = this.pathTmp;
                 Rect rect2 = this.pickerRect;
                 int i21 = rect2.right;
-                canvas.drawPath(RoundedRect(path2, i21 - i20, rect2.top - i19, i21, rect2.bottom + i19, f21, f21, false, true, true, false), this.pickerSelectorPaint);
+                canvas2.drawPath(RoundedRect(path2, i21 - i20, rect2.top - i19, i21, rect2.bottom + i19, f21, f21, false, true, true, false), this.pickerSelectorPaint);
                 Rect rect3 = this.pickerRect;
                 float f22 = rect3.left + i20;
                 int i22 = rect3.bottom;
-                canvas.drawRect(f22, i22, rect3.right - i20, i22 + i19, this.pickerSelectorPaint);
+                canvas2.drawRect(f22, i22, rect3.right - i20, i22 + i19, this.pickerSelectorPaint);
                 Rect rect4 = this.pickerRect;
                 float f23 = rect4.left + i20;
                 int i23 = rect4.top;
@@ -929,7 +943,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                 drawPickerChart(this.bottomChartCanvas);
                 this.invalidatePickerChart = false;
             }
-            if (!z) {
+            if (z) {
                 i5 = this.transitionMode;
                 if (i5 == 2) {
                     float f26 = HORIZONTAL_PADDING;
@@ -973,15 +987,17 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
             int i111 = DP_12;
             float f118 = i8;
             canvas.drawRect(f116, f117, i2 + i111, f118, this.unactiveBottomChartPaint);
-            canvas.drawRect(i - i111, f117, getMeasuredWidth() - f116, f118, this.unactiveBottomChartPaint);
+            canvas2 = canvas;
+            canvas2.drawRect(i - i111, f117, getMeasuredWidth() - f116, f118, this.unactiveBottomChartPaint);
         } else {
-            canvas.drawRect(f5, measuredHeight2, getMeasuredWidth() - f5, i8, this.unactiveBottomChartPaint);
+            canvas2 = canvas;
+            canvas2.drawRect(f5, measuredHeight2, getMeasuredWidth() - f5, i8, this.unactiveBottomChartPaint);
         }
         SharedUiComponents sharedUiComponents2 = this.sharedUiComponents;
         int i112 = this.pikerHeight;
         float measuredWidth2 = getMeasuredWidth();
         float f119 = HORIZONTAL_PADDING;
-        canvas.drawBitmap(sharedUiComponents2.getPickerMaskBitmap(i112, (int) (measuredWidth2 - (f119 * 2.0f))), f119, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+        canvas2.drawBitmap(sharedUiComponents2.getPickerMaskBitmap(i112, (int) (measuredWidth2 - (2.0f * f119))), f119, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
         if (this.chartData != null) {
             this.pickerRect.set(i2, measuredHeight2, i, i8);
             this.pickerDelegate.middlePickerArea.set(this.pickerRect);
@@ -993,15 +1009,15 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
             int i210 = DP_12;
             float f27 = rect11.bottom + i115;
             float f28 = DP_8;
-            canvas.drawPath(RoundedRect(path3, i113, i114 - i115, i113 + i210, f27, f28, f28, true, false, false, true), this.pickerSelectorPaint);
+            canvas2.drawPath(RoundedRect(path3, i113, i114 - i115, i113 + i210, f27, f28, f28, true, false, false, true), this.pickerSelectorPaint);
             Path path4 = this.pathTmp;
             Rect rect12 = this.pickerRect;
             int i211 = rect12.right;
-            canvas.drawPath(RoundedRect(path4, i211 - i210, rect12.top - i115, i211, rect12.bottom + i115, f28, f28, false, true, true, false), this.pickerSelectorPaint);
+            canvas2.drawPath(RoundedRect(path4, i211 - i210, rect12.top - i115, i211, rect12.bottom + i115, f28, f28, false, true, true, false), this.pickerSelectorPaint);
             Rect rect13 = this.pickerRect;
             float f29 = rect13.left + i210;
             int i212 = rect13.bottom;
-            canvas.drawRect(f29, i212, rect13.right - i210, i212 + i115, this.pickerSelectorPaint);
+            canvas2.drawRect(f29, i212, rect13.right - i210, i212 + i115, this.pickerSelectorPaint);
             Rect rect14 = this.pickerRect;
             float f210 = rect14.left + i210;
             int i213 = rect14.top;
@@ -1126,7 +1142,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
             ValueAnimator valueAnimatorCreateAnimator = createAnimator(0.0f, 255.0f, new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setMaxMinValue$2(chartHorizontalLinesDataCreateHorizontalLinesData, valueAnimator2);
+                    BaseChartView.m1581$r8$lambda$_UIUglac59bP3yG86uAeXTH42s(this.f$0, chartHorizontalLinesDataCreateHorizontalLinesData, valueAnimator2);
                 }
             });
             this.alphaAnimator = valueAnimatorCreateAnimator;
@@ -1141,14 +1157,21 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         }
     }
 
-    public void lambda$setMaxMinValue$2(ChartHorizontalLinesData chartHorizontalLinesData, ValueAnimator valueAnimator) {
+    public static void m1581$r8$lambda$_UIUglac59bP3yG86uAeXTH42s(BaseChartView baseChartView, ChartHorizontalLinesData chartHorizontalLinesData, ValueAnimator valueAnimator) {
+        baseChartView.getClass();
         chartHorizontalLinesData.alpha = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        for (ChartHorizontalLinesData chartHorizontalLinesData2 : this.horizontalLines) {
+        ArrayList arrayList = baseChartView.horizontalLines;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ChartHorizontalLinesData chartHorizontalLinesData2 = (ChartHorizontalLinesData) obj;
             if (chartHorizontalLinesData2 != chartHorizontalLinesData) {
                 chartHorizontalLinesData2.alpha = (int) ((chartHorizontalLinesData2.fixedAlpha / 255.0f) * (255 - chartHorizontalLinesData.alpha));
             }
         }
-        invalidate();
+        baseChartView.invalidate();
     }
 
     protected ChartHorizontalLinesData createHorizontalLinesData(long j, long j2, int i) {
@@ -1435,22 +1458,22 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
             }
             this.invalidatePickerChart = true;
             updateLineSignature();
-        } else {
-            ChartPickerDelegate chartPickerDelegate3 = this.pickerDelegate;
-            chartPickerDelegate3.pickerStart = 0.7f;
-            chartPickerDelegate3.pickerEnd = 1.0f;
-            this.pickerMinHeight = 0.0f;
-            this.pickerMaxHeight = 0.0f;
-            this.horizontalLines.clear();
-            Animator animator = this.maxValueAnimator;
-            if (animator != null) {
-                animator.cancel();
-            }
-            ValueAnimator valueAnimator = this.alphaAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.alphaAnimator.cancel();
-            }
+            return z;
+        }
+        ChartPickerDelegate chartPickerDelegate3 = this.pickerDelegate;
+        chartPickerDelegate3.pickerStart = 0.7f;
+        chartPickerDelegate3.pickerEnd = 1.0f;
+        this.pickerMinHeight = 0.0f;
+        this.pickerMaxHeight = 0.0f;
+        this.horizontalLines.clear();
+        Animator animator = this.maxValueAnimator;
+        if (animator != null) {
+            animator.cancel();
+        }
+        ValueAnimator valueAnimator = this.alphaAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.alphaAnimator.cancel();
         }
         return z;
     }
@@ -1472,7 +1495,13 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
     }
 
     protected void initPickerMaxHeight() {
-        for (LineViewData lineViewData : this.lines) {
+        ArrayList arrayList = this.lines;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            LineViewData lineViewData = (LineViewData) obj;
             boolean z = lineViewData.enabled;
             if (z) {
                 float f = lineViewData.line.maxValue;
@@ -1599,7 +1628,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                 ValueAnimator duration = createAnimator(0.0f, 1.0f, new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$updateDates$3(chartBottomSignatureData3, valueAnimator2);
+                        BaseChartView.$r8$lambda$PMDRM0EEyMK3KNO3LtbM2gEtrR0(this.f$0, chartBottomSignatureData3, valueAnimator2);
                     }
                 }).setDuration(200L);
                 this.alphaBottomAnimator = duration;
@@ -1616,16 +1645,23 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         }
     }
 
-    public void lambda$updateDates$3(ChartBottomSignatureData chartBottomSignatureData, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$PMDRM0EEyMK3KNO3LtbM2gEtrR0(BaseChartView baseChartView, ChartBottomSignatureData chartBottomSignatureData, ValueAnimator valueAnimator) {
+        baseChartView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        for (ChartBottomSignatureData chartBottomSignatureData2 : this.bottomSignatureDate) {
+        ArrayList arrayList = baseChartView.bottomSignatureDate;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ChartBottomSignatureData chartBottomSignatureData2 = (ChartBottomSignatureData) obj;
             if (chartBottomSignatureData2 == chartBottomSignatureData) {
                 chartBottomSignatureData.alpha = (int) (255.0f * fFloatValue);
             } else {
                 chartBottomSignatureData2.alpha = (int) ((1.0f - fFloatValue) * chartBottomSignatureData2.fixedAlpha);
             }
         }
-        invalidate();
+        baseChartView.invalidate();
     }
 
     public void onCheckChanged() {
@@ -1654,7 +1690,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                     ValueAnimator valueAnimatorCreateAnimator = createAnimator(lineViewData.alpha, 1.0f, new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator5) {
-                            this.f$0.lambda$onCheckChanged$4(lineViewData, valueAnimator5);
+                            BaseChartView.m1580$r8$lambda$O1lCwxWXI0SnEBgbROnHINexw(this.f$0, lineViewData, valueAnimator5);
                         }
                     });
                     lineViewData.animatorIn = valueAnimatorCreateAnimator;
@@ -1666,7 +1702,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                 ValueAnimator valueAnimatorCreateAnimator2 = createAnimator(lineViewData.alpha, 0.0f, new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator5) {
-                        this.f$0.lambda$onCheckChanged$5(lineViewData, valueAnimator5);
+                        BaseChartView.$r8$lambda$G87WbkafOTq5U0MWRAfQSTP79OU(this.f$0, lineViewData, valueAnimator5);
                     }
                 });
                 lineViewData.animatorOut = valueAnimatorCreateAnimator2;
@@ -1683,23 +1719,31 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         }
     }
 
-    public void lambda$onCheckChanged$4(LineViewData lineViewData, ValueAnimator valueAnimator) {
+    public static void m1580$r8$lambda$O1lCwxWXI0SnEBgbROnHINexw(BaseChartView baseChartView, LineViewData lineViewData, ValueAnimator valueAnimator) {
+        baseChartView.getClass();
         lineViewData.alpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.invalidatePickerChart = true;
-        invalidate();
+        baseChartView.invalidatePickerChart = true;
+        baseChartView.invalidate();
     }
 
-    public void lambda$onCheckChanged$5(LineViewData lineViewData, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$G87WbkafOTq5U0MWRAfQSTP79OU(BaseChartView baseChartView, LineViewData lineViewData, ValueAnimator valueAnimator) {
+        baseChartView.getClass();
         lineViewData.alpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.invalidatePickerChart = true;
-        invalidate();
+        baseChartView.invalidatePickerChart = true;
+        baseChartView.invalidate();
     }
 
     protected void updatePickerMinMaxHeight() {
         if (ANIMATE_PICKER_SIZES) {
+            ArrayList arrayList = this.lines;
+            int size = arrayList.size();
             long j = Long.MAX_VALUE;
             long j2 = 0;
-            for (LineViewData lineViewData : this.lines) {
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                LineViewData lineViewData = (LineViewData) obj;
                 boolean z = lineViewData.enabled;
                 if (z) {
                     long j3 = lineViewData.line.maxValue;

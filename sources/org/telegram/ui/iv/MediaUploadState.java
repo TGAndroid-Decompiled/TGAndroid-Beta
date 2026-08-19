@@ -26,13 +26,9 @@ public class MediaUploadState {
             return false;
         }
         if (this.isVideo || this.isAudio || this.isDocument) {
-            if (this.document == null) {
-                return false;
-            }
-        } else if (this.photo == null) {
-            return false;
+            return this.document != null;
         }
-        return true;
+        return this.photo != null;
     }
 
     public boolean isPending() {

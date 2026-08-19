@@ -109,13 +109,10 @@ public class PasskeysActivity extends BaseFragment {
         arrayList.add(UItem.asShadow(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PasskeyInfo), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$fillItems$0();
+                PasskeysActivity passkeysActivity = this.f$0;
+                PasskeysActivity.showLearnSheet(passkeysActivity.getContext(), passkeysActivity.currentAccount, passkeysActivity.resourceProvider, passkeysActivity.passkeys.size() + 1 <= passkeysActivity.getMessagesController().config.passkeysAccountPasskeysMax.get());
             }
         }), true)));
-    }
-
-    public void lambda$fillItems$0() {
-        showLearnSheet(getContext(), this.currentAccount, this.resourceProvider, this.passkeys.size() + 1 <= getMessagesController().config.passkeysAccountPasskeysMax.get());
     }
 
     public void openMenu(View view) {
@@ -144,46 +141,44 @@ public class PasskeysActivity extends BaseFragment {
         ItemOptions.makeOptions(this, passkeyCell).add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openMenu$3(passkey, str, i);
+                PasskeysActivity passkeysActivity = this.f$0;
+                new AlertDialog.Builder(passkeysActivity.getContext()).setTitle(LocaleController.getString(R.string.PasskeyDeleteTitle)).setMessage(LocaleController.getString(R.string.PasskeyDeleteText)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
+                    @Override
+                    public final void onClick(AlertDialog alertDialog, int i2) {
+                        PasskeysActivity.$r8$lambda$7UMQfIVbRMETXpyVfo42MQUtCEc(this.f$0, passkey, str, i, alertDialog, i2);
+                    }
+                }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             }
         }).setScrimViewBackground(this.listView.getClipBackground(passkeyCell)).show();
     }
 
-    public void lambda$openMenu$3(final TL_account.Passkey passkey, final String str, final int i) {
-        new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.PasskeyDeleteTitle)).setMessage(LocaleController.getString(R.string.PasskeyDeleteText)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
-                this.f$0.lambda$openMenu$2(passkey, str, i, alertDialog, i2);
-            }
-        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
-    }
-
-    public void lambda$openMenu$2(final TL_account.Passkey passkey, String str, final int i, AlertDialog alertDialog, int i2) {
-        this.passkeys.remove(passkey);
-        this.listView.adapter.update(true);
+    public static void $r8$lambda$7UMQfIVbRMETXpyVfo42MQUtCEc(final PasskeysActivity passkeysActivity, final TL_account.Passkey passkey, String str, final int i, AlertDialog alertDialog, int i2) {
+        passkeysActivity.passkeys.remove(passkey);
+        passkeysActivity.listView.adapter.update(true);
         TL_account.deletePasskey deletepasskey = new TL_account.deletePasskey();
         deletepasskey.id = str;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(deletepasskey, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
+        ConnectionsManager.getInstance(passkeysActivity.currentAccount).sendRequestTyped(deletepasskey, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$openMenu$1(i, passkey, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                PasskeysActivity.m3594$r8$lambda$xK1B8Km6VAS6_KQOOZZ6bpX61I(this.f$0, i, passkey, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$openMenu$1(int i, TL_account.Passkey passkey, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void m3594$r8$lambda$xK1B8Km6VAS6_KQOOZZ6bpX61I(PasskeysActivity passkeysActivity, int i, TL_account.Passkey passkey, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+        passkeysActivity.getClass();
         if (bool instanceof TLRPC.TL_boolFalse) {
-            BulletinFactory.of(this).showForError("FALSE");
-            ArrayList arrayList = this.passkeys;
+            BulletinFactory.of(passkeysActivity).showForError("FALSE");
+            ArrayList arrayList = passkeysActivity.passkeys;
             arrayList.add(Utilities.clamp(i, arrayList.size(), 0), passkey);
-            this.listView.adapter.update(true);
+            passkeysActivity.listView.adapter.update(true);
             return;
         }
         if (tL_error != null) {
-            BulletinFactory.of(this).showForError(tL_error);
-            ArrayList arrayList2 = this.passkeys;
+            BulletinFactory.of(passkeysActivity).showForError(tL_error);
+            ArrayList arrayList2 = passkeysActivity.passkeys;
             arrayList2.add(Utilities.clamp(i, arrayList2.size(), 0), passkey);
-            this.listView.adapter.update(true);
+            passkeysActivity.listView.adapter.update(true);
         }
     }
 
@@ -192,7 +187,7 @@ public class PasskeysActivity extends BaseFragment {
             PasskeysController.create(getContext(), this.currentAccount, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$onItemClick$4((TL_account.Passkey) obj, (String) obj2);
+                    PasskeysActivity.$r8$lambda$1PvOwjpdZiyPZDHYkIEvyy_upo0(this.f$0, (TL_account.Passkey) obj, (String) obj2);
                 }
             });
         } else if (uItem.object != null) {
@@ -200,11 +195,12 @@ public class PasskeysActivity extends BaseFragment {
         }
     }
 
-    public void lambda$onItemClick$4(TL_account.Passkey passkey, String str) {
+    public static void $r8$lambda$1PvOwjpdZiyPZDHYkIEvyy_upo0(PasskeysActivity passkeysActivity, TL_account.Passkey passkey, String str) {
+        passkeysActivity.getClass();
         if (str == null) {
             if (passkey != null) {
-                MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "SETUP_PASSKEY");
-                added(passkey);
+                MessagesController.getInstance(passkeysActivity.currentAccount).removeSuggestion(0L, "SETUP_PASSKEY");
+                passkeysActivity.added(passkey);
                 return;
             }
             return;
@@ -213,9 +209,9 @@ public class PasskeysActivity extends BaseFragment {
             return;
         }
         if ("EMPTY".equalsIgnoreCase(str)) {
-            new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.PasskeyNoOptionsTitle)).setMessage(LocaleController.getString(R.string.PasskeyNoOptionsText)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+            new AlertDialog.Builder(passkeysActivity.getContext()).setTitle(LocaleController.getString(R.string.PasskeyNoOptionsTitle)).setMessage(LocaleController.getString(R.string.PasskeyNoOptionsText)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
         } else {
-            BulletinFactory.of(this).showForError(str, true);
+            BulletinFactory.of(passkeysActivity).showForError(str, true);
         }
     }
 
@@ -387,7 +383,7 @@ public class PasskeysActivity extends BaseFragment {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PasskeysActivity.lambda$showLearnSheet$9(round, context, i, bottomSheetCreate, view);
+                PasskeysActivity.m3592$r8$lambda$Co5KfSIWVwqLpajjmCJiQjZ_j8(round, context, i, bottomSheetCreate, view);
             }
         });
         if (z) {
@@ -397,7 +393,7 @@ public class PasskeysActivity extends BaseFragment {
         bottomSheetCreate.show();
     }
 
-    public static void lambda$showLearnSheet$9(final ButtonWithCounterView buttonWithCounterView, final Context context, final int i, final BottomSheet bottomSheet, View view) {
+    public static void m3592$r8$lambda$Co5KfSIWVwqLpajjmCJiQjZ_j8(final ButtonWithCounterView buttonWithCounterView, final Context context, final int i, final BottomSheet bottomSheet, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -405,12 +401,12 @@ public class PasskeysActivity extends BaseFragment {
         PasskeysController.create(context, i, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PasskeysActivity.lambda$showLearnSheet$8(buttonWithCounterView, context, bottomSheet, i, (TL_account.Passkey) obj, (String) obj2);
+                PasskeysActivity.$r8$lambda$B0BS15o7WTBwGAVJlk0xcRFuUzM(buttonWithCounterView, context, bottomSheet, i, (TL_account.Passkey) obj, (String) obj2);
             }
         });
     }
 
-    public static void lambda$showLearnSheet$8(ButtonWithCounterView buttonWithCounterView, Context context, final BottomSheet bottomSheet, int i, final TL_account.Passkey passkey, final String str) {
+    public static void $r8$lambda$B0BS15o7WTBwGAVJlk0xcRFuUzM(ButtonWithCounterView buttonWithCounterView, Context context, final BottomSheet bottomSheet, int i, final TL_account.Passkey passkey, final String str) {
         buttonWithCounterView.setLoading(false);
         if ("CANCELLED".equalsIgnoreCase(str)) {
             return;
@@ -419,7 +415,7 @@ public class PasskeysActivity extends BaseFragment {
             new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.PasskeyNoOptionsTitle)).setMessage(LocaleController.getString(R.string.PasskeyNoOptionsText)).setPositiveButton(LocaleController.getString(R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    bottomSheet.lambda$new$0();
+                    bottomSheet.dismiss();
                 }
             }).show();
             return;
@@ -435,12 +431,12 @@ public class PasskeysActivity extends BaseFragment {
         if (passkey != null) {
             MessagesController.getInstance(i).removeSuggestion(0L, "SETUP_PASSKEY");
             if (safeLastFragment instanceof PasskeysActivity) {
-                bottomSheet.lambda$new$0();
+                bottomSheet.dismiss();
                 ((PasskeysActivity) safeLastFragment).added(passkey);
                 return;
             }
             if (safeLastFragment instanceof PrivacySettingsActivity) {
-                bottomSheet.lambda$new$0();
+                bottomSheet.dismiss();
                 PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) safeLastFragment;
                 ArrayList arrayList = privacySettingsActivity.currentPasskeys;
                 if (arrayList == null) {
@@ -454,13 +450,13 @@ public class PasskeysActivity extends BaseFragment {
             ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.getPasskeys(), new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    PasskeysActivity.lambda$showLearnSheet$7(bottomSheet, passkey, str, (TL_account.Passkeys) obj, (TLRPC.TL_error) obj2);
+                    PasskeysActivity.$r8$lambda$jbZDA2WwAQqH8mQRACHmp7eg8Tw(bottomSheet, passkey, str, (TL_account.Passkeys) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
     }
 
-    public static void lambda$showLearnSheet$7(BottomSheet bottomSheet, final TL_account.Passkey passkey, String str, TL_account.Passkeys passkeys, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$jbZDA2WwAQqH8mQRACHmp7eg8Tw(BottomSheet bottomSheet, final TL_account.Passkey passkey, String str, TL_account.Passkeys passkeys, TLRPC.TL_error tL_error) {
         if (passkeys == null) {
             if (tL_error != null) {
                 BulletinFactory.of(bottomSheet.topBulletinContainer, bottomSheet.getResourcesProvider()).showForError(str);
@@ -468,7 +464,7 @@ public class PasskeysActivity extends BaseFragment {
             }
             return;
         }
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         int i = 0;
         while (i < passkeys.passkeys.size()) {
             if (TextUtils.equals(passkeys.passkeys.get(i).id, passkey.id)) {

@@ -235,15 +235,15 @@ public class SaveToGallerySettingsHelper {
                         sb.append(", ");
                     }
                     long j = this.limitVideo;
-                    if (j <= 0 || j >= 4194304000L) {
-                        sb.append(LocaleController.formatString("SaveToGalleryVideos", R.string.SaveToGalleryVideos, new Object[0]));
-                    } else {
+                    if (j > 0 && j < 4194304000L) {
                         sb.append(LocaleController.formatString("SaveToGalleryVideosUpTo", R.string.SaveToGalleryVideosUpTo, AndroidUtilities.formatFileSize(j, true, false)));
+                        return sb;
                     }
+                    sb.append(LocaleController.formatString("SaveToGalleryVideos", R.string.SaveToGalleryVideos, new Object[0]));
                 }
-            } else {
-                sb.append(LocaleController.getString(R.string.SaveToGalleryOff));
+                return sb;
             }
+            sb.append(LocaleController.getString(R.string.SaveToGalleryOff));
             return sb;
         }
     }

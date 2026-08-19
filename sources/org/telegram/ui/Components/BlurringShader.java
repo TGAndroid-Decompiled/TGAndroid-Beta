@@ -27,7 +27,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLContext;
 import org.telegram.messenger.AndroidUtilities;
@@ -82,7 +81,7 @@ public class BlurringShader {
         this.invalidateViews = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                BlurringShader.m2046$r8$lambda$HxR6Sw23apEPPF4dQweOVHm5gs(this.f$0);
             }
         };
         this.iMatrix = new Matrix();
@@ -357,8 +356,8 @@ public class BlurringShader {
         }
     }
 
-    public void lambda$new$0() {
-        BlurManager blurManager = this.currentManager;
+    public static void m2046$r8$lambda$HxR6Sw23apEPPF4dQweOVHm5gs(BlurringShader blurringShader) {
+        BlurManager blurManager = blurringShader.currentManager;
         if (blurManager != null) {
             blurManager.invalidate();
         }
@@ -533,13 +532,21 @@ public class BlurringShader {
         }
 
         public void invalidate() {
-            Iterator it = this.holders.iterator();
-            while (it.hasNext()) {
-                ((StoryBlurDrawer) it.next()).view.invalidate();
+            ArrayList arrayList = this.holders;
+            int size = arrayList.size();
+            int i = 0;
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList.get(i2);
+                i2++;
+                ((StoryBlurDrawer) obj).view.invalidate();
             }
-            Iterator it2 = this.invalidateHolders.iterator();
-            while (it2.hasNext()) {
-                ((Runnable) it2.next()).run();
+            ArrayList arrayList2 = this.invalidateHolders;
+            int size2 = arrayList2.size();
+            while (i < size2) {
+                Object obj2 = arrayList2.get(i);
+                i++;
+                ((Runnable) obj2).run();
             }
         }
 
@@ -650,7 +657,7 @@ public class BlurringShader {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$getBitmap$1(bitmap, i, i2, str, z);
+                    BlurringShader.ThumbBlurer.m2048$r8$lambda$goVMWQSWSY2TeqR9_KANkBXgrU(this.f$0, bitmap, i, i2, str, z);
                 }
             };
             this.generate = runnable;
@@ -658,9 +665,10 @@ public class BlurringShader {
             return this.thumbBitmap;
         }
 
-        public void lambda$getBitmap$1(final Bitmap bitmap, int i, int i2, final String str, final boolean z) {
+        public static void m2048$r8$lambda$goVMWQSWSY2TeqR9_KANkBXgrU(final ThumbBlurer thumbBlurer, final Bitmap bitmap, int i, int i2, final String str, final boolean z) {
             int i3;
             int i4;
+            thumbBlurer.getClass();
             if (bitmap == null || bitmap.isRecycled()) {
                 return;
             }
@@ -674,13 +682,13 @@ public class BlurringShader {
                 i4 = iRound2;
                 i3 = iRound;
             }
-            int i5 = this.padding * 2;
+            int i5 = thumbBlurer.padding * 2;
             final Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i5 + i3, i5 + i4, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmapCreateBitmap);
             Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-            int i6 = this.padding;
+            int i6 = thumbBlurer.padding;
             Rect rect2 = new Rect(i6, i6, i6 + iRound, i6 + iRound2);
-            float f = this.padding;
+            float f = thumbBlurer.padding;
             canvas.translate((i3 / 2.0f) + f, f + (i4 / 2.0f));
             if (i2 == 1) {
                 canvas.scale(-1.0f, 1.0f);
@@ -688,43 +696,43 @@ public class BlurringShader {
                 canvas.scale(1.0f, -1.0f);
             }
             canvas.rotate(i);
-            float f2 = -this.padding;
+            float f2 = -thumbBlurer.padding;
             canvas.translate(f2 - (iRound / 2.0f), f2 - (iRound2 / 2.0f));
             try {
                 canvas.drawBitmap(bitmap, rect, rect2, (Paint) null);
             } catch (Exception unused) {
             }
             Utilities.stackBlurBitmap(bitmapCreateBitmap, 6);
-            int i7 = this.padding;
+            int i7 = thumbBlurer.padding;
             if (i7 > 0) {
-                canvas.drawRect(0.0f, 0.0f, iRound + i7, i7, this.clearPaint);
-                int i8 = this.padding;
+                canvas.drawRect(0.0f, 0.0f, iRound + i7, i7, thumbBlurer.clearPaint);
+                int i8 = thumbBlurer.padding;
                 float f3 = i8;
-                canvas.drawRect(0.0f, f3, f3, i8 + iRound2, this.clearPaint);
-                int i9 = this.padding;
+                canvas.drawRect(0.0f, f3, f3, i8 + iRound2, thumbBlurer.clearPaint);
+                int i9 = thumbBlurer.padding;
                 int i10 = i9 + iRound;
-                canvas.drawRect(i10, i9, i10 + i9, i9 + iRound2, this.clearPaint);
-                int i11 = this.padding;
+                canvas.drawRect(i10, i9, i10 + i9, i9 + iRound2, thumbBlurer.clearPaint);
+                int i11 = thumbBlurer.padding;
                 int i12 = iRound2 + i11;
-                canvas.drawRect(0.0f, i12, iRound + i11 + i11, i12 + i11, this.clearPaint);
+                canvas.drawRect(0.0f, i12, iRound + i11 + i11, i12 + i11, thumbBlurer.clearPaint);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$getBitmap$0(str, bitmapCreateBitmap, z, bitmap);
+                    BlurringShader.ThumbBlurer.$r8$lambda$pX34Wo8bHwIinFkvrf5xK3rG080(this.f$0, str, bitmapCreateBitmap, z, bitmap);
                 }
             });
         }
 
-        public void lambda$getBitmap$0(String str, Bitmap bitmap, boolean z, Bitmap bitmap2) {
-            if (TextUtils.equals(this.thumbKey, str)) {
-                this.generate = null;
-                Bitmap bitmap3 = this.thumbBitmap;
+        public static void $r8$lambda$pX34Wo8bHwIinFkvrf5xK3rG080(ThumbBlurer thumbBlurer, String str, Bitmap bitmap, boolean z, Bitmap bitmap2) {
+            if (TextUtils.equals(thumbBlurer.thumbKey, str)) {
+                thumbBlurer.generate = null;
+                Bitmap bitmap3 = thumbBlurer.thumbBitmap;
                 if (bitmap3 != null) {
                     bitmap3.recycle();
                 }
-                this.thumbBitmap = bitmap;
-                Runnable runnable = this.invalidate;
+                thumbBlurer.thumbBitmap = bitmap;
+                Runnable runnable = thumbBlurer.invalidate;
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -1054,15 +1062,16 @@ public class BlurringShader {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$animateOldPaint$0(valueAnimator2);
+                    BlurringShader.StoryBlurDrawer.$r8$lambda$7azbTGo0Fg41h7AotXRnLHSNsqc(this.f$0, valueAnimator2);
                 }
             });
             this.crossfadeAnimator.start();
         }
 
-        public void lambda$animateOldPaint$0(ValueAnimator valueAnimator) {
-            this.oldPaintAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.view.invalidate();
+        public static void $r8$lambda$7azbTGo0Fg41h7AotXRnLHSNsqc(StoryBlurDrawer storyBlurDrawer, ValueAnimator valueAnimator) {
+            storyBlurDrawer.getClass();
+            storyBlurDrawer.oldPaintAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            storyBlurDrawer.view.invalidate();
         }
 
         public void recycle() {

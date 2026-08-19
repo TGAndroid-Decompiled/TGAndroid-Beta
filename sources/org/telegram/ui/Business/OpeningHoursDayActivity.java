@@ -188,7 +188,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
             AlertsCreator.createTimePickerDialog(getContext(), LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker), period2.start, period == null ? this.min : period.end + 1, period2.end - 1, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onClick$0(view, period2, (Integer) obj);
+                    OpeningHoursDayActivity.$r8$lambda$nint2kIcXCWryNyFSNWiD7Mwfds(this.f$0, view, period2, (Integer) obj);
                 }
             });
             return;
@@ -197,7 +197,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
             AlertsCreator.createTimePickerDialog(getContext(), LocaleController.getString(R.string.BusinessHoursDayCloseHourPicker), period2.end, period2.start + 1, period3 == null ? this.max : period3.start - 1, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onClick$1(view, period2, (Integer) obj);
+                    OpeningHoursDayActivity.$r8$lambda$kH_2acJAhuUELxXmm35i4fbs6sU(this.f$0, view, period2, (Integer) obj);
                 }
             });
             return;
@@ -215,29 +215,29 @@ public class OpeningHoursDayActivity extends BaseFragment {
         }
     }
 
-    public void lambda$onClick$0(View view, OpeningHoursActivity.Period period, Integer num) {
-        boolean zShowAddButton = showAddButton();
+    public static void $r8$lambda$nint2kIcXCWryNyFSNWiD7Mwfds(OpeningHoursDayActivity openingHoursDayActivity, View view, OpeningHoursActivity.Period period, Integer num) {
+        boolean zShowAddButton = openingHoursDayActivity.showAddButton();
         int iIntValue = num.intValue();
         period.start = iIntValue;
         ((TextCell) view).setValue(OpeningHoursActivity.Period.timeToString(iIntValue), true);
-        if (zShowAddButton != showAddButton()) {
-            this.listView.adapter.update(true);
+        if (zShowAddButton != openingHoursDayActivity.showAddButton()) {
+            openingHoursDayActivity.listView.adapter.update(true);
         }
-        Runnable runnable = this.whenApplied;
+        Runnable runnable = openingHoursDayActivity.whenApplied;
         if (runnable != null) {
             runnable.run();
         }
     }
 
-    public void lambda$onClick$1(View view, OpeningHoursActivity.Period period, Integer num) {
-        boolean zShowAddButton = showAddButton();
+    public static void $r8$lambda$kH_2acJAhuUELxXmm35i4fbs6sU(OpeningHoursDayActivity openingHoursDayActivity, View view, OpeningHoursActivity.Period period, Integer num) {
+        boolean zShowAddButton = openingHoursDayActivity.showAddButton();
         int iIntValue = num.intValue();
         period.end = iIntValue;
         ((TextCell) view).setValue(OpeningHoursActivity.Period.timeToString(iIntValue), true);
-        if (zShowAddButton != showAddButton()) {
-            this.listView.adapter.update(true);
+        if (zShowAddButton != openingHoursDayActivity.showAddButton()) {
+            openingHoursDayActivity.listView.adapter.update(true);
         }
-        Runnable runnable = this.whenApplied;
+        Runnable runnable = openingHoursDayActivity.whenApplied;
         if (runnable != null) {
             runnable.run();
         }

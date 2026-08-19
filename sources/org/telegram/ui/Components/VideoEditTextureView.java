@@ -82,7 +82,7 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
         FilterGLThread filterGLThread = new FilterGLThread(surfaceTexture, new FilterGLThread.FilterGLThreadVideoDelegate() {
             @Override
             public final void onVideoSurfaceCreated(SurfaceTexture surfaceTexture2) {
-                this.f$0.lambda$onSurfaceTextureAvailable$0(surfaceTexture2);
+                VideoEditTextureView.m2932$r8$lambda$BhnN7EJALNn6A9MZ8fiS5SmBAE(this.f$0, surfaceTexture2);
             }
         }, this.hdrInfo, this.uiBlurManager, i, i2);
         this.eglThread = filterGLThread;
@@ -99,11 +99,11 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
         }
     }
 
-    public void lambda$onSurfaceTextureAvailable$0(SurfaceTexture surfaceTexture) {
-        if (this.currentVideoPlayer == null) {
+    public static void m2932$r8$lambda$BhnN7EJALNn6A9MZ8fiS5SmBAE(VideoEditTextureView videoEditTextureView, SurfaceTexture surfaceTexture) {
+        if (videoEditTextureView.currentVideoPlayer == null) {
             return;
         }
-        this.currentVideoPlayer.setSurface(new Surface(surfaceTexture));
+        videoEditTextureView.currentVideoPlayer.setSurface(new Surface(surfaceTexture));
     }
 
     @Override
@@ -115,14 +115,14 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
             this.eglThread.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSurfaceTextureSizeChanged$1();
+                    VideoEditTextureView.$r8$lambda$WRTXNYcFezAsyS4VcgtyMr3i6hI(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$onSurfaceTextureSizeChanged$1() {
-        FilterGLThread filterGLThread = this.eglThread;
+    public static void $r8$lambda$WRTXNYcFezAsyS4VcgtyMr3i6hI(VideoEditTextureView videoEditTextureView) {
+        FilterGLThread filterGLThread = videoEditTextureView.eglThread;
         if (filterGLThread != null) {
             filterGLThread.requestRender(false, true, false);
         }
@@ -158,13 +158,11 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
     public boolean containsPoint(float f, float f2) {
         RectOld rectOld = this.viewRect;
         float f3 = rectOld.x;
-        if (f >= f3 && f <= f3 + rectOld.width) {
-            float f4 = rectOld.y;
-            if (f2 >= f4 && f2 <= f4 + rectOld.height) {
-                return true;
-            }
+        if (f < f3 || f > f3 + rectOld.width) {
+            return false;
         }
-        return false;
+        float f4 = rectOld.y;
+        return f2 >= f4 && f2 <= f4 + rectOld.height;
     }
 
     public Bitmap getUiBlurBitmap() {

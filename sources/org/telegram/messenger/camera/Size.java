@@ -24,11 +24,13 @@ public final class Size {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Size)) {
-            return false;
+        if (obj instanceof Size) {
+            Size size = (Size) obj;
+            if (this.mWidth == size.mWidth && this.mHeight == size.mHeight) {
+                return true;
+            }
         }
-        Size size = (Size) obj;
-        return this.mWidth == size.mWidth && this.mHeight == size.mHeight;
+        return false;
     }
 
     public String toString() {

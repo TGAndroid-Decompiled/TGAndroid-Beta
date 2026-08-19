@@ -218,7 +218,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             Utilities.CallbackReturn callbackReturn = new Utilities.CallbackReturn() {
                 @Override
                 public final Object run(Object obj) {
-                    return this.f$0.lambda$createView$0((View) obj);
+                    return GradientHeaderActivity.$r8$lambda$xGwfZ6oA2FvXd88KIWXL8scgV1s(this.f$0, (View) obj);
                 }
             };
             int iDp = AndroidUtilities.dp(12.0f);
@@ -281,9 +281,10 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public Boolean lambda$createView$0(View view) {
+    public static Boolean $r8$lambda$xGwfZ6oA2FvXd88KIWXL8scgV1s(GradientHeaderActivity gradientHeaderActivity, View view) {
+        gradientHeaderActivity.getClass();
         ViewParent parent = view.getParent();
-        RecyclerListView recyclerListView = this.listView;
+        RecyclerListView recyclerListView = gradientHeaderActivity.listView;
         return parent != recyclerListView ? Boolean.FALSE : Boolean.valueOf(!UniversalAdapter.isShadow(recyclerListView.getChildViewHolder(view).getItemViewType()));
     }
 
@@ -345,9 +346,10 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                 }
                 if (this.isTouchedActionBarBackButton) {
                     boolean zDispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
-                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        this.isTouchedActionBarBackButton = false;
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return zDispatchTouchEvent;
                     }
+                    this.isTouchedActionBarBackButton = false;
                     return zDispatchTouchEvent;
                 }
             }
@@ -569,7 +571,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         updateDialogVisibility(false);
     }
 
-    protected void updateDialogVisibility(boolean z) {
+    public void updateDialogVisibility(boolean z) {
         if (z != this.isDialogVisible) {
             this.isDialogVisible = z;
             this.particlesView.setPaused(z);

@@ -81,7 +81,7 @@ public class BottomSheetTabs extends FrameLayout {
     public static final HashMap tabs = new HashMap();
     public static final HashMap tabDrawables = new HashMap();
 
-    public static void lambda$touchEvent$6(Boolean bool) {
+    public static void $r8$lambda$6r2txJ0Yr4DK9EpwLcLpfe0Mu_M(Boolean bool) {
     }
 
     public BottomSheetTabs(Context context, ActionBarLayout actionBarLayout) {
@@ -143,7 +143,7 @@ public class BottomSheetTabs extends FrameLayout {
         new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$openTab$0(webTabData, (BaseFragment) obj);
+                BottomSheetTabs.m1258$r8$lambda$t3dh2AB0YwSRv4W_LOo3bJIbuQ(this.f$0, webTabData, (BaseFragment) obj);
             }
         }.run(lastFragment);
         if (webTabData.needsContext) {
@@ -155,13 +155,14 @@ public class BottomSheetTabs extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$openTab$1(lastFragment, chatActivityOf);
+                    BottomSheetTabs.$r8$lambda$q_3532qoR80viwZuASU_LF6yn6Q(this.f$0, lastFragment, chatActivityOf);
                 }
             }, 220L);
         }
     }
 
-    public void lambda$openTab$0(WebTabData webTabData, BaseFragment baseFragment) {
+    public static void m1258$r8$lambda$t3dh2AB0YwSRv4W_LOo3bJIbuQ(BottomSheetTabs bottomSheetTabs, WebTabData webTabData, BaseFragment baseFragment) {
+        bottomSheetTabs.getClass();
         if (baseFragment == null) {
             return;
         }
@@ -178,14 +179,15 @@ public class BottomSheetTabs extends FrameLayout {
         BotWebViewSheet botWebViewSheet = new BotWebViewSheet(baseFragment.getContext(), baseFragment.getResourceProvider());
         botWebViewSheet.setParentActivity(baseFragment.getParentActivity());
         if (botWebViewSheet.restoreState(baseFragment, webTabData)) {
-            removeTab(webTabData, false);
+            bottomSheetTabs.removeTab(webTabData, false);
             botWebViewSheet.show();
         }
     }
 
-    public void lambda$openTab$1(BaseFragment baseFragment, BaseFragment baseFragment2) {
+    public static void $r8$lambda$q_3532qoR80viwZuASU_LF6yn6Q(BottomSheetTabs bottomSheetTabs, BaseFragment baseFragment, BaseFragment baseFragment2) {
+        bottomSheetTabs.getClass();
         baseFragment.presentFragment(baseFragment2);
-        this.doNotDismiss = false;
+        bottomSheetTabs.doNotDismiss = false;
     }
 
     public WebTabData tryReopenTab(WebViewRequestProps webViewRequestProps) {
@@ -465,9 +467,14 @@ public class BottomSheetTabs extends FrameLayout {
             if (i >= map.size()) {
                 return false;
             }
-            ArrayList<WebTabData> arrayList = (ArrayList) map.get(Integer.valueOf(i));
+            ArrayList arrayList = (ArrayList) map.get(Integer.valueOf(i));
             if (arrayList != null) {
-                for (WebTabData webTabData : arrayList) {
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    WebTabData webTabData = (WebTabData) obj;
                     if (webTabData.articleViewer == articleViewer) {
                         return removeTab(i, webTabData, true);
                     }
@@ -492,39 +499,40 @@ public class BottomSheetTabs extends FrameLayout {
         AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$removeTab$2(zArr, webTabData, callback, alertDialogArr, alertDialog, i);
+                BottomSheetTabs.m1257$r8$lambda$rgkkl5LsHmsPhNQPlagMItkXc0(this.f$0, zArr, webTabData, callback, alertDialogArr, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                BottomSheetTabs.lambda$removeTab$3(zArr, callback, alertDialogArr, alertDialog, i);
+                BottomSheetTabs.$r8$lambda$kds1RKsT7D42Om7XAx69ikKtHJA(zArr, callback, alertDialogArr, alertDialog, i);
             }
         }).create();
         final AlertDialog[] alertDialogArr = {alertDialogCreate};
         alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                BottomSheetTabs.lambda$removeTab$4(zArr, callback, dialogInterface);
+                BottomSheetTabs.m1259$r8$lambda$wYmzJHTOpTZmii2flzYplpdWs(zArr, callback, dialogInterface);
             }
         });
         alertDialogArr[0].show();
         ((TextView) alertDialogArr[0].getButton(-1)).setTextColor(Theme.getColor(Theme.key_text_RedBold));
     }
 
-    public void lambda$removeTab$2(boolean[] zArr, WebTabData webTabData, Utilities.Callback callback, AlertDialog[] alertDialogArr, AlertDialog alertDialog, int i) {
+    public static void m1257$r8$lambda$rgkkl5LsHmsPhNQPlagMItkXc0(BottomSheetTabs bottomSheetTabs, boolean[] zArr, WebTabData webTabData, Utilities.Callback callback, AlertDialog[] alertDialogArr, AlertDialog alertDialog, int i) {
+        bottomSheetTabs.getClass();
         zArr[0] = true;
-        removeTab(webTabData, true);
+        bottomSheetTabs.removeTab(webTabData, true);
         callback.run(Boolean.TRUE);
         alertDialogArr[0].dismiss();
     }
 
-    public static void lambda$removeTab$3(boolean[] zArr, Utilities.Callback callback, AlertDialog[] alertDialogArr, AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$kds1RKsT7D42Om7XAx69ikKtHJA(boolean[] zArr, Utilities.Callback callback, AlertDialog[] alertDialogArr, AlertDialog alertDialog, int i) {
         zArr[0] = true;
         callback.run(Boolean.FALSE);
         alertDialogArr[0].dismiss();
     }
 
-    public static void lambda$removeTab$4(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+    public static void m1259$r8$lambda$wYmzJHTOpTZmii2flzYplpdWs(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
         if (zArr[0]) {
             return;
         }
@@ -555,7 +563,7 @@ public class BottomSheetTabs extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$removeTab$5(tabDrawables2, webTabData);
+                BottomSheetTabs.$r8$lambda$eS6onxPmrS2KyNhr0fENWTMjseo(this.f$0, tabDrawables2, webTabData);
             }
         }, 320L);
         updateVisibility(true);
@@ -567,7 +575,8 @@ public class BottomSheetTabs extends FrameLayout {
         return tabs2.isEmpty();
     }
 
-    public void lambda$removeTab$5(ArrayList arrayList, WebTabData webTabData) {
+    public static void $r8$lambda$eS6onxPmrS2KyNhr0fENWTMjseo(BottomSheetTabs bottomSheetTabs, ArrayList arrayList, WebTabData webTabData) {
+        bottomSheetTabs.getClass();
         int i = 0;
         while (i < arrayList.size()) {
             if (((TabDrawable) arrayList.get(i)).tab == webTabData) {
@@ -576,7 +585,7 @@ public class BottomSheetTabs extends FrameLayout {
             }
             i++;
         }
-        invalidate();
+        bottomSheetTabs.invalidate();
     }
 
     @Override
@@ -606,7 +615,7 @@ public class BottomSheetTabs extends FrameLayout {
                         removeTab(webTabData, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                BottomSheetTabs.lambda$touchEvent$6((Boolean) obj);
+                                BottomSheetTabs.$r8$lambda$6r2txJ0Yr4DK9EpwLcLpfe0Mu_M((Boolean) obj);
                             }
                         });
                     }
@@ -651,6 +660,7 @@ public class BottomSheetTabs extends FrameLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
         getTabs();
         ArrayList<TabDrawable> tabDrawables2 = getTabDrawables();
         if (this.bottomTabsProgress <= 0.0f) {
@@ -661,7 +671,8 @@ public class BottomSheetTabs extends FrameLayout {
         int i = this.tabColorAnimated.set(this.tabColor);
         float f = this.tabDarkAnimated.set(this.tabIsDark);
         if (this.drawTabs) {
-            for (int i2 = 0; i2 < tabDrawables2.size(); i2++) {
+            int i2 = 0;
+            while (i2 < tabDrawables2.size()) {
                 TabDrawable tabDrawable = tabDrawables2.get(i2);
                 float position = tabDrawable.getPosition();
                 float alpha = tabDrawable.getAlpha();
@@ -669,8 +680,13 @@ public class BottomSheetTabs extends FrameLayout {
                     getTabBounds(this.rect, position);
                     tabDrawable.setExpandProgress(0.0f);
                     tabDrawable.setBackgroundColor(i, f > 0.5f);
-                    tabDrawable.draw(canvas, this.rect, AndroidUtilities.dp(18.0f), alpha, 1.0f);
+                    canvas2 = canvas;
+                    tabDrawable.draw(canvas2, this.rect, AndroidUtilities.dp(18.0f), alpha, 1.0f);
+                } else {
+                    canvas2 = canvas;
                 }
+                i2++;
+                canvas = canvas2;
             }
         }
     }
@@ -706,7 +722,7 @@ public class BottomSheetTabs extends FrameLayout {
         private final Rect tmpRect;
         private final RectF tmpRectF;
 
-        public static void lambda$onPerformActionForVirtualView$0(Boolean bool) {
+        public static void m1260$r8$lambda$rKrZd3N_R6LXhNBcOtjYQdSVzc(Boolean bool) {
         }
 
         public TabsAccessibilityHelper(View view) {
@@ -819,7 +835,7 @@ public class BottomSheetTabs extends FrameLayout {
             BottomSheetTabs.this.removeTab(webTabData, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BottomSheetTabs.TabsAccessibilityHelper.lambda$onPerformActionForVirtualView$0((Boolean) obj);
+                    BottomSheetTabs.TabsAccessibilityHelper.m1260$r8$lambda$rKrZd3N_R6LXhNBcOtjYQdSVzc((Boolean) obj);
                 }
             });
             return true;
@@ -932,6 +948,7 @@ public class BottomSheetTabs extends FrameLayout {
         }
 
         public void draw(Canvas canvas, RectF rectF, float f, float f2, float f3) {
+            Canvas canvas2 = canvas;
             int iBlendARGB = ColorUtils.blendARGB(this.backgroundColor, this.tabColor, this.expandProgress);
             this.backgroundPaint.setColor(iBlendARGB);
             float f4 = f2 * 255.0f;
@@ -950,21 +967,22 @@ public class BottomSheetTabs extends FrameLayout {
             fArr[4] = fLerp;
             this.rectPath.rewind();
             this.rectPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
-            canvas.drawPath(this.rectPath, this.backgroundPaint);
+            canvas2.drawPath(this.rectPath, this.backgroundPaint);
             if (this.progress > 0.0f && this.expandProgress > 0.0f && f2 > 0.0f) {
-                canvas.save();
-                canvas.clipPath(this.rectPath);
+                canvas2.save();
+                canvas2.clipPath(this.rectPath);
                 this.progressPaint.setColor(Theme.multAlpha(AndroidUtilities.computePerceivedBrightness(iBlendARGB) > 0.721f ? -16777216 : -1, 0.07f * f2 * this.expandProgress));
                 float f5 = rectF.left;
                 canvas.drawRect(f5, rectF.top, f5 + (rectF.width() * this.progress), rectF.bottom, this.progressPaint);
-                canvas.restore();
+                canvas2 = canvas;
+                canvas2.restore();
             }
             float fLerp2 = AndroidUtilities.lerp(this.backgroundIsDark ? 1.0f : 0.0f, this.tabIsDark ? 1.0f : 0.0f, this.expandProgress);
             int iBlendARGB2 = ColorUtils.blendARGB(-16777216, -1, fLerp2);
             this.iconPaint.setColor(iBlendARGB2);
             this.iconPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            canvas.save();
-            canvas.translate(rectF.left, rectF.centerY());
+            canvas2.save();
+            canvas2.translate(rectF.left, rectF.centerY());
             int iBlendARGB3 = ColorUtils.blendARGB(553648127, 553648127, fLerp2);
             this.closeRipple.setBounds(AndroidUtilities.dp(25.0f) + (-AndroidUtilities.dp(25.0f)), -AndroidUtilities.dp(25.0f), AndroidUtilities.dp(25.0f) + AndroidUtilities.dp(25.0f), AndroidUtilities.dp(25.0f));
             if (this.closeRippleColor != iBlendARGB3) {
@@ -972,30 +990,30 @@ public class BottomSheetTabs extends FrameLayout {
                 this.closeRippleColor = iBlendARGB3;
                 Theme.setSelectorDrawableColor(drawable, iBlendARGB3, false);
             }
-            this.closeRipple.draw(canvas);
-            canvas.restore();
-            canvas.save();
-            canvas.translate(rectF.left + AndroidUtilities.dp(18.0f), rectF.centerY() - AndroidUtilities.dp(6.0f));
+            this.closeRipple.draw(canvas2);
+            canvas2.restore();
+            canvas2.save();
+            canvas2.translate(rectF.left + AndroidUtilities.dp(18.0f), rectF.centerY() - AndroidUtilities.dp(6.0f));
             float f6 = f4 * f3;
             int i = (int) f6;
             this.iconPaint.setAlpha(i);
-            canvas.drawPath(this.closePath, this.iconPaint);
-            canvas.restore();
-            canvas.save();
-            canvas.translate(rectF.right - AndroidUtilities.dp(30.66f), rectF.centerY());
+            canvas2.drawPath(this.closePath, this.iconPaint);
+            canvas2.restore();
+            canvas2.save();
+            canvas2.translate(rectF.right - AndroidUtilities.dp(30.66f), rectF.centerY());
             this.iconPaint.setAlpha((int) (f6 * (1.0f - this.expandProgress)));
-            canvas.drawPath(this.expandPath, this.iconPaint);
-            canvas.restore();
+            canvas2.drawPath(this.expandPath, this.iconPaint);
+            canvas2.restore();
             if (this.favicon != null) {
                 int iDp2 = AndroidUtilities.dp(24.0f);
-                canvas.save();
+                canvas2.save();
                 Rect rect = AndroidUtilities.rectTmp2;
                 float f7 = iDp2;
                 float f8 = f7 / 2.0f;
                 rect.set((int) (rectF.left + AndroidUtilities.dp(56.0f)), (int) (rectF.centerY() - f8), (int) (rectF.left + AndroidUtilities.dp(56.0f) + f7), (int) (rectF.centerY() + f8));
                 this.faviconPaint.setAlpha(i);
-                canvas.drawBitmap(this.favicon, (Rect) null, rect, this.faviconPaint);
-                canvas.restore();
+                canvas2.drawBitmap(this.favicon, (Rect) null, rect, this.faviconPaint);
+                canvas2.restore();
                 iDp = iDp2 + AndroidUtilities.dp(4.0f);
             } else if (this.iconDrawable != null) {
                 float fDp = AndroidUtilities.dp(24.0f);
@@ -1010,13 +1028,13 @@ public class BottomSheetTabs extends FrameLayout {
                 }
                 this.iconDrawable.setAlpha(i);
                 this.iconDrawable.setBounds(rect2);
-                this.iconDrawable.draw(canvas);
+                this.iconDrawable.draw(canvas2);
                 iDp = intrinsicHeight - AndroidUtilities.dp(2.0f);
             }
             Text text = this.overrideTitle;
             if (text != null) {
                 float f10 = iDp;
-                text.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f10)).draw(canvas, f10 + rectF.left + AndroidUtilities.dp(60.0f), rectF.centerY(), iBlendARGB2, (1.0f - this.expandProgress) * f2 * f3);
+                text.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f10)).draw(canvas2, rectF.left + AndroidUtilities.dp(60.0f) + f10, rectF.centerY(), iBlendARGB2, (1.0f - this.expandProgress) * f2 * f3);
             }
             float f11 = iDp;
             this.title.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f11)).draw(canvas, f11 + rectF.left + AndroidUtilities.dp(60.0f), rectF.centerY(), iBlendARGB2, (this.overrideTitle != null ? this.expandProgress : 1.0f) * f2 * f3);
@@ -1117,7 +1135,7 @@ public class BottomSheetTabs extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$updateVisibility$7(valueAnimator2);
+                    BottomSheetTabs.$r8$lambda$uun15od05WAGlNuyuHx4pmCCPKw(this.f$0, valueAnimator2);
                 }
             });
             this.bottomTabsAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1146,13 +1164,14 @@ public class BottomSheetTabs extends FrameLayout {
         }
     }
 
-    public void lambda$updateVisibility$7(ValueAnimator valueAnimator) {
-        this.bottomTabsProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        Iterator it = this.invalidateListeners.iterator();
+    public static void $r8$lambda$uun15od05WAGlNuyuHx4pmCCPKw(BottomSheetTabs bottomSheetTabs, ValueAnimator valueAnimator) {
+        bottomSheetTabs.getClass();
+        bottomSheetTabs.bottomTabsProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        Iterator it = bottomSheetTabs.invalidateListeners.iterator();
         while (it.hasNext()) {
             ((Runnable) it.next()).run();
         }
-        invalidate();
+        bottomSheetTabs.invalidate();
     }
 
     public static class ClipTools {

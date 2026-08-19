@@ -73,6 +73,7 @@ public abstract class RichHtml {
     }
 
     private static void serializeRange(StringBuilder sb, List list, int[] iArr, int i, int i2, int i3, int i4, int i5, ListState listState, boolean z, int i6, Map map) {
+        StringBuilder sb2 = sb;
         while (true) {
             int i7 = iArr[0];
             if (i7 > i) {
@@ -86,21 +87,22 @@ public abstract class RichHtml {
                     iArr[0] = iArr[0] + 1;
                 }
             } else if (blockRow.quoteIds.size() > i6) {
-                listState.closeAll(sb);
-                serializeQuote(sb, list, iArr, i, i2, i3, i4, i5, z, i6, map);
+                listState.closeAll(sb2);
+                serializeQuote(sb2, list, iArr, i, i2, i3, i4, i5, z, i6, map);
             } else if (RichEditorListView.isDetailsHeader(blockRow)) {
-                listState.closeAll(sb);
-                serializeDetails(sb, list, iArr, i, i2, i3, i4, i5, i6, map);
+                listState.closeAll(sb2);
+                serializeDetails(sb2, list, iArr, i, i2, i3, i4, i5, i6, map);
             } else if (blockRow.level > 0 && isTextBlock(blockRow.block)) {
-                listState.sync(sb, blockRow.level, blockRow.num > 0);
-                sb.append("<li>");
-                appendInline(sb, slicedStyled(blockRow, iArr[0], i2, i3, i4, i5));
-                sb.append("</li>");
+                listState.sync(sb2, blockRow.level, blockRow.num > 0);
+                sb2.append("<li>");
+                appendInline(sb2, slicedStyled(blockRow, iArr[0], i2, i3, i4, i5));
+                sb2.append("</li>");
                 iArr[0] = iArr[0] + 1;
             } else {
-                listState.closeAll(sb);
-                serializeLeaf(sb, blockRow, iArr[0], i2, i3, i4, i5);
+                listState.closeAll(sb2);
+                serializeLeaf(sb2, blockRow, iArr[0], i2, i3, i4, i5);
                 iArr[0] = iArr[0] + 1;
+                sb2 = sb;
             }
         }
     }
@@ -123,27 +125,26 @@ public abstract class RichHtml {
     }
 
     private static void serializeQuote(StringBuilder sb, List list, int[] iArr, int i, int i2, int i3, int i4, int i5, boolean z, int i6, Map map) {
-        int i7;
-        BlockRow blockRow;
         Long l = (Long) ((BlockRow) list.get(iArr[0])).quoteIds.get(i6);
         long jLongValue = l.longValue();
-        int i8 = iArr[0];
-        do {
-            i7 = i8;
-            i8 = i7 + 1;
+        int i7 = iArr[0];
+        while (true) {
+            int i8 = i7 + 1;
             if (i8 > i) {
                 break;
             }
-            blockRow = (BlockRow) list.get(i8);
-            if (blockRow.quoteIds.size() <= i6) {
+            BlockRow blockRow = (BlockRow) list.get(i8);
+            if (blockRow.quoteIds.size() <= i6 || ((Long) blockRow.quoteIds.get(i6)).longValue() != jLongValue) {
                 break;
+            } else {
+                i7 = i8;
             }
-        } while (((Long) blockRow.quoteIds.get(i6)).longValue() == jLongValue);
+        }
         sb.append("<blockquote>");
         ListState listState = new ListState();
         serializeRange(sb, list, iArr, i7, i2, i3, i4, i5, listState, z, i6 + 1, map);
         listState.closeAll(sb);
-        appendAuthorCite(sb, map == null ? null : authorText((TL_iv.RichText) map.get(l)));
+        appendAuthorCite(sb, map != null ? authorText((TL_iv.RichText) map.get(l)) : null);
         sb.append("</blockquote>");
     }
 
@@ -325,6 +326,8 @@ public abstract class RichHtml {
 
     private static void serializeTable(StringBuilder sb, TL_iv.pageBlockTable pageblocktable) {
         ArrayList<TL_iv.pageTableCell> arrayList;
+        String str;
+        String str2;
         sb.append("<table");
         if (pageblocktable.bordered) {
             sb.append(" border=\"1\"");
@@ -352,46 +355,66 @@ public abstract class RichHtml {
         }
         ArrayList<TL_iv.pageTableRow> arrayList2 = pageblocktable.rows;
         if (arrayList2 != null) {
-            for (TL_iv.pageTableRow pagetablerow : arrayList2) {
+            int size = arrayList2.size();
+            int i = 0;
+            while (i < size) {
+                TL_iv.pageTableRow pagetablerow = arrayList2.get(i);
+                i++;
+                TL_iv.pageTableRow pagetablerow2 = pagetablerow;
                 sb.append("<tr>");
-                if (pagetablerow != null && (arrayList = pagetablerow.cells) != null) {
-                    for (TL_iv.pageTableCell pagetablecell : arrayList) {
-                        if (pagetablecell != null) {
-                            String str = pagetablecell.header ? "th" : "td";
+                if (pagetablerow2 != null && (arrayList = pagetablerow2.cells) != null) {
+                    int size2 = arrayList.size();
+                    int i2 = 0;
+                    while (i2 < size2) {
+                        TL_iv.pageTableCell pagetablecell = arrayList.get(i2);
+                        i2++;
+                        TL_iv.pageTableCell pagetablecell2 = pagetablecell;
+                        if (pagetablecell2 != null) {
+                            String str3 = pagetablecell2.header ? "th" : "td";
                             sb.append('<');
-                            sb.append(str);
-                            int i = pagetablecell.colspan;
-                            if (i <= 1) {
-                                i = 0;
+                            sb.append(str3);
+                            int i3 = pagetablecell2.colspan;
+                            if (i3 <= 1) {
+                                i3 = 0;
                             }
-                            if (i > 0) {
-                                sb.append(" colspan=\"");
-                                sb.append(i);
-                                sb.append('\"');
-                            }
-                            int i2 = pagetablecell.rowspan;
-                            int i3 = i2 > 1 ? i2 : 0;
                             if (i3 > 0) {
-                                sb.append(" rowspan=\"");
+                                sb.append(" colspan=\"");
                                 sb.append(i3);
                                 sb.append('\"');
                             }
-                            String str2 = pagetablecell.align_right ? "right" : pagetablecell.align_center ? "center" : null;
-                            if (str2 != null) {
+                            int i4 = pagetablecell2.rowspan;
+                            if (i4 <= 1) {
+                                i4 = 0;
+                            }
+                            if (i4 > 0) {
+                                sb.append(" rowspan=\"");
+                                sb.append(i4);
+                                sb.append('\"');
+                            }
+                            if (pagetablecell2.align_right) {
+                                str = "right";
+                            } else {
+                                str = pagetablecell2.align_center ? "center" : null;
+                            }
+                            if (str != null) {
                                 sb.append(" align=\"");
+                                sb.append(str);
+                                sb.append('\"');
+                            }
+                            if (pagetablecell2.valign_bottom) {
+                                str2 = "bottom";
+                            } else {
+                                str2 = pagetablecell2.valign_middle ? "middle" : null;
+                            }
+                            if (str2 != null) {
+                                sb.append(" valign=\"");
                                 sb.append(str2);
                                 sb.append('\"');
                             }
-                            String str3 = pagetablecell.valign_bottom ? "bottom" : pagetablecell.valign_middle ? "middle" : null;
-                            if (str3 != null) {
-                                sb.append(" valign=\"");
-                                sb.append(str3);
-                                sb.append('\"');
-                            }
                             sb.append('>');
-                            appendInline(sb, TableModel.readStyledText(pagetablecell));
+                            appendInline(sb, TableModel.readStyledText(pagetablecell2));
                             sb.append("</");
-                            sb.append(str);
+                            sb.append(str3);
                             sb.append('>');
                         }
                     }
@@ -447,6 +470,7 @@ public abstract class RichHtml {
     }
 
     private static void serializeGallery(StringBuilder sb, TL_iv.PageBlock pageBlock, BlockRow blockRow) {
+        StringBuilder sb2;
         String str = pageBlock instanceof TL_iv.pageBlockSlideshow ? "slideshow" : "collage";
         sb.append("<div class=\"");
         sb.append(str);
@@ -461,24 +485,34 @@ public abstract class RichHtml {
                 if (pageBlock2 instanceof TL_iv.pageBlockVideo) {
                     long j = ((TL_iv.pageBlockVideo) pageBlock2).video_id;
                     if (j != 0) {
-                        appendMediaTag(sb, "video", j, mediaUploadState, pageBlock2);
+                        sb2 = sb;
+                        appendMediaTag(sb2, "video", j, mediaUploadState, pageBlock2);
+                    } else {
+                        sb2 = sb;
                     }
                 } else if (pageBlock2 instanceof TL_iv.pageBlockPhoto) {
                     long j2 = ((TL_iv.pageBlockPhoto) pageBlock2).photo_id;
                     if (j2 != 0) {
-                        appendMediaTag(sb, "img", j2, mediaUploadState, pageBlock2);
+                        sb2 = sb;
+                        appendMediaTag(sb2, "img", j2, mediaUploadState, pageBlock2);
+                    } else {
+                        sb2 = sb;
                     }
+                } else {
+                    sb2 = sb;
                 }
                 i++;
+                sb = sb2;
             }
         }
+        StringBuilder sb3 = sb;
         CharSequence charSequenceCaptionOf = captionOf(pageBlock);
         if (charSequenceCaptionOf != null && charSequenceCaptionOf.length() > 0) {
-            sb.append("<figcaption>");
-            appendInline(sb, charSequenceCaptionOf);
-            sb.append("</figcaption>");
+            sb3.append("<figcaption>");
+            appendInline(sb3, charSequenceCaptionOf);
+            sb3.append("</figcaption>");
         }
-        sb.append("</div>");
+        sb3.append("</div>");
     }
 
     private static void serializeMap(StringBuilder sb, TL_iv.pageBlockMap pageblockmap) {
@@ -679,9 +713,14 @@ public abstract class RichHtml {
         sb.append(">");
         ArrayList<TL_keyboard.PageButton> arrayList = pageblockbuttonrow.buttons;
         if (arrayList != null) {
-            for (TL_keyboard.PageButton pageButton : arrayList) {
-                if (pageButton != null) {
-                    appendButton(sb, pageButton.text, pageButton.type, pageButton.style);
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TL_keyboard.PageButton pageButton = arrayList.get(i);
+                i++;
+                TL_keyboard.PageButton pageButton2 = pageButton;
+                if (pageButton2 != null) {
+                    appendButton(sb, pageButton2.text, pageButton2.type, pageButton2.style);
                 }
             }
         }
@@ -791,12 +830,11 @@ public abstract class RichHtml {
 
     public static List parse(String str, Map map) {
         ArrayList arrayList = new ArrayList();
-        if (str == null) {
-            return arrayList;
-        }
-        parseBlocks(new Parser(str).parse(), arrayList, 0, map);
-        if (arrayList.isEmpty()) {
-            arrayList.add(new BlockRow(new TL_iv.pageBlockParagraph()));
+        if (str != null) {
+            parseBlocks(new Parser(str).parse(), arrayList, 0, map);
+            if (arrayList.isEmpty()) {
+                arrayList.add(new BlockRow(new TL_iv.pageBlockParagraph()));
+            }
         }
         return arrayList;
     }
@@ -819,10 +857,12 @@ public abstract class RichHtml {
                     if (spannableStringBuilder == null) {
                         spannableStringBuilder = new SpannableStringBuilder();
                     }
-                    appendInlineNode(spannableStringBuilder, node, 0, null, 0L);
+                    SpannableStringBuilder spannableStringBuilder2 = spannableStringBuilder;
+                    appendInlineNode(spannableStringBuilder2, node, 0, null, 0L);
+                    spannableStringBuilder = spannableStringBuilder2;
                 } else {
                     spannableStringBuilder = flushParagraph(arrayList, spannableStringBuilder, i);
-                    str.hashCode();
+                    str.getClass();
                     switch (str) {
                         case "summary":
                             addText(arrayList, new TL_iv.pageBlockParagraph(), node, i);
@@ -991,7 +1031,13 @@ public abstract class RichHtml {
         pageblockbuttonrow.align_left = "left".equalsIgnoreCase(strAttr);
         pageblockbuttonrow.align_center = "center".equalsIgnoreCase(strAttr);
         pageblockbuttonrow.align_right = "right".equalsIgnoreCase(strAttr);
-        for (Node node2 : node.children) {
+        ArrayList arrayList = node.children;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Node node2 = (Node) obj;
             if (pageblockbuttonrow.buttons.size() >= 8) {
                 break;
             }
@@ -1012,10 +1058,16 @@ public abstract class RichHtml {
     }
 
     private static void collectTableRows(Node node, TL_iv.pageBlockTable pageblocktable) {
-        for (Node node2 : node.children) {
+        ArrayList arrayList = node.children;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Node node2 = (Node) obj;
             if (!node2.isText) {
                 String str = node2.tag;
-                str.hashCode();
+                str.getClass();
                 switch (str) {
                     case "tr":
                         pageblocktable.rows.add(parseTableRow(node2));
@@ -1036,7 +1088,13 @@ public abstract class RichHtml {
     private static TL_iv.pageTableRow parseTableRow(Node node) {
         TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
         pagetablerow.cells = new ArrayList<>();
-        for (Node node2 : node.children) {
+        ArrayList arrayList = node.children;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Node node2 = (Node) obj;
             if (!node2.isText && ("td".equals(node2.tag) || "th".equals(node2.tag))) {
                 TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
                 pagetablecell.colspan = parseIntAttr(node2.attr("colspan"), 0);
@@ -1084,7 +1142,7 @@ public abstract class RichHtml {
 
     private static BlockRow buildMediaRow(Node node) {
         String str = node.tag;
-        str.hashCode();
+        str.getClass();
         switch (str) {
             case "div":
                 String strAttr = node.attr("class");
@@ -1179,8 +1237,14 @@ public abstract class RichHtml {
     private static BlockRow parseGallery(Node node, boolean z) {
         TL_iv.PageBlock pageblockslideshow = z ? new TL_iv.pageBlockSlideshow() : new TL_iv.pageBlockCollage();
         ArrayList arrayListGalleryItems = RichEditorListView.galleryItems(pageblockslideshow);
+        ArrayList arrayList = node.children;
+        int size = arrayList.size();
         CharSequence charSequenceInlineOf = null;
-        for (Node node2 : node.children) {
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Node node2 = (Node) obj;
             if (!node2.isText) {
                 if ("figcaption".equals(node2.tag)) {
                     charSequenceInlineOf = inlineOf(node2);
@@ -1215,9 +1279,15 @@ public abstract class RichHtml {
     }
 
     private static void parseFigure(Node node, ArrayList arrayList, int i) {
+        ArrayList arrayList2 = node.children;
+        int size = arrayList2.size();
         BlockRow blockRowBuildMediaRow = null;
         CharSequence charSequenceInlineOf = null;
-        for (Node node2 : node.children) {
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList2.get(i2);
+            i2++;
+            Node node2 = (Node) obj;
             if (!node2.isText) {
                 if ("figcaption".equals(node2.tag)) {
                     charSequenceInlineOf = inlineOf(node2);
@@ -1266,64 +1336,82 @@ public abstract class RichHtml {
     }
 
     private static long parseLongAttr(String str, long j) {
-        if (str == null) {
-            return j;
+        if (str != null) {
+            try {
+                return Long.parseLong(str.trim());
+            } catch (Exception unused) {
+            }
         }
-        try {
-            return Long.parseLong(str.trim());
-        } catch (Exception unused) {
-            return j;
-        }
+        return j;
     }
 
     private static int parseIntAttr(String str, int i) {
-        if (str == null) {
-            return i;
+        if (str != null) {
+            try {
+                return Integer.parseInt(str.trim());
+            } catch (Exception unused) {
+            }
         }
-        try {
-            return Integer.parseInt(str.trim());
-        } catch (Exception unused) {
-            return i;
-        }
+        return i;
     }
 
     private static double parseDoubleAttr(String str, double d) {
-        if (str == null) {
-            return d;
+        if (str != null) {
+            try {
+                return Double.parseDouble(str.trim());
+            } catch (Exception unused) {
+            }
         }
-        try {
-            return Double.parseDouble(str.trim());
-        } catch (Exception unused) {
-            return d;
-        }
+        return d;
     }
 
     private static void parseList(Node node, ArrayList arrayList, int i, boolean z) {
         int i2 = i + 1;
-        int i3 = 1;
-        for (Node node2 : node.children) {
+        ArrayList arrayList2 = node.children;
+        int size = arrayList2.size();
+        int i3 = 0;
+        int i4 = 1;
+        while (i3 < size) {
+            Object obj = arrayList2.get(i3);
+            i3++;
+            Node node2 = (Node) obj;
             if (!node2.isText && "li".equals(node2.tag)) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                ArrayList<Node> arrayList2 = new ArrayList();
-                for (Node node3 : node2.children) {
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = node2.children;
+                int i5 = 0;
+                for (int size2 = arrayList4.size(); i5 < size2; size2 = size2) {
+                    int i6 = i5 + 1;
+                    Node node3 = (Node) arrayList4.get(i5);
                     if (!node3.isText && ("ul".equals(node3.tag) || "ol".equals(node3.tag))) {
-                        arrayList2.add(node3);
-                    } else if (node3.isText) {
-                        spannableStringBuilder.append((CharSequence) decode(node3.text));
+                        arrayList3.add(node3);
                     } else {
-                        appendInlineNode(spannableStringBuilder, node3, 0, null, 0L);
+                        if (node3.isText) {
+                            spannableStringBuilder.append((CharSequence) decode(node3.text));
+                        } else {
+                            appendInlineNode(spannableStringBuilder, node3, 0, null, 0L);
+                        }
+                        arrayList4 = arrayList4;
+                        i5 = i6;
                     }
+                    arrayList4 = arrayList4;
+                    i5 = i6;
                 }
                 TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
                 pageblockparagraph.text = RichTextStyle.fromSpannable(trim(spannableStringBuilder));
-                BlockRow blockRow = new BlockRow(pageblockparagraph, i2, z ? i3 : 0);
+                BlockRow blockRow = new BlockRow(pageblockparagraph, i2, z ? i4 : 0);
                 blockRow.checkbox = node2.has("data-checkbox") || hasCheckboxClass(node2);
                 blockRow.checked = node2.has("data-checked");
                 arrayList.add(blockRow);
-                for (Node node4 : arrayList2) {
+                int size3 = arrayList3.size();
+                int i7 = 0;
+                while (i7 < size3) {
+                    Object obj2 = arrayList3.get(i7);
+                    i7++;
+                    Node node4 = (Node) obj2;
                     parseList(node4, arrayList, i2, "ol".equals(node4.tag));
                 }
-                i3++;
+                i4++;
             }
         }
     }
@@ -1334,18 +1422,24 @@ public abstract class RichHtml {
         pageblockdetails.blocks = new ArrayList<>();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         ArrayList arrayList2 = new ArrayList();
-        for (Node node2 : node.children) {
+        ArrayList arrayList3 = node.children;
+        int size = arrayList3.size();
+        int i2 = 0;
+        while (i2 < size) {
+            int i3 = i2 + 1;
+            Node node2 = (Node) arrayList3.get(i2);
             if (!node2.isText && "summary".equals(node2.tag)) {
                 appendChildrenInline(spannableStringBuilder, node2, 0, null, 0L);
             } else {
                 arrayList2.add(node2);
             }
+            i2 = i3;
         }
         pageblockdetails.title = RichTextStyle.fromSpannable(trim(spannableStringBuilder));
         arrayList.add(new BlockRow(pageblockdetails));
-        int size = arrayList.size();
+        int size2 = arrayList.size();
         parseBlocks(arrayList2, arrayList, i, map);
-        if (arrayList.size() == size) {
+        if (arrayList.size() == size2) {
             arrayList.add(new BlockRow(new TL_iv.pageBlockParagraph()));
         }
         BlockRow blockRow = new BlockRow(new TL_iv.pageBlockParagraph());
@@ -1356,15 +1450,19 @@ public abstract class RichHtml {
     private static void parseBlockquote(Node node, ArrayList arrayList, int i, Map map) {
         boolean z;
         String str;
-        Iterator it = node.children.iterator();
+        ArrayList arrayList2 = node.children;
+        int size = arrayList2.size();
         Node node2 = null;
+        int i2 = 0;
         boolean z2 = false;
         while (true) {
             z = true;
-            if (!it.hasNext()) {
+            if (i2 >= size) {
                 break;
             }
-            Node node3 = (Node) it.next();
+            Object obj = arrayList2.get(i2);
+            i2++;
+            Node node3 = (Node) obj;
             if (!node3.isText && (str = node3.tag) != null) {
                 if ("cite".equals(str)) {
                     if (node2 == null) {
@@ -1392,20 +1490,26 @@ public abstract class RichHtml {
             return;
         }
         long jNewId = RichContainer.newId();
-        int size = arrayList.size();
-        ArrayList arrayList2 = new ArrayList();
-        for (Node node4 : node.children) {
+        int size2 = arrayList.size();
+        ArrayList arrayList3 = new ArrayList();
+        ArrayList arrayList4 = node.children;
+        int size3 = arrayList4.size();
+        int i3 = 0;
+        while (i3 < size3) {
+            Object obj2 = arrayList4.get(i3);
+            i3++;
+            Node node4 = (Node) obj2;
             if (node4.isText || !"cite".equals(node4.tag)) {
-                arrayList2.add(node4);
+                arrayList3.add(node4);
             }
         }
-        parseBlocks(arrayList2, arrayList, i, map);
-        if (arrayList.size() == size) {
+        parseBlocks(arrayList3, arrayList, i, map);
+        if (arrayList.size() == size2) {
             arrayList.add(new BlockRow(new TL_iv.pageBlockParagraph(), i, 0));
         }
-        while (size < arrayList.size()) {
-            ((BlockRow) arrayList.get(size)).quoteIds.add(0, Long.valueOf(jNewId));
-            size++;
+        while (size2 < arrayList.size()) {
+            ((BlockRow) arrayList.get(size2)).quoteIds.add(0, Long.valueOf(jNewId));
+            size2++;
         }
         if (richTextCiteAuthor == null || map == null) {
             return;
@@ -1415,13 +1519,17 @@ public abstract class RichHtml {
 
     private static void parsePullquote(Node node, ArrayList arrayList, int i) {
         Node node2;
-        Iterator it = node.children.iterator();
+        ArrayList arrayList2 = node.children;
+        int size = arrayList2.size();
+        int i2 = 0;
         while (true) {
-            if (!it.hasNext()) {
+            if (i2 >= size) {
                 node2 = null;
                 break;
             }
-            node2 = (Node) it.next();
+            Object obj = arrayList2.get(i2);
+            i2++;
+            node2 = (Node) obj;
             if (!node2.isText && "cite".equals(node2.tag)) {
                 break;
             }
@@ -1446,17 +1554,29 @@ public abstract class RichHtml {
     }
 
     private static void appendChildrenInlineExcept(SpannableStringBuilder spannableStringBuilder, Node node, String str) {
-        for (Node node2 : node.children) {
+        SpannableStringBuilder spannableStringBuilder2;
+        ArrayList arrayList = node.children;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Node node2 = (Node) obj;
             if (node2.isText) {
-                appendStyled(spannableStringBuilder, decode(node2.text), 0, null, 0L);
-            } else if (!str.equals(node2.tag)) {
-                appendInlineNode(spannableStringBuilder, node2, 0, null, 0L);
+                spannableStringBuilder2 = spannableStringBuilder;
+                appendStyled(spannableStringBuilder2, decode(node2.text), 0, null, 0L);
+            } else {
+                spannableStringBuilder2 = spannableStringBuilder;
+                if (!str.equals(node2.tag)) {
+                    appendInlineNode(spannableStringBuilder2, node2, 0, null, 0L);
+                }
             }
+            spannableStringBuilder = spannableStringBuilder2;
         }
     }
 
     private static boolean isInlineTag(String str) {
-        str.hashCode();
+        str.getClass();
         switch (str) {
             case "spoiler":
             case "button":
@@ -1484,19 +1604,41 @@ public abstract class RichHtml {
     }
 
     private static void appendChildrenInline(SpannableStringBuilder spannableStringBuilder, Node node, int i, String str, long j) {
-        for (Node node2 : node.children) {
+        SpannableStringBuilder spannableStringBuilder2;
+        int i2;
+        String str2;
+        long j2;
+        ArrayList arrayList = node.children;
+        int size = arrayList.size();
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            Node node2 = (Node) obj;
             if (node2.isText) {
-                appendStyled(spannableStringBuilder, decode(node2.text), i, str, j);
+                spannableStringBuilder2 = spannableStringBuilder;
+                i2 = i;
+                str2 = str;
+                j2 = j;
+                appendStyled(spannableStringBuilder2, decode(node2.text), i2, str2, j2);
             } else {
-                appendInlineNode(spannableStringBuilder, node2, i, str, j);
+                spannableStringBuilder2 = spannableStringBuilder;
+                i2 = i;
+                str2 = str;
+                j2 = j;
+                appendInlineNode(spannableStringBuilder2, node2, i2, str2, j2);
             }
+            spannableStringBuilder = spannableStringBuilder2;
+            i = i2;
+            str = str2;
+            j = j2;
         }
     }
 
     private static void appendInlineNode(SpannableStringBuilder spannableStringBuilder, Node node, int i, String str, long j) {
-        long j2;
         int i2;
         int i3;
+        long j2;
         String str2;
         int i4;
         TL_keyboard.InlineButtonType inlineButtonTypeInlineButtonTypeOf;
@@ -1515,77 +1657,77 @@ public abstract class RichHtml {
             return;
         }
         String str3 = node.tag;
-        str3.hashCode();
+        str3.getClass();
         switch (str3) {
             case "spoiler":
-                i2 = i | 256;
+                i3 = i | 256;
                 str2 = str;
                 j2 = j;
-                i3 = i2;
+                i2 = i3;
                 if (node.children.isEmpty() || node.isText) {
-                    appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                    appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                     break;
                 }
                 break;
             case "strike":
             case "s":
             case "del":
-                i2 = i | 8;
+                i3 = i | 8;
                 str2 = str;
                 j2 = j;
-                i3 = i2;
+                i2 = i3;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             case "strong":
             case "b":
-                i2 = i | 1;
+                i3 = i | 1;
                 str2 = str;
                 j2 = j;
-                i3 = i2;
+                i2 = i3;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             case "a":
                 String strAttr = node.attr("href");
                 if (strAttr != null) {
+                    i2 = i;
                     j2 = j;
-                    i3 = i;
                     str2 = strAttr;
                 } else {
-                    j2 = j;
-                    i3 = i;
+                    i2 = i;
                     str2 = str;
+                    j2 = j;
                 }
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             case "i":
             case "em":
-                i2 = i | 2;
+                i3 = i | 2;
                 str2 = str;
                 j2 = j;
-                i3 = i2;
+                i2 = i3;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             case "u":
-                i2 = 16 | i;
+                i3 = i | 16;
                 str2 = str;
                 j2 = j;
-                i3 = i2;
+                i2 = i3;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             case "br":
                 appendStyled(spannableStringBuilder, "\n", i, str, j);
@@ -1595,70 +1737,74 @@ public abstract class RichHtml {
                 i2 = i | 4;
                 str2 = str;
                 j2 = j;
-                i3 = i2;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             case "sub":
                 i2 = i | 16384;
                 str2 = str;
                 j2 = j;
-                i3 = i2;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             case "sup":
                 i4 = 32768;
-                i2 = i4 | i;
+                i2 = i | i4;
                 str2 = str;
                 j2 = j;
-                i3 = i2;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             case "mark":
                 i4 = 65536;
-                i2 = i4 | i;
+                i2 = i | i4;
                 str2 = str;
                 j2 = j;
-                i3 = i2;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             case "animated-emoji":
                 String strAttr2 = node.attr("data-document-id");
                 if (strAttr2 != null) {
                     try {
+                        i2 = i;
                         j2 = Long.parseLong(strAttr2.trim());
+                        str2 = str;
                     } catch (Exception unused) {
+                        i2 = i;
+                        str2 = str;
                         j2 = j;
                     }
-                } else {
-                    j2 = j;
+                    if (node.children.isEmpty()) {
+                        break;
+                    }
+                    appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
+                    break;
                 }
-                i3 = i;
+                i2 = i;
                 str2 = str;
+                j2 = j;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
             default:
-                j2 = j;
-                i3 = i;
+                i2 = i;
                 str2 = str;
+                j2 = j;
                 if (node.children.isEmpty()) {
                     break;
                 }
-                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                appendChildrenInline(spannableStringBuilder, node, i2, str2, j2);
                 break;
         }
     }
@@ -1794,7 +1940,7 @@ public abstract class RichHtml {
 
     private static String entity(String str) {
         int i;
-        str.hashCode();
+        str.getClass();
         switch (str) {
             case "gt":
                 return ">";
@@ -1862,7 +2008,7 @@ public abstract class RichHtml {
     }
 
     public static boolean isVoid(String str) {
-        str.hashCode();
+        str.getClass();
         switch (str) {
             case "br":
             case "hr":
@@ -1910,7 +2056,7 @@ public abstract class RichHtml {
                         int iFindTagEnd = findTagEnd(this.p);
                         if (iFindTagEnd < 0) {
                             addText(arrayList2, arrayList, this.s.substring(this.p));
-                            break;
+                            return arrayList;
                         }
                         String strSubstring = this.s.substring(this.p + 1, iFindTagEnd);
                         this.p = iFindTagEnd + 1;

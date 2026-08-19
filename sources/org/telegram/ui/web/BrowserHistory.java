@@ -4,7 +4,6 @@ import android.util.LongSparseArray;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -64,12 +63,12 @@ public abstract class BrowserHistory {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                BrowserHistory.lambda$preloadHistory$1();
+                BrowserHistory.m5060$r8$lambda$XLggRB9xRVBOZxQbci8KT9Gp2I();
             }
         });
     }
 
-    public static void lambda$preloadHistory$1() {
+    public static void m5060$r8$lambda$XLggRB9xRVBOZxQbci8KT9Gp2I() {
         final ArrayList arrayList = new ArrayList();
         final LongSparseArray longSparseArray = new LongSparseArray();
         try {
@@ -90,23 +89,26 @@ public abstract class BrowserHistory {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BrowserHistory.lambda$preloadHistory$0(arrayList, longSparseArray);
+                BrowserHistory.$r8$lambda$t5XNsDGR4uk9GQQTvfDDerHU1uc(arrayList, longSparseArray);
             }
         });
     }
 
-    public static void lambda$preloadHistory$0(ArrayList arrayList, LongSparseArray longSparseArray) {
+    public static void $r8$lambda$t5XNsDGR4uk9GQQTvfDDerHU1uc(ArrayList arrayList, LongSparseArray longSparseArray) {
+        int i = 0;
         history.addAll(0, arrayList);
-        for (int i = 0; i < longSparseArray.size(); i++) {
-            historyById.put(longSparseArray.keyAt(i), (Entry) longSparseArray.valueAt(i));
+        for (int i2 = 0; i2 < longSparseArray.size(); i2++) {
+            historyById.put(longSparseArray.keyAt(i2), (Entry) longSparseArray.valueAt(i2));
         }
         historyLoaded = true;
         historyLoading = false;
         ArrayList arrayList2 = callbacks;
         if (arrayList2 != null) {
-            Iterator it = arrayList2.iterator();
-            while (it.hasNext()) {
-                ((Utilities.Callback) it.next()).run(arrayList);
+            int size = arrayList2.size();
+            while (i < size) {
+                Object obj = arrayList2.get(i);
+                i++;
+                ((Utilities.Callback) obj).run(arrayList);
             }
             callbacks = null;
         }
@@ -168,12 +170,12 @@ public abstract class BrowserHistory {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                BrowserHistory.lambda$saveHistory$2();
+                BrowserHistory.$r8$lambda$dRU362fkhJ4Ahr_Zn4AAc3sHuCE();
             }
         });
     }
 
-    public static void lambda$saveHistory$2() {
+    public static void $r8$lambda$dRU362fkhJ4Ahr_Zn4AAc3sHuCE() {
         try {
             File historyFile = getHistoryFile();
             if (!historyFile.exists()) {
@@ -182,15 +184,23 @@ public abstract class BrowserHistory {
             long size = history.size();
             SerializedData serializedData = new SerializedData(true);
             serializedData.writeInt64(size);
-            Iterator it = history.iterator();
-            while (it.hasNext()) {
-                ((Entry) it.next()).serializeToStream(serializedData);
+            ArrayList arrayList = history;
+            int size2 = arrayList.size();
+            int i = 0;
+            int i2 = 0;
+            while (i2 < size2) {
+                Object obj = arrayList.get(i2);
+                i2++;
+                ((Entry) obj).serializeToStream(serializedData);
             }
             SerializedData serializedData2 = new SerializedData(serializedData.length());
             serializedData2.writeInt64(size);
-            Iterator it2 = history.iterator();
-            while (it2.hasNext()) {
-                ((Entry) it2.next()).serializeToStream(serializedData2);
+            ArrayList arrayList2 = history;
+            int size3 = arrayList2.size();
+            while (i < size3) {
+                Object obj2 = arrayList2.get(i);
+                i++;
+                ((Entry) obj2).serializeToStream(serializedData2);
             }
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(historyFile);

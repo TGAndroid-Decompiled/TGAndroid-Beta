@@ -35,12 +35,12 @@ public class WindowVisibilityManager {
         this.listener = new OnVisibilityChangedListener() {
             @Override
             public final void onVisibilityChanged(boolean z) {
-                WindowVisibilityManager.lambda$new$0(weakReference, z);
+                WindowVisibilityManager.$r8$lambda$5BlAw3AoEPCLn11rm_5hye_Xvw0(weakReference, z);
             }
         };
     }
 
-    public static void lambda$new$0(WeakReference weakReference, boolean z) {
+    public static void $r8$lambda$5BlAw3AoEPCLn11rm_5hye_Xvw0(WeakReference weakReference, boolean z) {
         Window window = (Window) weakReference.get();
         if (window != null) {
             window.getDecorView().setVisibility(z ? 0 : 8);

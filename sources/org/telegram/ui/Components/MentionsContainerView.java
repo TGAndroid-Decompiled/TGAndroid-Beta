@@ -102,7 +102,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i);
     }
 
-    public static void lambda$updateListViewTranslation$3(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+    public static void $r8$lambda$dd_L2UtPYzHyIxI7hKB0lrroym8(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
     }
 
     protected boolean canOpen() {
@@ -141,7 +141,8 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         this.updateVisibilityRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                MentionsContainerView mentionsContainerView = this.f$0;
+                mentionsContainerView.updateListViewTranslation(!mentionsContainerView.shown, true);
             }
         };
         this.animationIndex = -1;
@@ -512,10 +513,6 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         super.requestLayout();
     }
 
-    public void lambda$new$0() {
-        updateListViewTranslation(!this.shown, true);
-    }
-
     public void updateVisibility(boolean z) {
         if (z) {
             boolean zIsReversed = isReversed();
@@ -562,7 +559,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         super.onMeasure(i, i2);
     }
 
-    private void updateListViewTranslation(final boolean z, boolean z2) {
+    public void updateListViewTranslation(final boolean z, boolean z2) {
         float fDp;
         int i;
         float fMax;
@@ -624,21 +621,21 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                 spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f5, float f6) {
-                        this.f$0.lambda$updateListViewTranslation$1(f3, f4, translationY, f2, dynamicAnimation, f5, f6);
+                        MentionsContainerView.$r8$lambda$cJjjMrgvbGDP6Jd8yGlxWFpKC5c(this.f$0, f3, f4, translationY, f2, dynamicAnimation, f5, f6);
                     }
                 });
                 if (z) {
                     this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f5, float f6) {
-                            this.f$0.lambda$updateListViewTranslation$2(z, dynamicAnimation, z3, f5, f6);
+                            MentionsContainerView.m2438$r8$lambda$wMMgskb3IAyZ0RrV69cCFP5vQ(this.f$0, z, dynamicAnimation, z3, f5, f6);
                         }
                     });
                 }
                 this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
                     public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f5, float f6) {
-                        MentionsContainerView.lambda$updateListViewTranslation$3(dynamicAnimation, z3, f5, f6);
+                        MentionsContainerView.$r8$lambda$dd_L2UtPYzHyIxI7hKB0lrroym8(dynamicAnimation, z3, f5, f6);
                     }
                 });
                 this.listViewTranslationAnimator.start();
@@ -656,23 +653,24 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         setVisibility(numValueOf.intValue());
     }
 
-    public void lambda$updateListViewTranslation$1(float f, float f2, float f3, float f4, DynamicAnimation dynamicAnimation, float f5, float f6) {
-        this.listView.setTranslationY(f5);
-        onAnimationScroll();
-        this.hideT = AndroidUtilities.lerp(f, f2, (f5 - f3) / (f4 - f3));
+    public static void $r8$lambda$cJjjMrgvbGDP6Jd8yGlxWFpKC5c(MentionsContainerView mentionsContainerView, float f, float f2, float f3, float f4, DynamicAnimation dynamicAnimation, float f5, float f6) {
+        mentionsContainerView.listView.setTranslationY(f5);
+        mentionsContainerView.onAnimationScroll();
+        mentionsContainerView.hideT = AndroidUtilities.lerp(f, f2, (f5 - f3) / (f4 - f3));
     }
 
-    public void lambda$updateListViewTranslation$2(boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
+    public static void m2438$r8$lambda$wMMgskb3IAyZ0RrV69cCFP5vQ(MentionsContainerView mentionsContainerView, boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
         if (z2) {
+            mentionsContainerView.getClass();
             return;
         }
-        this.listViewTranslationAnimator = null;
-        setVisibility(z ? 8 : 0);
-        if (this.switchLayoutManagerOnEnd && z) {
-            this.switchLayoutManagerOnEnd = false;
-            this.listView.setLayoutManager(getNeededLayoutManager());
-            this.shown = true;
-            updateVisibility(true);
+        mentionsContainerView.listViewTranslationAnimator = null;
+        mentionsContainerView.setVisibility(z ? 8 : 0);
+        if (mentionsContainerView.switchLayoutManagerOnEnd && z) {
+            mentionsContainerView.switchLayoutManagerOnEnd = false;
+            mentionsContainerView.listView.setLayoutManager(mentionsContainerView.getNeededLayoutManager());
+            mentionsContainerView.shown = true;
+            mentionsContainerView.updateVisibility(true);
         }
     }
 
@@ -686,7 +684,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$withDelegate$4(delegate, view, i);
+                MentionsContainerView.$r8$lambda$6wK1BOSmSmqI7TUdSrbJKaTMADo(this.f$0, delegate, view, i);
             }
         };
         this.mentionsOnItemClickListener = onItemClickListener;
@@ -694,29 +692,32 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         getListView().setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return this.f$0.lambda$withDelegate$5(view, motionEvent);
+                return MentionsContainerView.$r8$lambda$ABSTcLqgT8m9IUs5jgNSu1GW0tA(this.f$0, view, motionEvent);
             }
         });
     }
 
-    public void lambda$withDelegate$4(Delegate delegate, View view, int i) {
+    public static void $r8$lambda$6wK1BOSmSmqI7TUdSrbJKaTMADo(MentionsContainerView mentionsContainerView, Delegate delegate, View view, int i) {
         Paint.FontMetricsInt fontMetrics;
-        AnimatedEmojiSpan animatedEmojiSpan;
-        if (i == 0 || getAdapter().isBannedInline()) {
+        if (i == 0) {
+            mentionsContainerView.getClass();
+            return;
+        }
+        if (mentionsContainerView.getAdapter().isBannedInline()) {
             return;
         }
         int i2 = i - 1;
-        Object item = getAdapter().getItem(i2);
-        int resultStartPosition = getAdapter().getResultStartPosition();
-        int resultLength = getAdapter().getResultLength();
+        Object item = mentionsContainerView.getAdapter().getItem(i2);
+        int resultStartPosition = mentionsContainerView.getAdapter().getResultStartPosition();
+        int resultLength = mentionsContainerView.getAdapter().getResultLength();
         String str = "";
-        if (getAdapter().isLocalHashtagHint(i2)) {
-            TLRPC.Chat currentChat = getAdapter().chat;
-            if (currentChat == null && getAdapter().parentFragment != null) {
-                currentChat = getAdapter().parentFragment.getCurrentChat();
+        if (mentionsContainerView.getAdapter().isLocalHashtagHint(i2)) {
+            TLRPC.Chat currentChat = mentionsContainerView.getAdapter().chat;
+            if (currentChat == null && mentionsContainerView.getAdapter().parentFragment != null) {
+                currentChat = mentionsContainerView.getAdapter().parentFragment.getCurrentChat();
             }
             StringBuilder sb = new StringBuilder();
-            sb.append(getAdapter().getHashtagHint());
+            sb.append(mentionsContainerView.getAdapter().getHashtagHint());
             if (currentChat != null) {
                 str = "@" + ChatObject.getPublicUsername(currentChat);
             }
@@ -725,8 +726,8 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
             delegate.replaceText(resultStartPosition, resultLength, sb.toString(), false);
             return;
         }
-        if (getAdapter().isGlobalHashtagHint(i2)) {
-            delegate.replaceText(resultStartPosition, resultLength, getAdapter().getHashtagHint() + " ", false);
+        if (mentionsContainerView.getAdapter().isGlobalHashtagHint(i2)) {
+            delegate.replaceText(resultStartPosition, resultLength, mentionsContainerView.getAdapter().getHashtagHint() + " ", false);
             return;
         }
         if (item instanceof TLRPC.TL_document) {
@@ -734,7 +735,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                 ((StickerCell) view).getSendAnimationData();
             }
             TLRPC.TL_document tL_document = (TLRPC.TL_document) item;
-            delegate.onStickerSelected(tL_document, MessageObject.findAnimatedEmojiEmoticon(tL_document), getAdapter().getItemParent(i2));
+            delegate.onStickerSelected(tL_document, MessageObject.findAnimatedEmojiEmoticon(tL_document), mentionsContainerView.getAdapter().getItemParent(i2));
         } else if (item instanceof TLRPC.Chat) {
             String publicUsername = ChatObject.getPublicUsername((TLRPC.Chat) item);
             if (publicUsername != null) {
@@ -754,7 +755,9 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         } else if (item instanceof MediaDataController.KeywordResult) {
             String str2 = ((MediaDataController.KeywordResult) item).emoji;
             delegate.addEmojiToRecent(str2);
-            if (str2 != null && str2.startsWith("animated_")) {
+            if (str2 == null || !str2.startsWith("animated_")) {
+                delegate.replaceText(resultStartPosition, resultLength, str2, true);
+            } else {
                 try {
                     try {
                         fontMetrics = delegate.getFontMetrics();
@@ -765,36 +768,30 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                     long j = Long.parseLong(str2.substring(9));
                     TLRPC.Document documentFindDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, j);
                     SpannableString spannableString2 = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(documentFindDocument));
-                    if (documentFindDocument != null) {
-                        animatedEmojiSpan = new AnimatedEmojiSpan(documentFindDocument, fontMetrics);
-                    } else {
-                        animatedEmojiSpan = new AnimatedEmojiSpan(j, fontMetrics);
-                    }
-                    spannableString2.setSpan(animatedEmojiSpan, 0, spannableString2.length(), 33);
+                    spannableString2.setSpan(documentFindDocument != null ? new AnimatedEmojiSpan(documentFindDocument, fontMetrics) : new AnimatedEmojiSpan(j, fontMetrics), 0, spannableString2.length(), 33);
                     delegate.replaceText(resultStartPosition, resultLength, spannableString2, false);
                 } catch (Exception unused) {
                     delegate.replaceText(resultStartPosition, resultLength, str2, true);
                 }
-            } else {
-                delegate.replaceText(resultStartPosition, resultLength, str2, true);
             }
-            updateVisibility(false);
+            mentionsContainerView.updateVisibility(false);
         }
         if (item instanceof TLRPC.BotInlineResult) {
             TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) item;
-            if ((botInlineResult.type.equals("photo") && (botInlineResult.photo != null || botInlineResult.content != null)) || ((botInlineResult.type.equals("gif") && (botInlineResult.document != null || botInlineResult.content != null)) || (botInlineResult.type.equals("video") && botInlineResult.document != null))) {
-                ArrayList arrayList = new ArrayList(getAdapter().getSearchResultBotContext());
-                this.botContextResults = arrayList;
-                PhotoViewer.getInstance().setParentActivity(this.baseFragment, this.resourcesProvider);
-                PhotoViewer.getInstance().openPhotoForSelect(arrayList, getAdapter().getItemPosition(i2), 3, false, this.botContextProvider, null);
+            if ((!botInlineResult.type.equals("photo") || (botInlineResult.photo == null && botInlineResult.content == null)) && ((!botInlineResult.type.equals("gif") || (botInlineResult.document == null && botInlineResult.content == null)) && (!botInlineResult.type.equals("video") || botInlineResult.document == null))) {
+                delegate.sendBotInlineResult(botInlineResult, true, 0);
                 return;
             }
-            delegate.sendBotInlineResult(botInlineResult, true, 0);
+            ArrayList arrayList = new ArrayList(mentionsContainerView.getAdapter().getSearchResultBotContext());
+            mentionsContainerView.botContextResults = arrayList;
+            PhotoViewer.getInstance().setParentActivity(mentionsContainerView.baseFragment, mentionsContainerView.resourcesProvider);
+            PhotoViewer.getInstance().openPhotoForSelect(arrayList, mentionsContainerView.getAdapter().getItemPosition(i2), 3, false, mentionsContainerView.botContextProvider, null);
         }
     }
 
-    public boolean lambda$withDelegate$5(View view, MotionEvent motionEvent) {
-        return ContentPreviewViewer.getInstance().onTouch(motionEvent, getListView(), 0, this.mentionsOnItemClickListener, null, this.resourcesProvider);
+    public static boolean $r8$lambda$ABSTcLqgT8m9IUs5jgNSu1GW0tA(MentionsContainerView mentionsContainerView, View view, MotionEvent motionEvent) {
+        mentionsContainerView.getClass();
+        return ContentPreviewViewer.getInstance().onTouch(motionEvent, mentionsContainerView.getListView(), 0, mentionsContainerView.mentionsOnItemClickListener, null, mentionsContainerView.resourcesProvider);
     }
 
     public class MentionsListView extends RecyclerListView {
@@ -852,6 +849,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
 
         @Override
         public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            MotionEvent motionEvent2;
             if (MentionsContainerView.this.linearLayoutManager.getReverseLayout()) {
                 if (!this.isDragging && MentionsContainerView.this.paddedAdapter != null && MentionsContainerView.this.paddedAdapter.paddingView != null && MentionsContainerView.this.paddedAdapter.paddingViewAttached && motionEvent.getY() > MentionsContainerView.this.paddedAdapter.paddingView.getTop()) {
                     return false;
@@ -859,11 +857,22 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
             } else if (!this.isDragging && MentionsContainerView.this.paddedAdapter != null && MentionsContainerView.this.paddedAdapter.paddingView != null && MentionsContainerView.this.paddedAdapter.paddingViewAttached && motionEvent.getY() < MentionsContainerView.this.paddedAdapter.paddingView.getBottom()) {
                 return false;
             }
-            boolean z = !this.isScrolling && ContentPreviewViewer.getInstance().onInterceptTouchEvent(motionEvent, MentionsContainerView.this.listView, 0, null, this.resourcesProvider);
-            if ((MentionsContainerView.this.adapter.isStickers() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) {
+            if (!this.isScrolling) {
+                motionEvent2 = motionEvent;
+                boolean z = ContentPreviewViewer.getInstance().onInterceptTouchEvent(motionEvent2, MentionsContainerView.this.listView, 0, null, this.resourcesProvider);
+                if ((!MentionsContainerView.this.adapter.isStickers() && motionEvent2.getAction() == 0) || motionEvent2.getAction() == 2) {
+                    MentionsContainerView.this.adapter.doSomeStickersAction();
+                }
+                return !super.onInterceptTouchEvent(motionEvent2) || z;
+            }
+            motionEvent2 = motionEvent;
+            if (!MentionsContainerView.this.adapter.isStickers()) {
+                MentionsContainerView.this.adapter.doSomeStickersAction();
+            } else {
                 MentionsContainerView.this.adapter.doSomeStickersAction();
             }
-            return super.onInterceptTouchEvent(motionEvent) || z;
+            if (super.onInterceptTouchEvent(motionEvent2)) {
+            }
         }
 
         @Override
@@ -964,13 +973,13 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
             AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    MentionsContainerView.lambda$didReceivedNotification$6((View) obj);
+                    MentionsContainerView.$r8$lambda$P0RBUas03aNl8uv9eCnt3Tgs_hs((View) obj);
                 }
             });
         }
     }
 
-    public static void lambda$didReceivedNotification$6(View view) {
+    public static void $r8$lambda$P0RBUas03aNl8uv9eCnt3Tgs_hs(View view) {
         if (view instanceof MentionCell) {
             ((MentionCell) view).invalidateEmojis();
         } else if (view instanceof QuickRepliesActivity.QuickReplyView) {

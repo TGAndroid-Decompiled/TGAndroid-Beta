@@ -68,7 +68,7 @@ public class ProfileBirthdayEffect extends View {
                     post(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onDraw$0();
+                            this.f$0.start();
                         }
                     });
                 }
@@ -79,6 +79,7 @@ public class ProfileBirthdayEffect extends View {
                 this.lastTime = jCurrentTimeMillis;
                 updateSourcePoint();
                 float filterWidth = EmojiAnimationsOverlay.getFilterWidth();
+                float f = 2.0f;
                 this.fetcher.interactionAsset.setImageCoords((getWidth() - AndroidUtilities.dp(filterWidth)) / 2.0f, Math.max(0.0f, this.sourcePoint.y - (AndroidUtilities.dp(filterWidth) * 0.5f)), AndroidUtilities.dp(filterWidth), AndroidUtilities.dp(filterWidth));
                 canvas.save();
                 canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
@@ -89,23 +90,24 @@ public class ProfileBirthdayEffect extends View {
                 int size = this.fetcher.digitAssets.size() - 1;
                 while (size >= 0) {
                     ImageReceiverAsset imageReceiverAsset = (ImageReceiverAsset) this.fetcher.digitAssets.get(size);
-                    float f = size;
-                    float fCascade = AndroidUtilities.cascade(this.t, f, this.fetcher.digitAssets.size(), 1.8f);
-                    float f2 = iDp;
-                    float f3 = 0.88f * f2;
-                    float width = (getWidth() - ((this.fetcher.digitAssets.size() - i) * f3)) / 2.0f;
+                    float f2 = size;
+                    float fCascade = AndroidUtilities.cascade(this.t, f2, this.fetcher.digitAssets.size(), 1.8f);
+                    float f3 = iDp;
+                    float f4 = 0.88f * f3;
+                    float width = (getWidth() - ((this.fetcher.digitAssets.size() - i) * f4)) / f;
                     PointF pointF = this.sourcePoint;
-                    float f4 = pointF.x;
-                    float f5 = pointF.y;
-                    float f6 = f4 + (f3 * f) + ((width - f4) * fCascade);
-                    float fPow = f5 - ((f5 + f2) * ((float) Math.pow(this.t, 2.0d)));
+                    float f5 = pointF.x;
+                    float f6 = pointF.y;
+                    float f7 = f5 + (f4 * f2) + ((width - f5) * fCascade);
+                    float fPow = f6 - ((f6 + f3) * ((float) Math.pow(this.t, 2.0d)));
                     float interpolation = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(Utilities.clamp(fCascade / 0.4f, 1.0f, 0.0f));
-                    float f7 = (f2 / 2.0f) * interpolation;
-                    float f8 = f2 * interpolation;
-                    imageReceiverAsset.setImageCoords(f6 - f7, fPow - f7, f8, f8);
+                    float f8 = (f3 / 2.0f) * interpolation;
+                    float f9 = f3 * interpolation;
+                    imageReceiverAsset.setImageCoords(f7 - f8, fPow - f8, f9, f9);
                     imageReceiverAsset.draw(canvas);
                     size--;
                     i = 1;
+                    f = 2.0f;
                 }
                 if (this.t >= 1.0f) {
                     this.isPlaying = false;
@@ -143,7 +145,7 @@ public class ProfileBirthdayEffect extends View {
         this.attached = true;
     }
 
-    public boolean lambda$onDraw$0() {
+    public boolean start() {
         if (!this.fetcher.loaded || this.t < 1.0f) {
             return false;
         }
@@ -250,7 +252,7 @@ public class ProfileBirthdayEffect extends View {
                 MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName, 0, false, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$new$1(hashSet, arrayList, (TLRPC.TL_messages_stickerSet) obj);
+                        ProfileBirthdayEffect.BirthdayEffectFetcher.$r8$lambda$Uw14Neyx9nwUXJ5Q3DFi1a_XHnw(this.f$0, hashSet, arrayList, (TLRPC.TL_messages_stickerSet) obj);
                     }
                 });
             }
@@ -260,12 +262,13 @@ public class ProfileBirthdayEffect extends View {
             MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$new$3(str2, (TLRPC.TL_messages_stickerSet) obj);
+                    ProfileBirthdayEffect.BirthdayEffectFetcher.m3927$r8$lambda$BwgwOW4HpUfoY1zUP152wOsIE(this.f$0, str2, (TLRPC.TL_messages_stickerSet) obj);
                 }
             });
         }
 
-        public void lambda$new$1(HashSet hashSet, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        public static void $r8$lambda$Uw14Neyx9nwUXJ5Q3DFi1a_XHnw(final BirthdayEffectFetcher birthdayEffectFetcher, HashSet hashSet, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+            birthdayEffectFetcher.getClass();
             HashMap map = new HashMap();
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
@@ -283,13 +286,13 @@ public class ProfileBirthdayEffect extends View {
             HashMap map2 = new HashMap();
             for (Map.Entry entry : map.entrySet()) {
                 Integer num2 = (Integer) entry.getKey();
-                num2.intValue();
+                num2.getClass();
                 final ImageReceiverAsset imageReceiverAsset = new ImageReceiverAsset();
-                this.allAssets.add(imageReceiverAsset);
+                birthdayEffectFetcher.allAssets.add(imageReceiverAsset);
                 imageReceiverAsset.setEmoji((TLRPC.Document) entry.getValue(), "80_80", tL_messages_stickerSet, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$0(imageReceiverAsset);
+                        ProfileBirthdayEffect.BirthdayEffectFetcher.$r8$lambda$WnloPND_MaDFN0P3fWF0o8EP3fI(this.f$0, imageReceiverAsset);
                     }
                 });
                 imageReceiverAsset.onAttachedToWindow();
@@ -297,43 +300,44 @@ public class ProfileBirthdayEffect extends View {
             }
             for (int i = 0; i < arrayList.size(); i++) {
                 Integer num3 = (Integer) arrayList.get(i);
-                num3.intValue();
-                this.digitAssets.add((ImageReceiverAsset) map2.get(num3));
+                num3.getClass();
+                birthdayEffectFetcher.digitAssets.add((ImageReceiverAsset) map2.get(num3));
             }
-            this.setsLoaded[0] = true;
-            checkWhenLoaded();
+            birthdayEffectFetcher.setsLoaded[0] = true;
+            birthdayEffectFetcher.checkWhenLoaded();
         }
 
-        public void lambda$new$0(ImageReceiverAsset imageReceiverAsset) {
-            this.loadedAssets.add(imageReceiverAsset);
-            checkWhenLoaded();
+        public static void $r8$lambda$WnloPND_MaDFN0P3fWF0o8EP3fI(BirthdayEffectFetcher birthdayEffectFetcher, ImageReceiverAsset imageReceiverAsset) {
+            birthdayEffectFetcher.loadedAssets.add(imageReceiverAsset);
+            birthdayEffectFetcher.checkWhenLoaded();
         }
 
-        public void lambda$new$3(String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        public static void m3927$r8$lambda$BwgwOW4HpUfoY1zUP152wOsIE(final BirthdayEffectFetcher birthdayEffectFetcher, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+            birthdayEffectFetcher.getClass();
             TLRPC.Document documentFindSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, str);
             if (documentFindSticker == null) {
                 FileLog.e("couldn't find " + str + " sticker in " + ProfileBirthdayEffect.interactionsPack);
                 return;
             }
             ImageReceiverAsset imageReceiverAsset = new ImageReceiverAsset();
-            this.interactionAsset = imageReceiverAsset;
-            this.allAssets.add(imageReceiverAsset);
+            birthdayEffectFetcher.interactionAsset = imageReceiverAsset;
+            birthdayEffectFetcher.allAssets.add(imageReceiverAsset);
             int filterWidth = EmojiAnimationsOverlay.getFilterWidth();
-            this.interactionAsset.setAutoRepeat(0);
-            this.interactionAsset.setEmoji(documentFindSticker, filterWidth + "_" + filterWidth + "_precache", tL_messages_stickerSet, new Runnable() {
+            birthdayEffectFetcher.interactionAsset.setAutoRepeat(0);
+            birthdayEffectFetcher.interactionAsset.setEmoji(documentFindSticker, filterWidth + "_" + filterWidth + "_precache", tL_messages_stickerSet, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$2();
+                    ProfileBirthdayEffect.BirthdayEffectFetcher.m3928$r8$lambda$zCQ1IMrKpXBx3e5jMsHdKFJ1HA(this.f$0);
                 }
             });
-            this.interactionAsset.onAttachedToWindow();
-            this.setsLoaded[1] = true;
-            checkWhenLoaded();
+            birthdayEffectFetcher.interactionAsset.onAttachedToWindow();
+            birthdayEffectFetcher.setsLoaded[1] = true;
+            birthdayEffectFetcher.checkWhenLoaded();
         }
 
-        public void lambda$new$2() {
-            this.loadedAssets.add(this.interactionAsset);
-            checkWhenLoaded();
+        public static void m3928$r8$lambda$zCQ1IMrKpXBx3e5jMsHdKFJ1HA(BirthdayEffectFetcher birthdayEffectFetcher) {
+            birthdayEffectFetcher.loadedAssets.add(birthdayEffectFetcher.interactionAsset);
+            birthdayEffectFetcher.checkWhenLoaded();
         }
 
         public void checkWhenLoaded() {
@@ -341,11 +345,15 @@ public class ProfileBirthdayEffect extends View {
                 return;
             }
             boolean[] zArr = this.setsLoaded;
+            int i = 0;
             if (zArr[0] && zArr[1]) {
                 this.loaded = true;
-                Iterator it = this.callbacks.iterator();
-                while (it.hasNext()) {
-                    ((Runnable) it.next()).run();
+                ArrayList arrayList = this.callbacks;
+                int size = arrayList.size();
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    ((Runnable) obj).run();
                 }
                 this.callbacks.clear();
             }
@@ -419,7 +427,7 @@ public class ProfileBirthdayEffect extends View {
                     lottieAnimation.whenCacheDone = new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileBirthdayEffect.ImageReceiverAsset.AnonymousClass1.lambda$didSetImage$0(runnableArr);
+                            ProfileBirthdayEffect.ImageReceiverAsset.AnonymousClass1.m3929$r8$lambda$KpChqogLAmWFbTAkMrzQEJILDc(runnableArr);
                         }
                     };
                 } else {
@@ -428,7 +436,7 @@ public class ProfileBirthdayEffect extends View {
                 }
             }
 
-            public static void lambda$didSetImage$0(Runnable[] runnableArr) {
+            public static void m3929$r8$lambda$KpChqogLAmWFbTAkMrzQEJILDc(Runnable[] runnableArr) {
                 runnableArr[0].run();
                 runnableArr[0] = null;
             }

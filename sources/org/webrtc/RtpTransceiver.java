@@ -68,11 +68,12 @@ public class RtpTransceiver {
         }
 
         public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection) {
-            this(rtpTransceiverDirection, Collections.emptyList(), Collections.emptyList());
+            List list = Collections.EMPTY_LIST;
+            this(rtpTransceiverDirection, list, list);
         }
 
         public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection, List<String> list) {
-            this(rtpTransceiverDirection, list, Collections.emptyList());
+            this(rtpTransceiverDirection, list, Collections.EMPTY_LIST);
         }
 
         public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection, List<String> list, List<RtpParameters.Encoding> list2) {

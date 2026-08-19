@@ -392,19 +392,19 @@ public abstract class JobIntentService extends Service {
         WorkEnqueuer compatWorkEnqueuer;
         HashMap<ComponentName, WorkEnqueuer> map = sClassWorkEnqueuer;
         WorkEnqueuer workEnqueuer = map.get(componentName);
-        if (workEnqueuer == null) {
-            if (Build.VERSION.SDK_INT < 26) {
-                compatWorkEnqueuer = new CompatWorkEnqueuer(context, componentName);
-            } else {
-                if (!z) {
-                    throw new IllegalArgumentException("Can't be here without a job id");
-                }
-                compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
-            }
-            workEnqueuer = compatWorkEnqueuer;
-            map.put(componentName, workEnqueuer);
+        if (workEnqueuer != null) {
+            return workEnqueuer;
         }
-        return workEnqueuer;
+        if (Build.VERSION.SDK_INT < 26) {
+            compatWorkEnqueuer = new CompatWorkEnqueuer(context, componentName);
+        } else {
+            if (!z) {
+                throw new IllegalArgumentException("Can't be here without a job id");
+            }
+            compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
+        }
+        map.put(componentName, compatWorkEnqueuer);
+        return compatWorkEnqueuer;
     }
 
     public void setInterruptIfStopped(boolean z) {

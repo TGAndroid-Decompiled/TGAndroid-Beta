@@ -283,7 +283,7 @@ public class SlideIntChooseView extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setMaxTextEmojiSaturation$0(valueAnimator2);
+                    SlideIntChooseView.$r8$lambda$R_XELlFNQ9crFlG0qb7MK7AtaJ4(this.f$0, valueAnimator2);
                 }
             });
             this.maxTextEmojiSaturationAnimator.addListener(new AnimatorListenerAdapter() {
@@ -310,15 +310,16 @@ public class SlideIntChooseView extends FrameLayout {
         this.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
     }
 
-    public void lambda$setMaxTextEmojiSaturation$0(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$R_XELlFNQ9crFlG0qb7MK7AtaJ4(SlideIntChooseView slideIntChooseView, ValueAnimator valueAnimator) {
+        slideIntChooseView.getClass();
         ColorMatrix colorMatrix = new ColorMatrix();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.maxTextEmojiSaturation = fFloatValue;
+        slideIntChooseView.maxTextEmojiSaturation = fFloatValue;
         colorMatrix.setSaturation(fFloatValue);
         if (Theme.isCurrentThemeDark()) {
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - this.maxTextEmojiSaturation) * (-0.3f));
+            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - slideIntChooseView.maxTextEmojiSaturation) * (-0.3f));
         }
-        this.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        slideIntChooseView.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
     }
 
     @Override
@@ -376,13 +377,13 @@ public class SlideIntChooseView extends FrameLayout {
             options.toString = new Utilities.Callback2Return() {
                 @Override
                 public final Object run(Object obj, Object obj2) {
-                    return SlideIntChooseView.Options.lambda$make$0(callbackReturn, (Integer) obj, (Integer) obj2);
+                    return SlideIntChooseView.Options.$r8$lambda$j64mmNixyX9paZV0J1XrEUu83XA(callbackReturn, (Integer) obj, (Integer) obj2);
                 }
             };
             return options;
         }
 
-        public static CharSequence lambda$make$0(Utilities.CallbackReturn callbackReturn, Integer num, Integer num2) {
+        public static CharSequence $r8$lambda$j64mmNixyX9paZV0J1XrEUu83XA(Utilities.CallbackReturn callbackReturn, Integer num, Integer num2) {
             return (CharSequence) callbackReturn.run(num2);
         }
 
@@ -403,13 +404,13 @@ public class SlideIntChooseView extends FrameLayout {
             options.toString = new Utilities.Callback2Return() {
                 @Override
                 public final Object run(Object obj, Object obj2) {
-                    return SlideIntChooseView.Options.lambda$make$1(str, (Integer) obj, (Integer) obj2);
+                    return SlideIntChooseView.Options.$r8$lambda$ych8fJhbMOkiRMSNRZEpMuMJEcs(str, (Integer) obj, (Integer) obj2);
                 }
             };
             return options;
         }
 
-        public static CharSequence lambda$make$1(String str, Integer num, Integer num2) {
+        public static CharSequence $r8$lambda$ych8fJhbMOkiRMSNRZEpMuMJEcs(String str, Integer num, Integer num2) {
             if (num.intValue() == 0) {
                 return LocaleController.formatPluralString(str, num2.intValue(), new Object[0]);
             }

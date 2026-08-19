@@ -185,7 +185,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     private TextView versionView;
     private int versionViewPressCount;
 
-    public static void lambda$createView$2(DialogInterface dialogInterface) {
+    public static void $r8$lambda$BnPkUZRulRE_udSPzgP5UU8wZes(DialogInterface dialogInterface) {
     }
 
     @Override
@@ -431,7 +431,13 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         this.listView.addEdgeEffectListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$0();
+                SettingsActivity settingsActivity = this.f$0;
+                settingsActivity.listView.postOnAnimation(new Runnable() {
+                    @Override
+                    public final void run() {
+                        settingsActivity.blur3_InvalidateBlur();
+                    }
+                });
             }
         });
         this.contentView.addView(this.listView, LayoutHelper.createFrame(-1, -1, 119));
@@ -466,7 +472,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         this.avatarContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$3(view2);
+                SettingsActivity.$r8$lambda$B8LXBAuXOqYOYB8_Vv71N6Lqe1Q(this.f$0, view2);
             }
         });
         ScaleStateListAnimator.apply(this.avatarContainer);
@@ -541,7 +547,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         this.versionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$4(view2);
+                SettingsActivity.$r8$lambda$UbEpGAnjrNeqNi80IhOHHyg1DNQ(this.f$0, view2);
             }
         });
         this.navigationBar = new View(context);
@@ -561,55 +567,42 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         return sizeNotifierFrameLayout2;
     }
 
-    public void lambda$createView$0() {
-        this.listView.postOnAnimation(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.blur3_InvalidateBlur();
-            }
-        });
-    }
-
-    public void lambda$createView$3(View view) {
-        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).getClientUserId()));
+    public static void $r8$lambda$B8LXBAuXOqYOYB8_Vv71N6Lqe1Q(final SettingsActivity settingsActivity, View view) {
+        TLRPC.User user = MessagesController.getInstance(settingsActivity.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(settingsActivity.currentAccount).getClientUserId()));
         if (user == null) {
-            user = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+            user = UserConfig.getInstance(settingsActivity.currentAccount).getCurrentUser();
         }
         if (user == null) {
             return;
         }
-        ImageUpdater imageUpdater = this.imageUpdater;
+        ImageUpdater imageUpdater = settingsActivity.imageUpdater;
         TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
         imageUpdater.openMenu((userProfilePhoto == null || userProfilePhoto.photo_big == null || (userProfilePhoto instanceof TLRPC.TL_userProfilePhotoEmpty)) ? false : true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$1();
+                MessagesController.getInstance(this.f$0.currentAccount).deleteUserPhoto(null);
             }
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                SettingsActivity.lambda$createView$2(dialogInterface);
+                SettingsActivity.$r8$lambda$BnPkUZRulRE_udSPzgP5UU8wZes(dialogInterface);
             }
         }, 0);
     }
 
-    public void lambda$createView$1() {
-        MessagesController.getInstance(this.currentAccount).deleteUserPhoto(null);
-    }
-
-    public void lambda$createView$4(View view) {
-        int i = this.versionViewPressCount + 1;
-        this.versionViewPressCount = i;
+    public static void $r8$lambda$UbEpGAnjrNeqNi80IhOHHyg1DNQ(SettingsActivity settingsActivity, View view) {
+        int i = settingsActivity.versionViewPressCount + 1;
+        settingsActivity.versionViewPressCount = i;
         if (i < 2 && !BuildVars.DEBUG_PRIVATE_VERSION) {
             try {
-                Toast.makeText(getParentActivity(), LocaleController.getString(R.string.DebugMenuLongPress), 0).show();
+                Toast.makeText(settingsActivity.getParentActivity(), LocaleController.getString(R.string.DebugMenuLongPress), 0).show();
                 return;
             } catch (Exception e) {
                 FileLog.e(e);
                 return;
             }
         }
-        openDebugMenu();
+        settingsActivity.openDebugMenu();
     }
 
     @Override
@@ -709,7 +702,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$updateActionBarVisible$5(valueAnimator2);
+                    SettingsActivity.$r8$lambda$_FfZeQZ8nlM2A3PZavyIaMoHV8k(this.f$0, valueAnimator2);
                 }
             });
             this.actionBarVisibleAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -718,10 +711,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$updateActionBarVisible$5(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$_FfZeQZ8nlM2A3PZavyIaMoHV8k(SettingsActivity settingsActivity, ValueAnimator valueAnimator) {
+        settingsActivity.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.actionBar.getTitlesContainer().setAlpha(fFloatValue);
-        this.actionBarBackground.setAlpha(fFloatValue);
+        settingsActivity.actionBar.getTitlesContainer().setAlpha(fFloatValue);
+        settingsActivity.actionBarBackground.setAlpha(fFloatValue);
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -741,7 +735,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         Collections.sort(this.accountNumbers, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return SettingsActivity.lambda$fillItems$6((Integer) obj, (Integer) obj2);
+                return SettingsActivity.m4058$r8$lambda$IiepfaP1r9DHGITzIkOnCE1GO4((Integer) obj, (Integer) obj2);
             }
         });
         Set<String> set = getMessagesController().pendingSuggestions;
@@ -749,7 +743,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             arrayList.add(SuggestionCell.Factory.of(LocaleController.getString(R.string.GraceSuggestionTitle), LocaleController.getString(R.string.GraceSuggestionMessage), null, null, LocaleController.getString(R.string.GraceSuggestionButton), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$fillItems$7(view);
+                    SettingsActivity.m4060$r8$lambda$RTUdQvT32BSqNdacMBwLrKVu50(this.f$0, view);
                 }
             }));
             arrayList.add(UItem.asShadow(null));
@@ -757,17 +751,17 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             arrayList.add(SuggestionCell.Factory.of(LocaleController.formatString(R.string.CheckPhoneNumber, PhoneFormat.getInstance().format("+" + getUserConfig().getCurrentUser().phone)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CheckPhoneNumberInfo), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$fillItems$8();
+                    Browser.openUrl(this.f$0.getContext(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
                 }
             }), LocaleController.getString(R.string.CheckPhoneNumberNo), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$fillItems$9(view);
+                    SettingsActivity.$r8$lambda$rtBRdNukUmuMJTYZnLc2VCpqGzg(this.f$0, view);
                 }
             }, StarGiftSheet.replaceUnderstood(LocaleController.getString(R.string.CheckPhoneNumberYes2)), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$fillItems$10(view);
+                    this.f$0.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
                 }
             }));
             arrayList.add(UItem.asShadow(null));
@@ -775,12 +769,12 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             arrayList.add(SuggestionCell.Factory.of(LocaleController.getString(R.string.YourPasswordHeader), LocaleController.getString(R.string.YourPasswordRemember), LocaleController.getString(R.string.YourPasswordRememberNo), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$fillItems$11(view);
+                    SettingsActivity.$r8$lambda$27Fm3SqJWBS21KPy7rZZMLvhpis(this.f$0, view);
                 }
             }, LocaleController.getString(R.string.YourPasswordRememberYes), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$fillItems$12(view);
+                    this.f$0.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
                 }
             }));
             arrayList.add(UItem.asShadow(null));
@@ -832,10 +826,16 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
         TLRPC.TL_attachMenuBots attachMenuBots = MediaDataController.getInstance(UserConfig.selectedAccount).getAttachMenuBots();
         if (attachMenuBots != null && (arrayList2 = attachMenuBots.bots) != null && !arrayList2.isEmpty()) {
-            for (TLRPC.TL_attachMenuBot tL_attachMenuBot : attachMenuBots.bots) {
-                if (tL_attachMenuBot.show_in_side_menu && tL_attachMenuBot.bot_id == 1985737506) {
-                    UItem uItemOfBot = SettingCell.Factory.ofBot(tL_attachMenuBot, -14965523, -15431455, R.drawable.settings_wallet);
-                    uItemOfBot.object = tL_attachMenuBot;
+            ArrayList<TLRPC.TL_attachMenuBot> arrayList3 = attachMenuBots.bots;
+            int size = arrayList3.size();
+            int i4 = 0;
+            while (i4 < size) {
+                TLRPC.TL_attachMenuBot tL_attachMenuBot = arrayList3.get(i4);
+                i4++;
+                TLRPC.TL_attachMenuBot tL_attachMenuBot2 = tL_attachMenuBot;
+                if (tL_attachMenuBot2.show_in_side_menu && tL_attachMenuBot2.bot_id == 1985737506) {
+                    UItem uItemOfBot = SettingCell.Factory.ofBot(tL_attachMenuBot2, -14965523, -15431455, R.drawable.settings_wallet);
+                    uItemOfBot.object = tL_attachMenuBot2;
                     arrayList.add(uItemOfBot);
                 }
             }
@@ -868,7 +868,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         arrayList.add(UItem.asCustomShadow(this.versionView));
     }
 
-    public static int lambda$fillItems$6(Integer num, Integer num2) {
+    public static int m4058$r8$lambda$IiepfaP1r9DHGITzIkOnCE1GO4(Integer num, Integer num2) {
         long j = UserConfig.getInstance(num.intValue()).loginTime;
         long j2 = UserConfig.getInstance(num2.intValue()).loginTime;
         if (j > j2) {
@@ -877,29 +877,19 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         return j < j2 ? -1 : 0;
     }
 
-    public void lambda$fillItems$7(View view) {
-        Browser.openUrl(getContext(), getMessagesController().premiumManageSubscriptionUrl);
-        getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
+    public static void m4060$r8$lambda$RTUdQvT32BSqNdacMBwLrKVu50(SettingsActivity settingsActivity, View view) {
+        Browser.openUrl(settingsActivity.getContext(), settingsActivity.getMessagesController().premiumManageSubscriptionUrl);
+        settingsActivity.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
     }
 
-    public void lambda$fillItems$8() {
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+    public static void $r8$lambda$rtBRdNukUmuMJTYZnLc2VCpqGzg(SettingsActivity settingsActivity, View view) {
+        settingsActivity.getClass();
+        settingsActivity.presentFragment(new ActionIntroActivity(3));
     }
 
-    public void lambda$fillItems$9(View view) {
-        presentFragment(new ActionIntroActivity(3));
-    }
-
-    public void lambda$fillItems$10(View view) {
-        getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
-    }
-
-    public void lambda$fillItems$11(View view) {
-        presentFragment(new TwoStepVerificationSetupActivity(8, null));
-    }
-
-    public void lambda$fillItems$12(View view) {
-        getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+    public static void $r8$lambda$27Fm3SqJWBS21KPy7rZZMLvhpis(SettingsActivity settingsActivity, View view) {
+        settingsActivity.getClass();
+        settingsActivity.presentFragment(new TwoStepVerificationSetupActivity(8, null));
     }
 
     public void presentSettingFragment(BaseFragment baseFragment) {
@@ -926,13 +916,12 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 WebAppDisclaimerAlert.show(getContext(), new Consumer() {
                     @Override
                     public final void accept(Object obj2) {
-                        this.f$0.lambda$onClick$15(tL_attachMenuBot, (Boolean) obj2);
+                        SettingsActivity.m4062$r8$lambda$wb9ptXjTwnHIuW9pxnZhXbhp3E(this.f$0, tL_attachMenuBot, (Boolean) obj2);
                     }
                 }, null, null);
-            } else {
-                LaunchActivity.showAttachMenuBot(LaunchActivity.instance, this.currentAccount, tL_attachMenuBot, null, true);
                 return;
             }
+            LaunchActivity.showAttachMenuBot(LaunchActivity.instance, this.currentAccount, tL_attachMenuBot, null, true);
         }
         if (uItem.instanceOf(AccountCell.Factory.class)) {
             int i2 = uItem.intValue;
@@ -948,7 +937,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             if (obj2 instanceof ProfileActivity.SearchAdapter.SearchResult) {
                 ((ProfileActivity.SearchAdapter.SearchResult) obj2).open(getParentLayout());
             } else if (obj2 instanceof MessagesController.FaqSearchResult) {
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.openArticle, this.search.faqWebPage, ((MessagesController.FaqSearchResult) obj2).url);
+                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.openArticle, this.search.faqWebPage, ((MessagesController.FaqSearchResult) obj2).url);
             }
             Object obj3 = uItem.object;
             if (obj3 != null) {
@@ -1028,33 +1017,36 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$onClick$15(final TLRPC.TL_attachMenuBot tL_attachMenuBot, Boolean bool) {
+    public static void m4062$r8$lambda$wb9ptXjTwnHIuW9pxnZhXbhp3E(final SettingsActivity settingsActivity, final TLRPC.TL_attachMenuBot tL_attachMenuBot, Boolean bool) {
+        settingsActivity.getClass();
         TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
-        tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tL_attachMenuBot.bot_id);
+        tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(settingsActivity.currentAccount).getInputUser(tL_attachMenuBot.bot_id);
         tL_messages_toggleBotInAttachMenu.enabled = true;
         tL_messages_toggleBotInAttachMenu.write_allowed = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_toggleBotInAttachMenu, new RequestDelegate() {
+        ConnectionsManager.getInstance(settingsActivity.currentAccount).sendRequest(tL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$onClick$14(tL_attachMenuBot, tLObject, tL_error);
+                SettingsActivity.m4061$r8$lambda$noJL0vaOZu19FWcmDfLxjKX_OE(this.f$0, tL_attachMenuBot, tLObject, tL_error);
             }
         }, 66);
     }
 
-    public void lambda$onClick$14(final TLRPC.TL_attachMenuBot tL_attachMenuBot, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4061$r8$lambda$noJL0vaOZu19FWcmDfLxjKX_OE(final SettingsActivity settingsActivity, final TLRPC.TL_attachMenuBot tL_attachMenuBot, TLObject tLObject, TLRPC.TL_error tL_error) {
+        settingsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onClick$13(tL_attachMenuBot);
+                SettingsActivity.$r8$lambda$J6NGCav7N0BV56GC_oJ3LqSJFF8(this.f$0, tL_attachMenuBot);
             }
         });
     }
 
-    public void lambda$onClick$13(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+    public static void $r8$lambda$J6NGCav7N0BV56GC_oJ3LqSJFF8(SettingsActivity settingsActivity, TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        settingsActivity.getClass();
         tL_attachMenuBot.side_menu_disclaimer_needed = false;
         tL_attachMenuBot.inactive = false;
-        LaunchActivity.showAttachMenuBot(LaunchActivity.instance, this.currentAccount, tL_attachMenuBot, null, true);
-        MediaDataController.getInstance(this.currentAccount).updateAttachMenuBotsInCache();
+        LaunchActivity.showAttachMenuBot(LaunchActivity.instance, settingsActivity.currentAccount, tL_attachMenuBot, null, true);
+        MediaDataController.getInstance(settingsActivity.currentAccount).updateAttachMenuBotsInCache();
     }
 
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
@@ -1064,7 +1056,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             BotWebViewSheet.deleteBot(this.currentAccount, ((TLRPC.TL_attachMenuBot) obj).bot_id, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onLongClick$16();
+                    this.f$0.listView.adapter.update(true);
                 }
             });
             return true;
@@ -1084,19 +1076,16 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         ItemOptions.makeOptions(this, view).add(R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onLongClick$17(str);
+                SettingsActivity.$r8$lambda$n785_sA9XIoQBMdw9tOG2_8Iy3c(this.f$0, str);
             }
         }).setScrimViewBackground(this.listView.getClipBackground(view)).show();
         return true;
     }
 
-    public void lambda$onLongClick$16() {
-        this.listView.adapter.update(true);
-    }
-
-    public void lambda$onLongClick$17(String str) {
+    public static void $r8$lambda$n785_sA9XIoQBMdw9tOG2_8Iy3c(SettingsActivity settingsActivity, String str) {
+        settingsActivity.getClass();
         AndroidUtilities.addToClipboard(str);
-        BulletinFactory.of(this).createCopyLinkBulletin().show();
+        BulletinFactory.of(settingsActivity).createCopyLinkBulletin().show();
     }
 
     public String getVersionName() {
@@ -1690,18 +1679,19 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
         String str22 = SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors";
         String str23 = SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug";
+        String str24 = str8;
         if (Build.VERSION.SDK_INT >= 28) {
             string3 = LocaleController.getString(SharedConfig.useSystemBoldFont ? R.string.DebugMenuDontUseSystemBoldFont : R.string.DebugMenuUseSystemBoldFont);
         } else {
             string3 = null;
         }
-        String str24 = !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs";
+        String str25 = !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs";
         if (BuildVars.DEBUG_PRIVATE_VERSION) {
             str9 = SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader";
         } else {
             str9 = null;
         }
-        String str25 = SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics";
+        String str26 = SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics";
         if (BuildVars.DEBUG_PRIVATE_VERSION) {
             str10 = SharedConfig.shadowsInSections ? "disable shadows in settings" : "enable shadows in settings";
         } else {
@@ -1712,40 +1702,41 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         } else {
             str11 = null;
         }
-        builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str12, str13, string13, string14, string15, str4, string2, str14, str15, str16, str5, string16, str6, str7, str17, str18, str19, str20, str21, str8, str22, str23, string3, "Reload app config", str24, "Make Memory Dump", str9, str25, str10, str11}, new DialogInterface.OnClickListener() {
+        builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str12, str13, string13, string14, string15, str4, string2, str14, str15, str16, str5, string16, str6, str7, str17, str18, str19, str20, str21, str24, str22, str23, string3, "Reload app config", str25, "Make Memory Dump", str9, str26, str10, str11}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
-                this.f$0.lambda$openDebugMenu$21(dialogInterface, i3);
+                SettingsActivity.$r8$lambda$ssMEhJhc6nq_1KTe69CRic43nvU(this.f$0, dialogInterface, i3);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
-    public void lambda$openDebugMenu$21(DialogInterface dialogInterface, int i) {
+    public static void $r8$lambda$ssMEhJhc6nq_1KTe69CRic43nvU(final SettingsActivity settingsActivity, DialogInterface dialogInterface, int i) {
         int i2 = 0;
+        settingsActivity.getClass();
         if (i == 0) {
-            getUserConfig().syncContacts = true;
-            getUserConfig().saveConfig(false);
-            getContactsController().forceImportContacts();
+            settingsActivity.getUserConfig().syncContacts = true;
+            settingsActivity.getUserConfig().saveConfig(false);
+            settingsActivity.getContactsController().forceImportContacts();
             return;
         }
         if (i == 1) {
-            getContactsController().loadContacts(false, 0L);
+            settingsActivity.getContactsController().loadContacts(false, 0L);
             return;
         }
         if (i == 2) {
-            getContactsController().resetImportedContacts();
+            settingsActivity.getContactsController().resetImportedContacts();
             return;
         }
         if (i == 3) {
-            getMessagesController().forceResetDialogs();
+            settingsActivity.getMessagesController().forceResetDialogs();
             return;
         }
         if (i == 4) {
             BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
             ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
-            this.listView.adapter.update(true);
+            settingsActivity.listView.adapter.update(true);
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("app start time = " + ApplicationLoader.startTime);
                 try {
@@ -1763,12 +1754,12 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         if (i == 6) {
-            getMessagesStorage().clearSentMedia();
+            settingsActivity.getMessagesStorage().clearSentMedia();
             SharedConfig.setNoSoundHintShowed(false);
             MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("searchpostsnew").remove("speedhint").remove("gifhint").remove("reminderhint").remove("soundHint").remove("themehint").remove("bganimationhint").remove("filterhint").remove("n_0").remove("storyprvhint").remove("storyhint").remove("storyhint2").remove("storydualhint").remove("storysvddualhint").remove("stories_camera").remove("dualcam").remove("dualmatrix").remove("dual_available").remove("archivehint").remove("askNotificationsAfter").remove("askNotificationsDuration").remove("viewoncehint").remove("voicepausehint").remove("taptostorysoundhint").remove("nothanos").remove("voiceoncehint").remove("savedhint").remove("savedsearchhint").remove("savedsearchtaghint").remove("newppsms").remove("monetizationadshint").remove("seekSpeedHintShowed").remove("unsupport_video/av01").remove("statusgiftpage").remove("multistorieshint").remove("trimvoicehint").remove("taptostoryhighlighthint").remove("proxycheckstatusip").remove("callmiconstart").remove("showchattagsinfo").remove("language_showed2").remove("aihintshown").remove("savedmsgschatshint").apply();
             HintsController.resetAll();
-            SharedPrefsHelper.cleanupAccount(this.currentAccount);
-            MessagesController.getEmojiSettings(this.currentAccount).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
+            SharedPrefsHelper.cleanupAccount(settingsActivity.currentAccount);
+            MessagesController.getEmojiSettings(settingsActivity.currentAccount).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
             MessagesController.getGlobalNotificationsSettings().edit().remove("disable_sharing_learn").remove("askedAboutFSILockscreen").apply();
             SharedConfig.textSelectionHintShows = 0;
             SharedConfig.lockRecordAudioVideoHint = 0;
@@ -1784,11 +1775,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             SharedConfig.setStoriesReactionsLongPressHintUsed(false);
             SharedConfig.setStoriesIntroShown(false);
             SharedConfig.setMultipleReactionsPromoShowed(false);
-            ChatThemeController.getInstance(this.currentAccount).clearCache();
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+            ChatThemeController.getInstance(settingsActivity.currentAccount).clearCache();
+            settingsActivity.getNotificationCenter().postNotificationName(NotificationCenter.newSuggestionsAvailable, new Object[0]);
             RestrictedLanguagesSelectActivity.cleanup();
-            PersistColorPalette.getInstance(this.currentAccount).cleanup();
-            SharedPreferences mainSettings = getMessagesController().getMainSettings();
+            PersistColorPalette.getInstance(settingsActivity.currentAccount).cleanup();
+            SharedPreferences mainSettings = settingsActivity.getMessagesController().getMainSettings();
             SharedPreferences.Editor editorEdit = mainSettings.edit();
             editorEdit.remove("peerColors").remove("profilePeerColors").remove("boostingappearance").remove("bizbothint").remove("movecaptionhint");
             for (String str : mainSettings.getAll().keySet()) {
@@ -1797,8 +1788,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 }
             }
             editorEdit.apply();
-            SharedPreferences.Editor editorEdit2 = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-            for (String str2 : MessagesController.getNotificationsSettings(this.currentAccount).getAll().keySet()) {
+            SharedPreferences.Editor editorEdit2 = MessagesController.getNotificationsSettings(settingsActivity.currentAccount).edit();
+            for (String str2 : MessagesController.getNotificationsSettings(settingsActivity.currentAccount).getAll().keySet()) {
                 if (str2.startsWith("dialog_bar_botver")) {
                     editorEdit2.remove(str2);
                 }
@@ -1807,7 +1798,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         if (i == 7) {
-            VoIPHelper.showCallDebugSettings(getParentActivity());
+            VoIPHelper.showCallDebugSettings(settingsActivity.getParentActivity());
             return;
         }
         if (i == 8) {
@@ -1815,11 +1806,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         if (i == 9) {
-            ((LaunchActivity) getParentActivity()).checkAppUpdate(true, null);
+            ((LaunchActivity) settingsActivity.getParentActivity()).checkAppUpdate(true, null);
             return;
         }
         if (i == 10) {
-            getMessagesStorage().readAllDialogs(-1);
+            settingsActivity.getMessagesStorage().readAllDialogs(-1);
             return;
         }
         if (i == 11) {
@@ -1829,14 +1820,14 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         if (i == 12) {
             SharedConfig.pendingAppUpdate = null;
             SharedConfig.saveConfig();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.appUpdateAvailable, new Object[0]);
             return;
         }
         if (i == 13) {
-            Set<String> set = getMessagesController().pendingSuggestions;
+            Set<String> set = settingsActivity.getMessagesController().pendingSuggestions;
             set.add("VALIDATE_PHONE_NUMBER");
             set.add("VALIDATE_PASSWORD");
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+            settingsActivity.getNotificationCenter().postNotificationName(NotificationCenter.newSuggestionsAvailable, new Object[0]);
             return;
         }
         try {
@@ -1857,12 +1848,12 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             if (i == 16) {
                 SharedConfig.toggleDebugWebView();
-                Toast.makeText(getParentActivity(), LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuWebViewDebugEnabled : R.string.DebugMenuWebViewDebugDisabled), 0).show();
+                Toast.makeText(settingsActivity.getParentActivity(), LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuWebViewDebugEnabled : R.string.DebugMenuWebViewDebugDisabled), 0).show();
                 return;
             }
             if (i == 17) {
                 SharedConfig.toggleForceDisableTabletMode();
-                Activity parentActivity = getParentActivity();
+                Activity parentActivity = settingsActivity.getParentActivity();
                 if (parentActivity != null) {
                     Intent launchIntentForPackage = parentActivity.getPackageManager().getLaunchIntentForPackage(parentActivity.getPackageName());
                     parentActivity.finishAffinity();
@@ -1872,25 +1863,25 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 return;
             }
             if (i == 18) {
-                FloatingDebugController.setActive((LaunchActivity) getParentActivity(), !FloatingDebugController.isActive());
+                FloatingDebugController.setActive((LaunchActivity) settingsActivity.getParentActivity(), !FloatingDebugController.isActive());
                 return;
             }
             if (i == 19) {
-                getMessagesController().loadAppConfig();
+                settingsActivity.getMessagesController().loadAppConfig();
                 TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
                 tL_help_dismissSuggestion.suggestion = "VALIDATE_PHONE_NUMBER";
                 tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
+                settingsActivity.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$openDebugMenu$19(tLObject, tL_error);
+                        SettingsActivity.m4057$r8$lambda$CVz9hXwTRIiRUEANJVSSDBxve4(this.f$0, tLObject, tL_error);
                     }
                 });
                 return;
             }
             if (i != 20) {
                 if (i == 21) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), this.resourceProvider);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(settingsActivity.getParentActivity(), settingsActivity.resourceProvider);
                     builder.setTitle("Force performance class");
                     int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                     final int iMeasureDevicePerformanceClass = SharedConfig.measureDevicePerformanceClass();
@@ -1908,7 +1899,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     builder.setItems(new CharSequence[]{spannableStringBuilderReplaceTags, spannableStringBuilderReplaceTags2, AndroidUtilities.replaceTags(sb3.toString())}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface2, int i3) {
-                            SettingsActivity.lambda$openDebugMenu$20(iMeasureDevicePerformanceClass, dialogInterface2, i3);
+                            SettingsActivity.$r8$lambda$dWBxWaGBa_8Tfgg7c2TLk4RCptk(iMeasureDevicePerformanceClass, dialogInterface2, i3);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1920,15 +1911,15 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     return;
                 }
                 if (i == 23) {
-                    boolean zDualAvailableStatic = DualCameraView.dualAvailableStatic(getContext());
-                    MessagesController.getGlobalMainSettings().edit().putBoolean("dual_available", true ^ zDualAvailableStatic).apply();
-                    Toast.makeText(getParentActivity(), LocaleController.getString(!zDualAvailableStatic ? R.string.DebugMenuDualOnToast : R.string.DebugMenuDualOffToast), 0).show();
+                    boolean zDualAvailableStatic = DualCameraView.dualAvailableStatic(settingsActivity.getContext());
+                    MessagesController.getGlobalMainSettings().edit().putBoolean("dual_available", !zDualAvailableStatic).apply();
+                    Toast.makeText(settingsActivity.getParentActivity(), LocaleController.getString(!zDualAvailableStatic ? R.string.DebugMenuDualOnToast : R.string.DebugMenuDualOffToast), 0).show();
                     return;
                 }
                 if (i == 24) {
                     SharedConfig.toggleSurfaceInStories();
-                    while (i2 < getParentLayout().getFragmentStack().size()) {
-                        ((BaseFragment) getParentLayout().getFragmentStack().get(i2)).clearSheets();
+                    while (i2 < settingsActivity.getParentLayout().getFragmentStack().size()) {
+                        ((BaseFragment) settingsActivity.getParentLayout().getFragmentStack().get(i2)).clearSheets();
                         i2++;
                     }
                     return;
@@ -1942,11 +1933,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     return;
                 }
                 if (i == 27) {
-                    getMediaDataController().loadAttachMenuBots(false, true);
+                    settingsActivity.getMediaDataController().loadAttachMenuBots(false, true);
                     return;
                 }
                 if (i == 28) {
-                    SharedConfig.toggleUseCamera2(this.currentAccount);
+                    SharedConfig.toggleUseCamera2(settingsActivity.currentAccount);
                     return;
                 }
                 if (i == 29) {
@@ -1977,7 +1968,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     return;
                 }
                 if (i == 35) {
-                    MessagesController.getInstance(this.currentAccount).loadAppConfig(true);
+                    MessagesController.getInstance(settingsActivity.currentAccount).loadAppConfig(true);
                     return;
                 }
                 if (i == 36) {
@@ -2036,6 +2027,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 sb4.append("#");
                 sb4.append(i2);
                 sb4.append(" ");
+                int i4 = i2;
                 if (sysInfoLong != null) {
                     sb4.append("min=");
                     sb4.append(sysInfoLong.longValue() / 1000);
@@ -2065,12 +2057,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     j4++;
                 }
                 sb4.append("\n");
-                i2++;
-                i3 = i3;
-                memoryClass = memoryClass;
+                i2 = i4 + 1;
+                j = j;
             }
-            int i4 = i3;
-            int i5 = memoryClass;
+            long j5 = j;
             StringBuilder sb5 = new StringBuilder();
             sb5.append(Build.MANUFACTURER);
             sb5.append(", ");
@@ -2081,10 +2071,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             sb5.append(Build.DEVICE);
             sb5.append(") ");
             sb5.append(" (android ");
-            int i6 = Build.VERSION.SDK_INT;
-            sb5.append(i6);
+            int i5 = Build.VERSION.SDK_INT;
+            sb5.append(i5);
             sb5.append(")\n");
-            if (i6 >= 31) {
+            if (i5 >= 31) {
                 sb5.append("SoC: ");
                 sb5.append(Build.SOC_MANUFACTURER);
                 sb5.append(", ");
@@ -2102,11 +2092,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     sb5.append(", min=");
                     sb5.append(sysInfoLong5.longValue() / 1000);
                 }
-                if (sysInfoLong6 != null) {
+                if (sysInfoLong6 != 0) {
                     sb5.append(", mmin=");
                     sb5.append(sysInfoLong6.longValue() / 1000);
                 }
-                if (sysInfoLong7 != null) {
+                if (sysInfoLong7 != 0) {
                     sb5.append(", max=");
                     sb5.append(sysInfoLong7.longValue() / 1000);
                 }
@@ -2117,7 +2107,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             sb5.append(deviceConfigurationInfo.getGlEsVersion());
             sb5.append("\n");
             sb5.append("Memory: class=");
-            sb5.append(AndroidUtilities.formatFileSize(((long) i5) * 1048576));
+            sb5.append(AndroidUtilities.formatFileSize(((long) memoryClass) * 1048576));
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryInfo(memoryInfo);
             sb5.append(", total=");
@@ -2134,16 +2124,16 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             sb5.append(SharedConfig.performanceClassName(SharedConfig.getDevicePerformanceClass()));
             sb5.append(", measured: ");
             sb5.append(SharedConfig.performanceClassName(SharedConfig.measureDevicePerformanceClass()));
-            if (i6 >= 31) {
+            if (i5 >= 31) {
                 sb5.append(", suggest=");
                 sb5.append(Build.VERSION.MEDIA_PERFORMANCE_CLASS);
             }
             sb5.append("\n");
-            sb5.append(i4);
+            sb5.append(i3);
             sb5.append(" CPUs");
-            if (j > 0) {
+            if (j5 > 0) {
                 sb5.append(", avgMinFreq=");
-                sb5.append(jLongValue / j);
+                sb5.append(jLongValue / j5);
             }
             if (j2 > 0) {
                 sb5.append(", avgCurFreq=");
@@ -2159,29 +2149,26 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             sb5.append("\n");
             sb5.append((CharSequence) sb4);
-            listCodecs("video/avc", sb5);
-            listCodecs("video/hevc", sb5);
-            listCodecs("video/x-vnd.on2.vp8", sb5);
-            listCodecs("video/x-vnd.on2.vp9", sb5);
-            showDialog(new AnonymousClass8(getParentActivity(), null, sb5.toString(), false, null, false));
+            settingsActivity.listCodecs("video/avc", sb5);
+            settingsActivity.listCodecs("video/hevc", sb5);
+            settingsActivity.listCodecs("video/x-vnd.on2.vp8", sb5);
+            settingsActivity.listCodecs("video/x-vnd.on2.vp9", sb5);
+            settingsActivity.showDialog(settingsActivity.new AnonymousClass8(settingsActivity.getParentActivity(), null, sb5.toString(), false, null, false));
         } catch (Exception unused) {
         }
     }
 
-    public void lambda$openDebugMenu$19(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4057$r8$lambda$CVz9hXwTRIiRUEANJVSSDBxve4(final SettingsActivity settingsActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
+        settingsActivity.getClass();
         TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
         tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
         tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-        getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
+        settingsActivity.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                this.f$0.lambda$openDebugMenu$18(tLObject2, tL_error2);
+                this.f$0.getMessagesController().loadAppConfig();
             }
         });
-    }
-
-    public void lambda$openDebugMenu$18(TLObject tLObject, TLRPC.TL_error tL_error) {
-        getMessagesController().loadAppConfig();
     }
 
     class AnonymousClass8 extends ShareAlert {
@@ -2195,18 +2182,16 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onSend$0(longSparseArray, i);
+                        SettingsActivity.AnonymousClass8 anonymousClass8 = this.f$0;
+                        LongSparseArray longSparseArray2 = longSparseArray;
+                        BulletinFactory.createInviteSentBulletin(SettingsActivity.this.getParentActivity(), SettingsActivity.this.contentView, longSparseArray2.size(), longSparseArray2.size() == 1 ? ((TLRPC.Dialog) longSparseArray2.valueAt(0)).id : 0L, i, anonymousClass8.getThemedColor(Theme.key_undo_background), anonymousClass8.getThemedColor(Theme.key_undo_infoColor)).show();
                     }
                 }, 250L);
             }
         }
-
-        public void lambda$onSend$0(LongSparseArray longSparseArray, int i) {
-            BulletinFactory.createInviteSentBulletin(SettingsActivity.this.getParentActivity(), SettingsActivity.this.contentView, longSparseArray.size(), longSparseArray.size() == 1 ? ((TLRPC.Dialog) longSparseArray.valueAt(0)).id : 0L, i, getThemedColor(Theme.key_undo_background), getThemedColor(Theme.key_undo_infoColor)).show();
-        }
     }
 
-    public static void lambda$openDebugMenu$20(int i, DialogInterface dialogInterface, int i2) {
+    public static void $r8$lambda$dWBxWaGBa_8Tfgg7c2TLk4RCptk(int i, DialogInterface dialogInterface, int i2) {
         int i3 = 2 - i2;
         if (i3 == i) {
             SharedConfig.overrideDevicePerformanceClass(-1);
@@ -2303,33 +2288,34 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadPhoto$24(inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize);
+                SettingsActivity.$r8$lambda$t_meMONhChpBBVDKwKFoOBPvlbo(this.f$0, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$23(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$_nghCTpgha7_G9yUVDBuK1FqHI8(final SettingsActivity settingsActivity, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        settingsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadPhoto$22(tL_error, tLObject, str);
+                SettingsActivity.$r8$lambda$sYlMSespSVOJth1WT4luNW7cy0w(this.f$0, tL_error, tLObject, str);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$22(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
-        this.avatarUploadingRequest = -1;
+    public static void $r8$lambda$sYlMSespSVOJth1WT4luNW7cy0w(SettingsActivity settingsActivity, TLRPC.TL_error tL_error, TLObject tLObject, String str) {
+        settingsActivity.avatarUploadingRequest = -1;
         if (tL_error == null) {
-            TLRPC.User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
+            TLRPC.User user = settingsActivity.getMessagesController().getUser(Long.valueOf(settingsActivity.getUserConfig().getClientUserId()));
             if (user == null) {
-                user = getUserConfig().getCurrentUser();
+                user = settingsActivity.getUserConfig().getCurrentUser();
                 if (user == null) {
                     return;
                 } else {
-                    getMessagesController().putUser(user, false);
+                    settingsActivity.getMessagesController().putUser(user, false);
                 }
             } else {
-                getUserConfig().setCurrentUser(user);
+                settingsActivity.getUserConfig().setCurrentUser(user);
             }
             TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
             ArrayList<TLRPC.PhotoSize> arrayList = tL_photos_photo.photo.sizes;
@@ -2345,37 +2331,38 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             if (closestPhotoSizeWithSize2 != null) {
                 tL_userProfilePhoto.photo_big = closestPhotoSizeWithSize2.location;
             }
-            if (closestPhotoSizeWithSize != null && this.avatar != null) {
-                FileLoader.getInstance(this.currentAccount).getPathToAttach(this.avatar, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
-                ImageLoader.getInstance().replaceImageInCache(this.avatar.volume_id + "_" + this.avatar.local_id + "@90_90", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@90_90", ImageLocation.getForUserOrChat(this.currentAccount, user, 1), false);
+            if (closestPhotoSizeWithSize != null && settingsActivity.avatar != null) {
+                FileLoader.getInstance(settingsActivity.currentAccount).getPathToAttach(settingsActivity.avatar, true).renameTo(FileLoader.getInstance(settingsActivity.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
+                ImageLoader.getInstance().replaceImageInCache(settingsActivity.avatar.volume_id + "_" + settingsActivity.avatar.local_id + "@90_90", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@90_90", ImageLocation.getForUserOrChat(settingsActivity.currentAccount, user, 1), false);
             }
             if (closestVideoSizeWithSize != null && str != null) {
-                new File(str).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestVideoSizeWithSize, "mp4", true));
-            } else if (closestPhotoSizeWithSize2 != null && this.avatarBig != null) {
-                FileLoader.getInstance(this.currentAccount).getPathToAttach(this.avatarBig, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
+                new File(str).renameTo(FileLoader.getInstance(settingsActivity.currentAccount).getPathToAttach(closestVideoSizeWithSize, "mp4", true));
+            } else if (closestPhotoSizeWithSize2 != null && settingsActivity.avatarBig != null) {
+                FileLoader.getInstance(settingsActivity.currentAccount).getPathToAttach(settingsActivity.avatarBig, true).renameTo(FileLoader.getInstance(settingsActivity.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
             }
-            getMessagesController().getDialogPhotos(user.id).addPhotoAtStart(tL_photos_photo.photo);
+            settingsActivity.getMessagesController().getDialogPhotos(user.id).addPhotoAtStart(tL_photos_photo.photo);
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(user);
-            getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+            settingsActivity.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
+            TLRPC.UserFull userFull = settingsActivity.getMessagesController().getUserFull(settingsActivity.getUserConfig().getClientUserId());
             if (userFull != null) {
                 userFull.profile_photo = tL_photos_photo.photo;
-                getMessagesStorage().updateUserInfo(userFull, false);
+                settingsActivity.getMessagesStorage().updateUserInfo(userFull, false);
             }
-            setInfo(user);
+            settingsActivity.setInfo(user);
         }
-        this.avatar = null;
-        this.avatarBig = null;
-        showAvatarProgress(false, true);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_ALL));
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
-        getUserConfig().saveConfig(true);
+        settingsActivity.avatar = null;
+        settingsActivity.avatarBig = null;
+        settingsActivity.showAvatarProgress(false, true);
+        settingsActivity.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_ALL));
+        settingsActivity.getNotificationCenter().postNotificationName(NotificationCenter.mainUserInfoChanged, new Object[0]);
+        settingsActivity.getUserConfig().saveConfig(true);
     }
 
-    public void lambda$didUploadPhoto$24(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+    public static void $r8$lambda$t_meMONhChpBBVDKwKFoOBPvlbo(final SettingsActivity settingsActivity, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+        settingsActivity.getClass();
         if (inputFile != null || inputFile2 != null || videoSize != null) {
-            if (this.avatar == null) {
+            if (settingsActivity.avatar == null) {
                 return;
             }
             TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
@@ -2393,20 +2380,20 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
                 tL_photos_uploadProfilePhoto.flags |= 16;
             }
-            this.avatarUploadingRequest = getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
+            settingsActivity.avatarUploadingRequest = settingsActivity.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$didUploadPhoto$23(str, tLObject, tL_error);
+                    SettingsActivity.$r8$lambda$_nghCTpgha7_G9yUVDBuK1FqHI8(this.f$0, str, tLObject, tL_error);
                 }
             });
         } else {
             TLRPC.FileLocation fileLocation = photoSize.location;
-            this.avatar = fileLocation;
-            this.avatarBig = photoSize2.location;
-            this.avatarView.setImage(ImageLocation.getForLocal(fileLocation), "90_90", this.avatarDrawable, (Object) null);
-            showAvatarProgress(true, false);
+            settingsActivity.avatar = fileLocation;
+            settingsActivity.avatarBig = photoSize2.location;
+            settingsActivity.avatarView.setImage(ImageLocation.getForLocal(fileLocation), "90_90", settingsActivity.avatarDrawable, (Object) null);
+            settingsActivity.showAvatarProgress(true, false);
         }
-        this.actionBar.createMenu().requestLayout();
+        settingsActivity.actionBar.createMenu().requestLayout();
     }
 
     private void showAvatarProgress(final boolean z, boolean z2) {

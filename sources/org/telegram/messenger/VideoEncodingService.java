@@ -87,19 +87,20 @@ public class VideoEncodingService extends Service implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$didReceivedNotification$0();
+                        VideoEncodingService.m1092$r8$lambda$dMN0l2dmFhJf_LsCGtC6ZkZjM(this.f$0);
                     }
                 });
             }
         }
     }
 
-    public void lambda$didReceivedNotification$0() {
+    public static void m1092$r8$lambda$dMN0l2dmFhJf_LsCGtC6ZkZjM(VideoEncodingService videoEncodingService) {
+        videoEncodingService.getClass();
         MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
         if (currentForegroundConverMessage != null) {
-            setCurrentMessage(currentForegroundConverMessage);
+            videoEncodingService.setCurrentMessage(currentForegroundConverMessage);
         } else {
-            stopSelf();
+            videoEncodingService.stopSelf();
         }
     }
 

@@ -69,7 +69,7 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
         int i = 0;
         for (Object obj2 : iterable) {
             if (i < 0) {
-                CollectionsKt.throwIndexOverflow();
+                CollectionsKt__CollectionsKt.throwIndexOverflow();
             }
             if (Intrinsics.areEqual(obj, obj2)) {
                 return i;
@@ -84,7 +84,7 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
         if (list.isEmpty()) {
             throw new NoSuchElementException("List is empty.");
         }
-        return list.get(CollectionsKt.getLastIndex(list));
+        return list.get(CollectionsKt__CollectionsKt.getLastIndex(list));
     }
 
     public static List filterNotNull(Iterable iterable) {
@@ -109,14 +109,14 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
             throw new IllegalArgumentException(("Requested element count " + i + " is less than zero.").toString());
         }
         if (i == 0) {
-            return CollectionsKt.emptyList();
+            return CollectionsKt__CollectionsKt.emptyList();
         }
         if (iterable instanceof Collection) {
             if (i >= ((Collection) iterable).size()) {
-                return CollectionsKt.toList(iterable);
+                return toList(iterable);
             }
             if (i == 1) {
-                return CollectionsKt.listOf(first(iterable));
+                return CollectionsKt__CollectionsJVMKt.listOf(first(iterable));
             }
         }
         ArrayList arrayList = new ArrayList(i);
@@ -138,11 +138,11 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
         if (iterable instanceof Collection) {
             Collection collection = (Collection) iterable;
             if (collection.size() <= 1) {
-                return CollectionsKt.toList(iterable);
+                return toList(iterable);
             }
             Object[] array = collection.toArray(new Object[0]);
             ArraysKt___ArraysJvmKt.sortWith(array, comparator);
-            return ArraysKt.asList(array);
+            return ArraysKt___ArraysJvmKt.asList(array);
         }
         List mutableList = toMutableList(iterable);
         CollectionsKt__MutableCollectionsJVMKt.sortWith(mutableList, comparator);
@@ -201,12 +201,12 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
             Collection collection = (Collection) iterable;
             int size = collection.size();
             if (size == 0) {
-                return CollectionsKt.emptyList();
+                return CollectionsKt__CollectionsKt.emptyList();
             }
             if (size != 1) {
-                return CollectionsKt.toMutableList(collection);
+                return toMutableList(collection);
             }
-            return CollectionsKt.listOf(iterable instanceof List ? ((List) iterable).get(0) : collection.iterator().next());
+            return CollectionsKt__CollectionsJVMKt.listOf(iterable instanceof List ? ((List) iterable).get(0) : collection.iterator().next());
         }
         return CollectionsKt__CollectionsKt.optimizeReadOnlyList(toMutableList(iterable));
     }
@@ -214,7 +214,7 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
     public static final List toMutableList(Iterable iterable) {
         Intrinsics.checkNotNullParameter(iterable, "<this>");
         if (iterable instanceof Collection) {
-            return CollectionsKt.toMutableList((Collection) iterable);
+            return toMutableList((Collection) iterable);
         }
         return (List) toCollection(iterable, new ArrayList());
     }
@@ -230,10 +230,10 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
             Collection collection = (Collection) iterable;
             int size = collection.size();
             if (size == 0) {
-                return SetsKt.emptySet();
+                return SetsKt__SetsKt.emptySet();
             }
             if (size != 1) {
-                return (Set) toCollection(iterable, new LinkedHashSet(MapsKt.mapCapacity(collection.size())));
+                return (Set) toCollection(iterable, new LinkedHashSet(MapsKt__MapsJVMKt.mapCapacity(collection.size())));
             }
             return SetsKt__SetsJVMKt.setOf(iterable instanceof List ? ((List) iterable).get(0) : collection.iterator().next());
         }
@@ -267,7 +267,7 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
             return arrayList;
         }
         ArrayList arrayList2 = new ArrayList(collection);
-        CollectionsKt.addAll(arrayList2, elements);
+        CollectionsKt__MutableCollectionsKt.addAll(arrayList2, elements);
         return arrayList2;
     }
 
@@ -282,7 +282,7 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
             while (i3 >= 0 && i3 < size) {
                 int iCoerceAtMost = RangesKt.coerceAtMost(i, size - i3);
                 if (iCoerceAtMost < i && !z) {
-                    break;
+                    return arrayList;
                 }
                 ArrayList arrayList2 = new ArrayList(iCoerceAtMost);
                 for (int i4 = 0; i4 < iCoerceAtMost; i4++) {
@@ -306,7 +306,7 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
         Intrinsics.checkNotNullParameter(other, "other");
         Iterator it = iterable.iterator();
         Iterator it2 = other.iterator();
-        ArrayList arrayList = new ArrayList(Math.min(CollectionsKt.collectionSizeOrDefault(iterable, 10), CollectionsKt.collectionSizeOrDefault(other, 10)));
+        ArrayList arrayList = new ArrayList(Math.min(CollectionsKt__IterablesKt.collectionSizeOrDefault(iterable, 10), CollectionsKt__IterablesKt.collectionSizeOrDefault(other, 10)));
         while (it.hasNext() && it2.hasNext()) {
             arrayList.add(TuplesKt.to(it.next(), it2.next()));
         }
@@ -343,17 +343,24 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
         if ((i2 & 1) != 0) {
             charSequence = ", ";
         }
-        CharSequence charSequence5 = (i2 & 2) != 0 ? "" : charSequence2;
-        CharSequence charSequence6 = (i2 & 4) == 0 ? charSequence3 : "";
-        int i3 = (i2 & 8) != 0 ? -1 : i;
+        if ((i2 & 2) != 0) {
+            charSequence2 = "";
+        }
+        if ((i2 & 4) != 0) {
+            charSequence3 = "";
+        }
+        if ((i2 & 8) != 0) {
+            i = -1;
+        }
         if ((i2 & 16) != 0) {
             charSequence4 = "...";
         }
-        CharSequence charSequence7 = charSequence4;
         if ((i2 & 32) != 0) {
             function1 = null;
         }
-        return joinToString(iterable, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+        CharSequence charSequence5 = charSequence4;
+        Function1 function2 = function1;
+        return joinToString(iterable, charSequence, charSequence2, charSequence3, i, charSequence5, function2);
     }
 
     public static final String joinToString(Iterable iterable, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {

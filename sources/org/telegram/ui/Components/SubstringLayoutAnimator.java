@@ -84,7 +84,7 @@ public class SubstringLayoutAnimator {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$create$0(valueAnimator2);
+                SubstringLayoutAnimator.$r8$lambda$YCYfvCTPks0Mn8R_NHGC6lJtVV0(this.f$0, valueAnimator2);
             }
         });
         this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -98,9 +98,10 @@ public class SubstringLayoutAnimator {
         this.valueAnimator.start();
     }
 
-    public void lambda$create$0(ValueAnimator valueAnimator) {
-        this.hintProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.parentView.invalidate();
+    public static void $r8$lambda$YCYfvCTPks0Mn8R_NHGC6lJtVV0(SubstringLayoutAnimator substringLayoutAnimator, ValueAnimator valueAnimator) {
+        substringLayoutAnimator.getClass();
+        substringLayoutAnimator.hintProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        substringLayoutAnimator.parentView.invalidate();
     }
 
     public void draw(Canvas canvas, TextPaint textPaint) {

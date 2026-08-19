@@ -131,7 +131,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
     ValueAnimator zoomBackAnimator;
     private boolean zoomStarted;
 
-    protected abstract void onBackPressed();
+    public abstract void onBackPressed();
 
     protected abstract void onFullScreenModeChanged(boolean z);
 
@@ -193,7 +193,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$new$0(view3);
+                this.f$0.onBackPressed();
             }
         });
         ImageView imageView2 = new ImageView(context) {
@@ -242,7 +242,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         view3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view4) {
-                this.f$0.lambda$new$1(view4);
+                GroupCallRenderersContainer.$r8$lambda$gKDQPbVSGoiBi1PKREuRicd1neE(this.f$0, view4);
             }
         });
         drawableCreateSimpleSelectorRoundRectDrawable.setCallback(this.pinContainer);
@@ -279,7 +279,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         this.pipView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view4) {
-                this.f$0.lambda$new$2(groupCallActivity, view4);
+                GroupCallRenderersContainer.$r8$lambda$8f6kmP8gatedbyjXTeZsG9MC3jU(this.f$0, groupCallActivity, view4);
             }
         });
         addView(this.pipView, LayoutHelper.createFrame(32, 32.0f, 53, 12.0f, 12.0f, 12.0f, 12.0f));
@@ -335,24 +335,20 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         setIsTablet(GroupCallActivity.isTabletMode);
     }
 
-    public void lambda$new$0(View view) {
-        onBackPressed();
-    }
-
-    public void lambda$new$1(View view) {
-        if (this.inFullscreenMode) {
-            boolean z = !this.hasPinnedVideo;
-            this.hasPinnedVideo = z;
-            this.pinDrawable.setCrossOut(z, true);
-            requestLayout();
+    public static void $r8$lambda$gKDQPbVSGoiBi1PKREuRicd1neE(GroupCallRenderersContainer groupCallRenderersContainer, View view) {
+        if (groupCallRenderersContainer.inFullscreenMode) {
+            boolean z = !groupCallRenderersContainer.hasPinnedVideo;
+            groupCallRenderersContainer.hasPinnedVideo = z;
+            groupCallRenderersContainer.pinDrawable.setCrossOut(z, true);
+            groupCallRenderersContainer.requestLayout();
         }
     }
 
-    public void lambda$new$2(GroupCallActivity groupCallActivity, View view) {
-        if (isRtmpStream()) {
+    public static void $r8$lambda$8f6kmP8gatedbyjXTeZsG9MC3jU(GroupCallRenderersContainer groupCallRenderersContainer, GroupCallActivity groupCallActivity, View view) {
+        if (groupCallRenderersContainer.isRtmpStream()) {
             if (PipUtils.checkAnyPipPermissions(groupCallActivity.getParentActivity())) {
                 RTMPStreamPipOverlay.show(groupCallActivity.getParentActivity());
-                groupCallActivity.lambda$new$0();
+                groupCallActivity.dismiss();
                 return;
             } else {
                 AlertsCreator.createDrawOverlayPermissionDialog(groupCallActivity.getParentActivity(), null, true).show();
@@ -361,9 +357,9 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         }
         if (AndroidUtilities.checkInlinePermissions(groupCallActivity.getParentActivity())) {
             GroupCallPip.clearForce();
-            groupCallActivity.lambda$new$0();
+            groupCallActivity.dismiss();
         } else {
-            AlertsCreator.createDrawOverlayGroupCallPermissionDialog(getContext()).show();
+            AlertsCreator.createDrawOverlayGroupCallPermissionDialog(groupCallRenderersContainer.getContext()).show();
         }
     }
 
@@ -781,6 +777,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                         i++;
                     }
                 }
+                Property property = View.ALPHA;
                 if (groupCallMiniTextureView != null) {
                     ValueAnimator valueAnimator3 = this.fullscreenAnimator;
                     if (valueAnimator3 != null) {
@@ -842,7 +839,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                         groupCallMiniTextureView10.animateEnter = true;
                         groupCallMiniTextureView10.setAlpha(0.0f);
                         this.outFullscreenTextureView = this.fullscreenTextureView;
-                        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(groupCallMiniTextureView10, (Property<GroupCallMiniTextureView, Float>) View.ALPHA, 0.0f, 1.0f);
+                        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(groupCallMiniTextureView10, (Property<GroupCallMiniTextureView, Float>) property, 0.0f, 1.0f);
                         this.replaceFullscreenViewAnimator = objectAnimatorOfFloat;
                         objectAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                             @Override
@@ -869,7 +866,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                         groupCallMiniTextureView10.runOnFrameRendered(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$requestFullscreen$3(groupCallMiniTextureView, groupCallMiniTextureView4);
+                                GroupCallRenderersContainer.m2975$r8$lambda$AbKeKg9tBuzfCJWPAgsSLga9Y(this.f$0, groupCallMiniTextureView, groupCallMiniTextureView4);
                             }
                         });
                         clearCurrentFullscreenTextureView();
@@ -905,7 +902,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                         groupCallMiniTextureView2.runOnFrameRendered(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$requestFullscreen$4(groupCallMiniTextureView2);
+                                GroupCallRenderersContainer.$r8$lambda$AsrohwPlJPNUUTMbO8Mnudur0fc(this.f$0, groupCallMiniTextureView2);
                             }
                         });
                     } else {
@@ -935,7 +932,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                             groupCallMiniTextureView2.runOnFrameRendered(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    this.f$0.lambda$requestFullscreen$4(groupCallMiniTextureView2);
+                                    GroupCallRenderersContainer.$r8$lambda$AsrohwPlJPNUUTMbO8Mnudur0fc(this.f$0, groupCallMiniTextureView2);
                                 }
                             });
                         } else {
@@ -954,7 +951,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                            this.f$0.lambda$requestFullscreen$5(groupCallMiniTextureView14, valueAnimator4);
+                            GroupCallRenderersContainer.$r8$lambda$qUw210iTLThJI8wvw1UBh1YqPX4(this.f$0, groupCallMiniTextureView14, valueAnimator4);
                         }
                     });
                     this.replaceFullscreenViewAnimator.addListener(new AnimatorListenerAdapter() {
@@ -988,7 +985,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                     groupCallMiniTextureView15.setFullscreenMode(this.inFullscreenMode, false);
                     this.fullscreenTextureView.setShowingInFullscreen(true, false);
                     this.fullscreenTextureView.setShowingInFullscreen(true, false);
-                    ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this.fullscreenTextureView, (Property<GroupCallMiniTextureView, Float>) View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this.fullscreenTextureView, (Property<GroupCallMiniTextureView, Float>) property, 0.0f, 1.0f);
                     this.replaceFullscreenViewAnimator = objectAnimatorOfFloat2;
                     objectAnimatorOfFloat2.addListener(new AnimatorListenerAdapter() {
                         @Override
@@ -1032,7 +1029,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                 valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                        this.f$0.lambda$requestFullscreen$6(valueAnimator4);
+                        GroupCallRenderersContainer.$r8$lambda$4Tbd7XdLXeFyXq2hXizmB8rz4sw(this.f$0, valueAnimator4);
                     }
                 });
                 final GroupCallMiniTextureView groupCallMiniTextureView16 = this.fullscreenTextureView;
@@ -1075,8 +1072,8 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         }
     }
 
-    public void lambda$requestFullscreen$3(final GroupCallMiniTextureView groupCallMiniTextureView, final GroupCallMiniTextureView groupCallMiniTextureView2) {
-        ValueAnimator valueAnimator = this.replaceFullscreenViewAnimator;
+    public static void m2975$r8$lambda$AbKeKg9tBuzfCJWPAgsSLga9Y(GroupCallRenderersContainer groupCallRenderersContainer, final GroupCallMiniTextureView groupCallMiniTextureView, final GroupCallMiniTextureView groupCallMiniTextureView2) {
+        ValueAnimator valueAnimator = groupCallRenderersContainer.replaceFullscreenViewAnimator;
         if (valueAnimator != null) {
             valueAnimator.start();
         }
@@ -1099,7 +1096,8 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         }
     }
 
-    public void lambda$requestFullscreen$4(final GroupCallMiniTextureView groupCallMiniTextureView) {
+    public static void $r8$lambda$AsrohwPlJPNUUTMbO8Mnudur0fc(GroupCallRenderersContainer groupCallRenderersContainer, final GroupCallMiniTextureView groupCallMiniTextureView) {
+        groupCallRenderersContainer.getClass();
         groupCallMiniTextureView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
@@ -1108,17 +1106,19 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         }).setDuration(150L).start();
     }
 
-    public void lambda$requestFullscreen$5(GroupCallMiniTextureView groupCallMiniTextureView, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$qUw210iTLThJI8wvw1UBh1YqPX4(GroupCallRenderersContainer groupCallRenderersContainer, GroupCallMiniTextureView groupCallMiniTextureView, ValueAnimator valueAnimator) {
+        groupCallRenderersContainer.getClass();
         groupCallMiniTextureView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-        invalidate();
+        groupCallRenderersContainer.invalidate();
     }
 
-    public void lambda$requestFullscreen$6(ValueAnimator valueAnimator) {
-        this.progressToFullscreenMode = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.groupCallActivity.getMenuItemsContainer().setAlpha(1.0f - this.progressToFullscreenMode);
-        this.groupCallActivity.invalidateActionBarAlpha();
-        this.groupCallActivity.invalidateScrollOffsetY();
-        update();
+    public static void $r8$lambda$4Tbd7XdLXeFyXq2hXizmB8rz4sw(GroupCallRenderersContainer groupCallRenderersContainer, ValueAnimator valueAnimator) {
+        groupCallRenderersContainer.getClass();
+        groupCallRenderersContainer.progressToFullscreenMode = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        groupCallRenderersContainer.groupCallActivity.getMenuItemsContainer().setAlpha(1.0f - groupCallRenderersContainer.progressToFullscreenMode);
+        groupCallRenderersContainer.groupCallActivity.invalidateActionBarAlpha();
+        groupCallRenderersContainer.groupCallActivity.invalidateScrollOffsetY();
+        groupCallRenderersContainer.update();
     }
 
     public void clearCurrentFullscreenTextureView() {
@@ -1351,7 +1351,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$animateSwipeToBack$7(valueAnimator);
+                    GroupCallRenderersContainer.$r8$lambda$Z7lym2OwUnGJyM2aqVo4ZHGw2HI(this.f$0, valueAnimator);
                 }
             });
             this.swipeToBackAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1380,9 +1380,10 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         this.maybeSwipeToBackGesture = false;
     }
 
-    public void lambda$animateSwipeToBack$7(ValueAnimator valueAnimator) {
-        this.swipeToBackDy = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$Z7lym2OwUnGJyM2aqVo4ZHGw2HI(GroupCallRenderersContainer groupCallRenderersContainer, ValueAnimator valueAnimator) {
+        groupCallRenderersContainer.getClass();
+        groupCallRenderersContainer.swipeToBackDy = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        groupCallRenderersContainer.invalidate();
     }
 
     private void finishZoom() {
@@ -1396,7 +1397,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$finishZoom$8(f, f2, f3, valueAnimator);
+                    GroupCallRenderersContainer.m2976$r8$lambda$_DMzcQbqAigJHMlvwXxev8CyjA(this.f$0, f, f2, f3, valueAnimator);
                 }
             });
             this.zoomBackAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1419,12 +1420,13 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         this.isInPinchToZoomTouchMode = false;
     }
 
-    public void lambda$finishZoom$8(float f, float f2, float f3, ValueAnimator valueAnimator) {
+    public static void m2976$r8$lambda$_DMzcQbqAigJHMlvwXxev8CyjA(GroupCallRenderersContainer groupCallRenderersContainer, float f, float f2, float f3, ValueAnimator valueAnimator) {
+        groupCallRenderersContainer.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.pinchScale = (f * fFloatValue) + ((1.0f - fFloatValue) * 1.0f);
-        this.pinchTranslationX = f2 * fFloatValue;
-        this.pinchTranslationY = f3 * fFloatValue;
-        invalidate();
+        groupCallRenderersContainer.pinchScale = (f * fFloatValue) + ((1.0f - fFloatValue) * 1.0f);
+        groupCallRenderersContainer.pinchTranslationX = f2 * fFloatValue;
+        groupCallRenderersContainer.pinchTranslationY = f3 * fFloatValue;
+        groupCallRenderersContainer.invalidate();
     }
 
     private boolean checkPointerIds(MotionEvent motionEvent) {
@@ -1504,7 +1506,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
 
     public void setVisibleParticipant(boolean z) {
         boolean z2;
-        int i;
+        long j;
         int iDp = 0;
         if (!this.inFullscreenMode || this.isTablet || this.fullscreenParticipant == null || this.fullscreenAnimator != null || this.call == null) {
             if (this.showSpeakingMembersToast) {
@@ -1515,12 +1517,13 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
             return;
         }
         int currentAccount = this.groupCallActivity.getCurrentAccount();
+        long j2 = 500;
         if (System.currentTimeMillis() - this.lastUpdateTooltipTime < 500) {
             if (this.updateTooltipRunnbale == null) {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setVisibleParticipant$9();
+                        GroupCallRenderersContainer.$r8$lambda$hwWltsWY41AKdVCTBydX7V4DUDY(this.f$0);
                     }
                 };
                 this.updateTooltipRunnbale = runnable;
@@ -1530,36 +1533,36 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
             return;
         }
         this.lastUpdateTooltipTime = System.currentTimeMillis();
-        int i2 = 0;
         SpannableStringBuilder spannableStringBuilder = null;
-        int i3 = 0;
-        while (i2 < this.call.currentSpeakingPeers.size()) {
-            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) this.call.currentSpeakingPeers.get(this.call.currentSpeakingPeers.keyAt(i2));
+        int i = 0;
+        int i2 = 0;
+        while (i < this.call.currentSpeakingPeers.size()) {
+            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) this.call.currentSpeakingPeers.get(this.call.currentSpeakingPeers.keyAt(i));
             if (groupCallParticipant.self || groupCallParticipant.muted_by_you || MessageObject.getPeerId(this.fullscreenParticipant.participant.peer) == MessageObject.getPeerId(groupCallParticipant.peer)) {
-                i = i2;
+                j = j2;
             } else {
                 long peerId = MessageObject.getPeerId(groupCallParticipant.peer);
-                i = i2;
-                if (SystemClock.uptimeMillis() - groupCallParticipant.lastSpeakTime >= 500) {
+                j = j2;
+                if (SystemClock.uptimeMillis() - groupCallParticipant.lastSpeakTime >= j) {
                     continue;
                 } else {
                     if (spannableStringBuilder == null) {
                         spannableStringBuilder = new SpannableStringBuilder();
                     }
-                    if (i3 == 0) {
+                    if (i2 == 0) {
                         this.speakingToastPeerId = MessageObject.getPeerId(groupCallParticipant.peer);
                     }
-                    if (i3 >= 3) {
-                        i3++;
-                        if (i3 == 3) {
+                    if (i2 >= 3) {
+                        i2++;
+                        if (i2 == 3) {
                             break;
                         }
                     } else {
                         TLRPC.User user = peerId > 0 ? MessagesController.getInstance(currentAccount).getUser(Long.valueOf(peerId)) : null;
                         TLRPC.Chat chat = peerId <= 0 ? MessagesController.getInstance(currentAccount).getChat(Long.valueOf(peerId)) : null;
                         if (user != null || chat != null) {
-                            this.speakingMembersAvatars.setObject(i3, currentAccount, groupCallParticipant);
-                            if (i3 != 0) {
+                            this.speakingMembersAvatars.setObject(i2, currentAccount, groupCallParticipant);
+                            if (i2 != 0) {
                                 spannableStringBuilder.append((CharSequence) ", ");
                             }
                             if (user != null) {
@@ -1567,8 +1570,8 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                             } else {
                                 spannableStringBuilder.append(chat.title, new TypefaceSpan(AndroidUtilities.bold()), 0);
                             }
-                            i3++;
-                            if (i3 == 3) {
+                            i2++;
+                            if (i2 == 3) {
                                 break;
                                 break;
                             }
@@ -1576,9 +1579,10 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                     }
                 }
             }
-            i2 = i + 1;
+            i++;
+            j2 = j;
         }
-        boolean z3 = i3 != 0;
+        boolean z3 = i2 != 0;
         boolean z4 = this.showSpeakingMembersToast;
         if (!z4 && z3) {
             z2 = false;
@@ -1601,15 +1605,15 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
             invalidate();
             return;
         }
-        String pluralString = LocaleController.getPluralString("MembersAreSpeakingToast", i3);
+        String pluralString = LocaleController.getPluralString("MembersAreSpeakingToast", i2);
         int iIndexOf = pluralString.indexOf("un1");
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(pluralString);
         spannableStringBuilder2.replace(iIndexOf, iIndexOf + 3, (CharSequence) spannableStringBuilder);
         this.speakingMembersText.setText(spannableStringBuilder2);
-        if (i3 != 0) {
-            if (i3 == 1) {
+        if (i2 != 0) {
+            if (i2 == 1) {
                 iDp = AndroidUtilities.dp(40.0f);
-            } else if (i3 == 2) {
+            } else if (i2 == 2) {
                 iDp = AndroidUtilities.dp(64.0f);
             } else {
                 iDp = AndroidUtilities.dp(88.0f);
@@ -1619,16 +1623,16 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         ((FrameLayout.LayoutParams) this.speakingMembersText.getLayoutParams()).rightMargin = AndroidUtilities.dp(16.0f);
         this.showSpeakingMembersToast = z3;
         invalidate();
-        while (i3 < 3) {
-            this.speakingMembersAvatars.setObject(i3, currentAccount, null);
-            i3++;
+        while (i2 < 3) {
+            this.speakingMembersAvatars.setObject(i2, currentAccount, null);
+            i2++;
         }
         this.speakingMembersAvatars.commitTransition(z2);
     }
 
-    public void lambda$setVisibleParticipant$9() {
-        this.updateTooltipRunnbale = null;
-        setVisibleParticipant(true);
+    public static void $r8$lambda$hwWltsWY41AKdVCTBydX7V4DUDY(GroupCallRenderersContainer groupCallRenderersContainer) {
+        groupCallRenderersContainer.updateTooltipRunnbale = null;
+        groupCallRenderersContainer.setVisibleParticipant(true);
     }
 
     public UndoView getUndoView() {

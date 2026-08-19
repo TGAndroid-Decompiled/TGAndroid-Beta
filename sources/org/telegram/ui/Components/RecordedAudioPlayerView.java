@@ -63,7 +63,7 @@ public class RecordedAudioPlayerView extends View {
         this.progressUpdate = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                RecordedAudioPlayerView.$r8$lambda$Kx8ur_PBZa0Jtb9D0o4Sx7I2_AI(this.f$0);
             }
         };
         this.backgroundRect = new RectF();
@@ -193,24 +193,24 @@ public class RecordedAudioPlayerView extends View {
         }
     }
 
-    public void lambda$new$0() {
-        VideoPlayer videoPlayer = this.player;
+    public static void $r8$lambda$Kx8ur_PBZa0Jtb9D0o4Sx7I2_AI(RecordedAudioPlayerView recordedAudioPlayerView) {
+        VideoPlayer videoPlayer = recordedAudioPlayerView.player;
         if (videoPlayer != null) {
             boolean zIsPlaying = videoPlayer.isPlaying();
-            float currentPosition = this.player.getCurrentPosition() / this.player.getDuration();
-            float f = this.left;
+            float currentPosition = recordedAudioPlayerView.player.getCurrentPosition() / recordedAudioPlayerView.player.getDuration();
+            float f = recordedAudioPlayerView.left;
             if (currentPosition < f) {
-                VideoPlayer videoPlayer2 = this.player;
+                VideoPlayer videoPlayer2 = recordedAudioPlayerView.player;
                 videoPlayer2.seekTo((long) (f * videoPlayer2.getDuration()));
-            } else if (currentPosition > this.right) {
+            } else if (currentPosition > recordedAudioPlayerView.right) {
                 zIsPlaying = false;
-                setPlaying(false);
+                recordedAudioPlayerView.setPlaying(false);
             }
             if (zIsPlaying) {
-                AndroidUtilities.runOnUIThread(this.progressUpdate, 16L);
+                AndroidUtilities.runOnUIThread(recordedAudioPlayerView.progressUpdate, 16L);
             }
         }
-        invalidate();
+        recordedAudioPlayerView.invalidate();
     }
 
     public void checkWaveform() {

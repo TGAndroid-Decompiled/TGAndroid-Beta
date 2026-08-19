@@ -56,15 +56,16 @@ public class HintEditText extends EditTextBoldCursor {
     @Override
     protected void onDraw(Canvas canvas) {
         float fMeasureText;
+        Canvas canvas2;
         if (this.hintText != null && length() < this.hintText.length()) {
+            int i = 0;
             float f = 0.0f;
-            for (int i = 0; i < this.hintText.length(); i++) {
+            while (i < this.hintText.length()) {
                 if (i < length()) {
                     fMeasureText = getPaint().measureText(getText(), i, i + 1);
                 } else {
                     fMeasureText = this.hintPaint.measureText(this.hintText, i, i + 1);
                 }
-                float f2 = fMeasureText;
                 if (shouldDrawBehindText(i) || i >= length()) {
                     int color = this.hintPaint.getColor();
                     canvas.save();
@@ -73,13 +74,17 @@ public class HintEditText extends EditTextBoldCursor {
                     textPaint.getTextBounds(str, 0, str.length(), this.rect);
                     float height = (getHeight() + this.rect.height()) / 2.0f;
                     onPreDrawHintCharacter(i, canvas, f, height);
-                    canvas.drawText(this.hintText, i, i + 1, f, height, (Paint) this.hintPaint);
-                    f += f2;
-                    canvas.restore();
+                    canvas2 = canvas;
+                    canvas2.drawText(this.hintText, i, i + 1, f, height, (Paint) this.hintPaint);
+                    f += fMeasureText;
+                    canvas2.restore();
                     this.hintPaint.setColor(color);
                 } else {
-                    f += f2;
+                    f += fMeasureText;
+                    canvas2 = canvas;
                 }
+                i++;
+                canvas = canvas2;
             }
         }
         super.onDraw(canvas);

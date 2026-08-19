@@ -152,10 +152,11 @@ public class PaintWeightChooserView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         boolean zOnTouchEvent = this.gestureDetector.onTouchEvent(motionEvent);
-        if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
-            this.isTouchInProgress = false;
-            invalidate();
+        if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
+            return zOnTouchEvent;
         }
+        this.isTouchInProgress = false;
+        invalidate();
         return zOnTouchEvent;
     }
 
@@ -263,7 +264,7 @@ public class PaintWeightChooserView extends View {
         float f10 = iDp2 * 1.5f;
         drawCircleWithShadow(canvas, fDp2, MathUtils.clamp(fHeight2, rectF3.top + f8, rectF3.bottom - Math.min(f10, f8)), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.lerp(Math.min(f10, f8), f8, f9), this.showProgress), false);
         if (this.drawCenter && this.showProgress != 0.0f && this.showPreview && this.renderView != null) {
-            drawCircleWithShadow(canvas, getWidth() / 2.0f, getHeight() / 2.0f, this.renderView.brushWeightForSize(f3) * this.renderView.getCurrentBrush().getScale() * this.renderView.getCurrentBrush().getPreviewScale(), true);
+            drawCircleWithShadow(canvas, getWidth() / 2.0f, getHeight() / 2.0f, this.renderView.getCurrentBrush().getPreviewScale() * this.renderView.brushWeightForSize(f3) * this.renderView.getCurrentBrush().getScale(), true);
         }
         if (this.hideProgress != 0.0f) {
             canvas.restore();

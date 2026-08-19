@@ -45,7 +45,7 @@ public class SessionBottomSheet extends BottomSheet {
         void onSessionTerminated(TLRPC.TL_authorization tL_authorization);
     }
 
-    public static void lambda$uploadSessionSettings$0(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$vKDcJ0X1ZP1ewonnzJv9wWdCnF4(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public SessionBottomSheet(BaseFragment baseFragment, final TLRPC.TL_authorization tL_authorization, boolean z, Callback callback) {
@@ -253,7 +253,7 @@ public class SessionBottomSheet extends BottomSheet {
             builder.setPositiveButton(string, new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onClick$0(callback, tL_authorization, alertDialog, i);
+                    SessionBottomSheet.AnonymousClass8.$r8$lambda$WrVZXdYBdI5X4sFunptVFy3l05c(this.f$0, callback, tL_authorization, alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -265,9 +265,10 @@ public class SessionBottomSheet extends BottomSheet {
             }
         }
 
-        public void lambda$onClick$0(Callback callback, TLRPC.TL_authorization tL_authorization, AlertDialog alertDialog, int i) {
+        public static void $r8$lambda$WrVZXdYBdI5X4sFunptVFy3l05c(AnonymousClass8 anonymousClass8, Callback callback, TLRPC.TL_authorization tL_authorization, AlertDialog alertDialog, int i) {
+            anonymousClass8.getClass();
             callback.onSessionTerminated(tL_authorization);
-            SessionBottomSheet.this.lambda$new$0();
+            SessionBottomSheet.this.dismiss();
         }
     }
 
@@ -290,7 +291,7 @@ public class SessionBottomSheet extends BottomSheet {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(changeauthorizationsettings, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SessionBottomSheet.lambda$uploadSessionSettings$0(tLObject, tL_error);
+                SessionBottomSheet.$r8$lambda$vKDcJ0X1ZP1ewonnzJv9wWdCnF4(tLObject, tL_error);
             }
         });
     }
@@ -300,15 +301,16 @@ public class SessionBottomSheet extends BottomSheet {
         builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                this.f$0.lambda$copyText$1(str, dialogInterface, i);
+                SessionBottomSheet.m4039$r8$lambda$XhaS2mAfCidXA5zSoAZS5EfI(this.f$0, str, dialogInterface, i);
             }
         });
         builder.show();
     }
 
-    public void lambda$copyText$1(String str, DialogInterface dialogInterface, int i) {
+    public static void m4039$r8$lambda$XhaS2mAfCidXA5zSoAZS5EfI(SessionBottomSheet sessionBottomSheet, String str, DialogInterface dialogInterface, int i) {
+        sessionBottomSheet.getClass();
         ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", str));
-        BulletinFactory.of(getContainer(), null).createCopyBulletin(LocaleController.getString(R.string.TextCopied)).show();
+        BulletinFactory.of(sessionBottomSheet.getContainer(), null).createCopyBulletin(LocaleController.getString(R.string.TextCopied)).show();
     }
 
     private void setAnimation(TLRPC.TL_authorization tL_authorization, RLottieImageView rLottieImageView) {

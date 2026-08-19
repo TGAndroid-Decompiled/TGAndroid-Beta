@@ -126,23 +126,24 @@ public class GlueSettingsParser {
                 int i2 = 0;
                 while (i2 < elementsByTagName2.getLength()) {
                     String attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("name", (Element) elementsByTagName2.item(i2));
-                    NodeList nodeList = elementsByTagName;
+                    int[][][] iArr2 = iArr;
                     Integer num = this.typeMappings.get(attrValueAndCheckIfNotNull);
-                    NodeList nodeList2 = elementsByTagName2;
+                    NodeList nodeList = elementsByTagName;
                     Integer num2 = this.typeMappings.get(attrValueAndCheckIfNotNull2);
                     int i3 = i;
                     Integer num3 = this.styleMappings.get(attrValueAndCheckIfNotNull4);
-                    int i4 = i2;
+                    NodeList nodeList2 = elementsByTagName2;
                     Integer num4 = this.glueTypeMappings.get(attrValueAndCheckIfNotNull3);
                     checkMapping(num, "Glue", "lefttype", attrValueAndCheckIfNotNull);
                     checkMapping(num2, "Glue", "righttype", attrValueAndCheckIfNotNull2);
                     checkMapping(num4, "Glue", "gluetype", attrValueAndCheckIfNotNull3);
                     checkMapping(num3, "Style", "name", attrValueAndCheckIfNotNull4);
-                    iArr[num.intValue()][num2.intValue()][num3.intValue()] = num4.intValue();
-                    i2 = i4 + 1;
+                    iArr2[num.intValue()][num2.intValue()][num3.intValue()] = num4.intValue();
+                    i2++;
+                    iArr = iArr2;
                     elementsByTagName = nodeList;
-                    elementsByTagName2 = nodeList2;
                     i = i3;
+                    elementsByTagName2 = nodeList2;
                 }
                 i++;
             }

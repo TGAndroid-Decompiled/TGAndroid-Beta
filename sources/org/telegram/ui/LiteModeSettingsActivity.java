@@ -68,7 +68,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
     private Utilities.Callback onPowerAppliedChange = new Utilities.Callback() {
         @Override
         public final void run(Object obj) {
-            this.f$0.lambda$new$1((Boolean) obj);
+            this.f$0.updateValues();
         }
     };
     private boolean[] expanded = new boolean[3];
@@ -132,7 +132,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                this.f$0.lambda$createView$0(view, i, f, f2);
+                LiteModeSettingsActivity.m3408$r8$lambda$UjYFGZuQC79daPf2ke4bOF_PXM(this.f$0, view, i, f, f2);
             }
         });
         this.fragmentView = this.contentView;
@@ -141,27 +141,28 @@ public class LiteModeSettingsActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view, int i, float f, float f2) {
+    public static void m3408$r8$lambda$UjYFGZuQC79daPf2ke4bOF_PXM(LiteModeSettingsActivity liteModeSettingsActivity, View view, int i, float f, float f2) {
         int expandedIndex;
-        if (view == null || i < 0 || i >= this.items.size()) {
+        liteModeSettingsActivity.getClass();
+        if (view == null || i < 0 || i >= liteModeSettingsActivity.items.size()) {
             return;
         }
-        Item item = (Item) this.items.get(i);
+        Item item = (Item) liteModeSettingsActivity.items.get(i);
         int i2 = item.viewType;
         if (i2 == 3 || i2 == 4) {
             if (LiteMode.isPowerSaverApplied()) {
-                this.restrictBulletin = BulletinFactory.of(this).createSimpleBulletin(new BatteryDrawable(0.1f, -1, Theme.getColor(Theme.key_dialogSwipeRemove), 1.3f), LocaleController.getString(R.string.LiteBatteryRestricted)).show();
+                liteModeSettingsActivity.restrictBulletin = BulletinFactory.of(liteModeSettingsActivity).createSimpleBulletin(new BatteryDrawable(0.1f, -1, Theme.getColor(Theme.key_dialogSwipeRemove), 1.3f), LocaleController.getString(R.string.LiteBatteryRestricted)).show();
                 return;
             }
-            if (item.viewType == 3 && item.getFlagsCount() > 1 && (!LocaleController.isRTL ? f < view.getMeasuredWidth() - AndroidUtilities.dp(75.0f) : f > AndroidUtilities.dp(75.0f)) && (expandedIndex = getExpandedIndex(item.flags)) != -1) {
-                boolean[] zArr = this.expanded;
+            if (item.viewType == 3 && item.getFlagsCount() > 1 && (!LocaleController.isRTL ? f < view.getMeasuredWidth() - AndroidUtilities.dp(75.0f) : f > AndroidUtilities.dp(75.0f)) && (expandedIndex = liteModeSettingsActivity.getExpandedIndex(item.flags)) != -1) {
+                boolean[] zArr = liteModeSettingsActivity.expanded;
                 zArr[expandedIndex] = !zArr[expandedIndex];
-                updateValues();
-                updateItems();
+                liteModeSettingsActivity.updateValues();
+                liteModeSettingsActivity.updateItems();
                 return;
             }
             LiteMode.toggleFlag(item.flags, !LiteMode.isEnabledSetting(item.flags));
-            updateValues();
+            liteModeSettingsActivity.updateValues();
             return;
         }
         if (i2 == 5 && item.type == 1) {
@@ -186,10 +187,6 @@ public class LiteModeSettingsActivity extends BaseFragment {
     public void onBecomeFullyHidden() {
         super.onBecomeFullyHidden();
         LiteMode.removeOnPowerSaverAppliedListener(this.onPowerAppliedChange);
-    }
-
-    public void lambda$new$1(Boolean bool) {
-        updateValues();
     }
 
     public int getExpandedIndex(int i) {
@@ -234,13 +231,13 @@ public class LiteModeSettingsActivity extends BaseFragment {
         this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
             @Override
             public final int run() {
-                return this.f$0.lambda$highlightRow$2(i);
+                return LiteModeSettingsActivity.m3409$r8$lambda$sVuUwulOjX_0iWbyVRgUMQ2Dsg(this.f$0, i);
             }
         });
     }
 
-    public int lambda$highlightRow$2(int i) {
-        this.layoutManager.scrollToPositionWithOffset(i, AndroidUtilities.dp(60.0f));
+    public static int m3409$r8$lambda$sVuUwulOjX_0iWbyVRgUMQ2Dsg(LiteModeSettingsActivity liteModeSettingsActivity, int i) {
+        liteModeSettingsActivity.layoutManager.scrollToPositionWithOffset(i, AndroidUtilities.dp(60.0f));
         return i;
     }
 
@@ -940,7 +937,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$updateOnActive$0(valueAnimator2);
+                        LiteModeSettingsActivity.PowerSaverSlider.$r8$lambda$1Jzm6Fl_TCKn6XZdPeH5E9ShRHc(this.f$0, valueAnimator2);
                     }
                 });
                 this.onActiveAnimator.addListener(new AnimatorListenerAdapter() {
@@ -955,12 +952,12 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
         }
 
-        public void lambda$updateOnActive$0(ValueAnimator valueAnimator) {
-            TextView textView = this.rightTextView;
+        public static void $r8$lambda$1Jzm6Fl_TCKn6XZdPeH5E9ShRHc(PowerSaverSlider powerSaverSlider, ValueAnimator valueAnimator) {
+            TextView textView = powerSaverSlider.rightTextView;
             int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText);
             int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText);
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.onActiveT = fFloatValue;
+            powerSaverSlider.onActiveT = fFloatValue;
             textView.setTextColor(ColorUtils.blendARGB(color, color2, fFloatValue));
         }
 
@@ -978,7 +975,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$updateOffActive$1(valueAnimator2);
+                        LiteModeSettingsActivity.PowerSaverSlider.$r8$lambda$ZYcvDmzJtFogptxHYHBgGgU8xaw(this.f$0, valueAnimator2);
                     }
                 });
                 this.offActiveAnimator.addListener(new AnimatorListenerAdapter() {
@@ -993,12 +990,12 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
         }
 
-        public void lambda$updateOffActive$1(ValueAnimator valueAnimator) {
-            TextView textView = this.leftTextView;
+        public static void $r8$lambda$ZYcvDmzJtFogptxHYHBgGgU8xaw(PowerSaverSlider powerSaverSlider, ValueAnimator valueAnimator) {
+            TextView textView = powerSaverSlider.leftTextView;
             int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText);
             int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText);
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.offActiveT = fFloatValue;
+            powerSaverSlider.offActiveT = fFloatValue;
             textView.setTextColor(ColorUtils.blendARGB(color, color2, fFloatValue));
         }
 
@@ -1008,7 +1005,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         }
     }
 
-    private static class Item extends AdapterWithDiffUtils.Item {
+    static class Item extends AdapterWithDiffUtils.Item {
         public int flags;
         public int iconResId;
         public CharSequence text;

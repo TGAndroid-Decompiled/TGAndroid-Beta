@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ShadowSectionCell;
@@ -57,9 +56,13 @@ public class SectionsScrollView extends ScrollView {
     @Override
     protected void onScrollChanged(int i, int i2, int i3, int i4) {
         super.onScrollChanged(i, i2, i3, i4);
-        Iterator it = this.onScroll.iterator();
-        while (it.hasNext()) {
-            ((Runnable) it.next()).run();
+        ArrayList arrayList = this.onScroll;
+        int size = arrayList.size();
+        int i5 = 0;
+        while (i5 < size) {
+            Object obj = arrayList.get(i5);
+            i5++;
+            ((Runnable) obj).run();
         }
         invalidate();
         this.contentView.invalidate();
@@ -100,13 +103,17 @@ public class SectionsScrollView extends ScrollView {
     private void drawSectionsBackgrounds(Canvas canvas) {
         this.children.clear();
         gatherChildren(this.contentView, 0.0f, 0.0f);
-        Iterator it = this.children.iterator();
+        ArrayList arrayList = this.children;
+        int size = arrayList.size();
+        int i = 0;
         while (true) {
             View view = null;
             View view2 = null;
             while (true) {
-                if (it.hasNext()) {
-                    View view3 = (View) it.next();
+                if (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    View view3 = (View) obj;
                     if (!isSectionView(view3)) {
                         break;
                     }

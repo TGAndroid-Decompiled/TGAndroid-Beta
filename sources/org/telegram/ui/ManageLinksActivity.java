@@ -234,7 +234,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getAdminsWithInvites, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$loadLinks$2(tLObject, tL_error);
+                    ManageLinksActivity.$r8$lambda$z2iL34_1ON2TXZSJRi6StbnUY40(this.f$0, tLObject, tL_error);
                 }
             }), getClassGuid());
         } else {
@@ -267,7 +267,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getExportedChatInvites, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$loadLinks$5(tL_chatInviteExported, z2, tLObject, tL_error);
+                    ManageLinksActivity.$r8$lambda$416hkoGTUNPWPyNyV0HswcZxMcc(this.f$0, tL_chatInviteExported, z2, tLObject, tL_error);
                 }
             }), getClassGuid());
         }
@@ -276,59 +276,58 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$loadLinks$1(final TLRPC.TL_error tL_error, final TLObject tLObject) {
-        getNotificationCenter().doOnIdle(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$loadLinks$0(tL_error, tLObject);
-            }
-        });
-    }
-
-    public void lambda$loadLinks$2(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$z2iL34_1ON2TXZSJRi6StbnUY40(final ManageLinksActivity manageLinksActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        manageLinksActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadLinks$1(tL_error, tLObject);
+                ManageLinksActivity manageLinksActivity2 = this.f$0;
+                manageLinksActivity2.getNotificationCenter().doOnIdle(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ManageLinksActivity.$r8$lambda$bjSGIoy7EAFd3Ot711BFF_XoVjM(manageLinksActivity2, tL_error, tLObject);
+                    }
+                });
             }
         });
     }
 
-    public void lambda$loadLinks$0(TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void $r8$lambda$bjSGIoy7EAFd3Ot711BFF_XoVjM(ManageLinksActivity manageLinksActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         RecyclerItemsEnterAnimator recyclerItemsEnterAnimator;
-        this.linksLoading = false;
+        manageLinksActivity.linksLoading = false;
         if (tL_error == null) {
             TLRPC.TL_messages_chatAdminsWithInvites tL_messages_chatAdminsWithInvites = (TLRPC.TL_messages_chatAdminsWithInvites) tLObject;
             for (int i = 0; i < tL_messages_chatAdminsWithInvites.admins.size(); i++) {
                 TLRPC.TL_chatAdminWithInvites tL_chatAdminWithInvites = tL_messages_chatAdminsWithInvites.admins.get(i);
-                if (tL_chatAdminWithInvites.admin_id != getAccountInstance().getUserConfig().clientUserId) {
-                    this.admins.add(tL_chatAdminWithInvites);
+                if (tL_chatAdminWithInvites.admin_id != manageLinksActivity.getAccountInstance().getUserConfig().clientUserId) {
+                    manageLinksActivity.admins.add(tL_chatAdminWithInvites);
                 }
             }
             for (int i2 = 0; i2 < tL_messages_chatAdminsWithInvites.users.size(); i2++) {
                 TLRPC.User user = tL_messages_chatAdminsWithInvites.users.get(i2);
-                this.users.put(Long.valueOf(user.id), user);
+                manageLinksActivity.users.put(Long.valueOf(user.id), user);
             }
         }
-        int i3 = this.rowCount;
-        this.adminsLoaded = true;
-        this.hasMore = false;
-        if (this.admins.size() > 0 && (recyclerItemsEnterAnimator = this.recyclerItemsEnterAnimator) != null && !this.isPaused && this.isOpened) {
+        int i3 = manageLinksActivity.rowCount;
+        manageLinksActivity.adminsLoaded = true;
+        manageLinksActivity.hasMore = false;
+        if (manageLinksActivity.admins.size() > 0 && (recyclerItemsEnterAnimator = manageLinksActivity.recyclerItemsEnterAnimator) != null && !manageLinksActivity.isPaused && manageLinksActivity.isOpened) {
             recyclerItemsEnterAnimator.showItemsAnimated(i3 + 1);
         }
-        if (!this.hasMore || this.invites.size() + this.revokedInvites.size() + this.admins.size() >= 5) {
-            resumeDelayedFragmentAnimation();
+        if (!manageLinksActivity.hasMore || manageLinksActivity.invites.size() + manageLinksActivity.revokedInvites.size() + manageLinksActivity.admins.size() >= 5) {
+            manageLinksActivity.resumeDelayedFragmentAnimation();
         }
-        if (!this.hasMore && !this.loadRevoked) {
-            this.hasMore = true;
-            this.loadRevoked = true;
-            loadLinks(false);
+        if (!manageLinksActivity.hasMore && !manageLinksActivity.loadRevoked) {
+            manageLinksActivity.hasMore = true;
+            manageLinksActivity.loadRevoked = true;
+            manageLinksActivity.loadLinks(false);
         }
-        updateRows(true);
+        manageLinksActivity.updateRows(true);
     }
 
-    public void lambda$loadLinks$5(TLRPC.TL_chatInviteExported tL_chatInviteExported, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$416hkoGTUNPWPyNyV0HswcZxMcc(final ManageLinksActivity manageLinksActivity, TLRPC.TL_chatInviteExported tL_chatInviteExported, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         TLRPC.TL_chatInviteExported tL_chatInviteExported2;
+        manageLinksActivity.getClass();
         if (tL_error != null) {
             tL_chatInviteExported2 = null;
             break;
@@ -356,29 +355,26 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadLinks$4(tL_chatInviteExported3, tL_error, tLObject, z);
+                ManageLinksActivity manageLinksActivity2 = this.f$0;
+                manageLinksActivity2.getNotificationCenter().doOnIdle(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ManageLinksActivity.m3536$r8$lambda$OAuw5ymj7jsqLNsCkmkQrtxvIA(manageLinksActivity2, tL_chatInviteExported, tL_error, tLObject, z);
+                    }
+                });
             }
         });
     }
 
-    public void lambda$loadLinks$4(final TLRPC.TL_chatInviteExported tL_chatInviteExported, final TLRPC.TL_error tL_error, final TLObject tLObject, final boolean z) {
-        getNotificationCenter().doOnIdle(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$loadLinks$3(tL_chatInviteExported, tL_error, tLObject, z);
-            }
-        });
-    }
-
-    public void lambda$loadLinks$3(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
+    public static void m3536$r8$lambda$OAuw5ymj7jsqLNsCkmkQrtxvIA(ManageLinksActivity manageLinksActivity, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
         boolean z2;
         boolean z3;
-        DiffCallback diffCallbackSaveListState = saveListState();
-        this.linksLoading = false;
-        this.hasMore = false;
+        DiffCallback diffCallbackSaveListState = manageLinksActivity.saveListState();
+        manageLinksActivity.linksLoading = false;
+        manageLinksActivity.hasMore = false;
         if (tL_chatInviteExported != null) {
-            this.invite = tL_chatInviteExported;
-            TLRPC.ChatFull chatFull = this.info;
+            manageLinksActivity.invite = tL_chatInviteExported;
+            TLRPC.ChatFull chatFull = manageLinksActivity.info;
             if (chatFull != null) {
                 chatFull.exported_invite = tL_chatInviteExported;
             }
@@ -388,83 +384,83 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             if (z) {
                 for (int i = 0; i < tL_messages_exportedChatInvites.invites.size(); i++) {
                     TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(i);
-                    fixDate(tL_chatInviteExported2);
-                    this.revokedInvites.add(tL_chatInviteExported2);
+                    manageLinksActivity.fixDate(tL_chatInviteExported2);
+                    manageLinksActivity.revokedInvites.add(tL_chatInviteExported2);
                 }
             } else {
-                if (this.adminId != getAccountInstance().getUserConfig().clientUserId && this.invites.size() == 0 && tL_messages_exportedChatInvites.invites.size() > 0) {
-                    this.invite = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(0);
+                if (manageLinksActivity.adminId != manageLinksActivity.getAccountInstance().getUserConfig().clientUserId && manageLinksActivity.invites.size() == 0 && tL_messages_exportedChatInvites.invites.size() > 0) {
+                    manageLinksActivity.invite = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(0);
                     tL_messages_exportedChatInvites.invites.remove(0);
                 }
                 for (int i2 = 0; i2 < tL_messages_exportedChatInvites.invites.size(); i2++) {
                     TLRPC.TL_chatInviteExported tL_chatInviteExported3 = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(i2);
-                    fixDate(tL_chatInviteExported3);
-                    this.invites.add(tL_chatInviteExported3);
+                    manageLinksActivity.fixDate(tL_chatInviteExported3);
+                    manageLinksActivity.invites.add(tL_chatInviteExported3);
                 }
             }
             for (int i3 = 0; i3 < tL_messages_exportedChatInvites.users.size(); i3++) {
-                this.users.put(Long.valueOf(tL_messages_exportedChatInvites.users.get(i3).id), tL_messages_exportedChatInvites.users.get(i3));
+                manageLinksActivity.users.put(Long.valueOf(tL_messages_exportedChatInvites.users.get(i3).id), tL_messages_exportedChatInvites.users.get(i3));
             }
-            int i4 = this.rowCount;
+            int i4 = manageLinksActivity.rowCount;
             if (tL_messages_exportedChatInvites.invites.size() == 0) {
-                this.hasMore = false;
+                manageLinksActivity.hasMore = false;
             } else if (z) {
-                this.hasMore = this.revokedInvites.size() + 1 < tL_messages_exportedChatInvites.count;
+                manageLinksActivity.hasMore = manageLinksActivity.revokedInvites.size() + 1 < tL_messages_exportedChatInvites.count;
             } else {
-                this.hasMore = this.invites.size() + 1 < tL_messages_exportedChatInvites.count;
+                manageLinksActivity.hasMore = manageLinksActivity.invites.size() + 1 < tL_messages_exportedChatInvites.count;
             }
-            if (tL_messages_exportedChatInvites.invites.size() <= 0 || !this.isOpened) {
+            if (tL_messages_exportedChatInvites.invites.size() <= 0 || !manageLinksActivity.isOpened) {
                 z2 = true;
             } else {
-                RecyclerItemsEnterAnimator recyclerItemsEnterAnimator = this.recyclerItemsEnterAnimator;
-                if (recyclerItemsEnterAnimator != null && !this.isPaused) {
+                RecyclerItemsEnterAnimator recyclerItemsEnterAnimator = manageLinksActivity.recyclerItemsEnterAnimator;
+                if (recyclerItemsEnterAnimator != null && !manageLinksActivity.isPaused) {
                     recyclerItemsEnterAnimator.showItemsAnimated(i4 + 1);
                 }
                 z2 = false;
             }
-            TLRPC.ChatFull chatFull2 = this.info;
+            TLRPC.ChatFull chatFull2 = manageLinksActivity.info;
             if (chatFull2 != null && !z) {
                 chatFull2.invitesCount = tL_messages_exportedChatInvites.count;
-                getMessagesStorage().saveChatLinksCount(this.currentChatId, this.info.invitesCount);
+                manageLinksActivity.getMessagesStorage().saveChatLinksCount(manageLinksActivity.currentChatId, manageLinksActivity.info.invitesCount);
             }
         } else {
-            this.hasMore = false;
+            manageLinksActivity.hasMore = false;
             z2 = false;
         }
-        if (!this.hasMore && !this.loadRevoked && this.adminId == getAccountInstance().getUserConfig().clientUserId) {
-            this.hasMore = true;
-            this.loadAdmins = true;
+        if (!manageLinksActivity.hasMore && !manageLinksActivity.loadRevoked && manageLinksActivity.adminId == manageLinksActivity.getAccountInstance().getUserConfig().clientUserId) {
+            manageLinksActivity.hasMore = true;
+            manageLinksActivity.loadAdmins = true;
         } else {
-            if (this.hasMore || this.loadRevoked) {
+            if (manageLinksActivity.hasMore || manageLinksActivity.loadRevoked) {
                 z3 = false;
             } else {
-                this.hasMore = true;
-                this.loadRevoked = true;
+                manageLinksActivity.hasMore = true;
+                manageLinksActivity.loadRevoked = true;
             }
-            if (this.hasMore || this.invites.size() + this.revokedInvites.size() + this.admins.size() >= 5) {
-                resumeDelayedFragmentAnimation();
+            if (manageLinksActivity.hasMore || manageLinksActivity.invites.size() + manageLinksActivity.revokedInvites.size() + manageLinksActivity.admins.size() >= 5) {
+                manageLinksActivity.resumeDelayedFragmentAnimation();
             }
             if (z3) {
-                loadLinks(false);
+                manageLinksActivity.loadLinks(false);
             }
-            if (!z2 && this.listViewAdapter != null && this.listView.getChildCount() > 0) {
-                updateRecyclerViewAnimated(diffCallbackSaveListState);
+            if (!z2 && manageLinksActivity.listViewAdapter != null && manageLinksActivity.listView.getChildCount() > 0) {
+                manageLinksActivity.updateRecyclerViewAnimated(diffCallbackSaveListState);
                 return;
             }
-            updateRows(true);
+            manageLinksActivity.updateRows(true);
         }
         z3 = true;
-        if (this.hasMore) {
-            resumeDelayedFragmentAnimation();
+        if (manageLinksActivity.hasMore) {
+            manageLinksActivity.resumeDelayedFragmentAnimation();
         } else {
-            resumeDelayedFragmentAnimation();
+            manageLinksActivity.resumeDelayedFragmentAnimation();
         }
         if (z3) {
-            loadLinks(false);
+            manageLinksActivity.loadLinks(false);
         }
         if (!z2) {
         }
-        updateRows(true);
+        manageLinksActivity.updateRows(true);
     }
 
     public void updateRows(boolean z) {
@@ -677,13 +673,13 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$createView$9(context, view, i2);
+                ManageLinksActivity.m3534$r8$lambda$LXsXyqGTUJIuZzWYVJxvprmSM(this.f$0, context, view, i2);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                return this.f$0.lambda$createView$10(view, i2);
+                return ManageLinksActivity.$r8$lambda$06n_r1CohXTlZDsscwmJVBa0xTM(this.f$0, view, i2);
             }
         });
         this.linkIcon = ContextCompat.getDrawable(context, R.drawable.msg_link_1);
@@ -695,106 +691,108 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         return this.fragmentView;
     }
 
-    public void lambda$createView$9(Context context, View view, int i) {
-        if (i == this.creatorRow) {
-            TLRPC.User user = (TLRPC.User) this.users.get(Long.valueOf(this.invite.admin_id));
+    public static void m3534$r8$lambda$LXsXyqGTUJIuZzWYVJxvprmSM(final ManageLinksActivity manageLinksActivity, Context context, View view, int i) {
+        if (i == manageLinksActivity.creatorRow) {
+            TLRPC.User user = (TLRPC.User) manageLinksActivity.users.get(Long.valueOf(manageLinksActivity.invite.admin_id));
             if (user != null) {
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", user.id);
                 MessagesController.getInstance(UserConfig.selectedAccount).putUser(user, false);
-                presentFragment(new ProfileActivity(bundle));
+                manageLinksActivity.presentFragment(new ProfileActivity(bundle));
                 return;
             }
             return;
         }
-        if (i == this.createNewLinkRow) {
-            LinkEditActivity linkEditActivity = new LinkEditActivity(0, this.currentChatId);
-            linkEditActivity.setCallback(this.linkEditActivityCallback);
-            presentFragment(linkEditActivity);
+        if (i == manageLinksActivity.createNewLinkRow) {
+            LinkEditActivity linkEditActivity = new LinkEditActivity(0, manageLinksActivity.currentChatId);
+            linkEditActivity.setCallback(manageLinksActivity.linkEditActivityCallback);
+            manageLinksActivity.presentFragment(linkEditActivity);
             return;
         }
-        int i2 = this.linksStartRow;
-        if (i >= i2 && i < this.linksEndRow) {
-            InviteLinkBottomSheet inviteLinkBottomSheet = new InviteLinkBottomSheet(context, (TLRPC.TL_chatInviteExported) this.invites.get(i - i2), this.info, this.users, this, this.currentChatId, false, this.isChannel);
-            this.inviteLinkBottomSheet = inviteLinkBottomSheet;
-            inviteLinkBottomSheet.setCanEdit(this.canEdit);
-            this.inviteLinkBottomSheet.show();
+        int i2 = manageLinksActivity.linksStartRow;
+        if (i >= i2 && i < manageLinksActivity.linksEndRow) {
+            InviteLinkBottomSheet inviteLinkBottomSheet = new InviteLinkBottomSheet(context, (TLRPC.TL_chatInviteExported) manageLinksActivity.invites.get(i - i2), manageLinksActivity.info, manageLinksActivity.users, manageLinksActivity, manageLinksActivity.currentChatId, false, manageLinksActivity.isChannel);
+            manageLinksActivity.inviteLinkBottomSheet = inviteLinkBottomSheet;
+            inviteLinkBottomSheet.setCanEdit(manageLinksActivity.canEdit);
+            manageLinksActivity.inviteLinkBottomSheet.show();
             return;
         }
-        int i3 = this.revokedLinksStartRow;
-        if (i >= i3 && i < this.revokedLinksEndRow) {
-            InviteLinkBottomSheet inviteLinkBottomSheet2 = new InviteLinkBottomSheet(context, (TLRPC.TL_chatInviteExported) this.revokedInvites.get(i - i3), this.info, this.users, this, this.currentChatId, false, this.isChannel);
-            this.inviteLinkBottomSheet = inviteLinkBottomSheet2;
+        int i3 = manageLinksActivity.revokedLinksStartRow;
+        if (i >= i3 && i < manageLinksActivity.revokedLinksEndRow) {
+            InviteLinkBottomSheet inviteLinkBottomSheet2 = new InviteLinkBottomSheet(context, (TLRPC.TL_chatInviteExported) manageLinksActivity.revokedInvites.get(i - i3), manageLinksActivity.info, manageLinksActivity.users, manageLinksActivity, manageLinksActivity.currentChatId, false, manageLinksActivity.isChannel);
+            manageLinksActivity.inviteLinkBottomSheet = inviteLinkBottomSheet2;
             inviteLinkBottomSheet2.show();
             return;
         }
-        if (i == this.revokeAllRow) {
-            if (this.deletingRevokedLinks) {
+        if (i == manageLinksActivity.revokeAllRow) {
+            if (manageLinksActivity.deletingRevokedLinks) {
                 return;
             }
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            AlertDialog.Builder builder = new AlertDialog.Builder(manageLinksActivity.getParentActivity());
             builder.setTitle(LocaleController.getString(R.string.DeleteAllRevokedLinks));
             builder.setMessage(LocaleController.getString(R.string.DeleteAllRevokedLinkHelp));
             builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i4) {
-                    this.f$0.lambda$createView$8(alertDialog, i4);
+                    ManageLinksActivity.m3537$r8$lambda$hHbL2QxMYCIDjQCkQXv69Xghzg(this.f$0, alertDialog, i4);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            showDialog(builder.create());
+            manageLinksActivity.showDialog(builder.create());
             return;
         }
-        int i4 = this.adminsStartRow;
-        if (i < i4 || i >= this.adminsEndRow) {
+        int i4 = manageLinksActivity.adminsStartRow;
+        if (i < i4 || i >= manageLinksActivity.adminsEndRow) {
             return;
         }
-        TLRPC.TL_chatAdminWithInvites tL_chatAdminWithInvites = (TLRPC.TL_chatAdminWithInvites) this.admins.get(i - i4);
-        if (this.users.containsKey(Long.valueOf(tL_chatAdminWithInvites.admin_id))) {
-            getMessagesController().putUser((TLRPC.User) this.users.get(Long.valueOf(tL_chatAdminWithInvites.admin_id)), false);
+        TLRPC.TL_chatAdminWithInvites tL_chatAdminWithInvites = (TLRPC.TL_chatAdminWithInvites) manageLinksActivity.admins.get(i - i4);
+        if (manageLinksActivity.users.containsKey(Long.valueOf(tL_chatAdminWithInvites.admin_id))) {
+            manageLinksActivity.getMessagesController().putUser((TLRPC.User) manageLinksActivity.users.get(Long.valueOf(tL_chatAdminWithInvites.admin_id)), false);
         }
-        ManageLinksActivity manageLinksActivity = new ManageLinksActivity(this.currentChatId, tL_chatAdminWithInvites.admin_id, tL_chatAdminWithInvites.invites_count);
-        manageLinksActivity.setInfo(this.info, null);
-        presentFragment(manageLinksActivity);
+        ManageLinksActivity manageLinksActivity2 = new ManageLinksActivity(manageLinksActivity.currentChatId, tL_chatAdminWithInvites.admin_id, tL_chatAdminWithInvites.invites_count);
+        manageLinksActivity2.setInfo(manageLinksActivity.info, null);
+        manageLinksActivity.presentFragment(manageLinksActivity2);
     }
 
-    public void lambda$createView$8(AlertDialog alertDialog, int i) {
+    public static void m3537$r8$lambda$hHbL2QxMYCIDjQCkQXv69Xghzg(final ManageLinksActivity manageLinksActivity, AlertDialog alertDialog, int i) {
+        manageLinksActivity.getClass();
         TLRPC.TL_messages_deleteRevokedExportedChatInvites tL_messages_deleteRevokedExportedChatInvites = new TLRPC.TL_messages_deleteRevokedExportedChatInvites();
-        tL_messages_deleteRevokedExportedChatInvites.peer = getMessagesController().getInputPeer(-this.currentChatId);
-        if (this.adminId == getUserConfig().getClientUserId()) {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = getMessagesController().getInputUser(getUserConfig().getCurrentUser());
+        tL_messages_deleteRevokedExportedChatInvites.peer = manageLinksActivity.getMessagesController().getInputPeer(-manageLinksActivity.currentChatId);
+        if (manageLinksActivity.adminId == manageLinksActivity.getUserConfig().getClientUserId()) {
+            tL_messages_deleteRevokedExportedChatInvites.admin_id = manageLinksActivity.getMessagesController().getInputUser(manageLinksActivity.getUserConfig().getCurrentUser());
         } else {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = getMessagesController().getInputUser(this.adminId);
+            tL_messages_deleteRevokedExportedChatInvites.admin_id = manageLinksActivity.getMessagesController().getInputUser(manageLinksActivity.adminId);
         }
-        this.deletingRevokedLinks = true;
-        getConnectionsManager().sendRequest(tL_messages_deleteRevokedExportedChatInvites, new RequestDelegate() {
+        manageLinksActivity.deletingRevokedLinks = true;
+        manageLinksActivity.getConnectionsManager().sendRequest(tL_messages_deleteRevokedExportedChatInvites, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$createView$7(tLObject, tL_error);
+                ManageLinksActivity.$r8$lambda$XFbPeKfEEBMjRQBxyC09idJRdjw(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$createView$7(TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$XFbPeKfEEBMjRQBxyC09idJRdjw(final ManageLinksActivity manageLinksActivity, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        manageLinksActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$6(tL_error);
+                ManageLinksActivity.m3533$r8$lambda$3xDwJ1BoqsdvNZWBv0DyPWNCKk(this.f$0, tL_error);
             }
         });
     }
 
-    public void lambda$createView$6(TLRPC.TL_error tL_error) {
-        this.deletingRevokedLinks = false;
+    public static void m3533$r8$lambda$3xDwJ1BoqsdvNZWBv0DyPWNCKk(ManageLinksActivity manageLinksActivity, TLRPC.TL_error tL_error) {
+        manageLinksActivity.deletingRevokedLinks = false;
         if (tL_error == null) {
-            DiffCallback diffCallbackSaveListState = saveListState();
-            this.revokedInvites.clear();
-            updateRecyclerViewAnimated(diffCallbackSaveListState);
+            DiffCallback diffCallbackSaveListState = manageLinksActivity.saveListState();
+            manageLinksActivity.revokedInvites.clear();
+            manageLinksActivity.updateRecyclerViewAnimated(diffCallbackSaveListState);
         }
     }
 
-    public boolean lambda$createView$10(View view, int i) {
-        if ((i < this.linksStartRow || i >= this.linksEndRow) && (i < this.revokedLinksStartRow || i >= this.revokedLinksEndRow)) {
+    public static boolean $r8$lambda$06n_r1CohXTlZDsscwmJVBa0xTM(ManageLinksActivity manageLinksActivity, View view, int i) {
+        if ((i < manageLinksActivity.linksStartRow || i >= manageLinksActivity.linksEndRow) && (i < manageLinksActivity.revokedLinksStartRow || i >= manageLinksActivity.revokedLinksEndRow)) {
             return false;
         }
         ((LinkCell) view).optionsView.callOnClick();
@@ -846,7 +844,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+    class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         public ListAdapter(Context context) {
@@ -875,7 +873,6 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
             View headerCell;
             switch (i) {
                 case 1:
@@ -914,8 +911,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                             ManageLinksActivity.this.inviteLinkBottomSheet.show();
                         }
                     });
-                    view = linkActionView;
-                    headerCell = view;
+                    headerCell = linkActionView;
                     break;
                 case 3:
                     headerCell = new CreationTextCell(this.mContext, 64, ((BaseFragment) ManageLinksActivity.this).resourceProvider);
@@ -931,8 +927,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                     flickerLoadingView.setIsSingleCell(true);
                     flickerLoadingView.setViewType(9);
                     flickerLoadingView.showDate(false);
-                    view = flickerLoadingView;
-                    headerCell = view;
+                    headerCell = flickerLoadingView;
                     break;
                 case 7:
                     headerCell = new ShadowSectionCell(this.mContext);
@@ -987,6 +982,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                     if (i != ManageLinksActivity.this.linksHeaderRow) {
                         if (i == ManageLinksActivity.this.adminsHeaderRow) {
                             headerCell.setText(LocaleController.getString(R.string.LinksCreatedByOtherAdmins));
+                            return;
                         }
                         return;
                     }
@@ -1161,7 +1157,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             int iSendRequest = getConnectionsManager().sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$revokePermanent$12(tL_chatInviteExported, tLObject, tL_error);
+                    ManageLinksActivity.$r8$lambda$KnA0UHWfx4mzASkiXZLweom_G6o(this.f$0, tL_chatInviteExported, tLObject, tL_error);
                 }
             });
             AndroidUtilities.updateVisibleRows(this.listView);
@@ -1171,31 +1167,33 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         revokeLink(this.invite);
     }
 
-    public void lambda$revokePermanent$12(final TLRPC.TL_chatInviteExported tL_chatInviteExported, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$KnA0UHWfx4mzASkiXZLweom_G6o(final ManageLinksActivity manageLinksActivity, final TLRPC.TL_chatInviteExported tL_chatInviteExported, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        manageLinksActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$revokePermanent$11(tL_error, tLObject, tL_chatInviteExported);
+                ManageLinksActivity.$r8$lambda$F2xByJbt4FznXOopKlRiuIZITc4(this.f$0, tL_error, tLObject, tL_chatInviteExported);
             }
         });
     }
 
-    public void lambda$revokePermanent$11(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public static void $r8$lambda$F2xByJbt4FznXOopKlRiuIZITc4(ManageLinksActivity manageLinksActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+        manageLinksActivity.getClass();
         if (tL_error == null) {
             TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) tLObject;
-            this.invite = tL_chatInviteExported2;
-            TLRPC.ChatFull chatFull = this.info;
+            manageLinksActivity.invite = tL_chatInviteExported2;
+            TLRPC.ChatFull chatFull = manageLinksActivity.info;
             if (chatFull != null) {
                 chatFull.exported_invite = tL_chatInviteExported2;
             }
-            if (getParentActivity() == null) {
+            if (manageLinksActivity.getParentActivity() == null) {
                 return;
             }
             tL_chatInviteExported.revoked = true;
-            DiffCallback diffCallbackSaveListState = saveListState();
-            this.revokedInvites.add(0, tL_chatInviteExported);
-            updateRecyclerViewAnimated(diffCallbackSaveListState);
-            BulletinFactory.of(this).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.InviteRevokedHint)).show();
+            DiffCallback diffCallbackSaveListState = manageLinksActivity.saveListState();
+            manageLinksActivity.revokedInvites.add(0, tL_chatInviteExported);
+            manageLinksActivity.updateRecyclerViewAnimated(diffCallbackSaveListState);
+            BulletinFactory.of(manageLinksActivity).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.InviteRevokedHint)).show();
         }
     }
 
@@ -1261,7 +1259,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             this.optionsView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$7(view);
+                    ManageLinksActivity.LinkCell.$r8$lambda$7Ri7yhHPO7FcRlYDyaeAJ2KYRS0(this.f$0, view);
                 }
             });
             this.optionsView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 1));
@@ -1290,86 +1288,86 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             linearLayout2.setVisibility(8);
         }
 
-        public void lambda$new$7(View view) {
-            if (this.invite == null) {
+        public static void $r8$lambda$7Ri7yhHPO7FcRlYDyaeAJ2KYRS0(final LinkCell linkCell, View view) {
+            if (linkCell.invite == null) {
                 return;
             }
             View view2 = ManageLinksActivity.this.fragmentView;
             if (view2 instanceof ViewGroup) {
-                ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((ViewGroup) view2, this);
-                if (this.invite.revoked) {
+                ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((ViewGroup) view2, linkCell);
+                if (linkCell.invite.revoked) {
                     itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$new$1();
+                            ManageLinksActivity.LinkCell.$r8$lambda$BaCfSZOWSbqwGn_nBQcKNA9PP9c(this.f$0);
                         }
                     });
                 } else {
                     itemOptionsMakeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$new$2();
+                            ManageLinksActivity.LinkCell.$r8$lambda$3OymL_Iul21jXaR8SE5jhRmg7X0(this.f$0);
                         }
                     });
                     itemOptionsMakeOptions.add(R.drawable.msg_share, LocaleController.getString(R.string.ShareLink), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$new$3();
+                            ManageLinksActivity.LinkCell.m3540$r8$lambda$omckYb3HVQHGVjzZLWRdQFu6Ow(this.f$0);
                         }
                     });
-                    itemOptionsMakeOptions.addIf(!this.invite.permanent && ManageLinksActivity.this.canEdit, R.drawable.msg_edit, LocaleController.getString(R.string.EditLink), new Runnable() {
+                    itemOptionsMakeOptions.addIf(!linkCell.invite.permanent && ManageLinksActivity.this.canEdit, R.drawable.msg_edit, LocaleController.getString(R.string.EditLink), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$new$4();
+                            ManageLinksActivity.LinkCell linkCell2 = this.f$0;
+                            ManageLinksActivity.this.editLink(linkCell2.invite);
                         }
                     });
                     itemOptionsMakeOptions.addIf(ManageLinksActivity.this.canEdit, R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.RevokeLink), true, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$new$6();
+                            ManageLinksActivity.LinkCell.$r8$lambda$Z9ZqojPSr5Xr5FsNMTYY2kD9z8o(this.f$0);
                         }
                     });
                 }
-                itemOptionsMakeOptions.setScrimViewBackground(ManageLinksActivity.this.listView.getClipBackground(this));
+                itemOptionsMakeOptions.setScrimViewBackground(ManageLinksActivity.this.listView.getClipBackground(linkCell));
                 itemOptionsMakeOptions.show();
             }
         }
 
-        public void lambda$new$1() {
-            final TLRPC.TL_chatInviteExported tL_chatInviteExported = this.invite;
+        public static void $r8$lambda$BaCfSZOWSbqwGn_nBQcKNA9PP9c(final LinkCell linkCell) {
+            final TLRPC.TL_chatInviteExported tL_chatInviteExported = linkCell.invite;
             new AlertDialog.Builder(ManageLinksActivity.this.getParentActivity()).setTitle(LocaleController.getString(R.string.DeleteLink)).setMessage(LocaleController.getString(R.string.DeleteLinkHelp)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$new$0(tL_chatInviteExported, alertDialog, i);
+                    ManageLinksActivity.this.deleteLink(tL_chatInviteExported);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
         }
 
-        public void lambda$new$0(TLRPC.TL_chatInviteExported tL_chatInviteExported, AlertDialog alertDialog, int i) {
-            ManageLinksActivity.this.deleteLink(tL_chatInviteExported);
-        }
-
-        public void lambda$new$2() {
+        public static void $r8$lambda$3OymL_Iul21jXaR8SE5jhRmg7X0(LinkCell linkCell) {
+            linkCell.getClass();
             try {
-                if (this.invite.link == null) {
+                if (linkCell.invite.link == null) {
                     return;
                 }
-                ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.invite.link));
+                ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", linkCell.invite.link));
                 BulletinFactory.createCopyLinkBulletin(ManageLinksActivity.this).show();
             } catch (Exception e) {
                 FileLog.e(e);
             }
         }
 
-        public void lambda$new$3() {
+        public static void m3540$r8$lambda$omckYb3HVQHGVjzZLWRdQFu6Ow(LinkCell linkCell) {
+            linkCell.getClass();
             try {
-                if (this.invite.link == null) {
+                if (linkCell.invite.link == null) {
                     return;
                 }
                 ManageLinksActivity manageLinksActivity = ManageLinksActivity.this;
-                Context context = getContext();
-                String str = this.invite.link;
-                manageLinksActivity.showDialog(new ShareAlert(context, null, str, false, str, false, ManageLinksActivity.this.getResourceProvider()) {
+                Context context = linkCell.getContext();
+                String str = linkCell.invite.link;
+                ArrayList arrayList = null;
+                manageLinksActivity.showDialog(new ShareAlert(context, arrayList, str, false, str, false, ManageLinksActivity.this.getResourceProvider()) {
                     @Override
                     protected void onSend(LongSparseArray longSparseArray, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
                         String string;
@@ -1395,22 +1393,14 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             }
         }
 
-        public void lambda$new$4() {
-            ManageLinksActivity.this.editLink(this.invite);
-        }
-
-        public void lambda$new$6() {
-            final TLRPC.TL_chatInviteExported tL_chatInviteExported = this.invite;
+        public static void $r8$lambda$Z9ZqojPSr5Xr5FsNMTYY2kD9z8o(final LinkCell linkCell) {
+            final TLRPC.TL_chatInviteExported tL_chatInviteExported = linkCell.invite;
             new AlertDialog.Builder(ManageLinksActivity.this.getParentActivity()).setMessage(LocaleController.getString(R.string.RevokeAlert)).setTitle(LocaleController.getString(R.string.RevokeLink)).setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$new$5(tL_chatInviteExported, alertDialog, i);
+                    ManageLinksActivity.this.revokeLink(tL_chatInviteExported);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
-        }
-
-        public void lambda$new$5(TLRPC.TL_chatInviteExported tL_chatInviteExported, AlertDialog alertDialog, int i) {
-            ManageLinksActivity.this.revokeLink(tL_chatInviteExported);
         }
 
         @Override
@@ -1422,56 +1412,55 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         @Override
         protected void onDraw(Canvas canvas) {
             float f;
-            float fMin;
-            int i;
-            int color;
             float f2;
+            float fMin;
+            int color;
+            float f3;
+            Canvas canvas2 = canvas;
             if (this.invite == null) {
                 return;
             }
             int iDp = AndroidUtilities.dp(32.0f);
             int measuredHeight = getMeasuredHeight() / 2;
             TLRPC.TL_chatInviteExported tL_chatInviteExported = this.invite;
+            int i = 3;
             if (tL_chatInviteExported.expired || tL_chatInviteExported.revoked) {
-                if (tL_chatInviteExported.revoked) {
-                    i = 4;
-                    f = 1.0f;
-                    fMin = 0.0f;
-                } else {
-                    f = 1.0f;
-                    fMin = 0.0f;
-                    i = 3;
-                }
+                f = 32.0f;
+                i = tL_chatInviteExported.revoked ? 4 : 3;
+                f2 = 1.0f;
+                fMin = 0.0f;
             } else {
                 int i2 = tL_chatInviteExported.expire_date;
                 if (i2 > 0 || tL_chatInviteExported.usage_limit > 0) {
                     if (i2 > 0) {
                         long jCurrentTimeMillis = System.currentTimeMillis() + (ManageLinksActivity.this.timeDif * 1000);
                         TLRPC.TL_chatInviteExported tL_chatInviteExported2 = this.invite;
+                        f = 32.0f;
                         long j = ((long) tL_chatInviteExported2.expire_date) * 1000;
                         int i3 = tL_chatInviteExported2.start_date;
                         if (i3 <= 0) {
                             i3 = tL_chatInviteExported2.date;
                         }
                         long j2 = ((long) i3) * 1000;
-                        f = 1.0f - ((jCurrentTimeMillis - j2) / (j - j2));
+                        f2 = 1.0f - ((jCurrentTimeMillis - j2) / (j - j2));
                     } else {
-                        f = 1.0f;
+                        f = 32.0f;
+                        f2 = 1.0f;
                     }
                     TLRPC.TL_chatInviteExported tL_chatInviteExported3 = this.invite;
                     int i4 = tL_chatInviteExported3.usage_limit;
-                    fMin = Math.min(f, i4 > 0 ? (i4 - tL_chatInviteExported3.usage) / i4 : 1.0f);
+                    fMin = Math.min(f2, i4 > 0 ? (i4 - tL_chatInviteExported3.usage) / i4 : 1.0f);
                     if (fMin <= 0.0f) {
                         this.invite.expired = true;
                         AndroidUtilities.updateVisibleRows(ManageLinksActivity.this.listView);
-                        i = 3;
                     } else {
                         i = 1;
                     }
                 } else {
-                    f = 1.0f;
+                    f2 = 1.0f;
                     fMin = 0.0f;
                     i = 0;
+                    f = 32.0f;
                 }
             }
             int i5 = this.lastDrawingState;
@@ -1485,11 +1474,11 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                 }
             }
             this.lastDrawingState = i;
-            float f3 = this.animateToStateProgress;
-            if (f3 != 1.0f) {
-                float f4 = f3 + 0.064f;
-                this.animateToStateProgress = f4;
-                if (f4 >= 1.0f) {
+            float f4 = this.animateToStateProgress;
+            if (f4 != 1.0f) {
+                float f5 = f4 + 0.064f;
+                this.animateToStateProgress = f5;
+                if (f5 >= 1.0f) {
                     this.animateToStateProgress = 1.0f;
                     this.animateHideExpiring = false;
                 } else {
@@ -1502,70 +1491,74 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                 color = getColor(i, fMin);
             }
             this.paint.setColor(color);
-            canvas.drawCircle(iDp, measuredHeight, AndroidUtilities.dp(32.0f) / 2.0f, this.paint);
+            canvas2.drawCircle(iDp, measuredHeight, AndroidUtilities.dp(f) / 2.0f, this.paint);
             boolean z = this.animateHideExpiring;
             if (z) {
                 if (z) {
-                    f = this.lastDrawExpringProgress;
+                    f2 = this.lastDrawExpringProgress;
                 }
-                f2 = f;
+                f3 = f2;
                 this.paint2.setColor(color);
                 this.rectF.set(iDp - AndroidUtilities.dp(20.0f), measuredHeight - AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f) + iDp, AndroidUtilities.dp(20.0f) + measuredHeight);
                 if (this.animateToStateProgress == 1.0f) {
-                    float f5 = (-f2) * 360.0f;
-                    canvas.drawArc(this.rectF, -90.0f, f5, false, this.paint2);
-                    this.timerParticles.draw(canvas, this.paint2, this.rectF, f5, 1.0f);
-                } else {
-                    float f6 = (-f2) * 360.0f;
+                    float f6 = (-f3) * 360.0f;
                     canvas.drawArc(this.rectF, -90.0f, f6, false, this.paint2);
                     this.timerParticles.draw(canvas, this.paint2, this.rectF, f6, 1.0f);
+                    canvas2 = canvas;
+                } else {
+                    float f7 = (-f3) * 360.0f;
+                    canvas.drawArc(this.rectF, -90.0f, f7, false, this.paint2);
+                    this.timerParticles.draw(canvas, this.paint2, this.rectF, f7, 1.0f);
+                    canvas2 = canvas;
                 }
                 if (!((BaseFragment) ManageLinksActivity.this).isPaused) {
                     invalidate();
                 }
-                this.lastDrawExpringProgress = f2;
+                this.lastDrawExpringProgress = f3;
             } else {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported4 = this.invite;
                 if (!tL_chatInviteExported4.expired && tL_chatInviteExported4.expire_date > 0 && !tL_chatInviteExported4.revoked) {
                     if (z) {
-                        f = this.lastDrawExpringProgress;
+                        f2 = this.lastDrawExpringProgress;
                     }
-                    f2 = f;
+                    f3 = f2;
                     this.paint2.setColor(color);
                     this.rectF.set(iDp - AndroidUtilities.dp(20.0f), measuredHeight - AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f) + iDp, AndroidUtilities.dp(20.0f) + measuredHeight);
                     if (this.animateToStateProgress == 1.0f && (!hasProgress(this.animateFromState) || this.animateHideExpiring)) {
-                        canvas.save();
-                        float f7 = this.animateHideExpiring ? 1.0f - this.animateToStateProgress : this.animateToStateProgress;
-                        float f8 = (float) (((double) (0.3f * f7)) + 0.7d);
-                        canvas.scale(f8, f8, this.rectF.centerX(), this.rectF.centerY());
-                        float f9 = (-f2) * 360.0f;
-                        canvas.drawArc(this.rectF, -90.0f, f9, false, this.paint2);
-                        this.timerParticles.draw(canvas, this.paint2, this.rectF, f9, f7);
+                        canvas2.save();
+                        float f8 = this.animateHideExpiring ? 1.0f - this.animateToStateProgress : this.animateToStateProgress;
+                        float f9 = (float) (((double) (0.3f * f8)) + 0.7d);
+                        canvas2.scale(f9, f9, this.rectF.centerX(), this.rectF.centerY());
+                        float f10 = (-f3) * 360.0f;
+                        canvas2.drawArc(this.rectF, -90.0f, f10, false, this.paint2);
+                        this.timerParticles.draw(canvas, this.paint2, this.rectF, f10, f8);
                         canvas.restore();
+                        canvas2 = canvas;
                     } else {
-                        float f10 = (-f2) * 360.0f;
-                        canvas.drawArc(this.rectF, -90.0f, f10, false, this.paint2);
-                        this.timerParticles.draw(canvas, this.paint2, this.rectF, f10, 1.0f);
+                        float f11 = (-f3) * 360.0f;
+                        canvas.drawArc(this.rectF, -90.0f, f11, false, this.paint2);
+                        this.timerParticles.draw(canvas, this.paint2, this.rectF, f11, 1.0f);
+                        canvas2 = canvas;
                     }
                     if (!((BaseFragment) ManageLinksActivity.this).isPaused) {
                         invalidate();
                     }
-                    this.lastDrawExpringProgress = f2;
+                    this.lastDrawExpringProgress = f3;
                 }
             }
             TLRPC.TL_chatInviteExported tL_chatInviteExported5 = this.invite;
             if (tL_chatInviteExported5.subscription_pricing != null) {
                 ManageLinksActivity.this.linkIconRevenue.setBounds(iDp - AndroidUtilities.dp(12.0f), measuredHeight - AndroidUtilities.dp(12.0f), iDp + AndroidUtilities.dp(12.0f), measuredHeight + AndroidUtilities.dp(12.0f));
-                ManageLinksActivity.this.linkIconRevenue.draw(canvas);
+                ManageLinksActivity.this.linkIconRevenue.draw(canvas2);
             } else if (tL_chatInviteExported5.revoked) {
                 ManageLinksActivity.this.linkIconRevoked.setBounds(iDp - AndroidUtilities.dp(12.0f), measuredHeight - AndroidUtilities.dp(12.0f), iDp + AndroidUtilities.dp(12.0f), measuredHeight + AndroidUtilities.dp(12.0f));
-                ManageLinksActivity.this.linkIconRevoked.draw(canvas);
+                ManageLinksActivity.this.linkIconRevoked.draw(canvas2);
             } else {
                 ManageLinksActivity.this.linkIcon.setBounds(iDp - AndroidUtilities.dp(12.0f), measuredHeight - AndroidUtilities.dp(12.0f), iDp + AndroidUtilities.dp(12.0f), measuredHeight + AndroidUtilities.dp(12.0f));
-                ManageLinksActivity.this.linkIcon.draw(canvas);
+                ManageLinksActivity.this.linkIcon.draw(canvas2);
             }
             if (this.drawDivider) {
-                canvas.drawLine(AndroidUtilities.dp(70.0f), getMeasuredHeight() - 1, getMeasuredWidth() + AndroidUtilities.dp(23.0f), getMeasuredHeight(), Theme.dividerPaint);
+                canvas2.drawLine(AndroidUtilities.dp(70.0f), getMeasuredHeight() - 1, getMeasuredWidth() + AndroidUtilities.dp(23.0f), getMeasuredHeight(), Theme.dividerPaint);
             }
         }
 
@@ -1718,23 +1711,26 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         getConnectionsManager().sendRequest(tL_messages_deleteExportedChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$deleteLink$14(tL_chatInviteExported, tLObject, tL_error);
+                ManageLinksActivity.$r8$lambda$HJ5jTr3BQdrdOcCiRkw2_ZnvisI(this.f$0, tL_chatInviteExported, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$deleteLink$14(final TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$HJ5jTr3BQdrdOcCiRkw2_ZnvisI(final ManageLinksActivity manageLinksActivity, final TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        manageLinksActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteLink$13(tL_error, tL_chatInviteExported);
+                ManageLinksActivity.m3535$r8$lambda$NKxAn10bSAV8tLt_UvRing0lM(this.f$0, tL_error, tL_chatInviteExported);
             }
         });
     }
 
-    public void lambda$deleteLink$13(TLRPC.TL_error tL_error, TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public static void m3535$r8$lambda$NKxAn10bSAV8tLt_UvRing0lM(ManageLinksActivity manageLinksActivity, TLRPC.TL_error tL_error, TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         if (tL_error == null) {
-            this.linkEditActivityCallback.onLinkRemoved(tL_chatInviteExported);
+            manageLinksActivity.linkEditActivityCallback.onLinkRemoved(tL_chatInviteExported);
+        } else {
+            manageLinksActivity.getClass();
         }
     }
 
@@ -1753,51 +1749,53 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         getConnectionsManager().sendRequest(tL_messages_editExportedChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$revokeLink$16(tL_chatInviteExported, tLObject, tL_error);
+                ManageLinksActivity.$r8$lambda$6wfeIcWhejYyuhD7MINnjYXKdio(this.f$0, tL_chatInviteExported, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$revokeLink$16(final TLRPC.TL_chatInviteExported tL_chatInviteExported, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$6wfeIcWhejYyuhD7MINnjYXKdio(final ManageLinksActivity manageLinksActivity, final TLRPC.TL_chatInviteExported tL_chatInviteExported, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        manageLinksActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$revokeLink$15(tL_error, tLObject, tL_chatInviteExported);
+                ManageLinksActivity.$r8$lambda$_kve52HRP0y5KWZ3AMBEwc_AvA8(this.f$0, tL_error, tLObject, tL_chatInviteExported);
             }
         });
     }
 
-    public void lambda$revokeLink$15(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public static void $r8$lambda$_kve52HRP0y5KWZ3AMBEwc_AvA8(ManageLinksActivity manageLinksActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+        manageLinksActivity.getClass();
         if (tL_error == null) {
             if (tLObject instanceof TLRPC.TL_messages_exportedChatInviteReplaced) {
                 TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject;
-                if (!this.isPublic) {
-                    this.invite = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                if (!manageLinksActivity.isPublic) {
+                    manageLinksActivity.invite = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                 }
                 tL_chatInviteExported.revoked = true;
-                DiffCallback diffCallbackSaveListState = saveListState();
-                if (this.isPublic && this.adminId == getAccountInstance().getUserConfig().getClientUserId()) {
-                    this.invites.remove(tL_chatInviteExported);
-                    this.invites.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
-                } else if (this.invite != null) {
-                    this.invite = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                DiffCallback diffCallbackSaveListState = manageLinksActivity.saveListState();
+                if (manageLinksActivity.isPublic && manageLinksActivity.adminId == manageLinksActivity.getAccountInstance().getUserConfig().getClientUserId()) {
+                    manageLinksActivity.invites.remove(tL_chatInviteExported);
+                    manageLinksActivity.invites.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
+                } else if (manageLinksActivity.invite != null) {
+                    manageLinksActivity.invite = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
                 }
-                this.revokedInvites.add(0, tL_chatInviteExported);
-                updateRecyclerViewAnimated(diffCallbackSaveListState);
+                manageLinksActivity.revokedInvites.add(0, tL_chatInviteExported);
+                manageLinksActivity.updateRecyclerViewAnimated(diffCallbackSaveListState);
             } else {
-                this.linkEditActivityCallback.onLinkEdited(tL_chatInviteExported, tLObject);
-                TLRPC.ChatFull chatFull = this.info;
+                manageLinksActivity.linkEditActivityCallback.onLinkEdited(tL_chatInviteExported, tLObject);
+                TLRPC.ChatFull chatFull = manageLinksActivity.info;
                 if (chatFull != null) {
                     int i = chatFull.invitesCount - 1;
                     chatFull.invitesCount = i;
                     if (i < 0) {
                         chatFull.invitesCount = 0;
                     }
-                    getMessagesStorage().saveChatLinksCount(this.currentChatId, this.info.invitesCount);
+                    manageLinksActivity.getMessagesStorage().saveChatLinksCount(manageLinksActivity.currentChatId, manageLinksActivity.info.invitesCount);
                 }
             }
-            if (getParentActivity() != null) {
-                BulletinFactory.of(this).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.InviteRevokedHint)).show();
+            if (manageLinksActivity.getParentActivity() != null) {
+                BulletinFactory.of(manageLinksActivity).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.InviteRevokedHint)).show();
             }
         }
     }
@@ -1812,13 +1810,13 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onLinkCreated$0(tLObject);
+                        ManageLinksActivity.AnonymousClass6.m3538$r8$lambda$entEJz7UsRyLGVIbajEG_nf4(this.f$0, tLObject);
                     }
                 }, 200L);
             }
         }
 
-        public void lambda$onLinkCreated$0(TLObject tLObject) {
+        public static void m3538$r8$lambda$entEJz7UsRyLGVIbajEG_nf4(AnonymousClass6 anonymousClass6, TLObject tLObject) {
             DiffCallback diffCallbackSaveListState = ManageLinksActivity.this.saveListState();
             ManageLinksActivity.this.invites.add(0, (TLRPC.TL_chatInviteExported) tLObject);
             if (ManageLinksActivity.this.info != null) {
@@ -1879,7 +1877,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.updateVisibleRows(this.listView);
     }
 
-    private class DiffCallback extends DiffUtil.Callback {
+    class DiffCallback extends DiffUtil.Callback {
         SparseIntArray newPositionToItem;
         int oldAdminsEndRow;
         int oldAdminsStartRow;
@@ -1992,7 +1990,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$17();
+                ManageLinksActivity.$r8$lambda$iG9ohnIqUwC8PVMDS_CIDTci0SE(this.f$0);
             }
 
             @Override
@@ -2040,12 +2038,12 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$17() {
-        RecyclerListView recyclerListView = this.listView;
+    public static void $r8$lambda$iG9ohnIqUwC8PVMDS_CIDTci0SE(ManageLinksActivity manageLinksActivity) {
+        RecyclerListView recyclerListView = manageLinksActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
             for (int i = 0; i < childCount; i++) {
-                View childAt = this.listView.getChildAt(i);
+                View childAt = manageLinksActivity.listView.getChildAt(i);
                 if (childAt instanceof ManageChatUserCell) {
                     ((ManageChatUserCell) childAt).update(0);
                 }
@@ -2054,7 +2052,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                 }
             }
         }
-        InviteLinkBottomSheet inviteLinkBottomSheet = this.inviteLinkBottomSheet;
+        InviteLinkBottomSheet inviteLinkBottomSheet = manageLinksActivity.inviteLinkBottomSheet;
         if (inviteLinkBottomSheet != null) {
             inviteLinkBottomSheet.updateColors();
         }

@@ -67,7 +67,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
         StickerEmptyView searchEmptyView = memberRequestsDelegate.getSearchEmptyView();
         this.membersSearchEmptyView = searchEmptyView;
         this.containerView.addView(searchEmptyView, iIndexOfChild, LayoutHelper.createFrame(-1, -1.0f));
-        memberRequestsDelegate.lambda$new$8();
+        memberRequestsDelegate.loadMembers();
     }
 
     @Override
@@ -80,9 +80,9 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
     }
 
     @Override
-    public void lambda$openCrafting$8() {
+    public void onBackPressed() {
         if (this.delegate.onBackPressed(true)) {
-            super.lambda$openCrafting$8();
+            super.onBackPressed();
         }
     }
 
@@ -139,7 +139,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onSearchViewTouched$1(editTextBoldCursor);
+                        MemberRequestsBottomSheet.$r8$lambda$E9mew3h3vlP0PvNd6_bEIHgQy_s(this.f$0, editTextBoldCursor);
                     }
                 }, zNeedEnterText ? 200L : 0L);
             } else {
@@ -159,8 +159,8 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
         }
     }
 
-    public void lambda$onSearchViewTouched$1(final EditTextBoldCursor editTextBoldCursor) {
-        setFocusable(true);
+    public static void $r8$lambda$E9mew3h3vlP0PvNd6_bEIHgQy_s(MemberRequestsBottomSheet memberRequestsBottomSheet, final EditTextBoldCursor editTextBoldCursor) {
+        memberRequestsBottomSheet.setFocusable(true);
         editTextBoldCursor.requestFocus();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

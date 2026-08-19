@@ -84,13 +84,13 @@ public class ChatCell extends BaseCell {
         this.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$setChat$0(chat, view);
+                ChatCell.$r8$lambda$zXU8z5sobWHrkNDI40VTPJIlM6o(this.f$0, chat, view);
             }
         });
     }
 
-    public void lambda$setChat$0(TLRPC.Chat chat, View view) {
-        ChatDeleteListener chatDeleteListener = this.chatDeleteListener;
+    public static void $r8$lambda$zXU8z5sobWHrkNDI40VTPJIlM6o(ChatCell chatCell, TLRPC.Chat chat, View view) {
+        ChatDeleteListener chatDeleteListener = chatCell.chatDeleteListener;
         if (chatDeleteListener != null) {
             chatDeleteListener.onChatDeleted(chat);
         }

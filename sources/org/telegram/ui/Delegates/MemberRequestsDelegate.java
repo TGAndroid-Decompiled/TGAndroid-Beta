@@ -104,7 +104,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
     private final Runnable loadMembersRunnable = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$8();
+            this.f$0.loadMembers();
         }
     };
     private final RecyclerView.OnScrollListener listScrollListener = new RecyclerView.OnScrollListener() {
@@ -254,48 +254,45 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onItemClick$1(memberRequestCell);
+                    MemberRequestsDelegate.$r8$lambda$PF4JfkoYovr7_7OvOiFGpz5R9VU(this.f$0, memberRequestCell);
                 }
             }, this.isSearchExpanded ? 100L : 0L);
         }
     }
 
-    public void lambda$onItemClick$1(MemberRequestCell memberRequestCell) {
+    public static void $r8$lambda$PF4JfkoYovr7_7OvOiFGpz5R9VU(final MemberRequestsDelegate memberRequestsDelegate, MemberRequestCell memberRequestCell) {
+        memberRequestsDelegate.getClass();
         TLRPC.TL_chatInviteImporter importer = memberRequestCell.getImporter();
-        this.importer = importer;
-        TLRPC.User user = (TLRPC.User) this.users.get(importer.user_id);
+        memberRequestsDelegate.importer = importer;
+        TLRPC.User user = (TLRPC.User) memberRequestsDelegate.users.get(importer.user_id);
         if (user == null) {
             return;
         }
-        this.fragment.getMessagesController().putUser(user, false);
+        memberRequestsDelegate.fragment.getMessagesController().putUser(user, false);
         Point point = AndroidUtilities.displaySize;
         boolean z = point.x > point.y;
         if (user.photo == null || z) {
-            this.isNeedRestoreList = true;
-            this.fragment.dismissCurrentDialog();
+            memberRequestsDelegate.isNeedRestoreList = true;
+            memberRequestsDelegate.fragment.dismissCurrentDialog();
             Bundle bundle = new Bundle();
             ProfileActivity profileActivity = new ProfileActivity(bundle);
             bundle.putLong("user_id", user.id);
             bundle.putBoolean("removeFragmentOnChatOpen", false);
-            this.fragment.presentFragment(profileActivity);
+            memberRequestsDelegate.fragment.presentFragment(profileActivity);
             return;
         }
-        if (this.previewDialog == null) {
-            PreviewDialog previewDialog = new PreviewDialog(this.fragment.getParentActivity(), (RecyclerListView) memberRequestCell.getParent(), this.fragment.getResourceProvider(), this.isChannel);
-            this.previewDialog = previewDialog;
-            previewDialog.setImporter(this.importer, memberRequestCell.getAvatarImageView());
-            this.previewDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        if (memberRequestsDelegate.previewDialog == null) {
+            PreviewDialog previewDialog = memberRequestsDelegate.new PreviewDialog(memberRequestsDelegate.fragment.getParentActivity(), (RecyclerListView) memberRequestCell.getParent(), memberRequestsDelegate.fragment.getResourceProvider(), memberRequestsDelegate.isChannel);
+            memberRequestsDelegate.previewDialog = previewDialog;
+            previewDialog.setImporter(memberRequestsDelegate.importer, memberRequestCell.getAvatarImageView());
+            memberRequestsDelegate.previewDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$onItemClick$0(dialogInterface);
+                    this.f$0.previewDialog = null;
                 }
             });
-            this.previewDialog.show();
+            memberRequestsDelegate.previewDialog.show();
         }
-    }
-
-    public void lambda$onItemClick$0(DialogInterface dialogInterface) {
-        this.previewDialog = null;
     }
 
     public boolean onBackPressed(boolean z) {
@@ -340,14 +337,14 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                 this.fragment.getActionBar().createMenu().getItem(0).setVisibility(this.allImporters.isEmpty() ? 8 : 0);
             }
         } else {
-            this.adapter.setItems(Collections.emptyList());
+            this.adapter.setItems(Collections.EMPTY_LIST);
             setViewVisible(this.recyclerView, false, false);
             setViewVisible(this.loadingView, true, true);
             DispatchQueue dispatchQueue = Utilities.searchQueue;
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$8();
+                    this.f$0.loadMembers();
                 }
             };
             this.searchRunnable = runnable;
@@ -365,7 +362,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         }
     }
 
-    public void lambda$new$8() {
+    public void loadMembers() {
         TLRPC.TL_messages_chatInviteImporters cachedImporters;
         final boolean z = true;
         if (this.isFirstLoading && (cachedImporters = this.controller.getCachedImporters(this.chatId)) != null) {
@@ -376,64 +373,66 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadMembers$5(z);
+                MemberRequestsDelegate.$r8$lambda$wJmKpNnxBOz4bctgtOp1XSfateQ(this.f$0, z);
             }
         });
     }
 
-    public void lambda$loadMembers$5(boolean z) {
+    public static void $r8$lambda$wJmKpNnxBOz4bctgtOp1XSfateQ(final MemberRequestsDelegate memberRequestsDelegate, boolean z) {
         TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
-        final boolean zIsEmpty = TextUtils.isEmpty(this.query);
-        final String str = this.query;
-        this.isLoading = true;
-        this.isFirstLoading = false;
-        if (!zIsEmpty || this.currentImporters.isEmpty()) {
+        final boolean zIsEmpty = TextUtils.isEmpty(memberRequestsDelegate.query);
+        final String str = memberRequestsDelegate.query;
+        memberRequestsDelegate.isLoading = true;
+        memberRequestsDelegate.isFirstLoading = false;
+        Runnable runnable = null;
+        if (!zIsEmpty || memberRequestsDelegate.currentImporters.isEmpty()) {
             tL_chatInviteImporter = null;
         } else {
-            List list = this.currentImporters;
+            List list = memberRequestsDelegate.currentImporters;
             tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) list.get(list.size() - 1);
         }
         final boolean z2 = tL_chatInviteImporter == null;
-        final Runnable runnable = (zIsEmpty && z2 && z) ? new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$loadMembers$2();
-            }
-        } : null;
-        if (zIsEmpty) {
-            AndroidUtilities.runOnUIThread(runnable, 300L);
+        if (zIsEmpty && z2 && z) {
+            runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    MemberRequestsDelegate memberRequestsDelegate2 = this.f$0;
+                    memberRequestsDelegate2.setViewVisible(memberRequestsDelegate2.loadingView, true, true);
+                }
+            };
         }
-        this.searchRequestId = this.controller.getImporters(this.chatId, str, tL_chatInviteImporter, this.users, new RequestDelegate() {
+        final Runnable runnable2 = runnable;
+        if (zIsEmpty) {
+            AndroidUtilities.runOnUIThread(runnable2, 300L);
+        }
+        memberRequestsDelegate.searchRequestId = memberRequestsDelegate.controller.getImporters(memberRequestsDelegate.chatId, str, tL_chatInviteImporter, memberRequestsDelegate.users, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadMembers$4(zIsEmpty, runnable, str, z2, tLObject, tL_error);
+                MemberRequestsDelegate.$r8$lambda$9CesLLOjkpd7naKIk_hM8WgVSwY(this.f$0, zIsEmpty, runnable2, str, z2, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$loadMembers$2() {
-        setViewVisible(this.loadingView, true, true);
-    }
-
-    public void lambda$loadMembers$4(final boolean z, final Runnable runnable, final String str, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$9CesLLOjkpd7naKIk_hM8WgVSwY(final MemberRequestsDelegate memberRequestsDelegate, final boolean z, final Runnable runnable, final String str, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        memberRequestsDelegate.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadMembers$3(z, runnable, str, tL_error, tLObject, z2);
+                MemberRequestsDelegate.$r8$lambda$_lKXC140u8EwkqTMzPLunXTSVus(this.f$0, z, runnable, str, tL_error, tLObject, z2);
             }
         });
     }
 
-    public void lambda$loadMembers$3(boolean z, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z2) {
-        this.isLoading = false;
-        this.isDataLoaded = true;
+    public static void $r8$lambda$_lKXC140u8EwkqTMzPLunXTSVus(MemberRequestsDelegate memberRequestsDelegate, boolean z, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z2) {
+        memberRequestsDelegate.isLoading = false;
+        memberRequestsDelegate.isDataLoaded = true;
         if (z) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
         }
-        setViewVisible(this.loadingView, false, false);
-        if (TextUtils.equals(str, this.query) && tL_error == null) {
-            this.isDataLoaded = true;
-            onImportersLoaded((TLRPC.TL_messages_chatInviteImporters) tLObject, str, z2, false);
+        memberRequestsDelegate.setViewVisible(memberRequestsDelegate.loadingView, false, false);
+        if (TextUtils.equals(str, memberRequestsDelegate.query) && tL_error == null) {
+            memberRequestsDelegate.isDataLoaded = true;
+            memberRequestsDelegate.onImportersLoaded((TLRPC.TL_messages_chatInviteImporters) tLObject, str, z2, false);
         }
     }
 
@@ -555,48 +554,49 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_hideChatJoinRequest, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$hideChatJoinRequest$7(tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest, tLObject, tL_error);
+                MemberRequestsDelegate.$r8$lambda$fgx2yxP6nI8GR1krL71yzqzzyBk(this.f$0, tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$hideChatJoinRequest$7(final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z, final TLRPC.User user, final TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$fgx2yxP6nI8GR1krL71yzqzzyBk(final MemberRequestsDelegate memberRequestsDelegate, final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z, final TLRPC.User user, final TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        memberRequestsDelegate.getClass();
         if (tL_error == null) {
-            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
+            MessagesController.getInstance(memberRequestsDelegate.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$hideChatJoinRequest$6(tL_error, tLObject, tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest);
+                MemberRequestsDelegate.m3044$r8$lambda$dggnKzWsiWyjGQcB9a26_oQK1I(this.f$0, tL_error, tLObject, tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest);
             }
         });
     }
 
-    public void lambda$hideChatJoinRequest$6(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
+    public static void m3044$r8$lambda$dggnKzWsiWyjGQcB9a26_oQK1I(MemberRequestsDelegate memberRequestsDelegate, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
         String string;
-        BaseFragment baseFragment = this.fragment;
+        BaseFragment baseFragment = memberRequestsDelegate.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
         if (tL_error == null) {
             TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject;
             if (!tL_updates.chats.isEmpty()) {
-                MessagesController.getInstance(this.currentAccount).loadFullChat(tL_updates.chats.get(0).id, 0, true);
+                MessagesController.getInstance(memberRequestsDelegate.currentAccount).loadFullChat(tL_updates.chats.get(0).id, 0, true);
             }
-            for (int i = 0; i < this.allImporters.size(); i++) {
-                if (((TLRPC.TL_chatInviteImporter) this.allImporters.get(i)).user_id == tL_chatInviteImporter.user_id) {
-                    this.allImporters.remove(i);
+            for (int i = 0; i < memberRequestsDelegate.allImporters.size(); i++) {
+                if (((TLRPC.TL_chatInviteImporter) memberRequestsDelegate.allImporters.get(i)).user_id == tL_chatInviteImporter.user_id) {
+                    memberRequestsDelegate.allImporters.remove(i);
                     break;
                 }
             }
-            this.adapter.removeItem(tL_chatInviteImporter);
-            onImportersChanged(this.query, false, true);
+            memberRequestsDelegate.adapter.removeItem(tL_chatInviteImporter);
+            memberRequestsDelegate.onImportersChanged(memberRequestsDelegate.query, false, true);
             if (z) {
-                Bulletin.MultiLineLayout multiLineLayout = new Bulletin.MultiLineLayout(this.fragment.getParentActivity(), this.fragment.getResourceProvider());
+                Bulletin.MultiLineLayout multiLineLayout = new Bulletin.MultiLineLayout(memberRequestsDelegate.fragment.getParentActivity(), memberRequestsDelegate.fragment.getResourceProvider());
                 multiLineLayout.imageView.setRoundRadius(AndroidUtilities.dp(15.0f));
                 multiLineLayout.imageView.setForUserOrChat(user, new AvatarDrawable(user));
                 String firstName = UserObject.getFirstName(user);
-                if (this.isChannel) {
+                if (memberRequestsDelegate.isChannel) {
                     string = LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, firstName);
                 } else {
                     string = LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, firstName);
@@ -605,20 +605,20 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                 int iIndexOf = string.indexOf(firstName);
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), iIndexOf, firstName.length() + iIndexOf, 18);
                 multiLineLayout.textView.setText(spannableStringBuilder);
-                if (this.allImporters.isEmpty()) {
-                    Bulletin.make(this.fragment, multiLineLayout, 2750).show();
+                if (memberRequestsDelegate.allImporters.isEmpty()) {
+                    Bulletin.make(memberRequestsDelegate.fragment, multiLineLayout, 2750).show();
                 } else {
-                    Bulletin.make(this.layoutContainer, multiLineLayout, 2750).show();
+                    Bulletin.make(memberRequestsDelegate.layoutContainer, multiLineLayout, 2750).show();
                 }
             }
-            ActionBarMenu actionBarMenuCreateMenu = this.fragment.getActionBar().createMenu();
-            if (TextUtils.isEmpty(this.query) && this.showSearchMenu) {
-                actionBarMenuCreateMenu.getItem(0).setVisibility(this.allImporters.isEmpty() ? 8 : 0);
+            ActionBarMenu actionBarMenuCreateMenu = memberRequestsDelegate.fragment.getActionBar().createMenu();
+            if (TextUtils.isEmpty(memberRequestsDelegate.query) && memberRequestsDelegate.showSearchMenu) {
+                actionBarMenuCreateMenu.getItem(0).setVisibility(memberRequestsDelegate.allImporters.isEmpty() ? 8 : 0);
                 return;
             }
             return;
         }
-        AlertsCreator.processError(this.currentAccount, tL_error, this.fragment, tL_messages_hideChatJoinRequest, new Object[0]);
+        AlertsCreator.processError(memberRequestsDelegate.currentAccount, tL_error, memberRequestsDelegate.fragment, tL_messages_hideChatJoinRequest, new Object[0]);
     }
 
     public void hidePreview() {
@@ -626,7 +626,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         this.importer = null;
     }
 
-    private void setViewVisible(View view, boolean z, boolean z2) {
+    public void setViewVisible(View view, boolean z, boolean z2) {
         if (view == null) {
             return;
         }
@@ -973,7 +973,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    MemberRequestsDelegate.PreviewDialog.$r8$lambda$dCAFu_qxqOmUbp2HxJOEjqFzww4(this.f$0, view);
                 }
             });
             actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
@@ -984,7 +984,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$1(view);
+                    MemberRequestsDelegate.PreviewDialog.$r8$lambda$jwCDBnOHvLwX9C0jYfpeeEXMIh4(this.f$0, view);
                 }
             });
             actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
@@ -995,33 +995,33 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$2(view);
+                    MemberRequestsDelegate.PreviewDialog.m3047$r8$lambda$yEDy06tDqXGAKOB4oJ2cBZ2f70(this.f$0, view);
                 }
             });
             actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
         }
 
-        public void lambda$new$0(View view) {
-            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = this.importer;
+        public static void $r8$lambda$dCAFu_qxqOmUbp2HxJOEjqFzww4(PreviewDialog previewDialog, View view) {
+            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = previewDialog.importer;
             if (tL_chatInviteImporter != null) {
                 MemberRequestsDelegate.this.onAddClicked(tL_chatInviteImporter);
             }
             MemberRequestsDelegate.this.hidePreview();
         }
 
-        public void lambda$new$1(View view) {
-            if (this.importer != null) {
+        public static void $r8$lambda$jwCDBnOHvLwX9C0jYfpeeEXMIh4(PreviewDialog previewDialog, View view) {
+            if (previewDialog.importer != null) {
                 MemberRequestsDelegate.this.isNeedRestoreList = true;
                 super.dismiss();
                 MemberRequestsDelegate.this.fragment.dismissCurrentDialog();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", this.importer.user_id);
+                bundle.putLong("user_id", previewDialog.importer.user_id);
                 MemberRequestsDelegate.this.fragment.presentFragment(new ChatActivity(bundle));
             }
         }
 
-        public void lambda$new$2(View view) {
-            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = this.importer;
+        public static void m3047$r8$lambda$yEDy06tDqXGAKOB4oJ2cBZ2f70(PreviewDialog previewDialog, View view) {
+            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = previewDialog.importer;
             if (tL_chatInviteImporter != null) {
                 MemberRequestsDelegate.this.onDismissClicked(tL_chatInviteImporter);
             }
@@ -1072,14 +1072,14 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$show$3();
+                    MemberRequestsDelegate.PreviewDialog.m3046$r8$lambda$9SL8pZ3LyZ43rVtm7YirVYg0SQ(this.f$0);
                 }
             }, 80L);
         }
 
-        public void lambda$show$3() {
-            updateBackgroundBitmap();
-            runAnimation(true);
+        public static void m3046$r8$lambda$9SL8pZ3LyZ43rVtm7YirVYg0SQ(PreviewDialog previewDialog) {
+            previewDialog.updateBackgroundBitmap();
+            previewDialog.runAnimation(true);
         }
 
         @Override
@@ -1105,7 +1105,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$runAnimation$4(width, left, top, width2, i, valueAnimator2);
+                    MemberRequestsDelegate.PreviewDialog.$r8$lambda$Wcrg_3Es6wrN1BvrmynEcCZpzKA(this.f$0, width, left, top, width2, i, valueAnimator2);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {
@@ -1133,27 +1133,28 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             this.animator.start();
         }
 
-        public void lambda$runAnimation$4(float f, float f2, float f3, float f4, int i, ValueAnimator valueAnimator) {
+        public static void $r8$lambda$Wcrg_3Es6wrN1BvrmynEcCZpzKA(PreviewDialog previewDialog, float f, float f2, float f3, float f4, int i, ValueAnimator valueAnimator) {
+            previewDialog.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.animationProgress = fFloatValue;
+            previewDialog.animationProgress = fFloatValue;
             float f5 = f + ((1.0f - f) * fFloatValue);
-            this.contentView.setScaleX(f5);
-            this.contentView.setScaleY(f5);
-            this.contentView.setTranslationX(f2 * (1.0f - this.animationProgress));
-            this.contentView.setTranslationY(f3 * (1.0f - this.animationProgress));
-            int i2 = (int) (f4 * (1.0f - this.animationProgress));
-            this.viewPager.setRoundRadius(i2, i2);
-            float fClamp = MathUtils.clamp((this.animationProgress * 2.0f) - 1.0f, 0.0f, 1.0f);
-            this.pagerShadowDrawable.setAlpha((int) (fClamp * 255.0f));
-            this.nameText.setAlpha(fClamp);
-            this.bioText.setAlpha(fClamp);
-            this.popupLayout.setTranslationY(i * (1.0f - this.animationProgress));
-            this.popupLayout.setAlpha(fClamp);
-            BitmapDrawable bitmapDrawable = this.backgroundDrawable;
+            previewDialog.contentView.setScaleX(f5);
+            previewDialog.contentView.setScaleY(f5);
+            previewDialog.contentView.setTranslationX(f2 * (1.0f - previewDialog.animationProgress));
+            previewDialog.contentView.setTranslationY(f3 * (1.0f - previewDialog.animationProgress));
+            int i2 = (int) (f4 * (1.0f - previewDialog.animationProgress));
+            previewDialog.viewPager.setRoundRadius(i2, i2);
+            float fClamp = MathUtils.clamp((previewDialog.animationProgress * 2.0f) - 1.0f, 0.0f, 1.0f);
+            previewDialog.pagerShadowDrawable.setAlpha((int) (fClamp * 255.0f));
+            previewDialog.nameText.setAlpha(fClamp);
+            previewDialog.bioText.setAlpha(fClamp);
+            previewDialog.popupLayout.setTranslationY(i * (1.0f - previewDialog.animationProgress));
+            previewDialog.popupLayout.setAlpha(fClamp);
+            BitmapDrawable bitmapDrawable = previewDialog.backgroundDrawable;
             if (bitmapDrawable != null) {
-                bitmapDrawable.setAlpha((int) (this.animationProgress * 255.0f));
+                bitmapDrawable.setAlpha((int) (previewDialog.animationProgress * 255.0f));
             }
-            this.pagerIndicator.setAlpha(fClamp);
+            previewDialog.pagerIndicator.setAlpha(fClamp);
         }
 
         private Bitmap getBlurredBitmap() {

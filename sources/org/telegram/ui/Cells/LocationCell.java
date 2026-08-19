@@ -186,7 +186,7 @@ public class LocationCell extends FrameLayout {
         this.enterAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setLocation$0(jElapsedRealtime, jAbs, f, f2, valueAnimator2);
+                LocationCell.$r8$lambda$4f04vaATkMfuscwU_dWvsY5S0MM(this.f$0, jElapsedRealtime, jAbs, f, f2, valueAnimator2);
             }
         });
         ValueAnimator valueAnimator2 = this.enterAnimator;
@@ -202,13 +202,14 @@ public class LocationCell extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$setLocation$0(long j, long j2, float f, float f2, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$4f04vaATkMfuscwU_dWvsY5S0MM(LocationCell locationCell, long j, long j2, float f, float f2, ValueAnimator valueAnimator) {
+        locationCell.getClass();
         float fLerp = AndroidUtilities.lerp(f, f2, j2 > 0 ? Math.min(Math.max((SystemClock.elapsedRealtime() - j) / j2, 0.0f), 1.0f) : 1.0f);
-        this.enterAlpha = fLerp;
-        this.imageView.setAlpha(fLerp);
-        this.nameTextView.setAlpha(this.enterAlpha);
-        this.addressTextView.setAlpha(this.enterAlpha);
-        invalidate();
+        locationCell.enterAlpha = fLerp;
+        locationCell.imageView.setAlpha(fLerp);
+        locationCell.nameTextView.setAlpha(locationCell.enterAlpha);
+        locationCell.addressTextView.setAlpha(locationCell.enterAlpha);
+        locationCell.invalidate();
     }
 
     private void updateContentDescription(TLRPC.TL_messageMediaVenue tL_messageMediaVenue, String str) {

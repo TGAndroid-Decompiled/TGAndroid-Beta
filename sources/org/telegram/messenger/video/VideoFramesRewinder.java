@@ -37,7 +37,7 @@ public class VideoFramesRewinder {
     private final TreeSet<Frame> frames = new TreeSet<>(new Comparator() {
         @Override
         public final int compare(Object obj, Object obj2) {
-            return VideoFramesRewinder.lambda$new$0((VideoFramesRewinder.Frame) obj, (VideoFramesRewinder.Frame) obj2);
+            return VideoFramesRewinder.$r8$lambda$Gp5VzuvDbaeLquWZKjlA_BCZs5Q((VideoFramesRewinder.Frame) obj, (VideoFramesRewinder.Frame) obj2);
         }
     });
     private AtomicBoolean stop = new AtomicBoolean(false);
@@ -46,7 +46,7 @@ public class VideoFramesRewinder {
     private Runnable prepareRunnable = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$2();
+            VideoFramesRewinder.$r8$lambda$bvA2FqZic6EBa6TWfLMCKCnBDcY(this.f$0);
         }
     };
 
@@ -89,7 +89,7 @@ public class VideoFramesRewinder {
         }
     }
 
-    public static int lambda$new$0(Frame frame, Frame frame2) {
+    public static int $r8$lambda$Gp5VzuvDbaeLquWZKjlA_BCZs5Q(Frame frame, Frame frame2) {
         return (int) (frame.position - frame2.position);
     }
 
@@ -101,34 +101,35 @@ public class VideoFramesRewinder {
         }
     }
 
-    public void lambda$new$2() {
+    public static void $r8$lambda$bvA2FqZic6EBa6TWfLMCKCnBDcY(final VideoFramesRewinder videoFramesRewinder) {
         Frame frame;
         int i;
         int i2;
         int i3;
+        videoFramesRewinder.getClass();
         final ArrayList arrayList = new ArrayList();
         final long jCurrentTimeMillis = System.currentTimeMillis();
-        int[] iArr = this.meta;
+        int[] iArr = videoFramesRewinder.meta;
         int i4 = iArr[4];
         int i5 = 0;
-        int iMin = Math.min(this.w / 4, iArr[0]);
-        int iMin2 = Math.min(this.h / 4, this.meta[1]);
-        int i6 = this.maxFrameSide;
+        int iMin = Math.min(videoFramesRewinder.w / 4, iArr[0]);
+        int iMin2 = Math.min(videoFramesRewinder.h / 4, videoFramesRewinder.meta[1]);
+        int i6 = videoFramesRewinder.maxFrameSide;
         if (iMin > i6 || iMin2 > i6) {
             float fMax = i6 / Math.max(iMin, iMin2);
             iMin = (int) (iMin * fMax);
             iMin2 = (int) (iMin2 * fMax);
         }
-        this.mDecoder.seekToMs(this.prepareToMs - ((long) (this.prepareWithSpeed * 350.0f)), false);
-        long j = this.meta[3];
+        videoFramesRewinder.mDecoder.seekToMs(videoFramesRewinder.prepareToMs - ((long) (videoFramesRewinder.prepareWithSpeed * 350.0f)), false);
+        long j = videoFramesRewinder.meta[3];
         int i7 = 0;
         int i8 = 0;
-        for (char c = 3; this.meta[c] <= this.until.get() && i7 < this.maxFramesCount && !this.stop.get(); c = 3) {
+        for (char c = 3; videoFramesRewinder.meta[c] <= videoFramesRewinder.until.get() && i7 < videoFramesRewinder.maxFramesCount && !videoFramesRewinder.stop.get(); c = 3) {
             float f = 1000.0f / i4;
             long j2 = j;
-            long j3 = (long) (j + (this.prepareWithSpeed * f));
-            if (!this.freeFrames.isEmpty()) {
-                frame = this.freeFrames.remove(i5);
+            long j3 = (long) (j + (videoFramesRewinder.prepareWithSpeed * f));
+            if (!videoFramesRewinder.freeFrames.isEmpty()) {
+                frame = videoFramesRewinder.freeFrames.remove(i5);
             } else {
                 frame = new Frame();
             }
@@ -141,21 +142,21 @@ public class VideoFramesRewinder {
                         i = i7;
                         i2 = i4;
                         i3 = iMin2;
-                        if (((long) this.meta[3]) + ((long) Math.ceil(f)) < j3) {
+                        if (((long) videoFramesRewinder.meta[3]) + ((long) Math.ceil(f)) < j3) {
                             break;
                         }
-                        this.mDecoder.getVideoFrame(null, true, 0.0f, this.meta[4], false);
+                        videoFramesRewinder.mDecoder.getVideoFrame(null, true, 0.0f, videoFramesRewinder.meta[4], false);
                         i4 = i2;
                         i7 = i;
                         iMin2 = i3;
                     }
-                    if (this.mDecoder.getVideoFrame(frame.bitmap, true, 0.0f, this.meta[4], false) == 0) {
+                    if (videoFramesRewinder.mDecoder.getVideoFrame(frame.bitmap, true, 0.0f, videoFramesRewinder.meta[4], false) == 0) {
                         i8++;
                         if (i8 > 6) {
                             break;
                         }
                     } else {
-                        long j4 = this.meta[3];
+                        long j4 = videoFramesRewinder.meta[3];
                         frame.position = j4;
                         arrayList.add(frame);
                         j2 = j4;
@@ -173,23 +174,23 @@ public class VideoFramesRewinder {
                     i = i7;
                     i2 = i4;
                     i3 = iMin2;
-                    if (((long) this.meta[3]) + ((long) Math.ceil(f)) < j3) {
+                    if (((long) videoFramesRewinder.meta[3]) + ((long) Math.ceil(f)) < j3) {
                         break;
                         break;
                     }
-                    this.mDecoder.getVideoFrame(null, true, 0.0f, this.meta[4], false);
+                    videoFramesRewinder.mDecoder.getVideoFrame(null, true, 0.0f, videoFramesRewinder.meta[4], false);
                     i4 = i2;
                     i7 = i;
                     iMin2 = i3;
                 }
-                if (this.mDecoder.getVideoFrame(frame.bitmap, true, 0.0f, this.meta[4], false) == 0) {
+                if (videoFramesRewinder.mDecoder.getVideoFrame(frame.bitmap, true, 0.0f, videoFramesRewinder.meta[4], false) == 0) {
                     i8++;
                     if (i8 > 6) {
                         break;
                         break;
                     }
                 } else {
-                    long j5 = this.meta[3];
+                    long j5 = videoFramesRewinder.meta[3];
                     frame.position = j5;
                     arrayList.add(frame);
                     j2 = j5;
@@ -204,38 +205,39 @@ public class VideoFramesRewinder {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1(arrayList, jCurrentTimeMillis);
+                VideoFramesRewinder.$r8$lambda$gsXQuVCSPGa8HapsEQavJGKCFkA(this.f$0, arrayList, jCurrentTimeMillis);
             }
         });
     }
 
-    public void lambda$new$1(ArrayList arrayList, long j) {
+    public static void $r8$lambda$gsXQuVCSPGa8HapsEQavJGKCFkA(VideoFramesRewinder videoFramesRewinder, ArrayList arrayList, long j) {
+        videoFramesRewinder.getClass();
         FileLog.d("[VideoFramesRewinder] total prepare of " + arrayList.size() + " took " + (System.currentTimeMillis() - j) + "ms");
         if (!arrayList.isEmpty()) {
-            FileLog.d("[VideoFramesRewinder] prepared from " + ((Frame) arrayList.get(0)).position + "ms to " + ((Frame) arrayList.get(arrayList.size() - 1)).position + "ms (requested up to " + this.prepareToMs + "ms)");
+            FileLog.d("[VideoFramesRewinder] prepared from " + ((Frame) arrayList.get(0)).position + "ms to " + ((Frame) arrayList.get(arrayList.size() - 1)).position + "ms (requested up to " + videoFramesRewinder.prepareToMs + "ms)");
         }
-        this.isPreparing = false;
-        Iterator<Frame> it = this.frames.iterator();
+        videoFramesRewinder.isPreparing = false;
+        Iterator<Frame> it = videoFramesRewinder.frames.iterator();
         while (it.hasNext()) {
             Frame next = it.next();
-            if (this.currentFrame != next && next.position > this.lastSeek) {
-                if (this.freeFrames.size() > 20) {
+            if (videoFramesRewinder.currentFrame != next && next.position > videoFramesRewinder.lastSeek) {
+                if (videoFramesRewinder.freeFrames.size() > 20) {
                     AndroidUtilities.recycleBitmap(next.bitmap);
                 } else {
-                    this.freeFrames.add(next);
+                    videoFramesRewinder.freeFrames.add(next);
                 }
                 it.remove();
             }
         }
-        while (!arrayList.isEmpty() && this.frames.size() < this.maxFramesCount) {
-            this.frames.add((Frame) arrayList.remove(arrayList.size() - 1));
+        while (!arrayList.isEmpty() && videoFramesRewinder.frames.size() < videoFramesRewinder.maxFramesCount) {
+            videoFramesRewinder.frames.add((Frame) arrayList.remove(arrayList.size() - 1));
         }
         if (arrayList.size() > 0) {
             FileLog.d("[VideoFramesRewinder] prepared " + arrayList.size() + " more frames than I could fit :(");
         }
-        if (this.destroyAfterPrepare) {
-            release();
-            this.stop.set(false);
+        if (videoFramesRewinder.destroyAfterPrepare) {
+            videoFramesRewinder.release();
+            videoFramesRewinder.stop.set(false);
         }
     }
 
@@ -312,6 +314,7 @@ public class VideoFramesRewinder {
             animatedFileNative.recycle();
             this.mDecoder = null;
         }
+        int i = 0;
         this.destroyAfterPrepare = false;
         clearCurrent();
         this.until.set(0L);
@@ -320,9 +323,12 @@ public class VideoFramesRewinder {
             AndroidUtilities.recycleBitmap(it.next().bitmap);
         }
         this.frames.clear();
-        Iterator<Frame> it2 = this.freeFrames.iterator();
-        while (it2.hasNext()) {
-            AndroidUtilities.recycleBitmap(it2.next().bitmap);
+        ArrayList<Frame> arrayList = this.freeFrames;
+        int size = arrayList.size();
+        while (i < size) {
+            Frame frame = arrayList.get(i);
+            i++;
+            AndroidUtilities.recycleBitmap(frame.bitmap);
         }
         this.freeFrames.clear();
     }

@@ -398,20 +398,19 @@ public class FastDateParser implements DateParser, Serializable {
     }
 
     private Strategy getLocaleSpecificStrategy(int i, Calendar calendar) {
+        Strategy textStrategy;
         ConcurrentMap<Locale, Strategy> cache = getCache(i);
-        Strategy textStrategy = cache.get(this.locale);
-        if (textStrategy == null) {
-            if (i == 15) {
-                textStrategy = new TimeZoneStrategy(this.locale);
-            } else {
-                textStrategy = new TextStrategy(i, calendar, this.locale);
-            }
-            Strategy strategyPutIfAbsent = cache.putIfAbsent(this.locale, textStrategy);
-            if (strategyPutIfAbsent != null) {
-                return strategyPutIfAbsent;
-            }
+        Strategy strategy = cache.get(this.locale);
+        if (strategy != null) {
+            return strategy;
         }
-        return textStrategy;
+        if (i == 15) {
+            textStrategy = new TimeZoneStrategy(this.locale);
+        } else {
+            textStrategy = new TextStrategy(i, calendar, this.locale);
+        }
+        Strategy strategyPutIfAbsent = cache.putIfAbsent(this.locale, textStrategy);
+        return strategyPutIfAbsent != null ? strategyPutIfAbsent : textStrategy;
     }
 
     private static class CopyQuotedStrategy extends Strategy {

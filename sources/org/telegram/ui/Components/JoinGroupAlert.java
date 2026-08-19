@@ -52,7 +52,6 @@ public class JoinGroupAlert extends BottomSheet {
         boolean z2;
         boolean z3;
         String lowerCase;
-        boolean z4;
         CharSequence string;
         super(context, false, resourcesProvider);
         setApplyBottomPadding(false);
@@ -91,7 +90,7 @@ public class JoinGroupAlert extends BottomSheet {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.dismiss();
             }
         });
         int iDp = AndroidUtilities.dp(8.0f);
@@ -161,7 +160,7 @@ public class JoinGroupAlert extends BottomSheet {
             simpleTextView.setRightDrawable(getVerifiedCrossfadeDrawable());
         }
         TLRPC.ChatInvite chatInvite6 = this.chatInvite;
-        final boolean z5 = (chatInvite6 != null && ((chatInvite6.channel && !chatInvite6.megagroup) || ChatObject.isChannelAndNotMegaGroup(chatInvite6.chat))) || (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup);
+        final boolean z4 = (chatInvite6 != null && ((chatInvite6.channel && !chatInvite6.megagroup) || ChatObject.isChannelAndNotMegaGroup(chatInvite6.chat))) || (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup);
         boolean zIsEmpty = TextUtils.isEmpty(str2);
         TextView textView = new TextView(context);
         textView.setTextSize(1, 13.0f);
@@ -173,7 +172,7 @@ public class JoinGroupAlert extends BottomSheet {
         if (this.chatInvite != null && i == 0) {
             textView.setText(LocaleController.getString(R.string.ChannelPublic).toLowerCase());
         } else {
-            if (z5) {
+            if (z4) {
                 lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
             } else {
                 lowerCase = LocaleController.getString(R.string.MegaPrivate).toLowerCase();
@@ -206,28 +205,26 @@ public class JoinGroupAlert extends BottomSheet {
             this.requestTextView.setEllipsize(truncateAt);
             this.requestTextView.setGravity(17);
             this.requestTextView.setSingleLine(true);
-            this.requestTextView.setText(LocaleController.getString(z5 ? R.string.RequestToJoinChannel : R.string.RequestToJoinGroup));
+            this.requestTextView.setText(LocaleController.getString(z4 ? R.string.RequestToJoinChannel : R.string.RequestToJoinGroup));
             this.requestTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
             this.requestTextView.setTextSize(1, 14.0f);
             this.requestTextView.setTypeface(AndroidUtilities.bold());
             this.requestTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$8(z5, j, view);
+                    JoinGroupAlert.$r8$lambda$OquZb1IghZ2Vxzl2YPmj3RmDm3Y(this.f$0, z4, j, view);
                 }
             });
             frameLayout2.addView(this.requestTextView, LayoutHelper.createLinear(-1, 48, 8388611, 14, 0, 14, 0));
             TextView textView4 = new TextView(getContext());
             textView4.setGravity(17);
             textView4.setTextSize(1, 14.0f);
-            textView4.setText(LocaleController.getString(z5 ? R.string.RequestToJoinChannelDescription : R.string.RequestToJoinGroupDescription));
+            textView4.setText(LocaleController.getString(z4 ? R.string.RequestToJoinChannelDescription : R.string.RequestToJoinGroupDescription));
             textView4.setTextColor(getThemedColor(i5));
             linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 48, 24, 17, 24, 15));
             return;
         }
-        if (chatInvite7.participants.isEmpty()) {
-            z4 = false;
-        } else {
+        if (!chatInvite7.participants.isEmpty()) {
             int iMin = Math.min(this.chatInvite.participants.size(), 3);
             AvatarsImageView avatarsImageView = new AvatarsImageView(context, false);
             avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(20.0f));
@@ -239,39 +236,33 @@ public class JoinGroupAlert extends BottomSheet {
                 avatarsImageView.setObject(i7, UserConfig.selectedAccount, this.chatInvite.participants.get(i7));
             }
             avatarsImageView.commitTransition(false);
-            linearLayout.addView(avatarsImageView, LayoutHelper.createLinear((int) (f + ((iMin - 1) * ((0.65f * f) + 1.0f))), 44, 17, 0, 2, 0, 4));
+            linearLayout.addView(avatarsImageView, LayoutHelper.createLinear((int) (f + ((iMin - 1) * ((f * 0.65f) + 1.0f))), 44, 17, 0, 2, 0, 4));
             TextView textView5 = new TextView(context);
             textView5.setTextSize(1, 13.0f);
             textView5.setTextColor(getThemedColor(Theme.key_dialogTextGray3));
             textView5.setGravity(17);
             if (iMin == 1) {
-                z4 = false;
                 string = ellipsize(textView5, this.chatInvite, 0).toString();
+            } else if (iMin == 2) {
+                string = LocaleController.formatString("RequestToJoinMembersTwo", R.string.RequestToJoinMembersTwo, ellipsize(textView5, this.chatInvite, 0), ellipsize(textView5, this.chatInvite, 1));
+            } else if (i2 == 3) {
+                string = LocaleController.formatString("RequestToJoinMembersThree", R.string.RequestToJoinMembersThree, ellipsize(textView5, this.chatInvite, 0), ellipsize(textView5, this.chatInvite, 1), ellipsize(textView5, this.chatInvite, 2));
             } else {
-                z4 = false;
-                if (iMin == 2) {
-                    string = LocaleController.formatString("RequestToJoinMembersTwo", R.string.RequestToJoinMembersTwo, ellipsize(textView5, this.chatInvite, 0), ellipsize(textView5, this.chatInvite, 1));
-                } else if (i2 == 3) {
-                    string = LocaleController.formatString("RequestToJoinMembersThree", R.string.RequestToJoinMembersThree, ellipsize(textView5, this.chatInvite, 0), ellipsize(textView5, this.chatInvite, 1), ellipsize(textView5, this.chatInvite, 2));
-                } else {
-                    int iMax2 = Math.max(i2 - iMin, 2);
-                    string = String.format(LocaleController.getPluralString("RequestToJoinMembersAll", iMax2), ellipsize(textView5, this.chatInvite, 0), ellipsize(textView5, this.chatInvite, 1), Integer.valueOf(iMax2));
-                }
+                int iMax2 = Math.max(i2 - iMin, 2);
+                string = String.format(LocaleController.getPluralString("RequestToJoinMembersAll", iMax2), ellipsize(textView5, this.chatInvite, 0), ellipsize(textView5, this.chatInvite, 1), Integer.valueOf(iMax2));
             }
             textView5.setText(string);
             linearLayout.addView(textView5, LayoutHelper.createLinear(-2, -2, 49, 10, 0, 10, 24));
         }
         TLRPC.ChatInvite chatInvite8 = this.chatInvite;
-        if ((chatInvite8.channel && !chatInvite8.megagroup) || (ChatObject.isChannel(chatInvite8.chat) && !this.chatInvite.chat.megagroup)) {
-            z4 = true;
-        }
+        boolean z5 = (chatInvite8.channel && !chatInvite8.megagroup) || (ChatObject.isChannel(chatInvite8.chat) && !this.chatInvite.chat.megagroup);
         TextView textView6 = new TextView(getContext());
         textView6.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(24.0f), getThemedColor(Theme.key_featuredStickers_addButton), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
         ScaleStateListAnimator.apply(textView6, 0.02f, 1.2f);
         textView6.setEllipsize(TextUtils.TruncateAt.END);
         textView6.setGravity(17);
         textView6.setSingleLine(true);
-        textView6.setText(LocaleController.getString(z4 ? R.string.ProfileJoinChannel : R.string.ProfileJoinGroup));
+        textView6.setText(LocaleController.getString(z5 ? R.string.ProfileJoinChannel : R.string.ProfileJoinGroup));
         textView6.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
         textView6.setTextSize(1, 14.0f);
         textView6.setTypeface(AndroidUtilities.bold());
@@ -279,137 +270,133 @@ public class JoinGroupAlert extends BottomSheet {
         textView6.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$12(j, i, view);
+                JoinGroupAlert.m2407$r8$lambda$MV_tQ_9ptxGKYuynaLfo2IUbGY(this.f$0, j, i, view);
             }
         });
     }
 
-    public void lambda$new$0(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$new$8(final boolean z, final long j, View view) {
+    public static void $r8$lambda$OquZb1IghZ2Vxzl2YPmj3RmDm3Y(final JoinGroupAlert joinGroupAlert, final boolean z, final long j, View view) {
+        joinGroupAlert.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                JoinGroupAlert.m2404$r8$lambda$BrvctanFLceaFz3wLwDfbW4AUM(this.f$0);
             }
         }, 400L);
-        if (this.chatInvite == null && this.currentChat != null) {
-            MessagesController.getInstance(this.currentAccount).addUserToChat(this.currentChat.id, UserConfig.getInstance(this.currentAccount).getCurrentUser(), 0, null, null, true, new Runnable() {
+        if (joinGroupAlert.chatInvite == null && joinGroupAlert.currentChat != null) {
+            MessagesController.getInstance(joinGroupAlert.currentAccount).addUserToChat(joinGroupAlert.currentChat.id, UserConfig.getInstance(joinGroupAlert.currentAccount).getCurrentUser(), 0, null, null, true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0();
+                    this.f$0.dismiss();
                 }
             }, new MessagesController.ErrorDelegate() {
                 @Override
                 public final boolean run(TLRPC.TL_error tL_error) {
-                    return this.f$0.lambda$new$3(z, tL_error);
+                    return JoinGroupAlert.m2409$r8$lambda$hwb40nhsS3HSXAD8YJHeRE0PoA(this.f$0, z, tL_error);
                 }
             });
             return;
         }
         final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-        tL_messages_importChatInvite.hash = this.hash;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_importChatInvite, new RequestDelegate() {
+        tL_messages_importChatInvite.hash = joinGroupAlert.hash;
+        ConnectionsManager.getInstance(joinGroupAlert.currentAccount).sendRequest(tL_messages_importChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$new$7(j, z, tL_messages_importChatInvite, tLObject, tL_error);
+                JoinGroupAlert.$r8$lambda$SFKxwIwEYdyj2ZGBaLhYJdfx5WU(this.f$0, j, z, tL_messages_importChatInvite, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public void lambda$new$1() {
-        if (isDismissed()) {
+    public static void m2404$r8$lambda$BrvctanFLceaFz3wLwDfbW4AUM(JoinGroupAlert joinGroupAlert) {
+        if (joinGroupAlert.isDismissed()) {
             return;
         }
-        this.requestTextView.setVisibility(4);
-        this.requestProgressView.setVisibility(0);
+        joinGroupAlert.requestTextView.setVisibility(4);
+        joinGroupAlert.requestProgressView.setVisibility(0);
     }
 
-    public boolean lambda$new$3(final boolean z, TLRPC.TL_error tL_error) {
-        if (tL_error != null && "INVITE_REQUEST_SENT".equals(tL_error.text)) {
-            setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$new$2(z, dialogInterface);
-                }
-            });
+    public static boolean m2409$r8$lambda$hwb40nhsS3HSXAD8YJHeRE0PoA(final JoinGroupAlert joinGroupAlert, final boolean z, TLRPC.TL_error tL_error) {
+        if (tL_error != null) {
+            joinGroupAlert.getClass();
+            if ("INVITE_REQUEST_SENT".equals(tL_error.text)) {
+                joinGroupAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public final void onDismiss(DialogInterface dialogInterface) {
+                        JoinGroupAlert joinGroupAlert2 = this.f$0;
+                        JoinGroupAlert.showBulletin(joinGroupAlert2.getContext(), joinGroupAlert2.fragment, joinGroupAlert2.bulletinFactory, z);
+                    }
+                });
+            }
         }
-        lambda$new$0();
+        joinGroupAlert.dismiss();
         return false;
     }
 
-    public void lambda$new$2(boolean z, DialogInterface dialogInterface) {
-        showBulletin(getContext(), this.fragment, this.bulletinFactory, z);
-    }
-
-    public void lambda$new$7(final long j, final boolean z, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$SFKxwIwEYdyj2ZGBaLhYJdfx5WU(final JoinGroupAlert joinGroupAlert, final long j, final boolean z, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        joinGroupAlert.getClass();
         if (tLObject instanceof TLRPC.TL_chatInviteJoinResultOk) {
-            MessagesController.getInstance(this.currentAccount).processUpdates(((TLRPC.TL_chatInviteJoinResultOk) tLObject).updates, false);
+            MessagesController.getInstance(joinGroupAlert.currentAccount).processUpdates(((TLRPC.TL_chatInviteJoinResultOk) tLObject).updates, false);
         } else if (tLObject instanceof TLRPC.TL_chatInviteJoinResultWebView) {
             final TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) tLObject;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$4(tL_chatInviteJoinResultWebView, j);
+                    JoinGroupAlert.$r8$lambda$LaPQ08rPX6UPbyuaIUeQdE5uGTA(this.f$0, tL_chatInviteJoinResultWebView, j);
                 }
             });
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$6(tL_error, z, tL_messages_importChatInvite);
+                JoinGroupAlert.m2410$r8$lambda$qH6o3HVIsx9pTpmWPgxFo8V_34(this.f$0, tL_error, z, tL_messages_importChatInvite);
             }
         });
     }
 
-    public void lambda$new$4(TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j) {
-        MessagesController.getInstance(this.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
-        BotGuardHelper.getInstance(this.currentAccount).openGuardBotWebApp(j, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+    public static void $r8$lambda$LaPQ08rPX6UPbyuaIUeQdE5uGTA(JoinGroupAlert joinGroupAlert, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j) {
+        MessagesController.getInstance(joinGroupAlert.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
+        BotGuardHelper.getInstance(joinGroupAlert.currentAccount).openGuardBotWebApp(j, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
     }
 
-    public void lambda$new$6(TLRPC.TL_error tL_error, final boolean z, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
-        BaseFragment baseFragment = this.fragment;
+    public static void m2410$r8$lambda$qH6o3HVIsx9pTpmWPgxFo8V_34(final JoinGroupAlert joinGroupAlert, TLRPC.TL_error tL_error, final boolean z, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        BaseFragment baseFragment = joinGroupAlert.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
         if (tL_error != null) {
             if ("INVITE_REQUEST_SENT".equals(tL_error.text)) {
-                setOnDismissListener(new DialogInterface.OnDismissListener() {
+                joinGroupAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        this.f$0.lambda$new$5(z, dialogInterface);
+                        JoinGroupAlert joinGroupAlert2 = this.f$0;
+                        JoinGroupAlert.showBulletin(joinGroupAlert2.getContext(), joinGroupAlert2.fragment, joinGroupAlert2.bulletinFactory, z);
                     }
                 });
             } else {
-                AlertsCreator.processError(this.currentAccount, tL_error, this.fragment, tL_messages_importChatInvite, new Object[0]);
+                AlertsCreator.processError(joinGroupAlert.currentAccount, tL_error, joinGroupAlert.fragment, tL_messages_importChatInvite, new Object[0]);
             }
         }
-        lambda$new$0();
+        joinGroupAlert.dismiss();
     }
 
-    public void lambda$new$5(boolean z, DialogInterface dialogInterface) {
-        showBulletin(getContext(), this.fragment, this.bulletinFactory, z);
-    }
-
-    public void lambda$new$12(final long j, final int i, View view) {
-        lambda$new$0();
+    public static void m2407$r8$lambda$MV_tQ_9ptxGKYuynaLfo2IUbGY(final JoinGroupAlert joinGroupAlert, final long j, final int i, View view) {
+        joinGroupAlert.dismiss();
         final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-        tL_messages_importChatInvite.hash = this.hash;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_importChatInvite, null, new Utilities.Callback2() {
+        tL_messages_importChatInvite.hash = joinGroupAlert.hash;
+        ConnectionsManager.getInstance(joinGroupAlert.currentAccount).sendRequestTyped(tL_messages_importChatInvite, null, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$new$11(j, i, tL_messages_importChatInvite, (TLRPC.ChatInviteJoinResult) obj, (TLRPC.TL_error) obj2);
+                JoinGroupAlert.$r8$lambda$7KF5lRZIKHaskZKVgwi_muIcWNc(this.f$0, j, i, tL_messages_importChatInvite, (TLRPC.ChatInviteJoinResult) obj, (TLRPC.TL_error) obj2);
             }
         }, 2);
     }
 
-    public void lambda$new$11(final long j, final int i, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLRPC.ChatInviteJoinResult chatInviteJoinResult, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$7KF5lRZIKHaskZKVgwi_muIcWNc(final JoinGroupAlert joinGroupAlert, final long j, final int i, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLRPC.ChatInviteJoinResult chatInviteJoinResult, final TLRPC.TL_error tL_error) {
         final TLRPC.Updates updates;
+        joinGroupAlert.getClass();
         if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
             TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
-            MessagesController.getInstance(this.currentAccount).processUpdates(updates2, false);
+            MessagesController.getInstance(joinGroupAlert.currentAccount).processUpdates(updates2, false);
             updates = updates2;
         } else {
             if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
@@ -417,7 +404,7 @@ public class JoinGroupAlert extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$9(tL_chatInviteJoinResultWebView, j);
+                        JoinGroupAlert.m2406$r8$lambda$JvWnz_OARFn0uXc5HHxoYoAtuQ(this.f$0, tL_chatInviteJoinResultWebView, j);
                     }
                 });
             }
@@ -426,20 +413,20 @@ public class JoinGroupAlert extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$10(tL_error, updates, i, tL_messages_importChatInvite);
+                JoinGroupAlert.$r8$lambda$I4lmGSMxVA9F3e0PuTqtTqmZM1E(this.f$0, tL_error, updates, i, tL_messages_importChatInvite);
             }
         });
     }
 
-    public void lambda$new$9(TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j) {
-        MessagesController.getInstance(this.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
-        BotGuardHelper.getInstance(this.currentAccount).openGuardBotWebApp(j, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+    public static void m2406$r8$lambda$JvWnz_OARFn0uXc5HHxoYoAtuQ(JoinGroupAlert joinGroupAlert, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j) {
+        MessagesController.getInstance(joinGroupAlert.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
+        BotGuardHelper.getInstance(joinGroupAlert.currentAccount).openGuardBotWebApp(j, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
     }
 
-    public void lambda$new$10(TLRPC.TL_error tL_error, TLRPC.Updates updates, int i, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+    public static void $r8$lambda$I4lmGSMxVA9F3e0PuTqtTqmZM1E(JoinGroupAlert joinGroupAlert, TLRPC.TL_error tL_error, TLRPC.Updates updates, int i, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
         TLRPC.ChatInvite chatInvite;
         TLRPC.Chat chat;
-        BaseFragment baseFragment = this.fragment;
+        BaseFragment baseFragment = joinGroupAlert.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
@@ -450,15 +437,15 @@ public class JoinGroupAlert extends BottomSheet {
             TLRPC.Chat chat2 = updates.chats.get(0);
             chat2.left = false;
             chat2.kicked = false;
-            MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(updates.chats, false);
-            openChat(chat2.id, !ChatObject.isChannelAndNotMegaGroup(chat2));
+            MessagesController.getInstance(joinGroupAlert.currentAccount).putUsers(updates.users, false);
+            MessagesController.getInstance(joinGroupAlert.currentAccount).putChats(updates.chats, false);
+            joinGroupAlert.openChat(chat2.id, !ChatObject.isChannelAndNotMegaGroup(chat2));
             return;
         }
-        if ("USER_ALREADY_PARTICIPANT".equals(tL_error.text) && i == 0 && (chatInvite = this.chatInvite) != null && (chat = chatInvite.chat) != null) {
-            openChat(chat.id, false);
+        if ("USER_ALREADY_PARTICIPANT".equals(tL_error.text) && i == 0 && (chatInvite = joinGroupAlert.chatInvite) != null && (chat = chatInvite.chat) != null) {
+            joinGroupAlert.openChat(chat.id, false);
         } else {
-            AlertsCreator.processError(this.currentAccount, tL_error, this.fragment, tL_messages_importChatInvite, new Object[0]);
+            AlertsCreator.processError(joinGroupAlert.currentAccount, tL_error, joinGroupAlert.fragment, tL_messages_importChatInvite, new Object[0]);
         }
     }
 
@@ -550,7 +537,7 @@ public class JoinGroupAlert extends BottomSheet {
                 bulletinFactoryOf.createSimpleBulletin(i, string, string2, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onBecomeFullyVisible$0(j, chat);
+                        JoinGroupAlert.AnonymousClass1.$r8$lambda$o24ZC99ZAAue0WKqBx8z5DhO5sY(this.f$0, j, chat);
                     }
                 }).hideAfterBottomSheet(false).show(true);
                 return;
@@ -558,9 +545,9 @@ public class JoinGroupAlert extends BottomSheet {
             BulletinFactory.of(this).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup)).hideAfterBottomSheet(false).show(true);
         }
 
-        public void lambda$onBecomeFullyVisible$0(long j, TLRPC.Chat chat) {
-            if (AndroidUtilities.isContextSafe(getContext())) {
-                TagEditCell.showSheet(getContext(), this.currentAccount, -j, getUserConfig().getCurrentUser(), null, chat.admin_rights != null, chat.creator, ((BottomSheet) JoinGroupAlert.this).resourcesProvider);
+        public static void $r8$lambda$o24ZC99ZAAue0WKqBx8z5DhO5sY(AnonymousClass1 anonymousClass1, long j, TLRPC.Chat chat) {
+            if (AndroidUtilities.isContextSafe(anonymousClass1.getContext())) {
+                TagEditCell.showSheet(anonymousClass1.getContext(), anonymousClass1.currentAccount, -j, anonymousClass1.getUserConfig().getCurrentUser(), null, chat.admin_rights != null, chat.creator, ((BottomSheet) JoinGroupAlert.this).resourcesProvider);
             }
         }
     }

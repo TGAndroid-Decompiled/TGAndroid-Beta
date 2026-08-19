@@ -110,7 +110,7 @@ public class EndCloseLayout extends FrameLayout {
                 valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        EndCloseLayout.AnonymousClass1.lambda$createAnimator$0(transitionValues, valueAnimator2);
+                        ((EndCloseLayout.EndCloseView) transitionValues.view).backColor = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                     }
                 });
                 animatorSet.playTogether(valueAnimator);
@@ -118,7 +118,7 @@ public class EndCloseLayout extends FrameLayout {
                 valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        EndCloseLayout.AnonymousClass1.lambda$createAnimator$1(transitionValues, valueAnimator2);
+                        ((EndCloseLayout.EndCloseView) transitionValues.view).round = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                     }
                 });
                 animatorSet.playTogether(valueAnimatorOfInt);
@@ -126,7 +126,7 @@ public class EndCloseLayout extends FrameLayout {
                 valueAnimatorOfInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        EndCloseLayout.AnonymousClass1.lambda$createAnimator$2(transitionValues, valueAnimator2);
+                        ((EndCloseLayout.EndCloseView) transitionValues.view).callDeclineAlpha = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                     }
                 });
                 animatorSet.playTogether(valueAnimatorOfInt2);
@@ -134,7 +134,7 @@ public class EndCloseLayout extends FrameLayout {
                 valueAnimatorOfInt3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        EndCloseLayout.AnonymousClass1.lambda$createAnimator$3(transitionValues, valueAnimator2);
+                        ((EndCloseLayout.EndCloseView) transitionValues.view).closeTextAlpha = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                     }
                 });
                 animatorSet.playTogether(valueAnimatorOfInt3);
@@ -154,22 +154,6 @@ public class EndCloseLayout extends FrameLayout {
                 return animatorSet;
             }
             return super.createAnimator(viewGroup, transitionValues, transitionValues2);
-        }
-
-        public static void lambda$createAnimator$0(TransitionValues transitionValues, ValueAnimator valueAnimator) {
-            ((EndCloseView) transitionValues.view).backColor = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        }
-
-        public static void lambda$createAnimator$1(TransitionValues transitionValues, ValueAnimator valueAnimator) {
-            ((EndCloseView) transitionValues.view).round = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        }
-
-        public static void lambda$createAnimator$2(TransitionValues transitionValues, ValueAnimator valueAnimator) {
-            ((EndCloseView) transitionValues.view).callDeclineAlpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        }
-
-        public static void lambda$createAnimator$3(TransitionValues transitionValues, ValueAnimator valueAnimator) {
-            ((EndCloseView) transitionValues.view).closeTextAlpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         }
     }
 
@@ -196,13 +180,9 @@ public class EndCloseLayout extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$switchToClose$0(onClickListener);
+                this.f$0.endCloseView.setOnClickListener(onClickListener);
             }
         }, 500L);
-    }
-
-    public void lambda$switchToClose$0(View.OnClickListener onClickListener) {
-        this.endCloseView.setOnClickListener(onClickListener);
     }
 
     static class EndCloseView extends View {

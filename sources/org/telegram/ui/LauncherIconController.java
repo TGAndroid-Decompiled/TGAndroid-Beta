@@ -19,10 +19,7 @@ public abstract class LauncherIconController {
     public static boolean isEnabled(LauncherIcon launcherIcon) {
         Context context = ApplicationLoader.applicationContext;
         int componentEnabledSetting = context.getPackageManager().getComponentEnabledSetting(launcherIcon.getComponentName(context));
-        if (componentEnabledSetting != 1) {
-            return componentEnabledSetting == 0 && launcherIcon == LauncherIcon.DEFAULT;
-        }
-        return true;
+        return componentEnabledSetting == 1 || (componentEnabledSetting == 0 && launcherIcon == LauncherIcon.DEFAULT);
     }
 
     public static void setIcon(LauncherIcon launcherIcon) {

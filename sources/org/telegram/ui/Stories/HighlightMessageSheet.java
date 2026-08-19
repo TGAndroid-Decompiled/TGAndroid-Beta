@@ -16,8 +16,8 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda348;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda57;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda344;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda53;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
@@ -52,12 +52,18 @@ public abstract class HighlightMessageSheet {
         for (int i3 = 0; i3 < tL_jsonArray.value.size(); i3++) {
             TLRPC.JSONValue jSONValue = tL_jsonArray.value.get(i3);
             if (jSONValue instanceof TLRPC.TL_jsonObject) {
-                for (TLRPC.TL_jsonObjectValue tL_jsonObjectValue : ((TLRPC.TL_jsonObject) jSONValue).value) {
-                    TLRPC.JSONValue jSONValue2 = tL_jsonObjectValue.value;
+                ArrayList<TLRPC.TL_jsonObjectValue> arrayList = ((TLRPC.TL_jsonObject) jSONValue).value;
+                int size = arrayList.size();
+                int i4 = 0;
+                while (i4 < size) {
+                    TLRPC.TL_jsonObjectValue tL_jsonObjectValue = arrayList.get(i4);
+                    i4++;
+                    TLRPC.TL_jsonObjectValue tL_jsonObjectValue2 = tL_jsonObjectValue;
+                    TLRPC.JSONValue jSONValue2 = tL_jsonObjectValue2.value;
                     if (jSONValue2 instanceof TLRPC.TL_jsonNumber) {
-                        int i4 = (int) ((TLRPC.TL_jsonNumber) jSONValue2).value;
-                        String str = tL_jsonObjectValue.key;
-                        str.hashCode();
+                        int i5 = (int) ((TLRPC.TL_jsonNumber) jSONValue2).value;
+                        String str = tL_jsonObjectValue2.key;
+                        str.getClass();
                         switch (str) {
                             case "text_length_max":
                                 i = 2;
@@ -76,12 +82,12 @@ public abstract class HighlightMessageSheet {
                                 break;
                         }
                         if (i >= 0) {
-                            iArr[(i3 * 7) + i] = i4;
+                            iArr[(i3 * 7) + i] = i5;
                         }
                     } else if (jSONValue2 instanceof TLRPC.TL_jsonString) {
                         String str2 = ((TLRPC.TL_jsonString) jSONValue2).value;
-                        String str3 = tL_jsonObjectValue.key;
-                        str3.hashCode();
+                        String str3 = tL_jsonObjectValue2.key;
+                        str3.getClass();
                         switch (str3) {
                             case "color1":
                                 i2 = 4;
@@ -130,7 +136,7 @@ public abstract class HighlightMessageSheet {
             return getDefaultTiers();
         }
         try {
-            return DesugarArrays.stream(str.split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda348()).toArray();
+            return DesugarArrays.stream(str.split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda344()).toArray();
         } catch (Exception e) {
             FileLog.e(e);
             return getDefaultTiers();
@@ -138,7 +144,7 @@ public abstract class HighlightMessageSheet {
     }
 
     public static String tiersToString(int[] iArr) {
-        return (String) DesugarArrays.stream(iArr).mapToObj(new MessagesController$$ExternalSyntheticLambda57()).collect(Collectors.joining(","));
+        return (String) DesugarArrays.stream(iArr).mapToObj(new MessagesController$$ExternalSyntheticLambda53()).collect(Collectors.joining(","));
     }
 
     public static int getTierOption(int i, int i2, int i3) {
@@ -167,10 +173,11 @@ public abstract class HighlightMessageSheet {
 
     public static void open(Context context, final int i, long j, String str, TLRPC.TL_textWithEntities tL_textWithEntities, long j2, long j3, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
         int length;
-        LiveCommentsView.LiveCommentView liveCommentView;
-        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
+        char c;
+        ?? r18;
+        ?? builder = new BottomSheet.Builder(context, false, resourcesProvider);
         builder.setApplyBottomPadding(false);
-        LinearLayout linearLayout = new LinearLayout(context);
+        ?? linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         builder.setCustomView(linearLayout);
         int[] iArr = MessagesController.getInstance(i).starsGroupcallMessageLimits;
@@ -182,24 +189,32 @@ public abstract class HighlightMessageSheet {
             length = 0;
         }
         int iMax = (int) Math.max(j2, j3 <= 0 ? 100L : j3);
-        for (int length2 = (iArr.length / 7) - 1; length2 >= 0; length2--) {
+        int length2 = (iArr.length / 7) - 1;
+        while (true) {
+            if (length2 < 0) {
+                c = 0;
+                break;
+            }
             int i2 = length2 * 7;
             int i3 = iArr[i2];
             int i4 = i2 + 1;
+            c = 0;
             int i5 = iArr[i4 + TIER_LENGTH];
             if (length <= iArr[i4 + TIER_EMOJIS] && textWithEntities.length() <= i5) {
                 iMax = Math.max(iMax, i3);
                 break;
             }
+            length2--;
         }
-        final long[] jArr = {iMax};
+        final long[] jArr = new long[1];
+        jArr[c] = iMax;
         final ColoredImageSpan[] coloredImageSpanArr = new ColoredImageSpan[1];
         final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, null);
         final LiveCommentsView.Message message = new LiveCommentsView.Message();
         message.dialogId = j;
         message.text = tL_textWithEntities;
-        message.stars = jArr[0];
-        final LiveCommentsView.LiveCommentView liveCommentView2 = new LiveCommentsView.LiveCommentView(context, i, true);
+        message.stars = jArr[c];
+        final LiveCommentsView.LiveCommentView liveCommentView = new LiveCommentsView.LiveCommentView(context, i, true);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         final TierValueView tierValueView = new TierValueView(context, LocaleController.getString(R.string.LiveStoryHighlightFeaturePin), resourcesProvider);
@@ -218,21 +233,22 @@ public abstract class HighlightMessageSheet {
         final Utilities.Callback[] callbackArr = {new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                HighlightMessageSheet.lambda$open$0(jArr, buttonWithCounterView, coloredImageSpanArr, message, liveCommentView2, i, tierValueView, tierValueView2, tierValueView3, starsSlider, zArr, (Integer) obj);
+                HighlightMessageSheet.$r8$lambda$AMz9hzLpiy1t41hnyTvTz8oks24(jArr, buttonWithCounterView, coloredImageSpanArr, message, liveCommentView, i, tierValueView, tierValueView2, tierValueView3, starsSlider, zArr, (Integer) obj);
             }
         }};
-        liveCommentView2.set(message);
+        liveCommentView.set(message);
         int i6 = 9;
         int[] iArr2 = {1, 50, 100, 500, 1000, 2000, 5000, 7500, 10000};
         int i7 = MessagesController.getInstance(i).starsGroupcallMessageAmountMax;
         ArrayList arrayList = new ArrayList();
         int i8 = 0;
+        ?? r7 = builder;
         while (true) {
             if (i8 >= i6) {
-                liveCommentView = liveCommentView2;
+                r18 = r7;
                 break;
             }
-            liveCommentView = liveCommentView2;
+            r18 = r7;
             if (iArr2[i8] >= j2) {
                 if (i8 > 0 && arrayList.isEmpty() && iArr2[i8] > j2) {
                     arrayList.add(Integer.valueOf((int) j2));
@@ -249,7 +265,7 @@ public abstract class HighlightMessageSheet {
                 }
             }
             i8++;
-            liveCommentView2 = liveCommentView;
+            r7 = r18;
             i6 = 9;
         }
         if (arrayList.isEmpty() || ((Integer) arrayList.get(arrayList.size() - 1)).intValue() < i7) {
@@ -275,16 +291,16 @@ public abstract class HighlightMessageSheet {
         linearLayout.addView(textViewMakeTextView2, LayoutHelper.createLinear(-1, -2, 42.0f, 0.0f, 42.0f, 0.0f));
         linearLayout.addView(liveCommentView, LayoutHelper.createLinear(-2, -2, 17, 42, 22, 42, 20));
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 16.0f, 0.0f, 16.0f, 12.0f));
-        final BottomSheet bottomSheetShow = builder.show();
+        final BottomSheet bottomSheetShow = r18.show();
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                HighlightMessageSheet.lambda$open$1(callback, jArr, bottomSheetShow, view);
+                HighlightMessageSheet.m4301$r8$lambda$TYVdgVFeZEkw19HNzSwaGbMGQ(callback, jArr, bottomSheetShow, view);
             }
         });
     }
 
-    public static void lambda$open$0(long[] jArr, ButtonWithCounterView buttonWithCounterView, ColoredImageSpan[] coloredImageSpanArr, LiveCommentsView.Message message, LiveCommentsView.LiveCommentView liveCommentView, int i, TierValueView tierValueView, TierValueView tierValueView2, TierValueView tierValueView3, StarsReactionsSheet.StarsSlider starsSlider, boolean[] zArr, Integer num) {
+    public static void $r8$lambda$AMz9hzLpiy1t41hnyTvTz8oks24(long[] jArr, ButtonWithCounterView buttonWithCounterView, ColoredImageSpan[] coloredImageSpanArr, LiveCommentsView.Message message, LiveCommentsView.LiveCommentView liveCommentView, int i, TierValueView tierValueView, TierValueView tierValueView2, TierValueView tierValueView3, StarsReactionsSheet.StarsSlider starsSlider, boolean[] zArr, Integer num) {
         long jIntValue = num.intValue();
         jArr[0] = jIntValue;
         buttonWithCounterView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsAddHighlightedMessage, LocaleController.formatNumber(jIntValue, ',')), coloredImageSpanArr), true);
@@ -300,9 +316,9 @@ public abstract class HighlightMessageSheet {
         zArr[0] = false;
     }
 
-    public static void lambda$open$1(Utilities.Callback callback, long[] jArr, BottomSheet bottomSheet, View view) {
+    public static void m4301$r8$lambda$TYVdgVFeZEkw19HNzSwaGbMGQ(Utilities.Callback callback, long[] jArr, BottomSheet bottomSheet, View view) {
         callback.run(Long.valueOf(jArr[0]));
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
     }
 
     static class TierValueView extends FrameLayout {

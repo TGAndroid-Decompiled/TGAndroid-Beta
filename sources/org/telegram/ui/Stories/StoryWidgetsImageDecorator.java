@@ -111,7 +111,6 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
 
         @Override
         public void draw(Canvas canvas, ImageReceiver imageReceiver, float f) {
-            Canvas canvas2;
             if (this.imageHolder.isLoaded()) {
                 StoryWidgetsImageDecorator storyWidgetsImageDecorator = StoryWidgetsImageDecorator.this;
                 double d = storyWidgetsImageDecorator.imageX;
@@ -128,21 +127,18 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
                 canvas.save();
                 double d5 = this.mediaArea.coordinates.rotation;
                 if (d5 != 0.0d) {
-                    canvas2 = canvas;
-                    canvas2.rotate((float) d5, f2, f3);
-                } else {
-                    canvas2 = canvas;
+                    canvas.rotate((float) d5, f2, f3);
                 }
                 float fHeight = this.storyReactionWidgetBackground.getBounds().height() * 0.61f;
                 Rect rect = AndroidUtilities.rectTmp2;
                 float f6 = fHeight / 2.0f;
                 rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - f6), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - f6), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + f6), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + f6));
                 this.storyReactionWidgetBackground.updateShadowLayer(1.0f);
-                this.storyReactionWidgetBackground.draw(canvas2);
+                this.storyReactionWidgetBackground.draw(canvas);
                 this.imageHolder.setBounds(rect);
                 this.imageHolder.setAlpha(f);
                 this.imageHolder.setColor(this.storyReactionWidgetBackground.isDarkStyle() ? -1 : -16777216);
-                this.imageHolder.draw(canvas2);
+                this.imageHolder.draw(canvas);
                 canvas.restore();
             }
         }

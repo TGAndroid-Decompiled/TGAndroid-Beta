@@ -663,8 +663,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             this.animatorSet.setDuration(180L);
             AnimatorSet animatorSet3 = this.animatorSet;
             FrameLayout frameLayout = this.videoInfoContainer;
+            float[] fArr = {z ? 1.0f : 0.0f};
             Property property = View.ALPHA;
-            animatorSet3.playTogether(ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, z ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.checkBox, (Property<CheckBox2, Float>) property, z ? 1.0f : 0.0f));
+            animatorSet3.playTogether(ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr), ObjectAnimator.ofFloat(this.checkBox, (Property<CheckBox2, Float>) property, z ? 1.0f : 0.0f));
             this.animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {

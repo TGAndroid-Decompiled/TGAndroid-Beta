@@ -256,7 +256,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                PrivateVideoPreviewDialog.$r8$lambda$wCb2kG4aKILEyrJlWyGgyZZFl7U(this.f$0, view);
             }
         });
         addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
@@ -287,7 +287,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             this.titles[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$1(i2, view);
+                    this.f$0.viewPager.setCurrentItem(i2, true);
                 }
             });
             i2++;
@@ -325,31 +325,27 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             this.micIconView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$2(rLottieDrawable, view);
+                    PrivateVideoPreviewDialog.$r8$lambda$vSh3xy69GTdCmuFG58UNA38BOEM(this.f$0, rLottieDrawable, view);
                 }
             });
             addView(this.micIconView, LayoutHelper.createFrame(48, 48.0f, 83, 24.0f, 0.0f, 0.0f, 136.0f));
         }
     }
 
-    public void lambda$new$0(View view) {
-        if (this.isDismissed) {
+    public static void $r8$lambda$wCb2kG4aKILEyrJlWyGgyZZFl7U(PrivateVideoPreviewDialog privateVideoPreviewDialog, View view) {
+        if (privateVideoPreviewDialog.isDismissed) {
             return;
         }
-        if (this.currentPage == 0 && this.needScreencast) {
-            ((Activity) getContext()).startActivityForResult(((MediaProjectionManager) getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
+        if (privateVideoPreviewDialog.currentPage == 0 && privateVideoPreviewDialog.needScreencast) {
+            ((Activity) privateVideoPreviewDialog.getContext()).startActivityForResult(((MediaProjectionManager) privateVideoPreviewDialog.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
         } else {
-            dismiss(false, true);
+            privateVideoPreviewDialog.dismiss(false, true);
         }
     }
 
-    public void lambda$new$1(int i, View view) {
-        this.viewPager.setCurrentItem(i, true);
-    }
-
-    public void lambda$new$2(RLottieDrawable rLottieDrawable, View view) {
-        boolean z = this.micEnabled;
-        this.micEnabled = !z;
+    public static void $r8$lambda$vSh3xy69GTdCmuFG58UNA38BOEM(PrivateVideoPreviewDialog privateVideoPreviewDialog, RLottieDrawable rLottieDrawable, View view) {
+        boolean z = privateVideoPreviewDialog.micEnabled;
+        privateVideoPreviewDialog.micEnabled = !z;
         if (!z) {
             rLottieDrawable.setCurrentFrame(36);
             rLottieDrawable.setCustomEndFrame(69);

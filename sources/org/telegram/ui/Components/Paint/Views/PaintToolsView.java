@@ -63,7 +63,7 @@ public class PaintToolsView extends LinearLayout {
                 this.buttons[i2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$0(view);
+                        this.f$0.delegate.onColorPickerSelected();
                     }
                 });
             } else if (i > 0 && i <= Brush.BRUSHES_LIST.size()) {
@@ -73,7 +73,7 @@ public class PaintToolsView extends LinearLayout {
                     this.buttons[i2].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$new$1(i2, brush, view);
+                            PaintToolsView.$r8$lambda$sW__ZHphfCezGZRaqY4qll_8mHM(this.f$0, i2, brush, view);
                         }
                     });
                 }
@@ -83,7 +83,7 @@ public class PaintToolsView extends LinearLayout {
                 this.buttons[i2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$2(view);
+                        this.f$0.delegate.onAddButtonPressed(view);
                     }
                 });
             }
@@ -93,18 +93,10 @@ public class PaintToolsView extends LinearLayout {
         }
     }
 
-    public void lambda$new$0(View view) {
-        this.delegate.onColorPickerSelected();
-    }
-
-    public void lambda$new$1(int i, Brush brush, View view) {
-        animateNextIndex(i);
-        this.delegate.onGetPalette().setCurrentBrush(i - 1);
-        this.delegate.onBrushSelected(brush);
-    }
-
-    public void lambda$new$2(View view) {
-        this.delegate.onAddButtonPressed(view);
+    public static void $r8$lambda$sW__ZHphfCezGZRaqY4qll_8mHM(PaintToolsView paintToolsView, int i, Brush brush, View view) {
+        paintToolsView.animateNextIndex(i);
+        paintToolsView.delegate.onGetPalette().setCurrentBrush(i - 1);
+        paintToolsView.delegate.onBrushSelected(brush);
     }
 
     public void setSelectedIndex(int i) {
@@ -162,7 +154,7 @@ public class PaintToolsView extends LinearLayout {
                 this.nextSelectedAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$animateNextIndex$3(valueAnimator2);
+                        PaintToolsView.m2517$r8$lambda$CBoPz9vHBRW5o5Ro4fKCjOuUEw(this.f$0, valueAnimator2);
                     }
                 });
                 this.nextSelectedAnimator.addListener(new AnimatorListenerAdapter() {
@@ -181,9 +173,10 @@ public class PaintToolsView extends LinearLayout {
         }
     }
 
-    public void lambda$animateNextIndex$3(ValueAnimator valueAnimator) {
-        this.nextSelectedIndexProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void m2517$r8$lambda$CBoPz9vHBRW5o5Ro4fKCjOuUEw(PaintToolsView paintToolsView, ValueAnimator valueAnimator) {
+        paintToolsView.getClass();
+        paintToolsView.nextSelectedIndexProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        paintToolsView.invalidate();
     }
 
     @Override

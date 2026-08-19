@@ -63,7 +63,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            LiveStoryPipOverlay.lambda$static$1((LiveStoryPipOverlay) obj, f);
+            LiveStoryPipOverlay.$r8$lambda$BeLbMy9PT9RMFco8Tcgj4xFCxUo((LiveStoryPipOverlay) obj, f);
         }
     });
     private static final FloatPropertyCompat PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", new SimpleFloatPropertyCompat.Getter() {
@@ -74,7 +74,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            LiveStoryPipOverlay.lambda$static$3((LiveStoryPipOverlay) obj, f);
+            LiveStoryPipOverlay.m4329$r8$lambda$RtxvIMOP4pyBZhC7EFpjUQ_GaU((LiveStoryPipOverlay) obj, f);
         }
     });
     private static LiveStoryPipOverlay instance = new LiveStoryPipOverlay();
@@ -116,7 +116,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
     private Runnable dismissControlsCallback = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$4();
+            LiveStoryPipOverlay.$r8$lambda$7CEACTYbmJ1Tx5mUSnFusgeid4I(this.f$0);
         }
     };
 
@@ -135,24 +135,24 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         IPipSourceDelegate.CC.$default$pipRenderForeground(this, canvas);
     }
 
-    public static void lambda$static$1(LiveStoryPipOverlay liveStoryPipOverlay, float f) {
+    public static void $r8$lambda$BeLbMy9PT9RMFco8Tcgj4xFCxUo(LiveStoryPipOverlay liveStoryPipOverlay, float f) {
         WindowManager.LayoutParams layoutParams = liveStoryPipOverlay.windowLayoutParams;
         liveStoryPipOverlay.pipX = f;
         layoutParams.x = (int) f;
         AndroidUtilities.updateViewLayout(liveStoryPipOverlay.windowManager, liveStoryPipOverlay.contentView, layoutParams);
     }
 
-    public static void lambda$static$3(LiveStoryPipOverlay liveStoryPipOverlay, float f) {
+    public static void m4329$r8$lambda$RtxvIMOP4pyBZhC7EFpjUQ_GaU(LiveStoryPipOverlay liveStoryPipOverlay, float f) {
         WindowManager.LayoutParams layoutParams = liveStoryPipOverlay.windowLayoutParams;
         liveStoryPipOverlay.pipY = f;
         layoutParams.y = (int) f;
         AndroidUtilities.updateViewLayout(liveStoryPipOverlay.windowManager, liveStoryPipOverlay.contentView, layoutParams);
     }
 
-    public void lambda$new$4() {
-        this.isShowingControls = false;
-        toggleControls(false);
-        this.postedDismissControls = false;
+    public static void $r8$lambda$7CEACTYbmJ1Tx5mUSnFusgeid4I(LiveStoryPipOverlay liveStoryPipOverlay) {
+        liveStoryPipOverlay.isShowingControls = false;
+        liveStoryPipOverlay.toggleControls(false);
+        liveStoryPipOverlay.postedDismissControls = false;
     }
 
     public static boolean isVisible() {
@@ -210,7 +210,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         this.scaleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$toggleControls$5(valueAnimator);
+                LiveStoryPipOverlay.$r8$lambda$m6IITDeULl1sXDvAcngCBB3mQ5w(this.f$0, valueAnimator);
             }
         });
         this.scaleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -222,8 +222,9 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         this.scaleAnimator.start();
     }
 
-    public void lambda$toggleControls$5(ValueAnimator valueAnimator) {
-        this.controlsView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public static void $r8$lambda$m6IITDeULl1sXDvAcngCBB3mQ5w(LiveStoryPipOverlay liveStoryPipOverlay, ValueAnimator valueAnimator) {
+        liveStoryPipOverlay.getClass();
+        liveStoryPipOverlay.controlsView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public static void dismiss() {
@@ -240,7 +241,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LiveStoryPipOverlay.lambda$dismissInternal$6();
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
                 }
             }, 100L);
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.liveStoryUpdated);
@@ -278,10 +279,6 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
                 this.pipSource = null;
             }
         }
-    }
-
-    public static void lambda$dismissInternal$6() {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
     }
 
     public static void show(Activity activity, LivePlayer livePlayer) {
@@ -536,7 +533,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                LiveStoryPipOverlay.lambda$showInternal$8(livePlayer, context, view3);
+                LiveStoryPipOverlay.$r8$lambda$PBVFdkmNe5S17gwEYRqgBe9i65k(livePlayer, context, view3);
             }
         });
         this.controlsView.addView(imageView2, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, 48, 0.0f));
@@ -576,7 +573,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         });
         animatorSet.start();
         bindTextureView();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
         PipSource pipSource = this.pipSource;
         if (pipSource != null) {
             pipSource.destroy();
@@ -603,7 +600,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onScale$0();
+                    LiveStoryPipOverlay.AnonymousClass3.$r8$lambda$eBtSak_pLET229Wy8m7oVg5LkHs(this.f$0);
                 }
             });
             SpringForce spring = ((SpringAnimation) LiveStoryPipOverlay.this.pipXSpring.setStartValue(LiveStoryPipOverlay.this.pipX)).getSpring();
@@ -621,7 +618,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
             return true;
         }
 
-        public void lambda$onScale$0() {
+        public static void $r8$lambda$eBtSak_pLET229Wy8m7oVg5LkHs(AnonymousClass3 anonymousClass3) {
             LiveStoryPipOverlay.this.contentFrameLayout.invalidate();
             if (LiveStoryPipOverlay.this.contentFrameLayout.isInLayout()) {
                 return;
@@ -688,7 +685,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         }
     }
 
-    public static void lambda$showInternal$8(LivePlayer livePlayer, Context context, View view) {
+    public static void $r8$lambda$PBVFdkmNe5S17gwEYRqgBe9i65k(LivePlayer livePlayer, Context context, View view) {
         if (livePlayer == null) {
             return;
         }

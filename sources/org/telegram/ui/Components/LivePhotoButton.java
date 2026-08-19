@@ -37,6 +37,7 @@ public class LivePhotoButton extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Canvas canvas2;
         float f = this.animatedValue.set(!this.value);
         this.icon.setBounds((getWidth() - this.icon.getIntrinsicWidth()) / 2, (getHeight() - this.icon.getIntrinsicHeight()) / 2, (getWidth() + this.icon.getIntrinsicWidth()) / 2, (getHeight() + this.icon.getIntrinsicHeight()) / 2);
         Rect bounds = this.icon.getBounds();
@@ -50,17 +51,20 @@ public class LivePhotoButton extends View {
             this.icon.draw(canvas);
             if (this.value) {
                 canvas.drawLine(fWidth2 - AndroidUtilities.dp(4.0f), fHeight2 - AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(fWidth2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + fWidth, f), AndroidUtilities.lerp(fHeight2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + fHeight, f), this.cutPaint);
+                canvas2 = canvas;
             } else {
-                canvas.drawLine(fWidth + AndroidUtilities.dp(4.0f), fHeight + AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + fWidth, fWidth2 - AndroidUtilities.dp(4.0f), f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + fHeight, fHeight2 - AndroidUtilities.dp(4.0f), f), this.cutPaint);
+                canvas2 = canvas;
+                canvas2.drawLine(fWidth + AndroidUtilities.dp(4.0f), fHeight + AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + fWidth, fWidth2 - AndroidUtilities.dp(4.0f), f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + fHeight, fHeight2 - AndroidUtilities.dp(4.0f), f), this.cutPaint);
             }
             canvas.restore();
         } else {
+            canvas2 = canvas;
             this.icon.draw(canvas);
         }
         if (f > 0.0f) {
             this.whitePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             if (this.value) {
-                canvas.drawLine(fWidth2, fHeight2, AndroidUtilities.lerp(fWidth2, fWidth, f), AndroidUtilities.lerp(fHeight2, fHeight, f), this.whitePaint);
+                canvas2.drawLine(fWidth2, fHeight2, AndroidUtilities.lerp(fWidth2, fWidth, f), AndroidUtilities.lerp(fHeight2, fHeight, f), this.whitePaint);
             } else {
                 canvas.drawLine(fWidth, fHeight, AndroidUtilities.lerp(fWidth, fWidth2, f), AndroidUtilities.lerp(fHeight, fHeight2, f), this.whitePaint);
             }

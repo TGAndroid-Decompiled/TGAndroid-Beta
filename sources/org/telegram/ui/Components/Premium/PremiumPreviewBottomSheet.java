@@ -170,7 +170,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$0(i, baseFragment, view, i2);
+                PremiumPreviewBottomSheet.m2591$r8$lambda$2hyFlf_SbdGeOGC6pY1aVlXWY(this.f$0, i, baseFragment, view, i2);
             }
         });
         MediaDataController.getInstance(i).preloadPremiumPreviewStickers();
@@ -183,13 +183,14 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.containerView.addView(frameLayout, LayoutHelper.createFrame(-1, 140, 87));
     }
 
-    public void lambda$new$0(int i, BaseFragment baseFragment, View view, int i2) {
+    public static void m2591$r8$lambda$2hyFlf_SbdGeOGC6pY1aVlXWY(PremiumPreviewBottomSheet premiumPreviewBottomSheet, int i, BaseFragment baseFragment, View view, int i2) {
+        premiumPreviewBottomSheet.getClass();
         if (view instanceof PremiumFeatureCell) {
             PremiumFeatureCell premiumFeatureCell = (PremiumFeatureCell) view;
             PremiumPreviewFragment.sentShowFeaturePreview(i, premiumFeatureCell.data.type);
-            showDialog(new PremiumFeatureBottomSheet(baseFragment, premiumFeatureCell.data.type, false));
+            premiumPreviewBottomSheet.showDialog(new PremiumFeatureBottomSheet(baseFragment, premiumFeatureCell.data.type, false));
         }
-        onAdditionItemClicked(view);
+        premiumPreviewBottomSheet.onAdditionItemClicked(view);
     }
 
     protected void updateRows() {
@@ -235,19 +236,19 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$showDialog$1(dialogInterface);
+                PremiumPreviewBottomSheet.$r8$lambda$cSxiTvev87yAauUlFOXw_u4a674(this.f$0, dialogInterface);
             }
         });
         dialog.show();
         return true;
     }
 
-    public void lambda$showDialog$1(DialogInterface dialogInterface) {
-        GLIconTextureView gLIconTextureView = this.iconTextureView;
+    public static void $r8$lambda$cSxiTvev87yAauUlFOXw_u4a674(PremiumPreviewBottomSheet premiumPreviewBottomSheet, DialogInterface dialogInterface) {
+        GLIconTextureView gLIconTextureView = premiumPreviewBottomSheet.iconTextureView;
         if (gLIconTextureView != null) {
             gLIconTextureView.setDialogVisible(false);
         }
-        this.starParticlesView.setPaused(false);
+        premiumPreviewBottomSheet.starParticlesView.setPaused(false);
     }
 
     @Override
@@ -258,7 +259,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         premiumButtonView.setButton(PremiumPreviewFragment.getPremiumButtonText(this.currentAccount, null), new View.OnClickListener() {
             @Override
             public final void onClick(View view) throws Throwable {
-                this.f$0.lambda$onViewCreated$2(view);
+                PremiumPreviewBottomSheet.$r8$lambda$0DE3yEARM_1zImm3IFUBKQDolzs(this.f$0, view);
             }
         });
         this.buttonContainer = new FrameLayout(getContext());
@@ -275,9 +276,10 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         frameLayout.addView(this.buttonContainer, LayoutHelper.createFrame(-1, 68, 80));
     }
 
-    public void lambda$onViewCreated$2(View view) throws Throwable {
+    public static void $r8$lambda$0DE3yEARM_1zImm3IFUBKQDolzs(PremiumPreviewBottomSheet premiumPreviewBottomSheet, View view) throws Throwable {
+        premiumPreviewBottomSheet.getClass();
         PremiumPreviewFragment.sentPremiumButtonClick();
-        PremiumPreviewFragment.buyPremium(this.fragment, "profile");
+        PremiumPreviewFragment.buyPremium(premiumPreviewBottomSheet.fragment, "profile");
     }
 
     @Override
@@ -303,14 +305,14 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 this.titleView[0].animate().alpha(0.0f).setInterpolator(cubicBezierInterpolator).setDuration(200L).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$titleLoaded$3();
+                        this.f$0.titleView[0].setVisibility(8);
                     }
                 }).start();
                 ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$titleLoaded$4(valueAnimator);
+                        PremiumPreviewBottomSheet.m2594$r8$lambda$mWstZlK46PmiR1u7bv64EK1kVQ(this.f$0, valueAnimator);
                     }
                 });
                 valueAnimatorOfFloat.setInterpolator(cubicBezierInterpolator);
@@ -325,14 +327,11 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         }
     }
 
-    public void lambda$titleLoaded$3() {
-        this.titleView[0].setVisibility(8);
-    }
-
-    public void lambda$titleLoaded$4(ValueAnimator valueAnimator) {
+    public static void m2594$r8$lambda$mWstZlK46PmiR1u7bv64EK1kVQ(PremiumPreviewBottomSheet premiumPreviewBottomSheet, ValueAnimator valueAnimator) {
+        premiumPreviewBottomSheet.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.titleViewContainer.getLayoutParams().height = AndroidUtilities.lerp(this.titleView[0].getHeight(), this.titleView[1].getHeight(), fFloatValue);
-        this.titleViewContainer.requestLayout();
+        premiumPreviewBottomSheet.titleViewContainer.getLayoutParams().height = AndroidUtilities.lerp(premiumPreviewBottomSheet.titleView[0].getHeight(), premiumPreviewBottomSheet.titleView[1].getHeight(), fFloatValue);
+        premiumPreviewBottomSheet.titleViewContainer.requestLayout();
     }
 
     public void setTitle(boolean z) {
@@ -354,7 +353,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             this.titleView[0].setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.TelegramPremiumUserStatusCollectibleDialogTitle, DialogObject.getShortName(this.user), strSubstring), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setTitle$5();
+                    PremiumPreviewBottomSheet premiumPreviewBottomSheet = this.f$0;
+                    Browser.openUrl(premiumPreviewBottomSheet.getContext(), "https://" + MessagesController.getInstance(premiumPreviewBottomSheet.currentAccount).linkPrefix + "/nft/" + premiumPreviewBottomSheet.emojiStatusCollectible.slug);
                 }
             }));
             this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.TelegramPremiumUserStatusDialogSubtitle)));
@@ -515,10 +515,6 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         }
     }
 
-    public void lambda$setTitle$5() {
-        Browser.openUrl(getContext(), "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/nft/" + this.emojiStatusCollectible.slug);
-    }
-
     public void lambda$setTitle$6(ClickableSpan clickableSpan) {
         ArrayList arrayList = new ArrayList();
         arrayList.add(this.statusStickerSet);
@@ -560,7 +556,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         new EmojiPacksAlert(baseFragment, getContext(), this.resourcesProvider, arrayList) {
             @Override
             protected void onCloseByLink() {
-                PremiumPreviewBottomSheet.this.lambda$new$0();
+                PremiumPreviewBottomSheet.this.dismiss();
             }
         }.show();
     }
@@ -771,12 +767,12 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 textInfoCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(string, i5, 0, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onCreateViewHolder$0();
+                        Browser.openUrl(PremiumPreviewBottomSheet.this.fragment.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
                     }
                 }), AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumPrivacyPolicy", R.string.GiftPremiumPrivacyPolicy), i5, 0, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onCreateViewHolder$1();
+                        Browser.openUrl(PremiumPreviewBottomSheet.this.fragment.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
                     }
                 })));
                 shadowSectionCell = textInfoCell;
@@ -784,14 +780,6 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             PremiumPreviewBottomSheet.this.afterCellCreated(i, shadowSectionCell);
             return new RecyclerListView.Holder(shadowSectionCell);
-        }
-
-        public void lambda$onCreateViewHolder$0() {
-            Browser.openUrl(PremiumPreviewBottomSheet.this.fragment.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
-        }
-
-        public void lambda$onCreateViewHolder$1() {
-            Browser.openUrl(PremiumPreviewBottomSheet.this.fragment.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
         }
 
         @Override
@@ -860,29 +848,30 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
     @Override
     public void show() {
         super.show();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 4);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 4);
         if (this.animateConfetti) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$show$7();
+                    PremiumPreviewBottomSheet.$r8$lambda$GJc30UTgCS8etWJVm4HJZdwfiIc(this.f$0);
                 }
             }, 200L);
         }
     }
 
-    public void lambda$show$7() {
+    public static void $r8$lambda$GJc30UTgCS8etWJVm4HJZdwfiIc(PremiumPreviewBottomSheet premiumPreviewBottomSheet) {
+        premiumPreviewBottomSheet.getClass();
         try {
-            this.container.performHapticFeedback(3, 2);
+            premiumPreviewBottomSheet.container.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        this.fireworksOverlay.start(this.animateConfettiWithStars);
+        premiumPreviewBottomSheet.fireworksOverlay.start(premiumPreviewBottomSheet.animateConfettiWithStars);
     }
 
     @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
+    public void dismiss() {
+        super.dismiss();
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 4);
         ValueAnimator valueAnimator = this.enterAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -996,7 +985,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.enterAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$onCustomOpenAnimation$8(valueAnimator);
+                PremiumPreviewBottomSheet.m2595$r8$lambda$yR7iNcJz5laaLLhRw2mPiKsxu8(this.f$0, valueAnimator);
             }
         });
         this.enterAnimator.addListener(new AnonymousClass4(rightDrawable));
@@ -1006,9 +995,10 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         return super.onCustomOpenAnimation();
     }
 
-    public void lambda$onCustomOpenAnimation$8(ValueAnimator valueAnimator) {
-        this.enterTransitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.container.invalidate();
+    public static void m2595$r8$lambda$yR7iNcJz5laaLLhRw2mPiKsxu8(PremiumPreviewBottomSheet premiumPreviewBottomSheet, ValueAnimator valueAnimator) {
+        premiumPreviewBottomSheet.getClass();
+        premiumPreviewBottomSheet.enterTransitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        premiumPreviewBottomSheet.container.invalidate();
     }
 
     class AnonymousClass4 extends AnimatorListenerAdapter {
@@ -1030,7 +1020,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$onAnimationEnd$0(drawable, valueAnimator);
+                        PremiumPreviewBottomSheet.AnonymousClass4.$r8$lambda$NzPeIRuDSSczYTB8xfwAM224ofY(this.f$0, drawable, valueAnimator);
                     }
                 });
                 valueAnimatorOfInt.start();
@@ -1038,7 +1028,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             super.onAnimationEnd(animator);
         }
 
-        public void lambda$onAnimationEnd$0(Drawable drawable, ValueAnimator valueAnimator) {
+        public static void $r8$lambda$NzPeIRuDSSczYTB8xfwAM224ofY(AnonymousClass4 anonymousClass4, Drawable drawable, ValueAnimator valueAnimator) {
+            anonymousClass4.getClass();
             drawable.setAlpha(((Integer) valueAnimator.getAnimatedValue()).intValue());
             View view = PremiumPreviewBottomSheet.this.startEnterFromView;
             if (view instanceof ChatMessageCell) {

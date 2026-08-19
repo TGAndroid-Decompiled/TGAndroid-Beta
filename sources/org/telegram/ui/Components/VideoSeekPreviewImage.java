@@ -118,7 +118,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         this.storyBoardsReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                this.f$0.lambda$new$0(imageReceiver2, z, z2, z3);
+                VideoSeekPreviewImage.$r8$lambda$L4EDpPX2yEfJabAI5RVkzzBF6p4(this.f$0, imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -133,68 +133,70 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         });
     }
 
-    public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void $r8$lambda$L4EDpPX2yEfJabAI5RVkzzBF6p4(VideoSeekPreviewImage videoSeekPreviewImage, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         StoryBoardFrame storyBoardFrame;
         int i;
-        if (z) {
-            if (this.webView == null && this.storyBoardMap == null) {
-                return;
-            }
-            int iDp = AndroidUtilities.dp(150.0f);
-            PhotoViewerWebView photoViewerWebView = this.webView;
-            if (photoViewerWebView != null) {
-                int youtubeStoryboardImageCount = photoViewerWebView.getYoutubeStoryboardImageCount((int) this.lastPosition);
-                int iCeil = (int) Math.ceil(youtubeStoryboardImageCount / 5.0f);
-                float bitmapWidth = this.storyBoardsReceiver.getBitmapWidth() / Math.min(youtubeStoryboardImageCount, 5);
-                float bitmapHeight = this.storyBoardsReceiver.getBitmapHeight() / iCeil;
-                int iMin = Math.min(this.webView.getYoutubeStoryboardImageIndex((int) this.lastPosition), youtubeStoryboardImageCount - 1);
-                this.ytImageX = (int) ((iMin % 5) * bitmapWidth);
-                this.ytImageY = (int) ((iMin / 5) * bitmapHeight);
-                this.ytImageWidth = (int) bitmapWidth;
-                this.ytImageHeight = (int) bitmapHeight;
-            } else {
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= this.storyBoardMap.size()) {
-                        storyBoardFrame = null;
-                        break;
-                    }
-                    storyBoardFrame = (StoryBoardFrame) this.storyBoardMap.get(i2);
-                    double d = i2 == 0 ? 0.0d : storyBoardFrame.pts;
-                    double d2 = i2 == this.storyBoardMap.size() - 1 ? 9.9999999E7d : ((StoryBoardFrame) this.storyBoardMap.get(i2 + 1)).pts;
-                    double d3 = this.lastPosition;
-                    if (d3 >= d && d3 <= d2) {
-                        break;
-                    } else {
-                        i2++;
-                    }
-                }
-                if (storyBoardFrame == null) {
-                    return;
-                }
-                this.ytImageX = storyBoardFrame.left;
-                this.ytImageY = storyBoardFrame.top;
-                this.ytImageWidth = this.storyBoardFrameWidth;
-                this.ytImageHeight = this.storyBoardFrameHeight;
-            }
-            this.drawStoryBoard = true;
-            float f = this.ytImageWidth / this.ytImageHeight;
-            if (f > 1.0f) {
-                i = (int) (iDp / f);
-            } else {
-                int i3 = (int) (iDp * f);
-                i = iDp;
-                iDp = i3;
-            }
-            ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            if (getVisibility() == 0 && layoutParams.width == iDp && layoutParams.height == i) {
-                return;
-            }
-            layoutParams.width = iDp;
-            layoutParams.height = i;
-            setVisibility(0);
-            requestLayout();
+        if (!z) {
+            videoSeekPreviewImage.getClass();
+            return;
         }
+        if (videoSeekPreviewImage.webView == null && videoSeekPreviewImage.storyBoardMap == null) {
+            return;
+        }
+        int iDp = AndroidUtilities.dp(150.0f);
+        PhotoViewerWebView photoViewerWebView = videoSeekPreviewImage.webView;
+        if (photoViewerWebView != null) {
+            int youtubeStoryboardImageCount = photoViewerWebView.getYoutubeStoryboardImageCount((int) videoSeekPreviewImage.lastPosition);
+            int iCeil = (int) Math.ceil(youtubeStoryboardImageCount / 5.0f);
+            float bitmapWidth = videoSeekPreviewImage.storyBoardsReceiver.getBitmapWidth() / Math.min(youtubeStoryboardImageCount, 5);
+            float bitmapHeight = videoSeekPreviewImage.storyBoardsReceiver.getBitmapHeight() / iCeil;
+            int iMin = Math.min(videoSeekPreviewImage.webView.getYoutubeStoryboardImageIndex((int) videoSeekPreviewImage.lastPosition), youtubeStoryboardImageCount - 1);
+            videoSeekPreviewImage.ytImageX = (int) ((iMin % 5) * bitmapWidth);
+            videoSeekPreviewImage.ytImageY = (int) ((iMin / 5) * bitmapHeight);
+            videoSeekPreviewImage.ytImageWidth = (int) bitmapWidth;
+            videoSeekPreviewImage.ytImageHeight = (int) bitmapHeight;
+        } else {
+            int i2 = 0;
+            while (true) {
+                if (i2 >= videoSeekPreviewImage.storyBoardMap.size()) {
+                    storyBoardFrame = null;
+                    break;
+                }
+                storyBoardFrame = (StoryBoardFrame) videoSeekPreviewImage.storyBoardMap.get(i2);
+                double d = i2 == 0 ? 0.0d : storyBoardFrame.pts;
+                double d2 = i2 == videoSeekPreviewImage.storyBoardMap.size() - 1 ? 9.9999999E7d : ((StoryBoardFrame) videoSeekPreviewImage.storyBoardMap.get(i2 + 1)).pts;
+                double d3 = videoSeekPreviewImage.lastPosition;
+                if (d3 >= d && d3 <= d2) {
+                    break;
+                } else {
+                    i2++;
+                }
+            }
+            if (storyBoardFrame == null) {
+                return;
+            }
+            videoSeekPreviewImage.ytImageX = storyBoardFrame.left;
+            videoSeekPreviewImage.ytImageY = storyBoardFrame.top;
+            videoSeekPreviewImage.ytImageWidth = videoSeekPreviewImage.storyBoardFrameWidth;
+            videoSeekPreviewImage.ytImageHeight = videoSeekPreviewImage.storyBoardFrameHeight;
+        }
+        videoSeekPreviewImage.drawStoryBoard = true;
+        float f = videoSeekPreviewImage.ytImageWidth / videoSeekPreviewImage.ytImageHeight;
+        if (f > 1.0f) {
+            i = (int) (iDp / f);
+        } else {
+            int i3 = (int) (iDp * f);
+            i = iDp;
+            iDp = i3;
+        }
+        ViewGroup.LayoutParams layoutParams = videoSeekPreviewImage.getLayoutParams();
+        if (videoSeekPreviewImage.getVisibility() == 0 && layoutParams.width == iDp && layoutParams.height == i) {
+            return;
+        }
+        layoutParams.width = iDp;
+        layoutParams.height = i;
+        videoSeekPreviewImage.setVisibility(0);
+        videoSeekPreviewImage.requestLayout();
     }
 
     @Override
@@ -285,21 +287,21 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setProgress$2(f, j);
+                VideoSeekPreviewImage.$r8$lambda$CgE_K99XVf8dX0hpbnPDycgtUgc(this.f$0, f, j);
             }
         };
         this.progressRunnable = runnable;
         dispatchQueue.postRunnable(runnable);
     }
 
-    public void lambda$setProgress$2(float f, long j) {
+    public static void $r8$lambda$CgE_K99XVf8dX0hpbnPDycgtUgc(final VideoSeekPreviewImage videoSeekPreviewImage, float f, long j) {
         int i;
-        if (this.fileDrawable == null) {
-            this.pendingProgress = f;
+        if (videoSeekPreviewImage.fileDrawable == null) {
+            videoSeekPreviewImage.pendingProgress = f;
             return;
         }
         int iMax = Math.max(200, AndroidUtilities.dp(100.0f));
-        final Bitmap frameAtTime = this.fileDrawable.getFrameAtTime(j, false);
+        final Bitmap frameAtTime = videoSeekPreviewImage.fileDrawable.getFrameAtTime(j, false);
         if (frameAtTime != null) {
             int width = frameAtTime.getWidth();
             int height = frameAtTime.getHeight();
@@ -312,9 +314,9 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             }
             try {
                 Bitmap bitmapCreateBitmap = Bitmaps.createBitmap(iMax, i, Bitmap.Config.ARGB_8888);
-                this.dstR.set(0.0f, 0.0f, iMax, i);
+                videoSeekPreviewImage.dstR.set(0.0f, 0.0f, iMax, i);
                 Canvas canvas = new Canvas(bitmapCreateBitmap);
-                canvas.drawBitmap(frameAtTime, (Rect) null, this.dstR, this.paint);
+                canvas.drawBitmap(frameAtTime, (Rect) null, videoSeekPreviewImage.dstR, videoSeekPreviewImage.paint);
                 canvas.setBitmap(null);
                 frameAtTime = bitmapCreateBitmap;
             } catch (Throwable unused) {
@@ -324,29 +326,29 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setProgress$1(frameAtTime);
+                VideoSeekPreviewImage.m2939$r8$lambda$x5YWDyWIv9zlVmKosc2cNdTMc4(this.f$0, frameAtTime);
             }
         });
     }
 
-    public void lambda$setProgress$1(Bitmap bitmap) {
+    public static void m2939$r8$lambda$x5YWDyWIv9zlVmKosc2cNdTMc4(VideoSeekPreviewImage videoSeekPreviewImage, Bitmap bitmap) {
         int i;
         if (bitmap != null) {
-            if (this.bitmapToDraw != null) {
-                Bitmap bitmap2 = this.bitmapToRecycle;
+            if (videoSeekPreviewImage.bitmapToDraw != null) {
+                Bitmap bitmap2 = videoSeekPreviewImage.bitmapToRecycle;
                 if (bitmap2 != null) {
                     bitmap2.recycle();
                 }
-                this.bitmapToRecycle = this.bitmapToDraw;
+                videoSeekPreviewImage.bitmapToRecycle = videoSeekPreviewImage.bitmapToDraw;
             }
-            this.bitmapToDraw = bitmap;
-            Bitmap bitmap3 = this.bitmapToDraw;
+            videoSeekPreviewImage.bitmapToDraw = bitmap;
+            Bitmap bitmap3 = videoSeekPreviewImage.bitmapToDraw;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
-            this.bitmapShader = bitmapShader;
-            bitmapShader.setLocalMatrix(this.matrix);
-            this.bitmapPaint.setShader(this.bitmapShader);
-            invalidate();
+            videoSeekPreviewImage.bitmapShader = bitmapShader;
+            bitmapShader.setLocalMatrix(videoSeekPreviewImage.matrix);
+            videoSeekPreviewImage.bitmapPaint.setShader(videoSeekPreviewImage.bitmapShader);
+            videoSeekPreviewImage.invalidate();
             int iDp = AndroidUtilities.dp(150.0f);
             float width = bitmap.getWidth() / bitmap.getHeight();
             if (width > 1.0f) {
@@ -355,15 +357,15 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
                 iDp = (int) (iDp * width);
                 i = iDp;
             }
-            ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            if (getVisibility() != 0 || layoutParams.width != iDp || layoutParams.height != i) {
+            ViewGroup.LayoutParams layoutParams = videoSeekPreviewImage.getLayoutParams();
+            if (videoSeekPreviewImage.getVisibility() != 0 || layoutParams.width != iDp || layoutParams.height != i) {
                 layoutParams.width = iDp;
                 layoutParams.height = i;
-                setVisibility(0);
-                requestLayout();
+                videoSeekPreviewImage.setVisibility(0);
+                videoSeekPreviewImage.requestLayout();
             }
         }
-        this.progressRunnable = null;
+        videoSeekPreviewImage.progressRunnable = null;
     }
 
     public void open(MessageObject messageObject, VideoPlayer videoPlayer) {
@@ -374,7 +376,13 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         if (videoPlayer.getQualitiesCount() > 0) {
             VideoPlayer.VideoUri downloadUri = null;
             for (int i = 0; i < videoPlayer.getQualitiesCount(); i++) {
-                for (VideoPlayer.VideoUri videoUri : videoPlayer.getQuality(i).uris) {
+                ArrayList arrayList = videoPlayer.getQuality(i).uris;
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    VideoPlayer.VideoUri videoUri = (VideoPlayer.VideoUri) obj;
                     if (downloadUri == null || ((!downloadUri.isCached() && videoUri.isCached()) || (downloadUri.isCached() == videoUri.isCached() && videoUri.width * videoUri.height < downloadUri.width * downloadUri.height))) {
                         downloadUri = videoUri;
                     }
@@ -522,18 +530,19 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$open$5(videoUri, messageObject);
+                VideoSeekPreviewImage.$r8$lambda$BUfAnkZKbHUTGuULDFfB2ubvXMo(this.f$0, videoUri, messageObject);
             }
         };
         this.loadRunnable = runnable;
         dispatchQueue.postRunnable(runnable);
     }
 
-    public void lambda$open$5(VideoPlayer.VideoUri videoUri, MessageObject messageObject) {
+    public static void $r8$lambda$BUfAnkZKbHUTGuULDFfB2ubvXMo(final VideoSeekPreviewImage videoSeekPreviewImage, VideoPlayer.VideoUri videoUri, MessageObject messageObject) {
         Object parentObject;
         String absolutePath;
+        videoSeekPreviewImage.getClass();
         if (videoUri.isCached()) {
-            this.fileDrawable = new AnimatedFileDrawable(new File(videoUri.uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
+            videoSeekPreviewImage.fileDrawable = new AnimatedFileDrawable(new File(videoUri.uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
         } else {
             int iIntValue = UserConfig.selectedAccount;
             try {
@@ -555,28 +564,28 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             } else {
                 absolutePath = FileLoader.getInstance(i).getPathToAttach(document, false).getAbsolutePath();
             }
-            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, document.size, 1, document, null, obj, 0L, i, true, null);
+            videoSeekPreviewImage.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, document.size, 1, document, null, obj, 0L, i, true, null);
         }
-        this.duration = this.fileDrawable.getDurationMs();
-        float f = this.pendingProgress;
+        videoSeekPreviewImage.duration = videoSeekPreviewImage.fileDrawable.getDurationMs();
+        float f = videoSeekPreviewImage.pendingProgress;
         if (f != 0.0f) {
-            setProgress(messageObject, f, this.pixelWidth);
-            this.pendingProgress = 0.0f;
+            videoSeekPreviewImage.setProgress(messageObject, f, videoSeekPreviewImage.pixelWidth);
+            videoSeekPreviewImage.pendingProgress = 0.0f;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$open$4();
+                VideoSeekPreviewImage.$r8$lambda$O10n_NdmNzuG2vZ7LpoMAhHWv4Q(this.f$0);
             }
         });
     }
 
-    public void lambda$open$4() {
-        this.open = true;
-        this.loadRunnable = null;
-        if (this.fileDrawable != null) {
-            this.ready = true;
-            this.delegate.onReady();
+    public static void $r8$lambda$O10n_NdmNzuG2vZ7LpoMAhHWv4Q(VideoSeekPreviewImage videoSeekPreviewImage) {
+        videoSeekPreviewImage.open = true;
+        videoSeekPreviewImage.loadRunnable = null;
+        if (videoSeekPreviewImage.fileDrawable != null) {
+            videoSeekPreviewImage.ready = true;
+            videoSeekPreviewImage.delegate.onReady();
         }
     }
 
@@ -593,15 +602,16 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$open$7(uri, messageObject);
+                VideoSeekPreviewImage.$r8$lambda$M1MyWmANlZYRYsRY70kLvFirAsM(this.f$0, uri, messageObject);
             }
         };
         this.loadRunnable = runnable;
         dispatchQueue.postRunnable(runnable);
     }
 
-    public void lambda$open$7(Uri uri, MessageObject messageObject) {
+    public static void $r8$lambda$M1MyWmANlZYRYsRY70kLvFirAsM(final VideoSeekPreviewImage videoSeekPreviewImage, Uri uri, MessageObject messageObject) {
         String absolutePath;
+        videoSeekPreviewImage.getClass();
         if ("tg".equals(uri.getScheme())) {
             int iIntValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
             Object parentObject = FileLoader.getInstance(iIntValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
@@ -621,30 +631,30 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             } else {
                 absolutePath = FileLoader.getInstance(iIntValue).getPathToAttach(tL_document, false).getAbsolutePath();
             }
-            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, tL_document.size, 1, tL_document, null, parentObject, 0L, iIntValue, true, null);
+            videoSeekPreviewImage.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, tL_document.size, 1, tL_document, null, parentObject, 0L, iIntValue, true, null);
         } else {
-            this.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
+            videoSeekPreviewImage.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
         }
-        this.duration = this.fileDrawable.getDurationMs();
-        float f = this.pendingProgress;
+        videoSeekPreviewImage.duration = videoSeekPreviewImage.fileDrawable.getDurationMs();
+        float f = videoSeekPreviewImage.pendingProgress;
         if (f != 0.0f) {
-            setProgress(messageObject, f, this.pixelWidth);
-            this.pendingProgress = 0.0f;
+            videoSeekPreviewImage.setProgress(messageObject, f, videoSeekPreviewImage.pixelWidth);
+            videoSeekPreviewImage.pendingProgress = 0.0f;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$open$6();
+                VideoSeekPreviewImage.$r8$lambda$TD9ZdTUJ9cXjYOKDoPHfdwvsdKc(this.f$0);
             }
         });
     }
 
-    public void lambda$open$6() {
-        this.open = true;
-        this.loadRunnable = null;
-        if (this.fileDrawable != null) {
-            this.ready = true;
-            this.delegate.onReady();
+    public static void $r8$lambda$TD9ZdTUJ9cXjYOKDoPHfdwvsdKc(VideoSeekPreviewImage videoSeekPreviewImage) {
+        videoSeekPreviewImage.open = true;
+        videoSeekPreviewImage.loadRunnable = null;
+        if (videoSeekPreviewImage.fileDrawable != null) {
+            videoSeekPreviewImage.ready = true;
+            videoSeekPreviewImage.delegate.onReady();
         }
     }
 
@@ -657,9 +667,15 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         if (document != null && str.equalsIgnoreCase(document.mime_type)) {
             return media.document;
         }
-        for (TLRPC.Document document2 : media.alt_documents) {
-            if (str.equalsIgnoreCase(document2.mime_type)) {
-                return document2;
+        ArrayList<TLRPC.Document> arrayList = media.alt_documents;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            TLRPC.Document document2 = arrayList.get(i);
+            i++;
+            TLRPC.Document document3 = document2;
+            if (str.equalsIgnoreCase(document3.mime_type)) {
+                return document3;
             }
         }
         return null;
@@ -674,9 +690,15 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         if (document != null && document.id == j) {
             return document;
         }
-        for (TLRPC.Document document2 : media.alt_documents) {
-            if (document2.id == j) {
-                return document2;
+        ArrayList<TLRPC.Document> arrayList = media.alt_documents;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            TLRPC.Document document2 = arrayList.get(i);
+            i++;
+            TLRPC.Document document3 = document2;
+            if (document3.id == j) {
+                return document3;
             }
         }
         return null;
@@ -746,7 +768,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$close$8();
+                VideoSeekPreviewImage.m2938$r8$lambda$ki_w1uMAMmT7QDPD07EFHTQhw(this.f$0);
             }
         });
         setVisibility(4);
@@ -766,12 +788,12 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         }
     }
 
-    public void lambda$close$8() {
-        this.pendingProgress = 0.0f;
-        AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
+    public static void m2938$r8$lambda$ki_w1uMAMmT7QDPD07EFHTQhw(VideoSeekPreviewImage videoSeekPreviewImage) {
+        videoSeekPreviewImage.pendingProgress = 0.0f;
+        AnimatedFileDrawable animatedFileDrawable = videoSeekPreviewImage.fileDrawable;
         if (animatedFileDrawable != null) {
             animatedFileDrawable.recycle();
-            this.fileDrawable = null;
+            videoSeekPreviewImage.fileDrawable = null;
         }
     }
 }

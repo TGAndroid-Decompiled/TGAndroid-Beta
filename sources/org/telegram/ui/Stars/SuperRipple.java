@@ -114,7 +114,7 @@ public class SuperRipple extends ISuperRipple {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$animate$0(effect, valueAnimator);
+                SuperRipple.m4278$r8$lambda$eNVcrL0I2Sm2OIqbhzsSR7aUI8(this.f$0, effect, valueAnimator);
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -131,9 +131,10 @@ public class SuperRipple extends ISuperRipple {
         valueAnimatorOfFloat.start();
     }
 
-    public void lambda$animate$0(Effect effect, ValueAnimator valueAnimator) {
+    public static void m4278$r8$lambda$eNVcrL0I2Sm2OIqbhzsSR7aUI8(SuperRipple superRipple, Effect effect, ValueAnimator valueAnimator) {
+        superRipple.getClass();
         effect.t = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        updateProperties();
+        superRipple.updateProperties();
     }
 
     public void updateProperties() {

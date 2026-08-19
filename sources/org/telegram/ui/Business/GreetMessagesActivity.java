@@ -91,7 +91,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$0();
+                GreetMessagesActivity.$r8$lambda$hOVqMCyHftDSOLCor86N2KpZlT8(this.f$0);
             }
         });
         this.recipientsHelper = businessRecipientsHelper;
@@ -120,9 +120,9 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         return frameLayout;
     }
 
-    public void lambda$createView$0() {
-        this.listView.adapter.update(true);
-        checkDone(true);
+    public static void $r8$lambda$hOVqMCyHftDSOLCor86N2KpZlT8(GreetMessagesActivity greetMessagesActivity) {
+        greetMessagesActivity.listView.adapter.update(true);
+        greetMessagesActivity.checkDone(true);
     }
 
     private void setValue() {
@@ -232,31 +232,35 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             getConnectionsManager().sendRequest(updatebusinessgreetingmessage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$processDone$2(tLObject, tL_error);
+                    GreetMessagesActivity.m1386$r8$lambda$2NWWqTskuEvgkOmKq6Cb3MRL1A(this.f$0, tLObject, tL_error);
                 }
             });
             getMessagesStorage().updateUserInfo(userFull, false);
         }
     }
 
-    public void lambda$processDone$2(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1386$r8$lambda$2NWWqTskuEvgkOmKq6Cb3MRL1A(final GreetMessagesActivity greetMessagesActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        greetMessagesActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processDone$1(tL_error, tLObject);
+                GreetMessagesActivity.m1388$r8$lambda$ocAK9ho0b_IiRnb9DtqSL9xco(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$processDone$1(TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m1388$r8$lambda$ocAK9ho0b_IiRnb9DtqSL9xco(GreetMessagesActivity greetMessagesActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
-            this.doneButtonDrawable.animateToProgress(0.0f);
+            greetMessagesActivity.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);
-        } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-            this.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+            return;
+        }
+        greetMessagesActivity.getClass();
+        if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
+            greetMessagesActivity.finishFragment();
         } else {
-            finishFragment();
+            greetMessagesActivity.doneButtonDrawable.animateToProgress(0.0f);
+            BulletinFactory.of(greetMessagesActivity).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         }
     }
 
@@ -276,26 +280,18 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onBackPressed$3(alertDialog, i);
+                    this.f$0.processDone();
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onBackPressed$4(alertDialog, i);
+                    this.f$0.finishFragment();
                 }
             });
             showDialog(builder.create());
         }
         return false;
-    }
-
-    public void lambda$onBackPressed$3(AlertDialog alertDialog, int i) {
-        processDone();
-    }
-
-    public void lambda$onBackPressed$4(AlertDialog alertDialog, int i) {
-        finishFragment();
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {

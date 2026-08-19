@@ -98,16 +98,17 @@ public class FlatCheckBox extends View {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setChecked$0(valueAnimator2);
+                FlatCheckBox.m2334$r8$lambda$dijcduvgVEr83WA7vfwbTeycy0(this.f$0, valueAnimator2);
             }
         });
         this.checkAnimator.setDuration(300L);
         this.checkAnimator.start();
     }
 
-    public void lambda$setChecked$0(ValueAnimator valueAnimator) {
-        this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void m2334$r8$lambda$dijcduvgVEr83WA7vfwbTeycy0(FlatCheckBox flatCheckBox, ValueAnimator valueAnimator) {
+        flatCheckBox.getClass();
+        flatCheckBox.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        flatCheckBox.invalidate();
     }
 
     public void setText(String str) {

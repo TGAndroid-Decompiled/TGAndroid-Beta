@@ -101,8 +101,9 @@ public class RadioCell extends FrameLayout {
         super.setEnabled(z);
         if (arrayList != null) {
             TextView textView = this.textView;
+            float[] fArr = {z ? 1.0f : 0.5f};
             Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
             arrayList.add(ObjectAnimator.ofFloat(this.radioButton, (Property<RadioButton, Float>) property, z ? 1.0f : 0.5f));
             return;
         }

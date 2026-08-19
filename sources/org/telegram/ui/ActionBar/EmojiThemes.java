@@ -316,11 +316,12 @@ public class EmojiThemes {
                 theme = Theme.getTheme("Blue");
             }
             if (theme != null) {
-                themeInfo2 = new Theme.ThemeInfo(theme);
-                themeAccentCreateNewAccent = iTheme != null ? themeInfo2.createNewAccent(iTheme.getThemeId(), iTheme.getThemeSettings(settingsIndex), tlTheme, i, true) : null;
+                Theme.ThemeInfo themeInfo3 = new Theme.ThemeInfo(theme);
+                themeAccentCreateNewAccent = iTheme != null ? themeInfo3.createNewAccent(iTheme.getThemeId(), iTheme.getThemeSettings(settingsIndex), tlTheme, i, true) : null;
                 if (themeAccentCreateNewAccent != null) {
-                    themeInfo2.setCurrentAccentId(themeAccentCreateNewAccent.id);
+                    themeInfo3.setCurrentAccentId(themeAccentCreateNewAccent.id);
                 }
+                themeInfo2 = themeInfo3;
             } else {
                 themeAccentCreateNewAccent = null;
             }
@@ -450,7 +451,7 @@ public class EmojiThemes {
             loadWallpaperImage(this.currentAccount, wallpaper.id, wallpaper, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    EmojiThemes.lambda$loadWallpaper$0(resultCallback, themeId, (WallpaperBitmapHolder) obj);
+                    EmojiThemes.$r8$lambda$1wLU8w64B4WUQ1_iWmjCOGAQNbk(resultCallback, themeId, (WallpaperBitmapHolder) obj);
                 }
             });
         } else if (resultCallback != null) {
@@ -458,7 +459,7 @@ public class EmojiThemes {
         }
     }
 
-    public static void lambda$loadWallpaper$0(ResultCallback resultCallback, long j, WallpaperBitmapHolder wallpaperBitmapHolder) {
+    public static void $r8$lambda$1wLU8w64B4WUQ1_iWmjCOGAQNbk(ResultCallback resultCallback, long j, WallpaperBitmapHolder wallpaperBitmapHolder) {
         if (resultCallback != null) {
             resultCallback.onComplete(new Pair(Long.valueOf(j), wallpaperBitmapHolder));
         }
@@ -471,12 +472,12 @@ public class EmojiThemes {
         chatThemeController.loadWallpaperBitmap(j, z ? 1 : 0, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                EmojiThemes.lambda$loadWallpaperImage$2(callback, wallPaper, i2, i, j, (WallpaperBitmapHolder) obj);
+                EmojiThemes.$r8$lambda$rNesWft0OzZqhbMWpYN00XguM2A(callback, wallPaper, i2, i, j, (WallpaperBitmapHolder) obj);
             }
         });
     }
 
-    public static void lambda$loadWallpaperImage$2(final Utilities.Callback callback, TLRPC.WallPaper wallPaper, final int i, final int i2, final long j, WallpaperBitmapHolder wallpaperBitmapHolder) {
+    public static void $r8$lambda$rNesWft0OzZqhbMWpYN00XguM2A(final Utilities.Callback callback, TLRPC.WallPaper wallPaper, final int i, final int i2, final long j, WallpaperBitmapHolder wallpaperBitmapHolder) {
         if (wallpaperBitmapHolder != null && callback != null) {
             callback.run(wallpaperBitmapHolder);
             return;
@@ -491,7 +492,7 @@ public class EmojiThemes {
         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                EmojiThemes.lambda$loadWallpaperImage$1(i, callback, i2, j, imageReceiver2, z, z2, z3);
+                EmojiThemes.$r8$lambda$Gpfi86Uy1VMnNj4t9xZAgIM4eHQ(i, callback, i2, j, imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -507,7 +508,7 @@ public class EmojiThemes {
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 
-    public static void lambda$loadWallpaperImage$1(int i, Utilities.Callback callback, int i2, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void $r8$lambda$Gpfi86Uy1VMnNj4t9xZAgIM4eHQ(int i, Utilities.Callback callback, int i2, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         List list;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         ImageReceiver.BitmapHolder drawableSafe = imageReceiver.getDrawableSafe();
@@ -584,7 +585,7 @@ public class EmojiThemes {
             imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                 @Override
                 public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                    EmojiThemes.lambda$loadWallpaperThumb$4(resultCallback, themeId, wallpaperThumbFile, imageReceiver2, z, z2, z3);
+                    EmojiThemes.$r8$lambda$NPiyGqoCLOa5wEP4I4_NKyTyFzU(resultCallback, themeId, wallpaperThumbFile, imageReceiver2, z, z2, z3);
                 }
 
                 @Override
@@ -601,7 +602,7 @@ public class EmojiThemes {
         }
     }
 
-    public static void lambda$loadWallpaperThumb$4(ResultCallback resultCallback, long j, final File file, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void $r8$lambda$NPiyGqoCLOa5wEP4I4_NKyTyFzU(ResultCallback resultCallback, long j, final File file, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (!z || bitmapSafe == null || bitmapSafe.bitmap.isRecycled()) {
             return;
@@ -620,7 +621,7 @@ public class EmojiThemes {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiThemes.lambda$loadWallpaperThumb$3(file, bitmap);
+                    EmojiThemes.$r8$lambda$7tpaPFY4le_vlcWrWc0FzjlAzns(file, bitmap);
                 }
             });
         } else if (resultCallback != null) {
@@ -628,7 +629,7 @@ public class EmojiThemes {
         }
     }
 
-    public static void lambda$loadWallpaperThumb$3(File file, Bitmap bitmap) {
+    public static void $r8$lambda$7tpaPFY4le_vlcWrWc0FzjlAzns(File file, Bitmap bitmap) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             try {
@@ -852,7 +853,7 @@ public class EmojiThemes {
         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                EmojiThemes.lambda$loadWallpaperGiftPattern$5(resultCallback, j, imageReceiver2, z, z2, z3);
+                EmojiThemes.m1265$r8$lambda$D2OoQt7FvhF17OM8fYlxVX5oHM(resultCallback, j, imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -868,7 +869,7 @@ public class EmojiThemes {
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 
-    public static void lambda$loadWallpaperGiftPattern$5(ResultCallback resultCallback, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void m1265$r8$lambda$D2OoQt7FvhF17OM8fYlxVX5oHM(ResultCallback resultCallback, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (!z || bitmapSafe == null) {
             return;

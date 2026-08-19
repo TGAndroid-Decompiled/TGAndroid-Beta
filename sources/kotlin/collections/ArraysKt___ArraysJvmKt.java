@@ -23,7 +23,7 @@ public abstract class ArraysKt___ArraysJvmKt extends ArraysKt__ArraysKt {
         if ((i4 & 8) != 0) {
             i3 = objArr.length;
         }
-        return ArraysKt.copyInto(objArr, objArr2, i, i2, i3);
+        return copyInto(objArr, objArr2, i, i2, i3);
     }
 
     public static Object[] copyInto(Object[] objArr, Object[] destination, int i, int i2, int i3) {
@@ -50,7 +50,7 @@ public abstract class ArraysKt___ArraysJvmKt extends ArraysKt__ArraysKt {
         if ((i4 & 8) != 0) {
             i3 = iArr.length;
         }
-        return ArraysKt.copyInto(iArr, iArr2, i, i2, i3);
+        return copyInto(iArr, iArr2, i, i2, i3);
     }
 
     public static int[] copyInto(int[] iArr, int[] destination, int i, int i2, int i3) {

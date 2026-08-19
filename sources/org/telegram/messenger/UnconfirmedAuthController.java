@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
@@ -29,7 +28,7 @@ public class UnconfirmedAuthController {
     private final Runnable checkExpiration = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$2();
+            UnconfirmedAuthController.$r8$lambda$VOSenAh9Se4YOekIG255ZSGCQy8(this.f$0);
         }
     };
     private boolean debug = false;
@@ -47,12 +46,13 @@ public class UnconfirmedAuthController {
         MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$readCache$1();
+                UnconfirmedAuthController.m1083$r8$lambda$sVywaiWUyML0vTM9FoXGs8X4N8(this.f$0);
             }
         });
     }
 
-    public void lambda$readCache$1() {
+    public static void m1083$r8$lambda$sVywaiWUyML0vTM9FoXGs8X4N8(final UnconfirmedAuthController unconfirmedAuthController) {
+        unconfirmedAuthController.getClass();
         final ArrayList<TLRPC.User> arrayList = new ArrayList<>();
         ArrayList<Long> arrayList2 = new ArrayList<>();
         final HashSet hashSet = new HashSet();
@@ -60,12 +60,12 @@ public class UnconfirmedAuthController {
         SQLiteCursor sQLiteCursorQueryFinalized = null;
         try {
             try {
-                sQLiteCursorQueryFinalized = MessagesStorage.getInstance(this.currentAccount).getDatabase().queryFinalized(String.format(Locale.US, "SELECT data FROM unconfirmed_auth", new Object[0]), new Object[0]);
+                sQLiteCursorQueryFinalized = MessagesStorage.getInstance(unconfirmedAuthController.currentAccount).getDatabase().queryFinalized(String.format(Locale.US, "SELECT data FROM unconfirmed_auth", new Object[0]), new Object[0]);
                 while (sQLiteCursorQueryFinalized.next()) {
                     NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0);
                     if (nativeByteBufferByteBufferValue != null) {
                         try {
-                            UnconfirmedAuth unconfirmedAuth = new UnconfirmedAuth(nativeByteBufferByteBufferValue);
+                            UnconfirmedAuth unconfirmedAuth = unconfirmedAuthController.new UnconfirmedAuth(nativeByteBufferByteBufferValue);
                             arrayList3.add(unconfirmedAuth);
                             hashSet.add(Long.valueOf(unconfirmedAuth.hash));
                             if (unconfirmedAuth.bot && !arrayList2.contains(Long.valueOf(unconfirmedAuth.bot_id))) {
@@ -76,7 +76,7 @@ public class UnconfirmedAuthController {
                         }
                     }
                 }
-                MessagesStorage.getInstance(this.currentAccount).getUsersInternal(arrayList2, arrayList);
+                MessagesStorage.getInstance(unconfirmedAuthController.currentAccount).getUsersInternal(arrayList2, arrayList);
             } catch (Exception e2) {
                 FileLog.e(e2);
                 if (sQLiteCursorQueryFinalized != null) {
@@ -84,7 +84,7 @@ public class UnconfirmedAuthController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$readCache$0(arrayList, hashSet, arrayList3);
+                        UnconfirmedAuthController.m1079$r8$lambda$AYxuHLoFiguf5DKG73A5YvY6ME(this.f$0, arrayList, hashSet, arrayList3);
                     }
                 });
             }
@@ -92,7 +92,7 @@ public class UnconfirmedAuthController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$readCache$0(arrayList, hashSet, arrayList3);
+                    UnconfirmedAuthController.m1079$r8$lambda$AYxuHLoFiguf5DKG73A5YvY6ME(this.f$0, arrayList, hashSet, arrayList3);
                 }
             });
         } catch (Throwable th) {
@@ -103,29 +103,29 @@ public class UnconfirmedAuthController {
         }
     }
 
-    public void lambda$readCache$0(ArrayList arrayList, HashSet hashSet, ArrayList arrayList2) {
-        MessagesController.getInstance(this.currentAccount).putUsers(arrayList, true);
-        boolean zIsEmpty = this.auths.isEmpty();
+    public static void m1079$r8$lambda$AYxuHLoFiguf5DKG73A5YvY6ME(UnconfirmedAuthController unconfirmedAuthController, ArrayList arrayList, HashSet hashSet, ArrayList arrayList2) {
+        MessagesController.getInstance(unconfirmedAuthController.currentAccount).putUsers(arrayList, true);
+        boolean zIsEmpty = unconfirmedAuthController.auths.isEmpty();
         int i = 0;
-        while (i < this.auths.size()) {
-            UnconfirmedAuth unconfirmedAuth = this.auths.get(i);
+        while (i < unconfirmedAuthController.auths.size()) {
+            UnconfirmedAuth unconfirmedAuth = unconfirmedAuthController.auths.get(i);
             if (unconfirmedAuth == null || unconfirmedAuth.expired() || hashSet.contains(Long.valueOf(unconfirmedAuth.hash))) {
-                this.auths.remove(i);
+                unconfirmedAuthController.auths.remove(i);
                 i--;
             }
             i++;
         }
-        this.auths.addAll(arrayList2);
-        boolean zIsEmpty2 = this.auths.isEmpty();
-        this.fetchedCache = true;
-        this.fetchingCache = false;
+        unconfirmedAuthController.auths.addAll(arrayList2);
+        boolean zIsEmpty2 = unconfirmedAuthController.auths.isEmpty();
+        unconfirmedAuthController.fetchedCache = true;
+        unconfirmedAuthController.fetchingCache = false;
         if (zIsEmpty != zIsEmpty2) {
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
+            NotificationCenter.getInstance(unconfirmedAuthController.currentAccount).postNotificationName(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
         }
-        scheduleAuthExpireCheck();
-        if (this.saveAfterFetch) {
-            this.saveAfterFetch = false;
-            saveCache();
+        unconfirmedAuthController.scheduleAuthExpireCheck();
+        if (unconfirmedAuthController.saveAfterFetch) {
+            unconfirmedAuthController.saveAfterFetch = false;
+            unconfirmedAuthController.saveCache();
         }
     }
 
@@ -134,10 +134,14 @@ public class UnconfirmedAuthController {
         if (this.auths.isEmpty()) {
             return;
         }
-        Iterator<UnconfirmedAuth> it = this.auths.iterator();
+        ArrayList<UnconfirmedAuth> arrayList = this.auths;
+        int size = arrayList.size();
+        int i = 0;
         long jMin = Long.MAX_VALUE;
-        while (it.hasNext()) {
-            jMin = Math.min(jMin, it.next().expiresAfter());
+        while (i < size) {
+            UnconfirmedAuth unconfirmedAuth = arrayList.get(i);
+            i++;
+            jMin = Math.min(jMin, unconfirmedAuth.expiresAfter());
         }
         if (jMin == Long.MAX_VALUE) {
             return;
@@ -145,16 +149,16 @@ public class UnconfirmedAuthController {
         AndroidUtilities.runOnUIThread(this.checkExpiration, Math.max(0L, jMin * 1000));
     }
 
-    public void lambda$new$2() {
+    public static void $r8$lambda$VOSenAh9Se4YOekIG255ZSGCQy8(UnconfirmedAuthController unconfirmedAuthController) {
         int i = 0;
-        while (i < this.auths.size()) {
-            if (this.auths.get(i).expired()) {
-                this.auths.remove(i);
+        while (i < unconfirmedAuthController.auths.size()) {
+            if (unconfirmedAuthController.auths.get(i).expired()) {
+                unconfirmedAuthController.auths.remove(i);
                 i--;
             }
             i++;
         }
-        saveCache();
+        unconfirmedAuthController.saveCache();
     }
 
     public void putDebug() {
@@ -180,7 +184,7 @@ public class UnconfirmedAuthController {
         if (tL_updateNewAuthorization.unconfirmed) {
             this.auths.add(new UnconfirmedAuth(tL_updateNewAuthorization));
         }
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
         scheduleAuthExpireCheck();
         saveCache();
     }
@@ -196,7 +200,7 @@ public class UnconfirmedAuthController {
             i++;
         }
         this.auths.add(new UnconfirmedAuth(tL_updateNewBotConnection));
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
         scheduleAuthExpireCheck();
         saveCache();
     }
@@ -212,23 +216,29 @@ public class UnconfirmedAuthController {
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$saveCache$4();
+                    UnconfirmedAuthController.m1081$r8$lambda$hE7pNnSoML3GYVuT1bXHnfsKUE(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$saveCache$4() {
-        SQLiteDatabase database = MessagesStorage.getInstance(this.currentAccount).getDatabase();
+    public static void m1081$r8$lambda$hE7pNnSoML3GYVuT1bXHnfsKUE(final UnconfirmedAuthController unconfirmedAuthController) {
+        SQLiteDatabase database = MessagesStorage.getInstance(unconfirmedAuthController.currentAccount).getDatabase();
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
                 database.executeFast("DELETE FROM unconfirmed_auth WHERE 1").stepThis().dispose();
                 sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO unconfirmed_auth VALUES(?)");
-                for (UnconfirmedAuth unconfirmedAuth : this.auths) {
+                ArrayList<UnconfirmedAuth> arrayList = unconfirmedAuthController.auths;
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    UnconfirmedAuth unconfirmedAuth = arrayList.get(i);
+                    i++;
+                    UnconfirmedAuth unconfirmedAuth2 = unconfirmedAuth;
                     sQLitePreparedStatementExecuteFast.requery();
-                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(unconfirmedAuth.getObjectSize());
-                    unconfirmedAuth.serializeToStream(nativeByteBuffer);
+                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(unconfirmedAuth2.getObjectSize());
+                    unconfirmedAuth2.serializeToStream(nativeByteBuffer);
                     sQLitePreparedStatementExecuteFast.bindByteBuffer(1, nativeByteBuffer);
                     sQLitePreparedStatementExecuteFast.step();
                 }
@@ -244,7 +254,7 @@ public class UnconfirmedAuthController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$saveCache$3();
+                    this.f$0.savingCache = false;
                 }
             });
         } catch (Throwable th) {
@@ -255,14 +265,10 @@ public class UnconfirmedAuthController {
         }
     }
 
-    public void lambda$saveCache$3() {
-        this.savingCache = false;
-    }
-
     public void cleanup() {
         this.auths.clear();
         saveCache();
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
         scheduleAuthExpireCheck();
     }
 
@@ -275,14 +281,14 @@ public class UnconfirmedAuthController {
             callbackArr[i] = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    UnconfirmedAuthController.lambda$updateList$6(zArr, i, z, unconfirmedAuth, (Runnable) obj);
+                    UnconfirmedAuthController.m1082$r8$lambda$s03l1nRxgy6Lr_3nNXQXlCZPK0(zArr, i, z, unconfirmedAuth, (Runnable) obj);
                 }
             };
         }
         Utilities.raceCallbacks(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateList$7(zArr, arrayList2, z, callback);
+                UnconfirmedAuthController.$r8$lambda$bTJFj6HrX17YQ_lnJ9FIZ47g5q8(this.f$0, zArr, arrayList2, z, callback);
             }
         }, callbackArr);
         if (z) {
@@ -302,21 +308,21 @@ public class UnconfirmedAuthController {
                 return;
             }
             saveCache();
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
             scheduleAuthExpireCheck();
         }
     }
 
-    public static void lambda$updateList$5(boolean[] zArr, int i, Runnable runnable, Boolean bool) {
+    public static void m1080$r8$lambda$NJhReUHqCliAHaxOC3AKA_h2IU(boolean[] zArr, int i, Runnable runnable, Boolean bool) {
         zArr[i] = bool.booleanValue();
         runnable.run();
     }
 
-    public static void lambda$updateList$6(final boolean[] zArr, final int i, boolean z, UnconfirmedAuth unconfirmedAuth, final Runnable runnable) {
+    public static void m1082$r8$lambda$s03l1nRxgy6Lr_3nNXQXlCZPK0(final boolean[] zArr, final int i, boolean z, UnconfirmedAuth unconfirmedAuth, final Runnable runnable) {
         Utilities.Callback<Boolean> callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                UnconfirmedAuthController.lambda$updateList$5(zArr, i, runnable, (Boolean) obj);
+                UnconfirmedAuthController.m1080$r8$lambda$NJhReUHqCliAHaxOC3AKA_h2IU(zArr, i, runnable, (Boolean) obj);
             }
         };
         if (z) {
@@ -326,7 +332,8 @@ public class UnconfirmedAuthController {
         }
     }
 
-    public void lambda$updateList$7(boolean[] zArr, ArrayList arrayList, boolean z, Utilities.Callback callback) {
+    public static void $r8$lambda$bTJFj6HrX17YQ_lnJ9FIZ47g5q8(UnconfirmedAuthController unconfirmedAuthController, boolean[] zArr, ArrayList arrayList, boolean z, Utilities.Callback callback) {
+        unconfirmedAuthController.getClass();
         HashSet hashSet = new HashSet();
         ArrayList arrayList2 = new ArrayList();
         for (int i = 0; i < zArr.length; i++) {
@@ -338,17 +345,17 @@ public class UnconfirmedAuthController {
         }
         if (!z) {
             int i2 = 0;
-            while (i2 < this.auths.size()) {
-                if (hashSet.contains(Long.valueOf(this.auths.get(i2).hash))) {
-                    this.auths.remove(i2);
+            while (i2 < unconfirmedAuthController.auths.size()) {
+                if (hashSet.contains(Long.valueOf(unconfirmedAuthController.auths.get(i2).hash))) {
+                    unconfirmedAuthController.auths.remove(i2);
                     i2--;
                 }
                 i2++;
             }
             if (!hashSet.isEmpty()) {
-                saveCache();
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
-                scheduleAuthExpireCheck();
+                unconfirmedAuthController.saveCache();
+                NotificationCenter.getInstance(unconfirmedAuthController.currentAccount).postNotificationName(NotificationCenter.unconfirmedAuthUpdate, new Object[0]);
+                unconfirmedAuthController.scheduleAuthExpireCheck();
             }
         }
         callback.run(arrayList2);
@@ -438,7 +445,7 @@ public class UnconfirmedAuthController {
                 ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequestTyped(confirmbotconnection, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        this.f$0.lambda$confirm$0(callback, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                        UnconfirmedAuthController.UnconfirmedAuth.m1086$r8$lambda$SFYpSZ1e2YH5OWljaueQlfLrkc(this.f$0, callback, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                     }
                 });
             } else {
@@ -448,29 +455,32 @@ public class UnconfirmedAuthController {
                 ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(changeauthorizationsettings, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$confirm$2(callback, tLObject, tL_error);
+                        UnconfirmedAuthController.UnconfirmedAuth.$r8$lambda$6Kg4x6Mm87hLBiNswYaiq8meGyw(this.f$0, callback, tLObject, tL_error);
                     }
                 });
             }
         }
 
-        public void lambda$confirm$0(Utilities.Callback callback, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+        public static void m1086$r8$lambda$SFYpSZ1e2YH5OWljaueQlfLrkc(UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+            unconfirmedAuth.getClass();
             if (callback != null) {
                 callback.run(Boolean.valueOf(((bool instanceof TLRPC.TL_boolTrue) && tL_error == null) || UnconfirmedAuthController.this.debug));
                 UnconfirmedAuthController.this.debug = false;
             }
         }
 
-        public void lambda$confirm$2(final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$6Kg4x6Mm87hLBiNswYaiq8meGyw(final UnconfirmedAuth unconfirmedAuth, final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            unconfirmedAuth.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$confirm$1(callback, tLObject, tL_error);
+                    UnconfirmedAuthController.UnconfirmedAuth.m1084$r8$lambda$7YVefWwACBZcsKyjhfmbWjrFpg(this.f$0, callback, tLObject, tL_error);
                 }
             });
         }
 
-        public void lambda$confirm$1(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m1084$r8$lambda$7YVefWwACBZcsKyjhfmbWjrFpg(UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+            unconfirmedAuth.getClass();
             if (callback != null) {
                 callback.run(Boolean.valueOf(((tLObject instanceof TLRPC.TL_boolTrue) && tL_error == null) || UnconfirmedAuthController.this.debug));
                 UnconfirmedAuthController.this.debug = false;
@@ -486,7 +496,7 @@ public class UnconfirmedAuthController {
                 ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(updateconnectedbot, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$deny$4(callback, tLObject, tL_error);
+                        UnconfirmedAuthController.UnconfirmedAuth.m1087$r8$lambda$UtQCVywGIkVj_bkEomRVvvkxI(this.f$0, callback, tLObject, tL_error);
                     }
                 });
                 return;
@@ -496,21 +506,23 @@ public class UnconfirmedAuthController {
             ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(resetauthorization, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$deny$6(callback, tLObject, tL_error);
+                    UnconfirmedAuthController.UnconfirmedAuth.$r8$lambda$5YZipc16KGim4xO5wur1HYwv1FE(this.f$0, callback, tLObject, tL_error);
                 }
             });
         }
 
-        public void lambda$deny$4(final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m1087$r8$lambda$UtQCVywGIkVj_bkEomRVvvkxI(final UnconfirmedAuth unconfirmedAuth, final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            unconfirmedAuth.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$deny$3(tLObject, callback, tL_error);
+                    UnconfirmedAuthController.UnconfirmedAuth.$r8$lambda$iJBf5pjJS0KPbwQ7GQUuKOHk98I(this.f$0, tLObject, callback, tL_error);
                 }
             });
         }
 
-        public void lambda$deny$3(TLObject tLObject, Utilities.Callback callback, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$iJBf5pjJS0KPbwQ7GQUuKOHk98I(UnconfirmedAuth unconfirmedAuth, TLObject tLObject, Utilities.Callback callback, TLRPC.TL_error tL_error) {
+            unconfirmedAuth.getClass();
             boolean z = tLObject instanceof TLRPC.Updates;
             if (z) {
                 MessagesController.getInstance(UnconfirmedAuthController.this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
@@ -526,16 +538,18 @@ public class UnconfirmedAuthController {
             }
         }
 
-        public void lambda$deny$6(final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$5YZipc16KGim4xO5wur1HYwv1FE(final UnconfirmedAuth unconfirmedAuth, final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            unconfirmedAuth.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$deny$5(callback, tLObject, tL_error);
+                    UnconfirmedAuthController.UnconfirmedAuth.m1085$r8$lambda$9FjW0bKm0mL90Dv2RomJVmkNnI(this.f$0, callback, tLObject, tL_error);
                 }
             });
         }
 
-        public void lambda$deny$5(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m1085$r8$lambda$9FjW0bKm0mL90Dv2RomJVmkNnI(UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+            unconfirmedAuth.getClass();
             if (callback != null) {
                 callback.run(Boolean.valueOf(((tLObject instanceof TLRPC.TL_boolTrue) && tL_error == null) || UnconfirmedAuthController.this.debug));
                 UnconfirmedAuthController.this.debug = false;

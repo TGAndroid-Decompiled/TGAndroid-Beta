@@ -173,7 +173,7 @@ public class CommunityPendingRequestsActivity extends BaseFragment implements Fa
         this.buttonDeclineAllView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$0(view);
+                this.f$0.pendingRequestsList.onResolveAllJoinRequests(false);
             }
         });
         this.buttonsLayout.addView(this.buttonDeclineAllView, LayoutHelper.createLinear(0, 48, 1.0f, 0, 4, 0, 4, 0));
@@ -184,7 +184,7 @@ public class CommunityPendingRequestsActivity extends BaseFragment implements Fa
         this.buttonAddAllView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$1(view);
+                this.f$0.pendingRequestsList.onResolveAllJoinRequests(true);
             }
         });
         this.buttonsLayout.addView(this.buttonAddAllView, LayoutHelper.createLinear(0, 48, 1.0f, 0, 4, 0, 4, 0));
@@ -255,14 +255,6 @@ public class CommunityPendingRequestsActivity extends BaseFragment implements Fa
         return frameLayout2;
     }
 
-    public void lambda$createView$0(View view) {
-        this.pendingRequestsList.onResolveAllJoinRequests(false);
-    }
-
-    public void lambda$createView$1(View view) {
-        this.pendingRequestsList.onResolveAllJoinRequests(true);
-    }
-
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         this.pendingRequestsList.fillItems(arrayList);
     }
@@ -287,15 +279,16 @@ public class CommunityPendingRequestsActivity extends BaseFragment implements Fa
                 new CommunityInviteOnlySheet(getContext(), chat, data.requestFromUser, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onClick$2(data);
+                        CommunityPendingRequestsActivity.m4867$r8$lambda$agN6v2Z85kITDOXEQ078tXVcec(this.f$0, data);
                     }
                 }).show();
             }
         }
     }
 
-    public void lambda$onClick$2(CommunityPendingRequestCell.Data data) {
-        presentFragment(ChatActivity.of(data.requestFromUser.id));
+    public static void m4867$r8$lambda$agN6v2Z85kITDOXEQ078tXVcec(CommunityPendingRequestsActivity communityPendingRequestsActivity, CommunityPendingRequestCell.Data data) {
+        communityPendingRequestsActivity.getClass();
+        communityPendingRequestsActivity.presentFragment(ChatActivity.of(data.requestFromUser.id));
     }
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {

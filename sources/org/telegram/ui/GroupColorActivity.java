@@ -202,13 +202,9 @@ public class GroupColorActivity extends ChannelColorActivity {
             GroupColorActivity.this.profilePreview.infoLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$onGlobalLayout$0(view);
+                    GroupColorActivity.this.openBoostDialog(19);
                 }
             });
-        }
-
-        public void lambda$onGlobalLayout$0(View view) {
-            GroupColorActivity.this.openBoostDialog(19);
         }
     }
 
@@ -282,7 +278,7 @@ public class GroupColorActivity extends ChannelColorActivity {
     }
 
     @Override
-    protected void openBoostDialog(final int i) {
+    public void openBoostDialog(final int i) {
         if (this.boostsStatus == null || this.isLoading) {
             return;
         }
@@ -307,8 +303,8 @@ public class GroupColorActivity extends ChannelColorActivity {
             }
 
             @Override
-            public void lambda$new$0() {
-                super.lambda$new$0();
+            public void dismiss() {
+                super.dismiss();
                 GroupColorActivity.this.isLoading = false;
             }
         };

@@ -261,7 +261,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     AudioManager.OnAudioFocusChangeListener audioRecordFocusChangedListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public final void onAudioFocusChange(int i) {
-            this.f$0.lambda$new$0(i);
+            MediaController.m529$r8$lambda$tc6LykL6OubRhwPO6e0fp3o4(this.f$0, i);
         }
     };
     private final Object videoConvertSync = new Object();
@@ -561,9 +561,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         public boolean isEmpty() {
-            Matrix matrix;
-            Matrix matrix2 = this.matrix;
-            return (matrix2 == null || matrix2.isIdentity()) && ((matrix = this.useMatrix) == null || matrix.isIdentity()) && this.cropPw == 1.0f && this.cropPh == 1.0f && this.cropScale == 1.0f && this.cropRotate == 0.0f && this.transformWidth == 0 && this.transformHeight == 0 && this.transformRotation == 0 && !this.mirrored && this.stateScale == 0.0f && this.scale == 0.0f && this.width == 0 && this.height == 0 && !this.freeform && this.lockedAspectRatio == 0.0f;
+            Matrix matrix = this.matrix;
+            if (matrix != null && !matrix.isIdentity()) {
+                return false;
+            }
+            Matrix matrix2 = this.useMatrix;
+            return (matrix2 == null || matrix2.isIdentity()) && this.cropPw == 1.0f && this.cropPh == 1.0f && this.cropScale == 1.0f && this.cropRotate == 0.0f && this.transformWidth == 0 && this.transformHeight == 0 && this.transformRotation == 0 && !this.mirrored && this.stateScale == 0.0f && this.scale == 0.0f && this.width == 0 && this.height == 0 && !this.freeform && this.lockedAspectRatio == 0.0f;
         }
 
         @Override
@@ -964,7 +967,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
                 @Override
                 public final Bitmap decode(BitmapFactory.Options options) {
-                    return this.f$0.lambda$rebuildPhoto$0(options);
+                    return MediaController.PhotoEntry.m547$r8$lambda$fB__XHz1WJDu6VlbVsX7GHJr2Y(this.f$0, options);
                 }
             }, AndroidUtilities.getPhotoSize(z), AndroidUtilities.getPhotoSize(z), false, true);
             if (this.imagePath != null) {
@@ -1063,10 +1066,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
 
-        public Bitmap lambda$rebuildPhoto$0(BitmapFactory.Options options) {
-            String str = this.filterPath;
+        public static Bitmap m547$r8$lambda$fB__XHz1WJDu6VlbVsX7GHJr2Y(PhotoEntry photoEntry, BitmapFactory.Options options) {
+            String str = photoEntry.filterPath;
             if (str == null) {
-                str = this.path;
+                str = photoEntry.path;
             }
             return BitmapFactory.decodeFile(str, options);
         }
@@ -1148,9 +1151,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void lambda$new$0(int i) {
+    public static void m529$r8$lambda$tc6LykL6OubRhwPO6e0fp3o4(MediaController mediaController, int i) {
         if (i != 1) {
-            this.hasRecordAudioFocus = false;
+            mediaController.hasRecordAudioFocus = false;
+        } else {
+            mediaController.getClass();
         }
     }
 
@@ -1176,7 +1181,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         @Override
         public void run() {
-            final ByteBuffer byteBufferAllocateDirect;
+            ByteBuffer byteBufferAllocateDirect;
             if (MediaController.this.audioRecorder != null) {
                 if (!MediaController.this.recordBuffers.isEmpty()) {
                     byteBufferAllocateDirect = (ByteBuffer) MediaController.this.recordBuffers.get(0);
@@ -1185,10 +1190,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     byteBufferAllocateDirect = ByteBuffer.allocateDirect(MediaController.this.recordBufferSize);
                     byteBufferAllocateDirect.order(ByteOrder.nativeOrder());
                 }
-                byteBufferAllocateDirect.rewind();
-                int i = MediaController.this.audioRecorder.read(byteBufferAllocateDirect, byteBufferAllocateDirect.capacity());
+                final ByteBuffer byteBuffer = byteBufferAllocateDirect;
+                byteBuffer.rewind();
+                int i = MediaController.this.audioRecorder.read(byteBuffer, byteBuffer.capacity());
                 if (i <= 0) {
-                    MediaController.this.recordBuffers.add(byteBufferAllocateDirect);
+                    MediaController.this.recordBuffers.add(byteBuffer);
                     if (MediaController.this.sendAfterDone == 3 || MediaController.this.sendAfterDone == 4) {
                         return;
                     }
@@ -1196,7 +1202,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     mediaController.stopRecordingInternal(mediaController.sendAfterDone, MediaController.this.sendAfterDoneNotify, MediaController.this.sendAfterDoneScheduleDate, MediaController.this.sendAfterDoneOnce, MediaController.this.sendAfterDonePayStars);
                     return;
                 }
-                byteBufferAllocateDirect.limit(i);
+                byteBuffer.limit(i);
                 double d = 0.0d;
                 try {
                     MediaController mediaController2 = MediaController.this;
@@ -1217,7 +1223,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                     float f3 = (i / 2.0f) / length2;
                     for (int i3 = 0; i3 < i / 2; i3++) {
-                        short s = byteBufferAllocateDirect.getShort();
+                        short s = byteBuffer.getShort();
                         d += (double) (s * s);
                         if (i3 == ((int) f)) {
                             short[] sArr3 = MediaController.this.recordSamples;
@@ -1232,27 +1238,29 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                byteBufferAllocateDirect.position(0);
+                byteBuffer.position(0);
                 final double dSqrt = Math.sqrt((d / ((double) i)) / 2.0d);
-                final boolean z = i != byteBufferAllocateDirect.capacity();
+                final boolean z = i != byteBuffer.capacity();
                 MediaController.this.fileEncodingQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$run$1(byteBufferAllocateDirect, z);
+                        MediaController.AnonymousClass2.$r8$lambda$Rs_3uFeeDM_ZcjVSL6e2WOYfmd4(this.f$0, byteBuffer, z);
                     }
                 });
                 MediaController.this.recordQueue.postRunnable(MediaController.this.recordRunnable);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$run$2(dSqrt);
+                        MediaController.AnonymousClass2 anonymousClass2 = this.f$0;
+                        NotificationCenter.getInstance(MediaController.this.recordingCurrentAccount).postNotificationName(NotificationCenter.recordProgressChanged, Integer.valueOf(MediaController.this.recordingGuid), Double.valueOf(dSqrt));
                     }
                 });
             }
         }
 
-        public void lambda$run$1(final ByteBuffer byteBuffer, boolean z) {
+        public static void $r8$lambda$Rs_3uFeeDM_ZcjVSL6e2WOYfmd4(final AnonymousClass2 anonymousClass2, final ByteBuffer byteBuffer, boolean z) {
             int iLimit;
+            anonymousClass2.getClass();
             while (byteBuffer.hasRemaining()) {
                 if (byteBuffer.remaining() > MediaController.this.fileBuffer.remaining()) {
                     iLimit = byteBuffer.limit();
@@ -1282,17 +1290,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             MediaController.this.recordQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$run$0(byteBuffer);
+                    MediaController.this.recordBuffers.add(byteBuffer);
                 }
             });
-        }
-
-        public void lambda$run$0(ByteBuffer byteBuffer) {
-            MediaController.this.recordBuffers.add(byteBuffer);
-        }
-
-        public void lambda$run$2(double d) {
-            NotificationCenter.getInstance(MediaController.this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordProgressChanged, Integer.valueOf(MediaController.this.recordingGuid), Double.valueOf(d));
         }
     }
 
@@ -1329,17 +1329,18 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(MediaController.refreshGalleryRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$scheduleReloadRunnable$0();
+                    MediaController.GalleryObserverInternal.m538$r8$lambda$fuJFHLSkATZGJU2p_cnqJR4WTI(this.f$0);
                 }
             }, 2000L);
         }
 
-        public void lambda$scheduleReloadRunnable$0() {
+        public static void m538$r8$lambda$fuJFHLSkATZGJU2p_cnqJR4WTI(GalleryObserverInternal galleryObserverInternal) {
+            galleryObserverInternal.getClass();
             if (!PhotoViewer.getInstance().isVisible()) {
                 Runnable unused = MediaController.refreshGalleryRunnable = null;
                 MediaController.loadGalleryPhotosAlbums(0);
             } else {
-                scheduleReloadRunnable();
+                galleryObserverInternal.scheduleReloadRunnable();
             }
         }
 
@@ -1367,12 +1368,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(MediaController.refreshGalleryRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.GalleryObserverExternal.lambda$onChange$0();
+                    MediaController.GalleryObserverExternal.$r8$lambda$RXdudxX90yFWybAMOEn80RyiCv0();
                 }
             }, 2000L);
         }
 
-        public static void lambda$onChange$0() {
+        public static void $r8$lambda$RXdudxX90yFWybAMOEn80RyiCv0() {
             Runnable unused = MediaController.refreshGalleryRunnable = null;
             MediaController.loadGalleryPhotosAlbums(0);
         }
@@ -1387,12 +1388,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaController.lambda$checkGallery$1(size);
+                MediaController.$r8$lambda$I5n5O3fhxSGp8aHEIaMfpeoOmaI(size);
             }
         }, 2000L);
     }
 
-    public static void lambda$checkGallery$1(int i) {
+    public static void $r8$lambda$I5n5O3fhxSGp8aHEIaMfpeoOmaI(int i) {
         Cursor cursorQuery;
         Cursor cursorQuery2;
         int i2;
@@ -1401,7 +1402,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Context context;
         try {
             Context context2 = ApplicationLoader.applicationContext;
-            if (Build.VERSION.SDK_INT < 33 || (context2.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 && context2.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0 && context2.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0)) {
+            if (Build.VERSION.SDK_INT < 33 || !(context2.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0 || context2.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") == 0 || context2.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") == 0)) {
                 if (context2.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0) {
                     cursorQuery = MediaStore.Images.Media.query(context2.getContentResolver(), MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
                     if (cursorQuery != null) {
@@ -1418,7 +1419,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                     i2 = 0;
                                 }
                                 context = ApplicationLoader.applicationContext;
-                                if (Build.VERSION.SDK_INT >= 33) {
+                                if (Build.VERSION.SDK_INT < 33) {
                                     if (context.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0) {
                                         cursorQuery2 = MediaStore.Images.Media.query(context.getContentResolver(), MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
                                         if (cursorQuery2 != null) {
@@ -1445,7 +1446,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             } catch (Throwable th2) {
                                 if (cursorQuery != null) {
                                     cursorQuery.close();
-                                    throw th2;
                                 }
                                 throw th2;
                             }
@@ -1472,16 +1472,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         i2 = i3;
         try {
             context = ApplicationLoader.applicationContext;
-            if (Build.VERSION.SDK_INT >= 33 || (context.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 && context.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0 && context.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0)) {
-                if (context.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0) {
-                    cursorQuery2 = MediaStore.Images.Media.query(context.getContentResolver(), MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
-                    if (cursorQuery2 != null && cursorQuery2.moveToNext()) {
-                        i2 += cursorQuery2.getInt(0);
-                    }
-                }
-            } else {
+            if (Build.VERSION.SDK_INT < 33 && (context.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0 || context.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") == 0 || context.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") == 0)) {
                 cursorQuery2 = MediaStore.Images.Media.query(context.getContentResolver(), MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
                 if (cursorQuery2 != null) {
+                    i2 += cursorQuery2.getInt(0);
+                }
+            } else if (context.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0) {
+                cursorQuery2 = MediaStore.Images.Media.query(context.getContentResolver(), MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
+                if (cursorQuery2 != null && cursorQuery2.moveToNext()) {
                     i2 += cursorQuery2.getInt(0);
                 }
             }
@@ -1497,7 +1495,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             } catch (Throwable th5) {
                 if (cursorQuery2 != null) {
                     cursorQuery2.close();
-                    throw th5;
                 }
                 throw th5;
             }
@@ -1543,18 +1540,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public static MediaController getInstance() {
-        MediaController mediaController = Instance;
-        if (mediaController == null) {
-            synchronized (MediaController.class) {
-                try {
-                    mediaController = Instance;
-                    if (mediaController == null) {
-                        mediaController = new MediaController();
-                        Instance = mediaController;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        MediaController mediaController;
+        MediaController mediaController2 = Instance;
+        if (mediaController2 != null) {
+            return mediaController2;
+        }
+        synchronized (MediaController.class) {
+            try {
+                mediaController = Instance;
+                if (mediaController == null) {
+                    mediaController = new MediaController();
+                    Instance = mediaController;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return mediaController;
@@ -1570,20 +1569,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$2();
+                MediaController.$r8$lambda$020W5VBCjIZwka4zlHIYkq8eJNw(this.f$0);
             }
         });
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$3();
+                MediaController.m527$r8$lambda$lfN0iuSzb1bb9fObGe6CMOtupk(this.f$0);
             }
         });
         this.fileBuffer = ByteBuffer.allocateDirect(1920);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$4();
+                MediaController.$r8$lambda$M2bVpiJjoeuYZh1b6JJV7avKbPg(this.f$0);
             }
         });
         this.mediaProjections = new String[]{"_data", "_display_name", "bucket_display_name", Build.VERSION.SDK_INT > 28 ? "date_modified" : "datetaken", "title", "width", "height"};
@@ -1610,50 +1609,52 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void lambda$new$2() {
+    public static void $r8$lambda$020W5VBCjIZwka4zlHIYkq8eJNw(MediaController mediaController) {
+        mediaController.getClass();
         try {
-            this.sampleRate = 48000;
+            mediaController.sampleRate = 48000;
             int minBufferSize = AudioRecord.getMinBufferSize(48000, 16, 2);
             if (minBufferSize <= 0) {
                 minBufferSize = 1280;
             }
-            this.recordBufferSize = minBufferSize;
+            mediaController.recordBufferSize = minBufferSize;
             for (int i = 0; i < 5; i++) {
-                ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(this.recordBufferSize);
+                ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(mediaController.recordBufferSize);
                 byteBufferAllocateDirect.order(ByteOrder.nativeOrder());
-                this.recordBuffers.add(byteBufferAllocateDirect);
+                mediaController.recordBuffers.add(byteBufferAllocateDirect);
             }
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
-    public void lambda$new$3() {
+    public static void m527$r8$lambda$lfN0iuSzb1bb9fObGe6CMOtupk(MediaController mediaController) {
+        mediaController.getClass();
         try {
-            this.currentPlaybackSpeed = MessagesController.getGlobalMainSettings().getFloat("playbackSpeed", 1.0f);
-            this.currentMusicPlaybackSpeed = MessagesController.getGlobalMainSettings().getFloat("musicPlaybackSpeed", 1.0f);
-            this.fastPlaybackSpeed = MessagesController.getGlobalMainSettings().getFloat("fastPlaybackSpeed", 1.8f);
-            this.fastMusicPlaybackSpeed = MessagesController.getGlobalMainSettings().getFloat("fastMusicPlaybackSpeed", 1.8f);
+            mediaController.currentPlaybackSpeed = MessagesController.getGlobalMainSettings().getFloat("playbackSpeed", 1.0f);
+            mediaController.currentMusicPlaybackSpeed = MessagesController.getGlobalMainSettings().getFloat("musicPlaybackSpeed", 1.0f);
+            mediaController.fastPlaybackSpeed = MessagesController.getGlobalMainSettings().getFloat("fastPlaybackSpeed", 1.8f);
+            mediaController.fastMusicPlaybackSpeed = MessagesController.getGlobalMainSettings().getFloat("fastMusicPlaybackSpeed", 1.8f);
             SensorManager sensorManager = (SensorManager) ApplicationLoader.applicationContext.getSystemService("sensor");
-            this.sensorManager = sensorManager;
-            this.linearSensor = sensorManager.getDefaultSensor(10);
-            Sensor defaultSensor = this.sensorManager.getDefaultSensor(9);
-            this.gravitySensor = defaultSensor;
-            if (this.linearSensor == null || defaultSensor == null) {
+            mediaController.sensorManager = sensorManager;
+            mediaController.linearSensor = sensorManager.getDefaultSensor(10);
+            Sensor defaultSensor = mediaController.sensorManager.getDefaultSensor(9);
+            mediaController.gravitySensor = defaultSensor;
+            if (mediaController.linearSensor == null || defaultSensor == null) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("gravity or linear sensor not found");
                 }
-                this.accelerometerSensor = this.sensorManager.getDefaultSensor(1);
-                this.linearSensor = null;
-                this.gravitySensor = null;
+                mediaController.accelerometerSensor = mediaController.sensorManager.getDefaultSensor(1);
+                mediaController.linearSensor = null;
+                mediaController.gravitySensor = null;
             }
-            this.proximitySensor = this.sensorManager.getDefaultSensor(8);
-            this.proximityWakeLock = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock");
+            mediaController.proximitySensor = mediaController.sensorManager.getDefaultSensor(8);
+            mediaController.proximityWakeLock = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock");
         } catch (Exception e) {
             FileLog.e(e);
         }
         try {
-            AnonymousClass4 anonymousClass4 = new AnonymousClass4();
+            AnonymousClass4 anonymousClass4 = mediaController.new AnonymousClass4();
             TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
             if (telephonyManager != null) {
                 telephonyManager.listen(anonymousClass4, 32);
@@ -1672,36 +1673,34 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCallStateChanged$0(i);
+                    MediaController.AnonymousClass4.$r8$lambda$AJJFfW87Hu4nQCgXduYc7M4rCaE(this.f$0, i);
                 }
             });
         }
 
-        public void lambda$onCallStateChanged$0(int i) {
+        public static void $r8$lambda$AJJFfW87Hu4nQCgXduYc7M4rCaE(AnonymousClass4 anonymousClass4, int i) {
             if (i != 1) {
                 if (i == 0) {
                     MediaController.this.callInProgress = false;
                     return;
-                } else {
-                    if (i == 2) {
-                        EmbedBottomSheet embedBottomSheet = EmbedBottomSheet.getInstance();
-                        if (embedBottomSheet != null) {
-                            embedBottomSheet.pause();
-                        }
-                        MediaController.this.callInProgress = true;
-                        return;
+                }
+                anonymousClass4.getClass();
+                if (i == 2) {
+                    EmbedBottomSheet embedBottomSheet = EmbedBottomSheet.getInstance();
+                    if (embedBottomSheet != null) {
+                        embedBottomSheet.pause();
                     }
+                    MediaController.this.callInProgress = true;
                     return;
                 }
+                return;
             }
             MediaController mediaController = MediaController.this;
-            if (!mediaController.isPlayingMessage(mediaController.playingMessageObject) || MediaController.this.isMessagePaused()) {
-                if (MediaController.this.recordStartRunnable != null || MediaController.this.recordingAudio != null) {
-                    MediaController.this.stopRecording(2, false, 0, false, 0L);
-                }
-            } else {
+            if (mediaController.isPlayingMessage(mediaController.playingMessageObject) && !MediaController.this.isMessagePaused()) {
                 MediaController mediaController2 = MediaController.this;
-                mediaController2.lambda$startAudioAgain$7(mediaController2.playingMessageObject);
+                mediaController2.pauseMessage(mediaController2.playingMessageObject);
+            } else if (MediaController.this.recordStartRunnable != null || MediaController.this.recordingAudio != null) {
+                MediaController.this.stopRecording(2, false, 0, false, 0L);
             }
             EmbedBottomSheet embedBottomSheet2 = EmbedBottomSheet.getInstance();
             if (embedBottomSheet2 != null) {
@@ -1711,17 +1710,18 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void lambda$new$4() {
+    public static void $r8$lambda$M2bVpiJjoeuYZh1b6JJV7avKbPg(MediaController mediaController) {
+        mediaController.getClass();
         for (int i = 0; i < 4; i++) {
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.httpFileDidLoad);
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.didReceiveNewMessages);
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.messagesDeleted);
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.removeAllMessagesFromDialog);
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.musicDidLoad);
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.mediaDidLoad);
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.musicListLoaded);
-            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.playerDidStartPlaying);
+            NotificationCenter.getInstance(i).addObserver(mediaController, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(i).addObserver(mediaController, NotificationCenter.httpFileDidLoad);
+            NotificationCenter.getInstance(i).addObserver(mediaController, NotificationCenter.didReceiveNewMessages);
+            NotificationCenter.getInstance(i).addObserver(mediaController, NotificationCenter.messagesDeleted);
+            NotificationCenter.getInstance(i).addObserver(mediaController, NotificationCenter.removeAllMessagesFromDialog);
+            NotificationCenter.getInstance(i).addObserver(mediaController, NotificationCenter.musicDidLoad);
+            NotificationCenter.getInstance(i).addObserver(mediaController, NotificationCenter.mediaDidLoad);
+            NotificationCenter.getInstance(i).addObserver(mediaController, NotificationCenter.musicListLoaded);
+            NotificationCenter.getGlobalInstance().addObserver(mediaController, NotificationCenter.playerDidStartPlaying);
         }
     }
 
@@ -1730,36 +1730,36 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onAudioFocusChange$5(i);
+                MediaController.$r8$lambda$EH5iCib7CC57QOw1UCyXqN6KezM(this.f$0, i);
             }
         });
     }
 
-    public void lambda$onAudioFocusChange$5(int i) {
+    public static void $r8$lambda$EH5iCib7CC57QOw1UCyXqN6KezM(MediaController mediaController, int i) {
         if (i == -1) {
-            if (isPlayingMessage(getPlayingMessageObject()) && !isMessagePaused()) {
-                lambda$startAudioAgain$7(this.playingMessageObject);
+            if (mediaController.isPlayingMessage(mediaController.getPlayingMessageObject()) && !mediaController.isMessagePaused()) {
+                mediaController.pauseMessage(mediaController.playingMessageObject);
             }
-            this.hasAudioFocus = 0;
-            this.audioFocus = 0;
+            mediaController.hasAudioFocus = 0;
+            mediaController.audioFocus = 0;
         } else if (i == 1) {
-            this.audioFocus = 2;
-            if (this.resumeAudioOnFocusGain) {
-                this.resumeAudioOnFocusGain = false;
-                if (isPlayingMessage(getPlayingMessageObject()) && isMessagePaused()) {
-                    playMessage(getPlayingMessageObject());
+            mediaController.audioFocus = 2;
+            if (mediaController.resumeAudioOnFocusGain) {
+                mediaController.resumeAudioOnFocusGain = false;
+                if (mediaController.isPlayingMessage(mediaController.getPlayingMessageObject()) && mediaController.isMessagePaused()) {
+                    mediaController.playMessage(mediaController.getPlayingMessageObject());
                 }
             }
         } else if (i == -3) {
-            this.audioFocus = 1;
+            mediaController.audioFocus = 1;
         } else if (i == -2) {
-            this.audioFocus = 0;
-            if (isPlayingMessage(getPlayingMessageObject()) && !isMessagePaused()) {
-                lambda$startAudioAgain$7(this.playingMessageObject);
-                this.resumeAudioOnFocusGain = true;
+            mediaController.audioFocus = 0;
+            if (mediaController.isPlayingMessage(mediaController.getPlayingMessageObject()) && !mediaController.isMessagePaused()) {
+                mediaController.pauseMessage(mediaController.playingMessageObject);
+                mediaController.resumeAudioOnFocusGain = true;
             }
         }
-        setPlayerVolume();
+        mediaController.setPlayerVolume();
     }
 
     public void setPlayerVolume() {
@@ -1833,13 +1833,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$run$1(messageObject);
+                        MediaController.AnonymousClass5.m534$r8$lambda$VQ9geI_7YXobCzzh9bpZOpfmk(this.f$0, messageObject);
                     }
                 });
             }
         }
 
-        public void lambda$run$1(MessageObject messageObject) {
+        public static void m534$r8$lambda$VQ9geI_7YXobCzzh9bpZOpfmk(AnonymousClass5 anonymousClass5, MessageObject messageObject) {
             long duration;
             long currentPosition;
             final float f;
@@ -1881,18 +1881,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            MediaController.AnonymousClass5.lambda$run$0(str, f);
+                            ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit().putFloat(str, f).commit();
                         }
                     });
                 }
-                NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(messageObject.getId()), Float.valueOf(f));
+                NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(messageObject.getId()), Float.valueOf(f));
             } catch (Exception e) {
                 FileLog.e(e);
             }
-        }
-
-        public static void lambda$run$0(String str, float f) {
-            ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit().putFloat(str, f).commit();
         }
     }
 
@@ -2022,7 +2018,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$processMediaObserver$6(arrayList);
+                        MediaController.m512$r8$lambda$3d7E2_MOCCaJHhGmiRFLS8djcc(this.f$0, arrayList);
                     }
                 });
             }
@@ -2038,9 +2034,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void lambda$processMediaObserver$6(ArrayList arrayList) {
-        NotificationCenter.getInstance(this.lastChatAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.screenshotTook, new Object[0]);
-        checkScreenshots(arrayList);
+    public static void m512$r8$lambda$3d7E2_MOCCaJHhGmiRFLS8djcc(MediaController mediaController, ArrayList arrayList) {
+        NotificationCenter.getInstance(mediaController.lastChatAccount).postNotificationName(NotificationCenter.screenshotTook, new Object[0]);
+        mediaController.checkScreenshots(arrayList);
     }
 
     private void checkScreenshots(ArrayList<Long> arrayList) {
@@ -2174,7 +2170,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 return;
             }
             long jLongValue4 = ((Long) objArr[0]).longValue();
-            ((Integer) objArr[4]).intValue();
+            ((Integer) objArr[4]).getClass();
             ArrayList arrayList6 = (ArrayList) objArr[2];
             DialogObject.isEncryptedDialog(jLongValue4);
             char c = jLongValue4 == this.playlistMergeDialogId ? (char) 1 : (char) 0;
@@ -2202,7 +2198,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 buildShuffledPlayList();
             }
             if (i5 != 0) {
-                NotificationCenter.getInstance(this.playingMessageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.moreMusicDidLoad, Integer.valueOf(i5));
+                NotificationCenter.getInstance(this.playingMessageObject.currentAccount).postNotificationName(NotificationCenter.moreMusicDidLoad, Integer.valueOf(i5));
                 return;
             }
             return;
@@ -2230,7 +2226,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (playingMessageObject != null && isPlayingMessage(playingMessageObject) && !isMessagePaused() && (playingMessageObject.isMusic() || playingMessageObject.isVoice())) {
                 this.wasPlayingAudioBeforePause = true;
             }
-            lambda$startAudioAgain$7(playingMessageObject);
+            pauseMessage(playingMessageObject);
             return;
         }
         if (i == NotificationCenter.musicListLoaded && (savedMusicList = this.currentSavedMusicList) != null && objArr[0] == savedMusicList) {
@@ -2262,7 +2258,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (size2 == 0 || (messageObject = this.playingMessageObject) == null) {
                 return;
             }
-            NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.moreMusicDidLoad, Integer.valueOf(size2));
+            NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.moreMusicDidLoad, Integer.valueOf(size2));
         }
     }
 
@@ -2275,8 +2271,17 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public boolean isRecordingOrListeningByProximity() {
-        MessageObject messageObject;
-        return this.proximityTouched && (isRecordingAudio() || ((messageObject = this.playingMessageObject) != null && (messageObject.isVoice() || this.playingMessageObject.isRoundVideo())));
+        if (!this.proximityTouched) {
+            return false;
+        }
+        if (isRecordingAudio()) {
+            return true;
+        }
+        MessageObject messageObject = this.playingMessageObject;
+        if (messageObject != null) {
+            return messageObject.isVoice() || this.playingMessageObject.isRoundVideo();
+        }
+        return false;
     }
 
     private boolean forbidRaiseToListen() {
@@ -2299,6 +2304,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+        long j;
+        char c;
+        ?? r18;
         boolean z;
         int i;
         MessageObject messageObject;
@@ -2316,18 +2324,24 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 if (this.proximityHasDifferentValues) {
                     this.proximityTouched = isNearToSensor(f2);
                 }
+                j = 0;
+                c = 2;
+                r18 = 1;
             } else {
                 Sensor sensor = sensorEvent.sensor;
                 if (sensor == this.accelerometerSensor) {
-                    long j = this.lastTimestamp;
-                    double d = j == 0 ? 0.9800000190734863d : 1.0d / (((sensorEvent.timestamp - j) / 1.0E9d) + 1.0d);
+                    long j2 = this.lastTimestamp;
+                    double d = j2 == 0 ? 0.9800000190734863d : 1.0d / (((sensorEvent.timestamp - j2) / 1.0E9d) + 1.0d);
                     this.lastTimestamp = sensorEvent.timestamp;
                     float[] fArr = this.gravity;
                     double d2 = ((double) fArr[0]) * d;
                     double d3 = 1.0d - d;
                     float[] fArr2 = sensorEvent.values;
+                    j = 0;
                     float f3 = (float) (d2 + (((double) fArr2[0]) * d3));
                     fArr[0] = f3;
+                    c = 2;
+                    r18 = 1;
                     float f4 = (float) ((((double) fArr[1]) * d) + (((double) fArr2[1]) * d3));
                     fArr[1] = f4;
                     float f5 = (float) ((d * ((double) fArr[2])) + (d3 * ((double) fArr2[2])));
@@ -2340,25 +2354,32 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     fArr4[0] = fArr2[0] - fArr[0];
                     fArr4[1] = fArr2[1] - fArr[1];
                     fArr4[2] = fArr2[2] - fArr[2];
-                } else if (sensor == this.linearSensor) {
-                    float[] fArr5 = this.linearAcceleration;
-                    float[] fArr6 = sensorEvent.values;
-                    fArr5[0] = fArr6[0];
-                    fArr5[1] = fArr6[1];
-                    fArr5[2] = fArr6[2];
-                } else if (sensor == this.gravitySensor) {
-                    float[] fArr7 = this.gravityFast;
-                    float[] fArr8 = this.gravity;
-                    float[] fArr9 = sensorEvent.values;
-                    float f6 = fArr9[0];
-                    fArr8[0] = f6;
-                    fArr7[0] = f6;
-                    float f7 = fArr9[1];
-                    fArr8[1] = f7;
-                    fArr7[1] = f7;
-                    float f8 = fArr9[2];
-                    fArr8[2] = f8;
-                    fArr7[2] = f8;
+                } else {
+                    j = 0;
+                    c = 2;
+                    r18 = 1;
+                    r18 = 1;
+                    r18 = 1;
+                    if (sensor == this.linearSensor) {
+                        float[] fArr5 = this.linearAcceleration;
+                        float[] fArr6 = sensorEvent.values;
+                        fArr5[0] = fArr6[0];
+                        fArr5[1] = fArr6[1];
+                        fArr5[2] = fArr6[2];
+                    } else if (sensor == this.gravitySensor) {
+                        float[] fArr7 = this.gravityFast;
+                        float[] fArr8 = this.gravity;
+                        float[] fArr9 = sensorEvent.values;
+                        float f6 = fArr9[0];
+                        fArr8[0] = f6;
+                        fArr7[0] = f6;
+                        float f7 = fArr9[1];
+                        fArr8[1] = f7;
+                        fArr7[1] = f7;
+                        float f8 = fArr9[2];
+                        fArr8[2] = f8;
+                        fArr7[2] = f8;
+                    }
                 }
             }
             Sensor sensor2 = sensorEvent.sensor;
@@ -2366,7 +2387,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 float[] fArr10 = this.gravity;
                 float f9 = fArr10[0];
                 float[] fArr11 = this.linearAcceleration;
-                float f10 = (f9 * fArr11[0]) + (fArr10[1] * fArr11[1]) + (fArr10[2] * fArr11[2]);
+                float f10 = (f9 * fArr11[0]) + (fArr10[r18] * fArr11[r18]) + (fArr10[c] * fArr11[c]);
                 int i2 = this.raisedToBack;
                 if (i2 != 6 && ((f10 > 0.0f && this.previousAccValue > 0.0f) || (f10 < 0.0f && this.previousAccValue < 0.0f))) {
                     if (f10 > 0.0f) {
@@ -2426,12 +2447,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
                 this.previousAccValue = f10;
                 float[] fArr12 = this.gravityFast;
-                this.accelerometerVertical = fArr12[1] > 2.5f && Math.abs(fArr12[2]) < 4.0f && Math.abs(this.gravityFast[0]) > 1.5f;
+                this.accelerometerVertical = fArr12[r18] > 2.5f && Math.abs(fArr12[c]) < 4.0f && Math.abs(this.gravityFast[0]) > 1.5f;
             }
             if (this.raisedToBack == 6 || this.accelerometerVertical) {
                 this.lastAccelerometerDetected = System.currentTimeMillis();
             }
-            boolean z2 = !this.manualRecording && this.playingMessageObject == null && SharedConfig.enabledRaiseTo(true) && ApplicationLoader.isScreenOn && !this.inputFieldHasText && this.allowStartRecord && this.raiseChat != null && !this.callInProgress;
+            boolean z2 = !this.manualRecording && this.playingMessageObject == null && SharedConfig.enabledRaiseTo(r18) && ApplicationLoader.isScreenOn && !this.inputFieldHasText && this.allowStartRecord && this.raiseChat != null && !this.callInProgress;
             boolean z3 = SharedConfig.enabledRaiseTo(false) && (messageObject = this.playingMessageObject) != null && (messageObject.isVoice() || this.playingMessageObject.isRoundVideo());
             boolean z4 = this.proximityTouched;
             boolean z5 = this.raisedToBack == 6 || this.accelerometerVertical || System.currentTimeMillis() - this.lastAccelerometerDetected < 60;
@@ -2505,14 +2526,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     this.ignoreOnPause = false;
                 }
             }
-            if (this.timeSinceRaise == 0 || this.raisedToBack != 6 || Math.abs(System.currentTimeMillis() - this.timeSinceRaise) <= 1000) {
+            if (this.timeSinceRaise == j || this.raisedToBack != 6 || Math.abs(System.currentTimeMillis() - this.timeSinceRaise) <= 1000) {
                 return;
             }
             this.raisedToBack = 0;
             this.raisedToTop = 0;
             this.raisedToTopSign = 0;
             this.countLess = 0;
-            this.timeSinceRaise = 0L;
+            this.timeSinceRaise = j;
         }
     }
 
@@ -2570,7 +2591,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (messageObject == null) {
             return;
         }
-        NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRouteChanged, Boolean.valueOf(this.useFrontSpeaker));
+        NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.audioRouteChanged, Boolean.valueOf(this.useFrontSpeaker));
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer != null) {
             videoPlayer.setStreamType(this.useFrontSpeaker ? 0 : 3);
@@ -2581,7 +2602,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 this.videoPlayer.play();
                 return;
             }
-            lambda$startAudioAgain$7(this.playingMessageObject);
+            pauseMessage(this.playingMessageObject);
             return;
         }
         VideoPlayer videoPlayer2 = this.audioPlayer;
@@ -2601,11 +2622,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$startAudioAgain$7(messageObject2);
+                        this.f$0.pauseMessage(messageObject2);
                     }
                 }, 100L);
             } else {
-                lambda$startAudioAgain$7(messageObject2);
+                pauseMessage(messageObject2);
             }
         }
     }
@@ -2657,80 +2678,83 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$startRaiseToEarSensors$8();
+                    MediaController.$r8$lambda$V3yoS8OTp9wRkiTtZzpt2Dg0JWE(this.f$0);
                 }
             });
             this.sensorsStarted = true;
         }
     }
 
-    public void lambda$startRaiseToEarSensors$8() {
-        Sensor sensor = this.gravitySensor;
+    public static void $r8$lambda$V3yoS8OTp9wRkiTtZzpt2Dg0JWE(MediaController mediaController) {
+        Sensor sensor = mediaController.gravitySensor;
         if (sensor != null) {
-            this.sensorManager.registerListener(this, sensor, 30000);
+            mediaController.sensorManager.registerListener(mediaController, sensor, 30000);
         }
-        Sensor sensor2 = this.linearSensor;
+        Sensor sensor2 = mediaController.linearSensor;
         if (sensor2 != null) {
-            this.sensorManager.registerListener(this, sensor2, 30000);
+            mediaController.sensorManager.registerListener(mediaController, sensor2, 30000);
         }
-        Sensor sensor3 = this.accelerometerSensor;
+        Sensor sensor3 = mediaController.accelerometerSensor;
         if (sensor3 != null) {
-            this.sensorManager.registerListener(this, sensor3, 30000);
+            mediaController.sensorManager.registerListener(mediaController, sensor3, 30000);
         }
-        this.sensorManager.registerListener(this, this.proximitySensor, 3);
+        mediaController.sensorManager.registerListener(mediaController, mediaController.proximitySensor, 3);
     }
 
     public void stopRaiseToEarSensors(ChatActivity chatActivity, boolean z, boolean z2) {
+        MediaController mediaController;
         if (this.ignoreOnPause) {
             this.ignoreOnPause = false;
             return;
         }
-        if (z2) {
-            if (this.recordingAudio != null && !isRecordingPaused()) {
-                toggleRecordingPause(false);
-            } else {
-                stopRecording(z ? 2 : 0, false, 0, false, 0L);
-            }
+        if (!z2) {
+            mediaController = this;
+        } else if (this.recordingAudio != null && !isRecordingPaused()) {
+            toggleRecordingPause(false);
+            mediaController = this;
+        } else {
+            mediaController = this;
+            mediaController.stopRecording(z ? 2 : 0, false, 0, false, 0L);
         }
-        if (!this.sensorsStarted || this.ignoreOnPause) {
+        if (!mediaController.sensorsStarted || mediaController.ignoreOnPause) {
             return;
         }
-        if ((this.accelerometerSensor == null && (this.gravitySensor == null || this.linearAcceleration == null)) || this.proximitySensor == null || this.raiseChat != chatActivity) {
+        if ((mediaController.accelerometerSensor == null && (mediaController.gravitySensor == null || mediaController.linearAcceleration == null)) || mediaController.proximitySensor == null || mediaController.raiseChat != chatActivity) {
             return;
         }
-        this.raiseChat = null;
-        this.sensorsStarted = false;
-        this.accelerometerVertical = false;
-        this.proximityTouched = false;
-        this.raiseToEarRecord = false;
-        this.useFrontSpeaker = false;
+        mediaController.raiseChat = null;
+        mediaController.sensorsStarted = false;
+        mediaController.accelerometerVertical = false;
+        mediaController.proximityTouched = false;
+        mediaController.raiseToEarRecord = false;
+        mediaController.useFrontSpeaker = false;
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$stopRaiseToEarSensors$9();
+                MediaController.m528$r8$lambda$mx6YVq4SoDbh5fiDCPo4uvgEss(this.f$0);
             }
         });
-        PowerManager.WakeLock wakeLock = this.proximityWakeLock;
+        PowerManager.WakeLock wakeLock = mediaController.proximityWakeLock;
         if (wakeLock == null || !wakeLock.isHeld()) {
             return;
         }
-        this.proximityWakeLock.release();
+        mediaController.proximityWakeLock.release();
     }
 
-    public void lambda$stopRaiseToEarSensors$9() {
-        Sensor sensor = this.linearSensor;
+    public static void m528$r8$lambda$mx6YVq4SoDbh5fiDCPo4uvgEss(MediaController mediaController) {
+        Sensor sensor = mediaController.linearSensor;
         if (sensor != null) {
-            this.sensorManager.unregisterListener(this, sensor);
+            mediaController.sensorManager.unregisterListener(mediaController, sensor);
         }
-        Sensor sensor2 = this.gravitySensor;
+        Sensor sensor2 = mediaController.gravitySensor;
         if (sensor2 != null) {
-            this.sensorManager.unregisterListener(this, sensor2);
+            mediaController.sensorManager.unregisterListener(mediaController, sensor2);
         }
-        Sensor sensor3 = this.accelerometerSensor;
+        Sensor sensor3 = mediaController.accelerometerSensor;
         if (sensor3 != null) {
-            this.sensorManager.unregisterListener(this, sensor3);
+            mediaController.sensorManager.unregisterListener(mediaController, sensor3);
         }
-        this.sensorManager.unregisterListener(this, this.proximitySensor);
+        mediaController.sensorManager.unregisterListener(mediaController, mediaController.proximitySensor);
     }
 
     public void cleanupPlayer(boolean z, boolean z2) {
@@ -2761,7 +2785,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$cleanupPlayer$10(videoPlayer, valueAnimator2);
+                        videoPlayer.setVolume((this.f$0.audioFocus != 1 ? 1.0f : 0.2f) * ((Float) valueAnimator2.getAnimatedValue()).floatValue());
                     }
                 });
                 valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -2798,14 +2822,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     PhotoViewer.getInstance().injectVideoPlayer(this.videoPlayer);
                     MessageObject messageObject2 = this.playingMessageObject;
                     this.goingToShowMessageObject = messageObject2;
-                    NotificationCenter.getInstance(messageObject2.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingGoingToStop, this.playingMessageObject, Boolean.TRUE);
+                    NotificationCenter.getInstance(messageObject2.currentAccount).postNotificationName(NotificationCenter.messagePlayingGoingToStop, this.playingMessageObject, Boolean.TRUE);
                 } else {
                     long currentPosition = videoPlayer2.getCurrentPosition();
                     MessageObject messageObject3 = this.playingMessageObject;
                     if (messageObject3 != null && messageObject3.isVideo() && currentPosition > 0) {
                         MessageObject messageObject4 = this.playingMessageObject;
                         messageObject4.audioProgressMs = (int) currentPosition;
-                        NotificationCenter.getInstance(messageObject4.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingGoingToStop, this.playingMessageObject, Boolean.FALSE);
+                        NotificationCenter.getInstance(messageObject4.currentAccount).postNotificationName(NotificationCenter.messagePlayingGoingToStop, this.playingMessageObject, Boolean.FALSE);
                     }
                     this.videoPlayer.releasePlayer(true);
                     this.videoPlayer = null;
@@ -2832,7 +2856,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             MessageObject messageObject6 = this.playingMessageObject;
             if (z) {
                 messageObject6.resetPlayingProgress();
-                NotificationCenter.getInstance(messageObject6.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(this.playingMessageObject.getId()), 0);
+                NotificationCenter.getInstance(messageObject6.currentAccount).postNotificationName(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(this.playingMessageObject.getId()), 0);
             }
             this.playingMessageObject = null;
             this.downloadingCurrentMessage = false;
@@ -2867,7 +2891,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     if ((messageObject6.isVoice() || messageObject6.isRoundVideo()) && messageObject6.getId() != 0) {
                         startRecordingIfFromSpeaker();
                     }
-                    NotificationCenter.getInstance(messageObject6.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingDidReset, Integer.valueOf(messageObject6.getId()), Boolean.valueOf(z2));
+                    NotificationCenter.getInstance(messageObject6.currentAccount).postNotificationName(NotificationCenter.messagePlayingDidReset, Integer.valueOf(messageObject6.getId()), Boolean.valueOf(z2));
                     this.pipSwitchingState = 0;
                     PipRoundVideoView pipRoundVideoView2 = this.pipRoundVideoView;
                     if (pipRoundVideoView2 != null) {
@@ -2895,10 +2919,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void lambda$cleanupPlayer$10(VideoPlayer videoPlayer, ValueAnimator valueAnimator) {
-        videoPlayer.setVolume((this.audioFocus != 1 ? 1.0f : 0.2f) * ((Float) valueAnimator.getAnimatedValue()).floatValue());
-    }
-
     public boolean isGoingToShowMessageObject(MessageObject messageObject) {
         return this.goingToShowMessageObject == messageObject;
     }
@@ -2910,7 +2930,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private boolean isSamePlayingMessage(MessageObject messageObject) {
         MessageObject messageObject2 = this.playingMessageObject;
         if (messageObject2 != null && messageObject2.getDialogId() == messageObject.getDialogId() && this.playingMessageObject.getId() == messageObject.getId()) {
-            return ((this.playingMessageObject.eventId > 0L ? 1 : (this.playingMessageObject.eventId == 0L ? 0 : -1)) == 0) == ((messageObject.eventId > 0L ? 1 : (messageObject.eventId == 0L ? 0 : -1)) == 0);
+            if ((this.playingMessageObject.eventId == 0) == (messageObject.eventId == 0)) {
+                return true;
+            }
         }
         return false;
     }
@@ -2942,7 +2964,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         }
                     }
                 }
-                NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingDidSeek, Integer.valueOf(messageObject2.getId()), Float.valueOf(f));
+                NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingDidSeek, Integer.valueOf(messageObject2.getId()), Float.valueOf(f));
                 return true;
             } catch (Exception e) {
                 FileLog.e(e);
@@ -2980,7 +3002,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                 }
                 if (duration != 0) {
-                    NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingDidSeek, Integer.valueOf(messageObject2.getId()), Float.valueOf(Utilities.clamp01(j / duration)));
+                    NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingDidSeek, Integer.valueOf(messageObject2.getId()), Float.valueOf(Utilities.clamp01(j / duration)));
                 }
                 return true;
             } catch (Exception e) {
@@ -3132,7 +3154,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             ConnectionsManager.getInstance(i2).sendRequest(tLObject, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$loadMoreMusic$12(i, i2, tLObject2, tL_error);
+                    MediaController.m518$r8$lambda$MqBiUe76wGE8LE2cGPEXBxz7Q(this.f$0, i, i2, tLObject2, tL_error);
                 }
             });
             return;
@@ -3150,21 +3172,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void lambda$loadMoreMusic$12(final int i, final int i2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m518$r8$lambda$MqBiUe76wGE8LE2cGPEXBxz7Q(final MediaController mediaController, final int i, final int i2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        mediaController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadMoreMusic$11(i, tL_error, tLObject, i2);
+                MediaController.m526$r8$lambda$l4LxanS4uWapW068F9t3B6shT0(this.f$0, i, tL_error, tLObject, i2);
             }
         });
     }
 
-    public void lambda$loadMoreMusic$11(int i, TLRPC.TL_error tL_error, TLObject tLObject, int i2) {
+    public static void m526$r8$lambda$l4LxanS4uWapW068F9t3B6shT0(MediaController mediaController, int i, TLRPC.TL_error tL_error, TLObject tLObject, int i2) {
         PlaylistGlobalSearchParams playlistGlobalSearchParams;
-        if (this.playlistClassGuid != i || (playlistGlobalSearchParams = this.playlistGlobalSearchParams) == null || this.playingMessageObject == null || tL_error != null) {
+        if (mediaController.playlistClassGuid != i || (playlistGlobalSearchParams = mediaController.playlistGlobalSearchParams) == null || mediaController.playingMessageObject == null || tL_error != null) {
             return;
         }
-        this.loadingPlaylist = false;
+        mediaController.loadingPlaylist = false;
         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
         playlistGlobalSearchParams.nextSearchRate = messages_messages.next_rate;
         MessagesStorage.getInstance(i2).putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
@@ -3174,20 +3197,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         int i3 = 0;
         for (int i4 = 0; i4 < size; i4++) {
             MessageObject messageObject = new MessageObject(i2, messages_messages.messages.get(i4), false, true);
-            if (!messageObject.isVoiceOnce() && !this.playlistMap.containsKey(Integer.valueOf(messageObject.getId()))) {
-                this.playlist.add(0, messageObject);
-                this.playlistMap.put(Integer.valueOf(messageObject.getId()), messageObject);
+            if (!messageObject.isVoiceOnce() && !mediaController.playlistMap.containsKey(Integer.valueOf(messageObject.getId()))) {
+                mediaController.playlist.add(0, messageObject);
+                mediaController.playlistMap.put(Integer.valueOf(messageObject.getId()), messageObject);
                 i3++;
             }
         }
-        sortPlaylist();
-        this.loadingPlaylist = false;
-        this.playlistGlobalSearchParams.endReached = this.playlist.size() == this.playlistGlobalSearchParams.totalCount;
+        mediaController.sortPlaylist();
+        mediaController.loadingPlaylist = false;
+        mediaController.playlistGlobalSearchParams.endReached = mediaController.playlist.size() == mediaController.playlistGlobalSearchParams.totalCount;
         if (SharedConfig.shuffleMusic) {
-            buildShuffledPlayList();
+            mediaController.buildShuffledPlayList();
         }
         if (i3 != 0) {
-            NotificationCenter.getInstance(this.playingMessageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.moreMusicDidLoad, Integer.valueOf(i3));
+            NotificationCenter.getInstance(mediaController.playingMessageObject.currentAccount).postNotificationName(NotificationCenter.moreMusicDidLoad, Integer.valueOf(i3));
         }
     }
 
@@ -3258,12 +3281,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Collections.sort(this.playlist, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return MediaController.lambda$sortPlaylist$13((MessageObject) obj, (MessageObject) obj2);
+                return MediaController.$r8$lambda$Z0Erp2L8slKvvC3qPEU0fm69vKk((MessageObject) obj, (MessageObject) obj2);
             }
         });
     }
 
-    public static int lambda$sortPlaylist$13(MessageObject messageObject, MessageObject messageObject2) {
+    public static int $r8$lambda$Z0Erp2L8slKvvC3qPEU0fm69vKk(MessageObject messageObject, MessageObject messageObject2) {
         int iCompare;
         int id = messageObject.getId();
         int id2 = messageObject2.getId();
@@ -3286,10 +3309,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public boolean hasNoNextVoiceOrRoundVideoMessage() {
         ArrayList<MessageObject> arrayList;
         MessageObject messageObject = this.playingMessageObject;
-        if (messageObject != null) {
-            return !(messageObject.isVoice() || this.playingMessageObject.isRoundVideo()) || (arrayList = this.voiceMessagesPlaylist) == null || arrayList.size() <= 1 || !this.voiceMessagesPlaylist.contains(this.playingMessageObject) || this.voiceMessagesPlaylist.indexOf(this.playingMessageObject) >= this.voiceMessagesPlaylist.size() - 1;
-        }
-        return true;
+        return messageObject == null || !(messageObject.isVoice() || this.playingMessageObject.isRoundVideo()) || (arrayList = this.voiceMessagesPlaylist) == null || arrayList.size() <= 1 || !this.voiceMessagesPlaylist.contains(this.playingMessageObject) || this.voiceMessagesPlaylist.indexOf(this.playingMessageObject) >= this.voiceMessagesPlaylist.size() - 1;
     }
 
     public void playNextMessage() {
@@ -3373,8 +3393,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             MessageObject messageObject2 = this.playingMessageObject;
             messageObject2.audioProgress = 0.0f;
             messageObject2.audioProgressSec = 0;
-            NotificationCenter.getInstance(messageObject2.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(this.playingMessageObject.getId()), 0);
-            NotificationCenter.getInstance(this.playingMessageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingPlayStateChanged, Integer.valueOf(this.playingMessageObject.getId()));
+            NotificationCenter.getInstance(messageObject2.currentAccount).postNotificationName(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(this.playingMessageObject.getId()), 0);
+            NotificationCenter.getInstance(this.playingMessageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingPlayStateChanged, Integer.valueOf(this.playingMessageObject.getId()));
             return;
         }
         int i3 = this.currentPlaylistNum;
@@ -3424,39 +3444,37 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return false;
         }
         this.currentPlaylistNum = this.currentPlaylistNum >= arrayList.size() ? 0 : arrayList.size() - 1;
-        if (!z) {
-            return true;
-        }
-        while (true) {
-            int i4 = this.currentPlaylistNum;
-            if (i4 >= 0 && i4 < arrayList.size()) {
-                int i5 = this.currentPlaylistNum;
-                if (i <= 0) {
-                    if (i5 < i3) {
-                        break;
+        if (z) {
+            while (true) {
+                int i4 = this.currentPlaylistNum;
+                if (i4 >= 0 && i4 < arrayList.size()) {
+                    int i5 = this.currentPlaylistNum;
+                    if (i <= 0) {
+                        if (i5 < i3) {
+                            break;
+                        }
+                        messageObject = arrayList.get(this.currentPlaylistNum);
+                        if (messageObject == null) {
+                        }
+                        this.currentPlaylistNum += i;
+                    } else {
+                        if (i5 > i3) {
+                            break;
+                        }
+                        messageObject = arrayList.get(this.currentPlaylistNum);
+                        if (messageObject == null && messageObject.mediaExists) {
+                            break;
+                        }
+                        this.currentPlaylistNum += i;
                     }
-                    messageObject = arrayList.get(this.currentPlaylistNum);
-                    if (messageObject == null) {
-                    }
-                    this.currentPlaylistNum += i;
                 } else {
-                    if (i5 > i3) {
-                        break;
-                    }
-                    messageObject = arrayList.get(this.currentPlaylistNum);
-                    if (messageObject == null && messageObject.mediaExists) {
-                        break;
-                    }
-                    this.currentPlaylistNum += i;
+                    break;
                 }
-            } else {
-                break;
+            }
+            if (this.currentPlaylistNum >= arrayList.size() || this.currentPlaylistNum < 0) {
+                this.currentPlaylistNum = this.currentPlaylistNum < arrayList.size() ? arrayList.size() - 1 : 0;
             }
         }
-        if (this.currentPlaylistNum < arrayList.size() && this.currentPlaylistNum >= 0) {
-            return true;
-        }
-        this.currentPlaylistNum = this.currentPlaylistNum < arrayList.size() ? arrayList.size() - 1 : 0;
         return true;
     }
 
@@ -3602,7 +3620,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 pipRoundVideoView2.show(this.baseActivity, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setCurrentVideoVisible$14();
+                        this.f$0.cleanupPlayer(true, true);
                     }
                 });
             } catch (Exception unused) {
@@ -3613,10 +3631,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (pipRoundVideoView3 != null) {
             this.videoPlayer.setTextureView(pipRoundVideoView3.getTextureView());
         }
-    }
-
-    public void lambda$setCurrentVideoVisible$14() {
-        cleanupPlayer(true, true);
     }
 
     public void setTextureView(TextureView textureView, AspectRatioFrameLayout aspectRatioFrameLayout, FrameLayout frameLayout, boolean z) {
@@ -3646,7 +3660,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 pipRoundVideoView.show(this.baseActivity, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setTextureView$15();
+                        this.f$0.cleanupPlayer(true, true);
                     }
                 });
             } catch (Exception unused) {
@@ -3665,10 +3679,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return;
         }
         aspectRatioFrameLayout.setAspectRatio(this.currentAspectRatioFrameLayoutRatio, this.currentAspectRatioFrameLayoutRotation);
-    }
-
-    public void lambda$setTextureView$15() {
-        cleanupPlayer(true, true);
     }
 
     public void setBaseActivity(Activity activity, boolean z) {
@@ -3696,7 +3706,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setPlaybackSpeed$16(messageObject, f2);
+                        MediaController.$r8$lambda$zczXvu9JUBk6u4gSaWuhyECCgKk(this.f$0, messageObject, f2);
                     }
                 }, 50L);
             }
@@ -3720,21 +3730,21 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
         MessagesController.getGlobalMainSettings().edit().putFloat(z ? "musicPlaybackSpeed" : "playbackSpeed", f).putFloat(z ? "fastMusicPlaybackSpeed" : "fastPlaybackSpeed", z ? this.fastMusicPlaybackSpeed : this.fastPlaybackSpeed).commit();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingSpeedChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.messagePlayingSpeedChanged, new Object[0]);
         if (this.ignorePlayerUpdate) {
             return;
         }
         CastSync.setSpeed(f);
     }
 
-    public void lambda$setPlaybackSpeed$16(MessageObject messageObject, float f) {
-        if (this.audioPlayer == null || this.playingMessageObject == null || this.isPaused) {
+    public static void $r8$lambda$zczXvu9JUBk6u4gSaWuhyECCgKk(MediaController mediaController, MessageObject messageObject, float f) {
+        if (mediaController.audioPlayer == null || mediaController.playingMessageObject == null || mediaController.isPaused) {
             return;
         }
-        if (isSamePlayingMessage(messageObject)) {
-            seekToProgress(this.playingMessageObject, f);
+        if (mediaController.isSamePlayingMessage(messageObject)) {
+            mediaController.seekToProgress(mediaController.playingMessageObject, f);
         }
-        this.audioPlayer.play();
+        mediaController.audioPlayer.play();
     }
 
     public float getPlaybackSpeed(boolean z) {
@@ -3832,7 +3842,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             startRaiseToEarSensors(this.raiseChat);
         }
         startProgressTimer(this.playingMessageObject);
-        NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingDidStart, messageObject, messageObject2);
+        NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingDidStart, messageObject, messageObject2);
     }
 
     class AnonymousClass7 implements VideoPlayer.VideoPlayerDelegate {
@@ -3933,7 +3943,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             MediaController.this.pipRoundVideoView.show(MediaController.this.baseActivity, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    this.f$0.lambda$onSurfaceDestroyed$0();
+                                    MediaController.this.cleanupPlayer(true, true);
                                 }
                             });
                         } catch (Exception unused) {
@@ -3956,10 +3966,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             PhotoViewer.getInstance().injectVideoPlayerSurface(surfaceTexture);
             return true;
         }
-
-        public void lambda$onSurfaceDestroyed$0() {
-            MediaController.this.cleanupPlayer(true, true);
-        }
     }
 
     public void playEmojiSound(final AccountInstance accountInstance, String str, final MessagesController.EmojiSound emojiSound, final boolean z) {
@@ -3969,12 +3975,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$playEmojiSound$19(emojiSound, accountInstance, z);
+                MediaController.m511$r8$lambda$1bH_rYWkt8O_x70byciWe3w5KY(this.f$0, emojiSound, accountInstance, z);
             }
         });
     }
 
-    public void lambda$playEmojiSound$19(MessagesController.EmojiSound emojiSound, final AccountInstance accountInstance, boolean z) {
+    public static void m511$r8$lambda$1bH_rYWkt8O_x70byciWe3w5KY(final MediaController mediaController, MessagesController.EmojiSound emojiSound, final AccountInstance accountInstance, boolean z) {
+        mediaController.getClass();
         final TLRPC.TL_document tL_document = new TLRPC.TL_document();
         tL_document.access_hash = emojiSound.accessHash;
         tL_document.id = emojiSound.id;
@@ -3986,7 +3993,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.lambda$playEmojiSound$18(accountInstance, tL_document);
+                    accountInstance.getFileLoader().loadFile(tL_document, null, 1, 1);
                 }
             });
         } else {
@@ -3996,32 +4003,33 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$playEmojiSound$17(pathToAttach);
+                    MediaController.$r8$lambda$763YunT1UFzzy39lJS99U9GzKsc(this.f$0, pathToAttach);
                 }
             });
         }
     }
 
-    public void lambda$playEmojiSound$17(File file) {
+    public static void $r8$lambda$763YunT1UFzzy39lJS99U9GzKsc(MediaController mediaController, File file) {
+        mediaController.getClass();
         try {
-            int i = this.emojiSoundPlayerNum + 1;
-            this.emojiSoundPlayerNum = i;
-            VideoPlayer videoPlayer = this.emojiSoundPlayer;
+            int i = mediaController.emojiSoundPlayerNum + 1;
+            mediaController.emojiSoundPlayerNum = i;
+            VideoPlayer videoPlayer = mediaController.emojiSoundPlayer;
             if (videoPlayer != null) {
                 videoPlayer.releasePlayer(true);
             }
             VideoPlayer videoPlayer2 = new VideoPlayer(false, false);
-            this.emojiSoundPlayer = videoPlayer2;
-            videoPlayer2.setDelegate(new AnonymousClass8(i));
-            this.emojiSoundPlayer.preparePlayer(Uri.fromFile(file), "other");
-            this.emojiSoundPlayer.setStreamType(3);
-            this.emojiSoundPlayer.play();
+            mediaController.emojiSoundPlayer = videoPlayer2;
+            videoPlayer2.setDelegate(mediaController.new AnonymousClass8(i));
+            mediaController.emojiSoundPlayer.preparePlayer(Uri.fromFile(file), "other");
+            mediaController.emojiSoundPlayer.setStreamType(3);
+            mediaController.emojiSoundPlayer.play();
         } catch (Exception e) {
             FileLog.e(e);
-            VideoPlayer videoPlayer3 = this.emojiSoundPlayer;
+            VideoPlayer videoPlayer3 = mediaController.emojiSoundPlayer;
             if (videoPlayer3 != null) {
                 videoPlayer3.releasePlayer(true);
-                this.emojiSoundPlayer = null;
+                mediaController.emojiSoundPlayer = null;
             }
         }
     }
@@ -4076,12 +4084,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onStateChanged$0(i2, i);
+                    MediaController.AnonymousClass8.$r8$lambda$Z211aiPP5kOxZvy9oaRDFqSUxVE(this.f$0, i2, i);
                 }
             });
         }
 
-        public void lambda$onStateChanged$0(int i, int i2) {
+        public static void $r8$lambda$Z211aiPP5kOxZvy9oaRDFqSUxVE(AnonymousClass8 anonymousClass8, int i, int i2) {
             if (i == MediaController.this.emojiSoundPlayerNum && i2 == 4 && MediaController.this.emojiSoundPlayer != null) {
                 try {
                     MediaController.this.emojiSoundPlayer.releasePlayer(true);
@@ -4091,10 +4099,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
             }
         }
-    }
-
-    public static void lambda$playEmojiSound$18(AccountInstance accountInstance, TLRPC.Document document) {
-        accountInstance.getFileLoader().loadFile(document, null, 1, 1);
     }
 
     public void checkVolumeBarUI() {
@@ -4158,12 +4162,23 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public boolean playMessage(final MessageObject messageObject, boolean z) {
+        long j;
+        long j2;
         boolean z2;
+        float f;
         File file;
         boolean zExists;
-        ?? r9;
+        String str;
+        String str2;
+        int[] iArr;
+        String str3;
+        PipRoundVideoView pipRoundVideoView;
+        byte[] bArr;
+        int i;
+        float f2;
+        char c;
         PowerManager.WakeLock wakeLock;
-        ?? r1;
+        ?? r2;
         MusicListenReporter musicListenReporter;
         if (messageObject == null) {
             return false;
@@ -4186,13 +4201,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         MessageObject messageObject2 = this.playingMessageObject;
         if (messageObject2 != null) {
             boolean zSaveMusicPlaylistStateIfNeeded = ((messageObject2.isMusic() && messageObject.isVoice()) || messageObject.isRoundVideo() || messageObject.isVideo()) ? saveMusicPlaylistStateIfNeeded() : false;
-            if (!this.playMusicAgain) {
+            if (this.playMusicAgain) {
+                j = 1000;
+                j2 = -9223372036854775807L;
+            } else {
                 this.playingMessageObject.resetPlayingProgress();
-                NotificationCenter.getInstance(this.playingMessageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(this.playingMessageObject.getId()), 0);
+                j = 1000;
+                j2 = -9223372036854775807L;
+                NotificationCenter.getInstance(this.playingMessageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(this.playingMessageObject.getId()), 0);
             }
             z2 = zSaveMusicPlaylistStateIfNeeded;
             z3 = false;
         } else {
+            j = 1000;
+            j2 = -9223372036854775807L;
             z2 = false;
         }
         cleanupPlayer(z3, false);
@@ -4200,11 +4222,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.lastSaveTime = 0L;
         this.playMusicAgain = false;
         this.seekToProgressPending = 0.0f;
-        String str = messageObject.messageOwner.attachPath;
-        if (str == null || str.length() <= 0) {
+        String str4 = messageObject.messageOwner.attachPath;
+        if (str4 == null || str4.length() <= 0) {
+            f = 0.0f;
             file = null;
             zExists = false;
         } else {
+            f = 0.0f;
             File file2 = new File(messageObject.messageOwner.attachPath);
             boolean zExists2 = file2.exists();
             if (zExists2) {
@@ -4233,7 +4257,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             } else {
                 ApplicationLoader.applicationContext.stopService(new Intent(ApplicationLoader.applicationContext, (Class<?>) MusicPlayerService.class));
             }
-            NotificationCenter.getInstance(this.playingMessageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingPlayStateChanged, Integer.valueOf(this.playingMessageObject.getId()));
+            NotificationCenter.getInstance(this.playingMessageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingPlayStateChanged, Integer.valueOf(this.playingMessageObject.getId()));
             return true;
         }
         boolean z5 = zExists;
@@ -4251,120 +4275,240 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         boolean zIsVideo = messageObject.isVideo();
         boolean z6 = z2;
         if (messageObject.isRoundVideo() || zIsVideo) {
-            final File file3 = pathToMessage;
             FileLoader.getInstance(messageObject.currentAccount).setLoadingVideoForPlayer(messageObject.getDocument(), true);
             this.playerWasReady = false;
-            boolean z7 = !zIsVideo || (messageObject.messageOwner.peer_id.channel_id == 0 && messageObject.audioProgress <= 0.1f);
-            int[] iArr = (!zIsVideo || messageObject.getDuration() > 30.0d) ? null : new int[]{1};
+            if (zIsVideo) {
+                str = "&id=";
+                str2 = "?account=";
+                boolean z7 = messageObject.messageOwner.peer_id.channel_id == 0 && messageObject.audioProgress <= 0.1f;
+                if (zIsVideo || messageObject.getDuration() > 30.0d) {
+                    iArr = null;
+                } else {
+                    iArr = new int[]{1};
+                }
+                if (!z6) {
+                    clearPlaylist();
+                }
+                VideoPlayer videoPlayer = new VideoPlayer();
+                this.videoPlayer = videoPlayer;
+                str3 = str2;
+                videoPlayer.setLooping(z);
+                int i2 = this.playerNum + 1;
+                this.playerNum = i2;
+                this.videoPlayer.setDelegate(new AnonymousClass9(i2, messageObject, iArr, z7));
+                this.currentAspectRatioFrameLayoutReady = false;
+                if (this.pipRoundVideoView == null || !MessagesController.getInstance(messageObject.currentAccount).isDialogVisible(messageObject.getDialogId(), messageObject.scheduled)) {
+                    if (this.pipRoundVideoView == null) {
+                        try {
+                            PipRoundVideoView pipRoundVideoView2 = new PipRoundVideoView();
+                            this.pipRoundVideoView = pipRoundVideoView2;
+                            pipRoundVideoView2.show(this.baseActivity, new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.cleanupPlayer(true, true);
+                                }
+                            });
+                        } catch (Exception unused) {
+                            this.pipRoundVideoView = null;
+                        }
+                    }
+                    pipRoundVideoView = this.pipRoundVideoView;
+                    if (pipRoundVideoView != null) {
+                        this.videoPlayer.setTextureView(pipRoundVideoView.getTextureView());
+                    }
+                } else {
+                    TextureView textureView = this.currentTextureView;
+                    if (textureView != null) {
+                        this.videoPlayer.setTextureView(textureView);
+                    }
+                }
+                if (z5) {
+                    if (!messageObject.mediaExists && pathToMessage != file) {
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                MessageObject messageObject3 = messageObject;
+                                NotificationCenter.getInstance(messageObject3.currentAccount).postNotificationName(NotificationCenter.fileLoaded, FileLoader.getAttachFileName(messageObject3.getDocument()), pathToMessage);
+                            }
+                        });
+                    }
+                    this.videoPlayer.preparePlayer(Uri.fromFile(pathToMessage), "other");
+                } else {
+                    try {
+                        int fileReference = FileLoader.getInstance(messageObject.currentAccount).getFileReference(messageObject);
+                        TLRPC.Document document = messageObject.getDocument();
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(str3);
+                        sb.append(messageObject.currentAccount);
+                        sb.append(str);
+                        sb.append(document.id);
+                        sb.append("&hash=");
+                        sb.append(document.access_hash);
+                        sb.append("&dc=");
+                        sb.append(document.dc_id);
+                        sb.append("&size=");
+                        sb.append(document.size);
+                        sb.append("&mime=");
+                        sb.append(URLEncoder.encode(document.mime_type, "UTF-8"));
+                        sb.append("&rid=");
+                        sb.append(fileReference);
+                        sb.append("&name=");
+                        sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
+                        sb.append("&reference=");
+                        bArr = document.file_reference;
+                        if (bArr != null) {
+                            bArr = new byte[0];
+                        }
+                        sb.append(Utilities.bytesToHex(bArr));
+                        this.videoPlayer.preparePlayer(Uri.parse("tg://" + messageObject.getFileName() + sb.toString()), "other");
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                }
+                if (messageObject.isRoundVideo()) {
+                    VideoPlayer videoPlayer2 = this.videoPlayer;
+                    if (this.useFrontSpeaker) {
+                        i = 0;
+                    } else {
+                        i = 3;
+                    }
+                    videoPlayer2.setStreamType(i);
+                    if (Math.abs(this.currentPlaybackSpeed - 1.0f) > 0.001f) {
+                        this.videoPlayer.setPlaybackSpeed(Math.round(this.currentPlaybackSpeed * 10.0f) / 10.0f);
+                    }
+                    f2 = messageObject.forceSeekTo;
+                    if (f2 >= f) {
+                        this.seekToProgressPending = f2;
+                        messageObject.audioProgress = f2;
+                        messageObject.forceSeekTo = -1.0f;
+                    }
+                } else {
+                    this.videoPlayer.setStreamType(3);
+                }
+            } else {
+                str = "&id=";
+                str2 = "?account=";
+            }
+            if (zIsVideo) {
+                iArr = null;
+            } else {
+                iArr = null;
+            }
             if (!z6) {
                 clearPlaylist();
             }
-            VideoPlayer videoPlayer = new VideoPlayer();
-            this.videoPlayer = videoPlayer;
-            videoPlayer.setLooping(z);
-            int i = this.playerNum + 1;
-            this.playerNum = i;
-            File file4 = file;
-            r9 = 0;
-            r9 = 0;
-            r9 = 0;
-            this.videoPlayer.setDelegate(new AnonymousClass9(i, messageObject, iArr, z7));
+            VideoPlayer videoPlayer3 = new VideoPlayer();
+            this.videoPlayer = videoPlayer3;
+            str3 = str2;
+            videoPlayer3.setLooping(z);
+            int i3 = this.playerNum + 1;
+            this.playerNum = i3;
+            this.videoPlayer.setDelegate(new AnonymousClass9(i3, messageObject, iArr, z7));
             this.currentAspectRatioFrameLayoutReady = false;
-            if (this.pipRoundVideoView != null || !MessagesController.getInstance(messageObject.currentAccount).isDialogVisible(messageObject.getDialogId(), messageObject.scheduled)) {
+            if (this.pipRoundVideoView == null) {
                 if (this.pipRoundVideoView == null) {
-                    try {
-                        PipRoundVideoView pipRoundVideoView = new PipRoundVideoView();
-                        this.pipRoundVideoView = pipRoundVideoView;
-                        pipRoundVideoView.show(this.baseActivity, new Runnable() {
-                            @Override
-                            public final void run() {
-                                this.f$0.lambda$playMessage$20();
-                            }
-                        });
-                    } catch (Exception unused) {
-                        this.pipRoundVideoView = null;
-                    }
-                }
-                PipRoundVideoView pipRoundVideoView2 = this.pipRoundVideoView;
-                if (pipRoundVideoView2 != null) {
-                    this.videoPlayer.setTextureView(pipRoundVideoView2.getTextureView());
-                }
-            } else {
-                TextureView textureView = this.currentTextureView;
-                if (textureView != null) {
-                    this.videoPlayer.setTextureView(textureView);
-                }
-            }
-            if (z5) {
-                if (!messageObject.mediaExists && file3 != file4) {
-                    AndroidUtilities.runOnUIThread(new Runnable() {
+                    PipRoundVideoView pipRoundVideoView3 = new PipRoundVideoView();
+                    this.pipRoundVideoView = pipRoundVideoView3;
+                    pipRoundVideoView3.show(this.baseActivity, new Runnable() {
                         @Override
                         public final void run() {
-                            MediaController.lambda$playMessage$21(messageObject, file3);
+                            this.f$0.cleanupPlayer(true, true);
                         }
                     });
                 }
-                this.videoPlayer.preparePlayer(Uri.fromFile(file3), "other");
+                pipRoundVideoView = this.pipRoundVideoView;
+                if (pipRoundVideoView != null) {
+                    this.videoPlayer.setTextureView(pipRoundVideoView.getTextureView());
+                }
             } else {
-                try {
-                    int fileReference = FileLoader.getInstance(messageObject.currentAccount).getFileReference(messageObject);
-                    TLRPC.Document document = messageObject.getDocument();
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("?account=");
-                    sb.append(messageObject.currentAccount);
-                    sb.append("&id=");
-                    sb.append(document.id);
-                    sb.append("&hash=");
-                    sb.append(document.access_hash);
-                    sb.append("&dc=");
-                    sb.append(document.dc_id);
-                    sb.append("&size=");
-                    sb.append(document.size);
-                    sb.append("&mime=");
-                    sb.append(URLEncoder.encode(document.mime_type, "UTF-8"));
-                    sb.append("&rid=");
-                    sb.append(fileReference);
-                    sb.append("&name=");
-                    sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
-                    sb.append("&reference=");
-                    byte[] bArr = document.file_reference;
-                    if (bArr == null) {
-                        bArr = new byte[0];
-                    }
-                    sb.append(Utilities.bytesToHex(bArr));
-                    this.videoPlayer.preparePlayer(Uri.parse("tg://" + messageObject.getFileName() + sb.toString()), "other");
-                } catch (Exception e) {
-                    FileLog.e(e);
+                if (this.pipRoundVideoView == null) {
+                    PipRoundVideoView pipRoundVideoView4 = new PipRoundVideoView();
+                    this.pipRoundVideoView = pipRoundVideoView4;
+                    pipRoundVideoView4.show(this.baseActivity, new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.cleanupPlayer(true, true);
+                        }
+                    });
+                }
+                pipRoundVideoView = this.pipRoundVideoView;
+                if (pipRoundVideoView != null) {
+                    this.videoPlayer.setTextureView(pipRoundVideoView.getTextureView());
                 }
             }
+            if (z5) {
+                if (!messageObject.mediaExists) {
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            MessageObject messageObject3 = messageObject;
+                            NotificationCenter.getInstance(messageObject3.currentAccount).postNotificationName(NotificationCenter.fileLoaded, FileLoader.getAttachFileName(messageObject3.getDocument()), pathToMessage);
+                        }
+                    });
+                }
+                this.videoPlayer.preparePlayer(Uri.fromFile(pathToMessage), "other");
+            } else {
+                int fileReference2 = FileLoader.getInstance(messageObject.currentAccount).getFileReference(messageObject);
+                TLRPC.Document document2 = messageObject.getDocument();
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append(str3);
+                sb2.append(messageObject.currentAccount);
+                sb2.append(str);
+                sb2.append(document2.id);
+                sb2.append("&hash=");
+                sb2.append(document2.access_hash);
+                sb2.append("&dc=");
+                sb2.append(document2.dc_id);
+                sb2.append("&size=");
+                sb2.append(document2.size);
+                sb2.append("&mime=");
+                sb2.append(URLEncoder.encode(document2.mime_type, "UTF-8"));
+                sb2.append("&rid=");
+                sb2.append(fileReference2);
+                sb2.append("&name=");
+                sb2.append(URLEncoder.encode(FileLoader.getDocumentFileName(document2), "UTF-8"));
+                sb2.append("&reference=");
+                bArr = document2.file_reference;
+                if (bArr != null) {
+                    bArr = new byte[0];
+                }
+                sb2.append(Utilities.bytesToHex(bArr));
+                this.videoPlayer.preparePlayer(Uri.parse("tg://" + messageObject.getFileName() + sb2.toString()), "other");
+            }
             if (messageObject.isRoundVideo()) {
-                this.videoPlayer.setStreamType(this.useFrontSpeaker ? 0 : 3);
+                VideoPlayer videoPlayer4 = this.videoPlayer;
+                if (this.useFrontSpeaker) {
+                    i = 0;
+                } else {
+                    i = 3;
+                }
+                videoPlayer4.setStreamType(i);
                 if (Math.abs(this.currentPlaybackSpeed - 1.0f) > 0.001f) {
                     this.videoPlayer.setPlaybackSpeed(Math.round(this.currentPlaybackSpeed * 10.0f) / 10.0f);
                 }
-                float f = messageObject.forceSeekTo;
-                if (f >= 0.0f) {
-                    this.seekToProgressPending = f;
-                    messageObject.audioProgress = f;
+                f2 = messageObject.forceSeekTo;
+                if (f2 >= f) {
+                    this.seekToProgressPending = f2;
+                    messageObject.audioProgress = f2;
                     messageObject.forceSeekTo = -1.0f;
                 }
             } else {
                 this.videoPlayer.setStreamType(3);
             }
         } else {
-            PipRoundVideoView pipRoundVideoView3 = this.pipRoundVideoView;
-            if (pipRoundVideoView3 != null) {
-                pipRoundVideoView3.close(true);
+            PipRoundVideoView pipRoundVideoView5 = this.pipRoundVideoView;
+            if (pipRoundVideoView5 != null) {
+                pipRoundVideoView5.close(true);
                 this.pipRoundVideoView = null;
             }
             try {
-                VideoPlayer videoPlayer2 = new VideoPlayer();
-                this.audioPlayer = videoPlayer2;
-                final int i2 = this.playerNum + 1;
-                this.playerNum = i2;
-                videoPlayer2.setDelegate(new VideoPlayer.VideoPlayerDelegate() {
+                VideoPlayer videoPlayer5 = new VideoPlayer();
+                this.audioPlayer = videoPlayer5;
+                final int i4 = this.playerNum + 1;
+                this.playerNum = i4;
+                videoPlayer5.setDelegate(new VideoPlayer.VideoPlayerDelegate() {
                     @Override
-                    public void onError(VideoPlayer videoPlayer3, Exception exc) {
+                    public void onError(VideoPlayer videoPlayer6, Exception exc) {
                     }
 
                     @Override
@@ -4397,16 +4541,16 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
 
                     @Override
-                    public void onVideoSizeChanged(int i3, int i4, int i5, float f2) {
+                    public void onVideoSizeChanged(int i5, int i6, int i7, float f3) {
                     }
 
                     @Override
-                    public void onStateChanged(boolean z8, int i3) {
-                        if (i2 != MediaController.this.playerNum) {
+                    public void onStateChanged(boolean z8, int i5) {
+                        if (i4 != MediaController.this.playerNum) {
                             return;
                         }
-                        if (i3 != 4 && ((i3 != 1 && i3 != 2) || !z8 || messageObject.audioProgress < 0.999f)) {
-                            if (MediaController.this.audioPlayer != null && MediaController.this.seekToProgressPending != 0.0f && (i3 == 3 || i3 == 1)) {
+                        if (i5 != 4 && ((i5 != 1 && i5 != 2) || !z8 || messageObject.audioProgress < 0.999f)) {
+                            if (MediaController.this.audioPlayer != null && MediaController.this.seekToProgressPending != 0.0f && (i5 == 3 || i5 == 1)) {
                                 long duration = (int) (MediaController.this.audioPlayer.getDuration() * MediaController.this.seekToProgressPending);
                                 MediaController.this.audioPlayer.seekTo(duration);
                                 MediaController.this.lastProgress = duration;
@@ -4415,7 +4559,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         } else {
                             MessageObject messageObject3 = messageObject;
                             messageObject3.audioProgress = 1.0f;
-                            NotificationCenter.getInstance(messageObject3.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(messageObject.getId()), 0);
+                            NotificationCenter.getInstance(messageObject3.currentAccount).postNotificationName(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(messageObject.getId()), 0);
                             if (!MediaController.this.restoreMusicPlaylistState()) {
                                 if (!MediaController.this.playlist.isEmpty() && (MediaController.this.playlist.size() > 1 || !messageObject.isVoice())) {
                                     MediaController.this.playNextMessageWithoutOrder(true);
@@ -4447,48 +4591,49 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                MediaController.lambda$playMessage$22(messageObject, pathToMessage);
+                                MessageObject messageObject3 = messageObject;
+                                NotificationCenter.getInstance(messageObject3.currentAccount).postNotificationName(NotificationCenter.fileLoaded, FileLoader.getAttachFileName(messageObject3.getDocument()), pathToMessage);
                             }
                         });
                     }
                     this.audioPlayer.preparePlayer(Uri.fromFile(pathToMessage), "other");
                     this.isStreamingCurrentAudio = false;
                 } else {
-                    int fileReference2 = FileLoader.getInstance(messageObject.currentAccount).getFileReference(messageObject);
-                    TLRPC.Document document2 = messageObject.getDocument();
-                    StringBuilder sb2 = new StringBuilder();
-                    sb2.append("?account=");
-                    sb2.append(messageObject.currentAccount);
-                    sb2.append("&id=");
-                    sb2.append(document2.id);
-                    sb2.append("&hash=");
-                    sb2.append(document2.access_hash);
-                    sb2.append("&dc=");
-                    sb2.append(document2.dc_id);
-                    sb2.append("&size=");
-                    sb2.append(document2.size);
-                    sb2.append("&mime=");
-                    sb2.append(URLEncoder.encode(document2.mime_type, "UTF-8"));
-                    sb2.append("&rid=");
-                    sb2.append(fileReference2);
-                    sb2.append("&name=");
-                    sb2.append(URLEncoder.encode(FileLoader.getDocumentFileName(document2), "UTF-8"));
-                    sb2.append("&reference=");
-                    byte[] bArr2 = document2.file_reference;
+                    int fileReference3 = FileLoader.getInstance(messageObject.currentAccount).getFileReference(messageObject);
+                    TLRPC.Document document3 = messageObject.getDocument();
+                    StringBuilder sb3 = new StringBuilder();
+                    sb3.append("?account=");
+                    sb3.append(messageObject.currentAccount);
+                    sb3.append("&id=");
+                    sb3.append(document3.id);
+                    sb3.append("&hash=");
+                    sb3.append(document3.access_hash);
+                    sb3.append("&dc=");
+                    sb3.append(document3.dc_id);
+                    sb3.append("&size=");
+                    sb3.append(document3.size);
+                    sb3.append("&mime=");
+                    sb3.append(URLEncoder.encode(document3.mime_type, "UTF-8"));
+                    sb3.append("&rid=");
+                    sb3.append(fileReference3);
+                    sb3.append("&name=");
+                    sb3.append(URLEncoder.encode(FileLoader.getDocumentFileName(document3), "UTF-8"));
+                    sb3.append("&reference=");
+                    byte[] bArr2 = document3.file_reference;
                     if (bArr2 == null) {
                         bArr2 = new byte[0];
                     }
-                    sb2.append(Utilities.bytesToHex(bArr2));
-                    this.audioPlayer.preparePlayer(Uri.parse("tg://" + messageObject.getFileName() + sb2.toString()), "other");
+                    sb3.append(Utilities.bytesToHex(bArr2));
+                    this.audioPlayer.preparePlayer(Uri.parse("tg://" + messageObject.getFileName() + sb3.toString()), "other");
                     this.isStreamingCurrentAudio = true;
                 }
                 if (messageObject.isVoice()) {
                     String fileName = messageObject.getFileName();
                     if (fileName != null && messageObject.getDuration() >= 300.0d) {
-                        float f2 = ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).getFloat(fileName, -1.0f);
-                        if (f2 > 0.0f && f2 < 0.99f) {
-                            this.seekToProgressPending = f2;
-                            messageObject.audioProgress = f2;
+                        float f3 = ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).getFloat(fileName, -1.0f);
+                        if (f3 > f && f3 < 0.99f) {
+                            this.seekToProgressPending = f3;
+                            messageObject.audioProgress = f3;
                         }
                         this.shouldSavePositionForCurrentAudio = fileName;
                     }
@@ -4507,10 +4652,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                     String fileName2 = messageObject.getFileName();
                     if (!TextUtils.isEmpty(fileName2) && messageObject.getDuration() >= 600.0d) {
-                        float f3 = ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).getFloat(fileName2, -1.0f);
-                        if (f3 > 0.0f && f3 < 0.999f) {
-                            this.seekToProgressPending = f3;
-                            messageObject.audioProgress = f3;
+                        float f4 = ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).getFloat(fileName2, -1.0f);
+                        if (f4 > f && f4 < 0.999f) {
+                            this.seekToProgressPending = f4;
+                            messageObject.audioProgress = f4;
                         }
                         this.shouldSavePositionForCurrentAudio = fileName2;
                         if (Math.abs(this.currentMusicPlaybackSpeed - 1.0f) > 0.001f) {
@@ -4518,10 +4663,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         }
                     }
                 }
-                float f4 = messageObject.forceSeekTo;
-                if (f4 >= 0.0f) {
-                    this.seekToProgressPending = f4;
-                    messageObject.audioProgress = f4;
+                float f5 = messageObject.forceSeekTo;
+                if (f5 >= f) {
+                    this.seekToProgressPending = f5;
+                    messageObject.audioProgress = f5;
                     messageObject.forceSeekTo = -1.0f;
                 }
                 if (messageObject.isMusic() && messageObject.getDocument() != null && !DialogObject.isEncryptedDialog(messageObject.getDialogId())) {
@@ -4532,11 +4677,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         }
                         this.reporter = new MusicListenReporter(messageObject.currentAccount);
                     }
-                    TLRPC.Document document3 = messageObject.getDocument();
+                    TLRPC.Document document4 = messageObject.getDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    tL_inputDocument.id = document3.id;
-                    tL_inputDocument.access_hash = document3.access_hash;
-                    byte[] bArr3 = document3.file_reference;
+                    tL_inputDocument.id = document4.id;
+                    tL_inputDocument.access_hash = document4.access_hash;
+                    byte[] bArr3 = document4.file_reference;
                     tL_inputDocument.file_reference = bArr3;
                     if (bArr3 == null) {
                         tL_inputDocument.file_reference = new byte[0];
@@ -4570,104 +4715,96 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     this.audioVolume = 1.0f;
                     setPlayerVolume();
                 }
-                r9 = 0;
             } catch (Exception e3) {
                 FileLog.e(e3);
                 NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
-                int i3 = NotificationCenter.messagePlayingPlayStateChanged;
+                int i5 = NotificationCenter.messagePlayingPlayStateChanged;
                 MessageObject messageObject3 = this.playingMessageObject;
-                notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, Integer.valueOf(messageObject3 != null ? messageObject3.getId() : 0));
+                notificationCenter.postNotificationName(i5, Integer.valueOf(messageObject3 != null ? messageObject3.getId() : 0));
                 if (this.audioPlayer == null) {
                     return false;
                 }
                 MusicListenReporter musicListenReporter4 = this.reporter;
                 if (musicListenReporter4 != null) {
                     musicListenReporter4.destroy();
-                    r1 = 0;
+                    r2 = 0;
                     this.reporter = null;
                 } else {
-                    r1 = 0;
+                    r2 = 0;
                 }
                 this.audioPlayer.releasePlayer(true);
-                this.audioPlayer = r1;
+                this.audioPlayer = r2;
                 Theme.unrefAudioVisualizeDrawable(this.playingMessageObject);
                 this.isPaused = false;
-                this.playingMessageObject = r1;
+                this.playingMessageObject = r2;
                 this.downloadingCurrentMessage = false;
                 return false;
             }
         }
         checkAudioFocus(messageObject);
         setPlayerVolume();
-        this.isPaused = r9;
+        this.isPaused = false;
         this.lastProgress = 0L;
         this.playingMessageObject = messageObject;
         if (!SharedConfig.enabledRaiseTo(true)) {
             startRaiseToEarSensors(this.raiseChat);
         }
-        if (!ApplicationLoader.mainInterfacePaused && (wakeLock = this.proximityWakeLock) != null && !wakeLock.isHeld() && (this.playingMessageObject.isVoice() || this.playingMessageObject.isRoundVideo())) {
-            SharedConfig.enabledRaiseTo(r9);
+        if (ApplicationLoader.mainInterfacePaused || (wakeLock = this.proximityWakeLock) == null || wakeLock.isHeld() || !(this.playingMessageObject.isVoice() || this.playingMessageObject.isRoundVideo())) {
+            c = 0;
+        } else {
+            c = 0;
+            SharedConfig.enabledRaiseTo(false);
         }
         startProgressTimer(this.playingMessageObject);
         NotificationCenter notificationCenter2 = NotificationCenter.getInstance(messageObject.currentAccount);
-        int i4 = NotificationCenter.messagePlayingDidStart;
+        int i6 = NotificationCenter.messagePlayingDidStart;
         Object[] objArr = new Object[2];
-        objArr[r9] = messageObject;
+        objArr[c] = messageObject;
         objArr[1] = messageObject2;
-        notificationCenter2.lambda$postNotificationNameOnUIThread$1(i4, objArr);
-        VideoPlayer videoPlayer3 = this.videoPlayer;
-        if (videoPlayer3 != null) {
+        notificationCenter2.postNotificationName(i6, objArr);
+        VideoPlayer videoPlayer6 = this.videoPlayer;
+        if (videoPlayer6 != null) {
             try {
-                if (this.playingMessageObject.audioProgress != 0.0f) {
-                    long duration = videoPlayer3.getDuration();
-                    if (duration == -9223372036854775807L) {
-                        duration = ((long) this.playingMessageObject.getDuration()) * 1000;
+                if (this.playingMessageObject.audioProgress != f) {
+                    long duration = videoPlayer6.getDuration();
+                    if (duration == j2) {
+                        duration = ((long) this.playingMessageObject.getDuration()) * j;
                     }
                     MessageObject messageObject4 = this.playingMessageObject;
-                    int i5 = (int) (duration * messageObject4.audioProgress);
-                    int i6 = messageObject4.audioProgressMs;
-                    if (i6 != 0) {
-                        messageObject4.audioProgressMs = r9;
-                        i5 = i6;
+                    int i7 = (int) (duration * messageObject4.audioProgress);
+                    int i8 = messageObject4.audioProgressMs;
+                    if (i8 != 0) {
+                        messageObject4.audioProgressMs = 0;
+                        i7 = i8;
                     }
-                    this.videoPlayer.seekTo(i5);
+                    this.videoPlayer.seekTo(i7);
                 }
             } catch (Exception e4) {
                 MessageObject messageObject5 = this.playingMessageObject;
                 messageObject5.audioProgress = 0.0f;
-                messageObject5.audioProgressSec = r9;
-                NotificationCenter notificationCenter3 = NotificationCenter.getInstance(messageObject.currentAccount);
-                int i7 = NotificationCenter.messagePlayingProgressDidChanged;
-                Object[] objArr2 = new Object[2];
-                objArr2[r9] = Integer.valueOf(this.playingMessageObject.getId());
-                objArr2[1] = 0;
-                notificationCenter3.lambda$postNotificationNameOnUIThread$1(i7, objArr2);
+                messageObject5.audioProgressSec = 0;
+                NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(this.playingMessageObject.getId()), 0);
                 FileLog.e(e4);
             }
             this.videoPlayer.play();
         } else {
-            VideoPlayer videoPlayer4 = this.audioPlayer;
-            if (videoPlayer4 != null) {
+            VideoPlayer videoPlayer7 = this.audioPlayer;
+            if (videoPlayer7 != null) {
                 try {
                     if (this.playingMessageObject.audioProgress != 0.0f) {
-                        long duration2 = videoPlayer4.getDuration();
-                        if (duration2 == -9223372036854775807L) {
-                            duration2 = ((long) this.playingMessageObject.getDuration()) * 1000;
+                        long duration2 = videoPlayer7.getDuration();
+                        if (duration2 == j2) {
+                            duration2 = ((long) this.playingMessageObject.getDuration()) * j;
                         }
-                        long j = (int) (duration2 * this.playingMessageObject.audioProgress);
-                        this.audioPlayer.seekTo(j);
+                        long j3 = (int) (duration2 * this.playingMessageObject.audioProgress);
+                        this.audioPlayer.seekTo(j3);
                         if (!this.ignorePlayerUpdate) {
-                            CastSync.seekTo(j);
+                            CastSync.seekTo(j3);
                         }
                     }
                 } catch (Exception e5) {
                     this.playingMessageObject.resetPlayingProgress();
-                    NotificationCenter notificationCenter4 = NotificationCenter.getInstance(messageObject.currentAccount);
-                    int i8 = NotificationCenter.messagePlayingProgressDidChanged;
-                    Object[] objArr3 = new Object[2];
-                    objArr3[r9] = Integer.valueOf(this.playingMessageObject.getId());
-                    objArr3[1] = 0;
-                    notificationCenter4.lambda$postNotificationNameOnUIThread$1(i8, objArr3);
+                    NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(this.playingMessageObject.getId()), 0);
                     FileLog.e(e5);
                 }
             }
@@ -4798,7 +4935,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             MediaController.this.pipRoundVideoView.show(MediaController.this.baseActivity, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    this.f$0.lambda$onSurfaceDestroyed$0();
+                                    MediaController.this.cleanupPlayer(true, true);
                                 }
                             });
                         } catch (Exception unused) {
@@ -4821,22 +4958,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             PhotoViewer.getInstance().injectVideoPlayerSurface(surfaceTexture);
             return true;
         }
-
-        public void lambda$onSurfaceDestroyed$0() {
-            MediaController.this.cleanupPlayer(true, true);
-        }
-    }
-
-    public void lambda$playMessage$20() {
-        cleanupPlayer(true, true);
-    }
-
-    public static void lambda$playMessage$21(MessageObject messageObject, File file) {
-        NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoaded, FileLoader.getAttachFileName(messageObject.getDocument()), file);
-    }
-
-    public static void lambda$playMessage$22(MessageObject messageObject, File file) {
-        NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoaded, FileLoader.getAttachFileName(messageObject.getDocument()), file);
     }
 
     public void syncCastedPlayer() {
@@ -4853,7 +4974,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (CastSync.isPlaying()) {
                 playMessage(this.playingMessageObject);
             } else {
-                lambda$startAudioAgain$7(this.playingMessageObject);
+                pauseMessage(this.playingMessageObject);
             }
             setPlaybackSpeed(true, CastSync.getSpeed());
         }
@@ -5007,7 +5128,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     private boolean canStartMusicPlayerService() {
         MessageObject messageObject = this.playingMessageObject;
-        return (messageObject == null || (!messageObject.isMusic() && !this.playingMessageObject.isVoice() && !this.playingMessageObject.isRoundVideo()) || this.playingMessageObject.isVoiceOnce() || this.playingMessageObject.isRoundOnce()) ? false : true;
+        if (messageObject != null) {
+            return ((!messageObject.isMusic() && !this.playingMessageObject.isVoice() && !this.playingMessageObject.isRoundVideo()) || this.playingMessageObject.isVoiceOnce() || this.playingMessageObject.isRoundOnce()) ? false : true;
+        }
+        return false;
     }
 
     public void updateSilent(boolean z) {
@@ -5023,7 +5147,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
             int i = NotificationCenter.messagePlayingPlayStateChanged;
             MessageObject messageObject2 = this.playingMessageObject;
-            notificationCenter.lambda$postNotificationNameOnUIThread$1(i, Integer.valueOf(messageObject2 != null ? messageObject2.getId() : 0));
+            notificationCenter.postNotificationName(i, Integer.valueOf(messageObject2 != null ? messageObject2.getId() : 0));
         }
     }
 
@@ -5068,7 +5192,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.wasPlayingAudioBeforePause = false;
     }
 
-    public boolean lambda$startAudioAgain$7(MessageObject messageObject) {
+    public boolean pauseMessage(MessageObject messageObject) {
         return pauseMessage(messageObject, true);
     }
 
@@ -5106,7 +5230,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                 }
                 this.isPaused = true;
-                NotificationCenter.getInstance(this.playingMessageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingPlayStateChanged, Integer.valueOf(this.playingMessageObject.getId()));
+                NotificationCenter.getInstance(this.playingMessageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingPlayStateChanged, Integer.valueOf(this.playingMessageObject.getId()));
                 try {
                     CastSync.check(1);
                     if (!this.ignorePlayerUpdate) {
@@ -5157,7 +5281,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
                 checkAudioFocus(messageObject);
                 this.isPaused = false;
-                NotificationCenter.getInstance(this.playingMessageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingPlayStateChanged, Integer.valueOf(this.playingMessageObject.getId()));
+                NotificationCenter.getInstance(this.playingMessageObject.currentAccount).postNotificationName(NotificationCenter.messagePlayingPlayStateChanged, Integer.valueOf(this.playingMessageObject.getId()));
                 try {
                     CastSync.check(1);
                     if (!this.ignorePlayerUpdate) {
@@ -5241,25 +5365,25 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$prepareResumedRecording$25(i2, draftVoice, i, j, j2, messageSuggestionParams, messageObject2, messageObject, storyItem);
+                MediaController.$r8$lambda$Cw0oL6FcNHmSSK70sDVLxkqMtvA(this.f$0, i2, draftVoice, i, j, j2, messageSuggestionParams, messageObject2, messageObject, storyItem);
             }
         });
     }
 
-    public void lambda$prepareResumedRecording$25(int i, final MediaDataController.DraftVoice draftVoice, final int i2, final long j, long j2, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem) {
-        setBluetoothScoOn(true);
-        this.sendAfterDone = 0;
+    public static void $r8$lambda$Cw0oL6FcNHmSSK70sDVLxkqMtvA(final MediaController mediaController, int i, final MediaDataController.DraftVoice draftVoice, final int i2, final long j, long j2, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem) {
+        mediaController.setBluetoothScoOn(true);
+        mediaController.sendAfterDone = 0;
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
-        this.recordingAudio = tL_document;
-        this.recordingGuid = i;
+        mediaController.recordingAudio = tL_document;
+        mediaController.recordingGuid = i;
         tL_document.dc_id = Integer.MIN_VALUE;
         tL_document.id = draftVoice.id;
         tL_document.user_id = UserConfig.getInstance(i2).getClientUserId();
-        TLRPC.TL_document tL_document2 = this.recordingAudio;
+        TLRPC.TL_document tL_document2 = mediaController.recordingAudio;
         tL_document2.mime_type = "audio/ogg";
         tL_document2.file_reference = new byte[0];
         SharedConfig.saveConfig();
-        this.recordingAudioFile = new File(draftVoice.path) {
+        mediaController.recordingAudioFile = new File(draftVoice.path) {
             @Override
             public boolean delete() {
                 if (BuildVars.LOGS_ENABLED) {
@@ -5269,76 +5393,78 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         };
         FileLoader.getDirectory(4).mkdirs();
-        AutoDeleteMediaTask.lockFile(this.recordingAudioFile);
+        AutoDeleteMediaTask.lockFile(mediaController.recordingAudioFile);
         try {
-            this.audioRecorderPaused = true;
-            this.recordTimeCount = draftVoice.recordTimeCount;
-            this.writtenFrame = draftVoice.writedFrame;
-            this.samplesCount = draftVoice.samplesCount;
-            this.recordSamples = draftVoice.recordSamples;
-            this.recordDialogId = j;
-            this.recordMonoForumPeerId = j2;
-            this.recordMonoForumSuggestionParams = messageSuggestionParams;
-            this.recordTopicId = messageObject == null ? 0L : MessageObject.getTopicId(this.recordingCurrentAccount, messageObject.messageOwner, false);
-            this.recordingCurrentAccount = i2;
-            this.recordReplyingMsg = messageObject2;
-            this.recordReplyingTopMsg = messageObject;
-            this.recordReplyingStory = storyItem;
-            this.recordSendMessageChatArguments = this.recordSendMessageChatArguments;
-            final TLRPC.TL_document tL_document3 = this.recordingAudio;
-            final File file = this.recordingAudioFile;
+            mediaController.audioRecorderPaused = true;
+            mediaController.recordTimeCount = draftVoice.recordTimeCount;
+            mediaController.writtenFrame = draftVoice.writedFrame;
+            mediaController.samplesCount = draftVoice.samplesCount;
+            mediaController.recordSamples = draftVoice.recordSamples;
+            mediaController.recordDialogId = j;
+            mediaController.recordMonoForumPeerId = j2;
+            mediaController.recordMonoForumSuggestionParams = messageSuggestionParams;
+            mediaController.recordTopicId = messageObject == null ? 0L : MessageObject.getTopicId(mediaController.recordingCurrentAccount, messageObject.messageOwner, false);
+            mediaController.recordingCurrentAccount = i2;
+            mediaController.recordReplyingMsg = messageObject2;
+            mediaController.recordReplyingTopMsg = messageObject;
+            mediaController.recordReplyingStory = storyItem;
+            mediaController.recordSendMessageChatArguments = mediaController.recordSendMessageChatArguments;
+            final TLRPC.TL_document tL_document3 = mediaController.recordingAudio;
+            final File file = mediaController.recordingAudioFile;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$prepareResumedRecording$24(file, tL_document3, draftVoice);
+                    MediaController.$r8$lambda$UZesZfA8GNB4mLmhBuB2hRd4nF4(this.f$0, file, tL_document3, draftVoice);
                 }
             });
         } catch (Exception e) {
             FileLog.e(e);
-            this.recordingAudio = null;
-            AutoDeleteMediaTask.unlockFile(this.recordingAudioFile);
-            this.recordingAudioFile.delete();
-            this.recordingAudioFile = null;
+            mediaController.recordingAudio = null;
+            AutoDeleteMediaTask.unlockFile(mediaController.recordingAudioFile);
+            mediaController.recordingAudioFile.delete();
+            mediaController.recordingAudioFile = null;
             try {
-                this.audioRecorder.release();
-                this.audioRecorder = null;
+                mediaController.audioRecorder.release();
+                mediaController.audioRecorder = null;
             } catch (Exception e2) {
                 FileLog.e(e2);
             }
-            setBluetoothScoOn(false);
+            mediaController.setBluetoothScoOn(false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$prepareResumedRecording$23(i2, j);
+                    MediaController.$r8$lambda$jECJZwsGgWCaVZY8C4czBmC5Jzc(this.f$0, i2, j);
                 }
             });
         }
     }
 
-    public void lambda$prepareResumedRecording$23(int i, long j) {
-        MediaDataController.getInstance(i).pushDraftVoiceMessage(j, this.recordTopicId, null);
-        this.recordStartRunnable = null;
+    public static void $r8$lambda$jECJZwsGgWCaVZY8C4czBmC5Jzc(MediaController mediaController, int i, long j) {
+        mediaController.getClass();
+        MediaDataController.getInstance(i).pushDraftVoiceMessage(j, mediaController.recordTopicId, null);
+        mediaController.recordStartRunnable = null;
     }
 
-    public void lambda$prepareResumedRecording$24(File file, TLRPC.TL_document tL_document, MediaDataController.DraftVoice draftVoice) {
+    public static void $r8$lambda$UZesZfA8GNB4mLmhBuB2hRd4nF4(MediaController mediaController, File file, TLRPC.TL_document tL_document, MediaDataController.DraftVoice draftVoice) {
+        mediaController.getClass();
         if (!file.exists() && BuildVars.DEBUG_VERSION) {
-            FileLog.e(new RuntimeException("file not found :( recordTimeCount " + this.recordTimeCount + " writedFrames" + this.writtenFrame));
+            FileLog.e(new RuntimeException("file not found :( recordTimeCount " + mediaController.recordTimeCount + " writedFrames" + mediaController.writtenFrame));
         }
-        tL_document.date = ConnectionsManager.getInstance(this.recordingCurrentAccount).getCurrentTime();
+        tL_document.date = ConnectionsManager.getInstance(mediaController.recordingCurrentAccount).getCurrentTime();
         tL_document.size = (int) file.length();
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
         tL_documentAttributeAudio.voice = true;
-        short[] sArr = this.recordSamples;
-        byte[] waveform2 = getWaveform2(sArr, sArr.length);
+        short[] sArr = mediaController.recordSamples;
+        byte[] waveform2 = mediaController.getWaveform2(sArr, sArr.length);
         tL_documentAttributeAudio.waveform = waveform2;
         if (waveform2 != null) {
             tL_documentAttributeAudio.flags |= 4;
         }
-        tL_documentAttributeAudio.duration = this.recordTimeCount / 1000.0d;
+        tL_documentAttributeAudio.duration = mediaController.recordTimeCount / 1000.0d;
         tL_document.attributes.clear();
         tL_document.attributes.add(tL_documentAttributeAudio);
-        NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordPaused, new Object[0]);
-        NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(this.recordingGuid), tL_document, file.getAbsolutePath(), Boolean.TRUE, Float.valueOf(draftVoice.left), Float.valueOf(draftVoice.right));
+        NotificationCenter.getInstance(mediaController.recordingCurrentAccount).postNotificationName(NotificationCenter.recordPaused, new Object[0]);
+        NotificationCenter.getInstance(mediaController.recordingCurrentAccount).postNotificationName(NotificationCenter.audioDidSent, Integer.valueOf(mediaController.recordingGuid), tL_document, file.getAbsolutePath(), Boolean.TRUE, Float.valueOf(draftVoice.left), Float.valueOf(draftVoice.right));
     }
 
     public boolean isRecordingPaused() {
@@ -5395,19 +5521,19 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$trimCurrentRecording$26(file, j, j2, runnable);
+                MediaController.$r8$lambda$QkOQfdXnSVnWq_yL7OOTQ1afGAQ(this.f$0, file, j, j2, runnable);
             }
         });
     }
 
-    public void lambda$trimCurrentRecording$26(File file, long j, long j2, Runnable runnable) {
-        if (cropOpusFile(this.recordingAudioFile.getAbsolutePath(), file.getAbsolutePath(), j, j2)) {
-            File file2 = this.recordingAudioFile;
+    public static void $r8$lambda$QkOQfdXnSVnWq_yL7OOTQ1afGAQ(MediaController mediaController, File file, long j, long j2, Runnable runnable) {
+        if (cropOpusFile(mediaController.recordingAudioFile.getAbsolutePath(), file.getAbsolutePath(), j, j2)) {
+            File file2 = mediaController.recordingAudioFile;
             if (file2 != null) {
                 file2.delete();
             }
-            this.recordingAudioFile = file;
-            this.recordTimeCount = j2 - j;
+            mediaController.recordingAudioFile = file;
+            mediaController.recordTimeCount = j2 - j;
             if (runnable != null) {
                 AndroidUtilities.runOnUIThread(runnable);
             }
@@ -5418,67 +5544,68 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$toggleRecordingPause$32(z);
+                MediaController.$r8$lambda$v9BoJM4EwEuxkQ7MFNbkHX5uA9U(this.f$0, z);
             }
         });
     }
 
-    public void lambda$toggleRecordingPause$32(final boolean z) {
-        if (this.recordingAudio == null || this.recordingAudioFile == null) {
+    public static void $r8$lambda$v9BoJM4EwEuxkQ7MFNbkHX5uA9U(final MediaController mediaController, final boolean z) {
+        if (mediaController.recordingAudio == null || mediaController.recordingAudioFile == null) {
             return;
         }
-        boolean z2 = this.audioRecorderPaused;
-        this.audioRecorderPaused = !z2;
+        boolean z2 = mediaController.audioRecorderPaused;
+        mediaController.audioRecorderPaused = !z2;
         if (!z2) {
-            AudioRecord audioRecord = this.audioRecorder;
+            AudioRecord audioRecord = mediaController.audioRecorder;
             if (audioRecord == null) {
                 return;
             }
-            this.sendAfterDone = 4;
+            mediaController.sendAfterDone = 4;
             audioRecord.stop();
-            this.audioRecorder.release();
-            this.audioRecorder = null;
-            this.recordQueue.postRunnable(new Runnable() {
+            mediaController.audioRecorder.release();
+            mediaController.audioRecorder = null;
+            mediaController.recordQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$toggleRecordingPause$28(z);
+                    MediaController.m525$r8$lambda$hiVmb8VeGHagcQhRIk4KyNEfEs(this.f$0, z);
                 }
             });
             return;
         }
-        this.recordQueue.cancelRunnable(this.recordRunnable);
-        this.recordQueue.postRunnable(new Runnable() {
+        mediaController.recordQueue.cancelRunnable(mediaController.recordRunnable);
+        mediaController.recordQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$toggleRecordingPause$31();
+                MediaController.$r8$lambda$RIUClfgGOUMZiBHEtHs9UbmnkfM(this.f$0);
             }
         });
     }
 
-    public void lambda$toggleRecordingPause$28(final boolean z) {
-        stopRecord();
-        final TLRPC.TL_document tL_document = this.recordingAudio;
-        final File fileJoinRecord = joinRecord(this.recordingPrevAudioFile, this.recordingAudioFile, tL_document);
+    public static void m525$r8$lambda$hiVmb8VeGHagcQhRIk4KyNEfEs(final MediaController mediaController, final boolean z) {
+        mediaController.stopRecord();
+        final TLRPC.TL_document tL_document = mediaController.recordingAudio;
+        final File fileJoinRecord = mediaController.joinRecord(mediaController.recordingPrevAudioFile, mediaController.recordingAudioFile, tL_document);
         if (tL_document == null || fileJoinRecord == null) {
             return;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$toggleRecordingPause$27(fileJoinRecord, z, tL_document);
+                MediaController.$r8$lambda$Qx8OwalCe9VfzQMPYROFgSGryB8(this.f$0, fileJoinRecord, z, tL_document);
             }
         });
     }
 
-    public void lambda$toggleRecordingPause$27(File file, boolean z, TLRPC.TL_document tL_document) {
+    public static void $r8$lambda$Qx8OwalCe9VfzQMPYROFgSGryB8(MediaController mediaController, File file, boolean z, TLRPC.TL_document tL_document) {
+        mediaController.getClass();
         boolean zExists = file.exists();
         if (!zExists && BuildVars.DEBUG_VERSION) {
-            FileLog.e(new RuntimeException("file not found :( recordTimeCount " + this.recordTimeCount + " writedFrames" + this.writtenFrame));
+            FileLog.e(new RuntimeException("file not found :( recordTimeCount " + mediaController.recordTimeCount + " writedFrames" + mediaController.writtenFrame));
         }
         if (zExists) {
-            MediaDataController.getInstance(this.recordingCurrentAccount).pushDraftVoiceMessage(this.recordDialogId, this.recordTopicId, MediaDataController.DraftVoice.of(this, file.getAbsolutePath(), z, 0.0f, 1.0f));
+            MediaDataController.getInstance(mediaController.recordingCurrentAccount).pushDraftVoiceMessage(mediaController.recordDialogId, mediaController.recordTopicId, MediaDataController.DraftVoice.of(mediaController, file.getAbsolutePath(), z, 0.0f, 1.0f));
         }
-        tL_document.date = ConnectionsManager.getInstance(this.recordingCurrentAccount).getCurrentTime();
+        tL_document.date = ConnectionsManager.getInstance(mediaController.recordingCurrentAccount).getCurrentTime();
         tL_document.size = (int) file.length();
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
         tL_documentAttributeAudio.voice = true;
@@ -5487,17 +5614,17 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (waveform != null) {
             tL_documentAttributeAudio.flags |= 4;
         }
-        tL_documentAttributeAudio.duration = this.recordTimeCount / 1000.0d;
+        tL_documentAttributeAudio.duration = mediaController.recordTimeCount / 1000.0d;
         tL_document.attributes.clear();
         tL_document.attributes.add(tL_documentAttributeAudio);
-        NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordPaused, new Object[0]);
-        NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(this.recordingGuid), tL_document, file.getAbsolutePath());
-        requestRecordAudioFocus(false);
+        NotificationCenter.getInstance(mediaController.recordingCurrentAccount).postNotificationName(NotificationCenter.recordPaused, new Object[0]);
+        NotificationCenter.getInstance(mediaController.recordingCurrentAccount).postNotificationName(NotificationCenter.audioDidSent, Integer.valueOf(mediaController.recordingGuid), tL_document, file.getAbsolutePath());
+        mediaController.requestRecordAudioFocus(false);
     }
 
-    public void lambda$toggleRecordingPause$31() {
-        this.recordingPrevAudioFile = this.recordingAudioFile;
-        File file = new File(FileLoader.getDirectory(1), System.currentTimeMillis() + "_" + FileLoader.getAttachFileName(this.recordingAudio)) {
+    public static void $r8$lambda$RIUClfgGOUMZiBHEtHs9UbmnkfM(final MediaController mediaController) {
+        mediaController.recordingPrevAudioFile = mediaController.recordingAudioFile;
+        File file = new File(FileLoader.getDirectory(1), System.currentTimeMillis() + "_" + FileLoader.getAttachFileName(mediaController.recordingAudio)) {
             @Override
             public boolean delete() {
                 if (BuildVars.LOGS_ENABLED) {
@@ -5506,12 +5633,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 return super.delete();
             }
         };
-        this.recordingAudioFile = file;
-        if (startRecord(file.getPath(), this.sampleRate) == 0) {
+        mediaController.recordingAudioFile = file;
+        if (mediaController.startRecord(file.getPath(), mediaController.sampleRate) == 0) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$toggleRecordingPause$29();
+                    MediaController.$r8$lambda$B1dRkgu0lA5zlpwbtK46jEb6Fp8(this.f$0);
                 }
             });
             if (BuildVars.LOGS_ENABLED) {
@@ -5523,26 +5650,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$toggleRecordingPause$30();
+                MediaController.$r8$lambda$1ZV6fHc6UMDSJx0GBzxxuCHkoZY(this.f$0);
             }
         });
     }
 
-    public void lambda$toggleRecordingPause$29() {
-        this.recordStartRunnable = null;
-        NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(this.recordingGuid));
+    public static void $r8$lambda$B1dRkgu0lA5zlpwbtK46jEb6Fp8(MediaController mediaController) {
+        mediaController.recordStartRunnable = null;
+        NotificationCenter.getInstance(mediaController.recordingCurrentAccount).postNotificationName(NotificationCenter.recordStartError, Integer.valueOf(mediaController.recordingGuid));
     }
 
-    public void lambda$toggleRecordingPause$30() {
-        requestRecordAudioFocus(true);
-        this.audioRecorder = new AudioRecord(0, this.sampleRate, 16, 2, this.recordBufferSize);
-        this.recordStartTime = System.currentTimeMillis();
-        this.writtenFrame = 0;
-        this.samplesCount = 0L;
-        this.fileBuffer.rewind();
-        this.audioRecorder.startRecording();
-        this.recordQueue.postRunnable(this.recordRunnable);
-        NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordResumed, new Object[0]);
+    public static void $r8$lambda$1ZV6fHc6UMDSJx0GBzxxuCHkoZY(MediaController mediaController) {
+        mediaController.requestRecordAudioFocus(true);
+        mediaController.audioRecorder = new AudioRecord(0, mediaController.sampleRate, 16, 2, mediaController.recordBufferSize);
+        mediaController.recordStartTime = System.currentTimeMillis();
+        mediaController.writtenFrame = 0;
+        mediaController.samplesCount = 0L;
+        mediaController.fileBuffer.rewind();
+        mediaController.audioRecorder.startRecording();
+        mediaController.recordQueue.postRunnable(mediaController.recordRunnable);
+        NotificationCenter.getInstance(mediaController.recordingCurrentAccount).postNotificationName(NotificationCenter.recordResumed, new Object[0]);
     }
 
     public void startRecording(final int i, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final int i2, boolean z, final SendMessageChatArguments sendMessageChatArguments, final long j2, final MessageSuggestionParams messageSuggestionParams) {
@@ -5558,37 +5685,37 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$startRecording$37(i, i2, j, j2, messageSuggestionParams, messageObject2, messageObject, storyItem, sendMessageChatArguments);
+                MediaController.$r8$lambda$ctO9yf9J1MzM4KjyVrEwXkCwcxI(this.f$0, i, i2, j, j2, messageSuggestionParams, messageObject2, messageObject, storyItem, sendMessageChatArguments);
             }
         };
         this.recordStartRunnable = runnable;
         dispatchQueue.postRunnable(runnable, z2 ? 500L : 50L);
     }
 
-    public void lambda$startRecording$37(final int i, final int i2, long j, long j2, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) {
-        if (this.audioRecorder != null) {
+    public static void $r8$lambda$ctO9yf9J1MzM4KjyVrEwXkCwcxI(final MediaController mediaController, final int i, final int i2, long j, long j2, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) {
+        if (mediaController.audioRecorder != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$startRecording$33(i, i2);
+                    MediaController.$r8$lambda$VSskyL1rZHqC4PJ_GizCbBL_rmo(this.f$0, i, i2);
                 }
             });
             return;
         }
-        setBluetoothScoOn(true);
-        this.sendAfterDone = 0;
+        mediaController.setBluetoothScoOn(true);
+        mediaController.sendAfterDone = 0;
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
-        this.recordingAudio = tL_document;
-        this.recordingGuid = i2;
+        mediaController.recordingAudio = tL_document;
+        mediaController.recordingGuid = i2;
         tL_document.file_reference = new byte[0];
         tL_document.dc_id = Integer.MIN_VALUE;
         tL_document.id = SharedConfig.getLastLocalId();
-        this.recordingAudio.user_id = UserConfig.getInstance(i).getClientUserId();
-        TLRPC.TL_document tL_document2 = this.recordingAudio;
+        mediaController.recordingAudio.user_id = UserConfig.getInstance(i).getClientUserId();
+        TLRPC.TL_document tL_document2 = mediaController.recordingAudio;
         tL_document2.mime_type = "audio/ogg";
         tL_document2.file_reference = new byte[0];
         SharedConfig.saveConfig();
-        this.recordingAudioFile = new File(FileLoader.getDirectory(1), System.currentTimeMillis() + "_" + FileLoader.getAttachFileName(this.recordingAudio)) {
+        mediaController.recordingAudioFile = new File(FileLoader.getDirectory(1), System.currentTimeMillis() + "_" + FileLoader.getAttachFileName(mediaController.recordingAudio)) {
             @Override
             public boolean delete() {
                 if (BuildVars.LOGS_ENABLED) {
@@ -5599,15 +5726,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         };
         FileLoader.getDirectory(4).mkdirs();
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("start recording internal " + this.recordingAudioFile.getPath() + " " + this.recordingAudioFile.exists());
+            FileLog.d("start recording internal " + mediaController.recordingAudioFile.getPath() + " " + mediaController.recordingAudioFile.exists());
         }
-        AutoDeleteMediaTask.lockFile(this.recordingAudioFile);
+        AutoDeleteMediaTask.lockFile(mediaController.recordingAudioFile);
         try {
-            if (startRecord(this.recordingAudioFile.getPath(), this.sampleRate) == 0) {
+            if (mediaController.startRecord(mediaController.recordingAudioFile.getPath(), mediaController.sampleRate) == 0) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$startRecording$34(i, i2);
+                        MediaController.$r8$lambda$BXPWXd6BptespgasI2xN_RLaUMk(this.f$0, i, i2);
                     }
                 });
                 if (BuildVars.LOGS_ENABLED) {
@@ -5616,80 +5743,80 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
                 return;
             }
-            this.audioRecorderPaused = false;
-            this.audioRecorder = new AudioRecord(0, this.sampleRate, 16, 2, this.recordBufferSize);
-            this.recordStartTime = System.currentTimeMillis();
+            mediaController.audioRecorderPaused = false;
+            mediaController.audioRecorder = new AudioRecord(0, mediaController.sampleRate, 16, 2, mediaController.recordBufferSize);
+            mediaController.recordStartTime = System.currentTimeMillis();
             long topicId = 0;
-            this.recordTimeCount = 0L;
-            this.writtenFrame = 0;
-            this.samplesCount = 0L;
-            this.recordDialogId = j;
-            this.recordMonoForumPeerId = j2;
-            this.recordMonoForumSuggestionParams = messageSuggestionParams;
+            mediaController.recordTimeCount = 0L;
+            mediaController.writtenFrame = 0;
+            mediaController.samplesCount = 0L;
+            mediaController.recordDialogId = j;
+            mediaController.recordMonoForumPeerId = j2;
+            mediaController.recordMonoForumSuggestionParams = messageSuggestionParams;
             if (messageObject != null) {
-                topicId = MessageObject.getTopicId(this.recordingCurrentAccount, messageObject.messageOwner, false);
+                topicId = MessageObject.getTopicId(mediaController.recordingCurrentAccount, messageObject.messageOwner, false);
             }
-            this.recordTopicId = topicId;
-            this.recordingCurrentAccount = i;
-            this.recordReplyingMsg = messageObject2;
-            this.recordReplyingTopMsg = messageObject;
-            this.recordReplyingStory = storyItem;
-            this.recordSendMessageChatArguments = sendMessageChatArguments;
-            this.fileBuffer.rewind();
-            this.audioRecorder.startRecording();
-            this.recordQueue.postRunnable(this.recordRunnable);
+            mediaController.recordTopicId = topicId;
+            mediaController.recordingCurrentAccount = i;
+            mediaController.recordReplyingMsg = messageObject2;
+            mediaController.recordReplyingTopMsg = messageObject;
+            mediaController.recordReplyingStory = storyItem;
+            mediaController.recordSendMessageChatArguments = sendMessageChatArguments;
+            mediaController.fileBuffer.rewind();
+            mediaController.audioRecorder.startRecording();
+            mediaController.recordQueue.postRunnable(mediaController.recordRunnable);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$startRecording$36(i, i2);
+                    MediaController.$r8$lambda$IEogT7VImNUF211rQoHU89LBlcU(this.f$0, i, i2);
                 }
             });
         } catch (Exception e) {
             FileLog.e(e);
-            this.recordingAudio = null;
-            stopRecord();
-            AutoDeleteMediaTask.unlockFile(this.recordingAudioFile);
-            this.recordingAudioFile.delete();
-            this.recordingAudioFile = null;
-            File file = this.recordingPrevAudioFile;
+            mediaController.recordingAudio = null;
+            mediaController.stopRecord();
+            AutoDeleteMediaTask.unlockFile(mediaController.recordingAudioFile);
+            mediaController.recordingAudioFile.delete();
+            mediaController.recordingAudioFile = null;
+            File file = mediaController.recordingPrevAudioFile;
             if (file != null) {
                 file.delete();
-                this.recordingPrevAudioFile = null;
+                mediaController.recordingPrevAudioFile = null;
             }
             try {
-                this.audioRecorder.release();
-                this.audioRecorder = null;
+                mediaController.audioRecorder.release();
+                mediaController.audioRecorder = null;
             } catch (Exception e2) {
                 FileLog.e(e2);
             }
-            setBluetoothScoOn(false);
+            mediaController.setBluetoothScoOn(false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$startRecording$35(i, i2);
+                    MediaController.$r8$lambda$yFIa9VXSvzvSVpXCimob77TRbao(this.f$0, i, i2);
                 }
             });
         }
     }
 
-    public void lambda$startRecording$33(int i, int i2) {
-        this.recordStartRunnable = null;
-        NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(i2));
+    public static void $r8$lambda$VSskyL1rZHqC4PJ_GizCbBL_rmo(MediaController mediaController, int i, int i2) {
+        mediaController.recordStartRunnable = null;
+        NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.recordStartError, Integer.valueOf(i2));
     }
 
-    public void lambda$startRecording$34(int i, int i2) {
-        this.recordStartRunnable = null;
-        NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(i2));
+    public static void $r8$lambda$BXPWXd6BptespgasI2xN_RLaUMk(MediaController mediaController, int i, int i2) {
+        mediaController.recordStartRunnable = null;
+        NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.recordStartError, Integer.valueOf(i2));
     }
 
-    public void lambda$startRecording$35(int i, int i2) {
-        this.recordStartRunnable = null;
-        NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(i2));
+    public static void $r8$lambda$yFIa9VXSvzvSVpXCimob77TRbao(MediaController mediaController, int i, int i2) {
+        mediaController.recordStartRunnable = null;
+        NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.recordStartError, Integer.valueOf(i2));
     }
 
-    public void lambda$startRecording$36(int i, int i2) {
-        this.recordStartRunnable = null;
-        NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(i2), Boolean.TRUE);
+    public static void $r8$lambda$IEogT7VImNUF211rQoHU89LBlcU(MediaController mediaController, int i, int i2) {
+        mediaController.recordStartRunnable = null;
+        NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.recordStarted, Integer.valueOf(i2), Boolean.TRUE);
     }
 
     public void generateWaveform(final MessageObject messageObject) {
@@ -5702,18 +5829,19 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$generateWaveform$39(absolutePath, str, messageObject);
+                MediaController.m530$r8$lambda$uOqZpc27AxnSlAurtfNfaVAfMM(this.f$0, absolutePath, str, messageObject);
             }
         });
     }
 
-    public void lambda$generateWaveform$39(String str, final String str2, final MessageObject messageObject) {
+    public static void m530$r8$lambda$uOqZpc27AxnSlAurtfNfaVAfMM(final MediaController mediaController, String str, final String str2, final MessageObject messageObject) {
+        mediaController.getClass();
         try {
             final byte[] waveform = getWaveform(str);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$generateWaveform$38(str2, waveform, messageObject);
+                    MediaController.$r8$lambda$pRA4OPABOSA7fO8wMDbYPzNEq4Q(this.f$0, str2, waveform, messageObject);
                 }
             });
         } catch (Exception e) {
@@ -5721,8 +5849,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void lambda$generateWaveform$38(String str, byte[] bArr, MessageObject messageObject) {
-        MessageObject messageObjectRemove = this.generatingWaveform.remove(str);
+    public static void $r8$lambda$pRA4OPABOSA7fO8wMDbYPzNEq4Q(MediaController mediaController, String str, byte[] bArr, MessageObject messageObject) {
+        MessageObject messageObjectRemove = mediaController.generatingWaveform.remove(str);
         if (messageObjectRemove == null || bArr == null || messageObjectRemove.getDocument() == null) {
             return;
         }
@@ -5739,7 +5867,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         MessagesStorage.getInstance(messageObjectRemove.currentAccount).putMessages((TLRPC.messages_Messages) tL_messages_messages, messageObjectRemove.getDialogId(), -1, 0, false, messageObject.scheduled ? 1 : 0, 0L);
         ArrayList arrayList = new ArrayList();
         arrayList.add(messageObjectRemove);
-        NotificationCenter.getInstance(messageObjectRemove.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(messageObjectRemove.getDialogId()), arrayList);
+        NotificationCenter.getInstance(messageObjectRemove.currentAccount).postNotificationName(NotificationCenter.replaceMessagesObjects, Long.valueOf(messageObjectRemove.getDialogId()), arrayList);
     }
 
     public void cleanRecording(boolean z) {
@@ -5775,7 +5903,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.fileEncodingQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$stopRecordingInternal$41(file2, file, tL_document, i, z, i2, z2, j);
+                    MediaController.m520$r8$lambda$SGlusjxdCTAzDlYMZHvPaJiPXQ(this.f$0, file2, file, tL_document, i, z, i2, z2, j);
                 }
             });
         } else {
@@ -5803,9 +5931,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.ignoreOnPause = false;
     }
 
-    public void lambda$stopRecordingInternal$41(File file, File file2, final TLRPC.TL_document tL_document, final int i, final boolean z, final int i2, final boolean z2, final long j) {
-        stopRecord();
-        final File fileJoinRecord = joinRecord(file, file2, tL_document);
+    public static void m520$r8$lambda$SGlusjxdCTAzDlYMZHvPaJiPXQ(final MediaController mediaController, File file, File file2, final TLRPC.TL_document tL_document, final int i, final boolean z, final int i2, final boolean z2, final long j) {
+        mediaController.stopRecord();
+        final File fileJoinRecord = mediaController.joinRecord(file, file2, tL_document);
         if (fileJoinRecord == null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("stop recording recordingAudioFileToSend == null in queue");
@@ -5819,31 +5947,32 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$stopRecordingInternal$40(fileJoinRecord, tL_document, i, z, i2, z2, j);
+                MediaController.m513$r8$lambda$7UvXG4gWXELzZhIOfm2BvXvu4(this.f$0, fileJoinRecord, tL_document, i, z, i2, z2, j);
             }
         });
     }
 
-    public void lambda$stopRecordingInternal$40(File file, TLRPC.TL_document tL_document, int i, boolean z, int i2, boolean z2, long j) {
+    public static void m513$r8$lambda$7UvXG4gWXELzZhIOfm2BvXvu4(MediaController mediaController, File file, TLRPC.TL_document tL_document, int i, boolean z, int i2, boolean z2, long j) {
         boolean z3;
         char c;
         String str;
+        mediaController.getClass();
         if (BuildVars.LOGS_ENABLED) {
             StringBuilder sb = new StringBuilder();
             sb.append("stop recording internal ");
             if (file == null) {
                 str = "null";
             } else {
-                str = file.exists() + " " + file.length() + "  recordTimeCount " + this.recordTimeCount + " writedFrames" + this.writtenFrame;
+                str = file.exists() + " " + file.length() + "  recordTimeCount " + mediaController.recordTimeCount + " writedFrames" + mediaController.writtenFrame;
             }
             sb.append(str);
             FileLog.d(sb.toString());
         }
         if ((file == null || !file.exists()) && BuildVars.DEBUG_VERSION) {
-            FileLog.e(new RuntimeException("file not found :( recordTimeCount " + this.recordTimeCount + " writedFrames" + this.writtenFrame));
+            FileLog.e(new RuntimeException("file not found :( recordTimeCount " + mediaController.recordTimeCount + " writedFrames" + mediaController.writtenFrame));
         }
-        MediaDataController.getInstance(this.recordingCurrentAccount).pushDraftVoiceMessage(this.recordDialogId, this.recordTopicId, null);
-        tL_document.date = ConnectionsManager.getInstance(this.recordingCurrentAccount).getCurrentTime();
+        MediaDataController.getInstance(mediaController.recordingCurrentAccount).pushDraftVoiceMessage(mediaController.recordDialogId, mediaController.recordTopicId, null);
+        tL_document.date = ConnectionsManager.getInstance(mediaController.recordingCurrentAccount).getCurrentTime();
         tL_document.size = file == null ? 0L : (int) file.length();
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
         tL_documentAttributeAudio.voice = true;
@@ -5852,26 +5981,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (waveform != null) {
             tL_documentAttributeAudio.flags |= 4;
         }
-        long j2 = this.recordTimeCount;
+        long j2 = mediaController.recordTimeCount;
         tL_documentAttributeAudio.duration = j2 / 1000.0d;
         tL_document.attributes.clear();
         tL_document.attributes.add(tL_documentAttributeAudio);
         if (j2 > 700) {
             if (i == 1) {
                 c = 1;
-                SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of(tL_document, null, file.getAbsolutePath(), this.recordDialogId, this.recordReplyingMsg, this.recordReplyingTopMsg, null, null, null, null, z, i2, 0, z2 ? Integer.MAX_VALUE : 0, null, null, false);
-                sendMessageParamsOf.monoForumPeer = this.recordMonoForumPeerId;
-                sendMessageParamsOf.suggestionParams = this.recordMonoForumSuggestionParams;
-                sendMessageParamsOf.replyToStoryItem = this.recordReplyingStory;
-                sendMessageParamsOf.sendMessageChatArguments = this.recordSendMessageChatArguments;
+                SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of(tL_document, null, file.getAbsolutePath(), mediaController.recordDialogId, mediaController.recordReplyingMsg, mediaController.recordReplyingTopMsg, null, null, null, null, z, i2, 0, z2 ? Integer.MAX_VALUE : 0, null, null, false);
+                sendMessageParamsOf.monoForumPeer = mediaController.recordMonoForumPeerId;
+                sendMessageParamsOf.suggestionParams = mediaController.recordMonoForumSuggestionParams;
+                sendMessageParamsOf.replyToStoryItem = mediaController.recordReplyingStory;
+                sendMessageParamsOf.sendMessageChatArguments = mediaController.recordSendMessageChatArguments;
                 sendMessageParamsOf.payStars = j;
-                SendMessagesHelper.getInstance(this.recordingCurrentAccount).sendMessage(sendMessageParamsOf);
+                SendMessagesHelper.getInstance(mediaController.recordingCurrentAccount).sendMessage(sendMessageParamsOf);
             } else {
                 c = 1;
             }
-            NotificationCenter notificationCenter = NotificationCenter.getInstance(this.recordingCurrentAccount);
+            NotificationCenter notificationCenter = NotificationCenter.getInstance(mediaController.recordingCurrentAccount);
             int i3 = NotificationCenter.audioDidSent;
-            Integer numValueOf = Integer.valueOf(this.recordingGuid);
+            Integer numValueOf = Integer.valueOf(mediaController.recordingGuid);
             TLRPC.TL_document tL_document2 = i == 2 ? tL_document : null;
             String absolutePath = i == 2 ? file.getAbsolutePath() : null;
             Object[] objArr = new Object[3];
@@ -5879,14 +6008,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             objArr[0] = numValueOf;
             objArr[c] = tL_document2;
             objArr[2] = absolutePath;
-            notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, objArr);
+            notificationCenter.postNotificationName(i3, objArr);
         } else {
             z3 = false;
-            NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRecordTooShort, Integer.valueOf(this.recordingGuid), Boolean.FALSE, Integer.valueOf((int) j2));
+            NotificationCenter.getInstance(mediaController.recordingCurrentAccount).postNotificationName(NotificationCenter.audioRecordTooShort, Integer.valueOf(mediaController.recordingGuid), Boolean.FALSE, Integer.valueOf((int) j2));
             AutoDeleteMediaTask.unlockFile(file);
             file.delete();
         }
-        requestRecordAudioFocus(z3);
+        mediaController.requestRecordAudioFocus(z3);
     }
 
     public void stopRecording(final int i, final boolean z, final int i2, final boolean z2, final long j) {
@@ -5898,59 +6027,56 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$stopRecording$43(i, z, i2, z2, j);
+                MediaController.m515$r8$lambda$CHkjTR2fDjXWcvKPPBRTC9cqKo(this.f$0, i, z, i2, z2, j);
             }
         });
     }
 
-    public void lambda$stopRecording$43(final int i, boolean z, int i2, boolean z2, long j) {
-        if (this.sendAfterDone == 3) {
-            this.sendAfterDone = 0;
-            stopRecordingInternal(i, z, i2, z2, j);
+    public static void m515$r8$lambda$CHkjTR2fDjXWcvKPPBRTC9cqKo(final MediaController mediaController, final int i, boolean z, int i2, boolean z2, long j) {
+        if (mediaController.sendAfterDone == 3) {
+            mediaController.sendAfterDone = 0;
+            mediaController.stopRecordingInternal(i, z, i2, z2, j);
             return;
         }
-        AudioRecord audioRecord = this.audioRecorder;
+        AudioRecord audioRecord = mediaController.audioRecorder;
         if (audioRecord == null) {
-            this.recordingAudio = null;
-            this.manualRecording = false;
-            this.raiseToEarRecord = false;
-            this.ignoreOnPause = false;
+            mediaController.recordingAudio = null;
+            mediaController.manualRecording = false;
+            mediaController.raiseToEarRecord = false;
+            mediaController.ignoreOnPause = false;
             return;
         }
         try {
-            this.sendAfterDone = i;
-            this.sendAfterDoneNotify = z;
-            this.sendAfterDoneScheduleDate = i2;
-            this.sendAfterDoneOnce = z2;
-            this.sendAfterDonePayStars = j;
+            mediaController.sendAfterDone = i;
+            mediaController.sendAfterDoneNotify = z;
+            mediaController.sendAfterDoneScheduleDate = i2;
+            mediaController.sendAfterDoneOnce = z2;
+            mediaController.sendAfterDonePayStars = j;
             audioRecord.stop();
-            setBluetoothScoOn(false);
+            mediaController.setBluetoothScoOn(false);
         } catch (Exception e) {
             FileLog.e(e);
-            if (this.recordingAudioFile != null) {
+            if (mediaController.recordingAudioFile != null) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("delete voice file");
                 }
-                this.recordingAudioFile.delete();
+                mediaController.recordingAudioFile.delete();
             }
         }
         if (i == 0) {
-            stopRecordingInternal(0, false, 0, false, 0L);
+            mediaController.stopRecordingInternal(0, false, 0, false, 0L);
         }
         try {
-            this.feedbackView.performHapticFeedback(3, 2);
+            mediaController.feedbackView.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$stopRecording$42(i);
+                MediaController mediaController2 = this.f$0;
+                NotificationCenter.getInstance(mediaController2.recordingCurrentAccount).postNotificationName(NotificationCenter.recordStopped, Integer.valueOf(mediaController2.recordingGuid), Integer.valueOf(i == 2 ? 1 : 0));
             }
         });
-    }
-
-    public void lambda$stopRecording$42(int i) {
-        NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStopped, Integer.valueOf(this.recordingGuid), Integer.valueOf(i == 2 ? 1 : 0));
     }
 
     static class MediaLoader implements NotificationCenter.NotificationCenterDelegate {
@@ -5982,48 +6108,45 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    this.f$0.lambda$new$0(dialogInterface);
+                    this.f$0.cancelled = true;
                 }
             });
-        }
-
-        public void lambda$new$0(DialogInterface dialogInterface) {
-            this.cancelled = true;
         }
 
         public void start() {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$start$1();
+                    MediaController.MediaLoader.m546$r8$lambda$un9oCPy2gekYxIU01aCtOzgHQ0(this.f$0);
                 }
             }, 250L);
             new Thread(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    this.f$0.lambda$start$2();
+                    MediaController.MediaLoader.m544$r8$lambda$YpyDkVMW9xW5VReb0p_bGHuAw(this.f$0);
                 }
             }).start();
         }
 
-        public void lambda$start$1() {
-            if (this.finished) {
+        public static void m546$r8$lambda$un9oCPy2gekYxIU01aCtOzgHQ0(MediaLoader mediaLoader) {
+            if (mediaLoader.finished) {
                 return;
             }
-            this.progressDialog.show();
+            mediaLoader.progressDialog.show();
         }
 
-        public void lambda$start$2() throws Throwable {
+        public static void m544$r8$lambda$YpyDkVMW9xW5VReb0p_bGHuAw(MediaLoader mediaLoader) throws Throwable {
             File externalStoragePublicDirectory;
             File file;
             File pathToMessage;
             File pathToAttach;
+            mediaLoader.getClass();
             try {
                 if (Build.VERSION.SDK_INT >= 29) {
-                    int size = this.messageObjects.size();
+                    int size = mediaLoader.messageObjects.size();
                     for (int i = 0; i < size; i++) {
-                        MessageObject messageObject = this.messageObjects.get(i);
-                        if (!processLivePhotoMessage(messageObject)) {
+                        MessageObject messageObject = mediaLoader.messageObjects.get(i);
+                        if (!mediaLoader.processLivePhotoMessage(messageObject)) {
                             String string = messageObject.messageOwner.attachPath;
                             TLRPC.Document document = messageObject.getDocument();
                             TLRPC.Document document2 = messageObject.qualityToSave;
@@ -6036,7 +6159,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 string = null;
                             }
                             if (TextUtils.isEmpty(string)) {
-                                FileLoader fileLoader = FileLoader.getInstance(this.currentAccount.getCurrentAccount());
+                                FileLoader fileLoader = FileLoader.getInstance(mediaLoader.currentAccount.getCurrentAccount());
                                 TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
                                 TLRPC.Document document3 = messageObject.qualityToSave;
                                 if (document3 != null) {
@@ -6056,15 +6179,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             }
                             File file2 = new File(string);
                             if (!file2.exists()) {
-                                this.waitingForFile = new CountDownLatch(1);
-                                addMessageToLoad(messageObject);
-                                this.waitingForFile.await();
+                                mediaLoader.waitingForFile = new CountDownLatch(1);
+                                mediaLoader.addMessageToLoad(messageObject);
+                                mediaLoader.waitingForFile.await();
                             }
-                            if (this.cancelled) {
+                            if (mediaLoader.cancelled) {
                                 break;
                             }
                             if (!file2.exists()) {
-                                file2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject.messageOwner, true);
+                                file2 = FileLoader.getInstance(mediaLoader.currentAccount.getCurrentAccount()).getPathToAttach(messageObject.messageOwner, true);
                                 StringBuilder sb = new StringBuilder();
                                 sb.append("saving file: correcting path from ");
                                 sb.append(string);
@@ -6073,22 +6196,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 FileLog.d(sb.toString());
                             }
                             if (file2 != null && file2.exists()) {
-                                MediaController.saveFileInternal(this.isMusic ? 3 : 2, file2, documentFileName);
-                                this.copiedFiles++;
+                                MediaController.saveFileInternal(mediaLoader.isMusic ? 3 : 2, file2, documentFileName);
+                                mediaLoader.copiedFiles++;
                             }
                         }
                     }
                 } else {
-                    if (this.isMusic) {
+                    if (mediaLoader.isMusic) {
                         externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
                     } else {
                         externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                     }
                     externalStoragePublicDirectory.mkdir();
-                    int size2 = this.messageObjects.size();
+                    int size2 = mediaLoader.messageObjects.size();
                     for (int i2 = 0; i2 < size2; i2++) {
-                        MessageObject messageObject2 = this.messageObjects.get(i2);
-                        if (!processLivePhotoMessage(messageObject2)) {
+                        MessageObject messageObject2 = mediaLoader.messageObjects.get(i2);
+                        if (!mediaLoader.processLivePhotoMessage(messageObject2)) {
                             TLRPC.Document document4 = messageObject2.getDocument();
                             TLRPC.Document document5 = messageObject2.qualityToSave;
                             if (document5 != null) {
@@ -6121,26 +6244,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 string2 = null;
                             }
                             if (messageObject2.qualityToSave != null) {
-                                file = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject2.qualityToSave, null, false, true);
+                                file = FileLoader.getInstance(mediaLoader.currentAccount.getCurrentAccount()).getPathToAttach(messageObject2.qualityToSave, null, false, true);
                             } else {
                                 if (string2 == null || string2.length() == 0) {
-                                    string2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner).toString();
+                                    string2 = FileLoader.getInstance(mediaLoader.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner).toString();
                                 }
                                 file = new File(string2);
                             }
                             if (!file.exists()) {
-                                this.waitingForFile = new CountDownLatch(1);
-                                addMessageToLoad(messageObject2);
-                                this.waitingForFile.await();
+                                mediaLoader.waitingForFile = new CountDownLatch(1);
+                                mediaLoader.addMessageToLoad(messageObject2);
+                                mediaLoader.waitingForFile.await();
                             }
                             if (file.exists()) {
-                                copyFile(file, file3, messageObject2.getMimeType());
-                                this.copiedFiles++;
+                                mediaLoader.copyFile(file, file3, messageObject2.getMimeType());
+                                mediaLoader.copiedFiles++;
                             }
                         }
                     }
                 }
-                checkIfFinished();
+                mediaLoader.checkIfFinished();
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -6151,37 +6274,35 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$checkIfFinished$4();
+                        MediaController.MediaLoader.$r8$lambda$wO78YhmROdZDaQrZmyfA4QCOM0U(this.f$0);
                     }
                 });
             }
         }
 
-        public void lambda$checkIfFinished$4() {
+        public static void $r8$lambda$wO78YhmROdZDaQrZmyfA4QCOM0U(final MediaLoader mediaLoader) {
+            mediaLoader.getClass();
             try {
-                if (this.progressDialog.isShowing()) {
-                    this.progressDialog.dismiss();
+                if (mediaLoader.progressDialog.isShowing()) {
+                    mediaLoader.progressDialog.dismiss();
                 } else {
-                    this.finished = true;
+                    mediaLoader.finished = true;
                 }
-                if (this.onFinishRunnable != null) {
+                if (mediaLoader.onFinishRunnable != null) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$checkIfFinished$3();
+                            MediaController.MediaLoader mediaLoader2 = this.f$0;
+                            mediaLoader2.onFinishRunnable.run(mediaLoader2.copiedFiles);
                         }
                     });
                 }
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            this.currentAccount.getNotificationCenter().removeObserver(this, NotificationCenter.fileLoaded);
-            this.currentAccount.getNotificationCenter().removeObserver(this, NotificationCenter.fileLoadProgressChanged);
-            this.currentAccount.getNotificationCenter().removeObserver(this, NotificationCenter.fileLoadFailed);
-        }
-
-        public void lambda$checkIfFinished$3() {
-            this.onFinishRunnable.run(this.copiedFiles);
+            mediaLoader.currentAccount.getNotificationCenter().removeObserver(mediaLoader, NotificationCenter.fileLoaded);
+            mediaLoader.currentAccount.getNotificationCenter().removeObserver(mediaLoader, NotificationCenter.fileLoadProgressChanged);
+            mediaLoader.currentAccount.getNotificationCenter().removeObserver(mediaLoader, NotificationCenter.fileLoadFailed);
         }
 
         private boolean processLivePhotoMessage(final MessageObject messageObject) throws InterruptedException, IOException {
@@ -6195,9 +6316,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             FileLoader fileLoader = FileLoader.getInstance(this.currentAccount.getCurrentAccount());
             File pathToAttach = fileLoader.getPathToAttach(closestPhotoSizeWithSize, null, false, true);
             File pathToAttach2 = fileLoader.getPathToAttach(media.document, null, false, true);
-            final ?? r3 = (pathToAttach == null || !pathToAttach.exists()) ? 1 : 0;
-            final ?? r7 = (pathToAttach2 == null || !pathToAttach2.exists()) ? 1 : 0;
-            int i = r3 + r7;
+            final ?? r2 = (pathToAttach == null || !pathToAttach.exists()) ? 1 : 0;
+            final ?? r6 = (pathToAttach2 == null || !pathToAttach2.exists()) ? 1 : 0;
+            int i = r2 + r6;
             if (i > 0) {
                 this.waitingForFile = new CountDownLatch(i);
                 final TLRPC.Photo photo2 = media.photo;
@@ -6205,7 +6326,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$processLivePhotoMessage$5(r3, closestPhotoSizeWithSize, messageObject, photo2, r7, document);
+                        MediaController.MediaLoader.m540$r8$lambda$lgi5mmQ2tnOVTyY3xeOrXrv1ME(this.f$0, r2, closestPhotoSizeWithSize, messageObject, photo2, r6, document);
                     }
                 });
                 this.waitingForFile.await();
@@ -6216,15 +6337,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (pathToAttach == null || !pathToAttach.exists()) {
                 pathToAttach = fileLoader.getPathToAttach(closestPhotoSizeWithSize, null, true, true);
             }
-            File file = pathToAttach;
             if (pathToAttach2 == null || !pathToAttach2.exists()) {
                 pathToAttach2 = fileLoader.getPathToAttach(media.document, null, true, true);
             }
-            File file2 = pathToAttach2;
-            if (file == null || !file.exists() || file2 == null || !file2.exists()) {
+            if (pathToAttach == null || !pathToAttach.exists() || pathToAttach2 == null || !pathToAttach2.exists()) {
                 return true;
             }
-            String fileExtension = FileLoader.getFileExtension(file);
+            String fileExtension = FileLoader.getFileExtension(pathToAttach);
             if (TextUtils.isEmpty(fileExtension)) {
                 fileExtension = "jpg";
             }
@@ -6244,7 +6363,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     OutputStream outputStreamOpenOutputStream = ApplicationLoader.applicationContext.getContentResolver().openOutputStream(uriInsert);
                     if (outputStreamOpenOutputStream != null) {
                         try {
-                            MediaController.writeMotionPhoto(file, file2, outputStreamOpenOutputStream, null);
+                            MediaController.writeMotionPhoto(pathToAttach, pathToAttach2, outputStreamOpenOutputStream, null);
                             z = !this.cancelled;
                         } catch (Throwable th) {
                             try {
@@ -6269,20 +6388,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                 }
             } else {
-                File file3 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Telegram");
-                file3.mkdirs();
-                File file4 = new File(file3, strGenerateFileName);
-                if (!file4.exists()) {
-                    file4.createNewFile();
+                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Telegram");
+                file.mkdirs();
+                File file2 = new File(file, strGenerateFileName);
+                if (!file2.exists()) {
+                    file2.createNewFile();
                 }
-                FileOutputStream fileOutputStream = new FileOutputStream(file4);
+                FileOutputStream fileOutputStream = new FileOutputStream(file2);
                 try {
-                    MediaController.writeMotionPhoto(file, file2, fileOutputStream, null);
+                    MediaController.writeMotionPhoto(pathToAttach, pathToAttach2, fileOutputStream, null);
                     fileOutputStream.close();
                     if (this.cancelled) {
-                        file4.delete();
+                        file2.delete();
                     } else {
-                        ((DownloadManager) ApplicationLoader.applicationContext.getSystemService("download")).addCompletedDownload(file4.getName(), file4.getName(), false, mimeTypeFromExtension, file4.getAbsolutePath(), file4.length(), true);
+                        ((DownloadManager) ApplicationLoader.applicationContext.getSystemService("download")).addCompletedDownload(file2.getName(), file2.getName(), false, mimeTypeFromExtension, file2.getAbsolutePath(), file2.length(), true);
                         this.copiedFiles++;
                     }
                 } catch (Throwable th3) {
@@ -6301,26 +6420,32 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processLivePhotoMessage$6(i2);
+                    MediaController.MediaLoader.$r8$lambda$BKowXKuoFEAGYuRDTEA4ZgS9rEE(this.f$0, i2);
                 }
             });
             return true;
         }
 
-        public void lambda$processLivePhotoMessage$5(boolean z, TLRPC.PhotoSize photoSize, MessageObject messageObject, TLRPC.Photo photo, boolean z2, TLRPC.Document document) {
+        public static void m540$r8$lambda$lgi5mmQ2tnOVTyY3xeOrXrv1ME(MediaLoader mediaLoader, boolean z, TLRPC.PhotoSize photoSize, MessageObject messageObject, TLRPC.Photo photo, boolean z2, TLRPC.Document document) {
+            MessageObject messageObject2;
+            mediaLoader.getClass();
             if (z) {
-                this.loadingMessageObjects.put(FileLoader.getAttachFileName(photoSize), messageObject);
-                this.currentAccount.getFileLoader().loadFile(ImageLocation.getForPhoto(photoSize, photo), messageObject, "jpg", 3, 0);
+                mediaLoader.loadingMessageObjects.put(FileLoader.getAttachFileName(photoSize), messageObject);
+                messageObject2 = messageObject;
+                mediaLoader.currentAccount.getFileLoader().loadFile(ImageLocation.getForPhoto(photoSize, photo), messageObject2, "jpg", 3, 0);
+            } else {
+                messageObject2 = messageObject;
             }
             if (z2) {
-                this.loadingMessageObjects.put(FileLoader.getAttachFileName(document), messageObject);
-                this.currentAccount.getFileLoader().loadFile(document, messageObject, 3, 0);
+                mediaLoader.loadingMessageObjects.put(FileLoader.getAttachFileName(document), messageObject2);
+                mediaLoader.currentAccount.getFileLoader().loadFile(document, messageObject2, 3, 0);
             }
         }
 
-        public void lambda$processLivePhotoMessage$6(int i) {
+        public static void $r8$lambda$BKowXKuoFEAGYuRDTEA4ZgS9rEE(MediaLoader mediaLoader, int i) {
+            mediaLoader.getClass();
             try {
-                this.progressDialog.setProgress(i);
+                mediaLoader.progressDialog.setProgress(i);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -6330,12 +6455,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$addMessageToLoad$7(messageObject);
+                    MediaController.MediaLoader.m539$r8$lambda$jZ595KhUHeddw4dGNDDqKK8IA(this.f$0, messageObject);
                 }
             });
         }
 
-        public void lambda$addMessageToLoad$7(MessageObject messageObject) {
+        public static void m539$r8$lambda$jZ595KhUHeddw4dGNDDqKK8IA(MediaLoader mediaLoader, MessageObject messageObject) {
+            mediaLoader.getClass();
             TLRPC.Document document = messageObject.getDocument();
             TLRPC.Document document2 = messageObject.qualityToSave;
             if (document2 != null) {
@@ -6344,11 +6470,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (document == null) {
                 return;
             }
-            this.loadingMessageObjects.put(FileLoader.getAttachFileName(document), messageObject);
-            this.currentAccount.getFileLoader().loadFile(document, messageObject, 3, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 0);
+            mediaLoader.loadingMessageObjects.put(FileLoader.getAttachFileName(document), messageObject);
+            mediaLoader.currentAccount.getFileLoader().loadFile(document, messageObject, 3, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 0);
         }
 
         private boolean copyFile(File file, File file2, String str) throws Throwable {
+            File file3;
+            boolean z;
             FileInputStream fileInputStream;
             Throwable th;
             Throwable th2;
@@ -6364,9 +6492,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         try {
                             FileChannel channel = fileInputStream2.getChannel();
                             try {
+                                file3 = file2;
                                 try {
                                     try {
-                                        FileChannel channel2 = new FileOutputStream(file2).getChannel();
+                                        FileChannel channel2 = new FileOutputStream(file3).getChannel();
                                         try {
                                             long size = channel.size();
                                             try {
@@ -6375,7 +6504,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                         AndroidUtilities.runOnUIThread(new Runnable() {
                                                             @Override
                                                             public final void run() {
-                                                                this.f$0.lambda$copyFile$8();
+                                                                MediaController.MediaLoader.m542$r8$lambda$Jrbb5kxNwXd2VdTpLugumpxu4E(this.f$0);
                                                             }
                                                         });
                                                     }
@@ -6385,7 +6514,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                         } catch (Throwable th3) {
                                                             th2 = th3;
                                                             fileInputStream = fileInputStream2;
-                                                            if (channel == null) {
+                                                            z = false;
+                                                            if (channel != null) {
                                                                 throw th2;
                                                             }
                                                             try {
@@ -6399,11 +6529,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                     }
                                                     try {
                                                         channel.close();
-                                                        fileInputStream2.close();
-                                                        return false;
+                                                        try {
+                                                            fileInputStream2.close();
+                                                            return false;
+                                                        } catch (Exception e) {
+                                                            e = e;
+                                                            z = false;
+                                                            FileLog.e(e);
+                                                            file3.delete();
+                                                            return z;
+                                                        }
                                                     } catch (Throwable th5) {
                                                         th = th5;
                                                         fileInputStream = fileInputStream2;
+                                                        z = false;
                                                         try {
                                                             fileInputStream.close();
                                                             throw th;
@@ -6420,21 +6559,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                             long j2 = 0;
                                             while (j < size && !this.cancelled) {
                                                 fileInputStream = fileInputStream2;
-                                                long j3 = j;
+                                                z = false;
                                                 try {
                                                     channel2.transferFrom(channel, j, Math.min(4096L, size - j));
-                                                    j = j3 + 4096;
-                                                    if (j >= size || j2 <= SystemClock.elapsedRealtime() - 500) {
+                                                    long j3 = 4096 + j;
+                                                    if (j3 >= size || j2 <= SystemClock.elapsedRealtime() - 500) {
                                                         long jElapsedRealtime = SystemClock.elapsedRealtime();
-                                                        final int size2 = (int) (this.finishedProgress + (((100.0f / this.messageObjects.size()) * j3) / size));
+                                                        final int size2 = (int) (this.finishedProgress + (((100.0f / this.messageObjects.size()) * j) / size));
                                                         AndroidUtilities.runOnUIThread(new Runnable() {
                                                             @Override
                                                             public final void run() {
-                                                                this.f$0.lambda$copyFile$9(size2);
+                                                                MediaController.MediaLoader.$r8$lambda$fiwq_raakPCpIOnnx9UmlXy7dwA(this.f$0, size2);
                                                             }
                                                         });
                                                         j2 = jElapsedRealtime;
                                                     }
+                                                    j = j3;
                                                     fileInputStream2 = fileInputStream;
                                                 } catch (Throwable th8) {
                                                     th = th8;
@@ -6449,17 +6589,23 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                         th9.addSuppressed(th10);
                                                         throw th9;
                                                     }
+                                                    if (channel != null) {
+                                                        throw th2;
+                                                    }
+                                                    channel.close();
+                                                    throw th2;
                                                 }
                                             }
                                             fileInputStream = fileInputStream2;
+                                            z = false;
                                             if (!this.cancelled) {
                                                 if (this.isMusic) {
-                                                    AndroidUtilities.addMediaToGallery(file2);
+                                                    AndroidUtilities.addMediaToGallery(file3);
                                                 } else {
                                                     DownloadManager downloadManager = (DownloadManager) ApplicationLoader.applicationContext.getSystemService("download");
                                                     if (TextUtils.isEmpty(str)) {
                                                         MimeTypeMap singleton = MimeTypeMap.getSingleton();
-                                                        String name = file2.getName();
+                                                        String name = file3.getName();
                                                         int iLastIndexOf = name.lastIndexOf(46);
                                                         if (iLastIndexOf != -1) {
                                                             mimeTypeFromExtension = singleton.getMimeTypeFromExtension(name.substring(iLastIndexOf + 1).toLowerCase());
@@ -6473,7 +6619,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                     } else {
                                                         str2 = str;
                                                     }
-                                                    downloadManager.addCompletedDownload(file2.getName(), file2.getName(), false, str2, file2.getAbsolutePath(), file2.length(), true);
+                                                    downloadManager.addCompletedDownload(file3.getName(), file3.getName(), false, str2, file3.getAbsolutePath(), file3.length(), true);
                                                 }
                                                 float size3 = this.finishedProgress + (100.0f / this.messageObjects.size());
                                                 this.finishedProgress = size3;
@@ -6481,7 +6627,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                                     @Override
                                                     public final void run() {
-                                                        this.f$0.lambda$copyFile$10(i);
+                                                        MediaController.MediaLoader.m545$r8$lambda$uktTbqBjw6m1O6ALic3XnWfCkw(this.f$0, i);
                                                     }
                                                 });
                                                 if (channel2 != null) {
@@ -6496,16 +6642,17 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                             }
                                             channel.close();
                                             fileInputStream.close();
-                                            file2.delete();
-                                            return false;
+                                            file3.delete();
+                                            return z;
                                         } catch (Throwable th11) {
                                             th = th11;
                                             fileInputStream = fileInputStream2;
+                                            z = false;
                                         }
                                     } catch (Throwable th12) {
                                         th = th12;
                                         th2 = th;
-                                        if (channel == null) {
+                                        if (channel != null) {
                                             throw th2;
                                         }
                                         channel.close();
@@ -6514,8 +6661,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 } catch (Throwable th13) {
                                     th = th13;
                                     fileInputStream = fileInputStream2;
+                                    z = false;
                                     th2 = th;
-                                    if (channel == null) {
+                                    if (channel != null) {
                                         throw th2;
                                     }
                                     channel.close();
@@ -6523,10 +6671,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 }
                             } catch (Throwable th14) {
                                 th = th14;
+                                file3 = file2;
                             }
                         } catch (Throwable th15) {
                             th = th15;
+                            file3 = file2;
                             fileInputStream = fileInputStream2;
+                            z = false;
                             th = th;
                             fileInputStream.close();
                             throw th;
@@ -6537,37 +6688,38 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         fileInputStream.close();
                         throw th;
                     }
-                } catch (Exception e) {
-                    e = e;
+                } catch (Exception e2) {
+                    e = e2;
                     FileLog.e(e);
                 }
-            } catch (Exception e2) {
-                e = e2;
-                FileLog.e(e);
-                file2.delete();
-                return false;
+            } catch (Exception e3) {
+                e = e3;
+                file3 = file2;
             }
         }
 
-        public void lambda$copyFile$8() {
+        public static void m542$r8$lambda$Jrbb5kxNwXd2VdTpLugumpxu4E(MediaLoader mediaLoader) {
+            mediaLoader.getClass();
             try {
-                this.progressDialog.dismiss();
+                mediaLoader.progressDialog.dismiss();
             } catch (Exception e) {
                 FileLog.e(e);
             }
         }
 
-        public void lambda$copyFile$9(int i) {
+        public static void $r8$lambda$fiwq_raakPCpIOnnx9UmlXy7dwA(MediaLoader mediaLoader, int i) {
+            mediaLoader.getClass();
             try {
-                this.progressDialog.setProgress(i);
+                mediaLoader.progressDialog.setProgress(i);
             } catch (Exception e) {
                 FileLog.e(e);
             }
         }
 
-        public void lambda$copyFile$10(int i) {
+        public static void m545$r8$lambda$uktTbqBjw6m1O6ALic3XnWfCkw(MediaLoader mediaLoader, int i) {
+            mediaLoader.getClass();
             try {
-                this.progressDialog.setProgress(i);
+                mediaLoader.progressDialog.setProgress(i);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -6588,16 +6740,17 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$didReceivedNotification$11(iLongValue);
+                            MediaController.MediaLoader.m543$r8$lambda$YQhBjHx53w4ACKBE4gasn70X6k(this.f$0, iLongValue);
                         }
                     });
                 }
             }
         }
 
-        public void lambda$didReceivedNotification$11(int i) {
+        public static void m543$r8$lambda$YQhBjHx53w4ACKBE4gasn70X6k(MediaLoader mediaLoader, int i) {
+            mediaLoader.getClass();
             try {
-                this.progressDialog.setProgress(i);
+                mediaLoader.progressDialog.setProgress(i);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -6650,13 +6803,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     alertDialog2.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
-                            MediaController.lambda$saveFile$44(zArr, dialogInterface);
+                            MediaController.$r8$lambda$OQsxk9XIl050Oj7GW5MwSMV4U0M(zArr, dialogInterface);
                         }
                     });
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            MediaController.lambda$saveFile$45(zArr2, alertDialog2);
+                            MediaController.m517$r8$lambda$Iw__r2i1TFcSX1J2MWUisWw0cI(zArr2, alertDialog2);
                         }
                     }, 250L);
                     alertDialog = alertDialog2;
@@ -6670,41 +6823,37 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             new Thread(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    MediaController.lambda$saveFile$50(i, file, str2, alertDialog, zArr, str3, callback, zArr2);
+                    MediaController.m524$r8$lambda$fBsru5e_YyNhMhNroeamuu0pqA(i, file, str2, alertDialog, zArr, str3, callback, zArr2);
                 }
             }).start();
         }
     }
 
-    public static void lambda$saveFile$44(boolean[] zArr, DialogInterface dialogInterface) {
+    public static void $r8$lambda$OQsxk9XIl050Oj7GW5MwSMV4U0M(boolean[] zArr, DialogInterface dialogInterface) {
         zArr[0] = true;
     }
 
-    public static void lambda$saveFile$45(boolean[] zArr, AlertDialog alertDialog) {
+    public static void m517$r8$lambda$Iw__r2i1TFcSX1J2MWUisWw0cI(boolean[] zArr, AlertDialog alertDialog) {
         if (zArr[0]) {
             return;
         }
         alertDialog.show();
     }
 
-    public static void lambda$saveFile$50(int i, File file, String str, final AlertDialog alertDialog, boolean[] zArr, String str2, final Utilities.Callback callback, final boolean[] zArr2) throws Throwable {
+    public static void m524$r8$lambda$fBsru5e_YyNhMhNroeamuu0pqA(int i, File file, String str, final AlertDialog alertDialog, boolean[] zArr, String str2, final Utilities.Callback callback, final boolean[] zArr2) throws Throwable {
         File externalStoragePublicDirectory;
         File file2;
         String str3;
         char c;
-        char c2;
-        ?? r26;
+        ?? r25;
         final Uri uriFromFile;
         Throwable th;
-        Throwable th2;
-        Throwable th3;
-        long jCurrentTimeMillis;
         try {
-            char c3 = 0;
+            boolean z = true;
             if (Build.VERSION.SDK_INT >= 29) {
                 uriFromFile = saveFileInternal(i, file, null);
-                if (uriFromFile != null) {
-                    c3 = 1;
+                if (uriFromFile == null) {
+                    z = false;
                 }
             } else {
                 if (i == 0) {
@@ -6747,7 +6896,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 if (!file2.exists()) {
                     file2.createNewFile();
                 }
-                long jCurrentTimeMillis2 = System.currentTimeMillis() - 500;
+                long j = 500;
+                long jCurrentTimeMillis = System.currentTimeMillis() - 500;
                 try {
                     try {
                         FileInputStream fileInputStream = new FileInputStream(file);
@@ -6755,193 +6905,170 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             try {
                                 FileChannel channel = fileInputStream.getChannel();
                                 try {
+                                    FileChannel channel2 = new FileOutputStream(file2).getChannel();
+                                    str = file2;
                                     try {
-                                        FileChannel channel2 = new FileOutputStream(file2).getChannel();
                                         try {
                                             long size = channel.size();
+                                            c = 0;
                                             try {
                                                 if (AndroidUtilities.isInternalUri(((Integer) FileDescriptor.class.getDeclaredMethod("getInt$", null).invoke(fileInputStream.getFD(), null)).intValue())) {
                                                     if (alertDialog != null) {
                                                         AndroidUtilities.runOnUIThread(new Runnable() {
                                                             @Override
                                                             public final void run() {
-                                                                MediaController.lambda$saveFile$46(alertDialog);
+                                                                MediaController.$r8$lambda$byEPNLpvSxIW0zdApievlt74AmU(alertDialog);
                                                             }
                                                         });
                                                     }
                                                     if (channel2 != null) {
-                                                        try {
-                                                            channel2.close();
-                                                        } catch (Throwable th4) {
-                                                            th2 = th4;
-                                                            str = file2;
-                                                            if (channel == null) {
-                                                                throw th2;
-                                                            }
-                                                            try {
-                                                                channel.close();
-                                                                throw th2;
-                                                            } catch (Throwable th5) {
-                                                                th2.addSuppressed(th5);
-                                                                throw th2;
-                                                            }
-                                                        }
+                                                        channel2.close();
                                                     }
-                                                    try {
-                                                        channel.close();
-                                                        fileInputStream.close();
-                                                        return;
-                                                    } catch (Throwable th6) {
-                                                        th = th6;
-                                                        str = file2;
-                                                        try {
-                                                            fileInputStream.close();
-                                                            throw th;
-                                                        } catch (Throwable th7) {
-                                                            th.addSuppressed(th7);
-                                                            throw th;
-                                                        }
-                                                    }
+                                                    channel.close();
+                                                    fileInputStream.close();
+                                                    return;
                                                 }
-                                            } catch (Throwable th8) {
-                                                FileLog.e(th8);
-                                            }
-                                            str = file2;
-                                            long j = 0;
-                                            while (j < size) {
+                                            } catch (Throwable th2) {
                                                 try {
-                                                    if (zArr[c3]) {
-                                                        break;
-                                                    }
-                                                    long j2 = jCurrentTimeMillis2;
-                                                    long j3 = size;
-                                                    channel2.transferFrom(channel, j, Math.min(4096L, size - j));
-                                                    if (alertDialog == null || j2 > System.currentTimeMillis() - 500) {
-                                                        jCurrentTimeMillis = j2;
-                                                    } else {
-                                                        jCurrentTimeMillis = System.currentTimeMillis();
-                                                        final int i3 = (int) ((j / j3) * 100.0f);
-                                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                                            @Override
-                                                            public final void run() {
-                                                                MediaController.lambda$saveFile$47(alertDialog, i3);
-                                                            }
-                                                        });
-                                                    }
-                                                    j += 4096;
-                                                    jCurrentTimeMillis2 = jCurrentTimeMillis;
-                                                    size = j3;
-                                                    c3 = 0;
-                                                } catch (Throwable th9) {
-                                                    th = th9;
-                                                    th3 = th;
-                                                    if (channel2 != null) {
-                                                        throw th3;
+                                                    FileLog.e(th2);
+                                                } catch (Throwable th3) {
+                                                    th = th3;
+                                                    Throwable th4 = th;
+                                                    if (channel2 == null) {
+                                                        throw th4;
                                                     }
                                                     try {
                                                         channel2.close();
-                                                        throw th3;
-                                                    } catch (Throwable th10) {
-                                                        th3.addSuppressed(th10);
-                                                        throw th3;
+                                                        throw th4;
+                                                    } catch (Throwable th5) {
+                                                        th4.addSuppressed(th5);
+                                                        throw th4;
                                                     }
-                                                    if (channel == null) {
-                                                        throw th2;
-                                                    }
-                                                    channel.close();
-                                                    throw th2;
                                                 }
+                                            }
+                                            long j2 = 0;
+                                            while (j2 < size && !zArr[0]) {
+                                                long j3 = j;
+                                                channel2.transferFrom(channel, j2, Math.min(4096L, size - j2));
+                                                long j4 = j2;
+                                                if (alertDialog != null && jCurrentTimeMillis <= System.currentTimeMillis() - j3) {
+                                                    jCurrentTimeMillis = System.currentTimeMillis();
+                                                    final int i3 = (int) ((j4 / size) * 100.0f);
+                                                    AndroidUtilities.runOnUIThread(new Runnable() {
+                                                        @Override
+                                                        public final void run() {
+                                                            MediaController.$r8$lambda$Q5N9slVmdEuD_WaVRbkRVosrKVc(alertDialog, i3);
+                                                        }
+                                                    });
+                                                }
+                                                j2 = j4 + 4096;
+                                                j = j3;
                                             }
                                             if (channel2 != null) {
                                                 channel2.close();
                                             }
                                             channel.close();
                                             fileInputStream.close();
+                                            z = true;
+                                            r25 = str;
+                                        } catch (Throwable th6) {
+                                            th = th6;
                                             c = 0;
-                                            c2 = 1;
-                                            r26 = str;
-                                        } catch (Throwable th11) {
-                                            th = th11;
-                                            str = file2;
-                                            th3 = th;
-                                            if (channel2 != null) {
-                                                throw th3;
-                                            }
-                                            channel2.close();
-                                            throw th3;
-                                            if (channel == null) {
-                                                throw th2;
-                                            }
-                                            channel.close();
-                                            throw th2;
                                         }
-                                    } catch (Throwable th12) {
-                                        th = th12;
-                                        th2 = th;
-                                        str = str;
+                                    } catch (Throwable th7) {
+                                        th = th7;
+                                        Throwable th8 = th;
                                         if (channel == null) {
-                                            throw th2;
+                                            throw th8;
                                         }
-                                        channel.close();
-                                        throw th2;
+                                        try {
+                                            channel.close();
+                                            throw th8;
+                                        } catch (Throwable th9) {
+                                            th8.addSuppressed(th9);
+                                            throw th8;
+                                        }
                                     }
-                                } catch (Throwable th13) {
-                                    th = th13;
+                                } catch (Throwable th10) {
+                                    th = th10;
                                     str = file2;
-                                    th2 = th;
-                                    str = str;
-                                    if (channel == null) {
-                                        throw th2;
-                                    }
-                                    channel.close();
-                                    throw th2;
+                                    c = 0;
                                 }
-                            } catch (Throwable th14) {
-                                th = th14;
+                            } catch (Throwable th11) {
+                                th = th11;
                                 th = th;
-                                str = str;
-                                fileInputStream.close();
-                                throw th;
+                                try {
+                                    fileInputStream.close();
+                                    throw th;
+                                } catch (Throwable th12) {
+                                    th.addSuppressed(th12);
+                                    throw th;
+                                }
                             }
-                        } catch (Throwable th15) {
-                            th = th15;
+                        } catch (Throwable th13) {
+                            th = th13;
                             str = file2;
+                            c = 0;
                             th = th;
-                            str = str;
                             fileInputStream.close();
                             throw th;
                         }
                     } catch (Exception e) {
                         e = e;
-                        FileLog.e(e);
+                        str = file2;
                         c = 0;
-                        c2 = 0;
-                        r26 = str;
+                        FileLog.e(e);
+                        z = false;
+                        r25 = str;
                     }
                 } catch (Exception e2) {
                     e = e2;
-                    str = file2;
                     FileLog.e(e);
-                    c = 0;
-                    c2 = 0;
-                    r26 = str;
-                }
-                if (zArr[c]) {
-                    r26.delete();
-                    c3 = 0;
-                } else {
-                    c3 = c2;
-                }
-                if (c3 != 0) {
-                    if (i == 2) {
-                        ((DownloadManager) ApplicationLoader.applicationContext.getSystemService("download")).addCompletedDownload(r26.getName(), r26.getName(), false, str2, r26.getAbsolutePath(), r26.length(), true);
-                    } else {
-                        AndroidUtilities.addMediaToGallery(r26.getAbsoluteFile());
+                    z = false;
+                    r25 = str;
+                    if (zArr[c]) {
+                        r25.delete();
+                        z = false;
+                    }
+                    if (z) {
+                        if (i == 2) {
+                            ((DownloadManager) ApplicationLoader.applicationContext.getSystemService("download")).addCompletedDownload(r25.getName(), r25.getName(), false, str2, r25.getAbsolutePath(), r25.length(), true);
+                        } else {
+                            AndroidUtilities.addMediaToGallery(r25.getAbsoluteFile());
+                        }
+                    }
+                    uriFromFile = Uri.fromFile(r25);
+                    if (z) {
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                callback.run(uriFromFile);
+                            }
+                        });
+                    }
+                    if (alertDialog != null) {
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                MediaController.m522$r8$lambda$ZHv9PpmmBv9GE4sgOSGeTdEU60(alertDialog, zArr2);
+                            }
+                        });
                     }
                 }
-                uriFromFile = Uri.fromFile(r26);
+                if (zArr[c]) {
+                    r25.delete();
+                    z = false;
+                }
+                if (z) {
+                    if (i == 2) {
+                        ((DownloadManager) ApplicationLoader.applicationContext.getSystemService("download")).addCompletedDownload(r25.getName(), r25.getName(), false, str2, r25.getAbsolutePath(), r25.length(), true);
+                    } else {
+                        AndroidUtilities.addMediaToGallery(r25.getAbsoluteFile());
+                    }
+                }
+                uriFromFile = Uri.fromFile(r25);
             }
-            if (c3 != 0 && callback != null) {
+            if (z && callback != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -6956,13 +7083,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.lambda$saveFile$49(alertDialog, zArr2);
+                    MediaController.m522$r8$lambda$ZHv9PpmmBv9GE4sgOSGeTdEU60(alertDialog, zArr2);
                 }
             });
         }
     }
 
-    public static void lambda$saveFile$46(AlertDialog alertDialog) {
+    public static void $r8$lambda$byEPNLpvSxIW0zdApievlt74AmU(AlertDialog alertDialog) {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
@@ -6970,7 +7097,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void lambda$saveFile$47(AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$Q5N9slVmdEuD_WaVRbkRVosrKVc(AlertDialog alertDialog, int i) {
         try {
             alertDialog.setProgress(i);
         } catch (Exception e) {
@@ -6978,7 +7105,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void lambda$saveFile$49(AlertDialog alertDialog, boolean[] zArr) {
+    public static void m522$r8$lambda$ZHv9PpmmBv9GE4sgOSGeTdEU60(AlertDialog alertDialog, boolean[] zArr) {
         try {
             if (alertDialog.isShowing()) {
                 alertDialog.dismiss();
@@ -7007,47 +7134,47 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         final boolean[] zArr = {false};
         final boolean[] zArr2 = new boolean[1];
         try {
-            final AlertDialog alertDialog2 = new AlertDialog(context, 2);
-            alertDialog2.setMessage(LocaleController.getString(R.string.Loading));
-            alertDialog2.setCanceledOnTouchOutside(false);
-            alertDialog2.setCancelable(true);
-            alertDialog2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            alertDialog = new AlertDialog(context, 2);
+            alertDialog.setMessage(LocaleController.getString(R.string.Loading));
+            alertDialog.setCanceledOnTouchOutside(false);
+            alertDialog.setCancelable(true);
+            alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    MediaController.lambda$saveFile$51(zArr, dialogInterface);
+                    MediaController.$r8$lambda$CjXRLtZA08b43nTFXIRvNYi28tE(zArr, dialogInterface);
                 }
             });
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.lambda$saveFile$52(zArr2, alertDialog2);
+                    MediaController.$r8$lambda$z0VjKuIoHlcFvI7UbC2tu6gmm_4(zArr2, alertDialog);
                 }
             }, 250L);
-            alertDialog = alertDialog2;
         } catch (Exception e) {
             FileLog.e(e);
             alertDialog = null;
         }
+        final AlertDialog alertDialog2 = alertDialog;
         new Thread(new Runnable() {
             @Override
             public final void run() {
-                MediaController.lambda$saveFile$55(file, file2, zArr, callback, alertDialog, zArr2);
+                MediaController.m521$r8$lambda$UtsV44ocAZ5LGQgMhKcUlhqDU(file, file2, zArr, callback, alertDialog2, zArr2);
             }
         }).start();
     }
 
-    public static void lambda$saveFile$51(boolean[] zArr, DialogInterface dialogInterface) {
+    public static void $r8$lambda$CjXRLtZA08b43nTFXIRvNYi28tE(boolean[] zArr, DialogInterface dialogInterface) {
         zArr[0] = true;
     }
 
-    public static void lambda$saveFile$52(boolean[] zArr, AlertDialog alertDialog) {
+    public static void $r8$lambda$z0VjKuIoHlcFvI7UbC2tu6gmm_4(boolean[] zArr, AlertDialog alertDialog) {
         if (zArr[0]) {
             return;
         }
         alertDialog.show();
     }
 
-    public static void lambda$saveFile$55(File file, File file2, boolean[] zArr, final Utilities.Callback callback, final AlertDialog alertDialog, final boolean[] zArr2) {
+    public static void m521$r8$lambda$UtsV44ocAZ5LGQgMhKcUlhqDU(File file, File file2, boolean[] zArr, final Utilities.Callback callback, final AlertDialog alertDialog, final boolean[] zArr2) {
         final Uri uriFromFile = null;
         boolean z = false;
         try {
@@ -7131,13 +7258,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.lambda$saveFile$54(alertDialog, zArr2);
+                    MediaController.m531$r8$lambda$xtrxa7kAAADjJpoj0HDnR0g7dU(alertDialog, zArr2);
                 }
             });
         }
     }
 
-    public static void lambda$saveFile$54(AlertDialog alertDialog, boolean[] zArr) {
+    public static void m531$r8$lambda$xtrxa7kAAADjJpoj0HDnR0g7dU(AlertDialog alertDialog, boolean[] zArr) {
         try {
             if (alertDialog.isShowing()) {
                 alertDialog.dismiss();
@@ -7443,6 +7570,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public static String getFileName(Uri uri) {
+        Uri uri2;
+        String path;
+        int iLastIndexOf;
         if (uri == null) {
             return "";
         }
@@ -7450,34 +7580,57 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             String string = null;
             if (uri.getScheme().equals("content")) {
                 try {
-                    Cursor cursorQuery = ApplicationLoader.applicationContext.getContentResolver().query(uri, new String[]{"_display_name"}, null, null, null);
+                    uri2 = uri;
                     try {
-                        if (cursorQuery.moveToFirst()) {
-                            string = cursorQuery.getString(cursorQuery.getColumnIndex("_display_name"));
-                        }
-                        cursorQuery.close();
-                    } catch (Throwable th) {
-                        if (cursorQuery != null) {
+                        Cursor cursorQuery = ApplicationLoader.applicationContext.getContentResolver().query(uri2, new String[]{"_display_name"}, null, null, null);
+                        try {
+                            if (cursorQuery.moveToFirst()) {
+                                string = cursorQuery.getString(cursorQuery.getColumnIndex("_display_name"));
+                            }
+                            cursorQuery.close();
+                        } catch (Throwable th) {
+                            if (cursorQuery == null) {
+                                throw th;
+                            }
                             try {
                                 cursorQuery.close();
+                                throw th;
                             } catch (Throwable th2) {
                                 th.addSuppressed(th2);
+                                throw th;
                             }
+                            if (string == null) {
+                                return string;
+                            }
+                            path = uri2.getPath();
+                            iLastIndexOf = path.lastIndexOf(47);
+                            if (iLastIndexOf != -1) {
+                                return path.substring(iLastIndexOf + 1);
+                            }
+                            return path;
                         }
-                        throw th;
+                    } catch (Exception e) {
+                        e = e;
+                        FileLog.e(e);
                     }
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e2) {
+                    e = e2;
+                    uri2 = uri;
                 }
+            } else {
+                uri2 = uri;
             }
-            if (string != null) {
+            if (string == null) {
                 return string;
             }
-            String path = uri.getPath();
-            int iLastIndexOf = path.lastIndexOf(47);
-            return iLastIndexOf != -1 ? path.substring(iLastIndexOf + 1) : path;
-        } catch (Exception e2) {
-            FileLog.e(e2);
+            path = uri2.getPath();
+            iLastIndexOf = path.lastIndexOf(47);
+            if (iLastIndexOf != -1) {
+                return path.substring(iLastIndexOf + 1);
+            }
+            return path;
+        } catch (Exception e3) {
+            FileLog.e(e3);
             return "";
         }
     }
@@ -7517,13 +7670,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public static String copyFileToCache(Uri uri, String str, long j) throws Throwable {
+        Throwable th;
         File sharingDirectory;
         FileOutputStream fileOutputStream;
-        InputStream inputStreamOpenInputStream;
-        Throwable th;
+        Exception exc;
+        InputStream inputStream;
         File file;
-        int i = 0;
-        InputStream inputStream = null;
+        Exception e;
+        InputStream inputStreamOpenInputStream;
+        int i;
+        Throwable th2;
+        Throwable th3;
+        File file2;
+        int i2 = 0;
+        InputStream inputStream2 = null;
         try {
             String strFixFileName = FileLoader.fixFileName(getFileName(uri));
             if (strFixFileName == null) {
@@ -7540,22 +7700,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                     return null;
                 }
-                int i2 = 0;
+                int i3 = 0;
                 do {
                     File sharingDirectory2 = AndroidUtilities.getSharingDirectory();
-                    if (i2 == 0) {
-                        file = new File(sharingDirectory2, strFixFileName);
+                    if (i3 == 0) {
+                        file2 = new File(sharingDirectory2, strFixFileName);
                     } else {
                         int iLastIndexOf = strFixFileName.lastIndexOf(".");
                         if (iLastIndexOf > 0) {
-                            sharingDirectory = new File(sharingDirectory2, strFixFileName.substring(0, iLastIndexOf) + " (" + i2 + ")" + strFixFileName.substring(iLastIndexOf));
+                            sharingDirectory = new File(sharingDirectory2, strFixFileName.substring(0, iLastIndexOf) + " (" + i3 + ")" + strFixFileName.substring(iLastIndexOf));
                         } else {
-                            file = new File(sharingDirectory2, strFixFileName + " (" + i2 + ")");
+                            file2 = new File(sharingDirectory2, strFixFileName + " (" + i3 + ")");
                         }
-                        i2++;
+                        i3++;
                     }
-                    sharingDirectory = file;
-                    i2++;
+                    sharingDirectory = file2;
+                    i3++;
                 } while (sharingDirectory.exists());
                 inputStreamOpenInputStream = ApplicationLoader.applicationContext.getContentResolver().openInputStream(uri);
                 try {
@@ -7565,8 +7725,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 if (inputStreamOpenInputStream != null) {
                                     try {
                                         inputStreamOpenInputStream.close();
-                                    } catch (Exception e) {
-                                        FileLog.e(e);
+                                    } catch (Exception e2) {
+                                        FileLog.e(e2);
                                     }
                                 }
                                 if (j > 0 && 0 > j) {
@@ -7574,48 +7734,48 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 }
                                 return null;
                             }
-                        } catch (Throwable th2) {
-                            FileLog.e(th2);
+                        } catch (Throwable th4) {
+                            FileLog.e(th4);
                         }
                     }
                     fileOutputStream = new FileOutputStream(sharingDirectory);
                     try {
                         byte[] bArr = new byte[20480];
-                        int i3 = 0;
+                        int i4 = 0;
                         while (true) {
                             try {
-                                int i4 = inputStreamOpenInputStream.read(bArr);
-                                if (i4 == -1) {
+                                int i5 = inputStreamOpenInputStream.read(bArr);
+                                if (i5 == -1) {
                                     String absolutePath = sharingDirectory.getAbsolutePath();
                                     try {
                                         inputStreamOpenInputStream.close();
-                                    } catch (Exception e2) {
-                                        FileLog.e(e2);
-                                    }
-                                    try {
-                                        fileOutputStream.close();
                                     } catch (Exception e3) {
                                         FileLog.e(e3);
                                     }
-                                    if (j > 0 && i3 > j) {
+                                    try {
+                                        fileOutputStream.close();
+                                    } catch (Exception e4) {
+                                        FileLog.e(e4);
+                                    }
+                                    if (j > 0 && i4 > j) {
                                         sharingDirectory.delete();
                                     }
                                     return absolutePath;
                                 }
-                                fileOutputStream.write(bArr, 0, i4);
-                                i3 += i4;
+                                fileOutputStream.write(bArr, 0, i5);
+                                i4 += i5;
                                 if (j > 0) {
-                                    long j2 = i3;
+                                    long j2 = i4;
                                     if (j2 > j) {
                                         try {
                                             inputStreamOpenInputStream.close();
-                                        } catch (Exception e4) {
-                                            FileLog.e(e4);
+                                        } catch (Exception e5) {
+                                            FileLog.e(e5);
                                         }
                                         try {
                                             fileOutputStream.close();
-                                        } catch (Exception e5) {
-                                            FileLog.e(e5);
+                                        } catch (Exception e6) {
+                                            FileLog.e(e6);
                                         }
                                         if (j > 0 && j2 > j) {
                                             sharingDirectory.delete();
@@ -7623,49 +7783,58 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         return null;
                                     }
                                 }
-                            } catch (Exception e6) {
-                                e = e6;
-                                i = i3;
-                            } catch (Throwable th3) {
-                                th = th3;
-                                i = i3;
-                                int i5 = i;
-                                th = th;
+                            } catch (Exception e7) {
+                                e = e7;
+                                i2 = i4;
+                            } catch (Throwable th5) {
+                                th = th5;
+                                i2 = i4;
+                                i = i2;
+                                th2 = th;
                                 if (inputStreamOpenInputStream != null) {
                                     try {
                                         inputStreamOpenInputStream.close();
-                                    } catch (Exception e7) {
-                                        FileLog.e(e7);
+                                    } catch (Exception e8) {
+                                        FileLog.e(e8);
                                     }
                                 }
                                 if (fileOutputStream != null) {
                                     try {
                                         fileOutputStream.close();
-                                    } catch (Exception e8) {
-                                        FileLog.e(e8);
+                                    } catch (Exception e9) {
+                                        FileLog.e(e9);
                                     }
                                 }
                                 if (j > 0) {
-                                    throw th;
+                                    throw th2;
                                 }
-                                throw th;
+                                throw th2;
                             }
                         }
-                    } catch (Exception e9) {
-                        e = e9;
-                    } catch (Throwable th4) {
-                        th = th4;
+                    } catch (Exception e10) {
+                        e = e10;
+                    } catch (Throwable th6) {
+                        th = th6;
                     }
-                } catch (Exception e10) {
-                    e = e10;
-                    fileOutputStream = null;
-                } catch (Throwable th5) {
-                    th = th5;
-                    fileOutputStream = null;
+                } catch (Exception e11) {
+                    File file3 = sharingDirectory;
                     inputStream = inputStreamOpenInputStream;
+                    exc = e11;
+                    file = file3;
+                    File file4 = file;
+                    e = exc;
                     inputStreamOpenInputStream = inputStream;
-                    int i6 = i;
-                    th = th;
+                    sharingDirectory = file4;
+                    fileOutputStream = null;
+                } catch (Throwable th7) {
+                    th3 = th7;
+                    fileOutputStream = null;
+                    inputStream2 = inputStreamOpenInputStream;
+                    th = th3;
+                    int i6 = i2;
+                    th2 = th;
+                    inputStreamOpenInputStream = inputStream2;
+                    i = i6;
                     if (inputStreamOpenInputStream != null) {
                         inputStreamOpenInputStream.close();
                     }
@@ -7673,19 +7842,21 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         fileOutputStream.close();
                     }
                     if (j > 0) {
-                        throw th;
+                        throw th2;
                     }
-                    throw th;
+                    throw th2;
                 }
-            } catch (Exception e11) {
-                e = e11;
-                inputStreamOpenInputStream = null;
-            } catch (Throwable th6) {
-                th = th6;
+            } catch (Exception e12) {
+                exc = e12;
+                file = sharingDirectory;
+                inputStream = null;
+            } catch (Throwable th8) {
+                th = th8;
                 fileOutputStream = null;
-                inputStreamOpenInputStream = inputStream;
-                int i7 = i;
-                th = th;
+                int i7 = i2;
+                th2 = th;
+                inputStreamOpenInputStream = inputStream2;
+                i = i7;
                 if (inputStreamOpenInputStream != null) {
                     inputStreamOpenInputStream.close();
                 }
@@ -7693,57 +7864,63 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     fileOutputStream.close();
                 }
                 if (j > 0) {
-                    throw th;
+                    throw th2;
                 }
-                throw th;
+                throw th2;
             }
-        } catch (Exception e12) {
-            e = e12;
-            inputStreamOpenInputStream = null;
-            sharingDirectory = null;
-        } catch (Throwable th7) {
-            th = th7;
+        } catch (Exception e13) {
+            exc = e13;
+            inputStream = null;
+            file = null;
+        } catch (Throwable th9) {
+            th = th9;
             sharingDirectory = null;
             fileOutputStream = null;
         }
+        File file5 = file;
+        e = exc;
+        inputStreamOpenInputStream = inputStream;
+        sharingDirectory = file5;
         fileOutputStream = null;
         try {
             FileLog.e(e);
             if (inputStreamOpenInputStream != null) {
                 try {
                     inputStreamOpenInputStream.close();
-                } catch (Exception e13) {
-                    FileLog.e(e13);
+                } catch (Exception e14) {
+                    FileLog.e(e14);
                 }
             }
             if (fileOutputStream != null) {
                 try {
                     fileOutputStream.close();
-                } catch (Exception e14) {
-                    FileLog.e(e14);
+                } catch (Exception e15) {
+                    FileLog.e(e15);
                 }
             }
-            if (j > 0 && i > j) {
+            if (j > 0 && i2 > j) {
                 sharingDirectory.delete();
             }
             return null;
-        } catch (Throwable th8) {
-            th = th8;
-            inputStream = inputStreamOpenInputStream;
-            inputStreamOpenInputStream = inputStream;
-            int i8 = i;
-            th = th;
+        } catch (Throwable th10) {
+            th3 = th10;
+            inputStream2 = inputStreamOpenInputStream;
+            th = th3;
+            int i8 = i2;
+            th2 = th;
+            inputStreamOpenInputStream = inputStream2;
+            i = i8;
             if (inputStreamOpenInputStream != null) {
                 inputStreamOpenInputStream.close();
             }
             if (fileOutputStream != null) {
                 fileOutputStream.close();
             }
-            if (j > 0 || i8 <= j) {
-                throw th;
+            if (j > 0 || i <= j) {
+                throw th2;
             }
             sharingDirectory.delete();
-            throw th;
+            throw th2;
         }
     }
 
@@ -7751,14 +7928,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Thread thread = new Thread(new Runnable() {
             @Override
             public final void run() {
-                MediaController.lambda$loadGalleryPhotosAlbums$57(i);
+                MediaController.m532$r8$lambda$z9B4BHdB6vIEakOD5HH5zsOx40(i);
             }
         });
         thread.setPriority(1);
         thread.start();
     }
 
-    public static void lambda$loadGalleryPhotosAlbums$57(int i) {
+    public static void m532$r8$lambda$z9B4BHdB6vIEakOD5HH5zsOx40(int i) {
         SparseArray sparseArray;
         String string;
         ArrayList arrayList;
@@ -7767,6 +7944,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AlbumEntry albumEntry2;
         Object objValueOf;
         AlbumEntry albumEntry3;
+        ArrayList arrayList2;
         AlbumEntry albumEntry4;
         AlbumEntry albumEntry5;
         int i2;
@@ -7809,20 +7987,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AlbumEntry albumEntry9;
         AlbumEntry albumEntry10;
         AlbumEntry albumEntry11;
+        Cursor cursor;
         AlbumEntry albumEntry12;
         SparseArray sparseArray2;
         AlbumEntry albumEntry13;
-        String str5 = "_size";
-        String str6 = "height";
-        String str7 = "width";
-        String str8 = "orientation";
-        String str9 = "_data";
-        String str10 = "bucket_display_name";
-        String str11 = "bucket_id";
-        String str12 = "_id";
-        ArrayList arrayList2 = new ArrayList();
+        String str5 = "height";
+        String str6 = "width";
+        String str7 = "orientation";
+        String str8 = "_data";
+        String str9 = "bucket_display_name";
+        String str10 = "bucket_id";
+        String str11 = "_id";
         ArrayList arrayList3 = new ArrayList();
-        ArrayList arrayList4 = arrayList2;
+        ArrayList arrayList4 = new ArrayList();
+        ArrayList arrayList5 = arrayList3;
         SparseArray sparseArray3 = new SparseArray();
         SparseArray sparseArray4 = new SparseArray();
         AlbumEntry albumEntry14 = null;
@@ -7845,7 +8023,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         try {
             Context context = ApplicationLoader.applicationContext;
             int i7 = Build.VERSION.SDK_INT;
-            ArrayList arrayList5 = arrayList3;
+            ArrayList arrayList6 = arrayList4;
             if (i7 < 23) {
                 try {
                     ContentResolver contentResolver = context.getContentResolver();
@@ -7861,34 +8039,18 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     sb2.append(" DESC");
                     cursorQuery = MediaStore.Images.Media.query(contentResolver, uri, strArr, null, null, sb2.toString());
                     if (cursorQuery != null) {
-                        str5 = "_size";
-                        str6 = "height";
-                        str7 = "width";
-                        str8 = "orientation";
-                        str9 = "_data";
-                        str10 = "bucket_display_name";
-                        str11 = "bucket_id";
-                        str12 = "_id";
-                        arrayList4 = arrayList4;
-                        sparseArray3 = sparseArray3;
-                        string = string;
-                        arrayList = arrayList5;
-                        albumEntry = null;
-                        albumEntry2 = null;
-                        objValueOf = null;
-                    } else {
                         try {
                             columnIndex10 = cursorQuery.getColumnIndex("_id");
-                            str12 = "_id";
+                            str11 = "_id";
                             try {
                                 columnIndex11 = cursorQuery.getColumnIndex("bucket_id");
-                                str11 = "bucket_id";
+                                str10 = "bucket_id";
                                 try {
                                     columnIndex12 = cursorQuery.getColumnIndex("bucket_display_name");
-                                    str10 = "bucket_display_name";
+                                    str9 = "bucket_display_name";
                                     try {
                                         columnIndex13 = cursorQuery.getColumnIndex("_data");
-                                        str9 = "_data";
+                                        str8 = "_data";
                                         if (i7 > 28) {
                                             str4 = "date_modified";
                                         } else {
@@ -7897,13 +8059,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         try {
                                             columnIndex14 = cursorQuery.getColumnIndex(str4);
                                             columnIndex15 = cursorQuery.getColumnIndex("orientation");
-                                            str8 = "orientation";
+                                            str7 = "orientation";
                                             try {
                                                 columnIndex16 = cursorQuery.getColumnIndex("width");
-                                                str7 = "width";
+                                                str6 = "width";
                                                 try {
                                                     columnIndex17 = cursorQuery.getColumnIndex("height");
-                                                    str6 = "height";
+                                                    str5 = "height";
                                                     try {
                                                         columnIndex18 = cursorQuery.getColumnIndex("_size");
                                                         albumEntry = null;
@@ -7912,82 +8074,82 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                         numValueOf = null;
                                                         while (cursorQuery.moveToNext()) {
                                                             try {
-                                                                str5 = str5;
-                                                                try {
-                                                                    string4 = cursorQuery.getString(columnIndex13);
-                                                                    if (TextUtils.isEmpty(string4)) {
-                                                                        int i8 = cursorQuery.getInt(columnIndex10);
-                                                                        int i9 = columnIndex10;
-                                                                        i6 = cursorQuery.getInt(columnIndex11);
-                                                                        int i10 = columnIndex13;
-                                                                        string5 = cursorQuery.getString(columnIndex12);
-                                                                        int i11 = columnIndex18;
-                                                                        photoEntry2 = new PhotoEntry(i6, i8, cursorQuery.getLong(columnIndex14), string4, cursorQuery.getInt(columnIndex15), 0, false, cursorQuery.getInt(columnIndex16), cursorQuery.getInt(columnIndex17), cursorQuery.getLong(columnIndex18));
-                                                                        if (albumEntry == null) {
+                                                                string4 = cursorQuery.getString(columnIndex13);
+                                                                if (TextUtils.isEmpty(string4)) {
+                                                                    int i8 = cursorQuery.getInt(columnIndex10);
+                                                                    i6 = cursorQuery.getInt(columnIndex11);
+                                                                    int i9 = columnIndex10;
+                                                                    string5 = cursorQuery.getString(columnIndex12);
+                                                                    photoEntry2 = new PhotoEntry(i6, i8, cursorQuery.getLong(columnIndex14), string4, cursorQuery.getInt(columnIndex15), 0, false, cursorQuery.getInt(columnIndex16), cursorQuery.getInt(columnIndex17), cursorQuery.getLong(columnIndex18));
+                                                                    int i10 = columnIndex17;
+                                                                    int i11 = columnIndex16;
+                                                                    int i12 = columnIndex18;
+                                                                    if (albumEntry == null) {
+                                                                        try {
+                                                                            albumEntry8 = new AlbumEntry(0, LocaleController.getString(R.string.AllPhotos), photoEntry2);
+                                                                            arrayList = arrayList6;
                                                                             try {
-                                                                                albumEntry8 = new AlbumEntry(0, LocaleController.getString(R.string.AllPhotos), photoEntry2);
-                                                                                arrayList = arrayList5;
+                                                                                arrayList.add(0, albumEntry8);
+                                                                            } catch (Throwable th) {
+                                                                                th = th;
+                                                                                albumEntry = albumEntry8;
+                                                                                arrayList5 = arrayList5;
+                                                                                sparseArray3 = sparseArray3;
+                                                                                string = string;
                                                                                 try {
-                                                                                    arrayList.add(0, albumEntry8);
-                                                                                } catch (Throwable th) {
-                                                                                    th = th;
-                                                                                    albumEntry = albumEntry8;
-                                                                                    arrayList4 = arrayList4;
-                                                                                    sparseArray3 = sparseArray3;
-                                                                                    string = string;
-                                                                                    try {
-                                                                                        FileLog.e(th);
-                                                                                        if (cursorQuery != null) {
-                                                                                            try {
-                                                                                                cursorQuery.close();
-                                                                                            } catch (Exception e3) {
-                                                                                                FileLog.e(e3);
-                                                                                            }
+                                                                                    FileLog.e(th);
+                                                                                    if (cursorQuery != null) {
+                                                                                        try {
+                                                                                            cursorQuery.close();
+                                                                                        } catch (Exception e3) {
+                                                                                            FileLog.e(e3);
                                                                                         }
-                                                                                        albumEntry3 = albumEntry;
-                                                                                        Context context2 = ApplicationLoader.applicationContext;
-                                                                                        i3 = Build.VERSION.SDK_INT;
-                                                                                        if (i3 < 23) {
-                                                                                            ContentResolver contentResolver2 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                            Uri uri2 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                            String[] strArr2 = projectionVideo;
-                                                                                            StringBuilder sb3 = new StringBuilder();
+                                                                                    }
+                                                                                    albumEntry3 = albumEntry;
+                                                                                    Context context2 = ApplicationLoader.applicationContext;
+                                                                                    i3 = Build.VERSION.SDK_INT;
+                                                                                    if (i3 < 23) {
+                                                                                        ContentResolver contentResolver2 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                        Uri uri2 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                        String[] strArr2 = projectionVideo;
+                                                                                        StringBuilder sb3 = new StringBuilder();
+                                                                                        if (i3 > 28) {
+                                                                                            str = "date_modified";
+                                                                                        } else {
+                                                                                            str = "datetaken";
+                                                                                        }
+                                                                                        sb3.append(str);
+                                                                                        sb3.append(" DESC");
+                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver2, uri2, strArr2, null, null, sb3.toString());
+                                                                                        if (cursorQuery != null) {
+                                                                                            columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str8);
                                                                                             if (i3 > 28) {
-                                                                                                str = "date_modified";
+                                                                                                str2 = "date_modified";
                                                                                             } else {
-                                                                                                str = "datetaken";
+                                                                                                str2 = "datetaken";
                                                                                             }
-                                                                                            sb3.append(str);
-                                                                                            sb3.append(" DESC");
-                                                                                            cursorQuery = MediaStore.Images.Media.query(contentResolver2, uri2, strArr2, null, null, sb3.toString());
-                                                                                            if (cursorQuery != null) {
-                                                                                                columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                                columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                                columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                                columnIndex4 = cursorQuery.getColumnIndex(str9);
-                                                                                                if (i3 > 28) {
-                                                                                                    str2 = "date_modified";
-                                                                                                } else {
-                                                                                                    str2 = "datetaken";
-                                                                                                }
-                                                                                                columnIndex5 = cursorQuery.getColumnIndex(str2);
-                                                                                                columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                                columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                                columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                                columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                                cursorQuery.getColumnIndex(str8);
-                                                                                                while (cursorQuery.moveToNext()) {
-                                                                                                    string2 = cursorQuery.getString(columnIndex4);
-                                                                                                    if (TextUtils.isEmpty(string2)) {
-                                                                                                        int i12 = cursorQuery.getInt(columnIndex);
-                                                                                                        i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                        int i13 = columnIndex;
-                                                                                                        string3 = cursorQuery.getString(columnIndex3);
-                                                                                                        int i14 = columnIndex5;
-                                                                                                        int i15 = columnIndex3;
-                                                                                                        int i16 = columnIndex4;
-                                                                                                        photoEntry = new PhotoEntry(i4, i12, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
-                                                                                                        if (albumEntry14 == null) {
+                                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                            columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                            cursorQuery.getColumnIndex(str7);
+                                                                                            while (cursorQuery.moveToNext()) {
+                                                                                                string2 = cursorQuery.getString(columnIndex4);
+                                                                                                if (TextUtils.isEmpty(string2)) {
+                                                                                                    int i13 = cursorQuery.getInt(columnIndex);
+                                                                                                    i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                    string3 = cursorQuery.getString(columnIndex3);
+                                                                                                    int i14 = columnIndex;
+                                                                                                    int i15 = columnIndex9;
+                                                                                                    photoEntry = new PhotoEntry(i4, i13, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                    int i16 = columnIndex5;
+                                                                                                    if (albumEntry14 == null) {
+                                                                                                        arrayList2 = arrayList;
+                                                                                                        try {
                                                                                                             albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                                                                                             i5 = 1;
                                                                                                             try {
@@ -7998,7 +8160,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                 if (albumEntry3 != null) {
                                                                                                                     i5++;
                                                                                                                 }
-                                                                                                                arrayList4.add(i5, albumEntry4);
+                                                                                                                arrayList5.add(i5, albumEntry4);
                                                                                                             } catch (Throwable th2) {
                                                                                                                 th = th2;
                                                                                                                 try {
@@ -8016,15 +8178,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                     albumEntry5 = albumEntry4;
                                                                                                                     AlbumEntry albumEntry15 = albumEntry2;
                                                                                                                     Integer num = objValueOf;
-                                                                                                                    for (i2 = 0; i2 < arrayList4.size(); i2++) {
-                                                                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                                                    for (i2 = 0; i2 < arrayList5.size(); i2++) {
+                                                                                                                        Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                                             @Override
                                                                                                                             public final int compare(Object obj, Object obj2) {
-                                                                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                                             }
                                                                                                                         });
                                                                                                                     }
-                                                                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num, albumEntry15, albumEntry3, albumEntry5, 0);
+                                                                                                                    broadcastNewPhotos(i, arrayList5, arrayList2, num, albumEntry15, albumEntry3, albumEntry5, 0);
                                                                                                                 } catch (Throwable th3) {
                                                                                                                     if (cursorQuery != null) {
                                                                                                                         try {
@@ -8038,38 +8200,38 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                     throw th3;
                                                                                                                 }
                                                                                                             }
-                                                                                                        } else {
+                                                                                                        } catch (Throwable th4) {
+                                                                                                            th = th4;
                                                                                                             albumEntry4 = albumEntry14;
+                                                                                                            FileLog.e(th);
+                                                                                                            if (cursorQuery != null) {
+                                                                                                                cursorQuery.close();
+                                                                                                            }
+                                                                                                            albumEntry5 = albumEntry4;
+                                                                                                            AlbumEntry albumEntry16 = albumEntry2;
+                                                                                                            Integer num2 = objValueOf;
+                                                                                                            while (i2 < arrayList5.size()) {
+                                                                                                                Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
+                                                                                                                    @Override
+                                                                                                                    public final int compare(Object obj, Object obj2) {
+                                                                                                                        return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                    }
+                                                                                                                });
+                                                                                                            }
+                                                                                                            broadcastNewPhotos(i, arrayList5, arrayList2, num2, albumEntry16, albumEntry3, albumEntry5, 0);
                                                                                                         }
-                                                                                                        if (albumEntry2 == null) {
+                                                                                                    } else {
+                                                                                                        arrayList2 = arrayList;
+                                                                                                        albumEntry4 = albumEntry14;
+                                                                                                    }
+                                                                                                    if (albumEntry2 == null) {
+                                                                                                        try {
+                                                                                                            albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
                                                                                                             try {
-                                                                                                                albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                                try {
-                                                                                                                    arrayList4.add(0, albumEntry6);
-                                                                                                                } catch (Throwable th4) {
-                                                                                                                    th = th4;
-                                                                                                                    albumEntry2 = albumEntry6;
-                                                                                                                    FileLog.e(th);
-                                                                                                                    if (cursorQuery != null) {
-                                                                                                                        cursorQuery.close();
-                                                                                                                    }
-                                                                                                                    albumEntry5 = albumEntry4;
-                                                                                                                    AlbumEntry albumEntry16 = albumEntry2;
-                                                                                                                    Integer num2 = objValueOf;
-                                                                                                                    while (i2 < arrayList4.size()) {
-                                                                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
-                                                                                                                            @Override
-                                                                                                                            public final int compare(Object obj, Object obj2) {
-                                                                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
-                                                                                                                            }
-                                                                                                                        });
-                                                                                                                    }
-                                                                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num2, albumEntry16, albumEntry3, albumEntry5, 0);
-                                                                                                                }
+                                                                                                                arrayList5.add(0, albumEntry6);
                                                                                                             } catch (Throwable th5) {
                                                                                                                 th = th5;
-                                                                                                                albumEntry14 = albumEntry4;
-                                                                                                                albumEntry4 = albumEntry14;
+                                                                                                                albumEntry2 = albumEntry6;
                                                                                                                 FileLog.e(th);
                                                                                                                 if (cursorQuery != null) {
                                                                                                                     cursorQuery.close();
@@ -8077,107 +8239,41 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                 albumEntry5 = albumEntry4;
                                                                                                                 AlbumEntry albumEntry17 = albumEntry2;
                                                                                                                 Integer num3 = objValueOf;
-                                                                                                                while (i2 < arrayList4.size()) {
-                                                                                                                    Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                                                while (i2 < arrayList5.size()) {
+                                                                                                                    Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                                         @Override
                                                                                                                         public final int compare(Object obj, Object obj2) {
-                                                                                                                            return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                            return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                                         }
                                                                                                                     });
                                                                                                                 }
-                                                                                                                broadcastNewPhotos(i, arrayList4, arrayList, num3, albumEntry17, albumEntry3, albumEntry5, 0);
+                                                                                                                broadcastNewPhotos(i, arrayList5, arrayList2, num3, albumEntry17, albumEntry3, albumEntry5, 0);
                                                                                                             }
-                                                                                                        } else {
-                                                                                                            albumEntry6 = albumEntry2;
-                                                                                                        }
-                                                                                                        try {
-                                                                                                            albumEntry4.addPhoto(photoEntry);
-                                                                                                            albumEntry6.addPhoto(photoEntry);
-                                                                                                            albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
-                                                                                                            if (albumEntry7 == null) {
-                                                                                                                albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
-                                                                                                                sparseArray3.put(i4, albumEntry7);
-                                                                                                                if (objValueOf != null) {
-                                                                                                                    arrayList4.add(albumEntry7);
-                                                                                                                } else {
-                                                                                                                    arrayList4.add(albumEntry7);
-                                                                                                                }
-                                                                                                            }
-                                                                                                            albumEntry7.addPhoto(photoEntry);
-                                                                                                            albumEntry2 = albumEntry6;
-                                                                                                            albumEntry14 = albumEntry4;
-                                                                                                            columnIndex = i13;
-                                                                                                            columnIndex2 = columnIndex2;
-                                                                                                            columnIndex6 = columnIndex6;
-                                                                                                            columnIndex5 = i14;
-                                                                                                            columnIndex3 = i15;
-                                                                                                            columnIndex4 = i16;
                                                                                                         } catch (Throwable th6) {
                                                                                                             th = th6;
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                        } else {
-                                                                                            ContentResolver contentResolver3 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                            Uri uri3 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                            String[] strArr3 = projectionVideo;
-                                                                                            StringBuilder sb4 = new StringBuilder();
-                                                                                            if (i3 > 28) {
-                                                                                                str = "date_modified";
-                                                                                            } else {
-                                                                                                str = "datetaken";
-                                                                                            }
-                                                                                            sb4.append(str);
-                                                                                            sb4.append(" DESC");
-                                                                                            cursorQuery = MediaStore.Images.Media.query(contentResolver3, uri3, strArr3, null, null, sb4.toString());
-                                                                                            if (cursorQuery != null) {
-                                                                                                columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                                columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                                columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                                columnIndex4 = cursorQuery.getColumnIndex(str9);
-                                                                                                if (i3 > 28) {
-                                                                                                    str2 = "date_modified";
-                                                                                                } else {
-                                                                                                    str2 = "datetaken";
-                                                                                                }
-                                                                                                columnIndex5 = cursorQuery.getColumnIndex(str2);
-                                                                                                columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                                columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                                columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                                columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                                cursorQuery.getColumnIndex(str8);
-                                                                                                while (cursorQuery.moveToNext()) {
-                                                                                                    string2 = cursorQuery.getString(columnIndex4);
-                                                                                                    if (TextUtils.isEmpty(string2)) {
-                                                                                                        int i17 = cursorQuery.getInt(columnIndex);
-                                                                                                        i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                        int i18 = columnIndex;
-                                                                                                        string3 = cursorQuery.getString(columnIndex3);
-                                                                                                        int i19 = columnIndex5;
-                                                                                                        int i110 = columnIndex3;
-                                                                                                        int i111 = columnIndex4;
-                                                                                                        photoEntry = new PhotoEntry(i4, i17, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
-                                                                                                        if (albumEntry14 == null) {
-                                                                                                            albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
-                                                                                                            i5 = 1;
-                                                                                                            albumEntry4.videoOnly = true;
-                                                                                                            if (albumEntry2 != null) {
-                                                                                                                i5 = 0;
-                                                                                                            }
-                                                                                                            if (albumEntry3 != null) {
-                                                                                                                i5++;
-                                                                                                            }
-                                                                                                            arrayList4.add(i5, albumEntry4);
-                                                                                                        } else {
+                                                                                                            albumEntry14 = albumEntry4;
                                                                                                             albumEntry4 = albumEntry14;
+                                                                                                            FileLog.e(th);
+                                                                                                            if (cursorQuery != null) {
+                                                                                                                cursorQuery.close();
+                                                                                                            }
+                                                                                                            albumEntry5 = albumEntry4;
+                                                                                                            AlbumEntry albumEntry18 = albumEntry2;
+                                                                                                            Integer num4 = objValueOf;
+                                                                                                            while (i2 < arrayList5.size()) {
+                                                                                                                Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
+                                                                                                                    @Override
+                                                                                                                    public final int compare(Object obj, Object obj2) {
+                                                                                                                        return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                    }
+                                                                                                                });
+                                                                                                            }
+                                                                                                            broadcastNewPhotos(i, arrayList5, arrayList2, num4, albumEntry18, albumEntry3, albumEntry5, 0);
                                                                                                         }
-                                                                                                        if (albumEntry2 == null) {
-                                                                                                            albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                            arrayList4.add(0, albumEntry6);
-                                                                                                        } else {
-                                                                                                            albumEntry6 = albumEntry2;
-                                                                                                        }
+                                                                                                    } else {
+                                                                                                        albumEntry6 = albumEntry2;
+                                                                                                    }
+                                                                                                    try {
                                                                                                         albumEntry4.addPhoto(photoEntry);
                                                                                                         albumEntry6.addPhoto(photoEntry);
                                                                                                         albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
@@ -8185,24 +8281,28 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                             albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                                                                                             sparseArray3.put(i4, albumEntry7);
                                                                                                             if (objValueOf != null) {
-                                                                                                                arrayList4.add(albumEntry7);
+                                                                                                                arrayList5.add(albumEntry7);
                                                                                                             } else {
-                                                                                                                arrayList4.add(albumEntry7);
+                                                                                                                arrayList5.add(albumEntry7);
                                                                                                             }
                                                                                                         }
                                                                                                         albumEntry7.addPhoto(photoEntry);
-                                                                                                        albumEntry2 = albumEntry6;
                                                                                                         albumEntry14 = albumEntry4;
-                                                                                                        columnIndex = i18;
+                                                                                                        albumEntry2 = albumEntry6;
+                                                                                                        columnIndex = i14;
+                                                                                                        columnIndex5 = i16;
                                                                                                         columnIndex2 = columnIndex2;
-                                                                                                        columnIndex6 = columnIndex6;
-                                                                                                        columnIndex5 = i19;
-                                                                                                        columnIndex3 = i110;
-                                                                                                        columnIndex4 = i111;
+                                                                                                        columnIndex4 = columnIndex4;
+                                                                                                        columnIndex3 = columnIndex3;
+                                                                                                        columnIndex9 = i15;
+                                                                                                        arrayList = arrayList2;
+                                                                                                    } catch (Throwable th7) {
+                                                                                                        th = th7;
                                                                                                     }
                                                                                                 }
                                                                                             }
                                                                                         }
+                                                                                        arrayList2 = arrayList;
                                                                                         if (cursorQuery != null) {
                                                                                             try {
                                                                                                 cursorQuery.close();
@@ -8212,159 +8312,24 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                             }
                                                                                         }
                                                                                         albumEntry5 = albumEntry14;
-                                                                                        AlbumEntry albumEntry18 = albumEntry2;
-                                                                                        Integer num4 = objValueOf;
-                                                                                        while (i2 < arrayList4.size()) {
-                                                                                            Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
-                                                                                                @Override
-                                                                                                public final int compare(Object obj, Object obj2) {
-                                                                                                    return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
-                                                                                                }
-                                                                                            });
-                                                                                        }
-                                                                                        broadcastNewPhotos(i, arrayList4, arrayList, num4, albumEntry18, albumEntry3, albumEntry5, 0);
-                                                                                    } catch (Throwable th7) {
-                                                                                        if (cursorQuery != null) {
-                                                                                            try {
-                                                                                                cursorQuery.close();
-                                                                                                throw th7;
-                                                                                            } catch (Exception e7) {
-                                                                                                FileLog.e(e7);
-                                                                                                throw th7;
-                                                                                            }
-                                                                                        }
-                                                                                        throw th7;
-                                                                                    }
-                                                                                }
-                                                                            } catch (Throwable th8) {
-                                                                                th = th8;
-                                                                                arrayList = arrayList5;
-                                                                            }
-                                                                        } else {
-                                                                            arrayList = arrayList5;
-                                                                            albumEntry8 = albumEntry;
-                                                                        }
-                                                                        if (albumEntry2 == null) {
-                                                                            try {
-                                                                                albumEntry9 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry2);
-                                                                                arrayList4 = arrayList4;
-                                                                                try {
-                                                                                    arrayList4.add(0, albumEntry9);
-                                                                                } catch (Throwable th9) {
-                                                                                    th = th9;
-                                                                                    albumEntry = albumEntry8;
-                                                                                    albumEntry2 = albumEntry9;
-                                                                                    sparseArray3 = sparseArray3;
-                                                                                    string = string;
-                                                                                    FileLog.e(th);
-                                                                                    if (cursorQuery != null) {
-                                                                                        cursorQuery.close();
-                                                                                    }
-                                                                                    albumEntry3 = albumEntry;
-                                                                                    Context context3 = ApplicationLoader.applicationContext;
-                                                                                    i3 = Build.VERSION.SDK_INT;
-                                                                                    if (i3 < 23) {
-                                                                                        ContentResolver contentResolver4 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                        Uri uri4 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                        String[] strArr4 = projectionVideo;
-                                                                                        StringBuilder sb5 = new StringBuilder();
-                                                                                        if (i3 > 28) {
-                                                                                            str = "date_modified";
-                                                                                        } else {
-                                                                                            str = "datetaken";
-                                                                                        }
-                                                                                        sb5.append(str);
-                                                                                        sb5.append(" DESC");
-                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver4, uri4, strArr4, null, null, sb5.toString());
-                                                                                        if (cursorQuery != null) {
-                                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
-                                                                                            if (i3 > 28) {
-                                                                                                str2 = "date_modified";
-                                                                                            } else {
-                                                                                                str2 = "datetaken";
-                                                                                            }
-                                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
-                                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                            cursorQuery.getColumnIndex(str8);
-                                                                                            while (cursorQuery.moveToNext()) {
-                                                                                                string2 = cursorQuery.getString(columnIndex4);
-                                                                                                if (TextUtils.isEmpty(string2)) {
-                                                                                                    int i112 = cursorQuery.getInt(columnIndex);
-                                                                                                    i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                    int i113 = columnIndex;
-                                                                                                    string3 = cursorQuery.getString(columnIndex3);
-                                                                                                    int i114 = columnIndex5;
-                                                                                                    int i115 = columnIndex3;
-                                                                                                    int i116 = columnIndex4;
-                                                                                                    photoEntry = new PhotoEntry(i4, i112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
-                                                                                                    if (albumEntry14 == null) {
-                                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
-                                                                                                        i5 = 1;
-                                                                                                        albumEntry4.videoOnly = true;
-                                                                                                        if (albumEntry2 != null) {
-                                                                                                            i5 = 0;
-                                                                                                        }
-                                                                                                        if (albumEntry3 != null) {
-                                                                                                            i5++;
-                                                                                                        }
-                                                                                                        arrayList4.add(i5, albumEntry4);
-                                                                                                    } else {
-                                                                                                        albumEntry4 = albumEntry14;
-                                                                                                    }
-                                                                                                    if (albumEntry2 == null) {
-                                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                        arrayList4.add(0, albumEntry6);
-                                                                                                    } else {
-                                                                                                        albumEntry6 = albumEntry2;
-                                                                                                    }
-                                                                                                    albumEntry4.addPhoto(photoEntry);
-                                                                                                    albumEntry6.addPhoto(photoEntry);
-                                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
-                                                                                                    if (albumEntry7 == null) {
-                                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
-                                                                                                        sparseArray3.put(i4, albumEntry7);
-                                                                                                        if (objValueOf != null) {
-                                                                                                            arrayList4.add(albumEntry7);
-                                                                                                        } else {
-                                                                                                            arrayList4.add(albumEntry7);
-                                                                                                        }
-                                                                                                    }
-                                                                                                    albumEntry7.addPhoto(photoEntry);
-                                                                                                    albumEntry2 = albumEntry6;
-                                                                                                    albumEntry14 = albumEntry4;
-                                                                                                    columnIndex = i113;
-                                                                                                    columnIndex2 = columnIndex2;
-                                                                                                    columnIndex6 = columnIndex6;
-                                                                                                    columnIndex5 = i114;
-                                                                                                    columnIndex3 = i115;
-                                                                                                    columnIndex4 = i116;
-                                                                                                }
-                                                                                            }
-                                                                                        }
                                                                                     } else {
-                                                                                        ContentResolver contentResolver5 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                        Uri uri5 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                        String[] strArr5 = projectionVideo;
-                                                                                        StringBuilder sb6 = new StringBuilder();
+                                                                                        ContentResolver contentResolver3 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                        Uri uri3 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                        String[] strArr3 = projectionVideo;
+                                                                                        StringBuilder sb4 = new StringBuilder();
                                                                                         if (i3 > 28) {
                                                                                             str = "date_modified";
                                                                                         } else {
                                                                                             str = "datetaken";
                                                                                         }
-                                                                                        sb6.append(str);
-                                                                                        sb6.append(" DESC");
-                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver5, uri5, strArr5, null, null, sb6.toString());
+                                                                                        sb4.append(str);
+                                                                                        sb4.append(" DESC");
+                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver3, uri3, strArr3, null, null, sb4.toString());
                                                                                         if (cursorQuery != null) {
-                                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                            columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str8);
                                                                                             if (i3 > 28) {
                                                                                                 str2 = "date_modified";
                                                                                             } else {
@@ -8372,22 +8337,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                             }
                                                                                             columnIndex5 = cursorQuery.getColumnIndex(str2);
                                                                                             columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                            cursorQuery.getColumnIndex(str8);
+                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                            columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                            cursorQuery.getColumnIndex(str7);
                                                                                             while (cursorQuery.moveToNext()) {
                                                                                                 string2 = cursorQuery.getString(columnIndex4);
                                                                                                 if (TextUtils.isEmpty(string2)) {
-                                                                                                    int i117 = cursorQuery.getInt(columnIndex);
+                                                                                                    int i17 = cursorQuery.getInt(columnIndex);
                                                                                                     i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                    int i118 = columnIndex;
                                                                                                     string3 = cursorQuery.getString(columnIndex3);
-                                                                                                    int i119 = columnIndex5;
-                                                                                                    int i1110 = columnIndex3;
-                                                                                                    int i1111 = columnIndex4;
-                                                                                                    photoEntry = new PhotoEntry(i4, i117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                    int i18 = columnIndex;
+                                                                                                    int i19 = columnIndex9;
+                                                                                                    photoEntry = new PhotoEntry(i4, i17, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                    int i110 = columnIndex5;
                                                                                                     if (albumEntry14 == null) {
+                                                                                                        arrayList2 = arrayList;
                                                                                                         albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                                                                                         i5 = 1;
                                                                                                         albumEntry4.videoOnly = true;
@@ -8397,13 +8362,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                         if (albumEntry3 != null) {
                                                                                                             i5++;
                                                                                                         }
-                                                                                                        arrayList4.add(i5, albumEntry4);
+                                                                                                        arrayList5.add(i5, albumEntry4);
                                                                                                     } else {
+                                                                                                        arrayList2 = arrayList;
                                                                                                         albumEntry4 = albumEntry14;
                                                                                                     }
                                                                                                     if (albumEntry2 == null) {
                                                                                                         albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                        arrayList4.add(0, albumEntry6);
+                                                                                                        arrayList5.add(0, albumEntry6);
                                                                                                     } else {
                                                                                                         albumEntry6 = albumEntry2;
                                                                                                     }
@@ -8414,54 +8380,501 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                         albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                                                                                         sparseArray3.put(i4, albumEntry7);
                                                                                                         if (objValueOf != null) {
-                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                            arrayList5.add(albumEntry7);
                                                                                                         } else {
-                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                            arrayList5.add(albumEntry7);
                                                                                                         }
                                                                                                     }
                                                                                                     albumEntry7.addPhoto(photoEntry);
-                                                                                                    albumEntry2 = albumEntry6;
                                                                                                     albumEntry14 = albumEntry4;
-                                                                                                    columnIndex = i118;
+                                                                                                    albumEntry2 = albumEntry6;
+                                                                                                    columnIndex = i18;
+                                                                                                    columnIndex5 = i110;
                                                                                                     columnIndex2 = columnIndex2;
-                                                                                                    columnIndex6 = columnIndex6;
-                                                                                                    columnIndex5 = i119;
-                                                                                                    columnIndex3 = i1110;
-                                                                                                    columnIndex4 = i1111;
+                                                                                                    columnIndex4 = columnIndex4;
+                                                                                                    columnIndex3 = columnIndex3;
+                                                                                                    columnIndex9 = i19;
+                                                                                                    arrayList = arrayList2;
                                                                                                 }
                                                                                             }
                                                                                         }
+                                                                                        arrayList2 = arrayList;
+                                                                                        if (cursorQuery != null) {
+                                                                                            cursorQuery.close();
+                                                                                        }
+                                                                                        albumEntry5 = albumEntry14;
                                                                                     }
+                                                                                    AlbumEntry albumEntry19 = albumEntry2;
+                                                                                    Integer num5 = objValueOf;
+                                                                                    while (i2 < arrayList5.size()) {
+                                                                                        Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
+                                                                                            @Override
+                                                                                            public final int compare(Object obj, Object obj2) {
+                                                                                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                            }
+                                                                                        });
+                                                                                    }
+                                                                                    broadcastNewPhotos(i, arrayList5, arrayList2, num5, albumEntry19, albumEntry3, albumEntry5, 0);
+                                                                                } catch (Throwable th8) {
+                                                                                    if (cursorQuery != null) {
+                                                                                        try {
+                                                                                            cursorQuery.close();
+                                                                                            throw th8;
+                                                                                        } catch (Exception e7) {
+                                                                                            FileLog.e(e7);
+                                                                                            throw th8;
+                                                                                        }
+                                                                                    }
+                                                                                    throw th8;
+                                                                                }
+                                                                            }
+                                                                        } catch (Throwable th9) {
+                                                                            th = th9;
+                                                                            arrayList = arrayList6;
+                                                                        }
+                                                                    } else {
+                                                                        arrayList = arrayList6;
+                                                                        albumEntry8 = albumEntry;
+                                                                    }
+                                                                    if (albumEntry2 == null) {
+                                                                        try {
+                                                                            albumEntry9 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry2);
+                                                                            arrayList5 = arrayList5;
+                                                                            try {
+                                                                                arrayList5.add(0, albumEntry9);
+                                                                            } catch (Throwable th10) {
+                                                                                th = th10;
+                                                                                albumEntry = albumEntry8;
+                                                                                albumEntry2 = albumEntry9;
+                                                                                sparseArray3 = sparseArray3;
+                                                                                string = string;
+                                                                                FileLog.e(th);
+                                                                                if (cursorQuery != null) {
+                                                                                    cursorQuery.close();
+                                                                                }
+                                                                                albumEntry3 = albumEntry;
+                                                                                Context context3 = ApplicationLoader.applicationContext;
+                                                                                i3 = Build.VERSION.SDK_INT;
+                                                                                if (i3 < 23) {
+                                                                                    ContentResolver contentResolver4 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                    Uri uri4 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                    String[] strArr4 = projectionVideo;
+                                                                                    StringBuilder sb5 = new StringBuilder();
+                                                                                    if (i3 > 28) {
+                                                                                        str = "date_modified";
+                                                                                    } else {
+                                                                                        str = "datetaken";
+                                                                                    }
+                                                                                    sb5.append(str);
+                                                                                    sb5.append(" DESC");
+                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver4, uri4, strArr4, null, null, sb5.toString());
+                                                                                    if (cursorQuery != null) {
+                                                                                        columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str8);
+                                                                                        if (i3 > 28) {
+                                                                                            str2 = "date_modified";
+                                                                                        } else {
+                                                                                            str2 = "datetaken";
+                                                                                        }
+                                                                                        columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                        columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                        columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                        cursorQuery.getColumnIndex(str7);
+                                                                                        while (cursorQuery.moveToNext()) {
+                                                                                            string2 = cursorQuery.getString(columnIndex4);
+                                                                                            if (TextUtils.isEmpty(string2)) {
+                                                                                                int i111 = cursorQuery.getInt(columnIndex);
+                                                                                                i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                string3 = cursorQuery.getString(columnIndex3);
+                                                                                                int i112 = columnIndex;
+                                                                                                int i113 = columnIndex9;
+                                                                                                photoEntry = new PhotoEntry(i4, i111, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                int i114 = columnIndex5;
+                                                                                                if (albumEntry14 == null) {
+                                                                                                    arrayList2 = arrayList;
+                                                                                                    albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                    i5 = 1;
+                                                                                                    albumEntry4.videoOnly = true;
+                                                                                                    if (albumEntry2 != null) {
+                                                                                                        i5 = 0;
+                                                                                                    }
+                                                                                                    if (albumEntry3 != null) {
+                                                                                                        i5++;
+                                                                                                    }
+                                                                                                    arrayList5.add(i5, albumEntry4);
+                                                                                                } else {
+                                                                                                    arrayList2 = arrayList;
+                                                                                                    albumEntry4 = albumEntry14;
+                                                                                                }
+                                                                                                if (albumEntry2 == null) {
+                                                                                                    albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                    arrayList5.add(0, albumEntry6);
+                                                                                                } else {
+                                                                                                    albumEntry6 = albumEntry2;
+                                                                                                }
+                                                                                                albumEntry4.addPhoto(photoEntry);
+                                                                                                albumEntry6.addPhoto(photoEntry);
+                                                                                                albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                if (albumEntry7 == null) {
+                                                                                                    albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                    sparseArray3.put(i4, albumEntry7);
+                                                                                                    if (objValueOf != null) {
+                                                                                                        arrayList5.add(albumEntry7);
+                                                                                                    } else {
+                                                                                                        arrayList5.add(albumEntry7);
+                                                                                                    }
+                                                                                                }
+                                                                                                albumEntry7.addPhoto(photoEntry);
+                                                                                                albumEntry14 = albumEntry4;
+                                                                                                albumEntry2 = albumEntry6;
+                                                                                                columnIndex = i112;
+                                                                                                columnIndex5 = i114;
+                                                                                                columnIndex2 = columnIndex2;
+                                                                                                columnIndex4 = columnIndex4;
+                                                                                                columnIndex3 = columnIndex3;
+                                                                                                columnIndex9 = i113;
+                                                                                                arrayList = arrayList2;
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    arrayList2 = arrayList;
                                                                                     if (cursorQuery != null) {
                                                                                         cursorQuery.close();
                                                                                     }
                                                                                     albumEntry5 = albumEntry14;
-                                                                                    AlbumEntry albumEntry19 = albumEntry2;
-                                                                                    Integer num5 = objValueOf;
-                                                                                    while (i2 < arrayList4.size()) {
-                                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
-                                                                                            @Override
-                                                                                            public final int compare(Object obj, Object obj2) {
-                                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
-                                                                                            }
-                                                                                        });
+                                                                                } else {
+                                                                                    ContentResolver contentResolver5 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                    Uri uri5 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                    String[] strArr5 = projectionVideo;
+                                                                                    StringBuilder sb6 = new StringBuilder();
+                                                                                    if (i3 > 28) {
+                                                                                        str = "date_modified";
+                                                                                    } else {
+                                                                                        str = "datetaken";
                                                                                     }
-                                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num5, albumEntry19, albumEntry3, albumEntry5, 0);
+                                                                                    sb6.append(str);
+                                                                                    sb6.append(" DESC");
+                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver5, uri5, strArr5, null, null, sb6.toString());
+                                                                                    if (cursorQuery != null) {
+                                                                                        columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str8);
+                                                                                        if (i3 > 28) {
+                                                                                            str2 = "date_modified";
+                                                                                        } else {
+                                                                                            str2 = "datetaken";
+                                                                                        }
+                                                                                        columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                        columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                        columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                        cursorQuery.getColumnIndex(str7);
+                                                                                        while (cursorQuery.moveToNext()) {
+                                                                                            string2 = cursorQuery.getString(columnIndex4);
+                                                                                            if (TextUtils.isEmpty(string2)) {
+                                                                                                int i115 = cursorQuery.getInt(columnIndex);
+                                                                                                i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                string3 = cursorQuery.getString(columnIndex3);
+                                                                                                int i116 = columnIndex;
+                                                                                                int i117 = columnIndex9;
+                                                                                                photoEntry = new PhotoEntry(i4, i115, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                int i118 = columnIndex5;
+                                                                                                if (albumEntry14 == null) {
+                                                                                                    arrayList2 = arrayList;
+                                                                                                    albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                    i5 = 1;
+                                                                                                    albumEntry4.videoOnly = true;
+                                                                                                    if (albumEntry2 != null) {
+                                                                                                        i5 = 0;
+                                                                                                    }
+                                                                                                    if (albumEntry3 != null) {
+                                                                                                        i5++;
+                                                                                                    }
+                                                                                                    arrayList5.add(i5, albumEntry4);
+                                                                                                } else {
+                                                                                                    arrayList2 = arrayList;
+                                                                                                    albumEntry4 = albumEntry14;
+                                                                                                }
+                                                                                                if (albumEntry2 == null) {
+                                                                                                    albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                    arrayList5.add(0, albumEntry6);
+                                                                                                } else {
+                                                                                                    albumEntry6 = albumEntry2;
+                                                                                                }
+                                                                                                albumEntry4.addPhoto(photoEntry);
+                                                                                                albumEntry6.addPhoto(photoEntry);
+                                                                                                albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                if (albumEntry7 == null) {
+                                                                                                    albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                    sparseArray3.put(i4, albumEntry7);
+                                                                                                    if (objValueOf != null) {
+                                                                                                        arrayList5.add(albumEntry7);
+                                                                                                    } else {
+                                                                                                        arrayList5.add(albumEntry7);
+                                                                                                    }
+                                                                                                }
+                                                                                                albumEntry7.addPhoto(photoEntry);
+                                                                                                albumEntry14 = albumEntry4;
+                                                                                                albumEntry2 = albumEntry6;
+                                                                                                columnIndex = i116;
+                                                                                                columnIndex5 = i118;
+                                                                                                columnIndex2 = columnIndex2;
+                                                                                                columnIndex4 = columnIndex4;
+                                                                                                columnIndex3 = columnIndex3;
+                                                                                                columnIndex9 = i117;
+                                                                                                arrayList = arrayList2;
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    arrayList2 = arrayList;
+                                                                                    if (cursorQuery != null) {
+                                                                                        cursorQuery.close();
+                                                                                    }
+                                                                                    albumEntry5 = albumEntry14;
                                                                                 }
-                                                                            } catch (Throwable th10) {
-                                                                                th = th10;
-                                                                                arrayList4 = arrayList4;
-                                                                                albumEntry = albumEntry8;
+                                                                                AlbumEntry albumEntry110 = albumEntry2;
+                                                                                Integer num6 = objValueOf;
+                                                                                while (i2 < arrayList5.size()) {
+                                                                                    Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
+                                                                                        @Override
+                                                                                        public final int compare(Object obj, Object obj2) {
+                                                                                            return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                        }
+                                                                                    });
+                                                                                }
+                                                                                broadcastNewPhotos(i, arrayList5, arrayList2, num6, albumEntry110, albumEntry3, albumEntry5, 0);
                                                                             }
-                                                                        } else {
-                                                                            arrayList4 = arrayList4;
-                                                                            albumEntry9 = albumEntry2;
+                                                                        } catch (Throwable th11) {
+                                                                            th = th11;
+                                                                            arrayList5 = arrayList5;
+                                                                            albumEntry = albumEntry8;
+                                                                        }
+                                                                    } else {
+                                                                        arrayList5 = arrayList5;
+                                                                        albumEntry9 = albumEntry2;
+                                                                    }
+                                                                    try {
+                                                                        cursor = cursorQuery;
+                                                                        if (albumEntry8.photos.size() < 15) {
+                                                                            try {
+                                                                                photoEntry2.isLivePhoto();
+                                                                            } catch (Throwable th12) {
+                                                                                th = th12;
+                                                                                albumEntry = albumEntry8;
+                                                                                albumEntry2 = albumEntry9;
+                                                                                cursorQuery = cursor;
+                                                                                sparseArray3 = sparseArray3;
+                                                                                string = string;
+                                                                                FileLog.e(th);
+                                                                                if (cursorQuery != null) {
+                                                                                    cursorQuery.close();
+                                                                                }
+                                                                                albumEntry3 = albumEntry;
+                                                                                Context context4 = ApplicationLoader.applicationContext;
+                                                                                i3 = Build.VERSION.SDK_INT;
+                                                                                if (i3 < 23) {
+                                                                                    ContentResolver contentResolver6 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                    Uri uri6 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                    String[] strArr6 = projectionVideo;
+                                                                                    StringBuilder sb7 = new StringBuilder();
+                                                                                    if (i3 > 28) {
+                                                                                        str = "date_modified";
+                                                                                    } else {
+                                                                                        str = "datetaken";
+                                                                                    }
+                                                                                    sb7.append(str);
+                                                                                    sb7.append(" DESC");
+                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver6, uri6, strArr6, null, null, sb7.toString());
+                                                                                    if (cursorQuery != null) {
+                                                                                        columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str8);
+                                                                                        if (i3 > 28) {
+                                                                                            str2 = "date_modified";
+                                                                                        } else {
+                                                                                            str2 = "datetaken";
+                                                                                        }
+                                                                                        columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                        columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                        columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                        cursorQuery.getColumnIndex(str7);
+                                                                                        while (cursorQuery.moveToNext()) {
+                                                                                            string2 = cursorQuery.getString(columnIndex4);
+                                                                                            if (TextUtils.isEmpty(string2)) {
+                                                                                                int i119 = cursorQuery.getInt(columnIndex);
+                                                                                                i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                string3 = cursorQuery.getString(columnIndex3);
+                                                                                                int i1110 = columnIndex;
+                                                                                                int i1111 = columnIndex9;
+                                                                                                photoEntry = new PhotoEntry(i4, i119, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                int i1112 = columnIndex5;
+                                                                                                if (albumEntry14 == null) {
+                                                                                                    arrayList2 = arrayList;
+                                                                                                    albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                    i5 = 1;
+                                                                                                    albumEntry4.videoOnly = true;
+                                                                                                    if (albumEntry2 != null) {
+                                                                                                        i5 = 0;
+                                                                                                    }
+                                                                                                    if (albumEntry3 != null) {
+                                                                                                        i5++;
+                                                                                                    }
+                                                                                                    arrayList5.add(i5, albumEntry4);
+                                                                                                } else {
+                                                                                                    arrayList2 = arrayList;
+                                                                                                    albumEntry4 = albumEntry14;
+                                                                                                }
+                                                                                                if (albumEntry2 == null) {
+                                                                                                    albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                    arrayList5.add(0, albumEntry6);
+                                                                                                } else {
+                                                                                                    albumEntry6 = albumEntry2;
+                                                                                                }
+                                                                                                albumEntry4.addPhoto(photoEntry);
+                                                                                                albumEntry6.addPhoto(photoEntry);
+                                                                                                albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                if (albumEntry7 == null) {
+                                                                                                    albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                    sparseArray3.put(i4, albumEntry7);
+                                                                                                    if (objValueOf != null) {
+                                                                                                        arrayList5.add(albumEntry7);
+                                                                                                    } else {
+                                                                                                        arrayList5.add(albumEntry7);
+                                                                                                    }
+                                                                                                }
+                                                                                                albumEntry7.addPhoto(photoEntry);
+                                                                                                albumEntry14 = albumEntry4;
+                                                                                                albumEntry2 = albumEntry6;
+                                                                                                columnIndex = i1110;
+                                                                                                columnIndex5 = i1112;
+                                                                                                columnIndex2 = columnIndex2;
+                                                                                                columnIndex4 = columnIndex4;
+                                                                                                columnIndex3 = columnIndex3;
+                                                                                                columnIndex9 = i1111;
+                                                                                                arrayList = arrayList2;
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    arrayList2 = arrayList;
+                                                                                    if (cursorQuery != null) {
+                                                                                        cursorQuery.close();
+                                                                                    }
+                                                                                    albumEntry5 = albumEntry14;
+                                                                                } else {
+                                                                                    ContentResolver contentResolver7 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                    Uri uri7 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                    String[] strArr7 = projectionVideo;
+                                                                                    StringBuilder sb8 = new StringBuilder();
+                                                                                    if (i3 > 28) {
+                                                                                        str = "date_modified";
+                                                                                    } else {
+                                                                                        str = "datetaken";
+                                                                                    }
+                                                                                    sb8.append(str);
+                                                                                    sb8.append(" DESC");
+                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver7, uri7, strArr7, null, null, sb8.toString());
+                                                                                    if (cursorQuery != null) {
+                                                                                        columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str8);
+                                                                                        if (i3 > 28) {
+                                                                                            str2 = "date_modified";
+                                                                                        } else {
+                                                                                            str2 = "datetaken";
+                                                                                        }
+                                                                                        columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                        columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                        columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                        cursorQuery.getColumnIndex(str7);
+                                                                                        while (cursorQuery.moveToNext()) {
+                                                                                            string2 = cursorQuery.getString(columnIndex4);
+                                                                                            if (TextUtils.isEmpty(string2)) {
+                                                                                                int i1113 = cursorQuery.getInt(columnIndex);
+                                                                                                i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                string3 = cursorQuery.getString(columnIndex3);
+                                                                                                int i1114 = columnIndex;
+                                                                                                int i1115 = columnIndex9;
+                                                                                                photoEntry = new PhotoEntry(i4, i1113, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                int i1116 = columnIndex5;
+                                                                                                if (albumEntry14 == null) {
+                                                                                                    arrayList2 = arrayList;
+                                                                                                    albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                    i5 = 1;
+                                                                                                    albumEntry4.videoOnly = true;
+                                                                                                    if (albumEntry2 != null) {
+                                                                                                        i5 = 0;
+                                                                                                    }
+                                                                                                    if (albumEntry3 != null) {
+                                                                                                        i5++;
+                                                                                                    }
+                                                                                                    arrayList5.add(i5, albumEntry4);
+                                                                                                } else {
+                                                                                                    arrayList2 = arrayList;
+                                                                                                    albumEntry4 = albumEntry14;
+                                                                                                }
+                                                                                                if (albumEntry2 == null) {
+                                                                                                    albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                    arrayList5.add(0, albumEntry6);
+                                                                                                } else {
+                                                                                                    albumEntry6 = albumEntry2;
+                                                                                                }
+                                                                                                albumEntry4.addPhoto(photoEntry);
+                                                                                                albumEntry6.addPhoto(photoEntry);
+                                                                                                albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                if (albumEntry7 == null) {
+                                                                                                    albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                    sparseArray3.put(i4, albumEntry7);
+                                                                                                    if (objValueOf != null) {
+                                                                                                        arrayList5.add(albumEntry7);
+                                                                                                    } else {
+                                                                                                        arrayList5.add(albumEntry7);
+                                                                                                    }
+                                                                                                }
+                                                                                                albumEntry7.addPhoto(photoEntry);
+                                                                                                albumEntry14 = albumEntry4;
+                                                                                                albumEntry2 = albumEntry6;
+                                                                                                columnIndex = i1114;
+                                                                                                columnIndex5 = i1116;
+                                                                                                columnIndex2 = columnIndex2;
+                                                                                                columnIndex4 = columnIndex4;
+                                                                                                columnIndex3 = columnIndex3;
+                                                                                                columnIndex9 = i1115;
+                                                                                                arrayList = arrayList2;
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    arrayList2 = arrayList;
+                                                                                    if (cursorQuery != null) {
+                                                                                        cursorQuery.close();
+                                                                                    }
+                                                                                    albumEntry5 = albumEntry14;
+                                                                                }
+                                                                                AlbumEntry albumEntry111 = albumEntry2;
+                                                                                Integer num7 = objValueOf;
+                                                                                while (i2 < arrayList5.size()) {
+                                                                                    Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
+                                                                                        @Override
+                                                                                        public final int compare(Object obj, Object obj2) {
+                                                                                            return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                        }
+                                                                                    });
+                                                                                }
+                                                                                broadcastNewPhotos(i, arrayList5, arrayList2, num7, albumEntry111, albumEntry3, albumEntry5, 0);
+                                                                            }
                                                                         }
                                                                         try {
-                                                                            int i20 = columnIndex15;
-                                                                            if (albumEntry8.photos.size() < 15) {
-                                                                                photoEntry2.isLivePhoto();
-                                                                            }
                                                                             albumEntry8.addPhoto(photoEntry2);
                                                                             albumEntry9.addPhoto(photoEntry2);
                                                                             sparseArray3 = sparseArray3;
@@ -8480,10 +8893,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                             if (string4.startsWith(string)) {
                                                                                                 albumEntry11 = albumEntry9;
                                                                                                 try {
-                                                                                                    arrayList4.add(0, albumEntry12);
+                                                                                                    arrayList5.add(0, albumEntry12);
                                                                                                     objValueOf = Integer.valueOf(i6);
-                                                                                                } catch (Throwable th11) {
-                                                                                                    th = th11;
+                                                                                                } catch (Throwable th13) {
+                                                                                                    th = th13;
+                                                                                                    cursorQuery = cursor;
                                                                                                     albumEntry = albumEntry10;
                                                                                                     albumEntry2 = albumEntry11;
                                                                                                     FileLog.e(th);
@@ -8491,26 +8905,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                         cursorQuery.close();
                                                                                                     }
                                                                                                     albumEntry3 = albumEntry;
-                                                                                                    Context context4 = ApplicationLoader.applicationContext;
+                                                                                                    Context context5 = ApplicationLoader.applicationContext;
                                                                                                     i3 = Build.VERSION.SDK_INT;
                                                                                                     if (i3 < 23) {
-                                                                                                        ContentResolver contentResolver6 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                                        Uri uri6 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                                        String[] strArr6 = projectionVideo;
-                                                                                                        StringBuilder sb7 = new StringBuilder();
+                                                                                                        ContentResolver contentResolver8 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                                        Uri uri8 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                                        String[] strArr8 = projectionVideo;
+                                                                                                        StringBuilder sb9 = new StringBuilder();
                                                                                                         if (i3 > 28) {
                                                                                                             str = "date_modified";
                                                                                                         } else {
                                                                                                             str = "datetaken";
                                                                                                         }
-                                                                                                        sb7.append(str);
-                                                                                                        sb7.append(" DESC");
-                                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver6, uri6, strArr6, null, null, sb7.toString());
+                                                                                                        sb9.append(str);
+                                                                                                        sb9.append(" DESC");
+                                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver8, uri8, strArr8, null, null, sb9.toString());
                                                                                                         if (cursorQuery != null) {
-                                                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                                            columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str8);
                                                                                                             if (i3 > 28) {
                                                                                                                 str2 = "date_modified";
                                                                                                             } else {
@@ -8518,106 +8932,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                             }
                                                                                                             columnIndex5 = cursorQuery.getColumnIndex(str2);
                                                                                                             columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                                            cursorQuery.getColumnIndex(str8);
-                                                                                                            while (cursorQuery.moveToNext()) {
-                                                                                                                string2 = cursorQuery.getString(columnIndex4);
-                                                                                                                if (TextUtils.isEmpty(string2)) {
-                                                                                                                    int i1112 = cursorQuery.getInt(columnIndex);
-                                                                                                                    i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                                    int i1113 = columnIndex;
-                                                                                                                    string3 = cursorQuery.getString(columnIndex3);
-                                                                                                                    int i1114 = columnIndex5;
-                                                                                                                    int i1115 = columnIndex3;
-                                                                                                                    int i1116 = columnIndex4;
-                                                                                                                    photoEntry = new PhotoEntry(i4, i1112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
-                                                                                                                    if (albumEntry14 == null) {
-                                                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
-                                                                                                                        i5 = 1;
-                                                                                                                        albumEntry4.videoOnly = true;
-                                                                                                                        if (albumEntry2 != null) {
-                                                                                                                            i5 = 0;
-                                                                                                                        }
-                                                                                                                        if (albumEntry3 != null) {
-                                                                                                                            i5++;
-                                                                                                                        }
-                                                                                                                        arrayList4.add(i5, albumEntry4);
-                                                                                                                    } else {
-                                                                                                                        albumEntry4 = albumEntry14;
-                                                                                                                    }
-                                                                                                                    if (albumEntry2 == null) {
-                                                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                                        arrayList4.add(0, albumEntry6);
-                                                                                                                    } else {
-                                                                                                                        albumEntry6 = albumEntry2;
-                                                                                                                    }
-                                                                                                                    albumEntry4.addPhoto(photoEntry);
-                                                                                                                    albumEntry6.addPhoto(photoEntry);
-                                                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
-                                                                                                                    if (albumEntry7 == null) {
-                                                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
-                                                                                                                        sparseArray3.put(i4, albumEntry7);
-                                                                                                                        if (objValueOf != null) {
-                                                                                                                            arrayList4.add(albumEntry7);
-                                                                                                                        } else {
-                                                                                                                            arrayList4.add(albumEntry7);
-                                                                                                                        }
-                                                                                                                    }
-                                                                                                                    albumEntry7.addPhoto(photoEntry);
-                                                                                                                    albumEntry2 = albumEntry6;
-                                                                                                                    albumEntry14 = albumEntry4;
-                                                                                                                    columnIndex = i1113;
-                                                                                                                    columnIndex2 = columnIndex2;
-                                                                                                                    columnIndex6 = columnIndex6;
-                                                                                                                    columnIndex5 = i1114;
-                                                                                                                    columnIndex3 = i1115;
-                                                                                                                    columnIndex4 = i1116;
-                                                                                                                }
-                                                                                                            }
-                                                                                                        }
-                                                                                                    } else {
-                                                                                                        ContentResolver contentResolver7 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                                        Uri uri7 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                                        String[] strArr7 = projectionVideo;
-                                                                                                        StringBuilder sb8 = new StringBuilder();
-                                                                                                        if (i3 > 28) {
-                                                                                                            str = "date_modified";
-                                                                                                        } else {
-                                                                                                            str = "datetaken";
-                                                                                                        }
-                                                                                                        sb8.append(str);
-                                                                                                        sb8.append(" DESC");
-                                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver7, uri7, strArr7, null, null, sb8.toString());
-                                                                                                        if (cursorQuery != null) {
-                                                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
-                                                                                                            if (i3 > 28) {
-                                                                                                                str2 = "date_modified";
-                                                                                                            } else {
-                                                                                                                str2 = "datetaken";
-                                                                                                            }
-                                                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
-                                                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                                            cursorQuery.getColumnIndex(str8);
+                                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                                            columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                                            cursorQuery.getColumnIndex(str7);
                                                                                                             while (cursorQuery.moveToNext()) {
                                                                                                                 string2 = cursorQuery.getString(columnIndex4);
                                                                                                                 if (TextUtils.isEmpty(string2)) {
                                                                                                                     int i1117 = cursorQuery.getInt(columnIndex);
                                                                                                                     i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                                    int i1118 = columnIndex;
                                                                                                                     string3 = cursorQuery.getString(columnIndex3);
-                                                                                                                    int i1119 = columnIndex5;
-                                                                                                                    int i11110 = columnIndex3;
-                                                                                                                    int i11111 = columnIndex4;
+                                                                                                                    int i1118 = columnIndex;
+                                                                                                                    int i1119 = columnIndex9;
                                                                                                                     photoEntry = new PhotoEntry(i4, i1117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                                    int i11110 = columnIndex5;
                                                                                                                     if (albumEntry14 == null) {
+                                                                                                                        arrayList2 = arrayList;
                                                                                                                         albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                                                                                                         i5 = 1;
                                                                                                                         albumEntry4.videoOnly = true;
@@ -8627,13 +8957,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                         if (albumEntry3 != null) {
                                                                                                                             i5++;
                                                                                                                         }
-                                                                                                                        arrayList4.add(i5, albumEntry4);
+                                                                                                                        arrayList5.add(i5, albumEntry4);
                                                                                                                     } else {
+                                                                                                                        arrayList2 = arrayList;
                                                                                                                         albumEntry4 = albumEntry14;
                                                                                                                     }
                                                                                                                     if (albumEntry2 == null) {
                                                                                                                         albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                                        arrayList4.add(0, albumEntry6);
+                                                                                                                        arrayList5.add(0, albumEntry6);
                                                                                                                     } else {
                                                                                                                         albumEntry6 = albumEntry2;
                                                                                                                     }
@@ -8644,44 +8975,138 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                         albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                                                                                                         sparseArray3.put(i4, albumEntry7);
                                                                                                                         if (objValueOf != null) {
-                                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                                            arrayList5.add(albumEntry7);
                                                                                                                         } else {
-                                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                                            arrayList5.add(albumEntry7);
                                                                                                                         }
                                                                                                                     }
                                                                                                                     albumEntry7.addPhoto(photoEntry);
-                                                                                                                    albumEntry2 = albumEntry6;
                                                                                                                     albumEntry14 = albumEntry4;
+                                                                                                                    albumEntry2 = albumEntry6;
                                                                                                                     columnIndex = i1118;
+                                                                                                                    columnIndex5 = i11110;
                                                                                                                     columnIndex2 = columnIndex2;
-                                                                                                                    columnIndex6 = columnIndex6;
-                                                                                                                    columnIndex5 = i1119;
-                                                                                                                    columnIndex3 = i11110;
-                                                                                                                    columnIndex4 = i11111;
+                                                                                                                    columnIndex4 = columnIndex4;
+                                                                                                                    columnIndex3 = columnIndex3;
+                                                                                                                    columnIndex9 = i1119;
+                                                                                                                    arrayList = arrayList2;
                                                                                                                 }
                                                                                                             }
                                                                                                         }
+                                                                                                        arrayList2 = arrayList;
+                                                                                                        if (cursorQuery != null) {
+                                                                                                            cursorQuery.close();
+                                                                                                        }
+                                                                                                        albumEntry5 = albumEntry14;
+                                                                                                    } else {
+                                                                                                        ContentResolver contentResolver9 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                                        Uri uri9 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                                        String[] strArr9 = projectionVideo;
+                                                                                                        StringBuilder sb10 = new StringBuilder();
+                                                                                                        if (i3 > 28) {
+                                                                                                            str = "date_modified";
+                                                                                                        } else {
+                                                                                                            str = "datetaken";
+                                                                                                        }
+                                                                                                        sb10.append(str);
+                                                                                                        sb10.append(" DESC");
+                                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver9, uri9, strArr9, null, null, sb10.toString());
+                                                                                                        if (cursorQuery != null) {
+                                                                                                            columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str8);
+                                                                                                            if (i3 > 28) {
+                                                                                                                str2 = "date_modified";
+                                                                                                            } else {
+                                                                                                                str2 = "datetaken";
+                                                                                                            }
+                                                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                                            columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                                            cursorQuery.getColumnIndex(str7);
+                                                                                                            while (cursorQuery.moveToNext()) {
+                                                                                                                string2 = cursorQuery.getString(columnIndex4);
+                                                                                                                if (TextUtils.isEmpty(string2)) {
+                                                                                                                    int i11111 = cursorQuery.getInt(columnIndex);
+                                                                                                                    i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                                    string3 = cursorQuery.getString(columnIndex3);
+                                                                                                                    int i11112 = columnIndex;
+                                                                                                                    int i11113 = columnIndex9;
+                                                                                                                    photoEntry = new PhotoEntry(i4, i11111, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                                    int i11114 = columnIndex5;
+                                                                                                                    if (albumEntry14 == null) {
+                                                                                                                        arrayList2 = arrayList;
+                                                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                                        i5 = 1;
+                                                                                                                        albumEntry4.videoOnly = true;
+                                                                                                                        if (albumEntry2 != null) {
+                                                                                                                            i5 = 0;
+                                                                                                                        }
+                                                                                                                        if (albumEntry3 != null) {
+                                                                                                                            i5++;
+                                                                                                                        }
+                                                                                                                        arrayList5.add(i5, albumEntry4);
+                                                                                                                    } else {
+                                                                                                                        arrayList2 = arrayList;
+                                                                                                                        albumEntry4 = albumEntry14;
+                                                                                                                    }
+                                                                                                                    if (albumEntry2 == null) {
+                                                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                                        arrayList5.add(0, albumEntry6);
+                                                                                                                    } else {
+                                                                                                                        albumEntry6 = albumEntry2;
+                                                                                                                    }
+                                                                                                                    albumEntry4.addPhoto(photoEntry);
+                                                                                                                    albumEntry6.addPhoto(photoEntry);
+                                                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                                    if (albumEntry7 == null) {
+                                                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                                        sparseArray3.put(i4, albumEntry7);
+                                                                                                                        if (objValueOf != null) {
+                                                                                                                            arrayList5.add(albumEntry7);
+                                                                                                                        } else {
+                                                                                                                            arrayList5.add(albumEntry7);
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    albumEntry7.addPhoto(photoEntry);
+                                                                                                                    albumEntry14 = albumEntry4;
+                                                                                                                    albumEntry2 = albumEntry6;
+                                                                                                                    columnIndex = i11112;
+                                                                                                                    columnIndex5 = i11114;
+                                                                                                                    columnIndex2 = columnIndex2;
+                                                                                                                    columnIndex4 = columnIndex4;
+                                                                                                                    columnIndex3 = columnIndex3;
+                                                                                                                    columnIndex9 = i11113;
+                                                                                                                    arrayList = arrayList2;
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                        arrayList2 = arrayList;
+                                                                                                        if (cursorQuery != null) {
+                                                                                                            cursorQuery.close();
+                                                                                                        }
+                                                                                                        albumEntry5 = albumEntry14;
                                                                                                     }
-                                                                                                    if (cursorQuery != null) {
-                                                                                                        cursorQuery.close();
-                                                                                                    }
-                                                                                                    albumEntry5 = albumEntry14;
-                                                                                                    AlbumEntry albumEntry110 = albumEntry2;
-                                                                                                    Integer num6 = objValueOf;
-                                                                                                    while (i2 < arrayList4.size()) {
-                                                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                                    AlbumEntry albumEntry112 = albumEntry2;
+                                                                                                    Integer num8 = objValueOf;
+                                                                                                    while (i2 < arrayList5.size()) {
+                                                                                                        Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                             @Override
                                                                                                             public final int compare(Object obj, Object obj2) {
-                                                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                             }
                                                                                                         });
                                                                                                     }
-                                                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num6, albumEntry110, albumEntry3, albumEntry5, 0);
+                                                                                                    broadcastNewPhotos(i, arrayList5, arrayList2, num8, albumEntry112, albumEntry3, albumEntry5, 0);
                                                                                                 }
                                                                                             }
-                                                                                        } catch (Throwable th12) {
-                                                                                            th = th12;
+                                                                                        } catch (Throwable th14) {
+                                                                                            th = th14;
                                                                                             albumEntry11 = albumEntry9;
+                                                                                            cursorQuery = cursor;
                                                                                             albumEntry = albumEntry10;
                                                                                             albumEntry2 = albumEntry11;
                                                                                             FileLog.e(th);
@@ -8689,26 +9114,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                 cursorQuery.close();
                                                                                             }
                                                                                             albumEntry3 = albumEntry;
-                                                                                            Context context5 = ApplicationLoader.applicationContext;
+                                                                                            Context context6 = ApplicationLoader.applicationContext;
                                                                                             i3 = Build.VERSION.SDK_INT;
                                                                                             if (i3 < 23) {
-                                                                                                ContentResolver contentResolver8 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                                Uri uri8 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                                String[] strArr8 = projectionVideo;
-                                                                                                StringBuilder sb9 = new StringBuilder();
+                                                                                                ContentResolver contentResolver10 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                                Uri uri10 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                                String[] strArr10 = projectionVideo;
+                                                                                                StringBuilder sb11 = new StringBuilder();
                                                                                                 if (i3 > 28) {
                                                                                                     str = "date_modified";
                                                                                                 } else {
                                                                                                     str = "datetaken";
                                                                                                 }
-                                                                                                sb9.append(str);
-                                                                                                sb9.append(" DESC");
-                                                                                                cursorQuery = MediaStore.Images.Media.query(contentResolver8, uri8, strArr8, null, null, sb9.toString());
+                                                                                                sb11.append(str);
+                                                                                                sb11.append(" DESC");
+                                                                                                cursorQuery = MediaStore.Images.Media.query(contentResolver10, uri10, strArr10, null, null, sb11.toString());
                                                                                                 if (cursorQuery != null) {
-                                                                                                    columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                                    columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                                    columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                                    columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                                    columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                                    columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                                    columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                                    columnIndex4 = cursorQuery.getColumnIndex(str8);
                                                                                                     if (i3 > 28) {
                                                                                                         str2 = "date_modified";
                                                                                                     } else {
@@ -8716,22 +9141,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                     }
                                                                                                     columnIndex5 = cursorQuery.getColumnIndex(str2);
                                                                                                     columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                                    columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                                    columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                                    columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                                    cursorQuery.getColumnIndex(str8);
+                                                                                                    columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                                    columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                                    columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                                    cursorQuery.getColumnIndex(str7);
                                                                                                     while (cursorQuery.moveToNext()) {
                                                                                                         string2 = cursorQuery.getString(columnIndex4);
                                                                                                         if (TextUtils.isEmpty(string2)) {
-                                                                                                            int i11112 = cursorQuery.getInt(columnIndex);
+                                                                                                            int i11115 = cursorQuery.getInt(columnIndex);
                                                                                                             i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                            int i11113 = columnIndex;
                                                                                                             string3 = cursorQuery.getString(columnIndex3);
-                                                                                                            int i11114 = columnIndex5;
-                                                                                                            int i11115 = columnIndex3;
-                                                                                                            int i11116 = columnIndex4;
-                                                                                                            photoEntry = new PhotoEntry(i4, i11112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                            int i11116 = columnIndex;
+                                                                                                            int i11117 = columnIndex9;
+                                                                                                            photoEntry = new PhotoEntry(i4, i11115, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                            int i11118 = columnIndex5;
                                                                                                             if (albumEntry14 == null) {
+                                                                                                                arrayList2 = arrayList;
                                                                                                                 albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                                                                                                 i5 = 1;
                                                                                                                 albumEntry4.videoOnly = true;
@@ -8741,13 +9166,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                 if (albumEntry3 != null) {
                                                                                                                     i5++;
                                                                                                                 }
-                                                                                                                arrayList4.add(i5, albumEntry4);
+                                                                                                                arrayList5.add(i5, albumEntry4);
                                                                                                             } else {
+                                                                                                                arrayList2 = arrayList;
                                                                                                                 albumEntry4 = albumEntry14;
                                                                                                             }
                                                                                                             if (albumEntry2 == null) {
                                                                                                                 albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                                arrayList4.add(0, albumEntry6);
+                                                                                                                arrayList5.add(0, albumEntry6);
                                                                                                             } else {
                                                                                                                 albumEntry6 = albumEntry2;
                                                                                                             }
@@ -8758,41 +9184,47 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                 albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                                                                                                 sparseArray3.put(i4, albumEntry7);
                                                                                                                 if (objValueOf != null) {
-                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                    arrayList5.add(albumEntry7);
                                                                                                                 } else {
-                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                    arrayList5.add(albumEntry7);
                                                                                                                 }
                                                                                                             }
                                                                                                             albumEntry7.addPhoto(photoEntry);
-                                                                                                            albumEntry2 = albumEntry6;
                                                                                                             albumEntry14 = albumEntry4;
-                                                                                                            columnIndex = i11113;
+                                                                                                            albumEntry2 = albumEntry6;
+                                                                                                            columnIndex = i11116;
+                                                                                                            columnIndex5 = i11118;
                                                                                                             columnIndex2 = columnIndex2;
-                                                                                                            columnIndex6 = columnIndex6;
-                                                                                                            columnIndex5 = i11114;
-                                                                                                            columnIndex3 = i11115;
-                                                                                                            columnIndex4 = i11116;
+                                                                                                            columnIndex4 = columnIndex4;
+                                                                                                            columnIndex3 = columnIndex3;
+                                                                                                            columnIndex9 = i11117;
+                                                                                                            arrayList = arrayList2;
                                                                                                         }
                                                                                                     }
                                                                                                 }
+                                                                                                arrayList2 = arrayList;
+                                                                                                if (cursorQuery != null) {
+                                                                                                    cursorQuery.close();
+                                                                                                }
+                                                                                                albumEntry5 = albumEntry14;
                                                                                             } else {
-                                                                                                ContentResolver contentResolver9 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                                Uri uri9 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                                String[] strArr9 = projectionVideo;
-                                                                                                StringBuilder sb10 = new StringBuilder();
+                                                                                                ContentResolver contentResolver11 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                                Uri uri11 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                                String[] strArr11 = projectionVideo;
+                                                                                                StringBuilder sb12 = new StringBuilder();
                                                                                                 if (i3 > 28) {
                                                                                                     str = "date_modified";
                                                                                                 } else {
                                                                                                     str = "datetaken";
                                                                                                 }
-                                                                                                sb10.append(str);
-                                                                                                sb10.append(" DESC");
-                                                                                                cursorQuery = MediaStore.Images.Media.query(contentResolver9, uri9, strArr9, null, null, sb10.toString());
+                                                                                                sb12.append(str);
+                                                                                                sb12.append(" DESC");
+                                                                                                cursorQuery = MediaStore.Images.Media.query(contentResolver11, uri11, strArr11, null, null, sb12.toString());
                                                                                                 if (cursorQuery != null) {
-                                                                                                    columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                                    columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                                    columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                                    columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                                    columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                                    columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                                    columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                                    columnIndex4 = cursorQuery.getColumnIndex(str8);
                                                                                                     if (i3 > 28) {
                                                                                                         str2 = "date_modified";
                                                                                                     } else {
@@ -8800,22 +9232,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                     }
                                                                                                     columnIndex5 = cursorQuery.getColumnIndex(str2);
                                                                                                     columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                                    columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                                    columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                                    columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                                    cursorQuery.getColumnIndex(str8);
+                                                                                                    columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                                    columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                                    columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                                    cursorQuery.getColumnIndex(str7);
                                                                                                     while (cursorQuery.moveToNext()) {
                                                                                                         string2 = cursorQuery.getString(columnIndex4);
                                                                                                         if (TextUtils.isEmpty(string2)) {
-                                                                                                            int i11117 = cursorQuery.getInt(columnIndex);
+                                                                                                            int i11119 = cursorQuery.getInt(columnIndex);
                                                                                                             i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                            int i11118 = columnIndex;
                                                                                                             string3 = cursorQuery.getString(columnIndex3);
-                                                                                                            int i11119 = columnIndex5;
-                                                                                                            int i111110 = columnIndex3;
-                                                                                                            int i111111 = columnIndex4;
-                                                                                                            photoEntry = new PhotoEntry(i4, i11117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                            int i111110 = columnIndex;
+                                                                                                            int i111111 = columnIndex9;
+                                                                                                            photoEntry = new PhotoEntry(i4, i11119, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                            int i111112 = columnIndex5;
                                                                                                             if (albumEntry14 == null) {
+                                                                                                                arrayList2 = arrayList;
                                                                                                                 albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                                                                                                 i5 = 1;
                                                                                                                 albumEntry4.videoOnly = true;
@@ -8825,13 +9257,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                 if (albumEntry3 != null) {
                                                                                                                     i5++;
                                                                                                                 }
-                                                                                                                arrayList4.add(i5, albumEntry4);
+                                                                                                                arrayList5.add(i5, albumEntry4);
                                                                                                             } else {
+                                                                                                                arrayList2 = arrayList;
                                                                                                                 albumEntry4 = albumEntry14;
                                                                                                             }
                                                                                                             if (albumEntry2 == null) {
                                                                                                                 albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                                arrayList4.add(0, albumEntry6);
+                                                                                                                arrayList5.add(0, albumEntry6);
                                                                                                             } else {
                                                                                                                 albumEntry6 = albumEntry2;
                                                                                                             }
@@ -8842,43 +9275,45 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                 albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                                                                                                 sparseArray3.put(i4, albumEntry7);
                                                                                                                 if (objValueOf != null) {
-                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                    arrayList5.add(albumEntry7);
                                                                                                                 } else {
-                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                    arrayList5.add(albumEntry7);
                                                                                                                 }
                                                                                                             }
                                                                                                             albumEntry7.addPhoto(photoEntry);
-                                                                                                            albumEntry2 = albumEntry6;
                                                                                                             albumEntry14 = albumEntry4;
-                                                                                                            columnIndex = i11118;
+                                                                                                            albumEntry2 = albumEntry6;
+                                                                                                            columnIndex = i111110;
+                                                                                                            columnIndex5 = i111112;
                                                                                                             columnIndex2 = columnIndex2;
-                                                                                                            columnIndex6 = columnIndex6;
-                                                                                                            columnIndex5 = i11119;
-                                                                                                            columnIndex3 = i111110;
-                                                                                                            columnIndex4 = i111111;
+                                                                                                            columnIndex4 = columnIndex4;
+                                                                                                            columnIndex3 = columnIndex3;
+                                                                                                            columnIndex9 = i111111;
+                                                                                                            arrayList = arrayList2;
                                                                                                         }
                                                                                                     }
                                                                                                 }
+                                                                                                arrayList2 = arrayList;
+                                                                                                if (cursorQuery != null) {
+                                                                                                    cursorQuery.close();
+                                                                                                }
+                                                                                                albumEntry5 = albumEntry14;
                                                                                             }
-                                                                                            if (cursorQuery != null) {
-                                                                                                cursorQuery.close();
-                                                                                            }
-                                                                                            albumEntry5 = albumEntry14;
-                                                                                            AlbumEntry albumEntry111 = albumEntry2;
-                                                                                            Integer num7 = objValueOf;
-                                                                                            while (i2 < arrayList4.size()) {
-                                                                                                Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                            AlbumEntry albumEntry113 = albumEntry2;
+                                                                                            Integer num9 = objValueOf;
+                                                                                            while (i2 < arrayList5.size()) {
+                                                                                                Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                     @Override
                                                                                                     public final int compare(Object obj, Object obj2) {
-                                                                                                        return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                        return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                     }
                                                                                                 });
                                                                                             }
-                                                                                            broadcastNewPhotos(i, arrayList4, arrayList, num7, albumEntry111, albumEntry3, albumEntry5, 0);
+                                                                                            broadcastNewPhotos(i, arrayList5, arrayList2, num9, albumEntry113, albumEntry3, albumEntry5, 0);
                                                                                         }
                                                                                     }
                                                                                     albumEntry11 = albumEntry9;
-                                                                                    arrayList4.add(albumEntry12);
+                                                                                    arrayList5.add(albumEntry12);
                                                                                 } else {
                                                                                     albumEntry10 = albumEntry8;
                                                                                     string = string;
@@ -8899,26 +9334,28 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                 }
                                                                                 albumEntry13.addPhoto(photoEntry2);
                                                                                 sparseArray = sparseArray2;
-                                                                                columnIndex15 = i20;
+                                                                                cursorQuery = cursor;
                                                                                 albumEntry = albumEntry10;
                                                                                 albumEntry2 = albumEntry11;
-                                                                                columnIndex14 = columnIndex14;
                                                                                 columnIndex10 = i9;
-                                                                                columnIndex13 = i10;
-                                                                                columnIndex18 = i11;
-                                                                                string = string;
-                                                                                arrayList4 = arrayList4;
-                                                                                sparseArray3 = sparseArray3;
-                                                                                columnIndex11 = columnIndex11;
-                                                                                columnIndex17 = columnIndex17;
+                                                                                columnIndex17 = i10;
+                                                                                columnIndex16 = i11;
+                                                                                columnIndex18 = i12;
                                                                                 columnIndex12 = columnIndex12;
-                                                                                arrayList5 = arrayList;
-                                                                                columnIndex16 = columnIndex16;
-                                                                            } catch (Throwable th13) {
-                                                                                th = th13;
+                                                                                string = string;
+                                                                                arrayList5 = arrayList5;
+                                                                                sparseArray3 = sparseArray3;
+                                                                                columnIndex15 = columnIndex15;
+                                                                                columnIndex14 = columnIndex14;
+                                                                                columnIndex11 = columnIndex11;
+                                                                                arrayList6 = arrayList;
+                                                                                columnIndex13 = columnIndex13;
+                                                                            } catch (Throwable th15) {
+                                                                                th = th15;
                                                                                 albumEntry10 = albumEntry8;
                                                                                 string = string;
                                                                                 albumEntry11 = albumEntry9;
+                                                                                cursorQuery = cursor;
                                                                                 albumEntry = albumEntry10;
                                                                                 albumEntry2 = albumEntry11;
                                                                                 FileLog.e(th);
@@ -8926,26 +9363,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                     cursorQuery.close();
                                                                                 }
                                                                                 albumEntry3 = albumEntry;
-                                                                                Context context6 = ApplicationLoader.applicationContext;
+                                                                                Context context7 = ApplicationLoader.applicationContext;
                                                                                 i3 = Build.VERSION.SDK_INT;
                                                                                 if (i3 < 23) {
-                                                                                    ContentResolver contentResolver10 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                    Uri uri10 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                    String[] strArr10 = projectionVideo;
-                                                                                    StringBuilder sb11 = new StringBuilder();
+                                                                                    ContentResolver contentResolver12 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                    Uri uri12 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                    String[] strArr12 = projectionVideo;
+                                                                                    StringBuilder sb13 = new StringBuilder();
                                                                                     if (i3 > 28) {
                                                                                         str = "date_modified";
                                                                                     } else {
                                                                                         str = "datetaken";
                                                                                     }
-                                                                                    sb11.append(str);
-                                                                                    sb11.append(" DESC");
-                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver10, uri10, strArr10, null, null, sb11.toString());
+                                                                                    sb13.append(str);
+                                                                                    sb13.append(" DESC");
+                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver12, uri12, strArr12, null, null, sb13.toString());
                                                                                     if (cursorQuery != null) {
-                                                                                        columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                        columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str8);
                                                                                         if (i3 > 28) {
                                                                                             str2 = "date_modified";
                                                                                         } else {
@@ -8953,22 +9390,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                         }
                                                                                         columnIndex5 = cursorQuery.getColumnIndex(str2);
                                                                                         columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                        columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                        cursorQuery.getColumnIndex(str8);
+                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                        columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                        cursorQuery.getColumnIndex(str7);
                                                                                         while (cursorQuery.moveToNext()) {
                                                                                             string2 = cursorQuery.getString(columnIndex4);
                                                                                             if (TextUtils.isEmpty(string2)) {
-                                                                                                int i111112 = cursorQuery.getInt(columnIndex);
+                                                                                                int i111113 = cursorQuery.getInt(columnIndex);
                                                                                                 i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                int i111113 = columnIndex;
                                                                                                 string3 = cursorQuery.getString(columnIndex3);
-                                                                                                int i111114 = columnIndex5;
-                                                                                                int i111115 = columnIndex3;
-                                                                                                int i111116 = columnIndex4;
-                                                                                                photoEntry = new PhotoEntry(i4, i111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                int i111114 = columnIndex;
+                                                                                                int i111115 = columnIndex9;
+                                                                                                photoEntry = new PhotoEntry(i4, i111113, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                int i111116 = columnIndex5;
                                                                                                 if (albumEntry14 == null) {
+                                                                                                    arrayList2 = arrayList;
                                                                                                     albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                                                                                     i5 = 1;
                                                                                                     albumEntry4.videoOnly = true;
@@ -8978,13 +9415,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                     if (albumEntry3 != null) {
                                                                                                         i5++;
                                                                                                     }
-                                                                                                    arrayList4.add(i5, albumEntry4);
+                                                                                                    arrayList5.add(i5, albumEntry4);
                                                                                                 } else {
+                                                                                                    arrayList2 = arrayList;
                                                                                                     albumEntry4 = albumEntry14;
                                                                                                 }
                                                                                                 if (albumEntry2 == null) {
                                                                                                     albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                    arrayList4.add(0, albumEntry6);
+                                                                                                    arrayList5.add(0, albumEntry6);
                                                                                                 } else {
                                                                                                     albumEntry6 = albumEntry2;
                                                                                                 }
@@ -8995,41 +9433,47 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                     albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                                                                                     sparseArray3.put(i4, albumEntry7);
                                                                                                     if (objValueOf != null) {
-                                                                                                        arrayList4.add(albumEntry7);
+                                                                                                        arrayList5.add(albumEntry7);
                                                                                                     } else {
-                                                                                                        arrayList4.add(albumEntry7);
+                                                                                                        arrayList5.add(albumEntry7);
                                                                                                     }
                                                                                                 }
                                                                                                 albumEntry7.addPhoto(photoEntry);
-                                                                                                albumEntry2 = albumEntry6;
                                                                                                 albumEntry14 = albumEntry4;
-                                                                                                columnIndex = i111113;
+                                                                                                albumEntry2 = albumEntry6;
+                                                                                                columnIndex = i111114;
+                                                                                                columnIndex5 = i111116;
                                                                                                 columnIndex2 = columnIndex2;
-                                                                                                columnIndex6 = columnIndex6;
-                                                                                                columnIndex5 = i111114;
-                                                                                                columnIndex3 = i111115;
-                                                                                                columnIndex4 = i111116;
+                                                                                                columnIndex4 = columnIndex4;
+                                                                                                columnIndex3 = columnIndex3;
+                                                                                                columnIndex9 = i111115;
+                                                                                                arrayList = arrayList2;
                                                                                             }
                                                                                         }
                                                                                     }
+                                                                                    arrayList2 = arrayList;
+                                                                                    if (cursorQuery != null) {
+                                                                                        cursorQuery.close();
+                                                                                    }
+                                                                                    albumEntry5 = albumEntry14;
                                                                                 } else {
-                                                                                    ContentResolver contentResolver11 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                                    Uri uri11 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                                    String[] strArr11 = projectionVideo;
-                                                                                    StringBuilder sb12 = new StringBuilder();
+                                                                                    ContentResolver contentResolver13 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                    Uri uri13 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                    String[] strArr13 = projectionVideo;
+                                                                                    StringBuilder sb14 = new StringBuilder();
                                                                                     if (i3 > 28) {
                                                                                         str = "date_modified";
                                                                                     } else {
                                                                                         str = "datetaken";
                                                                                     }
-                                                                                    sb12.append(str);
-                                                                                    sb12.append(" DESC");
-                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver11, uri11, strArr11, null, null, sb12.toString());
+                                                                                    sb14.append(str);
+                                                                                    sb14.append(" DESC");
+                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver13, uri13, strArr13, null, null, sb14.toString());
                                                                                     if (cursorQuery != null) {
-                                                                                        columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                        columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str8);
                                                                                         if (i3 > 28) {
                                                                                             str2 = "date_modified";
                                                                                         } else {
@@ -9037,22 +9481,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                         }
                                                                                         columnIndex5 = cursorQuery.getColumnIndex(str2);
                                                                                         columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                                        columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                                        cursorQuery.getColumnIndex(str8);
+                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                                        columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                                        cursorQuery.getColumnIndex(str7);
                                                                                         while (cursorQuery.moveToNext()) {
                                                                                             string2 = cursorQuery.getString(columnIndex4);
                                                                                             if (TextUtils.isEmpty(string2)) {
                                                                                                 int i111117 = cursorQuery.getInt(columnIndex);
                                                                                                 i4 = cursorQuery.getInt(columnIndex2);
-                                                                                                int i111118 = columnIndex;
                                                                                                 string3 = cursorQuery.getString(columnIndex3);
-                                                                                                int i111119 = columnIndex5;
-                                                                                                int i1111110 = columnIndex3;
-                                                                                                int i1111111 = columnIndex4;
+                                                                                                int i111118 = columnIndex;
+                                                                                                int i111119 = columnIndex9;
                                                                                                 photoEntry = new PhotoEntry(i4, i111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                int i1111110 = columnIndex5;
                                                                                                 if (albumEntry14 == null) {
+                                                                                                    arrayList2 = arrayList;
                                                                                                     albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                                                                                     i5 = 1;
                                                                                                     albumEntry4.videoOnly = true;
@@ -9062,13 +9506,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                     if (albumEntry3 != null) {
                                                                                                         i5++;
                                                                                                     }
-                                                                                                    arrayList4.add(i5, albumEntry4);
+                                                                                                    arrayList5.add(i5, albumEntry4);
                                                                                                 } else {
+                                                                                                    arrayList2 = arrayList;
                                                                                                     albumEntry4 = albumEntry14;
                                                                                                 }
                                                                                                 if (albumEntry2 == null) {
                                                                                                     albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                                    arrayList4.add(0, albumEntry6);
+                                                                                                    arrayList5.add(0, albumEntry6);
                                                                                                 } else {
                                                                                                     albumEntry6 = albumEntry2;
                                                                                                 }
@@ -9079,259 +9524,72 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                     albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                                                                                     sparseArray3.put(i4, albumEntry7);
                                                                                                     if (objValueOf != null) {
-                                                                                                        arrayList4.add(albumEntry7);
+                                                                                                        arrayList5.add(albumEntry7);
                                                                                                     } else {
-                                                                                                        arrayList4.add(albumEntry7);
+                                                                                                        arrayList5.add(albumEntry7);
                                                                                                     }
                                                                                                 }
                                                                                                 albumEntry7.addPhoto(photoEntry);
-                                                                                                albumEntry2 = albumEntry6;
                                                                                                 albumEntry14 = albumEntry4;
+                                                                                                albumEntry2 = albumEntry6;
                                                                                                 columnIndex = i111118;
+                                                                                                columnIndex5 = i1111110;
                                                                                                 columnIndex2 = columnIndex2;
-                                                                                                columnIndex6 = columnIndex6;
-                                                                                                columnIndex5 = i111119;
-                                                                                                columnIndex3 = i1111110;
-                                                                                                columnIndex4 = i1111111;
+                                                                                                columnIndex4 = columnIndex4;
+                                                                                                columnIndex3 = columnIndex3;
+                                                                                                columnIndex9 = i111119;
+                                                                                                arrayList = arrayList2;
                                                                                             }
                                                                                         }
                                                                                     }
+                                                                                    arrayList2 = arrayList;
+                                                                                    if (cursorQuery != null) {
+                                                                                        cursorQuery.close();
+                                                                                    }
+                                                                                    albumEntry5 = albumEntry14;
                                                                                 }
-                                                                                if (cursorQuery != null) {
-                                                                                    cursorQuery.close();
-                                                                                }
-                                                                                albumEntry5 = albumEntry14;
-                                                                                AlbumEntry albumEntry112 = albumEntry2;
-                                                                                Integer num8 = objValueOf;
-                                                                                while (i2 < arrayList4.size()) {
-                                                                                    Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                AlbumEntry albumEntry114 = albumEntry2;
+                                                                                Integer num10 = objValueOf;
+                                                                                while (i2 < arrayList5.size()) {
+                                                                                    Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                         @Override
                                                                                         public final int compare(Object obj, Object obj2) {
-                                                                                            return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                            return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                         }
                                                                                     });
                                                                                 }
-                                                                                broadcastNewPhotos(i, arrayList4, arrayList, num8, albumEntry112, albumEntry3, albumEntry5, 0);
+                                                                                broadcastNewPhotos(i, arrayList5, arrayList2, num10, albumEntry114, albumEntry3, albumEntry5, 0);
                                                                             }
-                                                                        } catch (Throwable th14) {
-                                                                            th = th14;
+                                                                        } catch (Throwable th16) {
+                                                                            th = th16;
                                                                             sparseArray3 = sparseArray3;
                                                                         }
+                                                                    } catch (Throwable th17) {
+                                                                        th = th17;
+                                                                        sparseArray3 = sparseArray3;
+                                                                        albumEntry10 = albumEntry8;
+                                                                        string = string;
+                                                                        albumEntry11 = albumEntry9;
                                                                     }
-                                                                } catch (Throwable th15) {
-                                                                    th = th15;
-                                                                    arrayList4 = arrayList4;
-                                                                    sparseArray3 = sparseArray3;
-                                                                    string = string;
-                                                                    arrayList = arrayList5;
-                                                                    FileLog.e(th);
-                                                                    if (cursorQuery != null) {
-                                                                        cursorQuery.close();
-                                                                    }
-                                                                    albumEntry3 = albumEntry;
-                                                                    Context context7 = ApplicationLoader.applicationContext;
-                                                                    i3 = Build.VERSION.SDK_INT;
-                                                                    if (i3 < 23) {
-                                                                        ContentResolver contentResolver12 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                        Uri uri12 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                        String[] strArr12 = projectionVideo;
-                                                                        StringBuilder sb13 = new StringBuilder();
-                                                                        if (i3 > 28) {
-                                                                            str = "date_modified";
-                                                                        } else {
-                                                                            str = "datetaken";
-                                                                        }
-                                                                        sb13.append(str);
-                                                                        sb13.append(" DESC");
-                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver12, uri12, strArr12, null, null, sb13.toString());
-                                                                        if (cursorQuery != null) {
-                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
-                                                                            if (i3 > 28) {
-                                                                                str2 = "date_modified";
-                                                                            } else {
-                                                                                str2 = "datetaken";
-                                                                            }
-                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
-                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                            cursorQuery.getColumnIndex(str8);
-                                                                            while (cursorQuery.moveToNext()) {
-                                                                                string2 = cursorQuery.getString(columnIndex4);
-                                                                                if (TextUtils.isEmpty(string2)) {
-                                                                                    int i1111112 = cursorQuery.getInt(columnIndex);
-                                                                                    i4 = cursorQuery.getInt(columnIndex2);
-                                                                                    int i1111113 = columnIndex;
-                                                                                    string3 = cursorQuery.getString(columnIndex3);
-                                                                                    int i1111114 = columnIndex5;
-                                                                                    int i1111115 = columnIndex3;
-                                                                                    int i1111116 = columnIndex4;
-                                                                                    photoEntry = new PhotoEntry(i4, i1111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
-                                                                                    if (albumEntry14 == null) {
-                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
-                                                                                        i5 = 1;
-                                                                                        albumEntry4.videoOnly = true;
-                                                                                        if (albumEntry2 != null) {
-                                                                                            i5 = 0;
-                                                                                        }
-                                                                                        if (albumEntry3 != null) {
-                                                                                            i5++;
-                                                                                        }
-                                                                                        arrayList4.add(i5, albumEntry4);
-                                                                                    } else {
-                                                                                        albumEntry4 = albumEntry14;
-                                                                                    }
-                                                                                    if (albumEntry2 == null) {
-                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                        arrayList4.add(0, albumEntry6);
-                                                                                    } else {
-                                                                                        albumEntry6 = albumEntry2;
-                                                                                    }
-                                                                                    albumEntry4.addPhoto(photoEntry);
-                                                                                    albumEntry6.addPhoto(photoEntry);
-                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
-                                                                                    if (albumEntry7 == null) {
-                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
-                                                                                        sparseArray3.put(i4, albumEntry7);
-                                                                                        if (objValueOf != null) {
-                                                                                            arrayList4.add(albumEntry7);
-                                                                                        } else {
-                                                                                            arrayList4.add(albumEntry7);
-                                                                                        }
-                                                                                    }
-                                                                                    albumEntry7.addPhoto(photoEntry);
-                                                                                    albumEntry2 = albumEntry6;
-                                                                                    albumEntry14 = albumEntry4;
-                                                                                    columnIndex = i1111113;
-                                                                                    columnIndex2 = columnIndex2;
-                                                                                    columnIndex6 = columnIndex6;
-                                                                                    columnIndex5 = i1111114;
-                                                                                    columnIndex3 = i1111115;
-                                                                                    columnIndex4 = i1111116;
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    } else {
-                                                                        ContentResolver contentResolver13 = ApplicationLoader.applicationContext.getContentResolver();
-                                                                        Uri uri13 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                                                                        String[] strArr13 = projectionVideo;
-                                                                        StringBuilder sb14 = new StringBuilder();
-                                                                        if (i3 > 28) {
-                                                                            str = "date_modified";
-                                                                        } else {
-                                                                            str = "datetaken";
-                                                                        }
-                                                                        sb14.append(str);
-                                                                        sb14.append(" DESC");
-                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver13, uri13, strArr13, null, null, sb14.toString());
-                                                                        if (cursorQuery != null) {
-                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
-                                                                            if (i3 > 28) {
-                                                                                str2 = "date_modified";
-                                                                            } else {
-                                                                                str2 = "datetaken";
-                                                                            }
-                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
-                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                            cursorQuery.getColumnIndex(str8);
-                                                                            while (cursorQuery.moveToNext()) {
-                                                                                string2 = cursorQuery.getString(columnIndex4);
-                                                                                if (TextUtils.isEmpty(string2)) {
-                                                                                    int i1111117 = cursorQuery.getInt(columnIndex);
-                                                                                    i4 = cursorQuery.getInt(columnIndex2);
-                                                                                    int i1111118 = columnIndex;
-                                                                                    string3 = cursorQuery.getString(columnIndex3);
-                                                                                    int i1111119 = columnIndex5;
-                                                                                    int i11111110 = columnIndex3;
-                                                                                    int i11111111 = columnIndex4;
-                                                                                    photoEntry = new PhotoEntry(i4, i1111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
-                                                                                    if (albumEntry14 == null) {
-                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
-                                                                                        i5 = 1;
-                                                                                        albumEntry4.videoOnly = true;
-                                                                                        if (albumEntry2 != null) {
-                                                                                            i5 = 0;
-                                                                                        }
-                                                                                        if (albumEntry3 != null) {
-                                                                                            i5++;
-                                                                                        }
-                                                                                        arrayList4.add(i5, albumEntry4);
-                                                                                    } else {
-                                                                                        albumEntry4 = albumEntry14;
-                                                                                    }
-                                                                                    if (albumEntry2 == null) {
-                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                                        arrayList4.add(0, albumEntry6);
-                                                                                    } else {
-                                                                                        albumEntry6 = albumEntry2;
-                                                                                    }
-                                                                                    albumEntry4.addPhoto(photoEntry);
-                                                                                    albumEntry6.addPhoto(photoEntry);
-                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
-                                                                                    if (albumEntry7 == null) {
-                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
-                                                                                        sparseArray3.put(i4, albumEntry7);
-                                                                                        if (objValueOf != null) {
-                                                                                            arrayList4.add(albumEntry7);
-                                                                                        } else {
-                                                                                            arrayList4.add(albumEntry7);
-                                                                                        }
-                                                                                    }
-                                                                                    albumEntry7.addPhoto(photoEntry);
-                                                                                    albumEntry2 = albumEntry6;
-                                                                                    albumEntry14 = albumEntry4;
-                                                                                    columnIndex = i1111118;
-                                                                                    columnIndex2 = columnIndex2;
-                                                                                    columnIndex6 = columnIndex6;
-                                                                                    columnIndex5 = i1111119;
-                                                                                    columnIndex3 = i11111110;
-                                                                                    columnIndex4 = i11111111;
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    if (cursorQuery != null) {
-                                                                        cursorQuery.close();
-                                                                    }
-                                                                    albumEntry5 = albumEntry14;
-                                                                    AlbumEntry albumEntry113 = albumEntry2;
-                                                                    Integer num9 = objValueOf;
-                                                                    while (i2 < arrayList4.size()) {
-                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
-                                                                            @Override
-                                                                            public final int compare(Object obj, Object obj2) {
-                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
-                                                                            }
-                                                                        });
-                                                                    }
-                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num9, albumEntry113, albumEntry3, albumEntry5, 0);
                                                                 }
-                                                            } catch (Throwable th16) {
-                                                                th = th16;
-                                                                str5 = str5;
+                                                            } catch (Throwable th18) {
+                                                                th = th18;
+                                                                arrayList5 = arrayList5;
+                                                                sparseArray3 = sparseArray3;
+                                                                string = string;
+                                                                arrayList = arrayList6;
                                                             }
                                                         }
-                                                        str5 = str5;
-                                                        arrayList4 = arrayList4;
+                                                        arrayList5 = arrayList5;
                                                         sparseArray3 = sparseArray3;
                                                         string = string;
-                                                        arrayList = arrayList5;
-                                                    } catch (Throwable th17) {
-                                                        th = th17;
-                                                        arrayList4 = arrayList4;
+                                                        arrayList = arrayList6;
+                                                    } catch (Throwable th19) {
+                                                        th = th19;
+                                                        arrayList5 = arrayList5;
                                                         sparseArray3 = sparseArray3;
                                                         string = string;
-                                                        arrayList = arrayList5;
+                                                        arrayList = arrayList6;
                                                         albumEntry = null;
                                                         albumEntry2 = albumEntry;
                                                         objValueOf = albumEntry2;
@@ -9356,10 +9614,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                             sb15.append(" DESC");
                                                             cursorQuery = MediaStore.Images.Media.query(contentResolver14, uri14, strArr14, null, null, sb15.toString());
                                                             if (cursorQuery != null) {
-                                                                columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                columnIndex4 = cursorQuery.getColumnIndex(str8);
                                                                 if (i3 > 28) {
                                                                     str2 = "date_modified";
                                                                 } else {
@@ -9367,22 +9625,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                 }
                                                                 columnIndex5 = cursorQuery.getColumnIndex(str2);
                                                                 columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                cursorQuery.getColumnIndex(str8);
+                                                                columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                cursorQuery.getColumnIndex(str7);
                                                                 while (cursorQuery.moveToNext()) {
                                                                     string2 = cursorQuery.getString(columnIndex4);
                                                                     if (TextUtils.isEmpty(string2)) {
-                                                                        int i11111112 = cursorQuery.getInt(columnIndex);
+                                                                        int i1111111 = cursorQuery.getInt(columnIndex);
                                                                         i4 = cursorQuery.getInt(columnIndex2);
-                                                                        int i11111113 = columnIndex;
                                                                         string3 = cursorQuery.getString(columnIndex3);
-                                                                        int i11111114 = columnIndex5;
-                                                                        int i11111115 = columnIndex3;
-                                                                        int i11111116 = columnIndex4;
-                                                                        photoEntry = new PhotoEntry(i4, i11111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                        int i1111112 = columnIndex;
+                                                                        int i1111113 = columnIndex9;
+                                                                        photoEntry = new PhotoEntry(i4, i1111111, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                        int i1111114 = columnIndex5;
                                                                         if (albumEntry14 == null) {
+                                                                            arrayList2 = arrayList;
                                                                             albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                                                             i5 = 1;
                                                                             albumEntry4.videoOnly = true;
@@ -9392,13 +9650,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                             if (albumEntry3 != null) {
                                                                                 i5++;
                                                                             }
-                                                                            arrayList4.add(i5, albumEntry4);
+                                                                            arrayList5.add(i5, albumEntry4);
                                                                         } else {
+                                                                            arrayList2 = arrayList;
                                                                             albumEntry4 = albumEntry14;
                                                                         }
                                                                         if (albumEntry2 == null) {
                                                                             albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                            arrayList4.add(0, albumEntry6);
+                                                                            arrayList5.add(0, albumEntry6);
                                                                         } else {
                                                                             albumEntry6 = albumEntry2;
                                                                         }
@@ -9409,23 +9668,29 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                             albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                                                             sparseArray3.put(i4, albumEntry7);
                                                                             if (objValueOf != null) {
-                                                                                arrayList4.add(albumEntry7);
+                                                                                arrayList5.add(albumEntry7);
                                                                             } else {
-                                                                                arrayList4.add(albumEntry7);
+                                                                                arrayList5.add(albumEntry7);
                                                                             }
                                                                         }
                                                                         albumEntry7.addPhoto(photoEntry);
-                                                                        albumEntry2 = albumEntry6;
                                                                         albumEntry14 = albumEntry4;
-                                                                        columnIndex = i11111113;
+                                                                        albumEntry2 = albumEntry6;
+                                                                        columnIndex = i1111112;
+                                                                        columnIndex5 = i1111114;
                                                                         columnIndex2 = columnIndex2;
-                                                                        columnIndex6 = columnIndex6;
-                                                                        columnIndex5 = i11111114;
-                                                                        columnIndex3 = i11111115;
-                                                                        columnIndex4 = i11111116;
+                                                                        columnIndex4 = columnIndex4;
+                                                                        columnIndex3 = columnIndex3;
+                                                                        columnIndex9 = i1111113;
+                                                                        arrayList = arrayList2;
                                                                     }
                                                                 }
                                                             }
+                                                            arrayList2 = arrayList;
+                                                            if (cursorQuery != null) {
+                                                                cursorQuery.close();
+                                                            }
+                                                            albumEntry5 = albumEntry14;
                                                         } else {
                                                             ContentResolver contentResolver15 = ApplicationLoader.applicationContext.getContentResolver();
                                                             Uri uri15 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
@@ -9440,10 +9705,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                             sb16.append(" DESC");
                                                             cursorQuery = MediaStore.Images.Media.query(contentResolver15, uri15, strArr15, null, null, sb16.toString());
                                                             if (cursorQuery != null) {
-                                                                columnIndex = cursorQuery.getColumnIndex(str12);
-                                                                columnIndex2 = cursorQuery.getColumnIndex(str11);
-                                                                columnIndex3 = cursorQuery.getColumnIndex(str10);
-                                                                columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                columnIndex = cursorQuery.getColumnIndex(str11);
+                                                                columnIndex2 = cursorQuery.getColumnIndex(str10);
+                                                                columnIndex3 = cursorQuery.getColumnIndex(str9);
+                                                                columnIndex4 = cursorQuery.getColumnIndex(str8);
                                                                 if (i3 > 28) {
                                                                     str2 = "date_modified";
                                                                 } else {
@@ -9451,22 +9716,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                 }
                                                                 columnIndex5 = cursorQuery.getColumnIndex(str2);
                                                                 columnIndex6 = cursorQuery.getColumnIndex("duration");
-                                                                columnIndex7 = cursorQuery.getColumnIndex(str7);
-                                                                columnIndex8 = cursorQuery.getColumnIndex(str6);
-                                                                columnIndex9 = cursorQuery.getColumnIndex(str5);
-                                                                cursorQuery.getColumnIndex(str8);
+                                                                columnIndex7 = cursorQuery.getColumnIndex(str6);
+                                                                columnIndex8 = cursorQuery.getColumnIndex(str5);
+                                                                columnIndex9 = cursorQuery.getColumnIndex("_size");
+                                                                cursorQuery.getColumnIndex(str7);
                                                                 while (cursorQuery.moveToNext()) {
                                                                     string2 = cursorQuery.getString(columnIndex4);
                                                                     if (TextUtils.isEmpty(string2)) {
-                                                                        int i11111117 = cursorQuery.getInt(columnIndex);
+                                                                        int i1111115 = cursorQuery.getInt(columnIndex);
                                                                         i4 = cursorQuery.getInt(columnIndex2);
-                                                                        int i11111118 = columnIndex;
                                                                         string3 = cursorQuery.getString(columnIndex3);
-                                                                        int i11111119 = columnIndex5;
-                                                                        int i111111110 = columnIndex3;
-                                                                        int i111111111 = columnIndex4;
-                                                                        photoEntry = new PhotoEntry(i4, i11111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                        int i1111116 = columnIndex;
+                                                                        int i1111117 = columnIndex9;
+                                                                        photoEntry = new PhotoEntry(i4, i1111115, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                        int i1111118 = columnIndex5;
                                                                         if (albumEntry14 == null) {
+                                                                            arrayList2 = arrayList;
                                                                             albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                                                             i5 = 1;
                                                                             albumEntry4.videoOnly = true;
@@ -9476,13 +9741,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                             if (albumEntry3 != null) {
                                                                                 i5++;
                                                                             }
-                                                                            arrayList4.add(i5, albumEntry4);
+                                                                            arrayList5.add(i5, albumEntry4);
                                                                         } else {
+                                                                            arrayList2 = arrayList;
                                                                             albumEntry4 = albumEntry14;
                                                                         }
                                                                         if (albumEntry2 == null) {
                                                                             albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                                                            arrayList4.add(0, albumEntry6);
+                                                                            arrayList5.add(0, albumEntry6);
                                                                         } else {
                                                                             albumEntry6 = albumEntry2;
                                                                         }
@@ -9493,96 +9759,113 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                             albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                                                             sparseArray3.put(i4, albumEntry7);
                                                                             if (objValueOf != null) {
-                                                                                arrayList4.add(albumEntry7);
+                                                                                arrayList5.add(albumEntry7);
                                                                             } else {
-                                                                                arrayList4.add(albumEntry7);
+                                                                                arrayList5.add(albumEntry7);
                                                                             }
                                                                         }
                                                                         albumEntry7.addPhoto(photoEntry);
-                                                                        albumEntry2 = albumEntry6;
                                                                         albumEntry14 = albumEntry4;
-                                                                        columnIndex = i11111118;
+                                                                        albumEntry2 = albumEntry6;
+                                                                        columnIndex = i1111116;
+                                                                        columnIndex5 = i1111118;
                                                                         columnIndex2 = columnIndex2;
-                                                                        columnIndex6 = columnIndex6;
-                                                                        columnIndex5 = i11111119;
-                                                                        columnIndex3 = i111111110;
-                                                                        columnIndex4 = i111111111;
+                                                                        columnIndex4 = columnIndex4;
+                                                                        columnIndex3 = columnIndex3;
+                                                                        columnIndex9 = i1111117;
+                                                                        arrayList = arrayList2;
                                                                     }
                                                                 }
                                                             }
+                                                            arrayList2 = arrayList;
+                                                            if (cursorQuery != null) {
+                                                                cursorQuery.close();
+                                                            }
+                                                            albumEntry5 = albumEntry14;
                                                         }
-                                                        if (cursorQuery != null) {
-                                                            cursorQuery.close();
-                                                        }
-                                                        albumEntry5 = albumEntry14;
-                                                        AlbumEntry albumEntry114 = albumEntry2;
-                                                        Integer num10 = objValueOf;
-                                                        while (i2 < arrayList4.size()) {
-                                                            Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                        AlbumEntry albumEntry115 = albumEntry2;
+                                                        Integer num11 = objValueOf;
+                                                        while (i2 < arrayList5.size()) {
+                                                            Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                 @Override
                                                                 public final int compare(Object obj, Object obj2) {
-                                                                    return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                    return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                 }
                                                             });
                                                         }
-                                                        broadcastNewPhotos(i, arrayList4, arrayList, num10, albumEntry114, albumEntry3, albumEntry5, 0);
+                                                        broadcastNewPhotos(i, arrayList5, arrayList2, num11, albumEntry115, albumEntry3, albumEntry5, 0);
                                                     }
-                                                } catch (Throwable th18) {
-                                                    th = th18;
-                                                    str6 = "height";
+                                                } catch (Throwable th20) {
+                                                    th = th20;
+                                                    str5 = "height";
                                                 }
-                                            } catch (Throwable th19) {
-                                                th = th19;
-                                                str6 = "height";
-                                                str7 = "width";
+                                            } catch (Throwable th21) {
+                                                th = th21;
+                                                str5 = "height";
+                                                str6 = "width";
                                             }
-                                        } catch (Throwable th20) {
-                                            th = th20;
-                                            str6 = "height";
-                                            str7 = "width";
-                                            str8 = "orientation";
+                                        } catch (Throwable th22) {
+                                            th = th22;
+                                            str5 = "height";
+                                            str6 = "width";
+                                            str7 = "orientation";
                                         }
-                                    } catch (Throwable th21) {
-                                        th = th21;
-                                        str6 = "height";
-                                        str7 = "width";
-                                        str8 = "orientation";
-                                        str9 = "_data";
+                                    } catch (Throwable th23) {
+                                        th = th23;
+                                        str5 = "height";
+                                        str6 = "width";
+                                        str7 = "orientation";
+                                        str8 = "_data";
                                     }
-                                } catch (Throwable th22) {
-                                    th = th22;
-                                    str6 = "height";
-                                    str7 = "width";
-                                    str8 = "orientation";
-                                    str9 = "_data";
-                                    str10 = "bucket_display_name";
+                                } catch (Throwable th24) {
+                                    th = th24;
+                                    str5 = "height";
+                                    str6 = "width";
+                                    str7 = "orientation";
+                                    str8 = "_data";
+                                    str9 = "bucket_display_name";
                                 }
-                            } catch (Throwable th23) {
-                                th = th23;
-                                str6 = "height";
-                                str7 = "width";
-                                str8 = "orientation";
-                                str9 = "_data";
-                                str10 = "bucket_display_name";
-                                str11 = "bucket_id";
+                            } catch (Throwable th25) {
+                                th = th25;
+                                str5 = "height";
+                                str6 = "width";
+                                str7 = "orientation";
+                                str8 = "_data";
+                                str9 = "bucket_display_name";
+                                str10 = "bucket_id";
                             }
-                        } catch (Throwable th24) {
-                            th = th24;
-                            str6 = "height";
-                            str7 = "width";
-                            str8 = "orientation";
-                            str9 = "_data";
-                            str10 = "bucket_display_name";
-                            str11 = "bucket_id";
-                            str12 = "_id";
+                        } catch (Throwable th26) {
+                            th = th26;
+                            str5 = "height";
+                            str6 = "width";
+                            str7 = "orientation";
+                            str8 = "_data";
+                            str9 = "bucket_display_name";
+                            str10 = "bucket_id";
+                            str11 = "_id";
                         }
+                    } else {
+                        str5 = "height";
+                        str6 = "width";
+                        str7 = "orientation";
+                        str8 = "_data";
+                        str9 = "bucket_display_name";
+                        str10 = "bucket_id";
+                        str11 = "_id";
+                        arrayList5 = arrayList5;
+                        sparseArray3 = sparseArray3;
+                        string = string;
+                        arrayList = arrayList6;
+                        albumEntry = null;
+                        albumEntry2 = null;
+                        objValueOf = null;
                     }
                     if (cursorQuery != null) {
                         cursorQuery.close();
                     }
-                } catch (Throwable th25) {
-                    th = th25;
-                    arrayList = arrayList5;
+                } catch (Throwable th27) {
+                    th = th27;
+                    arrayList = arrayList6;
                     cursorQuery = null;
                     albumEntry = null;
                     albumEntry2 = albumEntry;
@@ -9608,10 +9891,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         sb17.append(" DESC");
                         cursorQuery = MediaStore.Images.Media.query(contentResolver16, uri16, strArr16, null, null, sb17.toString());
                         if (cursorQuery != null) {
-                            columnIndex = cursorQuery.getColumnIndex(str12);
-                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                            columnIndex = cursorQuery.getColumnIndex(str11);
+                            columnIndex2 = cursorQuery.getColumnIndex(str10);
+                            columnIndex3 = cursorQuery.getColumnIndex(str9);
+                            columnIndex4 = cursorQuery.getColumnIndex(str8);
                             if (i3 > 28) {
                                 str2 = "date_modified";
                             } else {
@@ -9619,22 +9902,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             }
                             columnIndex5 = cursorQuery.getColumnIndex(str2);
                             columnIndex6 = cursorQuery.getColumnIndex("duration");
-                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                            cursorQuery.getColumnIndex(str8);
+                            columnIndex7 = cursorQuery.getColumnIndex(str6);
+                            columnIndex8 = cursorQuery.getColumnIndex(str5);
+                            columnIndex9 = cursorQuery.getColumnIndex("_size");
+                            cursorQuery.getColumnIndex(str7);
                             while (cursorQuery.moveToNext()) {
                                 string2 = cursorQuery.getString(columnIndex4);
                                 if (TextUtils.isEmpty(string2)) {
-                                    int i111111112 = cursorQuery.getInt(columnIndex);
+                                    int i1111119 = cursorQuery.getInt(columnIndex);
                                     i4 = cursorQuery.getInt(columnIndex2);
-                                    int i111111113 = columnIndex;
                                     string3 = cursorQuery.getString(columnIndex3);
-                                    int i111111114 = columnIndex5;
-                                    int i111111115 = columnIndex3;
-                                    int i111111116 = columnIndex4;
-                                    photoEntry = new PhotoEntry(i4, i111111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    int i11111110 = columnIndex;
+                                    int i11111111 = columnIndex9;
+                                    photoEntry = new PhotoEntry(i4, i1111119, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    int i11111112 = columnIndex5;
                                     if (albumEntry14 == null) {
+                                        arrayList2 = arrayList;
                                         albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                         i5 = 1;
                                         albumEntry4.videoOnly = true;
@@ -9644,13 +9927,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         if (albumEntry3 != null) {
                                             i5++;
                                         }
-                                        arrayList4.add(i5, albumEntry4);
+                                        arrayList5.add(i5, albumEntry4);
                                     } else {
+                                        arrayList2 = arrayList;
                                         albumEntry4 = albumEntry14;
                                     }
                                     if (albumEntry2 == null) {
                                         albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                        arrayList4.add(0, albumEntry6);
+                                        arrayList5.add(0, albumEntry6);
                                     } else {
                                         albumEntry6 = albumEntry2;
                                     }
@@ -9661,23 +9945,29 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                         sparseArray3.put(i4, albumEntry7);
                                         if (objValueOf != null) {
-                                            arrayList4.add(albumEntry7);
+                                            arrayList5.add(albumEntry7);
                                         } else {
-                                            arrayList4.add(albumEntry7);
+                                            arrayList5.add(albumEntry7);
                                         }
                                     }
                                     albumEntry7.addPhoto(photoEntry);
-                                    albumEntry2 = albumEntry6;
                                     albumEntry14 = albumEntry4;
-                                    columnIndex = i111111113;
+                                    albumEntry2 = albumEntry6;
+                                    columnIndex = i11111110;
+                                    columnIndex5 = i11111112;
                                     columnIndex2 = columnIndex2;
-                                    columnIndex6 = columnIndex6;
-                                    columnIndex5 = i111111114;
-                                    columnIndex3 = i111111115;
-                                    columnIndex4 = i111111116;
+                                    columnIndex4 = columnIndex4;
+                                    columnIndex3 = columnIndex3;
+                                    columnIndex9 = i11111111;
+                                    arrayList = arrayList2;
                                 }
                             }
                         }
+                        arrayList2 = arrayList;
+                        if (cursorQuery != null) {
+                            cursorQuery.close();
+                        }
+                        albumEntry5 = albumEntry14;
                     } else {
                         ContentResolver contentResolver17 = ApplicationLoader.applicationContext.getContentResolver();
                         Uri uri17 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
@@ -9692,10 +9982,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         sb18.append(" DESC");
                         cursorQuery = MediaStore.Images.Media.query(contentResolver17, uri17, strArr17, null, null, sb18.toString());
                         if (cursorQuery != null) {
-                            columnIndex = cursorQuery.getColumnIndex(str12);
-                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                            columnIndex = cursorQuery.getColumnIndex(str11);
+                            columnIndex2 = cursorQuery.getColumnIndex(str10);
+                            columnIndex3 = cursorQuery.getColumnIndex(str9);
+                            columnIndex4 = cursorQuery.getColumnIndex(str8);
                             if (i3 > 28) {
                                 str2 = "date_modified";
                             } else {
@@ -9703,22 +9993,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             }
                             columnIndex5 = cursorQuery.getColumnIndex(str2);
                             columnIndex6 = cursorQuery.getColumnIndex("duration");
-                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                            cursorQuery.getColumnIndex(str8);
+                            columnIndex7 = cursorQuery.getColumnIndex(str6);
+                            columnIndex8 = cursorQuery.getColumnIndex(str5);
+                            columnIndex9 = cursorQuery.getColumnIndex("_size");
+                            cursorQuery.getColumnIndex(str7);
                             while (cursorQuery.moveToNext()) {
                                 string2 = cursorQuery.getString(columnIndex4);
                                 if (TextUtils.isEmpty(string2)) {
-                                    int i111111117 = cursorQuery.getInt(columnIndex);
+                                    int i11111113 = cursorQuery.getInt(columnIndex);
                                     i4 = cursorQuery.getInt(columnIndex2);
-                                    int i111111118 = columnIndex;
                                     string3 = cursorQuery.getString(columnIndex3);
-                                    int i111111119 = columnIndex5;
-                                    int i1111111110 = columnIndex3;
-                                    int i1111111111 = columnIndex4;
-                                    photoEntry = new PhotoEntry(i4, i111111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    int i11111114 = columnIndex;
+                                    int i11111115 = columnIndex9;
+                                    photoEntry = new PhotoEntry(i4, i11111113, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    int i11111116 = columnIndex5;
                                     if (albumEntry14 == null) {
+                                        arrayList2 = arrayList;
                                         albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                         i5 = 1;
                                         albumEntry4.videoOnly = true;
@@ -9728,13 +10018,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         if (albumEntry3 != null) {
                                             i5++;
                                         }
-                                        arrayList4.add(i5, albumEntry4);
+                                        arrayList5.add(i5, albumEntry4);
                                     } else {
+                                        arrayList2 = arrayList;
                                         albumEntry4 = albumEntry14;
                                     }
                                     if (albumEntry2 == null) {
                                         albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                        arrayList4.add(0, albumEntry6);
+                                        arrayList5.add(0, albumEntry6);
                                     } else {
                                         albumEntry6 = albumEntry2;
                                     }
@@ -9745,83 +10036,62 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                         sparseArray3.put(i4, albumEntry7);
                                         if (objValueOf != null) {
-                                            arrayList4.add(albumEntry7);
+                                            arrayList5.add(albumEntry7);
                                         } else {
-                                            arrayList4.add(albumEntry7);
+                                            arrayList5.add(albumEntry7);
                                         }
                                     }
                                     albumEntry7.addPhoto(photoEntry);
-                                    albumEntry2 = albumEntry6;
                                     albumEntry14 = albumEntry4;
-                                    columnIndex = i111111118;
+                                    albumEntry2 = albumEntry6;
+                                    columnIndex = i11111114;
+                                    columnIndex5 = i11111116;
                                     columnIndex2 = columnIndex2;
-                                    columnIndex6 = columnIndex6;
-                                    columnIndex5 = i111111119;
-                                    columnIndex3 = i1111111110;
-                                    columnIndex4 = i1111111111;
+                                    columnIndex4 = columnIndex4;
+                                    columnIndex3 = columnIndex3;
+                                    columnIndex9 = i11111115;
+                                    arrayList = arrayList2;
                                 }
                             }
                         }
+                        arrayList2 = arrayList;
+                        if (cursorQuery != null) {
+                            cursorQuery.close();
+                        }
+                        albumEntry5 = albumEntry14;
                     }
-                    if (cursorQuery != null) {
-                        cursorQuery.close();
-                    }
-                    albumEntry5 = albumEntry14;
-                    AlbumEntry albumEntry115 = albumEntry2;
-                    Integer num11 = objValueOf;
-                    while (i2 < arrayList4.size()) {
-                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                    AlbumEntry albumEntry116 = albumEntry2;
+                    Integer num12 = objValueOf;
+                    while (i2 < arrayList5.size()) {
+                        Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                             @Override
                             public final int compare(Object obj, Object obj2) {
-                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                             }
                         });
                     }
-                    broadcastNewPhotos(i, arrayList4, arrayList, num11, albumEntry115, albumEntry3, albumEntry5, 0);
+                    broadcastNewPhotos(i, arrayList5, arrayList2, num12, albumEntry116, albumEntry3, albumEntry5, 0);
                 }
-            } else if (i7 >= 33) {
-                if (i7 >= 33) {
-                }
-                str5 = "_size";
-                str6 = "height";
-                str7 = "width";
-                str8 = "orientation";
-                str9 = "_data";
-                str10 = "bucket_display_name";
-                str11 = "bucket_id";
-                str12 = "_id";
-                arrayList4 = arrayList4;
-                sparseArray3 = sparseArray3;
-                cursorQuery = null;
-                albumEntry = null;
-                albumEntry2 = null;
-                objValueOf = null;
-                string = string;
-                arrayList = arrayList5;
-                if (cursorQuery != null) {
-                    cursorQuery.close();
-                }
-            } else {
+            } else if (i7 < 33) {
                 try {
                     if (context.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                         if (i7 >= 33 || (context.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 && context.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0 && context.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0)) {
-                            str5 = "_size";
-                            str6 = "height";
-                            str7 = "width";
-                            str8 = "orientation";
-                            str9 = "_data";
-                            str10 = "bucket_display_name";
-                            str11 = "bucket_id";
-                            str12 = "_id";
-                            arrayList4 = arrayList4;
+                            str5 = "height";
+                            str6 = "width";
+                            str7 = "orientation";
+                            str8 = "_data";
+                            str9 = "bucket_display_name";
+                            str10 = "bucket_id";
+                            str11 = "_id";
+                            arrayList5 = arrayList5;
                             sparseArray3 = sparseArray3;
                             cursorQuery = null;
                             albumEntry = null;
                             albumEntry2 = null;
                             objValueOf = null;
+                            string = string;
+                            arrayList = arrayList6;
                         }
-                        string = string;
-                        arrayList = arrayList5;
                         if (cursorQuery != null) {
                             cursorQuery.close();
                         }
@@ -9839,30 +10109,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     sb19.append(" DESC");
                     cursorQuery = MediaStore.Images.Media.query(contentResolver18, uri18, strArr18, null, null, sb19.toString());
                     if (cursorQuery != null) {
-                        str5 = "_size";
-                        str6 = "height";
-                        str7 = "width";
-                        str8 = "orientation";
-                        str9 = "_data";
-                        str10 = "bucket_display_name";
-                        str11 = "bucket_id";
-                        str12 = "_id";
-                        arrayList4 = arrayList4;
-                        sparseArray3 = sparseArray3;
-                        string = string;
-                        arrayList = arrayList5;
-                        albumEntry = null;
-                        albumEntry2 = null;
-                        objValueOf = null;
-                    } else {
                         columnIndex10 = cursorQuery.getColumnIndex("_id");
-                        str12 = "_id";
+                        str11 = "_id";
                         columnIndex11 = cursorQuery.getColumnIndex("bucket_id");
-                        str11 = "bucket_id";
+                        str10 = "bucket_id";
                         columnIndex12 = cursorQuery.getColumnIndex("bucket_display_name");
-                        str10 = "bucket_display_name";
+                        str9 = "bucket_display_name";
                         columnIndex13 = cursorQuery.getColumnIndex("_data");
-                        str9 = "_data";
+                        str8 = "_data";
                         if (i7 > 28) {
                             str4 = "date_modified";
                         } else {
@@ -9870,44 +10124,44 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         }
                         columnIndex14 = cursorQuery.getColumnIndex(str4);
                         columnIndex15 = cursorQuery.getColumnIndex("orientation");
-                        str8 = "orientation";
+                        str7 = "orientation";
                         columnIndex16 = cursorQuery.getColumnIndex("width");
-                        str7 = "width";
+                        str6 = "width";
                         columnIndex17 = cursorQuery.getColumnIndex("height");
-                        str6 = "height";
+                        str5 = "height";
                         columnIndex18 = cursorQuery.getColumnIndex("_size");
                         albumEntry = null;
                         albumEntry2 = null;
                         objValueOf = null;
                         numValueOf = null;
                         while (cursorQuery.moveToNext()) {
-                            str5 = str5;
                             string4 = cursorQuery.getString(columnIndex13);
                             if (TextUtils.isEmpty(string4)) {
-                                int i21 = cursorQuery.getInt(columnIndex10);
-                                int i22 = columnIndex10;
+                                int i20 = cursorQuery.getInt(columnIndex10);
                                 i6 = cursorQuery.getInt(columnIndex11);
-                                int i120 = columnIndex13;
+                                int i21 = columnIndex10;
                                 string5 = cursorQuery.getString(columnIndex12);
-                                int i121 = columnIndex18;
-                                photoEntry2 = new PhotoEntry(i6, i21, cursorQuery.getLong(columnIndex14), string4, cursorQuery.getInt(columnIndex15), 0, false, cursorQuery.getInt(columnIndex16), cursorQuery.getInt(columnIndex17), cursorQuery.getLong(columnIndex18));
+                                photoEntry2 = new PhotoEntry(i6, i20, cursorQuery.getLong(columnIndex14), string4, cursorQuery.getInt(columnIndex15), 0, false, cursorQuery.getInt(columnIndex16), cursorQuery.getInt(columnIndex17), cursorQuery.getLong(columnIndex18));
+                                int i120 = columnIndex17;
+                                int i121 = columnIndex16;
+                                int i122 = columnIndex18;
                                 if (albumEntry == null) {
                                     albumEntry8 = new AlbumEntry(0, LocaleController.getString(R.string.AllPhotos), photoEntry2);
-                                    arrayList = arrayList5;
+                                    arrayList = arrayList6;
                                     arrayList.add(0, albumEntry8);
                                 } else {
-                                    arrayList = arrayList5;
+                                    arrayList = arrayList6;
                                     albumEntry8 = albumEntry;
                                 }
                                 if (albumEntry2 == null) {
                                     albumEntry9 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry2);
-                                    arrayList4 = arrayList4;
-                                    arrayList4.add(0, albumEntry9);
+                                    arrayList5 = arrayList5;
+                                    arrayList5.add(0, albumEntry9);
                                 } else {
-                                    arrayList4 = arrayList4;
+                                    arrayList5 = arrayList5;
                                     albumEntry9 = albumEntry2;
                                 }
-                                int i23 = columnIndex15;
+                                cursor = cursorQuery;
                                 if (albumEntry8.photos.size() < 15) {
                                     photoEntry2.isLivePhoto();
                                 }
@@ -9922,12 +10176,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         albumEntry10 = albumEntry8;
                                         string = string;
                                         albumEntry11 = albumEntry9;
-                                        arrayList4.add(albumEntry12);
+                                        arrayList5.add(albumEntry12);
                                     } else {
                                         albumEntry10 = albumEntry8;
                                         string = string;
                                         albumEntry11 = albumEntry9;
-                                        arrayList4.add(albumEntry12);
+                                        arrayList5.add(albumEntry12);
                                     }
                                 } else {
                                     albumEntry10 = albumEntry8;
@@ -9948,50 +10202,64 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 }
                                 albumEntry13.addPhoto(photoEntry2);
                                 sparseArray = sparseArray2;
-                                columnIndex15 = i23;
+                                cursorQuery = cursor;
                                 albumEntry = albumEntry10;
                                 albumEntry2 = albumEntry11;
-                                columnIndex14 = columnIndex14;
-                                columnIndex10 = i22;
-                                columnIndex13 = i120;
-                                columnIndex18 = i121;
-                                string = string;
-                                arrayList4 = arrayList4;
-                                sparseArray3 = sparseArray3;
-                                columnIndex11 = columnIndex11;
-                                columnIndex17 = columnIndex17;
+                                columnIndex10 = i21;
+                                columnIndex17 = i120;
+                                columnIndex16 = i121;
+                                columnIndex18 = i122;
                                 columnIndex12 = columnIndex12;
-                                arrayList5 = arrayList;
-                                columnIndex16 = columnIndex16;
+                                string = string;
+                                arrayList5 = arrayList5;
+                                sparseArray3 = sparseArray3;
+                                columnIndex15 = columnIndex15;
+                                columnIndex14 = columnIndex14;
+                                columnIndex11 = columnIndex11;
+                                arrayList6 = arrayList;
+                                columnIndex13 = columnIndex13;
                             }
                         }
-                        str5 = str5;
-                        arrayList4 = arrayList4;
+                        arrayList5 = arrayList5;
                         sparseArray3 = sparseArray3;
                         string = string;
-                        arrayList = arrayList5;
+                        arrayList = arrayList6;
+                    } else {
+                        str5 = "height";
+                        str6 = "width";
+                        str7 = "orientation";
+                        str8 = "_data";
+                        str9 = "bucket_display_name";
+                        str10 = "bucket_id";
+                        str11 = "_id";
+                        arrayList5 = arrayList5;
+                        sparseArray3 = sparseArray3;
+                        string = string;
+                        arrayList = arrayList6;
+                        albumEntry = null;
+                        albumEntry2 = null;
+                        objValueOf = null;
                     }
                     if (cursorQuery != null) {
                         cursorQuery.close();
                     }
-                } catch (Throwable th26) {
-                    th = th26;
-                    str5 = "_size";
-                    str6 = "height";
-                    str7 = "width";
-                    str8 = "orientation";
-                    str9 = "_data";
-                    str10 = "bucket_display_name";
-                    str11 = "bucket_id";
-                    str12 = "_id";
-                    arrayList4 = arrayList4;
+                } catch (Throwable th28) {
+                    th = th28;
+                    str5 = "height";
+                    str6 = "width";
+                    str7 = "orientation";
+                    str8 = "_data";
+                    str9 = "bucket_display_name";
+                    str10 = "bucket_id";
+                    str11 = "_id";
+                    arrayList5 = arrayList5;
                     sparseArray3 = sparseArray3;
                     cursorQuery = null;
                     albumEntry = null;
                     albumEntry2 = null;
                     objValueOf = null;
                     string = string;
-                    arrayList = arrayList5;
+                    arrayList = arrayList6;
                     FileLog.e(th);
                     if (cursorQuery != null) {
                         cursorQuery.close();
@@ -10013,10 +10281,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         sb110.append(" DESC");
                         cursorQuery = MediaStore.Images.Media.query(contentResolver19, uri19, strArr19, null, null, sb110.toString());
                         if (cursorQuery != null) {
-                            columnIndex = cursorQuery.getColumnIndex(str12);
-                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                            columnIndex = cursorQuery.getColumnIndex(str11);
+                            columnIndex2 = cursorQuery.getColumnIndex(str10);
+                            columnIndex3 = cursorQuery.getColumnIndex(str9);
+                            columnIndex4 = cursorQuery.getColumnIndex(str8);
                             if (i3 > 28) {
                                 str2 = "date_modified";
                             } else {
@@ -10024,22 +10292,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             }
                             columnIndex5 = cursorQuery.getColumnIndex(str2);
                             columnIndex6 = cursorQuery.getColumnIndex("duration");
-                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                            cursorQuery.getColumnIndex(str8);
+                            columnIndex7 = cursorQuery.getColumnIndex(str6);
+                            columnIndex8 = cursorQuery.getColumnIndex(str5);
+                            columnIndex9 = cursorQuery.getColumnIndex("_size");
+                            cursorQuery.getColumnIndex(str7);
                             while (cursorQuery.moveToNext()) {
                                 string2 = cursorQuery.getString(columnIndex4);
                                 if (TextUtils.isEmpty(string2)) {
-                                    int i1111111112 = cursorQuery.getInt(columnIndex);
+                                    int i11111117 = cursorQuery.getInt(columnIndex);
                                     i4 = cursorQuery.getInt(columnIndex2);
-                                    int i1111111113 = columnIndex;
                                     string3 = cursorQuery.getString(columnIndex3);
-                                    int i1111111114 = columnIndex5;
-                                    int i1111111115 = columnIndex3;
-                                    int i1111111116 = columnIndex4;
-                                    photoEntry = new PhotoEntry(i4, i1111111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    int i11111118 = columnIndex;
+                                    int i11111119 = columnIndex9;
+                                    photoEntry = new PhotoEntry(i4, i11111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    int i111111110 = columnIndex5;
                                     if (albumEntry14 == null) {
+                                        arrayList2 = arrayList;
                                         albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                         i5 = 1;
                                         albumEntry4.videoOnly = true;
@@ -10049,13 +10317,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         if (albumEntry3 != null) {
                                             i5++;
                                         }
-                                        arrayList4.add(i5, albumEntry4);
+                                        arrayList5.add(i5, albumEntry4);
                                     } else {
+                                        arrayList2 = arrayList;
                                         albumEntry4 = albumEntry14;
                                     }
                                     if (albumEntry2 == null) {
                                         albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                        arrayList4.add(0, albumEntry6);
+                                        arrayList5.add(0, albumEntry6);
                                     } else {
                                         albumEntry6 = albumEntry2;
                                     }
@@ -10066,23 +10335,29 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                         sparseArray3.put(i4, albumEntry7);
                                         if (objValueOf != null) {
-                                            arrayList4.add(albumEntry7);
+                                            arrayList5.add(albumEntry7);
                                         } else {
-                                            arrayList4.add(albumEntry7);
+                                            arrayList5.add(albumEntry7);
                                         }
                                     }
                                     albumEntry7.addPhoto(photoEntry);
-                                    albumEntry2 = albumEntry6;
                                     albumEntry14 = albumEntry4;
-                                    columnIndex = i1111111113;
+                                    albumEntry2 = albumEntry6;
+                                    columnIndex = i11111118;
+                                    columnIndex5 = i111111110;
                                     columnIndex2 = columnIndex2;
-                                    columnIndex6 = columnIndex6;
-                                    columnIndex5 = i1111111114;
-                                    columnIndex3 = i1111111115;
-                                    columnIndex4 = i1111111116;
+                                    columnIndex4 = columnIndex4;
+                                    columnIndex3 = columnIndex3;
+                                    columnIndex9 = i11111119;
+                                    arrayList = arrayList2;
                                 }
                             }
                         }
+                        arrayList2 = arrayList;
+                        if (cursorQuery != null) {
+                            cursorQuery.close();
+                        }
+                        albumEntry5 = albumEntry14;
                     } else {
                         ContentResolver contentResolver110 = ApplicationLoader.applicationContext.getContentResolver();
                         Uri uri110 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
@@ -10097,10 +10372,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         sb111.append(" DESC");
                         cursorQuery = MediaStore.Images.Media.query(contentResolver110, uri110, strArr110, null, null, sb111.toString());
                         if (cursorQuery != null) {
-                            columnIndex = cursorQuery.getColumnIndex(str12);
-                            columnIndex2 = cursorQuery.getColumnIndex(str11);
-                            columnIndex3 = cursorQuery.getColumnIndex(str10);
-                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                            columnIndex = cursorQuery.getColumnIndex(str11);
+                            columnIndex2 = cursorQuery.getColumnIndex(str10);
+                            columnIndex3 = cursorQuery.getColumnIndex(str9);
+                            columnIndex4 = cursorQuery.getColumnIndex(str8);
                             if (i3 > 28) {
                                 str2 = "date_modified";
                             } else {
@@ -10108,22 +10383,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             }
                             columnIndex5 = cursorQuery.getColumnIndex(str2);
                             columnIndex6 = cursorQuery.getColumnIndex("duration");
-                            columnIndex7 = cursorQuery.getColumnIndex(str7);
-                            columnIndex8 = cursorQuery.getColumnIndex(str6);
-                            columnIndex9 = cursorQuery.getColumnIndex(str5);
-                            cursorQuery.getColumnIndex(str8);
+                            columnIndex7 = cursorQuery.getColumnIndex(str6);
+                            columnIndex8 = cursorQuery.getColumnIndex(str5);
+                            columnIndex9 = cursorQuery.getColumnIndex("_size");
+                            cursorQuery.getColumnIndex(str7);
                             while (cursorQuery.moveToNext()) {
                                 string2 = cursorQuery.getString(columnIndex4);
                                 if (TextUtils.isEmpty(string2)) {
-                                    int i1111111117 = cursorQuery.getInt(columnIndex);
+                                    int i111111111 = cursorQuery.getInt(columnIndex);
                                     i4 = cursorQuery.getInt(columnIndex2);
-                                    int i1111111118 = columnIndex;
                                     string3 = cursorQuery.getString(columnIndex3);
-                                    int i1111111119 = columnIndex5;
-                                    int i11111111110 = columnIndex3;
-                                    int i11111111111 = columnIndex4;
-                                    photoEntry = new PhotoEntry(i4, i1111111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    int i111111112 = columnIndex;
+                                    int i111111113 = columnIndex9;
+                                    photoEntry = new PhotoEntry(i4, i111111111, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    int i111111114 = columnIndex5;
                                     if (albumEntry14 == null) {
+                                        arrayList2 = arrayList;
                                         albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                         i5 = 1;
                                         albumEntry4.videoOnly = true;
@@ -10133,13 +10408,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         if (albumEntry3 != null) {
                                             i5++;
                                         }
-                                        arrayList4.add(i5, albumEntry4);
+                                        arrayList5.add(i5, albumEntry4);
                                     } else {
+                                        arrayList2 = arrayList;
                                         albumEntry4 = albumEntry14;
                                     }
                                     if (albumEntry2 == null) {
                                         albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                        arrayList4.add(0, albumEntry6);
+                                        arrayList5.add(0, albumEntry6);
                                     } else {
                                         albumEntry6 = albumEntry2;
                                     }
@@ -10150,44 +10426,67 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                         albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                         sparseArray3.put(i4, albumEntry7);
                                         if (objValueOf != null) {
-                                            arrayList4.add(albumEntry7);
+                                            arrayList5.add(albumEntry7);
                                         } else {
-                                            arrayList4.add(albumEntry7);
+                                            arrayList5.add(albumEntry7);
                                         }
                                     }
                                     albumEntry7.addPhoto(photoEntry);
-                                    albumEntry2 = albumEntry6;
                                     albumEntry14 = albumEntry4;
-                                    columnIndex = i1111111118;
+                                    albumEntry2 = albumEntry6;
+                                    columnIndex = i111111112;
+                                    columnIndex5 = i111111114;
                                     columnIndex2 = columnIndex2;
-                                    columnIndex6 = columnIndex6;
-                                    columnIndex5 = i1111111119;
-                                    columnIndex3 = i11111111110;
-                                    columnIndex4 = i11111111111;
+                                    columnIndex4 = columnIndex4;
+                                    columnIndex3 = columnIndex3;
+                                    columnIndex9 = i111111113;
+                                    arrayList = arrayList2;
                                 }
                             }
                         }
+                        arrayList2 = arrayList;
+                        if (cursorQuery != null) {
+                            cursorQuery.close();
+                        }
+                        albumEntry5 = albumEntry14;
                     }
-                    if (cursorQuery != null) {
-                        cursorQuery.close();
-                    }
-                    albumEntry5 = albumEntry14;
-                    AlbumEntry albumEntry116 = albumEntry2;
-                    Integer num12 = objValueOf;
-                    while (i2 < arrayList4.size()) {
-                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                    AlbumEntry albumEntry117 = albumEntry2;
+                    Integer num13 = objValueOf;
+                    while (i2 < arrayList5.size()) {
+                        Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                             @Override
                             public final int compare(Object obj, Object obj2) {
-                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                             }
                         });
                     }
-                    broadcastNewPhotos(i, arrayList4, arrayList, num12, albumEntry116, albumEntry3, albumEntry5, 0);
+                    broadcastNewPhotos(i, arrayList5, arrayList2, num13, albumEntry117, albumEntry3, albumEntry5, 0);
+                }
+            } else {
+                if (i7 >= 33) {
+                }
+                str5 = "height";
+                str6 = "width";
+                str7 = "orientation";
+                str8 = "_data";
+                str9 = "bucket_display_name";
+                str10 = "bucket_id";
+                str11 = "_id";
+                arrayList5 = arrayList5;
+                sparseArray3 = sparseArray3;
+                cursorQuery = null;
+                albumEntry = null;
+                albumEntry2 = null;
+                objValueOf = null;
+                string = string;
+                arrayList = arrayList6;
+                if (cursorQuery != null) {
+                    cursorQuery.close();
                 }
             }
-        } catch (Throwable th27) {
-            th = th27;
-            arrayList = arrayList3;
+        } catch (Throwable th29) {
+            th = th29;
+            arrayList = arrayList4;
         }
         albumEntry3 = albumEntry;
         try {
@@ -10208,10 +10507,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     sb112.append(" DESC");
                     cursorQuery = MediaStore.Images.Media.query(contentResolver111, uri111, strArr111, null, null, sb112.toString());
                     if (cursorQuery != null) {
-                        columnIndex = cursorQuery.getColumnIndex(str12);
-                        columnIndex2 = cursorQuery.getColumnIndex(str11);
-                        columnIndex3 = cursorQuery.getColumnIndex(str10);
-                        columnIndex4 = cursorQuery.getColumnIndex(str9);
+                        columnIndex = cursorQuery.getColumnIndex(str11);
+                        columnIndex2 = cursorQuery.getColumnIndex(str10);
+                        columnIndex3 = cursorQuery.getColumnIndex(str9);
+                        columnIndex4 = cursorQuery.getColumnIndex(str8);
                         if (i3 > 28) {
                             str2 = "date_modified";
                         } else {
@@ -10219,22 +10518,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         }
                         columnIndex5 = cursorQuery.getColumnIndex(str2);
                         columnIndex6 = cursorQuery.getColumnIndex("duration");
-                        columnIndex7 = cursorQuery.getColumnIndex(str7);
-                        columnIndex8 = cursorQuery.getColumnIndex(str6);
-                        columnIndex9 = cursorQuery.getColumnIndex(str5);
-                        cursorQuery.getColumnIndex(str8);
+                        columnIndex7 = cursorQuery.getColumnIndex(str6);
+                        columnIndex8 = cursorQuery.getColumnIndex(str5);
+                        columnIndex9 = cursorQuery.getColumnIndex("_size");
+                        cursorQuery.getColumnIndex(str7);
                         while (cursorQuery.moveToNext()) {
                             string2 = cursorQuery.getString(columnIndex4);
                             if (TextUtils.isEmpty(string2)) {
-                                int i11111111112 = cursorQuery.getInt(columnIndex);
+                                int i111111115 = cursorQuery.getInt(columnIndex);
                                 i4 = cursorQuery.getInt(columnIndex2);
-                                int i11111111113 = columnIndex;
                                 string3 = cursorQuery.getString(columnIndex3);
-                                int i11111111114 = columnIndex5;
-                                int i11111111115 = columnIndex3;
-                                int i11111111116 = columnIndex4;
-                                photoEntry = new PhotoEntry(i4, i11111111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                int i111111116 = columnIndex;
+                                int i111111117 = columnIndex9;
+                                photoEntry = new PhotoEntry(i4, i111111115, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                int i111111118 = columnIndex5;
                                 if (albumEntry14 == null) {
+                                    arrayList2 = arrayList;
                                     albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                     i5 = 1;
                                     albumEntry4.videoOnly = true;
@@ -10244,13 +10543,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                     if (albumEntry3 != null) {
                                         i5++;
                                     }
-                                    arrayList4.add(i5, albumEntry4);
+                                    arrayList5.add(i5, albumEntry4);
                                 } else {
+                                    arrayList2 = arrayList;
                                     albumEntry4 = albumEntry14;
                                 }
                                 if (albumEntry2 == null) {
                                     albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                    arrayList4.add(0, albumEntry6);
+                                    arrayList5.add(0, albumEntry6);
                                 } else {
                                     albumEntry6 = albumEntry2;
                                 }
@@ -10261,24 +10561,30 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                     albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
                                     sparseArray3.put(i4, albumEntry7);
                                     if (objValueOf != null) {
-                                        arrayList4.add(albumEntry7);
+                                        arrayList5.add(albumEntry7);
                                     } else {
-                                        arrayList4.add(albumEntry7);
+                                        arrayList5.add(albumEntry7);
                                     }
                                 }
                                 albumEntry7.addPhoto(photoEntry);
-                                albumEntry2 = albumEntry6;
                                 albumEntry14 = albumEntry4;
-                                columnIndex = i11111111113;
+                                albumEntry2 = albumEntry6;
+                                columnIndex = i111111116;
+                                columnIndex5 = i111111118;
                                 columnIndex2 = columnIndex2;
-                                columnIndex6 = columnIndex6;
-                                columnIndex5 = i11111111114;
-                                columnIndex3 = i11111111115;
-                                columnIndex4 = i11111111116;
+                                columnIndex4 = columnIndex4;
+                                columnIndex3 = columnIndex3;
+                                columnIndex9 = i111111117;
+                                arrayList = arrayList2;
                             }
                         }
                     }
                 }
+                arrayList2 = arrayList;
+                if (cursorQuery != null) {
+                    cursorQuery.close();
+                }
+                albumEntry5 = albumEntry14;
             } else {
                 ContentResolver contentResolver112 = ApplicationLoader.applicationContext.getContentResolver();
                 Uri uri112 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
@@ -10293,10 +10599,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 sb113.append(" DESC");
                 cursorQuery = MediaStore.Images.Media.query(contentResolver112, uri112, strArr112, null, null, sb113.toString());
                 if (cursorQuery != null) {
-                    columnIndex = cursorQuery.getColumnIndex(str12);
-                    columnIndex2 = cursorQuery.getColumnIndex(str11);
-                    columnIndex3 = cursorQuery.getColumnIndex(str10);
-                    columnIndex4 = cursorQuery.getColumnIndex(str9);
+                    columnIndex = cursorQuery.getColumnIndex(str11);
+                    columnIndex2 = cursorQuery.getColumnIndex(str10);
+                    columnIndex3 = cursorQuery.getColumnIndex(str9);
+                    columnIndex4 = cursorQuery.getColumnIndex(str8);
                     if (i3 > 28) {
                         str2 = "date_modified";
                     } else {
@@ -10304,22 +10610,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                     columnIndex5 = cursorQuery.getColumnIndex(str2);
                     columnIndex6 = cursorQuery.getColumnIndex("duration");
-                    columnIndex7 = cursorQuery.getColumnIndex(str7);
-                    columnIndex8 = cursorQuery.getColumnIndex(str6);
-                    columnIndex9 = cursorQuery.getColumnIndex(str5);
-                    cursorQuery.getColumnIndex(str8);
+                    columnIndex7 = cursorQuery.getColumnIndex(str6);
+                    columnIndex8 = cursorQuery.getColumnIndex(str5);
+                    columnIndex9 = cursorQuery.getColumnIndex("_size");
+                    cursorQuery.getColumnIndex(str7);
                     while (cursorQuery.moveToNext()) {
                         string2 = cursorQuery.getString(columnIndex4);
                         if (TextUtils.isEmpty(string2)) {
-                            int i11111111117 = cursorQuery.getInt(columnIndex);
+                            int i111111119 = cursorQuery.getInt(columnIndex);
                             i4 = cursorQuery.getInt(columnIndex2);
-                            int i11111111118 = columnIndex;
                             string3 = cursorQuery.getString(columnIndex3);
-                            int i11111111119 = columnIndex5;
-                            int i111111111110 = columnIndex3;
-                            int i111111111111 = columnIndex4;
-                            photoEntry = new PhotoEntry(i4, i11111111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                            int i1111111110 = columnIndex;
+                            int i1111111111 = columnIndex9;
+                            photoEntry = new PhotoEntry(i4, i111111119, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                            int i1111111112 = columnIndex5;
                             if (albumEntry14 == null) {
+                                arrayList2 = arrayList;
                                 albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
                                 i5 = 1;
                                 albumEntry4.videoOnly = true;
@@ -10329,13 +10635,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 if (albumEntry3 != null) {
                                     i5++;
                                 }
-                                arrayList4.add(i5, albumEntry4);
+                                arrayList5.add(i5, albumEntry4);
                             } else {
+                                arrayList2 = arrayList;
                                 albumEntry4 = albumEntry14;
                             }
                             if (albumEntry2 == null) {
                                 albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
-                                arrayList4.add(0, albumEntry6);
+                                arrayList5.add(0, albumEntry6);
                             } else {
                                 albumEntry6 = albumEntry2;
                             }
@@ -10347,68 +10654,71 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 sparseArray3.put(i4, albumEntry7);
                                 if (objValueOf != null && string != null && string2 != null && string2.startsWith(string)) {
                                     try {
-                                        arrayList4.add(0, albumEntry7);
+                                        arrayList5.add(0, albumEntry7);
                                         objValueOf = Integer.valueOf(i4);
-                                    } catch (Throwable th28) {
-                                        th = th28;
-                                        albumEntry2 = albumEntry6;
+                                    } catch (Throwable th30) {
+                                        th = th30;
                                         albumEntry14 = albumEntry4;
+                                        albumEntry2 = albumEntry6;
                                         albumEntry4 = albumEntry14;
                                         FileLog.e(th);
                                         if (cursorQuery != null) {
                                             cursorQuery.close();
                                         }
                                         albumEntry5 = albumEntry4;
-                                        AlbumEntry albumEntry117 = albumEntry2;
-                                        Integer num13 = objValueOf;
-                                        while (i2 < arrayList4.size()) {
-                                            Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                        AlbumEntry albumEntry118 = albumEntry2;
+                                        Integer num14 = objValueOf;
+                                        while (i2 < arrayList5.size()) {
+                                            Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                 @Override
                                                 public final int compare(Object obj, Object obj2) {
-                                                    return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                    return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                 }
                                             });
                                         }
-                                        broadcastNewPhotos(i, arrayList4, arrayList, num13, albumEntry117, albumEntry3, albumEntry5, 0);
+                                        broadcastNewPhotos(i, arrayList5, arrayList2, num14, albumEntry118, albumEntry3, albumEntry5, 0);
                                     }
                                 } else {
-                                    arrayList4.add(albumEntry7);
+                                    arrayList5.add(albumEntry7);
                                 }
                             }
                             albumEntry7.addPhoto(photoEntry);
-                            albumEntry2 = albumEntry6;
                             albumEntry14 = albumEntry4;
-                            columnIndex = i11111111118;
+                            albumEntry2 = albumEntry6;
+                            columnIndex = i1111111110;
+                            columnIndex5 = i1111111112;
                             columnIndex2 = columnIndex2;
-                            columnIndex6 = columnIndex6;
-                            columnIndex5 = i11111111119;
-                            columnIndex3 = i111111111110;
-                            columnIndex4 = i111111111111;
+                            columnIndex4 = columnIndex4;
+                            columnIndex3 = columnIndex3;
+                            columnIndex9 = i1111111111;
+                            arrayList = arrayList2;
                         }
                     }
                 }
+                arrayList2 = arrayList;
+                if (cursorQuery != null) {
+                    cursorQuery.close();
+                }
+                albumEntry5 = albumEntry14;
             }
-            if (cursorQuery != null) {
-                cursorQuery.close();
-            }
-            albumEntry5 = albumEntry14;
-        } catch (Throwable th29) {
-            th = th29;
+        } catch (Throwable th31) {
+            th = th31;
+            arrayList2 = arrayList;
         }
-        AlbumEntry albumEntry118 = albumEntry2;
-        Integer num14 = objValueOf;
-        while (i2 < arrayList4.size()) {
-            Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+        AlbumEntry albumEntry119 = albumEntry2;
+        Integer num15 = objValueOf;
+        while (i2 < arrayList5.size()) {
+            Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                    return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                 }
             });
         }
-        broadcastNewPhotos(i, arrayList4, arrayList, num14, albumEntry118, albumEntry3, albumEntry5, 0);
+        broadcastNewPhotos(i, arrayList5, arrayList2, num15, albumEntry119, albumEntry3, albumEntry5, 0);
     }
 
-    public static int lambda$loadGalleryPhotosAlbums$56(PhotoEntry photoEntry, PhotoEntry photoEntry2) {
+    public static int m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k(PhotoEntry photoEntry, PhotoEntry photoEntry2) {
         long j = photoEntry.dateTaken;
         long j2 = photoEntry2.dateTaken;
         if (j < j2) {
@@ -10425,14 +10735,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                MediaController.lambda$broadcastNewPhotos$58(i, arrayList, arrayList2, num, albumEntry, albumEntry2, albumEntry3);
+                MediaController.$r8$lambda$ZsZkcgMMK5FxVCFJRMifVFmnh7g(i, arrayList, arrayList2, num, albumEntry, albumEntry2, albumEntry3);
             }
         };
         broadcastPhotosRunnable = runnable2;
         AndroidUtilities.runOnUIThread(runnable2, i2);
     }
 
-    public static void lambda$broadcastNewPhotos$58(int i, ArrayList arrayList, ArrayList arrayList2, Integer num, AlbumEntry albumEntry, AlbumEntry albumEntry2, AlbumEntry albumEntry3) {
+    public static void $r8$lambda$ZsZkcgMMK5FxVCFJRMifVFmnh7g(int i, ArrayList arrayList, ArrayList arrayList2, Integer num, AlbumEntry albumEntry, AlbumEntry albumEntry2, AlbumEntry albumEntry3) {
         if (PhotoViewer.getInstance().isVisible() && !forceBroadcastNewPhotos) {
             broadcastNewPhotos(i, arrayList, arrayList2, num, albumEntry, albumEntry2, albumEntry3, 1000);
             return;
@@ -10443,7 +10753,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         allPhotosAlbumEntry = albumEntry2;
         allMediaAlbumEntry = albumEntry;
         allVideosAlbumEntry = albumEntry3;
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.albumsDidLoad, Integer.valueOf(i), arrayList, arrayList2, num);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.albumsDidLoad, Integer.valueOf(i), arrayList, arrayList2, num);
     }
 
     public void scheduleVideoConvert(MessageObject messageObject) {
@@ -10580,8 +10890,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 if (string.startsWith("audio/")) {
                     return i;
                 }
-            } else if (string.startsWith("video/")) {
-                return i;
+            } else {
+                if (string.startsWith("video/")) {
+                    return i;
+                }
             }
         }
         return -5;
@@ -10616,30 +10928,31 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didWriteData$59(z2, z, videoConvertMessage, file, f, j, z3, j2);
+                MediaController.$r8$lambda$zCLJ6UFWjVs0BTl11PLCnEEcvT8(this.f$0, z2, z, videoConvertMessage, file, f, j, z3, j2);
             }
         });
     }
 
-    public void lambda$didWriteData$59(boolean z, boolean z2, VideoConvertMessage videoConvertMessage, File file, float f, long j, boolean z3, long j2) {
+    public static void $r8$lambda$zCLJ6UFWjVs0BTl11PLCnEEcvT8(MediaController mediaController, boolean z, boolean z2, VideoConvertMessage videoConvertMessage, File file, float f, long j, boolean z3, long j2) {
+        mediaController.getClass();
         if (z || z2) {
             boolean z4 = videoConvertMessage.videoEditedInfo.canceled;
-            synchronized (this.videoConvertSync) {
+            synchronized (mediaController.videoConvertSync) {
                 videoConvertMessage.videoEditedInfo.canceled = false;
             }
-            this.videoConvertQueue.remove(videoConvertMessage);
-            this.foregroundConvertingMessages.remove(videoConvertMessage);
-            checkForegroundConvertMessage(z4 || z);
-            startVideoConvertFromQueue();
+            mediaController.videoConvertQueue.remove(videoConvertMessage);
+            mediaController.foregroundConvertingMessages.remove(videoConvertMessage);
+            mediaController.checkForegroundConvertMessage(z4 || z);
+            mediaController.startVideoConvertFromQueue();
         }
         if (z) {
-            NotificationCenter.getInstance(videoConvertMessage.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.filePreparingFailed, videoConvertMessage.messageObject, file.toString(), Float.valueOf(f), Long.valueOf(j));
+            NotificationCenter.getInstance(videoConvertMessage.currentAccount).postNotificationName(NotificationCenter.filePreparingFailed, videoConvertMessage.messageObject, file.toString(), Float.valueOf(f), Long.valueOf(j));
             return;
         }
         if (z3) {
-            NotificationCenter.getInstance(videoConvertMessage.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.filePreparingStarted, videoConvertMessage.messageObject, file.toString(), Float.valueOf(f), Long.valueOf(j));
+            NotificationCenter.getInstance(videoConvertMessage.currentAccount).postNotificationName(NotificationCenter.filePreparingStarted, videoConvertMessage.messageObject, file.toString(), Float.valueOf(f), Long.valueOf(j));
         }
-        NotificationCenter.getInstance(videoConvertMessage.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileNewChunkAvailable, videoConvertMessage.messageObject, file.toString(), Long.valueOf(j2), Long.valueOf(z2 ? file.length() : 0L), Float.valueOf(f), Long.valueOf(j));
+        NotificationCenter.getInstance(videoConvertMessage.currentAccount).postNotificationName(NotificationCenter.fileNewChunkAvailable, videoConvertMessage.messageObject, file.toString(), Long.valueOf(j2), Long.valueOf(z2 ? file.length() : 0L), Float.valueOf(f), Long.valueOf(j));
     }
 
     public void pauseByRewind() {
@@ -10679,12 +10992,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             new Thread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.VideoConvertRunnable.lambda$runConversion$0(videoConvertMessage);
+                    MediaController.VideoConvertRunnable.$r8$lambda$Crg9xK2aVHTQWtPt_7wiWv_ZWpY(videoConvertMessage);
                 }
             }).start();
         }
 
-        public static void lambda$runConversion$0(VideoConvertMessage videoConvertMessage) {
+        public static void $r8$lambda$Crg9xK2aVHTQWtPt_7wiWv_ZWpY(VideoConvertMessage videoConvertMessage) {
             try {
                 Thread thread = new Thread(new VideoConvertRunnable(videoConvertMessage), "VideoConvertRunnable");
                 thread.start();
@@ -10697,210 +11010,75 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public boolean convertVideo(final VideoConvertMessage videoConvertMessage) {
         int i;
-        String str;
         long j;
         long j2;
         int i2;
-        int i3;
-        boolean z;
-        long jCurrentTimeMillis;
-        boolean zConvertVideo;
-        boolean z2;
-        boolean z3;
         MessageObject messageObject = videoConvertMessage.messageObject;
         final VideoEditedInfo videoEditedInfo = videoConvertMessage.videoEditedInfo;
         if (messageObject == null || videoEditedInfo == null) {
             return false;
         }
-        String str2 = videoEditedInfo.originalPath;
+        String str = videoEditedInfo.originalPath;
         long j3 = videoEditedInfo.videoOffset;
         long j4 = videoEditedInfo.startTime;
         long j5 = videoEditedInfo.avatarStartTime;
         long j6 = videoEditedInfo.endTime;
-        int i4 = videoEditedInfo.resultWidth;
-        int i5 = videoEditedInfo.resultHeight;
-        int i6 = videoEditedInfo.rotationValue;
-        int i7 = videoEditedInfo.originalWidth;
-        int i8 = videoEditedInfo.originalHeight;
-        int i9 = videoEditedInfo.framerate;
-        int i10 = videoEditedInfo.bitrate;
-        int i11 = videoEditedInfo.originalBitrate;
-        boolean z4 = DialogObject.isEncryptedDialog(messageObject.getDialogId()) || videoEditedInfo.forceFragmenting;
+        int i3 = videoEditedInfo.resultWidth;
+        int i4 = videoEditedInfo.resultHeight;
+        int i5 = videoEditedInfo.rotationValue;
+        int i6 = videoEditedInfo.originalWidth;
+        int i7 = videoEditedInfo.originalHeight;
+        int i8 = videoEditedInfo.framerate;
+        int i9 = videoEditedInfo.bitrate;
+        int i10 = videoEditedInfo.originalBitrate;
+        boolean z = DialogObject.isEncryptedDialog(messageObject.getDialogId()) || videoEditedInfo.forceFragmenting;
         final File file = new File(messageObject.messageOwner.attachPath);
         if (file.exists()) {
             file.delete();
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("begin convert " + str2 + " startTime = " + j4 + " avatarStartTime = " + j5 + " endTime " + j6 + " rWidth = " + i4 + " rHeight = " + i5 + " rotation = " + i6 + " oWidth = " + i7 + " oHeight = " + i8 + " framerate = " + i9 + " bitrate = " + i10 + " originalBitrate = " + i);
+            FileLog.d("begin convert " + str + " startTime = " + j4 + " avatarStartTime = " + j5 + " endTime " + j6 + " rWidth = " + i3 + " rHeight = " + i4 + " rotation = " + i5 + " oWidth = " + i6 + " oHeight = " + i7 + " framerate = " + i8 + " bitrate = " + i9 + " originalBitrate = " + i);
         }
-        if (str2 == null) {
-            i = i11;
-            i = i11;
+        if (str == null) {
+            i = i10;
+            i = i10;
             str = "";
+        }
+        i = i10;
+        i = i10;
+        if (j4 > 0 && j6 > 0) {
+            j = j4;
+            j2 = j6 - j4;
+        } else if (j6 > 0) {
+            j = j4;
+            j2 = j6;
+        } else if (j4 > 0) {
+            j = j4;
+            j2 = videoEditedInfo.originalDuration - j;
         } else {
-            i = i11;
-            i = i11;
-            str = str2;
+            j = j4;
+            j2 = videoEditedInfo.originalDuration;
         }
-        if (j4 <= 0 || j6 <= 0) {
-            if (j6 > 0) {
-                j2 = j6;
-            } else {
-                if (j4 > 0) {
-                    j = videoEditedInfo.originalDuration - j4;
-                } else {
-                    j = videoEditedInfo.originalDuration;
-                }
-                j2 = j;
-            }
-            if (i9 == 0) {
-                i9 = 25;
-            } else if (i9 > 59) {
-                i9 = 59;
-            }
-            if (i6 != 90 || i6 == 270) {
-                i2 = i4;
-                i4 = i5;
-            } else {
-                i2 = i5;
-            }
-            if (videoEditedInfo.shouldLimitFps && i9 > 40) {
-                if (Math.min(i2, i4) <= 480) {
-                    i3 = 30;
-                }
-                if (j5 != -1 && videoEditedInfo.cropState == null && videoEditedInfo.mediaEntities == null && videoEditedInfo.paintPath == null && videoEditedInfo.filterState == null && i4 == i7 && i2 == i8 && i6 == 0 && !videoEditedInfo.roundVideo && j4 == -1 && videoEditedInfo.mixedSoundInfos.isEmpty()) {
-                    z = false;
-                } else {
-                    z = true;
-                }
-                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("videoconvert", 0);
-                jCurrentTimeMillis = System.currentTimeMillis();
-                VideoConvertorListener videoConvertorListener = new VideoConvertorListener() {
-                    private long lastAvailableSize = 0;
-
-                    @Override
-                    public boolean checkConversionCanceled() {
-                        return videoEditedInfo.canceled;
-                    }
-
-                    @Override
-                    public void didWriteData(long j7, float f) {
-                        if (videoEditedInfo.canceled) {
-                            return;
-                        }
-                        if (j7 < 0) {
-                            j7 = file.length();
-                        }
-                        long j8 = j7;
-                        if (videoEditedInfo.needUpdateProgress || this.lastAvailableSize != j8) {
-                            this.lastAvailableSize = j8;
-                            MediaController.this.didWriteData(videoConvertMessage, file, false, 0L, j8, false, f);
-                        }
-                    }
-                };
-                videoEditedInfo.videoConvertFirstWrite = true;
-                MediaCodecVideoConvertor mediaCodecVideoConvertor = new MediaCodecVideoConvertor();
-                MediaCodecVideoConvertor.ConvertVideoParams convertVideoParamsOf = MediaCodecVideoConvertor.ConvertVideoParams.of(str, file, j3, i6, z4, i7, i8, i4, i2, i3, i10, i, j4, j6, j5, z, j2, videoConvertorListener, videoEditedInfo);
-                convertVideoParamsOf.soundInfos.addAll(videoEditedInfo.mixedSoundInfos);
-                zConvertVideo = mediaCodecVideoConvertor.convertVideo(convertVideoParamsOf);
-                z2 = videoEditedInfo.canceled;
-                if (!z2) {
-                    synchronized (this.videoConvertSync) {
-                        z2 = videoEditedInfo.canceled;
-                    }
-                }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("time=" + (System.currentTimeMillis() - jCurrentTimeMillis) + " canceled=" + z2);
-                }
-                sharedPreferences.edit().putBoolean("isPreviousOk", true).apply();
-                long lastFrameTimestamp = mediaCodecVideoConvertor.getLastFrameTimestamp();
-                long length = file.length();
-                if (!zConvertVideo || z2) {
-                    z3 = true;
-                } else {
-                    z3 = false;
-                }
-                didWriteData(videoConvertMessage, file, true, lastFrameTimestamp, length, z3, 1.0f);
-                return true;
-            }
-            if (j5 != -1) {
-                z = true;
-            } else {
-                z = true;
-            }
-            SharedPreferences sharedPreferences2 = ApplicationLoader.applicationContext.getSharedPreferences("videoconvert", 0);
-            jCurrentTimeMillis = System.currentTimeMillis();
-            VideoConvertorListener videoConvertorListener2 = new VideoConvertorListener() {
-                private long lastAvailableSize = 0;
-
-                @Override
-                public boolean checkConversionCanceled() {
-                    return videoEditedInfo.canceled;
-                }
-
-                @Override
-                public void didWriteData(long j7, float f) {
-                    if (videoEditedInfo.canceled) {
-                        return;
-                    }
-                    if (j7 < 0) {
-                        j7 = file.length();
-                    }
-                    long j8 = j7;
-                    if (videoEditedInfo.needUpdateProgress || this.lastAvailableSize != j8) {
-                        this.lastAvailableSize = j8;
-                        MediaController.this.didWriteData(videoConvertMessage, file, false, 0L, j8, false, f);
-                    }
-                }
-            };
-            videoEditedInfo.videoConvertFirstWrite = true;
-            MediaCodecVideoConvertor mediaCodecVideoConvertor2 = new MediaCodecVideoConvertor();
-            MediaCodecVideoConvertor.ConvertVideoParams convertVideoParamsOf2 = MediaCodecVideoConvertor.ConvertVideoParams.of(str, file, j3, i6, z4, i7, i8, i4, i2, i3, i10, i, j4, j6, j5, z, j2, videoConvertorListener2, videoEditedInfo);
-            convertVideoParamsOf2.soundInfos.addAll(videoEditedInfo.mixedSoundInfos);
-            zConvertVideo = mediaCodecVideoConvertor2.convertVideo(convertVideoParamsOf2);
-            z2 = videoEditedInfo.canceled;
-            if (!z2) {
-                synchronized (this.videoConvertSync) {
-                    z2 = videoEditedInfo.canceled;
-                }
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("time=" + (System.currentTimeMillis() - jCurrentTimeMillis) + " canceled=" + z2);
-            }
-            sharedPreferences2.edit().putBoolean("isPreviousOk", true).apply();
-            long lastFrameTimestamp2 = mediaCodecVideoConvertor2.getLastFrameTimestamp();
-            long length2 = file.length();
-            if (zConvertVideo) {
-                z3 = true;
-            } else {
-                z3 = true;
-            }
-            didWriteData(videoConvertMessage, file, true, lastFrameTimestamp2, length2, z3, 1.0f);
-            return true;
+        if (i8 == 0) {
+            i8 = 25;
+        } else if (i8 > 59) {
+            i8 = 59;
         }
-        j2 = j6 - j4;
-        i5 = i5;
-        if (i9 == 0) {
-            i9 = 25;
-        } else if (i9 > 59) {
-            i9 = 59;
-        }
-        if (i6 != 90) {
+        if (i5 == 90 || i5 == 270) {
             i2 = i4;
-            i4 = i5;
         } else {
-            i2 = i4;
-            i4 = i5;
+            i2 = i3;
+            i3 = i4;
         }
-        i3 = videoEditedInfo.shouldLimitFps ? i9 : i9;
-        if (j5 != -1) {
-            z = true;
-        } else {
-            z = true;
+        long j7 = j;
+        long j8 = j2;
+        if (!videoEditedInfo.shouldLimitFps && i8 > 40 && Math.min(i3, i2) <= 480) {
+            i8 = 30;
         }
-        SharedPreferences sharedPreferences3 = ApplicationLoader.applicationContext.getSharedPreferences("videoconvert", 0);
-        jCurrentTimeMillis = System.currentTimeMillis();
-        VideoConvertorListener videoConvertorListener3 = new VideoConvertorListener() {
+        boolean z2 = (j5 == -1 && videoEditedInfo.cropState == null && videoEditedInfo.mediaEntities == null && videoEditedInfo.paintPath == null && videoEditedInfo.filterState == null && i2 == i6 && i3 == i7 && i5 == 0 && !videoEditedInfo.roundVideo && j7 == -1 && videoEditedInfo.mixedSoundInfos.isEmpty()) ? false : true;
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("videoconvert", 0);
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        VideoConvertorListener videoConvertorListener = new VideoConvertorListener() {
             private long lastAvailableSize = 0;
 
             @Override
@@ -10909,43 +11087,36 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
 
             @Override
-            public void didWriteData(long j7, float f) {
+            public void didWriteData(long j9, float f) {
                 if (videoEditedInfo.canceled) {
                     return;
                 }
-                if (j7 < 0) {
-                    j7 = file.length();
+                if (j9 < 0) {
+                    j9 = file.length();
                 }
-                long j8 = j7;
-                if (videoEditedInfo.needUpdateProgress || this.lastAvailableSize != j8) {
-                    this.lastAvailableSize = j8;
-                    MediaController.this.didWriteData(videoConvertMessage, file, false, 0L, j8, false, f);
+                long j10 = j9;
+                if (videoEditedInfo.needUpdateProgress || this.lastAvailableSize != j10) {
+                    this.lastAvailableSize = j10;
+                    MediaController.this.didWriteData(videoConvertMessage, file, false, 0L, j10, false, f);
                 }
             }
         };
         videoEditedInfo.videoConvertFirstWrite = true;
-        MediaCodecVideoConvertor mediaCodecVideoConvertor3 = new MediaCodecVideoConvertor();
-        MediaCodecVideoConvertor.ConvertVideoParams convertVideoParamsOf3 = MediaCodecVideoConvertor.ConvertVideoParams.of(str, file, j3, i6, z4, i7, i8, i4, i2, i3, i10, i, j4, j6, j5, z, j2, videoConvertorListener3, videoEditedInfo);
-        convertVideoParamsOf3.soundInfos.addAll(videoEditedInfo.mixedSoundInfos);
-        zConvertVideo = mediaCodecVideoConvertor3.convertVideo(convertVideoParamsOf3);
-        z2 = videoEditedInfo.canceled;
-        if (!z2) {
+        MediaCodecVideoConvertor mediaCodecVideoConvertor = new MediaCodecVideoConvertor();
+        MediaCodecVideoConvertor.ConvertVideoParams convertVideoParamsOf = MediaCodecVideoConvertor.ConvertVideoParams.of(str, file, j3, i5, z, i6, i7, i2, i3, i8, i9, i, j7, j6, j5, z2, j8, videoConvertorListener, videoEditedInfo);
+        convertVideoParamsOf.soundInfos.addAll(videoEditedInfo.mixedSoundInfos);
+        boolean zConvertVideo = mediaCodecVideoConvertor.convertVideo(convertVideoParamsOf);
+        boolean z3 = videoEditedInfo.canceled;
+        if (!z3) {
             synchronized (this.videoConvertSync) {
-                z2 = videoEditedInfo.canceled;
+                z3 = videoEditedInfo.canceled;
             }
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("time=" + (System.currentTimeMillis() - jCurrentTimeMillis) + " canceled=" + z2);
+            FileLog.d("time=" + (System.currentTimeMillis() - jCurrentTimeMillis) + " canceled=" + z3);
         }
-        sharedPreferences3.edit().putBoolean("isPreviousOk", true).apply();
-        long lastFrameTimestamp3 = mediaCodecVideoConvertor3.getLastFrameTimestamp();
-        long length3 = file.length();
-        if (zConvertVideo) {
-            z3 = true;
-        } else {
-            z3 = true;
-        }
-        didWriteData(videoConvertMessage, file, true, lastFrameTimestamp3, length3, z3, 1.0f);
+        sharedPreferences.edit().putBoolean("isPreviousOk", true).apply();
+        didWriteData(videoConvertMessage, file, true, mediaCodecVideoConvertor.getLastFrameTimestamp(), file.length(), zConvertVideo || z3, 1.0f);
         return true;
     }
 
@@ -11385,9 +11556,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         private long getTotalListened() {
+            ArrayList<Pair<Long, Long>> arrayList = this.ranges;
+            int size = arrayList.size();
             long jLongValue = 0;
-            for (Pair<Long, Long> pair : this.ranges) {
-                jLongValue += ((Long) pair.second).longValue() - ((Long) pair.first).longValue();
+            int i = 0;
+            while (i < size) {
+                Pair<Long, Long> pair = arrayList.get(i);
+                i++;
+                Pair<Long, Long> pair2 = pair;
+                jLongValue += ((Long) pair2.second).longValue() - ((Long) pair2.first).longValue();
             }
             return jLongValue;
         }

@@ -30,7 +30,7 @@ class Camera1Session implements CameraSession {
     private static final Histogram camera1StopTimeMsHistogram = Histogram.createCounts("WebRTC.Android.Camera1.StopTimeMs", 1, 10000, 50);
     private static final Histogram camera1ResolutionHistogram = Histogram.createEnumeration("WebRTC.Android.Camera1.Resolution", CameraEnumerationAndroid.COMMON_RESOLUTIONS.size());
 
-    private enum SessionState {
+    enum SessionState {
         RUNNING,
         STOPPED
     }
@@ -203,7 +203,7 @@ class Camera1Session implements CameraSession {
         this.surfaceTextureHelper.startListening(new VideoSink() {
             @Override
             public final void onFrame(VideoFrame videoFrame) {
-                this.f$0.lambda$listenForTextureFrames$0(videoFrame);
+                Camera1Session.m5080$r8$lambda$k7glvNgoUNlSpCxWPGSZJ_J0i8(this.f$0, videoFrame);
             }
 
             @Override
@@ -213,18 +213,18 @@ class Camera1Session implements CameraSession {
         });
     }
 
-    public void lambda$listenForTextureFrames$0(VideoFrame videoFrame) {
-        checkIsOnCameraThread();
-        if (this.state != SessionState.RUNNING) {
+    public static void m5080$r8$lambda$k7glvNgoUNlSpCxWPGSZJ_J0i8(Camera1Session camera1Session, VideoFrame videoFrame) {
+        camera1Session.checkIsOnCameraThread();
+        if (camera1Session.state != SessionState.RUNNING) {
             Logging.d("Camera1Session", "Texture frame captured but camera is no longer running.");
             return;
         }
-        if (!this.firstFrameReported) {
-            camera1StartTimeMsHistogram.addSample((int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - this.constructionTimeNs));
-            this.firstFrameReported = true;
+        if (!camera1Session.firstFrameReported) {
+            camera1StartTimeMsHistogram.addSample((int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - camera1Session.constructionTimeNs));
+            camera1Session.firstFrameReported = true;
         }
-        VideoFrame videoFrame2 = new VideoFrame(CameraSession.CC.createTextureBufferWithModifiedTransformMatrix((TextureBufferImpl) videoFrame.getBuffer(), this.info.facing == 1, 0), getFrameOrientation(), videoFrame.getTimestampNs());
-        this.events.onFrameCaptured(this, videoFrame2);
+        VideoFrame videoFrame2 = new VideoFrame(CameraSession.CC.createTextureBufferWithModifiedTransformMatrix((TextureBufferImpl) videoFrame.getBuffer(), camera1Session.info.facing == 1, 0), camera1Session.getFrameOrientation(), videoFrame.getTimestampNs());
+        camera1Session.events.onFrameCaptured(camera1Session, videoFrame2);
         videoFrame2.release();
     }
 
@@ -248,7 +248,13 @@ class Camera1Session implements CameraSession {
                 VideoFrame videoFrame = new VideoFrame(new NV21Buffer(bArr, Camera1Session.this.captureFormat.width, Camera1Session.this.captureFormat.height, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onPreviewFrame$1(bArr);
+                        Camera1Session.AnonymousClass2 anonymousClass2 = this.f$0;
+                        Camera1Session.this.cameraThreadHandler.post(new Runnable() {
+                            @Override
+                            public final void run() {
+                                Camera1Session.AnonymousClass2.m5081$r8$lambda$rkcBsJ2UyoFna4iXxAKCg8ch1E(anonymousClass2, bArr);
+                            }
+                        });
                     }
                 }), Camera1Session.this.getFrameOrientation(), nanos);
                 Camera1Session.this.events.onFrameCaptured(Camera1Session.this, videoFrame);
@@ -258,16 +264,7 @@ class Camera1Session implements CameraSession {
             Logging.e("Camera1Session", "Callback from a different camera. This should never happen.");
         }
 
-        public void lambda$onPreviewFrame$1(final byte[] bArr) {
-            Camera1Session.this.cameraThreadHandler.post(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$onPreviewFrame$0(bArr);
-                }
-            });
-        }
-
-        public void lambda$onPreviewFrame$0(byte[] bArr) {
+        public static void m5081$r8$lambda$rkcBsJ2UyoFna4iXxAKCg8ch1E(AnonymousClass2 anonymousClass2, byte[] bArr) {
             if (Camera1Session.this.state == SessionState.RUNNING) {
                 Camera1Session.this.camera.addCallbackBuffer(bArr);
             }

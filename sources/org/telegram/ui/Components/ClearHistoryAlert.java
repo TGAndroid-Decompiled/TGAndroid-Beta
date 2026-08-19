@@ -152,7 +152,7 @@ public class ClearHistoryAlert extends BottomSheet {
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0 && ClearHistoryAlert.this.scrollOffsetY != 0 && motionEvent.getY() < ClearHistoryAlert.this.scrollOffsetY) {
-                    ClearHistoryAlert.this.lambda$new$0();
+                    ClearHistoryAlert.this.dismiss();
                     return true;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -300,7 +300,7 @@ public class ClearHistoryAlert extends BottomSheet {
                     this.cell.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            ClearHistoryAlert.lambda$new$0(zArr, view);
+                            ClearHistoryAlert.$r8$lambda$EZ1C5bzlmLE_6knIy35pvM4pXbU(zArr, view);
                         }
                     });
                 }
@@ -310,7 +310,7 @@ public class ClearHistoryAlert extends BottomSheet {
                 bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$1(view);
+                        ClearHistoryAlert.$r8$lambda$kcPCgmpdf1VgK6LwK17dsZfE_tc(this.f$0, view);
                     }
                 });
                 this.linearLayout.addView(bottomSheetCell, LayoutHelper.createLinear(-1, 50, 51, 0, 0, 0, 0));
@@ -390,7 +390,7 @@ public class ClearHistoryAlert extends BottomSheet {
             this.setTimerButton.background.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$2(view);
+                    ClearHistoryAlert.$r8$lambda$f8dWEbOUtv_zIMtgz_WpgOxrUbI(this.f$0, view);
                 }
             });
             frameLayout.addView(this.setTimerButton);
@@ -459,7 +459,7 @@ public class ClearHistoryAlert extends BottomSheet {
                 this.cell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ClearHistoryAlert.lambda$new$0(zArr, view);
+                        ClearHistoryAlert.$r8$lambda$EZ1C5bzlmLE_6knIy35pvM4pXbU(zArr, view);
                     }
                 });
             }
@@ -469,7 +469,7 @@ public class ClearHistoryAlert extends BottomSheet {
             bottomSheetCell3.background.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$1(view);
+                    ClearHistoryAlert.$r8$lambda$kcPCgmpdf1VgK6LwK17dsZfE_tc(this.f$0, view);
                 }
             });
             this.linearLayout.addView(bottomSheetCell3, LayoutHelper.createLinear(-1, 50, 51, 0, 0, 0, 0));
@@ -549,37 +549,37 @@ public class ClearHistoryAlert extends BottomSheet {
         this.setTimerButton.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                ClearHistoryAlert.$r8$lambda$f8dWEbOUtv_zIMtgz_WpgOxrUbI(this.f$0, view);
             }
         });
         frameLayout2.addView(this.setTimerButton);
         updateTimerButton(false);
     }
 
-    public static void lambda$new$0(boolean[] zArr, View view) {
+    public static void $r8$lambda$EZ1C5bzlmLE_6knIy35pvM4pXbU(boolean[] zArr, View view) {
         boolean z = !zArr[0];
         zArr[0] = z;
         ((CheckBoxCell) view).setChecked(z, true);
     }
 
-    public void lambda$new$1(View view) {
-        if (this.dismissedDelayed) {
+    public static void $r8$lambda$kcPCgmpdf1VgK6LwK17dsZfE_tc(ClearHistoryAlert clearHistoryAlert, View view) {
+        if (clearHistoryAlert.dismissedDelayed) {
             return;
         }
-        ClearHistoryAlertDelegate clearHistoryAlertDelegate = this.delegate;
-        CheckBoxCell checkBoxCell = this.cell;
+        ClearHistoryAlertDelegate clearHistoryAlertDelegate = clearHistoryAlert.delegate;
+        CheckBoxCell checkBoxCell = clearHistoryAlert.cell;
         clearHistoryAlertDelegate.onClearHistory(checkBoxCell != null && checkBoxCell.isChecked());
-        lambda$new$0();
+        clearHistoryAlert.dismiss();
     }
 
-    public void lambda$new$2(View view) {
+    public static void $r8$lambda$f8dWEbOUtv_zIMtgz_WpgOxrUbI(final ClearHistoryAlert clearHistoryAlert, View view) {
         int i;
-        if (this.dismissedDelayed) {
+        if (clearHistoryAlert.dismissedDelayed) {
             return;
         }
-        int i2 = this.newTimer;
-        if (i2 != this.currentTimer) {
-            this.dismissedDelayed = true;
+        int i2 = clearHistoryAlert.newTimer;
+        if (i2 != clearHistoryAlert.currentTimer) {
+            clearHistoryAlert.dismissedDelayed = true;
             int i3 = 70;
             if (i2 == 3) {
                 i = 2678400;
@@ -591,17 +591,17 @@ public class ClearHistoryAlert extends BottomSheet {
                 i = 0;
                 i3 = 71;
             }
-            this.delegate.onAutoDeleteHistory(i, i3);
+            clearHistoryAlert.delegate.onAutoDeleteHistory(i, i3);
         }
-        if (this.dismissedDelayed) {
+        if (clearHistoryAlert.dismissedDelayed) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0();
+                    this.f$0.dismiss();
                 }
             }, 200L);
         } else {
-            lambda$new$0();
+            clearHistoryAlert.dismiss();
         }
     }
 

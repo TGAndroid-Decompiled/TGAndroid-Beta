@@ -127,15 +127,12 @@ public class ManageChatUserCell extends FrameLayout {
             this.optionsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    ManageChatUserCell manageChatUserCell = this.f$0;
+                    manageChatUserCell.delegate.onOptionsButtonCheck(manageChatUserCell, true);
                 }
             });
             this.optionsButton.setContentDescription(LocaleController.getString(R.string.AccDescrUserOptions));
         }
-    }
-
-    public void lambda$new$0(View view) {
-        this.delegate.onOptionsButtonCheck(this, true);
     }
 
     public void setStoryItem(TL_stories.StoryItem storyItem, View.OnClickListener onClickListener) {

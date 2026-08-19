@@ -323,7 +323,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                                         ConnectionsManager.getInstance(themeInfo5.account).sendRequest(getwallpaper, new RequestDelegate() {
                                             @Override
                                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                                this.f$0.lambda$parseTheme$1(tLObject, tL_error);
+                                                ThemesHorizontalListCell.InnerThemeView.$r8$lambda$ky96AdSu12QoDwblQF0RABa6qzE(this.f$0, tLObject, tL_error);
                                             }
                                         });
                                         return false;
@@ -362,27 +362,29 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
             return true;
         }
 
-        public void lambda$parseTheme$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$ky96AdSu12QoDwblQF0RABa6qzE(final InnerThemeView innerThemeView, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            innerThemeView.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$parseTheme$0(tLObject);
+                    ThemesHorizontalListCell.InnerThemeView.$r8$lambda$aOWMO_IrCElsp2_LsauUXKytsG0(this.f$0, tLObject);
                 }
             });
         }
 
-        public void lambda$parseTheme$0(TLObject tLObject) {
+        public static void $r8$lambda$aOWMO_IrCElsp2_LsauUXKytsG0(InnerThemeView innerThemeView, TLObject tLObject) {
+            innerThemeView.getClass();
             if (tLObject instanceof TLRPC.TL_wallPaper) {
                 TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) tLObject;
                 String attachFileName = FileLoader.getAttachFileName(wallPaper.document);
                 if (ThemesHorizontalListCell.this.loadingThemes.containsKey(attachFileName)) {
                     return;
                 }
-                ThemesHorizontalListCell.this.loadingThemes.put(attachFileName, this.themeInfo);
-                FileLoader.getInstance(this.themeInfo.account).loadFile(wallPaper.document, wallPaper, 1, 1);
+                ThemesHorizontalListCell.this.loadingThemes.put(attachFileName, innerThemeView.themeInfo);
+                FileLoader.getInstance(innerThemeView.themeInfo.account).loadFile(wallPaper.document, wallPaper, 1, 1);
                 return;
             }
-            this.themeInfo.badWallpaper = true;
+            innerThemeView.themeInfo.badWallpaper = true;
         }
 
         public void applyTheme() {
@@ -760,30 +762,32 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$0(view, i2);
+                ThemesHorizontalListCell.$r8$lambda$XFS3w0KNEwi1aTL0Ol5Hf8eJ5CY(this.f$0, view, i2);
             }
         });
         setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                return this.f$0.lambda$new$1(view, i2);
+                return ThemesHorizontalListCell.$r8$lambda$MiSbpwhBQRWd0mlvb5MDkfoWYW0(this.f$0, view, i2);
             }
         });
     }
 
-    public void lambda$new$0(View view, int i) {
-        selectTheme(((InnerThemeView) view).themeInfo);
+    public static void $r8$lambda$XFS3w0KNEwi1aTL0Ol5Hf8eJ5CY(ThemesHorizontalListCell themesHorizontalListCell, View view, int i) {
+        themesHorizontalListCell.getClass();
+        themesHorizontalListCell.selectTheme(((InnerThemeView) view).themeInfo);
         int left = view.getLeft();
         int right = view.getRight();
         if (left < 0) {
-            smoothScrollBy(left - AndroidUtilities.dp(8.0f), 0);
-        } else if (right > getMeasuredWidth()) {
-            smoothScrollBy(right - getMeasuredWidth(), 0);
+            themesHorizontalListCell.smoothScrollBy(left - AndroidUtilities.dp(8.0f), 0);
+        } else if (right > themesHorizontalListCell.getMeasuredWidth()) {
+            themesHorizontalListCell.smoothScrollBy(right - themesHorizontalListCell.getMeasuredWidth(), 0);
         }
     }
 
-    public boolean lambda$new$1(View view, int i) {
-        showOptionsForTheme(((InnerThemeView) view).themeInfo);
+    public static boolean $r8$lambda$MiSbpwhBQRWd0mlvb5MDkfoWYW0(ThemesHorizontalListCell themesHorizontalListCell, View view, int i) {
+        themesHorizontalListCell.getClass();
+        themesHorizontalListCell.showOptionsForTheme(((InnerThemeView) view).themeInfo);
         return true;
     }
 
@@ -817,7 +821,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         } else if (themeInfo == Theme.getCurrentTheme()) {
             return;
         } else {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.FALSE, null, -1);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.FALSE, null, -1);
         }
         updateRows();
         int childCount = getChildCount();
@@ -899,12 +903,12 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$didReceivedNotification$3(themeInfo, file);
+                            ThemesHorizontalListCell.$r8$lambda$kDQahQozwwmaK39sEFD5zscI6Pg(this.f$0, themeInfo, file);
                         }
                     });
                     return;
                 } else {
-                    lambda$didReceivedNotification$2(themeInfo);
+                    checkVisibleTheme(themeInfo);
                     return;
                 }
             }
@@ -915,17 +919,18 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         }
     }
 
-    public void lambda$didReceivedNotification$3(final Theme.ThemeInfo themeInfo, File file) {
+    public static void $r8$lambda$kDQahQozwwmaK39sEFD5zscI6Pg(final ThemesHorizontalListCell themesHorizontalListCell, final Theme.ThemeInfo themeInfo, File file) {
+        themesHorizontalListCell.getClass();
         themeInfo.badWallpaper = !themeInfo.createBackground(file, themeInfo.pathToWallpaper);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didReceivedNotification$2(themeInfo);
+                this.f$0.checkVisibleTheme(themeInfo);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$2(Theme.ThemeInfo themeInfo) {
+    public void checkVisibleTheme(Theme.ThemeInfo themeInfo) {
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);

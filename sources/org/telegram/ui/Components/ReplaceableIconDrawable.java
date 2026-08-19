@@ -95,7 +95,7 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setIcon$0(valueAnimator2);
+                ReplaceableIconDrawable.$r8$lambda$9HGZZuq3Hl3DD2pz0coraiDrRCU(this.f$0, valueAnimator2);
             }
         });
         this.animation.addListener(this);
@@ -103,9 +103,10 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
         this.animation.start();
     }
 
-    public void lambda$setIcon$0(ValueAnimator valueAnimator) {
-        this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidateSelf();
+    public static void $r8$lambda$9HGZZuq3Hl3DD2pz0coraiDrRCU(ReplaceableIconDrawable replaceableIconDrawable, ValueAnimator valueAnimator) {
+        replaceableIconDrawable.getClass();
+        replaceableIconDrawable.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        replaceableIconDrawable.invalidateSelf();
     }
 
     @Override

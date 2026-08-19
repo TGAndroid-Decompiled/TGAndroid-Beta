@@ -1,6 +1,7 @@
 package org.telegram.messenger.pip.activity;
 
 import android.app.PictureInPictureParams;
+import android.app.PictureInPictureUiState;
 import android.content.res.Configuration;
 
 public interface IPipActivityHandler {
@@ -11,6 +12,8 @@ public interface IPipActivityHandler {
     void onPictureInPictureModeChanged(boolean z, Configuration configuration);
 
     void onPictureInPictureRequested();
+
+    void onPictureInPictureUiStateChanged(PictureInPictureUiState pictureInPictureUiState);
 
     void onResume();
 

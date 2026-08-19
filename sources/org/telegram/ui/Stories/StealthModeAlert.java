@@ -44,7 +44,7 @@ public class StealthModeAlert extends BottomSheet {
         void onButtonClicked(boolean z);
     }
 
-    public static void lambda$new$1() {
+    public static void m4386$r8$lambda$8RCZlFLwVhO4hPcjt6fZFCu1jw() {
     }
 
     public StealthModeAlert(Context context, final float f, final int i, final Theme.ResourcesProvider resourcesProvider) {
@@ -52,7 +52,7 @@ public class StealthModeAlert extends BottomSheet {
         this.updateButtonRunnuble = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$4();
+                StealthModeAlert.m4385$r8$lambda$5J2ZA_uyc3MprowZnuPODGSG0(this.f$0);
             }
         };
         this.type = i;
@@ -157,7 +157,7 @@ public class StealthModeAlert extends BottomSheet {
             premiumButtonView.setButton(LocaleController.getString(R.string.UnlockStealthMode), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    StealthModeAlert.$r8$lambda$r56AkUCrAmR0RGvtKSeMJuasias(this.f$0, view);
                 }
             });
         } else {
@@ -168,22 +168,23 @@ public class StealthModeAlert extends BottomSheet {
         premiumButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$3(currentUser, i, resourcesProvider, view);
+                StealthModeAlert.$r8$lambda$uXxxgP9lGruGxTSbZ_J7X3t4Me4(this.f$0, currentUser, i, resourcesProvider, view);
             }
         });
     }
 
-    public void lambda$new$0(View view) {
-        dismiss();
+    public static void $r8$lambda$r56AkUCrAmR0RGvtKSeMJuasias(StealthModeAlert stealthModeAlert, View view) {
+        stealthModeAlert.dismiss();
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment != null) {
             lastFragment.showDialog(new PremiumFeatureBottomSheet(lastFragment, 14, false));
         }
     }
 
-    public void lambda$new$3(TLRPC.User user, int i, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void $r8$lambda$uXxxgP9lGruGxTSbZ_J7X3t4Me4(StealthModeAlert stealthModeAlert, TLRPC.User user, int i, Theme.ResourcesProvider resourcesProvider, View view) {
+        stealthModeAlert.getClass();
         if (!user.premium) {
-            dismiss();
+            stealthModeAlert.dismiss();
             BaseFragment lastFragment = LaunchActivity.getLastFragment();
             if (lastFragment != null) {
                 lastFragment.showDialog(new PremiumFeatureBottomSheet(lastFragment, 14, false));
@@ -191,69 +192,65 @@ public class StealthModeAlert extends BottomSheet {
             }
             return;
         }
-        if (this.stealthModeIsActive) {
-            dismiss();
-            Listener listener = this.listener;
+        if (stealthModeAlert.stealthModeIsActive) {
+            stealthModeAlert.dismiss();
+            Listener listener = stealthModeAlert.listener;
             if (listener != null) {
                 listener.onButtonClicked(false);
                 return;
             }
             return;
         }
-        StoriesController storiesController = MessagesController.getInstance(this.currentAccount).getStoriesController();
+        StoriesController storiesController = MessagesController.getInstance(stealthModeAlert.currentAccount).getStoriesController();
         TL_stories.TL_storiesStealthMode stealthMode = storiesController.getStealthMode();
-        if (stealthMode == null || ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() > stealthMode.cooldown_until_date) {
+        if (stealthMode == null || ConnectionsManager.getInstance(stealthModeAlert.currentAccount).getCurrentTime() > stealthMode.cooldown_until_date) {
             TL_stories.TL_stories_activateStealthMode tL_stories_activateStealthMode = new TL_stories.TL_stories_activateStealthMode();
             tL_stories_activateStealthMode.future = true;
             tL_stories_activateStealthMode.past = true;
             TL_stories.TL_storiesStealthMode tL_storiesStealthMode = new TL_stories.TL_storiesStealthMode();
             tL_storiesStealthMode.flags |= 3;
-            tL_storiesStealthMode.cooldown_until_date = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + MessagesController.getInstance(this.currentAccount).stealthModeCooldown;
-            tL_storiesStealthMode.active_until_date = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + MessagesController.getInstance(this.currentAccount).stealthModeFuture;
+            tL_storiesStealthMode.cooldown_until_date = ConnectionsManager.getInstance(stealthModeAlert.currentAccount).getCurrentTime() + MessagesController.getInstance(stealthModeAlert.currentAccount).stealthModeCooldown;
+            tL_storiesStealthMode.active_until_date = ConnectionsManager.getInstance(stealthModeAlert.currentAccount).getCurrentTime() + MessagesController.getInstance(stealthModeAlert.currentAccount).stealthModeFuture;
             storiesController.setStealthMode(tL_storiesStealthMode);
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_activateStealthMode, new RequestDelegate() {
+            ConnectionsManager.getInstance(stealthModeAlert.currentAccount).sendRequest(tL_stories_activateStealthMode, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StealthModeAlert.lambda$new$2(tLObject, tL_error);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            StealthModeAlert.m4386$r8$lambda$8RCZlFLwVhO4hPcjt6fZFCu1jw();
+                        }
+                    });
                 }
             });
             try {
-                this.containerView.performHapticFeedback(3);
+                stealthModeAlert.containerView.performHapticFeedback(3);
             } catch (Exception unused) {
             }
-            dismiss();
+            stealthModeAlert.dismiss();
             if (i == 0) {
                 showStealthModeEnabledBulletin();
             }
-            Listener listener2 = this.listener;
+            Listener listener2 = stealthModeAlert.listener;
             if (listener2 != null) {
                 listener2.onButtonClicked(true);
                 return;
             }
             return;
         }
-        if (this.stealthModeIsActive) {
-            dismiss();
-            Listener listener3 = this.listener;
+        if (stealthModeAlert.stealthModeIsActive) {
+            stealthModeAlert.dismiss();
+            Listener listener3 = stealthModeAlert.listener;
             if (listener3 != null) {
                 listener3.onButtonClicked(false);
                 return;
             }
             return;
         }
-        BulletinFactory bulletinFactoryOf = BulletinFactory.of(this.container, resourcesProvider);
+        BulletinFactory bulletinFactoryOf = BulletinFactory.of(stealthModeAlert.container, resourcesProvider);
         if (bulletinFactoryOf != null) {
             bulletinFactoryOf.createErrorBulletin(AndroidUtilities.replaceTags(LocaleController.getString(R.string.StealthModeCooldownHint))).show(true);
         }
-    }
-
-    public static void lambda$new$2(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StealthModeAlert.lambda$new$1();
-            }
-        });
     }
 
     public void setListener(Listener listener) {
@@ -273,9 +270,9 @@ public class StealthModeAlert extends BottomSheet {
         }
     }
 
-    public void lambda$new$4() {
-        if (isShowing()) {
-            updateButton(true);
+    public static void m4385$r8$lambda$5J2ZA_uyc3MprowZnuPODGSG0(StealthModeAlert stealthModeAlert) {
+        if (stealthModeAlert.isShowing()) {
+            stealthModeAlert.updateButton(true);
         }
     }
 

@@ -90,19 +90,19 @@ public class WebviewActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$postEvent$0(str);
+                    WebviewActivity.TelegramWebviewProxy.$r8$lambda$BsXavwJQGLU3vClbXT0SXcntyDE(this.f$0, str);
                 }
             });
         }
 
-        public void lambda$postEvent$0(String str) {
+        public static void $r8$lambda$BsXavwJQGLU3vClbXT0SXcntyDE(TelegramWebviewProxy telegramWebviewProxy, String str) {
             if (WebviewActivity.this.getParentActivity() == null) {
                 return;
             }
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d(str);
             }
-            str.hashCode();
+            str.getClass();
             if (str.equals("share_game")) {
                 WebviewActivity.this.currentMessageObject.messageOwner.with_my_score = false;
             } else if (str.equals("share_score")) {
@@ -336,26 +336,27 @@ public class WebviewActivity extends BaseFragment {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getStatsURL, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$reloadStats$1(tLObject, tL_error);
+                WebviewActivity.m4795$r8$lambda$OAvnWQ8TG8ZLrqQKn6GweqMOA4(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$reloadStats$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4795$r8$lambda$OAvnWQ8TG8ZLrqQKn6GweqMOA4(final WebviewActivity webviewActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        webviewActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$reloadStats$0(tLObject);
+                WebviewActivity.m4796$r8$lambda$SXtu5EkA3KGuh0mtJivpiDnjEA(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$reloadStats$0(TLObject tLObject) {
-        this.loadStats = false;
+    public static void m4796$r8$lambda$SXtu5EkA3KGuh0mtJivpiDnjEA(WebviewActivity webviewActivity, TLObject tLObject) {
+        webviewActivity.loadStats = false;
         if (tLObject != null) {
-            WebView webView = this.webView;
+            WebView webView = webviewActivity.webView;
             String str = ((TLRPC.TL_statsURL) tLObject).url;
-            this.currentUrl = str;
+            webviewActivity.currentUrl = str;
             webView.loadUrl(str);
         }
     }
@@ -426,22 +427,22 @@ public class WebviewActivity extends BaseFragment {
             arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
             arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressInner2));
             arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressOuter2));
-        } else {
-            arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_dialogBackground));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_player_actionBarItems));
-            ActionBar actionBar = this.actionBar;
-            int i = ThemeDescription.FLAG_AB_TITLECOLOR;
-            int i2 = Theme.key_player_actionBarTitle;
-            arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBTITLECOLOR, null, null, null, null, i2));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_player_actionBarSelector));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUBACKGROUND, null, null, null, null, Theme.key_actionBarDefaultSubmenuBackground));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItem));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
-            arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressInner4));
-            arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressOuter4));
+            return arrayList;
         }
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_dialogBackground));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_player_actionBarItems));
+        ActionBar actionBar = this.actionBar;
+        int i = ThemeDescription.FLAG_AB_TITLECOLOR;
+        int i2 = Theme.key_player_actionBarTitle;
+        arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBTITLECOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_player_actionBarSelector));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUBACKGROUND, null, null, null, null, Theme.key_actionBarDefaultSubmenuBackground));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItem));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
+        arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressInner4));
+        arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressOuter4));
         return arrayList;
     }
 }

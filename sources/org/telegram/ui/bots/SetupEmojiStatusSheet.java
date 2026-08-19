@@ -62,28 +62,23 @@ public abstract class SetupEmojiStatusSheet {
             AnimatedEmojiDrawable.getDocumentFetcher(i).fetchDocument(j, new AnimatedEmojiDrawable.ReceivedDocument() {
                 @Override
                 public final void run(TLRPC.Document document) {
-                    SetupEmojiStatusSheet.lambda$show$3(i, user, i2, callback2, document);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            int i3 = i;
+                            TLRPC.User user2 = user;
+                            TLRPC.Document document2 = document;
+                            SetupEmojiStatusSheet.show(i3, user2, document2, i, new Utilities.Callback() {
+                                @Override
+                                public final void run(Object obj) {
+                                    callback2.run((String) obj, document2);
+                                }
+                            });
+                        }
+                    });
                 }
             });
         }
-    }
-
-    public static void lambda$show$3(final int i, final TLRPC.User user, final int i2, final Utilities.Callback2 callback2, final TLRPC.Document document) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SetupEmojiStatusSheet.lambda$show$2(i, user, document, i2, callback2);
-            }
-        });
-    }
-
-    public static void lambda$show$2(int i, TLRPC.User user, final TLRPC.Document document, int i2, final Utilities.Callback2 callback2) {
-        show(i, user, document, i2, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                callback2.run((String) obj, document);
-            }
-        });
     }
 
     public static void show(final int i, TLRPC.User user, final TLRPC.Document document, final int i2, final Utilities.Callback callback) {
@@ -134,19 +129,19 @@ public abstract class SetupEmojiStatusSheet {
         AlertDialog alertDialogCreate = new AlertDialog.Builder(contextFindActivity, null).setTopImage(new UserEmojiStatusDrawable(currentUser, document), Theme.getColor(Theme.key_dialogTopBackground)).setMessage(spannableStringBuilderReplaceTags).setPositiveButton(LocaleController.getString(R.string.BotEmojiStatusConfirm), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i6) {
-                SetupEmojiStatusSheet.lambda$show$6(i, zArr2, document, i2, zArr, callback, alertDialog, i6);
+                SetupEmojiStatusSheet.$r8$lambda$jGmmYIy0VFIyzAMrrL6Tm3RNVBg(i, zArr2, document, i2, zArr, callback, alertDialog, i6);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
         alertDialogCreate.show();
         alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                SetupEmojiStatusSheet.lambda$show$7(zArr2, zArr, callback, dialogInterface);
+                SetupEmojiStatusSheet.$r8$lambda$V1U6ZnSV1fFU4tBdC9dbSPRxIho(zArr2, zArr, callback, dialogInterface);
             }
         });
     }
 
-    public static void lambda$show$6(final int i, boolean[] zArr, TLRPC.Document document, int i2, final boolean[] zArr2, final Utilities.Callback callback, AlertDialog alertDialog, int i3) {
+    public static void $r8$lambda$jGmmYIy0VFIyzAMrrL6Tm3RNVBg(final int i, boolean[] zArr, TLRPC.Document document, int i2, final boolean[] zArr2, final Utilities.Callback callback, AlertDialog alertDialog, int i3) {
         if (!UserConfig.getInstance(i).isPremium()) {
             new PremiumFeatureBottomSheet(new BaseFragment() {
                 @Override
@@ -179,21 +174,17 @@ public abstract class SetupEmojiStatusSheet {
         ConnectionsManager.getInstance(i).sendRequest(updateemojistatus, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SetupEmojiStatusSheet.lambda$show$5(zArr2, callback, i, updateemojistatus, tLObject, tL_error);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        SetupEmojiStatusSheet.$r8$lambda$qjBVdEmBi2OOINVrp3sTDsRgkV4(tLObject, zArr, callback, i, updateemojistatus);
+                    }
+                });
             }
         });
     }
 
-    public static void lambda$show$5(final boolean[] zArr, final Utilities.Callback callback, final int i, final TL_account.updateEmojiStatus updateemojistatus, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SetupEmojiStatusSheet.lambda$show$4(tLObject, zArr, callback, i, updateemojistatus);
-            }
-        });
-    }
-
-    public static void lambda$show$4(TLObject tLObject, boolean[] zArr, Utilities.Callback callback, int i, TL_account.updateEmojiStatus updateemojistatus) {
+    public static void $r8$lambda$qjBVdEmBi2OOINVrp3sTDsRgkV4(TLObject tLObject, boolean[] zArr, Utilities.Callback callback, int i, TL_account.updateEmojiStatus updateemojistatus) {
         if (!(tLObject instanceof TLRPC.TL_boolTrue)) {
             if (zArr[0]) {
                 return;
@@ -205,7 +196,7 @@ public abstract class SetupEmojiStatusSheet {
         TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
         if (currentUser != null) {
             currentUser.emoji_status = updateemojistatus.emoji_status;
-            NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userEmojiStatusUpdated, currentUser);
+            NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.userEmojiStatusUpdated, currentUser);
             MessagesController.getInstance(i).updateEmojiStatusUntilUpdate(currentUser.id, currentUser.emoji_status);
         }
         if (zArr[0]) {
@@ -215,7 +206,7 @@ public abstract class SetupEmojiStatusSheet {
         callback.run(null);
     }
 
-    public static void lambda$show$7(boolean[] zArr, boolean[] zArr2, Utilities.Callback callback, DialogInterface dialogInterface) {
+    public static void $r8$lambda$V1U6ZnSV1fFU4tBdC9dbSPRxIho(boolean[] zArr, boolean[] zArr2, Utilities.Callback callback, DialogInterface dialogInterface) {
         if (zArr[0] || zArr2[0]) {
             return;
         }
@@ -230,7 +221,12 @@ public abstract class SetupEmojiStatusSheet {
             MessagesController.getInstance(i).loadFullUser(user, 0, true, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    SetupEmojiStatusSheet.lambda$askPermission$9(callback2, i, user, (TLRPC.UserFull) obj);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            SetupEmojiStatusSheet.$r8$lambda$84d1K1TcTg3Uc_f8QlS39OyHBJQ(userFull, callback2, i, user);
+                        }
+                    });
                 }
             });
         } else {
@@ -238,16 +234,7 @@ public abstract class SetupEmojiStatusSheet {
         }
     }
 
-    public static void lambda$askPermission$9(final Utilities.Callback2 callback2, final int i, final TLRPC.User user, final TLRPC.UserFull userFull) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SetupEmojiStatusSheet.lambda$askPermission$8(userFull, callback2, i, user);
-            }
-        });
-    }
-
-    public static void lambda$askPermission$8(TLRPC.UserFull userFull, Utilities.Callback2 callback2, int i, TLRPC.User user) {
+    public static void $r8$lambda$84d1K1TcTg3Uc_f8QlS39OyHBJQ(TLRPC.UserFull userFull, Utilities.Callback2 callback2, int i, TLRPC.User user) {
         if (userFull == null) {
             callback2.run(Boolean.FALSE, "cancelled");
         } else {
@@ -273,19 +260,19 @@ public abstract class SetupEmojiStatusSheet {
         AlertDialog alertDialogCreate = new AlertDialog.Builder(context, null).setTopImage(new UserEmojiStatusDrawable(UserConfig.getInstance(i).getCurrentUser()), Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)))).setPositiveButton(LocaleController.getString(R.string.BotEmojiStatusPermissionAllow), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                SetupEmojiStatusSheet.lambda$askPermission$12(i, zArr2, zArr, callback2, context, user, userFull, alertDialog, i2);
+                SetupEmojiStatusSheet.$r8$lambda$e9F1zgMeFykHyXu2bGe3uCAdOus(i, zArr2, zArr, callback2, context, user, userFull, alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.BotEmojiStatusPermissionDecline), null).create();
         alertDialogCreate.show();
         alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                SetupEmojiStatusSheet.lambda$askPermission$13(zArr2, zArr, context, i, user, callback2, dialogInterface);
+                SetupEmojiStatusSheet.m4855$r8$lambda$xBcQe_QLK_Xp3dKHzBejZphvM(zArr2, zArr, context, i, user, callback2, dialogInterface);
             }
         });
     }
 
-    public static void lambda$askPermission$12(int i, boolean[] zArr, final boolean[] zArr2, final Utilities.Callback2 callback2, Context context, TLRPC.User user, final TLRPC.UserFull userFull, AlertDialog alertDialog, int i2) {
+    public static void $r8$lambda$e9F1zgMeFykHyXu2bGe3uCAdOus(int i, boolean[] zArr, final boolean[] zArr2, final Utilities.Callback2 callback2, Context context, TLRPC.User user, final TLRPC.UserFull userFull, AlertDialog alertDialog, int i2) {
         if (!UserConfig.getInstance(i).isPremium()) {
             new PremiumFeatureBottomSheet(new BaseFragment() {
                 @Override
@@ -319,21 +306,17 @@ public abstract class SetupEmojiStatusSheet {
         ConnectionsManager.getInstance(i).sendRequest(toggleuseremojistatuspermission, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SetupEmojiStatusSheet.lambda$askPermission$11(zArr2, callback2, userFull, tLObject, tL_error);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        SetupEmojiStatusSheet.m4853$r8$lambda$HIic6tNxbal5Rj9WJRo00n2yQ(tLObject, zArr, callback2, userFull);
+                    }
+                });
             }
         });
     }
 
-    public static void lambda$askPermission$11(final boolean[] zArr, final Utilities.Callback2 callback2, final TLRPC.UserFull userFull, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SetupEmojiStatusSheet.lambda$askPermission$10(tLObject, zArr, callback2, userFull);
-            }
-        });
-    }
-
-    public static void lambda$askPermission$10(TLObject tLObject, boolean[] zArr, Utilities.Callback2 callback2, TLRPC.UserFull userFull) {
+    public static void m4853$r8$lambda$HIic6tNxbal5Rj9WJRo00n2yQ(TLObject tLObject, boolean[] zArr, Utilities.Callback2 callback2, TLRPC.UserFull userFull) {
         if (!(tLObject instanceof TLRPC.TL_boolTrue)) {
             if (zArr[0]) {
                 return;
@@ -350,7 +333,7 @@ public abstract class SetupEmojiStatusSheet {
         callback2.run(Boolean.TRUE, "allowed");
     }
 
-    public static void lambda$askPermission$13(boolean[] zArr, boolean[] zArr2, Context context, int i, TLRPC.User user, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
+    public static void m4855$r8$lambda$xBcQe_QLK_Xp3dKHzBejZphvM(boolean[] zArr, boolean[] zArr2, Context context, int i, TLRPC.User user, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
         if (zArr[0] || zArr2[0]) {
             return;
         }
@@ -447,14 +430,14 @@ public abstract class SetupEmojiStatusSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setRandomStatus$0();
+                    SetupEmojiStatusSheet.UserEmojiStatusDrawable.m4856$r8$lambda$yOBkabJzM8U06bV60Bju_lf0wk(this.f$0);
                 }
             }, 2500L);
         }
 
-        public void lambda$setRandomStatus$0() {
-            if (this.attached) {
-                setRandomStatus();
+        public static void m4856$r8$lambda$yOBkabJzM8U06bV60Bju_lf0wk(UserEmojiStatusDrawable userEmojiStatusDrawable) {
+            if (userEmojiStatusDrawable.attached) {
+                userEmojiStatusDrawable.setRandomStatus();
             }
         }
 
@@ -530,6 +513,9 @@ public abstract class SetupEmojiStatusSheet {
 
         @Override
         public void draw(Canvas canvas) {
+            float f;
+            float f2;
+            float f3;
             AnimatedEmojiDrawable animatedEmojiDrawable;
             AnimatedEmojiDrawable animatedEmojiDrawable2;
             Rect bounds = getBounds();
@@ -541,7 +527,7 @@ public abstract class SetupEmojiStatusSheet {
             RectF rectF = this.rect;
             imageReceiver.setImageCoords(rectF.left, rectF.top, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
             this.userImageReceiver.draw(canvas);
-            this.text.draw(canvas, AndroidUtilities.dp(36.0f) + this.rect.left, this.rect.centerY(), Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), 1.0f);
+            this.text.draw(canvas, this.rect.left + AndroidUtilities.dp(36.0f), this.rect.centerY(), Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), 1.0f);
             if (this.highlight) {
                 float fDp3 = this.rect.right - AndroidUtilities.dp(22.66f);
                 canvas.drawCircle(fDp3, this.rect.centerY(), AndroidUtilities.dp(24.0f), this.backgroundPaint2);
@@ -549,27 +535,34 @@ public abstract class SetupEmojiStatusSheet {
                 this.statusImageReceiver.draw(canvas);
                 return;
             }
-            float f = this.animatedSwap.set(this.currentStatus);
+            float f4 = this.animatedSwap.set(this.currentStatus);
             canvas.save();
             canvas.translate((int) (this.rect.right - AndroidUtilities.dp(30.66f)), (int) (this.rect.centerY() - AndroidUtilities.dp(12.0f)));
-            if (f < 1.0f && (animatedEmojiDrawable2 = this.emojis[0]) != null) {
+            if (f4 >= 1.0f || (animatedEmojiDrawable2 = this.emojis[0]) == null) {
+                f = 255.0f;
+                f2 = 24.0f;
+                f3 = 0.6f;
+            } else {
                 canvas.save();
-                canvas.translate(0.0f, (this.currentStatus == 0 ? -1 : 1) * AndroidUtilities.dp(9.0f) * f);
-                float f2 = 1.0f - f;
-                float f3 = (f2 * 0.4f) + 0.6f;
-                canvas.scale(f3, f3, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+                canvas.translate(0.0f, (this.currentStatus == 0 ? -1 : 1) * AndroidUtilities.dp(9.0f) * f4);
+                float f5 = 1.0f - f4;
+                f2 = 24.0f;
+                float f6 = (f5 * 0.4f) + 0.6f;
+                f = 255.0f;
+                f3 = 0.6f;
+                canvas.scale(f6, f6, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
                 animatedEmojiDrawable2.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-                animatedEmojiDrawable2.setAlpha((int) (f2 * 255.0f));
+                animatedEmojiDrawable2.setAlpha((int) (f5 * 255.0f));
                 animatedEmojiDrawable2.draw(canvas);
                 canvas.restore();
             }
-            if (f > 0.0f && (animatedEmojiDrawable = this.emojis[1]) != null) {
+            if (f4 > 0.0f && (animatedEmojiDrawable = this.emojis[1]) != null) {
                 canvas.save();
-                canvas.translate(0.0f, (this.currentStatus == 1 ? -1 : 1) * AndroidUtilities.dp(9.0f) * (1.0f - f));
-                float f4 = (0.4f * f) + 0.6f;
-                canvas.scale(f4, f4, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-                animatedEmojiDrawable.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-                animatedEmojiDrawable.setAlpha((int) (f * 255.0f));
+                canvas.translate(0.0f, (this.currentStatus != 1 ? 1 : -1) * AndroidUtilities.dp(9.0f) * (1.0f - f4));
+                float f7 = (0.4f * f4) + f3;
+                canvas.scale(f7, f7, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+                animatedEmojiDrawable.setBounds(0, 0, AndroidUtilities.dp(f2), AndroidUtilities.dp(f2));
+                animatedEmojiDrawable.setAlpha((int) (f4 * f));
                 animatedEmojiDrawable.draw(canvas);
                 canvas.restore();
             }

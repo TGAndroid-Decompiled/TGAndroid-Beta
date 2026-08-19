@@ -71,15 +71,11 @@ public class DownloadButton extends ImageView {
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.onClick();
             }
         });
         this.progressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(2.0f), -1);
         updateImage();
-    }
-
-    public void lambda$new$0(View view) {
-        onClick();
     }
 
     public void setEntry(StoryEntry storyEntry) {
@@ -101,7 +97,7 @@ public class DownloadButton extends ImageView {
         }
     }
 
-    private void onClick() {
+    public void onClick() {
         int i = Build.VERSION.SDK_INT;
         if (i >= 23 && ((i <= 28 || BuildVars.NO_SCOPED_STORAGE) && getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0)) {
             Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
@@ -167,7 +163,7 @@ public class DownloadButton extends ImageView {
             preparingVideoToast.setOnCancelListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onClickInternal$1();
+                    DownloadButton.$r8$lambda$OeAKREpL1m4ti0IkRjSXI35NdsM(this.f$0);
                 }
             });
             this.container.addView(this.toast);
@@ -175,17 +171,17 @@ public class DownloadButton extends ImageView {
             this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, fileGenerateVideoPath, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onClickInternal$3(fileGenerateVideoPath);
+                    DownloadButton.$r8$lambda$NOxNtlNPcq6bRKwrR69ac6g_nMI(this.f$0, fileGenerateVideoPath);
                 }
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onClickInternal$4((Float) obj);
+                    DownloadButton.$r8$lambda$mpdB7uJWnpT5CykrmcybtMpxe1Q(this.f$0, (Float) obj);
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onClickInternal$5();
+                    DownloadButton.m4476$r8$lambda$22AjVVOAh3RsY6WjZc6c_AWzIE(this.f$0);
                 }
             });
         } else {
@@ -200,101 +196,102 @@ public class DownloadButton extends ImageView {
             Utilities.themeQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onClickInternal$8(fileGeneratePicturePath);
+                    DownloadButton.$r8$lambda$_HLY7VWkz7LHKi5ravyl428rwEk(this.f$0, fileGeneratePicturePath);
                 }
             });
         }
         updateImage();
     }
 
-    public void lambda$onClickInternal$1() {
-        this.preparing = false;
-        BuildingVideo buildingVideo = this.buildingVideo;
+    public static void $r8$lambda$OeAKREpL1m4ti0IkRjSXI35NdsM(DownloadButton downloadButton) {
+        downloadButton.preparing = false;
+        BuildingVideo buildingVideo = downloadButton.buildingVideo;
         if (buildingVideo != null) {
             buildingVideo.stop(true);
-            this.buildingVideo = null;
+            downloadButton.buildingVideo = null;
         }
-        PreparingVideoToast preparingVideoToast = this.toast;
+        PreparingVideoToast preparingVideoToast = downloadButton.toast;
         if (preparingVideoToast != null) {
             preparingVideoToast.hide();
         }
-        this.downloading = false;
-        updateImage();
+        downloadButton.downloading = false;
+        downloadButton.updateImage();
     }
 
-    public void lambda$onClickInternal$3(File file) {
-        if (!this.downloading || this.currentEntry == null) {
+    public static void $r8$lambda$NOxNtlNPcq6bRKwrR69ac6g_nMI(final DownloadButton downloadButton, File file) {
+        if (!downloadButton.downloading || downloadButton.currentEntry == null) {
             return;
         }
-        MediaController.saveFile(file.getAbsolutePath(), getContext(), 1, null, null, new Utilities.Callback() {
+        MediaController.saveFile(file.getAbsolutePath(), downloadButton.getContext(), 1, null, null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$onClickInternal$2((Uri) obj);
+                DownloadButton.$r8$lambda$qdwXPPxhmgIfQqX4UrztkVW0Cwo(this.f$0, (Uri) obj);
             }
         }, false);
     }
 
-    public void lambda$onClickInternal$2(Uri uri) {
-        if (!this.downloading || this.currentEntry == null) {
+    public static void $r8$lambda$qdwXPPxhmgIfQqX4UrztkVW0Cwo(DownloadButton downloadButton, Uri uri) {
+        if (!downloadButton.downloading || downloadButton.currentEntry == null) {
             return;
         }
-        this.toast.setDone(R.raw.ic_save_to_gallery, LocaleController.getString("VideoSavedHint"), 3500);
-        this.downloading = false;
-        updateImage();
-        this.savedToGalleryUri = uri;
+        downloadButton.toast.setDone(R.raw.ic_save_to_gallery, LocaleController.getString("VideoSavedHint"), 3500);
+        downloadButton.downloading = false;
+        downloadButton.updateImage();
+        downloadButton.savedToGalleryUri = uri;
     }
 
-    public void lambda$onClickInternal$4(Float f) {
-        PreparingVideoToast preparingVideoToast = this.toast;
+    public static void $r8$lambda$mpdB7uJWnpT5CykrmcybtMpxe1Q(DownloadButton downloadButton, Float f) {
+        PreparingVideoToast preparingVideoToast = downloadButton.toast;
         if (preparingVideoToast != null) {
             preparingVideoToast.setProgress(f.floatValue());
         }
     }
 
-    public void lambda$onClickInternal$5() {
-        if (!this.downloading || this.currentEntry == null) {
+    public static void m4476$r8$lambda$22AjVVOAh3RsY6WjZc6c_AWzIE(DownloadButton downloadButton) {
+        if (!downloadButton.downloading || downloadButton.currentEntry == null) {
             return;
         }
-        this.toast.setDone(R.raw.error, LocaleController.getString("VideoConvertFail"), 3500);
-        this.downloading = false;
-        updateImage();
+        downloadButton.toast.setDone(R.raw.error, LocaleController.getString("VideoConvertFail"), 3500);
+        downloadButton.downloading = false;
+        downloadButton.updateImage();
     }
 
-    public void lambda$onClickInternal$8(final File file) {
-        this.currentEntry.buildPhoto(file);
-        if (!this.downloading || this.currentEntry == null) {
+    public static void $r8$lambda$_HLY7VWkz7LHKi5ravyl428rwEk(final DownloadButton downloadButton, final File file) {
+        downloadButton.currentEntry.buildPhoto(file);
+        if (!downloadButton.downloading || downloadButton.currentEntry == null) {
             return;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onClickInternal$7(file);
+                DownloadButton.$r8$lambda$eBXX8vKqvdgGy6ArejdpojeCJ_E(this.f$0, file);
             }
         });
     }
 
-    public void lambda$onClickInternal$7(File file) {
-        MediaController.saveFile(file.getAbsolutePath(), getContext(), 0, null, null, new Utilities.Callback() {
+    public static void $r8$lambda$eBXX8vKqvdgGy6ArejdpojeCJ_E(final DownloadButton downloadButton, File file) {
+        downloadButton.getClass();
+        MediaController.saveFile(file.getAbsolutePath(), downloadButton.getContext(), 0, null, null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$onClickInternal$6((Uri) obj);
+                DownloadButton.$r8$lambda$5ztkyw4_aDt3z_u4pWr6N5I7dGw(this.f$0, (Uri) obj);
             }
         }, false);
     }
 
-    public void lambda$onClickInternal$6(Uri uri) {
-        this.downloading = false;
-        updateImage();
-        PreparingVideoToast preparingVideoToast = this.toast;
+    public static void $r8$lambda$5ztkyw4_aDt3z_u4pWr6N5I7dGw(DownloadButton downloadButton, Uri uri) {
+        downloadButton.downloading = false;
+        downloadButton.updateImage();
+        PreparingVideoToast preparingVideoToast = downloadButton.toast;
         if (preparingVideoToast != null) {
             preparingVideoToast.hide();
-            this.toast = null;
+            downloadButton.toast = null;
         }
-        PreparingVideoToast preparingVideoToast2 = new PreparingVideoToast(getContext());
-        this.toast = preparingVideoToast2;
+        PreparingVideoToast preparingVideoToast2 = new PreparingVideoToast(downloadButton.getContext());
+        downloadButton.toast = preparingVideoToast2;
         preparingVideoToast2.setDone(R.raw.ic_save_to_gallery, LocaleController.getString("PhotoSavedHint"), 2500);
-        this.container.addView(this.toast);
-        this.savedToGalleryUri = uri;
+        downloadButton.container.addView(downloadButton.toast);
+        downloadButton.savedToGalleryUri = uri;
     }
 
     private void updateImage() {
@@ -370,18 +367,18 @@ public class DownloadButton extends ImageView {
             this.entry.getVideoEditedInfo(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$start$0((VideoEditedInfo) obj);
+                    DownloadButton.BuildingVideo.$r8$lambda$WZxUvSdlCfxCI35He0MNi9Ptd_A(this.f$0, (VideoEditedInfo) obj);
                 }
             });
         }
 
-        public void lambda$start$0(VideoEditedInfo videoEditedInfo) {
-            MessageObject messageObject = this.messageObject;
+        public static void $r8$lambda$WZxUvSdlCfxCI35He0MNi9Ptd_A(BuildingVideo buildingVideo, VideoEditedInfo videoEditedInfo) {
+            MessageObject messageObject = buildingVideo.messageObject;
             if (messageObject == null) {
                 return;
             }
             messageObject.videoEditedInfo = videoEditedInfo;
-            MediaController.getInstance().scheduleVideoConvert(this.messageObject);
+            MediaController.getInstance().scheduleVideoConvert(buildingVideo.messageObject);
         }
 
         public void stop(boolean z) {
@@ -404,10 +401,10 @@ public class DownloadButton extends ImageView {
             }
             if (i == NotificationCenter.fileNewChunkAvailable) {
                 if (((MessageObject) objArr[0]) == this.messageObject) {
-                    ((Long) objArr[2]).longValue();
+                    ((Long) objArr[2]).getClass();
                     long jLongValue = ((Long) objArr[3]).longValue();
                     Float f = (Float) objArr[4];
-                    f.floatValue();
+                    f.getClass();
                     Utilities.Callback callback = this.onProgress;
                     if (callback != null) {
                         callback.run(f);
@@ -470,8 +467,6 @@ public class DownloadButton extends ImageView {
         }
 
         public PreparingVideoToast(Context context, String str) {
-            int i;
-            float lineWidth;
             super(context);
             Paint paint = new Paint(1);
             this.dimPaint = paint;
@@ -514,15 +509,8 @@ public class DownloadButton extends ImageView {
             textPaint2.setTextSize(AndroidUtilities.dpf2(14.66f));
             StaticLayout staticLayout = new StaticLayout(str, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.preparingLayout = staticLayout;
-            if (staticLayout.getLineCount() > 0) {
-                i = 0;
-                lineWidth = staticLayout.getLineWidth(0);
-            } else {
-                i = 0;
-                lineWidth = 0.0f;
-            }
-            this.preparingLayoutWidth = lineWidth;
-            this.preparingLayoutLeft = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(i) : 0.0f;
+            this.preparingLayoutWidth = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
+            this.preparingLayoutLeft = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
             show();
         }
 
@@ -573,14 +561,14 @@ public class DownloadButton extends ImageView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onDraw$0();
+                    DownloadButton.PreparingVideoToast.$r8$lambda$36CKHl9ekUfackcPLX7f0jVgn4A(this.f$0);
                 }
             });
         }
 
-        public void lambda$onDraw$0() {
-            if (getParent() instanceof ViewGroup) {
-                ((ViewGroup) getParent()).removeView(this);
+        public static void $r8$lambda$36CKHl9ekUfackcPLX7f0jVgn4A(PreparingVideoToast preparingVideoToast) {
+            if (preparingVideoToast.getParent() instanceof ViewGroup) {
+                ((ViewGroup) preparingVideoToast.getParent()).removeView(preparingVideoToast);
             }
         }
 
@@ -593,7 +581,7 @@ public class DownloadButton extends ImageView {
             canvas.drawCircle(fCenterX, fDp, fDp2, this.greyPaint);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(fCenterX - fDp2, fDp - fDp2, fCenterX + fDp2, fDp2 + fDp);
-            int i = (int) (f * 255.0f);
+            int i = (int) (255.0f * f);
             this.whitePaint.setAlpha(i);
             this.whitePaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
             canvas.drawArc(rectF, -90.0f, f2 * 360.0f, false, this.whitePaint);
@@ -601,7 +589,7 @@ public class DownloadButton extends ImageView {
             canvas.save();
             canvas.scale(scale, scale, fCenterX, fDp);
             this.whitePaint.setStrokeWidth(AndroidUtilities.dp(3.4f));
-            canvas.drawLine(fCenterX - AndroidUtilities.dp(7.0f), fDp - AndroidUtilities.dp(7.0f), fCenterX + AndroidUtilities.dp(7.0f), fDp + AndroidUtilities.dp(7.0f), this.whitePaint);
+            canvas.drawLine(fCenterX - AndroidUtilities.dp(7.0f), fDp - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f) + fCenterX, AndroidUtilities.dp(7.0f) + fDp, this.whitePaint);
             canvas.drawLine(fCenterX - AndroidUtilities.dp(7.0f), fDp + AndroidUtilities.dp(7.0f), fCenterX + AndroidUtilities.dp(7.0f), fDp - AndroidUtilities.dp(7.0f), this.whitePaint);
             canvas.restore();
             canvas.save();

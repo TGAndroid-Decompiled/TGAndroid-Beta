@@ -69,7 +69,7 @@ abstract class HtmlTagImpl implements HtmlTag {
         final BlockImpl parent;
 
         static BlockImpl root() {
-            return new BlockImpl("", 0, Collections.emptyMap(), null);
+            return new BlockImpl("", 0, Collections.EMPTY_MAP, null);
         }
 
         static BlockImpl create(String str, int i, Map map, BlockImpl blockImpl) {
@@ -99,7 +99,7 @@ abstract class HtmlTagImpl implements HtmlTag {
         public List children() {
             List list = this.children;
             if (list == null) {
-                return Collections.emptyList();
+                return Collections.EMPTY_LIST;
             }
             return DesugarCollections.unmodifiableList(list);
         }

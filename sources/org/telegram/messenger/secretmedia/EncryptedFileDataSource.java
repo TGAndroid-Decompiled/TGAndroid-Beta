@@ -19,7 +19,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
 
     @Override
     public Map getResponseHeaders() {
-        return Collections.emptyMap();
+        return Collections.EMPTY_MAP;
     }
 
     public static class EncryptedFileDataSourceException extends IOException {

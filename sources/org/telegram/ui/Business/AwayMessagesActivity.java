@@ -87,7 +87,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$0();
+                AwayMessagesActivity.$r8$lambda$2nBbeAk8ZIV33hdtkoWa3JCeK8s(this.f$0);
             }
         });
         this.recipientsHelper = businessRecipientsHelper;
@@ -118,9 +118,9 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         return frameLayout;
     }
 
-    public void lambda$createView$0() {
-        this.listView.adapter.update(true);
-        checkDone(true);
+    public static void $r8$lambda$2nBbeAk8ZIV33hdtkoWa3JCeK8s(AwayMessagesActivity awayMessagesActivity) {
+        awayMessagesActivity.listView.adapter.update(true);
+        awayMessagesActivity.checkDone(true);
     }
 
     private void setValue() {
@@ -291,31 +291,35 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             getConnectionsManager().sendRequest(updatebusinessawaymessage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$processDone$2(tLObject, tL_error);
+                    AwayMessagesActivity.m1358$r8$lambda$mnzAcQ_74ZIrQbyOE6PGfDzTw8(this.f$0, tLObject, tL_error);
                 }
             });
             getMessagesStorage().updateUserInfo(userFull, false);
         }
     }
 
-    public void lambda$processDone$2(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1358$r8$lambda$mnzAcQ_74ZIrQbyOE6PGfDzTw8(final AwayMessagesActivity awayMessagesActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        awayMessagesActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processDone$1(tL_error, tLObject);
+                AwayMessagesActivity.$r8$lambda$ISqU1esEyKooW4UWlUSRJc9jdtY(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$processDone$1(TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void $r8$lambda$ISqU1esEyKooW4UWlUSRJc9jdtY(AwayMessagesActivity awayMessagesActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
-            this.doneButtonDrawable.animateToProgress(0.0f);
+            awayMessagesActivity.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);
-        } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-            this.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+            return;
+        }
+        awayMessagesActivity.getClass();
+        if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
+            awayMessagesActivity.finishFragment();
         } else {
-            finishFragment();
+            awayMessagesActivity.doneButtonDrawable.animateToProgress(0.0f);
+            BulletinFactory.of(awayMessagesActivity).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         }
     }
 
@@ -335,26 +339,18 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onBackPressed$3(alertDialog, i);
+                    this.f$0.processDone();
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onBackPressed$4(alertDialog, i);
+                    this.f$0.finishFragment();
                 }
             });
             showDialog(builder.create());
         }
         return false;
-    }
-
-    public void lambda$onBackPressed$3(AlertDialog alertDialog, int i) {
-        processDone();
-    }
-
-    public void lambda$onBackPressed$4(AlertDialog alertDialog, int i) {
-        finishFragment();
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -450,7 +446,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
                 AlertsCreator.createDatePickerDialog(getContext(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), this.scheduleCustomStart, new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i3, int i4) {
-                        this.f$0.lambda$onClick$5(view, z, i3, i4);
+                        AwayMessagesActivity.$r8$lambda$y3Zu7oWUdYHAwFXwhYbXBttxMa0(this.f$0, view, z, i3, i4);
                     }
                 });
                 return;
@@ -459,7 +455,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
                 AlertsCreator.createDatePickerDialog(getContext(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), this.scheduleCustomEnd, new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i3, int i4) {
-                        this.f$0.lambda$onClick$6(view, z, i3, i4);
+                        AwayMessagesActivity.$r8$lambda$YXeL3LYBpsifCvxuNMxh8hBYXqU(this.f$0, view, z, i3, i4);
                     }
                 });
             } else if (i2 == 10) {
@@ -471,16 +467,18 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$onClick$5(View view, boolean z, int i, int i2) {
-        this.scheduleCustomStart = i;
+    public static void $r8$lambda$y3Zu7oWUdYHAwFXwhYbXBttxMa0(AwayMessagesActivity awayMessagesActivity, View view, boolean z, int i, int i2) {
+        awayMessagesActivity.getClass();
+        awayMessagesActivity.scheduleCustomStart = i;
         ((TextCell) view).setValue(LocaleController.formatShortDateTime(i), true);
-        checkDone(true);
+        awayMessagesActivity.checkDone(true);
     }
 
-    public void lambda$onClick$6(View view, boolean z, int i, int i2) {
-        this.scheduleCustomEnd = i;
+    public static void $r8$lambda$YXeL3LYBpsifCvxuNMxh8hBYXqU(AwayMessagesActivity awayMessagesActivity, View view, boolean z, int i, int i2) {
+        awayMessagesActivity.getClass();
+        awayMessagesActivity.scheduleCustomEnd = i;
         ((TextCell) view).setValue(LocaleController.formatShortDateTime(i), true);
-        checkDone(true);
+        awayMessagesActivity.checkDone(true);
     }
 
     @Override

@@ -56,7 +56,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
     private static final ArrayList mainFragmentsStack = new ArrayList();
     private static final ArrayList layerFragmentsStack = new ArrayList();
 
-    public static void lambda$onCreate$1(View view) {
+    public static void $r8$lambda$Ztv40Vl1oPLFTV2TDZbNcJA7kQY(View view) {
     }
 
     @Override
@@ -139,13 +139,13 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             frameLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
-                    return this.f$0.lambda$onCreate$0(view, motionEvent);
+                    return ExternalActionActivity.$r8$lambda$B9CqgNfKVB4fSCN2NOkE4XjUGEs(this.f$0, view, motionEvent);
                 }
             });
             frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ExternalActionActivity.lambda$onCreate$1(view);
+                    ExternalActionActivity.$r8$lambda$Ztv40Vl1oPLFTV2TDZbNcJA7kQY(view);
                 }
             });
             INavigationLayout iNavigationLayoutNewLayout = INavigationLayout.CC.newLayout(this, false);
@@ -180,7 +180,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         PasscodeView passcodeView = new PasscodeView(this);
         this.passcodeView = passcodeView;
         this.drawerLayoutContainer.addView(passcodeView, LayoutHelper.createFrame(-1, -1.0f));
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeOtherAppActivities, this);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.closeOtherAppActivities, this);
         this.actionBarLayout.removeAllFragments();
         INavigationLayout iNavigationLayout = this.layersActionBarLayout;
         if (iNavigationLayout != null) {
@@ -190,21 +190,21 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         needLayout();
     }
 
-    public boolean lambda$onCreate$0(View view, MotionEvent motionEvent) {
-        if (!this.actionBarLayout.getFragmentStack().isEmpty() && motionEvent.getAction() == 1) {
+    public static boolean $r8$lambda$B9CqgNfKVB4fSCN2NOkE4XjUGEs(ExternalActionActivity externalActionActivity, View view, MotionEvent motionEvent) {
+        if (!externalActionActivity.actionBarLayout.getFragmentStack().isEmpty() && motionEvent.getAction() == 1) {
             float x = motionEvent.getX();
             float y = motionEvent.getY();
             int[] iArr = new int[2];
-            this.layersActionBarLayout.getView().getLocationOnScreen(iArr);
+            externalActionActivity.layersActionBarLayout.getView().getLocationOnScreen(iArr);
             int i = iArr[0];
             int i2 = iArr[1];
-            if (!this.layersActionBarLayout.checkTransitionAnimation() && (x <= i || x >= i + this.layersActionBarLayout.getView().getWidth() || y <= i2 || y >= i2 + this.layersActionBarLayout.getView().getHeight())) {
-                if (!this.layersActionBarLayout.getFragmentStack().isEmpty()) {
-                    while (this.layersActionBarLayout.getFragmentStack().size() - 1 > 0) {
-                        INavigationLayout iNavigationLayout = this.layersActionBarLayout;
+            if (!externalActionActivity.layersActionBarLayout.checkTransitionAnimation() && (x <= i || x >= i + externalActionActivity.layersActionBarLayout.getView().getWidth() || y <= i2 || y >= i2 + externalActionActivity.layersActionBarLayout.getView().getHeight())) {
+                if (!externalActionActivity.layersActionBarLayout.getFragmentStack().isEmpty()) {
+                    while (externalActionActivity.layersActionBarLayout.getFragmentStack().size() - 1 > 0) {
+                        INavigationLayout iNavigationLayout = externalActionActivity.layersActionBarLayout;
                         iNavigationLayout.removeFragmentFromStack((BaseFragment) iNavigationLayout.getFragmentStack().get(0));
                     }
-                    this.layersActionBarLayout.closeLastFragment(true);
+                    externalActionActivity.layersActionBarLayout.closeLastFragment(true);
                 }
                 return true;
             }
@@ -229,23 +229,28 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         this.passcodeView.setDelegate(new PasscodeView.PasscodeViewDelegate() {
             @Override
             public final void didAcceptedPassword(PasscodeView passcodeView) {
-                this.f$0.lambda$showPasscodeActivity$2(passcodeView);
+                ExternalActionActivity.m3130$r8$lambda$JFp8eynonbG61Sk2LUaujiX7k8(this.f$0, passcodeView);
             }
         });
     }
 
-    public void lambda$showPasscodeActivity$2(PasscodeView passcodeView) {
+    public static void m3130$r8$lambda$JFp8eynonbG61Sk2LUaujiX7k8(ExternalActionActivity externalActionActivity, PasscodeView passcodeView) {
+        ExternalActionActivity externalActionActivity2;
+        externalActionActivity.getClass();
         SharedConfig.isWaitingForPasscodeEnter = false;
-        Intent intent = this.passcodeSaveIntent;
+        Intent intent = externalActionActivity.passcodeSaveIntent;
         if (intent != null) {
-            handleIntent(intent, this.passcodeSaveIntentIsNew, this.passcodeSaveIntentIsRestore, true, this.passcodeSaveIntentAccount, this.passcodeSaveIntentState);
-            this.passcodeSaveIntent = null;
+            externalActionActivity2 = externalActionActivity;
+            externalActionActivity2.handleIntent(intent, externalActionActivity.passcodeSaveIntentIsNew, externalActionActivity.passcodeSaveIntentIsRestore, true, externalActionActivity.passcodeSaveIntentAccount, externalActionActivity.passcodeSaveIntentState);
+            externalActionActivity2.passcodeSaveIntent = null;
+        } else {
+            externalActionActivity2 = externalActionActivity;
         }
-        this.actionBarLayout.showLastFragment();
+        externalActionActivity2.actionBarLayout.showLastFragment();
         if (AndroidUtilities.isTablet()) {
-            this.layersActionBarLayout.showLastFragment();
+            externalActionActivity2.layersActionBarLayout.showLastFragment();
         }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, passcodeView);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.passcodeDismissed, passcodeView);
     }
 
     public void onFinishLogin() {
@@ -312,7 +317,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
                     AlertDialog alertDialogCreateAccountSelectDialog = AlertsCreator.createAccountSelectDialog(this, new AlertsCreator.AccountSelectDelegate() {
                         @Override
                         public final void didSelectAccount(int i3) {
-                            this.f$0.lambda$handleIntent$3(i, intent, z, z2, z3, i3);
+                            ExternalActionActivity.$r8$lambda$OQ96qjwGdKJ62kxOreL88hcF8MY(this.f$0, i, intent, z, z2, z3, i3);
                         }
                     });
                     alertDialogCreateAccountSelectDialog.show();
@@ -320,7 +325,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
                     alertDialogCreateAccountSelectDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            this.f$0.lambda$handleIntent$4(dialogInterface);
+                            ExternalActionActivity.$r8$lambda$j40Nn5secSQ4dKMgxQmMHhSfRDc(this.f$0, dialogInterface);
                         }
                     });
                     return true;
@@ -342,14 +347,14 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    ExternalActionActivity.lambda$handleIntent$5(i, iArr, dialogInterface);
+                    ConnectionsManager.getInstance(i).cancelRequest(iArr[0], true);
                 }
             });
             alertDialog.show();
             iArr[0] = ConnectionsManager.getInstance(i).sendRequest(getauthorizationform, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$handleIntent$10(iArr, i, alertDialog, getauthorizationform, stringExtra2, stringExtra, tLObject, tL_error);
+                    ExternalActionActivity.m3129$r8$lambda$CGcPPp3tiBZrBoA3OyDwX6V59E(this.f$0, iArr, i, alertDialog, getauthorizationform, stringExtra2, stringExtra, tLObject, tL_error);
                 }
             }, 10);
         } else {
@@ -372,51 +377,50 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         return false;
     }
 
-    public void lambda$handleIntent$3(int i, Intent intent, boolean z, boolean z2, boolean z3, int i2) {
+    public static void $r8$lambda$OQ96qjwGdKJ62kxOreL88hcF8MY(ExternalActionActivity externalActionActivity, int i, Intent intent, boolean z, boolean z2, boolean z3, int i2) {
         if (i2 != i) {
-            switchToAccount(i2);
+            externalActionActivity.switchToAccount(i2);
         }
-        handleIntent(intent, z, z2, z3, i2, 1);
+        externalActionActivity.handleIntent(intent, z, z2, z3, i2, 1);
     }
 
-    public void lambda$handleIntent$4(DialogInterface dialogInterface) {
-        setResult(0);
-        finish();
+    public static void $r8$lambda$j40Nn5secSQ4dKMgxQmMHhSfRDc(ExternalActionActivity externalActionActivity, DialogInterface dialogInterface) {
+        externalActionActivity.setResult(0);
+        externalActionActivity.finish();
     }
 
-    public static void lambda$handleIntent$5(int i, int[] iArr, DialogInterface dialogInterface) {
-        ConnectionsManager.getInstance(i).cancelRequest(iArr[0], true);
-    }
-
-    public void lambda$handleIntent$10(int[] iArr, final int i, final AlertDialog alertDialog, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3129$r8$lambda$CGcPPp3tiBZrBoA3OyDwX6V59E(final ExternalActionActivity externalActionActivity, int[] iArr, final int i, final AlertDialog alertDialog, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        externalActionActivity.getClass();
         final TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
         if (authorizationform != null) {
             iArr[0] = ConnectionsManager.getInstance(i).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    this.f$0.lambda$handleIntent$7(alertDialog, i, authorizationform, getauthorizationform, str, str2, tLObject2, tL_error2);
+                    ExternalActionActivity.m3132$r8$lambda$yuhWWGd62cdVwHyfMYeRoznVNg(this.f$0, alertDialog, i, authorizationform, getauthorizationform, str, str2, tLObject2, tL_error2);
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$handleIntent$9(alertDialog, tL_error);
+                    ExternalActionActivity.$r8$lambda$BsWBEjHPNG5CtF8nq0pwoovcAlM(this.f$0, alertDialog, tL_error);
                 }
             });
         }
     }
 
-    public void lambda$handleIntent$7(final AlertDialog alertDialog, final int i, final TL_account.authorizationForm authorizationform, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3132$r8$lambda$yuhWWGd62cdVwHyfMYeRoznVNg(final ExternalActionActivity externalActionActivity, final AlertDialog alertDialog, final int i, final TL_account.authorizationForm authorizationform, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        externalActionActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$handleIntent$6(alertDialog, tLObject, i, authorizationform, getauthorizationform, str, str2);
+                ExternalActionActivity.$r8$lambda$eZe4D1We5tp931xOmRv7NoebaqM(this.f$0, alertDialog, tLObject, i, authorizationform, getauthorizationform, str, str2);
             }
         });
     }
 
-    public void lambda$handleIntent$6(AlertDialog alertDialog, TLObject tLObject, int i, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
+    public static void $r8$lambda$eZe4D1We5tp931xOmRv7NoebaqM(ExternalActionActivity externalActionActivity, AlertDialog alertDialog, TLObject tLObject, int i, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
+        externalActionActivity.getClass();
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
@@ -427,51 +431,56 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             PassportActivity passportActivity = new PassportActivity(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, (String) null, authorizationform, (TL_account.Password) tLObject);
             passportActivity.setNeedActivityResult(true);
             if (AndroidUtilities.isTablet()) {
-                this.layersActionBarLayout.addFragmentToStack(passportActivity);
+                externalActionActivity.layersActionBarLayout.addFragmentToStack(passportActivity);
             } else {
-                this.actionBarLayout.addFragmentToStack(passportActivity);
+                externalActionActivity.actionBarLayout.addFragmentToStack(passportActivity);
             }
             if (!AndroidUtilities.isTablet()) {
-                this.backgroundTablet.setVisibility(8);
+                externalActionActivity.backgroundTablet.setVisibility(8);
             }
-            this.actionBarLayout.showLastFragment();
+            externalActionActivity.actionBarLayout.showLastFragment();
             if (AndroidUtilities.isTablet()) {
-                this.layersActionBarLayout.showLastFragment();
+                externalActionActivity.layersActionBarLayout.showLastFragment();
             }
         }
     }
 
-    public void lambda$handleIntent$9(AlertDialog alertDialog, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$BsWBEjHPNG5CtF8nq0pwoovcAlM(final ExternalActionActivity externalActionActivity, AlertDialog alertDialog, final TLRPC.TL_error tL_error) {
+        externalActionActivity.getClass();
         try {
             alertDialog.dismiss();
             if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
-                AlertDialog alertDialogShowUpdateAppAlert = AlertsCreator.showUpdateAppAlert(this, LocaleController.getString(R.string.UpdateAppAlert), true);
+                AlertDialog alertDialogShowUpdateAppAlert = AlertsCreator.showUpdateAppAlert(externalActionActivity, LocaleController.getString(R.string.UpdateAppAlert), true);
                 if (alertDialogShowUpdateAppAlert != null) {
                     alertDialogShowUpdateAppAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            this.f$0.lambda$handleIntent$8(tL_error, dialogInterface);
+                            ExternalActionActivity.$r8$lambda$VNKeMOzYqLtGAzVYYVusm8a6fLg(this.f$0, tL_error, dialogInterface);
                         }
                     });
+                    return;
                 } else {
-                    setResult(1, new Intent().putExtra("error", tL_error.text));
-                    finish();
+                    externalActionActivity.setResult(1, new Intent().putExtra("error", tL_error.text));
+                    externalActionActivity.finish();
+                    return;
                 }
-            } else if ("BOT_INVALID".equals(tL_error.text) || "PUBLIC_KEY_REQUIRED".equals(tL_error.text) || "PUBLIC_KEY_INVALID".equals(tL_error.text) || "SCOPE_EMPTY".equals(tL_error.text) || "PAYLOAD_EMPTY".equals(tL_error.text)) {
-                setResult(1, new Intent().putExtra("error", tL_error.text));
-                finish();
-            } else {
-                setResult(0);
-                finish();
             }
+            if (!"BOT_INVALID".equals(tL_error.text) && !"PUBLIC_KEY_REQUIRED".equals(tL_error.text) && !"PUBLIC_KEY_INVALID".equals(tL_error.text) && !"SCOPE_EMPTY".equals(tL_error.text) && !"PAYLOAD_EMPTY".equals(tL_error.text)) {
+                externalActionActivity.setResult(0);
+                externalActionActivity.finish();
+                return;
+            }
+            externalActionActivity.setResult(1, new Intent().putExtra("error", tL_error.text));
+            externalActionActivity.finish();
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
-    public void lambda$handleIntent$8(TLRPC.TL_error tL_error, DialogInterface dialogInterface) {
-        setResult(1, new Intent().putExtra("error", tL_error.text));
-        finish();
+    public static void $r8$lambda$VNKeMOzYqLtGAzVYYVusm8a6fLg(ExternalActionActivity externalActionActivity, TLRPC.TL_error tL_error, DialogInterface dialogInterface) {
+        externalActionActivity.getClass();
+        externalActionActivity.setResult(1, new Intent().putExtra("error", tL_error.text));
+        externalActionActivity.finish();
     }
 
     public void switchToAccount(int i) {

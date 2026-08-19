@@ -41,16 +41,16 @@ public class VoIpBitmapTextView extends View {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onLayout$0();
+                    VoIpBitmapTextView.$r8$lambda$d44ajallhzPC3tUlRT0vfZT9nWs(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$onLayout$0() {
-        this.bitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        new Canvas(this.bitmap).drawText(this.text, getMeasuredWidth() / 2, (int) ((getMeasuredHeight() / 2) - ((this.textPaint.descent() + this.textPaint.ascent()) / 2.0f)), this.textPaint);
-        postInvalidate();
+    public static void $r8$lambda$d44ajallhzPC3tUlRT0vfZT9nWs(VoIpBitmapTextView voIpBitmapTextView) {
+        voIpBitmapTextView.bitmap = Bitmap.createBitmap(voIpBitmapTextView.getMeasuredWidth(), voIpBitmapTextView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        new Canvas(voIpBitmapTextView.bitmap).drawText(voIpBitmapTextView.text, voIpBitmapTextView.getMeasuredWidth() / 2, (int) ((voIpBitmapTextView.getMeasuredHeight() / 2) - ((voIpBitmapTextView.textPaint.descent() + voIpBitmapTextView.textPaint.ascent()) / 2.0f)), voIpBitmapTextView.textPaint);
+        voIpBitmapTextView.postInvalidate();
     }
 
     @Override

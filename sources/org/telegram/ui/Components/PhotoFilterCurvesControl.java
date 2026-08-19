@@ -229,7 +229,7 @@ public class PhotoFilterCurvesControl extends View {
         RectOld rectOld2 = this.actualArea;
         float f4 = rectOld2.x;
         float f5 = rectOld2.y;
-        canvas.drawLine(f4, f5 + rectOld2.height, f4 + rectOld2.width, f5, this.paintDash);
+        canvas.drawLine(f4, rectOld2.height + f5, f4 + rectOld2.width, f5, this.paintDash);
         int i2 = this.curveValue.activeType;
         if (i2 == 0) {
             this.paintCurve.setColor(-1);

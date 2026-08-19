@@ -20,10 +20,10 @@ public abstract class CommonMarkEntities {
         int length = str2.length();
         if (length == 1) {
             iArr[0] = str2.charAt(0);
-        } else {
-            iArr[0] = str2.charAt(0);
-            iArr[1] = str2.charAt(1);
+            return length;
         }
+        iArr[0] = str2.charAt(0);
+        iArr[1] = str2.charAt(1);
         return length;
     }
 
@@ -34,9 +34,9 @@ public abstract class CommonMarkEntities {
             declaredField.setAccessible(true);
             map = (Map) declaredField.get(null);
         } catch (Throwable th) {
-            Map mapEmptyMap = Collections.emptyMap();
+            Map map2 = Collections.EMPTY_MAP;
             th.printStackTrace();
-            map = mapEmptyMap;
+            map = map2;
         }
         COMMONMARK_NAMED_ENTITIES = map;
     }

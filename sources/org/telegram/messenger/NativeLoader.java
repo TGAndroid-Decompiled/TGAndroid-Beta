@@ -39,8 +39,8 @@ public class NativeLoader {
     }
 
     private static boolean loadFromZip(Context context, File file, File file2, String str) throws Throwable {
-        InputStream inputStream;
         ZipFile zipFile;
+        ?? r2;
         try {
             for (File file3 : file.listFiles()) {
                 file3.delete();
@@ -48,18 +48,16 @@ public class NativeLoader {
         } catch (Exception e) {
             FileLog.e(e);
         }
-        ZipFile zipFile2 = null;
-        inputStream = null;
-        inputStream = null;
-        InputStream inputStream2 = null;
+        ?? r6 = 0;
+        InputStream inputStream = null;
         try {
-            zipFile = new ZipFile(context.getApplicationInfo().sourceDir);
+            ZipFile zipFile2 = new ZipFile(context.getApplicationInfo().sourceDir);
             try {
-                ZipEntry entry = zipFile.getEntry("lib/" + str + "/libtmessages.49.so");
+                ZipEntry entry = zipFile2.getEntry("lib/" + str + "/libtmessages.49.so");
                 if (entry == null) {
                     throw new Exception("Unable to find file in apk:lib/" + str + "/tmessages.49");
                 }
-                inputStream2 = zipFile.getInputStream(entry);
+                InputStream inputStream2 = zipFile2.getInputStream(entry);
                 FileOutputStream fileOutputStream = new FileOutputStream(file2);
                 byte[] bArr = new byte[4096];
                 while (true) {
@@ -86,18 +84,19 @@ public class NativeLoader {
                     FileLog.e(e3);
                 }
                 try {
-                    zipFile.close();
+                    zipFile2.close();
                 } catch (Exception e4) {
                     FileLog.e(e4);
                 }
                 return true;
             } catch (Exception e5) {
                 e = e5;
+                zipFile = zipFile2;
                 try {
                     FileLog.e(e);
-                    if (inputStream2 != null) {
+                    if (0 != 0) {
                         try {
-                            inputStream2.close();
+                            r6.close();
                         } catch (Exception e6) {
                             FileLog.e(e6);
                         }
@@ -112,20 +111,19 @@ public class NativeLoader {
                     return false;
                 } catch (Throwable th) {
                     th = th;
-                    inputStream = inputStream2;
-                    zipFile2 = zipFile;
-                    zipFile = zipFile2;
-                    inputStream2 = inputStream;
-                    if (inputStream2 != null) {
+                    r6 = zipFile;
+                    r2 = r6;
+                    inputStream = null;
+                    if (inputStream != null) {
                         try {
-                            inputStream2.close();
+                            inputStream.close();
                         } catch (Exception e8) {
                             FileLog.e(e8);
                         }
                     }
-                    if (zipFile != null) {
+                    if (r2 != 0) {
                         try {
-                            zipFile.close();
+                            r2.close();
                             throw th;
                         } catch (Exception e9) {
                             FileLog.e(e9);
@@ -136,11 +134,12 @@ public class NativeLoader {
                 }
             } catch (Throwable th2) {
                 th = th2;
-                if (inputStream2 != null) {
-                    inputStream2.close();
+                r2 = zipFile2;
+                if (inputStream != null) {
+                    inputStream.close();
                 }
-                if (zipFile != null) {
-                    zipFile.close();
+                if (r2 != 0) {
+                    r2.close();
                     throw th;
                 }
                 throw th;
@@ -150,14 +149,13 @@ public class NativeLoader {
             zipFile = null;
         } catch (Throwable th3) {
             th = th3;
+            r2 = r6;
             inputStream = null;
-            zipFile = zipFile2;
-            inputStream2 = inputStream;
-            if (inputStream2 != null) {
-                inputStream2.close();
+            if (inputStream != null) {
+                inputStream.close();
             }
-            if (zipFile != null) {
-                zipFile.close();
+            if (r2 != 0) {
+                r2.close();
                 throw th;
             }
             throw th;
@@ -165,81 +163,77 @@ public class NativeLoader {
     }
 
     public static synchronized void initNativeLibs(Context context) {
-        if (nativeLoaded) {
-            return;
-        }
-        try {
+        if (!nativeLoaded) {
             try {
-                System.loadLibrary("tmessages.49");
-                nativeLoaded = true;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("loaded normal lib");
-                }
-            } catch (Error e) {
-                FileLog.e(e);
-                StringBuilder sb = log;
-                sb.append("128: ");
-                sb.append(e);
-                sb.append("\n");
-                String abiFolder = getAbiFolder();
-                File file = new File(context.getFilesDir(), "lib");
-                file.mkdirs();
-                File file2 = new File(file, "libtmessages.49loc.so");
-                if (file2.exists()) {
-                    try {
-                        if (BuildVars.LOGS_ENABLED) {
-                            FileLog.d("Load local lib");
-                        }
-                        System.load(file2.getAbsolutePath());
-                        nativeLoaded = true;
-                        return;
-                    } catch (Error e2) {
-                        StringBuilder sb2 = log;
-                        sb2.append(e2);
-                        sb2.append("\n");
-                        FileLog.e(e2);
-                        file2.delete();
-                        if (BuildVars.LOGS_ENABLED) {
-                            FileLog.e("Library not found, arch = " + abiFolder);
-                            StringBuilder sb3 = log;
-                            sb3.append("Library not found, arch = " + abiFolder);
-                            sb3.append("\n");
-                        }
-                        if (loadFromZip(context, file, file2, abiFolder)) {
-                            return;
-                        }
+                try {
+                    System.loadLibrary("tmessages.49");
+                    nativeLoaded = true;
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("loaded normal lib");
+                    }
+                } catch (Error e) {
+                    FileLog.e(e);
+                    StringBuilder sb = log;
+                    sb.append("128: ");
+                    sb.append(e);
+                    sb.append("\n");
+                    String abiFolder = getAbiFolder();
+                    File file = new File(context.getFilesDir(), "lib");
+                    file.mkdirs();
+                    File file2 = new File(file, "libtmessages.49loc.so");
+                    if (file2.exists()) {
                         try {
-                            System.loadLibrary("tmessages.49");
+                            if (BuildVars.LOGS_ENABLED) {
+                                FileLog.d("Load local lib");
+                            }
+                            System.load(file2.getAbsolutePath());
                             nativeLoaded = true;
-                        } catch (Error e3) {
-                            FileLog.e(e3);
-                            StringBuilder sb4 = log;
-                            sb4.append("184: ");
-                            sb4.append(e3);
-                            sb4.append("\n");
+                        } catch (Error e2) {
+                            StringBuilder sb2 = log;
+                            sb2.append(e2);
+                            sb2.append("\n");
+                            FileLog.e(e2);
+                            file2.delete();
+                            if (BuildVars.LOGS_ENABLED) {
+                                FileLog.e("Library not found, arch = " + abiFolder);
+                                StringBuilder sb3 = log;
+                                sb3.append("Library not found, arch = " + abiFolder);
+                                sb3.append("\n");
+                            }
+                            if (!loadFromZip(context, file, file2, abiFolder)) {
+                                try {
+                                    System.loadLibrary("tmessages.49");
+                                    nativeLoaded = true;
+                                } catch (Error e3) {
+                                    FileLog.e(e3);
+                                    StringBuilder sb4 = log;
+                                    sb4.append("184: ");
+                                    sb4.append(e3);
+                                    sb4.append("\n");
+                                }
+                            }
                         }
                     }
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.e("Library not found, arch = " + abiFolder);
+                        StringBuilder sb5 = log;
+                        sb5.append("Library not found, arch = " + abiFolder);
+                        sb5.append("\n");
+                    }
+                    if (!loadFromZip(context, file, file2, abiFolder)) {
+                        System.loadLibrary("tmessages.49");
+                        nativeLoaded = true;
+                    }
                 }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e("Library not found, arch = " + abiFolder);
-                    StringBuilder sb5 = log;
-                    sb5.append("Library not found, arch = " + abiFolder);
-                    sb5.append("\n");
-                }
-                if (loadFromZip(context, file, file2, abiFolder)) {
-                    return;
-                }
+            } catch (Throwable th) {
+                th.printStackTrace();
+                StringBuilder sb6 = log;
+                sb6.append("176: ");
+                sb6.append(th);
+                sb6.append("\n");
                 System.loadLibrary("tmessages.49");
                 nativeLoaded = true;
             }
-        } catch (Throwable th) {
-            th.printStackTrace();
-            StringBuilder sb6 = log;
-            sb6.append("176: ");
-            sb6.append(th);
-            sb6.append("\n");
-            System.loadLibrary("tmessages.49");
-            nativeLoaded = true;
         }
     }
 

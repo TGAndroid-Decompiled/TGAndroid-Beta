@@ -145,18 +145,18 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         checkBox2.setProgressDelegate(new CheckBoxBase.ProgressDelegate() {
             @Override
             public final void setProgress(float f) {
-                this.f$0.lambda$new$0(f);
+                ShareDialogCell.$r8$lambda$vvQi3vgzpfouUheNW25GCVxBZe0(this.f$0, f);
             }
         });
         addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, 49, 19.0f, i == 2 ? -40.0f : 42.0f, 0.0f, 0.0f));
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
-    public void lambda$new$0(float f) {
-        float progress = 1.0f - (this.checkBox.getProgress() * 0.143f);
-        this.imageView.setScaleX(progress);
-        this.imageView.setScaleY(progress);
-        invalidate();
+    public static void $r8$lambda$vvQi3vgzpfouUheNW25GCVxBZe0(ShareDialogCell shareDialogCell, float f) {
+        float progress = 1.0f - (shareDialogCell.checkBox.getProgress() * 0.143f);
+        shareDialogCell.imageView.setScaleX(progress);
+        shareDialogCell.imageView.setScaleY(progress);
+        shareDialogCell.invalidate();
     }
 
     @Override
@@ -307,12 +307,12 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             SpringAnimation springAnimation2 = (SpringAnimation) ((SpringAnimation) new SpringAnimation(new FloatValueHolder(z4 ? 0.0f : 1000.0f)).setSpring(new SpringForce(z4 ? 1000.0f : 0.0f).setStiffness(1500.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    this.f$0.lambda$setTopic$1(dynamicAnimation, f, f2);
+                    ShareDialogCell.m1498$r8$lambda$JZ0P1ksfY4hdbQwJiTRGd7V0(this.f$0, dynamicAnimation, f, f2);
                 }
             })).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z5, float f, float f2) {
-                    this.f$0.lambda$setTopic$2(dynamicAnimation, z5, f, f2);
+                    this.f$0.topicTextView.setTag(R.id.spring_tag, null);
                 }
             });
             this.topicTextView.setTag(i, springAnimation2);
@@ -331,103 +331,132 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         this.topicWasVisible = z4;
     }
 
-    public void lambda$setTopic$1(DynamicAnimation dynamicAnimation, float f, float f2) {
+    public static void m1498$r8$lambda$JZ0P1ksfY4hdbQwJiTRGd7V0(ShareDialogCell shareDialogCell, DynamicAnimation dynamicAnimation, float f, float f2) {
         float f3 = f / 1000.0f;
-        this.topicTextView.setAlpha(f3);
+        shareDialogCell.topicTextView.setAlpha(f3);
         float f4 = 1.0f - f3;
-        this.nameTextView.setAlpha(f4);
-        this.topicTextView.setTranslationX(f4 * (-AndroidUtilities.dp(10.0f)));
-        this.nameTextView.setTranslationX(f3 * AndroidUtilities.dp(10.0f));
-    }
-
-    public void lambda$setTopic$2(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-        this.topicTextView.setTag(R.id.spring_tag, null);
+        shareDialogCell.nameTextView.setAlpha(f4);
+        shareDialogCell.topicTextView.setTranslationX(f4 * (-AndroidUtilities.dp(10.0f)));
+        shareDialogCell.nameTextView.setTranslationX(f3 * AndroidUtilities.dp(10.0f));
     }
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         TLRPC.User user;
         float f;
+        float f2;
         boolean z;
         TLRPC.UserStatus userStatus;
-        Canvas canvas2 = canvas;
+        Text text;
+        float currentWidth;
+        float f3;
+        Text text2;
         boolean zDrawChild = super.drawChild(canvas, view, j);
         if (view == this.imageView && this.currentType != 2 && (user = this.user) != null && !MessagesController.isSupportUser(user)) {
             long jElapsedRealtime = SystemClock.elapsedRealtime();
             long j2 = jElapsedRealtime - this.lastUpdateTime;
-            long j3 = j2 > 17 ? 17L : j2;
+            long j3 = j2 <= 17 ? j2 : 17L;
             this.lastUpdateTime = jElapsedRealtime;
-            float f2 = this.starsBlockedT.set(this.starsPriceBlocked > 0);
-            if (f2 > 0.0f) {
+            float f4 = this.starsBlockedT.set(this.starsPriceBlocked > 0);
+            if (f4 > 0.0f) {
                 float left = this.imageView.getLeft() + (this.imageView.getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(18.0f);
                 float top = (this.imageView.getTop() + (this.imageView.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(20.83f);
                 if (this.priceText != null) {
                     long j4 = this.priceTextValue;
+                    f2 = 5.0f;
                     long j5 = this.starsPriceBlocked;
                     if (j4 != j5 && j5 > 0) {
-                        StringBuilder sb = new StringBuilder();
-                        sb.append("⭐️");
-                        long j6 = this.starsPriceBlocked;
-                        this.priceTextValue = j6;
-                        sb.append(AndroidUtilities.formatWholeNumber((int) j6, 0));
-                        this.priceText = new Text(StarsIntroActivity.replaceStars(sb.toString(), 0.65f), 9.33f, AndroidUtilities.bold());
+                    }
+                    text = this.priceText;
+                    if (text == null) {
+                        currentWidth = 0.0f;
+                    } else {
+                        currentWidth = text.getCurrentWidth();
+                    }
+                    float fDp = currentWidth + AndroidUtilities.dp(10.0f);
+                    float fDp2 = AndroidUtilities.dp(14.33f);
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    float f5 = fDp / 2.0f;
+                    f3 = left - f5;
+                    float f6 = fDp2 / 2.0f;
+                    rectF.set(f3, top - f6, left + f5, f6 + top);
+                    rectF.inset(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(-1.33f));
+                    this.priceBackgroundPaint.setColor(getThemedColor(Theme.key_dialogBackground));
+                    canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.priceBackgroundPaint);
+                    rectF.inset(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
+                    this.priceBackgroundPaint.setColor(getThemedColor(Theme.key_dialogRoundCheckBox));
+                    canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.priceBackgroundPaint);
+                    text2 = this.priceText;
+                    if (text2 != null) {
+                        float fDp3 = AndroidUtilities.dp(f2) + f3;
+                        f = 0.0f;
+                        text2.draw(canvas, fDp3, top, -1, 1.0f);
+                    } else {
+                        f = 0.0f;
                     }
                 } else {
-                    StringBuilder sb2 = new StringBuilder();
-                    sb2.append("⭐️");
-                    long j7 = this.starsPriceBlocked;
-                    this.priceTextValue = j7;
-                    sb2.append(AndroidUtilities.formatWholeNumber((int) j7, 0));
-                    this.priceText = new Text(StarsIntroActivity.replaceStars(sb2.toString(), 0.65f), 9.33f, AndroidUtilities.bold());
+                    f2 = 5.0f;
                 }
-                Text text = this.priceText;
-                float currentWidth = (text == null ? 0.0f : text.getCurrentWidth()) + AndroidUtilities.dp(10.0f);
-                float fDp = AndroidUtilities.dp(14.33f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f3 = currentWidth / 2.0f;
-                float f4 = left - f3;
-                float f5 = fDp / 2.0f;
-                rectF.set(f4, top - f5, left + f3, top + f5);
-                rectF.inset(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(-1.33f));
+                StringBuilder sb = new StringBuilder();
+                sb.append("⭐️");
+                long j6 = this.starsPriceBlocked;
+                this.priceTextValue = j6;
+                sb.append(AndroidUtilities.formatWholeNumber((int) j6, 0));
+                this.priceText = new Text(StarsIntroActivity.replaceStars(sb.toString(), 0.65f), 9.33f, AndroidUtilities.bold());
+                text = this.priceText;
+                if (text == null) {
+                    currentWidth = 0.0f;
+                } else {
+                    currentWidth = text.getCurrentWidth();
+                }
+                float fDp4 = currentWidth + AndroidUtilities.dp(10.0f);
+                float fDp5 = AndroidUtilities.dp(14.33f);
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                float f7 = fDp4 / 2.0f;
+                f3 = left - f7;
+                float f8 = fDp5 / 2.0f;
+                rectF2.set(f3, top - f8, left + f7, f8 + top);
+                rectF2.inset(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(-1.33f));
                 this.priceBackgroundPaint.setColor(getThemedColor(Theme.key_dialogBackground));
-                canvas2 = canvas;
-                canvas2.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.priceBackgroundPaint);
-                rectF.inset(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
+                canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.priceBackgroundPaint);
+                rectF2.inset(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
                 this.priceBackgroundPaint.setColor(getThemedColor(Theme.key_dialogRoundCheckBox));
-                canvas2.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.priceBackgroundPaint);
-                Text text2 = this.priceText;
+                canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.priceBackgroundPaint);
+                text2 = this.priceText;
                 if (text2 != null) {
+                    float fDp6 = AndroidUtilities.dp(f2) + f3;
                     f = 0.0f;
-                    text2.draw(canvas, f4 + AndroidUtilities.dp(5.0f), top, -1, 1.0f);
+                    text2.draw(canvas, fDp6, top, -1, 1.0f);
                 } else {
                     f = 0.0f;
                 }
             } else {
                 f = 0.0f;
+                f2 = 5.0f;
             }
-            float f6 = this.premiumBlockedT.set(this.premiumBlocked);
-            if (f6 > f) {
+            float f9 = this.premiumBlockedT.set(this.premiumBlocked);
+            if (f9 > f) {
                 int bottom = this.imageView.getBottom() - AndroidUtilities.dp(9.0f);
                 int right = this.imageView.getRight() - AndroidUtilities.dp(9.33f);
                 canvas.save();
                 Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                float f7 = right;
-                float f8 = bottom;
-                canvas2.drawCircle(f7, f8, AndroidUtilities.dp(12.0f) * f6, Theme.dialogs_onlineCirclePaint);
+                float f10 = right;
+                float f11 = bottom;
+                canvas.drawCircle(f10, f11, AndroidUtilities.dp(12.0f) * f9, Theme.dialogs_onlineCirclePaint);
                 if (this.premiumGradient == null) {
                     this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, -1, this.resourcesProvider);
                 }
                 this.premiumGradient.gradientMatrix(right - AndroidUtilities.dp(10.0f), bottom - AndroidUtilities.dp(10.0f), right + AndroidUtilities.dp(10.0f), bottom + AndroidUtilities.dp(10.0f), 0.0f, 0.0f);
-                canvas2.drawCircle(f7, f8, AndroidUtilities.dp(10.0f) * f6, this.premiumGradient.paint);
+                canvas.drawCircle(f10, f11, AndroidUtilities.dp(10.0f) * f9, this.premiumGradient.paint);
                 if (this.lockDrawable == null) {
                     Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
                     this.lockDrawable = drawableMutate;
                     drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                 }
                 Drawable drawable = this.lockDrawable;
-                drawable.setBounds((int) (f7 - (((drawable.getIntrinsicWidth() / 2.0f) * 0.875f) * f6)), (int) (f8 - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f6)), (int) (f7 + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f6)), (int) (f8 + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f6)));
-                this.lockDrawable.setAlpha((int) (255.0f * f6));
-                this.lockDrawable.draw(canvas2);
+                drawable.setBounds((int) (f10 - (((drawable.getIntrinsicWidth() / 2.0f) * 0.875f) * f9)), (int) (f11 - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f9)), (int) (f10 + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f9)), (int) (f11 + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f9)));
+                this.lockDrawable.setAlpha((int) (255.0f * f9));
+                this.lockDrawable.draw(canvas);
                 canvas.restore();
             }
             if (this.premiumBlocked) {
@@ -444,30 +473,31 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                 int bottom2 = this.imageView.getBottom() - AndroidUtilities.dp(6.0f);
                 int right2 = this.imageView.getRight() - AndroidUtilities.dp(10.0f);
                 Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                float f9 = right2;
-                float f10 = bottom2;
-                float f11 = 1.0f - f6;
-                float f12 = 1.0f - f2;
-                canvas2.drawCircle(f9, f10, AndroidUtilities.dp(7.0f) * this.onlineProgress * f11 * f12, Theme.dialogs_onlineCirclePaint);
+                float f12 = right2;
+                float f13 = bottom2;
+                float f14 = 1.0f - f9;
+                float f15 = 1.0f - f4;
+                canvas.drawCircle(f12, f13, AndroidUtilities.dp(7.0f) * this.onlineProgress * f14 * f15, Theme.dialogs_onlineCirclePaint);
                 Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_chats_onlineCircle));
-                canvas2.drawCircle(f9, f10, AndroidUtilities.dp(5.0f) * this.onlineProgress * f11 * f12, Theme.dialogs_onlineCirclePaint);
+                canvas.drawCircle(f12, f13, AndroidUtilities.dp(f2) * this.onlineProgress * f14 * f15, Theme.dialogs_onlineCirclePaint);
                 if (z) {
-                    float f13 = this.onlineProgress;
-                    if (f13 < 1.0f) {
-                        float f14 = f13 + (j3 / 150.0f);
-                        this.onlineProgress = f14;
-                        if (f14 > 1.0f) {
+                    float f16 = this.onlineProgress;
+                    if (f16 < 1.0f) {
+                        float f17 = f16 + (j3 / 150.0f);
+                        this.onlineProgress = f17;
+                        if (f17 > 1.0f) {
                             this.onlineProgress = 1.0f;
                         }
                         this.imageView.invalidate();
                         invalidate();
+                        return zDrawChild;
                     }
                 } else {
-                    float f15 = this.onlineProgress;
-                    if (f15 > f) {
-                        float f16 = f15 - (j3 / 150.0f);
-                        this.onlineProgress = f16;
-                        if (f16 < f) {
+                    float f18 = this.onlineProgress;
+                    if (f18 > f) {
+                        float f19 = f18 - (j3 / 150.0f);
+                        this.onlineProgress = f19;
+                        if (f19 < f) {
                             this.onlineProgress = f;
                         }
                         this.imageView.invalidate();

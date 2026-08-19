@@ -74,7 +74,7 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         void run(String str);
     }
 
-    public static void lambda$makeSelectedDate$1() {
+    public static void $r8$lambda$V2eUCR_CoSrMwX_lV4DOS0oNCCI() {
     }
 
     protected void onContextMenuClose() {
@@ -255,18 +255,18 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         AlertsCreator.createFormattedDatePickerDialog(getContext(), new AlertsCreator.FormattedDatePickerDelegate() {
             @Override
             public final void didSelectDate(int i, int i2) {
-                this.f$0.lambda$makeSelectedDate$0(selectionStart, selectionEnd, i, i2);
+                EditTextCaption.$r8$lambda$TLIQhtXVAg4lxcPU1aPgS7CcLSo(this.f$0, selectionStart, selectionEnd, i, i2);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                EditTextCaption.lambda$makeSelectedDate$1();
+                EditTextCaption.$r8$lambda$V2eUCR_CoSrMwX_lV4DOS0oNCCI();
             }
         }, this.resourcesProvider);
     }
 
-    public void lambda$makeSelectedDate$0(int i, int i2, int i3, int i4) {
-        Editable text = getText();
+    public static void $r8$lambda$TLIQhtXVAg4lxcPU1aPgS7CcLSo(EditTextCaption editTextCaption, int i, int i2, int i3, int i4) {
+        Editable text = editTextCaption.getText();
         TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
         textStyleRun.flags |= 128;
         textStyleRun.start = i;
@@ -279,7 +279,7 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
             text.setSpan(new FormattedDateSpan(text.subSequence(i, i2).toString(), textStyleRun, tL_messageEntityFormattedDate), i, i2, 33);
         } catch (Exception unused) {
         }
-        EditTextCaptionDelegate editTextCaptionDelegate = this.delegate;
+        EditTextCaptionDelegate editTextCaptionDelegate = editTextCaption.delegate;
         if (editTextCaptionDelegate != null) {
             editTextCaptionDelegate.onSpansChanged();
         }
@@ -300,15 +300,15 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         new TranslateAlert3(getContext(), safeLastFragment != null ? safeLastFragment.getResourceProvider() : null).setText(charSequenceSubSequence).setOnUse(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$translateSelected$2(selectionStart, selectionEnd, (CharSequence) obj);
+                EditTextCaption.$r8$lambda$En5x8NyG8uicNNZzrgfdZLm9A9E(this.f$0, selectionStart, selectionEnd, (CharSequence) obj);
             }
         }).show();
         setSelection(selectionStart, selectionEnd);
     }
 
-    public void lambda$translateSelected$2(int i, int i2, CharSequence charSequence) {
-        getText().replace(i, i2, charSequence);
-        setSelection(i, charSequence.length() + i);
+    public static void $r8$lambda$En5x8NyG8uicNNZzrgfdZLm9A9E(EditTextCaption editTextCaption, int i, int i2, CharSequence charSequence) {
+        editTextCaption.getText().replace(i, i2, charSequence);
+        editTextCaption.setSelection(i, charSequence.length() + i);
     }
 
     public void makeSelectedUrl() {
@@ -328,13 +328,13 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         showInputDialog(LocaleController.getString(R.string.CreateLink), LocaleController.getString(R.string.URL), "http://", true, new InputDialogCallback() {
             @Override
             public final void run(String str) {
-                this.f$0.lambda$makeSelectedUrl$3(selectionStart, selectionEnd, runnable, str);
+                EditTextCaption.$r8$lambda$YqSfgdSta6ssjTstE2zJXRgA6GU(this.f$0, selectionStart, selectionEnd, runnable, str);
             }
         });
     }
 
-    public void lambda$makeSelectedUrl$3(int i, int i2, Runnable runnable, String str) {
-        Editable text = getText();
+    public static void $r8$lambda$YqSfgdSta6ssjTstE2zJXRgA6GU(EditTextCaption editTextCaption, int i, int i2, Runnable runnable, String str) {
+        Editable text = editTextCaption.getText();
         CharacterStyle[] characterStyleArr = (CharacterStyle[]) text.getSpans(i, i2, CharacterStyle.class);
         if (characterStyleArr != null && characterStyleArr.length > 0) {
             for (CharacterStyle characterStyle : characterStyleArr) {
@@ -352,10 +352,10 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
             }
         }
         try {
-            text.setSpan(createUrlSpan(str), i, i2, 33);
+            text.setSpan(editTextCaption.createUrlSpan(str), i, i2, 33);
         } catch (Exception unused) {
         }
-        EditTextCaptionDelegate editTextCaptionDelegate = this.delegate;
+        EditTextCaptionDelegate editTextCaptionDelegate = editTextCaption.delegate;
         if (editTextCaptionDelegate != null) {
             editTextCaptionDelegate.onSpansChanged();
         }
@@ -380,8 +380,8 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         } else {
             builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
         }
-        ?? r8 = builder;
-        r8.setTitle(str);
+        ?? r7 = builder;
+        r7.setTitle(str);
         ?? frameLayout = new FrameLayout(getContext());
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
             @Override
@@ -389,7 +389,7 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824));
             }
         };
-        String str4 = str3 == null ? "" : str3;
+        final String str4 = str3 == null ? "" : str3;
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setText(str4);
         editTextBoldCursor.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
@@ -418,17 +418,16 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         ScaleStateListAnimator.apply(textView, 0.1f, 1.5f);
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, 26.0f, 21, 0.0f, 0.0f, 24.0f, 3.0f));
         textView.setVisibility(z ? 0 : 8);
-        final String str5 = str4;
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showInputDialog$4(z, editTextBoldCursor, str5, textView);
+                EditTextCaption.m2268$r8$lambda$QYlDqTCFsldziR5ynu4qpyHsY8(this.f$0, z, editTextBoldCursor, str4, textView);
             }
         };
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$showInputDialog$5(editTextBoldCursor, runnable, view);
+                EditTextCaption.$r8$lambda$3HYLfOuZlxWoJfz2wBodMYarr9c(this.f$0, editTextBoldCursor, runnable, view);
             }
         });
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
@@ -459,35 +458,35 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
             }
         }
         runnable.run();
-        r8.setView(frameLayout);
-        r8.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
+        r7.setView(frameLayout);
+        r7.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                EditTextCaption.lambda$showInputDialog$6(inputDialogCallback, editTextBoldCursor, alertDialog, i);
+                inputDialogCallback.run(editTextBoldCursor.getText().toString().trim());
             }
         });
-        r8.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        r7.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         if (z2) {
-            AlertDialog alertDialogCreate = r8.create();
+            AlertDialog alertDialogCreate = r7.create();
             this.creationLinkDialog = alertDialogCreate;
             alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$showInputDialog$7(dialogInterface);
+                    EditTextCaption.m2267$r8$lambda$ANkc5MXR3ncCVTr33GV2_EU_s(this.f$0, dialogInterface);
                 }
             });
             this.creationLinkDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    EditTextCaption.lambda$showInputDialog$8(editTextBoldCursor, dialogInterface);
+                    EditTextCaption.m2266$r8$lambda$7YGRpf9uC2ifzk6dHVnKrRuHuE(editTextBoldCursor, dialogInterface);
                 }
             });
             this.creationLinkDialog.showDelayed(250L);
         } else {
-            r8.show().setOnShowListener(new DialogInterface.OnShowListener() {
+            r7.show().setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    EditTextCaption.lambda$showInputDialog$9(editTextBoldCursor, dialogInterface);
+                    EditTextCaption.$r8$lambda$_j2UUypTnkyytJ3XW62raVCVQtw(editTextBoldCursor, dialogInterface);
                 }
             });
         }
@@ -505,16 +504,16 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
     }
 
-    public void lambda$showInputDialog$4(boolean z, EditTextBoldCursor editTextBoldCursor, String str, TextView textView) {
-        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
+    public static void m2268$r8$lambda$QYlDqTCFsldziR5ynu4qpyHsY8(EditTextCaption editTextCaption, boolean z, EditTextBoldCursor editTextBoldCursor, String str, TextView textView) {
+        ClipboardManager clipboardManager = (ClipboardManager) editTextCaption.getContext().getSystemService("clipboard");
         boolean z2 = z && (TextUtils.isEmpty(editTextBoldCursor.getText()) || TextUtils.equals(editTextBoldCursor.getText().toString(), str)) && clipboardManager != null && clipboardManager.hasPrimaryClip();
         textView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.7f).scaleY(z2 ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(300L).start();
     }
 
-    public void lambda$showInputDialog$5(EditTextBoldCursor editTextBoldCursor, Runnable runnable, View view) {
+    public static void $r8$lambda$3HYLfOuZlxWoJfz2wBodMYarr9c(EditTextCaption editTextCaption, EditTextBoldCursor editTextBoldCursor, Runnable runnable, View view) {
         CharSequence charSequenceCoerceToText;
         try {
-            charSequenceCoerceToText = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
+            charSequenceCoerceToText = ((ClipboardManager) editTextCaption.getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(editTextCaption.getContext());
         } catch (Exception e) {
             FileLog.e(e);
             charSequenceCoerceToText = null;
@@ -526,21 +525,17 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         runnable.run();
     }
 
-    public static void lambda$showInputDialog$6(InputDialogCallback inputDialogCallback, EditTextBoldCursor editTextBoldCursor, AlertDialog alertDialog, int i) {
-        inputDialogCallback.run(editTextBoldCursor.getText().toString().trim());
+    public static void m2267$r8$lambda$ANkc5MXR3ncCVTr33GV2_EU_s(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+        editTextCaption.creationLinkDialog = null;
+        editTextCaption.requestFocus();
     }
 
-    public void lambda$showInputDialog$7(DialogInterface dialogInterface) {
-        this.creationLinkDialog = null;
-        requestFocus();
-    }
-
-    public static void lambda$showInputDialog$8(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void m2266$r8$lambda$7YGRpf9uC2ifzk6dHVnKrRuHuE(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void lambda$showInputDialog$9(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void $r8$lambda$_j2UUypTnkyytJ3XW62raVCVQtw(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
@@ -885,10 +880,7 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
 
     public boolean isNearRightCaption(int i) {
         Layout layout = getLayout();
-        if (layout == null || layout.getLineCount() <= 0) {
-            return false;
-        }
-        return layout.getLineCount() > 1 || layout.getLineRight(0) + ((float) i) >= ((float) ((getWidth() - getPaddingLeft()) - getPaddingRight()));
+        return layout != null && layout.getLineCount() > 0 && (layout.getLineCount() > 1 || layout.getLineRight(0) + ((float) i) >= ((float) ((getWidth() - getPaddingLeft()) - getPaddingRight())));
     }
 
     public String getCaption() {
@@ -904,6 +896,7 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Canvas canvas2;
         Layout layout;
         canvas.save();
         canvas.translate(0.0f, this.offsetY);
@@ -922,10 +915,13 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (this.rightText != null && length() != 0 && (layout = getLayout()) != null && layout.getLineCount() > 0) {
-            this.rightText.draw(canvas, layout.getLineRight(0), (getHeight() / 2.0f) + AndroidUtilities.dp(1.0f), this.hintColor, 1.0f);
+        if (this.rightText == null || length() == 0 || (layout = getLayout()) == null || layout.getLineCount() <= 0) {
+            canvas2 = canvas;
+        } else {
+            canvas2 = canvas;
+            this.rightText.draw(canvas2, layout.getLineRight(0), (getHeight() / 2.0f) + AndroidUtilities.dp(1.0f), this.hintColor, 1.0f);
         }
-        canvas.restore();
+        canvas2.restore();
     }
 
     public void setRightText(CharSequence charSequence) {

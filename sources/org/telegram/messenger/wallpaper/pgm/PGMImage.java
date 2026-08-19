@@ -109,7 +109,7 @@ public abstract class PGMImage {
                     bufferedInputStream.mark(1);
                     int i2 = bufferedInputStream.read();
                     if (i2 == -1 || Character.isWhitespace(i2)) {
-                        break;
+                        return sb.toString();
                     }
                     if (i2 == 35) {
                         bufferedInputStream.reset();
@@ -117,7 +117,6 @@ public abstract class PGMImage {
                     }
                     sb.append((char) i2);
                 }
-                return sb.toString();
             }
         }
     }

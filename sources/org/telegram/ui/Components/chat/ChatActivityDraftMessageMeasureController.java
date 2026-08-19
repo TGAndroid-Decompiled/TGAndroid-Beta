@@ -92,6 +92,12 @@ public class ChatActivityDraftMessageMeasureController {
     }
 
     public boolean filter(MessageObject messageObject) {
-        return messageObject != null && (messageObject.getId() == this.messageIdToOverride || (this.groupIdToOverride != 0 && messageObject.getGroupId() == this.groupIdToOverride));
+        if (messageObject == null) {
+            return false;
+        }
+        if (messageObject.getId() != this.messageIdToOverride) {
+            return this.groupIdToOverride != 0 && messageObject.getGroupId() == this.groupIdToOverride;
+        }
+        return true;
     }
 }

@@ -200,12 +200,10 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                 i = 1;
             } else {
                 if (length2 < 4) {
-                    i = 1;
                     length2 = 4;
-                } else {
-                    i = 1;
                 }
-                ruleSelectNumberRule = selectNumberRule(i, length2);
+                i = 1;
+                ruleSelectNumberRule = selectNumberRule(1, length2);
             }
             arrayList.add(ruleSelectNumberRule);
             i3 = i4 + i;
@@ -777,11 +775,13 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             if (this == obj) {
                 return true;
             }
-            if (!(obj instanceof TimeZoneDisplayKey)) {
-                return false;
+            if (obj instanceof TimeZoneDisplayKey) {
+                TimeZoneDisplayKey timeZoneDisplayKey = (TimeZoneDisplayKey) obj;
+                if (this.mTimeZone.equals(timeZoneDisplayKey.mTimeZone) && this.mStyle == timeZoneDisplayKey.mStyle && this.mLocale.equals(timeZoneDisplayKey.mLocale)) {
+                    return true;
+                }
             }
-            TimeZoneDisplayKey timeZoneDisplayKey = (TimeZoneDisplayKey) obj;
-            return this.mTimeZone.equals(timeZoneDisplayKey.mTimeZone) && this.mStyle == timeZoneDisplayKey.mStyle && this.mLocale.equals(timeZoneDisplayKey.mLocale);
+            return false;
         }
     }
 }

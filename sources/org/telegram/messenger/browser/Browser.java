@@ -287,15 +287,16 @@ public abstract class Browser {
         openUrl(context, uri, z, z2, false, progress, null, false, true, false);
     }
 
-    public static void openUrl(final Context context, final Uri uri, boolean z, boolean z2, boolean z3, final Progress progress, String str, boolean z4, boolean z5, boolean z6) {
-        boolean z7;
+    public static void openUrl(final Context context, final Uri uri, boolean z, boolean z2, boolean z3, Progress progress, String str, boolean z4, boolean z5, boolean z6) {
+        final boolean z7;
         boolean z8;
-        Uri uriNormalizeScheme;
+        final Progress progress2;
         boolean z9;
+        Uri uriNormalizeScheme;
         String stringExtra;
         LaunchActivity launchActivity;
-        String lowerCase;
         String hostAuthority;
+        char c;
         if (context == null || uri == null) {
             return;
         }
@@ -313,111 +314,77 @@ public abstract class Browser {
         if (z8) {
             try {
                 String hostAuthority2 = AndroidUtilities.getHostAuthority(uri);
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser() != null && (isTelegraphUrl(hostAuthority2, true) || ("telegram.org".equalsIgnoreCase(hostAuthority2) && (uri.toString().toLowerCase().contains("telegram.org/faq") || uri.toString().toLowerCase().contains("telegram.org/privacy") || uri.toString().toLowerCase().contains("telegram.org/blog"))))) {
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser() == null || !(isTelegraphUrl(hostAuthority2, true) || ("telegram.org".equalsIgnoreCase(hostAuthority2) && (uri.toString().toLowerCase().contains("telegram.org/faq") || uri.toString().toLowerCase().contains("telegram.org/privacy") || uri.toString().toLowerCase().contains("telegram.org/blog"))))) {
+                    progress2 = progress;
+                } else {
                     final AlertDialog[] alertDialogArr = {new AlertDialog(context, 3)};
                     TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
                     getwebpagepreview.message = uri.toString();
-                    final boolean z10 = z7;
+                    progress2 = progress;
                     try {
                         final int iSendRequest = ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(getwebpagepreview, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                Browser.lambda$openUrl$1(progress, alertDialogArr, i, uri, context, z10, tLObject, tL_error);
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        Browser.m1094$r8$lambda$r0CCMiFnrGCwmVQpGqtZgRrTxo(progress, alertDialogArr, tLObject, i, uri, context, z);
+                                    }
+                                });
                             }
                         });
-                        if (progress != null) {
-                            progress.init();
-                            return;
-                        } else {
-                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    Browser.lambda$openUrl$3(alertDialogArr, iSendRequest);
-                                }
-                            }, 1000L);
+                        if (progress2 != null) {
+                            progress2.init();
                             return;
                         }
-                    } catch (Exception unused) {
-                    }
-                }
-            } catch (Exception unused2) {
-            }
-        }
-        try {
-            if (uri.getScheme() != null) {
-                try {
-                    lowerCase = uri.getScheme().toLowerCase();
-                } catch (Exception e) {
-                    e = e;
-                    uriNormalizeScheme = uri;
-                    FileLog.e(e);
-                    if (z5) {
-                        try {
-                            if (BubbleActivity.instance == null) {
-                                if (isTonsite(uriNormalizeScheme.toString())) {
-                                    z9 = true;
-                                } else {
-                                    z9 = false;
-                                }
-                            } else {
-                                if (uriNormalizeScheme == null) {
-                                    if (isInstantViewOpen()) {
-                                        if (TextUtils.isEmpty(browserPackageName)) {
-                                        }
-                                    }
-                                } else if (isInstantViewOpen()) {
-                                    if (TextUtils.isEmpty(browserPackageName)) {
-                                    }
-                                }
-                                if (isTonsite(uriNormalizeScheme.toString())) {
-                                    z9 = true;
-                                } else {
-                                    z9 = false;
-                                }
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public final void run() {
+                                Browser.$r8$lambda$7LZ2gk4KysH4NPPJAO6oZpWQocA(alertDialogArr, iSendRequest);
                             }
-                        } catch (Exception e2) {
-                            FileLog.e(e2);
+                        };
+                        z9 = false;
+                        try {
+                            AndroidUtilities.runOnUIThread(runnable, 1000L);
                             return;
+                        } catch (Exception unused) {
                         }
-                    } else if (isTonsite(uriNormalizeScheme.toString())) {
-                        z9 = true;
-                    } else {
+                    } catch (Exception unused2) {
                         z9 = false;
                     }
-                    if (uriNormalizeScheme.getScheme() != null) {
-                        uriNormalizeScheme.getScheme().equalsIgnoreCase("intent");
-                    }
-                    if (!zIsInternalUri) {
-                    }
-                    if (z9) {
-                        if (openInExternalApp(context, uriNormalizeScheme.toString(), z4)) {
-                            return;
-                        }
-                        if (uriNormalizeScheme.getScheme() != null) {
-                            stringExtra = Intent.parseUri(uriNormalizeScheme.toString(), 1).getStringExtra("browser_fallback_url");
-                            if (!TextUtils.isEmpty(stringExtra)) {
-                                uriNormalizeScheme = Uri.parse(stringExtra);
-                            }
-                        }
-                        openInTelegramBrowser(context, uriNormalizeScheme.toString(), progress);
-                        return;
-                    }
-                    openInExternalBrowser(context, uriNormalizeScheme.toString(), z4, browserPackageName);
                 }
-            } else {
-                lowerCase = "";
+            } catch (Exception unused3) {
             }
-            String str2 = lowerCase;
-            if (str2 == null || !str2.contains(".")) {
-                if ("http".equals(str2) || "https".equals(str2)) {
+            z9 = false;
+        } else {
+            progress2 = progress;
+            z9 = false;
+        }
+        try {
+            String lowerCase = uri.getScheme() != null ? uri.getScheme().toLowerCase() : "";
+            if (lowerCase == null || !lowerCase.contains(".")) {
+                if ("http".equals(lowerCase) || "https".equals(lowerCase)) {
                     try {
                         uriNormalizeScheme = uri.normalizeScheme();
-                    } catch (Exception e3) {
-                        FileLog.e(e3);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                         uriNormalizeScheme = uri;
                         hostAuthority = AndroidUtilities.getHostAuthority(uriNormalizeScheme.toString().toLowerCase());
                         if (AccountInstance.getInstance(i).getMessagesController().autologinDomains.contains(hostAuthority)) {
-                            uriNormalizeScheme = uriNormalizeScheme.buildUpon().appendQueryParameter("autologin_token", URLEncoder.encode(AccountInstance.getInstance(UserConfig.selectedAccount).getMessagesController().autologinToken, "UTF-8")).build();
+                            try {
+                                c = 0;
+                                try {
+                                    uriNormalizeScheme = uriNormalizeScheme.buildUpon().appendQueryParameter("autologin_token", URLEncoder.encode(AccountInstance.getInstance(UserConfig.selectedAccount).getMessagesController().autologinToken, "UTF-8")).build();
+                                } catch (Exception e2) {
+                                    e = e2;
+                                    z9 = false;
+                                    FileLog.e(e);
+                                }
+                            } catch (Exception e3) {
+                                e = e3;
+                            }
+                        } else {
+                            c = 0;
                         }
                         if (z7) {
                             if (!isInstantViewOpen()) {
@@ -434,44 +401,61 @@ public abstract class Browser {
                                 builder.addMenuItem(LocaleController.getString(R.string.CopyLink), broadcast);
                                 builder.setToolbarColor(Theme.getColor(Theme.key_actionBarBrowser));
                                 builder.setShowTitle(true);
-                                try {
-                                    builder.setActionButton(BitmapFactory.decodeResource(context.getResources(), R.drawable.msg_filled_shareout), LocaleController.getString(R.string.ShareFile), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 0, intent2, 33554432), true);
-                                    CustomTabsIntent customTabsIntentBuild = builder.build();
-                                    customTabsIntentBuild.setUseNewTask();
-                                    customTabsIntentBuild.launchUrl(context, uriNormalizeScheme);
-                                    return;
-                                } catch (Exception e4) {
-                                    e = e4;
-                                }
-                            }
-                        }
-                        if (z5) {
-                            if (BubbleActivity.instance == null) {
-                                if (isTonsite(uriNormalizeScheme.toString())) {
+                                z9 = false;
+                                builder.setActionButton(BitmapFactory.decodeResource(context.getResources(), R.drawable.msg_filled_shareout), LocaleController.getString(R.string.ShareFile), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 0, intent2, 33554432), true);
+                                CustomTabsIntent customTabsIntentBuild = builder.build();
+                                customTabsIntentBuild.setUseNewTask();
+                                customTabsIntentBuild.launchUrl(context, uriNormalizeScheme);
+                                return;
+                                FileLog.e(e);
+                                if (z5) {
+                                    try {
+                                        if (BubbleActivity.instance != null) {
+                                            if (isTonsite(uriNormalizeScheme.toString())) {
+                                                z9 = true;
+                                            }
+                                        } else if (isTonsite(uriNormalizeScheme.toString())) {
+                                            z9 = true;
+                                        }
+                                    } catch (Exception e4) {
+                                        FileLog.e(e4);
+                                        return;
+                                    }
+                                } else if (isTonsite(uriNormalizeScheme.toString())) {
                                     z9 = true;
-                                } else {
-                                    z9 = false;
                                 }
-                            } else {
-                                if (uriNormalizeScheme == null) {
-                                    if (isInstantViewOpen()) {
-                                        if (TextUtils.isEmpty(browserPackageName)) {
+                                if (uriNormalizeScheme.getScheme() != null) {
+                                    uriNormalizeScheme.getScheme().equalsIgnoreCase("intent");
+                                }
+                                if (!zIsInternalUri) {
+                                }
+                                if (z9) {
+                                    if (openInExternalApp(context, uriNormalizeScheme.toString(), z4)) {
+                                        return;
+                                    }
+                                    if (uriNormalizeScheme.getScheme() != null) {
+                                        stringExtra = Intent.parseUri(uriNormalizeScheme.toString(), 1).getStringExtra("browser_fallback_url");
+                                        if (!TextUtils.isEmpty(stringExtra)) {
+                                            uriNormalizeScheme = Uri.parse(stringExtra);
                                         }
                                     }
-                                } else if (isInstantViewOpen()) {
-                                    if (TextUtils.isEmpty(browserPackageName)) {
-                                    }
+                                    openInTelegramBrowser(context, uriNormalizeScheme.toString(), progress2);
+                                    return;
                                 }
+                                openInExternalBrowser(context, uriNormalizeScheme.toString(), z4, browserPackageName);
+                            }
+                        }
+                        z9 = false;
+                        if (z5) {
+                            if (BubbleActivity.instance != null) {
                                 if (isTonsite(uriNormalizeScheme.toString())) {
                                     z9 = true;
-                                } else {
-                                    z9 = false;
                                 }
+                            } else if (isTonsite(uriNormalizeScheme.toString())) {
+                                z9 = true;
                             }
                         } else if (isTonsite(uriNormalizeScheme.toString())) {
                             z9 = true;
-                        } else {
-                            z9 = false;
                         }
                         if (uriNormalizeScheme.getScheme() != null) {
                             uriNormalizeScheme.getScheme().equalsIgnoreCase("intent");
@@ -486,7 +470,7 @@ public abstract class Browser {
                                         uriNormalizeScheme = Uri.parse(stringExtra);
                                     }
                                 }
-                                openInTelegramBrowser(context, uriNormalizeScheme.toString(), progress);
+                                openInTelegramBrowser(context, uriNormalizeScheme.toString(), progress2);
                                 return;
                             }
                             return;
@@ -499,10 +483,13 @@ public abstract class Browser {
                 try {
                     hostAuthority = AndroidUtilities.getHostAuthority(uriNormalizeScheme.toString().toLowerCase());
                     if (AccountInstance.getInstance(i).getMessagesController().autologinDomains.contains(hostAuthority)) {
+                        c = 0;
                         uriNormalizeScheme = uriNormalizeScheme.buildUpon().appendQueryParameter("autologin_token", URLEncoder.encode(AccountInstance.getInstance(UserConfig.selectedAccount).getMessagesController().autologinToken, "UTF-8")).build();
+                    } else {
+                        c = 0;
                     }
                     if (z7 && (uriNormalizeScheme == null || !MessagesController.getInstance(i).isWebBrowserOpenInApp(uriNormalizeScheme.toString()))) {
-                        if (!isInstantViewOpen() && MessagesController.getInstance(i).isWebBrowserUseCustomTabs() && !zIsInternalUri && !str2.equals("tel") && !isTonsite(uriNormalizeScheme.toString()) && (zArr[0] || !openInExternalApp(context, uriNormalizeScheme.toString(), false) || !hasAppToOpen(context, uriNormalizeScheme.toString()))) {
+                        if (!isInstantViewOpen() && MessagesController.getInstance(i).isWebBrowserUseCustomTabs() && !zIsInternalUri && !lowerCase.equals("tel") && !isTonsite(uriNormalizeScheme.toString()) && (zArr[c] || !openInExternalApp(context, uriNormalizeScheme.toString(), false) || !hasAppToOpen(context, uriNormalizeScheme.toString()))) {
                             if (MessagesController.getInstance(i).authDomains.contains(hostAuthority)) {
                                 Intent intent3 = new Intent("android.intent.action.VIEW", uriNormalizeScheme);
                                 intent3.addFlags(268435456);
@@ -516,6 +503,7 @@ public abstract class Browser {
                             builder2.addMenuItem(LocaleController.getString(R.string.CopyLink), broadcast2);
                             builder2.setToolbarColor(Theme.getColor(Theme.key_actionBarBrowser));
                             builder2.setShowTitle(true);
+                            z9 = false;
                             builder2.setActionButton(BitmapFactory.decodeResource(context.getResources(), R.drawable.msg_filled_shareout), LocaleController.getString(R.string.ShareFile), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 0, intent4, 33554432), true);
                             CustomTabsIntent customTabsIntentBuild2 = builder2.build();
                             customTabsIntentBuild2.setUseNewTask();
@@ -523,44 +511,24 @@ public abstract class Browser {
                             return;
                         }
                     }
+                    z9 = false;
                 } catch (Exception e5) {
                     e = e5;
                 }
                 if (z5) {
-                    if (BubbleActivity.instance == null) {
-                        if (uriNormalizeScheme == null && MessagesController.getInstance(i).isWebBrowserOpenInApp(uriNormalizeScheme.toString())) {
-                            if (TextUtils.isEmpty(browserPackageName)) {
-                                if (isTonsite(uriNormalizeScheme.toString())) {
-                                    z9 = false;
-                                }
-                            } else if (isTonsite(uriNormalizeScheme.toString())) {
-                                z9 = false;
-                            }
-                        } else if (isInstantViewOpen()) {
-                            if (TextUtils.isEmpty(browserPackageName) || (uriNormalizeScheme.getScheme() != null && !"https".equals(uriNormalizeScheme.getScheme()) && !"http".equals(uriNormalizeScheme.getScheme()) && !"tonsite".equals(uriNormalizeScheme.getScheme()))) {
-                                if (isTonsite(uriNormalizeScheme.toString())) {
-                                    z9 = false;
-                                }
-                            }
-                        } else if (isTonsite(uriNormalizeScheme.toString())) {
-                            z9 = false;
-                        }
+                    if (BubbleActivity.instance != null && (((uriNormalizeScheme != null && MessagesController.getInstance(i).isWebBrowserOpenInApp(uriNormalizeScheme.toString())) || isInstantViewOpen()) && TextUtils.isEmpty(browserPackageName) && (uriNormalizeScheme.getScheme() == null || r10.equals(uriNormalizeScheme.getScheme()) || "http".equals(uriNormalizeScheme.getScheme()) || "tonsite".equals(uriNormalizeScheme.getScheme())))) {
                         z9 = true;
                     } else if (isTonsite(uriNormalizeScheme.toString())) {
                         z9 = true;
-                    } else {
-                        z9 = false;
                     }
                 } else if (isTonsite(uriNormalizeScheme.toString())) {
                     z9 = true;
-                } else {
-                    z9 = false;
                 }
                 if (uriNormalizeScheme.getScheme() != null) {
                     uriNormalizeScheme.getScheme().equalsIgnoreCase("intent");
                 }
                 if (!zIsInternalUri && (launchActivity = LaunchActivity.instance) != null) {
-                    openAsInternalIntent(launchActivity, uriNormalizeScheme.toString(), z3, z6, progress);
+                    openAsInternalIntent(launchActivity, uriNormalizeScheme.toString(), z3, z6, progress2);
                     return;
                 }
                 if (z9) {
@@ -571,7 +539,7 @@ public abstract class Browser {
                                 uriNormalizeScheme = Uri.parse(stringExtra);
                             }
                         }
-                        openInTelegramBrowser(context, uriNormalizeScheme.toString(), progress);
+                        openInTelegramBrowser(context, uriNormalizeScheme.toString(), progress2);
                         return;
                     }
                     return;
@@ -585,32 +553,15 @@ public abstract class Browser {
         }
         FileLog.e(e);
         if (z5) {
-            if (BubbleActivity.instance == null) {
+            if (BubbleActivity.instance != null) {
                 if (isTonsite(uriNormalizeScheme.toString())) {
                     z9 = true;
-                } else {
-                    z9 = false;
                 }
-            } else {
-                if (uriNormalizeScheme == null) {
-                    if (isInstantViewOpen()) {
-                        if (TextUtils.isEmpty(browserPackageName)) {
-                        }
-                    }
-                } else if (isInstantViewOpen()) {
-                    if (TextUtils.isEmpty(browserPackageName)) {
-                    }
-                }
-                if (isTonsite(uriNormalizeScheme.toString())) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
+            } else if (isTonsite(uriNormalizeScheme.toString())) {
+                z9 = true;
             }
         } else if (isTonsite(uriNormalizeScheme.toString())) {
             z9 = true;
-        } else {
-            z9 = false;
         }
         if (uriNormalizeScheme.getScheme() != null) {
             uriNormalizeScheme.getScheme().equalsIgnoreCase("intent");
@@ -625,7 +576,7 @@ public abstract class Browser {
                         uriNormalizeScheme = Uri.parse(stringExtra);
                     }
                 }
-                openInTelegramBrowser(context, uriNormalizeScheme.toString(), progress);
+                openInTelegramBrowser(context, uriNormalizeScheme.toString(), progress2);
                 return;
             }
             return;
@@ -633,16 +584,7 @@ public abstract class Browser {
         openInExternalBrowser(context, uriNormalizeScheme.toString(), z4, browserPackageName);
     }
 
-    public static void lambda$openUrl$1(final Progress progress, final AlertDialog[] alertDialogArr, final int i, final Uri uri, final Context context, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                Browser.lambda$openUrl$0(progress, alertDialogArr, tLObject, i, uri, context, z);
-            }
-        });
-    }
-
-    public static void lambda$openUrl$0(Progress progress, AlertDialog[] alertDialogArr, TLObject tLObject, int i, Uri uri, Context context, boolean z) {
+    public static void m1094$r8$lambda$r0CCMiFnrGCwmVQpGqtZgRrTxo(Progress progress, AlertDialog[] alertDialogArr, TLObject tLObject, int i, Uri uri, Context context, boolean z) {
         if (progress != null) {
             progress.end();
         } else {
@@ -661,7 +603,7 @@ public abstract class Browser {
                 TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = (TLRPC.TL_messageMediaWebPage) messageMedia;
                 TLRPC.WebPage webPage = tL_messageMediaWebPage.webpage;
                 if ((webPage instanceof TLRPC.TL_webPage) && webPage.cached_page != null) {
-                    NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.openArticle, tL_messageMediaWebPage.webpage, uri.toString());
+                    NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.openArticle, tL_messageMediaWebPage.webpage, uri.toString());
                     return;
                 }
             }
@@ -669,7 +611,7 @@ public abstract class Browser {
         openUrl(context, uri, z, false);
     }
 
-    public static void lambda$openUrl$3(AlertDialog[] alertDialogArr, final int i) {
+    public static void $r8$lambda$7LZ2gk4KysH4NPPJAO6oZpWQocA(AlertDialog[] alertDialogArr, final int i) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog == null) {
             return;
@@ -678,16 +620,12 @@ public abstract class Browser {
             alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    Browser.lambda$openUrl$2(i, dialogInterface);
+                    ConnectionsManager.getInstance(UserConfig.selectedAccount).cancelRequest(i, true);
                 }
             });
             alertDialogArr[0].show();
         } catch (Exception unused) {
         }
-    }
-
-    public static void lambda$openUrl$2(int i, DialogInterface dialogInterface) {
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).cancelRequest(i, true);
     }
 
     public static boolean openAsInternalIntent(Context context, String str) {
@@ -1079,7 +1017,10 @@ public abstract class Browser {
     }
 
     public static boolean isBrowserPackageName(String str) {
-        return str != null && (str.contains("browser") || str.contains("chrome") || str.contains("firefox") || "com.microsoft.emmx".equals(str) || "com.opera.mini.native".equals(str) || "com.duckduckgo.mobile.android".equals(str) || "com.UCMobile.intl".equals(str));
+        if (str != null) {
+            return str.contains("browser") || str.contains("chrome") || str.contains("firefox") || "com.microsoft.emmx".equals(str) || "com.opera.mini.native".equals(str) || "com.duckduckgo.mobile.android".equals(str) || "com.UCMobile.intl".equals(str);
+        }
+        return false;
     }
 
     public static boolean isPunycodeAllowed(String str) {

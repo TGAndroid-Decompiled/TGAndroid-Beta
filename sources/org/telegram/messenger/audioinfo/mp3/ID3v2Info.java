@@ -114,7 +114,7 @@ public class ID3v2Info extends AudioInfo {
             logger.log(this.debugLevel, "Parsing frame: " + iD3v2FrameBody.getFrameHeader().getFrameId());
         }
         String frameId = iD3v2FrameBody.getFrameHeader().getFrameId();
-        frameId.hashCode();
+        frameId.getClass();
         switch (frameId) {
             case "COM":
             case "COMM":
@@ -374,7 +374,7 @@ public class ID3v2Info extends AudioInfo {
         ID3v2Encoding encoding = iD3v2FrameBody.readEncoding();
         if (iD3v2FrameBody.getTagHeader().getVersion() == 2) {
             String upperCase = iD3v2FrameBody.readFixedLengthString(3, ID3v2Encoding.ISO_8859_1).toUpperCase();
-            upperCase.hashCode();
+            upperCase.getClass();
             if (upperCase.equals("JPG")) {
                 zeroTerminatedString = "image/jpeg";
             } else if (upperCase.equals("PNG")) {

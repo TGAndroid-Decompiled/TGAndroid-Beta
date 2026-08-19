@@ -1,7 +1,6 @@
 package org.telegram.messenger.voip;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import me.vkryl.core.BitwiseUtils;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
@@ -91,9 +90,13 @@ public class GroupCallMessage {
     }
 
     public void notifyStateUpdate() {
-        Iterator<Runnable> it = this.listeners.iterator();
-        while (it.hasNext()) {
-            it.next().run();
+        ArrayList<Runnable> arrayList = this.listeners;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Runnable runnable = arrayList.get(i);
+            i++;
+            runnable.run();
         }
     }
 }

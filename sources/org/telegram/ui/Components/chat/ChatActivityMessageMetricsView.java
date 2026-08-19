@@ -44,7 +44,7 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
     private final RectF viewPortInsets;
     private final LongSparseArray watchers;
 
-    public static void lambda$flushImpl$0(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$OTgxqPY4rg_4WF2e8sYw8x4osdg(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
     }
 
     public ChatActivityMessageMetricsView(Context context) {
@@ -115,7 +115,7 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_reportReadMetrics, null, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ChatActivityMessageMetricsView.lambda$flushImpl$0((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                ChatActivityMessageMetricsView.$r8$lambda$OTgxqPY4rg_4WF2e8sYw8x4osdg((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
         this.pendingMetrics.clear();
@@ -124,29 +124,29 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
     private void processCurrentFrame() {
         boolean z;
         long j;
-        int i;
-        boolean z2;
+        long j2;
         RectF rectF;
         RectF rectF2;
         MessageObject messageObject;
-        int i2;
+        int i;
         if (this.root == null || this.list == null) {
             return;
         }
         long jUptimeMillis = SystemClock.uptimeMillis();
-        long j2 = this.lastTime;
-        long j3 = 0;
-        long j4 = j2 == 0 ? 0L : jUptimeMillis - j2;
+        long j3 = this.lastTime;
+        long j4 = 0;
+        long j5 = j3 == 0 ? 0L : jUptimeMillis - j3;
         this.lastTime = jUptimeMillis;
         int size = this.groupedPositions.size();
-        for (int i3 = 0; i3 < size; i3++) {
-            ((RectF) this.groupedPositions.valueAt(i3)).set(0.0f, 0.0f, 0.0f, 0.0f);
+        for (int i2 = 0; i2 < size; i2++) {
+            ((RectF) this.groupedPositions.valueAt(i2)).set(0.0f, 0.0f, 0.0f, 0.0f);
         }
         int childCount = this.list.getChildCount();
-        int i4 = 0;
-        while (i4 < childCount) {
-            View childAt = this.list.getChildAt(i4);
+        int i3 = 0;
+        while (i3 < childCount) {
+            View childAt = this.list.getChildAt(i3);
             ViewGroup viewGroup = this.root;
+            long j6 = j4;
             RectF rectF3 = tmpRect;
             if (ViewPositionWatcher.computeRectInParent(childAt, viewGroup, rectF3)) {
                 if (childAt instanceof ChatMessageCell) {
@@ -154,34 +154,28 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
                 } else if (childAt instanceof ChatActionCell) {
                     messageObject = ((ChatActionCell) childAt).getMessageObject();
                 } else {
-                    i2 = childCount;
+                    i = i3;
                 }
                 if (messageObject == null) {
-                    i2 = childCount;
+                    i = i3;
                 } else {
                     long dialogId = messageObject.getDialogId();
-                    if (dialogId != this.dialogId) {
-                        i2 = childCount;
-                    } else {
+                    i = i3;
+                    if (dialogId == this.dialogId) {
                         int id = messageObject.getId();
                         long groupId = messageObject.getGroupId();
-                        if (dialogId == j3 || id <= 0) {
-                            i2 = childCount;
-                        } else {
-                            long j5 = id;
-                            MessageWatcher messageWatcher = (MessageWatcher) this.watchers.get(j5);
+                        if (dialogId != j6 && id > 0) {
+                            long j7 = id;
+                            MessageWatcher messageWatcher = (MessageWatcher) this.watchers.get(j7);
                             if (messageWatcher == null) {
-                                i2 = childCount;
                                 messageWatcher = new MessageWatcher(id, groupId);
-                                this.watchers.put(j5, messageWatcher);
+                                this.watchers.put(j7, messageWatcher);
                                 if (BuildVars.LOGS_ENABLED) {
                                     Log.d("ViewMetrics", id + " " + groupId + " in screen");
                                 }
-                            } else {
-                                i2 = childCount;
                             }
                             messageWatcher.position.set(rectF3);
-                            if (groupId != 0) {
+                            if (groupId != j6) {
                                 RectF rectF4 = (RectF) this.groupedPositions.get(groupId);
                                 if (rectF4 == null) {
                                     rectF4 = new RectF();
@@ -194,12 +188,12 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
                     }
                 }
             } else {
-                i2 = childCount;
+                i = i3;
             }
-            i4++;
-            childCount = i2;
-            j3 = 0;
+            i3 = i + 1;
+            j4 = j6;
         }
+        long j8 = j4;
         RectF rectF5 = null;
         for (int size2 = this.groupedPositions.size() - 1; size2 >= 0; size2--) {
             if (((RectF) this.groupedPositions.valueAt(size2)).isEmpty()) {
@@ -207,19 +201,19 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
             }
         }
         int size3 = this.watchers.size();
-        for (int i5 = 0; i5 < size3; i5++) {
-            MessageWatcher messageWatcher2 = (MessageWatcher) this.watchers.valueAt(i5);
-            long j6 = messageWatcher2.groupId;
-            if (j6 != 0 && (rectF2 = (RectF) this.groupedPositions.get(j6)) != null) {
+        for (int i4 = 0; i4 < size3; i4++) {
+            MessageWatcher messageWatcher2 = (MessageWatcher) this.watchers.valueAt(i4);
+            long j9 = messageWatcher2.groupId;
+            if (j9 != j8 && (rectF2 = (RectF) this.groupedPositions.get(j9)) != null) {
                 messageWatcher2.position.set(rectF2);
             }
         }
         int size4 = this.watchers.size() - 1;
         while (size4 >= 0) {
             MessageWatcher messageWatcher3 = (MessageWatcher) this.watchers.valueAt(size4);
-            long j7 = messageWatcher3.messageId;
-            long j8 = messageWatcher3.groupId;
-            RectF rectF6 = j8 != 0 ? (RectF) this.groupedPositions.get(j8) : rectF5;
+            long j10 = messageWatcher3.messageId;
+            long j11 = messageWatcher3.groupId;
+            RectF rectF6 = j11 != j8 ? (RectF) this.groupedPositions.get(j11) : rectF5;
             if (messageWatcher3.lastUpdateMillis != jUptimeMillis && rectF6 == null) {
                 z = false;
             } else if (RectF.intersects(this.viewPort, rectF6 != null ? rectF6 : messageWatcher3.position)) {
@@ -228,70 +222,61 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
                 z = false;
             }
             if (z) {
-                if (messageWatcher3.lastViewMillis != 0) {
-                    MessageWatcher.access$514(messageWatcher3, j4);
-                    i = size4;
-                    z2 = z;
+                if (messageWatcher3.lastViewMillis != j8) {
+                    MessageWatcher.access$514(messageWatcher3, j5);
+                    rectF = rectF6;
                     if (jUptimeMillis - this.lastUserActivityTime < 15000) {
-                        MessageWatcher.access$614(messageWatcher3, j4);
+                        MessageWatcher.access$614(messageWatcher3, j5);
                     }
                 } else {
-                    i = size4;
-                    z2 = z;
+                    rectF = rectF6;
                 }
                 messageWatcher3.lastViewMillis = jUptimeMillis;
                 float fHeight = messageWatcher3.position.height();
-                j = j4;
+                j = jUptimeMillis;
                 float f = this.viewPort.top - messageWatcher3.position.top;
                 float f2 = fHeight - (messageWatcher3.position.bottom - this.viewPort.bottom);
-                rectF = rectF6;
+                j2 = j5;
                 messageWatcher3.seenTopPx = Math.min(messageWatcher3.seenTopPx, MathUtils.clamp(f, 0.0f, fHeight));
                 messageWatcher3.seenBottomPx = Math.max(messageWatcher3.seenBottomPx, MathUtils.clamp(f2, 0.0f, fHeight));
                 messageWatcher3.maxViewPortHeight = Math.max(messageWatcher3.maxViewPortHeight, this.viewPort.height());
                 messageWatcher3.maxPostTotalHeight = Math.max(messageWatcher3.maxPostTotalHeight, fHeight);
                 if (!messageWatcher3.visible && messageWatcher3.visibleTime > 300) {
                     if (BuildVars.LOGS_ENABLED) {
-                        Log.d("ViewMetrics", j7 + " " + j8 + " in viewport");
+                        Log.d("ViewMetrics", j10 + " " + j11 + " in viewport");
                     }
                     messageWatcher3.visible = true;
                 }
             } else {
-                j = j4;
-                i = size4;
-                z2 = z;
+                j = jUptimeMillis;
+                j2 = j5;
                 rectF = rectF6;
             }
-            if (z2 || messageWatcher3.visibleTime <= 0 || jUptimeMillis - 300 <= messageWatcher3.lastViewMillis) {
+            if (z || messageWatcher3.visibleTime <= j8 || j - 300 <= messageWatcher3.lastViewMillis) {
                 if (messageWatcher3.visible && messageWatcher3.visibleTime > 300000) {
                     this.pendingMetrics.add(messageWatcher3.buildMetrics());
-                    this.watchers.removeAt(i);
+                    this.watchers.removeAt(size4);
                     if (BuildVars.LOGS_ENABLED) {
-                        Log.d("ViewMetrics", j7 + " " + j8 + " out of time");
+                        Log.d("ViewMetrics", j10 + " " + j11 + " out of time");
                     }
-                } else {
-                    if (!messageWatcher3.visible && messageWatcher3.lastUpdateMillis != jUptimeMillis) {
-                        if (messageWatcher3.groupId == 0 || rectF == null) {
-                            this.watchers.removeAt(i);
-                            if (BuildVars.LOGS_ENABLED) {
-                                Log.d("ViewMetrics", j7 + " " + j8 + " out of screen");
-                            }
-                        }
+                } else if (!messageWatcher3.visible && messageWatcher3.lastUpdateMillis != j && (messageWatcher3.groupId == j8 || rectF == null)) {
+                    this.watchers.removeAt(size4);
+                    if (BuildVars.LOGS_ENABLED) {
+                        Log.d("ViewMetrics", j10 + " " + j11 + " out of screen");
                     }
-                    size4 = i - 1;
-                    j4 = j;
-                    rectF5 = null;
                 }
             } else {
                 if (messageWatcher3.visible) {
                     this.pendingMetrics.add(messageWatcher3.buildMetrics());
                 }
-                this.watchers.removeAt(i);
+                this.watchers.removeAt(size4);
                 if (BuildVars.LOGS_ENABLED) {
-                    Log.d("ViewMetrics", j7 + " " + j8 + " out of viewport: " + messageWatcher3.visibleTime);
+                    Log.d("ViewMetrics", j10 + " " + j11 + " out of viewport: " + messageWatcher3.visibleTime);
                 }
             }
-            size4 = i - 1;
-            j4 = j;
+            size4--;
+            jUptimeMillis = j;
+            j5 = j2;
             rectF5 = null;
         }
         if (!this.pendingMetrics.isEmpty() && this.pendingFlush == null) {
@@ -455,25 +440,29 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
             super.onDraw(canvas);
             canvas.drawRect(this.viewPort, Theme.DEBUG_RED_STROKE);
             int size = this.watchers.size();
-            for (int i = 0; i < size; i++) {
+            int i = 0;
+            while (i < size) {
                 MessageWatcher messageWatcher = (MessageWatcher) this.watchers.valueAt(i);
                 canvas.drawRect(messageWatcher.position, Theme.DEBUG_GREEN_STROKE);
                 canvas.save();
                 canvas.translate(messageWatcher.position.left, MathUtils.clamp(MathUtils.clamp(messageWatcher.position.centerY() - AndroidUtilities.dp(20.0f), this.viewPort.top - AndroidUtilities.dp(40.0f), this.viewPort.bottom), messageWatcher.position.top, messageWatcher.position.bottom - AndroidUtilities.dp(40.0f)));
-                canvas.drawRect(0.0f, 0.0f, messageWatcher.position.width(), AndroidUtilities.dp(40.0f), Theme.DEBUG_GREEN_B0);
-                canvas.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
-                canvas.save();
-                canvas.drawText("time_in_view_ms: " + messageWatcher.visibleTime, 0.0f, 0.0f, this.tmpTextPaint);
-                canvas.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
-                canvas.drawText("active_time_in_view_ms: " + messageWatcher.activeTime, 0.0f, 0.0f, this.tmpTextPaint);
-                canvas.restore();
-                canvas.save();
-                canvas.translate(((float) getWidth()) / 2.0f, 0.0f);
-                canvas.drawText("height_to_viewport_ratio_permille: " + messageWatcher.getHeightToViewportRatioPermille(), 0.0f, 0.0f, this.tmpTextPaint);
-                canvas.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
-                canvas.drawText("seen_range_ratio_permille: " + messageWatcher.getSeenRangeRatioPermille(), 0.0f, 0.0f, this.tmpTextPaint);
-                canvas.restore();
-                canvas.restore();
+                Canvas canvas2 = canvas;
+                canvas2.drawRect(0.0f, 0.0f, messageWatcher.position.width(), AndroidUtilities.dp(40.0f), Theme.DEBUG_GREEN_B0);
+                canvas2.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
+                canvas2.save();
+                canvas2.drawText("time_in_view_ms: " + messageWatcher.visibleTime, 0.0f, 0.0f, this.tmpTextPaint);
+                canvas2.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
+                canvas2.drawText("active_time_in_view_ms: " + messageWatcher.activeTime, 0.0f, 0.0f, this.tmpTextPaint);
+                canvas2.restore();
+                canvas2.save();
+                canvas2.translate(((float) getWidth()) / 2.0f, 0.0f);
+                canvas2.drawText("height_to_viewport_ratio_permille: " + messageWatcher.getHeightToViewportRatioPermille(), 0.0f, 0.0f, this.tmpTextPaint);
+                canvas2.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
+                canvas2.drawText("seen_range_ratio_permille: " + messageWatcher.getSeenRangeRatioPermille(), 0.0f, 0.0f, this.tmpTextPaint);
+                canvas2.restore();
+                canvas2.restore();
+                i++;
+                canvas = canvas2;
             }
         }
     }

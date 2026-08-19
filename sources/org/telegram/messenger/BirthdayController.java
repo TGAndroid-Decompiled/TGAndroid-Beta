@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.InputSerializedData;
@@ -31,20 +30,22 @@ public class BirthdayController {
     }
 
     public static BirthdayController getInstance(int i) {
-        BirthdayController birthdayController = Instance[i];
-        if (birthdayController == null) {
-            synchronized (lockObjects[i]) {
-                try {
-                    birthdayController = Instance[i];
-                    if (birthdayController == null) {
-                        BirthdayController[] birthdayControllerArr = Instance;
-                        BirthdayController birthdayController2 = new BirthdayController(i);
-                        birthdayControllerArr[i] = birthdayController2;
-                        birthdayController = birthdayController2;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        BirthdayController birthdayController;
+        BirthdayController birthdayController2 = Instance[i];
+        if (birthdayController2 != null) {
+            return birthdayController2;
+        }
+        synchronized (lockObjects[i]) {
+            try {
+                birthdayController = Instance[i];
+                if (birthdayController == null) {
+                    BirthdayController[] birthdayControllerArr = Instance;
+                    BirthdayController birthdayController3 = new BirthdayController(i);
+                    birthdayControllerArr[i] = birthdayController3;
+                    birthdayController = birthdayController3;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return birthdayController;
@@ -67,7 +68,7 @@ public class BirthdayController {
                     MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$new$1(i, arrayList, tL_birthdaysTLdeserialize);
+                            BirthdayController.$r8$lambda$GqYKVXZ4oUwEwNTXAqwEYzuVGyM(this.f$0, i, arrayList, tL_birthdaysTLdeserialize);
                         }
                     });
                 }
@@ -78,21 +79,23 @@ public class BirthdayController {
         this.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
     }
 
-    public void lambda$new$1(int i, ArrayList arrayList, final TL_birthdays tL_birthdays) {
+    public static void $r8$lambda$GqYKVXZ4oUwEwNTXAqwEYzuVGyM(final BirthdayController birthdayController, int i, ArrayList arrayList, final TL_birthdays tL_birthdays) {
+        birthdayController.getClass();
         final ArrayList<TLRPC.User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0(tL_birthdays, users);
+                BirthdayController.$r8$lambda$MaKtOYeIJDbDHwaJLuRzxAaPMbM(this.f$0, tL_birthdays, users);
             }
         });
     }
 
-    public void lambda$new$0(TL_birthdays tL_birthdays, ArrayList arrayList) {
+    public static void $r8$lambda$MaKtOYeIJDbDHwaJLuRzxAaPMbM(BirthdayController birthdayController, TL_birthdays tL_birthdays, ArrayList arrayList) {
+        birthdayController.getClass();
         TL_account.contactBirthdays contactbirthdays = new TL_account.contactBirthdays();
         contactbirthdays.contacts = tL_birthdays.contacts;
         contactbirthdays.users = arrayList;
-        this.state = BirthdayState.from(contactbirthdays);
+        birthdayController.state = BirthdayState.from(contactbirthdays);
     }
 
     public void check() {
@@ -122,38 +125,40 @@ public class BirthdayController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getBirthdays(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$check$3(tLObject, tL_error);
+                    BirthdayController.$r8$lambda$VIi0fx2Yg8f7ukd1ZA85xPETL7s(this.f$0, tLObject, tL_error);
                 }
             });
         }
     }
 
-    public void lambda$check$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$VIi0fx2Yg8f7ukd1ZA85xPETL7s(final BirthdayController birthdayController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        birthdayController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$check$2(tLObject);
+                BirthdayController.$r8$lambda$CKtlsFTDoX4m45QWj5cE85AeTkg(this.f$0, tLObject);
             }
         });
     }
 
-    public void lambda$check$2(TLObject tLObject) {
+    public static void $r8$lambda$CKtlsFTDoX4m45QWj5cE85AeTkg(BirthdayController birthdayController, TLObject tLObject) {
+        birthdayController.getClass();
         if (tLObject instanceof TL_account.contactBirthdays) {
-            this.lastCheckDate = System.currentTimeMillis();
+            birthdayController.lastCheckDate = System.currentTimeMillis();
             TL_account.contactBirthdays contactbirthdays = (TL_account.contactBirthdays) tLObject;
-            this.state = BirthdayState.from(contactbirthdays);
-            MessagesController.getInstance(this.currentAccount).putUsers(contactbirthdays.users, false);
-            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(contactbirthdays.users, null, true, true);
-            SharedPreferences.Editor editorEdit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
-            editorEdit.putLong("bday_check", this.lastCheckDate);
+            birthdayController.state = BirthdayState.from(contactbirthdays);
+            MessagesController.getInstance(birthdayController.currentAccount).putUsers(contactbirthdays.users, false);
+            MessagesStorage.getInstance(birthdayController.currentAccount).putUsersAndChats(contactbirthdays.users, null, true, true);
+            SharedPreferences.Editor editorEdit = MessagesController.getInstance(birthdayController.currentAccount).getMainSettings().edit();
+            editorEdit.putLong("bday_check", birthdayController.lastCheckDate);
             TL_birthdays tL_birthdays = new TL_birthdays();
             tL_birthdays.contacts = contactbirthdays.contacts;
             SerializedData serializedData = new SerializedData(tL_birthdays.getObjectSize());
             tL_birthdays.serializeToStream(serializedData);
             editorEdit.putString("bday_contacts", Utilities.bytesToHex(serializedData.toByteArray()));
             editorEdit.apply();
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
-            this.loading = false;
+            NotificationCenter.getInstance(birthdayController.currentAccount).postNotificationName(NotificationCenter.premiumPromoUpdated, new Object[0]);
+            birthdayController.loading = false;
         }
     }
 
@@ -184,7 +189,7 @@ public class BirthdayController {
         SharedPreferences.Editor editorEdit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
         editorEdit.putStringSet("bday_hidden", this.hiddenDays);
         editorEdit.apply();
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.premiumPromoUpdated, new Object[0]);
     }
 
     public static class BirthdayState {
@@ -203,7 +208,7 @@ public class BirthdayController {
 
         public static BirthdayState from(TL_account.contactBirthdays contactbirthdays) {
             ArrayList<TLRPC.User> arrayList;
-            Iterator<TL_account.TL_contactBirthday> it;
+            ArrayList<TL_account.TL_contactBirthday> arrayList2;
             int i;
             Calendar calendar = Calendar.getInstance();
             int i2 = calendar.get(5);
@@ -220,43 +225,50 @@ public class BirthdayController {
             String str = i5 + "_" + i6 + "_" + i7;
             String str2 = i2 + "_" + i3 + "_" + i4;
             BirthdayState birthdayState = new BirthdayState(str, str2, i8 + "_" + i9 + "_" + calendar2.get(1));
-            Iterator<TL_account.TL_contactBirthday> it2 = contactbirthdays.contacts.iterator();
-            while (it2.hasNext()) {
-                TL_account.TL_contactBirthday next = it2.next();
-                TL_account.TL_birthday tL_birthday = next.birthday;
-                int i10 = tL_birthday.day;
+            ArrayList<TL_account.TL_contactBirthday> arrayList3 = contactbirthdays.contacts;
+            int size = arrayList3.size();
+            int i10 = 0;
+            while (i10 < size) {
+                TL_account.TL_contactBirthday tL_contactBirthday = arrayList3.get(i10);
+                i10++;
+                TL_account.TL_contactBirthday tL_contactBirthday2 = tL_contactBirthday;
+                TL_account.TL_birthday tL_birthday = tL_contactBirthday2.birthday;
+                int i11 = tL_birthday.day;
                 TLRPC.User user = null;
-                if (i10 == i2 && tL_birthday.month == i3) {
+                if (i11 == i2 && tL_birthday.month == i3) {
                     arrayList = birthdayState.today;
-                } else if (i10 == i5 && tL_birthday.month == i6) {
+                } else if (i11 == i5 && tL_birthday.month == i6) {
                     arrayList = birthdayState.yesterday;
                 } else {
-                    arrayList = (i10 == i8 && tL_birthday.month == i9) ? birthdayState.tomorrow : null;
+                    arrayList = (i11 == i8 && tL_birthday.month == i9) ? birthdayState.tomorrow : null;
                 }
                 if (arrayList != null) {
-                    int i11 = 0;
+                    int i12 = 0;
                     while (true) {
-                        if (i11 >= contactbirthdays.users.size()) {
-                            it = it2;
+                        if (i12 >= contactbirthdays.users.size()) {
+                            arrayList2 = arrayList3;
                             i = i8;
                             break;
                         }
-                        it = it2;
+                        arrayList2 = arrayList3;
                         i = i8;
-                        if (contactbirthdays.users.get(i11).id == next.contact_id) {
-                            user = contactbirthdays.users.get(i11);
+                        if (contactbirthdays.users.get(i12).id == tL_contactBirthday2.contact_id) {
+                            user = contactbirthdays.users.get(i12);
                             break;
                         }
-                        i11++;
+                        i12++;
                         i8 = i;
-                        it2 = it;
+                        arrayList3 = arrayList2;
                     }
                     if (user != null && !UserObject.isUserSelf(user)) {
                         arrayList.add(user);
                     }
-                    i8 = i;
-                    it2 = it;
+                } else {
+                    arrayList2 = arrayList3;
+                    i = i8;
                 }
+                i8 = i;
+                arrayList3 = arrayList2;
             }
             return birthdayState;
         }
@@ -266,21 +278,33 @@ public class BirthdayController {
         }
 
         public boolean contains(long j) {
-            Iterator<TLRPC.User> it = this.yesterday.iterator();
-            while (it.hasNext()) {
-                if (it.next().id == j) {
+            ArrayList<TLRPC.User> arrayList = this.yesterday;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TLRPC.User user = arrayList.get(i);
+                i++;
+                if (user.id == j) {
                     return true;
                 }
             }
-            Iterator<TLRPC.User> it2 = this.today.iterator();
-            while (it2.hasNext()) {
-                if (it2.next().id == j) {
+            ArrayList<TLRPC.User> arrayList2 = this.today;
+            int size2 = arrayList2.size();
+            int i2 = 0;
+            while (i2 < size2) {
+                TLRPC.User user2 = arrayList2.get(i2);
+                i2++;
+                if (user2.id == j) {
                     return true;
                 }
             }
-            Iterator<TLRPC.User> it3 = this.tomorrow.iterator();
-            while (it3.hasNext()) {
-                if (it3.next().id == j) {
+            ArrayList<TLRPC.User> arrayList3 = this.tomorrow;
+            int size3 = arrayList3.size();
+            int i3 = 0;
+            while (i3 < size3) {
+                TLRPC.User user3 = arrayList3.get(i3);
+                i3++;
+                if (user3.id == j) {
                     return true;
                 }
             }

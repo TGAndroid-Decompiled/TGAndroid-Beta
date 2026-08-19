@@ -65,7 +65,7 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         this.joinToSendCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                JoinToSendSettingsView.$r8$lambda$VPAiLMmv_kxcdG9v40W5ulz8RR0(this.f$0, view);
             }
         });
         addView(this.joinToSendCell);
@@ -81,7 +81,7 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         this.joinRequestCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$5(view);
+                JoinToSendSettingsView.m2413$r8$lambda$Zv9kTF8BQ25g9jXYExBg9gjMgo(this.f$0, view);
             }
         });
         addView(this.joinRequestCell);
@@ -99,53 +99,55 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         updateToggleValue(this.toggleValue);
     }
 
-    public void lambda$new$2(View view) {
-        final boolean z = this.isJoinToSend;
+    public static void $r8$lambda$VPAiLMmv_kxcdG9v40W5ulz8RR0(final JoinToSendSettingsView joinToSendSettingsView, View view) {
+        final boolean z = joinToSendSettingsView.isJoinToSend;
         boolean z2 = !z;
-        final boolean z3 = this.isJoinRequest;
-        if (onJoinToSendToggle(z2, new Runnable() {
+        final boolean z3 = joinToSendSettingsView.isJoinRequest;
+        if (joinToSendSettingsView.onJoinToSendToggle(z2, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1(z3, z);
+                JoinToSendSettingsView.$r8$lambda$4m0bHDGDGLCBLnk7E23dEqmmFPA(this.f$0, z3, z);
             }
         })) {
-            lambda$new$3(false);
-            setJoinToSend(z2);
+            joinToSendSettingsView.setJoinRequest(false);
+            joinToSendSettingsView.setJoinToSend(z2);
         }
     }
 
-    public void lambda$new$1(final boolean z, final boolean z2) {
+    public static void $r8$lambda$4m0bHDGDGLCBLnk7E23dEqmmFPA(final JoinToSendSettingsView joinToSendSettingsView, final boolean z, final boolean z2) {
+        joinToSendSettingsView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0(z, z2);
+                JoinToSendSettingsView.m2411$r8$lambda$u1sh2swYYhznA4BFT3aXspsE(this.f$0, z, z2);
             }
         });
     }
 
-    public void lambda$new$0(boolean z, boolean z2) {
-        lambda$new$3(z);
-        setJoinToSend(z2);
+    public static void m2411$r8$lambda$u1sh2swYYhznA4BFT3aXspsE(JoinToSendSettingsView joinToSendSettingsView, boolean z, boolean z2) {
+        joinToSendSettingsView.setJoinRequest(z);
+        joinToSendSettingsView.setJoinToSend(z2);
     }
 
-    public void lambda$new$5(View view) {
-        final boolean z = this.isJoinRequest;
+    public static void m2413$r8$lambda$Zv9kTF8BQ25g9jXYExBg9gjMgo(final JoinToSendSettingsView joinToSendSettingsView, View view) {
+        final boolean z = joinToSendSettingsView.isJoinRequest;
         boolean z2 = !z;
-        if (onJoinRequestToggle(z2, new Runnable() {
+        if (joinToSendSettingsView.onJoinRequestToggle(z2, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$4(z);
+                JoinToSendSettingsView.m2414$r8$lambda$tsjpCh2Mcmji2Sj9_iG5wFYFo(this.f$0, z);
             }
         })) {
-            lambda$new$3(z2);
+            joinToSendSettingsView.setJoinRequest(z2);
         }
     }
 
-    public void lambda$new$4(final boolean z) {
+    public static void m2414$r8$lambda$tsjpCh2Mcmji2Sj9_iG5wFYFo(final JoinToSendSettingsView joinToSendSettingsView, final boolean z) {
+        joinToSendSettingsView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$3(z);
+                this.f$0.setJoinRequest(z);
             }
         });
     }
@@ -212,7 +214,7 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
             textInfoPrivacyCell.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i2, str), Theme.getColor(Theme.key_telegram_color_text), new Runnable() {
                 @Override
                 public final void run() {
-                    JoinToSendSettingsView.lambda$setFullInfo$6(chatFull, baseFragment);
+                    JoinToSendSettingsView.$r8$lambda$K7zS6IWafYo4tK0ZJFKivwV3BSU(chatFull, baseFragment);
                 }
             }));
             return;
@@ -228,13 +230,13 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         textInfoPrivacyCell2.setText(LocaleController.getString(i));
     }
 
-    public static void lambda$setFullInfo$6(TLRPC.ChatFull chatFull, BaseFragment baseFragment) {
+    public static void $r8$lambda$K7zS6IWafYo4tK0ZJFKivwV3BSU(TLRPC.ChatFull chatFull, BaseFragment baseFragment) {
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", chatFull.guard_bot_id);
         baseFragment.presentFragment(new ProfileActivity(bundle));
     }
 
-    public void lambda$new$3(boolean z) {
+    public void setJoinRequest(boolean z) {
         this.isJoinRequest = z;
         this.joinRequestCell.setChecked(z);
     }
@@ -255,7 +257,7 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         this.toggleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setJoinToSend$7(valueAnimator2);
+                JoinToSendSettingsView.m2412$r8$lambda$UO92od15dztir2dSRmQqQurnfo(this.f$0, valueAnimator2);
             }
         });
         this.toggleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -272,10 +274,11 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         this.toggleAnimator.start();
     }
 
-    public void lambda$setJoinToSend$7(ValueAnimator valueAnimator) {
+    public static void m2412$r8$lambda$UO92od15dztir2dSRmQqQurnfo(JoinToSendSettingsView joinToSendSettingsView, ValueAnimator valueAnimator) {
+        joinToSendSettingsView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.toggleValue = fFloatValue;
-        updateToggleValue(fFloatValue);
+        joinToSendSettingsView.toggleValue = fFloatValue;
+        joinToSendSettingsView.updateToggleValue(fFloatValue);
     }
 
     @Override

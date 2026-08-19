@@ -192,10 +192,10 @@ public class SharedConfig {
     public @interface PerformanceClass {
     }
 
-    public static void lambda$checkSdCard$0() {
+    public static void m1038$r8$lambda$AgzMnIFjDK3Boj0GV34UBf8Qd8(AlertDialog alertDialog, int i) {
     }
 
-    public static void lambda$checkSdCard$1(AlertDialog alertDialog, int i) {
+    public static void m1039$r8$lambda$c1nolnMM8hkF5gEowxjTAWjtKM() {
     }
 
     public static boolean loopStickers() {
@@ -209,12 +209,12 @@ public class SharedConfig {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SharedConfig.lambda$checkSdCard$2();
+                SharedConfig.$r8$lambda$5WZZbls8uHKhzrNqXgCrVdV5Lyk();
             }
         });
     }
 
-    public static void lambda$checkSdCard$2() {
+    public static void $r8$lambda$5WZZbls8uHKhzrNqXgCrVdV5Lyk() {
         BaseFragment lastFragment;
         if (readOnlyStorageDirAlertShowed || (lastFragment = LaunchActivity.getLastFragment()) == null || lastFragment.getParentActivity() == null) {
             return;
@@ -224,7 +224,7 @@ public class SharedConfig {
         ImageLoader.getInstance().checkMediaPaths(new Runnable() {
             @Override
             public final void run() {
-                SharedConfig.lambda$checkSdCard$0();
+                SharedConfig.m1039$r8$lambda$c1nolnMM8hkF5gEowxjTAWjtKM();
             }
         });
         readOnlyStorageDirAlertShowed = true;
@@ -234,7 +234,7 @@ public class SharedConfig {
         builder.setPositiveButton(LocaleController.getString(R.string.DoNotUseSDCard), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                SharedConfig.lambda$checkSdCard$1(alertDialog, i);
+                SharedConfig.m1038$r8$lambda$AgzMnIFjDK3Boj0GV34UBf8Qd8(alertDialog, i);
             }
         });
         AlertDialog alertDialogCreate = builder.create();
@@ -854,6 +854,7 @@ public class SharedConfig {
                     System.arraycopy(passcodeSalt, 0, bArr, bytes.length + 16, 16);
                     passcodeHash = Utilities.bytesToHex(Utilities.computeSHA256(bArr, 0, length));
                     saveConfig();
+                    return zEquals;
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -1053,13 +1054,13 @@ public class SharedConfig {
             Utilities.cacheClearQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    SharedConfig.lambda$checkLogsToDelete$3(iCurrentTimeMillis);
+                    SharedConfig.$r8$lambda$6gZCUSeINXv3Os6LV1HVwzdvmRA(iCurrentTimeMillis);
                 }
             });
         }
     }
 
-    public static void lambda$checkLogsToDelete$3(int i) {
+    public static void $r8$lambda$6gZCUSeINXv3Os6LV1HVwzdvmRA(int i) {
         long j = i - 864000;
         try {
             File logsDir = AndroidUtilities.getLogsDir();
@@ -1198,7 +1199,7 @@ public class SharedConfig {
         SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
         editorEdit.putBoolean("useThreeLinesLayout", useThreeLinesLayout);
         editorEdit.apply();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, Boolean.TRUE);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.dialogsNeedReload, Boolean.TRUE);
     }
 
     public static void toggleArchiveHidden() {
@@ -1262,7 +1263,10 @@ public class SharedConfig {
     }
 
     public static boolean enabledRaiseTo(boolean z) {
-        return raiseToListen && (!z || raiseToSpeak);
+        if (raiseToListen) {
+            return !z || raiseToSpeak;
+        }
+        return false;
     }
 
     public static void toggleBrowserAdaptableColors() {
@@ -1441,7 +1445,7 @@ public class SharedConfig {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return SharedConfig.lambda$saveProxyList$4((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
+                return SharedConfig.m1037$r8$lambda$3gtbUfC6wnjRm8ZleoIGK_ytoQ((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
             }
         });
         SerializedData serializedData = new SerializedData();
@@ -1480,7 +1484,7 @@ public class SharedConfig {
         serializedData.cleanup();
     }
 
-    public static int lambda$saveProxyList$4(ProxyInfo proxyInfo, ProxyInfo proxyInfo2) {
+    public static int m1037$r8$lambda$3gtbUfC6wnjRm8ZleoIGK_ytoQ(ProxyInfo proxyInfo, ProxyInfo proxyInfo2) {
         ProxyInfo proxyInfo3 = currentProxy;
         long j = proxyInfo3 == proxyInfo ? -200000L : 0L;
         if (!proxyInfo.available) {
@@ -1537,12 +1541,12 @@ public class SharedConfig {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SharedConfig.lambda$checkSaveToGalleryFiles$5();
+                SharedConfig.$r8$lambda$2cAEOLzBgITOqEbt49ggm07xe_c();
             }
         });
     }
 
-    public static void lambda$checkSaveToGalleryFiles$5() {
+    public static void $r8$lambda$2cAEOLzBgITOqEbt49ggm07xe_c() {
         try {
             File file = new File(Environment.getExternalStorageDirectory(), "Telegram");
             File file2 = new File(file, "Telegram Images");

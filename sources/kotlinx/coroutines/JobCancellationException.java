@@ -20,15 +20,14 @@ public final class JobCancellationException extends CancellationException {
     }
 
     public boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof JobCancellationException) {
-                JobCancellationException jobCancellationException = (JobCancellationException) obj;
-                if (!Intrinsics.areEqual(jobCancellationException.getMessage(), getMessage()) || !Intrinsics.areEqual(jobCancellationException.job, this.job) || !Intrinsics.areEqual(jobCancellationException.getCause(), getCause())) {
-                }
-            }
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof JobCancellationException)) {
             return false;
         }
-        return true;
+        JobCancellationException jobCancellationException = (JobCancellationException) obj;
+        return Intrinsics.areEqual(jobCancellationException.getMessage(), getMessage()) && Intrinsics.areEqual(jobCancellationException.job, this.job) && Intrinsics.areEqual(jobCancellationException.getCause(), getCause());
     }
 
     public int hashCode() {

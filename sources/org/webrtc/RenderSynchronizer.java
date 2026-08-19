@@ -38,14 +38,15 @@ public final class RenderSynchronizer {
         handler.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                RenderSynchronizer.$r8$lambda$ypMjvJEck2JfIcOoFbNLKvq1c18(this.f$0);
             }
         });
         Logging.d("RenderSynchronizer", "Created");
     }
 
-    public void lambda$new$0() {
-        this.choreographer = Choreographer.getInstance();
+    public static void $r8$lambda$ypMjvJEck2JfIcOoFbNLKvq1c18(RenderSynchronizer renderSynchronizer) {
+        renderSynchronizer.getClass();
+        renderSynchronizer.choreographer = Choreographer.getInstance();
     }
 
     public RenderSynchronizer() {
@@ -62,7 +63,8 @@ public final class RenderSynchronizer {
                     this.mainThreadHandler.post(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$registerListener$1();
+                            RenderSynchronizer renderSynchronizer = this.f$0;
+                            renderSynchronizer.choreographer.postFrameCallback(new RenderSynchronizer$$ExternalSyntheticLambda2(renderSynchronizer));
                         }
                     });
                 }
@@ -70,10 +72,6 @@ public final class RenderSynchronizer {
                 throw th;
             }
         }
-    }
-
-    public void lambda$registerListener$1() {
-        this.choreographer.postFrameCallback(new RenderSynchronizer$$ExternalSyntheticLambda2(this));
     }
 
     public void removeListener(Listener listener) {

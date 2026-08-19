@@ -189,9 +189,12 @@ public class NetworkMonitor {
         synchronized (this.networkObservers) {
             arrayList = new ArrayList(this.networkObservers);
         }
-        Iterator it2 = arrayList.iterator();
-        while (it2.hasNext()) {
-            ((NetworkObserver) it2.next()).onConnectionTypeChanged(connectionType);
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((NetworkObserver) obj).onConnectionTypeChanged(connectionType);
         }
     }
 

@@ -37,11 +37,11 @@ public final class ArrayDeque extends AbstractMutableList {
     private final void copyElements(int i) {
         Object[] objArr = new Object[i];
         Object[] objArr2 = this.elementData;
-        ArraysKt.copyInto(objArr2, objArr, 0, this.head, objArr2.length);
+        ArraysKt___ArraysJvmKt.copyInto(objArr2, objArr, 0, this.head, objArr2.length);
         Object[] objArr3 = this.elementData;
         int length = objArr3.length;
         int i2 = this.head;
-        ArraysKt.copyInto(objArr3, objArr, length - i2, 0, i2);
+        ArraysKt___ArraysJvmKt.copyInto(objArr3, objArr, length - i2, 0, i2);
         this.head = 0;
         this.elementData = objArr;
     }
@@ -113,7 +113,7 @@ public final class ArrayDeque extends AbstractMutableList {
             throw new NoSuchElementException("ArrayDeque is empty.");
         }
         registerModification();
-        int iPositiveMod = positiveMod(this.head + CollectionsKt.getLastIndex(this));
+        int iPositiveMod = positiveMod(this.head + CollectionsKt__CollectionsKt.getLastIndex(this));
         Object[] objArr = this.elementData;
         Object obj = objArr[iPositiveMod];
         objArr[iPositiveMod] = null;
@@ -148,13 +148,13 @@ public final class ArrayDeque extends AbstractMutableList {
             if (iDecremented >= i2) {
                 Object[] objArr = this.elementData;
                 objArr[iDecremented2] = objArr[i2];
-                ArraysKt.copyInto(objArr, objArr, i2, i2 + 1, iDecremented + 1);
+                ArraysKt___ArraysJvmKt.copyInto(objArr, objArr, i2, i2 + 1, iDecremented + 1);
             } else {
                 Object[] objArr2 = this.elementData;
-                ArraysKt.copyInto(objArr2, objArr2, i2 - 1, i2, objArr2.length);
+                ArraysKt___ArraysJvmKt.copyInto(objArr2, objArr2, i2 - 1, i2, objArr2.length);
                 Object[] objArr3 = this.elementData;
                 objArr3[objArr3.length - 1] = objArr3[0];
-                ArraysKt.copyInto(objArr3, objArr3, 0, 1, iDecremented + 1);
+                ArraysKt___ArraysJvmKt.copyInto(objArr3, objArr3, 0, 1, iDecremented + 1);
             }
             this.elementData[iDecremented] = obj;
             this.head = iDecremented2;
@@ -162,13 +162,13 @@ public final class ArrayDeque extends AbstractMutableList {
             int iPositiveMod2 = positiveMod(this.head + size());
             if (iPositiveMod < iPositiveMod2) {
                 Object[] objArr4 = this.elementData;
-                ArraysKt.copyInto(objArr4, objArr4, iPositiveMod + 1, iPositiveMod, iPositiveMod2);
+                ArraysKt___ArraysJvmKt.copyInto(objArr4, objArr4, iPositiveMod + 1, iPositiveMod, iPositiveMod2);
             } else {
                 Object[] objArr5 = this.elementData;
-                ArraysKt.copyInto(objArr5, objArr5, 1, 0, iPositiveMod2);
+                ArraysKt___ArraysJvmKt.copyInto(objArr5, objArr5, 1, 0, iPositiveMod2);
                 Object[] objArr6 = this.elementData;
                 objArr6[0] = objArr6[objArr6.length - 1];
-                ArraysKt.copyInto(objArr6, objArr6, iPositiveMod + 1, iPositiveMod, objArr6.length - 1);
+                ArraysKt___ArraysJvmKt.copyInto(objArr6, objArr6, iPositiveMod + 1, iPositiveMod, objArr6.length - 1);
             }
             this.elementData[iPositiveMod] = obj;
         }
@@ -221,30 +221,30 @@ public final class ArrayDeque extends AbstractMutableList {
             int length = i2 - size;
             if (iPositiveMod2 < i2) {
                 Object[] objArr = this.elementData;
-                ArraysKt.copyInto(objArr, objArr, length, i2, objArr.length);
+                ArraysKt___ArraysJvmKt.copyInto(objArr, objArr, length, i2, objArr.length);
                 if (size >= iPositiveMod2) {
                     Object[] objArr2 = this.elementData;
-                    ArraysKt.copyInto(objArr2, objArr2, objArr2.length - size, 0, iPositiveMod2);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr2, objArr2, objArr2.length - size, 0, iPositiveMod2);
                 } else {
                     Object[] objArr3 = this.elementData;
-                    ArraysKt.copyInto(objArr3, objArr3, objArr3.length - size, 0, size);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr3, objArr3, objArr3.length - size, 0, size);
                     Object[] objArr4 = this.elementData;
-                    ArraysKt.copyInto(objArr4, objArr4, 0, size, iPositiveMod2);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr4, objArr4, 0, size, iPositiveMod2);
                 }
             } else if (length >= 0) {
                 Object[] objArr5 = this.elementData;
-                ArraysKt.copyInto(objArr5, objArr5, length, i2, iPositiveMod2);
+                ArraysKt___ArraysJvmKt.copyInto(objArr5, objArr5, length, i2, iPositiveMod2);
             } else {
                 Object[] objArr6 = this.elementData;
                 length += objArr6.length;
                 int i3 = iPositiveMod2 - i2;
                 int length2 = objArr6.length - length;
                 if (length2 >= i3) {
-                    ArraysKt.copyInto(objArr6, objArr6, length, i2, iPositiveMod2);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr6, objArr6, length, i2, iPositiveMod2);
                 } else {
-                    ArraysKt.copyInto(objArr6, objArr6, length, i2, i2 + length2);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr6, objArr6, length, i2, i2 + length2);
                     Object[] objArr7 = this.elementData;
-                    ArraysKt.copyInto(objArr7, objArr7, 0, this.head + length2, iPositiveMod2);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr7, objArr7, 0, this.head + length2, iPositiveMod2);
                 }
             }
             this.head = length;
@@ -255,25 +255,25 @@ public final class ArrayDeque extends AbstractMutableList {
                 int i5 = size + iPositiveMod;
                 Object[] objArr8 = this.elementData;
                 if (i5 <= objArr8.length) {
-                    ArraysKt.copyInto(objArr8, objArr8, i4, iPositiveMod2, iPositiveMod);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr8, objArr8, i4, iPositiveMod2, iPositiveMod);
                 } else if (i4 >= objArr8.length) {
-                    ArraysKt.copyInto(objArr8, objArr8, i4 - objArr8.length, iPositiveMod2, iPositiveMod);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr8, objArr8, i4 - objArr8.length, iPositiveMod2, iPositiveMod);
                 } else {
                     int length3 = iPositiveMod - (i5 - objArr8.length);
-                    ArraysKt.copyInto(objArr8, objArr8, 0, length3, iPositiveMod);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr8, objArr8, 0, length3, iPositiveMod);
                     Object[] objArr9 = this.elementData;
-                    ArraysKt.copyInto(objArr9, objArr9, i4, iPositiveMod2, length3);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr9, objArr9, i4, iPositiveMod2, length3);
                 }
             } else {
                 Object[] objArr10 = this.elementData;
-                ArraysKt.copyInto(objArr10, objArr10, size, 0, iPositiveMod);
+                ArraysKt___ArraysJvmKt.copyInto(objArr10, objArr10, size, 0, iPositiveMod);
                 Object[] objArr11 = this.elementData;
                 if (i4 >= objArr11.length) {
-                    ArraysKt.copyInto(objArr11, objArr11, i4 - objArr11.length, iPositiveMod2, objArr11.length);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr11, objArr11, i4 - objArr11.length, iPositiveMod2, objArr11.length);
                 } else {
-                    ArraysKt.copyInto(objArr11, objArr11, 0, objArr11.length - size, objArr11.length);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr11, objArr11, 0, objArr11.length - size, objArr11.length);
                     Object[] objArr12 = this.elementData;
-                    ArraysKt.copyInto(objArr12, objArr12, i4, iPositiveMod2, objArr12.length - size);
+                    ArraysKt___ArraysJvmKt.copyInto(objArr12, objArr12, i4, iPositiveMod2, objArr12.length - size);
                 }
             }
             copyCollectionElements(iPositiveMod2, elements);
@@ -393,7 +393,7 @@ public final class ArrayDeque extends AbstractMutableList {
     @Override
     public Object removeAt(int i) {
         AbstractList.Companion.checkElementIndex$kotlin_stdlib(i, size());
-        if (i == CollectionsKt.getLastIndex(this)) {
+        if (i == CollectionsKt__CollectionsKt.getLastIndex(this)) {
             return removeLast();
         }
         if (i == 0) {
@@ -406,30 +406,30 @@ public final class ArrayDeque extends AbstractMutableList {
             int i2 = this.head;
             if (iPositiveMod >= i2) {
                 Object[] objArr = this.elementData;
-                ArraysKt.copyInto(objArr, objArr, i2 + 1, i2, iPositiveMod);
+                ArraysKt___ArraysJvmKt.copyInto(objArr, objArr, i2 + 1, i2, iPositiveMod);
             } else {
                 Object[] objArr2 = this.elementData;
-                ArraysKt.copyInto(objArr2, objArr2, 1, 0, iPositiveMod);
+                ArraysKt___ArraysJvmKt.copyInto(objArr2, objArr2, 1, 0, iPositiveMod);
                 Object[] objArr3 = this.elementData;
                 objArr3[0] = objArr3[objArr3.length - 1];
                 int i3 = this.head;
-                ArraysKt.copyInto(objArr3, objArr3, i3 + 1, i3, objArr3.length - 1);
+                ArraysKt___ArraysJvmKt.copyInto(objArr3, objArr3, i3 + 1, i3, objArr3.length - 1);
             }
             Object[] objArr4 = this.elementData;
             int i4 = this.head;
             objArr4[i4] = null;
             this.head = incremented(i4);
         } else {
-            int iPositiveMod2 = positiveMod(this.head + CollectionsKt.getLastIndex(this));
+            int iPositiveMod2 = positiveMod(this.head + CollectionsKt__CollectionsKt.getLastIndex(this));
             if (iPositiveMod <= iPositiveMod2) {
                 Object[] objArr5 = this.elementData;
-                ArraysKt.copyInto(objArr5, objArr5, iPositiveMod, iPositiveMod + 1, iPositiveMod2 + 1);
+                ArraysKt___ArraysJvmKt.copyInto(objArr5, objArr5, iPositiveMod, iPositiveMod + 1, iPositiveMod2 + 1);
             } else {
                 Object[] objArr6 = this.elementData;
-                ArraysKt.copyInto(objArr6, objArr6, iPositiveMod, iPositiveMod + 1, objArr6.length);
+                ArraysKt___ArraysJvmKt.copyInto(objArr6, objArr6, iPositiveMod, iPositiveMod + 1, objArr6.length);
                 Object[] objArr7 = this.elementData;
                 objArr7[objArr7.length - 1] = objArr7[0];
-                ArraysKt.copyInto(objArr7, objArr7, 0, 1, iPositiveMod2 + 1);
+                ArraysKt___ArraysJvmKt.copyInto(objArr7, objArr7, 0, 1, iPositiveMod2 + 1);
             }
             this.elementData[iPositiveMod2] = null;
         }
@@ -575,17 +575,18 @@ public final class ArrayDeque extends AbstractMutableList {
         if (array.length < size()) {
             array = ArraysKt__ArraysJVMKt.arrayOfNulls(array, size());
         }
+        Object[] objArr = array;
         int iPositiveMod = positiveMod(this.head + size());
         int i = this.head;
         if (i < iPositiveMod) {
-            ArraysKt.copyInto$default(this.elementData, array, 0, i, iPositiveMod, 2, (Object) null);
+            ArraysKt___ArraysJvmKt.copyInto$default(this.elementData, objArr, 0, i, iPositiveMod, 2, (Object) null);
         } else if (!isEmpty()) {
-            Object[] objArr = this.elementData;
-            ArraysKt.copyInto(objArr, array, 0, this.head, objArr.length);
             Object[] objArr2 = this.elementData;
-            ArraysKt.copyInto(objArr2, array, objArr2.length - this.head, 0, iPositiveMod);
+            ArraysKt___ArraysJvmKt.copyInto(objArr2, objArr, 0, this.head, objArr2.length);
+            Object[] objArr3 = this.elementData;
+            ArraysKt___ArraysJvmKt.copyInto(objArr3, objArr, objArr3.length - this.head, 0, iPositiveMod);
         }
-        return CollectionsKt__CollectionsJVMKt.terminateCollectionToArray(size(), array);
+        return CollectionsKt__CollectionsJVMKt.terminateCollectionToArray(size(), objArr);
     }
 
     @Override
@@ -631,7 +632,7 @@ public final class ArrayDeque extends AbstractMutableList {
             Object[] objArr = this.elementData;
             int i4 = iPositiveMod2 - iMin;
             int i5 = iPositiveMod - iMin;
-            ArraysKt.copyInto(objArr, objArr, i4 + 1, i5 + 1, i3);
+            ArraysKt___ArraysJvmKt.copyInto(objArr, objArr, i4 + 1, i5 + 1, i3);
             iPositiveMod = negativeMod(i5);
             iPositiveMod2 = negativeMod(i4);
             i -= iMin;
@@ -651,7 +652,7 @@ public final class ArrayDeque extends AbstractMutableList {
             i2 = Math.min(size, Math.min(objArr.length - iPositiveMod, objArr.length - iPositiveMod2));
             Object[] objArr2 = this.elementData;
             int i3 = iPositiveMod + i2;
-            ArraysKt.copyInto(objArr2, objArr2, iPositiveMod2, iPositiveMod, i3);
+            ArraysKt___ArraysJvmKt.copyInto(objArr2, objArr2, iPositiveMod2, iPositiveMod, i3);
             iPositiveMod = positiveMod(i3);
             iPositiveMod2 = positiveMod(iPositiveMod2 + i2);
         }

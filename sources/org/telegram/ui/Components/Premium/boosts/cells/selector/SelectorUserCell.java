@@ -137,7 +137,7 @@ public class SelectorUserCell extends BaseCell {
             this.audioView.animate().alpha((z && this.hasAudioView) ? 1.0f : 0.0f).withEndAction((z && this.hasAudioView) ? null : new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setCallButtonsVisible$0();
+                    this.f$0.audioView.setVisibility(8);
                 }
             }).start();
             this.videoView.setVisibility(0);
@@ -148,7 +148,7 @@ public class SelectorUserCell extends BaseCell {
             viewPropertyAnimatorAnimate.alpha(f).withEndAction((z && this.hasVideoView) ? null : new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setCallButtonsVisible$1();
+                    this.f$0.videoView.setVisibility(8);
                 }
             }).start();
             return;
@@ -163,14 +163,6 @@ public class SelectorUserCell extends BaseCell {
         }
         imageView.setAlpha(f);
         this.videoView.setVisibility((z && this.hasVideoView) ? 0 : 8);
-    }
-
-    public void lambda$setCallButtonsVisible$0() {
-        this.audioView.setVisibility(8);
-    }
-
-    public void lambda$setCallButtonsVisible$1() {
-        this.videoView.setVisibility(8);
     }
 
     @Override

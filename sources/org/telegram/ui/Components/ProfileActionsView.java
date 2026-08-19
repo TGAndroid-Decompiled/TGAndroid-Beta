@@ -211,9 +211,10 @@ public class ProfileActionsView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float f = this.clipHeight;
-        if (f >= 0.0f) {
-            float y = f - getY();
+        float f;
+        float f2 = this.clipHeight;
+        if (f2 >= 0.0f) {
+            float y = f2 - getY();
             if (y <= 0.0f) {
                 return;
             } else {
@@ -224,9 +225,9 @@ public class ProfileActionsView extends View {
         if (fMax <= 0.0f) {
             return;
         }
-        float f2 = this.xpadding / 2.0f;
+        float f3 = this.xpadding / 2.0f;
         float itemWidth = getItemWidth();
-        float f3 = this.xpadding;
+        float f4 = this.xpadding;
         float roundRadius = getRoundRadius();
         if (this.renderNode != null) {
             this.clipPath.rewind();
@@ -237,11 +238,14 @@ public class ProfileActionsView extends View {
         for (int i = 0; i < size; i++) {
             Action action3 = (Action) this.actions.get(i);
             if (!action3.isDeleted) {
-                if (!action3.isDeleting) {
+                if (action3.isDeleting) {
+                    f = 1.0f;
+                } else {
                     RectF rectF = action3.rect;
-                    float f4 = this.top;
-                    rectF.set(f3, f4, f3 + itemWidth, f4 + fMax);
-                    f3 += itemWidth + f2;
+                    float f5 = this.top;
+                    f = 1.0f;
+                    rectF.set(f4, f5, f4 + itemWidth, f5 + fMax);
+                    f4 += itemWidth + f3;
                     if (action == null) {
                         action = action3;
                     }
@@ -251,7 +255,7 @@ public class ProfileActionsView extends View {
                 if (this.renderNode != null) {
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     rectF2.set(action3.rect);
-                    rectF2.inset((action3.rect.width() / 2.0f) * (1.0f - action3.getScale()), (action3.rect.height() / 2.0f) * (1.0f - action3.getScale()));
+                    rectF2.inset((action3.rect.width() / 2.0f) * (f - action3.getScale()), (action3.rect.height() / 2.0f) * (f - action3.getScale()));
                     rectF2.inset(-1.0f, -1.0f);
                     this.clipPath.addRoundRect(rectF2, roundRadius, roundRadius, Path.Direction.CCW);
                 }
@@ -315,7 +319,7 @@ public class ProfileActionsView extends View {
             float width = view.getWidth() * view.getScaleX();
             float height = view.getHeight() * view.getScaleY();
             this.clipAvatarPath.rewind();
-            this.clipAvatarPath.addRoundRect(x, y, x + width, y + height, this.avatarView.getRoundRadiusForExpand() * view.getScaleX(), view.getScaleY() * this.avatarView.getRoundRadiusForExpand(), Path.Direction.CCW);
+            this.clipAvatarPath.addRoundRect(x, y, width + x, height + y, this.avatarView.getRoundRadiusForExpand() * view.getScaleX(), this.avatarView.getRoundRadiusForExpand() * view.getScaleY(), Path.Direction.CCW);
             canvas.clipPath(this.clipAvatarPath);
         }
         canvas.clipPath(this.clipPath);
@@ -513,7 +517,7 @@ public class ProfileActionsView extends View {
                         postDelayed(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$onTouchEvent$0(action6);
+                                ProfileActionsView.$r8$lambda$fnQfrFXs63VbZX5m9NgmMkzox6s(this.f$0, action6);
                             }
                         }, action6.callDelay);
                     }
@@ -525,8 +529,8 @@ public class ProfileActionsView extends View {
         return this.hit != null;
     }
 
-    public void lambda$onTouchEvent$0(Action action) {
-        OnActionClickListener onActionClickListener = this.onActionClickListener;
+    public static void $r8$lambda$fnQfrFXs63VbZX5m9NgmMkzox6s(ProfileActionsView profileActionsView, Action action) {
+        OnActionClickListener onActionClickListener = profileActionsView.onActionClickListener;
         int i = action.key;
         RectF rectF = action.rect;
         onActionClickListener.onClick(i, rectF.left, rectF.top);
@@ -706,31 +710,31 @@ public class ProfileActionsView extends View {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$applyVisibleActions$1(arrayList);
+                ProfileActionsView.m2667$r8$lambda$OjjXUNTuSBpvk6MSXxCJw5b3FU(this.f$0, arrayList);
             }
         });
     }
 
-    public void lambda$applyVisibleActions$1(List list) {
-        int i = this.activeCount;
+    public static void m2667$r8$lambda$OjjXUNTuSBpvk6MSXxCJw5b3FU(ProfileActionsView profileActionsView, List list) {
+        int i = profileActionsView.activeCount;
         int size = list.size();
-        this.activeCount = size;
-        if (i != size && this.radialGradient != null) {
-            createColorShader();
+        profileActionsView.activeCount = size;
+        if (i != size && profileActionsView.radialGradient != null) {
+            profileActionsView.createColorShader();
         }
-        int size2 = this.actions.size();
+        int size2 = profileActionsView.actions.size();
         for (int i2 = 0; i2 < size2; i2++) {
-            Action action = (Action) this.actions.get(i2);
+            Action action = (Action) profileActionsView.actions.get(i2);
             if (action.isDeleting && !action.isDeleted) {
                 list.add(action);
-            } else if (find(list, action.key) == null) {
+            } else if (profileActionsView.find(list, action.key) == null) {
                 action.delete();
                 list.add(action);
             }
         }
-        this.actions.clear();
-        this.actions.addAll(list);
-        invalidate();
+        profileActionsView.actions.clear();
+        profileActionsView.actions.addAll(list);
+        profileActionsView.invalidate();
     }
 
     private void insertIfAvailable(List list, int i) {

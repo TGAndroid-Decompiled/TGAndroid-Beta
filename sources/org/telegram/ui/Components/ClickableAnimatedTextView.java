@@ -91,7 +91,9 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
                 this.backgroundDrawable.setState(new int[]{16842919, 16842910});
             }
             invalidate();
-        } else if (motionEvent.getAction() == 1) {
+            return zContains;
+        }
+        if (motionEvent.getAction() == 1) {
             if (this.pressed && zContains) {
                 callOnClick();
             }
@@ -99,6 +101,7 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
             Drawable drawable2 = this.backgroundDrawable;
             if (drawable2 != null) {
                 drawable2.setState(StateSet.NOTHING);
+                return zContains;
             }
         } else if (motionEvent.getAction() == 3) {
             this.pressed = false;

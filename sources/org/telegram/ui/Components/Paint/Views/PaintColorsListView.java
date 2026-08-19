@@ -68,14 +68,14 @@ public abstract class PaintColorsListView extends RecyclerListView {
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$new$0(view, i);
+                PaintColorsListView.$r8$lambda$GgggSRcoxMrnPF6gvY4gb8SaR7I(this.f$0, view, i);
             }
         });
     }
 
-    public void lambda$new$0(View view, int i) {
-        this.colorListener.accept(Integer.valueOf(this.colorPalette.getColor(i)));
-        this.colorPalette.setCurrentBrushColorByColorIndex(i);
+    public static void $r8$lambda$GgggSRcoxMrnPF6gvY4gb8SaR7I(PaintColorsListView paintColorsListView, View view, int i) {
+        paintColorsListView.colorListener.accept(Integer.valueOf(paintColorsListView.colorPalette.getColor(i)));
+        paintColorsListView.colorPalette.setCurrentBrushColorByColorIndex(i);
     }
 
     public static void drawCheckerboard(Canvas canvas, RectF rectF, int i) {
@@ -86,15 +86,20 @@ public abstract class PaintColorsListView extends RecyclerListView {
                 float f3 = i;
                 float f4 = f + f3;
                 float f5 = f2 + f3;
-                canvas.drawRect(f, f2, f4, f5, checkerboardPaint);
+                Canvas canvas2 = canvas;
+                canvas2.drawRect(f, f2, f4, f5, checkerboardPaint);
                 float f6 = i * 2;
                 float f7 = f + f6;
-                canvas.drawRect(f4, f2, f7, f5, checkerboardPaintWhite);
-                f2 += f6;
-                canvas.drawRect(f4, f5, f7, f2, checkerboardPaint);
-                canvas.drawRect(f, f5, f4, f2, checkerboardPaintWhite);
+                float f8 = f2;
+                canvas2.drawRect(f4, f8, f7, f5, checkerboardPaintWhite);
+                float f9 = f8 + f6;
+                canvas2.drawRect(f4, f5, f7, f9, checkerboardPaint);
+                canvas2.drawRect(f, f5, f4, f9, checkerboardPaintWhite);
+                canvas = canvas2;
+                f2 = f9;
             }
             f += i * 2;
+            canvas = canvas;
         }
     }
 

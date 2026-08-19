@@ -106,7 +106,7 @@ public class RecyclerItemsEnterAnimator {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$onPreDraw$0(childAdapterPosition, valueAnimator);
+                            RecyclerItemsEnterAnimator.AnonymousClass2.$r8$lambda$g2GB4Jel2oVNqnYddJpDMzOEvxE(this.f$0, childAdapterPosition, valueAnimator);
                         }
                     });
                     valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -141,7 +141,8 @@ public class RecyclerItemsEnterAnimator {
             return false;
         }
 
-        public void lambda$onPreDraw$0(int i, ValueAnimator valueAnimator) {
+        public static void $r8$lambda$g2GB4Jel2oVNqnYddJpDMzOEvxE(AnonymousClass2 anonymousClass2, int i, ValueAnimator valueAnimator) {
+            anonymousClass2.getClass();
             RecyclerItemsEnterAnimator.this.listAlphaItems.put(i, (Float) valueAnimator.getAnimatedValue());
             RecyclerItemsEnterAnimator recyclerItemsEnterAnimator = RecyclerItemsEnterAnimator.this;
             recyclerItemsEnterAnimator.invalidateAlpha = true;

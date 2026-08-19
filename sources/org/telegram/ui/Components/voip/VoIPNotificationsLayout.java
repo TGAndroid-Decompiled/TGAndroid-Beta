@@ -123,14 +123,14 @@ public class VoIPNotificationsLayout extends LinearLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$lock$0();
+                VoIPNotificationsLayout.$r8$lambda$K3bAGjGz_7hB2Zs1XgSqVXMNDcc(this.f$0);
             }
         }, 700L);
     }
 
-    public void lambda$lock$0() {
-        this.lockAnimation = false;
-        runDelayed();
+    public static void $r8$lambda$K3bAGjGz_7hB2Zs1XgSqVXMNDcc(VoIPNotificationsLayout voIPNotificationsLayout) {
+        voIPNotificationsLayout.lockAnimation = false;
+        voIPNotificationsLayout.runDelayed();
     }
 
     private void runDelayed() {
@@ -222,11 +222,10 @@ public class VoIPNotificationsLayout extends LinearLayout {
             int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
             StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(charSequence, this.textView.getPaint(), iDp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, iDp, 10);
             if (staticLayoutCreateStaticLayout != null) {
-                int iMax = 0;
+                iDp = 0;
                 for (int i = 0; i < staticLayoutCreateStaticLayout.getLineCount(); i++) {
-                    iMax = (int) Math.max(iMax, Math.ceil(staticLayoutCreateStaticLayout.getLineWidth(i)));
+                    iDp = (int) Math.max(iDp, Math.ceil(staticLayoutCreateStaticLayout.getLineWidth(i)));
                 }
-                iDp = iMax;
             }
             this.textView.setMaxWidth(iDp);
             this.textView.setText(charSequence);

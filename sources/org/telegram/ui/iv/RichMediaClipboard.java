@@ -37,10 +37,16 @@ public abstract class RichMediaClipboard {
     }
 
     public static synchronized TLRPC.Photo photo(long j) {
-        return j == 0 ? null : (TLRPC.Photo) photos.get(Long.valueOf(j));
+        if (j == 0) {
+            return null;
+        }
+        return (TLRPC.Photo) photos.get(Long.valueOf(j));
     }
 
     public static synchronized TLRPC.Document document(long j) {
-        return j == 0 ? null : (TLRPC.Document) documents.get(Long.valueOf(j));
+        if (j == 0) {
+            return null;
+        }
+        return (TLRPC.Document) documents.get(Long.valueOf(j));
     }
 }

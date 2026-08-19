@@ -31,22 +31,19 @@ public abstract class FoundEmojiPacksRecyclerView extends UniversalRecyclerView 
             AndroidUtilities.doOnLayout(this, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$scrollOnSelect$1(view, i);
+                    FoundEmojiPacksRecyclerView.$r8$lambda$iotaPCQNFp90pxMy9oK18jci40Q(this.f$0, view, i);
                 }
             });
         }
     }
 
-    public void lambda$scrollOnSelect$1(View view, final int i) {
+    public static void $r8$lambda$iotaPCQNFp90pxMy9oK18jci40Q(final FoundEmojiPacksRecyclerView foundEmojiPacksRecyclerView, View view, final int i) {
+        foundEmojiPacksRecyclerView.getClass();
         view.postOnAnimation(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$scrollOnSelect$0(i);
+                this.f$0.smoothScrollBy(i, 0);
             }
         });
-    }
-
-    public void lambda$scrollOnSelect$0(int i) {
-        smoothScrollBy(i, 0);
     }
 }

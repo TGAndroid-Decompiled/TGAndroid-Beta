@@ -70,7 +70,7 @@ public class ChatbotSheet extends BottomSheetWithRecyclerListView {
         BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(context, this.currentAccount, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                ChatbotSheet.$r8$lambda$X8HbbM2ERueK6X_uCMaayVCiHsM(this.f$0);
             }
         }, resourcesProvider);
         this.recipientsHelper = businessRecipientsHelper;
@@ -126,7 +126,7 @@ public class ChatbotSheet extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                this.f$0.lambda$new$1(view, i3);
+                ChatbotSheet.$r8$lambda$93_1LwG8br9kIVc_vVWUwmW30n0(this.f$0, view, i3);
             }
         });
         FrameLayout frameLayout = new FrameLayout(context);
@@ -140,7 +140,7 @@ public class ChatbotSheet extends BottomSheetWithRecyclerListView {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$4(tL_connectedBot, runnable, view);
+                ChatbotSheet.$r8$lambda$ymE1wdeRIeDYxTWR7DrwdiUS7EU(this.f$0, tL_connectedBot, runnable, view);
             }
         });
         frameLayout.addView(round, LayoutHelper.createFrame(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -150,7 +150,7 @@ public class ChatbotSheet extends BottomSheetWithRecyclerListView {
         round2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$7(tL_connectedBot, view);
+                ChatbotSheet.$r8$lambda$8qdYRwTklFahDPJwZSjzIRzJE6M(this.f$0, tL_connectedBot, view);
             }
         });
         frameLayout.addView(round2, LayoutHelper.createFrame(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -173,89 +173,91 @@ public class ChatbotSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$new$0() {
-        UniversalAdapter universalAdapter = this.adapter;
+    public static void $r8$lambda$X8HbbM2ERueK6X_uCMaayVCiHsM(ChatbotSheet chatbotSheet) {
+        UniversalAdapter universalAdapter = chatbotSheet.adapter;
         if (universalAdapter != null) {
             universalAdapter.update(true);
         }
-        checkDone(true);
+        chatbotSheet.checkDone(true);
     }
 
-    public void lambda$new$1(View view, int i) {
-        UItem item = this.adapter.getItem(i - 1);
+    public static void $r8$lambda$93_1LwG8br9kIVc_vVWUwmW30n0(ChatbotSheet chatbotSheet, View view, int i) {
+        UItem item = chatbotSheet.adapter.getItem(i - 1);
         if (item == null) {
             return;
         }
-        onItemClick(item, view, i);
+        chatbotSheet.onItemClick(item, view, i);
     }
 
-    public void lambda$new$4(TL_account.TL_connectedBot tL_connectedBot, final Runnable runnable, View view) {
-        if (this.terminateButton.isLoading()) {
+    public static void $r8$lambda$ymE1wdeRIeDYxTWR7DrwdiUS7EU(final ChatbotSheet chatbotSheet, TL_account.TL_connectedBot tL_connectedBot, final Runnable runnable, View view) {
+        if (chatbotSheet.terminateButton.isLoading()) {
             return;
         }
-        this.terminateButton.setLoading(true);
+        chatbotSheet.terminateButton.setLoading(true);
         TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
         updateconnectedbot.deleted = true;
-        updateconnectedbot.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tL_connectedBot.bot_id);
+        updateconnectedbot.bot = MessagesController.getInstance(chatbotSheet.currentAccount).getInputUser(tL_connectedBot.bot_id);
         updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateconnectedbot, new RequestDelegate() {
+        ConnectionsManager.getInstance(chatbotSheet.currentAccount).sendRequest(updateconnectedbot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$new$3(runnable, tLObject, tL_error);
+                ChatbotSheet.$r8$lambda$ZY1nFBsG2i554ecaNrKnNd6UIaI(this.f$0, runnable, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$3(final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$ZY1nFBsG2i554ecaNrKnNd6UIaI(final ChatbotSheet chatbotSheet, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+        chatbotSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$2(runnable);
+                ChatbotSheet.m1374$r8$lambda$tOpa5os6ICPtjTHyn2lyJelbUw(this.f$0, runnable);
             }
         });
     }
 
-    public void lambda$new$2(Runnable runnable) {
-        BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
+    public static void m1374$r8$lambda$tOpa5os6ICPtjTHyn2lyJelbUw(ChatbotSheet chatbotSheet, Runnable runnable) {
+        BusinessChatbotController.getInstance(chatbotSheet.currentAccount).invalidate(true);
         if (runnable != null) {
             runnable.run();
         }
-        lambda$new$0();
+        chatbotSheet.dismiss();
     }
 
-    public void lambda$new$7(final TL_account.TL_connectedBot tL_connectedBot, View view) {
-        if (this.updateButton.isLoading()) {
+    public static void $r8$lambda$8qdYRwTklFahDPJwZSjzIRzJE6M(final ChatbotSheet chatbotSheet, final TL_account.TL_connectedBot tL_connectedBot, View view) {
+        if (chatbotSheet.updateButton.isLoading()) {
             return;
         }
-        this.updateButton.setLoading(true);
+        chatbotSheet.updateButton.setLoading(true);
         TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
-        updateconnectedbot.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tL_connectedBot.bot_id);
-        updateconnectedbot.recipients = this.recipientsHelper.getBotInputValue();
-        final TL_account.TL_businessBotRecipients botValue = this.recipientsHelper.getBotValue();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateconnectedbot, new RequestDelegate() {
+        updateconnectedbot.bot = MessagesController.getInstance(chatbotSheet.currentAccount).getInputUser(tL_connectedBot.bot_id);
+        updateconnectedbot.recipients = chatbotSheet.recipientsHelper.getBotInputValue();
+        final TL_account.TL_businessBotRecipients botValue = chatbotSheet.recipientsHelper.getBotValue();
+        ConnectionsManager.getInstance(chatbotSheet.currentAccount).sendRequest(updateconnectedbot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$new$6(tL_connectedBot, botValue, tLObject, tL_error);
+                ChatbotSheet.$r8$lambda$9Ak_XkKXOK5wSJSfzNaVg4ET1vE(this.f$0, tL_connectedBot, botValue, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$6(final TL_account.TL_connectedBot tL_connectedBot, final TL_account.TL_businessBotRecipients tL_businessBotRecipients, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$9Ak_XkKXOK5wSJSfzNaVg4ET1vE(final ChatbotSheet chatbotSheet, final TL_account.TL_connectedBot tL_connectedBot, final TL_account.TL_businessBotRecipients tL_businessBotRecipients, TLObject tLObject, TLRPC.TL_error tL_error) {
+        chatbotSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$5(tL_connectedBot, tL_businessBotRecipients);
+                ChatbotSheet.$r8$lambda$4R05EBMhvWdNscTFtGh96lZUPKk(this.f$0, tL_connectedBot, tL_businessBotRecipients);
             }
         });
     }
 
-    public void lambda$new$5(TL_account.TL_connectedBot tL_connectedBot, TL_account.TL_businessBotRecipients tL_businessBotRecipients) {
-        BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
-        lambda$new$0();
+    public static void $r8$lambda$4R05EBMhvWdNscTFtGh96lZUPKk(ChatbotSheet chatbotSheet, TL_account.TL_connectedBot tL_connectedBot, TL_account.TL_businessBotRecipients tL_businessBotRecipients) {
+        BusinessChatbotController.getInstance(chatbotSheet.currentAccount).invalidate(true);
+        chatbotSheet.dismiss();
         tL_connectedBot.recipients = tL_businessBotRecipients;
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
-            BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.BusinessBotUpdated, UserObject.getUserName(this.user))).show();
+            BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.BusinessBotUpdated, UserObject.getUserName(chatbotSheet.user))).show();
         }
     }
 
@@ -377,29 +379,32 @@ public class ChatbotSheet extends BottomSheetWithRecyclerListView {
             duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$checkDone$8(z2);
+                    ChatbotSheet.m1373$r8$lambda$pY7JrmUyXtZFhutEWnyRwmSM8k(this.f$0, z2);
                 }
             }).start();
             this.terminateButton.setVisibility(0);
             this.terminateButton.animate().alpha(z2 ? 0.0f : 1.0f).scaleX(!z2 ? 1.0f : 0.8f).scaleY(z2 ? 0.8f : 1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$checkDone$9(z2);
+                    ChatbotSheet.$r8$lambda$VjPssJ6kx6M7Fs8WuqBlPT7nVH0(this.f$0, z2);
                 }
             }).start();
         }
     }
 
-    public void lambda$checkDone$8(boolean z) {
+    public static void m1373$r8$lambda$pY7JrmUyXtZFhutEWnyRwmSM8k(ChatbotSheet chatbotSheet, boolean z) {
         if (z) {
-            return;
+            chatbotSheet.getClass();
+        } else {
+            chatbotSheet.updateButton.setVisibility(8);
         }
-        this.updateButton.setVisibility(8);
     }
 
-    public void lambda$checkDone$9(boolean z) {
+    public static void $r8$lambda$VjPssJ6kx6M7Fs8WuqBlPT7nVH0(ChatbotSheet chatbotSheet, boolean z) {
         if (z) {
-            this.terminateButton.setVisibility(8);
+            chatbotSheet.terminateButton.setVisibility(8);
+        } else {
+            chatbotSheet.getClass();
         }
     }
 }

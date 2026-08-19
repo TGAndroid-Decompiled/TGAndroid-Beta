@@ -43,7 +43,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
 
     public ChatSelectionReactionMenuOverlay(ChatActivity chatActivity, Context context) {
         super(context);
-        this.selectedMessages = Collections.emptyList();
+        this.selectedMessages = Collections.EMPTY_LIST;
         this.mPadding = 22;
         this.mSidePadding = 24;
         this.pos = new int[2];
@@ -152,16 +152,16 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onReactionClicked$0();
+                    ChatSelectionReactionMenuOverlay.AnonymousClass3.$r8$lambda$1aaIFgFwJZUtJDRzXlEPDb4bPOk(this.f$0);
                 }
             });
         }
 
-        public void lambda$onReactionClicked$0() {
+        public static void $r8$lambda$1aaIFgFwJZUtJDRzXlEPDb4bPOk(AnonymousClass3 anonymousClass3) {
             if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
                 ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout.dismissParent(true);
             }
-            hideMenu();
+            anonymousClass3.hideMenu();
         }
 
         public void hideMenu() {
@@ -408,12 +408,17 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         if (!this.isVisible || this.selectedMessages.isEmpty()) {
             return null;
         }
+        int i = 0;
         MessageObject messageObject = (MessageObject) this.selectedMessages.get(0);
         if (messageObject.getGroupId() != 0 && (group = this.parentFragment.getGroup(messageObject.getGroupId())) != null && (arrayList = group.messages) != null) {
-            for (MessageObject messageObject2 : arrayList) {
-                TLRPC.Message message = messageObject2.messageOwner;
+            int size = arrayList.size();
+            while (i < size) {
+                MessageObject messageObject2 = arrayList.get(i);
+                i++;
+                MessageObject messageObject3 = messageObject2;
+                TLRPC.Message message = messageObject3.messageOwner;
                 if (message != null && (tL_messageReactions = message.reactions) != null && (arrayList2 = tL_messageReactions.results) != null && !arrayList2.isEmpty()) {
-                    return messageObject2;
+                    return messageObject3;
                 }
             }
         }
@@ -425,15 +430,18 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         if (messageObject != null && (message = messageObject.messageOwner) != null && message.rich_message != null) {
             return true;
         }
-        if (messageObject != null && !messageObject.needDrawBluredPreview()) {
-            if (MessageObject.isPhoto(messageObject.messageOwner) && MessageObject.getMedia(messageObject.messageOwner).webpage == null) {
-                return true;
+        if (messageObject == null || messageObject.needDrawBluredPreview()) {
+            return false;
+        }
+        if (!MessageObject.isPhoto(messageObject.messageOwner) || MessageObject.getMedia(messageObject.messageOwner).webpage != null) {
+            if (messageObject.getDocument() == null) {
+                return false;
             }
-            if (messageObject.getDocument() != null && (MessageObject.isVideoDocument(messageObject.getDocument()) || MessageObject.isGifDocument(messageObject.getDocument()))) {
-                return true;
+            if (!MessageObject.isVideoDocument(messageObject.getDocument()) && !MessageObject.isGifDocument(messageObject.getDocument())) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public void setSelectedMessages(List<MessageObject> list) {
@@ -470,7 +478,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$animateVisible$0();
+                    ChatSelectionReactionMenuOverlay.$r8$lambda$kvxyFdpcWXB1AajBkfv1DAe5TB0(this.f$0);
                 }
             });
             return;
@@ -480,7 +488,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$animateVisible$1(valueAnimator);
+                ChatSelectionReactionMenuOverlay.$r8$lambda$VkVnq92AEJDF5pnLtB5uWVoy3HY(this.f$0, valueAnimator);
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
@@ -498,23 +506,24 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         duration.start();
     }
 
-    public void lambda$animateVisible$0() {
-        this.currentPrimaryObject = findPrimaryObject();
-        checkCreateReactionsLayout();
-        invalidatePosition(false);
-        if (this.reactionsContainerLayout.isEnabled()) {
-            this.messageSet = true;
-            this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, this.parentFragment.getCurrentChatInfo(), true);
-            this.reactionsContainerLayout.startEnterAnimation(false);
+    public static void $r8$lambda$kvxyFdpcWXB1AajBkfv1DAe5TB0(ChatSelectionReactionMenuOverlay chatSelectionReactionMenuOverlay) {
+        chatSelectionReactionMenuOverlay.currentPrimaryObject = chatSelectionReactionMenuOverlay.findPrimaryObject();
+        chatSelectionReactionMenuOverlay.checkCreateReactionsLayout();
+        chatSelectionReactionMenuOverlay.invalidatePosition(false);
+        if (chatSelectionReactionMenuOverlay.reactionsContainerLayout.isEnabled()) {
+            chatSelectionReactionMenuOverlay.messageSet = true;
+            chatSelectionReactionMenuOverlay.reactionsContainerLayout.setMessage(chatSelectionReactionMenuOverlay.currentPrimaryObject, chatSelectionReactionMenuOverlay.parentFragment.getCurrentChatInfo(), true);
+            chatSelectionReactionMenuOverlay.reactionsContainerLayout.startEnterAnimation(false);
         } else {
-            this.messageSet = false;
-            this.reactionsContainerLayout.setTransitionProgress(1.0f);
+            chatSelectionReactionMenuOverlay.messageSet = false;
+            chatSelectionReactionMenuOverlay.reactionsContainerLayout.setTransitionProgress(1.0f);
         }
     }
 
-    public void lambda$animateVisible$1(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$VkVnq92AEJDF5pnLtB5uWVoy3HY(ChatSelectionReactionMenuOverlay chatSelectionReactionMenuOverlay, ValueAnimator valueAnimator) {
+        chatSelectionReactionMenuOverlay.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
+        ReactionsContainerLayout reactionsContainerLayout = chatSelectionReactionMenuOverlay.reactionsContainerLayout;
         if (reactionsContainerLayout != null) {
             reactionsContainerLayout.setAlpha(fFloatValue);
         }

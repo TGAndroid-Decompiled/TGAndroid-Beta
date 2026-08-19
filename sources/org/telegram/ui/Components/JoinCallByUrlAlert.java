@@ -102,15 +102,15 @@ public abstract class JoinCallByUrlAlert extends BottomSheet {
         bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                JoinCallByUrlAlert.$r8$lambda$vTumibZZY94CyTZtlSdnBHdSCls(this.f$0, view);
             }
         });
         linearLayout.addView(bottomSheetCell, LayoutHelper.createLinear(-1, 50, 51, 0, 30, 0, 0));
     }
 
-    public void lambda$new$0(View view) {
-        this.joinAfterDismiss = true;
-        lambda$new$0();
+    public static void $r8$lambda$vTumibZZY94CyTZtlSdnBHdSCls(JoinCallByUrlAlert joinCallByUrlAlert, View view) {
+        joinCallByUrlAlert.joinAfterDismiss = true;
+        joinCallByUrlAlert.dismiss();
     }
 
     @Override

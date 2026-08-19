@@ -21,261 +21,179 @@ public class AutoDeleteMediaTask {
         Utilities.cacheClearQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                AutoDeleteMediaTask.lambda$run$1(iCurrentTimeMillis, fileCheckDirectory);
+                AutoDeleteMediaTask.$r8$lambda$ap5ZJdebehBgIX4zKtBVK_9N3_k(iCurrentTimeMillis, fileCheckDirectory);
             }
         });
     }
 
-    public static void lambda$run$1(int i, File file) {
+    public static void $r8$lambda$ap5ZJdebehBgIX4zKtBVK_9N3_k(int i, File file) {
         int i2;
         int i3;
-        int i4;
         long j;
+        int i4;
         int i5;
-        int i6;
-        int[] iArr;
         long j2;
-        int i7;
-        int i8;
-        CacheByChatsController.KeepMediaFile keepMediaFile;
-        boolean z;
-        int i9;
-        int i10;
+        char c;
         long daysInSeconds;
         long daysInSeconds2;
+        int i6;
         ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList;
-        long lastUsageFileTime;
+        long j3;
         long jCurrentTimeMillis = System.currentTimeMillis();
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("checkKeepMedia start task");
         }
         ArrayList arrayList2 = new ArrayList();
-        int i11 = 0;
-        boolean z2 = false;
+        int i7 = 0;
+        boolean z = false;
         while (true) {
-            i2 = 4;
-            i3 = 1;
-            if (i11 >= 4) {
+            i2 = 1;
+            i3 = 4;
+            if (i7 >= 4) {
                 break;
             }
-            if (UserConfig.getInstance(i11).isClientActivated()) {
-                CacheByChatsController cacheByChatsController = UserConfig.getInstance(i11).getMessagesController().getCacheByChatsController();
+            if (UserConfig.getInstance(i7).isClientActivated()) {
+                CacheByChatsController cacheByChatsController = UserConfig.getInstance(i7).getMessagesController().getCacheByChatsController();
                 arrayList2.add(cacheByChatsController);
                 if (cacheByChatsController.getKeepMediaExceptionsByDialogs().size() > 0) {
-                    z2 = true;
+                    z = true;
+                }
+            }
+            i7++;
+        }
+        int[] iArr = new int[4];
+        long j4 = Long.MAX_VALUE;
+        boolean z2 = true;
+        for (int i8 = 0; i8 < 4; i8++) {
+            int i9 = SharedConfig.getPreferences().getInt("keep_media_type_" + i8, CacheByChatsController.getDefault(i8));
+            iArr[i8] = i9;
+            if (i9 != CacheByChatsController.KEEP_MEDIA_FOREVER) {
+                z2 = false;
+            }
+            long daysInSeconds3 = CacheByChatsController.getDaysInSeconds(i9);
+            if (daysInSeconds3 < j4) {
+                j4 = daysInSeconds3;
+            }
+        }
+        if (z) {
+            z2 = false;
+        }
+        SparseArray<File> sparseArrayCreateMediaPaths = ImageLoader.getInstance().createMediaPaths();
+        int i10 = 0;
+        int i11 = 0;
+        long length = 0;
+        while (i11 < sparseArrayCreateMediaPaths.size()) {
+            if (z2 && (sparseArrayCreateMediaPaths.keyAt(i11) == i2 || sparseArrayCreateMediaPaths.keyAt(i11) == 3)) {
+                j2 = jCurrentTimeMillis;
+            } else {
+                boolean z3 = sparseArrayCreateMediaPaths.keyAt(i11) == i3;
+                try {
+                    File[] fileArrListFiles = sparseArrayCreateMediaPaths.valueAt(i11).listFiles();
+                    ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList3 = new ArrayList<>();
+                    if (fileArrListFiles != null) {
+                        c = 3;
+                        for (int i12 = 0; i12 < fileArrListFiles.length; i12++) {
+                            if (!fileArrListFiles[i12].isDirectory() && !usingFilePaths.contains(fileArrListFiles[i12].getAbsolutePath())) {
+                                arrayList3.add(new CacheByChatsController.KeepMediaFile(fileArrListFiles[i12]));
+                            }
+                        }
+                    } else {
+                        c = 3;
+                    }
+                    for (int i13 = 0; i13 < arrayList2.size(); i13++) {
+                        ((CacheByChatsController) arrayList2.get(i13)).lookupFiles(arrayList3);
+                    }
+                    int i14 = 0;
+                    while (i14 < arrayList3.size()) {
+                        CacheByChatsController.KeepMediaFile keepMediaFile = (CacheByChatsController.KeepMediaFile) arrayList3.get(i14);
+                        try {
+                            if (keepMediaFile.isStory) {
+                                daysInSeconds2 = CacheByChatsController.getDaysInSeconds(iArr[c]);
+                                j2 = jCurrentTimeMillis;
+                            } else {
+                                j2 = jCurrentTimeMillis;
+                                int i15 = keepMediaFile.keepMedia;
+                                if (i15 != CacheByChatsController.KEEP_MEDIA_FOREVER) {
+                                    if (i15 >= 0) {
+                                        daysInSeconds = CacheByChatsController.getDaysInSeconds(i15);
+                                    } else {
+                                        int i16 = keepMediaFile.dialogType;
+                                        if (i16 >= 0) {
+                                            daysInSeconds = CacheByChatsController.getDaysInSeconds(iArr[i16]);
+                                        } else if (!z3) {
+                                            daysInSeconds = j4;
+                                        }
+                                    }
+                                    if (daysInSeconds != Long.MAX_VALUE) {
+                                        daysInSeconds2 = daysInSeconds;
+                                    }
+                                }
+                                i6 = i14;
+                                arrayList = arrayList3;
+                                i14 = i6 + 1;
+                                i = i;
+                                arrayList3 = arrayList;
+                                jCurrentTimeMillis = j2;
+                            }
+                            arrayList = arrayList3;
+                            long lastUsageFileTime = Utilities.getLastUsageFileTime(keepMediaFile.file.getAbsolutePath());
+                            if (lastUsageFileTime <= 316000000 || lastUsageFileTime >= j3) {
+                                i6 = i14;
+                            } else {
+                                i6 = i14;
+                                if (!usingFilePaths.contains(keepMediaFile.file.getPath())) {
+                                    try {
+                                        if (BuildVars.LOGS_ENABLED) {
+                                            i10++;
+                                            length += keepMediaFile.file.length();
+                                        }
+                                        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                                            FileLog.d("delete file " + keepMediaFile.file.getPath() + " last_usage_time=" + lastUsageFileTime + " time_local=" + j3 + " story=" + keepMediaFile.isStory);
+                                        }
+                                        keepMediaFile.file.delete();
+                                    } catch (Exception e) {
+                                        FileLog.e(e);
+                                    }
+                                }
+                            }
+                            i14 = i6 + 1;
+                            i = i;
+                            arrayList3 = arrayList;
+                            jCurrentTimeMillis = j2;
+                        } catch (Throwable th) {
+                            th = th;
+                            FileLog.e(th);
+                            i11++;
+                            jCurrentTimeMillis = j2;
+                            i2 = 1;
+                            i3 = 4;
+                        }
+                        j3 = ((long) i) - daysInSeconds2;
+                    }
+                    j2 = jCurrentTimeMillis;
+                } catch (Throwable th2) {
+                    th = th2;
+                    j2 = jCurrentTimeMillis;
                 }
             }
             i11++;
+            jCurrentTimeMillis = j2;
+            i2 = 1;
+            i3 = 4;
         }
-        int[] iArr2 = new int[4];
-        long j3 = Long.MAX_VALUE;
-        boolean z3 = true;
-        for (int i12 = 0; i12 < 4; i12++) {
-            int i13 = SharedConfig.getPreferences().getInt("keep_media_type_" + i12, CacheByChatsController.getDefault(i12));
-            iArr2[i12] = i13;
-            if (i13 != CacheByChatsController.KEEP_MEDIA_FOREVER) {
-                z3 = false;
-            }
-            long daysInSeconds3 = CacheByChatsController.getDaysInSeconds(i13);
-            if (daysInSeconds3 < j3) {
-                j3 = daysInSeconds3;
-            }
-        }
-        if (z2) {
-            z3 = false;
-        }
-        SparseArray<File> sparseArrayCreateMediaPaths = ImageLoader.getInstance().createMediaPaths();
-        int i14 = 0;
-        int i15 = 0;
-        long length = 0;
-        while (i14 < sparseArrayCreateMediaPaths.size()) {
-            if (z3 && (sparseArrayCreateMediaPaths.keyAt(i14) == i3 || sparseArrayCreateMediaPaths.keyAt(i14) == 3)) {
-                iArr = iArr2;
-                j2 = j3;
-            } else {
-                boolean z4 = sparseArrayCreateMediaPaths.keyAt(i14) == i2;
-                try {
-                    File[] fileArrListFiles = sparseArrayCreateMediaPaths.valueAt(i14).listFiles();
-                    ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList3 = new ArrayList<>();
-                    if (fileArrListFiles != null) {
-                        int i16 = 0;
-                        while (i16 < fileArrListFiles.length) {
-                            try {
-                                if (fileArrListFiles[i16].isDirectory()) {
-                                    j2 = j3;
-                                } else {
-                                    j2 = j3;
-                                    try {
-                                        if (!usingFilePaths.contains(fileArrListFiles[i16].getAbsolutePath())) {
-                                            arrayList3.add(new CacheByChatsController.KeepMediaFile(fileArrListFiles[i16]));
-                                        }
-                                    } catch (Throwable th) {
-                                        th = th;
-                                        iArr = iArr2;
-                                        FileLog.e(th);
-                                        i14++;
-                                        j3 = j2;
-                                        iArr2 = iArr;
-                                        i2 = 4;
-                                        i3 = 1;
-                                    }
-                                }
-                                i16++;
-                                j3 = j2;
-                            } catch (Throwable th2) {
-                                th = th2;
-                                j2 = j3;
-                            }
-                        }
-                        j2 = j3;
-                        for (i7 = 0; i7 < arrayList2.size(); i7++) {
-                            ((CacheByChatsController) arrayList2.get(i7)).lookupFiles(arrayList3);
-                        }
-                        i8 = 0;
-                        while (i8 < arrayList3.size()) {
-                            keepMediaFile = (CacheByChatsController.KeepMediaFile) arrayList3.get(i8);
-                            if (keepMediaFile.isStory) {
-                                z = z4;
-                                daysInSeconds2 = ((long) i) - CacheByChatsController.getDaysInSeconds(iArr2[3]);
-                            } else {
-                                z = z4;
-                                i9 = keepMediaFile.keepMedia;
-                                if (i9 != CacheByChatsController.KEEP_MEDIA_FOREVER) {
-                                    if (i9 >= 0) {
-                                        daysInSeconds = CacheByChatsController.getDaysInSeconds(i9);
-                                    } else {
-                                        i10 = keepMediaFile.dialogType;
-                                        if (i10 >= 0) {
-                                            daysInSeconds = CacheByChatsController.getDaysInSeconds(iArr2[i10]);
-                                        } else if (z) {
-                                            daysInSeconds = j2;
-                                        }
-                                    }
-                                    if (daysInSeconds == Long.MAX_VALUE) {
-                                        daysInSeconds2 = ((long) i) - daysInSeconds;
-                                    }
-                                }
-                                arrayList = arrayList3;
-                                iArr = iArr2;
-                                i8++;
-                                z4 = z;
-                                arrayList3 = arrayList;
-                                iArr2 = iArr;
-                            }
-                            lastUsageFileTime = Utilities.getLastUsageFileTime(keepMediaFile.file.getAbsolutePath());
-                            if (lastUsageFileTime > 316000000 || lastUsageFileTime >= daysInSeconds2) {
-                                arrayList = arrayList3;
-                                iArr = iArr2;
-                            } else {
-                                arrayList = arrayList3;
-                                iArr = iArr2;
-                                try {
-                                    if (!usingFilePaths.contains(keepMediaFile.file.getPath())) {
-                                        try {
-                                            if (BuildVars.LOGS_ENABLED) {
-                                                i15++;
-                                                length += keepMediaFile.file.length();
-                                            }
-                                            if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                                                FileLog.d("delete file " + keepMediaFile.file.getPath() + " last_usage_time=" + lastUsageFileTime + " time_local=" + daysInSeconds2 + " story=" + keepMediaFile.isStory);
-                                            }
-                                            keepMediaFile.file.delete();
-                                        } catch (Exception e) {
-                                            FileLog.e(e);
-                                        }
-                                    }
-                                } catch (Throwable th3) {
-                                    th = th3;
-                                    FileLog.e(th);
-                                    i14++;
-                                    j3 = j2;
-                                    iArr2 = iArr;
-                                    i2 = 4;
-                                    i3 = 1;
-                                }
-                            }
-                            i8++;
-                            z4 = z;
-                            arrayList3 = arrayList;
-                            iArr2 = iArr;
-                        }
-                        iArr = iArr2;
-                    } else {
-                        j2 = j3;
-                        while (i7 < arrayList2.size()) {
-                            ((CacheByChatsController) arrayList2.get(i7)).lookupFiles(arrayList3);
-                        }
-                        i8 = 0;
-                        while (i8 < arrayList3.size()) {
-                            keepMediaFile = (CacheByChatsController.KeepMediaFile) arrayList3.get(i8);
-                            if (keepMediaFile.isStory) {
-                                z = z4;
-                                daysInSeconds2 = ((long) i) - CacheByChatsController.getDaysInSeconds(iArr2[3]);
-                            } else {
-                                z = z4;
-                                i9 = keepMediaFile.keepMedia;
-                                if (i9 != CacheByChatsController.KEEP_MEDIA_FOREVER) {
-                                    if (i9 >= 0) {
-                                        daysInSeconds = CacheByChatsController.getDaysInSeconds(i9);
-                                    } else {
-                                        i10 = keepMediaFile.dialogType;
-                                        if (i10 >= 0) {
-                                            daysInSeconds = CacheByChatsController.getDaysInSeconds(iArr2[i10]);
-                                        } else if (z) {
-                                            daysInSeconds = j2;
-                                        }
-                                    }
-                                    if (daysInSeconds == Long.MAX_VALUE) {
-                                        daysInSeconds2 = ((long) i) - daysInSeconds;
-                                    }
-                                }
-                                arrayList = arrayList3;
-                                iArr = iArr2;
-                                i8++;
-                                z4 = z;
-                                arrayList3 = arrayList;
-                                iArr2 = iArr;
-                            }
-                            lastUsageFileTime = Utilities.getLastUsageFileTime(keepMediaFile.file.getAbsolutePath());
-                            if (lastUsageFileTime > 316000000) {
-                                arrayList = arrayList3;
-                                iArr = iArr2;
-                            } else {
-                                arrayList = arrayList3;
-                                iArr = iArr2;
-                            }
-                            i8++;
-                            z4 = z;
-                            arrayList3 = arrayList;
-                            iArr2 = iArr;
-                        }
-                        iArr = iArr2;
-                    }
-                } catch (Throwable th4) {
-                    th = th4;
-                    iArr = iArr2;
-                    j2 = j3;
-                }
-            }
-            i14++;
-            j3 = j2;
-            iArr2 = iArr;
-            i2 = 4;
-            i3 = 1;
-        }
+        long j5 = jCurrentTimeMillis;
         int i17 = SharedConfig.getPreferences().getInt("cache_limit", Integer.MAX_VALUE);
         if (i17 == Integer.MAX_VALUE) {
-            i4 = i15;
             j = 0;
+            i4 = 0;
             i5 = 0;
-            i6 = 0;
         } else {
-            long j4 = i17 == 1 ? 314572800L : ((long) i17) * 1048576000;
+            long j6 = i17 == 1 ? 314572800L : ((long) i17) * 1048576000;
             long dirSize = 0;
             for (int i18 = 0; i18 < sparseArrayCreateMediaPaths.size(); i18++) {
                 dirSize += Utilities.getDirSize(sparseArrayCreateMediaPaths.valueAt(i18).getAbsolutePath(), 0, true);
             }
-            if (dirSize > j4) {
+            if (dirSize > j6) {
                 ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList4 = new ArrayList<>();
                 for (int i19 = 0; i19 < sparseArrayCreateMediaPaths.size(); i19++) {
                     fillFilesRecursive(sparseArrayCreateMediaPaths.valueAt(i19), arrayList4);
@@ -286,64 +204,53 @@ public class AutoDeleteMediaTask {
                 Collections.sort(arrayList4, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return AutoDeleteMediaTask.lambda$run$0((AutoDeleteMediaTask.FileInfoInternal) obj, (AutoDeleteMediaTask.FileInfoInternal) obj2);
+                        return AutoDeleteMediaTask.$r8$lambda$8dg4GbivFh1IfgXiPENigECyG2w((AutoDeleteMediaTask.FileInfoInternal) obj, (AutoDeleteMediaTask.FileInfoInternal) obj2);
                     }
                 });
-                i5 = 0;
-                i6 = 0;
+                j = 0;
                 int i21 = 0;
-                long j5 = 0;
-                while (true) {
-                    if (i21 >= arrayList4.size()) {
-                        i4 = i15;
-                        break;
-                    }
-                    if (((FileInfoInternal) arrayList4.get(i21)).keepMedia != CacheByChatsController.KEEP_MEDIA_FOREVER) {
-                        i4 = i15;
-                        if (((FileInfoInternal) arrayList4.get(i21)).lastUsageDate > 0) {
-                            long length2 = ((FileInfoInternal) arrayList4.get(i21)).file.length();
+                i4 = 0;
+                for (int i22 = 0; i22 < arrayList4.size(); i22++) {
+                    if (((FileInfoInternal) arrayList4.get(i22)).keepMedia != CacheByChatsController.KEEP_MEDIA_FOREVER) {
+                        if (((FileInfoInternal) arrayList4.get(i22)).lastUsageDate > 0) {
+                            long length2 = ((FileInfoInternal) arrayList4.get(i22)).file.length();
                             dirSize -= length2;
-                            i5++;
-                            j5 += length2;
+                            i21++;
+                            j += length2;
                             try {
-                                ((FileInfoInternal) arrayList4.get(i21)).file.delete();
+                                ((FileInfoInternal) arrayList4.get(i22)).file.delete();
                             } catch (Exception unused) {
                             }
-                            if (dirSize < j4) {
+                            if (dirSize < j6) {
                                 break;
                             }
                         } else {
-                            i6++;
+                            i4++;
                         }
-                    } else {
-                        i4 = i15;
                     }
-                    i21++;
-                    i15 = i4;
                 }
-                j = j5;
+                i5 = i21;
             } else {
-                i4 = i15;
                 j = 0;
+                i4 = 0;
                 i5 = 0;
-                i6 = 0;
             }
         }
         File file2 = new File(file, "acache");
         if (file2.exists()) {
             try {
                 Utilities.clearDir(file2.getAbsolutePath(), 0, i - 86400, false);
-            } catch (Throwable th5) {
-                FileLog.e(th5);
+            } catch (Throwable th3) {
+                FileLog.e(th3);
             }
         }
         MessagesController.getGlobalMainSettings().edit().putInt("lastKeepMediaCheckTime", SharedConfig.lastKeepMediaCheckTime).apply();
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("checkKeepMedia task end time " + (System.currentTimeMillis() - jCurrentTimeMillis) + " auto deleted info: files " + i4 + " size " + AndroidUtilities.formatFileSize(length) + "   deleted by size limit info: files " + i5 + " size " + AndroidUtilities.formatFileSize(j) + " unknownTimeFiles " + i6);
+            FileLog.d("checkKeepMedia task end time " + (System.currentTimeMillis() - j5) + " auto deleted info: files " + i10 + " size " + AndroidUtilities.formatFileSize(length) + "   deleted by size limit info: files " + i5 + " size " + AndroidUtilities.formatFileSize(j) + " unknownTimeFiles " + i4);
         }
     }
 
-    public static int lambda$run$0(FileInfoInternal fileInfoInternal, FileInfoInternal fileInfoInternal2) {
+    public static int $r8$lambda$8dg4GbivFh1IfgXiPENigECyG2w(FileInfoInternal fileInfoInternal, FileInfoInternal fileInfoInternal2) {
         long j = fileInfoInternal2.lastUsageDate;
         long j2 = fileInfoInternal.lastUsageDate;
         if (j > j2) {

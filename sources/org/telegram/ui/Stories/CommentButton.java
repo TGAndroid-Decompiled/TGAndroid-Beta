@@ -133,7 +133,7 @@ public class CommentButton extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateBounce$0(valueAnimator2);
+                CommentButton.$r8$lambda$E3MYkw7yCyLQmWOeU3hHuTqY2ZI(this.f$0, valueAnimator2);
             }
         });
         this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -148,8 +148,9 @@ public class CommentButton extends FrameLayout {
         this.countAnimator.start();
     }
 
-    public void lambda$animateBounce$0(ValueAnimator valueAnimator) {
-        this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        invalidate();
+    public static void $r8$lambda$E3MYkw7yCyLQmWOeU3hHuTqY2ZI(CommentButton commentButton, ValueAnimator valueAnimator) {
+        commentButton.getClass();
+        commentButton.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        commentButton.invalidate();
     }
 }

@@ -66,6 +66,7 @@ public class StrokeDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
+        Canvas canvas2;
         float fCenterX = getBounds().centerX();
         float fCenterY = getBounds().centerY();
         float fMin = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.padding;
@@ -74,14 +75,18 @@ public class StrokeDrawable extends Drawable {
             this.rect.set(getBounds());
             fMin = this.radius;
         }
+        float f = fMin;
         if (Color.alpha(this.paintFill.getColor()) > 0) {
-            canvas.drawCircle(fCenterX, fCenterY, fMin, this.paintFill);
+            canvas.drawCircle(fCenterX, fCenterY, f, this.paintFill);
         }
         if (this.strokeColorTop != 0) {
-            BlurredBackgroundDrawable.drawStroke(canvas, this.rect, fMin, AndroidUtilities.dpf2(1.0f), true, this.paintStrokeTop);
+            canvas2 = canvas;
+            BlurredBackgroundDrawable.drawStroke(canvas2, this.rect, f, AndroidUtilities.dpf2(1.0f), true, this.paintStrokeTop);
+        } else {
+            canvas2 = canvas;
         }
         if (this.strokeColorBottom != 0) {
-            BlurredBackgroundDrawable.drawStroke(canvas, this.rect, fMin, AndroidUtilities.dpf2(0.6666667f), false, this.paintStrokeBottom);
+            BlurredBackgroundDrawable.drawStroke(canvas2, this.rect, f, AndroidUtilities.dpf2(0.6666667f), false, this.paintStrokeBottom);
         }
     }
 

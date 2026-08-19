@@ -65,14 +65,14 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
             setPositiveButton(LocaleController.getString(R.string.Settings), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$new$1(alertDialog, i);
+                    StickersArchiveAlert.m2853$r8$lambda$HvtB8gRncxhFUS9Z1QQczx7F8(this.f$0, alertDialog, i);
                 }
             });
         }
     }
 
-    public void lambda$new$1(AlertDialog alertDialog, int i) {
-        this.parentFragment.presentFragment(new StickersActivity(this.currentType, null));
+    public static void m2853$r8$lambda$HvtB8gRncxhFUS9Z1QQczx7F8(StickersArchiveAlert stickersArchiveAlert, AlertDialog alertDialog, int i) {
+        stickersArchiveAlert.parentFragment.presentFragment(new StickersActivity(stickersArchiveAlert.currentType, null));
         alertDialog.dismiss();
     }
 

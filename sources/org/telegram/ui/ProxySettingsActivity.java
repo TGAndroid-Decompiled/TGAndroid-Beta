@@ -184,7 +184,7 @@ public class ProxySettingsActivity extends BaseFragment {
                     ConnectionsManager.setProxySettings(z, ProxySettingsActivity.this.currentProxyInfo.address, ProxySettingsActivity.this.currentProxyInfo.port, ProxySettingsActivity.this.currentProxyInfo.username, ProxySettingsActivity.this.currentProxyInfo.password, ProxySettingsActivity.this.currentProxyInfo.secret);
                 }
                 editorEdit.commit();
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.proxySettingsChanged, new Object[0]);
                 ProxySettingsActivity.this.finishFragment();
             }
         });
@@ -206,7 +206,7 @@ public class ProxySettingsActivity extends BaseFragment {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$0(view);
+                ProxySettingsActivity.$r8$lambda$QCpWC_Ep_g_7tJJT1r02gNxWyCk(this.f$0, view);
             }
         };
         int i = 0;
@@ -346,7 +346,7 @@ public class ProxySettingsActivity extends BaseFragment {
             this.inputFields[i2].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
-                    return this.f$0.lambda$createView$1(textView, i5, keyEvent);
+                    return ProxySettingsActivity.m3937$r8$lambda$3SCZ7ikAEgGrn7_6xdn4CfavdM(this.f$0, textView, i5, keyEvent);
                 }
             });
             i2++;
@@ -372,7 +372,7 @@ public class ProxySettingsActivity extends BaseFragment {
         this.pasteCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$3(view);
+                ProxySettingsActivity.$r8$lambda$scjmD69vrAGvcDeC2umhWb06wRI(this.f$0, view);
             }
         });
         this.linearLayout2.addView(this.pasteCell, 0, LayoutHelper.createLinear(-1, -2));
@@ -394,7 +394,7 @@ public class ProxySettingsActivity extends BaseFragment {
         this.shareCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$4(context, view);
+                ProxySettingsActivity.$r8$lambda$mPmjVRBuWbAIsCbDAsusaDJV1SE(this.f$0, context, view);
             }
         });
         this.sectionCell[1] = new ShadowSectionCell(context);
@@ -412,55 +412,57 @@ public class ProxySettingsActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view) {
-        setProxyType(((Integer) view.getTag()).intValue(), true);
+    public static void $r8$lambda$QCpWC_Ep_g_7tJJT1r02gNxWyCk(ProxySettingsActivity proxySettingsActivity, View view) {
+        proxySettingsActivity.getClass();
+        proxySettingsActivity.setProxyType(((Integer) view.getTag()).intValue(), true);
     }
 
-    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m3937$r8$lambda$3SCZ7ikAEgGrn7_6xdn4CfavdM(ProxySettingsActivity proxySettingsActivity, TextView textView, int i, KeyEvent keyEvent) {
+        proxySettingsActivity.getClass();
         if (i != 5) {
             if (i != 6) {
                 return false;
             }
-            finishFragment();
+            proxySettingsActivity.finishFragment();
             return true;
         }
         int iIntValue = ((Integer) textView.getTag()).intValue() + 1;
-        EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
+        EditTextBoldCursor[] editTextBoldCursorArr = proxySettingsActivity.inputFields;
         if (iIntValue < editTextBoldCursorArr.length) {
             editTextBoldCursorArr[iIntValue].requestFocus();
         }
         return true;
     }
 
-    public void lambda$createView$3(View view) {
-        if (this.pasteType == -1) {
+    public static void $r8$lambda$scjmD69vrAGvcDeC2umhWb06wRI(final ProxySettingsActivity proxySettingsActivity, View view) {
+        if (proxySettingsActivity.pasteType == -1) {
             return;
         }
         int i = 0;
         while (true) {
-            String[] strArr = this.pasteFields;
+            String[] strArr = proxySettingsActivity.pasteFields;
             if (i < strArr.length) {
-                int i2 = this.pasteType;
+                int i2 = proxySettingsActivity.pasteType;
                 if ((i2 != 0 || i != 4) && (i2 != 1 || (i != 2 && i != 3))) {
                     String str = strArr[i];
                     if (str != null) {
                         try {
-                            this.inputFields[i].setText(URLDecoder.decode(str, "UTF-8"));
+                            proxySettingsActivity.inputFields[i].setText(URLDecoder.decode(str, "UTF-8"));
                         } catch (UnsupportedEncodingException unused) {
-                            this.inputFields[i].setText(this.pasteFields[i]);
+                            proxySettingsActivity.inputFields[i].setText(proxySettingsActivity.pasteFields[i]);
                         }
                     } else {
-                        this.inputFields[i].setText((CharSequence) null);
+                        proxySettingsActivity.inputFields[i].setText((CharSequence) null);
                     }
                 }
                 i++;
             } else {
-                EditTextBoldCursor editTextBoldCursor = this.inputFields[0];
+                EditTextBoldCursor editTextBoldCursor = proxySettingsActivity.inputFields[0];
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                setProxyType(this.pasteType, true, new Runnable() {
+                proxySettingsActivity.setProxyType(proxySettingsActivity.pasteType, true, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createView$2();
+                        ProxySettingsActivity.m3938$r8$lambda$7p4kX1uEqO_sRSYuQU66Q6iRbc(this.f$0);
                     }
                 });
                 return;
@@ -468,24 +470,24 @@ public class ProxySettingsActivity extends BaseFragment {
         }
     }
 
-    public void lambda$createView$2() {
-        AndroidUtilities.hideKeyboard(this.inputFieldsContainer.findFocus());
-        for (int i = 0; i < this.pasteFields.length; i++) {
-            int i2 = this.pasteType;
+    public static void m3938$r8$lambda$7p4kX1uEqO_sRSYuQU66Q6iRbc(ProxySettingsActivity proxySettingsActivity) {
+        AndroidUtilities.hideKeyboard(proxySettingsActivity.inputFieldsContainer.findFocus());
+        for (int i = 0; i < proxySettingsActivity.pasteFields.length; i++) {
+            int i2 = proxySettingsActivity.pasteType;
             if ((i2 != 0 || i == 4) && (i2 != 1 || i == 2 || i == 3)) {
-                this.inputFields[i].setText((CharSequence) null);
+                proxySettingsActivity.inputFields[i].setText((CharSequence) null);
             }
         }
     }
 
-    public void lambda$createView$4(Context context, View view) {
+    public static void $r8$lambda$mPmjVRBuWbAIsCbDAsusaDJV1SE(ProxySettingsActivity proxySettingsActivity, Context context, View view) {
         String str;
         StringBuilder sb = new StringBuilder();
-        String string = this.inputFields[0].getText().toString();
-        String string2 = this.inputFields[3].getText().toString();
-        String string3 = this.inputFields[2].getText().toString();
-        String string4 = this.inputFields[1].getText().toString();
-        String string5 = this.inputFields[4].getText().toString();
+        String string = proxySettingsActivity.inputFields[0].getText().toString();
+        String string2 = proxySettingsActivity.inputFields[3].getText().toString();
+        String string3 = proxySettingsActivity.inputFields[2].getText().toString();
+        String string4 = proxySettingsActivity.inputFields[1].getText().toString();
+        String string5 = proxySettingsActivity.inputFields[4].getText().toString();
         try {
             if (!TextUtils.isEmpty(string)) {
                 sb.append("server=");
@@ -498,7 +500,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 sb.append("port=");
                 sb.append(URLEncoder.encode(string4, "UTF-8"));
             }
-            if (this.currentType == 1) {
+            if (proxySettingsActivity.currentType == 1) {
                 str = "https://t.me/proxy?";
                 if (sb.length() != 0) {
                     sb.append("&");
@@ -527,7 +529,7 @@ public class ProxySettingsActivity extends BaseFragment {
             }
             QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, LocaleController.getString(R.string.ShareQrCode), str + sb.toString(), LocaleController.getString(R.string.QRCodeLinkHelpProxy), true);
             qRCodeBottomSheet.setCenterImage(SvgHelper.getBitmap(AndroidUtilities.readRes(R.raw.qr_dog), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false));
-            showDialog(qRCodeBottomSheet);
+            proxySettingsActivity.showDialog(qRCodeBottomSheet);
         } catch (Exception unused) {
         }
     }
@@ -577,7 +579,7 @@ public class ProxySettingsActivity extends BaseFragment {
                     String[] strArrSplit2 = str.split("=");
                     if (strArrSplit2.length == 2) {
                         String lowerCase = strArrSplit2[0].toLowerCase();
-                        lowerCase.hashCode();
+                        lowerCase.getClass();
                         switch (lowerCase) {
                             case "secret":
                                 if (this.pasteType == 1) {
@@ -640,7 +642,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 this.shareDoneAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setShareDoneEnabled$5(valueAnimator2);
+                        ProxySettingsActivity.$r8$lambda$y2AY9grkclp4UufmYHCtVZJ_kI8(this.f$0, valueAnimator2);
                     }
                 });
             }
@@ -660,10 +662,10 @@ public class ProxySettingsActivity extends BaseFragment {
         }
     }
 
-    public void lambda$setShareDoneEnabled$5(ValueAnimator valueAnimator) {
-        this.shareDoneProgress = AndroidUtilities.lerp(this.shareDoneProgressAnimValues, valueAnimator.getAnimatedFraction());
-        this.shareCell.setTextColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4), this.shareDoneProgress));
-        this.doneItem.setAlpha((this.shareDoneProgress / 2.0f) + 0.5f);
+    public static void $r8$lambda$y2AY9grkclp4UufmYHCtVZJ_kI8(ProxySettingsActivity proxySettingsActivity, ValueAnimator valueAnimator) {
+        proxySettingsActivity.shareDoneProgress = AndroidUtilities.lerp(proxySettingsActivity.shareDoneProgressAnimValues, valueAnimator.getAnimatedFraction());
+        proxySettingsActivity.shareCell.setTextColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4), proxySettingsActivity.shareDoneProgress));
+        proxySettingsActivity.doneItem.setAlpha((proxySettingsActivity.shareDoneProgress / 2.0f) + 0.5f);
     }
 
     public void checkShareDone(boolean z) {
@@ -752,7 +754,7 @@ public class ProxySettingsActivity extends BaseFragment {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$6();
+                ProxySettingsActivity.$r8$lambda$ladrYqoHZDd9QWDaoA54F0ej35o(this.f$0);
             }
 
             @Override
@@ -833,17 +835,17 @@ public class ProxySettingsActivity extends BaseFragment {
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$6() {
+    public static void $r8$lambda$ladrYqoHZDd9QWDaoA54F0ej35o(ProxySettingsActivity proxySettingsActivity) {
         ValueAnimator valueAnimator;
-        if (this.shareCell != null && ((valueAnimator = this.shareDoneAnimator) == null || !valueAnimator.isRunning())) {
-            this.shareCell.setTextColor(Theme.getColor(this.shareDoneEnabled ? Theme.key_windowBackgroundWhiteBlueText4 : Theme.key_windowBackgroundWhiteGrayText2));
+        if (proxySettingsActivity.shareCell != null && ((valueAnimator = proxySettingsActivity.shareDoneAnimator) == null || !valueAnimator.isRunning())) {
+            proxySettingsActivity.shareCell.setTextColor(Theme.getColor(proxySettingsActivity.shareDoneEnabled ? Theme.key_windowBackgroundWhiteBlueText4 : Theme.key_windowBackgroundWhiteGrayText2));
         }
-        if (this.inputFields == null) {
+        if (proxySettingsActivity.inputFields == null) {
             return;
         }
         int i = 0;
         while (true) {
-            EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
+            EditTextBoldCursor[] editTextBoldCursorArr = proxySettingsActivity.inputFields;
             if (i >= editTextBoldCursorArr.length) {
                 return;
             }

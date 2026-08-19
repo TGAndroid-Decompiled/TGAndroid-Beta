@@ -29,9 +29,9 @@ public abstract class SettingsSuggestionCell extends LinearLayout {
     private TextView textView;
     private TextView yesButton;
 
-    protected abstract void onNoClick(int i);
+    public abstract void onNoClick(int i);
 
-    protected abstract void onYesClick(int i);
+    public abstract void onYesClick(int i);
 
     public SettingsSuggestionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -77,7 +77,8 @@ public abstract class SettingsSuggestionCell extends LinearLayout {
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$0(view);
+                        SettingsSuggestionCell settingsSuggestionCell = this.f$0;
+                        settingsSuggestionCell.onYesClick(settingsSuggestionCell.currentType);
                     }
                 });
             } else {
@@ -85,20 +86,13 @@ public abstract class SettingsSuggestionCell extends LinearLayout {
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$1(view);
+                        SettingsSuggestionCell settingsSuggestionCell = this.f$0;
+                        settingsSuggestionCell.onNoClick(settingsSuggestionCell.currentType);
                     }
                 });
             }
             i++;
         }
-    }
-
-    public void lambda$new$0(View view) {
-        onYesClick(this.currentType);
-    }
-
-    public void lambda$new$1(View view) {
-        onNoClick(this.currentType);
     }
 
     public void setType(int i) {

@@ -324,88 +324,89 @@ public class Bulletin {
     }
 
     public Bulletin show(final boolean z) {
-        if (!this.showing && this.containerLayout != null) {
-            this.showing = true;
-            this.layout.setTop(z);
-            CharSequence accessibilityText = this.layout.getAccessibilityText();
-            if (accessibilityText != null) {
-                AndroidUtilities.makeAccessibilityAnnouncement(accessibilityText);
-            }
-            if (this.layout.getParent() != this.parentLayout) {
-                throw new IllegalStateException("Layout has incorrect parent");
-            }
-            Bulletin bulletin = visibleBulletin;
-            if (bulletin != null) {
-                bulletin.hide();
-            }
-            visibleBulletin = this;
-            this.layout.onAttach(this);
-            FrameLayout frameLayout = this.containerLayout;
-            View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
-                @Override
-                public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-                    this.f$0.lambda$show$2(z, view, i, i2, i3, i4, i5, i6, i7, i8);
-                }
-            };
-            this.containerLayoutListener = onLayoutChangeListener;
-            frameLayout.addOnLayoutChangeListener(onLayoutChangeListener);
-            this.layout.addOnLayoutChangeListener(new AnonymousClass2(z));
-            if (!this.ignoreDetach) {
-                this.layout.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-                    @Override
-                    public void onViewAttachedToWindow(View view) {
-                    }
-
-                    @Override
-                    public void onViewDetachedFromWindow(View view) {
-                        Bulletin.this.layout.removeOnAttachStateChangeListener(this);
-                        Bulletin.this.hide(false, 0L);
-                    }
-                });
-            }
-            this.containerLayout.addView(this.parentLayout);
+        if (this.showing || this.containerLayout == null) {
+            return this;
         }
+        this.showing = true;
+        this.layout.setTop(z);
+        CharSequence accessibilityText = this.layout.getAccessibilityText();
+        if (accessibilityText != null) {
+            AndroidUtilities.makeAccessibilityAnnouncement(accessibilityText);
+        }
+        if (this.layout.getParent() != this.parentLayout) {
+            throw new IllegalStateException("Layout has incorrect parent");
+        }
+        Bulletin bulletin = visibleBulletin;
+        if (bulletin != null) {
+            bulletin.hide();
+        }
+        visibleBulletin = this;
+        this.layout.onAttach(this);
+        FrameLayout frameLayout = this.containerLayout;
+        View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
+            @Override
+            public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+                Bulletin.m2049$r8$lambda$EK4f9AYCEtEvv50krIdm5KR9yQ(this.f$0, z, view, i, i2, i3, i4, i5, i6, i7, i8);
+            }
+        };
+        this.containerLayoutListener = onLayoutChangeListener;
+        frameLayout.addOnLayoutChangeListener(onLayoutChangeListener);
+        this.layout.addOnLayoutChangeListener(new AnonymousClass2(z));
+        if (!this.ignoreDetach) {
+            this.layout.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                @Override
+                public void onViewAttachedToWindow(View view) {
+                }
+
+                @Override
+                public void onViewDetachedFromWindow(View view) {
+                    Bulletin.this.layout.removeOnAttachStateChangeListener(this);
+                    Bulletin.this.hide(false, 0L);
+                }
+            });
+        }
+        this.containerLayout.addView(this.parentLayout);
         return this;
     }
 
-    public void lambda$show$2(boolean z, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-        Delegate delegate = this.currentDelegate;
+    public static void m2049$r8$lambda$EK4f9AYCEtEvv50krIdm5KR9yQ(final Bulletin bulletin, boolean z, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+        Delegate delegate = bulletin.currentDelegate;
         if ((delegate == null || delegate.allowLayoutChanges()) && !z) {
-            Delegate delegate2 = this.currentDelegate;
-            int bottomOffset = delegate2 != null ? delegate2.getBottomOffset(this.tag) : 0;
-            if (this.lastBottomOffset != bottomOffset) {
-                SpringAnimation springAnimation = this.bottomOffsetSpring;
+            Delegate delegate2 = bulletin.currentDelegate;
+            int bottomOffset = delegate2 != null ? delegate2.getBottomOffset(bulletin.tag) : 0;
+            if (bulletin.lastBottomOffset != bottomOffset) {
+                SpringAnimation springAnimation = bulletin.bottomOffsetSpring;
                 if (springAnimation == null || !springAnimation.isRunning()) {
-                    SpringAnimation spring = new SpringAnimation(new FloatValueHolder(this.lastBottomOffset)).setSpring(new SpringForce().setFinalPosition(bottomOffset).setStiffness(900.0f).setDampingRatio(1.0f));
-                    this.bottomOffsetSpring = spring;
+                    SpringAnimation spring = new SpringAnimation(new FloatValueHolder(bulletin.lastBottomOffset)).setSpring(new SpringForce().setFinalPosition(bottomOffset).setStiffness(900.0f).setDampingRatio(1.0f));
+                    bulletin.bottomOffsetSpring = spring;
                     spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                            this.f$0.lambda$show$0(dynamicAnimation, f, f2);
+                            Bulletin.$r8$lambda$3W3kP340qGAPntUgZ0GUa_7LVu4(this.f$0, dynamicAnimation, f, f2);
                         }
                     });
-                    this.bottomOffsetSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+                    bulletin.bottomOffsetSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                            this.f$0.lambda$show$1(dynamicAnimation, z2, f, f2);
+                            Bulletin.$r8$lambda$PptE4QffRppoyrt5oiUPQ6UiowA(this.f$0, dynamicAnimation, z2, f, f2);
                         }
                     });
                 } else {
-                    this.bottomOffsetSpring.getSpring().setFinalPosition(bottomOffset);
+                    bulletin.bottomOffsetSpring.getSpring().setFinalPosition(bottomOffset);
                 }
-                this.bottomOffsetSpring.start();
+                bulletin.bottomOffsetSpring.start();
             }
         }
     }
 
-    public void lambda$show$0(DynamicAnimation dynamicAnimation, float f, float f2) {
-        this.lastBottomOffset = (int) f;
-        updatePosition();
+    public static void $r8$lambda$3W3kP340qGAPntUgZ0GUa_7LVu4(Bulletin bulletin, DynamicAnimation dynamicAnimation, float f, float f2) {
+        bulletin.lastBottomOffset = (int) f;
+        bulletin.updatePosition();
     }
 
-    public void lambda$show$1(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-        if (this.bottomOffsetSpring == dynamicAnimation) {
-            this.bottomOffsetSpring = null;
+    public static void $r8$lambda$PptE4QffRppoyrt5oiUPQ6UiowA(Bulletin bulletin, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        if (bulletin.bottomOffsetSpring == dynamicAnimation) {
+            bulletin.bottomOffsetSpring = null;
         }
     }
 
@@ -509,20 +510,20 @@ public class Bulletin {
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onLayoutChange$0();
+                        Bulletin.AnonymousClass2.$r8$lambda$BeEQxofGRs8lgJSJWDtUm9QUkmk(this.f$0);
                     }
                 };
                 final boolean z = this.val$top;
                 transition.animateEnter(layout, runnable, runnable2, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        this.f$0.lambda$onLayoutChange$1(z, (Float) obj);
+                        Bulletin.AnonymousClass2.$r8$lambda$sEqQ_ehS5ENeAds6gGyAYFIcf74(this.f$0, z, (Float) obj);
                     }
                 }, Bulletin.this.currentBottomOffset);
             }
         }
 
-        public void lambda$onLayoutChange$0() {
+        public static void $r8$lambda$BeEQxofGRs8lgJSJWDtUm9QUkmk(AnonymousClass2 anonymousClass2) {
             Bulletin.this.layout.transitionRunningEnter = false;
             Bulletin.this.layout.onEnterTransitionEnd();
             Bulletin bulletin = Bulletin.this;
@@ -531,7 +532,7 @@ public class Bulletin {
             }
         }
 
-        public void lambda$onLayoutChange$1(boolean z, Float f) {
+        public static void $r8$lambda$sEqQ_ehS5ENeAds6gGyAYFIcf74(AnonymousClass2 anonymousClass2, boolean z, Float f) {
             if (Bulletin.this.currentDelegate == null || z) {
                 return;
             }
@@ -612,12 +613,12 @@ public class Bulletin {
                     }, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$hide$3();
+                            Bulletin.m2051$r8$lambda$ihyP8UXFpzF4u9NgOEgkgnAqU(this.f$0);
                         }
                     }, new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            this.f$0.lambda$hide$4((Float) obj);
+                            Bulletin.$r8$lambda$vZfyGQZeAcjJn8J4fIQbqj8lqyQ(this.f$0, (Float) obj);
                         }
                     }, i);
                     return;
@@ -635,7 +636,7 @@ public class Bulletin {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$hide$5();
+                        Bulletin.m2050$r8$lambda$Z8FKud5kyFhXRNv4YzqFE8bBnI(this.f$0);
                     }
                 });
             }
@@ -647,29 +648,29 @@ public class Bulletin {
         }
     }
 
-    public void lambda$hide$3() {
-        Delegate delegate = this.currentDelegate;
-        if (delegate != null && !this.layout.top) {
+    public static void m2051$r8$lambda$ihyP8UXFpzF4u9NgOEgkgnAqU(Bulletin bulletin) {
+        Delegate delegate = bulletin.currentDelegate;
+        if (delegate != null && !bulletin.layout.top) {
             delegate.onBottomOffsetChange(0.0f);
-            this.currentDelegate.onHide(this);
+            bulletin.currentDelegate.onHide(bulletin);
         }
-        Layout layout = this.layout;
+        Layout layout = bulletin.layout;
         layout.transitionRunningExit = false;
         layout.onExitTransitionEnd();
-        this.layout.onHide();
-        this.containerLayout.removeView(this.parentLayout);
-        this.containerLayout.removeOnLayoutChangeListener(this.containerLayoutListener);
-        this.layout.onDetach();
-        Runnable runnable = this.onHideListener;
+        bulletin.layout.onHide();
+        bulletin.containerLayout.removeView(bulletin.parentLayout);
+        bulletin.containerLayout.removeOnLayoutChangeListener(bulletin.containerLayoutListener);
+        bulletin.layout.onDetach();
+        Runnable runnable = bulletin.onHideListener;
         if (runnable != null) {
             runnable.run();
         }
     }
 
-    public void lambda$hide$4(Float f) {
-        Delegate delegate = this.currentDelegate;
+    public static void $r8$lambda$vZfyGQZeAcjJn8J4fIQbqj8lqyQ(Bulletin bulletin, Float f) {
+        Delegate delegate = bulletin.currentDelegate;
         if (delegate != null) {
-            Layout layout = this.layout;
+            Layout layout = bulletin.layout;
             if (layout.top) {
                 return;
             }
@@ -677,9 +678,9 @@ public class Bulletin {
         }
     }
 
-    public void lambda$hide$5() {
-        this.containerLayout.removeView(this.parentLayout);
-        this.containerLayout.removeOnLayoutChangeListener(this.containerLayoutListener);
+    public static void m2050$r8$lambda$Z8FKud5kyFhXRNv4YzqFE8bBnI(Bulletin bulletin) {
+        bulletin.containerLayout.removeView(bulletin.parentLayout);
+        bulletin.containerLayout.removeOnLayoutChangeListener(bulletin.containerLayoutListener);
     }
 
     public boolean isShowing() {
@@ -725,7 +726,7 @@ public class Bulletin {
         private float ty;
         private boolean wasCanHide;
 
-        protected abstract void onHide();
+        public abstract void onHide();
 
         protected abstract void onPressedStateChanged(boolean z);
 
@@ -805,14 +806,14 @@ public class Bulletin {
                     springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f3, float f4) {
-                            this.f$0.lambda$onFling$0(dynamicAnimation, z2, f3, f4);
+                            Bulletin.ParentLayout.this.onHide();
                         }
                     });
                     final Layout layout = this.val$layout;
                     springAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f3, float f4) {
-                            Bulletin.ParentLayout.AnonymousClass1.lambda$onFling$1(layout, dynamicAnimation, f3, f4);
+                            Bulletin.ParentLayout.AnonymousClass1.$r8$lambda$xoZIPdijjfJwdC9lJa1tRQDP12M(layout, dynamicAnimation, f3, f4);
                         }
                     });
                 }
@@ -825,13 +826,13 @@ public class Bulletin {
                     springAnimation2.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f3, float f4) {
-                            this.f$0.lambda$onFling$2(dynamicAnimation, z2, f3, f4);
+                            Bulletin.ParentLayout.this.onHide();
                         }
                     });
                     springAnimation2.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f3, float f4) {
-                            Bulletin.ParentLayout.AnonymousClass1.lambda$onFling$3(dynamicAnimation, f3, f4);
+                            Bulletin.ParentLayout.AnonymousClass1.m2057$r8$lambda$V6A0CjIhWmVfAcEIQPQ3X99qLc(dynamicAnimation, f3, f4);
                         }
                     });
                     springAnimation.getSpring().setDampingRatio(1.0f);
@@ -843,21 +844,13 @@ public class Bulletin {
                 return true;
             }
 
-            public void lambda$onFling$0(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                ParentLayout.this.onHide();
-            }
-
-            public static void lambda$onFling$1(Layout layout, DynamicAnimation dynamicAnimation, float f, float f2) {
+            public static void $r8$lambda$xoZIPdijjfJwdC9lJa1tRQDP12M(Layout layout, DynamicAnimation dynamicAnimation, float f, float f2) {
                 if (Math.abs(f) > layout.getWidth()) {
                     dynamicAnimation.cancel();
                 }
             }
 
-            public void lambda$onFling$2(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                ParentLayout.this.onHide();
-            }
-
-            public static void lambda$onFling$3(DynamicAnimation dynamicAnimation, float f, float f2) {
+            public static void m2057$r8$lambda$V6A0CjIhWmVfAcEIQPQ3X99qLc(DynamicAnimation dynamicAnimation, float f, float f2) {
                 if (f <= 0.0f) {
                     dynamicAnimation.cancel();
                 }
@@ -901,7 +894,7 @@ public class Bulletin {
                     this.layout.animate().translationX(fSignum).alpha(((f > 0.0f ? 1 : (f == 0.0f ? 0 : -1)) < 0 && this.needLeftAlphaAnimation) || ((f > 0.0f ? 1 : (f == 0.0f ? 0 : -1)) > 0 && this.needRightAlphaAnimation) ? 0.0f : 1.0f).setDuration(200L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onTouchEvent$0(fSignum);
+                            Bulletin.ParentLayout.$r8$lambda$ZjusujDmUKPlmZNhl_moGveXfyw(this.f$0, fSignum);
                         }
                     }).start();
                 } else {
@@ -920,9 +913,9 @@ public class Bulletin {
             return true;
         }
 
-        public void lambda$onTouchEvent$0(float f) {
-            if (this.layout.getTranslationX() == f) {
-                onHide();
+        public static void $r8$lambda$ZjusujDmUKPlmZNhl_moGveXfyw(ParentLayout parentLayout, float f) {
+            if (parentLayout.layout.getTranslationX() == f) {
+                parentLayout.onHide();
             }
         }
 
@@ -1137,13 +1130,11 @@ public class Bulletin {
         }
 
         private boolean isWideScreen() {
-            if (!AndroidUtilities.isTablet()) {
-                Point point = AndroidUtilities.displaySize;
-                if (point.x < point.y) {
-                    return false;
-                }
+            if (AndroidUtilities.isTablet()) {
+                return true;
             }
-            return true;
+            Point point = AndroidUtilities.displaySize;
+            return point.x >= point.y;
         }
 
         public void setWideScreenParams(int i, int i2) {
@@ -1166,17 +1157,19 @@ public class Bulletin {
         }
 
         public boolean isNeedSwipeAlphaAnimation(boolean z) {
-            if (!isWideScreen() || this.wideScreenWidth == -1) {
-                return false;
+            if (isWideScreen() && this.wideScreenWidth != -1) {
+                int i = this.wideScreenGravity;
+                if (i == 1) {
+                    return true;
+                }
+                if (z) {
+                    return i == 5;
+                }
+                if (i != 5) {
+                    return true;
+                }
             }
-            int i = this.wideScreenGravity;
-            if (i == 1) {
-                return true;
-            }
-            if (z) {
-                return i == 5;
-            }
-            return i != 5;
+            return false;
         }
 
         public Bulletin getBulletin() {
@@ -1335,15 +1328,11 @@ public class Bulletin {
                     objectAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            Bulletin.Layout.DefaultTransition.lambda$animateEnter$0(consumer, layout, valueAnimator);
+                            consumer.accept(Float.valueOf(layout.getTranslationY()));
                         }
                     });
                 }
                 objectAnimatorOfFloat.start();
-            }
-
-            public static void lambda$animateEnter$0(Consumer consumer, Layout layout, ValueAnimator valueAnimator) {
-                consumer.accept(Float.valueOf(layout.getTranslationY()));
             }
 
             @Override
@@ -1374,15 +1363,11 @@ public class Bulletin {
                     objectAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            Bulletin.Layout.DefaultTransition.lambda$animateExit$1(consumer, layout, valueAnimator);
+                            consumer.accept(Float.valueOf(layout.getTranslationY()));
                         }
                     });
                 }
                 objectAnimatorOfFloat.start();
-            }
-
-            public static void lambda$animateExit$1(Consumer consumer, Layout layout, ValueAnimator valueAnimator) {
-                consumer.accept(Float.valueOf(layout.getTranslationY()));
             }
         }
 
@@ -1400,7 +1385,7 @@ public class Bulletin {
                     springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                            Bulletin.Layout.SpringTransition.lambda$animateEnter$0(layout, runnable2, dynamicAnimation, z, f, f2);
+                            Bulletin.Layout.SpringTransition.m2054$r8$lambda$l75tbtgbX7e0wzIDlEvtqUbJ8Y(layout, runnable2, dynamicAnimation, z, f, f2);
                         }
                     });
                 }
@@ -1408,7 +1393,7 @@ public class Bulletin {
                     springAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                            Bulletin.Layout.SpringTransition.lambda$animateEnter$1(consumer, layout, dynamicAnimation, f, f2);
+                            consumer.accept(Float.valueOf(layout.getTranslationY()));
                         }
                     });
                 }
@@ -1418,16 +1403,12 @@ public class Bulletin {
                 }
             }
 
-            public static void lambda$animateEnter$0(Layout layout, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+            public static void m2054$r8$lambda$l75tbtgbX7e0wzIDlEvtqUbJ8Y(Layout layout, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
                 layout.setInOutOffset(0.0f);
                 if (z) {
                     return;
                 }
                 runnable.run();
-            }
-
-            public static void lambda$animateEnter$1(Consumer consumer, Layout layout, DynamicAnimation dynamicAnimation, float f, float f2) {
-                consumer.accept(Float.valueOf(layout.getTranslationY()));
             }
 
             @Override
@@ -1439,7 +1420,7 @@ public class Bulletin {
                     springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                            Bulletin.Layout.SpringTransition.lambda$animateExit$2(runnable2, dynamicAnimation, z, f, f2);
+                            Bulletin.Layout.SpringTransition.$r8$lambda$rSAb8tEiJp0HQ6S06SDw6bq0Jh0(runnable2, dynamicAnimation, z, f, f2);
                         }
                     });
                 }
@@ -1447,7 +1428,7 @@ public class Bulletin {
                     springAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                            Bulletin.Layout.SpringTransition.lambda$animateExit$3(consumer, layout, dynamicAnimation, f, f2);
+                            consumer.accept(Float.valueOf(layout.getTranslationY()));
                         }
                     });
                 }
@@ -1457,15 +1438,11 @@ public class Bulletin {
                 }
             }
 
-            public static void lambda$animateExit$2(Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+            public static void $r8$lambda$rSAb8tEiJp0HQ6S06SDw6bq0Jh0(Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
                 if (z) {
                     return;
                 }
                 runnable.run();
-            }
-
-            public static void lambda$animateExit$3(Consumer consumer, Layout layout, DynamicAnimation dynamicAnimation, float f, float f2) {
-                consumer.accept(Float.valueOf(layout.getTranslationY()));
             }
         }
 
@@ -1512,6 +1489,7 @@ public class Bulletin {
 
         protected void dispatchDrawImpl(Canvas canvas, boolean z, int i) {
             Delegate delegate;
+            Canvas canvas2 = canvas;
             if (this.bulletin == null || i == 0) {
                 return;
             }
@@ -1520,15 +1498,15 @@ public class Bulletin {
                 float topOffset = delegate.getTopOffset(this.bulletin.tag) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
                 boolean z2 = !z && this.delegate.clipWithGradient(this.bulletin.tag);
-                canvas.save();
+                canvas2.save();
                 if (!z) {
-                    canvas.clipRect(0.0f, topOffset, getMeasuredWidth(), measuredHeight);
+                    canvas2.clipRect(0.0f, topOffset, getMeasuredWidth(), measuredHeight);
                 }
                 boolean z3 = z2 || i != 255;
                 if (z3) {
-                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), i, 31);
+                    canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), i, 31);
                 }
-                this.background.draw(canvas);
+                this.background.draw(canvas2);
                 super.dispatchDraw(canvas);
                 if (z2) {
                     if (this.clipPaint == null) {
@@ -1541,25 +1519,27 @@ public class Bulletin {
                         this.clipGradient.setLocalMatrix(matrix);
                         this.clipPaint.setShader(this.clipGradient);
                     }
-                    canvas.save();
+                    canvas2.save();
                     this.clipMatrix.reset();
                     this.clipMatrix.postTranslate(0.0f, this.top ? topOffset : measuredHeight - AndroidUtilities.dp(8.0f));
                     this.clipGradient.setLocalMatrix(this.clipMatrix);
                     if (this.top) {
-                        canvas.drawRect(0.0f, topOffset, getWidth(), topOffset + AndroidUtilities.dp(8.0f), this.clipPaint);
+                        canvas2.drawRect(0.0f, topOffset, getWidth(), topOffset + AndroidUtilities.dp(8.0f), this.clipPaint);
+                        canvas2 = canvas;
                     } else {
-                        canvas.drawRect(0.0f, measuredHeight - AndroidUtilities.dp(8.0f), getWidth(), measuredHeight, this.clipPaint);
+                        canvas2 = canvas;
+                        canvas2.drawRect(0.0f, measuredHeight - AndroidUtilities.dp(8.0f), getWidth(), measuredHeight, this.clipPaint);
                     }
-                    canvas.restore();
+                    canvas2.restore();
                 }
                 if (z3) {
-                    canvas.restore();
+                    canvas2.restore();
                 }
-                canvas.restore();
+                canvas2.restore();
                 invalidate();
                 return;
             }
-            this.background.draw(canvas);
+            this.background.draw(canvas2);
             super.dispatchDraw(canvas);
         }
 
@@ -1958,12 +1938,12 @@ public class Bulletin {
                 LottieLayoutWithReactions.this.reactionsContainerLayout.getReactionsWindow().windowView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$onShownCustomEmojiReactionDialog$0(view);
+                        Bulletin.LottieLayoutWithReactions.AnonymousClass1.$r8$lambda$EGPJDZ4jkAWgTbc5ty73avunwos(this.f$0, view);
                     }
                 });
             }
 
-            public void lambda$onShownCustomEmojiReactionDialog$0(View view) {
+            public static void $r8$lambda$EGPJDZ4jkAWgTbc5ty73avunwos(AnonymousClass1 anonymousClass1, View view) {
                 LottieLayoutWithReactions.this.hideReactionsDialog();
                 Bulletin.hideVisible();
             }
@@ -2037,13 +2017,14 @@ public class Bulletin {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$showTaggedReactionToast$1(visibleReaction, z, i, i2);
+                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.m2055$r8$lambda$HdCIalCFHnQpdIMPc9a8pfJAUE(this.f$0, visibleReaction, z, i, i2);
                     }
                 }, 300L);
             }
 
-            public void lambda$showTaggedReactionToast$1(ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, final int i, final int i2) {
+            public static void m2055$r8$lambda$HdCIalCFHnQpdIMPc9a8pfJAUE(AnonymousClass2 anonymousClass2, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, final int i, final int i2) {
                 TLRPC.Document documentFindDocument;
+                anonymousClass2.getClass();
                 final BaseFragment lastFragment = LaunchActivity.getLastFragment();
                 long j = visibleReaction.documentId;
                 if (j == 0) {
@@ -2062,12 +2043,12 @@ public class Bulletin {
                 BulletinFactory.of(lastFragment).createMessagesTaggedBulletin(LottieLayoutWithReactions.this.messagesCount, documentFindDocument, z ? new Runnable() {
                     @Override
                     public final void run() {
-                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.lambda$showTaggedReactionToast$0(i, i2, lastFragment);
+                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.m2056$r8$lambda$UC3vxyU24W1FSJxXmIS48LVHZ0(i, i2, lastFragment);
                     }
                 } : null).show(true);
             }
 
-            public static void lambda$showTaggedReactionToast$0(int i, int i2, BaseFragment baseFragment) {
+            public static void m2056$r8$lambda$UC3vxyU24W1FSJxXmIS48LVHZ0(int i, int i2, BaseFragment baseFragment) {
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", UserConfig.getInstance(i).getClientUserId());
                 bundle.putInt("message_id", i2);
@@ -2474,13 +2455,9 @@ public class Bulletin {
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    this.f$0.undo();
                 }
             });
-        }
-
-        public void lambda$new$0(View view) {
-            undo();
         }
 
         public UndoButton setText(CharSequence charSequence) {
@@ -2681,7 +2658,7 @@ public class Bulletin {
             ViewCompat.setOnApplyWindowInsetsListener(bulletinWindowLayout, new OnApplyWindowInsetsListener() {
                 @Override
                 public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                    return this.f$0.lambda$new$0(view, windowInsetsCompat);
+                    return Bulletin.BulletinWindow.m2052$r8$lambda$MGanTAKgS8oNBPaqZZzwfvbzlo(this.f$0, view, windowInsetsCompat);
                 }
             });
             int i = Build.VERSION.SDK_INT;
@@ -2762,8 +2739,9 @@ public class Bulletin {
             }
         }
 
-        public WindowInsetsCompat lambda$new$0(View view, WindowInsetsCompat windowInsetsCompat) {
-            applyInsets(AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false));
+        public static WindowInsetsCompat m2052$r8$lambda$MGanTAKgS8oNBPaqZZzwfvbzlo(BulletinWindow bulletinWindow, View view, WindowInsetsCompat windowInsetsCompat) {
+            bulletinWindow.getClass();
+            bulletinWindow.applyInsets(AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false));
             view.requestLayout();
             return WindowInsetsCompat.CONSUMED;
         }

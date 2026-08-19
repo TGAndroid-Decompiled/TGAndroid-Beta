@@ -26,7 +26,7 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
             editWidgetActivity.setDelegate(new EditWidgetActivity.EditWidgetActivityDelegate() {
                 @Override
                 public final void didSelectDialogs(ArrayList arrayList) {
-                    this.f$0.lambda$handleIntent$0(arrayList);
+                    ContactsWidgetConfigActivity.$r8$lambda$Vybw1BHuqO8H2ZrHsWp8PRjvs_g(this.f$0, arrayList);
                 }
             });
             if (AndroidUtilities.isTablet()) {
@@ -50,10 +50,11 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
         return true;
     }
 
-    public void lambda$handleIntent$0(ArrayList arrayList) {
+    public static void $r8$lambda$Vybw1BHuqO8H2ZrHsWp8PRjvs_g(ContactsWidgetConfigActivity contactsWidgetConfigActivity, ArrayList arrayList) {
+        contactsWidgetConfigActivity.getClass();
         Intent intent = new Intent();
-        intent.putExtra("appWidgetId", this.creatingAppWidgetId);
-        setResult(-1, intent);
-        finish();
+        intent.putExtra("appWidgetId", contactsWidgetConfigActivity.creatingAppWidgetId);
+        contactsWidgetConfigActivity.setResult(-1, intent);
+        contactsWidgetConfigActivity.finish();
     }
 }

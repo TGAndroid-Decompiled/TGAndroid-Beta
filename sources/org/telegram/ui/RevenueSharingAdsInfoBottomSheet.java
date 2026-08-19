@@ -72,7 +72,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(callback, resourcesProvider, imageView, view);
+                    callback.run(ItemOptions.makeOptions((ViewGroup) this.f$0.container, resourcesProvider, (View) imageView, true).setGravity(5).setDrawScrim(false).translate(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(-32.0f)));
                 }
             });
             frameLayout.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 53, 12.0f, 14.0f, 14.0f, 12.0f));
@@ -99,7 +99,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(string, i3, 0, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$1();
+                RevenueSharingAdsInfoBottomSheet.m3978$r8$lambda$R4U02FYSqLTAVF0U1LqkNW4QiA(this.f$0);
             }
         })), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
@@ -119,7 +119,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i3, 0, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$2();
+                RevenueSharingAdsInfoBottomSheet.m3977$r8$lambda$PJkIyHBIsVcimj9JbbgcGzI7QU(this.f$0);
             }
         });
         SpannableString spannableString = new SpannableString(">");
@@ -150,33 +150,26 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$3(view2);
+                this.f$0.dismiss();
             }
         });
         linearLayout.addView(textView4, LayoutHelper.createLinear(-1, 48, 0, 14, 22, 14, 14));
         this.adapter.update(false);
     }
 
-    public void lambda$new$0(Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider, ImageView imageView, View view) {
-        callback.run(ItemOptions.makeOptions((ViewGroup) this.container, resourcesProvider, (View) imageView, true).setGravity(5).setDrawScrim(false).translate(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(-32.0f)));
-    }
-
-    public void lambda$new$1() {
+    public static void m3978$r8$lambda$R4U02FYSqLTAVF0U1LqkNW4QiA(RevenueSharingAdsInfoBottomSheet revenueSharingAdsInfoBottomSheet) {
+        revenueSharingAdsInfoBottomSheet.getClass();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
             return;
         }
         safeLastFragment.presentFragment(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(3)));
-        lambda$new$0();
+        revenueSharingAdsInfoBottomSheet.dismiss();
     }
 
-    public void lambda$new$2() {
-        lambda$new$0();
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.PromoteUrl));
-    }
-
-    public void lambda$new$3(View view) {
-        lambda$new$0();
+    public static void m3977$r8$lambda$PJkIyHBIsVcimj9JbbgcGzI7QU(RevenueSharingAdsInfoBottomSheet revenueSharingAdsInfoBottomSheet) {
+        revenueSharingAdsInfoBottomSheet.dismiss();
+        Browser.openUrl(revenueSharingAdsInfoBottomSheet.getContext(), LocaleController.getString(R.string.PromoteUrl));
     }
 
     public static RevenueSharingAdsInfoBottomSheet showAlert(Context context, BaseFragment baseFragment, boolean z, Theme.ResourcesProvider resourcesProvider) {
@@ -189,9 +182,9 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
             if (baseFragment.getParentActivity() != null) {
                 baseFragment.showDialog(revenueSharingAdsInfoBottomSheet);
             }
-        } else {
-            revenueSharingAdsInfoBottomSheet.show();
+            return revenueSharingAdsInfoBottomSheet;
         }
+        revenueSharingAdsInfoBottomSheet.show();
         return revenueSharingAdsInfoBottomSheet;
     }
 

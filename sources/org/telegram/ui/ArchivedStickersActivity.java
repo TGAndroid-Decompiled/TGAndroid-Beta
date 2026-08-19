@@ -131,7 +131,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$createView$0(view, i2);
+                ArchivedStickersActivity.$r8$lambda$Brj6I0MOB2Plg_8xYy65NJ97XVE(this.f$0, view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -146,12 +146,12 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(final View view, int i) {
+    public static void $r8$lambda$Brj6I0MOB2Plg_8xYy65NJ97XVE(ArchivedStickersActivity archivedStickersActivity, final View view, int i) {
         TLRPC.InputStickerSet tL_inputStickerSetShortName;
-        if (i < this.stickersStartRow || i >= this.stickersEndRow || getParentActivity() == null) {
+        if (i < archivedStickersActivity.stickersStartRow || i >= archivedStickersActivity.stickersEndRow || archivedStickersActivity.getParentActivity() == null) {
             return;
         }
-        final TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.sets.get(i - this.stickersStartRow);
+        final TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) archivedStickersActivity.sets.get(i - archivedStickersActivity.stickersStartRow);
         if (stickerSetCovered.set.id != 0) {
             tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetShortName.id = stickerSetCovered.set.id;
@@ -161,7 +161,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         }
         TLRPC.InputStickerSet inputStickerSet = tL_inputStickerSetShortName;
         inputStickerSet.access_hash = stickerSetCovered.set.access_hash;
-        StickersAlert stickersAlert = new StickersAlert(getParentActivity(), this, inputStickerSet, null, null, false);
+        StickersAlert stickersAlert = new StickersAlert(archivedStickersActivity.getParentActivity(), archivedStickersActivity, inputStickerSet, null, null, false);
         stickersAlert.setInstallDelegate(new StickersAlert.StickersAlertInstallDelegate() {
             @Override
             public void onStickerSetUninstalled() {
@@ -175,7 +175,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
                 longSparseArray.put(stickerSetCovered2.set.id, stickerSetCovered2);
             }
         });
-        showDialog(stickersAlert);
+        archivedStickersActivity.showDialog(stickersAlert);
     }
 
     private void updateRows() {
@@ -243,37 +243,45 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getArchivedStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$getStickers$2(tLObject, tL_error);
+                ArchivedStickersActivity.$r8$lambda$3jy17FIKZ9jODEc3C1gV_IoRgqk(this.f$0, tLObject, tL_error);
             }
         }), this.classGuid);
     }
 
-    public void lambda$getStickers$2(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$3jy17FIKZ9jODEc3C1gV_IoRgqk(final ArchivedStickersActivity archivedStickersActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        archivedStickersActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$getStickers$1(tL_error, tLObject);
+                ArchivedStickersActivity.$r8$lambda$Sqftisq41VwCfppLSSZsdEAJOPI(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$getStickers$1(TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void $r8$lambda$Sqftisq41VwCfppLSSZsdEAJOPI(ArchivedStickersActivity archivedStickersActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+        archivedStickersActivity.getClass();
         if (tL_error == null) {
-            lambda$processResponse$3((TLRPC.TL_messages_archivedStickers) tLObject);
+            archivedStickersActivity.processResponse((TLRPC.TL_messages_archivedStickers) tLObject);
         }
     }
 
-    public void lambda$processResponse$3(final TLRPC.TL_messages_archivedStickers tL_messages_archivedStickers) {
+    public void processResponse(final TLRPC.TL_messages_archivedStickers tL_messages_archivedStickers) {
         if (!this.isInTransition) {
+            ArrayList<TLRPC.StickerSetCovered> arrayList = tL_messages_archivedStickers.sets;
+            int size = arrayList.size();
             int i = 0;
-            for (TLRPC.StickerSetCovered stickerSetCovered : tL_messages_archivedStickers.sets) {
-                if (!this.loadedSets.contains(Long.valueOf(stickerSetCovered.set.id))) {
-                    this.loadedSets.add(Long.valueOf(stickerSetCovered.set.id));
-                    this.sets.add(stickerSetCovered);
-                    i++;
+            int i2 = 0;
+            while (i < size) {
+                TLRPC.StickerSetCovered stickerSetCovered = arrayList.get(i);
+                i++;
+                TLRPC.StickerSetCovered stickerSetCovered2 = stickerSetCovered;
+                if (!this.loadedSets.contains(Long.valueOf(stickerSetCovered2.set.id))) {
+                    this.loadedSets.add(Long.valueOf(stickerSetCovered2.set.id));
+                    this.sets.add(stickerSetCovered2);
+                    i2++;
                 }
             }
-            this.endReached = i <= 0;
+            this.endReached = i2 <= 0;
             this.loadingStickers = false;
             this.firstLoaded = true;
             EmptyTextProgressView emptyTextProgressView = this.emptyView;
@@ -291,7 +299,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         this.doOnTransitionEnd = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processResponse$3(tL_messages_archivedStickers);
+                this.f$0.processResponse(tL_messages_archivedStickers);
             }
         };
     }
@@ -395,7 +403,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
                 archivedStickerSetCell.setOnCheckedChangeListener(new ArchivedStickerSetCell.OnCheckedChangeListener() {
                     @Override
                     public final void onCheckedChanged(ArchivedStickerSetCell archivedStickerSetCell2, boolean z) {
-                        this.f$0.lambda$onBindViewHolder$0(stickerSetCovered, archivedStickerSetCell2, z);
+                        ArchivedStickersActivity.ListAdapter.$r8$lambda$yT1SasPI1w9v1BwuZPNmWwTPjJE(this.f$0, stickerSetCovered, archivedStickerSetCell2, z);
                     }
                 });
                 return;
@@ -414,8 +422,9 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
             }
         }
 
-        public void lambda$onBindViewHolder$0(TLRPC.StickerSetCovered stickerSetCovered, ArchivedStickerSetCell archivedStickerSetCell, boolean z) {
+        public static void $r8$lambda$yT1SasPI1w9v1BwuZPNmWwTPjJE(ListAdapter listAdapter, TLRPC.StickerSetCovered stickerSetCovered, ArchivedStickerSetCell archivedStickerSetCell, boolean z) {
             if (z) {
+                listAdapter.getClass();
                 archivedStickerSetCell.setChecked(false, false, false);
                 if (ArchivedStickersActivity.this.installingStickerSets.indexOfKey(stickerSetCovered.set.id) >= 0) {
                     return;

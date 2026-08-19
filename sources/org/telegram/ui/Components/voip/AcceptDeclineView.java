@@ -195,7 +195,7 @@ public class AcceptDeclineView extends View {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$onTouchEvent$0(valueAnimator);
+                            AcceptDeclineView.m2968$r8$lambda$IbfpJBh3X899dR0VGTKVYLe7a8(this.f$0, valueAnimator);
                         }
                     });
                     valueAnimatorOfFloat.start();
@@ -208,7 +208,7 @@ public class AcceptDeclineView extends View {
                     valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            this.f$0.lambda$onTouchEvent$1(valueAnimator);
+                            AcceptDeclineView.$r8$lambda$0L4rTGanHQ2PPIU3UThiZnkUNKE(this.f$0, valueAnimator);
                         }
                     });
                     valueAnimatorOfFloat2.start();
@@ -233,7 +233,7 @@ public class AcceptDeclineView extends View {
                         valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                this.f$0.lambda$onTouchEvent$0(valueAnimator);
+                                AcceptDeclineView.m2968$r8$lambda$IbfpJBh3X899dR0VGTKVYLe7a8(this.f$0, valueAnimator);
                             }
                         });
                         valueAnimatorOfFloat3.start();
@@ -246,7 +246,7 @@ public class AcceptDeclineView extends View {
                         valueAnimatorOfFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                this.f$0.lambda$onTouchEvent$1(valueAnimator);
+                                AcceptDeclineView.$r8$lambda$0L4rTGanHQ2PPIU3UThiZnkUNKE(this.f$0, valueAnimator);
                             }
                         });
                         valueAnimatorOfFloat4.start();
@@ -269,16 +269,18 @@ public class AcceptDeclineView extends View {
         return false;
     }
 
-    public void lambda$onTouchEvent$0(ValueAnimator valueAnimator) {
-        this.leftOffsetX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-        this.leftAnimator = null;
+    public static void m2968$r8$lambda$IbfpJBh3X899dR0VGTKVYLe7a8(AcceptDeclineView acceptDeclineView, ValueAnimator valueAnimator) {
+        acceptDeclineView.getClass();
+        acceptDeclineView.leftOffsetX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        acceptDeclineView.invalidate();
+        acceptDeclineView.leftAnimator = null;
     }
 
-    public void lambda$onTouchEvent$1(ValueAnimator valueAnimator) {
-        this.rigthOffsetX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-        this.rightAnimator = null;
+    public static void $r8$lambda$0L4rTGanHQ2PPIU3UThiZnkUNKE(AcceptDeclineView acceptDeclineView, ValueAnimator valueAnimator) {
+        acceptDeclineView.getClass();
+        acceptDeclineView.rigthOffsetX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        acceptDeclineView.invalidate();
+        acceptDeclineView.rightAnimator = null;
     }
 
     @Override
@@ -410,17 +412,13 @@ public class AcceptDeclineView extends View {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$setRetryMod$2(valueAnimator);
+                this.f$0.avatarWavesDrawable.setAmplitude(((Integer) valueAnimator.getAnimatedValue()).intValue());
             }
         });
         this.callAnimator.setDuration(1500L);
         this.callAnimator.setRepeatMode(1);
         this.callAnimator.setRepeatCount(-1);
         this.callAnimator.start();
-    }
-
-    public void lambda$setRetryMod$2(ValueAnimator valueAnimator) {
-        this.avatarWavesDrawable.setAmplitude(((Integer) valueAnimator.getAnimatedValue()).intValue());
     }
 
     public void stopAnimations() {

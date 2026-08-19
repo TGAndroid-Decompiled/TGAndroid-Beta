@@ -38,7 +38,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         linksTextView.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                this.f$0.lambda$new$0(runnable, clickableSpan);
+                SponsoredMessageInfoView.$r8$lambda$yKT5h0WEDoBSPf7w9XxapAjwwwE(this.f$0, runnable, clickableSpan);
             }
         });
         LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context);
@@ -49,7 +49,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         linksTextView2.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                this.f$0.lambda$new$1(runnable, clickableSpan);
+                SponsoredMessageInfoView.m4063$r8$lambda$pxURcfHOfjULqOH58B8ckLRDcM(this.f$0, runnable, clickableSpan);
             }
         });
         LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(context);
@@ -60,7 +60,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         linksTextView3.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                this.f$0.lambda$new$2(runnable, clickableSpan);
+                SponsoredMessageInfoView.$r8$lambda$LDIfxobKJl5Ok9cXVowXb3OI9V8(this.f$0, runnable, clickableSpan);
             }
         });
         final Paint paint = new Paint(1);
@@ -114,24 +114,27 @@ public class SponsoredMessageInfoView extends FrameLayout {
         addView(scrollView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 12.0f, 0.0f, 22.0f));
     }
 
-    public void lambda$new$0(Runnable runnable, ClickableSpan clickableSpan) {
+    public static void $r8$lambda$yKT5h0WEDoBSPf7w9XxapAjwwwE(SponsoredMessageInfoView sponsoredMessageInfoView, Runnable runnable, ClickableSpan clickableSpan) {
+        sponsoredMessageInfoView.getClass();
         if (runnable != null) {
             runnable.run();
         }
-        clickableSpan.onClick(this);
+        clickableSpan.onClick(sponsoredMessageInfoView);
     }
 
-    public void lambda$new$1(Runnable runnable, ClickableSpan clickableSpan) {
+    public static void m4063$r8$lambda$pxURcfHOfjULqOH58B8ckLRDcM(SponsoredMessageInfoView sponsoredMessageInfoView, Runnable runnable, ClickableSpan clickableSpan) {
+        sponsoredMessageInfoView.getClass();
         if (runnable != null) {
             runnable.run();
         }
-        clickableSpan.onClick(this);
+        clickableSpan.onClick(sponsoredMessageInfoView);
     }
 
-    public void lambda$new$2(Runnable runnable, ClickableSpan clickableSpan) {
+    public static void $r8$lambda$LDIfxobKJl5Ok9cXVowXb3OI9V8(SponsoredMessageInfoView sponsoredMessageInfoView, Runnable runnable, ClickableSpan clickableSpan) {
+        sponsoredMessageInfoView.getClass();
         if (runnable != null) {
             runnable.run();
         }
-        clickableSpan.onClick(this);
+        clickableSpan.onClick(sponsoredMessageInfoView);
     }
 }

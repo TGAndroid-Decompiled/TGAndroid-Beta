@@ -70,15 +70,23 @@ public abstract class StoryPrivacySelector extends View {
         abstractSerializedData.writeInt32(storyPrivacy.type);
         abstractSerializedData.writeInt32(481674261);
         abstractSerializedData.writeInt32(storyPrivacy.selectedInputUsers.size());
-        Iterator it = storyPrivacy.selectedInputUsers.iterator();
-        while (it.hasNext()) {
-            ((TLRPC.InputUser) it.next()).serializeToStream(abstractSerializedData);
+        ArrayList arrayList = storyPrivacy.selectedInputUsers;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((TLRPC.InputUser) obj).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         abstractSerializedData.writeInt32(storyPrivacy.selectedUserIds.size());
-        Iterator it2 = storyPrivacy.selectedUserIds.iterator();
-        while (it2.hasNext()) {
-            abstractSerializedData.writeInt64(((Long) it2.next()).longValue());
+        ArrayList arrayList2 = storyPrivacy.selectedUserIds;
+        int size2 = arrayList2.size();
+        int i2 = 0;
+        while (i2 < size2) {
+            Object obj2 = arrayList2.get(i2);
+            i2++;
+            abstractSerializedData.writeInt64(((Long) obj2).longValue());
         }
         abstractSerializedData.writeInt32(481674261);
         abstractSerializedData.writeInt32(storyPrivacy.selectedUserIdsByGroup.size());
@@ -86,9 +94,13 @@ public abstract class StoryPrivacySelector extends View {
             abstractSerializedData.writeInt64(((Long) entry.getKey()).longValue());
             abstractSerializedData.writeInt32(481674261);
             abstractSerializedData.writeInt32(((ArrayList) entry.getValue()).size());
-            Iterator it3 = ((ArrayList) entry.getValue()).iterator();
-            while (it3.hasNext()) {
-                abstractSerializedData.writeInt64(((Long) it3.next()).longValue());
+            ArrayList arrayList3 = (ArrayList) entry.getValue();
+            int size3 = arrayList3.size();
+            int i3 = 0;
+            while (i3 < size3) {
+                Object obj3 = arrayList3.get(i3);
+                i3++;
+                abstractSerializedData.writeInt64(((Long) obj3).longValue());
             }
         }
     }
@@ -130,7 +142,7 @@ public abstract class StoryPrivacySelector extends View {
                 messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryPrivacySelector.lambda$getSaved$5(messagesStorage, hashSet, i);
+                        StoryPrivacySelector.$r8$lambda$1GeR3B71u4SYlnnRN3ZTI6oCWXk(messagesStorage, hashSet, i);
                     }
                 });
             }
@@ -141,18 +153,14 @@ public abstract class StoryPrivacySelector extends View {
         }
     }
 
-    public static void lambda$getSaved$5(MessagesStorage messagesStorage, HashSet hashSet, final int i) {
+    public static void $r8$lambda$1GeR3B71u4SYlnnRN3ZTI6oCWXk(MessagesStorage messagesStorage, HashSet hashSet, final int i) {
         final ArrayList<TLRPC.User> users = messagesStorage.getUsers(new ArrayList<>(hashSet));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryPrivacySelector.lambda$getSaved$4(i, users);
+                MessagesController.getInstance(i).putUsers(users, true);
             }
         });
-    }
-
-    public static void lambda$getSaved$4(int i, ArrayList arrayList) {
-        MessagesController.getInstance(i).putUsers(arrayList, true);
     }
 
     public static void applySaved(int i, StoryEntry storyEntry) {

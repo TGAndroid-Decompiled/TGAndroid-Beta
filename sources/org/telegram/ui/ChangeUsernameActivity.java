@@ -36,7 +36,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -102,7 +101,7 @@ public class ChangeUsernameActivity extends BaseFragment {
     private static Paint linkBackgroundInactive = new Paint(1);
     private static Paint dragPaint = new Paint(1);
 
-    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$DmCwAT3BcvVq81X99BQkldG5VPk(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -232,14 +231,14 @@ public class ChangeUsernameActivity extends BaseFragment {
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return ChangeUsernameActivity.lambda$createView$0(view, motionEvent);
+                return ChangeUsernameActivity.$r8$lambda$DmCwAT3BcvVq81X99BQkldG5VPk(view, motionEvent);
             }
         });
         this.listView.setOnItemClickListener(new AnonymousClass2());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$1();
+                ChangeUsernameActivity.$r8$lambda$ya315LLRhiBJCwlWuVoypuD2gYk(this.f$0);
             }
         }, 40L);
         return this.fragmentView;
@@ -265,7 +264,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                     new AlertDialog.Builder(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()).setTitle(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLink : R.string.UsernameActivateLink)).setMessage(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLinkProfileMessage : R.string.UsernameActivateLinkProfileMessage)).setPositiveButton(LocaleController.getString(tL_username.active ? R.string.Hide : R.string.Show), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i2) {
-                            this.f$0.lambda$onItemClick$3(tL_username, i, view, alertDialog, i2);
+                            ChangeUsernameActivity.AnonymousClass2.m1525$r8$lambda$fgmGFe6kqpqdznQOTm5nk5GemI(this.f$0, tL_username, i, view, alertDialog, i2);
                         }
                     }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                         @Override
@@ -281,8 +280,9 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
         }
 
-        public void lambda$onItemClick$3(final TLRPC.TL_username tL_username, final int i, View view, AlertDialog alertDialog, int i2) {
+        public static void m1525$r8$lambda$fgmGFe6kqpqdznQOTm5nk5GemI(final AnonymousClass2 anonymousClass2, final TLRPC.TL_username tL_username, final int i, View view, AlertDialog alertDialog, int i2) {
             TLObject tLObject;
+            anonymousClass2.getClass();
             final boolean z = tL_username.active;
             final String str = tL_username.username;
             final boolean z2 = !z;
@@ -301,23 +301,24 @@ public class ChangeUsernameActivity extends BaseFragment {
             ChangeUsernameActivity.this.getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$onItemClick$2(str, i, z2, tL_username, z, tLObject2, tL_error);
+                    ChangeUsernameActivity.AnonymousClass2.m1524$r8$lambda$HGQXMPYiCwXrOybaxn4Or7u2bs(this.f$0, str, i, z2, tL_username, z, tLObject2, tL_error);
                 }
             });
             ChangeUsernameActivity.this.loadingUsernames.add(tL_username.username);
             ((UsernameCell) view).setLoading(true);
         }
 
-        public void lambda$onItemClick$2(final String str, final int i, final boolean z, final TLRPC.TL_username tL_username, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m1524$r8$lambda$HGQXMPYiCwXrOybaxn4Or7u2bs(final AnonymousClass2 anonymousClass2, final String str, final int i, final boolean z, final TLRPC.TL_username tL_username, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            anonymousClass2.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onItemClick$1(str, tLObject, i, z, tL_error, tL_username, z2);
+                    ChangeUsernameActivity.AnonymousClass2.m1526$r8$lambda$hPJSUOLr2cSQBif0BkFqQjM9xc(this.f$0, str, tLObject, i, z, tL_error, tL_username, z2);
                 }
             });
         }
 
-        public void lambda$onItemClick$1(String str, TLObject tLObject, int i, boolean z, TLRPC.TL_error tL_error, final TLRPC.TL_username tL_username, final boolean z2) {
+        public static void m1526$r8$lambda$hPJSUOLr2cSQBif0BkFqQjM9xc(final AnonymousClass2 anonymousClass2, String str, TLObject tLObject, int i, boolean z, TLRPC.TL_error tL_error, final TLRPC.TL_username tL_username, final boolean z2) {
             TLRPC.TL_username tL_username2;
             ChangeUsernameActivity.this.loadingUsernames.remove(str);
             if (tLObject instanceof TLRPC.TL_boolTrue) {
@@ -328,7 +329,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 new AlertDialog.Builder(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()).setTitle(LocaleController.getString(R.string.UsernameActivateErrorTitle)).setMessage(LocaleController.getString(R.string.UsernameActivateErrorMessage)).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        this.f$0.lambda$onItemClick$0(tL_username, z2, alertDialog, i2);
+                        ChangeUsernameActivity.this.toggleUsername(tL_username, z2, true);
                     }
                 }).show();
             } else {
@@ -339,37 +340,42 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (ChangeUsernameActivity.this.botId == 0 || ChangeUsernameActivity.this.usernames == null) {
                 return;
             }
-            Iterator it = ChangeUsernameActivity.this.usernames.iterator();
-            while (it.hasNext()) {
-                if (((TLRPC.TL_username) it.next()).active) {
+            ArrayList arrayList = ChangeUsernameActivity.this.usernames;
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList.get(i2);
+                i2++;
+                if (((TLRPC.TL_username) obj).active) {
                     return;
                 }
             }
-            Iterator it2 = ChangeUsernameActivity.this.usernames.iterator();
+            ArrayList arrayList2 = ChangeUsernameActivity.this.usernames;
+            int size2 = arrayList2.size();
+            int i3 = 0;
             do {
-                if (!it2.hasNext()) {
+                if (i3 >= size2) {
                     tL_username2 = null;
                     break;
+                } else {
+                    Object obj2 = arrayList2.get(i3);
+                    i3++;
+                    tL_username2 = (TLRPC.TL_username) obj2;
                 }
-                tL_username2 = (TLRPC.TL_username) it2.next();
             } while (!tL_username2.editable);
             if (tL_username2 != null) {
                 ChangeUsernameActivity.this.toggleUsername(tL_username2, true, false);
                 ChangeUsernameActivity.this.getMessagesController().updateUsernameActiveness(user, tL_username2.username, tL_username2.active);
             }
         }
-
-        public void lambda$onItemClick$0(TLRPC.TL_username tL_username, boolean z, AlertDialog alertDialog, int i) {
-            ChangeUsernameActivity.this.toggleUsername(tL_username, z, true);
-        }
     }
 
-    public void lambda$createView$1() {
-        String str = this.username;
+    public static void $r8$lambda$ya315LLRhiBJCwlWuVoypuD2gYk(ChangeUsernameActivity changeUsernameActivity) {
+        String str = changeUsernameActivity.username;
         if (str == null || str.length() > 0) {
-            this.ignoreCheck = true;
-            focusUsernameField(this.usernames.size() <= 0);
-            this.ignoreCheck = false;
+            changeUsernameActivity.ignoreCheck = true;
+            changeUsernameActivity.focusUsernameField(changeUsernameActivity.usernames.size() <= 0);
+            changeUsernameActivity.ignoreCheck = false;
         }
     }
 
@@ -642,14 +648,14 @@ public class ChangeUsernameActivity extends BaseFragment {
             getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    ChangeUsernameActivity.lambda$sendReorder$2(tLObject2, tL_error);
+                    ChangeUsernameActivity.m1523$r8$lambda$zq5vETz5Wdi_jfJWX9XSOXLMw(tLObject2, tL_error);
                 }
             });
             updateUser();
         }
     }
 
-    public static void lambda$sendReorder$2(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1523$r8$lambda$zq5vETz5Wdi_jfJWX9XSOXLMw(TLObject tLObject, TLRPC.TL_error tL_error) {
         boolean z = tLObject instanceof TLRPC.TL_boolTrue;
     }
 
@@ -769,7 +775,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$update$0(translationY, measuredHeight2, measuredHeight, iDp, valueAnimator2);
+                    ChangeUsernameActivity.UsernameHelpCell.$r8$lambda$Zcx9LCDJM7uXoC12PwpIsdwsNgM(this.f$0, translationY, measuredHeight2, measuredHeight, iDp, valueAnimator2);
                 }
             });
             this.heightUpdateAnimator.setDuration(200L);
@@ -777,11 +783,12 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.heightUpdateAnimator.start();
         }
 
-        public void lambda$update$0(float f, float f2, int i, int i2, ValueAnimator valueAnimator) {
+        public static void $r8$lambda$Zcx9LCDJM7uXoC12PwpIsdwsNgM(UsernameHelpCell usernameHelpCell, float f, float f2, int i, int i2, ValueAnimator valueAnimator) {
+            usernameHelpCell.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.text1View.setTranslationY(AndroidUtilities.lerp(f, f2, fFloatValue));
-            this.height = Integer.valueOf(AndroidUtilities.lerp(i, i2, fFloatValue));
-            requestLayout();
+            usernameHelpCell.text1View.setTranslationY(AndroidUtilities.lerp(f, f2, fFloatValue));
+            usernameHelpCell.height = Integer.valueOf(AndroidUtilities.lerp(i, i2, fFloatValue));
+            usernameHelpCell.requestLayout();
         }
     }
 
@@ -815,7 +822,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.field.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                    return this.f$0.lambda$new$0(textView, i2, keyEvent);
+                    return ChangeUsernameActivity.InputCell.$r8$lambda$69RQDsWdpU6S0b0i_JsEhAB7GH4(this.f$0, textView, i2, keyEvent);
                 }
             });
             this.field.setText(ChangeUsernameActivity.this.username);
@@ -886,8 +893,12 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
         }
 
-        public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
-            if (i != 6 || ChangeUsernameActivity.this.doneButton == null) {
+        public static boolean $r8$lambda$69RQDsWdpU6S0b0i_JsEhAB7GH4(InputCell inputCell, TextView textView, int i, KeyEvent keyEvent) {
+            if (i != 6) {
+                inputCell.getClass();
+                return false;
+            }
+            if (ChangeUsernameActivity.this.doneButton == null) {
                 return false;
             }
             ChangeUsernameActivity.this.doneButton.performClick();
@@ -975,7 +986,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setLoading$0(valueAnimator2);
+                        ChangeUsernameActivity.UsernameCell.m1528$r8$lambda$iFLdOd_VQ20CZjjdd9JPbn8ptc(this.f$0, valueAnimator2);
                     }
                 });
                 this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -990,11 +1001,12 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
         }
 
-        public void lambda$setLoading$0(ValueAnimator valueAnimator) {
+        public static void m1528$r8$lambda$iFLdOd_VQ20CZjjdd9JPbn8ptc(UsernameCell usernameCell, ValueAnimator valueAnimator) {
+            usernameCell.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.loadingFloat = fFloatValue;
-            this.activeView.setTranslationX(fFloatValue * AndroidUtilities.dp(16.0f));
-            this.loadingView.setAlpha(this.loadingFloat);
+            usernameCell.loadingFloat = fFloatValue;
+            usernameCell.activeView.setTranslationX(fFloatValue * AndroidUtilities.dp(16.0f));
+            usernameCell.loadingView.setAlpha(usernameCell.loadingFloat);
         }
 
         public void set(TLRPC.TL_username tL_username, boolean z, boolean z2) {
@@ -1063,7 +1075,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$animateValueTextColor$1(valueAnimator2);
+                        ChangeUsernameActivity.UsernameCell.m1529$r8$lambda$wHtagMpcAHEysU6XTttlTffN4E(this.f$0, valueAnimator2);
                     }
                 });
                 this.activeViewTextColorAnimator.setDuration(120L);
@@ -1077,11 +1089,12 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.activeView.setTextColor(iBlendARGB);
         }
 
-        public void lambda$animateValueTextColor$1(ValueAnimator valueAnimator) {
-            this.activeViewTextColorT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, this.resourcesProvider), this.activeViewTextColorT);
-            this.loadingDrawable.setColor(iBlendARGB);
-            this.activeView.setTextColor(iBlendARGB);
+        public static void m1529$r8$lambda$wHtagMpcAHEysU6XTttlTffN4E(UsernameCell usernameCell, ValueAnimator valueAnimator) {
+            usernameCell.getClass();
+            usernameCell.activeViewTextColorT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, usernameCell.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, usernameCell.resourcesProvider), usernameCell.activeViewTextColorT);
+            usernameCell.loadingDrawable.setColor(iBlendARGB);
+            usernameCell.activeView.setTextColor(iBlendARGB);
         }
 
         public void update() {
@@ -1098,6 +1111,7 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         @Override
         protected void onDraw(Canvas canvas) {
+            Canvas canvas2;
             super.onDraw(canvas);
             float f = this.activeFloat.set(this.active ? 1.0f : 0.0f);
             if (f < 1.0f) {
@@ -1118,16 +1132,19 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (f2 > 0.0f) {
                 int alpha = Theme.dividerPaint.getAlpha();
                 Theme.dividerPaint.setAlpha((int) (alpha * f2));
-                canvas.drawRect(AndroidUtilities.dp(70.0f), getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
+                canvas2 = canvas;
+                canvas2.drawRect(AndroidUtilities.dp(70.0f), getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
                 Theme.dividerPaint.setAlpha(alpha);
+            } else {
+                canvas2 = canvas;
             }
             ChangeUsernameActivity.dragPaint.setColor(Theme.getColor(Theme.key_stickers_menu));
             ChangeUsernameActivity.dragPaint.setAlpha((int) (ChangeUsernameActivity.dragPaint.getAlpha() * f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getWidth() - AndroidUtilities.dp(37.0f), AndroidUtilities.dp(25.0f), getWidth() - AndroidUtilities.dp(21.0f), AndroidUtilities.dp(27.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(0.3f), AndroidUtilities.dp(0.3f), ChangeUsernameActivity.dragPaint);
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(0.3f), AndroidUtilities.dp(0.3f), ChangeUsernameActivity.dragPaint);
             rectF.set(getWidth() - AndroidUtilities.dp(37.0f), AndroidUtilities.dp(31.0f), getWidth() - AndroidUtilities.dp(21.0f), AndroidUtilities.dp(33.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(0.3f), AndroidUtilities.dp(0.3f), ChangeUsernameActivity.dragPaint);
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(0.3f), AndroidUtilities.dp(0.3f), ChangeUsernameActivity.dragPaint);
         }
     }
 
@@ -1358,7 +1375,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$checkUserName$5(str);
+                    ChangeUsernameActivity.m1522$r8$lambda$oT2bNa1CZ2MPAy5CkauJKgLpk0(this.f$0, str);
                 }
             };
             this.checkRunnable = runnable2;
@@ -1367,78 +1384,80 @@ public class ChangeUsernameActivity extends BaseFragment {
         return true;
     }
 
-    public void lambda$checkUserName$5(final String str) {
+    public static void m1522$r8$lambda$oT2bNa1CZ2MPAy5CkauJKgLpk0(final ChangeUsernameActivity changeUsernameActivity, final String str) {
+        changeUsernameActivity.getClass();
         final TL_account.checkUsername checkusername = new TL_account.checkUsername();
         checkusername.username = str;
-        this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(checkusername, new RequestDelegate() {
+        changeUsernameActivity.checkReqId = ConnectionsManager.getInstance(changeUsernameActivity.currentAccount).sendRequest(checkusername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$checkUserName$4(str, checkusername, tLObject, tL_error);
+                ChangeUsernameActivity.$r8$lambda$q6afXWCNed0J9ucJvcaCn5fPDI4(this.f$0, str, checkusername, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public void lambda$checkUserName$4(final String str, final TL_account.checkUsername checkusername, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$q6afXWCNed0J9ucJvcaCn5fPDI4(final ChangeUsernameActivity changeUsernameActivity, final String str, final TL_account.checkUsername checkusername, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        changeUsernameActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkUserName$3(str, tL_error, tLObject, checkusername);
+                ChangeUsernameActivity.$r8$lambda$BzUjMB8D9OqxL3uqqFt4P5cdUFs(this.f$0, str, tL_error, tLObject, checkusername);
             }
         });
     }
 
-    public void lambda$checkUserName$3(String str, TLRPC.TL_error tL_error, TLObject tLObject, TL_account.checkUsername checkusername) {
-        this.checkReqId = 0;
-        String str2 = this.lastCheckName;
+    public static void $r8$lambda$BzUjMB8D9OqxL3uqqFt4P5cdUFs(ChangeUsernameActivity changeUsernameActivity, String str, TLRPC.TL_error tL_error, TLObject tLObject, TL_account.checkUsername checkusername) {
+        changeUsernameActivity.checkReqId = 0;
+        String str2 = changeUsernameActivity.lastCheckName;
         if (str2 == null || !str2.equals(str)) {
             return;
         }
         if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-            LinkSpanDrawable.LinksTextView linksTextView = this.statusTextView;
+            LinkSpanDrawable.LinksTextView linksTextView = changeUsernameActivity.statusTextView;
             if (linksTextView != null) {
                 linksTextView.setText(LocaleController.formatString("UsernameAvailable", R.string.UsernameAvailable, str));
-                LinkSpanDrawable.LinksTextView linksTextView2 = this.statusTextView;
+                LinkSpanDrawable.LinksTextView linksTextView2 = changeUsernameActivity.statusTextView;
                 int i = Theme.key_windowBackgroundWhiteGreenText;
                 linksTextView2.setTag(Integer.valueOf(i));
-                this.statusTextView.setTextColor(Theme.getColor(i));
-                UsernameHelpCell usernameHelpCell = this.helpCell;
+                changeUsernameActivity.statusTextView.setTextColor(Theme.getColor(i));
+                UsernameHelpCell usernameHelpCell = changeUsernameActivity.helpCell;
                 if (usernameHelpCell != null) {
                     usernameHelpCell.update();
                 }
             }
-            this.lastNameAvailable = true;
+            changeUsernameActivity.lastNameAvailable = true;
             return;
         }
-        if (this.statusTextView != null) {
+        if (changeUsernameActivity.statusTextView != null) {
             if (tL_error != null && "USERNAME_INVALID".equals(tL_error.text) && checkusername.username.length() == 4) {
-                this.statusTextView.setText(LocaleController.getString(R.string.UsernameInvalidShort));
-                LinkSpanDrawable.LinksTextView linksTextView3 = this.statusTextView;
+                changeUsernameActivity.statusTextView.setText(LocaleController.getString(R.string.UsernameInvalidShort));
+                LinkSpanDrawable.LinksTextView linksTextView3 = changeUsernameActivity.statusTextView;
                 int i2 = Theme.key_text_RedRegular;
                 linksTextView3.setTag(Integer.valueOf(i2));
-                this.statusTextView.setTextColor(Theme.getColor(i2));
+                changeUsernameActivity.statusTextView.setTextColor(Theme.getColor(i2));
             } else if (tL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text)) {
                 if (checkusername.username.length() == 4) {
-                    this.statusTextView.setText(LocaleController.getString(R.string.UsernameInvalidShortPurchase));
+                    changeUsernameActivity.statusTextView.setText(LocaleController.getString(R.string.UsernameInvalidShortPurchase));
                 } else {
-                    this.statusTextView.setText(LocaleController.getString(R.string.UsernameInUsePurchase));
+                    changeUsernameActivity.statusTextView.setText(LocaleController.getString(R.string.UsernameInUsePurchase));
                 }
-                LinkSpanDrawable.LinksTextView linksTextView4 = this.statusTextView;
+                LinkSpanDrawable.LinksTextView linksTextView4 = changeUsernameActivity.statusTextView;
                 int i3 = Theme.key_windowBackgroundWhiteGrayText8;
                 linksTextView4.setTag(Integer.valueOf(i3));
-                this.statusTextView.setTextColor(Theme.getColor(i3));
+                changeUsernameActivity.statusTextView.setTextColor(Theme.getColor(i3));
             } else {
-                this.statusTextView.setText(LocaleController.getString(R.string.UsernameInUse));
-                LinkSpanDrawable.LinksTextView linksTextView5 = this.statusTextView;
+                changeUsernameActivity.statusTextView.setText(LocaleController.getString(R.string.UsernameInUse));
+                LinkSpanDrawable.LinksTextView linksTextView5 = changeUsernameActivity.statusTextView;
                 int i4 = Theme.key_text_RedRegular;
                 linksTextView5.setTag(Integer.valueOf(i4));
-                this.statusTextView.setTextColor(Theme.getColor(i4));
+                changeUsernameActivity.statusTextView.setTextColor(Theme.getColor(i4));
             }
-            UsernameHelpCell usernameHelpCell2 = this.helpCell;
+            UsernameHelpCell usernameHelpCell2 = changeUsernameActivity.helpCell;
             if (usernameHelpCell2 != null) {
                 usernameHelpCell2.update();
             }
         }
-        this.lastNameAvailable = false;
+        changeUsernameActivity.lastNameAvailable = false;
     }
 
     public void saveName() {
@@ -1468,57 +1487,59 @@ public class ChangeUsernameActivity extends BaseFragment {
         final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
         final TL_account.updateUsername updateusername = new TL_account.updateUsername();
         updateusername.username = this.username;
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
         final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateusername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$saveName$10(alertDialog, updateusername, tLObject, tL_error);
+                ChangeUsernameActivity.$r8$lambda$ZuVrxp3bIlx7f4bGy8pL2MYY3bc(this.f$0, alertDialog, updateusername, tLObject, tL_error);
             }
         }, 2);
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(iSendRequest, this.classGuid);
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                this.f$0.lambda$saveName$11(iSendRequest, dialogInterface);
+                ConnectionsManager.getInstance(this.f$0.currentAccount).cancelRequest(iSendRequest, true);
             }
         });
         alertDialog.show();
     }
 
-    public void lambda$saveName$10(final AlertDialog alertDialog, final TL_account.updateUsername updateusername, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$ZuVrxp3bIlx7f4bGy8pL2MYY3bc(final ChangeUsernameActivity changeUsernameActivity, final AlertDialog alertDialog, final TL_account.updateUsername updateusername, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        changeUsernameActivity.getClass();
         if (tL_error == null) {
             final TLRPC.User user = (TLRPC.User) tLObject;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$saveName$6(alertDialog, user);
+                    ChangeUsernameActivity.$r8$lambda$zwh44bOS5QNWDgBFWyYo9_EvkHQ(this.f$0, alertDialog, user);
                 }
             });
         } else if ("USERNAME_NOT_MODIFIED".equals(tL_error.text)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$saveName$7(alertDialog);
+                    ChangeUsernameActivity.$r8$lambda$S9VooR3Wc5lSmYFxIoJTMicmNaY(this.f$0, alertDialog);
                 }
             });
         } else if ("USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text) || "USERNAME_INVALID".equals(tL_error.text)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$saveName$8(alertDialog);
+                    ChangeUsernameActivity.$r8$lambda$j5WlSq0ePL9YtZ5Fkp03XBkutgY(this.f$0, alertDialog);
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$saveName$9(alertDialog, tL_error, updateusername);
+                    ChangeUsernameActivity.$r8$lambda$E6TehbgLnJGrgZzlojwi7WC_NxA(this.f$0, alertDialog, tL_error, updateusername);
                 }
             });
         }
     }
 
-    public void lambda$saveName$6(AlertDialog alertDialog, TLRPC.User user) {
+    public static void $r8$lambda$zwh44bOS5QNWDgBFWyYo9_EvkHQ(ChangeUsernameActivity changeUsernameActivity, AlertDialog alertDialog, TLRPC.User user) {
+        changeUsernameActivity.getClass();
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
@@ -1526,42 +1547,41 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
         ArrayList<TLRPC.User> arrayList = new ArrayList<>();
         arrayList.add(user);
-        MessagesController.getInstance(this.currentAccount).putUsers(arrayList, false);
-        MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(arrayList, null, false, true);
-        UserConfig.getInstance(this.currentAccount).saveConfig(true);
-        finishFragment();
+        MessagesController.getInstance(changeUsernameActivity.currentAccount).putUsers(arrayList, false);
+        MessagesStorage.getInstance(changeUsernameActivity.currentAccount).putUsersAndChats(arrayList, null, false, true);
+        UserConfig.getInstance(changeUsernameActivity.currentAccount).saveConfig(true);
+        changeUsernameActivity.finishFragment();
     }
 
-    public void lambda$saveName$7(AlertDialog alertDialog) {
+    public static void $r8$lambda$S9VooR3Wc5lSmYFxIoJTMicmNaY(ChangeUsernameActivity changeUsernameActivity, AlertDialog alertDialog) {
+        changeUsernameActivity.getClass();
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
             FileLog.e(e);
         }
-        finishFragment();
+        changeUsernameActivity.finishFragment();
     }
 
-    public void lambda$saveName$8(AlertDialog alertDialog) {
+    public static void $r8$lambda$j5WlSq0ePL9YtZ5Fkp03XBkutgY(ChangeUsernameActivity changeUsernameActivity, AlertDialog alertDialog) {
+        changeUsernameActivity.getClass();
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
             FileLog.e(e);
         }
-        shakeIfOff();
+        changeUsernameActivity.shakeIfOff();
     }
 
-    public void lambda$saveName$9(AlertDialog alertDialog, TLRPC.TL_error tL_error, TL_account.updateUsername updateusername) {
+    public static void $r8$lambda$E6TehbgLnJGrgZzlojwi7WC_NxA(ChangeUsernameActivity changeUsernameActivity, AlertDialog alertDialog, TLRPC.TL_error tL_error, TL_account.updateUsername updateusername) {
+        changeUsernameActivity.getClass();
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
             FileLog.e(e);
         }
-        AlertsCreator.processError(this.currentAccount, tL_error, this, updateusername, new Object[0]);
-        shakeIfOff();
-    }
-
-    public void lambda$saveName$11(int i, DialogInterface dialogInterface) {
-        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
+        AlertsCreator.processError(changeUsernameActivity.currentAccount, tL_error, changeUsernameActivity, updateusername, new Object[0]);
+        changeUsernameActivity.shakeIfOff();
     }
 
     @Override

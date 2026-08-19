@@ -22,12 +22,12 @@ public abstract class NinePatchBuilder {
         return createNinePatch(bitmapArr, fArr, f, f2, f3, i3, new NinePathRenderer() {
             @Override
             public final void draw(Canvas canvas, RectF rectF, float[] fArr2) {
-                NinePatchBuilder.lambda$createNinePatch$0(i, f, f2, f3, i2, canvas, rectF, fArr2);
+                NinePatchBuilder.$r8$lambda$86sFOu1PZqKXvzaMlCbF6VL6Vy8(i, f, f2, f3, i2, canvas, rectF, fArr2);
             }
         });
     }
 
-    public static void lambda$createNinePatch$0(int i, float f, float f2, float f3, int i2, Canvas canvas, RectF rectF, float[] fArr) {
+    public static void $r8$lambda$86sFOu1PZqKXvzaMlCbF6VL6Vy8(int i, float f, float f2, float f3, int i2, Canvas canvas, RectF rectF, float[] fArr) {
         Path path = new Path();
         path.addRoundRect(rectF, fArr, Path.Direction.CW);
         Paint paint = new Paint(1);
@@ -44,11 +44,8 @@ public abstract class NinePatchBuilder {
     }
 
     public static NinePatchDrawable createNinePatch(Bitmap[] bitmapArr, float[] fArr, float f, float f2, float f3, int i, NinePathRenderer ninePathRenderer) {
-        int i2;
         boolean z;
-        int i3;
-        int i4;
-        int i5;
+        float f4;
         Bitmap bitmapCreateBitmap;
         Bitmap bitmap;
         if (fArr == null || fArr.length != 8) {
@@ -63,130 +60,78 @@ public abstract class NinePatchBuilder {
         float fMax7 = Math.max(0.0f, fArr[6]);
         float fMax8 = Math.max(0.0f, fArr[7]);
         int iCeil = (int) Math.ceil(f * 2.0f);
-        int iCeil2 = ((int) Math.ceil(Math.max(0.0f, -f2))) + iCeil;
-        int iCeil3 = ((int) Math.ceil(Math.max(0.0f, f2))) + iCeil;
-        int iCeil4 = ((int) Math.ceil(Math.max(0.0f, -f3))) + iCeil;
+        int iCeil2 = iCeil + ((int) Math.ceil(Math.max(0.0f, -f2)));
+        int iCeil3 = iCeil + ((int) Math.ceil(Math.max(0.0f, f2)));
+        int iCeil4 = iCeil + ((int) Math.ceil(Math.max(0.0f, -f3)));
         int iCeil5 = iCeil + ((int) Math.ceil(Math.max(0.0f, f3)));
         float fMax9 = Math.max(fMax + fMax3, fMax7 + fMax5);
         float fMax10 = Math.max(fMax2 + fMax8, fMax4 + fMax6);
         int iCeil6 = ((int) Math.ceil(fMax9 + 2.0f)) + iCeil2;
-        int i6 = iCeil6 + iCeil3;
+        int i2 = iCeil6 + iCeil3;
         int iCeil7 = ((int) Math.ceil(fMax10 + 2.0f)) + iCeil4;
-        int i7 = iCeil7 + iCeil5;
-        if (bitmapArr != null) {
-            i2 = i7;
-            z = bitmapArr.length == 1;
-            if (z) {
-                bitmapCreateBitmap = bitmapArr[0];
-                i3 = i2;
-                if (bitmapCreateBitmap == null && !bitmapCreateBitmap.isRecycled() && bitmapCreateBitmap.isMutable()) {
-                    i5 = iCeil5;
-                    if (bitmapCreateBitmap.getWidth() == i6 && bitmapCreateBitmap.getHeight() == i3) {
-                        i4 = iCeil3;
-                        if (bitmapCreateBitmap.getConfig() == Bitmap.Config.ARGB_8888) {
-                            bitmapCreateBitmap.eraseColor(0);
-                        }
-                        if (bitmapCreateBitmap == null) {
-                            bitmapCreateBitmap = Bitmap.createBitmap(i6, i3, Bitmap.Config.ARGB_8888);
-                        }
-                        bitmap = bitmapCreateBitmap;
-                        if (z) {
-                            bitmapArr[0] = bitmap;
-                        }
-                        ninePathRenderer.draw(new Canvas(bitmap), new RectF(iCeil2, iCeil4, iCeil6, iCeil7), new float[]{fMax, fMax2, fMax3, fMax4, fMax5, fMax6, fMax7, fMax8});
-                        float fMax11 = Math.max(fMax, fMax7);
-                        float fMax12 = Math.max(fMax3, fMax5);
-                        float fMax13 = Math.max(fMax2, fMax4);
-                        float fMax14 = Math.max(fMax8, fMax6);
-                        int iClamp = MathUtils.clamp(((int) Math.ceil(fMax11)) + iCeil2, 1, i6 - 2);
-                        int iClamp2 = MathUtils.clamp((i6 - i4) - ((int) Math.ceil(fMax12)), iClamp + 1, i6 - 1);
-                        int iClamp3 = MathUtils.clamp(((int) Math.ceil(fMax13)) + iCeil4, 1, i3 - 2);
-                        return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, createNinePatchChunk(iClamp, iClamp2, iClamp3, MathUtils.clamp((i3 - i5) - ((int) Math.ceil(fMax14)), iClamp3 + 1, i3 - 1), iCeil2, iCeil4, i4, i5, i).array(), new Rect(iCeil2, iCeil4, i4, i5), null);
-                    }
-                    i4 = iCeil3;
+        int i3 = iCeil7 + iCeil5;
+        boolean z2 = bitmapArr != null && bitmapArr.length == 1;
+        if (z2 && (bitmapCreateBitmap = bitmapArr[0]) != null && !bitmapCreateBitmap.isRecycled() && bitmapCreateBitmap.isMutable()) {
+            z = z2;
+            if (bitmapCreateBitmap.getWidth() == i2 && bitmapCreateBitmap.getHeight() == i3) {
+                f4 = fMax;
+                if (bitmapCreateBitmap.getConfig() == Bitmap.Config.ARGB_8888) {
+                    bitmapCreateBitmap.eraseColor(0);
                 }
-                bitmapCreateBitmap = null;
                 if (bitmapCreateBitmap == null) {
-                    bitmapCreateBitmap = Bitmap.createBitmap(i6, i3, Bitmap.Config.ARGB_8888);
+                    bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
                 }
                 bitmap = bitmapCreateBitmap;
                 if (z) {
                     bitmapArr[0] = bitmap;
                 }
-                ninePathRenderer.draw(new Canvas(bitmap), new RectF(iCeil2, iCeil4, iCeil6, iCeil7), new float[]{fMax, fMax2, fMax3, fMax4, fMax5, fMax6, fMax7, fMax8});
-                float fMax15 = Math.max(fMax, fMax7);
-                float fMax16 = Math.max(fMax3, fMax5);
-                float fMax17 = Math.max(fMax2, fMax4);
-                float fMax18 = Math.max(fMax8, fMax6);
-                int iClamp4 = MathUtils.clamp(((int) Math.ceil(fMax15)) + iCeil2, 1, i6 - 2);
-                int iClamp5 = MathUtils.clamp((i6 - i4) - ((int) Math.ceil(fMax16)), iClamp4 + 1, i6 - 1);
-                int iClamp6 = MathUtils.clamp(((int) Math.ceil(fMax17)) + iCeil4, 1, i3 - 2);
-                return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, createNinePatchChunk(iClamp4, iClamp5, iClamp6, MathUtils.clamp((i3 - i5) - ((int) Math.ceil(fMax18)), iClamp6 + 1, i3 - 1), iCeil2, iCeil4, i4, i5, i).array(), new Rect(iCeil2, iCeil4, i4, i5), null);
+                ninePathRenderer.draw(new Canvas(bitmap), new RectF(iCeil2, iCeil4, iCeil6, iCeil7), new float[]{f4, fMax2, fMax3, fMax4, fMax5, fMax6, fMax7, fMax8});
+                float fMax11 = Math.max(f4, fMax7);
+                float fMax12 = Math.max(fMax3, fMax5);
+                float fMax13 = Math.max(fMax2, fMax4);
+                float fMax14 = Math.max(fMax8, fMax6);
+                int iClamp = MathUtils.clamp(iCeil2 + ((int) Math.ceil(fMax11)), 1, i2 - 2);
+                int iClamp2 = MathUtils.clamp((i2 - iCeil3) - ((int) Math.ceil(fMax12)), iClamp + 1, i2 - 1);
+                int iClamp3 = MathUtils.clamp(((int) Math.ceil(fMax13)) + iCeil4, 1, i3 - 2);
+                return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, createNinePatchChunk(iClamp, iClamp2, iClamp3, MathUtils.clamp((i3 - iCeil5) - ((int) Math.ceil(fMax14)), iClamp3 + 1, i3 - 1), iCeil2, iCeil4, iCeil3, iCeil5, i).array(), new Rect(iCeil2, iCeil4, iCeil3, iCeil5), null);
             }
-            i3 = i2;
-            i4 = iCeil3;
-            i5 = iCeil5;
             bitmapCreateBitmap = null;
             if (bitmapCreateBitmap == null) {
-                bitmapCreateBitmap = Bitmap.createBitmap(i6, i3, Bitmap.Config.ARGB_8888);
+                bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
             }
             bitmap = bitmapCreateBitmap;
             if (z) {
                 bitmapArr[0] = bitmap;
             }
-            ninePathRenderer.draw(new Canvas(bitmap), new RectF(iCeil2, iCeil4, iCeil6, iCeil7), new float[]{fMax, fMax2, fMax3, fMax4, fMax5, fMax6, fMax7, fMax8});
-            float fMax19 = Math.max(fMax, fMax7);
-            float fMax110 = Math.max(fMax3, fMax5);
-            float fMax111 = Math.max(fMax2, fMax4);
-            float fMax112 = Math.max(fMax8, fMax6);
-            int iClamp7 = MathUtils.clamp(((int) Math.ceil(fMax19)) + iCeil2, 1, i6 - 2);
-            int iClamp8 = MathUtils.clamp((i6 - i4) - ((int) Math.ceil(fMax110)), iClamp7 + 1, i6 - 1);
-            int iClamp9 = MathUtils.clamp(((int) Math.ceil(fMax111)) + iCeil4, 1, i3 - 2);
-            return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, createNinePatchChunk(iClamp7, iClamp8, iClamp9, MathUtils.clamp((i3 - i5) - ((int) Math.ceil(fMax112)), iClamp9 + 1, i3 - 1), iCeil2, iCeil4, i4, i5, i).array(), new Rect(iCeil2, iCeil4, i4, i5), null);
+            ninePathRenderer.draw(new Canvas(bitmap), new RectF(iCeil2, iCeil4, iCeil6, iCeil7), new float[]{f4, fMax2, fMax3, fMax4, fMax5, fMax6, fMax7, fMax8});
+            float fMax15 = Math.max(f4, fMax7);
+            float fMax16 = Math.max(fMax3, fMax5);
+            float fMax17 = Math.max(fMax2, fMax4);
+            float fMax18 = Math.max(fMax8, fMax6);
+            int iClamp4 = MathUtils.clamp(iCeil2 + ((int) Math.ceil(fMax15)), 1, i2 - 2);
+            int iClamp5 = MathUtils.clamp((i2 - iCeil3) - ((int) Math.ceil(fMax16)), iClamp4 + 1, i2 - 1);
+            int iClamp6 = MathUtils.clamp(((int) Math.ceil(fMax17)) + iCeil4, 1, i3 - 2);
+            return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, createNinePatchChunk(iClamp4, iClamp5, iClamp6, MathUtils.clamp((i3 - iCeil5) - ((int) Math.ceil(fMax18)), iClamp6 + 1, i3 - 1), iCeil2, iCeil4, iCeil3, iCeil5, i).array(), new Rect(iCeil2, iCeil4, iCeil3, iCeil5), null);
         }
-        i2 = i7;
-        if (z) {
-            bitmapCreateBitmap = bitmapArr[0];
-            i3 = i2;
-            if (bitmapCreateBitmap == null) {
-            }
-            if (bitmapCreateBitmap == null) {
-                bitmapCreateBitmap = Bitmap.createBitmap(i6, i3, Bitmap.Config.ARGB_8888);
-            }
-            bitmap = bitmapCreateBitmap;
-            if (z) {
-                bitmapArr[0] = bitmap;
-            }
-            ninePathRenderer.draw(new Canvas(bitmap), new RectF(iCeil2, iCeil4, iCeil6, iCeil7), new float[]{fMax, fMax2, fMax3, fMax4, fMax5, fMax6, fMax7, fMax8});
-            float fMax113 = Math.max(fMax, fMax7);
-            float fMax114 = Math.max(fMax3, fMax5);
-            float fMax115 = Math.max(fMax2, fMax4);
-            float fMax116 = Math.max(fMax8, fMax6);
-            int iClamp10 = MathUtils.clamp(((int) Math.ceil(fMax113)) + iCeil2, 1, i6 - 2);
-            int iClamp11 = MathUtils.clamp((i6 - i4) - ((int) Math.ceil(fMax114)), iClamp10 + 1, i6 - 1);
-            int iClamp12 = MathUtils.clamp(((int) Math.ceil(fMax115)) + iCeil4, 1, i3 - 2);
-            return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, createNinePatchChunk(iClamp10, iClamp11, iClamp12, MathUtils.clamp((i3 - i5) - ((int) Math.ceil(fMax116)), iClamp12 + 1, i3 - 1), iCeil2, iCeil4, i4, i5, i).array(), new Rect(iCeil2, iCeil4, i4, i5), null);
-        }
-        i3 = i2;
-        i4 = iCeil3;
-        i5 = iCeil5;
+        z = z2;
+        f4 = fMax;
         bitmapCreateBitmap = null;
         if (bitmapCreateBitmap == null) {
-            bitmapCreateBitmap = Bitmap.createBitmap(i6, i3, Bitmap.Config.ARGB_8888);
+            bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
         }
         bitmap = bitmapCreateBitmap;
         if (z) {
             bitmapArr[0] = bitmap;
         }
-        ninePathRenderer.draw(new Canvas(bitmap), new RectF(iCeil2, iCeil4, iCeil6, iCeil7), new float[]{fMax, fMax2, fMax3, fMax4, fMax5, fMax6, fMax7, fMax8});
-        float fMax117 = Math.max(fMax, fMax7);
-        float fMax118 = Math.max(fMax3, fMax5);
-        float fMax119 = Math.max(fMax2, fMax4);
-        float fMax1110 = Math.max(fMax8, fMax6);
-        int iClamp13 = MathUtils.clamp(((int) Math.ceil(fMax117)) + iCeil2, 1, i6 - 2);
-        int iClamp14 = MathUtils.clamp((i6 - i4) - ((int) Math.ceil(fMax118)), iClamp13 + 1, i6 - 1);
-        int iClamp15 = MathUtils.clamp(((int) Math.ceil(fMax119)) + iCeil4, 1, i3 - 2);
-        return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, createNinePatchChunk(iClamp13, iClamp14, iClamp15, MathUtils.clamp((i3 - i5) - ((int) Math.ceil(fMax1110)), iClamp15 + 1, i3 - 1), iCeil2, iCeil4, i4, i5, i).array(), new Rect(iCeil2, iCeil4, i4, i5), null);
+        ninePathRenderer.draw(new Canvas(bitmap), new RectF(iCeil2, iCeil4, iCeil6, iCeil7), new float[]{f4, fMax2, fMax3, fMax4, fMax5, fMax6, fMax7, fMax8});
+        float fMax19 = Math.max(f4, fMax7);
+        float fMax110 = Math.max(fMax3, fMax5);
+        float fMax111 = Math.max(fMax2, fMax4);
+        float fMax112 = Math.max(fMax8, fMax6);
+        int iClamp7 = MathUtils.clamp(iCeil2 + ((int) Math.ceil(fMax19)), 1, i2 - 2);
+        int iClamp8 = MathUtils.clamp((i2 - iCeil3) - ((int) Math.ceil(fMax110)), iClamp7 + 1, i2 - 1);
+        int iClamp9 = MathUtils.clamp(((int) Math.ceil(fMax111)) + iCeil4, 1, i3 - 2);
+        return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, createNinePatchChunk(iClamp7, iClamp8, iClamp9, MathUtils.clamp((i3 - iCeil5) - ((int) Math.ceil(fMax112)), iClamp9 + 1, i3 - 1), iCeil2, iCeil4, iCeil3, iCeil5, i).array(), new Rect(iCeil2, iCeil4, iCeil3, iCeil5), null);
     }
 
     public static NinePatchDrawable createNinePatch(Bitmap bitmap, Rect rect, int i, int i2) {

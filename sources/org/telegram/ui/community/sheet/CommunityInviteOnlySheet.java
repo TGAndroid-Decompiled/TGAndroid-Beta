@@ -52,7 +52,7 @@ public class CommunityInviteOnlySheet extends BottomSheetWithRecyclerListView {
         this.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                this.f$0.dismiss();
             }
         });
         boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
@@ -68,7 +68,7 @@ public class CommunityInviteOnlySheet extends BottomSheetWithRecyclerListView {
         this.messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(runnable, view);
+                CommunityInviteOnlySheet.$r8$lambda$8e6LLKoxETxXoDL0Di9DpO5wsLg(this.f$0, runnable, view);
             }
         });
         CommunityPendingInviteOnlyCell communityPendingInviteOnlyCell = new CommunityPendingInviteOnlyCell(context);
@@ -95,13 +95,10 @@ public class CommunityInviteOnlySheet extends BottomSheetWithRecyclerListView {
         this.adapter.update(false);
     }
 
-    public void lambda$new$0(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$new$1(Runnable runnable, View view) {
+    public static void $r8$lambda$8e6LLKoxETxXoDL0Di9DpO5wsLg(CommunityInviteOnlySheet communityInviteOnlySheet, Runnable runnable, View view) {
+        communityInviteOnlySheet.getClass();
         runnable.run();
-        lambda$new$0();
+        communityInviteOnlySheet.dismiss();
     }
 
     @Override

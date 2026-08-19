@@ -66,20 +66,24 @@ public abstract class WallpaperCell extends FrameLayout {
             BackupImageView backupImageView = new BackupImageView(context) {
                 @Override
                 protected void onDraw(Canvas canvas) {
+                    Canvas canvas2;
                     super.onDraw(canvas);
                     if ((WallpaperView.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) || (WallpaperView.this.currentWallpaper instanceof WallpapersListActivity.FileWallpaper)) {
                         canvas.drawLine(1.0f, 0.0f, getMeasuredWidth() - 1, 0.0f, WallpaperCell.this.framePaint);
-                        canvas.drawLine(0.0f, 0.0f, 0.0f, getMeasuredHeight(), WallpaperCell.this.framePaint);
-                        canvas.drawLine(getMeasuredWidth() - 1, 0.0f, getMeasuredWidth() - 1, getMeasuredHeight(), WallpaperCell.this.framePaint);
-                        canvas.drawLine(1.0f, getMeasuredHeight() - 1, getMeasuredWidth() - 1, getMeasuredHeight() - 1, WallpaperCell.this.framePaint);
+                        canvas2 = canvas;
+                        canvas2.drawLine(0.0f, 0.0f, 0.0f, getMeasuredHeight(), WallpaperCell.this.framePaint);
+                        canvas2.drawLine(getMeasuredWidth() - 1, 0.0f, getMeasuredWidth() - 1, getMeasuredHeight(), WallpaperCell.this.framePaint);
+                        canvas2.drawLine(1.0f, getMeasuredHeight() - 1, getMeasuredWidth() - 1, getMeasuredHeight() - 1, WallpaperCell.this.framePaint);
+                    } else {
+                        canvas2 = canvas;
                     }
                     if (WallpaperView.this.isSelected) {
                         WallpaperCell.this.circlePaint.setColor(Theme.serviceMessageColorBackup);
                         int measuredWidth = getMeasuredWidth() / 2;
                         int measuredHeight = getMeasuredHeight() / 2;
-                        canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(20.0f), WallpaperCell.this.circlePaint);
+                        canvas2.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(20.0f), WallpaperCell.this.circlePaint);
                         WallpaperCell.this.checkDrawable.setBounds(measuredWidth - (WallpaperCell.this.checkDrawable.getIntrinsicWidth() / 2), measuredHeight - (WallpaperCell.this.checkDrawable.getIntrinsicHeight() / 2), measuredWidth + (WallpaperCell.this.checkDrawable.getIntrinsicWidth() / 2), measuredHeight + (WallpaperCell.this.checkDrawable.getIntrinsicHeight() / 2));
-                        WallpaperCell.this.checkDrawable.draw(canvas);
+                        WallpaperCell.this.checkDrawable.draw(canvas2);
                     }
                 }
             };
@@ -341,13 +345,13 @@ public abstract class WallpaperCell extends FrameLayout {
                 wallpaperView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$new$0(wallpaperView, i2, view);
+                        WallpaperCell.$r8$lambda$q_QRfw5jCUdMn0jn1d36fb8TnhQ(this.f$0, wallpaperView, i2, view);
                     }
                 });
                 wallpaperView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view) {
-                        return this.f$0.lambda$new$1(wallpaperView, i2, view);
+                        return WallpaperCell.$r8$lambda$8dpyGrlVl1hGDs0tJ92aFiC74ww(this.f$0, wallpaperView, i2, view);
                     }
                 });
                 i2++;
@@ -365,12 +369,14 @@ public abstract class WallpaperCell extends FrameLayout {
         }
     }
 
-    public void lambda$new$0(WallpaperView wallpaperView, int i, View view) {
-        onWallpaperClick(wallpaperView.currentWallpaper, i);
+    public static void $r8$lambda$q_QRfw5jCUdMn0jn1d36fb8TnhQ(WallpaperCell wallpaperCell, WallpaperView wallpaperView, int i, View view) {
+        wallpaperCell.getClass();
+        wallpaperCell.onWallpaperClick(wallpaperView.currentWallpaper, i);
     }
 
-    public boolean lambda$new$1(WallpaperView wallpaperView, int i, View view) {
-        return onWallpaperLongClick(wallpaperView.currentWallpaper, i);
+    public static boolean $r8$lambda$8dpyGrlVl1hGDs0tJ92aFiC74ww(WallpaperCell wallpaperCell, WallpaperView wallpaperView, int i, View view) {
+        wallpaperCell.getClass();
+        return wallpaperCell.onWallpaperLongClick(wallpaperView.currentWallpaper, i);
     }
 
     @Override

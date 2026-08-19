@@ -38,12 +38,14 @@ public class QuickRepliesEmptyView extends LinearLayout {
     }
 
     public QuickRepliesEmptyView(Context context, int i, long j, long j2, String str, Theme.ResourcesProvider resourcesProvider) {
+        int i2;
+        TextView textView;
         super(context);
         setOrientation(1);
         this.resourcesProvider = resourcesProvider;
-        TextView textView = new TextView(context);
-        this.titleView = textView;
-        textView.setTextSize(1, 14.0f);
+        TextView textView2 = new TextView(context);
+        this.titleView = textView2;
+        textView2.setTextSize(1, 14.0f);
         this.titleView.setTypeface(AndroidUtilities.bold());
         this.titleView.setTextAlignment(4);
         this.titleView.setLineSpacing(AndroidUtilities.dp(1.66f), 1.0f);
@@ -60,7 +62,6 @@ public class QuickRepliesEmptyView extends LinearLayout {
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
         this.imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         this.descriptionView.setMaxWidth(AndroidUtilities.dp(160.0f));
-        int i2 = 22;
         if (i == 9) {
             this.imageView.setImageResource(R.drawable.large_greeting);
             this.titleView.setText(LocaleController.getString(R.string.WelcomeMessageEmptyTitle));
@@ -71,39 +72,50 @@ public class QuickRepliesEmptyView extends LinearLayout {
             this.titleView.setText(LocaleController.getString(R.string.BusinessGreetingIntroTitle));
             this.descriptionView.setText(LocaleController.getString(R.string.BusinessGreetingIntro));
             this.descriptionView.setMaxWidth(Math.min(AndroidUtilities.dp(160.0f), HintView2.cutInFancyHalf(this.descriptionView.getText(), this.descriptionView.getPaint())));
-        } else if ("away".equalsIgnoreCase(str)) {
-            this.imageView.setImageResource(R.drawable.large_away);
-            this.titleView.setText(LocaleController.getString(R.string.BusinessAwayIntroTitle));
-            this.descriptionView.setText(LocaleController.getString(R.string.BusinessAwayIntro));
-            this.descriptionView.setMaxWidth(Math.min(AndroidUtilities.dp(160.0f), HintView2.cutInFancyHalf(this.descriptionView.getText(), this.descriptionView.getPaint())));
         } else {
-            if (i == 5) {
-                this.imageView.setImageResource(R.drawable.large_quickreplies);
-                QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(UserConfig.selectedAccount).findReply(j2);
-                String str2 = quickReplyFindReply == null ? str : quickReplyFindReply.name;
-                this.titleView.setText(LocaleController.getString(R.string.BusinessRepliesIntroTitle));
-                this.descriptionView.setMaxWidth(AndroidUtilities.dp(208.0f));
-                this.descriptionView.setTextAlignment(2);
-                this.descriptionView.setGravity(3);
-                this.descriptionView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessRepliesIntro1, str2)));
-                this.descriptionView.setPadding(AndroidUtilities.dp(28.0f), 0, 0, 0);
-                DotTextView dotTextView2 = new DotTextView(context);
-                this.descriptionView2 = dotTextView2;
-                dotTextView2.setMaxWidth(AndroidUtilities.dp(208.0f));
-                this.descriptionView2.setTextAlignment(2);
-                this.descriptionView2.setGravity(3);
-                this.descriptionView2.setTextSize(1, 13.0f);
-                this.descriptionView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessRepliesIntro2)));
-                this.descriptionView2.setPadding(AndroidUtilities.dp(28.0f), 0, 0, 0);
+            if ("away".equalsIgnoreCase(str)) {
+                this.imageView.setImageResource(R.drawable.large_away);
+                this.titleView.setText(LocaleController.getString(R.string.BusinessAwayIntroTitle));
+                this.descriptionView.setText(LocaleController.getString(R.string.BusinessAwayIntro));
+                this.descriptionView.setMaxWidth(Math.min(AndroidUtilities.dp(160.0f), HintView2.cutInFancyHalf(this.descriptionView.getText(), this.descriptionView.getPaint())));
+            } else {
+                if (i == 5) {
+                    this.imageView.setImageResource(R.drawable.large_quickreplies);
+                    QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(UserConfig.selectedAccount).findReply(j2);
+                    String str2 = quickReplyFindReply == null ? str : quickReplyFindReply.name;
+                    this.titleView.setText(LocaleController.getString(R.string.BusinessRepliesIntroTitle));
+                    this.descriptionView.setMaxWidth(AndroidUtilities.dp(208.0f));
+                    this.descriptionView.setTextAlignment(2);
+                    this.descriptionView.setGravity(3);
+                    this.descriptionView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessRepliesIntro1, str2)));
+                    this.descriptionView.setPadding(AndroidUtilities.dp(28.0f), 0, 0, 0);
+                    DotTextView dotTextView2 = new DotTextView(context);
+                    this.descriptionView2 = dotTextView2;
+                    dotTextView2.setMaxWidth(AndroidUtilities.dp(208.0f));
+                    this.descriptionView2.setTextAlignment(2);
+                    this.descriptionView2.setGravity(3);
+                    this.descriptionView2.setTextSize(1, 13.0f);
+                    this.descriptionView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessRepliesIntro2)));
+                    this.descriptionView2.setPadding(AndroidUtilities.dp(28.0f), 0, 0, 0);
+                }
+                i2 = 12;
             }
-            i2 = 12;
+            addView(this.imageView, LayoutHelper.createLinear(78, 78, 49, 20, 17, 20, 9));
+            addView(this.titleView, LayoutHelper.createLinear(-2, -2, 49, 20, 0, 20, 6));
+            addView(this.descriptionView, LayoutHelper.createLinear(-2, -2, 49, i2, 0, i2, this.descriptionView2 == null ? 19 : 9));
+            textView = this.descriptionView2;
+            if (textView != null) {
+                addView(textView, LayoutHelper.createLinear(-2, -2, 49, 12, 0, 12, 19));
+            }
+            updateColors();
         }
+        i2 = 22;
         addView(this.imageView, LayoutHelper.createLinear(78, 78, 49, 20, 17, 20, 9));
         addView(this.titleView, LayoutHelper.createLinear(-2, -2, 49, 20, 0, 20, 6));
         addView(this.descriptionView, LayoutHelper.createLinear(-2, -2, 49, i2, 0, i2, this.descriptionView2 == null ? 19 : 9));
-        TextView textView2 = this.descriptionView2;
-        if (textView2 != null) {
-            addView(textView2, LayoutHelper.createLinear(-2, -2, 49, 12, 0, 12, 19));
+        textView = this.descriptionView2;
+        if (textView != null) {
+            addView(textView, LayoutHelper.createLinear(-2, -2, 49, 12, 0, 12, 19));
         }
         updateColors();
     }

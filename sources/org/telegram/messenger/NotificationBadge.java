@@ -65,14 +65,10 @@ public class NotificationBadge {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        NotificationBadge.AdwHomeBadger.lambda$executeBadge$0(intent);
+                        ApplicationLoader.applicationContext.sendBroadcast(intent);
                     }
                 });
             }
-        }
-
-        public static void lambda$executeBadge$0(Intent intent) {
-            ApplicationLoader.applicationContext.sendBroadcast(intent);
         }
 
         @Override
@@ -97,14 +93,10 @@ public class NotificationBadge {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        NotificationBadge.ApexHomeBadger.lambda$executeBadge$0(intent);
+                        ApplicationLoader.applicationContext.sendBroadcast(intent);
                     }
                 });
             }
-        }
-
-        public static void lambda$executeBadge$0(Intent intent) {
-            ApplicationLoader.applicationContext.sendBroadcast(intent);
         }
 
         @Override
@@ -130,14 +122,10 @@ public class NotificationBadge {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        NotificationBadge.AsusHomeBadger.lambda$executeBadge$0(intent);
+                        ApplicationLoader.applicationContext.sendBroadcast(intent);
                     }
                 });
             }
-        }
-
-        public static void lambda$executeBadge$0(Intent intent) {
-            ApplicationLoader.applicationContext.sendBroadcast(intent);
         }
 
         @Override
@@ -161,16 +149,9 @@ public class NotificationBadge {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationBadge.DefaultBadger.lambda$executeBadge$0(intent);
+                    ApplicationLoader.applicationContext.sendBroadcast(intent);
                 }
             });
-        }
-
-        public static void lambda$executeBadge$0(Intent intent) {
-            try {
-                ApplicationLoader.applicationContext.sendBroadcast(intent);
-            } catch (Exception unused) {
-            }
         }
 
         @Override
@@ -189,12 +170,12 @@ public class NotificationBadge {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0(bundle);
+                    NotificationBadge.HuaweiHomeBadger.$r8$lambda$xnk9Ep8QRBi4ET5i5Wp29K48zdk(bundle);
                 }
             });
         }
 
-        public static void lambda$executeBadge$0(Bundle bundle) {
+        public static void $r8$lambda$xnk9Ep8QRBi4ET5i5Wp29K48zdk(Bundle bundle) {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, bundle);
             } catch (Exception e) {
@@ -228,13 +209,13 @@ public class NotificationBadge {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        NotificationBadge.NewHtcHomeBadger.lambda$executeBadge$0(intent, intent2);
+                        NotificationBadge.NewHtcHomeBadger.m931$r8$lambda$LNOrzcbHoddZHaXpWj71zfhB0w(intent, intent2);
                     }
                 });
             }
         }
 
-        public static void lambda$executeBadge$0(Intent intent, Intent intent2) {
+        public static void m931$r8$lambda$LNOrzcbHoddZHaXpWj71zfhB0w(Intent intent, Intent intent2) {
             ApplicationLoader.applicationContext.sendBroadcast(intent);
             ApplicationLoader.applicationContext.sendBroadcast(intent2);
         }
@@ -387,13 +368,9 @@ public class NotificationBadge {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationBadge.SonyHomeBadger.lambda$executeBadgeByBroadcast$0(intent);
+                    ApplicationLoader.applicationContext.sendBroadcast(intent);
                 }
             });
-        }
-
-        public static void lambda$executeBadgeByBroadcast$0(Intent intent) {
-            ApplicationLoader.applicationContext.sendBroadcast(intent);
         }
 
         private void executeBadgeByContentProvider(int i) {
@@ -470,14 +447,15 @@ public class NotificationBadge {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$executeBadge$0(bundle);
+                    NotificationBadge.ZukHomeBadger.$r8$lambda$JnVD7bxT6f5ElDaXZepApuuApAg(this.f$0, bundle);
                 }
             });
         }
 
-        public void lambda$executeBadge$0(Bundle bundle) {
+        public static void $r8$lambda$JnVD7bxT6f5ElDaXZepApuuApAg(ZukHomeBadger zukHomeBadger, Bundle bundle) {
+            zukHomeBadger.getClass();
             try {
-                ApplicationLoader.applicationContext.getContentResolver().call(this.CONTENT_URI, "setAppBadgeCount", (String) null, bundle);
+                ApplicationLoader.applicationContext.getContentResolver().call(zukHomeBadger.CONTENT_URI, "setAppBadgeCount", (String) null, bundle);
             } catch (Exception e) {
                 FileLog.e(e);
             }

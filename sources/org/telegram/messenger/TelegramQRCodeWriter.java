@@ -31,14 +31,16 @@ public final class TelegramQRCodeWriter {
 
     public Bitmap encode(String str, int i, int i2, Map<EncodeHintType, ?> map, Bitmap bitmap, float f, int i3, int i4) {
         int i5;
-        float f2;
-        Canvas canvas;
-        char c;
+        Paint paint;
         GradientDrawable gradientDrawable;
+        Bitmap bitmap2;
+        char c;
         boolean z;
         boolean z2;
-        Canvas canvas2;
-        char c2;
+        boolean z3;
+        boolean z4;
+        Canvas canvas;
+        Paint paint2;
         if (str.isEmpty()) {
             throw new IllegalArgumentException("Found empty contents");
         }
@@ -77,15 +79,16 @@ public final class TelegramQRCodeWriter {
         int i10 = iMin * width;
         int i11 = i10 + 32;
         Bitmap bitmapCreateBitmap = (bitmap == null || bitmap.getWidth() != i11) ? Bitmap.createBitmap(i11, i11, Bitmap.Config.ARGB_8888) : bitmap;
-        Canvas canvas3 = new Canvas(bitmapCreateBitmap);
-        canvas3.drawColor(i3);
-        Paint paint = new Paint(1);
-        paint.setColor(i4);
+        Canvas canvas2 = new Canvas(bitmapCreateBitmap);
+        canvas2.drawColor(i3);
+        Paint paint3 = new Paint(1);
+        paint3.setColor(i4);
         GradientDrawable gradientDrawable2 = new GradientDrawable();
         gradientDrawable2.setShape(0);
         gradientDrawable2.setCornerRadii(this.radii);
-        float f3 = iMin;
-        int iRound = Math.round((i10 / 4.65f) / f3);
+        Bitmap bitmap3 = bitmapCreateBitmap;
+        float f2 = iMin;
+        int iRound = Math.round((i10 / 4.65f) / f2);
         this.imageBloks = iRound;
         if (iRound % 2 != width % 2) {
             this.imageBloks = iRound + 1;
@@ -95,132 +98,136 @@ public final class TelegramQRCodeWriter {
         int i13 = (i12 * iMin) - 24;
         this.imageSize = i13;
         int i14 = (i11 - i13) / 2;
+        Canvas canvas3 = canvas2;
         if (this.includeSideQuads) {
-            paint.setColor(i4);
-            f2 = f3;
+            paint3.setColor(i4);
+            bitmap2 = bitmap3;
             c = 1;
-            canvas = canvas3;
-            drawSideQuadsGradient(canvas3, paint, gradientDrawable2, this.sideQuadSize, f2, 16, i11, f, this.radii, i3, i4);
+            paint = paint3;
+            gradientDrawable = gradientDrawable2;
+            drawSideQuadsGradient(canvas3, paint, gradientDrawable, this.sideQuadSize, f2, 16, i11, f, this.radii, i3, i4);
         } else {
-            f2 = f3;
-            canvas = canvas3;
+            paint = paint3;
+            gradientDrawable = gradientDrawable2;
+            bitmap2 = bitmap3;
             c = 1;
         }
-        boolean z3 = Color.alpha(i3) == 0;
-        float f4 = (f2 / 2.0f) * f;
-        int i15 = 0;
-        int i16 = 16;
-        while (i15 < height) {
+        boolean z5 = Color.alpha(i3) == 0;
+        float f3 = (f2 / 2.0f) * f;
+        int i15 = 16;
+        int i16 = 0;
+        while (i16 < height) {
             int i17 = 0;
             int i18 = 16;
             while (i17 < width) {
-                if (has(i17, i15)) {
-                    Arrays.fill(this.radii, f4);
-                    if (has(i17, i15 - 1)) {
+                if (has(i17, i16)) {
+                    Arrays.fill(this.radii, f3);
+                    if (has(i17, i16 - 1)) {
                         float[] fArr = this.radii;
                         fArr[c] = 0.0f;
-                        c2 = 0;
                         fArr[0] = 0.0f;
                         fArr[3] = 0.0f;
                         fArr[2] = 0.0f;
-                    } else {
-                        c2 = 0;
                     }
-                    if (has(i17, i15 + 1)) {
+                    if (has(i17, i16 + 1)) {
                         float[] fArr2 = this.radii;
                         fArr2[7] = 0.0f;
                         fArr2[6] = 0.0f;
                         fArr2[5] = 0.0f;
                         fArr2[4] = 0.0f;
                     }
-                    if (has(i17 - 1, i15)) {
+                    if (has(i17 - 1, i16)) {
                         float[] fArr3 = this.radii;
                         fArr3[c] = 0.0f;
-                        fArr3[c2] = 0.0f;
+                        fArr3[0] = 0.0f;
                         fArr3[7] = 0.0f;
                         fArr3[6] = 0.0f;
                     }
-                    if (has(i17 + 1, i15)) {
+                    if (has(i17 + 1, i16)) {
                         float[] fArr4 = this.radii;
                         fArr4[3] = 0.0f;
                         fArr4[2] = 0.0f;
                         fArr4[5] = 0.0f;
                         fArr4[4] = 0.0f;
                     }
-                    gradientDrawable = gradientDrawable2;
                     gradientDrawable.setColor(i4);
-                    gradientDrawable.setBounds(i18, i16, i18 + iMin, i16 + iMin);
-                    Canvas canvas4 = canvas;
-                    gradientDrawable.draw(canvas4);
-                    canvas2 = canvas4;
+                    gradientDrawable.setBounds(i18, i15, i18 + r4, i15 + iMin);
+                    gradientDrawable.draw(canvas3);
+                    paint2 = paint;
+                    canvas = canvas3;
+                    z3 = z5;
                 } else {
-                    gradientDrawable = gradientDrawable2;
+                    Paint paint4 = paint;
                     Arrays.fill(this.radii, 0.0f);
                     int i19 = i17 - 1;
-                    int i20 = i15 - 1;
-                    if (has(i19, i20) && has(i19, i15) && has(i17, i20)) {
+                    int i20 = i16 - 1;
+                    if (has(i19, i20) && has(i19, i16) && has(i17, i20)) {
                         float[] fArr5 = this.radii;
-                        fArr5[c] = f4;
-                        fArr5[0] = f4;
+                        fArr5[c] = f3;
+                        fArr5[0] = f3;
                         z = true;
                     } else {
                         z = false;
                     }
+                    boolean z6 = z;
                     int i21 = i17 + 1;
-                    if (has(i21, i20) && has(i21, i15) && has(i17, i20)) {
+                    if (has(i21, i20) && has(i21, i16) && has(i17, i20)) {
                         float[] fArr6 = this.radii;
-                        fArr6[3] = f4;
-                        fArr6[2] = f4;
+                        fArr6[3] = f3;
+                        fArr6[2] = f3;
                         z2 = true;
                     } else {
-                        z2 = z;
+                        z2 = z6;
                     }
-                    int i22 = i15 + 1;
-                    if (has(i19, i22) && has(i19, i15) && has(i17, i22)) {
+                    z3 = z5;
+                    int i22 = i16 + 1;
+                    if (has(i19, i22) && has(i19, i16) && has(i17, i22)) {
                         float[] fArr7 = this.radii;
-                        fArr7[7] = f4;
-                        fArr7[6] = f4;
+                        fArr7[7] = f3;
+                        fArr7[6] = f3;
                         z2 = true;
                     }
-                    if (has(i21, i22) && has(i21, i15) && has(i17, i22)) {
+                    if (has(i21, i22) && has(i21, i16) && has(i17, i22)) {
                         float[] fArr8 = this.radii;
-                        fArr8[5] = f4;
-                        fArr8[4] = f4;
-                        z2 = true;
-                    }
-                    if (!z2 || z3) {
-                        canvas2 = canvas;
+                        fArr8[5] = f3;
+                        fArr8[4] = f3;
+                        z4 = true;
                     } else {
-                        int i23 = i18 + iMin;
-                        int i24 = i16 + iMin;
-                        canvas.drawRect(i18, i16, i23, i24, paint);
+                        z4 = z2;
+                    }
+                    if (!z4 || z3) {
+                        canvas = canvas3;
+                        paint2 = paint4;
+                    } else {
+                        int i23 = i18 + r4;
+                        int i24 = i15 + r4;
+                        canvas3.drawRect(i18, i15, i23, i24, paint4);
+                        canvas = canvas3;
+                        paint2 = paint4;
                         gradientDrawable.setColor(i3);
-                        gradientDrawable.setBounds(i18, i16, i23, i24);
-                        canvas2 = canvas;
-                        gradientDrawable.draw(canvas2);
+                        gradientDrawable.setBounds(i18, i15, i23, i24);
+                        gradientDrawable.draw(canvas);
                     }
                 }
                 i17++;
-                i18 += iMin;
-                canvas = canvas2;
-                f4 = f4;
-                z3 = z3;
-                gradientDrawable2 = gradientDrawable;
+                i18 += r4;
+                canvas3 = canvas;
+                paint = paint2;
+                z5 = z3;
             }
-            i15++;
-            i16 += iMin;
-            f4 = f4;
-            gradientDrawable2 = gradientDrawable2;
+            i16++;
+            i15 += r4;
+            paint = paint;
         }
-        Canvas canvas5 = canvas;
+        Canvas canvas4 = canvas3;
         String res = AndroidUtilities.readRes(R.raw.qr_logo);
         int i25 = this.imageSize;
-        Bitmap bitmap2 = SvgHelper.getBitmap(res, i25, i25, false);
-        float f5 = i14;
-        canvas5.drawBitmap(bitmap2, f5, f5, (Paint) null);
-        bitmap2.recycle();
-        canvas5.setBitmap(null);
-        return bitmapCreateBitmap;
+        Bitmap bitmap4 = SvgHelper.getBitmap(res, i25, i25, false);
+        float f4 = i14;
+        canvas4.drawBitmap(bitmap4, f4, f4, (Paint) null);
+        bitmap4.recycle();
+        canvas4.setBitmap(null);
+        return bitmap2;
     }
 
     public static void drawSideQuadsGradient(Canvas canvas, Paint paint, GradientDrawable gradientDrawable, float f, float f2, int i, float f3, float f4, float[] fArr, int i2, int i3) {
@@ -228,68 +235,65 @@ public final class TelegramQRCodeWriter {
         float f6;
         float f7;
         float f8;
-        int i4 = 1;
         boolean z = Color.alpha(i2) == 0;
         gradientDrawable.setShape(0);
         gradientDrawable.setCornerRadii(fArr);
         Path path = new Path();
         RectF rectF = new RectF();
-        int i5 = 0;
-        while (i5 < 3) {
-            if (i5 == 0) {
-                f7 = i;
-                f8 = f7;
+        for (int i4 = 0; i4 < 3; i4++) {
+            if (i4 == 0) {
+                f5 = i;
+                f7 = f5;
             } else {
-                if (i5 == i4) {
+                if (i4 == 1) {
                     f6 = i;
                     f5 = (f3 - (f * f2)) - f6;
                 } else {
                     f5 = i;
                     f6 = (f3 - (f * f2)) - f5;
                 }
-                f7 = f5;
-                f8 = f6;
+                f7 = f6;
             }
             if (z) {
                 float f9 = (f - 1.0f) * f2;
-                rectF.set(f7 + f2, f8 + f2, f7 + f9, f9 + f8);
+                f8 = 1.0f;
+                rectF.set(f5 + f2, f7 + f2, f5 + f9, f9 + f7);
                 float f10 = ((f * f2) / 4.0f) * f4;
                 path.reset();
                 path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
                 path.close();
                 canvas.save();
                 canvas.clipPath(path, Region.Op.DIFFERENCE);
+            } else {
+                f8 = 1.0f;
             }
             float f11 = f * f2;
             Arrays.fill(fArr, (f11 / 3.0f) * f4);
             gradientDrawable.setColor(i3);
-            gradientDrawable.setBounds((int) f7, (int) f8, (int) (f7 + f11), (int) (f8 + f11));
+            gradientDrawable.setBounds((int) f5, (int) f7, (int) (f5 + f11), (int) (f7 + f11));
             gradientDrawable.draw(canvas);
-            float f12 = f7 + f2;
-            float f13 = f8 + f2;
-            float f14 = (f - 1.0f) * f2;
-            float f15 = f7 + f14;
-            float f16 = f14 + f8;
-            float f17 = f7;
-            float f18 = f8;
-            canvas.drawRect(f12, f13, f15, f16, paint);
+            float f12 = f5;
+            float f13 = f12 + f2;
+            float f14 = f7 + f2;
+            float f15 = (f - f8) * f2;
+            float f16 = f12 + f15;
+            float f17 = f15 + f7;
+            canvas.drawRect(f13, f14, f16, f17, paint);
             if (z) {
                 canvas.restore();
             }
             if (!z) {
                 Arrays.fill(fArr, (f11 / 4.0f) * f4);
                 gradientDrawable.setColor(i2);
-                gradientDrawable.setBounds((int) f12, (int) f13, (int) f15, (int) f16);
+                gradientDrawable.setBounds((int) f13, (int) f14, (int) f16, (int) f17);
                 gradientDrawable.draw(canvas);
             }
-            float f19 = (f - 2.0f) * f2;
-            Arrays.fill(fArr, (f19 / 4.0f) * f4);
+            float f18 = (f - 2.0f) * f2;
+            Arrays.fill(fArr, (f18 / 4.0f) * f4);
             gradientDrawable.setColor(i3);
-            float f20 = 2.0f * f2;
-            gradientDrawable.setBounds((int) (f17 + f20), (int) (f18 + f20), (int) (f17 + f19), (int) (f18 + f19));
+            float f19 = 2.0f * f2;
+            gradientDrawable.setBounds((int) (f12 + f19), (int) (f19 + f7), (int) (f12 + f18), (int) (f7 + f18));
             gradientDrawable.draw(canvas);
-            i5++;
-            i4 = 1;
         }
     }
 

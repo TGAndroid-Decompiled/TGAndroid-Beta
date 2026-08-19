@@ -1,31 +1,17 @@
 package org.telegram.messenger;
 
 public abstract class MessagesController$$ExternalSyntheticBackport10 {
-    public static long m(CharSequence charSequence, int i, int i2, int i3) {
-        int i4 = i2 - i;
-        if (i4 == 0) {
-            throw new NumberFormatException("empty string");
+    public static long m(long j, long j2) {
+        if (j2 < 0) {
+            return (j ^ Long.MIN_VALUE) < (Long.MIN_VALUE ^ j2) ? j : j - j2;
         }
-        if (i3 < 2 || i3 > 36) {
-            throw new NumberFormatException("illegal radix: ".concat(String.valueOf(i3)));
+        if (j >= 0) {
+            return j % j2;
         }
-        long j = i3;
-        long jM = MessagesController$$ExternalSyntheticBackport13.m(-1L, j);
-        int i5 = (charSequence.charAt(i) != '+' || i4 <= 1) ? i : i + 1;
-        long j2 = 0;
-        long j3 = 0;
-        while (i5 < i2) {
-            int iDigit = Character.digit(charSequence.charAt(i5), i3);
-            if (iDigit == -1) {
-                throw new NumberFormatException(charSequence.toString());
-            }
-            if (j3 < j2 || j3 > jM || (j3 == jM && iDigit > ((int) MessagesController$$ExternalSyntheticBackport14.m(-1L, j)))) {
-                throw new NumberFormatException("Too large for unsigned long: ".concat(charSequence.toString()));
-            }
-            j3 = (j3 * j) + ((long) iDigit);
-            i5++;
+        long j3 = j - ((((j >>> 1) / j2) << 1) * j2);
+        if ((j3 ^ Long.MIN_VALUE) < (Long.MIN_VALUE ^ j2)) {
             j2 = 0;
         }
-        return j3;
+        return j3 - j2;
     }
 }

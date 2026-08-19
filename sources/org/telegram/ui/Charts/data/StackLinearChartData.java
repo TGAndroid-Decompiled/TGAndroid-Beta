@@ -3,7 +3,6 @@ package org.telegram.ui.Charts.data;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
 
@@ -36,19 +35,22 @@ public class StackLinearChartData extends ChartData {
                     arrayList.add((ChartData.Line) this.lines.get(i3));
                 }
             }
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                this.lines.remove((ChartData.Line) it.next());
+            int size = arrayList.size();
+            int i4 = 0;
+            while (i4 < size) {
+                Object obj = arrayList.get(i4);
+                i4++;
+                this.lines.remove((ChartData.Line) obj);
             }
         }
         int length2 = ((ChartData.Line) this.lines.get(0)).y.length;
-        int size = this.lines.size();
+        int size2 = this.lines.size();
         this.ySum = new long[length2];
-        for (int i4 = 0; i4 < length2; i4++) {
-            this.ySum[i4] = 0;
-            for (int i5 = 0; i5 < size; i5++) {
+        for (int i5 = 0; i5 < length2; i5++) {
+            this.ySum[i5] = 0;
+            for (int i6 = 0; i6 < size2; i6++) {
                 long[] jArr2 = this.ySum;
-                jArr2[i4] = jArr2[i4] + ((ChartData.Line) this.lines.get(i5)).y[i4];
+                jArr2[i5] = jArr2[i5] + ((ChartData.Line) this.lines.get(i6)).y[i5];
             }
         }
         this.ySumSegmentTree = new SegmentTree(this.ySum);

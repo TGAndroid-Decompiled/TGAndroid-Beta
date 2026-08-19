@@ -492,7 +492,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         this.emptyView.animate().alpha(this.isEmptyViewVisible ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setIsEmpty$0(z);
+                this.f$0.emptyView.setVisibility(z ? 0 : 8);
             }
         }).start();
         this.emptyView.buttonView.setVisibility((!z || runnable == null) ? 8 : 0);
@@ -502,10 +502,6 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
                 runnable.run();
             }
         });
-    }
-
-    public void lambda$setIsEmpty$0(boolean z) {
-        this.emptyView.setVisibility(z ? 0 : 8);
     }
 
     public void setTextureVisible(boolean z, boolean z2) {
@@ -527,7 +523,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         public final LinearLayout layout;
         public final TextView textView;
 
-        public static void lambda$new$0(View view) {
+        public static void m4509$r8$lambda$hSJLXY4uSxrNh54uMzLml8e9oY(View view) {
         }
 
         public EmptyView(Context context) {
@@ -553,7 +549,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    LivePlayerView.EmptyView.lambda$new$0(view);
+                    LivePlayerView.EmptyView.m4509$r8$lambda$hSJLXY4uSxrNh54uMzLml8e9oY(view);
                 }
             });
             setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-16777216, -11184811}));

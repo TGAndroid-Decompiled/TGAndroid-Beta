@@ -43,26 +43,24 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$getAllStories$3(consumer);
+                StoriesStorage.m4428$r8$lambda$9u6F3myX5xQvhHtjDkuGoUPy7E(this.f$0, consumer);
             }
         });
     }
 
-    public void lambda$getAllStories$3(final Consumer consumer) {
-        final Consumer consumer2;
-        ?? r8;
-        ?? r9;
+    public static void m4428$r8$lambda$9u6F3myX5xQvhHtjDkuGoUPy7E(StoriesStorage storiesStorage, final Consumer consumer) {
+        ?? QueryFinalized;
+        ?? r19;
         int i;
         int i2;
-        TLRPC.Peer peer;
-        Consumer consumer3 = consumer;
-        int i3 = 0;
-        int i4 = 1;
-        SQLiteDatabase database = this.storage.getDatabase();
+        int i3;
+        int i4 = 0;
+        int i5 = 1;
+        SQLiteDatabase database = storiesStorage.storage.getDatabase();
         ArrayList<TL_stories.PeerStories> arrayList = new ArrayList<>();
         ArrayList<Long> arrayList2 = new ArrayList<>();
         ArrayList<Long> arrayList3 = new ArrayList<>();
-        ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+        ConnectionsManager.getInstance(storiesStorage.currentAccount).getCurrentTime();
         try {
             SQLiteCursor sQLiteCursorQueryFinalized = database.queryFinalized("SELECT dialog_id, max_read FROM stories_counter", new Object[0]);
             try {
@@ -77,143 +75,128 @@ public class StoriesStorage {
                     }
                 }
                 sQLiteCursorQueryFinalized.dispose();
-                int i5 = 0;
-                while (i5 < longSparseIntArray.size()) {
+                int i6 = 0;
+                while (i6 < longSparseIntArray.size()) {
+                    long jKeyAt = longSparseIntArray.keyAt(i6);
+                    int iValueAt = longSparseIntArray.valueAt(i6);
+                    Locale locale = Locale.US;
+                    Object[] objArr = new Object[i5];
+                    objArr[i4] = Long.valueOf(jKeyAt);
+                    QueryFinalized = database.queryFinalized(String.format(locale, "SELECT data, custom_params FROM stories WHERE dialog_id = %d", objArr), new Object[i4]);
                     try {
-                        long jKeyAt = longSparseIntArray.keyAt(i5);
-                        int iValueAt = longSparseIntArray.valueAt(i5);
-                        Locale locale = Locale.US;
-                        Object[] objArr = new Object[i4];
-                        objArr[i3] = Long.valueOf(jKeyAt);
-                        ?? QueryFinalized = database.queryFinalized(String.format(locale, "SELECT data, custom_params FROM stories WHERE dialog_id = %d", objArr), new Object[i3]);
-                        try {
-                            ArrayList<TL_stories.StoryItem> arrayList4 = new ArrayList<>();
-                            ?? r3 = i4;
-                            while (QueryFinalized.next()) {
-                                ?? ByteBufferValue = QueryFinalized.byteBufferValue(i3);
-                                NativeByteBuffer nativeByteBufferByteBufferValue = QueryFinalized.byteBufferValue(r3);
-                                if (ByteBufferValue != 0) {
-                                    TL_stories.StoryItem storyItemTLdeserialize = TL_stories.StoryItem.TLdeserialize(ByteBufferValue, ByteBufferValue.readInt32(r3), r3);
-                                    storyItemTLdeserialize.dialogId = jKeyAt;
-                                    TL_stories.StoryFwdHeader storyFwdHeader = storyItemTLdeserialize.fwd_from;
-                                    if (storyFwdHeader != null && (peer = storyFwdHeader.from) != null) {
+                        ArrayList<TL_stories.StoryItem> arrayList4 = new ArrayList<>();
+                        ?? r3 = i5;
+                        QueryFinalized = QueryFinalized;
+                        while (QueryFinalized.next()) {
+                            ?? ByteBufferValue = QueryFinalized.byteBufferValue(i4);
+                            NativeByteBuffer nativeByteBufferByteBufferValue = QueryFinalized.byteBufferValue(r3);
+                            if (ByteBufferValue != 0) {
+                                TL_stories.StoryItem storyItemTLdeserialize = TL_stories.StoryItem.TLdeserialize(ByteBufferValue, ByteBufferValue.readInt32(r3), r3);
+                                storyItemTLdeserialize.dialogId = jKeyAt;
+                                TL_stories.StoryFwdHeader storyFwdHeader = storyItemTLdeserialize.fwd_from;
+                                if (storyFwdHeader != null) {
+                                    TLRPC.Peer peer = storyFwdHeader.from;
+                                    if (peer != null) {
                                         MessagesStorage.addLoadPeerInfo(peer, arrayList2, arrayList3);
                                     }
-                                    int i6 = 0;
-                                    while (i6 < storyItemTLdeserialize.media_areas.size()) {
-                                        if (storyItemTLdeserialize.media_areas.get(i6) instanceof TL_stories.TL_mediaAreaChannelPost) {
-                                            i2 = i5;
-                                            long j = ((TL_stories.TL_mediaAreaChannelPost) storyItemTLdeserialize.media_areas.get(i6)).channel_id;
+                                }
+                                ?? r110 = QueryFinalized;
+                                int i7 = 0;
+                                while (i7 < storyItemTLdeserialize.media_areas.size()) {
+                                    try {
+                                        if (storyItemTLdeserialize.media_areas.get(i7) instanceof TL_stories.TL_mediaAreaChannelPost) {
+                                            i3 = i6;
+                                            long j = ((TL_stories.TL_mediaAreaChannelPost) storyItemTLdeserialize.media_areas.get(i7)).channel_id;
+                                            i2 = i7;
                                             if (!arrayList3.contains(Long.valueOf(j))) {
                                                 arrayList3.add(Long.valueOf(j));
                                             }
                                         } else {
-                                            i2 = i5;
+                                            i2 = i7;
+                                            i3 = i6;
                                         }
-                                        i6++;
-                                        i5 = i2;
-                                    }
-                                    i = i5;
-                                    TLRPC.Peer peer2 = storyItemTLdeserialize.from_id;
-                                    if (peer2 != null) {
-                                        MessagesStorage.addLoadPeerInfo(peer2, arrayList2, arrayList3);
-                                    }
-                                    StoryCustomParamsHelper.readLocalParams(storyItemTLdeserialize, nativeByteBufferByteBufferValue);
-                                    arrayList4.add(storyItemTLdeserialize);
-                                    ByteBufferValue.reuse();
-                                } else {
-                                    i = i5;
-                                }
-                                if (nativeByteBufferByteBufferValue != null) {
-                                    nativeByteBufferByteBufferValue.reuse();
-                                }
-                                database = database;
-                                longSparseIntArray = longSparseIntArray;
-                                i5 = i;
-                                i3 = 0;
-                                r3 = 1;
-                            }
-                            SQLiteDatabase sQLiteDatabase = database;
-                            int i7 = i5;
-                            LongSparseIntArray longSparseIntArray2 = longSparseIntArray;
-                            QueryFinalized.dispose();
-                            try {
-                                TL_stories.TL_peerStories tL_peerStories = new TL_stories.TL_peerStories();
-                                tL_peerStories.stories = arrayList4;
-                                tL_peerStories.max_read_id = iValueAt;
-                                tL_peerStories.peer = MessagesController.getInstance(this.currentAccount).getPeer(jKeyAt);
-                                arrayList.add(tL_peerStories);
-                                i5 = i7 + 1;
-                                consumer3 = consumer;
-                                database = sQLiteDatabase;
-                                longSparseIntArray = longSparseIntArray2;
-                                i3 = 0;
-                                i4 = 1;
-                            } catch (Throwable th) {
-                                th = th;
-                                r9 = 0;
-                                consumer2 = consumer;
-                                r8 = r9;
-                                try {
-                                    FileLog.e(th);
-                                    if (r8 != 0) {
-                                        r8.dispose();
-                                    }
-                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            consumer2.accept(null);
+                                        i7 = i2 + 1;
+                                        i6 = i3;
+                                    } catch (Throwable th) {
+                                        th = th;
+                                        QueryFinalized = r110;
+                                        try {
+                                            FileLog.e(th);
+                                            if (QueryFinalized != 0) {
+                                                QueryFinalized.dispose();
+                                            }
+                                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                                @Override
+                                                public final void run() {
+                                                    consumer.accept(null);
+                                                }
+                                            });
+                                            return;
+                                        } catch (Throwable th2) {
+                                            if (QueryFinalized != 0) {
+                                                QueryFinalized.dispose();
+                                            }
+                                            throw th2;
                                         }
-                                    });
-                                    return;
-                                } catch (Throwable th2) {
-                                    if (r8 != 0) {
-                                        r8.dispose();
-                                        throw th2;
                                     }
-                                    throw th2;
                                 }
+                                i = i6;
+                                TLRPC.Peer peer2 = storyItemTLdeserialize.from_id;
+                                if (peer2 != null) {
+                                    MessagesStorage.addLoadPeerInfo(peer2, arrayList2, arrayList3);
+                                }
+                                StoryCustomParamsHelper.readLocalParams(storyItemTLdeserialize, nativeByteBufferByteBufferValue);
+                                arrayList4.add(storyItemTLdeserialize);
+                                ByteBufferValue.reuse();
+                                r19 = r110;
+                            } else {
+                                r19 = QueryFinalized;
+                                i = i6;
                             }
-                        } catch (Throwable th3) {
-                            th = th3;
-                            r9 = QueryFinalized;
-                        }
-                    } catch (Throwable th4) {
-                        th = th4;
-                        consumer2 = consumer;
-                        r8 = 0;
-                        FileLog.e(th);
-                        if (r8 != 0) {
-                            r8.dispose();
-                        }
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                consumer2.accept(null);
+                            if (nativeByteBufferByteBufferValue != null) {
+                                nativeByteBufferByteBufferValue.reuse();
                             }
-                        });
-                        return;
+                            database = database;
+                            QueryFinalized = r19;
+                            i6 = i;
+                            i4 = 0;
+                            r3 = 1;
+                        }
+                        SQLiteDatabase sQLiteDatabase = database;
+                        int i8 = i6;
+                        QueryFinalized.dispose();
+                        TL_stories.TL_peerStories tL_peerStories = new TL_stories.TL_peerStories();
+                        tL_peerStories.stories = arrayList4;
+                        tL_peerStories.max_read_id = iValueAt;
+                        tL_peerStories.peer = MessagesController.getInstance(storiesStorage.currentAccount).getPeer(jKeyAt);
+                        arrayList.add(tL_peerStories);
+                        i6 = i8 + 1;
+                        database = sQLiteDatabase;
+                        i4 = 0;
+                        i5 = 1;
+                    } catch (Throwable th3) {
+                        th = th3;
                     }
                 }
                 final TL_stories.TL_stories_allStories tL_stories_allStories = new TL_stories.TL_stories_allStories();
                 tL_stories_allStories.peer_stories = arrayList;
-                tL_stories_allStories.users = this.storage.getUsers(arrayList2);
-                tL_stories_allStories.chats = this.storage.getChats(arrayList3);
-                int i8 = 0;
-                while (i8 < tL_stories_allStories.peer_stories.size()) {
-                    TL_stories.PeerStories peerStories = tL_stories_allStories.peer_stories.get(i8);
-                    checkExpiredStories(DialogObject.getPeerDialogId(peerStories.peer), peerStories.stories);
+                tL_stories_allStories.users = storiesStorage.storage.getUsers(arrayList2);
+                tL_stories_allStories.chats = storiesStorage.storage.getChats(arrayList3);
+                int i9 = 0;
+                while (i9 < tL_stories_allStories.peer_stories.size()) {
+                    TL_stories.PeerStories peerStories = tL_stories_allStories.peer_stories.get(i9);
+                    storiesStorage.checkExpiredStories(DialogObject.getPeerDialogId(peerStories.peer), peerStories.stories);
                     if (peerStories.stories.isEmpty()) {
-                        tL_stories_allStories.peer_stories.remove(i8);
-                        i8--;
+                        tL_stories_allStories.peer_stories.remove(i9);
+                        i9--;
                     }
                     Collections.sort(peerStories.stories, StoriesController.storiesComparator);
-                    i8++;
+                    i9++;
                 }
                 Collections.sort(tL_stories_allStories.peer_stories, Comparator$CC.comparingInt(new ToIntFunction() {
                     @Override
                     public final int applyAsInt(Object obj) {
-                        return StoriesStorage.lambda$getAllStories$1((TL_stories.PeerStories) obj);
+                        return StoriesStorage.$r8$lambda$oObnqwHhX94CgPGTFQagIu0JO2g((TL_stories.PeerStories) obj);
                     }
                 }));
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -222,18 +205,17 @@ public class StoriesStorage {
                         consumer.accept(tL_stories_allStories);
                     }
                 });
-            } catch (Throwable th5) {
-                th = th5;
-                consumer2 = consumer3;
-                r8 = sQLiteCursorQueryFinalized;
+            } catch (Throwable th4) {
+                th = th4;
+                QueryFinalized = sQLiteCursorQueryFinalized;
             }
-        } catch (Throwable th6) {
-            th = th6;
-            consumer2 = consumer3;
+        } catch (Throwable th5) {
+            th = th5;
+            QueryFinalized = 0;
         }
     }
 
-    public static int lambda$getAllStories$1(TL_stories.PeerStories peerStories) {
+    public static int $r8$lambda$oObnqwHhX94CgPGTFQagIu0JO2g(TL_stories.PeerStories peerStories) {
         ArrayList<TL_stories.StoryItem> arrayList = peerStories.stories;
         return -arrayList.get(arrayList.size() - 1).date;
     }
@@ -338,16 +320,16 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$saveAllStories$4(arrayList, z, z2, runnable);
+                StoriesStorage.$r8$lambda$cEMW7KIIg8IWNomCfG0c8G3HjbU(this.f$0, arrayList, z, z2, runnable);
             }
         });
     }
 
-    public void lambda$saveAllStories$4(ArrayList arrayList, boolean z, boolean z2, Runnable runnable) {
-        SQLiteDatabase database = this.storage.getDatabase();
+    public static void $r8$lambda$cEMW7KIIg8IWNomCfG0c8G3HjbU(StoriesStorage storiesStorage, ArrayList arrayList, boolean z, boolean z2, Runnable runnable) {
+        SQLiteDatabase database = storiesStorage.storage.getDatabase();
         for (int i = 0; i < arrayList.size(); i++) {
             TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i);
-            fillSkippedStories(DialogObject.getPeerDialogId(peerStories.peer), peerStories);
+            storiesStorage.fillSkippedStories(DialogObject.getPeerDialogId(peerStories.peer), peerStories);
         }
         if (!z) {
             try {
@@ -356,18 +338,18 @@ public class StoriesStorage {
                 while (sQLiteCursorQueryFinalized.next()) {
                     long jLongValue = sQLiteCursorQueryFinalized.longValue(0);
                     if (jLongValue > 0) {
-                        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(jLongValue));
+                        TLRPC.User user = MessagesController.getInstance(storiesStorage.currentAccount).getUser(Long.valueOf(jLongValue));
                         if (user == null) {
-                            user = MessagesStorage.getInstance(this.currentAccount).getUser(jLongValue);
+                            user = MessagesStorage.getInstance(storiesStorage.currentAccount).getUser(jLongValue);
                         }
                         if (user == null || (user.stories_hidden == z2 && !arrayList2.contains(Long.valueOf(jLongValue)))) {
                             arrayList2.add(Long.valueOf(jLongValue));
                         }
                     } else {
                         long j = -jLongValue;
-                        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
+                        TLRPC.Chat chat = MessagesController.getInstance(storiesStorage.currentAccount).getChat(Long.valueOf(j));
                         if (chat == null) {
-                            chat = MessagesStorage.getInstance(this.currentAccount).getChat(j);
+                            chat = MessagesStorage.getInstance(storiesStorage.currentAccount).getChat(j);
                         }
                         if (chat == null || (chat.stories_hidden == z2 && !arrayList2.contains(Long.valueOf(jLongValue)))) {
                             arrayList2.add(Long.valueOf(jLongValue));
@@ -379,12 +361,12 @@ public class StoriesStorage {
                 }
                 database.executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id IN(%s)", TextUtils.join(",", arrayList2))).stepThis().dispose();
             } catch (Throwable th) {
-                this.storage.checkSQLException(th);
+                storiesStorage.storage.checkSQLException(th);
             }
         }
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) arrayList.get(i2);
-            putStoriesInternal(DialogObject.getPeerDialogId(peerStories2.peer), peerStories2);
+            storiesStorage.putStoriesInternal(DialogObject.getPeerDialogId(peerStories2.peer), peerStories2);
         }
         if (runnable != null) {
             AndroidUtilities.runOnUIThread(runnable);
@@ -431,10 +413,11 @@ public class StoriesStorage {
                 }
             }
             sQLiteCursorQueryFinalized.dispose();
+            return storyItemTLdeserialize;
         } catch (SQLiteException e) {
             FileLog.e(e);
+            return storyItemTLdeserialize;
         }
-        return storyItemTLdeserialize;
     }
 
     public void updateStoryItem(final long j, final TL_stories.StoryItem storyItem) {
@@ -444,12 +427,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateStoryItem$7(j, storyItem);
+                this.f$0.updateStoryItemInternal(j, storyItem);
             }
         });
     }
 
-    public void lambda$updateStoryItem$7(long j, TL_stories.StoryItem storyItem) {
+    public void updateStoryItemInternal(long j, TL_stories.StoryItem storyItem) {
         if (j == 0 || storyItem == null) {
             return;
         }
@@ -502,16 +485,16 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateMaxReadId$8(j, i);
+                StoriesStorage.$r8$lambda$AuajkYelCKau3o_eAmqICG165jA(this.f$0, j, i);
             }
         });
     }
 
-    public void lambda$updateMaxReadId$8(long j, int i) {
+    public static void $r8$lambda$AuajkYelCKau3o_eAmqICG165jA(StoriesStorage storiesStorage, long j, int i) {
         try {
-            this.storage.getDatabase().executeFast(String.format(Locale.US, "REPLACE INTO stories_counter VALUES(%d, 0, %d)", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
+            storiesStorage.storage.getDatabase().executeFast(String.format(Locale.US, "REPLACE INTO stories_counter VALUES(%d, 0, %d)", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
         } catch (Throwable th) {
-            this.storage.checkSQLException(th);
+            storiesStorage.storage.checkSQLException(th);
         }
     }
 
@@ -519,15 +502,15 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processUpdate$9(tL_updateStory);
+                StoriesStorage.$r8$lambda$mZqFznBnJbMFCY3azE97BUgFojY(this.f$0, tL_updateStory);
             }
         });
     }
 
-    public void lambda$processUpdate$9(TL_stories.TL_updateStory tL_updateStory) {
+    public static void $r8$lambda$mZqFznBnJbMFCY3azE97BUgFojY(StoriesStorage storiesStorage, TL_stories.TL_updateStory tL_updateStory) {
         int i;
         boolean z;
-        SQLiteDatabase database = this.storage.getDatabase();
+        SQLiteDatabase database = storiesStorage.storage.getDatabase();
         try {
             long peerDialogId = DialogObject.getPeerDialogId(tL_updateStory.peer);
             TL_stories.StoryItem storyItem = tL_updateStory.story;
@@ -557,7 +540,7 @@ public class StoriesStorage {
                     i = 0;
                 }
             } else if (storyItem instanceof TL_stories.TL_storyItem) {
-                lambda$updateStoryItem$7(peerDialogId, storyItem);
+                storiesStorage.updateStoryItemInternal(peerDialogId, storyItem);
                 SQLiteCursor sQLiteCursorQueryFinalized2 = database.queryFinalized(String.format(Locale.US, "SELECT story_id FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(peerDialogId), Integer.valueOf(i2)), new Object[0]);
                 boolean next = sQLiteCursorQueryFinalized2.next();
                 sQLiteCursorQueryFinalized2.dispose();
@@ -574,7 +557,7 @@ public class StoriesStorage {
             sQLiteCursorQueryFinalized3.dispose();
             database.executeFast(String.format(Locale.US, "UPDATE stories_counter SET count = %d WHERE dialog_id = %d", Integer.valueOf(iIntValue + i), Long.valueOf(peerDialogId))).stepThis().dispose();
         } catch (Throwable th) {
-            this.storage.checkSQLException(th);
+            storiesStorage.storage.checkSQLException(th);
         }
     }
 
@@ -582,14 +565,15 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateStories$10(peerStories);
+                StoriesStorage.m4429$r8$lambda$GFELulQoI13tlGnwYSU_XKzFYk(this.f$0, peerStories);
             }
         });
     }
 
-    public void lambda$updateStories$10(TL_stories.PeerStories peerStories) {
+    public static void m4429$r8$lambda$GFELulQoI13tlGnwYSU_XKzFYk(StoriesStorage storiesStorage, TL_stories.PeerStories peerStories) {
+        storiesStorage.getClass();
         for (int i = 0; i < peerStories.stories.size(); i++) {
-            lambda$updateStoryItem$7(DialogObject.getPeerDialogId(peerStories.peer), peerStories.stories.get(i));
+            storiesStorage.updateStoryItemInternal(DialogObject.getPeerDialogId(peerStories.peer), peerStories.stories.get(i));
         }
     }
 
@@ -597,16 +581,16 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteStory$11(j, i);
+                StoriesStorage.$r8$lambda$yW1NvjprxT_aISSA6ZIYCnFektg(this.f$0, j, i);
             }
         });
     }
 
-    public void lambda$deleteStory$11(long j, int i) {
+    public static void $r8$lambda$yW1NvjprxT_aISSA6ZIYCnFektg(StoriesStorage storiesStorage, long j, int i) {
         try {
-            this.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
+            storiesStorage.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
         } catch (Throwable th) {
-            this.storage.checkSQLException(th);
+            storiesStorage.storage.checkSQLException(th);
         }
     }
 
@@ -614,17 +598,17 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteStories$12(arrayList, j);
+                StoriesStorage.$r8$lambda$IbGsdsPBiaXDdutN0YFkAcpaJtc(this.f$0, arrayList, j);
             }
         });
     }
 
-    public void lambda$deleteStories$12(ArrayList arrayList, long j) {
-        SQLiteDatabase database = this.storage.getDatabase();
+    public static void $r8$lambda$IbGsdsPBiaXDdutN0YFkAcpaJtc(StoriesStorage storiesStorage, ArrayList arrayList, long j) {
+        SQLiteDatabase database = storiesStorage.storage.getDatabase();
         try {
             database.executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id IN (%s)", Long.valueOf(j), TextUtils.join(", ", arrayList))).stepThis().dispose();
         } catch (Throwable th) {
-            this.storage.checkSQLException(th);
+            storiesStorage.storage.checkSQLException(th);
         }
     }
 
@@ -632,13 +616,12 @@ public class StoriesStorage {
         fillMessagesWithStories(longSparseArray, runnable, i, true, timer);
     }
 
-    public void fillMessagesWithStories(LongSparseArray longSparseArray, final Runnable runnable, int i, final boolean z, final Timer timer) {
-        LongSparseArray longSparseArray2 = longSparseArray;
-        Timer timer2 = timer;
+    public void fillMessagesWithStories(LongSparseArray longSparseArray, final Runnable runnable, int i, final boolean z, Timer timer) {
+        final Timer timer2 = timer;
         if (runnable == null) {
             return;
         }
-        if (longSparseArray2 == null) {
+        if (longSparseArray == null) {
             runnable.run();
             return;
         }
@@ -646,8 +629,8 @@ public class StoriesStorage {
         Timer.Task taskStart = Timer.start(timer2, "fillMessagesWithStories: applying stories for existing array");
         int i2 = 0;
         while (i2 < longSparseArray.size()) {
-            long jKeyAt = longSparseArray2.keyAt(i2);
-            ArrayList arrayList2 = (ArrayList) longSparseArray2.valueAt(i2);
+            long jKeyAt = longSparseArray.keyAt(i2);
+            ArrayList arrayList2 = (ArrayList) longSparseArray.valueAt(i2);
             int i3 = 0;
             while (i3 < arrayList2.size()) {
                 MessageObject messageObject = (MessageObject) arrayList2.get(i3);
@@ -658,7 +641,7 @@ public class StoriesStorage {
                     arrayList2.remove(i3);
                     i3--;
                     if (arrayList2.isEmpty()) {
-                        longSparseArray2.removeAt(i2);
+                        longSparseArray.removeAt(i2);
                         i2--;
                     }
                 }
@@ -668,32 +651,30 @@ public class StoriesStorage {
         }
         Timer.done(taskStart);
         if (z) {
-            lambda$fillMessagesWithStories$13(arrayList);
+            updateMessagesWithStories(arrayList);
         }
         if (!longSparseArray.isEmpty()) {
             final int[] iArr = {longSparseArray.size()};
             int i4 = 0;
             while (i4 < longSparseArray.size()) {
-                final long jKeyAt2 = longSparseArray2.keyAt(i4);
-                final ArrayList arrayList3 = (ArrayList) longSparseArray2.valueAt(i4);
+                final long jKeyAt2 = longSparseArray.keyAt(i4);
+                final ArrayList arrayList3 = (ArrayList) longSparseArray.valueAt(i4);
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
                 tL_stories_getStoriesByID.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(jKeyAt2);
                 for (int i5 = 0; i5 < arrayList3.size(); i5++) {
                     tL_stories_getStoriesByID.id.add(Integer.valueOf(getStoryId((MessageObject) arrayList3.get(i5))));
                 }
                 final Timer.Task taskStart2 = Timer.start(timer2, "fillMessagesWithStories: getStoriesByID did=" + jKeyAt2 + " ids=" + TextUtils.join(",", tL_stories_getStoriesByID.id));
-                int i6 = i4;
                 int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$fillMessagesWithStories$14(taskStart2, arrayList3, jKeyAt2, z, timer, iArr, runnable, tLObject, tL_error);
+                        StoriesStorage.m4432$r8$lambda$utWQUwJSy8Hgkkvu7nb4tyueM(this.f$0, taskStart2, arrayList3, jKeyAt2, z, timer2, iArr, runnable, tLObject, tL_error);
                     }
                 });
                 if (i != 0) {
                     ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(iSendRequest, i);
                 }
-                i4 = i6 + 1;
-                longSparseArray2 = longSparseArray;
+                i4++;
                 timer2 = timer;
             }
             return;
@@ -701,7 +682,8 @@ public class StoriesStorage {
         runnable.run();
     }
 
-    public void lambda$fillMessagesWithStories$14(Timer.Task task, final ArrayList arrayList, long j, boolean z, Timer timer, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4432$r8$lambda$utWQUwJSy8Hgkkvu7nb4tyueM(final StoriesStorage storiesStorage, Timer.Task task, final ArrayList arrayList, long j, boolean z, Timer timer, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+        storiesStorage.getClass();
         Timer.done(task);
         if (tLObject != null) {
             TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
@@ -711,22 +693,22 @@ public class StoriesStorage {
                 while (true) {
                     if (i2 < tL_stories_stories.stories.size()) {
                         if (tL_stories_stories.stories.get(i2).id == getStoryId(messageObject)) {
-                            applyStory(this.currentAccount, j, messageObject, tL_stories_stories.stories.get(i2));
+                            applyStory(storiesStorage.currentAccount, j, messageObject, tL_stories_stories.stories.get(i2));
                             break;
                         }
                         i2++;
                     } else {
                         TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
                         tL_storyItemDeleted.id = getStoryId(messageObject);
-                        applyStory(this.currentAccount, j, messageObject, tL_storyItemDeleted);
+                        applyStory(storiesStorage.currentAccount, j, messageObject, tL_storyItemDeleted);
                         break;
                     }
                 }
                 if (z) {
-                    this.storage.getStorageQueue().postRunnable(new Runnable() {
+                    storiesStorage.storage.getStorageQueue().postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$fillMessagesWithStories$13(arrayList);
+                            this.f$0.updateMessagesWithStories(arrayList);
                         }
                     });
                 }
@@ -794,7 +776,7 @@ public class StoriesStorage {
         return messageObject.messageOwner.reply_to.story_id;
     }
 
-    public void lambda$fillMessagesWithStories$13(List list) {
+    public void updateMessagesWithStories(List list) {
         try {
             SQLiteDatabase database = this.storage.getDatabase();
             if (list.isEmpty()) {
@@ -862,13 +844,13 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$getMaxReadIds$16(consumer);
+                StoriesStorage.m4430$r8$lambda$Iigzwfpurb5ZkJNj0Rzj2cctUY(this.f$0, consumer);
             }
         });
     }
 
-    public void lambda$getMaxReadIds$16(final Consumer consumer) {
-        SQLiteDatabase database = this.storage.getDatabase();
+    public static void m4430$r8$lambda$Iigzwfpurb5ZkJNj0Rzj2cctUY(StoriesStorage storiesStorage, final Consumer consumer) {
+        SQLiteDatabase database = storiesStorage.storage.getDatabase();
         final LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
         try {
             SQLiteCursor sQLiteCursorQueryFinalized = database.queryFinalized("SELECT dialog_id, max_read FROM stories_counter", new Object[0]);
@@ -876,7 +858,7 @@ public class StoriesStorage {
                 longSparseIntArray.put(sQLiteCursorQueryFinalized.longValue(0), sQLiteCursorQueryFinalized.intValue(1));
             }
         } catch (Exception e) {
-            this.storage.checkSQLException(e);
+            storiesStorage.storage.checkSQLException(e);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -890,29 +872,30 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$putPeerStories$17(peerStories);
+                StoriesStorage.m4427$r8$lambda$2q3trS93R5ZsuJpcM6B6KcCFWQ(this.f$0, peerStories);
             }
         });
     }
 
-    public void lambda$putPeerStories$17(TL_stories.PeerStories peerStories) {
-        putStoriesInternal(DialogObject.getPeerDialogId(peerStories.peer), peerStories);
+    public static void m4427$r8$lambda$2q3trS93R5ZsuJpcM6B6KcCFWQ(StoriesStorage storiesStorage, TL_stories.PeerStories peerStories) {
+        storiesStorage.getClass();
+        storiesStorage.putStoriesInternal(DialogObject.getPeerDialogId(peerStories.peer), peerStories);
     }
 
     public void deleteAllUserStories(final long j) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteAllUserStories$18(j);
+                StoriesStorage.$r8$lambda$MAdiU7YTC9DdCdZumHASVeuug34(this.f$0, j);
             }
         });
     }
 
-    public void lambda$deleteAllUserStories$18(long j) {
+    public static void $r8$lambda$MAdiU7YTC9DdCdZumHASVeuug34(StoriesStorage storiesStorage, long j) {
         try {
-            this.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d", Long.valueOf(j))).stepThis().dispose();
+            storiesStorage.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d", Long.valueOf(j))).stepThis().dispose();
         } catch (Throwable th) {
-            this.storage.checkSQLException(th);
+            storiesStorage.storage.checkSQLException(th);
         }
     }
 }

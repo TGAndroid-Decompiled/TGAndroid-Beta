@@ -800,7 +800,7 @@ public class PeerConnection {
     }
 
     public RtpSender addTrack(MediaStreamTrack mediaStreamTrack) {
-        return addTrack(mediaStreamTrack, Collections.emptyList());
+        return addTrack(mediaStreamTrack, Collections.EMPTY_LIST);
     }
 
     public RtpSender addTrack(MediaStreamTrack mediaStreamTrack, List<String> list) {

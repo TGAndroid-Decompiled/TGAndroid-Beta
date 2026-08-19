@@ -29,13 +29,11 @@ public class PipSourceParams {
     }
 
     public boolean isValid() {
-        if (!this.position.isEmpty()) {
-            Point point = this.ratio;
-            if (point.x > 0 && point.y > 0) {
-                return true;
-            }
+        if (this.position.isEmpty()) {
+            return false;
         }
-        return false;
+        Point point = this.ratio;
+        return point.x > 0 && point.y > 0;
     }
 
     public void getPosition(Rect rect) {
@@ -78,9 +76,9 @@ public class PipSourceParams {
         }
         if (!this.position.isEmpty()) {
             builderM.setSourceRectHint(this.position);
-        } else {
-            builderM.setSourceRectHint(null);
+            return builderM;
         }
+        builderM.setSourceRectHint(null);
         return builderM;
     }
 }

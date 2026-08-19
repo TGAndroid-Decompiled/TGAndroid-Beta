@@ -604,9 +604,10 @@ public abstract class BaseFragment {
         actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), true);
         actionBar.setItemsColor(getThemedColor(Theme.key_actionBarDefaultIcon), false);
         actionBar.setItemsColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), true);
-        if (this.inPreviewMode || this.inBubbleMode || ((iNavigationLayout = this.parentLayout) != null && iNavigationLayout.isLayersLayout())) {
-            actionBar.setOccupyStatusBar(false);
+        if (!this.inPreviewMode && !this.inBubbleMode && ((iNavigationLayout = this.parentLayout) == null || !iNavigationLayout.isLayersLayout())) {
+            return actionBar;
         }
+        actionBar.setOccupyStatusBar(false);
         return actionBar;
     }
 
@@ -977,7 +978,7 @@ public abstract class BaseFragment {
                 this.visibleDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        this.f$0.lambda$showDialog$0(onDismissListener, dialogInterface);
+                        BaseFragment.$r8$lambda$_f1o14pThpyCuAcgPvjg_yoS0hg(this.f$0, onDismissListener, dialogInterface);
                     }
                 });
                 this.visibleDialog.show();
@@ -989,13 +990,14 @@ public abstract class BaseFragment {
         return null;
     }
 
-    public void lambda$showDialog$0(DialogInterface.OnDismissListener onDismissListener, DialogInterface dialogInterface) {
+    public static void $r8$lambda$_f1o14pThpyCuAcgPvjg_yoS0hg(BaseFragment baseFragment, DialogInterface.OnDismissListener onDismissListener, DialogInterface dialogInterface) {
+        baseFragment.getClass();
         if (onDismissListener != null) {
             onDismissListener.onDismiss(dialogInterface);
         }
-        onDialogDismiss((Dialog) dialogInterface);
-        if (dialogInterface == this.visibleDialog) {
-            this.visibleDialog = null;
+        baseFragment.onDialogDismiss((Dialog) dialogInterface);
+        if (dialogInterface == baseFragment.visibleDialog) {
+            baseFragment.visibleDialog = null;
         }
     }
 
@@ -1097,7 +1099,7 @@ public abstract class BaseFragment {
         INavigationLayout[] iNavigationLayoutArr = {INavigationLayout.CC.newLayout(getParentActivity(), false, new Supplier() {
             @Override
             public final Object get() {
-                return BaseFragment.lambda$showAsSheet$1(bottomSheetArr);
+                return BaseFragment.$r8$lambda$aMpXmKmokozlm5AWV_1jB0NtqhE(bottomSheetArr);
             }
         })};
         iNavigationLayoutArr[0].setIsSheet(true);
@@ -1115,7 +1117,7 @@ public abstract class BaseFragment {
         return iNavigationLayoutArr;
     }
 
-    public static BottomSheet lambda$showAsSheet$1(BottomSheet[] bottomSheetArr) {
+    public static BottomSheet $r8$lambda$aMpXmKmokozlm5AWV_1jB0NtqhE(BottomSheet[] bottomSheetArr) {
         return bottomSheetArr[0];
     }
 
@@ -1150,12 +1152,12 @@ public abstract class BaseFragment {
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    BaseFragment.AnonymousClass2.lambda$new$0(baseFragment, bottomSheetParams, dialogInterface);
+                    BaseFragment.AnonymousClass2.m1248$r8$lambda$Pf2A33RJlV2_ds4cYarjA_UrGw(baseFragment, bottomSheetParams, dialogInterface);
                 }
             });
         }
 
-        public static void lambda$new$0(BaseFragment baseFragment, BottomSheetParams bottomSheetParams, DialogInterface dialogInterface) {
+        public static void m1248$r8$lambda$Pf2A33RJlV2_ds4cYarjA_UrGw(BaseFragment baseFragment, BottomSheetParams bottomSheetParams, DialogInterface dialogInterface) {
             Runnable runnable;
             baseFragment.onPause();
             baseFragment.onFragmentDestroy();
@@ -1190,10 +1192,10 @@ public abstract class BaseFragment {
         }
 
         @Override
-        public void lambda$openCrafting$8() {
+        public void onBackPressed() {
             INavigationLayout iNavigationLayout = this.val$actionBarLayout[0];
             if (iNavigationLayout == null || iNavigationLayout.getFragmentStack().size() <= 1) {
-                super.lambda$openCrafting$8();
+                super.onBackPressed();
             } else {
                 this.val$actionBarLayout[0].onBackPressed();
             }
@@ -1445,16 +1447,17 @@ public abstract class BaseFragment {
             storyViewer.close(true);
             removeSheet(storyViewer);
         }
-        if (storyViewer2 == null) {
-            storyViewer2 = new StoryViewer(this);
-            INavigationLayout iNavigationLayout = this.parentLayout;
-            if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
-                storyViewer2.fromBottomSheet = true;
-            }
-            this.sheetsStack.add(storyViewer2);
-            updateSheetsVisibility();
+        if (storyViewer2 != null) {
+            return storyViewer2;
         }
-        return storyViewer2;
+        StoryViewer storyViewer3 = new StoryViewer(this);
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
+            storyViewer3.fromBottomSheet = true;
+        }
+        this.sheetsStack.add(storyViewer3);
+        updateSheetsVisibility();
+        return storyViewer3;
     }
 
     public void setTitleOverlayTextIfActionBarAttached(String str, int i, Runnable runnable) {

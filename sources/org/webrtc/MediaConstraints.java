@@ -32,11 +32,13 @@ public class MediaConstraints {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
+            if (obj != null && getClass() == obj.getClass()) {
+                KeyValuePair keyValuePair = (KeyValuePair) obj;
+                if (this.key.equals(keyValuePair.key) && this.value.equals(keyValuePair.value)) {
+                    return true;
+                }
             }
-            KeyValuePair keyValuePair = (KeyValuePair) obj;
-            return this.key.equals(keyValuePair.key) && this.value.equals(keyValuePair.value);
+            return false;
         }
 
         public int hashCode() {

@@ -70,7 +70,7 @@ public class ShareActivity extends Activity {
             this.visibleDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$onCreate$0(dialogInterface);
+                    ShareActivity.$r8$lambda$4KdOU0rHbabAC8AjuUf4d8KX8Hg(this.f$0, dialogInterface);
                 }
             });
             this.visibleDialog.show();
@@ -80,11 +80,11 @@ public class ShareActivity extends Activity {
         }
     }
 
-    public void lambda$onCreate$0(DialogInterface dialogInterface) {
-        if (!isFinishing()) {
-            finish();
+    public static void $r8$lambda$4KdOU0rHbabAC8AjuUf4d8KX8Hg(ShareActivity shareActivity, DialogInterface dialogInterface) {
+        if (!shareActivity.isFinishing()) {
+            shareActivity.finish();
         }
-        this.visibleDialog = null;
+        shareActivity.visibleDialog = null;
     }
 
     @Override

@@ -66,7 +66,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
     private final Runnable updateTimerRunnable = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$7();
+            AffiliateProgramFragment.$r8$lambda$oCzC9_2l1x9HilYYaam1MxQDPHg(this.f$0);
         }
     };
     private String[] durationTexts = null;
@@ -144,7 +144,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$4(context, view3);
+                AffiliateProgramFragment.$r8$lambda$R3GcdEEA8Jsc8jrF1vECr6mHRrE(this.f$0, context, view3);
             }
         });
         this.buttonLayout.addView(this.button, LayoutHelper.createLinear(-1, 48, 10.0f, 10.0f, 10.0f, 7.0f));
@@ -161,7 +161,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view3, int i) {
-                this.f$0.lambda$createView$5(view3, i);
+                AffiliateProgramFragment.m4799$r8$lambda$tRT_uCGe0akKqxgh9OALA8wtuM(this.f$0, view3, i);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -173,20 +173,20 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         return this.fragmentView;
     }
 
-    public void lambda$createView$4(Context context, View view) {
+    public static void $r8$lambda$R3GcdEEA8Jsc8jrF1vECr6mHRrE(final AffiliateProgramFragment affiliateProgramFragment, Context context, View view) {
         String pluralString;
-        if (this.button.isEnabled()) {
+        if (affiliateProgramFragment.button.isEnabled()) {
             FrameLayout frameLayout = new FrameLayout(context);
-            TableView tableView = new TableView(context, this.resourceProvider);
+            TableView tableView = new TableView(context, affiliateProgramFragment.resourceProvider);
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$2();
+                    AffiliateProgramFragment.$r8$lambda$5AKerYPz1JiDC3oGyjwkL8l7ZbA(this.f$0);
                 }
             };
-            tableView.addRow(LocaleController.getString(R.string.AffiliateProgramCommission), percents(this.program.commission_permille));
+            tableView.addRow(LocaleController.getString(R.string.AffiliateProgramCommission), percents(affiliateProgramFragment.program.commission_permille));
             String string = LocaleController.getString(R.string.AffiliateProgramDuration);
-            int i = this.program.duration_months;
+            int i = affiliateProgramFragment.program.duration_months;
             if (i <= 0) {
                 pluralString = LocaleController.getString(R.string.Infinity);
             } else {
@@ -194,7 +194,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             }
             tableView.addRow(string, pluralString);
             frameLayout.addView(tableView, LayoutHelper.createFrame(-1, -2.0f, 119, 24.0f, 0.0f, 24.0f, 0.0f));
-            new AlertDialog.Builder(context, this.resourceProvider).setTitle(LocaleController.getString(R.string.AffiliateProgramAlert)).setMessage(LocaleController.getString(this.new_program ? R.string.AffiliateProgramStartAlertText : R.string.AffiliateProgramUpdateAlertText)).setView(frameLayout).setPositiveButton(LocaleController.getString(this.new_program ? R.string.AffiliateProgramStartAlertButton : R.string.AffiliateProgramUpdateAlertButton), new AlertDialog.OnButtonClickListener() {
+            new AlertDialog.Builder(context, affiliateProgramFragment.resourceProvider).setTitle(LocaleController.getString(R.string.AffiliateProgramAlert)).setMessage(LocaleController.getString(affiliateProgramFragment.new_program ? R.string.AffiliateProgramStartAlertText : R.string.AffiliateProgramUpdateAlertText)).setView(frameLayout).setPositiveButton(LocaleController.getString(affiliateProgramFragment.new_program ? R.string.AffiliateProgramStartAlertButton : R.string.AffiliateProgramUpdateAlertButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
                     runnable.run();
@@ -203,10 +203,11 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         }
     }
 
-    public void lambda$createView$2() {
+    public static void $r8$lambda$5AKerYPz1JiDC3oGyjwkL8l7ZbA(final AffiliateProgramFragment affiliateProgramFragment) {
+        affiliateProgramFragment.getClass();
         TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
-        updatestarrefprogram.bot = getMessagesController().getInputUser(this.bot_id);
-        TL_payments.starRefProgram starrefprogram = this.program;
+        updatestarrefprogram.bot = affiliateProgramFragment.getMessagesController().getInputUser(affiliateProgramFragment.bot_id);
+        TL_payments.starRefProgram starrefprogram = affiliateProgramFragment.program;
         updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
         int i = starrefprogram.duration_months;
         updatestarrefprogram.duration_months = i;
@@ -217,26 +218,28 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             updatestarrefprogram.flags &= -2;
             starrefprogram.duration_months = i & (-2);
         }
-        final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
+        final AlertDialog alertDialog = new AlertDialog(affiliateProgramFragment.getContext(), 3);
         alertDialog.showDelayed(150L);
-        getConnectionsManager().sendRequest(updatestarrefprogram, new RequestDelegate() {
+        affiliateProgramFragment.getConnectionsManager().sendRequest(updatestarrefprogram, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$createView$1(alertDialog, tLObject, tL_error);
+                AffiliateProgramFragment.$r8$lambda$EQ5wnlZQ3xR2TZMrxjtgeX2AxxM(this.f$0, alertDialog, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$createView$1(final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$EQ5wnlZQ3xR2TZMrxjtgeX2AxxM(final AffiliateProgramFragment affiliateProgramFragment, final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        affiliateProgramFragment.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$0(alertDialog, tLObject, tL_error);
+                AffiliateProgramFragment.$r8$lambda$hbSop9KL4yS4Jlv_Zq9Eb4f9Fh0(this.f$0, alertDialog, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$createView$0(AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$hbSop9KL4yS4Jlv_Zq9Eb4f9Fh0(AffiliateProgramFragment affiliateProgramFragment, AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+        affiliateProgramFragment.getClass();
         alertDialog.dismiss();
         if (!(tLObject instanceof TL_payments.starRefProgram)) {
             if (tL_error != null) {
@@ -246,25 +249,25 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             return;
         }
         TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) tLObject;
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(this.bot_id);
+        TLRPC.UserFull userFull = affiliateProgramFragment.getMessagesController().getUserFull(affiliateProgramFragment.bot_id);
         if (userFull != null) {
             userFull.starref_program = starrefprogram;
-            getMessagesStorage().updateUserInfo(userFull, false);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(this.bot_id), userFull);
+            affiliateProgramFragment.getMessagesStorage().updateUserInfo(userFull, false);
+            NotificationCenter.getInstance(affiliateProgramFragment.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(affiliateProgramFragment.bot_id), userFull);
         }
-        closeToProfile(false);
+        affiliateProgramFragment.closeToProfile(false);
     }
 
-    public void lambda$createView$5(View view, int i) {
-        UniversalAdapter universalAdapter = this.adapter;
+    public static void m4799$r8$lambda$tRT_uCGe0akKqxgh9OALA8wtuM(AffiliateProgramFragment affiliateProgramFragment, View view, int i) {
+        UniversalAdapter universalAdapter = affiliateProgramFragment.adapter;
         if (universalAdapter == null) {
             return;
         }
         int i2 = universalAdapter.getItem(i).id;
         if (i2 == 4) {
-            end();
+            affiliateProgramFragment.end();
         } else if (i2 == 2) {
-            presentFragment(new SuggestedAffiliateProgramsFragment(this.bot_id));
+            affiliateProgramFragment.presentFragment(new SuggestedAffiliateProgramsFragment(affiliateProgramFragment.bot_id));
         }
     }
 
@@ -314,7 +317,8 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         this.buttonSubtext.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString((this.new_program || this.program.end_date != 0) ? R.string.AffiliateProgramStartInfo : R.string.AffiliateProgramUpdateInfo), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$update$6();
+                AffiliateProgramFragment affiliateProgramFragment = this.f$0;
+                Browser.openUrl(affiliateProgramFragment.getContext(), LocaleController.getString((affiliateProgramFragment.new_program || affiliateProgramFragment.program.end_date != 0) ? R.string.AffiliateProgramUpdateInfoLink : R.string.AffiliateProgramStartInfoLink));
             }
         }));
         updateEnabled();
@@ -324,18 +328,14 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         }
     }
 
-    public void lambda$update$6() {
-        Browser.openUrl(getContext(), LocaleController.getString((this.new_program || this.program.end_date != 0) ? R.string.AffiliateProgramUpdateInfoLink : R.string.AffiliateProgramStartInfoLink));
-    }
-
-    public void lambda$new$7() {
-        ButtonWithCounterView buttonWithCounterView = this.button;
-        int i = this.program.end_date;
-        buttonWithCounterView.setSubText(i == 0 ? null : SelectorUserCell.buildCountDownTime(((long) (i - getConnectionsManager().getCurrentTime())) * 1000), true);
-        if (this.program.end_date == 0 || !this.attached) {
+    public static void $r8$lambda$oCzC9_2l1x9HilYYaam1MxQDPHg(AffiliateProgramFragment affiliateProgramFragment) {
+        ButtonWithCounterView buttonWithCounterView = affiliateProgramFragment.button;
+        int i = affiliateProgramFragment.program.end_date;
+        buttonWithCounterView.setSubText(i == 0 ? null : SelectorUserCell.buildCountDownTime(((long) (i - affiliateProgramFragment.getConnectionsManager().getCurrentTime())) * 1000), true);
+        if (affiliateProgramFragment.program.end_date == 0 || !affiliateProgramFragment.attached) {
             return;
         }
-        AndroidUtilities.runOnUIThread(this.updateTimerRunnable, 1000L);
+        AndroidUtilities.runOnUIThread(affiliateProgramFragment.updateTimerRunnable, 1000L);
     }
 
     private void updateEnabled() {
@@ -388,35 +388,38 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         new AlertDialog.Builder(getContext(), this.resourceProvider).setTitle(LocaleController.getString(R.string.AffiliateProgramAlert)).setView(linearLayout).setPositiveButton(LocaleController.getString(R.string.AffiliateProgramStopButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                this.f$0.lambda$end$10(alertDialog, i2);
+                AffiliateProgramFragment.$r8$lambda$akX54TSsQSEDf1DDx1AK5KndU5Y(this.f$0, alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
 
-    public void lambda$end$10(AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$akX54TSsQSEDf1DDx1AK5KndU5Y(final AffiliateProgramFragment affiliateProgramFragment, AlertDialog alertDialog, int i) {
+        affiliateProgramFragment.getClass();
         TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
-        updatestarrefprogram.bot = getMessagesController().getInputUser(this.bot_id);
+        updatestarrefprogram.bot = affiliateProgramFragment.getMessagesController().getInputUser(affiliateProgramFragment.bot_id);
         updatestarrefprogram.commission_permille = 0;
-        final AlertDialog alertDialog2 = new AlertDialog(getContext(), 3);
+        final AlertDialog alertDialog2 = new AlertDialog(affiliateProgramFragment.getContext(), 3);
         alertDialog2.showDelayed(150L);
-        getConnectionsManager().sendRequest(updatestarrefprogram, new RequestDelegate() {
+        affiliateProgramFragment.getConnectionsManager().sendRequest(updatestarrefprogram, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$end$9(alertDialog2, tLObject, tL_error);
+                AffiliateProgramFragment.$r8$lambda$W3wKB9rwEvWqtdsAd9LttUA9EuE(this.f$0, alertDialog2, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$end$9(final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$W3wKB9rwEvWqtdsAd9LttUA9EuE(final AffiliateProgramFragment affiliateProgramFragment, final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        affiliateProgramFragment.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$end$8(alertDialog, tLObject, tL_error);
+                AffiliateProgramFragment.$r8$lambda$hs6PhSgJrJd8fzXKshEx_Elxi30(this.f$0, alertDialog, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$end$8(AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$hs6PhSgJrJd8fzXKshEx_Elxi30(AffiliateProgramFragment affiliateProgramFragment, AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+        affiliateProgramFragment.getClass();
         alertDialog.dismiss();
         if (!(tLObject instanceof TL_payments.starRefProgram)) {
             if (tL_error != null) {
@@ -426,16 +429,16 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             return;
         }
         TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) tLObject;
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(this.bot_id);
+        TLRPC.UserFull userFull = affiliateProgramFragment.getMessagesController().getUserFull(affiliateProgramFragment.bot_id);
         if (userFull != null) {
-            TL_payments.starRefProgram starrefprogram2 = this.program;
+            TL_payments.starRefProgram starrefprogram2 = affiliateProgramFragment.program;
             starrefprogram2.flags |= 2;
-            starrefprogram2.end_date = getConnectionsManager().getCurrentTime() + (getConnectionsManager().isTestBackend() ? 300 : 86400);
+            starrefprogram2.end_date = affiliateProgramFragment.getConnectionsManager().getCurrentTime() + (affiliateProgramFragment.getConnectionsManager().isTestBackend() ? 300 : 86400);
             userFull.starref_program = starrefprogram;
-            getMessagesStorage().updateUserInfo(userFull, false);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(this.bot_id), userFull);
+            affiliateProgramFragment.getMessagesStorage().updateUserInfo(userFull, false);
+            NotificationCenter.getInstance(affiliateProgramFragment.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(affiliateProgramFragment.bot_id), userFull);
         }
-        closeToProfile(true);
+        affiliateProgramFragment.closeToProfile(true);
     }
 
     public TL_payments.starRefProgram getDefaultProgram() {
@@ -458,12 +461,12 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         UItem uItemAsIntSlideView = UItem.asIntSlideView(1, getMessagesController().starrefMinCommissionPermille, this.program.commission_permille, getMessagesController().starrefMaxCommissionPermille, new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                return AffiliateProgramFragment.lambda$fillItems$11((Integer) obj);
+                return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$fillItems$12((Integer) obj);
+                AffiliateProgramFragment.$r8$lambda$8Xfywz4cg6y95eDRV89fiN3m2Es(this.f$0, (Integer) obj);
             }
         });
         TL_payments.starRefProgram starrefprogram = this.initialProgram;
@@ -486,7 +489,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         UItem uItemAsSlideView = UItem.asSlideView(this.durationTexts, this.durationValues.indexOf(Integer.valueOf(this.program.duration_months)), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$fillItems$13((Integer) obj);
+                AffiliateProgramFragment.$r8$lambda$r7umzBoWXuQ0ahyJuhMD0F5EG4M(this.f$0, (Integer) obj);
             }
         });
         TL_payments.starRefProgram starrefprogram2 = this.initialProgram;
@@ -514,18 +517,14 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         arrayList.add(UItem.asShadow(7, null));
     }
 
-    public static CharSequence lambda$fillItems$11(Integer num) {
-        return String.format(Locale.US, "%.1f%%", Float.valueOf(num.intValue() / 10.0f));
+    public static void $r8$lambda$8Xfywz4cg6y95eDRV89fiN3m2Es(AffiliateProgramFragment affiliateProgramFragment, Integer num) {
+        affiliateProgramFragment.program.commission_permille = num.intValue();
+        affiliateProgramFragment.updateEnabled();
     }
 
-    public void lambda$fillItems$12(Integer num) {
-        this.program.commission_permille = num.intValue();
-        updateEnabled();
-    }
-
-    public void lambda$fillItems$13(Integer num) {
-        this.program.duration_months = ((Integer) this.durationValues.get(num.intValue())).intValue();
-        updateEnabled();
+    public static void $r8$lambda$r7umzBoWXuQ0ahyJuhMD0F5EG4M(AffiliateProgramFragment affiliateProgramFragment, Integer num) {
+        affiliateProgramFragment.program.duration_months = ((Integer) affiliateProgramFragment.durationValues.get(num.intValue())).intValue();
+        affiliateProgramFragment.updateEnabled();
     }
 
     @Override
@@ -585,7 +584,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
                 getMessagesController().loadFullUser(user, getClassGuid(), true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$onFragmentCreate$15((TLRPC.UserFull) obj);
+                        AffiliateProgramFragment.$r8$lambda$6IbDxUjmS9Jk5B8MN6a7wtE1kNI(this.f$0, (TLRPC.UserFull) obj);
                     }
                 });
             }
@@ -593,33 +592,34 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         return super.onFragmentCreate();
     }
 
-    public void lambda$onFragmentCreate$15(final TLRPC.UserFull userFull) {
+    public static void $r8$lambda$6IbDxUjmS9Jk5B8MN6a7wtE1kNI(final AffiliateProgramFragment affiliateProgramFragment, final TLRPC.UserFull userFull) {
+        affiliateProgramFragment.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onFragmentCreate$14(userFull);
+                AffiliateProgramFragment.$r8$lambda$x7Qtj0UrbfQUbVNkmu5wb4xPcEQ(this.f$0, userFull);
             }
         });
     }
 
-    public void lambda$onFragmentCreate$14(TLRPC.UserFull userFull) {
+    public static void $r8$lambda$x7Qtj0UrbfQUbVNkmu5wb4xPcEQ(AffiliateProgramFragment affiliateProgramFragment, TLRPC.UserFull userFull) {
         if (userFull != null) {
-            this.new_program = false;
+            affiliateProgramFragment.new_program = false;
             TL_payments.starRefProgram starrefprogram = userFull.starref_program;
-            this.program = starrefprogram;
+            affiliateProgramFragment.program = starrefprogram;
             if (starrefprogram == null) {
-                this.new_program = true;
-                this.program = getDefaultProgram();
-                this.initialProgram = null;
+                affiliateProgramFragment.new_program = true;
+                affiliateProgramFragment.program = affiliateProgramFragment.getDefaultProgram();
+                affiliateProgramFragment.initialProgram = null;
             } else {
                 TL_payments.starRefProgram starrefprogram2 = new TL_payments.starRefProgram();
-                this.initialProgram = starrefprogram2;
-                TL_payments.starRefProgram starrefprogram3 = this.program;
+                affiliateProgramFragment.initialProgram = starrefprogram2;
+                TL_payments.starRefProgram starrefprogram3 = affiliateProgramFragment.program;
                 starrefprogram2.commission_permille = starrefprogram3.commission_permille;
                 starrefprogram2.duration_months = starrefprogram3.duration_months;
             }
         }
-        update(true);
+        affiliateProgramFragment.update(true);
     }
 
     @Override

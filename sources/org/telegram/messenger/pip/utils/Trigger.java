@@ -21,7 +21,7 @@ public class Trigger implements Runnable {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0(callback);
+                Trigger.$r8$lambda$wb6urHkQ6RJrakQiFLm9bhLhPPg(this.f$0, callback);
             }
         };
         this.timeoutRunnable = runnable;
@@ -30,8 +30,8 @@ public class Trigger implements Runnable {
         }
     }
 
-    public void lambda$new$0(Callback callback) {
-        if (this.triggered.compareAndSet(false, true)) {
+    public static void $r8$lambda$wb6urHkQ6RJrakQiFLm9bhLhPPg(Trigger trigger, Callback callback) {
+        if (trigger.triggered.compareAndSet(false, true)) {
             callback.run(true);
         }
     }
@@ -50,14 +50,10 @@ public class Trigger implements Runnable {
                 this.handler.post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$run$1();
+                        this.f$0.action.run(false);
                     }
                 });
             }
         }
-    }
-
-    public void lambda$run$1() {
-        this.action.run(false);
     }
 }

@@ -6,6 +6,12 @@ public interface IPipActivityListener {
         public static void $default$onCompleteEnterToPip(IPipActivityListener iPipActivityListener) {
         }
 
+        public static void $default$onPipStashEnd(IPipActivityListener iPipActivityListener) {
+        }
+
+        public static void $default$onPipStashStart(IPipActivityListener iPipActivityListener) {
+        }
+
         public static void $default$onStartEnterToPip(IPipActivityListener iPipActivityListener) {
         }
 
@@ -16,6 +22,10 @@ public interface IPipActivityListener {
     void onCompleteEnterToPip();
 
     void onCompleteExitFromPip(boolean z);
+
+    void onPipStashEnd();
+
+    void onPipStashStart();
 
     void onStartEnterToPip();
 

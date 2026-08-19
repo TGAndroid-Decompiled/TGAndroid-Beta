@@ -96,15 +96,16 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$0(baseFragment, context, view, i2);
+                AppIconsSelectorCell.m1470$r8$lambda$oTbx71RAHcxSmC2tUl4LIq23L0(this.f$0, baseFragment, context, view, i2);
             }
         });
         updateIconsVisibility();
     }
 
-    public void lambda$new$0(BaseFragment baseFragment, Context context, View view, int i) {
+    public static void m1470$r8$lambda$oTbx71RAHcxSmC2tUl4LIq23L0(AppIconsSelectorCell appIconsSelectorCell, BaseFragment baseFragment, Context context, View view, int i) {
+        appIconsSelectorCell.getClass();
         IconHolderView iconHolderView = (IconHolderView) view;
-        LauncherIconController.LauncherIcon launcherIcon = (LauncherIconController.LauncherIcon) this.availableIcons.get(i);
+        LauncherIconController.LauncherIcon launcherIcon = (LauncherIconController.LauncherIcon) appIconsSelectorCell.availableIcons.get(i);
         if (launcherIcon.premium && !UserConfig.hasPremiumOnAccounts()) {
             baseFragment.showDialog(new PremiumFeatureBottomSheet(baseFragment, 10, true));
             return;
@@ -124,16 +125,16 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             }
         };
         linearSmoothScroller.setTargetPosition(i);
-        this.linearLayoutManager.startSmoothScroll(linearSmoothScroller);
+        appIconsSelectorCell.linearLayoutManager.startSmoothScroll(linearSmoothScroller);
         LauncherIconController.setIcon(launcherIcon);
         iconHolderView.setSelected(true, true);
-        for (int i2 = 0; i2 < getChildCount(); i2++) {
-            IconHolderView iconHolderView2 = (IconHolderView) getChildAt(i2);
+        for (int i2 = 0; i2 < appIconsSelectorCell.getChildCount(); i2++) {
+            IconHolderView iconHolderView2 = (IconHolderView) appIconsSelectorCell.getChildAt(i2);
             if (iconHolderView2 != iconHolderView) {
                 iconHolderView2.setSelected(false, true);
             }
         }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 5, launcherIcon);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 5, launcherIcon);
     }
 
     private void updateIconsVisibility() {
@@ -250,7 +251,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$setSelected$0(valueAnimator);
+                        AppIconsSelectorCell.IconHolderView.$r8$lambda$yb58zMHCYgamIrID08BUdBF70NA(this.f$0, valueAnimator);
                     }
                 });
                 duration.start();
@@ -259,8 +260,9 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             setProgress(f);
         }
 
-        public void lambda$setSelected$0(ValueAnimator valueAnimator) {
-            setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        public static void $r8$lambda$yb58zMHCYgamIrID08BUdBF70NA(IconHolderView iconHolderView, ValueAnimator valueAnimator) {
+            iconHolderView.getClass();
+            iconHolderView.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
         }
 
         public void bind(LauncherIconController.LauncherIcon launcherIcon) {

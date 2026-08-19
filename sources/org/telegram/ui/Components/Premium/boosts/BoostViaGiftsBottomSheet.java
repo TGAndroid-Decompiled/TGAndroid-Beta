@@ -98,39 +98,18 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         SelectorBottomSheet.SelectedObjectsListener.CC.$default$onShowToast(this, str);
     }
 
-    public void lambda$new$0() {
-        AndroidUtilities.hideKeyboard(this.recyclerListView);
-    }
-
     public BoostViaGiftsBottomSheet(final BaseFragment baseFragment, boolean z, boolean z2, final long j, final TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        int i;
         List listAsList;
-        List listAsList2;
         super(baseFragment, z, z2);
         ArrayList arrayList = new ArrayList();
         this.items = arrayList;
+        this.sliderValues = BoostRepository.isGoogleBillingAvailable() ? Arrays.asList(1, 3, 5, 7, 10, 25, 50) : Arrays.asList(1, 3, 5, 7, 10, 25, 50, 100);
         if (BoostRepository.isGoogleBillingAvailable()) {
             listAsList = Arrays.asList(1, 3, 5, 7, 10, 25, 50);
-            i = 7;
         } else {
-            i = 7;
             listAsList = Arrays.asList(1, 3, 5, 7, 10, 25, 50, 100);
         }
-        this.sliderValues = listAsList;
-        if (BoostRepository.isGoogleBillingAvailable()) {
-            Integer[] numArr = new Integer[i];
-            numArr[0] = 1;
-            numArr[1] = 3;
-            numArr[2] = 5;
-            numArr[3] = 7;
-            numArr[4] = 10;
-            numArr[5] = 25;
-            numArr[6] = 50;
-            listAsList2 = Arrays.asList(numArr);
-        } else {
-            listAsList2 = Arrays.asList(1, 3, 5, 7, 10, 25, 50, 100);
-        }
-        this.sliderStarsValues = listAsList2;
+        this.sliderStarsValues = listAsList;
         this.starsNotExtended = Arrays.asList(750, 10000, 50000);
         this.selectedChats = new ArrayList();
         this.selectedUsers = new ArrayList();
@@ -148,7 +127,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         this.hideKeyboardRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                AndroidUtilities.hideKeyboard(this.f$0.recyclerListView);
             }
         };
         this.prepaidGiveaway = prepaidGiveaway;
@@ -170,28 +149,28 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         defaultItemAnimator.setSupportsChangeAnimations(false);
         this.recyclerListView.setItemAnimator(defaultItemAnimator);
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i2 = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i2, 0, i2, AndroidUtilities.dp(68.0f));
+        int i = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(68.0f));
         this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
-                if (i3 == 1) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
+                if (i2 == 1) {
                     AndroidUtilities.hideKeyboard(recyclerView);
                 }
             }
         });
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i3) {
-                this.f$0.lambda$new$2(baseFragment, view, i3);
+            public final void onItemClick(View view, int i2) {
+                BoostViaGiftsBottomSheet.$r8$lambda$nKcwxS4D2AMPFehyMFUYQ2vUyos(this.f$0, baseFragment, view, i2);
             }
         });
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
         this.currentChat = chat;
         this.adapter.setItems(chat, arrayList, this.recyclerListView, new SlideChooseView.Callback() {
             @Override
-            public final void onOptionSelected(int i3) {
-                this.f$0.lambda$new$3(i3);
+            public final void onOptionSelected(int i2) {
+                BoostViaGiftsBottomSheet.m2625$r8$lambda$9sicDQhv4jz2gJRm7Od1nh7NtE(this.f$0, i2);
             }
 
             @Override
@@ -201,12 +180,12 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }, new ChatCell.ChatDeleteListener() {
             @Override
             public final void onChatDeleted(TLRPC.Chat chat2) {
-                this.f$0.lambda$new$4(chat2);
+                BoostViaGiftsBottomSheet.m2630$r8$lambda$KydXvLavnzYW94jGjRNO7o2ZM8(this.f$0, chat2);
             }
         }, new EnterPrizeCell.AfterTextChangedListener() {
             @Override
             public final void afterTextChanged(String str) {
-                this.f$0.lambda$new$5(str);
+                BoostViaGiftsBottomSheet.$r8$lambda$gQpph1_gDDRwNLcXh6ivjPkILM8(this.f$0, str);
             }
         });
         updateRows(false, false);
@@ -215,7 +194,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         actionBtnCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$20(prepaidGiveaway, j, baseFragment, view);
+                BoostViaGiftsBottomSheet.m2631$r8$lambda$PRItOfs7H08UfDJljjQkmFMFmw(this.f$0, prepaidGiveaway, j, baseFragment, view);
             }
         });
         updateActionButton(false);
@@ -224,26 +203,27 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starGiveawayOptionsLoaded);
     }
 
-    public void lambda$new$2(BaseFragment baseFragment, View view, int i) {
+    public static void $r8$lambda$nKcwxS4D2AMPFehyMFUYQ2vUyos(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, BaseFragment baseFragment, View view, int i) {
         ActionListener actionListener;
+        boostViaGiftsBottomSheet.getClass();
         if (view instanceof SwitcherCell) {
             SwitcherCell switcherCell = (SwitcherCell) view;
             int type = switcherCell.getType();
             boolean z = !switcherCell.isChecked();
             switcherCell.setChecked(z);
             if (type == SwitcherCell.TYPE_WINNERS) {
-                this.isShowWinnersSelected = z;
-                updateRows(false, false);
+                boostViaGiftsBottomSheet.isShowWinnersSelected = z;
+                boostViaGiftsBottomSheet.updateRows(false, false);
             } else if (type == SwitcherCell.TYPE_ADDITION_PRIZE) {
                 switcherCell.setDivider(z);
-                this.isAdditionalPrizeSelected = z;
-                updateRows(false, false);
-                this.adapter.notifyAdditionalPrizeItem(z);
-                this.adapter.notifyAllVisibleTextDividers();
-                if (!this.isAdditionalPrizeSelected) {
-                    AndroidUtilities.runOnUIThread(this.hideKeyboardRunnable, 250L);
+                boostViaGiftsBottomSheet.isAdditionalPrizeSelected = z;
+                boostViaGiftsBottomSheet.updateRows(false, false);
+                boostViaGiftsBottomSheet.adapter.notifyAdditionalPrizeItem(z);
+                boostViaGiftsBottomSheet.adapter.notifyAllVisibleTextDividers();
+                if (!boostViaGiftsBottomSheet.isAdditionalPrizeSelected) {
+                    AndroidUtilities.runOnUIThread(boostViaGiftsBottomSheet.hideKeyboardRunnable, 250L);
                 } else {
-                    AndroidUtilities.cancelRunOnUIThread(this.hideKeyboardRunnable);
+                    AndroidUtilities.cancelRunOnUIThread(boostViaGiftsBottomSheet.hideKeyboardRunnable);
                 }
             }
         }
@@ -251,61 +231,61 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             if (view instanceof BoostTypeCell) {
                 int selectedType = ((BoostTypeCell) view).getSelectedType();
                 if (selectedType == BoostTypeCell.TYPE_PREMIUM || selectedType == BoostTypeCell.TYPE_STARS) {
-                    if (selectedType == BoostTypeCell.TYPE_PREMIUM && this.selectedBoostType == selectedType) {
-                        ActionListener actionListener2 = this.actionListener;
+                    if (selectedType == BoostTypeCell.TYPE_PREMIUM && boostViaGiftsBottomSheet.selectedBoostType == selectedType) {
+                        ActionListener actionListener2 = boostViaGiftsBottomSheet.actionListener;
                         if (actionListener2 != null) {
-                            actionListener2.onSelectUser(this.selectedUsers);
+                            actionListener2.onSelectUser(boostViaGiftsBottomSheet.selectedUsers);
                             return;
                         }
                         return;
                     }
-                    this.selectedBoostType = selectedType;
-                    updateRows(true, true);
-                    updateActionButton(true);
-                    updateTitle();
+                    boostViaGiftsBottomSheet.selectedBoostType = selectedType;
+                    boostViaGiftsBottomSheet.updateRows(true, true);
+                    boostViaGiftsBottomSheet.updateActionButton(true);
+                    boostViaGiftsBottomSheet.updateTitle();
                 } else if (selectedType == BoostTypeCell.TYPE_SPECIFIC_USERS) {
-                    ActionListener actionListener3 = this.actionListener;
+                    ActionListener actionListener3 = boostViaGiftsBottomSheet.actionListener;
                     if (actionListener3 != null) {
-                        actionListener3.onSelectUser(this.selectedUsers);
+                        actionListener3.onSelectUser(boostViaGiftsBottomSheet.selectedUsers);
                     }
                 } else {
-                    this.selectedBoostSubType = selectedType;
-                    updateRows(true, true);
-                    updateActionButton(true);
-                    updateTitle();
+                    boostViaGiftsBottomSheet.selectedBoostSubType = selectedType;
+                    boostViaGiftsBottomSheet.updateRows(true, true);
+                    boostViaGiftsBottomSheet.updateActionButton(true);
+                    boostViaGiftsBottomSheet.updateTitle();
                 }
             } else {
-                ((BaseCell) view).markChecked(this.recyclerListView);
+                ((BaseCell) view).markChecked(boostViaGiftsBottomSheet.recyclerListView);
             }
         }
         if (view instanceof ParticipantsTypeCell) {
             int selectedType2 = ((ParticipantsTypeCell) view).getSelectedType();
-            if (this.selectedParticipantsType == selectedType2 && (actionListener = this.actionListener) != null) {
-                actionListener.onSelectCountries(this.selectedCountries);
+            if (boostViaGiftsBottomSheet.selectedParticipantsType == selectedType2 && (actionListener = boostViaGiftsBottomSheet.actionListener) != null) {
+                actionListener.onSelectCountries(boostViaGiftsBottomSheet.selectedCountries);
             }
-            this.selectedParticipantsType = selectedType2;
-            updateRows(false, false);
+            boostViaGiftsBottomSheet.selectedParticipantsType = selectedType2;
+            boostViaGiftsBottomSheet.updateRows(false, false);
             return;
         }
         if (view instanceof DurationCell) {
-            this.selectedMonths = ((TLRPC.TL_premiumGiftCodeOption) ((DurationCell) view).getGifCode()).months;
-            updateRows(false, false);
-            this.adapter.notifyAllVisibleTextDividers();
+            boostViaGiftsBottomSheet.selectedMonths = ((TLRPC.TL_premiumGiftCodeOption) ((DurationCell) view).getGifCode()).months;
+            boostViaGiftsBottomSheet.updateRows(false, false);
+            boostViaGiftsBottomSheet.adapter.notifyAllVisibleTextDividers();
             return;
         }
         if (view instanceof DateEndCell) {
-            BoostDialogs.showDatePicker(baseFragment.getContext(), this.selectedEndDate, new AlertsCreator.ScheduleDatePickerDelegate() {
+            BoostDialogs.showDatePicker(baseFragment.getContext(), boostViaGiftsBottomSheet.selectedEndDate, new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z2, int i2, int i3) {
-                    this.f$0.lambda$new$1(z2, i2, i3);
+                    BoostViaGiftsBottomSheet.$r8$lambda$mpJXItGJFQlhRBpfsu2FGOcGXx8(this.f$0, z2, i2, i3);
                 }
-            }, this.resourcesProvider);
+            }, boostViaGiftsBottomSheet.resourcesProvider);
             return;
         }
         if (view instanceof AddChannelCell) {
-            ActionListener actionListener4 = this.actionListener;
+            ActionListener actionListener4 = boostViaGiftsBottomSheet.actionListener;
             if (actionListener4 != null) {
-                actionListener4.onAddChat(this.selectedChats);
+                actionListener4.onAddChat(boostViaGiftsBottomSheet.selectedChats);
                 return;
             }
             return;
@@ -313,68 +293,68 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         if (view instanceof StarGiveawayOptionCell) {
             TL_stars.TL_starsGiveawayOption option = ((StarGiveawayOptionCell) view).getOption();
             if (option != null) {
-                this.selectedStars = option.stars;
-                updateRows(true, true);
-                updateActionButton(true);
-                updateTitle();
+                boostViaGiftsBottomSheet.selectedStars = option.stars;
+                boostViaGiftsBottomSheet.updateRows(true, true);
+                boostViaGiftsBottomSheet.updateActionButton(true);
+                boostViaGiftsBottomSheet.updateTitle();
                 return;
             }
             return;
         }
         if (view instanceof StarsIntroActivity.ExpandView) {
-            this.starOptionsExpanded = true;
-            updateRows(true, true);
+            boostViaGiftsBottomSheet.starOptionsExpanded = true;
+            boostViaGiftsBottomSheet.updateRows(true, true);
         }
     }
 
-    public void lambda$new$1(boolean z, int i, int i2) {
-        this.selectedEndDate = ((long) i) * 1000;
-        updateRows(false, true);
+    public static void $r8$lambda$mpJXItGJFQlhRBpfsu2FGOcGXx8(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, boolean z, int i, int i2) {
+        boostViaGiftsBottomSheet.selectedEndDate = ((long) i) * 1000;
+        boostViaGiftsBottomSheet.updateRows(false, true);
     }
 
-    public void lambda$new$3(int i) {
-        if (this.selectedBoostType == BoostTypeCell.TYPE_PREMIUM) {
-            this.selectedSliderIndex = i;
+    public static void m2625$r8$lambda$9sicDQhv4jz2gJRm7Od1nh7NtE(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, int i) {
+        if (boostViaGiftsBottomSheet.selectedBoostType == BoostTypeCell.TYPE_PREMIUM) {
+            boostViaGiftsBottomSheet.selectedSliderIndex = i;
         } else {
-            this.selectedStarsSliderIndex = i;
+            boostViaGiftsBottomSheet.selectedStarsSliderIndex = i;
         }
-        this.actionBtn.updateCounter(getSelectedSliderValueWithBoosts());
-        if (this.selectedBoostType == BoostTypeCell.TYPE_STARS) {
-            updateRows(true, true);
+        boostViaGiftsBottomSheet.actionBtn.updateCounter(boostViaGiftsBottomSheet.getSelectedSliderValueWithBoosts());
+        if (boostViaGiftsBottomSheet.selectedBoostType == BoostTypeCell.TYPE_STARS) {
+            boostViaGiftsBottomSheet.updateRows(true, true);
         } else {
-            updateRows(false, false);
+            boostViaGiftsBottomSheet.updateRows(false, false);
         }
-        this.adapter.updateBoostCounter(getSelectedSliderValueWithBoosts());
+        boostViaGiftsBottomSheet.adapter.updateBoostCounter(boostViaGiftsBottomSheet.getSelectedSliderValueWithBoosts());
     }
 
-    public void lambda$new$4(TLRPC.Chat chat) {
-        this.selectedChats.remove(chat);
-        updateRows(true, true);
+    public static void m2630$r8$lambda$KydXvLavnzYW94jGjRNO7o2ZM8(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.Chat chat) {
+        boostViaGiftsBottomSheet.selectedChats.remove(chat);
+        boostViaGiftsBottomSheet.updateRows(true, true);
     }
 
-    public void lambda$new$5(String str) {
-        this.additionalPrize = str;
-        updateRows(false, false);
-        updateRows(true, true);
+    public static void $r8$lambda$gQpph1_gDDRwNLcXh6ivjPkILM8(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, String str) {
+        boostViaGiftsBottomSheet.additionalPrize = str;
+        boostViaGiftsBottomSheet.updateRows(false, false);
+        boostViaGiftsBottomSheet.updateRows(true, true);
     }
 
-    public void lambda$new$20(final TL_stories.PrepaidGiveaway prepaidGiveaway, final long j, BaseFragment baseFragment, View view) {
-        if (this.actionBtn.isLoading()) {
+    public static void m2631$r8$lambda$PRItOfs7H08UfDJljjQkmFMFmw(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final TL_stories.PrepaidGiveaway prepaidGiveaway, final long j, BaseFragment baseFragment, View view) {
+        if (boostViaGiftsBottomSheet.actionBtn.isLoading()) {
             return;
         }
-        if (isPreparedGiveaway()) {
+        if (boostViaGiftsBottomSheet.isPreparedGiveaway()) {
             final TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway ? (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway : null;
             final long j2 = tL_prepaidStarsGiveaway != null ? tL_prepaidStarsGiveaway.stars : 0L;
             BoostDialogs.showStartGiveawayDialog(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$10(prepaidGiveaway, tL_prepaidStarsGiveaway, j, j2);
+                    BoostViaGiftsBottomSheet.m2627$r8$lambda$7x7WIhUZU4CwXrwbL0ONB70TDE(this.f$0, prepaidGiveaway, tL_prepaidStarsGiveaway, j, j2);
                 }
             });
             return;
         }
-        if (this.selectedBoostType == BoostTypeCell.TYPE_STARS) {
-            Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+        if (boostViaGiftsBottomSheet.selectedBoostType == BoostTypeCell.TYPE_STARS) {
+            Activity activityFindActivity = AndroidUtilities.findActivity(boostViaGiftsBottomSheet.getContext());
             if (activityFindActivity == null) {
                 activityFindActivity = LaunchActivity.instance;
             }
@@ -382,38 +362,38 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             if (activity == null || activity.isFinishing()) {
                 return;
             }
-            final TL_stars.TL_starsGiveawayOption selectedStarsOption = getSelectedStarsOption();
-            int selectedSliderValue = getSelectedSliderValue();
+            final TL_stars.TL_starsGiveawayOption selectedStarsOption = boostViaGiftsBottomSheet.getSelectedStarsOption();
+            int selectedSliderValue = boostViaGiftsBottomSheet.getSelectedSliderValue();
             if (selectedStarsOption == null) {
                 return;
             }
-            this.actionBtn.button.setLoading(true);
-            StarsController.getInstance(this.currentAccount).buyGiveaway(activity, this.currentChat, this.selectedChats, selectedStarsOption, selectedSliderValue, this.selectedCountries, BoostRepository.prepareServerDate(this.selectedEndDate), this.isShowWinnersSelected, this.selectedParticipantsType == ParticipantsTypeCell.TYPE_NEW, this.isAdditionalPrizeSelected, this.additionalPrize, new Utilities.Callback2() {
+            boostViaGiftsBottomSheet.actionBtn.button.setLoading(true);
+            StarsController.getInstance(boostViaGiftsBottomSheet.currentAccount).buyGiveaway(activity, boostViaGiftsBottomSheet.currentChat, boostViaGiftsBottomSheet.selectedChats, selectedStarsOption, selectedSliderValue, boostViaGiftsBottomSheet.selectedCountries, BoostRepository.prepareServerDate(boostViaGiftsBottomSheet.selectedEndDate), boostViaGiftsBottomSheet.isShowWinnersSelected, boostViaGiftsBottomSheet.selectedParticipantsType == ParticipantsTypeCell.TYPE_NEW, boostViaGiftsBottomSheet.isAdditionalPrizeSelected, boostViaGiftsBottomSheet.additionalPrize, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$new$12(selectedStarsOption, (Boolean) obj, (String) obj2);
+                    BoostViaGiftsBottomSheet.$r8$lambda$eOabwdDs2TTK7h1bpk3s6Kk4zz8(this.f$0, selectedStarsOption, (Boolean) obj, (String) obj2);
                 }
             });
             return;
         }
-        if (this.selectedBoostSubType == BoostTypeCell.TYPE_SPECIFIC_USERS) {
-            List listFilterGiftOptions = BoostRepository.filterGiftOptions(this.giftCodeOptions, this.selectedUsers.size());
+        if (boostViaGiftsBottomSheet.selectedBoostSubType == BoostTypeCell.TYPE_SPECIFIC_USERS) {
+            List listFilterGiftOptions = BoostRepository.filterGiftOptions(boostViaGiftsBottomSheet.giftCodeOptions, boostViaGiftsBottomSheet.selectedUsers.size());
             for (int i = 0; i < listFilterGiftOptions.size(); i++) {
                 TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) listFilterGiftOptions.get(i);
-                if (tL_premiumGiftCodeOption.months == this.selectedMonths && this.selectedUsers.size() > 0) {
-                    if (BoostRepository.isGoogleBillingAvailable() && BoostDialogs.checkReduceUsers(getContext(), this.resourcesProvider, this.giftCodeOptions, tL_premiumGiftCodeOption)) {
+                if (tL_premiumGiftCodeOption.months == boostViaGiftsBottomSheet.selectedMonths && boostViaGiftsBottomSheet.selectedUsers.size() > 0) {
+                    if (BoostRepository.isGoogleBillingAvailable() && BoostDialogs.checkReduceUsers(boostViaGiftsBottomSheet.getContext(), boostViaGiftsBottomSheet.resourcesProvider, boostViaGiftsBottomSheet.giftCodeOptions, tL_premiumGiftCodeOption)) {
                         return;
                     }
-                    this.actionBtn.updateLoading(true);
-                    BoostRepository.payGiftCode(this.selectedUsers, tL_premiumGiftCodeOption, this.currentChat, null, baseFragment, new Utilities.Callback() {
+                    boostViaGiftsBottomSheet.actionBtn.updateLoading(true);
+                    BoostRepository.payGiftCode(boostViaGiftsBottomSheet.selectedUsers, tL_premiumGiftCodeOption, boostViaGiftsBottomSheet.currentChat, null, baseFragment, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            this.f$0.lambda$new$14((Void) obj);
+                            BoostViaGiftsBottomSheet.$r8$lambda$06I96SDwhu8JHD4iaukwlYPVr8U(this.f$0, (Void) obj);
                         }
                     }, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            this.f$0.lambda$new$15((TLRPC.TL_error) obj);
+                            BoostViaGiftsBottomSheet.$r8$lambda$e5DBxQROw0eJLTP9lK5DLnngDzo(this.f$0, (TLRPC.TL_error) obj);
                         }
                     });
                     return;
@@ -421,30 +401,30 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             }
             return;
         }
-        List listFilterGiftOptions2 = BoostRepository.filterGiftOptions(this.giftCodeOptions, getSelectedSliderValue());
+        List listFilterGiftOptions2 = BoostRepository.filterGiftOptions(boostViaGiftsBottomSheet.giftCodeOptions, boostViaGiftsBottomSheet.getSelectedSliderValue());
         for (int i2 = 0; i2 < listFilterGiftOptions2.size(); i2++) {
             TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2 = (TLRPC.TL_premiumGiftCodeOption) listFilterGiftOptions2.get(i2);
-            if (tL_premiumGiftCodeOption2.months == this.selectedMonths) {
-                if (BoostRepository.isGoogleBillingAvailable() && BoostDialogs.checkReduceQuantity(this.sliderValues, getContext(), this.resourcesProvider, this.giftCodeOptions, tL_premiumGiftCodeOption2, new Utilities.Callback() {
+            if (tL_premiumGiftCodeOption2.months == boostViaGiftsBottomSheet.selectedMonths) {
+                if (BoostRepository.isGoogleBillingAvailable() && BoostDialogs.checkReduceQuantity(boostViaGiftsBottomSheet.sliderValues, boostViaGiftsBottomSheet.getContext(), boostViaGiftsBottomSheet.resourcesProvider, boostViaGiftsBottomSheet.giftCodeOptions, tL_premiumGiftCodeOption2, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$new$16((TLRPC.TL_premiumGiftCodeOption) obj);
+                        BoostViaGiftsBottomSheet.$r8$lambda$FpdSGqb9_E5eIX6uGvIG3aahFYw(this.f$0, (TLRPC.TL_premiumGiftCodeOption) obj);
                     }
                 })) {
                     return;
                 }
-                boolean z = this.selectedParticipantsType == ParticipantsTypeCell.TYPE_NEW;
-                int iPrepareServerDate = BoostRepository.prepareServerDate(this.selectedEndDate);
-                this.actionBtn.updateLoading(true);
-                BoostRepository.payGiveAway(this.selectedChats, this.selectedCountries, tL_premiumGiftCodeOption2, this.currentChat, iPrepareServerDate, z, baseFragment, this.isShowWinnersSelected, this.isAdditionalPrizeSelected, this.additionalPrize, new Utilities.Callback() {
+                boolean z = boostViaGiftsBottomSheet.selectedParticipantsType == ParticipantsTypeCell.TYPE_NEW;
+                int iPrepareServerDate = BoostRepository.prepareServerDate(boostViaGiftsBottomSheet.selectedEndDate);
+                boostViaGiftsBottomSheet.actionBtn.updateLoading(true);
+                BoostRepository.payGiveAway(boostViaGiftsBottomSheet.selectedChats, boostViaGiftsBottomSheet.selectedCountries, tL_premiumGiftCodeOption2, boostViaGiftsBottomSheet.currentChat, iPrepareServerDate, z, baseFragment, boostViaGiftsBottomSheet.isShowWinnersSelected, boostViaGiftsBottomSheet.isAdditionalPrizeSelected, boostViaGiftsBottomSheet.additionalPrize, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$new$18((Void) obj);
+                        BoostViaGiftsBottomSheet.$r8$lambda$A0RIum1NUgXrNdXM535FHuku4Ng(this.f$0, (Void) obj);
                     }
                 }, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$new$19((TLRPC.TL_error) obj);
+                        BoostViaGiftsBottomSheet.m2636$r8$lambda$twPkYp4Q9SVzO6OpMuy7OIIiY(this.f$0, (TLRPC.TL_error) obj);
                     }
                 });
                 return;
@@ -452,25 +432,25 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }
     }
 
-    public void lambda$new$10(final TL_stories.PrepaidGiveaway prepaidGiveaway, final TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, final long j, final long j2) {
-        int iPrepareServerDate = BoostRepository.prepareServerDate(this.selectedEndDate);
-        boolean z = this.selectedParticipantsType == ParticipantsTypeCell.TYPE_NEW;
-        this.actionBtn.updateLoading(true);
-        BoostRepository.launchPreparedGiveaway(prepaidGiveaway, this.selectedChats, this.selectedCountries, this.currentChat, iPrepareServerDate, z, this.isShowWinnersSelected, this.isAdditionalPrizeSelected, prepaidGiveaway.quantity, this.additionalPrize, new Utilities.Callback() {
+    public static void m2627$r8$lambda$7x7WIhUZU4CwXrwbL0ONB70TDE(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final TL_stories.PrepaidGiveaway prepaidGiveaway, final TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, final long j, final long j2) {
+        int iPrepareServerDate = BoostRepository.prepareServerDate(boostViaGiftsBottomSheet.selectedEndDate);
+        boolean z = boostViaGiftsBottomSheet.selectedParticipantsType == ParticipantsTypeCell.TYPE_NEW;
+        boostViaGiftsBottomSheet.actionBtn.updateLoading(true);
+        BoostRepository.launchPreparedGiveaway(prepaidGiveaway, boostViaGiftsBottomSheet.selectedChats, boostViaGiftsBottomSheet.selectedCountries, boostViaGiftsBottomSheet.currentChat, iPrepareServerDate, z, boostViaGiftsBottomSheet.isShowWinnersSelected, boostViaGiftsBottomSheet.isAdditionalPrizeSelected, prepaidGiveaway.quantity, boostViaGiftsBottomSheet.additionalPrize, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$8(tL_prepaidStarsGiveaway, j, j2, prepaidGiveaway, (Void) obj);
+                BoostViaGiftsBottomSheet.$r8$lambda$OdjsBUL1WI7RhKYNpZjcAk3aZ7g(this.f$0, tL_prepaidStarsGiveaway, j, j2, prepaidGiveaway, (Void) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$9((TLRPC.TL_error) obj);
+                BoostViaGiftsBottomSheet.m2628$r8$lambda$EzFbEqpt97TJVqwHL9hS3ts20(this.f$0, (TLRPC.TL_error) obj);
             }
         });
     }
 
-    public void lambda$new$8(TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j, final long j2, final TL_stories.PrepaidGiveaway prepaidGiveaway, Void r7) {
-        lambda$new$0();
+    public static void $r8$lambda$OdjsBUL1WI7RhKYNpZjcAk3aZ7g(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j, final long j2, final TL_stories.PrepaidGiveaway prepaidGiveaway, Void r7) {
+        boostViaGiftsBottomSheet.dismiss();
         if (tL_prepaidStarsGiveaway != null) {
             BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
             if (safeLastFragment != null) {
@@ -478,7 +458,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                 chatActivityOf.whenFullyVisible(new Runnable() {
                     @Override
                     public final void run() {
-                        BoostViaGiftsBottomSheet.lambda$new$6(chatActivityOf, j2);
+                        BulletinFactory.of(chatActivityOf).createSimpleBulletin(R.raw.stars_topup, LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) j2))).show(true);
                     }
                 });
                 safeLastFragment.presentFragment(chatActivityOf);
@@ -489,27 +469,24 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$7(prepaidGiveaway);
+                BoostViaGiftsBottomSheet.$r8$lambda$eAxkePVcgc80rDqgq2W5h1gjUzk(this.f$0, prepaidGiveaway);
             }
         }, 220L);
     }
 
-    public static void lambda$new$6(ChatActivity chatActivity, long j) {
-        BulletinFactory.of(chatActivity).createSimpleBulletin(R.raw.stars_topup, LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) j))).show(true);
+    public static void $r8$lambda$eAxkePVcgc80rDqgq2W5h1gjUzk(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TL_stories.PrepaidGiveaway prepaidGiveaway) {
+        boostViaGiftsBottomSheet.getClass();
+        NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationName(NotificationCenter.boostByChannelCreated, boostViaGiftsBottomSheet.currentChat, Boolean.TRUE, prepaidGiveaway);
     }
 
-    public void lambda$new$7(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, this.currentChat, Boolean.TRUE, prepaidGiveaway);
+    public static void m2628$r8$lambda$EzFbEqpt97TJVqwHL9hS3ts20(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.TL_error tL_error) {
+        boostViaGiftsBottomSheet.actionBtn.updateLoading(false);
+        BoostDialogs.showToastError(boostViaGiftsBottomSheet.getContext(), tL_error);
     }
 
-    public void lambda$new$9(TLRPC.TL_error tL_error) {
-        this.actionBtn.updateLoading(false);
-        BoostDialogs.showToastError(getContext(), tL_error);
-    }
-
-    public void lambda$new$12(final TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, Boolean bool, String str) {
-        this.actionBtn.button.setLoading(false);
-        if (getContext() == null) {
+    public static void $r8$lambda$eOabwdDs2TTK7h1bpk3s6Kk4zz8(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, Boolean bool, String str) {
+        boostViaGiftsBottomSheet.actionBtn.button.setLoading(false);
+        if (boostViaGiftsBottomSheet.getContext() == null) {
             return;
         }
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
@@ -519,19 +496,19 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }
         if (!bool.booleanValue()) {
             if (str != null) {
-                lambda$new$0();
+                boostViaGiftsBottomSheet.dismiss();
                 BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, str)).show();
                 return;
             }
             return;
         }
-        lambda$new$0();
-        final ChatActivity chatActivityOf = ChatActivity.of(-this.currentChat.id);
+        boostViaGiftsBottomSheet.dismiss();
+        final ChatActivity chatActivityOf = ChatActivity.of(-boostViaGiftsBottomSheet.currentChat.id);
         safeLastFragment.presentFragment(chatActivityOf);
         safeLastFragment.whenFullyVisible(new Runnable() {
             @Override
             public final void run() {
-                BoostViaGiftsBottomSheet.lambda$new$11(chatActivityOf, tL_starsGiveawayOption);
+                BulletinFactory.of(chatActivityOf).createSimpleBulletin(R.raw.stars_send, LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) tL_starsGiveawayOption.stars))).setDuration(5000).show(true);
             }
         });
         if (fireworksOverlay != null) {
@@ -539,52 +516,50 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }
     }
 
-    public static void lambda$new$11(ChatActivity chatActivity, TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption) {
-        BulletinFactory.of(chatActivity).createSimpleBulletin(R.raw.stars_send, LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) tL_starsGiveawayOption.stars))).setDuration(5000).show(true);
-    }
-
-    public void lambda$new$14(Void r3) {
-        lambda$new$0();
+    public static void $r8$lambda$06I96SDwhu8JHD4iaukwlYPVr8U(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, Void r3) {
+        boostViaGiftsBottomSheet.dismiss();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$13();
+                BoostViaGiftsBottomSheet.$r8$lambda$LOrnA_m5vHKU68P_PWq3ODdPYyc(this.f$0);
             }
         }, 220L);
     }
 
-    public void lambda$new$13() {
-        NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, this.currentChat, Boolean.FALSE);
+    public static void $r8$lambda$LOrnA_m5vHKU68P_PWq3ODdPYyc(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet) {
+        boostViaGiftsBottomSheet.getClass();
+        NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationName(NotificationCenter.boostByChannelCreated, boostViaGiftsBottomSheet.currentChat, Boolean.FALSE);
     }
 
-    public void lambda$new$15(TLRPC.TL_error tL_error) {
-        this.actionBtn.updateLoading(false);
-        BoostDialogs.showToastError(getContext(), tL_error);
+    public static void $r8$lambda$e5DBxQROw0eJLTP9lK5DLnngDzo(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.TL_error tL_error) {
+        boostViaGiftsBottomSheet.actionBtn.updateLoading(false);
+        BoostDialogs.showToastError(boostViaGiftsBottomSheet.getContext(), tL_error);
     }
 
-    public void lambda$new$16(TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption) {
-        this.selectedSliderIndex = this.sliderValues.indexOf(Integer.valueOf(tL_premiumGiftCodeOption.users));
-        updateRows(true, true);
-        updateActionButton(true);
+    public static void $r8$lambda$FpdSGqb9_E5eIX6uGvIG3aahFYw(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption) {
+        boostViaGiftsBottomSheet.selectedSliderIndex = boostViaGiftsBottomSheet.sliderValues.indexOf(Integer.valueOf(tL_premiumGiftCodeOption.users));
+        boostViaGiftsBottomSheet.updateRows(true, true);
+        boostViaGiftsBottomSheet.updateActionButton(true);
     }
 
-    public void lambda$new$18(Void r3) {
-        lambda$new$0();
+    public static void $r8$lambda$A0RIum1NUgXrNdXM535FHuku4Ng(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, Void r3) {
+        boostViaGiftsBottomSheet.dismiss();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$17();
+                BoostViaGiftsBottomSheet.$r8$lambda$msH_3bWWMWnE6U5I03TlIED1PwY(this.f$0);
             }
         }, 220L);
     }
 
-    public void lambda$new$17() {
-        NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, this.currentChat, Boolean.TRUE);
+    public static void $r8$lambda$msH_3bWWMWnE6U5I03TlIED1PwY(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet) {
+        boostViaGiftsBottomSheet.getClass();
+        NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationName(NotificationCenter.boostByChannelCreated, boostViaGiftsBottomSheet.currentChat, Boolean.TRUE);
     }
 
-    public void lambda$new$19(TLRPC.TL_error tL_error) {
-        this.actionBtn.updateLoading(false);
-        BoostDialogs.showToastError(getContext(), tL_error);
+    public static void m2636$r8$lambda$twPkYp4Q9SVzO6OpMuy7OIIiY(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.TL_error tL_error) {
+        boostViaGiftsBottomSheet.actionBtn.updateLoading(false);
+        BoostDialogs.showToastError(boostViaGiftsBottomSheet.getContext(), tL_error);
     }
 
     @Override
@@ -600,7 +575,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
     }
 
     @Override
-    public void lambda$new$0() {
+    public void dismiss() {
         Runnable runnable = this.onCloseClick;
         if (runnable != null) {
             runnable.run();
@@ -612,15 +587,15 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         BoostRepository.loadGiftOptions(this.currentAccount, this.currentChat, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$loadOptions$21((List) obj);
+                BoostViaGiftsBottomSheet.m2629$r8$lambda$Kq_qLB8NBwFwbhTzYAJBFwtWSI(this.f$0, (List) obj);
             }
         });
     }
 
-    public void lambda$loadOptions$21(List list) {
-        this.giftCodeOptions.clear();
-        this.giftCodeOptions.addAll(list);
-        updateRows(true, true);
+    public static void m2629$r8$lambda$Kq_qLB8NBwFwbhTzYAJBFwtWSI(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, List list) {
+        boostViaGiftsBottomSheet.giftCodeOptions.clear();
+        boostViaGiftsBottomSheet.giftCodeOptions.addAll(list);
+        boostViaGiftsBottomSheet.updateRows(true, true);
     }
 
     private void updateActionButton(boolean z) {
@@ -674,11 +649,20 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
     }
 
     private int getSelectedSliderValueWithBoosts() {
+        int selectedSliderValue;
+        int iGiveawayBoostsPerPremium;
         if (this.selectedBoostType == BoostTypeCell.TYPE_PREMIUM) {
-            return ((Integer) this.sliderValues.get(this.selectedSliderIndex)).intValue() * BoostRepository.giveawayBoostsPerPremium();
+            selectedSliderValue = ((Integer) this.sliderValues.get(this.selectedSliderIndex)).intValue();
+            iGiveawayBoostsPerPremium = BoostRepository.giveawayBoostsPerPremium();
+        } else {
+            TL_stars.TL_starsGiveawayOption selectedStarsOption = getSelectedStarsOption();
+            if (selectedStarsOption != null) {
+                return selectedStarsOption.yearly_boosts;
+            }
+            selectedSliderValue = getSelectedSliderValue();
+            iGiveawayBoostsPerPremium = BoostRepository.giveawayBoostsPerPremium();
         }
-        TL_stars.TL_starsGiveawayOption selectedStarsOption = getSelectedStarsOption();
-        return selectedStarsOption != null ? selectedStarsOption.yearly_boosts : getSelectedSliderValue() * BoostRepository.giveawayBoostsPerPremium();
+        return selectedSliderValue * iGiveawayBoostsPerPremium;
     }
 
     private long getSelectedPerUserStars() {
@@ -916,7 +900,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                 int i5 = 0;
                 while (i5 < listFilterGiftOptions.size()) {
                     TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) listFilterGiftOptions.get(i5);
-                    this.items.add(BoostAdapter.Item.asDuration(tL_premiumGiftCodeOption, tL_premiumGiftCodeOption.months, isGiveaway() ? getSelectedSliderValue() : this.selectedUsers.size(), tL_premiumGiftCodeOption.amount, this.selectedMonths, tL_premiumGiftCodeOption.currency, i5 != listFilterGiftOptions.size() - 1));
+                    this.items.add(BoostAdapter.Item.asDuration(tL_premiumGiftCodeOption, tL_premiumGiftCodeOption.months, isGiveaway() ? getSelectedSliderValue() : this.selectedUsers.size(), tL_premiumGiftCodeOption.amount, this.selectedMonths, tL_premiumGiftCodeOption.currency, i5 != listFilterGiftOptions.size() + (-1)));
                     i5++;
                 }
             }
@@ -924,7 +908,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                 this.items.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BoostingStoriesFeaturesAndTerms), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$updateRows$24();
+                        BoostViaGiftsBottomSheet.m2637$r8$lambda$x0JBU7LysW7QGFvzdlBW0PonuI(this.f$0);
                     }
                 }, this.resourcesProvider), true));
             }
@@ -979,7 +963,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                 arrayList4.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceSingleTag(sb.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$updateRows$27();
+                        BoostViaGiftsBottomSheet.$r8$lambda$xXcYV6uTaClVckMo61dLZL9mXhA(this.f$0);
                     }
                 }, this.resourcesProvider), true));
             }
@@ -994,54 +978,38 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }
     }
 
-    public void lambda$updateRows$24() {
-        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(getBaseFragment(), this.currentAccount, null, this.resourcesProvider);
+    public static void m2637$r8$lambda$x0JBU7LysW7QGFvzdlBW0PonuI(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet) {
+        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(boostViaGiftsBottomSheet.getBaseFragment(), boostViaGiftsBottomSheet.currentAccount, null, boostViaGiftsBottomSheet.resourcesProvider);
         premiumPreviewBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$updateRows$22(dialogInterface);
+                this.f$0.adapter.setPausedStars(false);
             }
         });
         premiumPreviewBottomSheet.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                this.f$0.lambda$updateRows$23(dialogInterface);
+                this.f$0.adapter.setPausedStars(true);
             }
         });
         premiumPreviewBottomSheet.show();
     }
 
-    public void lambda$updateRows$22(DialogInterface dialogInterface) {
-        this.adapter.setPausedStars(false);
-    }
-
-    public void lambda$updateRows$23(DialogInterface dialogInterface) {
-        this.adapter.setPausedStars(true);
-    }
-
-    public void lambda$updateRows$27() {
-        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(getBaseFragment(), this.currentAccount, null, this.resourcesProvider);
+    public static void $r8$lambda$xXcYV6uTaClVckMo61dLZL9mXhA(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet) {
+        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(boostViaGiftsBottomSheet.getBaseFragment(), boostViaGiftsBottomSheet.currentAccount, null, boostViaGiftsBottomSheet.resourcesProvider);
         premiumPreviewBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$updateRows$25(dialogInterface);
+                this.f$0.adapter.setPausedStars(false);
             }
         });
         premiumPreviewBottomSheet.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                this.f$0.lambda$updateRows$26(dialogInterface);
+                this.f$0.adapter.setPausedStars(true);
             }
         });
         premiumPreviewBottomSheet.show();
-    }
-
-    public void lambda$updateRows$25(DialogInterface dialogInterface) {
-        this.adapter.setPausedStars(false);
-    }
-
-    public void lambda$updateRows$26(DialogInterface dialogInterface) {
-        this.adapter.setPausedStars(true);
     }
 
     @Override

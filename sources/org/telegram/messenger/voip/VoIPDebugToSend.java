@@ -65,12 +65,13 @@ public class VoIPDebugToSend {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$done$3(dataRemove, savecalldebug, tLObject, tL_error);
+                VoIPDebugToSend.$r8$lambda$KDN788lan_fwQMs6aUn8wDUC3Zs(this.f$0, dataRemove, savecalldebug, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$done$3(final Data data, final TL_phone.saveCallDebug savecalldebug, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$KDN788lan_fwQMs6aUn8wDUC3Zs(final VoIPDebugToSend voIPDebugToSend, final Data data, final TL_phone.saveCallDebug savecalldebug, TLObject tLObject, TLRPC.TL_error tL_error) {
+        voIPDebugToSend.getClass();
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("Sent debug logs, response = " + tLObject);
         }
@@ -81,38 +82,37 @@ public class VoIPDebugToSend {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$done$2(data, file, savecalldebug);
+                VoIPDebugToSend.m1168$r8$lambda$we_Hd6reQlC4bpQw3SW3N7tMqQ(this.f$0, data, file, savecalldebug);
             }
         });
     }
 
-    public void lambda$done$2(Data data, final File file, final TL_phone.saveCallDebug savecalldebug) {
+    public static void m1168$r8$lambda$we_Hd6reQlC4bpQw3SW3N7tMqQ(final VoIPDebugToSend voIPDebugToSend, Data data, final File file, final TL_phone.saveCallDebug savecalldebug) {
+        voIPDebugToSend.getClass();
         if (AndroidUtilities.gzip(new File(data.logPath), file)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$done$1(file, savecalldebug);
+                    VoIPDebugToSend voIPDebugToSend2 = this.f$0;
+                    FileLoader.getInstance(voIPDebugToSend2.currentAccount).uploadFile(file.getAbsolutePath(), new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            VoIPDebugToSend.$r8$lambda$mUK38SKbO7DmRgx1xlWGZA_RuWs(this.f$0, savecalldebug, (TLRPC.InputFile) obj);
+                        }
+                    });
                 }
             });
         }
     }
 
-    public void lambda$done$1(File file, final TL_phone.saveCallDebug savecalldebug) {
-        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                this.f$0.lambda$done$0(savecalldebug, (TLRPC.InputFile) obj);
-            }
-        });
-    }
-
-    public void lambda$done$0(TL_phone.saveCallDebug savecalldebug, TLRPC.InputFile inputFile) {
+    public static void $r8$lambda$mUK38SKbO7DmRgx1xlWGZA_RuWs(VoIPDebugToSend voIPDebugToSend, TL_phone.saveCallDebug savecalldebug, TLRPC.InputFile inputFile) {
+        voIPDebugToSend.getClass();
         if (inputFile == null) {
             return;
         }
         TL_phone.saveCallLog savecalllog = new TL_phone.saveCallLog();
         savecalllog.peer = savecalldebug.peer;
         savecalllog.file = inputFile;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalllog, null);
+        ConnectionsManager.getInstance(voIPDebugToSend.currentAccount).sendRequest(savecalllog, null);
     }
 }

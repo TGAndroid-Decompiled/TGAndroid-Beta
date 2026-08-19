@@ -425,7 +425,7 @@ public class BusinessRecipientsHelper {
         AlertDialog alertDialogCreate = new AlertDialog.Builder(this.context, this.resourcesProvider).setTitle(LocaleController.getString(!z ? R.string.BusinessRecipientsRemoveExcludeTitle : R.string.BusinessRecipientsRemoveIncludeTitle)).setMessage(LocaleController.formatString(!z ? R.string.BusinessRecipientsRemoveExcludeMessage : R.string.BusinessRecipientsRemoveIncludeMessage, flag == 0 ? MessagesController.getInstance(this.currentAccount).getPeerName(uItem.dialogId) : getFlagName(flag))).setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                this.f$0.lambda$onClick$0(flag, z, uItem, alertDialog, i2);
+                BusinessRecipientsHelper.$r8$lambda$oaoTiip308WGZj95xjSa6pES1Rc(this.f$0, flag, z, uItem, alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
         BaseFragment baseFragment = this.fragment;
@@ -437,19 +437,19 @@ public class BusinessRecipientsHelper {
         return true;
     }
 
-    public void lambda$onClick$0(int i, boolean z, UItem uItem, AlertDialog alertDialog, int i2) {
+    public static void $r8$lambda$oaoTiip308WGZj95xjSa6pES1Rc(BusinessRecipientsHelper businessRecipientsHelper, int i, boolean z, UItem uItem, AlertDialog alertDialog, int i2) {
         if (i == 0) {
-            (!z ? this.neverShow : this.alwaysShow).remove(Long.valueOf(uItem.dialogId));
-        } else if (z) {
-            this.includeFlags = (~i) & this.includeFlags;
+            (!z ? businessRecipientsHelper.neverShow : businessRecipientsHelper.alwaysShow).remove(Long.valueOf(uItem.dialogId));
+        } else if (!z) {
+            businessRecipientsHelper.excludeFlags = (~i) & businessRecipientsHelper.excludeFlags;
         } else {
-            this.excludeFlags = (~i) & this.excludeFlags;
+            businessRecipientsHelper.includeFlags = (~i) & businessRecipientsHelper.includeFlags;
         }
-        this.update.run();
+        businessRecipientsHelper.update.run();
     }
 
     private int getFlag(String str) {
-        str.hashCode();
+        str.getClass();
         switch (str) {
             case "non_contacts":
                 return 8;
@@ -489,7 +489,7 @@ public class BusinessRecipientsHelper {
         usersSelectActivityAsPrivateChats.setDelegate(new UsersSelectActivity.FilterUsersActivityDelegate() {
             @Override
             public final void didSelectChats(ArrayList arrayList, int i) {
-                this.f$0.lambda$selectChatsFor$1(z, arrayList, i);
+                BusinessRecipientsHelper.$r8$lambda$O5IoouW_6i6to5fkYNRYKjbKIPo(this.f$0, z, arrayList, i);
             }
         });
         BaseFragment baseFragment = this.fragment;
@@ -507,25 +507,25 @@ public class BusinessRecipientsHelper {
         safeLastFragment.showAsSheet(usersSelectActivityAsPrivateChats, bottomSheetParams);
     }
 
-    public void lambda$selectChatsFor$1(boolean z, ArrayList arrayList, int i) {
+    public static void $r8$lambda$O5IoouW_6i6to5fkYNRYKjbKIPo(BusinessRecipientsHelper businessRecipientsHelper, boolean z, ArrayList arrayList, int i) {
         int i2 = 0;
         if (z) {
-            this.includeFlags = i;
-            this.alwaysShow.clear();
-            this.alwaysShow.addAll(arrayList);
-            while (i2 < this.alwaysShow.size()) {
-                this.neverShow.remove(this.alwaysShow.get(i2));
+            businessRecipientsHelper.includeFlags = i;
+            businessRecipientsHelper.alwaysShow.clear();
+            businessRecipientsHelper.alwaysShow.addAll(arrayList);
+            while (i2 < businessRecipientsHelper.alwaysShow.size()) {
+                businessRecipientsHelper.neverShow.remove(businessRecipientsHelper.alwaysShow.get(i2));
                 i2++;
             }
         } else {
-            this.excludeFlags = i;
-            this.neverShow.clear();
-            this.neverShow.addAll(arrayList);
-            while (i2 < this.neverShow.size()) {
-                this.alwaysShow.remove(this.neverShow.get(i2));
+            businessRecipientsHelper.excludeFlags = i;
+            businessRecipientsHelper.neverShow.clear();
+            businessRecipientsHelper.neverShow.addAll(arrayList);
+            while (i2 < businessRecipientsHelper.neverShow.size()) {
+                businessRecipientsHelper.alwaysShow.remove(businessRecipientsHelper.neverShow.get(i2));
                 i2++;
             }
         }
-        this.update.run();
+        businessRecipientsHelper.update.run();
     }
 }

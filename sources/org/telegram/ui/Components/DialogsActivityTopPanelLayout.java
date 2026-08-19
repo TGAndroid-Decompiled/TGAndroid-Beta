@@ -50,7 +50,10 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         BlurredBackgroundDrawable blurredBackgroundDrawable;
-        return super.dispatchTouchEvent(motionEvent) || (motionEvent.getAction() == 0 && (blurredBackgroundDrawable = this.backgroundDrawable) != null && blurredBackgroundDrawable.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()));
+        if (super.dispatchTouchEvent(motionEvent)) {
+            return true;
+        }
+        return motionEvent.getAction() == 0 && (blurredBackgroundDrawable = this.backgroundDrawable) != null && blurredBackgroundDrawable.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
     }
 
     private void checkBoundsAndClipping() {
@@ -87,19 +90,23 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
 
     @Override
     protected boolean verifyDrawable(Drawable drawable) {
-        FragmentContextView fragmentContextView;
-        return super.verifyDrawable(drawable) || ((fragmentContextView = this.callFragmentContextView) != null && fragmentContextView.getCapsuleBlobDrawable() == drawable);
+        if (super.verifyDrawable(drawable)) {
+            return true;
+        }
+        FragmentContextView fragmentContextView = this.callFragmentContextView;
+        return fragmentContextView != null && fragmentContextView.getCapsuleBlobDrawable() == drawable;
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
         int currentStyle;
+        Canvas canvas2 = canvas;
         if (getMetadata().getTotalVisibility() == 0.0f) {
             return;
         }
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.backgroundDrawable;
         if (blurredBackgroundDrawable != null) {
-            blurredBackgroundDrawable.draw(canvas);
+            blurredBackgroundDrawable.draw(canvas2);
         }
         FragmentContextView fragmentContextView = this.callFragmentContextView;
         View view = null;
@@ -116,19 +123,20 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
                     int i2 = -requiredInset;
                     capsuleBlobDrawable.setBounds(getPaddingLeft() - requiredInset, i2, (getMeasuredWidth() - getPaddingRight()) + requiredInset, AndroidUtilities.dp(36.0f) + (requiredInset * 2) + i2);
                     capsuleBlobDrawable.setAlpha((int) (visibility * 255.0f));
-                    canvas.save();
-                    canvas.translate(0.0f, paddingTop);
-                    capsuleBlobDrawable.draw(canvas);
-                    canvas.restore();
+                    canvas2.save();
+                    canvas2.translate(0.0f, paddingTop);
+                    capsuleBlobDrawable.draw(canvas2);
+                    canvas2.restore();
                     view = view2;
                 }
             }
         }
         View view3 = view;
-        canvas.save();
-        canvas.clipPath(this.clipPath);
+        canvas2.save();
+        canvas2.clipPath(this.clipPath);
         int entriesCount2 = getEntriesCount();
-        for (int i3 = 0; i3 < entriesCount2; i3++) {
+        int i3 = 0;
+        while (i3 < entriesCount2) {
             ListAnimator.Entry entry2 = getEntry(i3);
             float paddingTop2 = getPaddingTop() + entry2.getRectF().top;
             View view4 = ((AnimatedLinearLayout.Holder) entry2.item).view;
@@ -137,9 +145,11 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
                 int alpha = Theme.dividerPaint.getAlpha();
                 Theme.dividerPaint.setAlpha((int) (alpha * visibility2));
                 float f = 1.0f - visibility2;
-                canvas.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f), paddingTop2, getWidth() - (getPaddingRight() + (AndroidUtilities.dp(16.0f) * f)), paddingTop2, Theme.dividerPaint);
+                canvas2.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f), paddingTop2, getWidth() - (getPaddingRight() + (AndroidUtilities.dp(16.0f) * f)), paddingTop2, Theme.dividerPaint);
                 Theme.dividerPaint.setAlpha(alpha);
             }
+            i3++;
+            canvas2 = canvas;
         }
         this.exceptCall = view3 != null;
         this.onlyCall = false;
@@ -166,6 +176,9 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
 
     private boolean isCallView(View view) {
         FragmentContextView fragmentContextView = this.callFragmentContextView;
-        return fragmentContextView != null && (fragmentContextView == view || fragmentContextView.getParent() == view);
+        if (fragmentContextView != null) {
+            return fragmentContextView == view || fragmentContextView.getParent() == view;
+        }
+        return false;
     }
 }

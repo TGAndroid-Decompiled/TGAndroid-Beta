@@ -223,7 +223,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         this.positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$new$0(view3);
+                GroupCallRecordAlert.$r8$lambda$9kVTlylpn4aLmDOlTZsFb_CExr4(this.f$0, view3);
             }
         });
         this.containerView.addView(this.positiveButton, LayoutHelper.createFrame(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
@@ -254,7 +254,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             this.titles[i3].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
-                    this.f$0.lambda$new$1(i3, view3);
+                    this.f$0.viewPager.setCurrentItem(i3, true);
                 }
             });
             i3++;
@@ -264,13 +264,9 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         }
     }
 
-    public void lambda$new$0(View view) {
-        onStartRecord(this.currentPage);
-        dismiss();
-    }
-
-    public void lambda$new$1(int i, View view) {
-        this.viewPager.setCurrentItem(i, true);
+    public static void $r8$lambda$9kVTlylpn4aLmDOlTZsFb_CExr4(GroupCallRecordAlert groupCallRecordAlert, View view) {
+        groupCallRecordAlert.onStartRecord(groupCallRecordAlert.currentPage);
+        groupCallRecordAlert.dismiss();
     }
 
     public void updateTitlesLayout() {
@@ -347,7 +343,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$instantiateItem$0(i, view);
+                    GroupCallRecordAlert.Adapter.$r8$lambda$c97y0sQiQgEJHv2QJ3p1dYJ8jQg(this.f$0, i, view);
                 }
             });
             imageView.setFocusable(true);
@@ -379,7 +375,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             return imageView;
         }
 
-        public void lambda$instantiateItem$0(int i, View view) {
+        public static void $r8$lambda$c97y0sQiQgEJHv2QJ3p1dYJ8jQg(Adapter adapter, int i, View view) {
             GroupCallRecordAlert.this.onStartRecord(i);
             GroupCallRecordAlert.this.dismiss();
         }

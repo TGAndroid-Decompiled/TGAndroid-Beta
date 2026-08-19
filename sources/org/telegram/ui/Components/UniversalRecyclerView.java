@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
+import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -120,7 +121,7 @@ public class UniversalRecyclerView extends RecyclerListView {
 
                 @Override
                 public final void onItemClick(View view, int i5, float f, float f2) {
-                    this.f$0.lambda$new$0(callback5, view, i5, f, f2);
+                    UniversalRecyclerView.m2929$r8$lambda$HwQsKjqfgq0fWaQ2U15BPbk4E(this.f$0, callback5, view, i5, f, f2);
                 }
             });
         }
@@ -128,7 +129,7 @@ public class UniversalRecyclerView extends RecyclerListView {
             setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
                 @Override
                 public final boolean onItemClick(View view, int i5, float f, float f2) {
-                    return this.f$0.lambda$new$1(callback5Return, view, i5, f, f2);
+                    return UniversalRecyclerView.$r8$lambda$JUUl8vCG0K15oU0YYo2pTFhfxTg(this.f$0, callback5Return, view, i5, f, f2);
                 }
 
                 @Override
@@ -184,16 +185,16 @@ public class UniversalRecyclerView extends RecyclerListView {
         setItemAnimator(defaultItemAnimator);
     }
 
-    public void lambda$new$0(Utilities.Callback5 callback5, View view, int i, float f, float f2) {
-        UItem item = this.adapter.getItem(i);
+    public static void m2929$r8$lambda$HwQsKjqfgq0fWaQ2U15BPbk4E(UniversalRecyclerView universalRecyclerView, Utilities.Callback5 callback5, View view, int i, float f, float f2) {
+        UItem item = universalRecyclerView.adapter.getItem(i);
         if (item == null) {
             return;
         }
         callback5.run(item, view, Integer.valueOf(i), Float.valueOf(f), Float.valueOf(f2));
     }
 
-    public boolean lambda$new$1(Utilities.Callback5Return callback5Return, View view, int i, float f, float f2) {
-        UItem item = this.adapter.getItem(i);
+    public static boolean $r8$lambda$JUUl8vCG0K15oU0YYo2pTFhfxTg(UniversalRecyclerView universalRecyclerView, Utilities.Callback5Return callback5Return, View view, int i, float f, float f2) {
+        UItem item = universalRecyclerView.adapter.getItem(i);
         if (item == null) {
             return false;
         }
@@ -217,7 +218,7 @@ public class UniversalRecyclerView extends RecyclerListView {
             ((ExtendedGridLayoutManager) linearLayoutManager).setSpanCount(i);
             return;
         }
-        if (!(linearLayoutManager instanceof LinearLayoutManager) || i == -1) {
+        if (!OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(linearLayoutManager) || i == -1) {
             return;
         }
         final ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(getContext(), i) {
@@ -280,13 +281,10 @@ public class UniversalRecyclerView extends RecyclerListView {
         AndroidUtilities.forEachViews((RecyclerView) this, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                this.f$0.lambda$allowReorder$2((View) obj);
+                UniversalRecyclerView universalRecyclerView = this.f$0;
+                universalRecyclerView.adapter.updateReorder(universalRecyclerView.getChildViewHolder((View) obj), universalRecyclerView.reorderingAllowed);
             }
         });
-    }
-
-    public void lambda$allowReorder$2(View view) {
-        this.adapter.updateReorder(getChildViewHolder(view), this.reorderingAllowed);
     }
 
     @Override
@@ -448,7 +446,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         super.setSections(new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                return this.f$0.lambda$setSections$3((View) obj);
+                return UniversalRecyclerView.$r8$lambda$MUTL4oZPr3V0PMa1ItCXaNod57M(this.f$0, (View) obj);
             }
         }, new Utilities.CallbackReturn() {
             @Override
@@ -458,16 +456,13 @@ public class UniversalRecyclerView extends RecyclerListView {
         }, i, f, new Utilities.Callback5() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                this.f$0.lambda$setSections$4((Canvas) obj, (RectF) obj2, ((Float) obj3).floatValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                super/*org.telegram.ui.Components.RecyclerListView*/.drawBackgroundRect((Canvas) obj, (RectF) obj2, ((Float) obj3).floatValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, z);
     }
 
-    public Boolean lambda$setSections$3(View view) {
-        return view.getParent() != this ? Boolean.FALSE : Boolean.valueOf(!UniversalAdapter.isShadow(getChildViewHolder(view).getItemViewType()));
-    }
-
-    public void lambda$setSections$4(Canvas canvas, RectF rectF, float f, float f2, float f3) {
-        super.drawBackgroundRect(canvas, rectF, f, f2, f3);
+    public static Boolean $r8$lambda$MUTL4oZPr3V0PMa1ItCXaNod57M(UniversalRecyclerView universalRecyclerView, View view) {
+        universalRecyclerView.getClass();
+        return view.getParent() != universalRecyclerView ? Boolean.FALSE : Boolean.valueOf(!UniversalAdapter.isShadow(universalRecyclerView.getChildViewHolder(view).getItemViewType()));
     }
 }

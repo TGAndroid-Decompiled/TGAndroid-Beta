@@ -35,7 +35,7 @@ public class QRScanner {
     private final Runnable process = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$3();
+            QRScanner.$r8$lambda$1_Vg2vmx2y4lzqjH_K8pBklWzv8(this.f$0);
         }
     };
     private final String prefix = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix;
@@ -45,14 +45,14 @@ public class QRScanner {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0(context);
+                QRScanner.m4558$r8$lambda$MIkoa3N5R7Md9nU4Klkrz42HSY(this.f$0, context);
             }
         });
     }
 
-    public void lambda$new$0(Context context) {
-        this.detector.set(new BarcodeDetector.Builder(context).setBarcodeFormats(256).build());
-        attach(this.cameraView);
+    public static void m4558$r8$lambda$MIkoa3N5R7Md9nU4Klkrz42HSY(QRScanner qRScanner, Context context) {
+        qRScanner.detector.set(new BarcodeDetector.Builder(context).setBarcodeFormats(256).build());
+        qRScanner.attach(qRScanner.cameraView);
     }
 
     public Detected getDetected() {
@@ -84,7 +84,7 @@ public class QRScanner {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setPaused$1();
+                        this.f$0.listener.run(null);
                     }
                 });
                 return;
@@ -95,15 +95,11 @@ public class QRScanner {
         Utilities.globalQueue.postRunnable(this.process, getTimeout());
     }
 
-    public void lambda$setPaused$1() {
-        this.listener.run(null);
-    }
-
-    public void lambda$new$3() {
-        if (this.detector.get() == null || this.cameraView == null || this.paused.get()) {
+    public static void $r8$lambda$1_Vg2vmx2y4lzqjH_K8pBklWzv8(final QRScanner qRScanner) {
+        if (qRScanner.detector.get() == null || qRScanner.cameraView == null || qRScanner.paused.get()) {
             return;
         }
-        TextureView textureView = this.cameraView.getTextureView();
+        TextureView textureView = qRScanner.cameraView.getTextureView();
         if (textureView != null) {
             int width = textureView.getWidth();
             int height = textureView.getHeight();
@@ -116,32 +112,28 @@ public class QRScanner {
             }
             int iMax = Math.max(1, width);
             int iMax2 = Math.max(1, height);
-            Bitmap bitmap = this.cacheBitmap;
-            if (bitmap == null || iMax != bitmap.getWidth() || iMax2 != this.cacheBitmap.getHeight()) {
-                this.cacheBitmap = Bitmap.createBitmap(iMax, iMax2, Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = qRScanner.cacheBitmap;
+            if (bitmap == null || iMax != bitmap.getWidth() || iMax2 != qRScanner.cacheBitmap.getHeight()) {
+                qRScanner.cacheBitmap = Bitmap.createBitmap(iMax, iMax2, Bitmap.Config.ARGB_8888);
             }
-            textureView.getBitmap(this.cacheBitmap);
-            final Detected detectedDetect = detect(this.cacheBitmap);
-            Detected detected = this.lastDetected;
+            textureView.getBitmap(qRScanner.cacheBitmap);
+            final Detected detectedDetect = qRScanner.detect(qRScanner.cacheBitmap);
+            Detected detected = qRScanner.lastDetected;
             if ((detected != null) != (detectedDetect != null) || (detectedDetect != null && detected != null && !detectedDetect.equals(detected))) {
-                this.lastDetected = detectedDetect;
+                qRScanner.lastDetected = detectedDetect;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$2(detectedDetect);
+                        this.f$0.listener.run(detectedDetect);
                     }
                 });
             }
         }
-        if (this.paused.get()) {
+        if (qRScanner.paused.get()) {
             return;
         }
-        Utilities.globalQueue.cancelRunnable(this.process);
-        Utilities.globalQueue.postRunnable(this.process, getTimeout());
-    }
-
-    public void lambda$new$2(Detected detected) {
-        this.listener.run(detected);
+        Utilities.globalQueue.cancelRunnable(qRScanner.process);
+        Utilities.globalQueue.postRunnable(qRScanner.process, qRScanner.getTimeout());
     }
 
     private Detected detect(Bitmap bitmap) {
@@ -297,20 +289,22 @@ public class QRScanner {
                     PointF pointF = pointFArr[i2];
                     PointF pointF2 = pointFArr[i];
                     PointF pointF3 = pointFArr[i4];
-                    int i5 = iMin;
-                    float fWidth2 = rectF.left + ((this.animatedQPX[i2].set(pointF.x - detected2.cx) + f2) * rectF.width());
+                    float f4 = f;
+                    float f5 = f2;
+                    float fWidth2 = rectF.left + ((this.animatedQPX[i2].set(pointF.x - detected2.cx) + f5) * rectF.width());
                     float fHeight2 = rectF.top + ((this.animatedQPY[i2].set(pointF.y - this.qrResult.cy) + f3) * rectF.height());
-                    float fWidth3 = rectF.left + ((this.animatedQPX[i].set(pointF2.x - this.qrResult.cx) + f2) * rectF.width());
+                    float fWidth3 = rectF.left + ((this.animatedQPX[i].set(pointF2.x - this.qrResult.cx) + f5) * rectF.width());
                     float fHeight3 = rectF.top + ((this.animatedQPY[i].set(pointF2.y - this.qrResult.cy) + f3) * rectF.height());
-                    float fWidth4 = rectF.left + ((this.animatedQPX[i4].set(pointF3.x - this.qrResult.cx) + f2) * rectF.width());
+                    float fWidth4 = rectF.left + ((this.animatedQPX[i4].set(pointF3.x - this.qrResult.cx) + f5) * rectF.width());
                     float fHeight4 = (rectF.top + ((this.animatedQPY[i4].set(pointF3.y - this.qrResult.cy) + f3) * rectF.height())) - fHeight3;
                     this.qrPath.moveTo(((fWidth2 - fWidth3) * 0.18f) + fWidth3, ((fHeight2 - fHeight3) * 0.18f) + fHeight3);
                     this.qrPath.lineTo(fWidth3, fHeight3);
                     this.qrPath.lineTo(fWidth3 + ((fWidth4 - fWidth3) * 0.18f), fHeight3 + (fHeight4 * 0.18f));
-                    iMin = i5;
                     i = i3;
+                    f = f4;
+                    f2 = f5;
                 }
-                this.qrPaint.setAlpha((int) (f * 255.0f));
+                this.qrPaint.setAlpha((int) (255.0f * f));
                 canvas.drawPath(this.qrPath, this.qrPaint);
             }
             canvas.restore();

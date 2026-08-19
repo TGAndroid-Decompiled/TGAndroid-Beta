@@ -317,7 +317,7 @@ public class PinchToZoomHelper {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$finishZoom$0(valueAnimator);
+                    PinchToZoomHelper.m3745$r8$lambda$D1zGapCNpit4jUkz0z9Kadd5D8(this.f$0, valueAnimator);
                 }
             });
             this.finishTransition.addListener(new AnimatorListenerAdapter() {
@@ -336,9 +336,10 @@ public class PinchToZoomHelper {
         }
     }
 
-    public void lambda$finishZoom$0(ValueAnimator valueAnimator) {
-        this.finishProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidateViews();
+    public static void m3745$r8$lambda$D1zGapCNpit4jUkz0z9Kadd5D8(PinchToZoomHelper pinchToZoomHelper, ValueAnimator valueAnimator) {
+        pinchToZoomHelper.getClass();
+        pinchToZoomHelper.finishProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        pinchToZoomHelper.invalidateViews();
     }
 
     public void clear() {
@@ -790,10 +791,9 @@ public class PinchToZoomHelper {
             float y3 = (motionEvent.getY(i2) + motionEvent.getY(i3)) / 2.0f;
             float f = this.pinchStartCenterX - x3;
             float f2 = this.pinchStartCenterY - y3;
-            float f3 = -f;
-            float f4 = this.pinchScale;
-            this.pinchTranslationX = f3 / f4;
-            this.pinchTranslationY = (-f2) / f4;
+            float f3 = this.pinchScale;
+            this.pinchTranslationX = (-f) / f3;
+            this.pinchTranslationY = (-f2) / f3;
             invalidateViews();
         } else if ((motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && checkPointerIds(motionEvent)) || motionEvent.getActionMasked() == 3)) && this.isInPinchToZoomTouchMode) {
             this.isInPinchToZoomTouchMode = false;

@@ -252,7 +252,7 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
             return;
         }
         if (i == 1) {
-            if (MediaController.getInstance().lambda$startAudioAgain$7(this.currentMessageObject)) {
+            if (MediaController.getInstance().pauseMessage(this.currentMessageObject)) {
                 this.buttonState = 0;
                 invalidate();
                 return;

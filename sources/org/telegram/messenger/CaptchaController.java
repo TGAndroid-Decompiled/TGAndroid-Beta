@@ -64,32 +64,31 @@ public class CaptchaController {
             Recaptcha.getTasksClient(activity.getApplication(), str2).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    CaptchaController.lambda$request$2(str, str2, request2, (RecaptchaTasksClient) obj);
+                    String str3 = str;
+                    String str4 = str2;
+                    CaptchaController.Request request3 = request2;
+                    ((RecaptchaTasksClient) obj).executeTask(CaptchaController.getAction(str3)).addOnSuccessListener(new OnSuccessListener() {
+                        @Override
+                        public final void onSuccess(Object obj2) {
+                            CaptchaController.$r8$lambda$AMiLmmmYyKOwfWSiRvRczX2HcNw(str3, str4, request3, (String) obj2);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public final void onFailure(Exception exc) {
+                            CaptchaController.$r8$lambda$UjfC46a1LwdNoQ4PzIEIXfzBxPc(request3, exc);
+                        }
+                    });
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    CaptchaController.lambda$request$3(request2, exc);
+                    CaptchaController.m366$r8$lambda$stKJxtC1RPLdV30yoHtFVwBWyI(request2, exc);
                 }
             });
         }
     }
 
-    public static void lambda$request$2(final String str, final String str2, final Request request, RecaptchaTasksClient recaptchaTasksClient) {
-        recaptchaTasksClient.executeTask(getAction(str)).addOnSuccessListener(new OnSuccessListener() {
-            @Override
-            public final void onSuccess(Object obj) {
-                CaptchaController.lambda$request$0(str, str2, request, (String) obj);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public final void onFailure(Exception exc) {
-                CaptchaController.lambda$request$1(request, exc);
-            }
-        });
-    }
-
-    public static void lambda$request$0(String str, String str2, Request request, String str3) {
+    public static void $r8$lambda$AMiLmmmYyKOwfWSiRvRczX2HcNw(String str, String str2, Request request, String str3) {
         FileLog.d("CaptchaController: got token for {action=" + str + ", key_id=" + str2 + "}: " + str3);
         if (str3 == null) {
             request.done("RECAPTCHA_FAILED_TOKEN_NULL");
@@ -98,18 +97,18 @@ public class CaptchaController {
         }
     }
 
-    public static void lambda$request$1(Request request, Exception exc) {
+    public static void $r8$lambda$UjfC46a1LwdNoQ4PzIEIXfzBxPc(Request request, Exception exc) {
         FileLog.e("CaptchaController: executeTask failure", exc);
         request.done("RECAPTCHA_FAILED_TASK_EXCEPTION_" + formatException(exc));
     }
 
-    public static void lambda$request$3(Request request, Exception exc) {
+    public static void m366$r8$lambda$stKJxtC1RPLdV30yoHtFVwBWyI(Request request, Exception exc) {
         FileLog.e("CaptchaController: getTasksClient failure", exc);
         request.done("RECAPTCHA_FAILED_GETCLIENT_EXCEPTION_" + formatException(exc));
     }
 
     private static RecaptchaAction getAction(String str) {
-        str.hashCode();
+        str.getClass();
         switch (str) {
             case "SIGNUP":
             case "signup":

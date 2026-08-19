@@ -14,7 +14,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -514,17 +513,13 @@ public class RichEditorToolbar extends FrameLayout {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$addBlockButton$14(i2, view);
+                this.f$0.delegate.onBlockButton(i2, view);
             }
         });
         this.blockButtons.add(button);
         LinearLayout linearLayout = this.blocksLayout;
         linearLayout.addView(button, LayoutHelper.createLinear(38, 38, 16, linearLayout.getChildCount() == 0 ? 0 : 2, 0, 0, 0));
         return button;
-    }
-
-    public void lambda$addBlockButton$14(int i, View view) {
-        this.delegate.onBlockButton(i, view);
     }
 
     private void addFormattingButton(int i, int i2) {
@@ -543,7 +538,7 @@ public class RichEditorToolbar extends FrameLayout {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$addFormattingButton$15(i2, view);
+                this.f$0.delegate.onFormatting(i2);
             }
         });
         this.formattingButtons.add(button);
@@ -551,14 +546,14 @@ public class RichEditorToolbar extends FrameLayout {
         linearLayout.addView(button, LayoutHelper.createLinear(38, 38, 16, linearLayout.getChildCount() == 0 ? 0 : 2, 0, 0, 0));
     }
 
-    public void lambda$addFormattingButton$15(int i, View view) {
-        this.delegate.onFormatting(i);
-    }
-
     public void setPremiumLocked(boolean z) {
-        Iterator it = this.premiumButtons.iterator();
-        while (it.hasNext()) {
-            ((RichEditor.Button) it.next()).setPremiumLocked(z);
+        ArrayList arrayList = this.premiumButtons;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((RichEditor.Button) obj).setPremiumLocked(z);
         }
     }
 
@@ -600,7 +595,13 @@ public class RichEditorToolbar extends FrameLayout {
     }
 
     public void setSelectedBlockType(int i, int i2) {
-        for (RichEditor.Button button : this.blockButtons) {
+        ArrayList arrayList = this.blockButtons;
+        int size = arrayList.size();
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            RichEditor.Button button = (RichEditor.Button) obj;
             boolean z = i == ((Integer) button.getTag()).intValue();
             button.setSelected(z);
             if (z && i2 != 0) {
@@ -612,7 +613,13 @@ public class RichEditorToolbar extends FrameLayout {
     }
 
     public void setFormattingState(int i, boolean z, boolean z2, boolean z3, boolean z4, boolean z5) {
-        for (RichEditor.Button button : this.formattingButtons) {
+        ArrayList arrayList = this.formattingButtons;
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            RichEditor.Button button = (RichEditor.Button) obj;
             int iIntValue = ((Integer) button.getTag()).intValue();
             button.setSelected((i & iIntValue) != 0);
             if (iIntValue == 1 || iIntValue == 2) {
@@ -651,21 +658,21 @@ public class RichEditorToolbar extends FrameLayout {
             duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updatePanel$16();
+                    RichEditorToolbar.m4983$r8$lambda$04MvWf45i0zGmHK8uXnBrFH1w(this.f$0);
                 }
             }).start();
             this.formattingPanel.setVisibility(0);
             this.formattingPanel.animate().alpha(i == 1 ? 1.0f : 0.0f).scaleX(i == 1 ? 1.0f : 0.8f).scaleY(i == 1 ? 1.0f : 0.8f).translationY(i == 1 ? 0.0f : AndroidUtilities.dp(30.0f)).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updatePanel$17();
+                    RichEditorToolbar.$r8$lambda$eiX6I79_zE3sFvpgQbSbJmjBr4g(this.f$0);
                 }
             }).start();
             this.trashPanel.setVisibility(0);
             this.trashPanel.animate().alpha(i == 2 ? 1.0f : 0.0f).scaleX(i == 2 ? 1.0f : 0.8f).scaleY(i == 2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updatePanel$18();
+                    RichEditorToolbar.$r8$lambda$PYZCATOMshNvYQpKEphieuefUtA(this.f$0);
                 }
             }).start();
             return;
@@ -686,21 +693,21 @@ public class RichEditorToolbar extends FrameLayout {
         this.trashPanel.setScaleY(i == 2 ? 1.0f : 0.8f);
     }
 
-    public void lambda$updatePanel$16() {
-        if (this.panelType != 0) {
-            this.bottomPanel.setVisibility(8);
+    public static void m4983$r8$lambda$04MvWf45i0zGmHK8uXnBrFH1w(RichEditorToolbar richEditorToolbar) {
+        if (richEditorToolbar.panelType != 0) {
+            richEditorToolbar.bottomPanel.setVisibility(8);
         }
     }
 
-    public void lambda$updatePanel$17() {
-        if (this.panelType != 1) {
-            this.formattingPanel.setVisibility(8);
+    public static void $r8$lambda$eiX6I79_zE3sFvpgQbSbJmjBr4g(RichEditorToolbar richEditorToolbar) {
+        if (richEditorToolbar.panelType != 1) {
+            richEditorToolbar.formattingPanel.setVisibility(8);
         }
     }
 
-    public void lambda$updatePanel$18() {
-        if (this.panelType != 2) {
-            this.trashPanel.setVisibility(8);
+    public static void $r8$lambda$PYZCATOMshNvYQpKEphieuefUtA(RichEditorToolbar richEditorToolbar) {
+        if (richEditorToolbar.panelType != 2) {
+            richEditorToolbar.trashPanel.setVisibility(8);
         }
     }
 

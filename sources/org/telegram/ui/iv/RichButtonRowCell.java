@@ -13,7 +13,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -71,7 +70,7 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
         roundRadius.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                RichButtonRowCell.m4911$r8$lambda$sweDzUk5wK9QxbZkD2jEfSKnmk(this.f$0, view);
             }
         });
         addView(roundRadius, LayoutHelper.createFrame(38, 38, 21));
@@ -86,26 +85,26 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                RichButtonRowCell.$r8$lambda$yqOYnXk5V_ceV8BUTZkkcNPBCL8(this.f$0, view);
             }
         });
         addView(textView, LayoutHelper.createFrame(-2, 38, 17));
         updateAddButtonColors();
     }
 
-    public void lambda$new$0(View view) {
+    public static void m4911$r8$lambda$sweDzUk5wK9QxbZkD2jEfSKnmk(RichButtonRowCell richButtonRowCell, View view) {
         BlockRow blockRow;
-        Delegate delegate = this.delegate;
-        if (delegate == null || (blockRow = this.currentRow) == null) {
+        Delegate delegate = richButtonRowCell.delegate;
+        if (delegate == null || (blockRow = richButtonRowCell.currentRow) == null) {
             return;
         }
         delegate.onAddButton(blockRow, view);
     }
 
-    public void lambda$new$1(View view) {
+    public static void $r8$lambda$yqOYnXk5V_ceV8BUTZkkcNPBCL8(RichButtonRowCell richButtonRowCell, View view) {
         BlockRow blockRow;
-        Delegate delegate = this.delegate;
-        if (delegate == null || (blockRow = this.currentRow) == null) {
+        Delegate delegate = richButtonRowCell.delegate;
+        if (delegate == null || (blockRow = richButtonRowCell.currentRow) == null) {
             return;
         }
         delegate.onAddButton(blockRow, view);
@@ -280,9 +279,13 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
         if (isPointInside(this.addButton, f3, f4) || isPointInside(this.emptyAddButton, f3, f4)) {
             return true;
         }
-        Iterator it = this.buttonViews.iterator();
-        while (it.hasNext()) {
-            if (isPointInside((ButtonView) it.next(), f3, f4)) {
+        ArrayList arrayList = this.buttonViews;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            if (isPointInside((ButtonView) obj, f3, f4)) {
                 return true;
             }
         }
@@ -296,11 +299,13 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
         int[] iArr = new int[2];
         view.getLocationOnScreen(iArr);
         int i = iArr[0];
-        if (f < i || f > i + view.getWidth()) {
-            return false;
+        if (f >= i && f <= i + view.getWidth()) {
+            int i2 = iArr[1];
+            if (f2 >= i2 && f2 <= i2 + view.getHeight()) {
+                return true;
+            }
         }
-        int i2 = iArr[1];
-        return f2 >= ((float) i2) && f2 <= ((float) (i2 + view.getHeight()));
+        return false;
     }
 
     class ButtonView extends View {
@@ -323,7 +328,7 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
             this.longPressRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$0(i);
+                    RichButtonRowCell.ButtonView.$r8$lambda$b7cj_jUEwaI9wsHrlDuwlez8f4w(this.f$0, i);
                 }
             };
             richButtonCreateEditorPageButton.width = richButtonCreateEditorPageButton.getPreferredWidth();
@@ -332,17 +337,17 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
             setLongClickable(true);
         }
 
-        public void lambda$new$0(int i) {
-            if (!this.pressed || RichButtonRowCell.this.delegate == null || RichButtonRowCell.this.currentRow == null) {
+        public static void $r8$lambda$b7cj_jUEwaI9wsHrlDuwlez8f4w(ButtonView buttonView, int i) {
+            if (!buttonView.pressed || RichButtonRowCell.this.delegate == null || RichButtonRowCell.this.currentRow == null) {
                 return;
             }
-            this.longPressed = true;
-            this.button.setPressed(false);
+            buttonView.longPressed = true;
+            buttonView.button.setPressed(false);
             try {
-                performHapticFeedback(0);
+                buttonView.performHapticFeedback(0);
             } catch (Exception unused) {
             }
-            RichButtonRowCell.this.delegate.onEditButton(RichButtonRowCell.this.currentRow, i, this);
+            RichButtonRowCell.this.delegate.onEditButton(RichButtonRowCell.this.currentRow, i, buttonView);
         }
 
         @Override

@@ -64,7 +64,7 @@ public class MainTabsLayout extends AnimatedLinearLayout {
         this.restoreDrawSelector = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.setSkipDrawSelector(false);
             }
         };
         this.selectorPaint = new Paint(1);
@@ -111,7 +111,7 @@ public class MainTabsLayout extends AnimatedLinearLayout {
 
             @Override
             public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                this.f$0.lambda$new$1(i, f, f2, factorAnimator);
+                MainTabsLayout.m3532$r8$lambda$mmMt9sFZKYiZb3Epo40a3vJ6o(this.f$0, i, f, f2, factorAnimator);
             }
         }, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
         this.clickHelper = new ClickHelper(new ClickHelper.Delegate() {
@@ -230,104 +230,107 @@ public class MainTabsLayout extends AnimatedLinearLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
+        int i3;
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
         int paddingTop = (size2 - getPaddingTop()) - getPaddingBottom();
-        int i3 = this.maxWidthPx;
-        if (i3 > 0 && size > i3) {
-            size = i3;
+        int i4 = this.maxWidthPx;
+        if (i4 > 0 && size > i4) {
+            size = i4;
         }
         int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
         int iMin = Math.min(AndroidUtilities.dp(320.0f), paddingLeft);
         int length = PASS_TEXT_SIZES_DP.length - 1;
         float f = -1.0f;
-        int i4 = 0;
+        int i5 = 0;
         while (true) {
             float[] fArr = PASS_TEXT_SIZES_DP;
-            if (i4 >= fArr.length) {
+            if (i5 >= fArr.length) {
+                i3 = 0;
                 break;
             }
-            float f2 = fArr[i4];
+            float f2 = fArr[i5];
             if (f2 != f) {
                 measureTabTexts(f2);
-                f = fArr[i4];
+                f = fArr[i5];
             }
-            int iDp = AndroidUtilities.dp(PASS_PADDINGS_DP[i4]);
+            int iDp = AndroidUtilities.dp(PASS_PADDINGS_DP[i5]);
             int childCount = getChildCount();
             float f3 = 0.0f;
-            for (int i5 = 0; i5 < childCount; i5++) {
-                if (isViewVisible(getChildAt(i5))) {
-                    f3 += this.tabsTextWidth[i5] + (iDp * 2);
+            for (int i6 = 0; i6 < childCount; i6++) {
+                if (isViewVisible(getChildAt(i6))) {
+                    f3 += this.tabsTextWidth[i6] + (iDp * 2);
                 }
             }
-            if (f3 <= paddingLeft || i4 == PASS_TEXT_SIZES_DP.length - 1) {
-                length = i4;
+            i3 = 0;
+            if (f3 <= paddingLeft || i5 == PASS_TEXT_SIZES_DP.length - 1) {
+                length = i5;
                 break;
             }
-            i4++;
+            i5++;
         }
         applyPassTextSize(length);
         int iDp2 = AndroidUtilities.dp(PASS_PADDINGS_DP[length]) * 2;
         int iMax = (paddingLeft / Math.max(1, this.visibleChildCount)) - iDp2;
         int childCount2 = getChildCount();
-        int i6 = 0;
+        int i7 = 0;
         float f4 = 0.0f;
-        for (int i7 = 0; i7 < childCount2; i7++) {
-            if (!isViewVisible(getChildAt(i7))) {
+        for (int i8 = 0; i8 < childCount2; i8++) {
+            if (!isViewVisible(getChildAt(i8))) {
                 float[] fArr2 = this.tabsTextWidth;
-                this.tabsTextWidthWithMargin[i7] = 0.0f;
-                fArr2[i7] = 0.0f;
-                this.tabsWeight[i7] = 0;
+                this.tabsTextWidthWithMargin[i8] = 0.0f;
+                fArr2[i8] = 0.0f;
+                this.tabsWeight[i8] = i3;
             } else {
                 float[] fArr3 = this.tabsTextWidthWithMargin;
-                float f5 = this.tabsTextWidth[i7] + iDp2;
-                fArr3[i7] = f5;
+                float f5 = this.tabsTextWidth[i8] + iDp2;
+                fArr3[i8] = f5;
                 int[] iArr = this.tabsWeight;
-                int i8 = f5 > ((float) (iMax + iDp2)) ? 0 : 1;
-                iArr[i7] = i8;
+                int i9 = f5 > ((float) (iMax + iDp2)) ? 0 : 1;
+                iArr[i8] = i9;
                 f4 += f5;
-                i6 += i8;
+                i7 += i9;
             }
         }
-        if (i6 == 0) {
+        if (i7 == 0) {
             int childCount3 = getChildCount();
-            for (int i9 = 0; i9 < childCount3; i9++) {
-                this.tabsWeight[i9] = isViewVisible(getChildAt(i9)) ? 1 : 0;
+            for (int i10 = 0; i10 < childCount3; i10++) {
+                this.tabsWeight[i10] = isViewVisible(getChildAt(i10)) ? 1 : 0;
             }
-            i6 = this.visibleChildCount;
+            i7 = this.visibleChildCount;
         }
         float f6 = paddingLeft;
         if (f4 > f6) {
             float f7 = f6 / f4;
             int childCount4 = getChildCount();
-            for (int i10 = 0; i10 < childCount4; i10++) {
+            for (int i11 = 0; i11 < childCount4; i11++) {
                 float[] fArr4 = this.tabsTextWidthWithMargin;
-                fArr4[i10] = fArr4[i10] * f7;
+                fArr4[i11] = fArr4[i11] * f7;
             }
         } else {
             float f8 = iMin;
             if (f4 < f8) {
-                float f9 = (f8 - f4) / i6;
+                float f9 = (f8 - f4) / i7;
                 int childCount5 = getChildCount();
-                for (int i11 = 0; i11 < childCount5; i11++) {
+                for (int i12 = 0; i12 < childCount5; i12++) {
                     float[] fArr5 = this.tabsTextWidthWithMargin;
-                    fArr5[i11] = fArr5[i11] + (this.tabsWeight[i11] * f9);
+                    fArr5[i12] = fArr5[i12] + (this.tabsWeight[i12] * f9);
                 }
             }
         }
         int childCount6 = getChildCount();
-        int i12 = 0;
-        for (int i13 = 0; i13 < childCount6; i13++) {
-            if (isViewVisible(getChildAt(i13))) {
-                this.tabsWidth[i13] = Math.round(this.tabsTextWidthWithMargin[i13]);
-                this.tabsLeftPos[i13] = i12;
-                i12 += this.tabsWidth[i13];
+        int i13 = 0;
+        for (int i14 = 0; i14 < childCount6; i14++) {
+            if (isViewVisible(getChildAt(i14))) {
+                this.tabsWidth[i14] = Math.round(this.tabsTextWidthWithMargin[i14]);
+                this.tabsLeftPos[i14] = i13;
+                i13 += this.tabsWidth[i14];
             }
         }
-        setMeasuredDimension(i12 + getPaddingLeft() + getPaddingRight(), size2);
+        setMeasuredDimension(i13 + getPaddingLeft() + getPaddingRight(), size2);
         int childCount7 = getChildCount();
-        for (int i14 = 0; i14 < childCount7; i14++) {
-            getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(this.tabsWidth[i14], 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
+        for (int i15 = 0; i15 < childCount7; i15++) {
+            getChildAt(i15).measure(View.MeasureSpec.makeMeasureSpec(this.tabsWidth[i15], 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
         }
         calculateTotalSizesAfterMeasure();
     }
@@ -419,10 +422,6 @@ public class MainTabsLayout extends AnimatedLinearLayout {
         return null;
     }
 
-    public void lambda$new$0() {
-        setSkipDrawSelector(false);
-    }
-
     public void setSkipDrawSelector(boolean z) {
         this.drawCustomSelector = z;
         if (z) {
@@ -440,15 +439,19 @@ public class MainTabsLayout extends AnimatedLinearLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
         if (this.drawCustomSelector) {
             float f = this.animatedLongSelectedViewCenterX + this.animatedLongSelectedViewOffsetX;
             float interpolatedWidthByX = getInterpolatedWidthByX(f, this);
             float height = (getHeight() - getPaddingTop()) - getPaddingBottom();
             float f2 = interpolatedWidthByX / 2.0f;
             float f3 = height / 2.0f;
-            canvas.drawRoundRect(f - f2, (getHeight() - height) / 2.0f, f + f2, (getHeight() + height) / 2.0f, f3, f3, this.selectorPaint);
+            canvas2 = canvas;
+            canvas2.drawRoundRect(f - f2, (getHeight() - height) / 2.0f, f + f2, (getHeight() + height) / 2.0f, f3, f3, this.selectorPaint);
+        } else {
+            canvas2 = canvas;
         }
-        super.dispatchDraw(canvas);
+        super.dispatchDraw(canvas2);
     }
 
     public static View findChildUnder(ViewGroup viewGroup, float f, float f2) {
@@ -499,9 +502,10 @@ public class MainTabsLayout extends AnimatedLinearLayout {
         this.tabsWithIgnoreClick.add(view);
     }
 
-    public void lambda$new$1(int i, float f, float f2, FactorAnimator factorAnimator) {
-        setScaleX(AndroidUtilities.lerp(1.0f, 1.019f, f));
-        setScaleY(AndroidUtilities.lerp(1.0f, 1.019f, f));
+    public static void m3532$r8$lambda$mmMt9sFZKYiZb3Epo40a3vJ6o(MainTabsLayout mainTabsLayout, int i, float f, float f2, FactorAnimator factorAnimator) {
+        mainTabsLayout.getClass();
+        mainTabsLayout.setScaleX(AndroidUtilities.lerp(1.0f, 1.019f, f));
+        mainTabsLayout.setScaleY(AndroidUtilities.lerp(1.0f, 1.019f, f));
     }
 
     @Override
@@ -577,14 +581,13 @@ public class MainTabsLayout extends AnimatedLinearLayout {
                     z = true;
                 }
             }
-            if (!z) {
-                return f;
-            }
-            if (f < f2) {
-                return f2;
-            }
-            if (f > f3) {
-                return f3;
+            if (z) {
+                if (f < f2) {
+                    return f2;
+                }
+                if (f > f3) {
+                    return f3;
+                }
             }
         }
         return f;

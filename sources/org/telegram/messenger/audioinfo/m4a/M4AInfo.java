@@ -55,7 +55,7 @@ public class M4AInfo extends AudioInfo {
         while (mP4Atom.hasMoreChildren()) {
             MP4Atom mP4AtomNextChild = mP4Atom.nextChild();
             String type = mP4AtomNextChild.getType();
-            type.hashCode();
+            type.getClass();
             switch (type) {
                 case "mvhd":
                     mvhd(mP4AtomNextChild);
@@ -188,7 +188,7 @@ public class M4AInfo extends AudioInfo {
         mP4Atom.skip(4);
         mP4Atom.skip(4);
         String type = mP4Atom.getParent().getType();
-        type.hashCode();
+        type.getClass();
         switch (type) {
             case "aART":
                 this.albumArtist = mP4Atom.readString("UTF-8");

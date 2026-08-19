@@ -106,52 +106,71 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        float f = this.animatedCast.set(this.cast);
+        Canvas canvas2;
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        float f5 = this.animatedCast.set(this.cast);
         float fDp = (AndroidUtilities.dp(5.0f) * this.topText.isNotEmpty()) + this.topText.getCurrentWidth();
         float fDp2 = (AndroidUtilities.dp(5.0f) * this.bottomText.isNotEmpty()) + this.bottomText.getCurrentWidth();
         int saveCount = canvas.getSaveCount();
         Rect bounds = getBounds();
-        if (fDp > 0.0f || fDp2 > 0.0f || f > 0.0f) {
-            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+        if (fDp > 0.0f || fDp2 > 0.0f || f5 > 0.0f) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+        } else {
+            canvas2 = canvas;
         }
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), (AndroidUtilities.dp(6.0f) + bounds.width()) - AndroidUtilities.dp(12.0f), (AndroidUtilities.dp(6.0f) + bounds.height()) - AndroidUtilities.dp(12.0f));
         rect.offset(bounds.left, bounds.top);
         this.base.setBounds(rect);
-        canvas.save();
-        canvas.rotate(this.rotation * (-180.0f), bounds.centerX(), bounds.centerY());
-        this.base.draw(canvas);
-        canvas.restore();
+        canvas2.save();
+        canvas2.rotate(this.rotation * (-180.0f), bounds.centerX(), bounds.centerY());
+        this.base.draw(canvas2);
+        canvas2.restore();
         this.bgPaint.setColor(-1);
         float fWidth = bounds.left + (bounds.width() * 0.98f);
         float fHeight = bounds.top + (bounds.height() * 0.18f);
         float fHeight2 = bounds.top + (bounds.height() * 0.78f);
         float fDp3 = AndroidUtilities.dp(10.0f);
         if (fDp > 0.0f) {
-            float f2 = fDp3 / 2.0f;
-            this.rect.set(fWidth - fDp, fHeight - f2, fWidth, fHeight + f2);
-            canvas.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgLinePaint);
+            float f6 = fDp3 / 2.0f;
+            f = 2.0f;
+            f2 = 3.0f;
+            this.rect.set(fWidth - fDp, fHeight - f6, fWidth, fHeight + f6);
+            canvas2.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgLinePaint);
+        } else {
+            f = 2.0f;
+            f2 = 3.0f;
         }
         if (fDp2 > 0.0f) {
-            float f3 = fDp3 / 2.0f;
-            this.rect.set(fWidth - fDp2, fHeight2 - f3, fWidth, fHeight2 + f3);
-            canvas.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgLinePaint);
+            float f7 = fDp3 / f;
+            f3 = 0.0f;
+            this.rect.set(fWidth - fDp2, fHeight2 - f7, fWidth, f7 + fHeight2);
+            canvas2.drawRoundRect(this.rect, AndroidUtilities.dp(f2), AndroidUtilities.dp(f2), this.bgLinePaint);
+        } else {
+            f3 = 0.0f;
         }
-        float f4 = 1.0f - f;
-        if (fDp * f4 > 0.0f) {
-            this.bgPaint.setAlpha((int) (this.topText.isNotEmpty() * 255.0f * f4));
+        float f8 = 1.0f - f5;
+        if (fDp * f8 > f3) {
+            f4 = 255.0f;
+            this.bgPaint.setAlpha((int) (this.topText.isNotEmpty() * 255.0f * f8));
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.topText;
-            animatedTextDrawable.setAlpha((int) (animatedTextDrawable.isNotEmpty() * 255.0f * f4));
-            float f5 = fDp3 / 2.0f;
-            this.rect.set(fWidth - fDp, fHeight - f5, fWidth, fHeight + f5);
+            animatedTextDrawable.setAlpha((int) (animatedTextDrawable.isNotEmpty() * 255.0f * f8));
+            float f9 = fDp3 / f;
+            this.rect.set(fWidth - fDp, fHeight - f9, fWidth, fHeight + f9);
             this.rect.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            canvas.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgPaint);
+            canvas2.drawRoundRect(this.rect, AndroidUtilities.dp(f2), AndroidUtilities.dp(f2), this.bgPaint);
             this.rect.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
             this.topText.setBounds(this.rect);
-            this.topText.draw(canvas);
+            this.topText.draw(canvas2);
+        } else {
+            f4 = 255.0f;
         }
-        if (f > 0.0f) {
-            canvas.save();
+        if (f5 > f3) {
+            canvas2.save();
             int color = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
             if (this.castFillColor != color) {
                 Drawable drawable = this.castFill;
@@ -159,32 +178,32 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
                 drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
             }
             Drawable drawable2 = this.castFill;
-            drawable2.setBounds((bounds.right - drawable2.getIntrinsicWidth()) - AndroidUtilities.dp(3.0f), bounds.top + AndroidUtilities.dp(0.66f), bounds.right - AndroidUtilities.dp(3.0f), bounds.top + AndroidUtilities.dp(0.66f) + this.castFill.getIntrinsicHeight());
-            this.castFill.setAlpha((int) (f * 255.0f));
-            float fLerp = AndroidUtilities.lerp(0.8f, 1.0f, f);
-            canvas.scale(fLerp, fLerp, this.castFill.getBounds().centerX(), this.castFill.getBounds().centerY());
-            if (f > 0.5f) {
-                canvas.save();
-                canvas.translate(this.castFill.getBounds().left, this.castFill.getBounds().top);
-                canvas.drawPath(this.castCutPath, this.castCutPaint);
-                canvas.restore();
+            drawable2.setBounds((bounds.right - drawable2.getIntrinsicWidth()) - AndroidUtilities.dp(f2), bounds.top + AndroidUtilities.dp(0.66f), bounds.right - AndroidUtilities.dp(f2), bounds.top + AndroidUtilities.dp(0.66f) + this.castFill.getIntrinsicHeight());
+            this.castFill.setAlpha((int) (f5 * f4));
+            float fLerp = AndroidUtilities.lerp(0.8f, 1.0f, f5);
+            canvas2.scale(fLerp, fLerp, this.castFill.getBounds().centerX(), this.castFill.getBounds().centerY());
+            if (f5 > 0.5f) {
+                canvas2.save();
+                canvas2.translate(this.castFill.getBounds().left, this.castFill.getBounds().top);
+                canvas2.drawPath(this.castCutPath, this.castCutPaint);
+                canvas2.restore();
             }
-            this.castFill.draw(canvas);
-            canvas.restore();
+            this.castFill.draw(canvas2);
+            canvas2.restore();
         }
         if (fDp2 > 0.0f) {
-            this.bgPaint.setAlpha((int) (this.bottomText.isNotEmpty() * 255.0f));
+            this.bgPaint.setAlpha((int) (this.bottomText.isNotEmpty() * f4));
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.bottomText;
-            animatedTextDrawable2.setAlpha((int) (animatedTextDrawable2.isNotEmpty() * 255.0f));
-            float f6 = fDp3 / 2.0f;
-            this.rect.set(fWidth - fDp2, fHeight2 - f6, fWidth, fHeight2 + f6);
+            animatedTextDrawable2.setAlpha((int) (animatedTextDrawable2.isNotEmpty() * f4));
+            float f10 = fDp3 / f;
+            this.rect.set(fWidth - fDp2, fHeight2 - f10, fWidth, fHeight2 + f10);
             this.rect.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            canvas.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgPaint);
+            canvas2.drawRoundRect(this.rect, AndroidUtilities.dp(f2), AndroidUtilities.dp(f2), this.bgPaint);
             this.rect.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
             this.bottomText.setBounds(this.rect);
-            this.bottomText.draw(canvas);
+            this.bottomText.draw(canvas2);
         }
-        canvas.restoreToCount(saveCount);
+        canvas2.restoreToCount(saveCount);
     }
 
     @Override

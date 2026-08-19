@@ -1,6 +1,5 @@
 package org.scilab.forge.jlatexmath;
 
-import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -51,9 +50,8 @@ public class MacroInfo {
             this.macro = objNewInstance.getClass().getDeclaredMethod(str2, clsArr);
             this.nbArgs = i;
         } catch (Exception e) {
-            PrintStream printStream = System.err;
-            printStream.println("Cannot load package " + str + ":");
-            printStream.println(e.toString());
+            System.err.println("Cannot load package " + str + ":");
+            System.err.println(e.toString());
         }
     }
 
@@ -73,9 +71,8 @@ public class MacroInfo {
             this.hasOptions = true;
             this.posOpts = (int) f2;
         } catch (Exception e) {
-            PrintStream printStream = System.err;
-            printStream.println("Cannot load package " + str + ":");
-            printStream.println(e.toString());
+            System.err.println("Cannot load package " + str + ":");
+            System.err.println(e.toString());
         }
     }
 

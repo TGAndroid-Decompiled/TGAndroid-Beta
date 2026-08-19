@@ -36,7 +36,7 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
     private final Runnable closeInAppKeyboard = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$0();
+            WindowInsetsStateHolder.$r8$lambda$8xLh9UF2GS50Hj_KqglTxILbuEg(this.f$0);
         }
     };
 
@@ -207,9 +207,9 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
         setInsets(this.lastInsets);
     }
 
-    public void lambda$new$0() {
-        if (this.inAppKeyboardHeight != 0) {
-            resetInAppKeyboardHeight(false);
+    public static void $r8$lambda$8xLh9UF2GS50Hj_KqglTxILbuEg(WindowInsetsStateHolder windowInsetsStateHolder) {
+        if (windowInsetsStateHolder.inAppKeyboardHeight != 0) {
+            windowInsetsStateHolder.resetInAppKeyboardHeight(false);
         }
     }
 
@@ -259,17 +259,17 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
             view.postOnAnimation(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onAnimatedInsetsFinished$1();
+                    WindowInsetsStateHolder.m2955$r8$lambda$OCxQKGVtc5dkOsTKLOJpG9eYbc(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$onAnimatedInsetsFinished$1() {
-        int i = this.activeAnimations - 1;
-        this.activeAnimations = i;
+    public static void m2955$r8$lambda$OCxQKGVtc5dkOsTKLOJpG9eYbc(WindowInsetsStateHolder windowInsetsStateHolder) {
+        int i = windowInsetsStateHolder.activeAnimations - 1;
+        windowInsetsStateHolder.activeAnimations = i;
         if (i == 0) {
-            setInsets(WindowAnimatedInsetsProvider.calculateWindowInsets(this.animatedInsetsProviderTarget), false);
+            windowInsetsStateHolder.setInsets(WindowAnimatedInsetsProvider.calculateWindowInsets(windowInsetsStateHolder.animatedInsetsProviderTarget), false);
         }
     }
 }

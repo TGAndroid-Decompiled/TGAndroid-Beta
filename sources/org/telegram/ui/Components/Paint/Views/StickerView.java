@@ -78,7 +78,7 @@ public class StickerView extends EntityView {
         this.centerImage.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                this.f$0.lambda$new$0(imageReceiver, z, z2, z3);
+                StickerView.m2530$r8$lambda$U2d8xD0_grLKSYH6Yoyj6_WDdM(this.f$0, imageReceiver, z, z2, z3);
             }
 
             @Override
@@ -94,12 +94,13 @@ public class StickerView extends EntityView {
         updatePosition();
     }
 
-    public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void m2530$r8$lambda$U2d8xD0_grLKSYH6Yoyj6_WDdM(StickerView stickerView, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         RLottieDrawable lottieAnimation;
+        stickerView.getClass();
         if (!z || z2 || (lottieAnimation = imageReceiver.getLottieAnimation()) == null) {
             return;
         }
-        didSetAnimatedSticker(lottieAnimation);
+        stickerView.didSetAnimatedSticker(lottieAnimation);
     }
 
     public StickerView(Context context, StickerView stickerView, PointF pointF) {
@@ -143,7 +144,7 @@ public class StickerView extends EntityView {
     }
 
     @Override
-    protected void updatePosition() {
+    public void updatePosition() {
         Size size = this.baseSize;
         float f = size.width / 2.0f;
         float f2 = size.height / 2.0f;

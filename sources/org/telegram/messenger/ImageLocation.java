@@ -83,10 +83,10 @@ public class ImageLocation {
         ImageLocation imageLocation = new ImageLocation();
         if (webFile.noproxy) {
             imageLocation.path = webFile.url;
-        } else {
-            imageLocation.webFile = webFile;
-            imageLocation.currentSize = webFile.size;
+            return imageLocation;
         }
+        imageLocation.webFile = webFile;
+        imageLocation.currentSize = webFile.size;
         return imageLocation;
     }
 
@@ -163,7 +163,7 @@ public class ImageLocation {
         ArrayList<TLRPC.VideoSize> arrayList3;
         TLRPC.Photo photo2;
         ArrayList<TLRPC.VideoSize> arrayList4;
-        TLRPC.InputPeer inputPeer;
+        TLRPC.InputPeer tL_inputPeerUser;
         if (user != null && (userProfilePhoto = user.photo) != null) {
             if (i2 != 4 && i2 != 3) {
                 if (i2 == 2) {
@@ -185,17 +185,16 @@ public class ImageLocation {
                     if (user.fromMessageDialogId == 0 || user.fromMessageId == 0) {
                         return null;
                     }
-                    TLRPC.TL_inputPeerUserFromMessage tL_inputPeerUserFromMessage = new TLRPC.TL_inputPeerUserFromMessage();
-                    tL_inputPeerUserFromMessage.user_id = user.id;
-                    tL_inputPeerUserFromMessage.peer = MessagesController.getInstance(i).getInputPeer(user.fromMessageDialogId);
-                    tL_inputPeerUserFromMessage.msg_id = user.fromMessageId;
-                    inputPeer = tL_inputPeerUserFromMessage;
+                    tL_inputPeerUser = new TLRPC.TL_inputPeerUserFromMessage();
+                    tL_inputPeerUser.user_id = user.id;
+                    tL_inputPeerUser.peer = MessagesController.getInstance(i).getInputPeer(user.fromMessageDialogId);
+                    tL_inputPeerUser.msg_id = user.fromMessageId;
                 } else {
-                    TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
+                    tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
                     tL_inputPeerUser.user_id = user.id;
                     tL_inputPeerUser.access_hash = user.access_hash;
-                    inputPeer = tL_inputPeerUser;
                 }
+                TLRPC.InputPeer inputPeer = tL_inputPeerUser;
                 int i3 = user.photo.dc_id;
                 if (i3 == 0) {
                     i3 = fileLocation.dc_id;
@@ -319,9 +318,9 @@ public class ImageLocation {
         ImageLocation forPhoto = getForPhoto(videoSize.location, videoSize.size, null, document, null, 1, document.dc_id, null, videoSize.type);
         if ("f".equals(videoSize.type)) {
             forPhoto.imageType = 1;
-        } else {
-            forPhoto.imageType = 2;
+            return forPhoto;
         }
+        forPhoto.imageType = 2;
         return forPhoto;
     }
 
@@ -403,24 +402,26 @@ public class ImageLocation {
                 imageLocation.access_hash = photo.access_hash;
                 imageLocation.photoId = photo.id;
                 imageLocation.thumbSize = str;
-            } else if (document != null) {
+                return imageLocation;
+            }
+            if (document != null) {
                 imageLocation.file_reference = document.file_reference;
                 imageLocation.access_hash = document.access_hash;
                 imageLocation.documentId = document.id;
                 imageLocation.thumbSize = str;
             }
-        } else {
-            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
-            imageLocation.location = tL_fileLocationToBeDeprecated;
-            tL_fileLocationToBeDeprecated.local_id = fileLocation.local_id;
-            tL_fileLocationToBeDeprecated.volume_id = fileLocation.volume_id;
-            tL_fileLocationToBeDeprecated.secret = fileLocation.secret;
-            imageLocation.dc_id = fileLocation.dc_id;
-            imageLocation.file_reference = fileLocation.file_reference;
-            imageLocation.key = fileLocation.key;
-            imageLocation.iv = fileLocation.iv;
-            imageLocation.access_hash = fileLocation.secret;
+            return imageLocation;
         }
+        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
+        imageLocation.location = tL_fileLocationToBeDeprecated;
+        tL_fileLocationToBeDeprecated.local_id = fileLocation.local_id;
+        tL_fileLocationToBeDeprecated.volume_id = fileLocation.volume_id;
+        tL_fileLocationToBeDeprecated.secret = fileLocation.secret;
+        imageLocation.dc_id = fileLocation.dc_id;
+        imageLocation.file_reference = fileLocation.file_reference;
+        imageLocation.key = fileLocation.key;
+        imageLocation.iv = fileLocation.iv;
+        imageLocation.access_hash = fileLocation.secret;
         return imageLocation;
     }
 

@@ -29,7 +29,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
@@ -199,7 +198,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         starsBalanceView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$0(starsBalanceView, view);
+                ResaleGiftsFragment.$r8$lambda$chEyqzblQIITE3ohnWahgpJ7zUk(this.f$0, starsBalanceView, view);
             }
         });
         this.actionBar.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 85, 0.0f, 0.0f, 4.0f, 0.0f));
@@ -243,7 +242,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         LargeEmptyView largeEmptyView = new LargeEmptyView(context, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$1(view);
+                ResaleGiftsFragment.$r8$lambda$5Zi9ngL4fhfqIf8r5ElubsnPOwI(this.f$0, view);
             }
         }, this.resourceProvider);
         this.emptyView = largeEmptyView;
@@ -298,7 +297,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.onlyStarsContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$2(checkBox2, view2);
+                ResaleGiftsFragment.$r8$lambda$VqyiYKJRllu7wQSX1l89DUglKSw(this.f$0, checkBox2, view2);
             }
         });
         this.onlyStarsContainer.addView(linearLayout2, LayoutHelper.createFrame(-2, -1.0f));
@@ -327,7 +326,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.clearFiltersContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$3(view2);
+                ResaleGiftsFragment.$r8$lambda$YYsGrstCtB8ubK2T9WHk2GFRq0g(this.f$0, view2);
             }
         });
         this.clearFiltersContainer.addView(this.clearFiltersButton, LayoutHelper.createFrame(-2, -1.0f));
@@ -340,7 +339,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.sortButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$9(checkBox2, view2);
+                ResaleGiftsFragment.m3239$r8$lambda$zQiUaUiDNRkcQNcKcxVyFUNzJU(this.f$0, checkBox2, view2);
             }
         });
         Filter filter2 = new Filter(context, this.resourceProvider);
@@ -350,7 +349,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.modelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$15(context, view2);
+                ResaleGiftsFragment.$r8$lambda$J_fQxtCOoSntxAS4tN2OiipXxEM(this.f$0, context, view2);
             }
         });
         Filter filter3 = new Filter(context, this.resourceProvider);
@@ -360,7 +359,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.backdropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$21(context, view2);
+                ResaleGiftsFragment.$r8$lambda$tOm7iQOUwUvFxaxZZ9txgkg7_ms(this.f$0, context, view2);
             }
         });
         Filter filter4 = new Filter(context, this.resourceProvider);
@@ -370,7 +369,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.patternButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createView$27(context, view2);
+                ResaleGiftsFragment.$r8$lambda$Ik3EkzoHGiDmZlh2Q_qXQDOB1Cg(this.f$0, context, view2);
             }
         });
         FireworksOverlay fireworksOverlay = new FireworksOverlay(getContext());
@@ -380,122 +379,111 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         return sizeNotifierFrameLayout;
     }
 
-    public void lambda$createView$0(StarsIntroActivity.StarsBalanceView starsBalanceView, View view) {
+    public static void $r8$lambda$chEyqzblQIITE3ohnWahgpJ7zUk(ResaleGiftsFragment resaleGiftsFragment, StarsIntroActivity.StarsBalanceView starsBalanceView, View view) {
+        resaleGiftsFragment.getClass();
         if (starsBalanceView.lastBalance <= 0) {
             return;
         }
-        presentFragment(new StarsIntroActivity());
+        resaleGiftsFragment.presentFragment(new StarsIntroActivity());
     }
 
-    public void lambda$createView$1(View view) {
-        this.list.notSelectedBackdropAttributes.clear();
-        this.list.notSelectedModelAttributes.clear();
-        this.list.notSelectedPatternAttributes.clear();
-        this.list.reload();
+    public static void $r8$lambda$5Zi9ngL4fhfqIf8r5ElubsnPOwI(ResaleGiftsFragment resaleGiftsFragment, View view) {
+        resaleGiftsFragment.list.notSelectedBackdropAttributes.clear();
+        resaleGiftsFragment.list.notSelectedModelAttributes.clear();
+        resaleGiftsFragment.list.notSelectedPatternAttributes.clear();
+        resaleGiftsFragment.list.reload();
     }
 
-    public void lambda$createView$2(CheckBox2 checkBox2, View view) {
-        ResaleGiftsList resaleGiftsList = this.list;
+    public static void $r8$lambda$VqyiYKJRllu7wQSX1l89DUglKSw(ResaleGiftsFragment resaleGiftsFragment, CheckBox2 checkBox2, View view) {
+        ResaleGiftsList resaleGiftsList = resaleGiftsFragment.list;
         if (resaleGiftsList != null) {
             resaleGiftsList.starsOnly = !resaleGiftsList.starsOnly;
-            checkBox2.setChecked(this.list.starsOnly, true);
-            this.list.reload();
+            checkBox2.setChecked(resaleGiftsFragment.list.starsOnly, true);
+            resaleGiftsFragment.list.reload();
         }
     }
 
-    public void lambda$createView$3(View view) {
-        this.list.notSelectedBackdropAttributes.clear();
-        this.list.notSelectedModelAttributes.clear();
-        this.list.notSelectedPatternAttributes.clear();
-        this.list.reload();
+    public static void $r8$lambda$YYsGrstCtB8ubK2T9WHk2GFRq0g(ResaleGiftsFragment resaleGiftsFragment, View view) {
+        resaleGiftsFragment.list.notSelectedBackdropAttributes.clear();
+        resaleGiftsFragment.list.notSelectedModelAttributes.clear();
+        resaleGiftsFragment.list.notSelectedPatternAttributes.clear();
+        resaleGiftsFragment.list.reload();
     }
 
-    public void lambda$createView$9(final CheckBox2 checkBox2, View view) {
-        if (this.filtersShown) {
-            ItemOptions.makeOptions(this, this.sortButton).add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new Runnable() {
+    public static void m3239$r8$lambda$zQiUaUiDNRkcQNcKcxVyFUNzJU(final ResaleGiftsFragment resaleGiftsFragment, final CheckBox2 checkBox2, View view) {
+        if (resaleGiftsFragment.filtersShown) {
+            ItemOptions.makeOptions(resaleGiftsFragment, resaleGiftsFragment.sortButton).add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$4();
+                    this.f$0.list.setSorting(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_PRICE);
                 }
             }).add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$5();
+                    this.f$0.list.setSorting(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_DATE);
                 }
             }).add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$6();
+                    this.f$0.list.setSorting(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_NUMBER);
                 }
-            }).addGap().addChecked(!this.list.starsOnly, LocaleController.getString(R.string.GiftResaleFilterAllListings), new Runnable() {
+            }).addGap().addChecked(!resaleGiftsFragment.list.starsOnly, LocaleController.getString(R.string.GiftResaleFilterAllListings), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$7(checkBox2);
+                    ResaleGiftsFragment.$r8$lambda$Utj4VxgNOCX3fIumjFu7fDZFMkg(this.f$0, checkBox2);
                 }
-            }).addChecked(this.list.starsOnly, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), new Runnable() {
+            }).addChecked(resaleGiftsFragment.list.starsOnly, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$8(checkBox2);
+                    ResaleGiftsFragment.$r8$lambda$0huK69JPK1seaLpi4vl2VgUx_Yc(this.f$0, checkBox2);
                 }
             }).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).show();
         }
     }
 
-    public void lambda$createView$4() {
-        this.list.setSorting(ResaleGiftsList.Sorting.BY_PRICE);
-    }
-
-    public void lambda$createView$5() {
-        this.list.setSorting(ResaleGiftsList.Sorting.BY_DATE);
-    }
-
-    public void lambda$createView$6() {
-        this.list.setSorting(ResaleGiftsList.Sorting.BY_NUMBER);
-    }
-
-    public void lambda$createView$7(CheckBox2 checkBox2) {
-        if (this.list.starsOnly) {
-            this.list.starsOnly = false;
+    public static void $r8$lambda$Utj4VxgNOCX3fIumjFu7fDZFMkg(ResaleGiftsFragment resaleGiftsFragment, CheckBox2 checkBox2) {
+        if (resaleGiftsFragment.list.starsOnly) {
+            resaleGiftsFragment.list.starsOnly = false;
             checkBox2.setChecked(false, true);
-            this.list.reload();
+            resaleGiftsFragment.list.reload();
         }
     }
 
-    public void lambda$createView$8(CheckBox2 checkBox2) {
-        if (this.list.starsOnly) {
+    public static void $r8$lambda$0huK69JPK1seaLpi4vl2VgUx_Yc(ResaleGiftsFragment resaleGiftsFragment, CheckBox2 checkBox2) {
+        if (resaleGiftsFragment.list.starsOnly) {
             return;
         }
-        this.list.starsOnly = true;
+        resaleGiftsFragment.list.starsOnly = true;
         checkBox2.setChecked(true, true);
-        this.list.reload();
+        resaleGiftsFragment.list.reload();
     }
 
-    public void lambda$createView$15(Context context, View view) {
-        if (this.filtersShown && !this.list.modelAttributes.isEmpty()) {
-            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.modelButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+    public static void $r8$lambda$J_fQxtCOoSntxAS4tN2OiipXxEM(final ResaleGiftsFragment resaleGiftsFragment, Context context, View view) {
+        if (resaleGiftsFragment.filtersShown && !resaleGiftsFragment.list.modelAttributes.isEmpty()) {
+            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) resaleGiftsFragment, (View) resaleGiftsFragment.modelButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
             itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.lambda$createView$10(itemOptionsNeedsFocus);
+                    ResaleGiftsFragment.$r8$lambda$M4710f_hfbVJeZIsXhiPXEKmLxQ(itemOptionsNeedsFocus);
                 }
             });
             final String[] strArr = {""};
-            final ArrayList arrayList = new ArrayList(this.list.modelAttributes);
+            final ArrayList arrayList = new ArrayList(resaleGiftsFragment.list.modelAttributes);
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return this.f$0.lambda$createView$11((TL_stars.starGiftAttributeModel) obj, (TL_stars.starGiftAttributeModel) obj2);
+                    return ResaleGiftsFragment.$r8$lambda$u8zkmY4AtXhWMmcXz1zUrmjxZe4(this.f$0, (TL_stars.starGiftAttributeModel) obj, (TL_stars.starGiftAttributeModel) obj2);
                 }
             });
-            final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
+            final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(resaleGiftsFragment, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$createView$12(strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    ResaleGiftsFragment.$r8$lambda$41_y1ll8dw7_4tH1DYk1ylyB0Bc(this.f$0, strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    this.f$0.lambda$createView$13(itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    ResaleGiftsFragment.$r8$lambda$cDEyM_kPPztdCVhFwSvVB10RaKc(this.f$0, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null) {
                 @Override
@@ -508,18 +496,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageView.setImageResource(R.drawable.smiles_inputsearch);
-            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
+            imageView.setColorFilter(new PorterDuffColorFilter(resaleGiftsFragment.getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
             frameLayout.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
-            EditTextCaption editTextCaption = new EditTextCaption(context, this.resourceProvider);
+            EditTextCaption editTextCaption = new EditTextCaption(context, resaleGiftsFragment.resourceProvider);
             editTextCaption.setTextSize(1, 16.0f);
             editTextCaption.setInputType(573441);
             editTextCaption.setRawInputType(573441);
-            editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourceProvider));
-            editTextCaption.setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourceProvider));
+            editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, resaleGiftsFragment.resourceProvider));
+            editTextCaption.setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resaleGiftsFragment.resourceProvider));
             editTextCaption.setCursorSize(AndroidUtilities.dp(19.0f));
             editTextCaption.setCursorWidth(1.5f);
             editTextCaption.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
-            editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourceProvider));
+            editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resaleGiftsFragment.resourceProvider));
             editTextCaption.setBackground(null);
             frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
             editTextCaption.addTextChangedListener(new TextWatcher() {
@@ -541,11 +529,11 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
                 itemOptionsNeedsFocus.addGap();
             }
-            if (!this.list.notSelectedModelAttributes.isEmpty()) {
+            if (!resaleGiftsFragment.list.notSelectedModelAttributes.isEmpty()) {
                 itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createView$14();
+                        ResaleGiftsFragment.$r8$lambda$DDu4d2VfuKVMk9Z7FbwWYDjrO34(this.f$0);
                     }
                 });
             }
@@ -554,16 +542,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
     }
 
-    public static void lambda$createView$10(ItemOptions itemOptions) {
+    public static void $r8$lambda$M4710f_hfbVJeZIsXhiPXEKmLxQ(ItemOptions itemOptions) {
         ActionBarPopupWindow actionBarPopupWindow = itemOptions.actionBarPopupWindow;
         if (actionBarPopupWindow != null) {
             AndroidUtilities.hideKeyboard(actionBarPopupWindow.getContentView());
         }
     }
 
-    public int lambda$createView$11(TL_stars.starGiftAttributeModel stargiftattributemodel, TL_stars.starGiftAttributeModel stargiftattributemodel2) {
-        Integer num = (Integer) this.list.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel.document.id));
-        Integer num2 = (Integer) this.list.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel2.document.id));
+    public static int $r8$lambda$u8zkmY4AtXhWMmcXz1zUrmjxZe4(ResaleGiftsFragment resaleGiftsFragment, TL_stars.starGiftAttributeModel stargiftattributemodel, TL_stars.starGiftAttributeModel stargiftattributemodel2) {
+        Integer num = (Integer) resaleGiftsFragment.list.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel.document.id));
+        Integer num2 = (Integer) resaleGiftsFragment.list.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel2.document.id));
         if (num == null) {
             return 1;
         }
@@ -573,14 +561,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         return num2.intValue() - num.intValue();
     }
 
-    public void lambda$createView$12(String[] strArr, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+    public static void $r8$lambda$41_y1ll8dw7_4tH1DYk1ylyB0Bc(ResaleGiftsFragment resaleGiftsFragment, String[] strArr, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+        resaleGiftsFragment.getClass();
         String lowerCase = strArr[0].toLowerCase();
         String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
-        boolean zIsEmpty = this.list.notSelectedModelAttributes.isEmpty();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) it.next();
-            boolean zContains = this.list.notSelectedModelAttributes.contains(Long.valueOf(stargiftattributemodel.document.id));
+        boolean zIsEmpty = resaleGiftsFragment.list.notSelectedModelAttributes.isEmpty();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
+            boolean zContains = resaleGiftsFragment.list.notSelectedModelAttributes.contains(Long.valueOf(stargiftattributemodel.document.id));
             boolean z = !zContains;
             if (!TextUtils.isEmpty(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(strTranslitSafe)) {
                 if (!stargiftattributemodel.name.toLowerCase().contains(" " + lowerCase)) {
@@ -588,7 +580,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                     }
                 }
             }
-            Integer num = (Integer) this.list.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel.document.id));
+            Integer num = (Integer) resaleGiftsFragment.list.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel.document.id));
             UItem uItemAsModel = ModelItem.Factory.asModel(stargiftattributemodel, num == null ? 0 : num.intValue(), lowerCase);
             if (!TextUtils.isEmpty(lowerCase)) {
                 z = (zIsEmpty || zContains) ? false : true;
@@ -600,61 +592,66 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
     }
 
-    public void lambda$createView$13(ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+    public static void $r8$lambda$cDEyM_kPPztdCVhFwSvVB10RaKc(ResaleGiftsFragment resaleGiftsFragment, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+        resaleGiftsFragment.getClass();
         long j = ((TL_stars.starGiftAttributeModel) uItem.object).document.id;
-        if (!this.list.notSelectedModelAttributes.contains(Long.valueOf(j))) {
-            if (this.list.notSelectedModelAttributes.isEmpty()) {
-                Iterator it = this.list.modelAttributes.iterator();
-                while (it.hasNext()) {
-                    long j2 = ((TL_stars.starGiftAttributeModel) it.next()).document.id;
+        if (!resaleGiftsFragment.list.notSelectedModelAttributes.contains(Long.valueOf(j))) {
+            if (resaleGiftsFragment.list.notSelectedModelAttributes.isEmpty()) {
+                ArrayList arrayList = resaleGiftsFragment.list.modelAttributes;
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    long j2 = ((TL_stars.starGiftAttributeModel) obj).document.id;
                     if (j2 != j) {
-                        this.list.notSelectedModelAttributes.add(Long.valueOf(j2));
+                        resaleGiftsFragment.list.notSelectedModelAttributes.add(Long.valueOf(j2));
                     }
                 }
             } else {
-                this.list.notSelectedModelAttributes.add(Long.valueOf(j));
+                resaleGiftsFragment.list.notSelectedModelAttributes.add(Long.valueOf(j));
             }
         } else {
-            this.list.notSelectedModelAttributes.remove(Long.valueOf(j));
+            resaleGiftsFragment.list.notSelectedModelAttributes.remove(Long.valueOf(j));
         }
-        this.list.reload();
+        resaleGiftsFragment.list.reload();
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$14() {
-        if (this.list.notSelectedModelAttributes.isEmpty()) {
+    public static void $r8$lambda$DDu4d2VfuKVMk9Z7FbwWYDjrO34(ResaleGiftsFragment resaleGiftsFragment) {
+        if (resaleGiftsFragment.list.notSelectedModelAttributes.isEmpty()) {
             return;
         }
-        this.list.notSelectedModelAttributes.clear();
-        this.list.reload();
+        resaleGiftsFragment.list.notSelectedModelAttributes.clear();
+        resaleGiftsFragment.list.reload();
     }
 
-    public void lambda$createView$21(Context context, View view) {
-        if (this.filtersShown && !this.list.backdropAttributes.isEmpty()) {
-            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.backdropButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+    public static void $r8$lambda$tOm7iQOUwUvFxaxZZ9txgkg7_ms(final ResaleGiftsFragment resaleGiftsFragment, Context context, View view) {
+        if (resaleGiftsFragment.filtersShown && !resaleGiftsFragment.list.backdropAttributes.isEmpty()) {
+            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) resaleGiftsFragment, (View) resaleGiftsFragment.backdropButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
             itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.lambda$createView$16(itemOptionsNeedsFocus);
+                    ResaleGiftsFragment.m3232$r8$lambda$RUkQmYJ1b2YtRRpu61kq4klMys(itemOptionsNeedsFocus);
                 }
             });
             final String[] strArr = {""};
-            final ArrayList arrayList = new ArrayList(this.list.backdropAttributes);
+            final ArrayList arrayList = new ArrayList(resaleGiftsFragment.list.backdropAttributes);
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return this.f$0.lambda$createView$17((TL_stars.starGiftAttributeBackdrop) obj, (TL_stars.starGiftAttributeBackdrop) obj2);
+                    return ResaleGiftsFragment.$r8$lambda$SIVIjX3AAQ5X184taRpaBJK1fZM(this.f$0, (TL_stars.starGiftAttributeBackdrop) obj, (TL_stars.starGiftAttributeBackdrop) obj2);
                 }
             });
-            final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
+            final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(resaleGiftsFragment, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$createView$18(strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    ResaleGiftsFragment.m3234$r8$lambda$Q5mPJ9LiS2otCCL9IPytPX4cUg(this.f$0, strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    this.f$0.lambda$createView$19(itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    ResaleGiftsFragment.$r8$lambda$sen_OB9wIGtfAyysjzmdEshw9Tc(this.f$0, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null) {
                 @Override
@@ -667,18 +664,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageView.setImageResource(R.drawable.smiles_inputsearch);
-            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
+            imageView.setColorFilter(new PorterDuffColorFilter(resaleGiftsFragment.getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
             frameLayout.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
-            EditTextCaption editTextCaption = new EditTextCaption(context, this.resourceProvider);
+            EditTextCaption editTextCaption = new EditTextCaption(context, resaleGiftsFragment.resourceProvider);
             editTextCaption.setTextSize(1, 16.0f);
             editTextCaption.setInputType(573441);
             editTextCaption.setRawInputType(573441);
-            editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourceProvider));
-            editTextCaption.setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourceProvider));
+            editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, resaleGiftsFragment.resourceProvider));
+            editTextCaption.setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resaleGiftsFragment.resourceProvider));
             editTextCaption.setCursorSize(AndroidUtilities.dp(19.0f));
             editTextCaption.setCursorWidth(1.5f);
             editTextCaption.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
-            editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourceProvider));
+            editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resaleGiftsFragment.resourceProvider));
             editTextCaption.setBackground(null);
             frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
             editTextCaption.addTextChangedListener(new TextWatcher() {
@@ -700,11 +697,11 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
                 itemOptionsNeedsFocus.addGap();
             }
-            if (!this.list.notSelectedBackdropAttributes.isEmpty()) {
+            if (!resaleGiftsFragment.list.notSelectedBackdropAttributes.isEmpty()) {
                 itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createView$20();
+                        ResaleGiftsFragment.$r8$lambda$AHXkdp7PSCvUpNDj_cLZxUqQ4Rw(this.f$0);
                     }
                 });
             }
@@ -713,16 +710,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
     }
 
-    public static void lambda$createView$16(ItemOptions itemOptions) {
+    public static void m3232$r8$lambda$RUkQmYJ1b2YtRRpu61kq4klMys(ItemOptions itemOptions) {
         ActionBarPopupWindow actionBarPopupWindow = itemOptions.actionBarPopupWindow;
         if (actionBarPopupWindow != null) {
             AndroidUtilities.hideKeyboard(actionBarPopupWindow.getContentView());
         }
     }
 
-    public int lambda$createView$17(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2) {
-        Integer num = (Integer) this.list.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
-        Integer num2 = (Integer) this.list.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop2.backdrop_id));
+    public static int $r8$lambda$SIVIjX3AAQ5X184taRpaBJK1fZM(ResaleGiftsFragment resaleGiftsFragment, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2) {
+        Integer num = (Integer) resaleGiftsFragment.list.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+        Integer num2 = (Integer) resaleGiftsFragment.list.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop2.backdrop_id));
         if (num == null) {
             return 1;
         }
@@ -732,14 +729,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         return num2.intValue() - num.intValue();
     }
 
-    public void lambda$createView$18(String[] strArr, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+    public static void m3234$r8$lambda$Q5mPJ9LiS2otCCL9IPytPX4cUg(ResaleGiftsFragment resaleGiftsFragment, String[] strArr, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+        resaleGiftsFragment.getClass();
         String lowerCase = strArr[0].toLowerCase();
         String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
-        boolean zIsEmpty = this.list.notSelectedBackdropAttributes.isEmpty();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) it.next();
-            boolean zContains = this.list.notSelectedBackdropAttributes.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+        boolean zIsEmpty = resaleGiftsFragment.list.notSelectedBackdropAttributes.isEmpty();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj;
+            boolean zContains = resaleGiftsFragment.list.notSelectedBackdropAttributes.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
             boolean z = !zContains;
             if (!TextUtils.isEmpty(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(strTranslitSafe)) {
                 if (!stargiftattributebackdrop.name.toLowerCase().contains(" " + lowerCase)) {
@@ -747,7 +748,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                     }
                 }
             }
-            Integer num = (Integer) this.list.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+            Integer num = (Integer) resaleGiftsFragment.list.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
             UItem uItemAsBackdrop = BackdropItem.Factory.asBackdrop(stargiftattributebackdrop, num == null ? 0 : num.intValue(), lowerCase);
             if (!TextUtils.isEmpty(lowerCase)) {
                 z = (zIsEmpty || zContains) ? false : true;
@@ -759,61 +760,66 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
     }
 
-    public void lambda$createView$19(ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+    public static void $r8$lambda$sen_OB9wIGtfAyysjzmdEshw9Tc(ResaleGiftsFragment resaleGiftsFragment, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+        resaleGiftsFragment.getClass();
         int i = ((TL_stars.starGiftAttributeBackdrop) uItem.object).backdrop_id;
-        if (!this.list.notSelectedBackdropAttributes.contains(Integer.valueOf(i))) {
-            if (this.list.notSelectedBackdropAttributes.isEmpty()) {
-                Iterator it = this.list.backdropAttributes.iterator();
-                while (it.hasNext()) {
-                    int i2 = ((TL_stars.starGiftAttributeBackdrop) it.next()).backdrop_id;
-                    if (i2 != i) {
-                        this.list.notSelectedBackdropAttributes.add(Integer.valueOf(i2));
+        if (!resaleGiftsFragment.list.notSelectedBackdropAttributes.contains(Integer.valueOf(i))) {
+            if (resaleGiftsFragment.list.notSelectedBackdropAttributes.isEmpty()) {
+                ArrayList arrayList = resaleGiftsFragment.list.backdropAttributes;
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    int i3 = ((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id;
+                    if (i3 != i) {
+                        resaleGiftsFragment.list.notSelectedBackdropAttributes.add(Integer.valueOf(i3));
                     }
                 }
             } else {
-                this.list.notSelectedBackdropAttributes.add(Integer.valueOf(i));
+                resaleGiftsFragment.list.notSelectedBackdropAttributes.add(Integer.valueOf(i));
             }
         } else {
-            this.list.notSelectedBackdropAttributes.remove(Integer.valueOf(i));
+            resaleGiftsFragment.list.notSelectedBackdropAttributes.remove(Integer.valueOf(i));
         }
-        this.list.reload();
+        resaleGiftsFragment.list.reload();
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$20() {
-        if (this.list.notSelectedBackdropAttributes.isEmpty()) {
+    public static void $r8$lambda$AHXkdp7PSCvUpNDj_cLZxUqQ4Rw(ResaleGiftsFragment resaleGiftsFragment) {
+        if (resaleGiftsFragment.list.notSelectedBackdropAttributes.isEmpty()) {
             return;
         }
-        this.list.notSelectedBackdropAttributes.clear();
-        this.list.reload();
+        resaleGiftsFragment.list.notSelectedBackdropAttributes.clear();
+        resaleGiftsFragment.list.reload();
     }
 
-    public void lambda$createView$27(Context context, View view) {
-        if (this.filtersShown && !this.list.patternAttributes.isEmpty()) {
-            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.patternButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+    public static void $r8$lambda$Ik3EkzoHGiDmZlh2Q_qXQDOB1Cg(final ResaleGiftsFragment resaleGiftsFragment, Context context, View view) {
+        if (resaleGiftsFragment.filtersShown && !resaleGiftsFragment.list.patternAttributes.isEmpty()) {
+            final ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) resaleGiftsFragment, (View) resaleGiftsFragment.patternButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
             itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.lambda$createView$22(itemOptionsNeedsFocus);
+                    ResaleGiftsFragment.m3237$r8$lambda$kH9LaQNaGSxv4RJm8BfQ1MAX70(itemOptionsNeedsFocus);
                 }
             });
             final String[] strArr = {""};
-            final ArrayList arrayList = new ArrayList(this.list.patternAttributes);
+            final ArrayList arrayList = new ArrayList(resaleGiftsFragment.list.patternAttributes);
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return this.f$0.lambda$createView$23((TL_stars.starGiftAttributePattern) obj, (TL_stars.starGiftAttributePattern) obj2);
+                    return ResaleGiftsFragment.$r8$lambda$204hdUgo_bZH0cWRqsNDQTyQRsY(this.f$0, (TL_stars.starGiftAttributePattern) obj, (TL_stars.starGiftAttributePattern) obj2);
                 }
             });
-            final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
+            final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(resaleGiftsFragment, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$createView$24(strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    ResaleGiftsFragment.$r8$lambda$55mceN76xVII0R7pomOS04lrKTw(this.f$0, strArr, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    this.f$0.lambda$createView$25(itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    ResaleGiftsFragment.$r8$lambda$hINHo7lceoELUi7wVNGSmji46OA(this.f$0, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null) {
                 @Override
@@ -826,18 +832,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageView.setImageResource(R.drawable.smiles_inputsearch);
-            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
+            imageView.setColorFilter(new PorterDuffColorFilter(resaleGiftsFragment.getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
             frameLayout.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
-            EditTextCaption editTextCaption = new EditTextCaption(context, this.resourceProvider);
+            EditTextCaption editTextCaption = new EditTextCaption(context, resaleGiftsFragment.resourceProvider);
             editTextCaption.setTextSize(1, 16.0f);
             editTextCaption.setInputType(573441);
             editTextCaption.setRawInputType(573441);
-            editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourceProvider));
-            editTextCaption.setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourceProvider));
+            editTextCaption.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, resaleGiftsFragment.resourceProvider));
+            editTextCaption.setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resaleGiftsFragment.resourceProvider));
             editTextCaption.setCursorSize(AndroidUtilities.dp(19.0f));
             editTextCaption.setCursorWidth(1.5f);
             editTextCaption.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
-            editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourceProvider));
+            editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resaleGiftsFragment.resourceProvider));
             editTextCaption.setBackground(null);
             frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
             editTextCaption.addTextChangedListener(new TextWatcher() {
@@ -859,11 +865,11 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
                 itemOptionsNeedsFocus.addGap();
             }
-            if (!this.list.notSelectedPatternAttributes.isEmpty()) {
+            if (!resaleGiftsFragment.list.notSelectedPatternAttributes.isEmpty()) {
                 itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createView$26();
+                        ResaleGiftsFragment.$r8$lambda$ckYRL7vu8bD2HaUX6dIwrJXWR60(this.f$0);
                     }
                 });
             }
@@ -872,16 +878,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
     }
 
-    public static void lambda$createView$22(ItemOptions itemOptions) {
+    public static void m3237$r8$lambda$kH9LaQNaGSxv4RJm8BfQ1MAX70(ItemOptions itemOptions) {
         ActionBarPopupWindow actionBarPopupWindow = itemOptions.actionBarPopupWindow;
         if (actionBarPopupWindow != null) {
             AndroidUtilities.hideKeyboard(actionBarPopupWindow.getContentView());
         }
     }
 
-    public int lambda$createView$23(TL_stars.starGiftAttributePattern stargiftattributepattern, TL_stars.starGiftAttributePattern stargiftattributepattern2) {
-        Integer num = (Integer) this.list.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern.document.id));
-        Integer num2 = (Integer) this.list.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern2.document.id));
+    public static int $r8$lambda$204hdUgo_bZH0cWRqsNDQTyQRsY(ResaleGiftsFragment resaleGiftsFragment, TL_stars.starGiftAttributePattern stargiftattributepattern, TL_stars.starGiftAttributePattern stargiftattributepattern2) {
+        Integer num = (Integer) resaleGiftsFragment.list.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern.document.id));
+        Integer num2 = (Integer) resaleGiftsFragment.list.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern2.document.id));
         if (num == null) {
             return 1;
         }
@@ -891,14 +897,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         return num2.intValue() - num.intValue();
     }
 
-    public void lambda$createView$24(String[] strArr, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+    public static void $r8$lambda$55mceN76xVII0R7pomOS04lrKTw(ResaleGiftsFragment resaleGiftsFragment, String[] strArr, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+        resaleGiftsFragment.getClass();
         String lowerCase = strArr[0].toLowerCase();
         String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
-        boolean zIsEmpty = this.list.notSelectedPatternAttributes.isEmpty();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) it.next();
-            boolean zContains = this.list.notSelectedPatternAttributes.contains(Long.valueOf(stargiftattributepattern.document.id));
+        boolean zIsEmpty = resaleGiftsFragment.list.notSelectedPatternAttributes.isEmpty();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj;
+            boolean zContains = resaleGiftsFragment.list.notSelectedPatternAttributes.contains(Long.valueOf(stargiftattributepattern.document.id));
             boolean z = !zContains;
             if (!TextUtils.isEmpty(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(strTranslitSafe)) {
                 if (!stargiftattributepattern.name.toLowerCase().contains(" " + lowerCase)) {
@@ -906,7 +916,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                     }
                 }
             }
-            Integer num = (Integer) this.list.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern.document.id));
+            Integer num = (Integer) resaleGiftsFragment.list.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern.document.id));
             UItem uItemAsPattern = PatternItem.Factory.asPattern(stargiftattributepattern, num == null ? 0 : num.intValue(), lowerCase);
             if (!TextUtils.isEmpty(lowerCase)) {
                 z = (zIsEmpty || zContains) ? false : true;
@@ -918,33 +928,38 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
     }
 
-    public void lambda$createView$25(ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+    public static void $r8$lambda$hINHo7lceoELUi7wVNGSmji46OA(ResaleGiftsFragment resaleGiftsFragment, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+        resaleGiftsFragment.getClass();
         long j = ((TL_stars.starGiftAttributePattern) uItem.object).document.id;
-        if (!this.list.notSelectedPatternAttributes.contains(Long.valueOf(j))) {
-            if (this.list.notSelectedPatternAttributes.isEmpty()) {
-                Iterator it = this.list.patternAttributes.iterator();
-                while (it.hasNext()) {
-                    long j2 = ((TL_stars.starGiftAttributePattern) it.next()).document.id;
+        if (!resaleGiftsFragment.list.notSelectedPatternAttributes.contains(Long.valueOf(j))) {
+            if (resaleGiftsFragment.list.notSelectedPatternAttributes.isEmpty()) {
+                ArrayList arrayList = resaleGiftsFragment.list.patternAttributes;
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    long j2 = ((TL_stars.starGiftAttributePattern) obj).document.id;
                     if (j2 != j) {
-                        this.list.notSelectedPatternAttributes.add(Long.valueOf(j2));
+                        resaleGiftsFragment.list.notSelectedPatternAttributes.add(Long.valueOf(j2));
                     }
                 }
             } else {
-                this.list.notSelectedPatternAttributes.add(Long.valueOf(j));
+                resaleGiftsFragment.list.notSelectedPatternAttributes.add(Long.valueOf(j));
             }
         } else {
-            this.list.notSelectedPatternAttributes.remove(Long.valueOf(j));
+            resaleGiftsFragment.list.notSelectedPatternAttributes.remove(Long.valueOf(j));
         }
-        this.list.reload();
+        resaleGiftsFragment.list.reload();
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$26() {
-        if (this.list.notSelectedPatternAttributes.isEmpty()) {
+    public static void $r8$lambda$ckYRL7vu8bD2HaUX6dIwrJXWR60(ResaleGiftsFragment resaleGiftsFragment) {
+        if (resaleGiftsFragment.list.notSelectedPatternAttributes.isEmpty()) {
             return;
         }
-        this.list.notSelectedPatternAttributes.clear();
-        this.list.reload();
+        resaleGiftsFragment.list.notSelectedPatternAttributes.clear();
+        resaleGiftsFragment.list.reload();
     }
 
     private void setFiltersShown(final boolean z, boolean z2) {
@@ -1021,9 +1036,14 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        Iterator it = this.list.gifts.iterator();
-        while (it.hasNext()) {
-            arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it.next(), false, false, false, true, false));
+        ArrayList arrayList2 = this.list.gifts;
+        int size = arrayList2.size();
+        boolean z = false;
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList2.get(i);
+            i++;
+            arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) obj, false, false, false, true, false));
         }
         ResaleGiftsList resaleGiftsList = this.list;
         if (resaleGiftsList.loading || !resaleGiftsList.endReached) {
@@ -1045,7 +1065,10 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 arrayList.add(UItem.asFlicker(-15, 34).setSpanCount(1));
             }
         }
-        updateEmptyView(arrayList.isEmpty() && !this.list.loading);
+        if (arrayList.isEmpty() && !this.list.loading) {
+            z = true;
+        }
+        updateEmptyView(z);
     }
 
     private void updateEmptyView(final boolean z) {
@@ -1083,23 +1106,23 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             starGiftSheet.setOnBoughtGift(new StarGiftSheet.BoughtGiftCallback() {
                 @Override
                 public final void onBoughtGift(TL_stars.TL_starGiftUnique tL_starGiftUnique2, long j, boolean z) {
-                    this.f$0.lambda$onItemClick$28(tL_starGiftUnique2, j, z);
+                    ResaleGiftsFragment.m3233$r8$lambda$F9YPDHUewerqKY7Jn8UezBJQvM(this.f$0, tL_starGiftUnique2, j, z);
                 }
             });
             showDialog(starGiftSheet);
         }
     }
 
-    public void lambda$onItemClick$28(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, boolean z) {
-        if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-            this.list.gifts.remove(tL_starGiftUnique);
-            updateList(false);
-            if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftTitle), LocaleController.formatString(R.string.BoughtResoldGiftText, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','))).hideAfterBottomSheet(false).show();
+    public static void m3233$r8$lambda$F9YPDHUewerqKY7Jn8UezBJQvM(ResaleGiftsFragment resaleGiftsFragment, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, boolean z) {
+        if (j == UserConfig.getInstance(resaleGiftsFragment.currentAccount).getClientUserId()) {
+            resaleGiftsFragment.list.gifts.remove(tL_starGiftUnique);
+            resaleGiftsFragment.updateList(false);
+            if (j == UserConfig.getInstance(resaleGiftsFragment.currentAccount).getClientUserId()) {
+                BulletinFactory.of(resaleGiftsFragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftTitle), LocaleController.formatString(R.string.BoughtResoldGiftText, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','))).hideAfterBottomSheet(false).show();
             } else {
-                BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, j))).hideAfterBottomSheet(false).show();
+                BulletinFactory.of(resaleGiftsFragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(resaleGiftsFragment.currentAccount, j))).hideAfterBottomSheet(false).show();
             }
-            this.fireworksOverlay.start(true);
+            resaleGiftsFragment.fireworksOverlay.start(true);
             return;
         }
         Bundle bundle = new Bundle();
@@ -1125,21 +1148,21 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 }
             }
         };
-        INavigationLayout iNavigationLayout = this.parentLayout;
+        INavigationLayout iNavigationLayout = resaleGiftsFragment.parentLayout;
         if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
-            Dialog dialog = this.parentDialog;
+            Dialog dialog = resaleGiftsFragment.parentDialog;
             if ((dialog instanceof BottomSheet) && z) {
                 ((BottomSheet) dialog).skipDismissAnimation();
             }
-            finishFragment();
+            resaleGiftsFragment.finishFragment();
             BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
             if (safeLastFragment != null) {
                 safeLastFragment.presentFragment(chatActivity, false, z);
             }
         } else {
-            presentFragment(chatActivity, true, z);
+            resaleGiftsFragment.presentFragment(chatActivity, true, z);
         }
-        Utilities.Callback callback = this.closeParentSheet;
+        Utilities.Callback callback = resaleGiftsFragment.closeParentSheet;
         if (callback != null) {
             callback.run(Boolean.valueOf(z));
         }
@@ -1244,6 +1267,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 getresalestargifts.for_craft = this.for_craft;
                 getresalestargifts.stars_only = this.starsOnly;
                 Sorting sorting = this.sorting;
+                int i = 0;
                 if (sorting == Sorting.BY_NUMBER) {
                     getresalestargifts.sort_by_num = true;
                     getresalestargifts.sort_by_price = false;
@@ -1265,7 +1289,13 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 if (!this.notSelectedModelAttributes.isEmpty() || !this.notSelectedBackdropAttributes.isEmpty() || !this.notSelectedPatternAttributes.isEmpty()) {
                     getresalestargifts.flags |= 8;
                     if (!this.notSelectedModelAttributes.isEmpty()) {
-                        for (TL_stars.starGiftAttributeModel stargiftattributemodel : this.modelAttributes) {
+                        ArrayList arrayList = this.modelAttributes;
+                        int size = arrayList.size();
+                        int i2 = 0;
+                        while (i2 < size) {
+                            Object obj = arrayList.get(i2);
+                            i2++;
+                            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
                             if (!this.notSelectedModelAttributes.contains(Long.valueOf(stargiftattributemodel.document.id))) {
                                 TL_stars.starGiftAttributeIdModel stargiftattributeidmodel = new TL_stars.starGiftAttributeIdModel();
                                 stargiftattributeidmodel.document_id = stargiftattributemodel.document.id;
@@ -1274,7 +1304,13 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                         }
                     }
                     if (!this.notSelectedBackdropAttributes.isEmpty()) {
-                        for (TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop : this.backdropAttributes) {
+                        ArrayList arrayList2 = this.backdropAttributes;
+                        int size2 = arrayList2.size();
+                        int i3 = 0;
+                        while (i3 < size2) {
+                            Object obj2 = arrayList2.get(i3);
+                            i3++;
+                            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj2;
                             if (!this.notSelectedBackdropAttributes.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id))) {
                                 TL_stars.starGiftAttributeIdBackdrop stargiftattributeidbackdrop = new TL_stars.starGiftAttributeIdBackdrop();
                                 stargiftattributeidbackdrop.backdrop_id = stargiftattributebackdrop.backdrop_id;
@@ -1283,7 +1319,12 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                         }
                     }
                     if (!this.notSelectedPatternAttributes.isEmpty()) {
-                        for (TL_stars.starGiftAttributePattern stargiftattributepattern : this.patternAttributes) {
+                        ArrayList arrayList3 = this.patternAttributes;
+                        int size3 = arrayList3.size();
+                        while (i < size3) {
+                            Object obj3 = arrayList3.get(i);
+                            i++;
+                            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj3;
                             if (!this.notSelectedPatternAttributes.contains(Long.valueOf(stargiftattributepattern.document.id))) {
                                 TL_stars.starGiftAttributeIdPattern stargiftattributeidpattern = new TL_stars.starGiftAttributeIdPattern();
                                 stargiftattributeidpattern.document_id = stargiftattributepattern.document.id;
@@ -1295,73 +1336,86 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 this.reqId = ConnectionsManager.getInstance(this.account).sendRequest(getresalestargifts, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$load$1(getresalestargifts, tLObject, tL_error);
+                        ResaleGiftsFragment.ResaleGiftsList.$r8$lambda$0TZbi1pCp0YNDkJvhLiO9e1CT_I(this.f$0, getresalestargifts, tLObject, tL_error);
                     }
                 });
             }
         }
 
-        public void lambda$load$1(final TL_stars.getResaleStarGifts getresalestargifts, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$0TZbi1pCp0YNDkJvhLiO9e1CT_I(final ResaleGiftsList resaleGiftsList, final TL_stars.getResaleStarGifts getresalestargifts, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            resaleGiftsList.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$load$0(tLObject, getresalestargifts);
+                    ResaleGiftsFragment.ResaleGiftsList.$r8$lambda$UlMuE_FAjfHMVEwd0kYQzAI6Y5o(this.f$0, tLObject, getresalestargifts);
                 }
             });
         }
 
-        public void lambda$load$0(TLObject tLObject, TL_stars.getResaleStarGifts getresalestargifts) {
+        public static void $r8$lambda$UlMuE_FAjfHMVEwd0kYQzAI6Y5o(ResaleGiftsList resaleGiftsList, TLObject tLObject, TL_stars.getResaleStarGifts getresalestargifts) {
             boolean z;
-            this.reqId = -1;
+            resaleGiftsList.reqId = -1;
             if (tLObject instanceof TL_stars.resaleStarGifts) {
                 TL_stars.resaleStarGifts resalestargifts = (TL_stars.resaleStarGifts) tLObject;
-                MessagesController.getInstance(this.account).putUsers(resalestargifts.users, false);
-                MessagesController.getInstance(this.account).putChats(resalestargifts.chats, false);
-                this.totalCount = resalestargifts.count;
+                int i = 0;
+                MessagesController.getInstance(resaleGiftsList.account).putUsers(resalestargifts.users, false);
+                MessagesController.getInstance(resaleGiftsList.account).putChats(resalestargifts.chats, false);
+                resaleGiftsList.totalCount = resalestargifts.count;
                 boolean z2 = true;
                 if (TextUtils.isEmpty(getresalestargifts.offset)) {
-                    this.gifts.clear();
+                    resaleGiftsList.gifts.clear();
                     z = true;
                 } else {
                     z = false;
                 }
-                for (TL_stars.StarGift starGift : resalestargifts.gifts) {
-                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                        this.gifts.add((TL_stars.TL_starGiftUnique) starGift);
+                ArrayList<TL_stars.StarGift> arrayList = resalestargifts.gifts;
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    TL_stars.StarGift starGift = arrayList.get(i2);
+                    i2++;
+                    TL_stars.StarGift starGift2 = starGift;
+                    if (starGift2 instanceof TL_stars.TL_starGiftUnique) {
+                        resaleGiftsList.gifts.add((TL_stars.TL_starGiftUnique) starGift2);
                     }
                 }
-                if (this.gifts.size() < this.totalCount && !TextUtils.isEmpty(resalestargifts.next_offset)) {
+                if (resaleGiftsList.gifts.size() < resaleGiftsList.totalCount && !TextUtils.isEmpty(resalestargifts.next_offset)) {
                     z2 = false;
                 }
-                this.endReached = z2;
-                this.last_offset = resalestargifts.next_offset;
-                this.loading = false;
-                ArrayList<TL_stars.StarGiftAttribute> arrayList = resalestargifts.attributes;
-                if (arrayList != null && !arrayList.isEmpty()) {
-                    this.modelAttributes.clear();
-                    this.backdropAttributes.clear();
-                    this.patternAttributes.clear();
-                    this.modelAttributes.addAll(StarsController.findAttributes(resalestargifts.attributes, TL_stars.starGiftAttributeModel.class));
-                    this.backdropAttributes.addAll(StarsController.findAttributes(resalestargifts.attributes, TL_stars.starGiftAttributeBackdrop.class));
-                    this.patternAttributes.addAll(StarsController.findAttributes(resalestargifts.attributes, TL_stars.starGiftAttributePattern.class));
-                    this.attributes_hash = resalestargifts.attributes_hash;
+                resaleGiftsList.endReached = z2;
+                resaleGiftsList.last_offset = resalestargifts.next_offset;
+                resaleGiftsList.loading = false;
+                ArrayList<TL_stars.StarGiftAttribute> arrayList2 = resalestargifts.attributes;
+                if (arrayList2 != null && !arrayList2.isEmpty()) {
+                    resaleGiftsList.modelAttributes.clear();
+                    resaleGiftsList.backdropAttributes.clear();
+                    resaleGiftsList.patternAttributes.clear();
+                    resaleGiftsList.modelAttributes.addAll(StarsController.findAttributes(resalestargifts.attributes, TL_stars.starGiftAttributeModel.class));
+                    resaleGiftsList.backdropAttributes.addAll(StarsController.findAttributes(resalestargifts.attributes, TL_stars.starGiftAttributeBackdrop.class));
+                    resaleGiftsList.patternAttributes.addAll(StarsController.findAttributes(resalestargifts.attributes, TL_stars.starGiftAttributePattern.class));
+                    resaleGiftsList.attributes_hash = resalestargifts.attributes_hash;
                 }
                 if (!resalestargifts.counters.isEmpty()) {
-                    this.backdropAttributesCounter.clear();
-                    this.patternAttributesCounter.clear();
-                    this.modelAttributesCounter.clear();
-                    for (TL_stars.starGiftAttributeCounter stargiftattributecounter : resalestargifts.counters) {
-                        TL_stars.StarGiftAttributeId starGiftAttributeId = stargiftattributecounter.attribute;
+                    resaleGiftsList.backdropAttributesCounter.clear();
+                    resaleGiftsList.patternAttributesCounter.clear();
+                    resaleGiftsList.modelAttributesCounter.clear();
+                    ArrayList<TL_stars.starGiftAttributeCounter> arrayList3 = resalestargifts.counters;
+                    int size2 = arrayList3.size();
+                    while (i < size2) {
+                        TL_stars.starGiftAttributeCounter stargiftattributecounter = arrayList3.get(i);
+                        i++;
+                        TL_stars.starGiftAttributeCounter stargiftattributecounter2 = stargiftattributecounter;
+                        TL_stars.StarGiftAttributeId starGiftAttributeId = stargiftattributecounter2.attribute;
                         if (starGiftAttributeId instanceof TL_stars.starGiftAttributeIdBackdrop) {
-                            this.backdropAttributesCounter.put(Integer.valueOf(starGiftAttributeId.backdrop_id), Integer.valueOf(stargiftattributecounter.count));
+                            resaleGiftsList.backdropAttributesCounter.put(Integer.valueOf(starGiftAttributeId.backdrop_id), Integer.valueOf(stargiftattributecounter2.count));
                         } else if (starGiftAttributeId instanceof TL_stars.starGiftAttributeIdPattern) {
-                            this.patternAttributesCounter.put(Long.valueOf(starGiftAttributeId.document_id), Integer.valueOf(stargiftattributecounter.count));
+                            resaleGiftsList.patternAttributesCounter.put(Long.valueOf(starGiftAttributeId.document_id), Integer.valueOf(stargiftattributecounter2.count));
                         } else if (starGiftAttributeId instanceof TL_stars.starGiftAttributeIdModel) {
-                            this.modelAttributesCounter.put(Long.valueOf(starGiftAttributeId.document_id), Integer.valueOf(stargiftattributecounter.count));
+                            resaleGiftsList.modelAttributesCounter.put(Long.valueOf(starGiftAttributeId.document_id), Integer.valueOf(stargiftattributecounter2.count));
                         }
                     }
                 }
-                Utilities.Callback callback = this.onUpdate;
+                Utilities.Callback callback = resaleGiftsList.onUpdate;
                 if (callback != null) {
                     callback.run(Boolean.valueOf(z));
                 }
@@ -1954,7 +2008,24 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             this.sortButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$3(state, view);
+                    ResaleGiftsFragment.SelectGiftSheet selectGiftSheet = this.f$0;
+                    ResaleGiftsFragment.SelectGiftSheet.State state2 = state;
+                    ItemOptions.makeOptions(selectGiftSheet.container, selectGiftSheet.resourcesProvider, selectGiftSheet.sortButton).add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new Runnable() {
+                        @Override
+                        public final void run() {
+                            state2.resaleList.setSorting(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_PRICE);
+                        }
+                    }).add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new Runnable() {
+                        @Override
+                        public final void run() {
+                            state2.resaleList.setSorting(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_DATE);
+                        }
+                    }).add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new Runnable() {
+                        @Override
+                        public final void run() {
+                            state2.resaleList.setSorting(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_NUMBER);
+                        }
+                    }).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).show();
                 }
             });
             Filter filter2 = new Filter(context, this.resourcesProvider);
@@ -2013,7 +2084,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
                 @Override
                 public final void onItemClick(View view, int i, float f, float f2) {
-                    this.f$0.lambda$new$22(state, view, i, f, f2);
+                    ResaleGiftsFragment.SelectGiftSheet.m3240$r8$lambda$ChXgb8G4oBIUgRB6WxuDVFDBzo(this.f$0, state, view, i, f, f2);
                 }
             });
             this.recyclerListView.setPadding(this.backgroundPaddingLeft + AndroidUtilities.dp(8.0f), 0, this.backgroundPaddingLeft + AndroidUtilities.dp(8.0f), 0);
@@ -2032,7 +2103,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             this.recyclerListView.setItemSelectorColorProvider(new GenericProvider() {
                 @Override
                 public final Object provide(Object obj) {
-                    return ResaleGiftsFragment.SelectGiftSheet.lambda$new$23((Integer) obj);
+                    return ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$hvepRCM1oIxSlAU8elHLQG_OelQ((Integer) obj);
                 }
             });
             StarGiftSheet.ActionView actionView = new StarGiftSheet.ActionView(context);
@@ -2047,40 +2118,9 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             state.listen(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$24();
+                    ResaleGiftsFragment.SelectGiftSheet.m3247$r8$lambda$owiIbB48vOyrb9J970_I04XQz4(this.f$0);
                 }
             });
-        }
-
-        public void lambda$new$3(final State state, View view) {
-            ItemOptions.makeOptions(this.container, this.resourcesProvider, this.sortButton).add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new Runnable() {
-                @Override
-                public final void run() {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$0(state);
-                }
-            }).add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new Runnable() {
-                @Override
-                public final void run() {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$1(state);
-                }
-            }).add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new Runnable() {
-                @Override
-                public final void run() {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$2(state);
-                }
-            }).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).show();
-        }
-
-        public static void lambda$new$0(State state) {
-            state.resaleList.setSorting(ResaleGiftsList.Sorting.BY_PRICE);
-        }
-
-        public static void lambda$new$1(State state) {
-            state.resaleList.setSorting(ResaleGiftsList.Sorting.BY_DATE);
-        }
-
-        public static void lambda$new$2(State state) {
-            state.resaleList.setSorting(ResaleGiftsList.Sorting.BY_NUMBER);
         }
 
         public void lambda$new$9(final State state, Context context, View view) {
@@ -2091,7 +2131,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$4(itemOptionsNeedsFocus);
+                    ResaleGiftsFragment.SelectGiftSheet.m3250$r8$lambda$vvs1yz87O9ZsTYBNb8sIhiSnlk(itemOptionsNeedsFocus);
                 }
             });
             final String[] strArr = {""};
@@ -2099,18 +2139,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return ResaleGiftsFragment.SelectGiftSheet.lambda$new$5(state, (TL_stars.starGiftAttributeModel) obj, (TL_stars.starGiftAttributeModel) obj2);
+                    return ResaleGiftsFragment.SelectGiftSheet.m3249$r8$lambda$sn7TqtNUbVqBdAJIr3uNpOA5Lc(state, (TL_stars.starGiftAttributeModel) obj, (TL_stars.starGiftAttributeModel) obj2);
                 }
             });
             final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$6(strArr, state, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    ResaleGiftsFragment.SelectGiftSheet.m3242$r8$lambda$NuNOn8c9I0mZIx6PGm5NVujes(strArr, state, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$7(state, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$4zUsK7IE39TWmjo4NaJbrkFMSdk(state, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null, this.resourcesProvider) {
                 @Override
@@ -2160,7 +2200,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
-                        ResaleGiftsFragment.SelectGiftSheet.lambda$new$8(state);
+                        ResaleGiftsFragment.SelectGiftSheet.m3248$r8$lambda$qn1VK4C6vWIgv_OkTc9loxTwE8(state);
                     }
                 });
             }
@@ -2168,14 +2208,14 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             itemOptionsNeedsFocus.show();
         }
 
-        public static void lambda$new$4(ItemOptions itemOptions) {
+        public static void m3250$r8$lambda$vvs1yz87O9ZsTYBNb8sIhiSnlk(ItemOptions itemOptions) {
             ActionBarPopupWindow actionBarPopupWindow = itemOptions.actionBarPopupWindow;
             if (actionBarPopupWindow != null) {
                 AndroidUtilities.hideKeyboard(actionBarPopupWindow.getContentView());
             }
         }
 
-        public static int lambda$new$5(State state, TL_stars.starGiftAttributeModel stargiftattributemodel, TL_stars.starGiftAttributeModel stargiftattributemodel2) {
+        public static int m3249$r8$lambda$sn7TqtNUbVqBdAJIr3uNpOA5Lc(State state, TL_stars.starGiftAttributeModel stargiftattributemodel, TL_stars.starGiftAttributeModel stargiftattributemodel2) {
             Integer num = (Integer) state.resaleList.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel.document.id));
             Integer num2 = (Integer) state.resaleList.modelAttributesCounter.get(Long.valueOf(stargiftattributemodel2.document.id));
             if (num == null) {
@@ -2187,13 +2227,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             return num2.intValue() - num.intValue();
         }
 
-        public static void lambda$new$6(String[] strArr, State state, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+        public static void m3242$r8$lambda$NuNOn8c9I0mZIx6PGm5NVujes(String[] strArr, State state, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
             String lowerCase = strArr[0].toLowerCase();
             String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
             boolean zIsEmpty = state.resaleList.notSelectedModelAttributes.isEmpty();
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) it.next();
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
                 boolean zContains = state.resaleList.notSelectedModelAttributes.contains(Long.valueOf(stargiftattributemodel.document.id));
                 boolean z = !zContains;
                 if (!TextUtils.isEmpty(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) && !stargiftattributemodel.name.toLowerCase().startsWith(strTranslitSafe)) {
@@ -2214,11 +2257,17 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             }
         }
 
-        public static void lambda$new$7(State state, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+        public static void $r8$lambda$4zUsK7IE39TWmjo4NaJbrkFMSdk(State state, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
             long j = ((TL_stars.starGiftAttributeModel) uItem.object).document.id;
             if (!state.resaleList.notSelectedModelAttributes.contains(Long.valueOf(j))) {
                 if (state.resaleList.notSelectedModelAttributes.isEmpty()) {
-                    for (TL_stars.starGiftAttributeModel stargiftattributemodel : state.resaleList.modelAttributes) {
+                    ArrayList arrayList = state.resaleList.modelAttributes;
+                    int size = arrayList.size();
+                    int i = 0;
+                    while (i < size) {
+                        Object obj = arrayList.get(i);
+                        i++;
+                        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
                         if (stargiftattributemodel.document.id != j) {
                             state.resaleList.notSelectedModelAttributes.add(Long.valueOf(stargiftattributemodel.document.id));
                         }
@@ -2233,7 +2282,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             itemOptions.dismiss();
         }
 
-        public static void lambda$new$8(State state) {
+        public static void m3248$r8$lambda$qn1VK4C6vWIgv_OkTc9loxTwE8(State state) {
             if (state.resaleList.notSelectedModelAttributes.isEmpty()) {
                 return;
             }
@@ -2249,7 +2298,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$10(itemOptionsNeedsFocus);
+                    ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$rKw4xUT3aiIjvhzvC9_FnWHqSvM(itemOptionsNeedsFocus);
                 }
             });
             final String[] strArr = {""};
@@ -2257,18 +2306,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return ResaleGiftsFragment.SelectGiftSheet.lambda$new$11(state, (TL_stars.starGiftAttributeBackdrop) obj, (TL_stars.starGiftAttributeBackdrop) obj2);
+                    return ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$oUj5czK9SfWwZGzQYnwGVC91nKk(state, (TL_stars.starGiftAttributeBackdrop) obj, (TL_stars.starGiftAttributeBackdrop) obj2);
                 }
             });
             final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$12(strArr, state, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$pMd9R_SdftmoEPV9Hmt6GmhkqW8(strArr, state, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$13(state, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$xRb_bKj58eZnF1PRB92b_PtnTis(state, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null, this.resourcesProvider) {
                 @Override
@@ -2318,7 +2367,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
-                        ResaleGiftsFragment.SelectGiftSheet.lambda$new$14(state);
+                        ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$QyaOa0UQfYVTgK8VN1C1GXU7Qlc(state);
                     }
                 });
             }
@@ -2326,14 +2375,14 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             itemOptionsNeedsFocus.show();
         }
 
-        public static void lambda$new$10(ItemOptions itemOptions) {
+        public static void $r8$lambda$rKw4xUT3aiIjvhzvC9_FnWHqSvM(ItemOptions itemOptions) {
             ActionBarPopupWindow actionBarPopupWindow = itemOptions.actionBarPopupWindow;
             if (actionBarPopupWindow != null) {
                 AndroidUtilities.hideKeyboard(actionBarPopupWindow.getContentView());
             }
         }
 
-        public static int lambda$new$11(State state, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2) {
+        public static int $r8$lambda$oUj5czK9SfWwZGzQYnwGVC91nKk(State state, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2) {
             Integer num = (Integer) state.resaleList.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
             Integer num2 = (Integer) state.resaleList.backdropAttributesCounter.get(Integer.valueOf(stargiftattributebackdrop2.backdrop_id));
             if (num == null) {
@@ -2345,13 +2394,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             return num2.intValue() - num.intValue();
         }
 
-        public static void lambda$new$12(String[] strArr, State state, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+        public static void $r8$lambda$pMd9R_SdftmoEPV9Hmt6GmhkqW8(String[] strArr, State state, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
             String lowerCase = strArr[0].toLowerCase();
             String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
             boolean zIsEmpty = state.resaleList.notSelectedBackdropAttributes.isEmpty();
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) it.next();
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj;
                 boolean zContains = state.resaleList.notSelectedBackdropAttributes.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                 boolean z = !zContains;
                 if (!TextUtils.isEmpty(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase) && !stargiftattributebackdrop.name.toLowerCase().startsWith(strTranslitSafe)) {
@@ -2372,11 +2424,17 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             }
         }
 
-        public static void lambda$new$13(State state, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+        public static void $r8$lambda$xRb_bKj58eZnF1PRB92b_PtnTis(State state, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
             int i = ((TL_stars.starGiftAttributeBackdrop) uItem.object).backdrop_id;
             if (!state.resaleList.notSelectedBackdropAttributes.contains(Integer.valueOf(i))) {
                 if (state.resaleList.notSelectedBackdropAttributes.isEmpty()) {
-                    for (TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop : state.resaleList.backdropAttributes) {
+                    ArrayList arrayList = state.resaleList.backdropAttributes;
+                    int size = arrayList.size();
+                    int i2 = 0;
+                    while (i2 < size) {
+                        Object obj = arrayList.get(i2);
+                        i2++;
+                        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj;
                         if (stargiftattributebackdrop.backdrop_id != i) {
                             state.resaleList.notSelectedBackdropAttributes.add(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                         }
@@ -2391,7 +2449,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             itemOptions.dismiss();
         }
 
-        public static void lambda$new$14(State state) {
+        public static void $r8$lambda$QyaOa0UQfYVTgK8VN1C1GXU7Qlc(State state) {
             if (state.resaleList.notSelectedBackdropAttributes.isEmpty()) {
                 return;
             }
@@ -2407,7 +2465,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             itemOptionsNeedsFocus.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$16(itemOptionsNeedsFocus);
+                    ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$djdi_mTAZUHbxCJ5zfbvYZwyVIU(itemOptionsNeedsFocus);
                 }
             });
             final String[] strArr = {""};
@@ -2415,18 +2473,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return ResaleGiftsFragment.SelectGiftSheet.lambda$new$17(state, (TL_stars.starGiftAttributePattern) obj, (TL_stars.starGiftAttributePattern) obj2);
+                    return ResaleGiftsFragment.SelectGiftSheet.m3241$r8$lambda$LLe_j3FNzfJQk9PFnQJUW5zUc(state, (TL_stars.starGiftAttributePattern) obj, (TL_stars.starGiftAttributePattern) obj2);
                 }
             });
             final UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$18(strArr, state, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
+                    ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$_WSg2DXnHUikP99NhITT6thWTZk(strArr, state, arrayList, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    ResaleGiftsFragment.SelectGiftSheet.lambda$new$19(state, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
+                    ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$3EswReWmd19lSpBIN9ogjK4WTRA(state, itemOptionsNeedsFocus, (UItem) obj, (View) obj2, (Integer) obj3, (Float) obj4, (Float) obj5);
                 }
             }, null, this.resourcesProvider) {
                 @Override
@@ -2476,7 +2534,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new Runnable() {
                     @Override
                     public final void run() {
-                        ResaleGiftsFragment.SelectGiftSheet.lambda$new$20(state);
+                        ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$0s38_injprGWQ2ZZ_sjURoz9hi8(state);
                     }
                 });
             }
@@ -2484,14 +2542,14 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             itemOptionsNeedsFocus.show();
         }
 
-        public static void lambda$new$16(ItemOptions itemOptions) {
+        public static void $r8$lambda$djdi_mTAZUHbxCJ5zfbvYZwyVIU(ItemOptions itemOptions) {
             ActionBarPopupWindow actionBarPopupWindow = itemOptions.actionBarPopupWindow;
             if (actionBarPopupWindow != null) {
                 AndroidUtilities.hideKeyboard(actionBarPopupWindow.getContentView());
             }
         }
 
-        public static int lambda$new$17(State state, TL_stars.starGiftAttributePattern stargiftattributepattern, TL_stars.starGiftAttributePattern stargiftattributepattern2) {
+        public static int m3241$r8$lambda$LLe_j3FNzfJQk9PFnQJUW5zUc(State state, TL_stars.starGiftAttributePattern stargiftattributepattern, TL_stars.starGiftAttributePattern stargiftattributepattern2) {
             Integer num = (Integer) state.resaleList.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern.document.id));
             Integer num2 = (Integer) state.resaleList.patternAttributesCounter.get(Long.valueOf(stargiftattributepattern2.document.id));
             if (num == null) {
@@ -2503,13 +2561,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             return num2.intValue() - num.intValue();
         }
 
-        public static void lambda$new$18(String[] strArr, State state, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
+        public static void $r8$lambda$_WSg2DXnHUikP99NhITT6thWTZk(String[] strArr, State state, ArrayList arrayList, ArrayList arrayList2, UniversalAdapter universalAdapter) {
             String lowerCase = strArr[0].toLowerCase();
             String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
             boolean zIsEmpty = state.resaleList.notSelectedPatternAttributes.isEmpty();
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) it.next();
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj;
                 boolean zContains = state.resaleList.notSelectedPatternAttributes.contains(Long.valueOf(stargiftattributepattern.document.id));
                 boolean z = !zContains;
                 if (!TextUtils.isEmpty(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(lowerCase) && !stargiftattributepattern.name.toLowerCase().startsWith(strTranslitSafe)) {
@@ -2530,11 +2591,17 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             }
         }
 
-        public static void lambda$new$19(State state, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
+        public static void $r8$lambda$3EswReWmd19lSpBIN9ogjK4WTRA(State state, ItemOptions itemOptions, UItem uItem, View view, Integer num, Float f, Float f2) {
             long j = ((TL_stars.starGiftAttributePattern) uItem.object).document.id;
             if (!state.resaleList.notSelectedPatternAttributes.contains(Long.valueOf(j))) {
                 if (state.resaleList.notSelectedPatternAttributes.isEmpty()) {
-                    for (TL_stars.starGiftAttributePattern stargiftattributepattern : state.resaleList.patternAttributes) {
+                    ArrayList arrayList = state.resaleList.patternAttributes;
+                    int size = arrayList.size();
+                    int i = 0;
+                    while (i < size) {
+                        Object obj = arrayList.get(i);
+                        i++;
+                        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj;
                         if (stargiftattributepattern.document.id != j) {
                             state.resaleList.notSelectedPatternAttributes.add(Long.valueOf(stargiftattributepattern.document.id));
                         }
@@ -2549,7 +2616,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             itemOptions.dismiss();
         }
 
-        public static void lambda$new$20(State state) {
+        public static void $r8$lambda$0s38_injprGWQ2ZZ_sjURoz9hi8(State state) {
             if (state.resaleList.notSelectedPatternAttributes.isEmpty()) {
                 return;
             }
@@ -2557,9 +2624,9 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             state.resaleList.reload();
         }
 
-        public void lambda$new$22(State state, View view, int i, float f, float f2) {
+        public static void m3240$r8$lambda$ChXgb8G4oBIUgRB6WxuDVFDBzo(SelectGiftSheet selectGiftSheet, State state, View view, int i, float f, float f2) {
             TL_stars.SavedStarGift savedStarGift;
-            UItem item = this.adapter.getItem(i - 1);
+            UItem item = selectGiftSheet.adapter.getItem(i - 1);
             if (item == null) {
                 return;
             }
@@ -2567,39 +2634,44 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             if (obj instanceof TL_stars.StarGift) {
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
                 boolean z = item.red;
-                if (!TextUtils.isEmpty(starGift.gift_address) && this.willBeFirst) {
-                    new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.GiftCraftCantChooseFirstTitle)).setMessage(LocaleController.getString(R.string.GiftCraftCantChooseFirst)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+                if (!TextUtils.isEmpty(starGift.gift_address) && selectGiftSheet.willBeFirst) {
+                    new AlertDialog.Builder(selectGiftSheet.getContext(), selectGiftSheet.resourcesProvider).setTitle(LocaleController.getString(R.string.GiftCraftCantChooseFirstTitle)).setMessage(LocaleController.getString(R.string.GiftCraftCantChooseFirst)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
                     return;
                 }
                 if (z && (starGift instanceof TL_stars.TL_starGiftUnique)) {
-                    buyGift((TL_stars.TL_starGiftUnique) item.object);
+                    selectGiftSheet.buyGift((TL_stars.TL_starGiftUnique) item.object);
                     return;
                 }
                 if (!z) {
-                    Iterator it = state.list.gifts.iterator();
+                    ArrayList arrayList = state.list.gifts;
+                    int size = arrayList.size();
+                    int i2 = 0;
                     do {
-                        if (!it.hasNext()) {
+                        if (i2 >= size) {
                             savedStarGift = null;
                             break;
+                        } else {
+                            Object obj2 = arrayList.get(i2);
+                            i2++;
+                            savedStarGift = (TL_stars.SavedStarGift) obj2;
                         }
-                        savedStarGift = (TL_stars.SavedStarGift) it.next();
                     } while (savedStarGift.gift != starGift);
-                    if (savedStarGift != null && savedStarGift.can_craft_at > 0 && savedStarGift.can_craft_at > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) {
-                        new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.GiftCraftUnavailableTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCraftUnavailableTextTime, LocaleController.formatDateTime(savedStarGift.can_craft_at, true)))).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+                    if (savedStarGift != null && savedStarGift.can_craft_at > 0 && savedStarGift.can_craft_at > ConnectionsManager.getInstance(selectGiftSheet.currentAccount).getCurrentTime()) {
+                        new AlertDialog.Builder(selectGiftSheet.getContext()).setTitle(LocaleController.getString(R.string.GiftCraftUnavailableTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCraftUnavailableTextTime, LocaleController.formatDateTime(savedStarGift.can_craft_at, true)))).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
                         return;
                     }
                 }
-                this.onSelect.run(starGift);
-                lambda$new$0();
+                selectGiftSheet.onSelect.run(starGift);
+                selectGiftSheet.dismiss();
             }
         }
 
-        public static Integer lambda$new$23(Integer num) {
+        public static Integer $r8$lambda$hvepRCM1oIxSlAU8elHLQG_OelQ(Integer num) {
             return 0;
         }
 
-        public void lambda$new$24() {
-            this.adapter.update(true);
+        public static void m3247$r8$lambda$owiIbB48vOyrb9J970_I04XQz4(final SelectGiftSheet selectGiftSheet) {
+            selectGiftSheet.adapter.update(true);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -2639,43 +2711,46 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             StarsController.getInstance(this.currentAccount, amountUtils$Currency).getResellingGiftForm(tL_starGiftUnique, clientUserId, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$buyGift$27(alertDialog, amountUtils$Currency, tL_starGiftUnique, clientUserId, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                    ResaleGiftsFragment.SelectGiftSheet.m3244$r8$lambda$j0K0Sw426K64Y3dPuXTWvvr0ig(this.f$0, alertDialog, amountUtils$Currency, tL_starGiftUnique, clientUserId, (TLRPC.TL_payments_paymentFormStarGift) obj);
                 }
             });
         }
 
-        public void lambda$buyGift$27(AlertDialog alertDialog, AmountUtils$Currency amountUtils$Currency, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
+        public static void m3244$r8$lambda$j0K0Sw426K64Y3dPuXTWvvr0ig(final SelectGiftSheet selectGiftSheet, AlertDialog alertDialog, AmountUtils$Currency amountUtils$Currency, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
+            selectGiftSheet.getClass();
             alertDialog.dismiss();
             if (tL_payments_paymentFormStarGift == null) {
                 return;
             }
             StarGiftSheet.PaymentFormState paymentFormState = new StarGiftSheet.PaymentFormState(amountUtils$Currency, tL_payments_paymentFormStarGift);
-            new StarGiftSheet.ResaleBuyTransferAlert(getContext(), this.resourcesProvider, tL_starGiftUnique, paymentFormState, this.currentAccount, j, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','), true, new Utilities.Callback2() {
+            new StarGiftSheet.ResaleBuyTransferAlert(selectGiftSheet.getContext(), selectGiftSheet.resourcesProvider, tL_starGiftUnique, paymentFormState, selectGiftSheet.currentAccount, j, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','), true, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$buyGift$26(tL_starGiftUnique, j, (StarGiftSheet.PaymentFormState) obj, (Browser.Progress) obj2);
+                    ResaleGiftsFragment.SelectGiftSheet.m3245$r8$lambda$jp7kiXCFDZ1453YyISA8MGAe88(this.f$0, tL_starGiftUnique, j, (StarGiftSheet.PaymentFormState) obj, (Browser.Progress) obj2);
                 }
             }).show();
         }
 
-        public void lambda$buyGift$26(final TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, StarGiftSheet.PaymentFormState paymentFormState, final Browser.Progress progress) {
+        public static void m3245$r8$lambda$jp7kiXCFDZ1453YyISA8MGAe88(final SelectGiftSheet selectGiftSheet, final TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, StarGiftSheet.PaymentFormState paymentFormState, final Browser.Progress progress) {
+            selectGiftSheet.getClass();
             progress.init();
-            StarsController.getInstance(this.currentAccount, paymentFormState.currency).buyResellingGift(paymentFormState.form, tL_starGiftUnique, j, new Utilities.Callback2() {
+            StarsController.getInstance(selectGiftSheet.currentAccount, paymentFormState.currency).buyResellingGift(paymentFormState.form, tL_starGiftUnique, j, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$buyGift$25(progress, tL_starGiftUnique, (Boolean) obj, (String) obj2);
+                    ResaleGiftsFragment.SelectGiftSheet.$r8$lambda$1LhHQf7esTZurLtnnCdYdPxj2uM(this.f$0, progress, tL_starGiftUnique, (Boolean) obj, (String) obj2);
                 }
             });
         }
 
-        public void lambda$buyGift$25(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique, Boolean bool, String str) {
+        public static void $r8$lambda$1LhHQf7esTZurLtnnCdYdPxj2uM(SelectGiftSheet selectGiftSheet, Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique, Boolean bool, String str) {
+            selectGiftSheet.getClass();
             progress.end();
             if (bool.booleanValue()) {
-                Utilities.Callback callback = this.onSelect;
+                Utilities.Callback callback = selectGiftSheet.onSelect;
                 if (callback != null) {
                     callback.run(tL_starGiftUnique);
                 }
-                lambda$new$0();
+                selectGiftSheet.dismiss();
             }
         }
 
@@ -2754,20 +2829,27 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             }
             int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
             arrayList.add(UItem.asHeader(-1, LocaleController.getString(R.string.GiftCraftSelectYour)));
-            boolean z = true;
+            ArrayList arrayList2 = this.state.list.gifts;
+            int size = arrayList2.size();
             int i = 0;
-            for (TL_stars.SavedStarGift savedStarGift : this.state.list.gifts) {
+            int i2 = 0;
+            boolean z = true;
+            int i3 = 0;
+            while (i2 < size) {
+                Object obj = arrayList2.get(i2);
+                i2++;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (!this.without.contains(Long.valueOf(savedStarGift.gift.id))) {
                     arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true).setEnabled(savedStarGift.can_craft_at <= currentTime));
-                    i++;
+                    i3++;
                     z = false;
                 }
             }
             if (this.state.list.loading || !this.state.list.endReached) {
-                int i2 = i % 3;
-                int i3 = 6 - i2;
-                for (int i4 = 0; i4 < i3; i4++) {
-                    arrayList.add(UItem.asFlicker((i4 - i2) + 1, 35).setSpanCount(1));
+                int i4 = i3 % 3;
+                int i5 = 6 - i4;
+                for (int i6 = 0; i6 < i5; i6++) {
+                    arrayList.add(UItem.asFlicker((i6 - i4) + 1, 35).setSpanCount(1));
                 }
             } else if (z) {
                 arrayList.add(UItem.asCenterShadow(LocaleController.getString(R.string.GiftCraftSelectYourEmpty)));
@@ -2779,9 +2861,12 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 if (horizontalScrollView != null) {
                     arrayList.add(UItem.asCustom(-3, horizontalScrollView));
                 }
-                Iterator it = this.state.resaleList.gifts.iterator();
-                while (it.hasNext()) {
-                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it.next(), false, true, false, true, true));
+                ArrayList arrayList3 = this.state.resaleList.gifts;
+                int size2 = arrayList3.size();
+                while (i < size2) {
+                    Object obj2 = arrayList3.get(i);
+                    i++;
+                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) obj2, false, true, false, true, true));
                 }
                 if (this.state.resaleList.loading || !this.state.resaleList.endReached) {
                     arrayList.add(UItem.asFlicker(10, 35).setSpanCount(1));

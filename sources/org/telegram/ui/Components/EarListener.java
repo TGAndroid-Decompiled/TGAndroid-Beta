@@ -131,6 +131,9 @@ public class EarListener implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+        long j;
+        char c;
+        char c2;
         boolean z;
         int i;
         if (this.attached && VoIPService.getSharedInstance() == null) {
@@ -147,18 +150,24 @@ public class EarListener implements SensorEventListener {
                 if (this.proximityHasDifferentValues) {
                     this.proximityTouched = isNearToSensor(f2);
                 }
+                j = 0;
+                c = 2;
+                c2 = 1;
             } else {
                 Sensor sensor = sensorEvent.sensor;
                 if (sensor == this.accelerometerSensor) {
-                    long j = this.lastTimestamp;
-                    double d = j == 0 ? 0.9800000190734863d : 1.0d / (((sensorEvent.timestamp - j) / 1.0E9d) + 1.0d);
+                    long j2 = this.lastTimestamp;
+                    double d = j2 == 0 ? 0.9800000190734863d : 1.0d / (((sensorEvent.timestamp - j2) / 1.0E9d) + 1.0d);
                     this.lastTimestamp = sensorEvent.timestamp;
                     float[] fArr = this.gravity;
                     double d2 = ((double) fArr[0]) * d;
                     double d3 = 1.0d - d;
                     float[] fArr2 = sensorEvent.values;
+                    j = 0;
                     float f3 = (float) (d2 + (((double) fArr2[0]) * d3));
                     fArr[0] = f3;
+                    c = 2;
+                    c2 = 1;
                     float f4 = (float) ((((double) fArr[1]) * d) + (((double) fArr2[1]) * d3));
                     fArr[1] = f4;
                     float f5 = (float) ((d * ((double) fArr[2])) + (d3 * ((double) fArr2[2])));
@@ -171,25 +180,30 @@ public class EarListener implements SensorEventListener {
                     fArr4[0] = fArr2[0] - fArr[0];
                     fArr4[1] = fArr2[1] - fArr[1];
                     fArr4[2] = fArr2[2] - fArr[2];
-                } else if (sensor == this.linearSensor) {
-                    float[] fArr5 = this.linearAcceleration;
-                    float[] fArr6 = sensorEvent.values;
-                    fArr5[0] = fArr6[0];
-                    fArr5[1] = fArr6[1];
-                    fArr5[2] = fArr6[2];
-                } else if (sensor == this.gravitySensor) {
-                    float[] fArr7 = this.gravityFast;
-                    float[] fArr8 = this.gravity;
-                    float[] fArr9 = sensorEvent.values;
-                    float f6 = fArr9[0];
-                    fArr8[0] = f6;
-                    fArr7[0] = f6;
-                    float f7 = fArr9[1];
-                    fArr8[1] = f7;
-                    fArr7[1] = f7;
-                    float f8 = fArr9[2];
-                    fArr8[2] = f8;
-                    fArr7[2] = f8;
+                } else {
+                    j = 0;
+                    c = 2;
+                    c2 = 1;
+                    if (sensor == this.linearSensor) {
+                        float[] fArr5 = this.linearAcceleration;
+                        float[] fArr6 = sensorEvent.values;
+                        fArr5[0] = fArr6[0];
+                        fArr5[1] = fArr6[1];
+                        fArr5[2] = fArr6[2];
+                    } else if (sensor == this.gravitySensor) {
+                        float[] fArr7 = this.gravityFast;
+                        float[] fArr8 = this.gravity;
+                        float[] fArr9 = sensorEvent.values;
+                        float f6 = fArr9[0];
+                        fArr8[0] = f6;
+                        fArr7[0] = f6;
+                        float f7 = fArr9[1];
+                        fArr8[1] = f7;
+                        fArr7[1] = f7;
+                        float f8 = fArr9[2];
+                        fArr8[2] = f8;
+                        fArr7[2] = f8;
+                    }
                 }
             }
             Sensor sensor2 = sensorEvent.sensor;
@@ -197,7 +211,7 @@ public class EarListener implements SensorEventListener {
                 float[] fArr10 = this.gravity;
                 float f9 = fArr10[0];
                 float[] fArr11 = this.linearAcceleration;
-                float f10 = (f9 * fArr11[0]) + (fArr10[1] * fArr11[1]) + (fArr10[2] * fArr11[2]);
+                float f10 = (f9 * fArr11[0]) + (fArr10[c2] * fArr11[c2]) + (fArr10[c] * fArr11[c]);
                 int i2 = this.raisedToBack;
                 if (i2 != 6 && ((f10 > 0.0f && this.previousAccValue > 0.0f) || (f10 < 0.0f && this.previousAccValue < 0.0f))) {
                     if (f10 > 0.0f) {
@@ -257,7 +271,7 @@ public class EarListener implements SensorEventListener {
                 }
                 this.previousAccValue = f10;
                 float[] fArr12 = this.gravityFast;
-                this.accelerometerVertical = fArr12[1] > 2.5f && Math.abs(fArr12[2]) < 4.0f && Math.abs(this.gravityFast[0]) > 1.5f;
+                this.accelerometerVertical = fArr12[c2] > 2.5f && Math.abs(fArr12[c]) < 4.0f && Math.abs(this.gravityFast[0]) > 1.5f;
             }
             if (this.raisedToBack == 6 || this.accelerometerVertical) {
                 this.lastAccelerometerDetected = System.currentTimeMillis();
@@ -296,14 +310,14 @@ public class EarListener implements SensorEventListener {
                 this.raised = false;
                 updateRaised();
             }
-            if (this.timeSinceRaise == 0 || this.raisedToBack != 6 || Math.abs(System.currentTimeMillis() - this.timeSinceRaise) <= 1000) {
+            if (this.timeSinceRaise == j || this.raisedToBack != 6 || Math.abs(System.currentTimeMillis() - this.timeSinceRaise) <= 1000) {
                 return;
             }
             this.raisedToBack = 0;
             this.raisedToTop = 0;
             this.raisedToTopSign = 0;
             this.countLess = 0;
-            this.timeSinceRaise = 0L;
+            this.timeSinceRaise = j;
         }
     }
 

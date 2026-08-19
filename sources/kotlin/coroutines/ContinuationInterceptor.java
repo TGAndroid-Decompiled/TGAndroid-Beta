@@ -1,5 +1,6 @@
 package kotlin.coroutines;
 
+import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
 import kotlin.jvm.internal.Intrinsics;
 
 public interface ContinuationInterceptor extends CoroutineContext.Element {
@@ -21,12 +22,11 @@ public interface ContinuationInterceptor extends CoroutineContext.Element {
             Intrinsics.checkNotNullParameter(key, "key");
             if (key instanceof AbstractCoroutineContextKey) {
                 AbstractCoroutineContextKey abstractCoroutineContextKey = (AbstractCoroutineContextKey) key;
-                if (!abstractCoroutineContextKey.isSubKey$kotlin_stdlib(continuationInterceptor.getKey())) {
-                    return null;
-                }
-                CoroutineContext.Element elementTryCast$kotlin_stdlib = abstractCoroutineContextKey.tryCast$kotlin_stdlib(continuationInterceptor);
-                if (elementTryCast$kotlin_stdlib instanceof CoroutineContext.Element) {
-                    return elementTryCast$kotlin_stdlib;
+                if (abstractCoroutineContextKey.isSubKey$kotlin_stdlib(continuationInterceptor.getKey())) {
+                    CoroutineContext.Element elementTryCast$kotlin_stdlib = abstractCoroutineContextKey.tryCast$kotlin_stdlib(continuationInterceptor);
+                    if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(elementTryCast$kotlin_stdlib)) {
+                        return elementTryCast$kotlin_stdlib;
+                    }
                 }
                 return null;
             }

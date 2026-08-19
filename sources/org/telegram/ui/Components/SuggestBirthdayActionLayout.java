@@ -94,15 +94,18 @@ public class SuggestBirthdayActionLayout {
             iDp3 = (int) (iDp3 + AndroidUtilities.dp(9.0f) + Math.max(this.titles[i].getWidth(), this.values[i].getWidth()) + AndroidUtilities.dp(9.0f));
         }
         int width2 = (this.view.getWidth() - iDp3) / 2;
-        for (int i2 = 0; i2 < this.titles.length; i2++) {
+        int i2 = 0;
+        while (i2 < this.titles.length) {
             float fDp = AndroidUtilities.dp(9.0f) + Math.max(this.titles[i2].getWidth(), this.values[i2].getWidth()) + AndroidUtilities.dp(9.0f);
             float f = width2;
-            float f2 = (fDp / 2.0f) + f;
-            width2 = (int) (f + fDp);
+            float f2 = f + (fDp / 2.0f);
+            int i3 = (int) (f + fDp);
             Text text = this.titles[i2];
             text.draw(canvas, f2 - (text.getWidth() / 2.0f), iDp2, -1, 0.75f);
             Text text2 = this.values[i2];
             text2.draw(canvas, f2 - (text2.getWidth() / 2.0f), AndroidUtilities.dp(16.0f) + iDp2, -1, 1.0f);
+            i2++;
+            width2 = i3;
         }
         if (this.hasButton) {
             int iDp4 = iDp2 + AndroidUtilities.dp(38.0f);
@@ -157,44 +160,47 @@ public class SuggestBirthdayActionLayout {
         AlertsCreator.createBirthdayPickerDialog(this.view.getContext(), LocaleController.getString(R.string.DateOfBirth), LocaleController.getString(R.string.DateOfBirthAddToProfile), this.birthday, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$open$2((TL_account.TL_birthday) obj);
+                SuggestBirthdayActionLayout.m2859$r8$lambda$VFGVibElkC_BVbKBCMewXhqjLQ(this.f$0, (TL_account.TL_birthday) obj);
             }
         }, null, true, false, this.resourcesProvider).show();
     }
 
-    public void lambda$open$2(TL_account.TL_birthday tL_birthday) {
+    public static void m2859$r8$lambda$VFGVibElkC_BVbKBCMewXhqjLQ(final SuggestBirthdayActionLayout suggestBirthdayActionLayout, TL_account.TL_birthday tL_birthday) {
+        suggestBirthdayActionLayout.getClass();
         TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
         updatebirthday.flags |= 1;
         updatebirthday.birthday = tL_birthday;
-        final TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
+        final TLRPC.UserFull userFull = MessagesController.getInstance(suggestBirthdayActionLayout.currentAccount).getUserFull(UserConfig.getInstance(suggestBirthdayActionLayout.currentAccount).getClientUserId());
         final TL_account.TL_birthday tL_birthday2 = userFull != null ? userFull.birthday : null;
         if (userFull != null) {
             userFull.flags2 |= 32;
             userFull.birthday = tL_birthday;
-            MessagesStorage.getInstance(this.currentAccount).updateUserInfo(userFull, false);
+            MessagesStorage.getInstance(suggestBirthdayActionLayout.currentAccount).updateUserInfo(userFull, false);
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatebirthday, new RequestDelegate() {
+        ConnectionsManager.getInstance(suggestBirthdayActionLayout.currentAccount).sendRequest(updatebirthday, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$open$1(userFull, tL_birthday2, tLObject, tL_error);
+                SuggestBirthdayActionLayout.$r8$lambda$D4C9Zgaain_9l75CZRc6O88H_Ok(this.f$0, userFull, tL_birthday2, tLObject, tL_error);
             }
         }, 1024);
-        MessagesController.getInstance(this.currentAccount).invalidateContentSettings();
-        MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "BIRTHDAY_SETUP");
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+        MessagesController.getInstance(suggestBirthdayActionLayout.currentAccount).invalidateContentSettings();
+        MessagesController.getInstance(suggestBirthdayActionLayout.currentAccount).removeSuggestion(0L, "BIRTHDAY_SETUP");
+        NotificationCenter.getInstance(suggestBirthdayActionLayout.currentAccount).postNotificationName(NotificationCenter.newSuggestionsAvailable, new Object[0]);
     }
 
-    public void lambda$open$1(final TLRPC.UserFull userFull, final TL_account.TL_birthday tL_birthday, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$D4C9Zgaain_9l75CZRc6O88H_Ok(final SuggestBirthdayActionLayout suggestBirthdayActionLayout, final TLRPC.UserFull userFull, final TL_account.TL_birthday tL_birthday, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        suggestBirthdayActionLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$open$0(tLObject, userFull, tL_birthday, tL_error);
+                SuggestBirthdayActionLayout.$r8$lambda$hcMtcMpKQmkY2YkY_TRkLXQVMHE(this.f$0, tLObject, userFull, tL_birthday, tL_error);
             }
         });
     }
 
-    public void lambda$open$0(TLObject tLObject, TLRPC.UserFull userFull, TL_account.TL_birthday tL_birthday, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$hcMtcMpKQmkY2YkY_TRkLXQVMHE(SuggestBirthdayActionLayout suggestBirthdayActionLayout, TLObject tLObject, TLRPC.UserFull userFull, TL_account.TL_birthday tL_birthday, TLRPC.TL_error tL_error) {
         String str;
+        suggestBirthdayActionLayout.getClass();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
             return;
@@ -210,10 +216,10 @@ public class SuggestBirthdayActionLayout {
                 userFull.flags2 |= 32;
             }
             userFull.birthday = tL_birthday;
-            MessagesStorage.getInstance(this.currentAccount).updateUserInfo(userFull, false);
+            MessagesStorage.getInstance(suggestBirthdayActionLayout.currentAccount).updateUserInfo(userFull, false);
         }
         if (tL_error != null && (str = tL_error.text) != null && str.startsWith("FLOOD_WAIT_")) {
-            new AlertDialog.Builder(this.view.getContext()).setTitle(LocaleController.getString(R.string.PrivacyBirthdayTooOftenTitle)).setMessage(LocaleController.getString(R.string.PrivacyBirthdayTooOftenMessage)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+            new AlertDialog.Builder(suggestBirthdayActionLayout.view.getContext()).setTitle(LocaleController.getString(R.string.PrivacyBirthdayTooOftenTitle)).setMessage(LocaleController.getString(R.string.PrivacyBirthdayTooOftenMessage)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
         } else {
             BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.UnknownError)).show();
         }

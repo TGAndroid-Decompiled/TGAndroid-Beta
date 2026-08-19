@@ -262,23 +262,27 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
     }
 
     public static boolean isEmpty(TLRPC.PeerSettings peerSettings) {
-        return peerSettings == null || (peerSettings.phone_country == null && peerSettings.registration_month == null);
+        if (peerSettings != null) {
+            return peerSettings.phone_country == null && peerSettings.registration_month == null;
+        }
+        return true;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
+        float f = 2.0f;
         float width = getWidth() / 2.0f;
         this.fullBounds.set((getWidth() - this.width) / 2.0f, (getHeight() - this.height) / 2.0f, (getWidth() + this.width) / 2.0f, (getHeight() + this.height) / 2.0f);
         float scale = this.fullBounce.getScale(0.025f);
         canvas.scale(scale, scale, this.fullBounds.centerX(), this.fullBounds.centerY());
         applyServiceShaderMatrix();
+        float f2 = 16.0f;
         canvas.drawRoundRect(this.fullBounds, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackground", this.resourcesProvider));
         if (hasGradientService()) {
             canvas.drawRoundRect(this.fullBounds, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackgroundDarken", this.resourcesProvider));
         }
-        float f = 0.0f;
         canvas.translate(0.0f, (getHeight() - this.height) / 2.0f);
         float height = ((getHeight() - this.height) / 2.0f) + 0.0f;
         canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
@@ -292,13 +296,13 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         int i = 0;
         while (i < this.rows.size()) {
             if (i > 0) {
-                canvas.translate(f, AndroidUtilities.dp(7.0f));
+                canvas.translate(0.0f, AndroidUtilities.dp(7.0f));
                 height3 += AndroidUtilities.dp(7.0f);
             }
             canvas.save();
             Row row = (Row) this.rows.get(i);
-            float fDp2 = (((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f)) + this.rowsKeysWidth) - row.key.getCurrentWidth();
-            float fDp3 = (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f);
+            float fDp2 = (((width - (this.width / f)) + AndroidUtilities.dp(f2)) + this.rowsKeysWidth) - row.key.getCurrentWidth();
+            float fDp3 = (width - (this.width / f)) + AndroidUtilities.dp(f2) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f);
             int i2 = i;
             row.key.ellipsize((fDp3 - fDp2) - AndroidUtilities.dp(7.66f)).draw(canvas, fDp2, row.key.getHeight() / 2.0f, -1, 0.7f);
             row.bounds.set((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f), height3, (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + (row.avatars ? AndroidUtilities.dp(5.0f) + (this.groupsArrow.getIntrinsicWidth() * 0.8f) + this.groupsAvatars.getMaxX() : 0.0f), row.value.getHeight() + height3);
@@ -329,7 +333,8 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
             canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
             height3 += AndroidUtilities.dp(14.0f);
             i = i2 + 1;
-            f = 0.0f;
+            f = 2.0f;
+            f2 = 16.0f;
         }
         if (this.footer != null) {
             canvas.translate(0.0f, AndroidUtilities.dp(12.0f));

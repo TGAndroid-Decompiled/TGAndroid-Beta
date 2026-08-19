@@ -114,6 +114,9 @@ public class WebPagePreviewView extends FrameLayout {
     }
 
     public static boolean hasPreview(TLRPC.WebPage webPage) {
-        return (webPage == null || (webPage.site_name == null && webPage.title == null && webPage.description == null && webPage.photo == null && webPage.document == null)) ? false : true;
+        if (webPage != null) {
+            return (webPage.site_name == null && webPage.title == null && webPage.description == null && webPage.photo == null && webPage.document == null) ? false : true;
+        }
+        return false;
     }
 }

@@ -94,7 +94,7 @@ public class MuteButton extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setConnected$0(valueAnimator2);
+                    this.f$0.loadingView.setAlpha(((Float) valueAnimator2.getAnimatedValue()).floatValue());
                 }
             });
             this.loadingViewAnimator.setDuration(320L);
@@ -105,10 +105,6 @@ public class MuteButton extends FrameLayout {
             z3 = false;
         }
         updateFill(z3, z2);
-    }
-
-    public void lambda$setConnected$0(ValueAnimator valueAnimator) {
-        this.loadingView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public void setMuted(boolean z, boolean z2) {
@@ -142,7 +138,7 @@ public class MuteButton extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$updateFill$1(valueAnimator2);
+                MuteButton.m4331$r8$lambda$slVReqTgRBlp2qRiEYjaysTAGU(this.f$0, valueAnimator2);
             }
         });
         this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -150,13 +146,14 @@ public class MuteButton extends FrameLayout {
         this.animator.start();
     }
 
-    public void lambda$updateFill$1(ValueAnimator valueAnimator) {
+    public static void m4331$r8$lambda$slVReqTgRBlp2qRiEYjaysTAGU(MuteButton muteButton, ValueAnimator valueAnimator) {
+        muteButton.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.mutedT = fFloatValue;
-        this.filledBackgroundView.setAlpha(1.0f - fFloatValue);
-        this.filledBackgroundView.setScaleX(1.0f - this.mutedT);
-        this.filledBackgroundView.setScaleY(1.0f - this.mutedT);
-        this.image.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -2960428, this.mutedT), PorterDuff.Mode.SRC_IN));
-        this.layout.invalidate();
+        muteButton.mutedT = fFloatValue;
+        muteButton.filledBackgroundView.setAlpha(1.0f - fFloatValue);
+        muteButton.filledBackgroundView.setScaleX(1.0f - muteButton.mutedT);
+        muteButton.filledBackgroundView.setScaleY(1.0f - muteButton.mutedT);
+        muteButton.image.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -2960428, muteButton.mutedT), PorterDuff.Mode.SRC_IN));
+        muteButton.layout.invalidate();
     }
 }

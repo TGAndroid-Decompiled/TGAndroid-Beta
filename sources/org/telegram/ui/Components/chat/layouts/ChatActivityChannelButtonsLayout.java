@@ -104,16 +104,15 @@ public class ChatActivityChannelButtonsLayout extends FrameLayout implements Fac
     }
 
     public void showButton(final int i, boolean z, boolean z2) {
+        ButtonHolder buttonHolder;
+        ChatActivityChannelButtonsLayout chatActivityChannelButtonsLayout;
         if (i >= 0) {
             ButtonHolder[] buttonHolderArr = this.buttonHolders;
-            if (i >= buttonHolderArr.length) {
-                return;
-            }
-            ButtonHolder buttonHolder = buttonHolderArr[i];
-            if (buttonHolder != null || z) {
+            if (i < buttonHolderArr.length && ((buttonHolder = buttonHolderArr[i]) != null || z)) {
                 if (buttonHolder == null) {
-                    BoolAnimator boolAnimator = new BoolAnimator((i << 16) | 1, this, CubicBezierInterpolator.EASE_OUT_QUINT, 300L);
-                    ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate = ChatActivityBlurredRoundButton.create(getContext(), this.blurredBackgroundDrawableViewFactory, this.colorProvider, this.resourcesProvider, buttonIcons[i], 48);
+                    chatActivityChannelButtonsLayout = this;
+                    BoolAnimator boolAnimator = new BoolAnimator((i << 16) | 1, chatActivityChannelButtonsLayout, CubicBezierInterpolator.EASE_OUT_QUINT, 300L);
+                    ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate = ChatActivityBlurredRoundButton.create(getContext(), chatActivityChannelButtonsLayout.blurredBackgroundDrawableViewFactory, chatActivityChannelButtonsLayout.colorProvider, chatActivityChannelButtonsLayout.resourcesProvider, buttonIcons[i], 48);
                     if (i == 1) {
                         chatActivityBlurredRoundButtonCreate.setContentDescription(LocaleController.getString(R.string.ProfileActionsGift));
                     } else if (i == 2) {
@@ -128,20 +127,22 @@ public class ChatActivityChannelButtonsLayout extends FrameLayout implements Fac
                     chatActivityBlurredRoundButtonCreate.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$showButton$0(i, view);
+                            ChatActivityChannelButtonsLayout.$r8$lambda$tifw6_5ycrMMSbMurblN5uuXwMM(this.f$0, i, view);
                         }
                     });
                     addView(chatActivityBlurredRoundButtonCreate, LayoutHelper.createFrame(56, 56.0f));
-                    this.buttonHolders[i] = new ButtonHolder(chatActivityBlurredRoundButtonCreate, boolAnimator);
+                    chatActivityChannelButtonsLayout.buttonHolders[i] = new ButtonHolder(chatActivityBlurredRoundButtonCreate, boolAnimator);
                     checkButtonsPositionsAndVisibility();
+                } else {
+                    chatActivityChannelButtonsLayout = this;
                 }
-                this.buttonHolders[i].visibilityAnimator.setValue(z, z2);
+                chatActivityChannelButtonsLayout.buttonHolders[i].visibilityAnimator.setValue(z, z2);
             }
         }
     }
 
-    public void lambda$showButton$0(int i, View view) {
-        View.OnClickListener onClickListener = this.onClickListeners[i];
+    public static void $r8$lambda$tifw6_5ycrMMSbMurblN5uuXwMM(ChatActivityChannelButtonsLayout chatActivityChannelButtonsLayout, int i, View view) {
+        View.OnClickListener onClickListener = chatActivityChannelButtonsLayout.onClickListeners[i];
         if (onClickListener != null) {
             onClickListener.onClick(view);
         }

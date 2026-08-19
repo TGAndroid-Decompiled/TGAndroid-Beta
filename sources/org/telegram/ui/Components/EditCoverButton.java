@@ -62,14 +62,14 @@ public class EditCoverButton extends View {
         this.imageReceiver.onDetachedFromWindow();
     }
 
-    public void lambda$setImage$0(Bitmap bitmap) {
+    public void setImage(Bitmap bitmap) {
         this.imageReceiver.setImageBitmap(bitmap);
         invalidate();
     }
 
     public void setImage(TLRPC.Photo photo, Object obj) {
         if (photo == null) {
-            lambda$setImage$0((Bitmap) null);
+            setImage((Bitmap) null);
             return;
         }
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(48.0f), false, null, true);
@@ -78,18 +78,19 @@ public class EditCoverButton extends View {
 
     public void setImage(final String str) {
         if (str == null) {
-            lambda$setImage$0((Bitmap) null);
+            setImage((Bitmap) null);
         } else {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setImage$1(str);
+                    EditCoverButton.$r8$lambda$pysu0SFoxHhWHjB2ZrE7IuiCJ28(this.f$0, str);
                 }
             });
         }
     }
 
-    public void lambda$setImage$1(String str) {
+    public static void $r8$lambda$pysu0SFoxHhWHjB2ZrE7IuiCJ28(final EditCoverButton editCoverButton, String str) {
+        editCoverButton.getClass();
         final Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(str);
         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapCreateBitmap);
@@ -101,7 +102,7 @@ public class EditCoverButton extends View {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setImage$0(bitmapDecodeFile);
+                this.f$0.setImage(bitmapDecodeFile);
             }
         });
     }

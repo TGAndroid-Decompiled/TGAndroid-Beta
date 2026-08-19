@@ -33,14 +33,16 @@ public abstract class HintsController {
         }
 
         public boolean show() {
-            if (MessagesController.getGlobalMainSettings().getInt(this.name, 0) >= this.showsLimit) {
-                return false;
+            if (MessagesController.getGlobalMainSettings().getInt(this.name, 0) < this.showsLimit) {
+                float f = this.probability;
+                if (f >= 1.0f) {
+                    return true;
+                }
+                if (f > 0.0f && Utilities.fastRandom.nextFloat() < this.probability) {
+                    return true;
+                }
             }
-            float f = this.probability;
-            if (f >= 1.0f) {
-                return true;
-            }
-            return f > 0.0f && Utilities.fastRandom.nextFloat() < this.probability;
+            return false;
         }
 
         public void increment() {

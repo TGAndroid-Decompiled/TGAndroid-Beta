@@ -69,9 +69,9 @@ public class Attributes implements Iterable, Cloneable {
         int iIndexOfKey = indexOfKey(str);
         if (iIndexOfKey != -1) {
             this.vals[iIndexOfKey] = str2;
-        } else {
-            add(str, str2);
+            return this;
         }
+        add(str, str2);
         return this;
     }
 

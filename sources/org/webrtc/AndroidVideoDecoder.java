@@ -271,7 +271,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
     private Thread createOutputThread() {
         return new Thread("AndroidVideoDecoder.outputThread") {
             @Override
-            public void run() {
+            public void run() throws Throwable {
                 AndroidVideoDecoder.this.outputThreadChecker = new ThreadUtils.ThreadChecker();
                 while (AndroidVideoDecoder.this.running) {
                     AndroidVideoDecoder.this.deliverDecodedFrame();
@@ -281,7 +281,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         };
     }
 
-    protected void deliverDecodedFrame() {
+    protected void deliverDecodedFrame() throws Throwable {
         Integer numValueOf;
         int i;
         this.outputThreadChecker.checkIsOnValidThread();
@@ -354,37 +354,8 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         this.callback.onDecodedFrame(new VideoFrame(videoFrame.getBuffer(), videoFrame.getRotation(), j), num, null);
     }
 
-    private void deliverByteFrame(int i, MediaCodec.BufferInfo bufferInfo, int i2, Integer num) {
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        VideoFrame.Buffer bufferCopyNV12ToI420Buffer;
-        synchronized (this.dimensionLock) {
-            i3 = this.width;
-            i4 = this.height;
-            i5 = this.stride;
-            i6 = this.sliceHeight;
-        }
-        int i7 = bufferInfo.size;
-        if (i7 < ((i3 * i4) * 3) / 2) {
-            Logging.e("AndroidVideoDecoder", "Insufficient output buffer size: " + bufferInfo.size);
-            return;
-        }
-        int i8 = (i7 >= ((i5 * i4) * 3) / 2 || i6 != i4 || i5 <= i3) ? i5 : (i7 * 2) / (i4 * 3);
-        ByteBuffer outputBuffer = this.codec.getOutputBuffer(i);
-        outputBuffer.position(bufferInfo.offset);
-        outputBuffer.limit(bufferInfo.offset + bufferInfo.size);
-        ByteBuffer byteBufferSlice = outputBuffer.slice();
-        if (this.colorFormat == 19) {
-            bufferCopyNV12ToI420Buffer = copyI420Buffer(byteBufferSlice, i8, i6, i3, i4);
-        } else {
-            bufferCopyNV12ToI420Buffer = copyNV12ToI420Buffer(byteBufferSlice, i8, i6, i3, i4);
-        }
-        this.codec.releaseOutputBuffer(i, false);
-        VideoFrame videoFrame = new VideoFrame(bufferCopyNV12ToI420Buffer, i2, bufferInfo.presentationTimeUs * 1000);
-        this.callback.onDecodedFrame(videoFrame, num, null);
-        videoFrame.release();
+    private void deliverByteFrame(int r9, android.media.MediaCodec.BufferInfo r10, int r11, java.lang.Integer r12) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.AndroidVideoDecoder.deliverByteFrame(int, android.media.MediaCodec$BufferInfo, int, java.lang.Integer):void");
     }
 
     private VideoFrame.Buffer copyNV12ToI420Buffer(ByteBuffer byteBuffer, int i, int i2, int i3, int i4) {
@@ -413,7 +384,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             byteBuffer.position(i9);
             copyPlane(byteBuffer.slice(), i7, i420BufferAllocateI420Buffer.getDataU(), i420BufferAllocateI420Buffer.getStrideU(), i5, i6);
             if (i2 % 2 == 1) {
-                byteBuffer.position(i9 + ((i6 - 1) * i7));
+                byteBuffer.position(i9 + (i7 * (i6 - 1)));
                 ByteBuffer dataU = i420BufferAllocateI420Buffer.getDataU();
                 dataU.position(i420BufferAllocateI420Buffer.getStrideU() * i6);
                 dataU.put(byteBuffer);
@@ -426,6 +397,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                 ByteBuffer dataV = i420BufferAllocateI420Buffer.getDataV();
                 dataV.position(i420BufferAllocateI420Buffer.getStrideV() * i6);
                 dataV.put(byteBuffer);
+                return i420BufferAllocateI420Buffer;
             }
         } catch (Throwable th) {
             FileLog.e(th);

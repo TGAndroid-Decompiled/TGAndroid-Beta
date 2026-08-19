@@ -20,7 +20,6 @@ import android.widget.TextView;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
@@ -67,20 +66,22 @@ public class FactCheckController {
     }
 
     public static FactCheckController getInstance(int i) {
-        FactCheckController factCheckController = Instance[i];
-        if (factCheckController == null) {
-            synchronized (lockObjects[i]) {
-                try {
-                    factCheckController = Instance[i];
-                    if (factCheckController == null) {
-                        FactCheckController[] factCheckControllerArr = Instance;
-                        FactCheckController factCheckController2 = new FactCheckController(i);
-                        factCheckControllerArr[i] = factCheckController2;
-                        factCheckController = factCheckController2;
-                    }
-                } catch (Throwable th) {
-                    throw th;
+        FactCheckController factCheckController;
+        FactCheckController factCheckController2 = Instance[i];
+        if (factCheckController2 != null) {
+            return factCheckController2;
+        }
+        synchronized (lockObjects[i]) {
+            try {
+                factCheckController = Instance[i];
+                if (factCheckController == null) {
+                    FactCheckController[] factCheckControllerArr = Instance;
+                    FactCheckController factCheckController3 = new FactCheckController(i);
+                    factCheckControllerArr[i] = factCheckController3;
+                    factCheckController = factCheckController3;
                 }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return factCheckController;
@@ -129,7 +130,7 @@ public class FactCheckController {
             map.put(keyOf, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$getFactCheck$0(keyOf, messageObject, (TLRPC.TL_factCheck) obj);
+                    FactCheckController.m425$r8$lambda$YpyzKWAXZ62JyqavMM7ThmuLNA(this.f$0, keyOf, messageObject, (TLRPC.TL_factCheck) obj);
                 }
             });
             scheduleLoadMissing();
@@ -137,8 +138,8 @@ public class FactCheckController {
         return messageObject.messageOwner.factcheck;
     }
 
-    public void lambda$getFactCheck$0(Key key, MessageObject messageObject, TLRPC.TL_factCheck tL_factCheck) {
-        this.localCache.put(key.hash, tL_factCheck);
+    public static void m425$r8$lambda$YpyzKWAXZ62JyqavMM7ThmuLNA(FactCheckController factCheckController, Key key, MessageObject messageObject, TLRPC.TL_factCheck tL_factCheck) {
+        factCheckController.localCache.put(key.hash, tL_factCheck);
         messageObject.messageOwner.factcheck = tL_factCheck;
     }
 
@@ -157,16 +158,17 @@ public class FactCheckController {
             getFromDatabase(arrayList, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$loadMissing$3(jKeyAt, arrayList, mapValueAt, (ArrayList) obj);
+                    FactCheckController.$r8$lambda$rqnHgwbUaSvuhOucbtLBfb5U520(this.f$0, jKeyAt, arrayList, mapValueAt, (ArrayList) obj);
                 }
             });
         }
         this.toload.clear();
     }
 
-    public void lambda$loadMissing$3(long j, ArrayList arrayList, final HashMap map, ArrayList arrayList2) {
+    public static void $r8$lambda$rqnHgwbUaSvuhOucbtLBfb5U520(final FactCheckController factCheckController, long j, ArrayList arrayList, final HashMap map, ArrayList arrayList2) {
+        factCheckController.getClass();
         final TLRPC.TL_getFactCheck tL_getFactCheck = new TLRPC.TL_getFactCheck();
-        tL_getFactCheck.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        tL_getFactCheck.peer = MessagesController.getInstance(factCheckController.currentAccount).getInputPeer(j);
         final ArrayList arrayList3 = new ArrayList();
         int i = 0;
         for (int i2 = 0; i2 < arrayList2.size(); i2++) {
@@ -176,7 +178,7 @@ public class FactCheckController {
                 arrayList3.add(key);
                 tL_getFactCheck.msg_id.add(Integer.valueOf(key.messageId));
             } else {
-                this.loading.remove(key);
+                factCheckController.loading.remove(key);
                 Utilities.Callback callback = (Utilities.Callback) map.get(key);
                 if (callback != null) {
                     callback.run(tL_factCheck);
@@ -185,29 +187,31 @@ public class FactCheckController {
             }
         }
         if (i > 0) {
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.factCheckLoaded, new Object[0]);
+            NotificationCenter.getInstance(factCheckController.currentAccount).postNotificationName(NotificationCenter.factCheckLoaded, new Object[0]);
         }
         if (tL_getFactCheck.msg_id.isEmpty()) {
             return;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getFactCheck, new RequestDelegate() {
+        ConnectionsManager.getInstance(factCheckController.currentAccount).sendRequest(tL_getFactCheck, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadMissing$2(tL_getFactCheck, arrayList3, map, tLObject, tL_error);
+                FactCheckController.$r8$lambda$4vM9TzFSoFqO_ZZpJoJydghAl94(this.f$0, tL_getFactCheck, arrayList3, map, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$loadMissing$2(final TLRPC.TL_getFactCheck tL_getFactCheck, final ArrayList arrayList, final HashMap map, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$4vM9TzFSoFqO_ZZpJoJydghAl94(final FactCheckController factCheckController, final TLRPC.TL_getFactCheck tL_getFactCheck, final ArrayList arrayList, final HashMap map, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        factCheckController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadMissing$1(tLObject, tL_getFactCheck, arrayList, map);
+                FactCheckController.m424$r8$lambda$GvN_9hEQzghOq9aC9QT86GzSjs(this.f$0, tLObject, tL_getFactCheck, arrayList, map);
             }
         });
     }
 
-    public void lambda$loadMissing$1(TLObject tLObject, TLRPC.TL_getFactCheck tL_getFactCheck, ArrayList arrayList, HashMap map) {
+    public static void m424$r8$lambda$GvN_9hEQzghOq9aC9QT86GzSjs(FactCheckController factCheckController, TLObject tLObject, TLRPC.TL_getFactCheck tL_getFactCheck, ArrayList arrayList, HashMap map) {
+        factCheckController.getClass();
         ArrayList arrayList2 = new ArrayList();
         if (tLObject instanceof Vector) {
             ArrayList<T> arrayList3 = ((Vector) tLObject).objects;
@@ -220,24 +224,24 @@ public class FactCheckController {
         HashMap map2 = new HashMap();
         for (int i2 = 0; i2 < Math.min(tL_getFactCheck.msg_id.size(), arrayList2.size()); i2++) {
             Integer num = tL_getFactCheck.msg_id.get(i2);
-            num.intValue();
+            num.getClass();
             map2.put(num, (TLRPC.TL_factCheck) arrayList2.get(i2));
         }
         int i3 = 0;
         for (int i4 = 0; i4 < tL_getFactCheck.msg_id.size(); i4++) {
             Key key = (Key) arrayList.get(i4);
             Integer num2 = tL_getFactCheck.msg_id.get(i4);
-            num2.intValue();
+            num2.getClass();
             TLRPC.TL_factCheck tL_factCheck = (TLRPC.TL_factCheck) map2.get(num2);
             Utilities.Callback callback = (Utilities.Callback) map.get(key);
             if (tL_factCheck != null && !tL_factCheck.need_check && callback != null) {
                 callback.run(tL_factCheck);
                 i3++;
-                this.loading.remove(key);
+                factCheckController.loading.remove(key);
             }
         }
         if (i3 > 0) {
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.factCheckLoaded, new Object[0]);
+            NotificationCenter.getInstance(factCheckController.currentAccount).postNotificationName(NotificationCenter.factCheckLoaded, new Object[0]);
         }
     }
 
@@ -276,22 +280,25 @@ public class FactCheckController {
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FactCheckController.lambda$getFromDatabase$5(messagesStorage, arrayList, callback);
+                    FactCheckController.$r8$lambda$eRU3nxQjWPT8Oj30fqwMG3VVK3A(messagesStorage, arrayList, callback);
                 }
             });
         }
     }
 
-    public static void lambda$getFromDatabase$5(MessagesStorage messagesStorage, ArrayList arrayList, final Utilities.Callback callback) {
+    public static void $r8$lambda$eRU3nxQjWPT8Oj30fqwMG3VVK3A(MessagesStorage messagesStorage, ArrayList arrayList, final Utilities.Callback callback) {
         final ArrayList arrayList2 = new ArrayList();
         SQLiteCursor sQLiteCursorQueryFinalized = null;
         try {
             try {
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 ArrayList arrayList3 = new ArrayList();
-                Iterator it = arrayList.iterator();
-                while (it.hasNext()) {
-                    arrayList3.add(Long.valueOf(((Key) it.next()).hash));
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    arrayList3.add(Long.valueOf(((Key) obj).hash));
                     arrayList2.add(null);
                 }
                 sQLiteCursorQueryFinalized = database.queryFinalized("SELECT data FROM fact_checks WHERE hash IN (" + TextUtils.join(", ", arrayList3) + ")", new Object[0]);
@@ -299,14 +306,14 @@ public class FactCheckController {
                     NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0);
                     TLRPC.TL_factCheck tL_factCheckTLdeserialize = TLRPC.TL_factCheck.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
                     if (tL_factCheckTLdeserialize != null) {
-                        int i = -1;
-                        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                            if (tL_factCheckTLdeserialize.hash == ((Key) arrayList.get(i2)).hash) {
-                                i = i2;
+                        int i2 = -1;
+                        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                            if (tL_factCheckTLdeserialize.hash == ((Key) arrayList.get(i3)).hash) {
+                                i2 = i3;
                             }
                         }
-                        if (i >= 0 && i < arrayList2.size()) {
-                            arrayList2.set(i, tL_factCheckTLdeserialize);
+                        if (i2 >= 0 && i2 < arrayList2.size()) {
+                            arrayList2.set(i2, tL_factCheckTLdeserialize);
                             break;
                         } else {
                             break;
@@ -343,13 +350,13 @@ public class FactCheckController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FactCheckController.lambda$saveToDatabase$6(messagesStorage, tL_factCheck);
+                FactCheckController.m427$r8$lambda$hwZvWtn8X40ulbUsYqEavkirk8(messagesStorage, tL_factCheck);
             }
         });
         clearExpiredInDatabase();
     }
 
-    public static void lambda$saveToDatabase$6(MessagesStorage messagesStorage, TLRPC.TL_factCheck tL_factCheck) {
+    public static void m427$r8$lambda$hwZvWtn8X40ulbUsYqEavkirk8(MessagesStorage messagesStorage, TLRPC.TL_factCheck tL_factCheck) {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
@@ -385,12 +392,12 @@ public class FactCheckController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FactCheckController.lambda$clearExpiredInDatabase$7(messagesStorage);
+                FactCheckController.$r8$lambda$JpH7yHT6pnclw1XNRCmFTCCRSQU(messagesStorage);
             }
         });
     }
 
-    public static void lambda$clearExpiredInDatabase$7(MessagesStorage messagesStorage) {
+    public static void $r8$lambda$JpH7yHT6pnclw1XNRCmFTCCRSQU(MessagesStorage messagesStorage) {
         try {
             messagesStorage.getDatabase().executeFast("DELETE FROM fact_checks WHERE expires > " + System.currentTimeMillis()).stepThis().dispose();
         } catch (Exception e) {
@@ -400,7 +407,6 @@ public class FactCheckController {
 
     public void openFactCheckEditor(Context context, final Theme.ResourcesProvider resourcesProvider, final MessageObject messageObject, boolean z) {
         AlertDialog.Builder builder;
-        ?? r1;
         TLRPC.TL_textWithEntities tL_textWithEntities;
         TLRPC.Message message;
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
@@ -482,7 +488,6 @@ public class FactCheckController {
         };
         editTextCaption.lineYFix = true;
         final boolean z4 = z3;
-        final View view = currentFocus;
         editTextCaption.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
@@ -506,9 +511,9 @@ public class FactCheckController {
                 if (alertDialogArr[0] == FactCheckController.currentDialog) {
                     AlertDialog unused = FactCheckController.currentDialog = null;
                 }
-                View view2 = view;
-                if (view2 != null) {
-                    view2.requestFocus();
+                View view = currentFocus;
+                if (view != null) {
+                    view.requestFocus();
                 }
                 return true;
             }
@@ -574,11 +579,10 @@ public class FactCheckController {
         builder2.makeCustomMaxHeight();
         builder2.setView(linearLayout);
         builder2.setWidth(AndroidUtilities.dp(292.0f));
-        final boolean z5 = z3;
         builder2.setPositiveButton(LocaleController.getString(R.string.Done), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                this.f$0.lambda$openFactCheckEditor$8(editTextCaption, i, messageObject, z5, alertDialog, i2);
+                FactCheckController.$r8$lambda$CxT9GqmR0iwOsQU7SZp9irV69n8(this.f$0, editTextCaption, i, messageObject, z4, alertDialog, i2);
             }
         });
         builder2.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -594,20 +598,18 @@ public class FactCheckController {
             alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    FactCheckController.lambda$openFactCheckEditor$10(currentFocus, dialogInterface);
+                    FactCheckController.$r8$lambda$covAdcOkR6_V4SG3w1tVgkD6jFY(currentFocus, dialogInterface);
                 }
             });
             currentDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    FactCheckController.lambda$openFactCheckEditor$11(editTextCaption, dialogInterface);
+                    FactCheckController.$r8$lambda$cSn0YY6kSzQ16psVIG73jVTJqRo(editTextCaption, dialogInterface);
                 }
             });
             currentDialog.showDelayed(250L);
-            r1 = 0;
         } else {
             AlertDialog alertDialogCreate2 = builder2.create();
-            r1 = 0;
             alertDialogArr[0] = alertDialogCreate2;
             alertDialogCreate2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -618,44 +620,45 @@ public class FactCheckController {
             alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    FactCheckController.lambda$openFactCheckEditor$13(editTextCaption, dialogInterface);
+                    FactCheckController.$r8$lambda$rCZDn9DTeD00226gcwmQQ1cnVzY(editTextCaption, dialogInterface);
                 }
             });
             alertDialogArr[0].show();
         }
-        alertDialogArr[r1].setDismissDialogByButtons(r1);
-        View button = alertDialogArr[r1].getButton(-1);
+        alertDialogArr[0].setDismissDialogByButtons(false);
+        View button = alertDialogArr[0].getButton(-1);
         if (button instanceof TextView) {
-            textViewArr[r1] = (TextView) button;
+            textViewArr[0] = (TextView) button;
         }
         editTextCaption.setSelection(editTextCaption.getText().length());
     }
 
-    public void lambda$openFactCheckEditor$8(EditTextCaption editTextCaption, int i, MessageObject messageObject, boolean z, AlertDialog alertDialog, int i2) {
+    public static void $r8$lambda$CxT9GqmR0iwOsQU7SZp9irV69n8(FactCheckController factCheckController, EditTextCaption editTextCaption, int i, MessageObject messageObject, boolean z, AlertDialog alertDialog, int i2) {
+        factCheckController.getClass();
         if (editTextCaption.getText().toString().length() > i) {
             AndroidUtilities.shakeView(editTextCaption);
             return;
         }
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         CharSequence[] charSequenceArr = {editTextCaption.getText()};
-        tL_textWithEntities.entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
+        tL_textWithEntities.entities = MediaDataController.getInstance(factCheckController.currentAccount).getEntities(charSequenceArr, true);
         CharSequence charSequence = charSequenceArr[0];
         tL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
-        applyFactCheck(messageObject, tL_textWithEntities, z);
+        factCheckController.applyFactCheck(messageObject, tL_textWithEntities, z);
         alertDialog.dismiss();
     }
 
-    public static void lambda$openFactCheckEditor$10(View view, DialogInterface dialogInterface) {
+    public static void $r8$lambda$covAdcOkR6_V4SG3w1tVgkD6jFY(View view, DialogInterface dialogInterface) {
         currentDialog = null;
         view.requestFocus();
     }
 
-    public static void lambda$openFactCheckEditor$11(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+    public static void $r8$lambda$cSn0YY6kSzQ16psVIG73jVTJqRo(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
         editTextCaption.requestFocus();
         AndroidUtilities.showKeyboard(editTextCaption);
     }
 
-    public static void lambda$openFactCheckEditor$13(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+    public static void $r8$lambda$rCZDn9DTeD00226gcwmQQ1cnVzY(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
         editTextCaption.requestFocus();
         AndroidUtilities.showKeyboard(editTextCaption);
     }
@@ -686,26 +689,28 @@ public class FactCheckController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$applyFactCheck$16(tL_textWithEntities, z, alertDialog, tLObject2, tL_error);
+                FactCheckController.m426$r8$lambda$bDHYcR4M_VJInkzsX9NNrgeQzY(this.f$0, tL_textWithEntities, z, alertDialog, tLObject2, tL_error);
             }
         });
     }
 
-    public void lambda$applyFactCheck$16(final TLRPC.TL_textWithEntities tL_textWithEntities, final boolean z, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m426$r8$lambda$bDHYcR4M_VJInkzsX9NNrgeQzY(final FactCheckController factCheckController, final TLRPC.TL_textWithEntities tL_textWithEntities, final boolean z, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        factCheckController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$applyFactCheck$15(tLObject, tL_textWithEntities, z, alertDialog);
+                FactCheckController.$r8$lambda$PuRAsGbUIGbjHx10TA_JQ7vHjkY(this.f$0, tLObject, tL_textWithEntities, z, alertDialog);
             }
         });
     }
 
-    public void lambda$applyFactCheck$15(final TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, AlertDialog alertDialog) {
+    public static void $r8$lambda$PuRAsGbUIGbjHx10TA_JQ7vHjkY(final FactCheckController factCheckController, final TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, AlertDialog alertDialog) {
+        factCheckController.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$applyFactCheck$14(tLObject);
+                    MessagesController.getInstance(this.f$0.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
                 }
             });
             BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
@@ -717,9 +722,5 @@ public class FactCheckController {
             }
         }
         alertDialog.dismiss();
-    }
-
-    public void lambda$applyFactCheck$14(TLObject tLObject) {
-        MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
     }
 }

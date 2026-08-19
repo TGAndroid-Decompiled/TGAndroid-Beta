@@ -156,7 +156,7 @@ public abstract class WebActionBar extends FrameLayout {
         this.longPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$11();
+                WebActionBar.m5064$r8$lambda$9ZMBVSSnV0qdTnZp4VsZXM3ae8(this.f$0);
             }
         };
         this.longClicked = false;
@@ -235,7 +235,7 @@ public abstract class WebActionBar extends FrameLayout {
         imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$4(view);
+                WebActionBar.$r8$lambda$m5y5XC4njl1cz10J7i9Vjec6C7w(this.f$0, view);
             }
         });
         Drawable drawableCreateSelectorDrawable3 = Theme.createSelectorDrawable(1090519039);
@@ -271,7 +271,7 @@ public abstract class WebActionBar extends FrameLayout {
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                return this.f$0.lambda$new$5(textView, i2, keyEvent);
+                return WebActionBar.$r8$lambda$uVCq8vaAeb94nsYFjcArsEOpH1g(this.f$0, textView, i2, keyEvent);
             }
         });
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
@@ -316,7 +316,7 @@ public abstract class WebActionBar extends FrameLayout {
         editTextBoldCursor2.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                return this.f$0.lambda$new$6(textView, i2, keyEvent);
+                return WebActionBar.$r8$lambda$0dMGs8Uj8YyJXH6zeUFugk66cTs(this.f$0, textView, i2, keyEvent);
             }
         });
         frameLayout2.addView(editTextBoldCursor2, LayoutHelper.createFrame(-1, -1.0f, 119, 48.0f, 0.0f, 12.0f, 0.0f));
@@ -332,7 +332,7 @@ public abstract class WebActionBar extends FrameLayout {
         imageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$7(view);
+                this.f$0.searchEditText.setText("");
             }
         });
         addView(imageView4, LayoutHelper.createFrame(54, 56, 85));
@@ -349,42 +349,42 @@ public abstract class WebActionBar extends FrameLayout {
         setMenuColors(Theme.getColor(i2, resourcesProvider));
     }
 
-    public void lambda$new$4(View view) {
-        if (getParent() instanceof ViewGroup) {
+    public static void $r8$lambda$m5y5XC4njl1cz10J7i9Vjec6C7w(final WebActionBar webActionBar, View view) {
+        if (webActionBar.getParent() instanceof ViewGroup) {
             Utilities.CallbackReturn callbackReturn = new Utilities.CallbackReturn() {
                 @Override
                 public final Object run(Object obj) {
-                    return this.f$0.lambda$new$1((Integer) obj);
+                    return WebActionBar.$r8$lambda$JBJreulGZY_Yh0VHBMwDddTFJCw(this.f$0, (Integer) obj);
                 }
             };
-            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((ViewGroup) getParent(), this.menuButton);
+            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((ViewGroup) webActionBar.getParent(), webActionBar.menuButton);
             itemOptionsMakeOptions.setDimAlpha(0);
-            itemOptionsMakeOptions.setColors(this.menuTextColor, this.menuIconColor);
+            itemOptionsMakeOptions.setColors(webActionBar.menuTextColor, webActionBar.menuIconColor);
             itemOptionsMakeOptions.translate(0.0f, -AndroidUtilities.dp(52.0f));
             itemOptionsMakeOptions.setMinWidth(200);
-            itemOptionsMakeOptions.setSelectorColor(Theme.blendOver(this.menuBackgroundColor, Theme.multAlpha(this.menuTextColor, 0.1f)));
-            if (AndroidUtilities.computePerceivedBrightness(this.menuBackgroundColor) > 0.721f) {
+            itemOptionsMakeOptions.setSelectorColor(Theme.blendOver(webActionBar.menuBackgroundColor, Theme.multAlpha(webActionBar.menuTextColor, 0.1f)));
+            if (AndroidUtilities.computePerceivedBrightness(webActionBar.menuBackgroundColor) > 0.721f) {
                 itemOptionsMakeOptions.setBackgroundColor(-1);
                 itemOptionsMakeOptions.setGapBackgroundColor(-986896);
             } else {
                 itemOptionsMakeOptions.setBackgroundColor(-14737633);
                 itemOptionsMakeOptions.setGapBackgroundColor(-15592942);
             }
-            int i = this.menuType;
+            int i = webActionBar.menuType;
             if (i == 0) {
                 itemOptionsMakeOptions.add(R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp), (Runnable) callbackReturn.run(3));
                 itemOptionsMakeOptions.add(R.drawable.msg_search, LocaleController.getString(R.string.Search), (Runnable) callbackReturn.run(1));
-                itemOptionsMakeOptions.addIf(!this.isLocal, R.drawable.msg_share, LocaleController.getString(R.string.ShareFile), (Runnable) callbackReturn.run(2));
+                itemOptionsMakeOptions.addIf(!webActionBar.isLocal, R.drawable.msg_share, LocaleController.getString(R.string.ShareFile), (Runnable) callbackReturn.run(2));
                 itemOptionsMakeOptions.add(R.drawable.msg_settings_old, LocaleController.getString(R.string.Settings), (Runnable) callbackReturn.run(4));
             } else if (i == 1) {
-                if (!this.isTonsite) {
+                if (!webActionBar.isTonsite) {
                     itemOptionsMakeOptions.add(R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp), (Runnable) callbackReturn.run(3));
                     itemOptionsMakeOptions.addGap();
                 }
-                if (this.hasForward) {
+                if (webActionBar.hasForward) {
                     itemOptionsMakeOptions.add(R.drawable.msg_arrow_forward, LocaleController.getString(R.string.WebForward), (Runnable) callbackReturn.run(9));
                 }
-                final WebInstantView.Loader instantViewLoader = getInstantViewLoader();
+                final WebInstantView.Loader instantViewLoader = webActionBar.getInstantViewLoader();
                 if (instantViewLoader != null && (!instantViewLoader.isDone() || instantViewLoader.getWebPage() != null)) {
                     itemOptionsMakeOptions.add(R.drawable.menu_instant_view, LocaleController.getString(R.string.OpenLocalInstantView), (Runnable) callbackReturn.run(10));
                     final ActionBarMenuSubItem last = itemOptionsMakeOptions.getLast();
@@ -393,7 +393,7 @@ public abstract class WebActionBar extends FrameLayout {
                     itemOptionsMakeOptions.setOnDismiss(instantViewLoader.listen(new Runnable() {
                         @Override
                         public final void run() {
-                            WebActionBar.lambda$new$2(last, instantViewLoader);
+                            WebActionBar.m5063$r8$lambda$zKzXttVJ6e13AUVkJ7gntuI9R8(last, instantViewLoader);
                         }
                     }));
                 }
@@ -411,60 +411,52 @@ public abstract class WebActionBar extends FrameLayout {
             itemOptionsMakeOptions.setOnDismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$3();
+                    this.f$0.isMenuShown = false;
                 }
             });
             itemOptionsMakeOptions.show();
-            this.isMenuShown = true;
+            webActionBar.isMenuShown = true;
         }
     }
 
-    public void lambda$new$0(Integer num) {
-        this.menuListener.run(num);
-    }
-
-    public Runnable lambda$new$1(final Integer num) {
+    public static Runnable $r8$lambda$JBJreulGZY_Yh0VHBMwDddTFJCw(final WebActionBar webActionBar, final Integer num) {
+        webActionBar.getClass();
         return new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0(num);
+                this.f$0.menuListener.run(num);
             }
         };
     }
 
-    public static void lambda$new$2(ActionBarMenuSubItem actionBarMenuSubItem, WebInstantView.Loader loader) {
+    public static void m5063$r8$lambda$zKzXttVJ6e13AUVkJ7gntuI9R8(ActionBarMenuSubItem actionBarMenuSubItem, WebInstantView.Loader loader) {
         actionBarMenuSubItem.setEnabled(loader.getWebPage() != null);
         actionBarMenuSubItem.animate().alpha(actionBarMenuSubItem.isEnabled() ? 1.0f : 0.5f);
     }
 
-    public void lambda$new$3() {
-        this.isMenuShown = false;
-    }
-
-    public boolean lambda$new$5(TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean $r8$lambda$uVCq8vaAeb94nsYFjcArsEOpH1g(WebActionBar webActionBar, TextView textView, int i, KeyEvent keyEvent) {
+        webActionBar.getClass();
         if (keyEvent == null) {
             return false;
         }
         if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
             return false;
         }
-        AndroidUtilities.hideKeyboard(this.searchEditText);
+        AndroidUtilities.hideKeyboard(webActionBar.searchEditText);
         return false;
     }
 
-    public boolean lambda$new$6(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 2) {
-            Utilities.Callback callback = this.urlCallback;
-            if (callback != null) {
-                callback.run(this.addressEditText.getText().toString());
-            }
-            showAddress(false, true);
+    public static boolean $r8$lambda$0dMGs8Uj8YyJXH6zeUFugk66cTs(WebActionBar webActionBar, TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 2) {
+            webActionBar.getClass();
+            return false;
         }
+        Utilities.Callback callback = webActionBar.urlCallback;
+        if (callback != null) {
+            callback.run(webActionBar.addressEditText.getText().toString());
+        }
+        webActionBar.showAddress(false, true);
         return false;
-    }
-
-    public void lambda$new$7(View view) {
-        this.searchEditText.setText("");
     }
 
     public void occupyStatusBar(boolean z) {
@@ -663,7 +655,7 @@ public abstract class WebActionBar extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setColors$8(i, f2, f3, valueAnimator2);
+                WebActionBar.m5066$r8$lambda$WByNFthCusmydDaujgGSYZiADw(this.f$0, i, f2, f3, valueAnimator2);
             }
         });
         this.colorAnimator.addListener(new AnimatorListenerAdapter() {
@@ -675,9 +667,10 @@ public abstract class WebActionBar extends FrameLayout {
         this.colorAnimator.start();
     }
 
-    public void lambda$setColors$8(int i, float f, float f2, ValueAnimator valueAnimator) {
+    public static void m5066$r8$lambda$WByNFthCusmydDaujgGSYZiADw(WebActionBar webActionBar, int i, float f, float f2, ValueAnimator valueAnimator) {
+        webActionBar.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        setColors(ColorUtils.blendARGB(this.fromBackgroundColor, i, fFloatValue), AndroidUtilities.lerp(f, f2, fFloatValue), false);
+        webActionBar.setColors(ColorUtils.blendARGB(webActionBar.fromBackgroundColor, i, fFloatValue), AndroidUtilities.lerp(f, f2, fFloatValue), false);
     }
 
     public int getBackgroundColor() {
@@ -898,7 +891,7 @@ public abstract class WebActionBar extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$showSearch$9(valueAnimator2);
+                    WebActionBar.m5067$r8$lambda$pSo3FG_nRnjI6gxWNO_CKgLMc(this.f$0, valueAnimator2);
                 }
             });
             this.searchAnimator.addListener(new AnimatorListenerAdapter() {
@@ -956,11 +949,12 @@ public abstract class WebActionBar extends FrameLayout {
         AndroidUtilities.updateViewShow(imageView, z3, true, z2);
     }
 
-    public void lambda$showSearch$9(ValueAnimator valueAnimator) {
+    public static void m5067$r8$lambda$pSo3FG_nRnjI6gxWNO_CKgLMc(WebActionBar webActionBar, ValueAnimator valueAnimator) {
+        webActionBar.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.searchingProgress = fFloatValue;
-        this.searchEditText.setAlpha(fFloatValue);
-        invalidate();
+        webActionBar.searchingProgress = fFloatValue;
+        webActionBar.searchEditText.setAlpha(fFloatValue);
+        webActionBar.invalidate();
     }
 
     public void setBackButton(boolean z) {
@@ -1024,7 +1018,7 @@ public abstract class WebActionBar extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$showAddress$10(valueAnimator2);
+                    WebActionBar.m5065$r8$lambda$LHGz88t7wFeW1WLsnjl3Low6Zo(this.f$0, valueAnimator2);
                 }
             });
             this.addressAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1078,14 +1072,15 @@ public abstract class WebActionBar extends FrameLayout {
         }, this.addressing ? 100L : 0L);
     }
 
-    public void lambda$showAddress$10(ValueAnimator valueAnimator) {
+    public static void m5065$r8$lambda$LHGz88t7wFeW1WLsnjl3Low6Zo(WebActionBar webActionBar, ValueAnimator valueAnimator) {
+        webActionBar.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.addressingProgress = fFloatValue;
-        onAddressingProgress(fFloatValue);
-        this.addressEditText.setAlpha(this.addressingProgress);
-        this.menuButton.setTranslationX(AndroidUtilities.dp(56.0f) * this.addressingProgress);
-        this.forwardButton.setTranslationX(AndroidUtilities.dp(112.0f) * this.addressingProgress);
-        invalidate();
+        webActionBar.addressingProgress = fFloatValue;
+        webActionBar.onAddressingProgress(fFloatValue);
+        webActionBar.addressEditText.setAlpha(webActionBar.addressingProgress);
+        webActionBar.menuButton.setTranslationX(AndroidUtilities.dp(56.0f) * webActionBar.addressingProgress);
+        webActionBar.forwardButton.setTranslationX(AndroidUtilities.dp(112.0f) * webActionBar.addressingProgress);
+        webActionBar.invalidate();
     }
 
     protected void onAddressingProgress(float f) {
@@ -1098,13 +1093,13 @@ public abstract class WebActionBar extends FrameLayout {
         return this.addressing;
     }
 
-    public void lambda$new$11() {
-        this.longClicked = true;
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(true);
+    public static void m5064$r8$lambda$9ZMBVSSnV0qdTnZp4VsZXM3ae8(WebActionBar webActionBar) {
+        webActionBar.longClicked = true;
+        if (webActionBar.getParent() != null) {
+            webActionBar.getParent().requestDisallowInterceptTouchEvent(true);
         }
         try {
-            performHapticFeedback(0, 1);
+            webActionBar.performHapticFeedback(0, 1);
         } catch (Exception unused) {
         }
     }

@@ -89,12 +89,12 @@ public abstract class Weather {
         getUserLocation(z, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Weather.lambda$fetch$2(callback, z, (Location) obj);
+                Weather.$r8$lambda$TughEvwce160l2o9BDiKqi5wbPE(callback, z, (Location) obj);
             }
         });
     }
 
-    public static void lambda$fetch$2(final Utilities.Callback callback, final boolean z, Location location) {
+    public static void $r8$lambda$TughEvwce160l2o9BDiKqi5wbPE(final Utilities.Callback callback, final boolean z, Location location) {
         if (location == null) {
             callback.run(null);
             return;
@@ -114,7 +114,7 @@ public abstract class Weather {
         final Runnable runnableFetch = fetch(location.getLatitude(), location.getLongitude(), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Weather.lambda$fetch$0(z, alertDialog, callback, (Weather.State) obj);
+                Weather.m4655$r8$lambda$ubN9jkSqwNZ09lyaxiXHqabpo(z, alertDialog, callback, (Weather.State) obj);
             }
         });
         if (!z || runnableFetch == null) {
@@ -128,7 +128,7 @@ public abstract class Weather {
         });
     }
 
-    public static void lambda$fetch$0(boolean z, AlertDialog alertDialog, Utilities.Callback callback, State state) {
+    public static void m4655$r8$lambda$ubN9jkSqwNZ09lyaxiXHqabpo(boolean z, AlertDialog alertDialog, Utilities.Callback callback, State state) {
         if (z) {
             alertDialog.dismissUnless(350L);
         }
@@ -159,7 +159,7 @@ public abstract class Weather {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                Weather.lambda$fetch$5(messagesController, userArr, d, d2, iArr, connectionsManager, callback, str);
+                Weather.m4656$r8$lambda$zc5k0Ozww0sdCSMlUOJeTQzUs(messagesController, userArr, d, d2, iArr, connectionsManager, callback, str);
             }
         };
         if (userArr[0] == null) {
@@ -168,7 +168,12 @@ public abstract class Weather {
             iArr[0] = connectionsManager.sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    Weather.lambda$fetch$7(iArr, messagesController, userArr, runnable, callback, tLObject, tL_error);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            Weather.$r8$lambda$hUhBhSJ8m8V563yHFnm1jsY1csg(iArr, tLObject, messagesController, userArr, runnable, callback);
+                        }
+                    });
                 }
             });
         } else {
@@ -177,12 +182,12 @@ public abstract class Weather {
         return new Runnable() {
             @Override
             public final void run() {
-                Weather.lambda$fetch$8(iArr, connectionsManager);
+                Weather.m4654$r8$lambda$pVz5ZF43ADALZvvq5I3OLcOx2I(iArr, connectionsManager);
             }
         };
     }
 
-    public static void lambda$fetch$5(MessagesController messagesController, TLRPC.User[] userArr, final double d, final double d2, final int[] iArr, ConnectionsManager connectionsManager, final Utilities.Callback callback, final String str) {
+    public static void m4656$r8$lambda$zc5k0Ozww0sdCSMlUOJeTQzUs(MessagesController messagesController, TLRPC.User[] userArr, final double d, final double d2, final int[] iArr, ConnectionsManager connectionsManager, final Utilities.Callback callback, final String str) {
         TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
         tL_messages_getInlineBotResults.bot = messagesController.getInputUser(userArr[0]);
         tL_messages_getInlineBotResults.query = "";
@@ -196,21 +201,17 @@ public abstract class Weather {
         iArr[0] = connectionsManager.sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                Weather.lambda$fetch$4(iArr, callback, d, d2, str, tLObject, tL_error);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        Weather.$r8$lambda$VkVcr5mKlXTTbz3fVX0BPcw6qek(iArr, tLObject, callback, d, d, str);
+                    }
+                });
             }
         });
     }
 
-    public static void lambda$fetch$4(final int[] iArr, final Utilities.Callback callback, final double d, final double d2, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                Weather.lambda$fetch$3(iArr, tLObject, callback, d, d2, str);
-            }
-        });
-    }
-
-    public static void lambda$fetch$3(int[] iArr, TLObject tLObject, Utilities.Callback callback, double d, double d2, String str) {
+    public static void $r8$lambda$VkVcr5mKlXTTbz3fVX0BPcw6qek(int[] iArr, TLObject tLObject, Utilities.Callback callback, double d, double d2, String str) {
         iArr[0] = 0;
         if (tLObject instanceof TLRPC.messages_BotResults) {
             TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
@@ -237,16 +238,7 @@ public abstract class Weather {
         callback.run(null);
     }
 
-    public static void lambda$fetch$7(final int[] iArr, final MessagesController messagesController, final TLRPC.User[] userArr, final Runnable runnable, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                Weather.lambda$fetch$6(iArr, tLObject, messagesController, userArr, runnable, callback);
-            }
-        });
-    }
-
-    public static void lambda$fetch$6(int[] iArr, TLObject tLObject, MessagesController messagesController, TLRPC.User[] userArr, Runnable runnable, Utilities.Callback callback) {
+    public static void $r8$lambda$hUhBhSJ8m8V563yHFnm1jsY1csg(int[] iArr, TLObject tLObject, MessagesController messagesController, TLRPC.User[] userArr, Runnable runnable, Utilities.Callback callback) {
         iArr[0] = 0;
         if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
             TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
@@ -262,7 +254,7 @@ public abstract class Weather {
         callback.run(null);
     }
 
-    public static void lambda$fetch$8(int[] iArr, ConnectionsManager connectionsManager) {
+    public static void m4654$r8$lambda$pVz5ZF43ADALZvvq5I3OLcOx2I(int[] iArr, ConnectionsManager connectionsManager) {
         int i = iArr[0];
         if (i != 0) {
             connectionsManager.cancelRequest(i, true);
@@ -277,12 +269,12 @@ public abstract class Weather {
         PermissionRequest.ensureEitherPermission(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Weather.lambda$getUserLocation$11(callback, z, (Boolean) obj);
+                Weather.$r8$lambda$MSQlLJDRqje0yOIZU1OwptyEMUs(callback, z, (Boolean) obj);
             }
         });
     }
 
-    public static void lambda$getUserLocation$11(Utilities.Callback callback, boolean z, Boolean bool) {
+    public static void $r8$lambda$MSQlLJDRqje0yOIZU1OwptyEMUs(Utilities.Callback callback, boolean z, Boolean bool) {
         if (!bool.booleanValue()) {
             callback.run(null);
             return;
@@ -310,7 +302,7 @@ public abstract class Weather {
                         builder.setPositiveButton(LocaleController.getString(R.string.Enable), new AlertDialog.OnButtonClickListener() {
                             @Override
                             public final void onClick(AlertDialog alertDialog, int i) {
-                                Weather.lambda$getUserLocation$9(context, alertDialog, i);
+                                context.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
                             }
                         });
                         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -326,7 +318,7 @@ public abstract class Weather {
                     LocationListener locationListener = new LocationListener() {
                         @Override
                         public final void onLocationChanged(Location location) {
-                            Weather.lambda$getUserLocation$10(locationListenerArr, locationManager, callbackArr, location);
+                            Weather.$r8$lambda$HwMgRd6w3M2ltU9sea8qMCkMyMY(locationListenerArr, locationManager, callbackArr, location);
                         }
                     };
                     locationListenerArr[0] = locationListener;
@@ -342,14 +334,7 @@ public abstract class Weather {
         callback.run(lastKnownLocation);
     }
 
-    public static void lambda$getUserLocation$9(Context context, AlertDialog alertDialog, int i) {
-        try {
-            context.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
-        } catch (Exception unused) {
-        }
-    }
-
-    public static void lambda$getUserLocation$10(LocationListener[] locationListenerArr, LocationManager locationManager, Utilities.Callback[] callbackArr, Location location) {
+    public static void $r8$lambda$HwMgRd6w3M2ltU9sea8qMCkMyMY(LocationListener[] locationListenerArr, LocationManager locationManager, Utilities.Callback[] callbackArr, Location location) {
         LocationListener locationListener = locationListenerArr[0];
         if (locationListener != null) {
             locationManager.removeUpdates(locationListener);

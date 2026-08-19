@@ -157,7 +157,7 @@ public class Camera2Enumerator implements CameraEnumerator {
 
     private static List<Size> convertSizes(android.util.Size[] sizeArr) {
         if (sizeArr == null || sizeArr.length == 0) {
-            return Collections.emptyList();
+            return Collections.EMPTY_LIST;
         }
         ArrayList arrayList = new ArrayList(sizeArr.length);
         for (android.util.Size size : sizeArr) {

@@ -64,7 +64,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                this.f$0.lambda$new$0(view, z);
+                CustomReactionEditText.m2705$r8$lambda$4SFGA_l2jkfOeF1MjYJK1KjlQM(this.f$0, view, z);
             }
         });
         setTextIsSelectable(true);
@@ -72,17 +72,17 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         setFocusableInTouchMode(false);
     }
 
-    public void lambda$new$0(View view, boolean z) {
+    public static void m2705$r8$lambda$4SFGA_l2jkfOeF1MjYJK1KjlQM(CustomReactionEditText customReactionEditText, View view, boolean z) {
         if (z) {
-            removeReactionsSpan(true);
-            Runnable runnable = this.onFocused;
+            customReactionEditText.removeReactionsSpan(true);
+            Runnable runnable = customReactionEditText.onFocused;
             if (runnable != null) {
                 runnable.run();
                 return;
             }
             return;
         }
-        addReactionsSpan();
+        customReactionEditText.addReactionsSpan();
     }
 
     @Override
@@ -131,7 +131,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$removeReactionsSpan$1(addReactionsSpan);
+                    CustomReactionEditText.m2706$r8$lambda$ChVxSDasvJ0LQlf1VdZZq1bzww(this.f$0, addReactionsSpan);
                 }
             };
             if (z) {
@@ -143,10 +143,10 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         }
     }
 
-    public void lambda$removeReactionsSpan$1(AddReactionsSpan addReactionsSpan) {
-        getText().delete(getText().getSpanStart(addReactionsSpan), getText().getSpanEnd(addReactionsSpan));
-        setCursorVisible(true);
-        setLongClickable(true);
+    public static void m2706$r8$lambda$ChVxSDasvJ0LQlf1VdZZq1bzww(CustomReactionEditText customReactionEditText, AddReactionsSpan addReactionsSpan) {
+        customReactionEditText.getText().delete(customReactionEditText.getText().getSpanStart(addReactionsSpan), customReactionEditText.getText().getSpanEnd(addReactionsSpan));
+        customReactionEditText.setCursorVisible(true);
+        customReactionEditText.setLongClickable(true);
     }
 
     public int getEditTextSelectionEnd() {

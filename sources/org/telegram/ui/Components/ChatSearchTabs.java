@@ -53,7 +53,7 @@ public abstract class ChatSearchTabs extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$show$0(valueAnimator2);
+                ChatSearchTabs.$r8$lambda$MHL0umdnSNcJoPX6I6OzNFWBCiE(this.f$0, valueAnimator2);
             }
         });
         this.actionBarTagsAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -76,11 +76,12 @@ public abstract class ChatSearchTabs extends FrameLayout {
         this.actionBarTagsAnimator.start();
     }
 
-    public void lambda$show$0(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$MHL0umdnSNcJoPX6I6OzNFWBCiE(ChatSearchTabs chatSearchTabs, ValueAnimator valueAnimator) {
+        chatSearchTabs.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.actionBarTagsT = fFloatValue;
-        setShown(fFloatValue);
-        onShownUpdate(false);
+        chatSearchTabs.actionBarTagsT = fFloatValue;
+        chatSearchTabs.setShown(fFloatValue);
+        chatSearchTabs.onShownUpdate(false);
     }
 
     @Override

@@ -79,7 +79,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     private int filtersSectionEnd = -1;
     private int shiftDp = -4;
 
-    public static void lambda$onFragmentDestroy$1(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$viSCAHUal90ZrKwbIMu73qciUSE(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     @Override
@@ -241,7 +241,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$0(view);
+                    FiltersSetupActivity.HintInnerCell.m3170$r8$lambda$qvk77EiSxOM12bd97Uu99C0Rec(this.f$0, view);
                 }
             });
             TextView textView = new TextView(context);
@@ -253,12 +253,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             addView(this.messageTextView, LayoutHelper.createFrame(-1, -2.0f, 49, 40.0f, 121.0f, 40.0f, 24.0f));
         }
 
-        public void lambda$new$0(View view) {
-            if (this.imageView.isPlaying()) {
+        public static void m3170$r8$lambda$qvk77EiSxOM12bd97Uu99C0Rec(HintInnerCell hintInnerCell, View view) {
+            if (hintInnerCell.imageView.isPlaying()) {
                 return;
             }
-            this.imageView.setProgress(0.0f);
-            this.imageView.playAnimation();
+            hintInnerCell.imageView.setProgress(0.0f);
+            hintInnerCell.imageView.playAnimation();
         }
 
         @Override
@@ -373,7 +373,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             imageView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$new$1(view2);
+                    FiltersSetupActivity.FilterCell.m3169$r8$lambda$Oh3SBal8etJ9P8UxtcCHdoRiJc(this.f$0, view2);
                 }
             });
             ImageView imageView3 = new ImageView(context);
@@ -387,24 +387,24 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             addView(imageView3, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
         }
 
-        public void lambda$new$1(View view) {
-            if ((!this.shareLoading || this.shareLoadingDrawable.isDisappeared()) && this.currentFilter != null) {
-                this.shareLoading = true;
-                this.shareLoadingDrawable.reset();
-                this.shareLoadingDrawable.resetDisappear();
-                this.shareImageView.invalidate();
-                FilterCreateActivity.FilterInvitesBottomSheet.show(FiltersSetupActivity.this, this.currentFilter, new Runnable() {
+        public static void m3169$r8$lambda$Oh3SBal8etJ9P8UxtcCHdoRiJc(final FilterCell filterCell, View view) {
+            if ((!filterCell.shareLoading || filterCell.shareLoadingDrawable.isDisappeared()) && filterCell.currentFilter != null) {
+                filterCell.shareLoading = true;
+                filterCell.shareLoadingDrawable.reset();
+                filterCell.shareLoadingDrawable.resetDisappear();
+                filterCell.shareImageView.invalidate();
+                FilterCreateActivity.FilterInvitesBottomSheet.show(FiltersSetupActivity.this, filterCell.currentFilter, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$0();
+                        FiltersSetupActivity.FilterCell.m3168$r8$lambda$0mPD9Iip7_nCnvzJDZsyYdZnrU(this.f$0);
                     }
                 });
             }
         }
 
-        public void lambda$new$0() {
-            this.shareLoadingDrawable.disappear();
-            this.shareImageView.invalidate();
+        public static void m3168$r8$lambda$0mPD9Iip7_nCnvzJDZsyYdZnrU(FilterCell filterCell) {
+            filterCell.shareLoadingDrawable.disappear();
+            filterCell.shareImageView.invalidate();
             FiltersSetupActivity.this.updateRows(true);
         }
 
@@ -439,7 +439,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            this.f$0.lambda$setFilter$2(valueAnimator2);
+                            FiltersSetupActivity.FilterCell.$r8$lambda$Ut9X4qEQa97mvm36I8TcXmaKuxA(this.f$0, valueAnimator2);
                         }
                     });
                     this.moveImageViewAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -529,17 +529,18 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             invalidate();
         }
 
-        public void lambda$setFilter$2(ValueAnimator valueAnimator) {
+        public static void $r8$lambda$Ut9X4qEQa97mvm36I8TcXmaKuxA(FilterCell filterCell, ValueAnimator valueAnimator) {
+            filterCell.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.moveImageView.setAlpha(fFloatValue);
+            filterCell.moveImageView.setAlpha(fFloatValue);
             float f = (fFloatValue * 0.5f) + 0.5f;
-            this.moveImageView.setScaleX(f);
-            this.moveImageView.setScaleY(f);
+            filterCell.moveImageView.setScaleX(f);
+            filterCell.moveImageView.setScaleY(f);
             float f2 = 1.0f - fFloatValue;
-            this.colorImageView.setAlpha(f2);
+            filterCell.colorImageView.setAlpha(f2);
             float f3 = (f2 * 0.5f) + 0.5f;
-            this.colorImageView.setScaleX(f3);
-            this.colorImageView.setScaleY(f3);
+            filterCell.colorImageView.setScaleX(f3);
+            filterCell.colorImageView.setScaleY(f3);
         }
 
         public MessagesController.DialogFilter getCurrentFilter() {
@@ -661,7 +662,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         this.items.add(ItemInner.asShadow(!getUserConfig().isPremium() ? AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FolderShowTagsInfoPremium), Theme.key_windowBackgroundWhiteBlueHeader, 2, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateRows$0();
+                FiltersSetupActivity.$r8$lambda$SfqYPGjFocmIKhidFRAViCYKhCA(this.f$0);
             }
         }) : LocaleController.getString(R.string.FolderShowTagsInfo)));
         ListAdapter listAdapter = this.adapter;
@@ -674,8 +675,9 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$updateRows$0() {
-        presentFragment(new PremiumPreviewFragment("settings"));
+    public static void $r8$lambda$SfqYPGjFocmIKhidFRAViCYKhCA(FiltersSetupActivity filtersSetupActivity) {
+        filtersSetupActivity.getClass();
+        filtersSetupActivity.presentFragment(new PremiumPreviewFragment("settings"));
     }
 
     @Override
@@ -685,7 +687,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         notificationCenter.removeObserver(this, i);
         getNotificationCenter().removeObserver(this, NotificationCenter.suggestedFiltersLoaded);
         if (this.orderChanged) {
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
+            getNotificationCenter().postNotificationName(i, new Object[0]);
             getMessagesStorage().saveDialogFiltersOrder();
             TLRPC.TL_messages_updateDialogFiltersOrder tL_messages_updateDialogFiltersOrder = new TLRPC.TL_messages_updateDialogFiltersOrder();
             ArrayList<MessagesController.DialogFilter> dialogFilters = getMessagesController().getDialogFilters();
@@ -696,7 +698,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             getConnectionsManager().sendRequest(tL_messages_updateDialogFiltersOrder, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    FiltersSetupActivity.lambda$onFragmentDestroy$1(tLObject, tL_error);
+                    FiltersSetupActivity.$r8$lambda$viSCAHUal90ZrKwbIMu73qciUSE(tLObject, tL_error);
                 }
             });
         }
@@ -757,7 +759,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                this.f$0.lambda$createView$4(context, view, i, f, f2);
+                FiltersSetupActivity.$r8$lambda$W8xflz9eAiG57jJugnNZi2ZXZrs(this.f$0, context, view, i, f, f2);
             }
         });
         if (this.highlightTags) {
@@ -767,7 +769,13 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$6();
+                    FiltersSetupActivity filtersSetupActivity = this.f$0;
+                    filtersSetupActivity.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
+                        @Override
+                        public final int run() {
+                            return filtersSetupActivity.folderTagsPosition;
+                        }
+                    });
                 }
             }, 200L);
         }
@@ -785,91 +793,79 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onTouchEvent$0();
+                        FiltersSetupActivity.this.getMessagesController().lockFiltersInternal();
                     }
                 }, 250L);
             }
             return super.onTouchEvent(motionEvent);
         }
-
-        public void lambda$onTouchEvent$0() {
-            FiltersSetupActivity.this.getMessagesController().lockFiltersInternal();
-        }
     }
 
-    public void lambda$createView$4(Context context, View view, int i, float f, float f2) {
+    public static void $r8$lambda$W8xflz9eAiG57jJugnNZi2ZXZrs(final FiltersSetupActivity filtersSetupActivity, Context context, View view, int i, float f, float f2) {
         ItemInner itemInner;
-        if (i < 0 || i >= this.items.size() || (itemInner = (ItemInner) this.items.get(i)) == null) {
+        if (i < 0) {
+            filtersSetupActivity.getClass();
             return;
         }
-        int i2 = itemInner.viewType;
-        if (i2 == 6) {
-            if (!getUserConfig().isPremium()) {
-                showDialog(new PremiumFeatureBottomSheet(this, 35, true));
-                return;
-            }
-            final TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags = new TLRPC.TL_messages_toggleDialogFilterTags();
-            tL_messages_toggleDialogFilterTags.enabled = true ^ getMessagesController().folderTags;
-            getMessagesController().setFolderTags(tL_messages_toggleDialogFilterTags.enabled);
-            getConnectionsManager().sendRequest(tL_messages_toggleDialogFilterTags, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$createView$3(tL_messages_toggleDialogFilterTags, tLObject, tL_error);
+        if (i < filtersSetupActivity.items.size() && (itemInner = (ItemInner) filtersSetupActivity.items.get(i)) != null) {
+            int i2 = itemInner.viewType;
+            if (i2 == 6) {
+                if (!filtersSetupActivity.getUserConfig().isPremium()) {
+                    filtersSetupActivity.showDialog(new PremiumFeatureBottomSheet(filtersSetupActivity, 35, true));
+                    return;
                 }
-            });
-            ((TextCheckCell) view).setChecked(getMessagesController().folderTags);
-            ListAdapter listAdapter = this.adapter;
-            int i3 = this.filtersSectionStart;
-            listAdapter.notifyItemRangeChanged(i3, this.filtersSectionEnd - i3);
-            return;
-        }
-        if (i2 != 2) {
-            if (i2 == 4) {
-                createFolder(getParentLayout());
+                final TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags = new TLRPC.TL_messages_toggleDialogFilterTags();
+                tL_messages_toggleDialogFilterTags.enabled = true ^ filtersSetupActivity.getMessagesController().folderTags;
+                filtersSetupActivity.getMessagesController().setFolderTags(tL_messages_toggleDialogFilterTags.enabled);
+                filtersSetupActivity.getConnectionsManager().sendRequest(tL_messages_toggleDialogFilterTags, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        FiltersSetupActivity.$r8$lambda$HFFwLCRTGU_vnLEWonyBn7tpzZk(this.f$0, tL_messages_toggleDialogFilterTags, tLObject, tL_error);
+                    }
+                });
+                ((TextCheckCell) view).setChecked(filtersSetupActivity.getMessagesController().folderTags);
+                ListAdapter listAdapter = filtersSetupActivity.adapter;
+                int i3 = filtersSetupActivity.filtersSectionStart;
+                listAdapter.notifyItemRangeChanged(i3, filtersSetupActivity.filtersSectionEnd - i3);
                 return;
             }
-            return;
-        }
-        MessagesController.DialogFilter dialogFilter = itemInner.filter;
-        if (dialogFilter == null || dialogFilter.isDefault()) {
-            return;
-        }
-        if (dialogFilter.locked) {
-            showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount, null));
-        } else {
-            presentFragment(new FilterCreateActivity(dialogFilter));
+            if (i2 != 2) {
+                if (i2 == 4) {
+                    filtersSetupActivity.createFolder(filtersSetupActivity.getParentLayout());
+                    return;
+                }
+                return;
+            }
+            MessagesController.DialogFilter dialogFilter = itemInner.filter;
+            if (dialogFilter == null || dialogFilter.isDefault()) {
+                return;
+            }
+            if (dialogFilter.locked) {
+                filtersSetupActivity.showDialog(new LimitReachedBottomSheet(filtersSetupActivity, context, 3, filtersSetupActivity.currentAccount, null));
+            } else {
+                filtersSetupActivity.presentFragment(new FilterCreateActivity(dialogFilter));
+            }
         }
     }
 
-    public void lambda$createView$3(final TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$HFFwLCRTGU_vnLEWonyBn7tpzZk(final FiltersSetupActivity filtersSetupActivity, final TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags, TLObject tLObject, TLRPC.TL_error tL_error) {
+        filtersSetupActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$2(tL_messages_toggleDialogFilterTags);
+                FiltersSetupActivity.m3167$r8$lambda$kJi0ZC37Fg96It3SzQO6P_38Y(this.f$0, tL_messages_toggleDialogFilterTags);
             }
         });
     }
 
-    public void lambda$createView$2(TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags) {
-        if (!tL_messages_toggleDialogFilterTags.enabled || this.loadedColors) {
+    public static void m3167$r8$lambda$kJi0ZC37Fg96It3SzQO6P_38Y(FiltersSetupActivity filtersSetupActivity, TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags) {
+        filtersSetupActivity.getClass();
+        if (!tL_messages_toggleDialogFilterTags.enabled || filtersSetupActivity.loadedColors) {
             return;
         }
-        this.loadingFiltersForColors = true;
-        getMessagesController().loadRemoteFilters(true);
-        this.loadedColors = true;
-    }
-
-    public int lambda$createView$5() {
-        return this.folderTagsPosition;
-    }
-
-    public void lambda$createView$6() {
-        this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
-            @Override
-            public final int run() {
-                return this.f$0.lambda$createView$5();
-            }
-        });
+        filtersSetupActivity.loadingFiltersForColors = true;
+        filtersSetupActivity.getMessagesController().loadRemoteFilters(true);
+        filtersSetupActivity.loadedColors = true;
     }
 
     public void createFolder(INavigationLayout iNavigationLayout) {
@@ -916,7 +912,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    private static class ItemInner extends AdapterWithDiffUtils.Item {
+    static class ItemInner extends AdapterWithDiffUtils.Item {
         MessagesController.DialogFilter filter;
         TLRPC.TL_dialogFilterSuggested suggested;
         CharSequence text;
@@ -1026,7 +1022,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             return FiltersSetupActivity.this.items.size();
         }
 
-        public boolean lambda$onCreateViewHolder$0(FilterCell filterCell, View view, MotionEvent motionEvent) {
+        public static boolean $r8$lambda$Zo_WMjRDIo9oV8vasANuV4mQJT0(ListAdapter listAdapter, FilterCell filterCell, View view, MotionEvent motionEvent) {
+            listAdapter.getClass();
             if (motionEvent.getAction() != 0) {
                 return false;
             }
@@ -1034,20 +1031,21 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             return false;
         }
 
-        public void lambda$onCreateViewHolder$7(View view) {
+        public static void m3173$r8$lambda$BxmPbRgM1zydGw70B2EOaOg00w(final ListAdapter listAdapter, View view) {
+            listAdapter.getClass();
             FilterCell filterCell = (FilterCell) view.getParent();
             final MessagesController.DialogFilter currentFilter = filterCell.getCurrentFilter();
             ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(FiltersSetupActivity.this, filterCell);
             itemOptionsMakeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.FilterEditItem), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreateViewHolder$1(currentFilter);
+                    FiltersSetupActivity.ListAdapter.m3172$r8$lambda$1FnsHO3T5_IjIyCHWBwJ9k_GM(this.f$0, currentFilter);
                 }
             });
             itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.FilterDeleteItem), true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreateViewHolder$6(currentFilter);
+                    FiltersSetupActivity.ListAdapter.m3174$r8$lambda$IaDHJ_aCN1Ewtz1quFx9rVNyw(this.f$0, currentFilter);
                 }
             });
             if (LocaleController.isRTL) {
@@ -1057,22 +1055,24 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             itemOptionsMakeOptions.show();
         }
 
-        public void lambda$onCreateViewHolder$1(MessagesController.DialogFilter dialogFilter) {
+        public static void m3172$r8$lambda$1FnsHO3T5_IjIyCHWBwJ9k_GM(ListAdapter listAdapter, MessagesController.DialogFilter dialogFilter) {
+            listAdapter.getClass();
             if (dialogFilter.locked) {
                 FiltersSetupActivity filtersSetupActivity = FiltersSetupActivity.this;
                 FiltersSetupActivity filtersSetupActivity2 = FiltersSetupActivity.this;
-                filtersSetupActivity.showDialog(new LimitReachedBottomSheet(filtersSetupActivity2, this.mContext, 3, ((BaseFragment) filtersSetupActivity2).currentAccount, null));
+                filtersSetupActivity.showDialog(new LimitReachedBottomSheet(filtersSetupActivity2, listAdapter.mContext, 3, ((BaseFragment) filtersSetupActivity2).currentAccount, null));
                 return;
             }
             FiltersSetupActivity.this.presentFragment(new FilterCreateActivity(dialogFilter));
         }
 
-        public void lambda$onCreateViewHolder$6(final MessagesController.DialogFilter dialogFilter) {
+        public static void m3174$r8$lambda$IaDHJ_aCN1Ewtz1quFx9rVNyw(final ListAdapter listAdapter, final MessagesController.DialogFilter dialogFilter) {
+            listAdapter.getClass();
             if (dialogFilter.isChatlist()) {
                 FolderBottomSheet.showForDeletion(FiltersSetupActivity.this, dialogFilter.id, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$onCreateViewHolder$2((Boolean) obj);
+                        FiltersSetupActivity.this.updateRows(true);
                     }
                 });
                 return;
@@ -1084,7 +1084,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onCreateViewHolder$5(dialogFilter, alertDialog, i);
+                    FiltersSetupActivity.ListAdapter.m3171$r8$lambda$mYnM6uz68DfEcMunGtMvBkz_GU(this.f$0, dialogFilter, alertDialog, i);
                 }
             });
             AlertDialog alertDialogCreate = builder.create();
@@ -1095,11 +1095,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             }
         }
 
-        public void lambda$onCreateViewHolder$2(Boolean bool) {
-            FiltersSetupActivity.this.updateRows(true);
-        }
-
-        public void lambda$onCreateViewHolder$5(final MessagesController.DialogFilter dialogFilter, AlertDialog alertDialog, int i) {
+        public static void m3171$r8$lambda$mYnM6uz68DfEcMunGtMvBkz_GU(final ListAdapter listAdapter, final MessagesController.DialogFilter dialogFilter, AlertDialog alertDialog, int i) {
             final AlertDialog alertDialog2;
             if (FiltersSetupActivity.this.getParentActivity() != null) {
                 alertDialog2 = new AlertDialog(FiltersSetupActivity.this.getParentActivity(), 3);
@@ -1113,21 +1109,23 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             FiltersSetupActivity.this.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$onCreateViewHolder$4(alertDialog2, dialogFilter, tLObject, tL_error);
+                    FiltersSetupActivity.ListAdapter.$r8$lambda$2Edzaf1AmEGCVrXfHTZ0Hk039tE(this.f$0, alertDialog2, dialogFilter, tLObject, tL_error);
                 }
             });
         }
 
-        public void lambda$onCreateViewHolder$4(final AlertDialog alertDialog, final MessagesController.DialogFilter dialogFilter, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$2Edzaf1AmEGCVrXfHTZ0Hk039tE(final ListAdapter listAdapter, final AlertDialog alertDialog, final MessagesController.DialogFilter dialogFilter, TLObject tLObject, TLRPC.TL_error tL_error) {
+            listAdapter.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreateViewHolder$3(alertDialog, dialogFilter);
+                    FiltersSetupActivity.ListAdapter.m3176$r8$lambda$t7TxvHfojNzIvoeHz5vjv6rdc(this.f$0, alertDialog, dialogFilter);
                 }
             });
         }
 
-        public void lambda$onCreateViewHolder$3(AlertDialog alertDialog, MessagesController.DialogFilter dialogFilter) {
+        public static void m3176$r8$lambda$t7TxvHfojNzIvoeHz5vjv6rdc(ListAdapter listAdapter, AlertDialog alertDialog, MessagesController.DialogFilter dialogFilter) {
+            listAdapter.getClass();
             if (alertDialog != null) {
                 try {
                     alertDialog.dismiss();
@@ -1152,13 +1150,13 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 filterCell.setOnReorderButtonTouchListener(new View.OnTouchListener() {
                     @Override
                     public final boolean onTouch(View view, MotionEvent motionEvent) {
-                        return this.f$0.lambda$onCreateViewHolder$0(filterCell, view, motionEvent);
+                        return FiltersSetupActivity.ListAdapter.$r8$lambda$Zo_WMjRDIo9oV8vasANuV4mQJT0(this.f$0, filterCell, view, motionEvent);
                     }
                 });
                 filterCell.setOnOptionsClick(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$onCreateViewHolder$7(view);
+                        FiltersSetupActivity.ListAdapter.m3173$r8$lambda$BxmPbRgM1zydGw70B2EOaOg00w(this.f$0, view);
                     }
                 });
                 headerCell = filterCell;
@@ -1173,7 +1171,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 suggestedFilterCell.setAddOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$onCreateViewHolder$9(suggestedFilterCell, view);
+                        FiltersSetupActivity.ListAdapter.m3175$r8$lambda$iN5A4WlpncPQDoRf0R7c5AS8Q8(this.f$0, suggestedFilterCell, view);
                     }
                 });
                 headerCell = suggestedFilterCell;
@@ -1181,7 +1179,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             return new RecyclerListView.Holder(headerCell);
         }
 
-        public void lambda$onCreateViewHolder$9(SuggestedFilterCell suggestedFilterCell, View view) {
+        public static void m3175$r8$lambda$iN5A4WlpncPQDoRf0R7c5AS8Q8(final ListAdapter listAdapter, SuggestedFilterCell suggestedFilterCell, View view) {
+            listAdapter.getClass();
             final TLRPC.TL_dialogFilterSuggested suggestedFilter = suggestedFilterCell.getSuggestedFilter();
             MessagesController.DialogFilter dialogFilter = new MessagesController.DialogFilter();
             TLRPC.TL_textWithEntities tL_textWithEntities = suggestedFilter.filter.title;
@@ -1238,14 +1237,14 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             FilterCreateActivity.saveFilterToServer(dialogFilter, dialogFilter.flags, dialogFilter.name, dialogFilter.entities, dialogFilter.title_noanimate, dialogFilter.color, dialogFilter.alwaysShow, dialogFilter.neverShow, dialogFilter.pinnedDialogs, true, true, true, true, true, FiltersSetupActivity.this, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreateViewHolder$8(suggestedFilter);
+                    FiltersSetupActivity.ListAdapter.$r8$lambda$GOiU_p9aQmU0qiCjXPl8IJ3ErPU(this.f$0, suggestedFilter);
                 }
             });
         }
 
-        public void lambda$onCreateViewHolder$8(TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested) {
+        public static void $r8$lambda$GOiU_p9aQmU0qiCjXPl8IJ3ErPU(ListAdapter listAdapter, TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested) {
             FiltersSetupActivity.this.getMessagesController().suggestedFilters.remove(tL_dialogFilterSuggested);
-            FiltersSetupActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogFiltersUpdated, new Object[0]);
+            FiltersSetupActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.dialogFiltersUpdated, new Object[0]);
         }
 
         @Override
@@ -1440,13 +1439,14 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         BulletinFactory.of(this).createSimpleBulletin(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString("LimitReachedReorderFolder", R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), 5000, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onDefaultTabMoved$7();
+                FiltersSetupActivity.$r8$lambda$AI7i6R7HX8T_OAxy7yDcpyJXIUs(this.f$0);
             }
         }).show();
     }
 
-    public void lambda$onDefaultTabMoved$7() {
-        showDialog(new PremiumFeatureBottomSheet(this, 9, true));
+    public static void $r8$lambda$AI7i6R7HX8T_OAxy7yDcpyJXIUs(FiltersSetupActivity filtersSetupActivity) {
+        filtersSetupActivity.getClass();
+        filtersSetupActivity.showDialog(new PremiumFeatureBottomSheet(filtersSetupActivity, 9, true));
     }
 
     @Override

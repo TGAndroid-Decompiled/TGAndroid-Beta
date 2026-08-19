@@ -117,7 +117,7 @@ public class ForumBubbleDrawable extends Drawable {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$moveNexColor$0(iArr2, valueAnimator);
+                ForumBubbleDrawable.$r8$lambda$t7ykXJ1ZJltEB92dqdNclhQwIV0(this.f$0, iArr2, valueAnimator);
             }
         });
         valueAnimatorOfFloat.setDuration(200L);
@@ -125,17 +125,18 @@ public class ForumBubbleDrawable extends Drawable {
         return iArr[this.colorIndex];
     }
 
-    public void lambda$moveNexColor$0(int[] iArr, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$t7ykXJ1ZJltEB92dqdNclhQwIV0(ForumBubbleDrawable forumBubbleDrawable, int[] iArr, ValueAnimator valueAnimator) {
+        forumBubbleDrawable.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         Paint paint = new Paint(1);
-        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, new int[]{ColorUtils.blendARGB(iArr[0], this.currentColors[0], fFloatValue), ColorUtils.blendARGB(iArr[1], this.currentColors[1], fFloatValue)}, (float[]) null, Shader.TileMode.CLAMP);
-        this.gradient = linearGradient;
-        linearGradient.setLocalMatrix(this.gradientMatrix);
-        paint.setShader(this.gradient);
-        this.svgDrawable.setPaint(paint, 0);
-        this.topPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[1], this.currentColors[1], fFloatValue), -1, 0.1f));
-        this.strokePaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[0], this.currentColors[0], fFloatValue), -16777216, 0.1f));
-        invalidateSelf();
+        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, new int[]{ColorUtils.blendARGB(iArr[0], forumBubbleDrawable.currentColors[0], fFloatValue), ColorUtils.blendARGB(iArr[1], forumBubbleDrawable.currentColors[1], fFloatValue)}, (float[]) null, Shader.TileMode.CLAMP);
+        forumBubbleDrawable.gradient = linearGradient;
+        linearGradient.setLocalMatrix(forumBubbleDrawable.gradientMatrix);
+        paint.setShader(forumBubbleDrawable.gradient);
+        forumBubbleDrawable.svgDrawable.setPaint(paint, 0);
+        forumBubbleDrawable.topPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[1], forumBubbleDrawable.currentColors[1], fFloatValue), -1, 0.1f));
+        forumBubbleDrawable.strokePaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[0], forumBubbleDrawable.currentColors[0], fFloatValue), -16777216, 0.1f));
+        forumBubbleDrawable.invalidateSelf();
     }
 
     public void addParent(View view) {
@@ -173,17 +174,15 @@ public class ForumBubbleDrawable extends Drawable {
             i3++;
         }
         int[] iArr2 = (int[]) colorsMap.get(iArr[this.colorIndex]);
-        if (Theme.isCurrentThemeDark()) {
-            iArr2 = new int[]{ColorUtils.blendARGB(iArr2[0], -1, 0.2f), ColorUtils.blendARGB(iArr2[1], -1, 0.2f)};
-        }
-        this.currentColors = iArr2;
+        int[] iArr3 = Theme.isCurrentThemeDark() ? new int[]{ColorUtils.blendARGB(iArr2[0], -1, 0.2f), ColorUtils.blendARGB(iArr2[1], -1, 0.2f)} : iArr2;
+        this.currentColors = iArr3;
         Paint paint = new Paint(1);
-        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, iArr2, (float[]) null, Shader.TileMode.CLAMP);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, iArr3, (float[]) null, Shader.TileMode.CLAMP);
         this.gradient = linearGradient;
         linearGradient.setLocalMatrix(this.gradientMatrix);
         paint.setShader(this.gradient);
         this.svgDrawable.setPaint(paint, 0);
-        this.topPaint.setColor(ColorUtils.blendARGB(iArr2[1], -1, 0.1f));
-        this.strokePaint.setColor(ColorUtils.blendARGB(iArr2[0], -16777216, 0.1f));
+        this.topPaint.setColor(ColorUtils.blendARGB(iArr3[1], -1, 0.1f));
+        this.strokePaint.setColor(ColorUtils.blendARGB(iArr3[0], -16777216, 0.1f));
     }
 }

@@ -98,7 +98,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-                return this.f$0.lambda$share$0(str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
+                return PremiumPreviewGiftLinkBottomSheet.m2641$r8$lambda$UgaBuxxFI61SFp4i0M18dgpa9U(this.f$0, str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
             }
 
             @Override
@@ -107,14 +107,18 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             }
         });
         getBaseFragment().presentFragment(dialogsActivity);
-        lambda$new$0();
+        dismiss();
     }
 
-    public boolean lambda$share$0(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public static boolean m2641$r8$lambda$UgaBuxxFI61SFp4i0M18dgpa9U(PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+        premiumPreviewGiftLinkBottomSheet.getClass();
         long j = 0;
-        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            j = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
-            getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, 0, null, false));
+        int i3 = 0;
+        while (i3 < arrayList.size()) {
+            long j2 = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
+            premiumPreviewGiftLinkBottomSheet.getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            i3++;
+            j = j2;
         }
         dialogsActivity.finishFragment();
         BoostDialogs.showGiftLinkForwardedBulletin(j);
@@ -187,7 +191,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             actionBtnCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$init$4(view);
+                    PremiumPreviewGiftLinkBottomSheet.$r8$lambda$VSSJRo0515LG5qg5d14pBrjBw7M(this.f$0, view);
                 }
             });
             this.actionBtn.setActivateForFreeStyle();
@@ -196,42 +200,39 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         fixNavigationBar();
     }
 
-    public void lambda$init$4(View view) {
-        if (this.actionBtn.isLoading()) {
+    public static void $r8$lambda$VSSJRo0515LG5qg5d14pBrjBw7M(final PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, View view) {
+        if (premiumPreviewGiftLinkBottomSheet.actionBtn.isLoading()) {
             return;
         }
-        this.actionBtn.updateLoading(true);
-        BoostRepository.applyGiftCode(this.slug, new Utilities.Callback() {
+        premiumPreviewGiftLinkBottomSheet.actionBtn.updateLoading(true);
+        BoostRepository.applyGiftCode(premiumPreviewGiftLinkBottomSheet.slug, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$init$2((Void) obj);
+                PremiumPreviewGiftLinkBottomSheet.m2639$r8$lambda$0lHm0LXGIfmCZ2Bq_tiwdKDl0M(this.f$0, (Void) obj);
             }
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$init$3((TLRPC.TL_error) obj);
+                PremiumPreviewGiftLinkBottomSheet.$r8$lambda$4wfg7nV2s96dYviKwKmtfKrXuuU(this.f$0, (TLRPC.TL_error) obj);
             }
         });
     }
 
-    public void lambda$init$2(Void r3) {
-        this.actionBtn.updateLoading(false);
-        lambda$new$0();
+    public static void m2639$r8$lambda$0lHm0LXGIfmCZ2Bq_tiwdKDl0M(final PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, Void r3) {
+        premiumPreviewGiftLinkBottomSheet.actionBtn.updateLoading(false);
+        premiumPreviewGiftLinkBottomSheet.dismiss();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$init$1();
+                PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet2 = this.f$0;
+                premiumPreviewGiftLinkBottomSheet2.getBaseFragment().showDialog(new PremiumPreviewBottomSheet(premiumPreviewGiftLinkBottomSheet2.getBaseFragment(), UserConfig.selectedAccount, null, null, null, premiumPreviewGiftLinkBottomSheet2.resourcesProvider).setAnimateConfetti(true).setAnimateConfettiWithStars(true).setOutboundGift(true));
             }
         }, 200L);
     }
 
-    public void lambda$init$1() {
-        getBaseFragment().showDialog(new PremiumPreviewBottomSheet(getBaseFragment(), UserConfig.selectedAccount, null, null, null, this.resourcesProvider).setAnimateConfetti(true).setAnimateConfettiWithStars(true).setOutboundGift(true));
-    }
-
-    public void lambda$init$3(TLRPC.TL_error tL_error) {
-        this.actionBtn.updateLoading(false);
-        BoostDialogs.processApplyGiftCodeError(tL_error, (FrameLayout) this.containerView, this.resourcesProvider, new PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1(this));
+    public static void $r8$lambda$4wfg7nV2s96dYviKwKmtfKrXuuU(PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, TLRPC.TL_error tL_error) {
+        premiumPreviewGiftLinkBottomSheet.actionBtn.updateLoading(false);
+        BoostDialogs.processApplyGiftCodeError(tL_error, (FrameLayout) premiumPreviewGiftLinkBottomSheet.containerView, premiumPreviewGiftLinkBottomSheet.resourcesProvider, new PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1(premiumPreviewGiftLinkBottomSheet));
     }
 
     @Override

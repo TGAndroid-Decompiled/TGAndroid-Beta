@@ -102,10 +102,10 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
         int length = objArr.length;
         if (length == 0) {
-            return CollectionsKt.emptyList();
+            return CollectionsKt__CollectionsKt.emptyList();
         }
         if (length == 1) {
-            return CollectionsKt.listOf(objArr[0]);
+            return CollectionsKt__CollectionsJVMKt.listOf(objArr[0]);
         }
         return toMutableList(objArr);
     }
@@ -114,10 +114,10 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         Intrinsics.checkNotNullParameter(bArr, "<this>");
         int length = bArr.length;
         if (length == 0) {
-            return CollectionsKt.emptyList();
+            return CollectionsKt__CollectionsKt.emptyList();
         }
         if (length == 1) {
-            return CollectionsKt.listOf(Byte.valueOf(bArr[0]));
+            return CollectionsKt__CollectionsJVMKt.listOf(Byte.valueOf(bArr[0]));
         }
         return toMutableList(bArr);
     }
@@ -126,10 +126,10 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         Intrinsics.checkNotNullParameter(sArr, "<this>");
         int length = sArr.length;
         if (length == 0) {
-            return CollectionsKt.emptyList();
+            return CollectionsKt__CollectionsKt.emptyList();
         }
         if (length == 1) {
-            return CollectionsKt.listOf(Short.valueOf(sArr[0]));
+            return CollectionsKt__CollectionsJVMKt.listOf(Short.valueOf(sArr[0]));
         }
         return toMutableList(sArr);
     }
@@ -138,10 +138,10 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         Intrinsics.checkNotNullParameter(iArr, "<this>");
         int length = iArr.length;
         if (length == 0) {
-            return CollectionsKt.emptyList();
+            return CollectionsKt__CollectionsKt.emptyList();
         }
         if (length == 1) {
-            return CollectionsKt.listOf(Integer.valueOf(iArr[0]));
+            return CollectionsKt__CollectionsJVMKt.listOf(Integer.valueOf(iArr[0]));
         }
         return toMutableList(iArr);
     }
@@ -150,10 +150,10 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         Intrinsics.checkNotNullParameter(jArr, "<this>");
         int length = jArr.length;
         if (length == 0) {
-            return CollectionsKt.emptyList();
+            return CollectionsKt__CollectionsKt.emptyList();
         }
         if (length == 1) {
-            return CollectionsKt.listOf(Long.valueOf(jArr[0]));
+            return CollectionsKt__CollectionsJVMKt.listOf(Long.valueOf(jArr[0]));
         }
         return toMutableList(jArr);
     }
@@ -162,10 +162,10 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         Intrinsics.checkNotNullParameter(fArr, "<this>");
         int length = fArr.length;
         if (length == 0) {
-            return CollectionsKt.emptyList();
+            return CollectionsKt__CollectionsKt.emptyList();
         }
         if (length == 1) {
-            return CollectionsKt.listOf(Float.valueOf(fArr[0]));
+            return CollectionsKt__CollectionsJVMKt.listOf(Float.valueOf(fArr[0]));
         }
         return toMutableList(fArr);
     }
@@ -174,10 +174,10 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         Intrinsics.checkNotNullParameter(dArr, "<this>");
         int length = dArr.length;
         if (length == 0) {
-            return CollectionsKt.emptyList();
+            return CollectionsKt__CollectionsKt.emptyList();
         }
         if (length == 1) {
-            return CollectionsKt.listOf(Double.valueOf(dArr[0]));
+            return CollectionsKt__CollectionsJVMKt.listOf(Double.valueOf(dArr[0]));
         }
         return toMutableList(dArr);
     }
@@ -245,12 +245,12 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
         int length = objArr.length;
         if (length == 0) {
-            return SetsKt.emptySet();
+            return SetsKt__SetsKt.emptySet();
         }
         if (length == 1) {
             return SetsKt__SetsJVMKt.setOf(objArr[0]);
         }
-        return (Set) toCollection(objArr, new LinkedHashSet(MapsKt.mapCapacity(objArr.length)));
+        return (Set) toCollection(objArr, new LinkedHashSet(MapsKt__MapsJVMKt.mapCapacity(objArr.length)));
     }
 
     public static final Appendable joinTo(Object[] objArr, Appendable buffer, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) throws IOException {
@@ -433,17 +433,24 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
         }
-        CharSequence charSequence5 = (i2 & 2) != 0 ? "" : charSequence2;
-        CharSequence charSequence6 = (i2 & 4) == 0 ? charSequence3 : "";
-        int i3 = (i2 & 8) != 0 ? -1 : i;
+        if ((i2 & 2) != 0) {
+            charSequence2 = "";
+        }
+        if ((i2 & 4) != 0) {
+            charSequence3 = "";
+        }
+        if ((i2 & 8) != 0) {
+            i = -1;
+        }
         if ((i2 & 16) != 0) {
             charSequence4 = "...";
         }
-        CharSequence charSequence7 = charSequence4;
         if ((i2 & 32) != 0) {
             function1 = null;
         }
-        return joinToString(objArr, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+        CharSequence charSequence5 = charSequence4;
+        Function1 function2 = function1;
+        return joinToString(objArr, charSequence, charSequence2, charSequence3, i, charSequence5, function2);
     }
 
     public static final String joinToString(Object[] objArr, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
@@ -459,17 +466,24 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
         }
-        CharSequence charSequence5 = (i2 & 2) != 0 ? "" : charSequence2;
-        CharSequence charSequence6 = (i2 & 4) == 0 ? charSequence3 : "";
-        int i3 = (i2 & 8) != 0 ? -1 : i;
+        if ((i2 & 2) != 0) {
+            charSequence2 = "";
+        }
+        if ((i2 & 4) != 0) {
+            charSequence3 = "";
+        }
+        if ((i2 & 8) != 0) {
+            i = -1;
+        }
         if ((i2 & 16) != 0) {
             charSequence4 = "...";
         }
-        CharSequence charSequence7 = charSequence4;
         if ((i2 & 32) != 0) {
             function1 = null;
         }
-        return joinToString(sArr, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+        CharSequence charSequence5 = charSequence4;
+        Function1 function2 = function1;
+        return joinToString(sArr, charSequence, charSequence2, charSequence3, i, charSequence5, function2);
     }
 
     public static final String joinToString(short[] sArr, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
@@ -485,17 +499,24 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
         }
-        CharSequence charSequence5 = (i2 & 2) != 0 ? "" : charSequence2;
-        CharSequence charSequence6 = (i2 & 4) == 0 ? charSequence3 : "";
-        int i3 = (i2 & 8) != 0 ? -1 : i;
+        if ((i2 & 2) != 0) {
+            charSequence2 = "";
+        }
+        if ((i2 & 4) != 0) {
+            charSequence3 = "";
+        }
+        if ((i2 & 8) != 0) {
+            i = -1;
+        }
         if ((i2 & 16) != 0) {
             charSequence4 = "...";
         }
-        CharSequence charSequence7 = charSequence4;
         if ((i2 & 32) != 0) {
             function1 = null;
         }
-        return joinToString(iArr, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+        CharSequence charSequence5 = charSequence4;
+        Function1 function2 = function1;
+        return joinToString(iArr, charSequence, charSequence2, charSequence3, i, charSequence5, function2);
     }
 
     public static final String joinToString(int[] iArr, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
@@ -511,17 +532,24 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
         }
-        CharSequence charSequence5 = (i2 & 2) != 0 ? "" : charSequence2;
-        CharSequence charSequence6 = (i2 & 4) == 0 ? charSequence3 : "";
-        int i3 = (i2 & 8) != 0 ? -1 : i;
+        if ((i2 & 2) != 0) {
+            charSequence2 = "";
+        }
+        if ((i2 & 4) != 0) {
+            charSequence3 = "";
+        }
+        if ((i2 & 8) != 0) {
+            i = -1;
+        }
         if ((i2 & 16) != 0) {
             charSequence4 = "...";
         }
-        CharSequence charSequence7 = charSequence4;
         if ((i2 & 32) != 0) {
             function1 = null;
         }
-        return joinToString(jArr, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+        CharSequence charSequence5 = charSequence4;
+        Function1 function2 = function1;
+        return joinToString(jArr, charSequence, charSequence2, charSequence3, i, charSequence5, function2);
     }
 
     public static final String joinToString(long[] jArr, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
@@ -537,17 +565,24 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
         }
-        CharSequence charSequence5 = (i2 & 2) != 0 ? "" : charSequence2;
-        CharSequence charSequence6 = (i2 & 4) == 0 ? charSequence3 : "";
-        int i3 = (i2 & 8) != 0 ? -1 : i;
+        if ((i2 & 2) != 0) {
+            charSequence2 = "";
+        }
+        if ((i2 & 4) != 0) {
+            charSequence3 = "";
+        }
+        if ((i2 & 8) != 0) {
+            i = -1;
+        }
         if ((i2 & 16) != 0) {
             charSequence4 = "...";
         }
-        CharSequence charSequence7 = charSequence4;
         if ((i2 & 32) != 0) {
             function1 = null;
         }
-        return joinToString(fArr, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+        CharSequence charSequence5 = charSequence4;
+        Function1 function2 = function1;
+        return joinToString(fArr, charSequence, charSequence2, charSequence3, i, charSequence5, function2);
     }
 
     public static final String joinToString(float[] fArr, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {
@@ -563,17 +598,24 @@ public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         if ((i2 & 1) != 0) {
             charSequence = ", ";
         }
-        CharSequence charSequence5 = (i2 & 2) != 0 ? "" : charSequence2;
-        CharSequence charSequence6 = (i2 & 4) == 0 ? charSequence3 : "";
-        int i3 = (i2 & 8) != 0 ? -1 : i;
+        if ((i2 & 2) != 0) {
+            charSequence2 = "";
+        }
+        if ((i2 & 4) != 0) {
+            charSequence3 = "";
+        }
+        if ((i2 & 8) != 0) {
+            i = -1;
+        }
         if ((i2 & 16) != 0) {
             charSequence4 = "...";
         }
-        CharSequence charSequence7 = charSequence4;
         if ((i2 & 32) != 0) {
             function1 = null;
         }
-        return joinToString(dArr, charSequence, charSequence5, charSequence6, i3, charSequence7, function1);
+        CharSequence charSequence5 = charSequence4;
+        Function1 function2 = function1;
+        return joinToString(dArr, charSequence, charSequence2, charSequence3, i, charSequence5, function2);
     }
 
     public static final String joinToString(double[] dArr, CharSequence separator, CharSequence prefix, CharSequence postfix, int i, CharSequence truncated, Function1 function1) {

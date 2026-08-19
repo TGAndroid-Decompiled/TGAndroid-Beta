@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
@@ -129,7 +128,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
     private Runnable setBalanceButtonText = new Runnable() {
         @Override
         public final void run() {
-            this.f$0.lambda$new$19();
+            BotStarsActivity.$r8$lambda$RPCzFM4Hz9KT0E7je1lfIyiEnXo(this.f$0);
         }
     };
     private int stats_dc = -1;
@@ -154,13 +153,9 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.withdrawInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(z ? LocaleController.formatPluralStringComma("SelfStarsWithdrawInfo", (int) getMessagesController().starsRevenueWithdrawalMin) : LocaleController.getString(R.string.BotStarsWithdrawInfo), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                Browser.openUrl(this.f$0.getContext(), LocaleController.getString(R.string.BotStarsWithdrawInfoLink));
             }
         }), true);
-    }
-
-    public void lambda$new$0() {
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.BotStarsWithdrawInfoLink));
     }
 
     @Override
@@ -272,7 +267,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                this.f$0.lambda$createView$1(view, z);
+                this.f$0.balanceEditTextContainer.animateSelection(z ? 1.0f : 0.0f);
             }
         });
         this.balanceEditText.addTextChangedListener(new TextWatcher() {
@@ -317,7 +312,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
-                return this.f$0.lambda$createView$2(textView, i5, keyEvent);
+                return BotStarsActivity.$r8$lambda$qtEPHWTCJXw8fMQvoGoNJnpwUxg(this.f$0, textView, i5, keyEvent);
             }
         });
         this.balanceLayout.addView(this.balanceEditTextContainer, LayoutHelper.createLinear(-1, -2, 1, 18, 14, 18, 2));
@@ -337,7 +332,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$3(view);
+                this.f$0.withdraw();
             }
         });
         ButtonWithCounterView round2 = new ButtonWithCounterView(context, getResourceProvider()).setRound();
@@ -347,7 +342,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.adsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$7(context, view);
+                BotStarsActivity.$r8$lambda$OKBJxCmhCvjyU0Ppk0NCgZuo0EI(this.f$0, context, view);
             }
         });
         this.balanceButtonsLayout.addView(this.balanceButton, LayoutHelper.createLinear(-1, 48, 1.0f, 119));
@@ -388,7 +383,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.tonBalanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$10(view);
+                BotStarsActivity.m4076$r8$lambda$zoy72loB1mtK1Ra72BHoeqpV6w(this.f$0, view);
             }
         });
         this.tonBalanceLayout.addView(this.tonBalanceButton, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
@@ -428,92 +423,81 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         return nestedFrameLayout;
     }
 
-    public void lambda$createView$1(View view, boolean z) {
-        this.balanceEditTextContainer.animateSelection(z ? 1.0f : 0.0f);
-    }
-
-    public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
+    public static boolean $r8$lambda$qtEPHWTCJXw8fMQvoGoNJnpwUxg(BotStarsActivity botStarsActivity, TextView textView, int i, KeyEvent keyEvent) {
+        if (i == 5) {
+            botStarsActivity.withdraw();
+            return true;
         }
-        withdraw();
-        return true;
+        botStarsActivity.getClass();
+        return false;
     }
 
-    public void lambda$createView$3(View view) {
-        withdraw();
-    }
-
-    public void lambda$createView$7(final Context context, View view) {
-        if (!view.isEnabled() || this.adsButton.isLoading()) {
+    public static void $r8$lambda$OKBJxCmhCvjyU0Ppk0NCgZuo0EI(final BotStarsActivity botStarsActivity, final Context context, View view) {
+        botStarsActivity.getClass();
+        if (!view.isEnabled() || botStarsActivity.adsButton.isLoading()) {
             return;
         }
-        this.adsButton.setLoading(true);
+        botStarsActivity.adsButton.setLoading(true);
         TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
-        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.bot_id);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new RequestDelegate() {
+        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(botStarsActivity.currentAccount).getInputPeer(botStarsActivity.bot_id);
+        ConnectionsManager.getInstance(botStarsActivity.currentAccount).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$createView$6(context, tLObject, tL_error);
+                BotStarsActivity.$r8$lambda$bzNEWnHSC0PKeYANSIst4L0EOxw(this.f$0, context, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$createView$6(final Context context, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$bzNEWnHSC0PKeYANSIst4L0EOxw(final BotStarsActivity botStarsActivity, final Context context, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        botStarsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$5(tLObject, context);
+                BotStarsActivity.$r8$lambda$WCRHMUKA1TeO22mCIA3HiSVLRww(this.f$0, tLObject, context);
             }
         });
     }
 
-    public void lambda$createView$5(TLObject tLObject, Context context) {
+    public static void $r8$lambda$WCRHMUKA1TeO22mCIA3HiSVLRww(final BotStarsActivity botStarsActivity, TLObject tLObject, Context context) {
+        botStarsActivity.getClass();
         if (tLObject instanceof TLRPC.TL_payments_starsRevenueAdsAccountUrl) {
             Browser.openUrl(context, ((TLRPC.TL_payments_starsRevenueAdsAccountUrl) tLObject).url);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$4();
+                this.f$0.adsButton.setLoading(false);
             }
         }, 1000L);
     }
 
-    public void lambda$createView$4() {
-        this.adsButton.setLoading(false);
-    }
-
-    public void lambda$createView$10(View view) {
-        if (!view.isEnabled() || this.tonBalanceButton.isLoading()) {
+    public static void m4076$r8$lambda$zoy72loB1mtK1Ra72BHoeqpV6w(final BotStarsActivity botStarsActivity, View view) {
+        botStarsActivity.getClass();
+        if (!view.isEnabled() || botStarsActivity.tonBalanceButton.isLoading()) {
             return;
         }
         final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
             public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                this.f$0.lambda$createView$8(twoStepVerificationActivity, inputCheckPasswordSRP);
+                this.f$0.initWithdraw(false, 0L, inputCheckPasswordSRP, twoStepVerificationActivity);
             }
         });
-        this.tonBalanceButton.setLoading(true);
+        botStarsActivity.tonBalanceButton.setLoading(true);
         twoStepVerificationActivity.preload(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$9(twoStepVerificationActivity);
+                BotStarsActivity.m4075$r8$lambda$yTqqbfMEQTxr9ZgLT7NS5bW9Bo(this.f$0, twoStepVerificationActivity);
             }
         });
     }
 
-    public void lambda$createView$8(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-        initWithdraw(false, 0L, inputCheckPasswordSRP, twoStepVerificationActivity);
+    public static void m4075$r8$lambda$yTqqbfMEQTxr9ZgLT7NS5bW9Bo(BotStarsActivity botStarsActivity, TwoStepVerificationActivity twoStepVerificationActivity) {
+        botStarsActivity.tonBalanceButton.setLoading(false);
+        botStarsActivity.presentFragment(twoStepVerificationActivity);
     }
 
-    public void lambda$createView$9(TwoStepVerificationActivity twoStepVerificationActivity) {
-        this.tonBalanceButton.setLoading(false);
-        presentFragment(twoStepVerificationActivity);
-    }
-
-    private void withdraw() {
+    public void withdraw() {
         if (!this.balanceButton.isEnabled() || this.balanceButton.isLoading()) {
             return;
         }
@@ -526,7 +510,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             BulletinFactory.of(this).createSimpleBulletin(getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate(), AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("BotStarsWithdrawMinLimit", (int) getMessagesController().starsRevenueWithdrawalMin, new Object[0]), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$withdraw$11();
+                    BotStarsActivity.$r8$lambda$1G3b9R2hf33B2VLFlC1LueYsC3s(this.f$0);
                 }
             })).show();
             return;
@@ -536,44 +520,41 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
             public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                this.f$0.lambda$withdraw$12(j, twoStepVerificationActivity, inputCheckPasswordSRP);
+                this.f$0.initWithdraw(true, j, inputCheckPasswordSRP, twoStepVerificationActivity);
             }
         });
         this.balanceButton.setLoading(true);
         twoStepVerificationActivity.preload(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$withdraw$13(twoStepVerificationActivity);
+                BotStarsActivity.$r8$lambda$ciumE_ee5Xk4R11qekIJIhMj0Y4(this.f$0, twoStepVerificationActivity);
             }
         });
     }
 
-    public void lambda$withdraw$11() {
+    public static void $r8$lambda$1G3b9R2hf33B2VLFlC1LueYsC3s(BotStarsActivity botStarsActivity) {
+        botStarsActivity.getClass();
         Bulletin.hideVisible();
-        long availableBalance = BotStarsController.getInstance(this.currentAccount).getAvailableBalance(this.bot_id);
-        if (availableBalance < getMessagesController().starsRevenueWithdrawalMin) {
-            this.balanceEditTextAll = true;
-            this.balanceEditTextValue = availableBalance;
+        long availableBalance = BotStarsController.getInstance(botStarsActivity.currentAccount).getAvailableBalance(botStarsActivity.bot_id);
+        if (availableBalance < botStarsActivity.getMessagesController().starsRevenueWithdrawalMin) {
+            botStarsActivity.balanceEditTextAll = true;
+            botStarsActivity.balanceEditTextValue = availableBalance;
         } else {
-            this.balanceEditTextAll = false;
-            this.balanceEditTextValue = getMessagesController().starsRevenueWithdrawalMin;
+            botStarsActivity.balanceEditTextAll = false;
+            botStarsActivity.balanceEditTextValue = botStarsActivity.getMessagesController().starsRevenueWithdrawalMin;
         }
-        this.balanceEditTextIgnore = true;
-        this.balanceEditText.setText(Long.toString(this.balanceEditTextValue));
-        EditTextBoldCursor editTextBoldCursor = this.balanceEditText;
+        botStarsActivity.balanceEditTextIgnore = true;
+        botStarsActivity.balanceEditText.setText(Long.toString(botStarsActivity.balanceEditTextValue));
+        EditTextBoldCursor editTextBoldCursor = botStarsActivity.balanceEditText;
         editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
-        this.balanceEditTextIgnore = false;
-        AndroidUtilities.cancelRunOnUIThread(this.setBalanceButtonText);
-        this.setBalanceButtonText.run();
+        botStarsActivity.balanceEditTextIgnore = false;
+        AndroidUtilities.cancelRunOnUIThread(botStarsActivity.setBalanceButtonText);
+        botStarsActivity.setBalanceButtonText.run();
     }
 
-    public void lambda$withdraw$12(long j, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-        initWithdraw(true, j, inputCheckPasswordSRP, twoStepVerificationActivity);
-    }
-
-    public void lambda$withdraw$13(TwoStepVerificationActivity twoStepVerificationActivity) {
-        this.balanceButton.setLoading(false);
-        presentFragment(twoStepVerificationActivity);
+    public static void $r8$lambda$ciumE_ee5Xk4R11qekIJIhMj0Y4(BotStarsActivity botStarsActivity, TwoStepVerificationActivity twoStepVerificationActivity) {
+        botStarsActivity.balanceButton.setLoading(false);
+        botStarsActivity.presentFragment(twoStepVerificationActivity);
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -581,6 +562,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus2;
         BotStarsController botStarsController = BotStarsController.getInstance(this.currentAccount);
         int i = this.type;
+        int i2 = 0;
         if (i == 0) {
             arrayList.add(UItem.asChart(2, this.stats_dc, this.revenueChartData));
             arrayList.add(UItem.asShadow(-1, null));
@@ -640,7 +622,8 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     this.titleInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.BotMonetizationInfo, 50), -1, 3, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$fillItems$14();
+                            BotStarsActivity botStarsActivity = this.f$0;
+                            botStarsActivity.showDialog(ChannelMonetizationLayout.makeLearnSheet(botStarsActivity.getContext(), true, botStarsActivity.resourceProvider));
                         }
                     }, this.resourceProvider), true);
                 }
@@ -700,12 +683,12 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 arrayList.add(UItem.asProceedOverview(this.tonLastWithdrawalValue));
                 arrayList.add(UItem.asProceedOverview(this.tonLifetimeValue));
                 if (this.proceedsInfo == null) {
-                    int i2 = R.string.BotMonetizationProceedsTONInfo;
-                    final int i3 = R.string.BotMonetizationProceedsTONInfoLink;
-                    this.proceedsInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i2), -1, 3, new Runnable() {
+                    int i3 = R.string.BotMonetizationProceedsTONInfo;
+                    final int i4 = R.string.BotMonetizationProceedsTONInfoLink;
+                    this.proceedsInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i3), -1, 3, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$fillItems$15(i3);
+                            Browser.openUrl(this.f$0.getContext(), LocaleController.getString(i4));
                         }
                     }, this.resourceProvider), true);
                 }
@@ -717,16 +700,19 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 this.balanceInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(MessagesController.getInstance(this.currentAccount).channelRevenueWithdrawalEnabled ? R.string.BotMonetizationBalanceInfo : R.string.BotMonetizationBalanceInfoNotAvailable), -1, 3, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$fillItems$16();
+                        Browser.openUrl(this.f$0.getContext(), LocaleController.getString(R.string.BotMonetizationBalanceInfoLink));
                     }
                 }), true);
             }
             arrayList.add(UItem.asShadow(-5, this.balanceInfo));
             if (!this.tonTransactionsEndReached || !this.tonTransactions.isEmpty()) {
                 arrayList.add(UItem.asBlackHeader(LocaleController.getString(R.string.BotMonetizationTransactions)));
-                Iterator it = this.tonTransactions.iterator();
-                while (it.hasNext()) {
-                    arrayList.add(StarsIntroActivity.StarsTransactionView.Factory.asTransaction((TL_stars.StarsTransaction) it.next(), true));
+                ArrayList arrayList2 = this.tonTransactions;
+                int size = arrayList2.size();
+                while (i2 < size) {
+                    Object obj = arrayList2.get(i2);
+                    i2++;
+                    arrayList.add(StarsIntroActivity.StarsTransactionView.Factory.asTransaction((TL_stars.StarsTransaction) obj, true));
                 }
                 if (!this.tonTransactionsEndReached) {
                     arrayList.add(UItem.asFlicker(1, 7));
@@ -736,18 +722,6 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             }
             arrayList.add(UItem.asShadow(-6, null));
         }
-    }
-
-    public void lambda$fillItems$14() {
-        showDialog(ChannelMonetizationLayout.makeLearnSheet(getContext(), true, this.resourceProvider));
-    }
-
-    public void lambda$fillItems$15(int i) {
-        Browser.openUrl(getContext(), LocaleController.getString(i));
-    }
-
-    public void lambda$fillItems$16() {
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.BotMonetizationBalanceInfoLink));
     }
 
     public void loadTonTransactions() {
@@ -763,34 +737,36 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadTonTransactions$18(tLObject, tL_error);
+                BotStarsActivity.m4073$r8$lambda$lx_cV7a38AUvXjAeB8LRu6Hn30(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$loadTonTransactions$18(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4073$r8$lambda$lx_cV7a38AUvXjAeB8LRu6Hn30(final BotStarsActivity botStarsActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        botStarsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadTonTransactions$17(tLObject, tL_error);
+                BotStarsActivity.$r8$lambda$yRmg6D2AiwKfq95VQ2TXXIW6Y9o(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$loadTonTransactions$17(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$yRmg6D2AiwKfq95VQ2TXXIW6Y9o(BotStarsActivity botStarsActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
+        botStarsActivity.getClass();
         if (tLObject instanceof TL_stars.StarsStatus) {
             TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(starsStatus.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(starsStatus.chats, false);
-            this.tonTransactionsLastOffset = starsStatus.next_offset;
-            this.tonTransactions.addAll(starsStatus.history);
-            this.tonTransactionsEndReached = starsStatus.history.isEmpty() || starsStatus.next_offset == null;
+            MessagesController.getInstance(botStarsActivity.currentAccount).putUsers(starsStatus.users, false);
+            MessagesController.getInstance(botStarsActivity.currentAccount).putChats(starsStatus.chats, false);
+            botStarsActivity.tonTransactionsLastOffset = starsStatus.next_offset;
+            botStarsActivity.tonTransactions.addAll(starsStatus.history);
+            botStarsActivity.tonTransactionsEndReached = starsStatus.history.isEmpty() || starsStatus.next_offset == null;
         } else if (tL_error != null) {
             BulletinFactory.showError(tL_error);
-            this.tonTransactionsEndReached = true;
+            botStarsActivity.tonTransactionsEndReached = true;
         }
-        this.tonTransactionsLoading = false;
-        UniversalAdapter universalAdapter = this.listView.adapter;
+        botStarsActivity.tonTransactionsLoading = false;
+        UniversalAdapter universalAdapter = botStarsActivity.listView.adapter;
         if (universalAdapter != null) {
             universalAdapter.update(true);
         }
@@ -865,30 +841,30 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.tonBalanceSubtitle.setText("≈" + BillingController.getInstance().formatCurrency(j2, "USD"));
     }
 
-    public void lambda$new$19() {
-        int currentTime = getConnectionsManager().getCurrentTime();
-        this.balanceButton.setEnabled(this.balanceEditTextValue > 0 || this.balanceBlockedUntil > currentTime);
-        if (currentTime < this.balanceBlockedUntil) {
-            this.balanceButton.setText(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true);
-            if (this.lock == null) {
-                this.lock = new SpannableStringBuilder("l");
+    public static void $r8$lambda$RPCzFM4Hz9KT0E7je1lfIyiEnXo(BotStarsActivity botStarsActivity) {
+        int currentTime = botStarsActivity.getConnectionsManager().getCurrentTime();
+        botStarsActivity.balanceButton.setEnabled(botStarsActivity.balanceEditTextValue > 0 || botStarsActivity.balanceBlockedUntil > currentTime);
+        if (currentTime < botStarsActivity.balanceBlockedUntil) {
+            botStarsActivity.balanceButton.setText(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true);
+            if (botStarsActivity.lock == null) {
+                botStarsActivity.lock = new SpannableStringBuilder("l");
                 ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_switch_lock);
                 coloredImageSpan.setTopOffset(1);
-                this.lock.setSpan(coloredImageSpan, 0, 1, 33);
+                botStarsActivity.lock.setSpan(coloredImageSpan, 0, 1, 33);
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append((CharSequence) this.lock).append((CharSequence) untilString(this.balanceBlockedUntil - currentTime));
-            this.balanceButton.setSubText(spannableStringBuilder, true);
-            Bulletin bulletin = this.withdrawalBulletin;
-            if (bulletin != null && (bulletin.getLayout() instanceof Bulletin.LottieLayout) && this.withdrawalBulletin.getLayout().isAttachedToWindow()) {
-                ((Bulletin.LottieLayout) this.withdrawalBulletin.getLayout()).textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotStarsWithdrawalToast, untilString(this.balanceBlockedUntil - currentTime))));
+            spannableStringBuilder.append((CharSequence) botStarsActivity.lock).append((CharSequence) untilString(botStarsActivity.balanceBlockedUntil - currentTime));
+            botStarsActivity.balanceButton.setSubText(spannableStringBuilder, true);
+            Bulletin bulletin = botStarsActivity.withdrawalBulletin;
+            if (bulletin != null && (bulletin.getLayout() instanceof Bulletin.LottieLayout) && botStarsActivity.withdrawalBulletin.getLayout().isAttachedToWindow()) {
+                ((Bulletin.LottieLayout) botStarsActivity.withdrawalBulletin.getLayout()).textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotStarsWithdrawalToast, untilString(botStarsActivity.balanceBlockedUntil - currentTime))));
             }
-            AndroidUtilities.cancelRunOnUIThread(this.setBalanceButtonText);
-            AndroidUtilities.runOnUIThread(this.setBalanceButtonText, 1000L);
+            AndroidUtilities.cancelRunOnUIThread(botStarsActivity.setBalanceButtonText);
+            AndroidUtilities.runOnUIThread(botStarsActivity.setBalanceButtonText, 1000L);
             return;
         }
-        this.balanceButton.setSubText(null, true);
-        this.balanceButton.setText(StarsIntroActivity.replaceStars(this.balanceEditTextAll ? LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll) : LocaleController.formatPluralStringSpaced("BotStarsButtonWithdrawShort", (int) this.balanceEditTextValue), this.starRef), true);
+        botStarsActivity.balanceButton.setSubText(null, true);
+        botStarsActivity.balanceButton.setText(StarsIntroActivity.replaceStars(botStarsActivity.balanceEditTextAll ? LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll) : LocaleController.formatPluralStringSpaced("BotStarsButtonWithdrawShort", (int) botStarsActivity.balanceEditTextValue), botStarsActivity.starRef), true);
     }
 
     public static String untilString(int i) {
@@ -1004,13 +980,14 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onNestedScroll$0();
+                        BotStarsActivity.NestedFrameLayout.$r8$lambda$1Ss9PMtjMgCnmOrs0F5_EfUETQ8(this.f$0);
                     }
                 });
             }
         }
 
-        public void lambda$onNestedScroll$0() {
+        public static void $r8$lambda$1Ss9PMtjMgCnmOrs0F5_EfUETQ8(NestedFrameLayout nestedFrameLayout) {
+            nestedFrameLayout.getClass();
             try {
                 RecyclerListView currentListView = BotStarsActivity.this.transactionsLayout.getCurrentListView();
                 if (currentListView == null || currentListView.getAdapter() == null) {
@@ -1094,7 +1071,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    private void initWithdraw(final boolean z, final long j, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
+    public void initWithdraw(final boolean z, final long j, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
         TLRPC.TL_payments_getStarsRevenueWithdrawalUrl tL_payments_getStarsRevenueWithdrawalUrl;
         final Activity parentActivity = getParentActivity();
         TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
@@ -1123,22 +1100,24 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueWithdrawalUrl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$initWithdraw$24(twoStepVerificationActivity, parentActivity, z, j, tLObject, tL_error);
+                BotStarsActivity.$r8$lambda$Jw2Sfxb4DaqqjlM0yX8snSuHCys(this.f$0, twoStepVerificationActivity, parentActivity, z, j, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$initWithdraw$24(final TwoStepVerificationActivity twoStepVerificationActivity, final Activity activity, final boolean z, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$Jw2Sfxb4DaqqjlM0yX8snSuHCys(final BotStarsActivity botStarsActivity, final TwoStepVerificationActivity twoStepVerificationActivity, final Activity activity, final boolean z, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        botStarsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$initWithdraw$23(tL_error, twoStepVerificationActivity, activity, z, j, tLObject);
+                BotStarsActivity.m4072$r8$lambda$jwn3xkUpk13Ytj95g2sHJTaxNE(this.f$0, tL_error, twoStepVerificationActivity, activity, z, j, tLObject);
             }
         });
     }
 
-    public void lambda$initWithdraw$23(TLRPC.TL_error tL_error, final TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, final boolean z, final long j, TLObject tLObject) {
+    public static void m4072$r8$lambda$jwn3xkUpk13Ytj95g2sHJTaxNE(final BotStarsActivity botStarsActivity, TLRPC.TL_error tL_error, final TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, final boolean z, final long j, TLObject tLObject) {
         int i;
+        botStarsActivity.getClass();
         if (tL_error != null) {
             if ("PASSWORD_MISSING".equals(tL_error.text) || tL_error.text.startsWith("PASSWORD_TOO_FRESH_") || tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                 if (twoStepVerificationActivity != null) {
@@ -1204,7 +1183,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i4) {
-                            this.f$0.lambda$initWithdraw$20(alertDialog, i4);
+                            BotStarsActivity.m4069$r8$lambda$EcDj1aO1wThXOvQuajYs60owM0(this.f$0, alertDialog, i4);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1224,15 +1203,15 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     twoStepVerificationActivity.showDialog(builder.create());
                     return;
                 } else {
-                    showDialog(builder.create());
+                    botStarsActivity.showDialog(builder.create());
                     return;
                 }
             }
             if ("SRP_ID_INVALID".equals(tL_error.text)) {
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
+                ConnectionsManager.getInstance(botStarsActivity.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        this.f$0.lambda$initWithdraw$22(twoStepVerificationActivity, z, j, tLObject2, tL_error2);
+                        BotStarsActivity.m4068$r8$lambda$3vdPgClO37J70nwLi1n4GwXBCo(this.f$0, twoStepVerificationActivity, z, j, tLObject2, tL_error2);
                     }
                 }, 8);
                 return;
@@ -1247,32 +1226,35 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         twoStepVerificationActivity.needHideProgress();
         twoStepVerificationActivity.finishFragment();
         if (tLObject instanceof TL_stats.TL_broadcastRevenueWithdrawalUrl) {
-            Browser.openUrlInSystemBrowser(getContext(), ((TL_stats.TL_broadcastRevenueWithdrawalUrl) tLObject).url);
+            Browser.openUrlInSystemBrowser(botStarsActivity.getContext(), ((TL_stats.TL_broadcastRevenueWithdrawalUrl) tLObject).url);
         } else if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {
-            this.balanceEditTextAll = true;
-            Browser.openUrlInSystemBrowser(getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
+            botStarsActivity.balanceEditTextAll = true;
+            Browser.openUrlInSystemBrowser(botStarsActivity.getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
         }
     }
 
-    public void lambda$initWithdraw$20(AlertDialog alertDialog, int i) {
-        presentFragment(new TwoStepVerificationSetupActivity(6, null));
+    public static void m4069$r8$lambda$EcDj1aO1wThXOvQuajYs60owM0(BotStarsActivity botStarsActivity, AlertDialog alertDialog, int i) {
+        botStarsActivity.getClass();
+        botStarsActivity.presentFragment(new TwoStepVerificationSetupActivity(6, null));
     }
 
-    public void lambda$initWithdraw$22(final TwoStepVerificationActivity twoStepVerificationActivity, final boolean z, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4068$r8$lambda$3vdPgClO37J70nwLi1n4GwXBCo(final BotStarsActivity botStarsActivity, final TwoStepVerificationActivity twoStepVerificationActivity, final boolean z, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        botStarsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$initWithdraw$21(tL_error, tLObject, twoStepVerificationActivity, z, j);
+                BotStarsActivity.$r8$lambda$ybMk0EfyKrC9vqx4ljPyZdgHC7g(this.f$0, tL_error, tLObject, twoStepVerificationActivity, z, j);
             }
         });
     }
 
-    public void lambda$initWithdraw$21(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z, long j) {
+    public static void $r8$lambda$ybMk0EfyKrC9vqx4ljPyZdgHC7g(BotStarsActivity botStarsActivity, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z, long j) {
+        botStarsActivity.getClass();
         if (tL_error == null) {
             TL_account.Password password = (TL_account.Password) tLObject;
             twoStepVerificationActivity.setCurrentPasswordInfo(null, password);
             TwoStepVerificationActivity.initPasswordNewAlgo(password);
-            initWithdraw(z, j, twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
+            botStarsActivity.initWithdraw(z, j, twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
         }
     }
 }

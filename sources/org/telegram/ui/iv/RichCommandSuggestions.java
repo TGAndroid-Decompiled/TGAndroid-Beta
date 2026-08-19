@@ -3,7 +3,6 @@ package org.telegram.ui.iv;
 import android.view.View;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ItemOptions;
@@ -69,7 +68,7 @@ public class RichCommandSuggestions {
         drawScrim.setOnDismiss(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$show$0();
+                RichCommandSuggestions.$r8$lambda$5vSAbotoQ3dRUMmruLrHbQqTo8w(this.f$0);
             }
         });
         drawScrim.followScrimView();
@@ -77,12 +76,12 @@ public class RichCommandSuggestions {
         this.options = drawScrim;
     }
 
-    public void lambda$show$0() {
-        this.options = null;
-        this.content = null;
-        this.shown = null;
-        this.cell = null;
-        setBackgroundCell(null);
+    public static void $r8$lambda$5vSAbotoQ3dRUMmruLrHbQqTo8w(RichCommandSuggestions richCommandSuggestions) {
+        richCommandSuggestions.options = null;
+        richCommandSuggestions.content = null;
+        richCommandSuggestions.shown = null;
+        richCommandSuggestions.cell = null;
+        richCommandSuggestions.setBackgroundCell(null);
     }
 
     private void populate(final RichTextCell richTextCell, ArrayList arrayList) {
@@ -91,24 +90,27 @@ public class RichCommandSuggestions {
             return;
         }
         linearLayout.removeAllViews();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            final RichCommand richCommand = (RichCommand) it.next();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            final RichCommand richCommand = (RichCommand) obj;
             RichCommand.View view = new RichCommand.View(richTextCell.getContext(), richCommand, this.resourcesProvider);
             view.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(12.0f), 0);
             view.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 0, 0));
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$populate$1(richTextCell, richCommand, view2);
+                    RichCommandSuggestions.$r8$lambda$dRZU8LEifSuuuKNyFqQYSjIYvo0(this.f$0, richTextCell, richCommand, view2);
                 }
             });
             this.content.addView(view, LayoutHelper.createLinear(-1, 48));
         }
     }
 
-    public void lambda$populate$1(RichTextCell richTextCell, RichCommand richCommand, View view) {
-        hide();
+    public static void $r8$lambda$dRZU8LEifSuuuKNyFqQYSjIYvo0(RichCommandSuggestions richCommandSuggestions, RichTextCell richTextCell, RichCommand richCommand, View view) {
+        richCommandSuggestions.hide();
         richTextCell.selectCommand(richCommand);
     }
 

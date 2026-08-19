@@ -11,7 +11,6 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -137,7 +136,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         this.listView.setItemSelectorColorProvider(new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                return this.f$0.lambda$createView$0((Integer) obj);
+                return PrivacyUsersActivity.m3799$r8$lambda$z89hZfZTBvoBO5XtM69sx9Kyv4(this.f$0, (Integer) obj);
             }
         });
         this.listView.setEmptyView(this.emptyView);
@@ -155,13 +154,13 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$createView$3(view, i2);
+                PrivacyUsersActivity.$r8$lambda$Ifa9XwnvTVB3kCL50YTmAutchQY(this.f$0, view, i2);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                return this.f$0.lambda$createView$4(view, i2);
+                return PrivacyUsersActivity.$r8$lambda$_RTLVkn5HvAZRSZ83zslORIzJDE(this.f$0, view, i2);
             }
         });
         if (this.currentType == 1) {
@@ -189,98 +188,103 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         return this.fragmentView;
     }
 
-    public Integer lambda$createView$0(Integer num) {
-        if (num.intValue() == this.deleteAllRow) {
+    public static Integer m3799$r8$lambda$z89hZfZTBvoBO5XtM69sx9Kyv4(PrivacyUsersActivity privacyUsersActivity, Integer num) {
+        privacyUsersActivity.getClass();
+        if (num.intValue() == privacyUsersActivity.deleteAllRow) {
             return Integer.valueOf(Theme.multAlpha(Theme.getColor(Theme.key_text_RedRegular), 0.12f));
         }
         return null;
     }
 
-    public void lambda$createView$3(View view, int i) {
-        if (i == this.deleteAllRow) {
-            AlertDialog alertDialogCreate = AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new Runnable() {
+    public static void $r8$lambda$Ifa9XwnvTVB3kCL50YTmAutchQY(final PrivacyUsersActivity privacyUsersActivity, View view, int i) {
+        if (i == privacyUsersActivity.deleteAllRow) {
+            AlertDialog alertDialogCreate = AlertsCreator.createSimpleAlert(privacyUsersActivity.getContext(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$1();
+                    PrivacyUsersActivity.m3800$r8$lambda$86kBhdOdFnUOHGp6EgsghOis38(this.f$0);
                 }
             }, null).create();
             alertDialogCreate.show();
             alertDialogCreate.redPositive();
             return;
         }
-        if (i == this.blockUserRow) {
-            if (this.currentType == 1) {
-                presentFragment(new DialogOrContactPickerActivity());
+        if (i == privacyUsersActivity.blockUserRow) {
+            if (privacyUsersActivity.currentType == 1) {
+                privacyUsersActivity.presentFragment(new DialogOrContactPickerActivity());
                 return;
             }
             Bundle bundle = new Bundle();
-            bundle.putBoolean(this.isAlwaysShare ? "isAlwaysShare" : "isNeverShare", true);
-            if (this.isGroup) {
+            bundle.putBoolean(privacyUsersActivity.isAlwaysShare ? "isAlwaysShare" : "isNeverShare", true);
+            if (privacyUsersActivity.isGroup) {
                 bundle.putInt("chatAddType", 1);
-            } else if (this.currentType == 2) {
+            } else if (privacyUsersActivity.currentType == 2) {
                 bundle.putInt("chatAddType", 2);
             }
-            if (this.isAlwaysShare && this.rulesType == 1) {
+            if (privacyUsersActivity.isAlwaysShare && privacyUsersActivity.rulesType == 1) {
                 bundle.putBoolean("allowPremium", true);
-            } else if (this.rulesType == 12) {
+            } else if (privacyUsersActivity.rulesType == 12) {
                 bundle.putBoolean("allowMiniapps", true);
             }
             GroupCreateActivity groupCreateActivity = new GroupCreateActivity(bundle);
             groupCreateActivity.setDelegate(new GroupCreateActivity.GroupCreateActivityDelegate() {
                 @Override
                 public final void didSelectUsers(boolean z, boolean z2, ArrayList arrayList) {
-                    this.f$0.lambda$createView$2(z, z2, arrayList);
+                    PrivacyUsersActivity.m3801$r8$lambda$ZVZ8B2d3z9giqJMLYjr0DewVqk(this.f$0, z, z2, arrayList);
                 }
             });
-            presentFragment(groupCreateActivity);
+            privacyUsersActivity.presentFragment(groupCreateActivity);
             return;
         }
-        if (i < this.usersStartRow || i >= this.usersEndRow) {
+        if (i < privacyUsersActivity.usersStartRow || i >= privacyUsersActivity.usersEndRow) {
             return;
         }
-        if (this.currentType == 1) {
+        if (privacyUsersActivity.currentType == 1) {
             Bundle bundle2 = new Bundle();
-            bundle2.putLong("user_id", getMessagesController().blockePeers.keyAt(i - this.usersStartRow));
-            presentFragment(new ProfileActivity(bundle2));
+            bundle2.putLong("user_id", privacyUsersActivity.getMessagesController().blockePeers.keyAt(i - privacyUsersActivity.usersStartRow));
+            privacyUsersActivity.presentFragment(new ProfileActivity(bundle2));
         } else {
             Bundle bundle3 = new Bundle();
-            long jLongValue = ((Long) this.uidArray.get(i - this.usersStartRow)).longValue();
+            long jLongValue = ((Long) privacyUsersActivity.uidArray.get(i - privacyUsersActivity.usersStartRow)).longValue();
             if (DialogObject.isUserDialog(jLongValue)) {
                 bundle3.putLong("user_id", jLongValue);
             } else {
                 bundle3.putLong("chat_id", -jLongValue);
             }
-            presentFragment(new ProfileActivity(bundle3));
+            privacyUsersActivity.presentFragment(new ProfileActivity(bundle3));
         }
     }
 
-    public void lambda$createView$1() {
-        this.uidArray.clear();
-        updateRows();
-        finishFragment();
+    public static void m3800$r8$lambda$86kBhdOdFnUOHGp6EgsghOis38(PrivacyUsersActivity privacyUsersActivity) {
+        privacyUsersActivity.uidArray.clear();
+        privacyUsersActivity.updateRows();
+        privacyUsersActivity.finishFragment();
     }
 
-    public void lambda$createView$2(boolean z, boolean z2, ArrayList arrayList) {
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            Long l = (Long) it.next();
-            if (!this.uidArray.contains(l)) {
-                this.uidArray.add(l);
+    public static void m3801$r8$lambda$ZVZ8B2d3z9giqJMLYjr0DewVqk(PrivacyUsersActivity privacyUsersActivity, boolean z, boolean z2, ArrayList arrayList) {
+        privacyUsersActivity.getClass();
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Long l = (Long) obj;
+            if (!privacyUsersActivity.uidArray.contains(l)) {
+                privacyUsersActivity.uidArray.add(l);
             }
         }
-        updateRows();
+        privacyUsersActivity.updateRows();
     }
 
-    public boolean lambda$createView$4(View view, int i) {
-        int i2 = this.usersStartRow;
-        if (i < i2 || i >= this.usersEndRow) {
+    public static boolean $r8$lambda$_RTLVkn5HvAZRSZ83zslORIzJDE(PrivacyUsersActivity privacyUsersActivity, View view, int i) {
+        int i2 = privacyUsersActivity.usersStartRow;
+        if (i < i2 || i >= privacyUsersActivity.usersEndRow) {
             return false;
         }
-        if (this.currentType == 1) {
-            showUnblockAlert(Long.valueOf(getMessagesController().blockePeers.keyAt(i - this.usersStartRow)), view);
-        } else {
-            showUnblockAlert((Long) this.uidArray.get(i - i2), view);
+        if (privacyUsersActivity.currentType == 1) {
+            privacyUsersActivity.showUnblockAlert(Long.valueOf(privacyUsersActivity.getMessagesController().blockePeers.keyAt(i - privacyUsersActivity.usersStartRow)), view);
+            return true;
         }
+        privacyUsersActivity.showUnblockAlert((Long) privacyUsersActivity.uidArray.get(i - i2), view);
         return true;
     }
 
@@ -291,27 +295,23 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         ItemOptions itemOptionsAddIf = ItemOptions.makeOptions(this, view).setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite))).addIf(this.currentType == 1, 0, LocaleController.getString(R.string.Unblock), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showUnblockAlert$5(l);
+                this.f$0.getMessagesController().unblockPeer(l.longValue());
             }
         });
         int i = this.currentType;
         itemOptionsAddIf.addIf(i != 1, i == 0 ? R.drawable.msg_user_remove : 0, (CharSequence) LocaleController.getString(R.string.Remove), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showUnblockAlert$6(l);
+                PrivacyUsersActivity.$r8$lambda$AU0nTt9lkEiYUkPdPRdK0zjCAZs(this.f$0, l);
             }
         }).setMinWidth(190).show();
     }
 
-    public void lambda$showUnblockAlert$5(Long l) {
-        getMessagesController().unblockPeer(l.longValue());
-    }
-
-    public void lambda$showUnblockAlert$6(Long l) {
-        this.uidArray.remove(l);
-        updateRows();
-        if (this.uidArray.isEmpty()) {
-            finishFragment();
+    public static void $r8$lambda$AU0nTt9lkEiYUkPdPRdK0zjCAZs(PrivacyUsersActivity privacyUsersActivity, Long l) {
+        privacyUsersActivity.uidArray.remove(l);
+        privacyUsersActivity.updateRows();
+        if (privacyUsersActivity.uidArray.isEmpty()) {
+            privacyUsersActivity.finishFragment();
         }
     }
 
@@ -426,11 +426,12 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             return itemViewType == 0 || itemViewType == 2 || itemViewType == 4;
         }
 
-        public boolean lambda$onCreateViewHolder$0(ManageChatUserCell manageChatUserCell, boolean z) {
-            if (!z) {
+        public static boolean m3803$r8$lambda$4zdDOFOc1rfEsoVRG2n2jTn4dI(ListAdapter listAdapter, ManageChatUserCell manageChatUserCell, boolean z) {
+            if (z) {
+                PrivacyUsersActivity.this.showUnblockAlert((Long) manageChatUserCell.getTag(), manageChatUserCell);
                 return true;
             }
-            PrivacyUsersActivity.this.showUnblockAlert((Long) manageChatUserCell.getTag(), manageChatUserCell);
+            listAdapter.getClass();
             return true;
         }
 
@@ -442,7 +443,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 manageChatUserCell.setDelegate(new ManageChatUserCell.ManageChatUserCellDelegate() {
                     @Override
                     public final boolean onOptionsButtonCheck(ManageChatUserCell manageChatUserCell2, boolean z) {
-                        return this.f$0.lambda$onCreateViewHolder$0(manageChatUserCell2, z);
+                        return PrivacyUsersActivity.ListAdapter.m3803$r8$lambda$4zdDOFOc1rfEsoVRG2n2jTn4dI(this.f$0, manageChatUserCell2, z);
                     }
                 });
                 textInfoPrivacyCell = manageChatUserCell;
@@ -577,7 +578,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$7();
+                PrivacyUsersActivity.m3802$r8$lambda$n2AHQWXpa1KiiRXGirznhMhlYU(this.f$0);
             }
 
             @Override
@@ -615,12 +616,12 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$7() {
-        RecyclerListView recyclerListView = this.listView;
+    public static void m3802$r8$lambda$n2AHQWXpa1KiiRXGirznhMhlYU(PrivacyUsersActivity privacyUsersActivity) {
+        RecyclerListView recyclerListView = privacyUsersActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
             for (int i = 0; i < childCount; i++) {
-                View childAt = this.listView.getChildAt(i);
+                View childAt = privacyUsersActivity.listView.getChildAt(i);
                 if (childAt instanceof ManageChatUserCell) {
                     ((ManageChatUserCell) childAt).update(0);
                 }

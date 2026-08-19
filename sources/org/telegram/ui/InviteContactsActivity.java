@@ -121,7 +121,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
     }
 
-    private class SpansContainer extends ViewGroup {
+    class SpansContainer extends ViewGroup {
         private View addingSpan;
         private boolean animationStarted;
         private final ArrayList animators;
@@ -137,6 +137,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         @Override
         protected void onMeasure(int i, int i2) {
             int iMin;
+            char c;
             int childCount = getChildCount();
             int size = View.MeasureSpec.getSize(i);
             int iDp = size - AndroidUtilities.dp(26.0f);
@@ -166,11 +167,18 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                         } else if (view != null) {
                             float f = iDp4;
                             if (childAt.getTranslationX() != f) {
+                                c = 0;
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_X, f));
+                            } else {
+                                c = 0;
                             }
                             float f2 = iDp2;
                             if (childAt.getTranslationY() != f2) {
-                                this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_Y, f2));
+                                ArrayList arrayList = this.animators;
+                                Property property = View.TRANSLATION_Y;
+                                float[] fArr = new float[1];
+                                fArr[c] = f2;
+                                arrayList.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property, fArr));
                             }
                             iMax = Math.max(iMax, iDp2);
                         } else {
@@ -191,13 +199,13 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 Point point = AndroidUtilities.displaySize;
                 iMin = (Math.min(point.x, point.y) - AndroidUtilities.dp(158.0f)) / 3;
             }
-            boolean z = (iMax > 0 ? iMax + AndroidUtilities.dp(34.0f) : 0) > InviteContactsActivity.this.maxSize - AndroidUtilities.dp(12.0f);
+            boolean z = (iMax > 0 ? AndroidUtilities.dp(34.0f) + iMax : 0) > InviteContactsActivity.this.maxSize - AndroidUtilities.dp(12.0f);
             if (iDp - measuredWidth < iMin && !z) {
                 iDp2 += AndroidUtilities.dp(34.0f);
                 iMax = Math.max(iMax, iDp2);
                 measuredWidth = 0;
             }
-            boolean z2 = (iMax > 0 ? iMax + AndroidUtilities.dp(34.0f) : 0) > InviteContactsActivity.this.maxSize - AndroidUtilities.dp(12.0f);
+            boolean z2 = (iMax > 0 ? AndroidUtilities.dp(34.0f) + iMax : 0) > InviteContactsActivity.this.maxSize - AndroidUtilities.dp(12.0f);
             if (!this.animationStarted) {
                 int iDp5 = iDp3 + AndroidUtilities.dp(28.0f);
                 InviteContactsActivity.this.fieldY = iDp2;
@@ -210,7 +218,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                     this.containerHeight = iDp5;
                 }
             }
-            InviteContactsActivity.this.animatorSelectorContainerHeight.animateTo(z2 ? InviteContactsActivity.this.maxSize - AndroidUtilities.dp(12.0f) : Math.max(AndroidUtilities.dp(37.0f), Math.min(iMax > 0 ? iMax + AndroidUtilities.dp(31.0f) : 0, InviteContactsActivity.this.maxSize - AndroidUtilities.dp(12.0f))));
+            InviteContactsActivity.this.animatorSelectorContainerHeight.animateTo(z2 ? InviteContactsActivity.this.maxSize - AndroidUtilities.dp(12.0f) : Math.max(AndroidUtilities.dp(37.0f), Math.min(iMax > 0 ? AndroidUtilities.dp(31.0f) + iMax : 0, InviteContactsActivity.this.maxSize - AndroidUtilities.dp(12.0f))));
             if (InviteContactsActivity.this.searchField != null) {
                 InviteContactsActivity.this.searchField.setSpansBounds(Math.max(0, childCount - (this.removingSpan == null ? 0 : 1)), Math.max(0, iMax - AndroidUtilities.dp(6.0f)), measuredWidth, z2);
             }
@@ -375,7 +383,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 if (Build.VERSION.SDK_INT >= 31 && InviteContactsActivity.this.scrollableViewNoiseSuppressor != null) {
-                    InviteContactsActivity.this.lambda$createView$2();
+                    InviteContactsActivity.this.blur3_InvalidateBlur();
                     int measuredWidth = getMeasuredWidth();
                     int measuredHeight = getMeasuredHeight();
                     if (InviteContactsActivity.this.iBlur3SourceGlassFrosted != null && !InviteContactsActivity.this.iBlur3SourceGlassFrosted.inRecording() && (InviteContactsActivity.this.iBlur3SourceGlassFrosted.needUpdateDisplayList(measuredWidth, measuredHeight) || InviteContactsActivity.this.iBlur3Invalidated)) {
@@ -469,7 +477,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$createView$0(view, i2);
+                InviteContactsActivity.m3327$r8$lambda$utGCP4ZGu_1zP3r2NUqXP1hqe8(this.f$0, view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -484,7 +492,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                     return;
                 }
                 InviteContactsActivity.this.scrollableViewNoiseSuppressor.onScrolled(i2, i3);
-                InviteContactsActivity.this.lambda$createView$2();
+                InviteContactsActivity.this.blur3_InvalidateBlur();
             }
 
             @Override
@@ -505,7 +513,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$1(view);
+                InviteContactsActivity.m3328$r8$lambda$8IQgDY8q_lmIwaXjncjYKmThU8(this.f$0, view);
             }
         });
         this.actionBar.setBackgroundColor(getThemedColor(i));
@@ -515,7 +523,13 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.listView.addEdgeEffectListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$3();
+                InviteContactsActivity inviteContactsActivity = this.f$0;
+                inviteContactsActivity.listView.postOnAnimation(new Runnable() {
+                    @Override
+                    public final void run() {
+                        inviteContactsActivity.blur3_InvalidateBlur();
+                    }
+                });
             }
         });
         checkUi_emptyViewVisible();
@@ -529,16 +543,18 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view, int i) {
+    public static void m3327$r8$lambda$utGCP4ZGu_1zP3r2NUqXP1hqe8(InviteContactsActivity inviteContactsActivity, View view, int i) {
         InviteUserCell inviteUserCell;
         ContactsController.Contact contact;
-        if (i == 0 && !this.searching) {
+        if (i != 0) {
+            inviteContactsActivity.getClass();
+        } else if (!inviteContactsActivity.searching) {
             try {
                 Intent intent = new Intent("android.intent.action.SEND");
                 intent.setType("text/plain");
-                String inviteText = ContactsController.getInstance(this.currentAccount).getInviteText(0);
+                String inviteText = ContactsController.getInstance(inviteContactsActivity.currentAccount).getInviteText(0);
                 intent.putExtra("android.intent.extra.TEXT", inviteText);
-                getParentActivity().startActivityForResult(Intent.createChooser(intent, inviteText), 500);
+                inviteContactsActivity.getParentActivity().startActivityForResult(Intent.createChooser(intent, inviteText), 500);
                 return;
             } catch (Exception e) {
                 FileLog.e(e);
@@ -546,52 +562,44 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             }
         }
         if ((view instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) view).getContact()) != null) {
-            GroupCreateSpan groupCreateSpan = (GroupCreateSpan) this.selectedContacts.get(contact.key);
+            GroupCreateSpan groupCreateSpan = (GroupCreateSpan) inviteContactsActivity.selectedContacts.get(contact.key);
             if (groupCreateSpan != null) {
-                this.spansContainer.removeSpan(groupCreateSpan);
+                inviteContactsActivity.spansContainer.removeSpan(groupCreateSpan);
             } else {
-                GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(getContext(), null, contact, true, this.resourceProvider);
-                this.spansContainer.addSpan(groupCreateSpan2);
-                groupCreateSpan2.setOnClickListener(this);
+                GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(inviteContactsActivity.getContext(), null, contact, true, inviteContactsActivity.resourceProvider);
+                inviteContactsActivity.spansContainer.addSpan(groupCreateSpan2);
+                groupCreateSpan2.setOnClickListener(inviteContactsActivity);
             }
-            updateHint();
-            if (this.searching || this.searchWas) {
+            inviteContactsActivity.updateHint();
+            if (inviteContactsActivity.searching || inviteContactsActivity.searchWas) {
                 return;
             }
             inviteUserCell.setChecked(groupCreateSpan == null, true);
         }
     }
 
-    public void lambda$createView$1(View view) {
+    public static void m3328$r8$lambda$8IQgDY8q_lmIwaXjncjYKmThU8(InviteContactsActivity inviteContactsActivity, View view) {
+        inviteContactsActivity.getClass();
         try {
             StringBuilder sb = new StringBuilder();
             int i = 0;
-            for (int i2 = 0; i2 < this.allSpans.size(); i2++) {
-                ContactsController.Contact contact = ((GroupCreateSpan) this.allSpans.get(i2)).getContact();
+            for (int i2 = 0; i2 < inviteContactsActivity.allSpans.size(); i2++) {
+                ContactsController.Contact contact = ((GroupCreateSpan) inviteContactsActivity.allSpans.get(i2)).getContact();
                 if (sb.length() != 0) {
                     sb.append(';');
                 }
                 sb.append(contact.phones.get(0));
-                if (i2 == 0 && this.allSpans.size() == 1) {
+                if (i2 == 0 && inviteContactsActivity.allSpans.size() == 1) {
                     i = contact.imported;
                 }
             }
             Intent intent = new Intent("android.intent.action.SENDTO", Uri.parse("smsto:" + sb.toString()));
-            intent.putExtra("sms_body", ContactsController.getInstance(this.currentAccount).getInviteText(i));
-            getParentActivity().startActivityForResult(intent, 500);
+            intent.putExtra("sms_body", ContactsController.getInstance(inviteContactsActivity.currentAccount).getInviteText(i));
+            inviteContactsActivity.getParentActivity().startActivityForResult(intent, 500);
         } catch (Exception e) {
             FileLog.e(e);
         }
-        finishFragment();
-    }
-
-    public void lambda$createView$3() {
-        this.listView.postOnAnimation(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$createView$2();
-            }
-        });
+        inviteContactsActivity.finishFragment();
     }
 
     @Override
@@ -642,7 +650,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return InviteContactsActivity.lambda$fetchContacts$4((ContactsController.Contact) obj, (ContactsController.Contact) obj2);
+                return InviteContactsActivity.$r8$lambda$Hq3CwfD8ExYcuUXnPHqgZKkzKSo((ContactsController.Contact) obj, (ContactsController.Contact) obj2);
             }
         });
         StickerEmptyView stickerEmptyView = this.emptyView;
@@ -655,7 +663,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         }
     }
 
-    public static int lambda$fetchContacts$4(ContactsController.Contact contact, ContactsController.Contact contact2) {
+    public static int $r8$lambda$Hq3CwfD8ExYcuUXnPHqgZKkzKSo(ContactsController.Contact contact, ContactsController.Contact contact2) {
         int i = contact.imported;
         int i2 = contact2.imported;
         if (i > i2) {
@@ -802,13 +810,9 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             InviteContactsActivity.this.scrollView.post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setSpansBounds$0(f);
+                    InviteContactsActivity.this.scrollView.smoothScrollTo(0, (int) f);
                 }
             });
-        }
-
-        public void lambda$setSpansBounds$0(float f) {
-            InviteContactsActivity.this.scrollView.smoothScrollTo(0, (int) f);
         }
 
         @Override
@@ -942,21 +946,23 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$run$1(str);
+                        InviteContactsActivity.InviteAdapter.AnonymousClass1.m3329$r8$lambda$VKg6QsYfGuwTzPX8OHjjgqVF6c(this.f$0, str);
                     }
                 });
             }
 
-            public void lambda$run$1(final String str) {
+            public static void m3329$r8$lambda$VKg6QsYfGuwTzPX8OHjjgqVF6c(final AnonymousClass1 anonymousClass1, final String str) {
+                anonymousClass1.getClass();
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$run$0(str);
+                        InviteContactsActivity.InviteAdapter.AnonymousClass1.m3330$r8$lambda$XRE_T9UOkYnPbe1AQxd95pIGv4(this.f$0, str);
                     }
                 });
             }
 
-            public void lambda$run$0(String str) {
+            public static void m3330$r8$lambda$XRE_T9UOkYnPbe1AQxd95pIGv4(AnonymousClass1 anonymousClass1, String str) {
+                anonymousClass1.getClass();
                 String lowerCase = str.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     InviteAdapter.this.updateSearchResults(new ArrayList(), new ArrayList());
@@ -1014,16 +1020,16 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateSearchResults$0(arrayList, arrayList2);
+                    InviteContactsActivity.InviteAdapter.$r8$lambda$0SX9W3NcJ7ZcghwYXwk1dHQQoZk(this.f$0, arrayList, arrayList2);
                 }
             });
         }
 
-        public void lambda$updateSearchResults$0(ArrayList arrayList, ArrayList arrayList2) {
-            if (this.searching) {
-                this.searchResult = arrayList;
-                this.searchResultNames = arrayList2;
-                notifyDataSetChanged();
+        public static void $r8$lambda$0SX9W3NcJ7ZcghwYXwk1dHQQoZk(InviteAdapter inviteAdapter, ArrayList arrayList, ArrayList arrayList2) {
+            if (inviteAdapter.searching) {
+                inviteAdapter.searchResult = arrayList;
+                inviteAdapter.searchResultNames = arrayList2;
+                inviteAdapter.notifyDataSetChanged();
                 InviteContactsActivity.this.emptyView.showProgress(false);
             }
         }
@@ -1049,7 +1055,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$5();
+                InviteContactsActivity.$r8$lambda$pboujY4wzHxrpB6TVVz18b3X0eM(this.f$0);
             }
 
             @Override
@@ -1093,12 +1099,12 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$5() {
-        RecyclerListView recyclerListView = this.listView;
+    public static void $r8$lambda$pboujY4wzHxrpB6TVVz18b3X0eM(InviteContactsActivity inviteContactsActivity) {
+        RecyclerListView recyclerListView = inviteContactsActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
             for (int i = 0; i < childCount; i++) {
-                View childAt = this.listView.getChildAt(i);
+                View childAt = inviteContactsActivity.listView.getChildAt(i);
                 if (childAt instanceof InviteUserCell) {
                     ((InviteUserCell) childAt).update(0);
                 }
@@ -1154,7 +1160,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         }
     }
 
-    public void lambda$createView$2() {
+    public void blur3_InvalidateBlur() {
         if (Build.VERSION.SDK_INT < 31 || this.scrollableViewNoiseSuppressor == null) {
             return;
         }

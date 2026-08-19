@@ -468,17 +468,16 @@ public class ReactedUserHolderView extends FrameLayout {
 
     public void setUserReaction(TLRPC.MessagePeerReaction messagePeerReaction) {
         TLRPC.Chat chat;
-        TLRPC.User user;
         if (messagePeerReaction == null) {
             return;
         }
         long peerId = MessageObject.getPeerId(messagePeerReaction.peer_id);
+        TLRPC.User user = null;
         if (peerId > 0) {
             user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerId));
             chat = null;
         } else {
             chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerId));
-            user = null;
         }
         setUserReaction(user, chat, messagePeerReaction.reaction, false, messagePeerReaction.date, null, false, messagePeerReaction.dateIsSeen, false);
     }
@@ -519,7 +518,7 @@ public class ReactedUserHolderView extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$animateAlpha$0(valueAnimator2);
+                    ReactedUserHolderView.$r8$lambda$GrTSAvOdNNIb3jYSDvJY1mumJtE(this.f$0, valueAnimator2);
                 }
             });
             this.alphaAnimator.addListener(new AnimatorListenerAdapter() {
@@ -538,9 +537,10 @@ public class ReactedUserHolderView extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$animateAlpha$0(ValueAnimator valueAnimator) {
-        this.alphaInternal = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$GrTSAvOdNNIb3jYSDvJY1mumJtE(ReactedUserHolderView reactedUserHolderView, ValueAnimator valueAnimator) {
+        reactedUserHolderView.getClass();
+        reactedUserHolderView.alphaInternal = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        reactedUserHolderView.invalidate();
     }
 
     public float getAlphaInternal() {

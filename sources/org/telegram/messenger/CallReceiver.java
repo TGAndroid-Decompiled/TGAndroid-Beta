@@ -12,7 +12,7 @@ public class CallReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.intent.action.PHONE_STATE") && TelephonyManager.EXTRA_STATE_RINGING.equals(intent.getStringExtra("state"))) {
             String strStripExceptNumbers = PhoneFormat.stripExceptNumbers(intent.getStringExtra("incoming_number"));
             SharedConfig.getPreferences().edit().putString("last_call_phone_number", strStripExceptNumbers).putLong("last_call_time", System.currentTimeMillis()).apply();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveCall, strStripExceptNumbers);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didReceiveCall, strStripExceptNumbers);
         }
     }
 
@@ -30,7 +30,7 @@ public class CallReceiver extends BroadcastReceiver {
     public static void checkLastReceivedCall() {
         String lastReceivedCall = getLastReceivedCall();
         if (lastReceivedCall != null) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveCall, lastReceivedCall);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didReceiveCall, lastReceivedCall);
         }
     }
 

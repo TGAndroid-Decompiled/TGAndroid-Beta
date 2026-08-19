@@ -44,7 +44,7 @@ public class StableAnimator extends TimeAnimator {
         setTimeListener(new TimeAnimator.TimeListener() {
             @Override
             public final void onTimeUpdate(TimeAnimator timeAnimator, long j, long j2) {
-                this.f$0.lambda$start$0(timeAnimator, j, j2);
+                StableAnimator.m2819$r8$lambda$JW24i3o97WzNdDy57JetywWaRA(this.f$0, timeAnimator, j, j2);
             }
         });
         int duration = (int) (getDuration() / AndroidUtilities.screenRefreshTime);
@@ -53,27 +53,27 @@ public class StableAnimator extends TimeAnimator {
         super.start();
     }
 
-    public void lambda$start$0(TimeAnimator timeAnimator, long j, long j2) {
+    public static void m2819$r8$lambda$JW24i3o97WzNdDy57JetywWaRA(StableAnimator stableAnimator, TimeAnimator timeAnimator, long j, long j2) {
         int i;
-        int i2 = this.times;
-        if (i2 > 0 && (i = this.totalTimes) > 0) {
+        int i2 = stableAnimator.times;
+        if (i2 > 0 && (i = stableAnimator.totalTimes) > 0) {
             int i3 = i2 - 1;
-            this.times = i3;
-            if (this.updateListener != null) {
-                float[] fArr = this.floatValues;
+            stableAnimator.times = i3;
+            if (stableAnimator.updateListener != null) {
+                float[] fArr = stableAnimator.floatValues;
                 if (fArr != null && fArr.length == 2) {
-                    float interpolation = getInterpolator().getInterpolation(1.0f - (i3 / i));
-                    float[] fArr2 = this.floatValues;
+                    float interpolation = stableAnimator.getInterpolator().getInterpolation(1.0f - (i3 / i));
+                    float[] fArr2 = stableAnimator.floatValues;
                     float f = fArr2[0];
-                    this.animatedValue = Float.valueOf(f + ((fArr2[1] - f) * interpolation));
-                    this.updateListener.onAnimationUpdate(this);
+                    stableAnimator.animatedValue = Float.valueOf(f + ((fArr2[1] - f) * interpolation));
+                    stableAnimator.updateListener.onAnimationUpdate(stableAnimator);
                     return;
                 }
-                end();
+                stableAnimator.end();
                 return;
             }
             return;
         }
-        end();
+        stableAnimator.end();
     }
 }

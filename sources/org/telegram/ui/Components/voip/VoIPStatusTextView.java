@@ -125,14 +125,14 @@ public class VoIPStatusTextView extends FrameLayout {
             replaceViews(textViewArr[0], textViewArr[1], new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setText$0();
+                    VoIPStatusTextView.$r8$lambda$a7CBLmpfBBhynmxzYc4BDBqvIb8(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$setText$0() {
-        TextView[] textViewArr = this.textView;
+    public static void $r8$lambda$a7CBLmpfBBhynmxzYc4BDBqvIb8(VoIPStatusTextView voIPStatusTextView) {
+        TextView[] textViewArr = voIPStatusTextView.textView;
         TextView textView = textViewArr[0];
         textViewArr[0] = textViewArr[1];
         textViewArr[1] = textView;
@@ -177,7 +177,7 @@ public class VoIPStatusTextView extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoIPStatusTextView.lambda$replaceViews$1(view2, view, valueAnimator);
+                VoIPStatusTextView.$r8$lambda$7qpEzghzXJzSCxBxECkhuY5Xs_4(view2, view, valueAnimator);
             }
         });
         this.animator.addListener(new AnonymousClass2(view, view2, runnable));
@@ -185,7 +185,7 @@ public class VoIPStatusTextView extends FrameLayout {
         this.animator.start();
     }
 
-    public static void lambda$replaceViews$1(View view, View view2, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$7qpEzghzXJzSCxBxECkhuY5Xs_4(View view, View view2, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float f = 1.0f - fFloatValue;
         view.setTranslationY(AndroidUtilities.dp(8.0f) * f);
@@ -235,7 +235,7 @@ public class VoIPStatusTextView extends FrameLayout {
                     voIPStatusTextView3.replaceViews(textViewArr[0], textViewArr[1], new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onAnimationEnd$0();
+                            VoIPStatusTextView.AnonymousClass2.$r8$lambda$vqd9HtMAbV7fckPz2V1GVE1QDrc(this.f$0);
                         }
                     });
                 }
@@ -243,7 +243,7 @@ public class VoIPStatusTextView extends FrameLayout {
             }
         }
 
-        public void lambda$onAnimationEnd$0() {
+        public static void $r8$lambda$vqd9HtMAbV7fckPz2V1GVE1QDrc(AnonymousClass2 anonymousClass2) {
             TextView[] textViewArr = VoIPStatusTextView.this.textView;
             TextView textView = textViewArr[0];
             textViewArr[0] = textViewArr[1];

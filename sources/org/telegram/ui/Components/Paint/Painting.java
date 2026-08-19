@@ -176,65 +176,63 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setHelperShape$2(shape);
+                Painting.$r8$lambda$HnpW7_pJL_0aYt1ui_aPbxF2g6w(this.f$0, shape);
             }
         });
     }
 
-    public void lambda$setHelperShape$2(Shape shape) {
-        if (shape != null && this.helperTexture == 0) {
-            this.helperTexture = Texture.generateTexture(this.size);
+    public static void $r8$lambda$HnpW7_pJL_0aYt1ui_aPbxF2g6w(final Painting painting, Shape shape) {
+        if (shape != null && painting.helperTexture == 0) {
+            painting.helperTexture = Texture.generateTexture(painting.size);
         }
-        if (this.helperShown != (shape != null)) {
-            this.helperShown = shape != null;
-            ValueAnimator valueAnimator = this.helperAnimator;
+        if (painting.helperShown != (shape != null)) {
+            painting.helperShown = shape != null;
+            ValueAnimator valueAnimator = painting.helperAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.helperAnimator = null;
+                painting.helperAnimator = null;
             }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.helperAlpha, this.helperShown ? 1.0f : 0.0f);
-            this.helperAnimator = valueAnimatorOfFloat;
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(painting.helperAlpha, painting.helperShown ? 1.0f : 0.0f);
+            painting.helperAnimator = valueAnimatorOfFloat;
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setHelperShape$1(valueAnimator2);
+                    Painting painting2 = this.f$0;
+                    painting2.renderView.performInContext(new Runnable() {
+                        @Override
+                        public final void run() {
+                            Painting.m2470$r8$lambda$9XyceSV8btCEil5MQI4naFiOdQ(painting2, valueAnimator2);
+                        }
+                    });
                 }
             });
-            this.helperAnimator.addListener(new AnonymousClass1());
-            this.helperAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.helperAnimator.start();
-            this.helperShape = shape;
-            PaintingDelegate paintingDelegate = this.delegate;
+            painting.helperAnimator.addListener(painting.new AnonymousClass1());
+            painting.helperAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            painting.helperAnimator.start();
+            painting.helperShape = shape;
+            PaintingDelegate paintingDelegate = painting.delegate;
             if (paintingDelegate != null) {
                 paintingDelegate.contentChanged();
             }
-            if (this.helperShown) {
+            if (painting.helperShown) {
                 BotWebViewVibrationEffect.SELECTION_CHANGE.vibrate();
                 return;
             }
             return;
         }
-        if (shape != this.helperShape) {
-            this.helperShape = shape;
-            PaintingDelegate paintingDelegate2 = this.delegate;
+        if (shape != painting.helperShape) {
+            painting.helperShape = shape;
+            PaintingDelegate paintingDelegate2 = painting.delegate;
             if (paintingDelegate2 != null) {
                 paintingDelegate2.contentChanged();
             }
         }
     }
 
-    public void lambda$setHelperShape$1(final ValueAnimator valueAnimator) {
-        this.renderView.performInContext(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$setHelperShape$0(valueAnimator);
-            }
-        });
-    }
-
-    public void lambda$setHelperShape$0(ValueAnimator valueAnimator) {
-        this.helperAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        PaintingDelegate paintingDelegate = this.delegate;
+    public static void m2470$r8$lambda$9XyceSV8btCEil5MQI4naFiOdQ(Painting painting, ValueAnimator valueAnimator) {
+        painting.getClass();
+        painting.helperAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        PaintingDelegate paintingDelegate = painting.delegate;
         if (paintingDelegate != null) {
             paintingDelegate.contentChanged();
         }
@@ -250,12 +248,12 @@ public class Painting {
             Painting.this.renderView.performInContext(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onAnimationEnd$0();
+                    Painting.AnonymousClass1.m2473$r8$lambda$Bvg8vy1mCO7AEU9TV83zkXlvZA(this.f$0);
                 }
             });
         }
 
-        public void lambda$onAnimationEnd$0() {
+        public static void m2473$r8$lambda$Bvg8vy1mCO7AEU9TV83zkXlvZA(AnonymousClass1 anonymousClass1) {
             if (Painting.this.delegate != null) {
                 Painting.this.delegate.contentChanged();
             }
@@ -275,7 +273,13 @@ public class Painting {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$applyHelperShape$4(valueAnimator2);
+                Painting painting = this.f$0;
+                painting.renderView.performInContext(new Runnable() {
+                    @Override
+                    public final void run() {
+                        Painting.$r8$lambda$IGldvW9jX_bPArw7im2mBZZaeTc(this.f$0, valueAnimator2);
+                    }
+                });
             }
         });
         this.helperApplyAnimator.addListener(new AnonymousClass2());
@@ -286,18 +290,10 @@ public class Painting {
         return true;
     }
 
-    public void lambda$applyHelperShape$4(final ValueAnimator valueAnimator) {
-        this.renderView.performInContext(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$applyHelperShape$3(valueAnimator);
-            }
-        });
-    }
-
-    public void lambda$applyHelperShape$3(ValueAnimator valueAnimator) {
-        this.helperApplyAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        PaintingDelegate paintingDelegate = this.delegate;
+    public static void $r8$lambda$IGldvW9jX_bPArw7im2mBZZaeTc(Painting painting, ValueAnimator valueAnimator) {
+        painting.getClass();
+        painting.helperApplyAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        PaintingDelegate paintingDelegate = painting.delegate;
         if (paintingDelegate != null) {
             paintingDelegate.contentChanged();
         }
@@ -312,12 +308,12 @@ public class Painting {
             Painting.this.renderView.performInContext(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onAnimationEnd$0();
+                    Painting.AnonymousClass2.$r8$lambda$hGEJGcoJEtkqnGrNzN9mvQO9YpQ(this.f$0);
                 }
             });
         }
 
-        public void lambda$onAnimationEnd$0() {
+        public static void $r8$lambda$hGEJGcoJEtkqnGrNzN9mvQO9YpQ(AnonymousClass2 anonymousClass2) {
             if (Painting.this.helperShape == null) {
                 Painting.this.helperApplyAnimator = null;
                 return;
@@ -346,18 +342,18 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$paintShape$5(shape, runnable);
+                Painting.$r8$lambda$6zDD4jlqPTunAMqdAHpiFV8uMrg(this.f$0, shape, runnable);
             }
         });
     }
 
-    public void lambda$paintShape$5(Shape shape, Runnable runnable) {
-        this.activeShape = shape;
-        if (this.activeStrokeBounds == null) {
-            this.activeStrokeBounds = new RectF();
+    public static void $r8$lambda$6zDD4jlqPTunAMqdAHpiFV8uMrg(Painting painting, Shape shape, Runnable runnable) {
+        painting.activeShape = shape;
+        if (painting.activeStrokeBounds == null) {
+            painting.activeStrokeBounds = new RectF();
         }
-        this.activeShape.getBounds(this.activeStrokeBounds);
-        PaintingDelegate paintingDelegate = this.delegate;
+        painting.activeShape.getBounds(painting.activeStrokeBounds);
+        PaintingDelegate paintingDelegate = painting.delegate;
         if (paintingDelegate != null) {
             paintingDelegate.contentChanged();
         }
@@ -373,13 +369,13 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$paintStroke$6(path, z, z2, runnable);
+                Painting.$r8$lambda$yYL8uXL_KDMVVUwpVkzxx_aYrtE(this.f$0, path, z, z2, runnable);
             }
         });
     }
 
-    public void lambda$paintStroke$6(Path path, boolean z, boolean z2, Runnable runnable) {
-        paintStrokeInternal(path, z, z2);
+    public static void $r8$lambda$yYL8uXL_KDMVVUwpVkzxx_aYrtE(Painting painting, Path path, boolean z, boolean z2, Runnable runnable) {
+        painting.paintStrokeInternal(path, z, z2);
         if (runnable != null) {
             runnable.run();
         }
@@ -448,14 +444,14 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$commitShape$7(shape, i);
+                Painting.$r8$lambda$PSP75msXOeHsFeQNbu5ktyDEClQ(this.f$0, shape, i);
             }
         });
     }
 
-    public void lambda$commitShape$7(Shape shape, int i) {
-        commitShapeInternal(shape, i, this.activeStrokeBounds);
-        this.activeStrokeBounds = null;
+    public static void $r8$lambda$PSP75msXOeHsFeQNbu5ktyDEClQ(Painting painting, Shape shape, int i) {
+        painting.commitShapeInternal(shape, i, painting.activeStrokeBounds);
+        painting.activeStrokeBounds = null;
     }
 
     public Slice commitShapeInternal(Shape shape, int i, RectF rectF) {
@@ -538,15 +534,15 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$commitPath$8(path, i, z, runnable);
+                Painting.$r8$lambda$or8U5pfVR601M6r9_0wpQULHpqI(this.f$0, path, i, z, runnable);
             }
         });
     }
 
-    public void lambda$commitPath$8(Path path, int i, boolean z, Runnable runnable) {
-        commitPathInternal(path, i, z ? this.activeStrokeBounds : null);
+    public static void $r8$lambda$or8U5pfVR601M6r9_0wpQULHpqI(Painting painting, Path path, int i, boolean z, Runnable runnable) {
+        painting.commitPathInternal(path, i, z ? painting.activeStrokeBounds : null);
         if (z) {
-            this.activeStrokeBounds = null;
+            painting.activeStrokeBounds = null;
         }
         if (runnable != null) {
             runnable.run();
@@ -647,13 +643,13 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$clearStroke$9(runnable);
+                Painting.$r8$lambda$w92sp96oNqgdnWgKuIR4acJZNdg(this.f$0, runnable);
             }
         });
     }
 
-    public void lambda$clearStroke$9(Runnable runnable) {
-        clearStrokeInternal();
+    public static void $r8$lambda$w92sp96oNqgdnWgKuIR4acJZNdg(Painting painting, Runnable runnable) {
+        painting.clearStrokeInternal();
         if (runnable != null) {
             runnable.run();
         }
@@ -663,14 +659,14 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$clearShape$10();
+                Painting.$r8$lambda$aPEe6Qt50ZlzdFIQGSCmLJ_dW4Q(this.f$0);
             }
         });
     }
 
-    public void lambda$clearShape$10() {
-        this.activeShape = null;
-        PaintingDelegate paintingDelegate = this.delegate;
+    public static void $r8$lambda$aPEe6Qt50ZlzdFIQGSCmLJ_dW4Q(Painting painting) {
+        painting.activeShape = null;
+        PaintingDelegate paintingDelegate = painting.delegate;
         if (paintingDelegate != null) {
             paintingDelegate.contentChanged();
         }
@@ -705,7 +701,7 @@ public class Painting {
         this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$registerUndo$11(slice);
+                this.f$0.restoreSlice(slice);
             }
         });
         return slice;
@@ -720,29 +716,25 @@ public class Painting {
         this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$registerDoubleUndo$12(slice, slice2, z);
+                Painting.m2472$r8$lambda$hh3hQW4dPckPJR7byoIR2JGsJ4(this.f$0, slice, slice2, z);
             }
         });
         return slice;
     }
 
-    public void lambda$registerDoubleUndo$12(Slice slice, Slice slice2, boolean z) {
-        lambda$registerUndo$11(slice);
-        lambda$registerUndo$11(slice2);
-        this.hasBlur = z;
+    public static void m2472$r8$lambda$hh3hQW4dPckPJR7byoIR2JGsJ4(Painting painting, Slice slice, Slice slice2, boolean z) {
+        painting.restoreSlice(slice);
+        painting.restoreSlice(slice2);
+        painting.hasBlur = z;
     }
 
-    public void lambda$registerUndo$11(final Slice slice) {
+    public void restoreSlice(final Slice slice) {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$restoreSlice$13(slice);
+                this.f$0.restoreSliceInternal(slice, true);
             }
         });
-    }
-
-    public void lambda$restoreSlice$13(Slice slice) {
-        restoreSliceInternal(slice, true);
     }
 
     public void restoreSliceInternal(Slice slice, boolean z) {
@@ -1135,22 +1127,22 @@ public class Painting {
         this.renderView.performInContext(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onPause$14(runnable);
+                Painting.$r8$lambda$lAmJn3eH4Lar4LAspVh7gM2wKoQ(this.f$0, runnable);
             }
         });
     }
 
-    public void lambda$onPause$14(Runnable runnable) {
-        this.paused = true;
-        this.backupSlice = new Slice(getPaintingData(getBounds(), true, false, false).data, 0, getBounds(), this.delegate.requestDispatchQueue());
-        cleanResources(false);
+    public static void $r8$lambda$lAmJn3eH4Lar4LAspVh7gM2wKoQ(Painting painting, Runnable runnable) {
+        painting.paused = true;
+        painting.backupSlice = new Slice(painting.getPaintingData(painting.getBounds(), true, false, false).data, 0, painting.getBounds(), painting.delegate.requestDispatchQueue());
+        painting.cleanResources(false);
         if (runnable != null) {
             runnable.run();
         }
     }
 
     public void onResume() {
-        lambda$registerUndo$11(this.backupSlice);
+        restoreSlice(this.backupSlice);
         this.backupSlice = null;
         this.paused = false;
     }

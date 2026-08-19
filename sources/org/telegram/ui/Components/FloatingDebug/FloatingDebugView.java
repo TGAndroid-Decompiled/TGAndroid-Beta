@@ -75,10 +75,10 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     private int touchSlop;
     private int wasStatusBar;
 
-    public void lambda$new$0() {
-        this.inLongPress = true;
+    public static void $r8$lambda$JpJwf8d8MTGlTzKgEbSsfmJsenQ(FloatingDebugView floatingDebugView) {
+        floatingDebugView.inLongPress = true;
         try {
-            performHapticFeedback(0);
+            floatingDebugView.performHapticFeedback(0);
         } catch (Exception unused) {
         }
     }
@@ -88,7 +88,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         this.onLongPress = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                FloatingDebugView.$r8$lambda$JpJwf8d8MTGlTzKgEbSsfmJsenQ(this.f$0);
             }
         };
         this.debugItems = new ArrayList();
@@ -191,29 +191,32 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                 boolean zOnTouchEvent = gestureDetectorCompat.onTouchEvent(motionEvent);
                 if (motionEvent.getAction() == 0) {
                     AndroidUtilities.runOnUIThread(FloatingDebugView.this.onLongPress, 200L);
-                } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    AndroidUtilities.cancelRunOnUIThread(FloatingDebugView.this.onLongPress);
-                    if (!FloatingDebugView.this.isFromFling) {
-                        SpringForce spring = FloatingDebugView.this.fabXSpring.getSpring();
-                        if (FloatingDebugView.this.fabXSpring.getSpring().getFinalPosition() >= getWidth() / 2.0f) {
-                            floatingDebugView = FloatingDebugView.this;
-                            displayMetrics = getResources().getDisplayMetrics();
-                            f = 2.1474836E9f;
-                        } else {
-                            floatingDebugView = FloatingDebugView.this;
-                            displayMetrics = getResources().getDisplayMetrics();
-                            f = -2.1474836E9f;
-                        }
-                        spring.setFinalPosition(floatingDebugView.clampX(displayMetrics, f));
-                        FloatingDebugView.this.fabYSpring.getSpring().setFinalPosition(FloatingDebugView.this.clampY(getResources().getDisplayMetrics(), FloatingDebugView.this.fabYSpring.getSpring().getFinalPosition()));
-                        FloatingDebugView.this.fabXSpring.start();
-                        FloatingDebugView.this.fabYSpring.start();
-                    }
-                    FloatingDebugView.this.inLongPress = false;
-                    FloatingDebugView.this.isScrolling = false;
-                    FloatingDebugView.this.isScrollDisallowed = false;
-                    FloatingDebugView.this.isFromFling = false;
+                    return zOnTouchEvent;
                 }
+                if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                    return zOnTouchEvent;
+                }
+                AndroidUtilities.cancelRunOnUIThread(FloatingDebugView.this.onLongPress);
+                if (!FloatingDebugView.this.isFromFling) {
+                    SpringForce spring = FloatingDebugView.this.fabXSpring.getSpring();
+                    if (FloatingDebugView.this.fabXSpring.getSpring().getFinalPosition() >= getWidth() / 2.0f) {
+                        floatingDebugView = FloatingDebugView.this;
+                        displayMetrics = getResources().getDisplayMetrics();
+                        f = 2.1474836E9f;
+                    } else {
+                        floatingDebugView = FloatingDebugView.this;
+                        displayMetrics = getResources().getDisplayMetrics();
+                        f = -2.1474836E9f;
+                    }
+                    spring.setFinalPosition(floatingDebugView.clampX(displayMetrics, f));
+                    FloatingDebugView.this.fabYSpring.getSpring().setFinalPosition(FloatingDebugView.this.clampY(getResources().getDisplayMetrics(), FloatingDebugView.this.fabYSpring.getSpring().getFinalPosition()));
+                    FloatingDebugView.this.fabXSpring.start();
+                    FloatingDebugView.this.fabYSpring.start();
+                }
+                FloatingDebugView.this.inLongPress = false;
+                FloatingDebugView.this.isScrolling = false;
+                FloatingDebugView.this.isScrollDisallowed = false;
+                FloatingDebugView.this.isFromFling = false;
                 return zOnTouchEvent;
             }
         };
@@ -297,7 +300,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                this.f$0.lambda$new$1(view, i);
+                FloatingDebugView.m2336$r8$lambda$4lLmCAuY2AGWko_NYgixZN2yNo(this.f$0, view, i);
             }
         });
         this.bigLayout.addView(this.listView, LayoutHelper.createLinear(-1, 0, 1.0f));
@@ -328,11 +331,11 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$new$1(View view, int i) {
-        Runnable runnable = ((FloatingDebugController.DebugItem) this.debugItems.get(i)).action;
+    public static void m2336$r8$lambda$4lLmCAuY2AGWko_NYgixZN2yNo(FloatingDebugView floatingDebugView, View view, int i) {
+        Runnable runnable = ((FloatingDebugController.DebugItem) floatingDebugView.debugItems.get(i)).action;
         if (runnable != null) {
             runnable.run();
-            showBigMenu(false);
+            floatingDebugView.showBigMenu(false);
         }
     }
 
@@ -444,43 +447,43 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         ((SpringAnimation) ((SpringAnimation) new SpringAnimation(new FloatValueHolder(z ? 0.0f : 1000.0f)).setSpring(new SpringForce(1000.0f).setStiffness(900.0f).setDampingRatio(1.0f).setFinalPosition(z ? 1000.0f : 0.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                this.f$0.lambda$showBigMenu$2(translationX, translationY, window, dynamicAnimation, f, f2);
+                FloatingDebugView.$r8$lambda$mTbDaB7P0CsaBMZ_IOEAR33d8qM(this.f$0, translationX, translationY, window, dynamicAnimation, f, f2);
             }
         })).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                this.f$0.lambda$showBigMenu$3(translationX, translationY, z, dynamicAnimation, z2, f, f2);
+                FloatingDebugView.$r8$lambda$aN136_GmauPzzC9mFgECt48TEIY(this.f$0, translationX, translationY, z, dynamicAnimation, z2, f, f2);
             }
         })).start();
     }
 
-    public void lambda$showBigMenu$2(float f, float f2, Window window, DynamicAnimation dynamicAnimation, float f3, float f4) {
+    public static void $r8$lambda$mTbDaB7P0CsaBMZ_IOEAR33d8qM(FloatingDebugView floatingDebugView, float f, float f2, Window window, DynamicAnimation dynamicAnimation, float f3, float f4) {
         float f5 = f3 / 1000.0f;
-        this.bigLayout.setAlpha(f5);
-        this.bigLayout.setTranslationX(AndroidUtilities.lerp(f - AndroidUtilities.dp(8.0f), 0.0f, f5));
-        this.bigLayout.setTranslationY(AndroidUtilities.lerp(f2 - AndroidUtilities.dp(8.0f), 0.0f, f5));
-        this.bigLayout.setPivotX(this.floatingButtonContainer.getTranslationX() + AndroidUtilities.dp(28.0f));
-        this.bigLayout.setPivotY(this.floatingButtonContainer.getTranslationY() + AndroidUtilities.dp(28.0f));
-        if (this.bigLayout.getWidth() != 0) {
-            this.bigLayout.setScaleX(AndroidUtilities.lerp(this.floatingButtonContainer.getWidth() / this.bigLayout.getWidth(), 1.0f, f5));
+        floatingDebugView.bigLayout.setAlpha(f5);
+        floatingDebugView.bigLayout.setTranslationX(AndroidUtilities.lerp(f - AndroidUtilities.dp(8.0f), 0.0f, f5));
+        floatingDebugView.bigLayout.setTranslationY(AndroidUtilities.lerp(f2 - AndroidUtilities.dp(8.0f), 0.0f, f5));
+        floatingDebugView.bigLayout.setPivotX(floatingDebugView.floatingButtonContainer.getTranslationX() + AndroidUtilities.dp(28.0f));
+        floatingDebugView.bigLayout.setPivotY(floatingDebugView.floatingButtonContainer.getTranslationY() + AndroidUtilities.dp(28.0f));
+        if (floatingDebugView.bigLayout.getWidth() != 0) {
+            floatingDebugView.bigLayout.setScaleX(AndroidUtilities.lerp(floatingDebugView.floatingButtonContainer.getWidth() / floatingDebugView.bigLayout.getWidth(), 1.0f, f5));
         }
-        if (this.bigLayout.getHeight() != 0) {
-            this.bigLayout.setScaleY(AndroidUtilities.lerp(this.floatingButtonContainer.getHeight() / this.bigLayout.getHeight(), 1.0f, f5));
+        if (floatingDebugView.bigLayout.getHeight() != 0) {
+            floatingDebugView.bigLayout.setScaleY(AndroidUtilities.lerp(floatingDebugView.floatingButtonContainer.getHeight() / floatingDebugView.bigLayout.getHeight(), 1.0f, f5));
         }
-        this.floatingButtonContainer.setTranslationX(AndroidUtilities.lerp(f, (getWidth() / 2.0f) - AndroidUtilities.dp(28.0f), f5));
-        this.floatingButtonContainer.setTranslationY(AndroidUtilities.lerp(f2, (getHeight() / 2.0f) - AndroidUtilities.dp(28.0f), f5));
-        this.floatingButtonContainer.setAlpha(1.0f - f5);
-        window.setStatusBarColor(ColorUtils.blendARGB(this.wasStatusBar, 2046820352, f5));
-        invalidate();
+        floatingDebugView.floatingButtonContainer.setTranslationX(AndroidUtilities.lerp(f, (floatingDebugView.getWidth() / 2.0f) - AndroidUtilities.dp(28.0f), f5));
+        floatingDebugView.floatingButtonContainer.setTranslationY(AndroidUtilities.lerp(f2, (floatingDebugView.getHeight() / 2.0f) - AndroidUtilities.dp(28.0f), f5));
+        floatingDebugView.floatingButtonContainer.setAlpha(1.0f - f5);
+        window.setStatusBarColor(ColorUtils.blendARGB(floatingDebugView.wasStatusBar, 2046820352, f5));
+        floatingDebugView.invalidate();
     }
 
-    public void lambda$showBigMenu$3(float f, float f2, boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f3, float f4) {
-        this.floatingButtonContainer.setTranslationX(f);
-        this.floatingButtonContainer.setTranslationY(f2);
+    public static void $r8$lambda$aN136_GmauPzzC9mFgECt48TEIY(FloatingDebugView floatingDebugView, float f, float f2, boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f3, float f4) {
+        floatingDebugView.floatingButtonContainer.setTranslationX(f);
+        floatingDebugView.floatingButtonContainer.setTranslationY(f2);
         if (z) {
             return;
         }
-        this.bigLayout.setVisibility(8);
+        floatingDebugView.bigLayout.setVisibility(8);
     }
 
     @Override
@@ -503,54 +506,56 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         arrayList.add(new FloatingDebugController.DebugItem("Draw action bar shadow", new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.lambda$getBuiltInDebugItems$4();
+                FloatingDebugView.$r8$lambda$OCcpbABQyUyck_lIiFgTyuoRqgE();
             }
         }));
         arrayList.add(new FloatingDebugController.DebugItem("Show blur settings", new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$getBuiltInDebugItems$5();
+                FloatingDebugView.$r8$lambda$yrjpbsIFVoaFpdgzm_m7GVf7a88(this.f$0);
             }
         }));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugGeneral)));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$getBuiltInDebugItems$6();
+                FloatingDebugView.$r8$lambda$ZtBEtev5NBlR5ygPi3M1rhhNPu4(this.f$0);
             }
         }));
         arrayList.add(new FloatingDebugController.DebugItem(Theme.isCurrentThemeDark() ? "Switch to day theme" : "Switch to dark theme", new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.lambda$getBuiltInDebugItems$8();
+                FloatingDebugView.m2337$r8$lambda$8_MUVGbGGL4kMp8iACSoBLL1NU();
             }
         }));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugSendLogs), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$getBuiltInDebugItems$9();
+                ProfileActivity.sendLogs((Activity) this.f$0.getContext(), false);
             }
         }));
         return arrayList;
     }
 
-    public static void lambda$getBuiltInDebugItems$4() {
+    public static void $r8$lambda$OCcpbABQyUyck_lIiFgTyuoRqgE() {
         SharedConfig.drawActionBarShadow = !SharedConfig.drawActionBarShadow;
         SharedConfig.saveDebugConfig();
         AndroidUtilities.forEachViews(LaunchActivity.instance.drawerLayoutContainer.getRootView(), new FloatingDebugView$$ExternalSyntheticLambda10());
     }
 
-    public void lambda$getBuiltInDebugItems$5() {
+    public static void $r8$lambda$yrjpbsIFVoaFpdgzm_m7GVf7a88(FloatingDebugView floatingDebugView) {
+        floatingDebugView.getClass();
         BlurSettingsBottomSheet.show(LaunchActivity.getLastFragment());
-        showBigMenu(false);
+        floatingDebugView.showBigMenu(false);
     }
 
-    public void lambda$getBuiltInDebugItems$6() {
+    public static void $r8$lambda$ZtBEtev5NBlR5ygPi3M1rhhNPu4(FloatingDebugView floatingDebugView) {
+        floatingDebugView.getClass();
         SharedConfig.toggleDebugWebView();
-        Toast.makeText(getContext(), LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuWebViewDebugEnabled : R.string.DebugMenuWebViewDebugDisabled), 0).show();
+        Toast.makeText(floatingDebugView.getContext(), LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuWebViewDebugEnabled : R.string.DebugMenuWebViewDebugDisabled), 0).show();
     }
 
-    public static void lambda$getBuiltInDebugItems$8() {
+    public static void m2337$r8$lambda$8_MUVGbGGL4kMp8iACSoBLL1NU() {
         final Theme.ThemeInfo theme;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
         String str = "Blue";
@@ -576,7 +581,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FloatingDebugView.lambda$getBuiltInDebugItems$7(theme);
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, theme, Boolean.TRUE, null, -1);
                 }
             }, 200L);
         }
@@ -590,17 +595,9 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.lambda$getBuiltInDebugItems$7(theme);
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, theme, Boolean.TRUE, null, -1);
             }
         }, 200L);
-    }
-
-    public static void lambda$getBuiltInDebugItems$7(Theme.ThemeInfo themeInfo) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.TRUE, null, -1);
-    }
-
-    public void lambda$getBuiltInDebugItems$9() {
-        ProfileActivity.sendLogs((Activity) getContext(), false);
     }
 
     public float clampX(DisplayMetrics displayMetrics, float f) {
@@ -628,19 +625,19 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         ((SpringAnimation) new SpringAnimation(new FloatValueHolder(0.0f)).setSpring(new SpringForce(1000.0f).setStiffness(750.0f).setDampingRatio(0.75f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                this.f$0.lambda$showFab$10(dynamicAnimation, f, f2);
+                FloatingDebugView.$r8$lambda$rjrwAxTvW14AdBNf7CXQKHgPl1s(this.f$0, dynamicAnimation, f, f2);
             }
         })).start();
     }
 
-    public void lambda$showFab$10(DynamicAnimation dynamicAnimation, float f, float f2) {
+    public static void $r8$lambda$rjrwAxTvW14AdBNf7CXQKHgPl1s(FloatingDebugView floatingDebugView, DynamicAnimation dynamicAnimation, float f, float f2) {
         float f3 = f / 1000.0f;
-        this.floatingButtonContainer.setPivotX(AndroidUtilities.dp(28.0f));
-        this.floatingButtonContainer.setPivotY(AndroidUtilities.dp(28.0f));
-        this.floatingButtonContainer.setScaleX(f3);
-        this.floatingButtonContainer.setScaleY(f3);
-        this.floatingButtonContainer.setAlpha(MathUtils.clamp(f3, 0.0f, 1.0f));
-        invalidate();
+        floatingDebugView.floatingButtonContainer.setPivotX(AndroidUtilities.dp(28.0f));
+        floatingDebugView.floatingButtonContainer.setPivotY(AndroidUtilities.dp(28.0f));
+        floatingDebugView.floatingButtonContainer.setScaleX(f3);
+        floatingDebugView.floatingButtonContainer.setScaleY(f3);
+        floatingDebugView.floatingButtonContainer.setAlpha(MathUtils.clamp(f3, 0.0f, 1.0f));
+        floatingDebugView.invalidate();
     }
 
     public void dismiss(Runnable runnable) {

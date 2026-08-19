@@ -170,184 +170,131 @@ public class MessageDrawable extends Drawable {
     }
 
     public void setTop(int i, int i2, int i3, int i4, int i5, int i6, boolean z, boolean z2) {
-        int color;
-        int currentColor;
-        int currentColor2;
-        int currentColor3;
-        char c;
         int i7;
         int i8;
+        int color;
+        boolean z3;
+        int i9;
+        int i10;
+        int i11;
+        char c;
         MotionBackgroundDrawable motionBackgroundDrawable;
         MessageDrawable messageDrawable = this.crossfadeFromDrawable;
         if (messageDrawable != null) {
-            messageDrawable.setTop(i, i2, i3, i4, i5, i6, z, z2);
+            i7 = i3;
+            i8 = i5;
+            messageDrawable.setTop(i, i2, i7, i4, i8, i6, z, z2);
+        } else {
+            i7 = i3;
+            i8 = i5;
         }
         if (this.isOut) {
             color = getColor(this.isSelected ? Theme.key_chat_outBubbleSelected : Theme.key_chat_outBubble);
-            currentColor = getCurrentColor(Theme.key_chat_outBubbleGradient1);
-            currentColor2 = getCurrentColor(Theme.key_chat_outBubbleGradient2);
-            currentColor3 = getCurrentColor(Theme.key_chat_outBubbleGradient3);
-            boolean z3 = getCurrentColor(Theme.key_chat_outBubbleGradientAnimated) != 0;
-            if (currentColor != 0) {
-                color = getColor(Theme.key_chat_outBubble);
-            }
-            if (this.themePreview) {
-                c = 2;
-            } else if (this.currentType == 2) {
-                c = 1;
+            int currentColor = getCurrentColor(Theme.key_chat_outBubbleGradient1);
+            int currentColor2 = getCurrentColor(Theme.key_chat_outBubbleGradient2);
+            int currentColor3 = getCurrentColor(Theme.key_chat_outBubbleGradient3);
+            if (getCurrentColor(Theme.key_chat_outBubbleGradientAnimated) != 0) {
+                i9 = currentColor;
+                i10 = currentColor2;
+                i11 = currentColor3;
+                z3 = true;
             } else {
-                c = 0;
+                i9 = currentColor;
+                i10 = currentColor2;
+                i11 = currentColor3;
+                z3 = false;
             }
-            if (!this.isCrossfadeBackground && currentColor2 != 0 && z3 && (motionBackgroundDrawable = motionBackground[c]) != null) {
-                int[] colors = motionBackgroundDrawable.getColors();
-                this.currentColor = colors[0];
-                this.currentGradientColor1 = colors[1];
-                this.currentGradientColor2 = colors[2];
-                this.currentGradientColor3 = colors[3];
-            }
-            if (this.isCrossfadeBackground && currentColor2 != 0 && z3) {
-                if (i3 == this.currentBackgroundHeight && this.crosfadeFromBitmapShader != null && this.currentColor == color && this.currentGradientColor1 == currentColor && this.currentGradientColor2 == currentColor2 && this.currentGradientColor3 == currentColor3 && this.currentAnimateGradient == z3) {
-                    i8 = -1;
-                } else {
-                    if (this.crosfadeFromBitmap == null) {
-                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
-                        this.crosfadeFromBitmap = bitmapCreateBitmap;
-                        bitmapCreateBitmap.setHasAlpha(false);
-                        Bitmap bitmap = this.crosfadeFromBitmap;
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        this.crosfadeFromBitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                    }
-                    MotionBackgroundDrawable[] motionBackgroundDrawableArr = motionBackground;
-                    if (motionBackgroundDrawableArr[c] == null) {
-                        motionBackgroundDrawableArr[c] = new MotionBackgroundDrawable();
-                        if (this.currentType != 2) {
-                            motionBackground[c].setPostInvalidateParent(true);
-                        }
-                        motionBackground[c].setRoundRadius(dp(1.0f));
-                    }
-                    i8 = -1;
-                    motionBackground[c].setColors(color, currentColor, currentColor2, currentColor3, this.crosfadeFromBitmap);
-                    this.crosfadeFromBitmapShader.setLocalMatrix(this.matrix);
-                }
-                Shader shader = this.crosfadeFromBitmapShader;
-                this.gradientShader = shader;
-                this.paint.setShader(shader);
-                this.paint.setColor(i8);
-                this.currentColor = color;
-                this.currentAnimateGradient = z3;
-                this.currentGradientColor1 = currentColor;
-                this.currentGradientColor2 = currentColor2;
-                this.currentGradientColor3 = currentColor3;
-            } else if (currentColor == 0 && (this.gradientShader == null || i3 != this.currentBackgroundHeight || this.currentColor != color || this.currentGradientColor1 != currentColor || this.currentGradientColor2 != currentColor2 || this.currentGradientColor3 != currentColor3 || this.currentAnimateGradient != z3)) {
-                if (currentColor2 != 0 && z3) {
-                    MotionBackgroundDrawable[] motionBackgroundDrawableArr2 = motionBackground;
-                    if (motionBackgroundDrawableArr2[c] == null) {
-                        motionBackgroundDrawableArr2[c] = new MotionBackgroundDrawable();
-                        if (this.currentType != 2) {
-                            motionBackground[c].setPostInvalidateParent(true);
-                        }
-                        motionBackground[c].setRoundRadius(dp(1.0f));
-                    }
-                    motionBackground[c].setColors(color, currentColor, currentColor2, currentColor3);
-                    this.gradientShader = motionBackground[c].getBitmapShader();
-                } else if (currentColor2 == 0) {
-                    this.gradientShader = new LinearGradient(0.0f, i5, 0.0f, i3, new int[]{currentColor, color}, (float[]) null, Shader.TileMode.CLAMP);
-                } else if (currentColor3 != 0) {
-                    this.gradientShader = new LinearGradient(0.0f, i5, 0.0f, i3, new int[]{currentColor3, currentColor2, currentColor, color}, (float[]) null, Shader.TileMode.CLAMP);
-                } else {
-                    this.gradientShader = new LinearGradient(0.0f, i5, 0.0f, i3, new int[]{currentColor2, currentColor, color}, (float[]) null, Shader.TileMode.CLAMP);
-                }
-                this.paint.setShader(this.gradientShader);
-                this.currentColor = color;
-                this.currentAnimateGradient = z3;
-                this.currentGradientColor1 = currentColor;
-                this.currentGradientColor2 = currentColor2;
-                this.currentGradientColor3 = currentColor3;
-                this.paint.setColor(-1);
-            } else if (currentColor == 0) {
-                if (this.gradientShader != null) {
-                    this.gradientShader = null;
-                    this.paint.setShader(null);
-                }
-                this.paint.setColor(color);
-            }
-            if (this.gradientShader instanceof BitmapShader) {
-                i7 = 0;
-                motionBackground[c].setBounds(0, i5, i2, i3 - i4);
-            } else {
-                i7 = 0;
-            }
-            this.currentBackgroundHeight = i3;
-            if (this.gradientShader instanceof BitmapShader) {
-                i7 = i4;
-            }
-            this.topY = i - i7;
-            this.isTopNear = z;
-            this.isBottomNear = z2;
+        } else {
+            color = getColor(this.isSelected ? Theme.key_chat_inBubbleSelected : Theme.key_chat_inBubble);
+            z3 = false;
+            i9 = 0;
+            i10 = 0;
+            i11 = 0;
         }
-        color = getColor(this.isSelected ? Theme.key_chat_inBubbleSelected : Theme.key_chat_inBubble);
-        currentColor = 0;
-        currentColor2 = 0;
-        currentColor3 = 0;
-        if (currentColor != 0) {
+        if (i9 != 0) {
             color = getColor(Theme.key_chat_outBubble);
         }
+        int i12 = color;
         if (this.themePreview) {
             c = 2;
-        } else if (this.currentType == 2) {
-            c = 1;
         } else {
-            c = 0;
+            c = this.currentType == 2 ? (char) 1 : (char) 0;
         }
-        if (!this.isCrossfadeBackground) {
-            int[] colors2 = motionBackgroundDrawable.getColors();
-            this.currentColor = colors2[0];
-            this.currentGradientColor1 = colors2[1];
-            this.currentGradientColor2 = colors2[2];
-            this.currentGradientColor3 = colors2[3];
+        if (!this.isCrossfadeBackground && i10 != 0 && z3 && (motionBackgroundDrawable = motionBackground[c]) != null) {
+            int[] colors = motionBackgroundDrawable.getColors();
+            this.currentColor = colors[0];
+            this.currentGradientColor1 = colors[1];
+            this.currentGradientColor2 = colors[2];
+            this.currentGradientColor3 = colors[3];
         }
-        if (this.isCrossfadeBackground) {
-            if (currentColor == 0) {
-                if (currentColor == 0) {
-                    if (this.gradientShader != null) {
-                        this.gradientShader = null;
-                        this.paint.setShader(null);
+        if (this.isCrossfadeBackground && i10 != 0 && z3) {
+            if (i7 != this.currentBackgroundHeight || this.crosfadeFromBitmapShader == null || this.currentColor != i12 || this.currentGradientColor1 != i9 || this.currentGradientColor2 != i10 || this.currentGradientColor3 != i11 || this.currentAnimateGradient != z3) {
+                if (this.crosfadeFromBitmap == null) {
+                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
+                    this.crosfadeFromBitmap = bitmapCreateBitmap;
+                    bitmapCreateBitmap.setHasAlpha(false);
+                    Bitmap bitmap = this.crosfadeFromBitmap;
+                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                    this.crosfadeFromBitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                }
+                MotionBackgroundDrawable[] motionBackgroundDrawableArr = motionBackground;
+                if (motionBackgroundDrawableArr[c] == null) {
+                    motionBackgroundDrawableArr[c] = new MotionBackgroundDrawable();
+                    if (this.currentType != 2) {
+                        motionBackground[c].setPostInvalidateParent(true);
                     }
-                    this.paint.setColor(color);
+                    motionBackground[c].setRoundRadius(dp(1.0f));
                 }
-            } else if (currentColor == 0) {
-                if (this.gradientShader != null) {
-                    this.gradientShader = null;
-                    this.paint.setShader(null);
-                }
-                this.paint.setColor(color);
+                motionBackground[c].setColors(i12, i9, i10, i11, this.crosfadeFromBitmap);
+                this.crosfadeFromBitmapShader.setLocalMatrix(this.matrix);
             }
-        } else if (currentColor == 0) {
-            if (currentColor == 0) {
-                if (this.gradientShader != null) {
-                    this.gradientShader = null;
-                    this.paint.setShader(null);
+            Shader shader = this.crosfadeFromBitmapShader;
+            this.gradientShader = shader;
+            this.paint.setShader(shader);
+            this.paint.setColor(-1);
+            this.currentColor = i12;
+            this.currentAnimateGradient = z3;
+            this.currentGradientColor1 = i9;
+            this.currentGradientColor2 = i10;
+            this.currentGradientColor3 = i11;
+        } else if (i9 != 0 && (this.gradientShader == null || i7 != this.currentBackgroundHeight || this.currentColor != i12 || this.currentGradientColor1 != i9 || this.currentGradientColor2 != i10 || this.currentGradientColor3 != i11 || this.currentAnimateGradient != z3)) {
+            if (i10 != 0 && z3) {
+                MotionBackgroundDrawable[] motionBackgroundDrawableArr2 = motionBackground;
+                if (motionBackgroundDrawableArr2[c] == null) {
+                    motionBackgroundDrawableArr2[c] = new MotionBackgroundDrawable();
+                    if (this.currentType != 2) {
+                        motionBackground[c].setPostInvalidateParent(true);
+                    }
+                    motionBackground[c].setRoundRadius(dp(1.0f));
                 }
-                this.paint.setColor(color);
+                motionBackground[c].setColors(i12, i9, i10, i11);
+                this.gradientShader = motionBackground[c].getBitmapShader();
+            } else if (i10 == 0) {
+                this.gradientShader = new LinearGradient(0.0f, i8, 0.0f, i7, new int[]{i9, i12}, (float[]) null, Shader.TileMode.CLAMP);
+            } else if (i11 != 0) {
+                this.gradientShader = new LinearGradient(0.0f, i8, 0.0f, i7, new int[]{i11, i10, i9, i12}, (float[]) null, Shader.TileMode.CLAMP);
+            } else {
+                this.gradientShader = new LinearGradient(0.0f, i8, 0.0f, i7, new int[]{i10, i9, i12}, (float[]) null, Shader.TileMode.CLAMP);
             }
-        } else if (currentColor == 0) {
+            this.paint.setShader(this.gradientShader);
+            this.currentColor = i12;
+            this.currentAnimateGradient = z3;
+            this.currentGradientColor1 = i9;
+            this.currentGradientColor2 = i10;
+            this.currentGradientColor3 = i11;
+            this.paint.setColor(-1);
+        } else if (i9 == 0) {
             if (this.gradientShader != null) {
                 this.gradientShader = null;
                 this.paint.setShader(null);
             }
-            this.paint.setColor(color);
+            this.paint.setColor(i12);
         }
         if (this.gradientShader instanceof BitmapShader) {
-            i7 = 0;
-            motionBackground[c].setBounds(0, i5, i2, i3 - i4);
-        } else {
-            i7 = 0;
+            motionBackground[c].setBounds(0, i8, i2, i7 - i4);
         }
-        this.currentBackgroundHeight = i3;
-        if (this.gradientShader instanceof BitmapShader) {
-            i7 = i4;
-        }
-        this.topY = i - i7;
+        this.currentBackgroundHeight = i7;
+        this.topY = i - (this.gradientShader instanceof BitmapShader ? i4 : 0);
         this.isTopNear = z;
         this.isBottomNear = z2;
     }
@@ -374,7 +321,6 @@ public class MessageDrawable extends Drawable {
     public Drawable getBackgroundDrawable() {
         char c;
         int color;
-        int i;
         int iDp = this.overrideRoundRadius;
         if (iDp == 0) {
             iDp = this.overrideRounding > 0.0f ? 0 : dp(SharedConfig.bubbleRadius);
@@ -417,15 +363,13 @@ public class MessageDrawable extends Drawable {
                     paint.setShadowLayer(2.0f, 0.0f, 1.0f, -1);
                     if (AndroidUtilities.density > 1.0f) {
                         setBounds(-1, -1, bitmapCreateBitmap.getWidth() + 1, bitmapCreateBitmap.getHeight() + 1);
-                        i = 0;
                     } else {
-                        i = 0;
                         setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
                     }
                     draw(canvas, paint);
                     if (AndroidUtilities.density > 1.0f) {
-                        paint.setColor(i);
-                        paint.setShadowLayer(0.0f, 0.0f, 0.0f, i);
+                        paint.setColor(0);
+                        paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                         setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
                         draw(canvas, paint);
@@ -583,11 +527,11 @@ public class MessageDrawable extends Drawable {
 
     public void draw(Canvas canvas, Paint paint) {
         int iDp;
-        int iDp2;
         int i;
-        int i2;
         Path path;
         boolean zInvalidatePath;
+        MessageDrawable messageDrawable;
+        Path path2;
         Drawable backgroundDrawable;
         Rect bounds = getBounds();
         if (paint == null && this.gradientShader == null && this.overrideRoundRadius == 0 && this.overrideRounding <= 0.0f && (backgroundDrawable = getBackgroundDrawable()) != null) {
@@ -595,24 +539,22 @@ public class MessageDrawable extends Drawable {
             backgroundDrawable.draw(canvas);
             return;
         }
-        int iDp3 = dp(2.0f);
-        int i3 = this.overrideRoundRadius;
-        if (i3 != 0) {
-            i2 = i3;
-            i = i2;
+        int iDp2 = dp(2.0f);
+        int iDp3 = this.overrideRoundRadius;
+        if (iDp3 != 0) {
+            i = iDp3;
         } else {
             if (this.overrideRounding > 0.0f) {
-                iDp = AndroidUtilities.lerp(dp(SharedConfig.bubbleRadius), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
-                iDp2 = AndroidUtilities.lerp(dp(Math.min(6, SharedConfig.bubbleRadius)), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+                iDp3 = AndroidUtilities.lerp(dp(SharedConfig.bubbleRadius), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+                iDp = AndroidUtilities.lerp(dp(Math.min(6, SharedConfig.bubbleRadius)), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
             } else if (this.currentType == 2) {
+                iDp3 = dp(6.0f);
                 iDp = dp(6.0f);
-                iDp2 = dp(6.0f);
             } else {
-                iDp = dp(SharedConfig.bubbleRadius);
-                iDp2 = dp(Math.min(6, SharedConfig.bubbleRadius));
+                iDp3 = dp(SharedConfig.bubbleRadius);
+                iDp = dp(Math.min(6, SharedConfig.bubbleRadius));
             }
-            i = iDp2;
-            i2 = iDp;
+            i = iDp;
         }
         int iDp4 = dp(6.0f);
         Paint paint2 = paint == null ? this.paint : paint;
@@ -635,13 +577,19 @@ public class MessageDrawable extends Drawable {
             zInvalidatePath = true;
         }
         if (zInvalidatePath || this.overrideRoundRadius != 0) {
-            generatePath(path, bounds, iDp3, i2, iDp4, i, iMax, true, true, paint != null);
+            messageDrawable = this;
+            int i2 = iDp3;
+            path2 = path;
+            messageDrawable.generatePath(path2, bounds, iDp2, i2, iDp4, i, iMax, true, true, paint != null);
+        } else {
+            messageDrawable = this;
+            path2 = path;
         }
-        canvas.drawPath(path, paint2);
-        if (this.gradientShader != null && this.isSelected && paint == null) {
+        canvas.drawPath(path2, paint2);
+        if (messageDrawable.gradientShader != null && messageDrawable.isSelected && paint == null) {
             int color = getColor(Theme.key_chat_outBubbleGradientSelectedOverlay);
-            this.selectedPaint.setColor(ColorUtils.setAlphaComponent(color, (int) ((Color.alpha(color) * this.alpha) / 255.0f)));
-            canvas.drawPath(path, this.selectedPaint);
+            messageDrawable.selectedPaint.setColor(ColorUtils.setAlphaComponent(color, (int) ((Color.alpha(color) * messageDrawable.alpha) / 255.0f)));
+            canvas.drawPath(path2, messageDrawable.selectedPaint);
         }
     }
 
@@ -686,31 +634,28 @@ public class MessageDrawable extends Drawable {
                 z2 = false;
             }
             if (pathDrawParams != null) {
-                Path path2 = pathDrawParams.path;
+                path = pathDrawParams.path;
                 zInvalidatePath = pathDrawParams.invalidatePath(bounds, z, z2);
-                path = path2;
             } else {
                 path = this.path;
             }
-            if (!zInvalidatePath || this.overrideRoundRadius != 0) {
-                generatePath(path, bounds, iDp3, i2, iDp4, i, iMax, z, z2, true);
+            if (zInvalidatePath && this.overrideRoundRadius == 0) {
+                return path;
             }
+            generatePath(path, bounds, iDp3, i2, iDp4, i, iMax, z, z2, true);
             return path;
         }
         z = true;
         z2 = true;
         if (pathDrawParams != null) {
-            Path path3 = pathDrawParams.path;
+            path = pathDrawParams.path;
             zInvalidatePath = pathDrawParams.invalidatePath(bounds, z, z2);
-            path = path3;
         } else {
             path = this.path;
         }
-        if (!zInvalidatePath) {
-            generatePath(path, bounds, iDp3, i2, iDp4, i, iMax, z, z2, true);
-        } else {
-            generatePath(path, bounds, iDp3, i2, iDp4, i, iMax, z, z2, true);
+        if (zInvalidatePath) {
         }
+        generatePath(path, bounds, iDp3, i2, iDp4, i, iMax, z, z2, true);
         return path;
     }
 

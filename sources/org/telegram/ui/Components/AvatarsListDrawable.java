@@ -112,7 +112,13 @@ public class AvatarsListDrawable extends Drawable {
             return;
         }
         this.attached = true;
-        for (AvatarItem avatarItem : this.avatarItemsPool) {
+        ArrayList arrayList = this.avatarItemsPool;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            AvatarItem avatarItem = (AvatarItem) obj;
             if (avatarItem.dialogId != 0) {
                 avatarItem.attach();
             }
@@ -121,16 +127,26 @@ public class AvatarsListDrawable extends Drawable {
 
     public void detach() {
         if (this.attached) {
+            int i = 0;
             this.attached = false;
-            Iterator it = this.avatarItemsPool.iterator();
-            while (it.hasNext()) {
-                ((AvatarItem) it.next()).detach();
+            ArrayList arrayList = this.avatarItemsPool;
+            int size = arrayList.size();
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ((AvatarItem) obj).detach();
             }
         }
     }
 
     private AvatarItem find(long j) {
-        for (AvatarItem avatarItem : this.avatarItemsPool) {
+        ArrayList arrayList = this.avatarItemsPool;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            AvatarItem avatarItem = (AvatarItem) obj;
             if (avatarItem.dialogId == j) {
                 return avatarItem;
             }
@@ -237,7 +253,7 @@ public class AvatarsListDrawable extends Drawable {
             float visibility = entry.getVisibility();
             float f3 = rectF.left + spacingStart;
             float fWidth = rectF.width() - spacingStart;
-            float f4 = f3 + f;
+            float f4 = f + f3;
             float f5 = fWidth / 2.0f;
             float f6 = f4 + f5;
             float f7 = f2 + f5;

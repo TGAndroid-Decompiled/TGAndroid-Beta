@@ -221,14 +221,10 @@ public class NativeInstance {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onNetworkStateUpdated$0(z, z2);
+                    this.f$0.onStateUpdatedListener.onStateUpdated(z ? 1 : 0, z2);
                 }
             });
         }
-    }
-
-    public void lambda$onNetworkStateUpdated$0(boolean z, boolean z2) {
-        this.onStateUpdatedListener.onStateUpdated(z ? 1 : 0, z2);
     }
 
     private void onAudioLevelsUpdated(final int[] iArr, final float[] fArr, final boolean[] zArr) {
@@ -238,13 +234,9 @@ public class NativeInstance {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onAudioLevelsUpdated$1(iArr, fArr, zArr);
+                this.f$0.audioLevelsCallback.run(iArr, fArr, zArr);
             }
         });
-    }
-
-    public void lambda$onAudioLevelsUpdated$1(int[] iArr, float[] fArr, boolean[] zArr) {
-        this.audioLevelsCallback.run(iArr, fArr, zArr);
     }
 
     private void onParticipantDescriptionsRequired(final long j, final int[] iArr) {
@@ -254,17 +246,9 @@ public class NativeInstance {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onParticipantDescriptionsRequired$2(j, iArr);
+                this.f$0.unknownParticipantsCallback.run(j, iArr);
             }
         });
-    }
-
-    public void lambda$onParticipantDescriptionsRequired$2(long j, int[] iArr) {
-        this.unknownParticipantsCallback.run(j, iArr);
-    }
-
-    public void lambda$onEmitJoinPayload$3(int i, String str) {
-        this.payloadCallback.run(i, str);
     }
 
     private void onEmitJoinPayload(final String str, final int i) {
@@ -272,7 +256,7 @@ public class NativeInstance {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onEmitJoinPayload$3(i, str);
+                    this.f$0.payloadCallback.run(i, str);
                 }
             });
         } catch (Exception e) {

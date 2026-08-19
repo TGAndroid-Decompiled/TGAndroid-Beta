@@ -118,7 +118,7 @@ public class LogoutActivity extends BaseFragment {
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                this.f$0.lambda$createView$0(view, i, f, f2);
+                LogoutActivity.m3524$r8$lambda$jKfizhyDcxi7l9RfNgzUDAVpJY(this.f$0, view, i, f, f2);
             }
         });
         this.listView.setSections();
@@ -126,9 +126,9 @@ public class LogoutActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view, int i, float f, float f2) {
+    public static void m3524$r8$lambda$jKfizhyDcxi7l9RfNgzUDAVpJY(LogoutActivity logoutActivity, View view, int i, float f, float f2) {
         Integer numValueOf = null;
-        if (i == this.addAccountRow) {
+        if (i == logoutActivity.addAccountRow) {
             int i2 = 0;
             for (int i3 = 3; i3 >= 0; i3--) {
                 if (!UserConfig.getInstance(i3).isClientActivated()) {
@@ -142,35 +142,35 @@ public class LogoutActivity extends BaseFragment {
                 i2--;
             }
             if (i2 > 0 && numValueOf != null) {
-                presentFragment(new LoginActivity(numValueOf.intValue()));
+                logoutActivity.presentFragment(new LoginActivity(numValueOf.intValue()));
                 return;
             } else {
                 if (UserConfig.hasPremiumOnAccounts()) {
                     return;
                 }
-                showDialog(new LimitReachedBottomSheet(this, getContext(), 7, this.currentAccount, null));
+                logoutActivity.showDialog(new LimitReachedBottomSheet(logoutActivity, logoutActivity.getContext(), 7, logoutActivity.currentAccount, null));
                 return;
             }
         }
-        if (i == this.passcodeRow) {
-            presentFragment(PasscodeActivity.determineOpenFragment());
+        if (i == logoutActivity.passcodeRow) {
+            logoutActivity.presentFragment(PasscodeActivity.determineOpenFragment());
             return;
         }
-        if (i == this.cacheRow) {
-            presentFragment(new CacheControlActivity());
+        if (i == logoutActivity.cacheRow) {
+            logoutActivity.presentFragment(new CacheControlActivity());
             return;
         }
-        if (i == this.phoneRow) {
-            presentFragment(new ActionIntroActivity(3));
+        if (i == logoutActivity.phoneRow) {
+            logoutActivity.presentFragment(new ActionIntroActivity(3));
             return;
         }
-        if (i == this.supportRow) {
-            showDialog(AlertsCreator.createSupportAlert(this, null));
+        if (i == logoutActivity.supportRow) {
+            logoutActivity.showDialog(AlertsCreator.createSupportAlert(logoutActivity, null));
         } else {
-            if (i != this.logoutRow || getParentActivity() == null) {
+            if (i != logoutActivity.logoutRow || logoutActivity.getParentActivity() == null) {
                 return;
             }
-            showDialog(makeLogOutDialog(getParentActivity(), this.currentAccount));
+            logoutActivity.showDialog(makeLogOutDialog(logoutActivity.getParentActivity(), logoutActivity.currentAccount));
         }
     }
 
@@ -182,7 +182,7 @@ public class LogoutActivity extends BaseFragment {
         builder.setPositiveButton(LocaleController.getString(i2), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
-                LogoutActivity.lambda$makeLogOutDialog$1(i, alertDialog, i3);
+                MessagesController.getInstance(i).performLogout(1);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -192,10 +192,6 @@ public class LogoutActivity extends BaseFragment {
             textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }
         return alertDialogCreate;
-    }
-
-    public static void lambda$makeLogOutDialog$1(int i, AlertDialog alertDialog, int i2) {
-        MessagesController.getInstance(i).performLogout(1);
     }
 
     @Override

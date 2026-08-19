@@ -73,15 +73,15 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
             runHintAnimation(str2.length(), z, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setHintText$0(z, str);
+                    AnimatedPhoneNumberEditText.$r8$lambda$76maNKFM1wbgeVCpXRqshSiubfw(this.f$0, z, str);
                 }
             });
         }
     }
 
-    public void lambda$setHintText$0(boolean z, String str) {
-        this.hintAnimationValues.clear();
-        Iterator it = this.hintAnimations.iterator();
+    public static void $r8$lambda$76maNKFM1wbgeVCpXRqshSiubfw(AnimatedPhoneNumberEditText animatedPhoneNumberEditText, boolean z, String str) {
+        animatedPhoneNumberEditText.hintAnimationValues.clear();
+        Iterator it = animatedPhoneNumberEditText.hintAnimations.iterator();
         while (it.hasNext()) {
             ((SpringAnimation) it.next()).cancel();
         }

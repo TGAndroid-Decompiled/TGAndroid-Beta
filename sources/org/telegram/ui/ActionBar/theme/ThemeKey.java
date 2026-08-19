@@ -86,11 +86,13 @@ public class ThemeKey {
     }
 
     public boolean equals(Object obj) {
-        if (!(obj instanceof ThemeKey)) {
-            return false;
+        if (obj instanceof ThemeKey) {
+            ThemeKey themeKey = (ThemeKey) obj;
+            if (TextUtils.equals(this.emoticon, themeKey.emoticon) && TextUtils.equals(this.giftSlug, themeKey.giftSlug)) {
+                return true;
+            }
         }
-        ThemeKey themeKey = (ThemeKey) obj;
-        return TextUtils.equals(this.emoticon, themeKey.emoticon) && TextUtils.equals(this.giftSlug, themeKey.giftSlug);
+        return false;
     }
 
     public static boolean equals(ThemeKey themeKey, ThemeKey themeKey2) {

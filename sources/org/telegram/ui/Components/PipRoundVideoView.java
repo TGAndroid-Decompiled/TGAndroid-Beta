@@ -137,7 +137,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
                         if (MediaController.getInstance().isMessagePaused()) {
                             MediaController.getInstance().playMessage(playingMessageObject);
                         } else {
-                            MediaController.getInstance().lambda$startAudioAgain$7(playingMessageObject);
+                            MediaController.getInstance().pauseMessage(playingMessageObject);
                         }
                     }
                     this.dragging = false;
@@ -371,10 +371,12 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
     }
 
     public void animateToBoundsMaybe() {
+        float f;
         ArrayList arrayList;
         boolean z;
         AnimatorSet animatorSet;
         int i;
+        float f2;
         int sideCoord = getSideCoord(true, 0, 0.0f, this.videoWidth);
         int sideCoord2 = getSideCoord(true, 1, 0.0f, this.videoWidth);
         int sideCoord3 = getSideCoord(false, 0, 0.0f, this.videoHeight);
@@ -382,6 +384,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         SharedPreferences.Editor editorEdit = this.preferences.edit();
         int iDp = AndroidUtilities.dp(20.0f);
         if (Math.abs(sideCoord - this.windowLayoutParams.x) <= iDp || ((i = this.windowLayoutParams.x) < 0 && i > (-this.videoWidth) / 4)) {
+            f = 0.0f;
             ArrayList arrayList2 = new ArrayList();
             editorEdit.putInt("sidex", 0);
             if (this.windowView.getAlpha() != 1.0f) {
@@ -393,76 +396,75 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             if (Math.abs(sideCoord2 - i) > iDp) {
                 int i2 = this.windowLayoutParams.x;
                 int i3 = AndroidUtilities.displaySize.x;
+                f = 0.0f;
                 int i4 = this.videoWidth;
-                if (i2 > i3 - i4 && i2 < i3 - ((i4 / 4) * 3)) {
-                    arrayList = new ArrayList();
-                    editorEdit.putInt("sidex", 1);
+                f2 = 1.0f;
+                if (i2 <= i3 - i4 || i2 >= i3 - ((i4 / 4) * 3)) {
                     if (this.windowView.getAlpha() != 1.0f) {
-                        arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
-                    }
-                    arrayList.add(ObjectAnimator.ofInt(this, "x", sideCoord2));
-                } else if (this.windowView.getAlpha() != 1.0f) {
-                    arrayList = new ArrayList();
-                    if (this.windowLayoutParams.x < 0) {
-                        arrayList.add(ObjectAnimator.ofInt(this, "x", -this.videoWidth));
+                        arrayList = new ArrayList();
+                        if (this.windowLayoutParams.x < 0) {
+                            arrayList.add(ObjectAnimator.ofInt(this, "x", -this.videoWidth));
+                        } else {
+                            arrayList.add(ObjectAnimator.ofInt(this, "x", AndroidUtilities.displaySize.x));
+                        }
+                        z = true;
                     } else {
-                        arrayList.add(ObjectAnimator.ofInt(this, "x", AndroidUtilities.displaySize.x));
+                        editorEdit.putFloat("px", (this.windowLayoutParams.x - sideCoord) / (sideCoord2 - sideCoord));
+                        editorEdit.putInt("sidex", 2);
+                        arrayList = null;
                     }
-                    z = true;
-                } else {
-                    editorEdit.putFloat("px", (this.windowLayoutParams.x - sideCoord) / (sideCoord2 - sideCoord));
-                    editorEdit.putInt("sidex", 2);
-                    arrayList = null;
+                    if (!z) {
+                        if (Math.abs(sideCoord3 - this.windowLayoutParams.y) > iDp || this.windowLayoutParams.y <= ActionBar.getCurrentActionBarHeight()) {
+                            if (arrayList == null) {
+                                arrayList = new ArrayList();
+                            }
+                            editorEdit.putInt("sidey", 0);
+                            arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord3));
+                        } else if (Math.abs(sideCoord4 - this.windowLayoutParams.y) <= iDp) {
+                            if (arrayList == null) {
+                                arrayList = new ArrayList();
+                            }
+                            editorEdit.putInt("sidey", 1);
+                            arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord4));
+                        } else {
+                            editorEdit.putFloat("py", (this.windowLayoutParams.y - sideCoord3) / (sideCoord4 - sideCoord3));
+                            editorEdit.putInt("sidey", 2);
+                        }
+                        editorEdit.commit();
+                    }
+                    if (arrayList != null) {
+                        if (this.decelerateInterpolator == null) {
+                            this.decelerateInterpolator = new DecelerateInterpolator();
+                        }
+                        animatorSet = new AnimatorSet();
+                        animatorSet.setInterpolator(this.decelerateInterpolator);
+                        animatorSet.setDuration(150L);
+                        if (z) {
+                            arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, f));
+                            animatorSet.addListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animator) {
+                                    PipRoundVideoView.this.close(false);
+                                    if (PipRoundVideoView.this.onCloseRunnable != null) {
+                                        PipRoundVideoView.this.onCloseRunnable.run();
+                                    }
+                                }
+                            });
+                        }
+                        animatorSet.playTogether(arrayList);
+                        animatorSet.start();
+                    }
                 }
             } else {
-                arrayList = new ArrayList();
-                editorEdit.putInt("sidex", 1);
-                if (this.windowView.getAlpha() != 1.0f) {
-                    arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
-                }
-                arrayList.add(ObjectAnimator.ofInt(this, "x", sideCoord2));
+                f = 0.0f;
+                f2 = 1.0f;
             }
-            if (!z) {
-                if (Math.abs(sideCoord3 - this.windowLayoutParams.y) > iDp || this.windowLayoutParams.y <= ActionBar.getCurrentActionBarHeight()) {
-                    if (arrayList == null) {
-                        arrayList = new ArrayList();
-                    }
-                    editorEdit.putInt("sidey", 0);
-                    arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord3));
-                } else if (Math.abs(sideCoord4 - this.windowLayoutParams.y) <= iDp) {
-                    if (arrayList == null) {
-                        arrayList = new ArrayList();
-                    }
-                    editorEdit.putInt("sidey", 1);
-                    arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord4));
-                } else {
-                    editorEdit.putFloat("py", (this.windowLayoutParams.y - sideCoord3) / (sideCoord4 - sideCoord3));
-                    editorEdit.putInt("sidey", 2);
-                }
-                editorEdit.commit();
+            arrayList = new ArrayList();
+            editorEdit.putInt("sidex", 1);
+            if (this.windowView.getAlpha() != f2) {
+                arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, f2));
             }
-            if (arrayList != null) {
-                if (this.decelerateInterpolator == null) {
-                    this.decelerateInterpolator = new DecelerateInterpolator();
-                }
-                animatorSet = new AnimatorSet();
-                animatorSet.setInterpolator(this.decelerateInterpolator);
-                animatorSet.setDuration(150L);
-                if (z) {
-                    arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
-                    animatorSet.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            PipRoundVideoView.this.close(false);
-                            if (PipRoundVideoView.this.onCloseRunnable != null) {
-                                PipRoundVideoView.this.onCloseRunnable.run();
-                            }
-                        }
-                    });
-                }
-                animatorSet.playTogether(arrayList);
-                animatorSet.start();
-            }
+            arrayList.add(ObjectAnimator.ofInt(this, "x", sideCoord2));
         }
         z = false;
         if (!z) {
@@ -489,7 +491,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             animatorSet.setInterpolator(this.decelerateInterpolator);
             animatorSet.setDuration(150L);
             if (z) {
-                arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
+                arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, f));
                 animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {

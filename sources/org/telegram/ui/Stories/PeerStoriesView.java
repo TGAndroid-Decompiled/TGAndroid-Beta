@@ -507,13 +507,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.updateStealthModeTimer = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$43();
+                this.f$0.checkStealthMode(true);
             }
         };
         this.showTapToSoundHint = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$51();
+                PeerStoriesView.m4337$r8$lambda$4Pl85XOve4oOA68ys7aTrUws1c(this.f$0);
             }
         };
         this.uriesToPrepare = new ArrayList();
@@ -683,7 +683,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         anonymousClass5.captionTextview.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$0(view);
+                PeerStoriesView.$r8$lambda$lxKg92QZAn3CGVuSy018jqTJqd8(this.f$0, view);
             }
         });
         ImageView imageView = new ImageView(context);
@@ -694,7 +694,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.shareStory(true);
             }
         });
         imageView.setContentDescription(LocaleController.getString(R.string.ShareFile));
@@ -735,7 +735,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.repostButtonContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$2(view);
+                    this.f$0.tryToOpenRepostStory();
                 }
             });
         }
@@ -770,13 +770,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         frameLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$4(view);
+                PeerStoriesView.m4347$r8$lambda$bmD9lfJ7zWjzOgoERQ1aZOGwbc(this.f$0, view);
             }
         });
         frameLayout2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view) {
-                return this.f$0.lambda$new$5(storyViewer, view);
+                return PeerStoriesView.$r8$lambda$Uzu4iriZb0W4tzvdjdr9ZPTL4Zo(this.f$0, storyViewer, view);
             }
         });
         StoriesLikeButton storiesLikeButton = new StoriesLikeButton(context, sharedResources);
@@ -804,7 +804,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         peerHeaderView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$6(storyViewer, view);
+                PeerStoriesView.$r8$lambda$qzHDEdSRBhKjrPpz_1pEgcGaYgo(this.f$0, storyViewer, view);
             }
         });
         this.storyContainer.addView(this.headerView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 17.0f, 0.0f, 0.0f));
@@ -841,13 +841,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         imageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerStoriesView.lambda$new$7(storyViewer, view);
+                PeerStoriesView.$r8$lambda$yJHJR1bijBsghFqqIA0QqbKSXoo(storyViewer, view);
             }
         });
         imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$8(resourcesProvider, storyViewer, context, sharedResources, view);
+                PeerStoriesView.$r8$lambda$XyRsu2Jtr6Qzx8EClkHFWAOzYwU(this.f$0, resourcesProvider, storyViewer, context, sharedResources, view);
             }
         });
         FrameLayout frameLayout6 = new FrameLayout(context) {
@@ -878,14 +878,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         storyPrivacyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$10(view);
+                PeerStoriesView.$r8$lambda$EqOTQ6eILNhsBjRAdkwBjItaalg(this.f$0, view);
             }
         });
         this.storyContainer.addView(storyPrivacyButton, LayoutHelper.createFrame(60, 40.0f, 53, 2.0f, 15.0f, 42.0f, 0.0f));
         frameLayout6.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$11(storyViewer, view);
+                PeerStoriesView.m4345$r8$lambda$UjAr1Mxc33c26evkmW5sXRN7QU(this.f$0, storyViewer, view);
             }
         });
         this.storyLines = new StoryLinesDrawable(this, sharedResources);
@@ -1041,6 +1041,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             boolean zHasNotThumb;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryViewer.VideoPlayerHolder videoPlayerHolder2;
+            Canvas canvas2 = canvas;
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             if (!peerStoriesView.isActive) {
                 peerStoriesView.headerView.backupImageView.getImageReceiver().setVisible(true, true);
@@ -1050,32 +1051,32 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 if (peerStoriesView2.playerSharedScope.renderView != null || (peerStoriesView2.storyAreasView != null && (PeerStoriesView.this.storyAreasView.hasSelectedForScale() || PeerStoriesView.this.storyAreasView.parentHighlightScaleAlpha.isInProgress()))) {
                     invalidate();
                 }
-                canvas.save();
-                PeerStoriesView.this.pinchToZoomHelper.applyTransform(canvas);
+                canvas2.save();
+                PeerStoriesView.this.pinchToZoomHelper.applyTransform(canvas2);
                 PeerStoriesView peerStoriesView3 = PeerStoriesView.this;
                 VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView3.playerSharedScope;
                 View view = videoPlayerSharedScope.renderView;
                 if (view != null && (videoPlayerSharedScope.firstFrameRendered || videoPlayerSharedScope.livePlayer != null)) {
                     if (!peerStoriesView3.imageReceiver.hasBitmapImage()) {
                         this.val$sharedResources.imageBackgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight() + 1);
-                        this.val$sharedResources.imageBackgroundDrawable.draw(canvas);
+                        this.val$sharedResources.imageBackgroundDrawable.draw(canvas2);
                     }
                     PeerStoriesView.this.imageReceiver.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() + 1);
-                    PeerStoriesView.this.imageReceiver.draw(canvas);
+                    PeerStoriesView.this.imageReceiver.draw(canvas2);
                     PeerStoriesView peerStoriesView4 = PeerStoriesView.this;
                     if (peerStoriesView4.isActive) {
                         if (this.val$storyViewer.USE_SURFACE_VIEW && (videoPlayerHolder2 = peerStoriesView4.playerSharedScope.player) != null && videoPlayerHolder2.paused && videoPlayerHolder2.playerStubBitmap != null && videoPlayerHolder2.stubAvailable) {
                             float measuredWidth = getMeasuredWidth() / PeerStoriesView.this.playerSharedScope.player.playerStubBitmap.getWidth();
                             float measuredHeight = getMeasuredHeight() / PeerStoriesView.this.playerSharedScope.player.playerStubBitmap.getHeight();
-                            canvas.save();
-                            canvas.scale(measuredWidth, measuredHeight);
+                            canvas2.save();
+                            canvas2.scale(measuredWidth, measuredHeight);
                             StoryViewer.VideoPlayerHolder videoPlayerHolder3 = PeerStoriesView.this.playerSharedScope.player;
-                            canvas.drawBitmap(videoPlayerHolder3.playerStubBitmap, 0.0f, 0.0f, videoPlayerHolder3.playerStubPaint);
-                            canvas.restore();
+                            canvas2.drawBitmap(videoPlayerHolder3.playerStubBitmap, 0.0f, 0.0f, videoPlayerHolder3.playerStubPaint);
+                            canvas2.restore();
                         } else {
-                            boolean z2 = Build.VERSION.SDK_INT >= 29 && peerStoriesView4.blurredBackgroundSourceRenderNodeWithSaturation != null && PeerStoriesView.this.blurredBackgroundSourceRenderNodeWithSaturation.isRecordingCanvas(canvas);
+                            boolean z2 = Build.VERSION.SDK_INT >= 29 && peerStoriesView4.blurredBackgroundSourceRenderNodeWithSaturation != null && PeerStoriesView.this.blurredBackgroundSourceRenderNodeWithSaturation.isRecordingCanvas(canvas2);
                             if (!this.val$storyViewer.USE_SURFACE_VIEW || (PeerStoriesView.this.allowDrawSurface && this.val$storyViewer.isShown() && !z2)) {
-                                PeerStoriesView.this.playerSharedScope.renderView.draw(canvas);
+                                PeerStoriesView.this.playerSharedScope.renderView.draw(canvas2);
                             }
                         }
                     }
@@ -1087,15 +1088,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     if (!peerStoriesView5.currentStory.skipped) {
                         if (!peerStoriesView5.imageReceiver.hasBitmapImage()) {
                             this.val$sharedResources.imageBackgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight() + 1);
-                            this.val$sharedResources.imageBackgroundDrawable.draw(canvas);
+                            this.val$sharedResources.imageBackgroundDrawable.draw(canvas2);
                         }
                         PeerStoriesView.this.imageReceiver.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() + 1);
-                        PeerStoriesView.this.imageReceiver.draw(canvas);
+                        PeerStoriesView.this.imageReceiver.draw(canvas2);
                     } else {
-                        canvas.drawColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
+                        canvas2.drawColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
                     }
                 }
-                canvas.restore();
+                canvas2.restore();
                 if (PeerStoriesView.this.imageChanged) {
                     this.loadingDrawableAlpha2.set(0.0f, true);
                     this.loadingDrawableAlpha.set(0.0f, true);
@@ -1129,20 +1130,20 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     this.loadingDrawable.setParentWidth(getMeasuredWidth() * 2);
                     CellFlickerDrawable cellFlickerDrawable = this.loadingDrawable;
                     cellFlickerDrawable.animationSpeedScale = 1.3f;
-                    cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(10.0f), this);
+                    cellFlickerDrawable.draw(canvas2, rectF, AndroidUtilities.dp(10.0f), this);
                 }
                 PeerStoriesView.this.imageChanged = false;
             } else {
-                canvas.drawColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
+                canvas2.drawColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
             }
             if (PeerStoriesView.this.storyCaptionView.getAlpha() > 0.0f) {
                 if (PeerStoriesView.this.storyCaptionView.getAlpha() != 1.0f) {
-                    canvas.saveLayerAlpha(0.0f, 0.0f, PeerStoriesView.this.storyCaptionView.getMeasuredWidth(), PeerStoriesView.this.storyCaptionView.getMeasuredHeight(), (int) (PeerStoriesView.this.storyCaptionView.getAlpha() * 255.0f), 31);
+                    canvas2.saveLayerAlpha(0.0f, 0.0f, PeerStoriesView.this.storyCaptionView.getMeasuredWidth(), PeerStoriesView.this.storyCaptionView.getMeasuredHeight(), (int) (PeerStoriesView.this.storyCaptionView.getAlpha() * 255.0f), 31);
                 } else {
-                    canvas.save();
+                    canvas2.save();
                 }
-                PeerStoriesView.this.storyAreasView.draw(canvas);
-                canvas.restore();
+                PeerStoriesView.this.storyAreasView.draw(canvas2);
+                canvas2.restore();
             }
             if (!PeerStoriesView.this.lastNoThumb && PeerStoriesView.this.imageReceiver.hasNotThumb()) {
                 PeerStoriesView.this.lastNoThumb = true;
@@ -1150,7 +1151,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             float hideInterfaceAlpha = PeerStoriesView.this.getHideInterfaceAlpha();
             this.val$sharedResources.topOverlayGradient.setAlpha(255);
-            this.val$sharedResources.topOverlayGradient.draw(canvas);
+            this.val$sharedResources.topOverlayGradient.draw(canvas2);
             PeerStoriesView peerStoriesView7 = PeerStoriesView.this;
             if (!peerStoriesView7.isSelf && peerStoriesView7.BIG_SCREEN && PeerStoriesView.this.storyCaptionView.getVisibility() != 0) {
                 f = 0.0f;
@@ -1184,28 +1185,32 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     this.splitDrawing = false;
                     drawLines(canvas);
                     this.val$sharedResources.gradientBackgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (153.0f * f * hideInterfaceAlpha)));
-                    canvas.drawPaint(this.val$sharedResources.gradientBackgroundPaint);
+                    canvas2.drawPaint(this.val$sharedResources.gradientBackgroundPaint);
                 }
                 if (f < 1.0f && !PeerStoriesView.this.currentStory.isLive) {
-                    canvas.save();
+                    canvas2.save();
                     float f2 = 1.0f - f;
                     this.val$sharedResources.gradientBackgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (129.03f * f2 * hideInterfaceAlpha)));
                     this.val$sharedResources.bottomOverlayGradient.setAlpha((int) (f2 * 255.0f * hideInterfaceAlpha));
                     this.val$sharedResources.bottomOverlayGradient.setBounds(0, textTop, getMeasuredWidth(), i);
-                    this.val$sharedResources.bottomOverlayGradient.draw(canvas);
-                    canvas.drawRect(0.0f, i, getMeasuredWidth(), getMeasuredHeight(), this.val$sharedResources.gradientBackgroundPaint);
+                    this.val$sharedResources.bottomOverlayGradient.draw(canvas2);
+                    canvas2.drawRect(0.0f, i, getMeasuredWidth(), getMeasuredHeight(), this.val$sharedResources.gradientBackgroundPaint);
                     canvas.restore();
                 }
-                if (f > 0.0f && PeerStoriesView.this.storyCaptionView.getAlpha() > 0.0f) {
+                if (f <= 0.0f || PeerStoriesView.this.storyCaptionView.getAlpha() <= 0.0f) {
+                    canvas2 = canvas;
+                } else {
                     PeerStoriesView.this.storyCaptionView.disableDraw(false);
                     if (PeerStoriesView.this.storyCaptionView.getAlpha() != 1.0f) {
-                        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (PeerStoriesView.this.storyCaptionView.getAlpha() * 255.0f), 31);
+                        canvas2 = canvas;
+                        canvas2.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (PeerStoriesView.this.storyCaptionView.getAlpha() * 255.0f), 31);
                     } else {
-                        canvas.save();
+                        canvas2 = canvas;
+                        canvas2.save();
                     }
-                    canvas.translate(PeerStoriesView.this.storyCaptionView.getX(), PeerStoriesView.this.storyCaptionView.getY() - PeerStoriesView.this.storyCaptionView.getScrollY());
-                    PeerStoriesView.this.storyCaptionView.draw(canvas);
-                    canvas.restore();
+                    canvas2.translate(PeerStoriesView.this.storyCaptionView.getX(), PeerStoriesView.this.storyCaptionView.getY() - PeerStoriesView.this.storyCaptionView.getScrollY());
+                    PeerStoriesView.this.storyCaptionView.draw(canvas2);
+                    canvas2.restore();
                 }
                 PeerStoriesView.this.storyCaptionView.disableDraw(f > 0.0f);
                 if (f > 0.0f) {
@@ -1223,12 +1228,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     }
                     this.val$sharedResources.bottomOverlayGradient.setBounds(0, PeerStoriesView.this.storyContainer.getMeasuredHeight() - iDp2, getMeasuredWidth(), PeerStoriesView.this.storyContainer.getMeasuredHeight());
                     this.val$sharedResources.bottomOverlayGradient.setAlpha((int) (hideInterfaceAlpha * 255.0f));
-                    this.val$sharedResources.bottomOverlayGradient.draw(canvas);
+                    this.val$sharedResources.bottomOverlayGradient.draw(canvas2);
                 }
                 f = 0.0f;
             }
             if (PeerStoriesView.this.viewsThumbAlpha != 0.0f && PeerStoriesView.this.viewsThumbImageReceiver != null) {
-                PeerStoriesView.this.viewsThumbImageReceiver.draw(canvas, PeerStoriesView.this.viewsThumbAlpha, PeerStoriesView.this.viewsThumbScale, 0, 0, getMeasuredWidth(), getMeasuredHeight() + 1);
+                Canvas canvas3 = canvas2;
+                PeerStoriesView.this.viewsThumbImageReceiver.draw(canvas3, PeerStoriesView.this.viewsThumbAlpha, PeerStoriesView.this.viewsThumbScale, 0, 0, getMeasuredWidth(), getMeasuredHeight() + 1);
+                canvas2 = canvas3;
             }
             this.progressToAudio.set(PeerStoriesView.this.isRecording ? 1.0f : 0.0f);
             PeerStoriesView peerStoriesView10 = PeerStoriesView.this;
@@ -1254,7 +1261,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 drawLines(canvas);
             }
             if (PeerStoriesView.this.emojiAnimationsOverlay != null) {
-                PeerStoriesView.this.emojiAnimationsOverlay.draw(canvas);
+                PeerStoriesView.this.emojiAnimationsOverlay.draw(canvas2);
             }
         }
 
@@ -1339,7 +1346,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$drawLines$0();
+                        PeerStoriesView.AnonymousClass4.$r8$lambda$pjd8G4fXqN55t97GCHEBlhvFCHo(this.f$0);
                     }
                 });
             }
@@ -1362,7 +1369,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             canvas.restore();
         }
 
-        public void lambda$drawLines$0() {
+        public static void $r8$lambda$pjd8G4fXqN55t97GCHEBlhvFCHo(AnonymousClass4 anonymousClass4) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             if (peerStoriesView.delegate != null) {
                 if (peerStoriesView.isUploading || PeerStoriesView.this.isEditing || PeerStoriesView.this.isFailed) {
@@ -1590,6 +1597,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
         @Override
         public void onLinkLongPress(final URLSpan uRLSpan, final View view, final Runnable runnable) {
+            String strDecode;
             final String url = uRLSpan.getURL();
             String url2 = uRLSpan.getURL();
             try {
@@ -1599,16 +1607,17 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 } catch (Exception e) {
                     FileLog.e((Throwable) e, false);
                 }
-                url2 = URLDecoder.decode(url2.replaceAll("\\+", "%2b"), "UTF-8");
+                strDecode = URLDecoder.decode(url2.replaceAll("\\+", "%2b"), "UTF-8");
             } catch (Exception e2) {
                 FileLog.e(e2);
+                strDecode = url2;
             }
             try {
                 performHapticFeedback(0, 1);
             } catch (Exception unused) {
             }
             BottomSheet.Builder builder = new BottomSheet.Builder(getContext(), false, this.val$resourcesProvider);
-            builder.setTitle(url2);
+            builder.setTitle(strDecode);
             builder.setTitleMultipleLines(true);
             StoryItemHolder storyItemHolder = PeerStoriesView.this.currentStory;
             CharSequence[] charSequenceArr = (storyItemHolder == null || storyItemHolder.allowScreenshots()) ? new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)} : new CharSequence[]{LocaleController.getString(R.string.Open)};
@@ -1616,7 +1625,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    this.f$0.lambda$onLinkLongPress$0(uRLSpan, view, url, resourcesProvider, dialogInterface, i);
+                    PeerStoriesView.AnonymousClass5.$r8$lambda$54U4fVM9iLaa892lI7vXgz4Ta98(this.f$0, uRLSpan, view, url, resourcesProvider, dialogInterface, i);
                 }
             });
             builder.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
@@ -1630,10 +1639,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             PeerStoriesView.this.delegate.showDialog(bottomSheetCreate);
         }
 
-        public void lambda$onLinkLongPress$0(URLSpan uRLSpan, View view, String str, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i) {
+        public static void $r8$lambda$54U4fVM9iLaa892lI7vXgz4Ta98(AnonymousClass5 anonymousClass5, URLSpan uRLSpan, View view, String str, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i) {
             if (i == 0) {
-                onLinkClick(uRLSpan, view);
-            } else if (i == 1) {
+                anonymousClass5.onLinkClick(uRLSpan, view);
+                return;
+            }
+            anonymousClass5.getClass();
+            if (i == 1) {
                 AndroidUtilities.addToClipboard(str);
                 BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createCopyLinkBulletin().show();
             }
@@ -1652,7 +1664,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 ItemOptions itemOptionsAddIf = ItemOptions.makeOptions(this.val$storyViewer.containerView, this.val$resourcesProvider, PeerStoriesView.this.storyCaptionView).setGravity(3).translate(-AndroidUtilities.dp(8.0f), 0.0f).addIf(document instanceof TLRPC.TL_document, i, string, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onReplyClick$2(document, resourcesProvider);
+                        PeerStoriesView.AnonymousClass5.$r8$lambda$h2nLC_LYdvQI7QH_IOQG25QzA2M(this.f$0, document, resourcesProvider);
                     }
                 });
                 int i2 = R.drawable.msg_tone_add;
@@ -1661,7 +1673,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 itemOptionsAddIf.add(i2, string2, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onReplyClick$3(document, resourcesProvider2);
+                        PeerStoriesView.AnonymousClass5.$r8$lambda$Jep4td32mDS25HOiq051KXn77d8(this.f$0, document, resourcesProvider2);
                     }
                 }).show();
                 return;
@@ -1686,7 +1698,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 storiesController.resolveStoryLink(jLongValue, iIntValue, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        this.f$0.lambda$onReplyClick$5(panel, storyViewer, resourcesProvider3, (TL_stories.StoryItem) obj);
+                        PeerStoriesView.AnonymousClass5.$r8$lambda$_sZvhs1SWCuME9tNY2QVjTi07qs(this.f$0, panel, storyViewer, resourcesProvider3, (TL_stories.StoryItem) obj);
                     }
                 });
                 return;
@@ -1694,7 +1706,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             BulletinFactory.of(PeerStoriesView.this.storyContainer, this.val$resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.StoryHidAccount)).setTag(3).show(true);
         }
 
-        public void lambda$onReplyClick$2(TLRPC.Document document, Theme.ResourcesProvider resourcesProvider) {
+        public static void $r8$lambda$h2nLC_LYdvQI7QH_IOQG25QzA2M(AnonymousClass5 anonymousClass5, TLRPC.Document document, Theme.ResourcesProvider resourcesProvider) {
             SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount);
             TLRPC.TL_document tL_document = (TLRPC.TL_document) document;
             long clientUserId = UserConfig.getInstance(PeerStoriesView.this.currentAccount).getClientUserId();
@@ -1703,7 +1715,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createSimpleBulletin(R.raw.saved_messages, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryAudioAddToSavedMessagesToast), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0())).show(true);
         }
 
-        public void lambda$onReplyClick$3(TLRPC.Document document, Theme.ResourcesProvider resourcesProvider) {
+        public static void $r8$lambda$Jep4td32mDS25HOiq051KXn77d8(AnonymousClass5 anonymousClass5, TLRPC.Document document, Theme.ResourcesProvider resourcesProvider) {
+            anonymousClass5.getClass();
             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
             tL_account_saveMusic.id = tL_inputDocument;
@@ -1717,15 +1730,16 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createSimpleBulletin(R.raw.ic_save_to_music, LocaleController.getString(R.string.StoryAudioAddToProfileToast)).show(true);
         }
 
-        public void lambda$onReplyClick$5(StoryCaptionView.Panel panel, final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TL_stories.StoryItem storyItem) {
+        public static void $r8$lambda$_sZvhs1SWCuME9tNY2QVjTi07qs(AnonymousClass5 anonymousClass5, StoryCaptionView.Panel panel, final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TL_stories.StoryItem storyItem) {
             if (storyItem != null) {
+                anonymousClass5.getClass();
                 BaseFragment lastFragment = LaunchActivity.getLastFragment();
                 if (lastFragment == null) {
                     return;
                 }
                 storyItem.dialogId = panel.peerId.longValue();
                 StoryViewer storyViewerCreateOverlayStoryViewer = lastFragment.createOverlayStoryViewer();
-                storyViewerCreateOverlayStoryViewer.open(getContext(), storyItem, (StoryViewer.PlaceProvider) null);
+                storyViewerCreateOverlayStoryViewer.open(anonymousClass5.getContext(), storyItem, (StoryViewer.PlaceProvider) null);
                 storyViewerCreateOverlayStoryViewer.setOnCloseListener(new Runnable() {
                     @Override
                     public final void run() {
@@ -1758,7 +1772,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 Bulletin bulletinCreateContainsEmojiBulletin = bulletinFactoryOf.createContainsEmojiBulletin(documentFindDocument, 2, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$onEmojiClick$6(storyViewer, resourcesProvider, (TLRPC.InputStickerSet) obj);
+                        PeerStoriesView.AnonymousClass5.$r8$lambda$rKwTKK_GqomAfC1y5GhDyCAKiUs(this.f$0, storyViewer, resourcesProvider, (TLRPC.InputStickerSet) obj);
                     }
                 });
                 if (bulletinCreateContainsEmojiBulletin == null) {
@@ -1769,10 +1783,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onEmojiClick$6(StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TLRPC.InputStickerSet inputStickerSet) {
+        public static void $r8$lambda$rKwTKK_GqomAfC1y5GhDyCAKiUs(AnonymousClass5 anonymousClass5, StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, TLRPC.InputStickerSet inputStickerSet) {
+            anonymousClass5.getClass();
             ArrayList arrayList = new ArrayList(1);
             arrayList.add(inputStickerSet);
-            EmojiPacksAlert emojiPacksAlert = new EmojiPacksAlert(storyViewer.fragment, getContext(), resourcesProvider, arrayList);
+            EmojiPacksAlert emojiPacksAlert = new EmojiPacksAlert(storyViewer.fragment, anonymousClass5.getContext(), resourcesProvider, arrayList);
             Delegate delegate = PeerStoriesView.this.delegate;
             if (delegate != null) {
                 delegate.showDialog(emojiPacksAlert);
@@ -1780,71 +1795,59 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$new$0(View view) {
-        StoryCaptionView storyCaptionView = this.storyCaptionView;
+    public static void $r8$lambda$lxKg92QZAn3CGVuSy018jqTJqd8(PeerStoriesView peerStoriesView, View view) {
+        StoryCaptionView storyCaptionView = peerStoriesView.storyCaptionView;
         if (storyCaptionView.expanded) {
             if (!storyCaptionView.textSelectionHelper.isInSelectionMode()) {
-                this.storyCaptionView.collapse();
+                peerStoriesView.storyCaptionView.collapse();
                 return;
             } else {
-                this.storyCaptionView.checkCancelTextSelection();
+                peerStoriesView.storyCaptionView.checkCancelTextSelection();
                 return;
             }
         }
-        this.checkBlackoutMode = true;
+        peerStoriesView.checkBlackoutMode = true;
         storyCaptionView.expand();
     }
 
-    public void lambda$new$1(View view) {
-        shareStory(true);
-    }
-
-    public void lambda$new$2(View view) {
-        tryToOpenRepostStory();
-    }
-
-    public void lambda$new$4(View view) {
-        TL_stories.StoryItem storyItem = this.currentStory.storyItem;
+    public static void m4347$r8$lambda$bmD9lfJ7zWjzOgoERQ1aZOGwbc(final PeerStoriesView peerStoriesView, View view) {
+        TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
         if (storyItem != null && storyItem.sent_reaction == null) {
-            applyMessageToChat(new Runnable() {
+            peerStoriesView.applyMessageToChat(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$3();
+                    this.f$0.likeStory(null);
                 }
             });
         } else {
-            likeStory(null);
+            peerStoriesView.likeStory(null);
         }
     }
 
-    public void lambda$new$3() {
-        likeStory(null);
-    }
-
-    public boolean lambda$new$5(StoryViewer storyViewer, View view) {
-        Runnable runnable = this.reactionsTooltipRunnable;
+    public static boolean $r8$lambda$Uzu4iriZb0W4tzvdjdr9ZPTL4Zo(PeerStoriesView peerStoriesView, StoryViewer storyViewer, View view) {
+        Runnable runnable = peerStoriesView.reactionsTooltipRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.reactionsTooltipRunnable = null;
+            peerStoriesView.reactionsTooltipRunnable = null;
         }
         SharedConfig.setStoriesReactionsLongPressHintUsed(true);
-        HintView2 hintView2 = this.reactionsLongpressTooltip;
+        HintView2 hintView2 = peerStoriesView.reactionsLongpressTooltip;
         if (hintView2 != null) {
             hintView2.hide();
         }
-        checkReactionsLayoutForLike();
+        peerStoriesView.checkReactionsLayoutForLike();
         storyViewer.windowView.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-        showLikesReaction(true);
+        peerStoriesView.showLikesReaction(true);
         return true;
     }
 
-    public void lambda$new$6(StoryViewer storyViewer, View view) {
-        long j = UserConfig.getInstance(this.currentAccount).clientUserId;
-        long j2 = this.dialogId;
+    public static void $r8$lambda$qzHDEdSRBhKjrPpz_1pEgcGaYgo(PeerStoriesView peerStoriesView, StoryViewer storyViewer, View view) {
+        long j = UserConfig.getInstance(peerStoriesView.currentAccount).clientUserId;
+        long j2 = peerStoriesView.dialogId;
         if (j == j2) {
             Bundle bundle = new Bundle();
             bundle.putInt("type", 1);
-            bundle.putLong("dialog_id", this.dialogId);
+            bundle.putLong("dialog_id", peerStoriesView.dialogId);
             storyViewer.presentFragment(new MediaActivity(bundle, null));
             return;
         }
@@ -1855,25 +1858,25 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public static void lambda$new$7(StoryViewer storyViewer, View view) {
+    public static void $r8$lambda$yJHJR1bijBsghFqqIA0QqbKSXoo(StoryViewer storyViewer, View view) {
         if (storyViewer != null) {
             storyViewer.switchToPip();
         }
     }
 
-    public void lambda$new$8(Theme.ResourcesProvider resourcesProvider, StoryViewer storyViewer, Context context, SharedResources sharedResources, View view) {
-        this.delegate.setPopupIsVisible(true);
-        this.editStoryItem = null;
+    public static void $r8$lambda$XyRsu2Jtr6Qzx8EClkHFWAOzYwU(PeerStoriesView peerStoriesView, Theme.ResourcesProvider resourcesProvider, StoryViewer storyViewer, Context context, SharedResources sharedResources, View view) {
+        peerStoriesView.delegate.setPopupIsVisible(true);
+        peerStoriesView.editStoryItem = null;
         boolean[] zArr = {false};
-        if (this.isSelf) {
-            MessagesController.getInstance(this.currentAccount).getStoriesController().loadBlocklistAtFirst();
-            MessagesController.getInstance(this.currentAccount).getStoriesController().loadSendAs();
-            MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().load();
+        if (peerStoriesView.isSelf) {
+            MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().loadBlocklistAtFirst();
+            MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().loadSendAs();
+            MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().getDraftsController().load();
         }
-        boolean z = this.isSelf || MessagesController.getInstance(this.currentAccount).getStoriesController().canEditStory(this.currentStory.storyItem);
-        AnonymousClass8 anonymousClass8 = new AnonymousClass8(getContext(), resourcesProvider, true, resourcesProvider, storyViewer, this.currentStory.isVideo, this.isSelf || ((this.isChannel || isBotsPreview()) && z), z, context, sharedResources, zArr);
-        this.popupMenu = anonymousClass8;
-        anonymousClass8.show(this.optionsIconView, 0, (-ActionBar.getCurrentActionBarHeight()) + AndroidUtilities.dp(6.0f));
+        boolean z = peerStoriesView.isSelf || MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().canEditStory(peerStoriesView.currentStory.storyItem);
+        AnonymousClass8 anonymousClass8 = peerStoriesView.new AnonymousClass8(peerStoriesView.getContext(), resourcesProvider, true, resourcesProvider, storyViewer, peerStoriesView.currentStory.isVideo, peerStoriesView.isSelf || ((peerStoriesView.isChannel || peerStoriesView.isBotsPreview()) && z), z, context, sharedResources, zArr);
+        peerStoriesView.popupMenu = anonymousClass8;
+        anonymousClass8.show(peerStoriesView.optionsIconView, 0, (-ActionBar.getCurrentActionBarHeight()) + AndroidUtilities.dp(6.0f));
     }
 
     class AnonymousClass8 extends CustomPopupMenu {
@@ -1917,12 +1920,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$addViewStatistics$0(storyItem, storyViewer, chat, view);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$G6u2dZzUNBn68SVXY1FuuHORYZU(this.f$0, storyItem, storyViewer, chat, view);
                 }
             });
         }
 
-        public void lambda$addViewStatistics$0(TL_stories.StoryItem storyItem, StoryViewer storyViewer, TLRPC.Chat chat, View view) {
+        public static void $r8$lambda$G6u2dZzUNBn68SVXY1FuuHORYZU(AnonymousClass8 anonymousClass8, TL_stories.StoryItem storyItem, StoryViewer storyViewer, TLRPC.Chat chat, View view) {
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -1984,13 +1987,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             PeerStoriesView.this.speedItem.openSwipeBackLayout = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.lambda$addSpeedLayout$1(actionBarPopupWindowLayout, iAddViewToSwipeBack);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$f2mS9OHREAaY0zfxPk0fkyfF6ck(actionBarPopupWindowLayout, iAddViewToSwipeBack);
                 }
             };
             PeerStoriesView.this.speedItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$addSpeedLayout$2(view);
+                    PeerStoriesView.this.speedItem.openSwipeBack();
                 }
             });
             actionBarPopupWindowLayout.swipeBackGravityRight = true;
@@ -2001,14 +2004,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public static void lambda$addSpeedLayout$1(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i) {
+        public static void $r8$lambda$f2mS9OHREAaY0zfxPk0fkyfF6ck(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i) {
             if (actionBarPopupWindowLayout.getSwipeBack() != null) {
                 actionBarPopupWindowLayout.getSwipeBack().openForeground(i);
             }
-        }
-
-        public void lambda$addSpeedLayout$2(View view) {
-            PeerStoriesView.this.speedItem.openSwipeBack();
         }
 
         private void addAlbumsLayout(final ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, boolean z) {
@@ -2027,7 +2026,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             itemOptionsSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.lambda$addAlbumsLayout$3(actionBarPopupWindowLayout);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$rVsuPxLsudFzomSQr9kQ1d0unxs(actionBarPopupWindowLayout);
                 }
             });
             itemOptionsSwipeback.addGap();
@@ -2038,14 +2037,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$addAlbumsLayout$6(resourcesProvider, storyItem);
+                    PeerStoriesView.AnonymousClass8.m4360$r8$lambda$CGdLYw7ddskp3ef3Xlx1eXHwXU(this.f$0, resourcesProvider, storyItem);
                 }
             };
             final Theme.ResourcesProvider resourcesProvider2 = this.val$resourcesProvider;
             ItemOptions.addAlbumsItemOptions(itemOptionsSwipeback, storyAlbumsList, hashSet2, zCanCreateNewAlbum, runnable, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$addAlbumsLayout$7(hashSet2, storyItem, resourcesProvider2, (StoriesController.StoryAlbum) obj);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$MUr1wv8VegpjUgi3ebnjAl0eGKs(this.f$0, hashSet2, storyItem, resourcesProvider2, (StoriesController.StoryAlbum) obj);
                 }
             });
             PeerStoriesView.this.albumLayout = itemOptionsSwipeback.getLinearLayout();
@@ -2055,13 +2054,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             PeerStoriesView.this.albumItem.openSwipeBackLayout = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.lambda$addAlbumsLayout$8(actionBarPopupWindowLayout, iAddViewToSwipeBack);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$kkQekJEdPFrNqPha5yZIXlapoB4(actionBarPopupWindowLayout, iAddViewToSwipeBack);
                 }
             };
             PeerStoriesView.this.albumItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$addAlbumsLayout$9(view);
+                    PeerStoriesView.this.albumItem.openSwipeBack();
                 }
             });
             actionBarPopupWindowLayout.addView(PeerStoriesView.this.albumItem);
@@ -2073,17 +2072,23 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public static void lambda$addAlbumsLayout$3(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
+        public static void $r8$lambda$rVsuPxLsudFzomSQr9kQ1d0unxs(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
             if (actionBarPopupWindowLayout.getSwipeBack() != null) {
                 actionBarPopupWindowLayout.getSwipeBack().closeForeground();
             }
         }
 
-        public void lambda$addAlbumsLayout$6(final Theme.ResourcesProvider resourcesProvider, final TL_stories.StoryItem storyItem) {
+        public static void m4360$r8$lambda$CGdLYw7ddskp3ef3Xlx1eXHwXU(final AnonymousClass8 anonymousClass8, final Theme.ResourcesProvider resourcesProvider, final TL_stories.StoryItem storyItem) {
             AlertsCreator.createStoriesAlbumEnterNameForCreate(PeerStoriesView.this.getContext(), null, resourcesProvider, new MessagesStorage.StringCallback() {
                 @Override
                 public final void run(String str) {
-                    this.f$0.lambda$addAlbumsLayout$5(storyItem, resourcesProvider, str);
+                    PeerStoriesView.AnonymousClass8 anonymousClass9 = this.f$0;
+                    PeerStoriesView.this.getStoriesController().createAlbum(PeerStoriesView.this.dialogId, str, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            PeerStoriesView.AnonymousClass8.m4358$r8$lambda$8deEmtFoC5TK0YGE9iqTZqXIbw(anonymousClass9, storyItem, resourcesProvider, (StoriesController.StoryAlbum) obj);
+                        }
+                    });
                 }
             });
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -2092,23 +2097,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$addAlbumsLayout$5(final TL_stories.StoryItem storyItem, final Theme.ResourcesProvider resourcesProvider, String str) {
-            PeerStoriesView.this.getStoriesController().createAlbum(PeerStoriesView.this.dialogId, str, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    this.f$0.lambda$addAlbumsLayout$4(storyItem, resourcesProvider, (StoriesController.StoryAlbum) obj);
-                }
-            });
-        }
-
-        public void lambda$addAlbumsLayout$4(TL_stories.StoryItem storyItem, Theme.ResourcesProvider resourcesProvider, StoriesController.StoryAlbum storyAlbum) {
+        public static void m4358$r8$lambda$8deEmtFoC5TK0YGE9iqTZqXIbw(AnonymousClass8 anonymousClass8, TL_stories.StoryItem storyItem, Theme.ResourcesProvider resourcesProvider, StoriesController.StoryAlbum storyAlbum) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.storiesController.addStoryToAlbum(peerStoriesView.dialogId, storyAlbum.album_id, storyItem);
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createSimpleBulletin(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoryAddedToAlbumX, storyAlbum.title))).show();
         }
 
-        public void lambda$addAlbumsLayout$7(HashSet hashSet, TL_stories.StoryItem storyItem, Theme.ResourcesProvider resourcesProvider, StoriesController.StoryAlbum storyAlbum) {
+        public static void $r8$lambda$MUr1wv8VegpjUgi3ebnjAl0eGKs(AnonymousClass8 anonymousClass8, HashSet hashSet, TL_stories.StoryItem storyItem, Theme.ResourcesProvider resourcesProvider, StoriesController.StoryAlbum storyAlbum) {
             String string;
+            anonymousClass8.getClass();
             if (hashSet.contains(Integer.valueOf(storyAlbum.album_id))) {
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
                 peerStoriesView.storiesController.addStoryToAlbum(peerStoriesView.dialogId, storyAlbum.album_id, storyItem);
@@ -2125,43 +2122,40 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public static void lambda$addAlbumsLayout$8(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i) {
+        public static void $r8$lambda$kkQekJEdPFrNqPha5yZIXlapoB4(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i) {
             if (actionBarPopupWindowLayout.getSwipeBack() != null) {
                 actionBarPopupWindowLayout.getSwipeBack().openForeground(i);
             }
         }
 
-        public void lambda$addAlbumsLayout$9(View view) {
-            PeerStoriesView.this.albumItem.openSwipeBack();
-        }
-
         @Override
         protected void onCreate(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
+            final TL_stories.StoryItem storyItem;
             String string;
             LivePlayer livePlayer;
             LivePlayer livePlayer2;
             final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy;
-            TL_stories.StoryItem storyItem;
+            TL_stories.StoryItem storyItem2;
             TLRPC.MessageMedia messageMedia;
             TLRPC.Photo photo;
-            TLRPC.User user;
-            TLRPC.Chat chat;
-            TLObject tLObject;
+            final TLObject chat;
+            ?? r14;
+            ?? r13;
             String strTrim;
             boolean z;
             boolean z2;
             if (this.val$canEditStory || PeerStoriesView.this.currentStory.uploadingStory != null) {
                 StoryItemHolder storyItemHolder = PeerStoriesView.this.currentStory;
-                final TL_stories.StoryItem storyItem2 = storyItemHolder.storyItem;
+                final TL_stories.StoryItem storyItem3 = storyItemHolder.storyItem;
                 if (storyItemHolder.uploadingStory != null) {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_cancel, LocaleController.getString(R.string.Cancel), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$10(view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$Y7AUSfB5NvGxXCn3fSzjJiUJdsw(this.f$0, view);
                         }
                     });
                 }
-                if (storyItem2 == null) {
+                if (storyItem3 == null) {
                     return;
                 }
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
@@ -2169,24 +2163,24 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     addAlbumsLayout(actionBarPopupWindowLayout, true);
                 }
                 if (PeerStoriesView.this.isSelf) {
-                    if (storyItem2.privacy.isEmpty()) {
+                    if (storyItem3.privacy.isEmpty()) {
                         storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(3, PeerStoriesView.this.currentAccount, new ArrayList());
                     } else {
-                        storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(PeerStoriesView.this.currentAccount, storyItem2.privacy);
+                        storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(PeerStoriesView.this.currentAccount, storyItem3.privacy);
                     }
                     ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.WhoCanSee), false, this.val$resourcesProvider);
                     actionBarMenuSubItemAddItem.setSubtext(storyPrivacy.toString());
                     actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$11(storyPrivacy, storyItem2, view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$IKH64Mx_JTuUAVDeXSTwXzxX5mg(this.f$0, storyPrivacy, storyItem3, view);
                         }
                     });
                     actionBarMenuSubItemAddItem.setItemHeight(56);
                 }
                 addSpeedLayout(actionBarPopupWindowLayout, false);
                 if (PeerStoriesView.this.isSelf || this.val$speedControl) {
-                    View gapView = new ActionBarPopupWindow.GapView(PeerStoriesView.this.getContext(), this.val$resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                    ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(PeerStoriesView.this.getContext(), this.val$resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
                     gapView.setTag(R.id.fit_width_tag, 1);
                     actionBarPopupWindowLayout.addView(gapView, LayoutHelper.createLinear(-1, 8));
                 }
@@ -2202,7 +2196,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$17(resourcesProvider, context, storyViewer, sharedResources, view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$CWr4YqN6u1ruDqsw1DQruaZiYv8(this.f$0, resourcesProvider, context, storyViewer, sharedResources, view);
                         }
                     });
                     PeerStoriesView peerStoriesView4 = PeerStoriesView.this;
@@ -2211,24 +2205,29 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     }
                 }
                 StoryItemHolder storyItemHolder2 = PeerStoriesView.this.currentStory;
-                if (storyItemHolder2.storyItem != null && storyItemHolder2.isVideo && !PeerStoriesView.this.currentStory.isLive) {
+                if (storyItemHolder2.storyItem == null || !storyItemHolder2.isVideo || PeerStoriesView.this.currentStory.isLive) {
+                    storyItem = storyItem3;
+                } else {
                     PeerStoriesView peerStoriesView5 = PeerStoriesView.this;
                     if (peerStoriesView5.currentStory.storyItem.pinned || peerStoriesView5.isEditBotsPreview()) {
                         ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.menu_cover_stories, LocaleController.getString(R.string.StoryEditCoverMenu), false, this.val$resourcesProvider);
                         final Context context2 = this.val$context;
                         final StoryViewer storyViewer2 = this.val$storyViewer;
                         final SharedResources sharedResources2 = this.val$sharedResources;
+                        storyItem = storyItem3;
                         actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$onCreate$27(context2, storyItem2, storyViewer2, sharedResources2, view);
+                                PeerStoriesView.AnonymousClass8.$r8$lambda$Bbk4ncA5bLiiTZNLtpQF1pBEFNU(this.f$0, context2, storyItem, storyViewer2, sharedResources2, view);
                             }
                         });
+                    } else {
+                        storyItem = storyItem3;
                     }
                 }
                 PeerStoriesView peerStoriesView6 = PeerStoriesView.this;
-                if ((peerStoriesView6.isSelf || (peerStoriesView6.isChannel && MessagesController.getInstance(peerStoriesView6.currentAccount).getStoriesController().canEditStories(storyItem2.dialogId))) && !PeerStoriesView.this.currentStory.isLive) {
-                    boolean z3 = storyItem2.pinned;
+                if ((peerStoriesView6.isSelf || (peerStoriesView6.isChannel && MessagesController.getInstance(peerStoriesView6.currentAccount).getStoriesController().canEditStories(storyItem.dialogId))) && !PeerStoriesView.this.currentStory.isLive) {
+                    boolean z3 = storyItem.pinned;
                     final boolean z4 = !z3;
                     if (PeerStoriesView.this.isSelf) {
                         string = LocaleController.getString(!z3 ? R.string.SaveToProfile : R.string.ArchiveStory);
@@ -2240,17 +2239,17 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     actionBarMenuSubItemAddItem3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$29(storyItem2, z4, resourcesProvider2, view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$Bm09UYUvNLQ2Ksc4ZfOZiUFSHqA(this.f$0, storyItem, z4, resourcesProvider2, view);
                         }
                     });
                 }
-                addViewStatistics(actionBarPopupWindowLayout, storyItem2);
+                addViewStatistics(actionBarPopupWindowLayout, storyItem);
                 PeerStoriesView peerStoriesView7 = PeerStoriesView.this;
                 if (!peerStoriesView7.unsupported && !peerStoriesView7.currentStory.isLive) {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_gallery, LocaleController.getString(PeerStoriesView.this.currentStory.isVideo() ? R.string.SaveVideo : R.string.SaveImage), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$30(view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$62r8uGIpRStXy1e6ZFBX41oRk3w(this.f$0, view);
                         }
                     });
                 }
@@ -2265,7 +2264,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_link, LocaleController.getString(R.string.CopyLink), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$31(view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$qW0VMYUOUZcuX9_fENzH9S6et_k(this.f$0, view);
                         }
                     });
                 }
@@ -2273,26 +2272,26 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_shareout, LocaleController.getString(R.string.BotShare), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$32(view);
+                            PeerStoriesView.AnonymousClass8.m4359$r8$lambda$CCwEVG3wDESAA6e_g8raaIdgRA(this.f$0, view);
                         }
                     });
                 }
-                TL_stories.StoryItem storyItem3 = PeerStoriesView.this.currentStory.storyItem;
-                if (storyItem3 != null) {
-                    TLRPC.MessageMedia messageMedia2 = storyItem3.media;
+                TL_stories.StoryItem storyItem4 = PeerStoriesView.this.currentStory.storyItem;
+                if (storyItem4 != null) {
+                    TLRPC.MessageMedia messageMedia2 = storyItem4.media;
                     if ((messageMedia2 instanceof TLRPC.TL_messageMediaVideoStream) && (livePlayer2 = LivePlayer.recording) != null && livePlayer2.equals(((TLRPC.TL_messageMediaVideoStream) messageMedia2).call)) {
                         LivePlayer livePlayer3 = LivePlayer.recording;
                         final boolean z5 = livePlayer3 != null && livePlayer3.isMuted();
                         ActionBarMenuItem.addItem(actionBarPopupWindowLayout, z5 ? R.drawable.msg_voice_unmuted : R.drawable.msg_voice_muted, LocaleController.getString(z5 ? R.string.Unmute : R.string.Mute), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$onCreate$33(z5, view);
+                                PeerStoriesView.AnonymousClass8.$r8$lambda$iHUsSqvmSNiShqxSI6BeZz9SUdc(this.f$0, z5, view);
                             }
                         });
                         ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.menu_camera_retake, LocaleController.getString(R.string.AccDescrSwitchCamera), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$onCreate$34(view);
+                                PeerStoriesView.AnonymousClass8.m4362$r8$lambda$G_NEFfN8jdoaCVI6b5GDeLkF8(this.f$0, view);
                             }
                         });
                     }
@@ -2303,7 +2302,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     actionBarMenuSubItemAddItem4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$35(storyViewer3, view);
+                            PeerStoriesView.AnonymousClass8.m4365$r8$lambda$Y_aU1q0fzfo6Hnz_ybseVwwlkw(this.f$0, storyViewer3, view);
                         }
                     });
                 }
@@ -2314,7 +2313,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     actionBarMenuSubItemAddItem5.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$39(resourcesProvider3, storyViewer4, view);
+                            PeerStoriesView.AnonymousClass8.m4371$r8$lambda$pT1rl95b49EQgExBUhWgNp4NA(this.f$0, resourcesProvider3, storyViewer4, view);
                         }
                     });
                 }
@@ -2328,7 +2327,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     actionBarMenuSubItemAddItem6.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$41(resourcesProvider4, storyViewer5, view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$xs6zXo3LcP_aIVhvPQax6j89fcA(this.f$0, resourcesProvider4, storyViewer5, view);
                         }
                     });
                 }
@@ -2342,7 +2341,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         actionBarMenuSubItemAddItem7.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$onCreate$42(view);
+                                PeerStoriesView.AnonymousClass8.$r8$lambda$EyGBYxXhkjUX8LBzkLvP2Snax8c(this.f$0, view);
                             }
                         });
                     }
@@ -2352,18 +2351,18 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 final String sharedPrefKey = NotificationsController.getSharedPrefKey(PeerStoriesView.this.dialogId, 0L);
                 boolean zAreStoriesNotMuted = NotificationsCustomSettingsActivity.areStoriesNotMuted(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId);
                 if (PeerStoriesView.this.dialogId > 0) {
-                    chat = null;
-                    user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId));
-                    tLObject = user;
+                    chat = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId));
+                    r13 = chat;
+                    r14 = 0;
                 } else {
-                    user = null;
                     chat = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChat(Long.valueOf(-PeerStoriesView.this.dialogId));
-                    tLObject = chat;
+                    r14 = chat;
+                    r13 = 0;
                 }
-                if (user == null) {
-                    strTrim = chat == null ? "" : chat.title;
+                if (r13 == 0) {
+                    strTrim = r14 == 0 ? "" : r14.title;
                 } else {
-                    strTrim = UserObject.getFirstName(user).trim();
+                    strTrim = UserObject.getFirstName(r13).trim();
                 }
                 int iIndexOf = strTrim.indexOf(" ");
                 if (iIndexOf > 0) {
@@ -2374,38 +2373,36 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     if (zAreStoriesNotMuted) {
                         ActionBarMenuSubItem actionBarMenuSubItemAddItem8 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_mute, LocaleController.getString(R.string.NotificationsStoryMute2), false, this.val$resourcesProvider);
                         final Theme.ResourcesProvider resourcesProvider5 = this.val$resourcesProvider;
-                        final TLObject tLObject2 = tLObject;
                         actionBarMenuSubItemAddItem8.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$onCreate$43(sharedPrefKey, resourcesProvider5, tLObject2, str, view);
+                                PeerStoriesView.AnonymousClass8.m4363$r8$lambda$KtLup8VGdtBmCHfJg3KgnjsC_o(this.f$0, sharedPrefKey, resourcesProvider5, chat, str, view);
                             }
                         });
                         actionBarMenuSubItemAddItem8.setMultiline(false);
                     } else {
                         ActionBarMenuSubItem actionBarMenuSubItemAddItem9 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_unmute, LocaleController.getString(R.string.NotificationsStoryUnmute2), false, this.val$resourcesProvider);
                         final Theme.ResourcesProvider resourcesProvider6 = this.val$resourcesProvider;
-                        final TLObject tLObject3 = tLObject;
                         actionBarMenuSubItemAddItem9.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$onCreate$44(sharedPrefKey, resourcesProvider6, tLObject3, str, view);
+                                PeerStoriesView.AnonymousClass8.$r8$lambda$lSrQ1tlGiQM9LagJ0I8ZO5ijfaw(this.f$0, sharedPrefKey, resourcesProvider6, chat, str, view);
                             }
                         });
                         actionBarMenuSubItemAddItem9.setMultiline(false);
                     }
                     MediaDataController.getInstance(PeerStoriesView.this.currentAccount).loadHints(true);
-                    boolean z6 = (user == 0 || user.contact || !MediaDataController.getInstance(PeerStoriesView.this.currentAccount).containsTopPeer(PeerStoriesView.this.dialogId)) ? false : true;
+                    boolean z6 = (r13 == 0 || r13.contact || !MediaDataController.getInstance(PeerStoriesView.this.currentAccount).containsTopPeer(PeerStoriesView.this.dialogId)) ? false : true;
                     if (PeerStoriesView.this.dialogId > 0) {
-                        z = user != 0 && user.contact;
-                        if (user == 0 || !user.stories_hidden) {
+                        z = r13 != 0 && r13.contact;
+                        if (r13 == 0 || !r13.stories_hidden) {
                             z2 = false;
                         } else {
                             z2 = true;
                         }
                     } else {
-                        z = (chat == 0 || ChatObject.isNotInChat(chat)) ? false : true;
-                        if (chat == 0 || !chat.stories_hidden) {
+                        z = (r14 == 0 || ChatObject.isNotInChat(r14)) ? false : true;
+                        if (r14 == 0 || !r14.stories_hidden) {
                             z2 = false;
                         } else {
                             z2 = true;
@@ -2415,7 +2412,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_delete, LocaleController.getString(R.string.StoriesRemoveFromRecent), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$onCreate$45(view);
+                                PeerStoriesView.AnonymousClass8.$r8$lambda$epNTapv2wsGeQdSAB9fxcJgY1Ms(this.f$0, view);
                             }
                         });
                     } else if (z) {
@@ -2423,14 +2420,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                             ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_archive, LocaleController.getString(R.string.ArchivePeerStories), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view) {
-                                    this.f$0.lambda$onCreate$46(view);
+                                    PeerStoriesView.AnonymousClass8.m4356$r8$lambda$4kVUrFMWU_EG4udk8JOKmrxuAs(this.f$0, view);
                                 }
                             });
                         } else {
                             ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_unarchive, LocaleController.getString(R.string.UnarchiveStories), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view) {
-                                    this.f$0.lambda$onCreate$47(view);
+                                    PeerStoriesView.AnonymousClass8.$r8$lambda$Yo785VaT01Zye9sHh8BTpimId7I(this.f$0, view);
                                 }
                             });
                         }
@@ -2442,7 +2439,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     actionBarMenuSubItemAddItem10.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$48(storyViewer6, view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$dh0E94OotPTYYKGlwARkk5sKS8E(this.f$0, storyViewer6, view);
                         }
                     });
                 }
@@ -2466,7 +2463,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                             actionBarMenuSubItemAddItem11.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view) {
-                                    this.f$0.lambda$onCreate$51(actionBarMenuSubItemAddItem11, storyViewer7, view);
+                                    PeerStoriesView.AnonymousClass8.m4354$r8$lambda$0Jdh7gjeXYX5KJZoBNurS4Mg3U(this.f$0, actionBarMenuSubItemAddItem11, storyViewer7, view);
                                 }
                             });
                         }
@@ -2474,7 +2471,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_gallery, LocaleController.getString(R.string.SaveToGallery), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$onCreate$49(view);
+                                PeerStoriesView.AnonymousClass8.$r8$lambda$imQNfMoRLNBY2Mm7NsB6pCQVNmk(this.f$0, view);
                             }
                         });
                     }
@@ -2489,7 +2486,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$52(view);
+                            PeerStoriesView.AnonymousClass8.m4367$r8$lambda$gt1J7EbtYSduXPwXR5D2bhi4R0(this.f$0, view);
                         }
                     });
                 }
@@ -2497,18 +2494,18 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_shareout, LocaleController.getString(R.string.BotShare), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$53(view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$lkLzkL65cLBXsZAaK4Xwu7a3SOM(this.f$0, view);
                         }
                     });
                 }
-                TL_stories.StoryItem storyItem4 = PeerStoriesView.this.currentStory.storyItem;
-                if (storyItem4 != null) {
-                    if (!storyItem4.translated || !TextUtils.equals(storyItem4.translatedLng, TranslateAlert2.getToLanguage())) {
+                TL_stories.StoryItem storyItem5 = PeerStoriesView.this.currentStory.storyItem;
+                if (storyItem5 != null) {
+                    if (!storyItem5.translated || !TextUtils.equals(storyItem5.translatedLng, TranslateAlert2.getToLanguage())) {
                         if (MessagesController.getInstance(PeerStoriesView.this.currentAccount).getTranslateController().canTranslateStory(PeerStoriesView.this.currentStory.storyItem)) {
                             ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_translate, LocaleController.getString(R.string.TranslateMessage), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view) {
-                                    this.f$0.lambda$onCreate$57(view);
+                                    PeerStoriesView.AnonymousClass8.$r8$lambda$B7tJ2XtKnQyc2Dw1POoPDtdRWH4(this.f$0, view);
                                 }
                             });
                         }
@@ -2516,7 +2513,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_translate, LocaleController.getString(R.string.HideTranslation), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                this.f$0.lambda$onCreate$54(view);
+                                PeerStoriesView.AnonymousClass8.m4361$r8$lambda$EU0cHA1_b7jvoUjOexaVG_WG_g(this.f$0, view);
                             }
                         });
                     }
@@ -2530,36 +2527,39 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     actionBarMenuSubItemAddItem12.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onCreate$59(storyViewer8, resourcesProvider7, view);
+                            PeerStoriesView.AnonymousClass8.$r8$lambda$7MheopBinTtq2Ep5NkP7Rv09zHw(this.f$0, storyViewer8, resourcesProvider7, view);
                         }
                     });
                 }
             }
             StoryItemHolder storyItemHolder3 = PeerStoriesView.this.currentStory;
-            boolean z7 = (storyItemHolder3 == null || (storyItem = storyItemHolder3.storyItem) == null || (messageMedia = storyItem.media) == null || (!MessageObject.isDocumentHasAttachedStickers(messageMedia.document) && ((photo = PeerStoriesView.this.currentStory.storyItem.media.photo) == null || !photo.has_stickers))) ? false : true;
+            boolean z7 = (storyItemHolder3 == null || (storyItem2 = storyItemHolder3.storyItem) == null || (messageMedia = storyItem2.media) == null || (!MessageObject.isDocumentHasAttachedStickers(messageMedia.document) && ((photo = PeerStoriesView.this.currentStory.storyItem.media.photo) == null || !photo.has_stickers))) ? false : true;
             PeerStoriesView peerStoriesView14 = PeerStoriesView.this;
             ArrayList animatedEmojiSets = peerStoriesView14.getAnimatedEmojiSets(peerStoriesView14.currentStory);
             boolean z8 = (animatedEmojiSets == null || animatedEmojiSets.isEmpty()) ? false : true;
             if (z7 || z8) {
-                View gapView2 = new ActionBarPopupWindow.GapView(this.val$context, this.val$resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                ActionBarPopupWindow.GapView gapView2 = new ActionBarPopupWindow.GapView(this.val$context, this.val$resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
                 int i3 = R.id.fit_width_tag;
                 gapView2.setTag(i3, 1);
                 actionBarPopupWindowLayout.addView(gapView2, LayoutHelper.createLinear(-1, 8));
                 TLRPC.MessageMedia messageMedia3 = PeerStoriesView.this.currentStory.storyItem.media;
-                TLRPC.Document document = messageMedia3.document;
-                final StoryContainsEmojiButton storyContainsEmojiButton = new StoryContainsEmojiButton(this.val$context, PeerStoriesView.this.currentAccount, document != null ? document : messageMedia3.photo, PeerStoriesView.this.currentStory.storyItem, z7, animatedEmojiSets, this.val$resourcesProvider);
+                TLObject tLObject = messageMedia3.document;
+                if (tLObject == null) {
+                    tLObject = messageMedia3.photo;
+                }
+                final StoryContainsEmojiButton storyContainsEmojiButton = new StoryContainsEmojiButton(this.val$context, PeerStoriesView.this.currentAccount, tLObject, PeerStoriesView.this.currentStory.storyItem, z7, animatedEmojiSets, this.val$resourcesProvider);
                 storyContainsEmojiButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$onCreate$60(storyContainsEmojiButton, view);
+                        PeerStoriesView.AnonymousClass8.$r8$lambda$635XFFZ2xLU07Rq0_OUdShc6evA(this.f$0, storyContainsEmojiButton, view);
                     }
                 });
                 storyContainsEmojiButton.setTag(i3, 1);
-                actionBarPopupWindowLayout.addView((View) storyContainsEmojiButton, LayoutHelper.createLinear(-1, -2));
+                actionBarPopupWindowLayout.addView(storyContainsEmojiButton, LayoutHelper.createLinear(-1, -2));
             }
         }
 
-        public void lambda$onCreate$10(View view) {
+        public static void $r8$lambda$Y7AUSfB5NvGxXCn3fSzjJiUJdsw(AnonymousClass8 anonymousClass8, View view) {
             StoriesController.UploadingStory uploadingStory = PeerStoriesView.this.currentStory.uploadingStory;
             if (uploadingStory != null) {
                 uploadingStory.cancel();
@@ -2571,7 +2571,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$11(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TL_stories.StoryItem storyItem, View view) {
+        public static void $r8$lambda$IKH64Mx_JTuUAVDeXSTwXzxX5mg(AnonymousClass8 anonymousClass8, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TL_stories.StoryItem storyItem, View view) {
             PeerStoriesView.this.editPrivacy(storyPrivacy, storyItem);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -2579,7 +2579,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$17(Theme.ResourcesProvider resourcesProvider, Context context, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
+        public static void $r8$lambda$CWr4YqN6u1ruDqsw1DQruaZiYv8(final AnonymousClass8 anonymousClass8, Theme.ResourcesProvider resourcesProvider, Context context, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
+            anonymousClass8.getClass();
             if (view.getAlpha() < 1.0f) {
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
                 AndroidUtilities.shakeViewSpring(view, peerStoriesView.shiftDp = -peerStoriesView.shiftDp);
@@ -2590,7 +2591,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (activityFindActivity == null) {
                 return;
             }
-            this.edit = true;
+            anonymousClass8.edit = true;
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -2598,7 +2599,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreate$16(activityFindActivity, storyViewer, sharedResources);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$M4K106nXCkULdq0fIL73_lg0Kl4(this.f$0, activityFindActivity, storyViewer, sharedResources);
                 }
             };
             if (PeerStoriesView.this.delegate.releasePlayer(runnable)) {
@@ -2607,7 +2608,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) {
+        public static void $r8$lambda$M4K106nXCkULdq0fIL73_lg0Kl4(final AnonymousClass8 anonymousClass8, Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -2633,24 +2634,25 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             storyRecorder.setOnFullyOpenListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreate$12();
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$IuAvxfMSuJacrvulxyDBtJuikdU(this.f$0);
                 }
             });
             storyRecorder.setOnPrepareCloseListener(new Utilities.Callback4() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                    this.f$0.lambda$onCreate$15(sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
+                    PeerStoriesView.AnonymousClass8.m4370$r8$lambda$oSOE2rYJHsu3M3fVe0KWblJLv4(this.f$0, sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
                 }
             });
         }
 
-        public void lambda$onCreate$12() {
+        public static void $r8$lambda$IuAvxfMSuJacrvulxyDBtJuikdU(AnonymousClass8 anonymousClass8) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.editOpened = true;
             peerStoriesView.setActive(false);
         }
 
-        public void lambda$onCreate$15(SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool, Long l2) {
+        public static void m4370$r8$lambda$oSOE2rYJHsu3M3fVe0KWblJLv4(AnonymousClass8 anonymousClass8, SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool, Long l2) {
+            anonymousClass8.getClass();
             final long jCurrentTimeMillis = System.currentTimeMillis();
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView.playerSharedScope;
@@ -2663,7 +2665,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 peerStoriesView2.onImageReceiverThumbLoaded = new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.lambda$onCreate$13(runnable);
+                        PeerStoriesView.AnonymousClass8.$r8$lambda$44cxg47EmO7wGipUuO4ZEp56bsM(runnable);
                     }
                 };
                 if (bool.booleanValue()) {
@@ -2677,7 +2679,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             videoPlayerHolder.setOnReadyListener(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.lambda$onCreate$14(runnable, jCurrentTimeMillis);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$93s1RGoVHBMKE1kd2Jx9tC2wRPw(runnable, jCurrentTimeMillis);
                 }
             });
             PeerStoriesView.this.delegate.setPopupIsVisible(false);
@@ -2692,17 +2694,17 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public static void lambda$onCreate$13(Runnable runnable) {
+        public static void $r8$lambda$44cxg47EmO7wGipUuO4ZEp56bsM(Runnable runnable) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             AndroidUtilities.runOnUIThread(runnable);
         }
 
-        public static void lambda$onCreate$14(Runnable runnable, long j) {
+        public static void $r8$lambda$93s1RGoVHBMKE1kd2Jx9tC2wRPw(Runnable runnable, long j) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - j)));
         }
 
-        public void lambda$onCreate$27(Context context, final TL_stories.StoryItem storyItem, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
+        public static void $r8$lambda$Bbk4ncA5bLiiTZNLtpQF1pBEFNU(final AnonymousClass8 anonymousClass8, Context context, final TL_stories.StoryItem storyItem, final StoryViewer storyViewer, final SharedResources sharedResources, View view) {
             File path = PeerStoriesView.this.currentStory.getPath();
             if (path == null || !path.exists()) {
                 PeerStoriesView.this.showDownloadAlert();
@@ -2712,7 +2714,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (activityFindActivity == null) {
                 return;
             }
-            this.edit = true;
+            anonymousClass8.edit = true;
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -2720,7 +2722,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreate$26(activityFindActivity, storyItem, storyViewer, sharedResources);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$qk9nJGEmNU8S8V_7HRSkADbpAdc(this.f$0, activityFindActivity, storyItem, storyViewer, sharedResources);
                 }
             };
             if (PeerStoriesView.this.delegate.releasePlayer(runnable)) {
@@ -2729,7 +2731,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) {
+        public static void $r8$lambda$qk9nJGEmNU8S8V_7HRSkADbpAdc(final AnonymousClass8 anonymousClass8, Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -2744,7 +2746,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             storyEntryCopy.updateDocumentRef = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onCreate$21(storyItem2, storyItem, (Utilities.Callback) obj);
+                    PeerStoriesView.AnonymousClass8.m4357$r8$lambda$5Vc_jpktWb8KLLmS7S_0DmQyNk(this.f$0, storyItem2, storyItem, (Utilities.Callback) obj);
                 }
             };
             if (PeerStoriesView.this.isBotsPreview()) {
@@ -2759,24 +2761,25 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             storyRecorder.setOnFullyOpenListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreate$22();
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$3LLmLuHGCipXxL8nL8Rgmrhnbpg(this.f$0);
                 }
             });
             storyRecorder.setOnPrepareCloseListener(new Utilities.Callback4() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                    this.f$0.lambda$onCreate$25(sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$nFYM5T5RU8LSQkyx_Pc8zeAiuTk(this.f$0, sharedResources, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
                 }
             });
         }
 
-        public void lambda$onCreate$21(final TL_stories.StoryItem storyItem, final TL_stories.StoryItem storyItem2, final Utilities.Callback callback) {
+        public static void m4357$r8$lambda$5Vc_jpktWb8KLLmS7S_0DmQyNk(final AnonymousClass8 anonymousClass8, final TL_stories.StoryItem storyItem, final TL_stories.StoryItem storyItem2, final Utilities.Callback callback) {
             final StoriesController.BotPreviewsList botPreviewsList;
+            anonymousClass8.getClass();
             if ((storyItem instanceof StoriesController.BotPreview) && (botPreviewsList = ((StoriesController.BotPreview) storyItem).list) != null) {
                 botPreviewsList.reload(new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.lambda$onCreate$18(botPreviewsList, storyItem2, callback);
+                        PeerStoriesView.AnonymousClass8.m4366$r8$lambda$_yNBXYv7gOPVoHtzsMoD1J64fI(botPreviewsList, storyItem2, callback);
                     }
                 });
                 return;
@@ -2787,12 +2790,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             ConnectionsManager.getInstance(PeerStoriesView.this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$onCreate$20(storyItem, callback, tLObject, tL_error);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$Zh96uyzu1sQCXtgGh4GX6D5lCGs(this.f$0, storyItem, callback, tLObject, tL_error);
                 }
             });
         }
 
-        public static void lambda$onCreate$18(StoriesController.BotPreviewsList botPreviewsList, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
+        public static void m4366$r8$lambda$_yNBXYv7gOPVoHtzsMoD1J64fI(StoriesController.BotPreviewsList botPreviewsList, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
             TL_stories.StoryItem storyItem2;
             TLRPC.MessageMedia messageMedia;
             TLRPC.Document document;
@@ -2807,16 +2810,18 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             callback.run(null);
         }
 
-        public void lambda$onCreate$20(final TL_stories.StoryItem storyItem, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$Zh96uyzu1sQCXtgGh4GX6D5lCGs(final AnonymousClass8 anonymousClass8, final TL_stories.StoryItem storyItem, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            anonymousClass8.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreate$19(tLObject, storyItem, callback);
+                    PeerStoriesView.AnonymousClass8.m4364$r8$lambda$UPZe3hi0Jw_hLNg0dHyfIfMAU(this.f$0, tLObject, storyItem, callback);
                 }
             });
         }
 
-        public void lambda$onCreate$19(TLObject tLObject, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
+        public static void m4364$r8$lambda$UPZe3hi0Jw_hLNg0dHyfIfMAU(AnonymousClass8 anonymousClass8, TLObject tLObject, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
+            anonymousClass8.getClass();
             if (tLObject instanceof TL_stories.TL_stories_stories) {
                 TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
                 MessagesController.getInstance(PeerStoriesView.this.currentAccount).putUsers(tL_stories_stories.users, false);
@@ -2831,13 +2836,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             callback.run(null);
         }
 
-        public void lambda$onCreate$22() {
+        public static void $r8$lambda$3LLmLuHGCipXxL8nL8Rgmrhnbpg(AnonymousClass8 anonymousClass8) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.editOpened = true;
             peerStoriesView.setActive(false);
         }
 
-        public void lambda$onCreate$25(SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool, Long l2) {
+        public static void $r8$lambda$nFYM5T5RU8LSQkyx_Pc8zeAiuTk(AnonymousClass8 anonymousClass8, SharedResources sharedResources, Long l, final Runnable runnable, Boolean bool, Long l2) {
+            anonymousClass8.getClass();
             final long jCurrentTimeMillis = System.currentTimeMillis();
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView.playerSharedScope;
@@ -2850,7 +2856,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 peerStoriesView2.onImageReceiverThumbLoaded = new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.AnonymousClass8.lambda$onCreate$23(runnable);
+                        PeerStoriesView.AnonymousClass8.$r8$lambda$NV2WjvVVPH_8msYrDZ0Kte2fosg(runnable);
                     }
                 };
                 if (bool.booleanValue()) {
@@ -2864,7 +2870,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             videoPlayerHolder.setOnReadyListener(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.lambda$onCreate$24(runnable, jCurrentTimeMillis);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$VU5a7tw08M0tpjO9YNLN2d5ydoQ(runnable, jCurrentTimeMillis);
                 }
             });
             PeerStoriesView.this.delegate.setPopupIsVisible(false);
@@ -2879,23 +2885,24 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public static void lambda$onCreate$23(Runnable runnable) {
+        public static void $r8$lambda$NV2WjvVVPH_8msYrDZ0Kte2fosg(Runnable runnable) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             AndroidUtilities.runOnUIThread(runnable);
         }
 
-        public static void lambda$onCreate$24(Runnable runnable, long j) {
+        public static void $r8$lambda$VU5a7tw08M0tpjO9YNLN2d5ydoQ(Runnable runnable, long j) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - j)));
         }
 
-        public void lambda$onCreate$29(final TL_stories.StoryItem storyItem, final boolean z, final Theme.ResourcesProvider resourcesProvider, View view) {
+        public static void $r8$lambda$Bm09UYUvNLQ2Ksc4ZfOZiUFSHqA(final AnonymousClass8 anonymousClass8, final TL_stories.StoryItem storyItem, final boolean z, final Theme.ResourcesProvider resourcesProvider, View view) {
+            anonymousClass8.getClass();
             ArrayList arrayList = new ArrayList();
             arrayList.add(storyItem);
             MessagesController.getInstance(PeerStoriesView.this.currentAccount).getStoriesController().updateStoriesPinned(PeerStoriesView.this.dialogId, arrayList, z, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onCreate$28(storyItem, z, resourcesProvider, (Boolean) obj);
+                    PeerStoriesView.AnonymousClass8.m4373$r8$lambda$wWp33s7qfWyHIx_aoDD3J4XW0k(this.f$0, storyItem, z, resourcesProvider, (Boolean) obj);
                 }
             });
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -2904,7 +2911,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$28(TL_stories.StoryItem storyItem, boolean z, Theme.ResourcesProvider resourcesProvider, Boolean bool) {
+        public static void m4373$r8$lambda$wWp33s7qfWyHIx_aoDD3J4XW0k(AnonymousClass8 anonymousClass8, TL_stories.StoryItem storyItem, boolean z, Theme.ResourcesProvider resourcesProvider, Boolean bool) {
+            anonymousClass8.getClass();
             if (bool.booleanValue()) {
                 storyItem.pinned = z;
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;
@@ -2922,7 +2930,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.UnknownError)).show();
         }
 
-        public void lambda$onCreate$30(View view) {
+        public static void $r8$lambda$62r8uGIpRStXy1e6ZFBX41oRk3w(AnonymousClass8 anonymousClass8, View view) {
             PeerStoriesView.this.saveToGallery();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -2930,7 +2938,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$31(View view) {
+        public static void $r8$lambda$qW0VMYUOUZcuX9_fENzH9S6et_k(AnonymousClass8 anonymousClass8, View view) {
             AndroidUtilities.addToClipboard(PeerStoriesView.this.currentStory.createLink());
             PeerStoriesView.this.onLinkCopied();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -2939,7 +2947,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$32(View view) {
+        public static void m4359$r8$lambda$CCwEVG3wDESAA6e_g8raaIdgRA(AnonymousClass8 anonymousClass8, View view) {
             PeerStoriesView.this.shareStory(false);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -2947,9 +2955,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$33(boolean z, View view) {
+        public static void $r8$lambda$iHUsSqvmSNiShqxSI6BeZz9SUdc(AnonymousClass8 anonymousClass8, boolean z, View view) {
             LivePlayer livePlayer = LivePlayer.recording;
             if (livePlayer != null) {
+                anonymousClass8.getClass();
                 livePlayer.setMuted(!z);
             }
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -2958,9 +2967,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$34(View view) {
+        public static void m4362$r8$lambda$G_NEFfN8jdoaCVI6b5GDeLkF8(AnonymousClass8 anonymousClass8, View view) {
             LivePlayer livePlayer = LivePlayer.recording;
             if (livePlayer != null) {
+                anonymousClass8.getClass();
                 livePlayer.switchCamera();
             }
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -2969,7 +2979,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$35(StoryViewer storyViewer, View view) {
+        public static void m4365$r8$lambda$Y_aU1q0fzfo6Hnz_ybseVwwlkw(AnonymousClass8 anonymousClass8, StoryViewer storyViewer, View view) {
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -2979,7 +2989,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$39(Theme.ResourcesProvider resourcesProvider, StoryViewer storyViewer, View view) {
+        public static void m4371$r8$lambda$pT1rl95b49EQgExBUhWgNp4NA(final AnonymousClass8 anonymousClass8, Theme.ResourcesProvider resourcesProvider, StoryViewer storyViewer, View view) {
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -2995,13 +3005,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             storyPrivacyBottomSheet.whenSelectedRules(new StoryPrivacyBottomSheet.DoneCallback() {
                 @Override
                 public final void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z3, boolean z4, boolean z5, boolean z6, TLRPC.InputPeer inputPeer, int i, Runnable runnable, Runnable runnable2) {
-                    this.f$0.lambda$onCreate$38(storyPrivacyBottomSheet, storyPrivacy, z3, z4, z5, z6, inputPeer, i, runnable, runnable2);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$dvIvpeCi9nEZqpAxPiVbBYo9N2k(this.f$0, storyPrivacyBottomSheet, storyPrivacy, z3, z4, z5, z6, inputPeer, i, runnable, runnable2);
                 }
             }, false);
             storyPrivacyBottomSheet.show();
         }
 
-        public void lambda$onCreate$38(final StoryPrivacyBottomSheet storyPrivacyBottomSheet, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, Runnable runnable, Runnable runnable2) {
+        public static void $r8$lambda$dvIvpeCi9nEZqpAxPiVbBYo9N2k(final AnonymousClass8 anonymousClass8, final StoryPrivacyBottomSheet storyPrivacyBottomSheet, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, Runnable runnable, Runnable runnable2) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
             if ((storyItem != null && storyItem.pinned) != z3) {
@@ -3019,14 +3029,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     ConnectionsManager.getInstance(PeerStoriesView.this.currentAccount).sendRequest(togglegroupcallsettings, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$onCreate$37(storyPrivacyBottomSheet, tLObject, tL_error);
+                            PeerStoriesView.AnonymousClass8.m4369$r8$lambda$kMop_RM1Xh5xJ7mppcpNEQUC3k(this.f$0, storyPrivacyBottomSheet, tLObject, tL_error);
                         }
                     });
                 }
             }
         }
 
-        public void lambda$onCreate$37(final StoryPrivacyBottomSheet storyPrivacyBottomSheet, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4369$r8$lambda$kMop_RM1Xh5xJ7mppcpNEQUC3k(AnonymousClass8 anonymousClass8, final StoryPrivacyBottomSheet storyPrivacyBottomSheet, TLObject tLObject, TLRPC.TL_error tL_error) {
+            anonymousClass8.getClass();
             if (tLObject instanceof TLRPC.Updates) {
                 MessagesController.getInstance(PeerStoriesView.this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             }
@@ -3038,7 +3049,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             });
         }
 
-        public void lambda$onCreate$41(Theme.ResourcesProvider resourcesProvider, final StoryViewer storyViewer, View view) {
+        public static void $r8$lambda$xs6zXo3LcP_aIVhvPQax6j89fcA(final AnonymousClass8 anonymousClass8, Theme.ResourcesProvider resourcesProvider, final StoryViewer storyViewer, View view) {
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -3046,12 +3057,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             new AlertDialog.Builder(PeerStoriesView.this.getContext(), resourcesProvider).setTitle(LocaleController.getString(R.string.LiveStoryEndAlertTitle)).setMessage(LocaleController.getString(R.string.LiveStoryEndAlertText)).setPositiveButton(LocaleController.getString(R.string.LiveStoryEndAlertButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$onCreate$40(storyViewer, alertDialog, i);
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$fxCWqGRnKRKJs56dBi_5w__foKw(this.f$0, storyViewer, alertDialog, i);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
         }
 
-        public void lambda$onCreate$40(StoryViewer storyViewer, AlertDialog alertDialog, int i) {
+        public static void $r8$lambda$fxCWqGRnKRKJs56dBi_5w__foKw(AnonymousClass8 anonymousClass8, StoryViewer storyViewer, AlertDialog alertDialog, int i) {
+            anonymousClass8.getClass();
             LivePlayer livePlayer = storyViewer.livePlayer;
             if (livePlayer == null) {
                 PeerStoriesView.this.deleteStory();
@@ -3060,7 +3072,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$42(View view) {
+        public static void $r8$lambda$EyGBYxXhkjUX8LBzkLvP2Snax8c(AnonymousClass8 anonymousClass8, View view) {
             PeerStoriesView.this.deleteStory();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -3068,7 +3080,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$43(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
+        public static void m4363$r8$lambda$KtLup8VGdtBmCHfJg3KgnjsC_o(AnonymousClass8 anonymousClass8, String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
             MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit().putBoolean("stories_" + str, false).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0L);
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryMutedHint", R.string.NotificationsStoryMutedHint, str2))).setTag(2).show();
@@ -3078,7 +3090,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$44(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
+        public static void $r8$lambda$lSrQ1tlGiQM9LagJ0I8ZO5ijfaw(AnonymousClass8 anonymousClass8, String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
             MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit().putBoolean("stories_" + str, true).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0L);
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryUnmutedHint", R.string.NotificationsStoryUnmutedHint, str2))).setTag(2).show();
@@ -3088,7 +3100,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$45(View view) {
+        public static void $r8$lambda$epNTapv2wsGeQdSAB9fxcJgY1Ms(AnonymousClass8 anonymousClass8, View view) {
             MediaDataController.getInstance(PeerStoriesView.this.currentAccount).removePeer(PeerStoriesView.this.dialogId);
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.storiesController.toggleHidden(peerStoriesView.dialogId, true, false, true);
@@ -3098,7 +3110,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$46(View view) {
+        public static void m4356$r8$lambda$4kVUrFMWU_EG4udk8JOKmrxuAs(AnonymousClass8 anonymousClass8, View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.toggleArchiveForStory(peerStoriesView.dialogId);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -3107,7 +3119,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$47(View view) {
+        public static void $r8$lambda$Yo785VaT01Zye9sHh8BTpimId7I(AnonymousClass8 anonymousClass8, View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.toggleArchiveForStory(peerStoriesView.dialogId);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -3116,7 +3128,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$48(StoryViewer storyViewer, View view) {
+        public static void $r8$lambda$dh0E94OotPTYYKGlwARkk5sKS8E(AnonymousClass8 anonymousClass8, StoryViewer storyViewer, View view) {
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -3126,7 +3138,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$49(View view) {
+        public static void $r8$lambda$imQNfMoRLNBY2Mm7NsB6pCQVNmk(AnonymousClass8 anonymousClass8, View view) {
             PeerStoriesView.this.saveToGallery();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -3134,24 +3146,26 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$51(ActionBarMenuSubItem actionBarMenuSubItem, final StoryViewer storyViewer, View view) {
+        public static void m4354$r8$lambda$0Jdh7gjeXYX5KJZoBNurS4Mg3U(final AnonymousClass8 anonymousClass8, ActionBarMenuSubItem actionBarMenuSubItem, final StoryViewer storyViewer, View view) {
+            anonymousClass8.getClass();
             actionBarMenuSubItem.performHapticFeedback(3);
             BulletinFactory bulletinFactoryGlobal = BulletinFactory.global();
             if (bulletinFactoryGlobal != null) {
                 bulletinFactoryGlobal.createSimpleBulletin(R.raw.ic_save_to_gallery, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SaveStoryToGalleryPremiumHint), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onCreate$50(storyViewer);
+                        PeerStoriesView.AnonymousClass8.$r8$lambda$xVMkoivh2icjTKDJ1mgk31lHwt4(this.f$0, storyViewer);
                     }
                 })).show();
             }
         }
 
-        public void lambda$onCreate$50(StoryViewer storyViewer) {
+        public static void $r8$lambda$xVMkoivh2icjTKDJ1mgk31lHwt4(AnonymousClass8 anonymousClass8, StoryViewer storyViewer) {
+            anonymousClass8.getClass();
             PeerStoriesView.this.delegate.showDialog(new PremiumFeatureBottomSheet(storyViewer.fragment, 14, false));
         }
 
-        public void lambda$onCreate$52(View view) {
+        public static void m4367$r8$lambda$gt1J7EbtYSduXPwXR5D2bhi4R0(AnonymousClass8 anonymousClass8, View view) {
             AndroidUtilities.addToClipboard(PeerStoriesView.this.currentStory.createLink());
             PeerStoriesView.this.onLinkCopied();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -3160,7 +3174,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$53(View view) {
+        public static void $r8$lambda$lkLzkL65cLBXsZAaK4Xwu7a3SOM(AnonymousClass8 anonymousClass8, View view) {
             PeerStoriesView.this.shareStory(false);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
@@ -3168,7 +3182,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$54(View view) {
+        public static void m4361$r8$lambda$EU0cHA1_b7jvoUjOexaVG_WG_g(AnonymousClass8 anonymousClass8, View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.currentStory.storyItem.translated = false;
             StoriesStorage storiesStorage = MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().getStoriesStorage();
@@ -3182,7 +3196,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$57(View view) {
+        public static void $r8$lambda$B7tJ2XtKnQyc2Dw1POoPDtdRWH4(final AnonymousClass8 anonymousClass8, View view) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.currentStory.storyItem.translated = true;
             peerStoriesView.cancelTextSelection();
@@ -3197,13 +3211,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCreate$55();
+                    PeerStoriesView.AnonymousClass8.$r8$lambda$1_Mkoa2cbvMNh7tBI3R5DpHVz34(this.f$0);
                 }
             };
             MessagesController.getInstance(PeerStoriesView.this.currentAccount).getTranslateController().translateStory(PeerStoriesView.this.currentStory.storyItem, new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass8.lambda$onCreate$56(runnable, jCurrentTimeMillis);
+                    AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 500 - (System.currentTimeMillis() - jCurrentTimeMillis)));
                 }
             });
             PeerStoriesView.this.updatePosition();
@@ -3216,7 +3230,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$55() {
+        public static void $r8$lambda$1_Mkoa2cbvMNh7tBI3R5DpHVz34(AnonymousClass8 anonymousClass8) {
             Delegate delegate = PeerStoriesView.this.delegate;
             if (delegate != null) {
                 delegate.setTranslating(false);
@@ -3227,12 +3241,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             peerStoriesView.storyCaptionView.expand(true);
         }
 
-        public static void lambda$onCreate$56(Runnable runnable, long j) {
-            AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 500 - (System.currentTimeMillis() - j)));
-        }
-
-        public void lambda$onCreate$59(final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
+        public static void $r8$lambda$7MheopBinTtq2Ep5NkP7Rv09zHw(AnonymousClass8 anonymousClass8, final StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider, View view) {
             if (storyViewer != null) {
+                anonymousClass8.getClass();
                 storyViewer.setOverlayVisible(true);
             }
             int i = PeerStoriesView.this.currentAccount;
@@ -3241,7 +3252,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             ReportBottomSheet.openStory(i, context, peerStoriesView.currentStory.storyItem, BulletinFactory.of(peerStoriesView.storyContainer, resourcesProvider), resourcesProvider, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PeerStoriesView.AnonymousClass8.lambda$onCreate$58(storyViewer, (Boolean) obj);
+                    PeerStoriesView.AnonymousClass8.m4372$r8$lambda$rv4ddzDfrcC3oInSjhp75oHYjo(storyViewer, (Boolean) obj);
                 }
             });
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -3250,14 +3261,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public static void lambda$onCreate$58(StoryViewer storyViewer, Boolean bool) {
+        public static void m4372$r8$lambda$rv4ddzDfrcC3oInSjhp75oHYjo(StoryViewer storyViewer, Boolean bool) {
             if (storyViewer != null) {
                 storyViewer.setOverlayVisible(false);
             }
         }
 
-        public void lambda$onCreate$60(StoryContainsEmojiButton storyContainsEmojiButton, View view) {
+        public static void $r8$lambda$635XFFZ2xLU07Rq0_OUdShc6evA(AnonymousClass8 anonymousClass8, StoryContainsEmojiButton storyContainsEmojiButton, View view) {
             Delegate delegate;
+            anonymousClass8.getClass();
             EmojiPacksAlert alert = storyContainsEmojiButton.getAlert();
             if (alert == null || (delegate = PeerStoriesView.this.delegate) == null) {
                 return;
@@ -3272,7 +3284,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onDismissed$61();
+                        PeerStoriesView.this.delegate.setPopupIsVisible(false);
                     }
                 });
             }
@@ -3280,44 +3292,40 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             peerStoriesView.popupMenu = null;
             peerStoriesView.editStoryItem = null;
         }
-
-        public void lambda$onDismissed$61() {
-            PeerStoriesView.this.delegate.setPopupIsVisible(false);
-        }
     }
 
-    public void lambda$new$10(View view) {
+    public static void $r8$lambda$EqOTQ6eILNhsBjRAdkwBjItaalg(final PeerStoriesView peerStoriesView, View view) {
         SpannableStringBuilder spannableStringBuilderReplaceTags;
         boolean z;
         CharSequence charSequenceReplaceEmoji;
         HintView2 hintView2;
         int measuredWidth;
         StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy;
-        TL_stories.StoryItem storyItem = this.currentStory.storyItem;
+        TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
         if (storyItem == null) {
             return;
         }
-        if (this.isSelf) {
+        if (peerStoriesView.isSelf) {
             if (storyItem.privacy.isEmpty()) {
-                storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(3, this.currentAccount, new ArrayList());
+                storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(3, peerStoriesView.currentAccount, new ArrayList());
             } else {
-                storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(this.currentAccount, storyItem.privacy);
+                storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(peerStoriesView.currentAccount, storyItem.privacy);
             }
-            editPrivacy(storyPrivacy, storyItem);
+            peerStoriesView.editPrivacy(storyPrivacy, storyItem);
             return;
         }
-        if (this.privacyHint == null) {
-            HintView2 onHiddenListener = new HintView2(getContext(), 1).setMultilineText(true).setTextAlign(Layout.Alignment.ALIGN_CENTER).setOnHiddenListener(new Runnable() {
+        if (peerStoriesView.privacyHint == null) {
+            HintView2 onHiddenListener = new HintView2(peerStoriesView.getContext(), 1).setMultilineText(true).setTextAlign(Layout.Alignment.ALIGN_CENTER).setOnHiddenListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$9();
+                    this.f$0.delegate.setIsHintVisible(false);
                 }
             });
-            this.privacyHint = onHiddenListener;
+            peerStoriesView.privacyHint = onHiddenListener;
             onHiddenListener.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-            this.storyContainer.addView(this.privacyHint, LayoutHelper.createFrame(-1, 60.0f, 55, 0.0f, 52.0f, 0.0f, 0.0f));
+            peerStoriesView.storyContainer.addView(peerStoriesView.privacyHint, LayoutHelper.createFrame(-1, 60.0f, 55, 0.0f, 52.0f, 0.0f, 0.0f));
         }
-        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+        TLRPC.User user = MessagesController.getInstance(peerStoriesView.currentAccount).getUser(Long.valueOf(peerStoriesView.dialogId));
         if (user == null) {
             return;
         }
@@ -3327,68 +3335,64 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             strSubstring = strSubstring.substring(0, iIndexOf);
         }
         if (storyItem.close_friends) {
-            this.privacyHint.setInnerPadding(15.0f, 8.0f, 15.0f, 8.0f);
+            peerStoriesView.privacyHint.setInnerPadding(15.0f, 8.0f, 15.0f, 8.0f);
             spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoryCloseFriendsHint", R.string.StoryCloseFriendsHint, strSubstring));
         } else {
             if (storyItem.contacts) {
-                this.privacyHint.setInnerPadding(11.0f, 6.0f, 11.0f, 7.0f);
+                peerStoriesView.privacyHint.setInnerPadding(11.0f, 6.0f, 11.0f, 7.0f);
                 spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoryContactsHint", R.string.StoryContactsHint, strSubstring));
                 z = false;
             } else {
                 if (!storyItem.selected_contacts) {
                     return;
                 }
-                this.privacyHint.setInnerPadding(15.0f, 8.0f, 15.0f, 8.0f);
+                peerStoriesView.privacyHint.setInnerPadding(15.0f, 8.0f, 15.0f, 8.0f);
                 spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StorySelectedContactsHint", R.string.StorySelectedContactsHint, strSubstring));
             }
-            charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableStringBuilderReplaceTags, this.privacyHint.getTextPaint().getFontMetricsInt(), false);
-            hintView2 = this.privacyHint;
+            charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableStringBuilderReplaceTags, peerStoriesView.privacyHint.getTextPaint().getFontMetricsInt(), false);
+            hintView2 = peerStoriesView.privacyHint;
             if (z) {
                 measuredWidth = HintView2.cutInFancyHalf(charSequenceReplaceEmoji, hintView2.getTextPaint());
             } else {
-                measuredWidth = this.storyContainer.getMeasuredWidth();
+                measuredWidth = peerStoriesView.storyContainer.getMeasuredWidth();
             }
             hintView2.setMaxWidthPx(measuredWidth);
-            this.privacyHint.setText(charSequenceReplaceEmoji);
-            this.privacyHint.setJoint(1.0f, (-(this.storyContainer.getWidth() - this.privacyButton.getCenterX())) / AndroidUtilities.density);
-            this.delegate.setIsHintVisible(true);
-            if (this.privacyHint.shown()) {
+            peerStoriesView.privacyHint.setText(charSequenceReplaceEmoji);
+            peerStoriesView.privacyHint.setJoint(1.0f, (-(peerStoriesView.storyContainer.getWidth() - peerStoriesView.privacyButton.getCenterX())) / AndroidUtilities.density);
+            peerStoriesView.delegate.setIsHintVisible(true);
+            if (peerStoriesView.privacyHint.shown()) {
                 BotWebViewVibrationEffect.IMPACT_LIGHT.vibrate();
             }
-            this.privacyHint.show();
+            peerStoriesView.privacyHint.show();
         }
         z = true;
-        charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableStringBuilderReplaceTags, this.privacyHint.getTextPaint().getFontMetricsInt(), false);
-        hintView2 = this.privacyHint;
+        charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableStringBuilderReplaceTags, peerStoriesView.privacyHint.getTextPaint().getFontMetricsInt(), false);
+        hintView2 = peerStoriesView.privacyHint;
         if (z) {
             measuredWidth = HintView2.cutInFancyHalf(charSequenceReplaceEmoji, hintView2.getTextPaint());
         } else {
-            measuredWidth = this.storyContainer.getMeasuredWidth();
+            measuredWidth = peerStoriesView.storyContainer.getMeasuredWidth();
         }
         hintView2.setMaxWidthPx(measuredWidth);
-        this.privacyHint.setText(charSequenceReplaceEmoji);
-        this.privacyHint.setJoint(1.0f, (-(this.storyContainer.getWidth() - this.privacyButton.getCenterX())) / AndroidUtilities.density);
-        this.delegate.setIsHintVisible(true);
-        if (this.privacyHint.shown()) {
+        peerStoriesView.privacyHint.setText(charSequenceReplaceEmoji);
+        peerStoriesView.privacyHint.setJoint(1.0f, (-(peerStoriesView.storyContainer.getWidth() - peerStoriesView.privacyButton.getCenterX())) / AndroidUtilities.density);
+        peerStoriesView.delegate.setIsHintVisible(true);
+        if (peerStoriesView.privacyHint.shown()) {
             BotWebViewVibrationEffect.IMPACT_LIGHT.vibrate();
         }
-        this.privacyHint.show();
+        peerStoriesView.privacyHint.show();
     }
 
-    public void lambda$new$9() {
-        this.delegate.setIsHintVisible(false);
-    }
-
-    public void lambda$new$11(StoryViewer storyViewer, View view) {
-        if (this.currentStory.hasSound()) {
+    public static void m4345$r8$lambda$UjAr1Mxc33c26evkmW5sXRN7QU(PeerStoriesView peerStoriesView, StoryViewer storyViewer, View view) {
+        if (peerStoriesView.currentStory.hasSound()) {
             storyViewer.toggleSilentMode();
             if (storyViewer.soundEnabled()) {
                 MessagesController.getGlobalMainSettings().edit().putInt("taptostorysoundhint", 3).apply();
             }
-            this.muteIconContainer.setContentDescription(LocaleController.getString(storyViewer.soundEnabled() ? R.string.Mute : R.string.Unmute));
+            peerStoriesView.muteIconContainer.setContentDescription(LocaleController.getString(storyViewer.soundEnabled() ? R.string.Mute : R.string.Unmute));
             return;
         }
-        showNoSoundHint(true);
+        peerStoriesView.showNoSoundHint(true);
     }
 
     public void createStealthModeItem(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
@@ -3399,7 +3403,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_stories_stealth2, LocaleController.getString(R.string.StealthModeButton), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$createStealthModeItem$12(view);
+                    PeerStoriesView.$r8$lambda$dBKmKkm7EBqwpYHmFt6REKAVdBA(this.f$0, view);
                 }
             });
             return;
@@ -3415,27 +3419,28 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createStealthModeItem$13(view);
+                PeerStoriesView.$r8$lambda$d8caqadZ0c7TlclvYH2d5aPLQvQ(this.f$0, view);
             }
         });
         actionBarMenuSubItemAddItem.setIcon(combinedDrawable);
     }
 
-    public void lambda$createStealthModeItem$12(View view) {
-        if (this.stealthModeIsActive) {
+    public static void $r8$lambda$dBKmKkm7EBqwpYHmFt6REKAVdBA(PeerStoriesView peerStoriesView, View view) {
+        if (peerStoriesView.stealthModeIsActive) {
             StealthModeAlert.showStealthModeEnabledBulletin();
         } else {
-            this.delegate.showDialog(new StealthModeAlert(getContext(), getY() + this.storyContainer.getY(), 0, this.resourcesProvider));
+            peerStoriesView.delegate.showDialog(new StealthModeAlert(peerStoriesView.getContext(), peerStoriesView.getY() + peerStoriesView.storyContainer.getY(), 0, peerStoriesView.resourcesProvider));
         }
-        CustomPopupMenu customPopupMenu = this.popupMenu;
+        CustomPopupMenu customPopupMenu = peerStoriesView.popupMenu;
         if (customPopupMenu != null) {
             customPopupMenu.dismiss();
         }
     }
 
-    public void lambda$createStealthModeItem$13(View view) {
-        this.delegate.showDialog(new StealthModeAlert(getContext(), getY() + this.storyContainer.getY(), 0, this.resourcesProvider));
-        CustomPopupMenu customPopupMenu = this.popupMenu;
+    public static void $r8$lambda$d8caqadZ0c7TlclvYH2d5aPLQvQ(PeerStoriesView peerStoriesView, View view) {
+        peerStoriesView.getClass();
+        peerStoriesView.delegate.showDialog(new StealthModeAlert(peerStoriesView.getContext(), peerStoriesView.getY() + peerStoriesView.storyContainer.getY(), 0, peerStoriesView.resourcesProvider));
+        CustomPopupMenu customPopupMenu = peerStoriesView.popupMenu;
         if (customPopupMenu != null) {
             customPopupMenu.dismiss();
         }
@@ -3447,7 +3452,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             ActionBarMenuItem.addItem(actionBarPopupWindowLayout, z ? R.drawable.menu_quality_sd : R.drawable.menu_quality_hd, LocaleController.getString(z ? R.string.StoryQualityDecrease : R.string.StoryQualityIncrease), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$createQualityItem$14(z, view);
+                    PeerStoriesView.$r8$lambda$oNDnNpKHFCJZtoHmOIW2073Gv2s(this.f$0, z, view);
                 }
             });
             return;
@@ -3465,45 +3470,46 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createQualityItem$16(view);
+                PeerStoriesView.$r8$lambda$9FJglIBBFyK4bhKEXzfeca4yIbo(this.f$0, view);
             }
         });
         actionBarMenuSubItemAddItem.setIcon(combinedDrawable);
     }
 
-    public void lambda$createQualityItem$14(boolean z, View view) {
-        MessagesController.getInstance(this.currentAccount).setStoryQuality(!z);
-        BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(!z ? R.string.StoryQualityIncreasedTitle : R.string.StoryQualityDecreasedTitle), LocaleController.getString(!z ? R.string.StoryQualityIncreasedMessage : R.string.StoryQualityDecreasedMessage)).show();
-        CustomPopupMenu customPopupMenu = this.popupMenu;
+    public static void $r8$lambda$oNDnNpKHFCJZtoHmOIW2073Gv2s(PeerStoriesView peerStoriesView, boolean z, View view) {
+        MessagesController.getInstance(peerStoriesView.currentAccount).setStoryQuality(!z);
+        BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(!z ? R.string.StoryQualityIncreasedTitle : R.string.StoryQualityDecreasedTitle), LocaleController.getString(!z ? R.string.StoryQualityIncreasedMessage : R.string.StoryQualityDecreasedMessage)).show();
+        CustomPopupMenu customPopupMenu = peerStoriesView.popupMenu;
         if (customPopupMenu != null) {
             customPopupMenu.dismiss();
         }
     }
 
-    public void lambda$createQualityItem$16(View view) {
-        final BottomSheet bottomSheet = new BottomSheet(getContext(), false, this.resourcesProvider);
-        bottomSheet.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-        LinearLayout linearLayout = new LinearLayout(getContext());
+    public static void $r8$lambda$9FJglIBBFyK4bhKEXzfeca4yIbo(final PeerStoriesView peerStoriesView, View view) {
+        peerStoriesView.getClass();
+        final BottomSheet bottomSheet = new BottomSheet(peerStoriesView.getContext(), false, peerStoriesView.resourcesProvider);
+        bottomSheet.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, peerStoriesView.resourcesProvider));
+        LinearLayout linearLayout = new LinearLayout(peerStoriesView.getContext());
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
-        BackupImageView backupImageView = new BackupImageView(getContext());
+        BackupImageView backupImageView = new BackupImageView(peerStoriesView.getContext());
         backupImageView.getImageReceiver().setAutoRepeat(1);
-        MediaDataController.getInstance(this.currentAccount).setPlaceholderImage(backupImageView, "tg_superplaceholders_android_2", "😎", "150_150");
+        MediaDataController.getInstance(peerStoriesView.currentAccount).setPlaceholderImage(backupImageView, "tg_superplaceholders_android_2", "😎", "150_150");
         linearLayout.addView(backupImageView, LayoutHelper.createLinear(150, 150, 1, 0, 16, 0, 16));
-        TextView textView = new TextView(getContext());
+        TextView textView = new TextView(peerStoriesView.getContext());
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, peerStoriesView.resourcesProvider));
         textView.setTextSize(1, 20.0f);
         textView.setText(LocaleController.getString(R.string.StoryQualityPremium));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 12, 0, 12, 0));
-        TextView textView2 = new TextView(getContext());
+        TextView textView2 = new TextView(peerStoriesView.getContext());
         textView2.setGravity(17);
-        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
+        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, peerStoriesView.resourcesProvider));
         textView2.setTextSize(1, 14.0f);
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.StoryQualityPremiumText)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), this.resourcesProvider);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(peerStoriesView.getContext(), peerStoriesView.resourcesProvider);
         buttonWithCounterView.setText(LocaleController.getString(R.string.StoryQualityIncrease), false);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("l");
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_switch_lock);
@@ -3514,19 +3520,19 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createQualityItem$15(bottomSheet, view2);
+                PeerStoriesView.$r8$lambda$2Z1iqtFNvsKagyUukv4NbeOiPPk(this.f$0, bottomSheet, view2);
             }
         });
         bottomSheet.setCustomView(linearLayout);
-        this.delegate.showDialog(bottomSheet);
-        CustomPopupMenu customPopupMenu = this.popupMenu;
+        peerStoriesView.delegate.showDialog(bottomSheet);
+        CustomPopupMenu customPopupMenu = peerStoriesView.popupMenu;
         if (customPopupMenu != null) {
             customPopupMenu.dismiss();
         }
     }
 
-    public void lambda$createQualityItem$15(BottomSheet bottomSheet, View view) {
-        this.delegate.showDialog(new PremiumFeatureBottomSheet(this.storyViewer.fragment, 14, false));
+    public static void $r8$lambda$2Z1iqtFNvsKagyUukv4NbeOiPPk(PeerStoriesView peerStoriesView, BottomSheet bottomSheet, View view) {
+        peerStoriesView.delegate.showDialog(new PremiumFeatureBottomSheet(peerStoriesView.storyViewer.fragment, 14, false));
         bottomSheet.dismiss();
     }
 
@@ -3546,7 +3552,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$showLikesReaction$17(valueAnimator);
+                    PeerStoriesView.$r8$lambda$QYeg2eJ4wKrV2n6BujvN8ctrBHc(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -3578,10 +3584,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }).start();
     }
 
-    public void lambda$showLikesReaction$17(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$QYeg2eJ4wKrV2n6BujvN8ctrBHc(PeerStoriesView peerStoriesView, ValueAnimator valueAnimator) {
+        peerStoriesView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.likesReactionShowProgress = fFloatValue;
-        this.likesReactionLayout.setTransitionProgress(fFloatValue);
+        peerStoriesView.likesReactionShowProgress = fFloatValue;
+        peerStoriesView.likesReactionLayout.setTransitionProgress(fFloatValue);
     }
 
     public void likeStory(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
@@ -3731,23 +3738,22 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     }
                 }
                 CharSequence charSequence = storyItemHolder.uploadingStory.entry.caption;
-                if (!(charSequence instanceof Spanned) || (animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), AnimatedEmojiSpan.class)) == null) {
-                    return arrayList2;
-                }
-                while (i < animatedEmojiSpanArr.length) {
-                    AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[i];
-                    TLRPC.Document documentFindDocument4 = animatedEmojiSpan.document;
-                    if (documentFindDocument4 == null) {
-                        documentFindDocument4 = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.documentId);
-                    }
-                    if (documentFindDocument4 != null) {
-                        TLRPC.InputStickerSet inputStickerSet4 = MessageObject.getInputStickerSet(documentFindDocument4);
-                        if (!hashSet.contains(Long.valueOf(inputStickerSet4.id))) {
-                            hashSet.add(Long.valueOf(inputStickerSet4.id));
-                            arrayList2.add(inputStickerSet4);
+                if ((charSequence instanceof Spanned) && (animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), AnimatedEmojiSpan.class)) != null) {
+                    while (i < animatedEmojiSpanArr.length) {
+                        AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[i];
+                        TLRPC.Document documentFindDocument4 = animatedEmojiSpan.document;
+                        if (documentFindDocument4 == null) {
+                            documentFindDocument4 = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.documentId);
                         }
+                        if (documentFindDocument4 != null) {
+                            TLRPC.InputStickerSet inputStickerSet4 = MessageObject.getInputStickerSet(documentFindDocument4);
+                            if (!hashSet.contains(Long.valueOf(inputStickerSet4.id))) {
+                                hashSet.add(Long.valueOf(inputStickerSet4.id));
+                                arrayList2.add(inputStickerSet4);
+                            }
+                        }
+                        i++;
                     }
-                    i++;
                 }
             }
         }
@@ -3776,35 +3782,28 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$toggleArchiveForStory$20(messagesController, j, z2, str2, tLObject2);
+                PeerStoriesView.$r8$lambda$UYxupzeqSM8iBT1a3nANWAnarAo(this.f$0, messagesController, j, z2, str2, tLObject2);
             }
         }, 200L);
     }
 
-    public void lambda$toggleArchiveForStory$20(final MessagesController messagesController, final long j, final boolean z, String str, TLObject tLObject) {
+    public static void $r8$lambda$UYxupzeqSM8iBT1a3nANWAnarAo(PeerStoriesView peerStoriesView, final MessagesController messagesController, final long j, final boolean z, String str, TLObject tLObject) {
+        peerStoriesView.getClass();
         messagesController.getStoriesController().toggleHidden(j, z, false, true);
         BulletinFactory.UndoObject undoObject = new BulletinFactory.UndoObject();
         undoObject.onUndo = new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.lambda$toggleArchiveForStory$18(messagesController, j, z);
+                messagesController.getStoriesController().toggleHidden(j, !z, false, true);
             }
         };
         undoObject.onAction = new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.lambda$toggleArchiveForStory$19(messagesController, j, z);
+                messagesController.getStoriesController().toggleHidden(j, z, true, true);
             }
         };
-        BulletinFactory.of(this.topBulletinContainer, this.resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), !z ? AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToDialogs, ContactsController.formatName(str, null, 10))) : AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10))), null, undoObject).setTag(2).show(true);
-    }
-
-    public static void lambda$toggleArchiveForStory$18(MessagesController messagesController, long j, boolean z) {
-        messagesController.getStoriesController().toggleHidden(j, !z, false, true);
-    }
-
-    public static void lambda$toggleArchiveForStory$19(MessagesController messagesController, long j, boolean z) {
-        messagesController.getStoriesController().toggleHidden(j, z, true, true);
+        BulletinFactory.of(peerStoriesView.topBulletinContainer, peerStoriesView.resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), !z ? AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToDialogs, ContactsController.formatName(str, null, 10))) : AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10))), null, undoObject).setTag(2).show(true);
     }
 
     private void createFailView() {
@@ -3816,7 +3815,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         storyFailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createFailView$21(view);
+                PeerStoriesView.m4341$r8$lambda$7K9kC3nLe2fRhOkyJeygkgCzT0(this.f$0, view);
             }
         });
         this.failView.setAlpha(0.0f);
@@ -3824,14 +3823,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         addView(this.failView, LayoutHelper.createFrame(-1, -2.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
-    public void lambda$createFailView$21(View view) {
+    public static void m4341$r8$lambda$7K9kC3nLe2fRhOkyJeygkgCzT0(PeerStoriesView peerStoriesView, View view) {
         StoriesController.UploadingStory uploadingStory;
-        StoryItemHolder storyItemHolder = this.currentStory;
+        StoryItemHolder storyItemHolder = peerStoriesView.currentStory;
         if (storyItemHolder == null || (uploadingStory = storyItemHolder.uploadingStory) == null) {
             return;
         }
         uploadingStory.tryAgain();
-        updatePosition();
+        peerStoriesView.updatePosition();
     }
 
     private void createPremiumBlockedText() {
@@ -3939,7 +3938,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             public Dialog showDialog(Dialog dialog) {
                 if (PeerStoriesView.this.storyViewer != null) {
                     PeerStoriesView.this.storyViewer.showDialog(dialog);
-                } else if (dialog != null) {
+                    return dialog;
+                }
+                if (dialog != null) {
                     dialog.show();
                 }
                 return dialog;
@@ -3965,7 +3966,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    this.f$0.lambda$showPremiumBlockedToast$23((TL_stories.TL_premium_boostsStatus) obj);
+                    PeerStoriesView.$r8$lambda$3BA_CUJlfM8M7xJlkIeDIMNcE5g(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
                 }
             });
             return;
@@ -3986,42 +3987,42 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             bulletinCreateSimpleBulletin = BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedRepliesNonPremium, userName)), LocaleController.getString(R.string.UserBlockedNonPremiumButton), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showPremiumBlockedToast$24();
+                    PeerStoriesView.m4333$r8$lambda$nI1fJV8O1Ag1eYXCGHFW7hUZj4(this.f$0);
                 }
             });
         }
         bulletinCreateSimpleBulletin.show();
     }
 
-    public void lambda$showPremiumBlockedToast$23(final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public static void $r8$lambda$3BA_CUJlfM8M7xJlkIeDIMNcE5g(final PeerStoriesView peerStoriesView, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         if (tL_premium_boostsStatus == null) {
-            StoryViewer storyViewer = this.storyViewer;
+            StoryViewer storyViewer = peerStoriesView.storyViewer;
             if (storyViewer != null) {
                 storyViewer.setOverlayVisible(false);
                 return;
             }
             return;
         }
-        this.boostsStatus = tL_premium_boostsStatus;
-        MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, tL_premium_boostsStatus, new Consumer() {
+        peerStoriesView.boostsStatus = tL_premium_boostsStatus;
+        MessagesController.getInstance(peerStoriesView.currentAccount).getBoostsController().userCanBoostChannel(peerStoriesView.dialogId, tL_premium_boostsStatus, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                this.f$0.lambda$showPremiumBlockedToast$22(tL_premium_boostsStatus, (ChannelBoostsController.CanApplyBoost) obj);
+                PeerStoriesView.$r8$lambda$JQqPWBLbVmvsREdjPK8f0N4FQdY(this.f$0, tL_premium_boostsStatus, (ChannelBoostsController.CanApplyBoost) obj);
             }
         });
     }
 
-    public void lambda$showPremiumBlockedToast$22(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, ChannelBoostsController.CanApplyBoost canApplyBoost) {
-        this.canApplyBoost = canApplyBoost;
-        LimitReachedBottomSheet.openBoostsForRemoveRestrictions(fragmentForLimit(), tL_premium_boostsStatus, canApplyBoost, this.dialogId, true);
-        StoryViewer storyViewer = this.storyViewer;
+    public static void $r8$lambda$JQqPWBLbVmvsREdjPK8f0N4FQdY(PeerStoriesView peerStoriesView, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+        peerStoriesView.canApplyBoost = canApplyBoost;
+        LimitReachedBottomSheet.openBoostsForRemoveRestrictions(peerStoriesView.fragmentForLimit(), tL_premium_boostsStatus, canApplyBoost, peerStoriesView.dialogId, true);
+        StoryViewer storyViewer = peerStoriesView.storyViewer;
         if (storyViewer != null) {
             storyViewer.setOverlayVisible(false);
         }
     }
 
-    public void lambda$showPremiumBlockedToast$24() {
-        StoryViewer storyViewer = this.storyViewer;
+    public static void m4333$r8$lambda$nI1fJV8O1Ag1eYXCGHFW7hUZj4(PeerStoriesView peerStoriesView) {
+        StoryViewer storyViewer = peerStoriesView.storyViewer;
         if (storyViewer != null) {
             storyViewer.presentFragment(new PremiumPreviewFragment("noncontacts"));
         }
@@ -4059,14 +4060,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createCommentButton$25(view);
+                PeerStoriesView.$r8$lambda$QxOvXZRvMi7NNvk3oWP3Hi9bC28(this.f$0, view);
             }
         });
         addView(this.commentButton, LayoutHelper.createFrame(46, 42.0f, 83, 7.0f, 0.0f, 7.0f, 3.0f));
     }
 
-    public void lambda$createCommentButton$25(View view) {
-        LiveCommentsView liveCommentsView = this.liveCommentsView;
+    public static void $r8$lambda$QxOvXZRvMi7NNvk3oWP3Hi9bC28(PeerStoriesView peerStoriesView, View view) {
+        LiveCommentsView liveCommentsView = peerStoriesView.liveCommentsView;
         liveCommentsView.setCollapsed(!liveCommentsView.isCollapsed(), true);
     }
 
@@ -4080,34 +4081,34 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         paidReactionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createPaidReactionsButton$26(view);
+                PeerStoriesView.$r8$lambda$rGyR8ABbSUZT08EdIe3U8SpKXRA(this.f$0, view);
             }
         });
         this.starsButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view) {
-                return this.f$0.lambda$createPaidReactionsButton$27(view);
+                return PeerStoriesView.$r8$lambda$8nUOK22MRixyXGg1B98VwwD7npI(this.f$0, view);
             }
         });
         addView(this.starsButton, LayoutHelper.createFrame(46, 42.0f, 85, 7.0f, 0.0f, 7.0f, 3.0f));
         addView(this.starsButtonEffectsView, LayoutHelper.createFrame(200, 200.0f, 85, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
-    public void lambda$createPaidReactionsButton$26(View view) {
-        if (disabledPaidFeatures(false)) {
-            this.liveCommentsView.openStarsSheet(disabledPaidFeatures(false));
+    public static void $r8$lambda$rGyR8ABbSUZT08EdIe3U8SpKXRA(PeerStoriesView peerStoriesView, View view) {
+        if (peerStoriesView.disabledPaidFeatures(false)) {
+            peerStoriesView.liveCommentsView.openStarsSheet(peerStoriesView.disabledPaidFeatures(false));
             return;
         }
-        StarsController starsController = StarsController.getInstance(this.currentAccount);
+        StarsController starsController = StarsController.getInstance(peerStoriesView.currentAccount);
         if (starsController.balanceAvailable() && starsController.balance.amount <= 0) {
-            this.liveCommentsView.openStarsSheet(disabledPaidFeatures(false));
+            peerStoriesView.liveCommentsView.openStarsSheet(peerStoriesView.disabledPaidFeatures(false));
         } else {
-            this.liveCommentsView.sendStars(1L, true);
+            peerStoriesView.liveCommentsView.sendStars(1L, true);
         }
     }
 
-    public boolean lambda$createPaidReactionsButton$27(View view) {
-        this.liveCommentsView.openStarsSheet(disabledPaidFeatures(false));
+    public static boolean $r8$lambda$8nUOK22MRixyXGg1B98VwwD7npI(PeerStoriesView peerStoriesView, View view) {
+        peerStoriesView.liveCommentsView.openStarsSheet(peerStoriesView.disabledPaidFeatures(false));
         return true;
     }
 
@@ -4120,7 +4121,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         muteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createMuteButton$28(view);
+                PeerStoriesView.$r8$lambda$ANQd8gfT9VsfPZaLkAPKzKdhH20(this.f$0, view);
             }
         });
         MuteButton muteButton2 = this.muteButton;
@@ -4136,14 +4137,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         addView(this.muteButton, LayoutHelper.createFrame(46, 42.0f, 85, 7.0f, 0.0f, 7.0f, 3.0f));
     }
 
-    public void lambda$createMuteButton$28(View view) {
+    public static void $r8$lambda$ANQd8gfT9VsfPZaLkAPKzKdhH20(PeerStoriesView peerStoriesView, View view) {
+        peerStoriesView.getClass();
         LivePlayer livePlayer = LivePlayer.recording;
         if (livePlayer == null) {
             return;
         }
         boolean z = !livePlayer.isMuted();
         LivePlayer.recording.setMuted(z);
-        this.muteButton.setMuted(z, true);
+        peerStoriesView.muteButton.setMuted(z, true);
     }
 
     public boolean disabledPaidFeatures(boolean z) {
@@ -4182,7 +4184,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.highlightMessageHintView.setOnHiddenListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showPaidMessageHint$29(hintView3);
+                    PeerStoriesView.$r8$lambda$zNIrxmJa5cv_vFW1R_dOaRnLBFE(this.f$0, hintView3);
                 }
             });
             addView(this.highlightMessageHintView, LayoutHelper.createFrame(-1, 100, 87));
@@ -4191,10 +4193,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$showPaidMessageHint$29(HintView2 hintView2) {
-        removeView(hintView2);
-        if (this.highlightMessageHintView == hintView2) {
-            this.highlightMessageHintView = null;
+    public static void $r8$lambda$zNIrxmJa5cv_vFW1R_dOaRnLBFE(PeerStoriesView peerStoriesView, HintView2 hintView2) {
+        peerStoriesView.removeView(hintView2);
+        if (peerStoriesView.highlightMessageHintView == hintView2) {
+            peerStoriesView.highlightMessageHintView = null;
         }
     }
 
@@ -4289,7 +4291,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         }
                         int i = (int) jMax;
                         if (length > HighlightMessageSheet.getTierOption(PeerStoriesView.this.currentAccount, i, HighlightMessageSheet.TIER_EMOJIS) || textWithEntities2.length() > HighlightMessageSheet.getTierOption(PeerStoriesView.this.currentAccount, i, HighlightMessageSheet.TIER_LENGTH)) {
-                            PeerStoriesView.this.lambda$updatePosition$46();
+                            PeerStoriesView.this.onHighlightLiveMessage();
                             return false;
                         }
                     }
@@ -4374,7 +4376,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 PeerStoriesView.this.changeBoundAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$checkAnimation$0(valueAnimator);
+                        PeerStoriesView.AnonymousClass19.$r8$lambda$tKAx9VwVO7vxYKbPyaAOC_axFgM(this.f$0, valueAnimator);
                     }
                 });
                 PeerStoriesView.this.changeBoundAnimator.addListener(new AnimatorListenerAdapter() {
@@ -4403,7 +4405,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$checkAnimation$1(valueAnimator);
+                        this.f$0.messageEditText.setOffsetY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                     }
                 });
                 Animator animator = this.messageEditTextAnimator;
@@ -4420,16 +4422,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.lastContentViewHeight = getMeasuredHeight();
         }
 
-        public void lambda$checkAnimation$0(ValueAnimator valueAnimator) {
-            setAnimatedTop((int) ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        public static void $r8$lambda$tKAx9VwVO7vxYKbPyaAOC_axFgM(AnonymousClass19 anonymousClass19, ValueAnimator valueAnimator) {
+            anonymousClass19.getClass();
+            anonymousClass19.setAnimatedTop((int) ((Float) valueAnimator.getAnimatedValue()).floatValue());
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.forceUpdateOffsets = true;
             peerStoriesView.invalidate();
-            invalidate();
-        }
-
-        public void lambda$checkAnimation$1(ValueAnimator valueAnimator) {
-            this.messageEditText.setOffsetY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+            anonymousClass19.invalidate();
         }
 
         @Override
@@ -4477,7 +4476,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        protected boolean sendMessageInternal(boolean z, int i, int i2, long j, boolean z2) {
+        public boolean sendMessageInternal(boolean z, int i, int i2, long j, boolean z2) {
             if (MessagesController.getInstance(PeerStoriesView.this.currentAccount).isFrozen()) {
                 AccountFrozenAlert.show(PeerStoriesView.this.currentAccount);
                 return false;
@@ -4699,14 +4698,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onMessageSend$0(j);
+                        PeerStoriesView.this.afterMessageSend(j <= 0);
                     }
                 }, 200L);
             }
-        }
-
-        public void lambda$onMessageSend$0(long j) {
-            PeerStoriesView.this.afterMessageSend(j <= 0);
         }
 
         @Override
@@ -4720,7 +4715,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     PeerStoriesView.this.mentionContainer.getAdapter().clear(true);
                 } else {
                     PeerStoriesView.this.mentionContainer.getAdapter().setUserOrChat(MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId)), MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChat(Long.valueOf(-PeerStoriesView.this.dialogId)));
-                    PeerStoriesView.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$8(charSequence, PeerStoriesView.this.chatActivityEnterView.getCursorPosition(), null, false, false);
+                    PeerStoriesView.this.mentionContainer.getAdapter().searchUsernameOrHashtag(charSequence, PeerStoriesView.this.chatActivityEnterView.getCursorPosition(), null, false, false);
                 }
             }
             PeerStoriesView.this.invalidate();
@@ -4733,7 +4728,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
         @Override
         public void didPressSuggestionButton() {
-            PeerStoriesView.this.lambda$updatePosition$46();
+            PeerStoriesView.this.onHighlightLiveMessage();
         }
 
         @Override
@@ -4852,12 +4847,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             AlertsCreator.ensurePaidMessageConfirmation(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId, 1, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj2) {
-                    this.f$0.lambda$onStickerSelected$0(tL_document, str, obj, (Long) obj2);
+                    PeerStoriesView.AnonymousClass22.$r8$lambda$0FPEpHn2rD2HA2GkMqhwmhjZqns(this.f$0, tL_document, str, obj, (Long) obj2);
                 }
             });
         }
 
-        public void lambda$onStickerSelected$0(TLRPC.TL_document tL_document, String str, Object obj, Long l) {
+        public static void $r8$lambda$0FPEpHn2rD2HA2GkMqhwmhjZqns(AnonymousClass22 anonymousClass22, TLRPC.TL_document tL_document, String str, Object obj, Long l) {
             SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, 0, false, obj, null, l.longValue(), PeerStoriesView.this.chatActivityEnterView.getSendMonoForumPeerId(), PeerStoriesView.this.chatActivityEnterView.getSendMessageSuggestionParams());
             PeerStoriesView.this.chatActivityEnterView.addStickerToRecent(tL_document);
             PeerStoriesView.this.chatActivityEnterView.setFieldText("");
@@ -4884,12 +4879,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             AlertsCreator.ensurePaidMessageConfirmation(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId, 1, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$sendBotInlineResult$1(botInlineResult, z, i, (Long) obj);
+                    PeerStoriesView.AnonymousClass22.$r8$lambda$dL1HZFafRbMJEe_qoeAcz8LYT0Q(this.f$0, botInlineResult, z, i, (Long) obj);
                 }
             });
         }
 
-        public void lambda$sendBotInlineResult$1(TLRPC.BotInlineResult botInlineResult, boolean z, int i, Long l) {
+        public static void $r8$lambda$dL1HZFafRbMJEe_qoeAcz8LYT0Q(AnonymousClass22 anonymousClass22, TLRPC.BotInlineResult botInlineResult, boolean z, int i, Long l) {
             long contextBotId = PeerStoriesView.this.mentionContainer.getAdapter().getContextBotId();
             HashMap map = new HashMap();
             map.put("id", botInlineResult.id);
@@ -4947,16 +4942,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             MediaController.saveFile(path.toString(), getContext(), zIsVideo ? 1 : 0, null, null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$saveToGallery$32(zIsVideo, (Uri) obj);
+                    PeerStoriesView peerStoriesView = this.f$0;
+                    BulletinFactory.createSaveToGalleryBulletin(peerStoriesView.storyContainer, zIsVideo, peerStoriesView.resourcesProvider).show();
                 }
             });
             return;
         }
         showDownloadAlert();
-    }
-
-    public void lambda$saveToGallery$32(boolean z, Uri uri) {
-        BulletinFactory.createSaveToGalleryBulletin(this.storyContainer, z, this.resourcesProvider).show();
     }
 
     public void showDownloadAlert() {
@@ -5040,7 +5032,6 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         if (storyItem == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
                             return;
                         }
-                        int i4 = 4;
                         if (i == 8 || i == 7 || (i == 4 && !peerStoriesView.chatAttachAlert.getPhotoLayout().getSelectedPhotos().isEmpty())) {
                             if (i != 8) {
                                 PeerStoriesView.this.chatAttachAlert.dismiss(true);
@@ -5050,16 +5041,16 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                             if (selectedPhotos.isEmpty()) {
                                 return;
                             }
+                            int i4 = 0;
                             int i5 = 0;
-                            int i6 = 0;
-                            while (i6 < Math.ceil(selectedPhotos.size() / 10.0f)) {
-                                int i7 = i6 * 10;
-                                int iMin = Math.min(10, selectedPhotos.size() - i7);
+                            while (i5 < Math.ceil(selectedPhotos.size() / 10.0f)) {
+                                int i6 = i5 * 10;
+                                int iMin = Math.min(10, selectedPhotos.size() - i6);
                                 ArrayList arrayList = new ArrayList();
-                                for (int i8 = 0; i8 < iMin; i8++) {
-                                    int i9 = i7 + i8;
-                                    if (i9 < selectedPhotosOrder.size()) {
-                                        MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i9));
+                                for (int i7 = 0; i7 < iMin; i7++) {
+                                    int i8 = i6 + i7;
+                                    if (i8 < selectedPhotosOrder.size()) {
+                                        MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i8));
                                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
                                         boolean z6 = photoEntry.isVideo;
                                         if (!z6 && (str = photoEntry.imagePath) != null) {
@@ -5086,12 +5077,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                                         photoEntry.reset();
                                     }
                                 }
-                                SendMessagesHelper.prepareSendingMedia(PeerStoriesView.this.getAccountInstance(), arrayList, PeerStoriesView.this.dialogId, null, null, storyItem, null, i == i4 || z5, z2, null, z3, i2, i3, 0, i6 == 0 ? ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i5)).updateStickersOrder : false, null, null, 0L, false, 0L, PeerStoriesView.this.chatActivityEnterView.getSendMonoForumPeerId(), PeerStoriesView.this.chatActivityEnterView.getSendMessageSuggestionParams());
-                                i6++;
+                                SendMessagesHelper.prepareSendingMedia(PeerStoriesView.this.getAccountInstance(), arrayList, PeerStoriesView.this.dialogId, null, null, storyItem, null, i == 4 || z5, z2, null, z3, i2, i3, 0, i5 == 0 ? ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i4)).updateStickersOrder : false, null, null, 0L, false, 0L, PeerStoriesView.this.chatActivityEnterView.getSendMonoForumPeerId(), PeerStoriesView.this.chatActivityEnterView.getSendMessageSuggestionParams());
+                                i5++;
                                 selectedPhotos = selectedPhotos;
                                 selectedPhotosOrder = selectedPhotosOrder;
-                                i5 = 0;
-                                i4 = 4;
+                                i4 = 0;
                             }
                             PeerStoriesView.this.chatActivityEnterView.setFieldText("");
                             PeerStoriesView.this.afterMessageSend(j2 <= 0);
@@ -5275,7 +5265,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openRepostStory$38(activityFindActivity);
+                PeerStoriesView.m4350$r8$lambda$ua0gSd3oIe2w3L33vOEu7qCg2E(this.f$0, activityFindActivity);
             }
         };
         if (this.delegate.releasePlayer(runnable)) {
@@ -5284,37 +5274,39 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }
 
-    public void lambda$openRepostStory$38(Activity activity) {
+    public static void m4350$r8$lambda$ua0gSd3oIe2w3L33vOEu7qCg2E(final PeerStoriesView peerStoriesView, Activity activity) {
         StoryViewer.VideoPlayerHolder videoPlayerHolder;
-        final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
-        VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
-        storyRecorder.openForward(StoryRecorder.SourceView.fromStoryViewer(this.storyViewer), StoryEntry.repostStoryItem(this.currentStory.getPath(), this.currentStory.storyItem), (videoPlayerSharedScope == null || (videoPlayerHolder = videoPlayerSharedScope.player) == null) ? 0L : videoPlayerHolder.currentPosition, true);
+        final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, peerStoriesView.currentAccount);
+        VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView.playerSharedScope;
+        storyRecorder.openForward(StoryRecorder.SourceView.fromStoryViewer(peerStoriesView.storyViewer), StoryEntry.repostStoryItem(peerStoriesView.currentStory.getPath(), peerStoriesView.currentStory.storyItem), (videoPlayerSharedScope == null || (videoPlayerHolder = videoPlayerSharedScope.player) == null) ? 0L : videoPlayerHolder.currentPosition, true);
         storyRecorder.setOnFullyOpenListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openRepostStory$33();
+                PeerStoriesView.$r8$lambda$p1EX5wNPYnez7ymnLzXntKWn2IY(this.f$0);
             }
         });
         storyRecorder.setOnPrepareCloseListener(new Utilities.Callback4() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                this.f$0.lambda$openRepostStory$37(storyRecorder, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
+                PeerStoriesView.m4335$r8$lambda$28ufXw_tu5mU6pYbkmeJ2n2HD8(this.f$0, storyRecorder, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
             }
         });
     }
 
-    public void lambda$openRepostStory$33() {
-        this.editOpened = true;
-        setActive(false);
+    public static void $r8$lambda$p1EX5wNPYnez7ymnLzXntKWn2IY(PeerStoriesView peerStoriesView) {
+        peerStoriesView.editOpened = true;
+        peerStoriesView.setActive(false);
     }
 
-    public void lambda$openRepostStory$37(final StoryRecorder storyRecorder, Long l, final Runnable runnable, Boolean bool, final Long l2) {
-        DialogStoriesCell dialogStoriesCell;
+    public static void m4335$r8$lambda$28ufXw_tu5mU6pYbkmeJ2n2HD8(PeerStoriesView peerStoriesView, final StoryRecorder storyRecorder, Long l, final Runnable runnable, Boolean bool, final Long l2) {
+        final DialogStoriesCell.StoryCell storyCell;
+        final DialogStoriesCell dialogStoriesCell;
         INavigationLayout parentLayout;
+        peerStoriesView.getClass();
         if (bool.booleanValue()) {
-            BaseFragment baseFragment = this.storyViewer.fragment;
-            DialogStoriesCell.StoryCell storyCellFindStoryCell = null;
+            BaseFragment baseFragment = peerStoriesView.storyViewer.fragment;
             if (baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
+                storyCell = null;
                 dialogStoriesCell = null;
                 break;
             }
@@ -5323,6 +5315,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             int size = fragmentStack.size() - 1;
             while (true) {
                 if (size < 0) {
+                    storyCell = null;
                     dialogStoriesCell = null;
                     break;
                 }
@@ -5330,53 +5323,51 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 if (baseFragment2 instanceof DialogsActivity) {
                     DialogsActivity dialogsActivity = (DialogsActivity) baseFragment2;
                     dialogsActivity.closeSearching();
-                    DialogStoriesCell dialogStoriesCell2 = dialogsActivity.dialogStoriesCell;
-                    storyCellFindStoryCell = dialogStoriesCell2 != null ? dialogStoriesCell2.findStoryCell(l2.longValue()) : null;
+                    dialogStoriesCell = dialogsActivity.dialogStoriesCell;
+                    DialogStoriesCell.StoryCell storyCellFindStoryCell = dialogStoriesCell != null ? dialogStoriesCell.findStoryCell(l2.longValue()) : null;
                     for (int i = 0; i < arrayList.size(); i++) {
                         parentLayout.removeFragmentFromStack((BaseFragment) arrayList.get(i));
                     }
-                    dialogStoriesCell = dialogStoriesCell2;
+                    storyCell = storyCellFindStoryCell;
                     break;
                 }
                 arrayList.add(baseFragment2);
                 size--;
             }
-            BaseFragment baseFragment3 = this.storyViewer.fragment;
+            BaseFragment baseFragment3 = peerStoriesView.storyViewer.fragment;
             if (baseFragment3 != null) {
                 baseFragment3.clearSheets();
             }
-            this.storyViewer.instantClose();
-            this.editOpened = false;
+            peerStoriesView.storyViewer.instantClose();
+            peerStoriesView.editOpened = false;
             if (dialogStoriesCell != null && dialogStoriesCell.scrollTo(l2.longValue())) {
-                final DialogStoriesCell.StoryCell storyCell = storyCellFindStoryCell;
-                final DialogStoriesCell dialogStoriesCell3 = dialogStoriesCell;
                 dialogStoriesCell.afterNextLayout(new Runnable() {
                     @Override
                     public final void run() {
-                        PeerStoriesView.lambda$openRepostStory$34(storyCell, dialogStoriesCell3, l2, storyRecorder, runnable);
+                        PeerStoriesView.$r8$lambda$uMZr2oFJQo_6IPHQMyJ80NyBLRA(storyCell, dialogStoriesCell, l2, storyRecorder, runnable);
                     }
                 });
                 return;
             } else {
-                storyRecorder.replaceSourceView(StoryRecorder.SourceView.fromStoryCell(storyCellFindStoryCell));
+                storyRecorder.replaceSourceView(StoryRecorder.SourceView.fromStoryCell(storyCell));
                 AndroidUtilities.runOnUIThread(runnable, 400L);
                 return;
             }
         }
         final long jCurrentTimeMillis = System.currentTimeMillis();
-        VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
+        VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView.playerSharedScope;
         if (videoPlayerSharedScope != null && videoPlayerSharedScope.player == null) {
-            this.delegate.setPopupIsVisible(false);
-            setActive(true);
-            this.editOpened = false;
-            this.onImageReceiverThumbLoaded = new Runnable() {
+            peerStoriesView.delegate.setPopupIsVisible(false);
+            peerStoriesView.setActive(true);
+            peerStoriesView.editOpened = false;
+            peerStoriesView.onImageReceiverThumbLoaded = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.lambda$openRepostStory$35(runnable);
+                    PeerStoriesView.m4348$r8$lambda$dGoH3A6sklctbRIH2lSj7RSHyg(runnable);
                 }
             };
             if (bool.booleanValue()) {
-                updatePosition();
+                peerStoriesView.updatePosition();
             }
             AndroidUtilities.runOnUIThread(runnable, 400L);
             return;
@@ -5387,23 +5378,23 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         videoPlayerHolder.setOnReadyListener(new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.lambda$openRepostStory$36(runnable, jCurrentTimeMillis);
+                PeerStoriesView.m4339$r8$lambda$5LKFz3khgZaUzGgbmsjLCOKKIU(runnable, jCurrentTimeMillis);
             }
         });
-        this.delegate.setPopupIsVisible(false);
-        RLottieImageView rLottieImageView = this.muteIconView;
+        peerStoriesView.delegate.setPopupIsVisible(false);
+        RLottieImageView rLottieImageView = peerStoriesView.muteIconView;
         if (rLottieImageView != null) {
-            rLottieImageView.setAnimation(this.sharedResources.muteDrawable);
+            rLottieImageView.setAnimation(peerStoriesView.sharedResources.muteDrawable);
         }
-        setActive(((this.videoDuration <= 0 || l.longValue() <= this.videoDuration - 1400) ? l : 0L).longValue(), true);
-        this.editOpened = false;
+        peerStoriesView.setActive(((peerStoriesView.videoDuration <= 0 || l.longValue() <= peerStoriesView.videoDuration - 1400) ? l : 0L).longValue(), true);
+        peerStoriesView.editOpened = false;
         AndroidUtilities.runOnUIThread(runnable, 400L);
         if (bool.booleanValue()) {
-            updatePosition();
+            peerStoriesView.updatePosition();
         }
     }
 
-    public static void lambda$openRepostStory$34(DialogStoriesCell.StoryCell storyCell, DialogStoriesCell dialogStoriesCell, Long l, StoryRecorder storyRecorder, Runnable runnable) {
+    public static void $r8$lambda$uMZr2oFJQo_6IPHQMyJ80NyBLRA(DialogStoriesCell.StoryCell storyCell, DialogStoriesCell dialogStoriesCell, Long l, StoryRecorder storyRecorder, Runnable runnable) {
         if (storyCell == null) {
             storyCell = dialogStoriesCell.findStoryCell(l.longValue());
         }
@@ -5411,12 +5402,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         runnable.run();
     }
 
-    public static void lambda$openRepostStory$35(Runnable runnable) {
+    public static void m4348$r8$lambda$dGoH3A6sklctbRIH2lSj7RSHyg(Runnable runnable) {
         AndroidUtilities.cancelRunOnUIThread(runnable);
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public static void lambda$openRepostStory$36(Runnable runnable, long j) {
+    public static void m4339$r8$lambda$5LKFz3khgZaUzGgbmsjLCOKKIU(Runnable runnable, long j) {
         AndroidUtilities.cancelRunOnUIThread(runnable);
         AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - j)));
     }
@@ -5711,7 +5702,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createUnsupportedContainer$39(view);
+                PeerStoriesView.$r8$lambda$t3aQdm9WCGaZYXF3UKAn7e5LFHM(this.f$0, view);
             }
         });
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
@@ -5721,7 +5712,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.unsupportedContainer = frameLayout;
     }
 
-    public void lambda$createUnsupportedContainer$39(View view) {
+    public static void $r8$lambda$t3aQdm9WCGaZYXF3UKAn7e5LFHM(PeerStoriesView peerStoriesView, View view) {
+        peerStoriesView.getClass();
         if (ApplicationLoader.isStandaloneBuild()) {
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity != null) {
@@ -5731,9 +5723,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             return;
         }
         if (BuildVars.isHuaweiStoreApp()) {
-            Browser.openUrl(getContext(), BuildVars.HUAWEI_STORE_URL);
+            Browser.openUrl(peerStoriesView.getContext(), BuildVars.HUAWEI_STORE_URL);
         } else {
-            Browser.openUrl(getContext(), BuildVars.PLAYSTORE_APP_URL);
+            Browser.openUrl(peerStoriesView.getContext(), BuildVars.PLAYSTORE_APP_URL);
         }
     }
 
@@ -5816,19 +5808,21 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     ArrayList uploadingStories = MessagesController.getInstance(this.currentAccount).getStoriesController().getUploadingStories(this.dialogId);
                     String str = ((StoriesController.BotPreviewsList) this.storyViewer.storiesList).lang_code;
                     if (uploadingStories != null) {
-                        while (i < uploadingStories.size()) {
-                            StoriesController.UploadingStory uploadingStory = (StoriesController.UploadingStory) uploadingStories.get(i);
+                        for (int i2 = 0; i2 < uploadingStories.size(); i2++) {
+                            StoriesController.UploadingStory uploadingStory = (StoriesController.UploadingStory) uploadingStories.get(i2);
                             StoryEntry storyEntry = uploadingStory.entry;
                             if (storyEntry != null && !storyEntry.isEdit && TextUtils.equals(storyEntry.botLang, str)) {
                                 this.uploadingStories.add(uploadingStory);
                             }
-                            i++;
                         }
                     }
                 }
-                Iterator it = this.day.iterator();
-                while (it.hasNext()) {
-                    MessageObject messageObjectFindMessageObject = this.storyViewer.storiesList.findMessageObject(((Integer) it.next()).intValue());
+                ArrayList arrayList = this.day;
+                int size = arrayList.size();
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    MessageObject messageObjectFindMessageObject = this.storyViewer.storiesList.findMessageObject(((Integer) obj).intValue());
                     if (messageObjectFindMessageObject != null && (storyItem = messageObjectFindMessageObject.storyItem) != null) {
                         this.storyItems.add(storyItem);
                     }
@@ -5890,23 +5884,26 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
             @Override
             protected void onDraw(Canvas canvas) {
+                Canvas canvas2;
                 super.onDraw(canvas);
                 this.animatedFloat.setParent(this);
                 this.animatedFloat.set(PeerStoriesView.this.showViewsProgress ? 1.0f : 0.0f, false);
                 if (this.animatedFloat.get() != 0.0f) {
                     if (this.animatedFloat.get() != 1.0f) {
-                        canvas.saveLayerAlpha(0.0f, 0.0f, getLayoutParams().width, getMeasuredHeight(), (int) (this.animatedFloat.get() * 255.0f), 31);
+                        canvas2 = canvas;
+                        canvas2.saveLayerAlpha(0.0f, 0.0f, getLayoutParams().width, getMeasuredHeight(), (int) (this.animatedFloat.get() * 255.0f), 31);
                     } else {
-                        canvas.save();
+                        canvas2 = canvas;
+                        canvas2.save();
                     }
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getLayoutParams().width, getMeasuredHeight());
                     this.loadingDrawable.setBounds(rectF);
                     this.loadingDrawable.setRadiiDp(24.0f);
                     this.loadingDrawable.setColors(ColorUtils.setAlphaComponent(-1, 20), ColorUtils.setAlphaComponent(-1, 50), ColorUtils.setAlphaComponent(-1, 50), ColorUtils.setAlphaComponent(-1, 70));
-                    this.loadingDrawable.draw(canvas);
+                    this.loadingDrawable.draw(canvas2);
                     invalidate();
-                    canvas.restore();
+                    canvas2.restore();
                 }
             }
         };
@@ -5914,7 +5911,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$createSelfPeerView$40(view2);
+                this.f$0.showUserViewsDialog();
             }
         });
         this.selfView.addView(this.selfAvatarsContainer, LayoutHelper.createFrame(-1, 32.0f, 0, 9.0f, 11.0f, 0.0f, 0.0f));
@@ -5933,10 +5930,6 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         imageView.setBackground(Theme.createCircleSelectorDrawable(ColorUtils.setAlphaComponent(-1, 120), -AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f)));
     }
 
-    public void lambda$createSelfPeerView$40(View view) {
-        showUserViewsDialog();
-    }
-
     public void deleteStory() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
         builder.setTitle(LocaleController.getString(isBotsPreview() ? R.string.DeleteBotPreviewTitle : R.string.DeleteStoryTitle));
@@ -5944,7 +5937,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$deleteStory$41(alertDialog, i);
+                PeerStoriesView.m4351$r8$lambda$zuyF7BbbCJRqyV0zVrFYfzAvVc(this.f$0, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -5958,9 +5951,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         alertDialogCreate.redPositive();
     }
 
-    public void lambda$deleteStory$41(AlertDialog alertDialog, int i) {
+    public static void m4351$r8$lambda$zuyF7BbbCJRqyV0zVrFYfzAvVc(PeerStoriesView peerStoriesView, AlertDialog alertDialog, int i) {
         TL_stories.StoryItem storyItem;
-        if (this.currentStory.isLive && (storyItem = this.currentStory.storyItem) != null) {
+        if (peerStoriesView.currentStory.isLive && (storyItem = peerStoriesView.currentStory.storyItem) != null) {
             TLRPC.MessageMedia messageMedia = storyItem.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
                 TLRPC.InputGroupCall inputGroupCall = ((TLRPC.TL_messageMediaVideoStream) messageMedia).call;
@@ -5969,32 +5962,32 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     LivePlayer.recording.destroy();
                     if (LivePlayer.recording != null) {
                         LivePlayer.recording = null;
-                        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(LivePlayer.recording.getCallId()));
+                        NotificationCenter.getInstance(peerStoriesView.currentAccount).postNotificationName(NotificationCenter.liveStoryUpdated, Long.valueOf(LivePlayer.recording.getCallId()));
                     }
                 }
             }
         }
-        this.currentStory.cancelOrDelete();
-        updateStoryItems();
-        if (this.isActive && this.count == 0) {
-            this.delegate.switchToNextAndRemoveCurrentPeer();
+        peerStoriesView.currentStory.cancelOrDelete();
+        peerStoriesView.updateStoryItems();
+        if (peerStoriesView.isActive && peerStoriesView.count == 0) {
+            peerStoriesView.delegate.switchToNextAndRemoveCurrentPeer();
             return;
         }
-        int i2 = this.selectedPosition;
-        int i3 = this.count;
+        int i2 = peerStoriesView.selectedPosition;
+        int i3 = peerStoriesView.count;
         if (i2 >= i3) {
-            this.selectedPosition = i3 - 1;
+            peerStoriesView.selectedPosition = i3 - 1;
         } else if (i2 < 0) {
-            this.selectedPosition = 0;
+            peerStoriesView.selectedPosition = 0;
         }
-        updatePosition();
-        StoryViewer storyViewer = this.storyViewer;
+        peerStoriesView.updatePosition();
+        StoryViewer storyViewer = peerStoriesView.storyViewer;
         if (storyViewer != null) {
             storyViewer.checkSelfStoriesView();
         }
     }
 
-    private void showUserViewsDialog() {
+    public void showUserViewsDialog() {
         this.storyViewer.openViews();
     }
 
@@ -6265,10 +6258,6 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$new$43() {
-        checkStealthMode(true);
-    }
-
     public void checkStealthMode(boolean z) {
         if (this.chatActivityEnterView != null && this.isVisible && this.attachedToWindow) {
             AndroidUtilities.cancelRunOnUIThread(this.updateStealthModeTimer);
@@ -6333,59 +6322,91 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     private void updatePosition(boolean z) {
         TL_stories.StoryItem storyItem;
-        TL_stories.StoryItem storyItem2;
         StoriesController.UploadingStory uploadingStory;
-        StoriesController.UploadingStory uploadingStory2;
-        StoryViewer.TransitionViewHolder transitionViewHolder;
-        ImageReceiver imageReceiver;
+        TL_stories.StoryItem storyItem2;
+        int i;
         boolean z2;
-        ArrayList<TLRPC.PhotoSize> arrayList;
-        TL_stories.StoryItem storyItem3;
-        StoriesController.UploadingStory uploadingStory3;
-        TL_stories.StoryItem storyItem4;
-        StoryItemHolder storyItemHolder;
         boolean z3;
         boolean z4;
-        StoryViewer storyViewer;
+        StoriesController.UploadingStory uploadingStoryFindEditingStory;
+        TLRPC.MessageMedia messageMedia;
+        boolean zEndsWith;
+        TLRPC.MessageMedia messageMedia2;
+        String str;
         boolean z5;
-        ChatActivityEnterView chatActivityEnterView;
-        boolean z6;
-        StoriesController.UploadingStory uploadingStory4;
-        RadialProgress radialProgress;
+        TL_stories.StoryItem storyItem3;
+        StoryViewer.TransitionViewHolder transitionViewHolder;
+        ImageReceiver imageReceiver;
+        Drawable drawable;
+        TLRPC.MessageMedia messageMedia3;
+        TLRPC.Photo photo;
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        TL_stories.StoryItem storyItem4;
+        TLRPC.MessageMedia messageMedia4;
+        TLRPC.Photo photo2;
+        Drawable drawableCreateStripedBitmap;
+        TLRPC.MessageMedia messageMedia5;
+        Drawable drawableCreateStripedBitmap2;
         TL_stories.StoryItem storyItem5;
-        StoriesController.UploadingStory uploadingStory5;
-        StoryItemHolder storyItemHolder2;
+        boolean z6;
+        boolean z7;
+        TLRPC.User user;
+        boolean z8;
+        TLRPC.Chat chat;
+        boolean z9;
+        TLRPC.Chat chat2;
+        boolean z10;
         TL_stories.StoryItem storyItem6;
-        CharSequence string;
-        String storyDate;
-        SpannableStringBuilder spannableStringBuilderValueOf;
+        boolean z11;
+        boolean z12;
         TL_stories.StoryItem storyItem7;
+        StoryViewer storyViewer;
+        TL_stories.StoryItem storyItem8;
+        StoryItemHolder storyItemHolder;
+        boolean z13;
+        boolean z14;
+        StoryViewer storyViewer2;
+        boolean z15;
+        long j;
+        ChatActivityEnterView chatActivityEnterView;
+        boolean z16;
+        StoriesController.UploadingStory uploadingStory2;
+        RadialProgress radialProgress;
+        TL_stories.StoryItem storyItem9;
+        StoriesController.UploadingStory uploadingStory3;
+        StoryItemHolder storyItemHolder2;
+        TL_stories.StoryItem storyItem10;
+        CharSequence charSequence;
+        String storyDate;
+        CharSequence charSequence2;
+        TL_stories.StoryItem storyItem11;
         SpannableStringBuilder spannableStringBuilder;
         final StoryCaptionView.Panel reply;
         SpannableStringBuilder spannableStringBuilder2;
-        String str;
+        String str2;
         AvatarSpan avatarSpan;
-        TLRPC.Chat chat;
-        StoryViewer storyViewer2;
+        TLRPC.Chat chat3;
+        StoryViewer storyViewer3;
         LivePlayer livePlayer;
-        TL_stories.StoryItem storyItem8;
-        TLRPC.MessageMedia messageMedia;
+        TL_stories.StoryItem storyItem12;
+        CharSequence charSequence3;
+        TLRPC.MessageMedia messageMedia6;
         TLRPC.Document document;
-        TLRPC.Photo photo;
+        TLRPC.Photo photo3;
         HintView2 hintView2;
         HintView2 hintView3;
-        StoryViewer storyViewer3;
-        CharSequence charSequence;
+        StoryViewer storyViewer4;
+        CharSequence charSequence4;
         StoriesController.StoriesList storiesList;
-        TL_stories.StoryItem storyItem9;
+        TL_stories.StoryItem storyItem13;
         CharSequence spannableStringBuilder3;
-        CharSequence storyDate2;
-        TL_stories.StoryItem storyItem10;
+        CharSequence string;
+        TL_stories.StoryItem storyItem14;
         StoryItemHolder storyItemHolder3;
         Delegate delegate;
-        boolean z7;
+        boolean z17;
         LinearLayout linearLayout;
-        TLRPC.Chat chat2;
+        TLRPC.Chat chat4;
         ChatActivityEnterView chatActivityEnterView2;
         ChatActivityEnterView chatActivityEnterView3;
         ChatActivityEnterView chatActivityEnterView4;
@@ -6394,29 +6415,28 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         FrameLayout frameLayout2;
         TextView textView;
         LinearLayout linearLayout2;
-        int i;
         int i2;
+        int i3;
         View.OnLongClickListener onLongClickListener;
-        boolean z8;
+        boolean z18;
         ChatActivitySideControlsButtonsLayout chatActivitySideControlsButtonsLayout;
         CommentButton commentButton;
         MuteButton muteButton;
-        TL_stories.StoryItem storyItem11;
-        int i3;
-        FrameLayout frameLayout3;
+        TL_stories.StoryItem storyItem15;
         int i4;
+        FrameLayout frameLayout3;
         int i5;
         int i6;
+        int i7;
         StoryItemHolder storyItemHolder4;
-        StoriesController.UploadingStory uploadingStory6;
-        TL_stories.StoryItem storyItem12;
-        boolean z9;
-        boolean z10;
+        StoriesController.UploadingStory uploadingStory4;
+        TL_stories.StoryItem storyItem16;
+        boolean z19;
+        boolean z20;
         float f;
-        StoriesController.UploadingStory uploadingStory7;
+        StoriesController.UploadingStory uploadingStory5;
         ViewPropertyAnimator viewPropertyAnimator;
         StoriesController.StoriesList storiesList2;
-        int i7;
         int iDp;
         HintView2 hintView4;
         ImageView imageView;
@@ -6424,25 +6444,25 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         int i8;
         int i9;
         StoryItemHolder storyItemHolder5;
-        TL_stories.StoryItem storyItem13;
+        TL_stories.StoryItem storyItem17;
         TLRPC.Reaction reaction;
-        boolean z11;
+        boolean z21;
         float f2;
         int i10;
-        TL_stories.StoryItem storyItem14;
+        TL_stories.StoryItem storyItem18;
         int i11;
         MessageObject messageObject;
         int i12;
         FrameLayout frameLayout4;
         int i13;
         int i14;
-        TLRPC.MessageMedia messageMedia2;
+        TLRPC.MessageMedia messageMedia7;
         ChatActivityEnterView chatActivityEnterView6;
         StoryItemHolder storyItemHolder6;
-        boolean z12;
-        boolean z13;
+        boolean z22;
+        boolean z23;
         StoryItemHolder storyItemHolder7;
-        TL_stories.StoryItem storyItem15;
+        TL_stories.StoryItem storyItem19;
         int i15;
         int i16;
         FrameLayout.LayoutParams layoutParams;
@@ -6451,9 +6471,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         int iDp2;
         int i17;
         LivePlayer livePlayer2;
-        boolean z14;
+        boolean z24;
         LivePlayer livePlayer3;
-        boolean z15;
+        boolean z25;
         LivePlayer livePlayer4;
         int i18;
         ChatActivityEnterView chatActivityEnterView7;
@@ -6462,306 +6482,450 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         FrameLayout frameLayout5;
         LinearLayout linearLayout3;
         ChatActivityEnterView chatActivityEnterView9;
-        StoryViewer storyViewer4;
+        StoryViewer storyViewer5;
         LivePlayer livePlayer5;
-        String str2;
+        String str3;
         LivePlayer livePlayer6;
-        TL_stories.StoryItem storyItem16;
+        TL_stories.StoryItem storyItem20;
+        Bitmap bitmap;
         BitmapDrawable bitmapDrawable;
-        StoriesController.UploadingStory uploadingStory8;
+        StoriesController.UploadingStory uploadingStory6;
         StoriesController.StoriesList storiesList3;
         if (this.storyItems.isEmpty() && this.uploadingStories.isEmpty()) {
             return;
         }
         this.forceUpdateOffsets = true;
         StoryItemHolder storyItemHolder8 = this.currentStory;
-        TL_stories.StoryItem storyItem17 = storyItemHolder8.storyItem;
-        StoriesController.UploadingStory uploadingStory9 = storyItemHolder8.uploadingStory;
+        TL_stories.StoryItem storyItem21 = storyItemHolder8.storyItem;
+        StoriesController.UploadingStory uploadingStory7 = storyItemHolder8.uploadingStory;
         String storyImageFilter = StoriesUtilities.getStoryImageFilter();
         this.lastNoThumb = false;
         this.unsupported = false;
         int i20 = this.selectedPosition;
-        boolean z16 = this.isUploading;
-        boolean z17 = this.isEditing;
-        boolean z18 = this.isFailed;
-        StoryViewer storyViewer5 = this.storyViewer;
-        if (storyViewer5 != null && (storiesList3 = storyViewer5.storiesList) != null && storiesList3.type == 4) {
-            uploadingStory2 = (i20 < 0 || i20 >= this.uploadingStories.size()) ? null : (StoriesController.UploadingStory) this.uploadingStories.get(i20);
+        boolean z26 = this.isUploading;
+        boolean z27 = this.isEditing;
+        boolean z28 = this.isFailed;
+        StoryViewer storyViewer6 = this.storyViewer;
+        if (storyViewer6 != null && (storiesList3 = storyViewer6.storiesList) != null && storiesList3.type == 4) {
+            uploadingStory = (i20 < 0 || i20 >= this.uploadingStories.size()) ? null : (StoriesController.UploadingStory) this.uploadingStories.get(i20);
             int size = i20 - this.uploadingStories.size();
             if (size < 0 || size >= this.storyItems.size()) {
-                uploadingStory = uploadingStory2;
                 storyItem2 = null;
             } else {
                 storyItem = (TL_stories.StoryItem) this.storyItems.get(size);
-                uploadingStory = uploadingStory2;
-                storyItem2 = storyItem;
             }
-        } else {
-            storyItem = (i20 < 0 || i20 >= this.storyItems.size()) ? null : (TL_stories.StoryItem) this.storyItems.get(i20);
-            int size2 = i20 - this.storyItems.size();
-            if (size2 < 0 || size2 >= this.uploadingStories.size()) {
-                storyItem2 = storyItem;
-                uploadingStory = null;
-            } else {
-                uploadingStory2 = (StoriesController.UploadingStory) this.uploadingStories.get(size2);
-                uploadingStory = uploadingStory2;
-                storyItem2 = storyItem;
-            }
-        }
-        this.currentStory.editingSourceItem = null;
-        if (uploadingStory != null) {
-            this.isEditing = false;
-            boolean z19 = uploadingStory.failed;
-            this.isFailed = z19;
-            this.isUploading = !z19;
-            this.imageReceiver.setCrossfadeWithOldImage(false);
-            this.imageReceiver.setCrossfadeDuration(150);
-            Bitmap bitmap = uploadingStory.entry.thumbBitmap;
-            if (bitmap != null) {
-                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap);
-                Utilities.blurBitmap(bitmapCreateBitmap, 3);
-                bitmapDrawable = new BitmapDrawable(bitmapCreateBitmap);
-            } else {
-                bitmapDrawable = null;
-            }
-            if (uploadingStory.isVideo || uploadingStory.hadFailed) {
-                uploadingStory8 = uploadingStory;
-                this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory8.firstFramePath), storyImageFilter, null, null, bitmapDrawable, 0L, null, null, 0);
-            } else {
-                uploadingStory8 = uploadingStory;
-                this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory.path), storyImageFilter, null, null, bitmapDrawable, 0L, null, null, 0);
-            }
-            this.currentStory.set(uploadingStory8);
-            this.storyAreasView.set(null, StoryMediaAreasView.getMediaAreasFor(uploadingStory8.entry), this.emojiAnimationsOverlay);
-            this.allowShareLink = false;
-            this.allowRepost = false;
-            this.allowShare = false;
-        } else {
-            z18 = z18;
-            z16 = z16;
-            z17 = z17;
-            i20 = i20;
-            this.isUploading = false;
-            this.isEditing = false;
-            this.isFailed = false;
-            if (storyItem2 == null) {
-                StoryViewer storyViewer6 = this.storyViewer;
-                if (storyViewer6 != null) {
-                    storyViewer6.close(true);
-                    return;
-                }
-                return;
-            }
-            StoriesController.UploadingStory uploadingStoryFindEditingStory = this.storiesController.findEditingStory(this.dialogId, storyItem2);
-            if (uploadingStoryFindEditingStory != null) {
-                this.isEditing = true;
+            this.currentStory.editingSourceItem = null;
+            if (uploadingStory != null) {
+                this.isEditing = false;
+                boolean z29 = uploadingStory.failed;
+                this.isFailed = z29;
+                this.isUploading = !z29;
                 this.imageReceiver.setCrossfadeWithOldImage(false);
-                this.imageReceiver.setCrossfadeDuration(this.onImageReceiverThumbLoaded != null ? 0 : 150);
-                if (uploadingStoryFindEditingStory.isVideo) {
-                    uploadingStory3 = uploadingStoryFindEditingStory;
-                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStoryFindEditingStory.firstFramePath), storyImageFilter, null, 0L, null, null, 0);
+                this.imageReceiver.setCrossfadeDuration(150);
+                bitmap = uploadingStory.entry.thumbBitmap;
+                if (bitmap != null) {
+                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap);
+                    Utilities.blurBitmap(bitmapCreateBitmap, 3);
+                    bitmapDrawable = new BitmapDrawable(bitmapCreateBitmap);
                 } else {
-                    uploadingStory3 = uploadingStoryFindEditingStory;
-                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory3.firstFramePath), storyImageFilter, null, 0L, null, null, 0);
+                    bitmapDrawable = null;
                 }
-                this.currentStory.set(uploadingStory3);
-                this.storyAreasView.set(null, StoryMediaAreasView.getMediaAreasFor(uploadingStory3.entry), this.emojiAnimationsOverlay);
-                this.currentStory.editingSourceItem = storyItem2;
+                if (!uploadingStory.isVideo || uploadingStory.hadFailed) {
+                    i = i20;
+                    z2 = z26;
+                    z3 = z27;
+                    z4 = z28;
+                    uploadingStory6 = uploadingStory;
+                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory6.firstFramePath), storyImageFilter, null, null, bitmapDrawable, 0L, null, null, 0);
+                } else {
+                    z3 = z27;
+                    i = i20;
+                    z2 = z26;
+                    z4 = z28;
+                    uploadingStory6 = uploadingStory;
+                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory.path), storyImageFilter, null, null, bitmapDrawable, 0L, null, null, 0);
+                }
+                this.currentStory.set(uploadingStory6);
+                this.storyAreasView.set(null, StoryMediaAreasView.getMediaAreasFor(uploadingStory6.entry), this.emojiAnimationsOverlay);
                 this.allowShareLink = false;
                 this.allowRepost = false;
                 this.allowShare = false;
             } else {
-                TL_stories.StoryItem storyItem18 = storyItem2;
-                TLRPC.MessageMedia messageMedia3 = storyItem18.media;
-                boolean zEndsWith = messageMedia3 != null && MessageObject.isVideoDocument(messageMedia3.getDocument());
-                storyItem18.dialogId = this.dialogId;
-                this.imageReceiver.setCrossfadeWithOldImage(z17);
-                this.imageReceiver.setCrossfadeDuration(150);
-                TLRPC.MessageMedia messageMedia4 = storyItem18.media;
-                if (messageMedia4 instanceof TLRPC.TL_messageMediaUnsupported) {
-                    this.unsupported = true;
-                    MessagesController.getInstance(this.currentAccount).getStoriesController().checkUnsupportedStory(this.dialogId, storyItem18.id);
-                    z2 = z17;
+                i = i20;
+                z2 = z26;
+                z3 = z27;
+                z4 = z28;
+                this.isUploading = false;
+                this.isEditing = false;
+                this.isFailed = false;
+                if (storyItem2 == null) {
+                    storyViewer = this.storyViewer;
+                    if (storyViewer != null) {
+                        storyViewer.close(true);
+                        return;
+                    }
+                    return;
+                }
+                uploadingStoryFindEditingStory = this.storiesController.findEditingStory(this.dialogId, storyItem2);
+                if (uploadingStoryFindEditingStory != null) {
+                    this.isEditing = true;
+                    this.imageReceiver.setCrossfadeWithOldImage(false);
+                    this.imageReceiver.setCrossfadeDuration(this.onImageReceiverThumbLoaded != null ? 0 : 150);
+                    if (uploadingStoryFindEditingStory.isVideo) {
+                        this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStoryFindEditingStory.firstFramePath), storyImageFilter, null, 0L, null, null, 0);
+                    } else {
+                        this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStoryFindEditingStory.firstFramePath), storyImageFilter, null, 0L, null, null, 0);
+                    }
+                    this.currentStory.set(uploadingStoryFindEditingStory);
+                    this.storyAreasView.set(null, StoryMediaAreasView.getMediaAreasFor(uploadingStoryFindEditingStory.entry), this.emojiAnimationsOverlay);
+                    this.currentStory.editingSourceItem = storyItem2;
+                    this.allowShareLink = false;
+                    this.allowRepost = false;
+                    this.allowShare = false;
                 } else {
-                    String str3 = storyItem18.attachPath;
-                    if (str3 != null) {
-                        if (messageMedia4 == null) {
-                            zEndsWith = str3.toLowerCase().endsWith(".mp4");
-                        }
-                        if (zEndsWith) {
-                            TLRPC.MessageMedia messageMedia5 = storyItem18.media;
-                            Drawable drawableCreateStripedBitmap = messageMedia5 != null ? ImageLoader.createStripedBitmap(messageMedia5.getDocument().thumbs) : null;
-                            if (storyItem18.firstFramePath != null) {
-                                if (ImageLoader.getInstance().isInMemCache(ImageLocation.getForPath(storyItem18.firstFramePath).getKey(null, null, false) + "@" + storyImageFilter, false)) {
-                                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem18.firstFramePath), storyImageFilter, null, null, drawableCreateStripedBitmap, 0L, null, null, 0);
+                    messageMedia = storyItem2.media;
+                    if (messageMedia == null && MessageObject.isVideoDocument(messageMedia.getDocument())) {
+                        zEndsWith = true;
+                    } else {
+                        zEndsWith = false;
+                    }
+                    storyItem2.dialogId = this.dialogId;
+                    this.imageReceiver.setCrossfadeWithOldImage(z3);
+                    this.imageReceiver.setCrossfadeDuration(150);
+                    messageMedia2 = storyItem2.media;
+                    if (messageMedia2 instanceof TLRPC.TL_messageMediaUnsupported) {
+                        this.unsupported = true;
+                        MessagesController.getInstance(this.currentAccount).getStoriesController().checkUnsupportedStory(this.dialogId, storyItem2.id);
+                        z5 = z3;
+                    } else {
+                        str = storyItem2.attachPath;
+                        if (str != null) {
+                            if (messageMedia2 == null) {
+                                zEndsWith = str.toLowerCase().endsWith(".mp4");
+                            }
+                            if (zEndsWith) {
+                                messageMedia5 = storyItem2.media;
+                                if (messageMedia5 != null) {
+                                    drawableCreateStripedBitmap2 = ImageLoader.createStripedBitmap(messageMedia5.getDocument().thumbs);
                                 } else {
-                                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem18.attachPath), storyImageFilter + "_pframe", null, null, drawableCreateStripedBitmap, 0L, null, null, 0);
+                                    drawableCreateStripedBitmap2 = null;
+                                }
+                                if (storyItem2.firstFramePath != null) {
+                                    if (ImageLoader.getInstance().isInMemCache(ImageLocation.getForPath(storyItem2.firstFramePath).getKey(null, null, false) + "@" + storyImageFilter, false)) {
+                                        z5 = z3;
+                                        storyItem4 = storyItem2;
+                                        this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem2.firstFramePath), storyImageFilter, null, null, drawableCreateStripedBitmap2, 0L, null, null, 0);
+                                    } else {
+                                        z5 = z3;
+                                        storyItem4 = storyItem2;
+                                        this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem4.attachPath), storyImageFilter + "_pframe", null, null, drawableCreateStripedBitmap2, 0L, null, null, 0);
+                                    }
+                                } else {
+                                    z5 = z3;
+                                    storyItem4 = storyItem2;
+                                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem4.attachPath), storyImageFilter + "_pframe", null, null, drawableCreateStripedBitmap2, 0L, null, null, 0);
                                 }
                             } else {
-                                this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem18.attachPath), storyImageFilter + "_pframe", null, null, drawableCreateStripedBitmap, 0L, null, null, 0);
+                                z5 = z3;
+                                storyItem4 = storyItem2;
+                                messageMedia4 = storyItem4.media;
+                                if (messageMedia4 != null) {
+                                    photo2 = messageMedia4.photo;
+                                } else {
+                                    photo2 = null;
+                                }
+                                if (photo2 != null) {
+                                    drawableCreateStripedBitmap = ImageLoader.createStripedBitmap(photo2.sizes);
+                                } else {
+                                    drawableCreateStripedBitmap = null;
+                                }
+                                if (z5) {
+                                    this.imageReceiver.setImage(ImageLocation.getForPath(storyItem4.attachPath), storyImageFilter, ImageLocation.getForPath(storyItem4.firstFramePath), storyImageFilter, drawableCreateStripedBitmap, 0L, null, null, 0);
+                                } else {
+                                    this.imageReceiver.setImage(ImageLocation.getForPath(storyItem4.attachPath), storyImageFilter, null, null, drawableCreateStripedBitmap, 0L, null, null, 0);
+                                }
                             }
-                            z2 = z17;
+                            storyItem2 = storyItem4;
                         } else {
-                            TLRPC.MessageMedia messageMedia6 = storyItem18.media;
-                            TLRPC.Photo photo2 = messageMedia6 != null ? messageMedia6.photo : null;
-                            Drawable drawableCreateStripedBitmap2 = photo2 != null ? ImageLoader.createStripedBitmap(photo2.sizes) : null;
-                            if (r42 != 0) {
-                                this.imageReceiver.setImage(ImageLocation.getForPath(storyItem18.attachPath), storyImageFilter, ImageLocation.getForPath(storyItem18.firstFramePath), storyImageFilter, drawableCreateStripedBitmap2, 0L, null, null, 0);
+                            z5 = z3;
+                            storyItem3 = storyItem2;
+                            StoryViewer storyViewer7 = this.storyViewer;
+                            drawable = ((storyViewer7.storiesList == null || storyViewer7.isSingleStory) && (transitionViewHolder = storyViewer7.transitionViewHolder) != null && (imageReceiver = transitionViewHolder.storyImage) != null && transitionViewHolder.storyId == storyItem3.id) ? imageReceiver.getDrawable() : null;
+                            storyItem3.dialogId = this.dialogId;
+                            if (zEndsWith) {
+                                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(storyItem3.media.getDocument().thumbs, 1000);
+                                if (drawable == null) {
+                                    drawable = ImageLoader.createStripedBitmap(storyItem3.media.getDocument().thumbs);
+                                }
+                                storyItem2 = storyItem3;
+                                this.imageReceiver.setImage(null, null, ImageLocation.getForDocument(storyItem3.media.getDocument()), storyImageFilter + "_pframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, storyItem3.media.getDocument()), storyImageFilter, drawable, 0L, null, storyItem2, 0);
                             } else {
-                                this.imageReceiver.setImage(ImageLocation.getForPath(storyItem18.attachPath), storyImageFilter, null, null, drawableCreateStripedBitmap2, 0L, null, null, 0);
+                                storyItem2 = storyItem3;
+                                messageMedia3 = storyItem2.media;
+                                if (messageMedia3 != null) {
+                                    photo = messageMedia3.photo;
+                                } else {
+                                    photo = null;
+                                }
+                                if (photo == null && (arrayList = photo.sizes) != null) {
+                                    if (drawable == null) {
+                                        drawable = ImageLoader.createStripedBitmap(arrayList);
+                                    }
+                                    TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, Integer.MAX_VALUE);
+                                    FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 800);
+                                    this.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), storyImageFilter, null, null, drawable, 0L, null, storyItem2, 0);
+                                } else {
+                                    this.imageReceiver.clearImage();
+                                }
                             }
-                            z2 = z17;
+                        }
+                    }
+                    storyItem2.dialogId = this.dialogId;
+                    StoryMediaAreasView storyMediaAreasView = this.storyAreasView;
+                    if (z) {
+                        storyItem5 = null;
+                    } else {
+                        storyItem5 = storyItem2;
+                    }
+                    storyMediaAreasView.set(storyItem5, this.emojiAnimationsOverlay);
+                    this.currentStory.set(storyItem2);
+                    if (!this.unsupported || (storyItem7 = this.currentStory.storyItem) == null || (storyItem7 instanceof TL_stories.TL_storyItemDeleted) || (storyItem7 instanceof TL_stories.TL_storyItemSkipped)) {
+                        z6 = false;
+                    } else {
+                        z6 = true;
+                    }
+                    this.allowShareLink = z6;
+                    this.allowShare = z6;
+                    if (z6) {
+                        if (this.currentStory.allowScreenshots() || !this.currentStory.storyItem.isPublic) {
+                            z12 = false;
+                        } else {
+                            z12 = true;
+                        }
+                        this.allowShare = z12;
+                    }
+                    if (this.allowShare) {
+                        storyItem6 = this.currentStory.storyItem;
+                        if (storyItem6.pinned && StoriesUtilities.isExpired(this.currentAccount, storyItem6)) {
+                            z11 = false;
+                        } else {
+                            z11 = true;
+                        }
+                        this.allowShare = z11;
+                    }
+                    z7 = this.allowShare;
+                    this.allowRepost = z7;
+                    if (z7 && this.isChannel) {
+                        chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                        if (chat2 == null && ChatObject.isPublic(chat2)) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        this.allowRepost = z10;
+                    }
+                    if (this.allowShareLink) {
+                        if (this.isChannel) {
+                            chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                            if (chat != null || ChatObject.getPublicUsername(chat) == null) {
+                                z9 = false;
+                            } else {
+                                z9 = true;
+                            }
+                            this.allowShareLink = z9;
+                        } else {
+                            user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+                            if (user == null && UserObject.getPublicUsername(user) != null && this.currentStory.storyItem.isPublic) {
+                                z8 = true;
+                            } else {
+                                z8 = false;
+                            }
+                            this.allowShareLink = z8;
+                        }
+                    }
+                    NotificationsController.getInstance(this.currentAccount).processReadStories(this.dialogId, storyItem2.id);
+                }
+                storyItem8 = this.currentStory.storyItem;
+                if (storyItem8 != null && !z) {
+                    this.storyViewer.dayStoryId = storyItem8.id;
+                }
+                this.storyViewer.storiesViewPager.checkAllowScreenshots();
+                this.imageChanged = true;
+                if (!this.isSelf || this.isChannel) {
+                    updateUserViews(false);
+                }
+                storyItemHolder = this.currentStory;
+                if (getStoryId(storyItemHolder.storyItem, storyItemHolder.uploadingStory) == getStoryId(storyItem21, uploadingStory7) && (uploadingStory7 == null || (storyItem20 = this.currentStory.storyItem) == null || !TextUtils.equals(uploadingStory7.path, storyItem20.attachPath))) {
+                    z13 = false;
+                } else {
+                    z13 = true;
+                }
+                if (z13 || (this.isEditing == z5 && this.isUploading == z2 && this.isFailed == z4)) {
+                    z14 = false;
+                } else {
+                    z14 = true;
+                }
+                storyViewer2 = this.storyViewer;
+                if (storyViewer2 != null || (livePlayer6 = storyViewer2.livePlayer) == null || this.watchersCount == livePlayer6.getWatchersCount()) {
+                    z15 = false;
+                } else {
+                    z15 = true;
+                }
+                j = 0;
+                if ((uploadingStory7 != null || (str3 = uploadingStory7.path) == null || !str3.equals(this.currentStory.getLocalPath())) && (storyItem21 == null || (storyItem9 = this.currentStory.storyItem) == null || storyItem21.id != storyItem9.id)) {
+                    chatActivityEnterView = this.chatActivityEnterView;
+                    if (chatActivityEnterView != null) {
+                        if (storyItem21 != null && !TextUtils.isEmpty(chatActivityEnterView.getEditField().getText())) {
+                            this.storyViewer.saveDraft(storyItem21.dialogId, storyItem21, this.chatActivityEnterView.getEditField().getText());
+                        }
+                        this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
+                        if (this.currentStory.isLive) {
+                            z16 = true;
+                            this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
+                        } else {
+                            z16 = true;
+                            this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
                         }
                     } else {
-                        StoryViewer storyViewer7 = this.storyViewer;
-                        Drawable drawable = ((storyViewer7.storiesList != null || storyViewer7.isSingleStory) && (transitionViewHolder = storyViewer7.transitionViewHolder) != null && (imageReceiver = transitionViewHolder.storyImage) != null && transitionViewHolder.storyId == storyItem18.id) ? imageReceiver.getDrawable() : null;
-                        storyItem18.dialogId = this.dialogId;
-                        if (zEndsWith) {
-                            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(storyItem18.media.getDocument().thumbs, 1000);
-                            Drawable drawableCreateStripedBitmap3 = drawable == null ? ImageLoader.createStripedBitmap(storyItem18.media.getDocument().thumbs) : drawable;
-                            z2 = z17;
-                            this.imageReceiver.setImage(null, null, ImageLocation.getForDocument(storyItem18.media.getDocument()), storyImageFilter + "_pframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, storyItem18.media.getDocument()), storyImageFilter, drawableCreateStripedBitmap3, 0L, null, storyItem18, 0);
-                        } else {
-                            z2 = z17;
-                            TLRPC.MessageMedia messageMedia7 = storyItem18.media;
-                            TLRPC.Photo photo3 = messageMedia7 != null ? messageMedia7.photo : null;
-                            if (photo3 != null && (arrayList = photo3.sizes) != null) {
-                                Drawable drawableCreateStripedBitmap4 = drawable == null ? ImageLoader.createStripedBitmap(arrayList) : drawable;
-                                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo3.sizes, Integer.MAX_VALUE);
-                                FileLoader.getClosestPhotoSizeWithSize(photo3.sizes, 800);
-                                this.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo3), storyImageFilter, null, null, drawableCreateStripedBitmap4, 0L, null, storyItem18, 0);
-                            } else {
-                                this.imageReceiver.clearImage();
-                            }
-                        }
+                        z16 = true;
                     }
-                }
-                storyItem18.dialogId = this.dialogId;
-                this.storyAreasView.set(z ? null : storyItem18, this.emojiAnimationsOverlay);
-                this.currentStory.set(storyItem18);
-                boolean z20 = (this.unsupported || (storyItem3 = this.currentStory.storyItem) == null || (storyItem3 instanceof TL_stories.TL_storyItemDeleted) || (storyItem3 instanceof TL_stories.TL_storyItemSkipped)) ? false : true;
-                this.allowShareLink = z20;
-                this.allowShare = z20;
-                if (z20) {
-                    this.allowShare = this.currentStory.allowScreenshots() && this.currentStory.storyItem.isPublic;
-                }
-                if (this.allowShare) {
-                    TL_stories.StoryItem storyItem19 = this.currentStory.storyItem;
-                    this.allowShare = storyItem19.pinned || !StoriesUtilities.isExpired(this.currentAccount, storyItem19);
-                }
-                boolean z21 = this.allowShare;
-                this.allowRepost = z21;
-                if (z21 && this.isChannel) {
-                    TLRPC.Chat chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
-                    this.allowRepost = chat3 != null && ChatObject.isPublic(chat3);
-                }
-                if (this.allowShareLink) {
-                    if (this.isChannel) {
-                        TLRPC.Chat chat4 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
-                        this.allowShareLink = (chat4 == null || ChatObject.getPublicUsername(chat4) == null) ? false : true;
-                    } else {
-                        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
-                        this.allowShareLink = (user == null || UserObject.getPublicUsername(user) == null || !this.currentStory.storyItem.isPublic) ? false : true;
-                    }
-                }
-                NotificationsController.getInstance(this.currentAccount).processReadStories(this.dialogId, storyItem18.id);
-            }
-            storyItem4 = this.currentStory.storyItem;
-            if (storyItem4 != null && !z) {
-                this.storyViewer.dayStoryId = storyItem4.id;
-            }
-            this.storyViewer.storiesViewPager.checkAllowScreenshots();
-            this.imageChanged = true;
-            if (!this.isSelf || this.isChannel) {
-                updateUserViews(false);
-            }
-            storyItemHolder = this.currentStory;
-            if (getStoryId(storyItemHolder.storyItem, storyItemHolder.uploadingStory) == getStoryId(storyItem17, uploadingStory9) && (uploadingStory9 == null || (storyItem16 = this.currentStory.storyItem) == null || !TextUtils.equals(uploadingStory9.path, storyItem16.attachPath))) {
-                z3 = false;
-            } else {
-                z3 = true;
-            }
-            if (z3 || (this.isEditing == z2 && this.isUploading == z16 && this.isFailed == z18)) {
-                z4 = false;
-            } else {
-                z4 = true;
-            }
-            storyViewer = this.storyViewer;
-            if (storyViewer != null || (livePlayer6 = storyViewer.livePlayer) == null || this.watchersCount == livePlayer6.getWatchersCount()) {
-                z5 = false;
-            } else {
-                z5 = true;
-            }
-            if ((uploadingStory9 != null || (str2 = uploadingStory9.path) == null || !str2.equals(this.currentStory.getLocalPath())) && (storyItem17 == null || (storyItem5 = this.currentStory.storyItem) == null || storyItem17.id != storyItem5.id)) {
-                chatActivityEnterView = this.chatActivityEnterView;
-                if (chatActivityEnterView != null) {
-                    if (storyItem17 != null && !TextUtils.isEmpty(chatActivityEnterView.getEditField().getText())) {
-                        this.storyViewer.saveDraft(storyItem17.dialogId, storyItem17, this.chatActivityEnterView.getEditField().getText());
-                    }
-                    this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
                     if (this.currentStory.isLive) {
-                        z6 = true;
-                        this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
-                    } else {
-                        z6 = true;
-                        this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+                        loadSendAsPeers(z16);
                     }
-                } else {
-                    z6 = true;
-                }
-                if (this.currentStory.isLive) {
-                    loadSendAsPeers(z6);
-                }
-                this.emojiAnimationsOverlay.clear();
-                this.currentImageTime = 0L;
-                this.switchEventSent = false;
-                uploadingStory4 = this.currentStory.uploadingStory;
-                if (uploadingStory4 != null) {
-                    radialProgress = this.headerView.radialProgress;
-                    if (radialProgress != null) {
-                        radialProgress.setProgress(uploadingStory4.progress, false);
+                    this.emojiAnimationsOverlay.clear();
+                    this.currentImageTime = 0L;
+                    this.switchEventSent = false;
+                    uploadingStory2 = this.currentStory.uploadingStory;
+                    if (uploadingStory2 != null) {
+                        radialProgress = this.headerView.radialProgress;
+                        if (radialProgress != null) {
+                            radialProgress.setProgress(uploadingStory2.progress, false);
+                        }
+                        this.headerView.backupImageView.invalidate();
+                    } else if (!z14) {
+                        this.headerView.progressToUploading = 0.0f;
                     }
-                    this.headerView.backupImageView.invalidate();
-                } else if (!z4) {
-                    this.headerView.progressToUploading = 0.0f;
+                    Bulletin.hideVisible(this.storyContainer);
+                    this.storyCaptionView.reset();
+                    cancelWaiting();
+                    z15 = true;
                 }
-                Bulletin.hideVisible(this.storyContainer);
-                this.storyCaptionView.reset();
-                cancelWaiting();
-                z5 = true;
-            }
-            if (!z5 || (uploadingStory9 != null && this.currentStory.uploadingStory == null)) {
-                this.headerView.setOnSubtitleClick(null);
-                this.watchersCount = 0;
-                setTitle(false, this.dialogId, this.currentStory.isLive);
-                uploadingStory5 = this.currentStory.uploadingStory;
-                if (uploadingStory5 != null) {
-                    if (uploadingStory5.failed) {
-                        storyDate2 = LocaleController.getString(R.string.FailedToUploadStory);
-                    } else {
-                        storyDate2 = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
-                    }
-                } else {
-                    if (isBotsPreview()) {
-                        storyItem8 = this.currentStory.storyItem;
-                        if (storyItem8 != null && (messageMedia = storyItem8.media) != null) {
-                            document = messageMedia.document;
+                if (!z15 || (uploadingStory7 != null && this.currentStory.uploadingStory == null)) {
+                    this.headerView.setOnSubtitleClick(null);
+                    this.watchersCount = 0;
+                    setTitle(false, this.dialogId, this.currentStory.isLive);
+                    uploadingStory3 = this.currentStory.uploadingStory;
+                    if (uploadingStory3 != null) {
+                        if (uploadingStory3.failed) {
+                            string = LocaleController.getString(R.string.FailedToUploadStory);
+                        } else {
+                            string = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                        }
+                    } else if (isBotsPreview()) {
+                        storyItem12 = this.currentStory.storyItem;
+                        if (storyItem12 != null && (messageMedia6 = storyItem12.media) != null) {
+                            document = messageMedia6.document;
                             if (document != null) {
-                                storyDate2 = LocaleController.formatStoryDate(document.date);
+                                string = LocaleController.formatStoryDate(document.date);
                             } else {
-                                photo = messageMedia.photo;
-                                if (photo != null) {
-                                    storyDate2 = LocaleController.formatStoryDate(photo.date);
+                                photo3 = messageMedia6.photo;
+                                if (photo3 != null) {
+                                    string = LocaleController.formatStoryDate(photo3.date);
+                                }
+                                charSequence = charSequence3;
+                                if (charSequence != null) {
+                                    storyViewer4 = this.storyViewer;
+                                    if (storyViewer4 != null && (storiesList = storyViewer4.storiesList) != null && (storyItem13 = this.currentStory.storyItem) != null && storiesList.isPinned(storyItem13.id)) {
+                                        if (!(charSequence instanceof SpannableStringBuilder)) {
+                                            charSequence4 = charSequence;
+                                            charSequence4 = charSequence;
+                                            charSequence4 = charSequence;
+                                            charSequence4 = charSequence;
+                                            spannableStringBuilder3 = charSequence;
+                                            spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                                        }
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        spannableStringBuilder3 = charSequence;
+                                        SpannableString spannableString = new SpannableString("p ");
+                                        spannableString.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString);
+                                        charSequence4 = spannableStringBuilder3;
+                                    }
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    this.headerView.setSubtitle(charSequence4, z14);
+                                }
+                                hintView2 = this.privacyHint;
+                                if (hintView2 != null) {
+                                    hintView2.hide(false);
+                                }
+                                hintView3 = this.soundTooltip;
+                                if (hintView3 != null) {
+                                    hintView3.hide(false);
                                 }
                             }
                         }
-                        string = "";
+                        charSequence3 = "";
+                        charSequence = charSequence3;
+                        if (charSequence != null) {
+                            storyViewer4 = this.storyViewer;
+                            if (storyViewer4 != null) {
+                                if (!(charSequence instanceof SpannableStringBuilder)) {
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    spannableStringBuilder3 = charSequence;
+                                    spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                                }
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                SpannableString spannableString2 = new SpannableString("p ");
+                                spannableString2.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                                ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString2);
+                                charSequence4 = spannableStringBuilder3;
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            this.headerView.setSubtitle(charSequence4, z14);
+                        }
+                        hintView2 = this.privacyHint;
+                        if (hintView2 != null) {
+                            hintView2.hide(false);
+                        }
+                        hintView3 = this.soundTooltip;
+                        if (hintView3 != null) {
+                            hintView3.hide(false);
+                        }
                     } else {
                         storyItemHolder2 = this.currentStory;
-                        storyItem6 = storyItemHolder2.storyItem;
-                        if (storyItem6 == null) {
-                            string = null;
-                        } else if (storyItem6.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                        storyItem10 = storyItemHolder2.storyItem;
+                        if (storyItem10 == null) {
+                            j = 0;
+                            charSequence = null;
+                        } else if (storyItem10.media instanceof TLRPC.TL_messageMediaVideoStream) {
                             SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
                             spannableStringBuilder4.setSpan(new ReplacementSpan() {
                                 private final RectF rect = new RectF();
@@ -6769,12 +6933,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                                 private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
 
                                 @Override
-                                public int getSize(Paint paint, CharSequence charSequence2, int i21, int i22, Paint.FontMetricsInt fontMetricsInt) {
+                                public int getSize(Paint paint, CharSequence charSequence5, int i21, int i22, Paint.FontMetricsInt fontMetricsInt) {
                                     return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
                                 }
 
                                 @Override
-                                public void draw(Canvas canvas, CharSequence charSequence2, int i21, int i22, float f4, int i23, int i24, int i25, Paint paint) {
+                                public void draw(Canvas canvas, CharSequence charSequence5, int i21, int i22, float f4, int i23, int i24, int i25, Paint paint) {
                                     float fDp = ((i23 + i25) / 2.0f) + AndroidUtilities.dp(1.33f);
                                     this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
                                     this.bg.setColor(-572850);
@@ -6784,138 +6948,1067 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                                 }
                             }, 0, spannableStringBuilder4.length(), 33);
                             spannableStringBuilder4.append((CharSequence) "  ");
-                            storyViewer2 = this.storyViewer;
-                            if (storyViewer2 != null && (livePlayer = storyViewer2.livePlayer) != null) {
+                            storyViewer3 = this.storyViewer;
+                            if (storyViewer3 != null && (livePlayer = storyViewer3.livePlayer) != null) {
                                 this.watchersCount = livePlayer.getWatchersCount();
                             }
                             spannableStringBuilder4.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
-                            storyDate2 = spannableStringBuilder4;
-                        } else if (storyItem6.date == -1) {
+                            string = spannableStringBuilder4;
+                        } else if (storyItem10.date == -1) {
                             string = LocaleController.getString(R.string.CachedStory);
                         } else {
                             if (storyItemHolder2.getReply() != null) {
                                 reply = this.currentStory.getReply();
                                 spannableStringBuilder2 = new SpannableStringBuilder();
-                                SpannableString spannableString = new SpannableString("r");
-                                spannableString.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString.length(), 33);
-                                spannableStringBuilder2.append((CharSequence) spannableString).append((CharSequence) " ");
+                                j = 0;
+                                SpannableString spannableString3 = new SpannableString("r");
+                                spannableString3.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString3.length(), 33);
+                                spannableStringBuilder2.append((CharSequence) spannableString3).append((CharSequence) " ");
                                 if (reply.peerId != null) {
                                     avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
-                                    SpannableString spannableString2 = new SpannableString("a");
-                                    spannableString2.setSpan(avatarSpan, 0, 1, 33);
-                                    spannableStringBuilder2.append((CharSequence) spannableString2).append((CharSequence) " ");
+                                    SpannableString spannableString4 = new SpannableString("a");
+                                    spannableString4.setSpan(avatarSpan, 0, 1, 33);
+                                    spannableStringBuilder2.append((CharSequence) spannableString4).append((CharSequence) " ");
                                     if (reply.peerId.longValue() > 0) {
                                         TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
                                         avatarSpan.setUser(user2);
                                         spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user2));
                                     } else {
-                                        chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
-                                        avatarSpan.setChat(chat);
-                                        if (chat != null) {
-                                            spannableStringBuilder2.append((CharSequence) chat.title);
+                                        chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                        avatarSpan.setChat(chat3);
+                                        if (chat3 != null) {
+                                            spannableStringBuilder2.append((CharSequence) chat3.title);
                                         }
                                     }
                                 } else {
-                                    str = this.currentStory.storyItem.fwd_from.from_name;
-                                    if (str != null) {
-                                        spannableStringBuilder2.append((CharSequence) str);
+                                    str2 = this.currentStory.storyItem.fwd_from.from_name;
+                                    if (str2 != null) {
+                                        spannableStringBuilder2.append((CharSequence) str2);
                                     }
                                 }
                                 this.headerView.setOnSubtitleClick(new View.OnClickListener() {
                                     @Override
                                     public final void onClick(View view) {
-                                        this.f$0.lambda$updatePosition$44(reply, view);
-                                    }
-                                });
-                                SpannableString spannableString3 = new SpannableString(".");
-                                DotDividerSpan dotDividerSpan = new DotDividerSpan();
-                                dotDividerSpan.setTopPadding(AndroidUtilities.dp(1.5f));
-                                dotDividerSpan.setSize(5.0f);
-                                spannableString3.setSpan(dotDividerSpan, 0, spannableString3.length(), 33);
-                                spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString3).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
-                                spannableStringBuilder = spannableStringBuilder2;
-                            } else if (!this.isGroup && (storyItem7 = this.currentStory.storyItem) != null && storyItem7.from_id != null) {
-                                SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder();
-                                AvatarSpan avatarSpan2 = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
-                                SpannableString spannableString4 = new SpannableString("a");
-                                spannableString4.setSpan(avatarSpan2, 0, 1, 33);
-                                spannableStringBuilder5.append((CharSequence) spannableString4).append((CharSequence) " ");
-                                final long peerDialogId = DialogObject.getPeerDialogId(this.currentStory.storyItem.from_id);
-                                if (peerDialogId > 0) {
-                                    TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
-                                    avatarSpan2.setUser(user3);
-                                    spannableStringBuilder5.append((CharSequence) UserObject.getUserName(user3));
-                                } else {
-                                    TLRPC.Chat chat5 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerDialogId));
-                                    avatarSpan2.setChat(chat5);
-                                    if (chat5 != null) {
-                                        spannableStringBuilder5.append((CharSequence) chat5.title);
-                                    }
-                                }
-                                this.headerView.setOnSubtitleClick(new View.OnClickListener() {
-                                    @Override
-                                    public final void onClick(View view) {
-                                        this.f$0.lambda$updatePosition$45(peerDialogId, view);
+                                        PeerStoriesView.$r8$lambda$LQ09k75UbBwPhT6MfRaFqLuURzg(this.f$0, reply, view);
                                     }
                                 });
                                 SpannableString spannableString5 = new SpannableString(".");
-                                DotDividerSpan dotDividerSpan2 = new DotDividerSpan();
-                                dotDividerSpan2.setTopPadding(AndroidUtilities.dp(1.5f));
-                                dotDividerSpan2.setSize(5.0f);
-                                spannableString5.setSpan(dotDividerSpan2, 0, spannableString5.length(), 33);
-                                spannableStringBuilder5.append((CharSequence) " ").append((CharSequence) spannableString5).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
-                                spannableStringBuilder = spannableStringBuilder5;
+                                DotDividerSpan dotDividerSpan = new DotDividerSpan();
+                                dotDividerSpan.setTopPadding(AndroidUtilities.dp(1.5f));
+                                dotDividerSpan.setSize(5.0f);
+                                spannableString5.setSpan(dotDividerSpan, 0, spannableString5.length(), 33);
+                                spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString5).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                                spannableStringBuilder = spannableStringBuilder2;
                             } else {
-                                storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
-                                string = storyDate;
-                                if (this.currentStory.storyItem.edited) {
-                                    spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(storyDate);
-                                    DotDividerSpan dotDividerSpan3 = new DotDividerSpan();
-                                    dotDividerSpan3.setTopPadding(AndroidUtilities.dp(1.5f));
-                                    dotDividerSpan3.setSize(5.0f);
-                                    spannableStringBuilderValueOf.append((CharSequence) " . ").setSpan(dotDividerSpan3, spannableStringBuilderValueOf.length() - 2, spannableStringBuilderValueOf.length() - 1, 0);
-                                    spannableStringBuilderValueOf.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                                j = 0;
+                                if (!this.isGroup && (storyItem11 = this.currentStory.storyItem) != null && storyItem11.from_id != null) {
+                                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder();
+                                    AvatarSpan avatarSpan2 = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                                    SpannableString spannableString6 = new SpannableString("a");
+                                    spannableString6.setSpan(avatarSpan2, 0, 1, 33);
+                                    spannableStringBuilder5.append((CharSequence) spannableString6).append((CharSequence) " ");
+                                    final long peerDialogId = DialogObject.getPeerDialogId(this.currentStory.storyItem.from_id);
+                                    if (peerDialogId > 0) {
+                                        TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
+                                        avatarSpan2.setUser(user3);
+                                        spannableStringBuilder5.append((CharSequence) UserObject.getUserName(user3));
+                                    } else {
+                                        TLRPC.Chat chat5 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerDialogId));
+                                        avatarSpan2.setChat(chat5);
+                                        if (chat5 != null) {
+                                            spannableStringBuilder5.append((CharSequence) chat5.title);
+                                        }
+                                    }
+                                    this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                                        @Override
+                                        public final void onClick(View view) {
+                                            PeerStoriesView.$r8$lambda$nCz5bmOr1EGblbmVLBAB2zq2qY4(this.f$0, peerDialogId, view);
+                                        }
+                                    });
+                                    SpannableString spannableString7 = new SpannableString(".");
+                                    DotDividerSpan dotDividerSpan2 = new DotDividerSpan();
+                                    dotDividerSpan2.setTopPadding(AndroidUtilities.dp(1.5f));
+                                    dotDividerSpan2.setSize(5.0f);
+                                    spannableString7.setSpan(dotDividerSpan2, 0, spannableString7.length(), 33);
+                                    spannableStringBuilder5.append((CharSequence) " ").append((CharSequence) spannableString7).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                                    spannableStringBuilder = spannableStringBuilder5;
+                                } else {
+                                    storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                                    charSequence2 = storyDate;
+                                    if (this.currentStory.storyItem.edited) {
+                                        SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(storyDate);
+                                        DotDividerSpan dotDividerSpan3 = new DotDividerSpan();
+                                        dotDividerSpan3.setTopPadding(AndroidUtilities.dp(1.5f));
+                                        dotDividerSpan3.setSize(5.0f);
+                                        spannableStringBuilderValueOf.append((CharSequence) " . ").setSpan(dotDividerSpan3, spannableStringBuilderValueOf.length() - 2, spannableStringBuilderValueOf.length() - 1, 0);
+                                        spannableStringBuilderValueOf.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                                        charSequence2 = spannableStringBuilderValueOf;
+                                    }
+                                    charSequence = charSequence2;
                                 }
                             }
-                            z4 = false;
-                            string = spannableStringBuilder;
+                            z14 = false;
+                            charSequence = spannableStringBuilder;
                         }
-                    }
-                    if (string != null) {
-                        string = spannableStringBuilderValueOf;
-                        storyViewer3 = this.storyViewer;
-                        if (storyViewer3 != null && (storiesList = storyViewer3.storiesList) != null && (storyItem9 = this.currentStory.storyItem) != null && storiesList.isPinned(storyItem9.id)) {
-                            if (!(string instanceof SpannableStringBuilder)) {
-                                charSequence = string;
-                                charSequence = string;
-                                charSequence = string;
-                                charSequence = string;
-                                spannableStringBuilder3 = string;
-                                spannableStringBuilder3 = new SpannableStringBuilder(string);
+                        if (charSequence != null) {
+                            storyViewer4 = this.storyViewer;
+                            if (storyViewer4 != null) {
+                                if (!(charSequence instanceof SpannableStringBuilder)) {
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    spannableStringBuilder3 = charSequence;
+                                    spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                                }
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                SpannableString spannableString8 = new SpannableString("p ");
+                                spannableString8.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                                ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString8);
+                                charSequence4 = spannableStringBuilder3;
                             }
-                            charSequence = string;
-                            charSequence = string;
-                            charSequence = string;
-                            charSequence = string;
-                            spannableStringBuilder3 = string;
-                            SpannableString spannableString6 = new SpannableString("p ");
-                            spannableString6.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
-                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString6);
-                            charSequence = spannableStringBuilder3;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            this.headerView.setSubtitle(charSequence4, z14);
                         }
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        this.headerView.setSubtitle(charSequence, z4);
+                        hintView2 = this.privacyHint;
+                        if (hintView2 != null) {
+                            hintView2.hide(false);
+                        }
+                        hintView3 = this.soundTooltip;
+                        if (hintView3 != null) {
+                            hintView3.hide(false);
+                        }
                     }
-                    string = spannableStringBuilderValueOf;
+                    charSequence3 = string;
+                    charSequence = charSequence3;
+                    if (charSequence != null) {
+                        storyViewer4 = this.storyViewer;
+                        if (storyViewer4 != null) {
+                            if (!(charSequence instanceof SpannableStringBuilder)) {
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            SpannableString spannableString9 = new SpannableString("p ");
+                            spannableString9.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString9);
+                            charSequence4 = spannableStringBuilder3;
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        this.headerView.setSubtitle(charSequence4, z14);
+                    }
+                    hintView2 = this.privacyHint;
+                    if (hintView2 != null) {
+                        hintView2.hide(false);
+                    }
+                    hintView3 = this.soundTooltip;
+                    if (hintView3 != null) {
+                        hintView3.hide(false);
+                    }
+                } else {
+                    j = 0;
+                }
+                StoryItemHolder storyItemHolder9 = this.currentStory;
+                storyItem14 = storyItemHolder9.storyItem;
+                if (storyItem21 != storyItem14 && uploadingStory7 == storyItemHolder9.uploadingStory) {
+                    if (storyItemHolder9.captionTranslated != (storyItem14 != null && storyItem14.translated && storyItem14.translatedText != null && TextUtils.equals(storyItem14.translatedLng, TranslateAlert2.getToLanguage()))) {
+                        this.currentStory.updateCaption();
+                    }
+                } else {
+                    this.currentStory.updateCaption();
+                }
+                storyItemHolder3 = this.currentStory;
+                if ((!storyItemHolder3.captionTranslated || storyItem21 != storyItemHolder3.storyItem) && (delegate = this.delegate) != null) {
+                    delegate.setTranslating(false);
+                }
+                if (this.currentStory.isLive || (storyViewer5 = this.storyViewer) == null || (livePlayer5 = storyViewer5.livePlayer) == null || !this.currentStory.isThisCall(livePlayer5.getCallId()) || !this.storyViewer.livePlayer.commentsDisabled()) {
+                    z17 = false;
+                } else {
+                    z17 = true;
+                }
+                if (z17 != this.areLiveCommentsDisabled) {
+                    this.areLiveCommentsDisabled = z17;
+                    if (z17) {
+                        createPremiumBlockedText();
+                    }
+                    if (this.premiumBlockedText != null && (this.isPremiumBlocked || this.areLiveCommentsDisabled)) {
+                        updatePremiumBlockedText();
+                    }
+                    chatActivityEnterView9 = this.chatActivityEnterView;
+                    if (chatActivityEnterView9 != null) {
+                        chatActivityEnterView9.setEnabled((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled);
+                        this.chatActivityEnterView.updateSendAsButton();
+                    }
+                    checkStealthMode(true);
+                }
+                linearLayout = this.premiumBlockedText;
+                if (linearLayout != null) {
+                    linearLayout.setVisibility(((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled) ? 8 : 0);
+                }
+                if (this.unsupported) {
+                    createUnsupportedContainer();
+                    createReplyDisabledView();
+                    this.unsupportedContainer.setVisibility(0);
+                    this.replyDisabledTextView.setVisibility(0);
+                    this.allowShareLink = false;
+                    this.allowRepost = false;
+                    this.allowShare = false;
+                    chatActivityEnterView8 = this.chatActivityEnterView;
+                    if (chatActivityEnterView8 != null) {
+                        chatActivityEnterView8.setVisibility(8);
+                    }
+                    frameLayout5 = this.selfView;
+                    if (frameLayout5 != null) {
+                        frameLayout5.setVisibility(8);
+                    }
+                    linearLayout3 = this.bottomActionsLinearLayout;
+                    if (linearLayout3 != null) {
+                        linearLayout3.setVisibility(0);
+                    }
+                } else {
+                    if (this.dialogId < j) {
+                        chat4 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                    } else {
+                        chat4 = null;
+                    }
+                    if (this.currentStory.isLive) {
+                        if (this.chatActivityEnterView == null) {
+                            createEnterView();
+                        }
+                        createCommentButton();
+                        createPaidReactionsButton();
+                        createMuteButton();
+                        this.chatActivityEnterView.setVisibility(0);
+                    } else if ((!UserObject.isService(this.dialogId) || isBotsPreview()) && (chatActivityEnterView2 = this.chatActivityEnterView) != null) {
+                        chatActivityEnterView2.setVisibility(8);
+                    } else if (!this.isSelf && ((!this.isChannel || (this.isGroup && (ChatObject.canSendPlain(chat4) || ChatObject.isPossibleRemoveChatRestrictionsByBoosts(chat4)))) && (chatActivityEnterView3 = this.chatActivityEnterView) != null)) {
+                        chatActivityEnterView3.setVisibility(0);
+                    }
+                    chatActivityEnterView4 = this.chatActivityEnterView;
+                    if (chatActivityEnterView4 != null) {
+                        if (this.currentStory.isLive) {
+                            onLongClickListener = new View.OnLongClickListener() {
+                                @Override
+                                public final boolean onLongClick(View view) {
+                                    return PeerStoriesView.m4344$r8$lambda$Mxc9g7SqQoz_TBpACZPZxJuRuU(this.f$0, view);
+                                }
+                            };
+                        } else {
+                            onLongClickListener = null;
+                        }
+                        chatActivityEnterView4.setOnSendButtonLongClick(onLongClickListener);
+                        this.chatActivityEnterView.setLiveComment(this.currentStory.isLive, disabledPaidFeatures(true));
+                        ChatActivityEnterView chatActivityEnterView10 = this.chatActivityEnterView;
+                        if (this.currentStory.isLive || disabledPaidFeatures(true) || !(this.keyboardVisible || this.chatActivityEnterView.emojiViewVisible)) {
+                            z18 = false;
+                        } else {
+                            z18 = true;
+                        }
+                        chatActivityEnterView10.setSuggestionButtonVisible(z18, true);
+                    }
+                    if (this.isPremiumBlocked && this.premiumBlockedText == null) {
+                        createPremiumBlockedText();
+                    }
+                    if (this.premiumBlockedText != null) {
+                        if (!this.isPremiumBlocked || this.areLiveCommentsDisabled) {
+                            updatePremiumBlockedText();
+                        }
+                        this.premiumBlockedText.setVisibility(((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled) ? 8 : 0);
+                    }
+                    chatActivityEnterView5 = this.chatActivityEnterView;
+                    if (chatActivityEnterView5 != null) {
+                        chatActivityEnterView5.setEnabled((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled);
+                    }
+                    frameLayout = this.selfView;
+                    if (frameLayout != null) {
+                        if (this.isSelf || this.currentStory.isLive) {
+                            i3 = 8;
+                        } else {
+                            i3 = 0;
+                        }
+                        frameLayout.setVisibility(i3);
+                    }
+                    frameLayout2 = this.unsupportedContainer;
+                    if (frameLayout2 != null) {
+                        frameLayout2.setVisibility(8);
+                    }
+                    if (UserObject.isService(this.dialogId)) {
+                        createReplyDisabledView();
+                        this.replyDisabledTextView.setVisibility(0);
+                    } else {
+                        textView = this.replyDisabledTextView;
+                        if (textView != null) {
+                            textView.setVisibility(8);
+                        }
+                    }
+                    linearLayout2 = this.bottomActionsLinearLayout;
+                    if (linearLayout2 != null) {
+                        if (isBotsPreview()) {
+                            i2 = 8;
+                        } else {
+                            i2 = 0;
+                        }
+                        linearLayout2.setVisibility(i2);
+                    }
+                }
+                chatActivitySideControlsButtonsLayout = this.sideControlsButtonsLayout;
+                if (chatActivitySideControlsButtonsLayout != null) {
+                    chatActivityEnterView7 = this.chatActivityEnterView;
+                    if (chatActivityEnterView7 == null && chatActivityEnterView7.getVisibility() == 0 && !this.currentStory.isLive) {
+                        i19 = 0;
+                    } else {
+                        i19 = 8;
+                    }
+                    chatActivitySideControlsButtonsLayout.setVisibility(i19);
+                }
+                commentButton = this.commentButton;
+                if (commentButton != null) {
+                    if (this.unsupported && this.currentStory.isLive) {
+                        i18 = 0;
+                    } else {
+                        i18 = 8;
+                    }
+                    commentButton.setVisibility(i18);
+                    this.commentButton.setCollapsed(this.liveCommentsView.isCollapsed(), false);
+                    this.commentButton.setCount(this.liveCommentsView.getUnreadMessagesCount());
+                }
+                muteButton = this.muteButton;
+                if (muteButton != null) {
+                    if (this.unsupported && this.currentStory.isLive && (livePlayer4 = LivePlayer.recording) != null && this.currentStory.isThisCall(livePlayer4.getCallId())) {
+                        i17 = 0;
+                    } else {
+                        i17 = 8;
+                    }
+                    muteButton.setVisibility(i17);
+                    MuteButton muteButton3 = this.muteButton;
+                    livePlayer2 = LivePlayer.recording;
+                    if (livePlayer2 == null && livePlayer2.isMuted()) {
+                        z24 = true;
+                    } else {
+                        z24 = false;
+                    }
+                    muteButton3.setMuted(z24, true);
+                    MuteButton muteButton4 = this.muteButton;
+                    livePlayer3 = LivePlayer.recording;
+                    if (livePlayer3 != null || livePlayer3.isConnected()) {
+                        z25 = true;
+                    } else {
+                        z25 = false;
+                    }
+                    muteButton4.setConnected(z25, true);
+                }
+                if (this.starsButton != null) {
+                    PaidReactionButton.PaidReactionButtonEffectsView paidReactionButtonEffectsView = this.starsButtonEffectsView;
+                    if (this.unsupported && this.currentStory.isLive) {
+                        i15 = 0;
+                    } else {
+                        i15 = 8;
+                    }
+                    paidReactionButtonEffectsView.setVisibility(i15);
+                    PaidReactionButton paidReactionButton = this.starsButton;
+                    if (this.unsupported && this.currentStory.isLive) {
+                        i16 = 0;
+                    } else {
+                        i16 = 8;
+                    }
+                    paidReactionButton.setVisibility(i16);
+                    layoutParams = (FrameLayout.LayoutParams) this.starsButton.getLayoutParams();
+                    muteButton2 = this.muteButton;
+                    if (muteButton2 == null && muteButton2.getVisibility() == 0) {
+                        f3 = 54.0f;
+                    } else {
+                        f3 = 7.0f;
+                    }
+                    iDp2 = AndroidUtilities.dp(f3);
+                    if (layoutParams.rightMargin != iDp2) {
+                        layoutParams.rightMargin = iDp2;
+                        this.starsButton.setLayoutParams(layoutParams);
+                    }
+                }
+                if (this.currentStory.isLive) {
+                    if (this.isActive) {
+                        this.delegate.setIsCaption(false);
+                        Delegate delegate2 = this.delegate;
+                        this.isCaptionPartVisible = false;
+                        delegate2.setIsCaptionPartVisible(false);
+                    }
+                    this.storyCaptionView.setVisibility(8);
+                } else {
+                    storyItemHolder6 = this.currentStory;
+                    if ((storyItemHolder6.caption == null || storyItemHolder6.getReply() != null || this.currentStory.getMusic() != null) && !this.unsupported) {
+                        StoryCaptionView.StoryCaptionTextView storyCaptionTextView = this.storyCaptionView.captionTextview;
+                        StoryItemHolder storyItemHolder10 = this.currentStory;
+                        CharSequence charSequence5 = storyItemHolder10.caption;
+                        StoryCaptionView.Panel reply2 = storyItemHolder10.getReply();
+                        StoryCaptionView.Panel music = this.currentStory.getMusic();
+                        if (this.storyViewer.isTranslating) {
+                            storyItemHolder7 = this.currentStory;
+                            if (storyItemHolder7.captionTranslated && (storyItem19 = storyItemHolder7.storyItem) != null && storyItem19.translated) {
+                                z22 = true;
+                            } else {
+                                z22 = false;
+                            }
+                        } else {
+                            z22 = false;
+                        }
+                        if (storyItem21 == this.currentStory.storyItem) {
+                            z23 = true;
+                        } else {
+                            z23 = false;
+                        }
+                        storyCaptionTextView.setText(charSequence5, reply2, music, z22, z23);
+                        this.storyCaptionView.setVisibility(0);
+                    } else {
+                        if (this.isActive) {
+                            this.delegate.setIsCaption(false);
+                            Delegate delegate3 = this.delegate;
+                            this.isCaptionPartVisible = false;
+                            delegate3.setIsCaptionPartVisible(false);
+                        }
+                        this.storyCaptionView.setVisibility(8);
+                    }
+                }
+                storyItem15 = this.currentStory.storyItem;
+                if (storyItem15 != null) {
+                    messageMedia7 = storyItem15.media;
+                    if (messageMedia7 instanceof TLRPC.TL_messageMediaVideoStream) {
+                        if (this.liveCommentsView.setup(this.dialogId, ((TLRPC.TL_messageMediaVideoStream) messageMedia7).call)) {
+                            this.liveCommentsView.setCollapsed(false, false);
+                            this.messageStars = j;
+                            chatActivityEnterView6 = this.chatActivityEnterView;
+                            if (chatActivityEnterView6 != null) {
+                                chatActivityEnterView6.checkSendButton(true);
+                                this.chatActivityEnterView.updateSendButtonPaid();
+                                checkStealthMode(true);
+                            }
+                        }
+                        this.liveCommentsView.setVisibility(0);
+                    } else {
+                        this.liveCommentsView.setup(this.dialogId, null);
+                        this.liveCommentsView.setVisibility(8);
+                    }
+                } else {
+                    this.liveCommentsView.setup(this.dialogId, null);
+                    this.liveCommentsView.setVisibility(8);
+                }
+                this.storyContainer.invalidate();
+                if (this.delegate != null && isSelectedPeer()) {
+                    this.delegate.onPeerSelected(this.dialogId, this.selectedPosition);
+                }
+                if (this.isChannel) {
+                    ImageView imageView3 = this.shareButton;
+                    if (this.allowShare || this.currentStory.isLive) {
+                        i12 = 4;
+                    } else {
+                        i12 = 0;
+                    }
+                    imageView3.setVisibility(i12);
+                    frameLayout4 = this.repostButtonContainer;
+                    if (frameLayout4 != null) {
+                        if (this.allowRepost || this.currentStory.isLive) {
+                            i14 = 8;
+                        } else {
+                            i14 = 0;
+                        }
+                        frameLayout4.setVisibility(i14);
+                    }
+                    FrameLayout frameLayout6 = this.likeButtonContainer;
+                    if (!this.isFailed || this.currentStory.isLive) {
+                        i13 = 8;
+                    } else {
+                        i13 = 0;
+                    }
+                    frameLayout6.setVisibility(i13);
+                } else {
+                    ImageView imageView4 = this.shareButton;
+                    if (this.allowShare || this.currentStory.isLive) {
+                        i4 = 4;
+                    } else {
+                        i4 = 0;
+                    }
+                    imageView4.setVisibility(i4);
+                    frameLayout3 = this.repostButtonContainer;
+                    if (frameLayout3 != null) {
+                        frameLayout3.setVisibility(8);
+                    }
+                    FrameLayout frameLayout7 = this.likeButtonContainer;
+                    if (!this.isSelf || this.currentStory.isLive) {
+                        i5 = 8;
+                    } else {
+                        i5 = 0;
+                    }
+                    frameLayout7.setVisibility(i5);
+                    this.likeButtonContainer.getLayoutParams().width = AndroidUtilities.dp(40.0f);
+                }
+                this.likeButtonContainer.requestLayout();
+                this.storyViewer.savedPositions.append(this.dialogId, i);
+                if (this.isActive) {
+                    requestVideoPlayer(0L);
+                    updatePreloadImages();
+                    this.imageReceiver.bumpPriority();
+                }
+                this.liveCommentsView.setLivePlayer(this.storyViewer.livePlayer);
+                this.listPosition = 0;
+                if (this.storyViewer.storiesList != null && (storyItem18 = this.currentStory.storyItem) != null) {
+                    int i21 = storyItem18.id;
+                    for (i11 = 0; i11 < this.storyViewer.storiesList.messageObjects.size(); i11++) {
+                        messageObject = (MessageObject) this.storyViewer.storiesList.messageObjects.get(i11);
+                        if (messageObject == null && messageObject.getId() == i21) {
+                            this.listPosition = i11;
+                            break;
+                        }
+                    }
+                }
+                i6 = this.selectedPosition;
+                this.linesPosition = i6;
+                i7 = this.count;
+                this.linesCount = i7;
+                if (this.storyViewer.reversed) {
+                    this.linesPosition = (i7 - 1) - i6;
+                }
+                if (this.currentStory.isVideo()) {
+                    this.muteIconContainer.setVisibility(0);
+                    if (this.currentStory.hasSound()) {
+                        f2 = 1.0f;
+                    } else {
+                        f2 = 0.5f;
+                    }
+                    this.muteIconViewAlpha = f2;
+                    if (this.currentStory.hasSound()) {
+                        this.muteIconView.setVisibility(0);
+                        this.noSoundIconView.setVisibility(8);
+                        FrameLayout frameLayout8 = this.muteIconContainer;
+                        if (this.storyViewer.soundEnabled()) {
+                            i10 = R.string.Mute;
+                        } else {
+                            i10 = R.string.Unmute;
+                        }
+                        frameLayout8.setContentDescription(LocaleController.getString(i10));
+                    } else {
+                        this.muteIconView.setVisibility(8);
+                        this.noSoundIconView.setVisibility(0);
+                        this.muteIconContainer.setContentDescription(LocaleController.getString(R.string.NoSound));
+                    }
+                    this.muteIconContainer.setAlpha(this.muteIconViewAlpha * (1.0f - this.outT));
+                } else {
+                    this.muteIconContainer.setVisibility(8);
+                }
+                storyItemHolder4 = this.currentStory;
+                uploadingStory4 = storyItemHolder4.uploadingStory;
+                if (uploadingStory4 != null) {
+                    StoryPrivacyButton storyPrivacyButton = this.privacyButton;
+                    boolean z30 = this.isSelf;
+                    if (z13 || !this.editedPrivacy) {
+                        z21 = false;
+                    } else {
+                        z21 = true;
+                    }
+                    storyPrivacyButton.set(z30, uploadingStory4, z21);
+                } else {
+                    storyItem16 = storyItemHolder4.storyItem;
+                    if (storyItem16 != null) {
+                        StoryPrivacyButton storyPrivacyButton2 = this.privacyButton;
+                        boolean z31 = this.isSelf;
+                        if (z13 || !this.editedPrivacy) {
+                            z20 = false;
+                        } else {
+                            z20 = true;
+                        }
+                        storyPrivacyButton2.set(z31, storyItem16, z20);
+                    } else {
+                        StoryPrivacyButton storyPrivacyButton3 = this.privacyButton;
+                        boolean z32 = this.isSelf;
+                        if (z13 || !this.editedPrivacy) {
+                            z19 = false;
+                        } else {
+                            z19 = true;
+                        }
+                        storyPrivacyButton3.set(z32, (TL_stories.StoryItem) null, z19);
+                    }
+                }
+                this.editedPrivacy = false;
+                StoryPrivacyButton storyPrivacyButton4 = this.privacyButton;
+                if (this.muteIconContainer.getVisibility() == 0) {
+                    f = -AndroidUtilities.dp(44.0f);
+                } else {
+                    f = 0.0f;
+                }
+                storyPrivacyButton4.setTranslationX(f);
+                if (z15) {
+                    this.drawReactionEffect = false;
+                    storyItem17 = this.currentStory.storyItem;
+                    if (storyItem17 != null || (reaction = storyItem17.sent_reaction) == null) {
+                        this.storiesLikeButton.setReaction(null);
+                    } else {
+                        this.storiesLikeButton.setReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction));
+                    }
+                }
+                uploadingStory5 = this.currentStory.uploadingStory;
+                if (uploadingStory5 == null && uploadingStory5.failed) {
+                    createFailView();
+                    this.failView.set(this.currentStory.uploadingStory.entry.error);
+                    this.failView.setVisibility(0);
+                    ViewPropertyAnimator viewPropertyAnimator2 = this.failViewAnimator;
+                    if (viewPropertyAnimator2 != null) {
+                        viewPropertyAnimator2.cancel();
+                        this.failViewAnimator = null;
+                    }
+                    if (z13) {
+                        ViewPropertyAnimator interpolator = this.failView.animate().alpha(1.0f).setDuration(180L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                        this.failViewAnimator = interpolator;
+                        interpolator.start();
+                    } else {
+                        this.failView.setAlpha(1.0f);
+                    }
+                } else if (this.failView != null) {
+                    viewPropertyAnimator = this.failViewAnimator;
+                    if (viewPropertyAnimator != null) {
+                        viewPropertyAnimator.cancel();
+                        this.failViewAnimator = null;
+                    }
+                    if (!z13 && this.failView.getVisibility() == 0) {
+                        ViewPropertyAnimator viewPropertyAnimatorWithEndAction = this.failView.animate().alpha(0.0f).setDuration(180L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.failView.setVisibility(8);
+                            }
+                        });
+                        this.failViewAnimator = viewPropertyAnimatorWithEndAction;
+                        viewPropertyAnimatorWithEndAction.start();
+                    } else {
+                        this.failView.setAlpha(0.0f);
+                        this.failView.setVisibility(8);
+                    }
+                }
+                this.sharedResources.setIconMuted(!this.storyViewer.soundEnabled(), false);
+                if (this.isActive && this.currentStory.storyItem != null) {
+                    FileLog.d("StoryViewer displayed story dialogId=" + this.dialogId + " storyId=" + this.currentStory.storyItem.id + " " + this.currentStory.getMediaDebugString());
+                }
+                if (this.isSelf) {
+                    SelfStoryViewsPage.preload(this.currentAccount, this.dialogId, this.currentStory.storyItem);
+                }
+                SimpleTextView simpleTextView = this.headerView.titleView;
+                storiesList2 = this.storyViewer.storiesList;
+                if (storiesList2 != null || storiesList2.getCount() == this.linesCount) {
+                    iDp = 0;
+                } else {
+                    iDp = AndroidUtilities.dp(56.0f);
+                }
+                simpleTextView.setPadding(0, 0, iDp, 0);
+                MessagesController.getInstance(this.currentAccount).getTranslateController().detectStoryLanguage(this.currentStory.storyItem);
+                if (!z && !this.isSelf && this.reactionsTooltipRunnable == null && !SharedConfig.storyReactionsLongPressHint && SharedConfig.storiesIntroShown) {
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            PeerStoriesView.$r8$lambda$JGvDzWPg74y7Di3T5fMEChy6Yak(this.f$0);
+                        }
+                    };
+                    this.reactionsTooltipRunnable = runnable;
+                    AndroidUtilities.runOnUIThread(runnable, 500L);
+                }
+                hintView4 = this.soundTooltip;
+                if ((hintView4 != null || !hintView4.shown()) && this.currentStory.hasSound() && !this.storyViewer.soundEnabled()) {
+                    if (MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) < 2) {
+                        AndroidUtilities.cancelRunOnUIThread(this.showTapToSoundHint);
+                        AndroidUtilities.runOnUIThread(this.showTapToSoundHint, 250L);
+                    }
+                }
+                imageView = this.optionsIconView;
+                if (imageView != null) {
+                    if (isBotsPreview() || isEditBotsPreview() || ((storyItemHolder5 = this.currentStory) != null && storyItemHolder5.isVideo)) {
+                        i9 = 0;
+                    } else {
+                        i9 = 8;
+                    }
+                    imageView.setVisibility(i9);
+                }
+                imageView2 = this.pipIconView;
+                if (imageView2 != null) {
+                    if (this.currentStory.isLive || this.privacyButton.draw) {
+                        i8 = 8;
+                    } else {
+                        i8 = 0;
+                    }
+                    imageView2.setVisibility(i8);
+                }
+            }
+            z5 = z3;
+            storyItem8 = this.currentStory.storyItem;
+            if (storyItem8 != null) {
+                this.storyViewer.dayStoryId = storyItem8.id;
+            }
+            this.storyViewer.storiesViewPager.checkAllowScreenshots();
+            this.imageChanged = true;
+            if (!this.isSelf) {
+                updateUserViews(false);
+            } else {
+                updateUserViews(false);
+            }
+            storyItemHolder = this.currentStory;
+            if (getStoryId(storyItemHolder.storyItem, storyItemHolder.uploadingStory) == getStoryId(storyItem21, uploadingStory7)) {
+                z13 = true;
+            } else {
+                z13 = true;
+            }
+            if (z13) {
+                z14 = false;
+            } else {
+                z14 = false;
+            }
+            storyViewer2 = this.storyViewer;
+            if (storyViewer2 != null) {
+                z15 = false;
+            } else {
+                z15 = false;
+            }
+            j = 0;
+            if (uploadingStory7 != null) {
+                chatActivityEnterView = this.chatActivityEnterView;
+                if (chatActivityEnterView != null) {
+                    if (storyItem21 != null) {
+                        this.storyViewer.saveDraft(storyItem21.dialogId, storyItem21, this.chatActivityEnterView.getEditField().getText());
+                    }
+                    this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
+                    if (this.currentStory.isLive) {
+                        z16 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
+                    } else {
+                        z16 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+                    }
+                } else {
+                    z16 = true;
+                }
+                if (this.currentStory.isLive) {
+                    loadSendAsPeers(z16);
+                }
+                this.emojiAnimationsOverlay.clear();
+                this.currentImageTime = 0L;
+                this.switchEventSent = false;
+                uploadingStory2 = this.currentStory.uploadingStory;
+                if (uploadingStory2 != null) {
+                    radialProgress = this.headerView.radialProgress;
+                    if (radialProgress != null) {
+                        radialProgress.setProgress(uploadingStory2.progress, false);
+                    }
+                    this.headerView.backupImageView.invalidate();
+                } else if (!z14) {
+                    this.headerView.progressToUploading = 0.0f;
+                }
+                Bulletin.hideVisible(this.storyContainer);
+                this.storyCaptionView.reset();
+                cancelWaiting();
+                z15 = true;
+            } else {
+                chatActivityEnterView = this.chatActivityEnterView;
+                if (chatActivityEnterView != null) {
+                    if (storyItem21 != null) {
+                        this.storyViewer.saveDraft(storyItem21.dialogId, storyItem21, this.chatActivityEnterView.getEditField().getText());
+                    }
+                    this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
+                    if (this.currentStory.isLive) {
+                        z16 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
+                    } else {
+                        z16 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+                    }
+                } else {
+                    z16 = true;
+                }
+                if (this.currentStory.isLive) {
+                    loadSendAsPeers(z16);
+                }
+                this.emojiAnimationsOverlay.clear();
+                this.currentImageTime = 0L;
+                this.switchEventSent = false;
+                uploadingStory2 = this.currentStory.uploadingStory;
+                if (uploadingStory2 != null) {
+                    radialProgress = this.headerView.radialProgress;
+                    if (radialProgress != null) {
+                        radialProgress.setProgress(uploadingStory2.progress, false);
+                    }
+                    this.headerView.backupImageView.invalidate();
+                } else if (!z14) {
+                    this.headerView.progressToUploading = 0.0f;
+                }
+                Bulletin.hideVisible(this.storyContainer);
+                this.storyCaptionView.reset();
+                cancelWaiting();
+                z15 = true;
+            }
+            if (z15) {
+                this.headerView.setOnSubtitleClick(null);
+                this.watchersCount = 0;
+                setTitle(false, this.dialogId, this.currentStory.isLive);
+                uploadingStory3 = this.currentStory.uploadingStory;
+                if (uploadingStory3 != null) {
+                    if (uploadingStory3.failed) {
+                        string = LocaleController.getString(R.string.FailedToUploadStory);
+                    } else {
+                        string = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                    }
+                } else if (isBotsPreview()) {
+                    storyItem12 = this.currentStory.storyItem;
+                    if (storyItem12 != null) {
+                        document = messageMedia6.document;
+                        if (document != null) {
+                            string = LocaleController.formatStoryDate(document.date);
+                        } else {
+                            photo3 = messageMedia6.photo;
+                            if (photo3 != null) {
+                                string = LocaleController.formatStoryDate(photo3.date);
+                            }
+                            charSequence = charSequence3;
+                            if (charSequence != null) {
+                                storyViewer4 = this.storyViewer;
+                                if (storyViewer4 != null) {
+                                    if (!(charSequence instanceof SpannableStringBuilder)) {
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        spannableStringBuilder3 = charSequence;
+                                        spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                                    }
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    spannableStringBuilder3 = charSequence;
+                                    SpannableString spannableString10 = new SpannableString("p ");
+                                    spannableString10.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString10);
+                                    charSequence4 = spannableStringBuilder3;
+                                }
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                this.headerView.setSubtitle(charSequence4, z14);
+                            }
+                            hintView2 = this.privacyHint;
+                            if (hintView2 != null) {
+                                hintView2.hide(false);
+                            }
+                            hintView3 = this.soundTooltip;
+                            if (hintView3 != null) {
+                                hintView3.hide(false);
+                            }
+                        }
+                    }
+                    charSequence3 = "";
+                    charSequence = charSequence3;
+                    if (charSequence != null) {
+                        storyViewer4 = this.storyViewer;
+                        if (storyViewer4 != null) {
+                            if (!(charSequence instanceof SpannableStringBuilder)) {
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            SpannableString spannableString11 = new SpannableString("p ");
+                            spannableString11.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString11);
+                            charSequence4 = spannableStringBuilder3;
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        this.headerView.setSubtitle(charSequence4, z14);
+                    }
+                    hintView2 = this.privacyHint;
+                    if (hintView2 != null) {
+                        hintView2.hide(false);
+                    }
+                    hintView3 = this.soundTooltip;
+                    if (hintView3 != null) {
+                        hintView3.hide(false);
+                    }
+                } else {
+                    storyItemHolder2 = this.currentStory;
+                    storyItem10 = storyItemHolder2.storyItem;
+                    if (storyItem10 == null) {
+                        j = 0;
+                        charSequence = null;
+                    } else if (storyItem10.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                        SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
+                        spannableStringBuilder6.setSpan(new ReplacementSpan() {
+                            private final RectF rect = new RectF();
+                            private final Paint bg = new Paint(1);
+                            private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
+
+                            @Override
+                            public int getSize(Paint paint, CharSequence charSequence6, int i22, int i23, Paint.FontMetricsInt fontMetricsInt) {
+                                return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
+                            }
+
+                            @Override
+                            public void draw(Canvas canvas, CharSequence charSequence6, int i22, int i23, float f4, int i24, int i25, int i26, Paint paint) {
+                                float fDp = ((i24 + i26) / 2.0f) + AndroidUtilities.dp(1.33f);
+                                this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
+                                this.bg.setColor(-572850);
+                                RectF rectF = this.rect;
+                                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                                this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
+                            }
+                        }, 0, spannableStringBuilder6.length(), 33);
+                        spannableStringBuilder6.append((CharSequence) "  ");
+                        storyViewer3 = this.storyViewer;
+                        if (storyViewer3 != null) {
+                            this.watchersCount = livePlayer.getWatchersCount();
+                        }
+                        spannableStringBuilder6.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
+                        string = spannableStringBuilder6;
+                    } else if (storyItem10.date == -1) {
+                        string = LocaleController.getString(R.string.CachedStory);
+                    } else {
+                        if (storyItemHolder2.getReply() != null) {
+                            reply = this.currentStory.getReply();
+                            spannableStringBuilder2 = new SpannableStringBuilder();
+                            j = 0;
+                            SpannableString spannableString12 = new SpannableString("r");
+                            spannableString12.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString12.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) spannableString12).append((CharSequence) " ");
+                            if (reply.peerId != null) {
+                                avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                                SpannableString spannableString13 = new SpannableString("a");
+                                spannableString13.setSpan(avatarSpan, 0, 1, 33);
+                                spannableStringBuilder2.append((CharSequence) spannableString13).append((CharSequence) " ");
+                                if (reply.peerId.longValue() > 0) {
+                                    TLRPC.User user4 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
+                                    avatarSpan.setUser(user4);
+                                    spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user4));
+                                } else {
+                                    chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                    avatarSpan.setChat(chat3);
+                                    if (chat3 != null) {
+                                        spannableStringBuilder2.append((CharSequence) chat3.title);
+                                    }
+                                }
+                            } else {
+                                str2 = this.currentStory.storyItem.fwd_from.from_name;
+                                if (str2 != null) {
+                                    spannableStringBuilder2.append((CharSequence) str2);
+                                }
+                            }
+                            this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    PeerStoriesView.$r8$lambda$LQ09k75UbBwPhT6MfRaFqLuURzg(this.f$0, reply, view);
+                                }
+                            });
+                            SpannableString spannableString14 = new SpannableString(".");
+                            DotDividerSpan dotDividerSpan4 = new DotDividerSpan();
+                            dotDividerSpan4.setTopPadding(AndroidUtilities.dp(1.5f));
+                            dotDividerSpan4.setSize(5.0f);
+                            spannableString14.setSpan(dotDividerSpan4, 0, spannableString14.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString14).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                            spannableStringBuilder = spannableStringBuilder2;
+                        } else {
+                            j = 0;
+                            if (!this.isGroup) {
+                            }
+                            storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                            charSequence2 = storyDate;
+                            if (this.currentStory.storyItem.edited) {
+                                SpannableStringBuilder spannableStringBuilderValueOf2 = SpannableStringBuilder.valueOf(storyDate);
+                                DotDividerSpan dotDividerSpan5 = new DotDividerSpan();
+                                dotDividerSpan5.setTopPadding(AndroidUtilities.dp(1.5f));
+                                dotDividerSpan5.setSize(5.0f);
+                                spannableStringBuilderValueOf2.append((CharSequence) " . ").setSpan(dotDividerSpan5, spannableStringBuilderValueOf2.length() - 2, spannableStringBuilderValueOf2.length() - 1, 0);
+                                spannableStringBuilderValueOf2.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                                charSequence2 = spannableStringBuilderValueOf2;
+                            }
+                            charSequence = charSequence2;
+                        }
+                        z14 = false;
+                        charSequence = spannableStringBuilder;
+                    }
+                    if (charSequence != null) {
+                        storyViewer4 = this.storyViewer;
+                        if (storyViewer4 != null) {
+                            if (!(charSequence instanceof SpannableStringBuilder)) {
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            SpannableString spannableString15 = new SpannableString("p ");
+                            spannableString15.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString15);
+                            charSequence4 = spannableStringBuilder3;
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        this.headerView.setSubtitle(charSequence4, z14);
+                    }
                     hintView2 = this.privacyHint;
                     if (hintView2 != null) {
                         hintView2.hide(false);
@@ -6925,42 +8018,335 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         hintView3.hide(false);
                     }
                 }
-                string = storyDate2;
-                if (string != null) {
-                    string = spannableStringBuilderValueOf;
-                    storyViewer3 = this.storyViewer;
-                    if (storyViewer3 != null) {
-                        if (!(string instanceof SpannableStringBuilder)) {
-                            charSequence = string;
-                            charSequence = string;
-                            charSequence = string;
-                            charSequence = string;
-                            spannableStringBuilder3 = string;
-                            spannableStringBuilder3 = new SpannableStringBuilder(string);
+                charSequence3 = string;
+                charSequence = charSequence3;
+                if (charSequence != null) {
+                    storyViewer4 = this.storyViewer;
+                    if (storyViewer4 != null) {
+                        if (!(charSequence instanceof SpannableStringBuilder)) {
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
                         }
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        spannableStringBuilder3 = string;
-                        SpannableString spannableString7 = new SpannableString("p ");
-                        spannableString7.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
-                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString7);
-                        charSequence = spannableStringBuilder3;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        SpannableString spannableString16 = new SpannableString("p ");
+                        spannableString16.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString16);
+                        charSequence4 = spannableStringBuilder3;
                     }
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    this.headerView.setSubtitle(charSequence, z4);
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    this.headerView.setSubtitle(charSequence4, z14);
                 }
-                string = spannableStringBuilderValueOf;
+                hintView2 = this.privacyHint;
+                if (hintView2 != null) {
+                    hintView2.hide(false);
+                }
+                hintView3 = this.soundTooltip;
+                if (hintView3 != null) {
+                    hintView3.hide(false);
+                }
+            } else {
+                this.headerView.setOnSubtitleClick(null);
+                this.watchersCount = 0;
+                setTitle(false, this.dialogId, this.currentStory.isLive);
+                uploadingStory3 = this.currentStory.uploadingStory;
+                if (uploadingStory3 != null) {
+                    if (uploadingStory3.failed) {
+                        string = LocaleController.getString(R.string.FailedToUploadStory);
+                    } else {
+                        string = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                    }
+                } else if (isBotsPreview()) {
+                    storyItem12 = this.currentStory.storyItem;
+                    if (storyItem12 != null) {
+                        document = messageMedia6.document;
+                        if (document != null) {
+                            string = LocaleController.formatStoryDate(document.date);
+                        } else {
+                            photo3 = messageMedia6.photo;
+                            if (photo3 != null) {
+                                string = LocaleController.formatStoryDate(photo3.date);
+                            }
+                            charSequence = charSequence3;
+                            if (charSequence != null) {
+                                storyViewer4 = this.storyViewer;
+                                if (storyViewer4 != null) {
+                                    if (!(charSequence instanceof SpannableStringBuilder)) {
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        spannableStringBuilder3 = charSequence;
+                                        spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                                    }
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    spannableStringBuilder3 = charSequence;
+                                    SpannableString spannableString17 = new SpannableString("p ");
+                                    spannableString17.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString17);
+                                    charSequence4 = spannableStringBuilder3;
+                                }
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                this.headerView.setSubtitle(charSequence4, z14);
+                            }
+                            hintView2 = this.privacyHint;
+                            if (hintView2 != null) {
+                                hintView2.hide(false);
+                            }
+                            hintView3 = this.soundTooltip;
+                            if (hintView3 != null) {
+                                hintView3.hide(false);
+                            }
+                        }
+                    }
+                    charSequence3 = "";
+                    charSequence = charSequence3;
+                    if (charSequence != null) {
+                        storyViewer4 = this.storyViewer;
+                        if (storyViewer4 != null) {
+                            if (!(charSequence instanceof SpannableStringBuilder)) {
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            SpannableString spannableString18 = new SpannableString("p ");
+                            spannableString18.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString18);
+                            charSequence4 = spannableStringBuilder3;
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        this.headerView.setSubtitle(charSequence4, z14);
+                    }
+                    hintView2 = this.privacyHint;
+                    if (hintView2 != null) {
+                        hintView2.hide(false);
+                    }
+                    hintView3 = this.soundTooltip;
+                    if (hintView3 != null) {
+                        hintView3.hide(false);
+                    }
+                } else {
+                    storyItemHolder2 = this.currentStory;
+                    storyItem10 = storyItemHolder2.storyItem;
+                    if (storyItem10 == null) {
+                        j = 0;
+                        charSequence = null;
+                    } else if (storyItem10.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                        SpannableStringBuilder spannableStringBuilder7 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
+                        spannableStringBuilder7.setSpan(new ReplacementSpan() {
+                            private final RectF rect = new RectF();
+                            private final Paint bg = new Paint(1);
+                            private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
+
+                            @Override
+                            public int getSize(Paint paint, CharSequence charSequence6, int i22, int i23, Paint.FontMetricsInt fontMetricsInt) {
+                                return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
+                            }
+
+                            @Override
+                            public void draw(Canvas canvas, CharSequence charSequence6, int i22, int i23, float f4, int i24, int i25, int i26, Paint paint) {
+                                float fDp = ((i24 + i26) / 2.0f) + AndroidUtilities.dp(1.33f);
+                                this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
+                                this.bg.setColor(-572850);
+                                RectF rectF = this.rect;
+                                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                                this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
+                            }
+                        }, 0, spannableStringBuilder7.length(), 33);
+                        spannableStringBuilder7.append((CharSequence) "  ");
+                        storyViewer3 = this.storyViewer;
+                        if (storyViewer3 != null) {
+                            this.watchersCount = livePlayer.getWatchersCount();
+                        }
+                        spannableStringBuilder7.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
+                        string = spannableStringBuilder7;
+                    } else if (storyItem10.date == -1) {
+                        string = LocaleController.getString(R.string.CachedStory);
+                    } else {
+                        if (storyItemHolder2.getReply() != null) {
+                            reply = this.currentStory.getReply();
+                            spannableStringBuilder2 = new SpannableStringBuilder();
+                            j = 0;
+                            SpannableString spannableString19 = new SpannableString("r");
+                            spannableString19.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString19.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) spannableString19).append((CharSequence) " ");
+                            if (reply.peerId != null) {
+                                avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                                SpannableString spannableString110 = new SpannableString("a");
+                                spannableString110.setSpan(avatarSpan, 0, 1, 33);
+                                spannableStringBuilder2.append((CharSequence) spannableString110).append((CharSequence) " ");
+                                if (reply.peerId.longValue() > 0) {
+                                    TLRPC.User user5 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
+                                    avatarSpan.setUser(user5);
+                                    spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user5));
+                                } else {
+                                    chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                    avatarSpan.setChat(chat3);
+                                    if (chat3 != null) {
+                                        spannableStringBuilder2.append((CharSequence) chat3.title);
+                                    }
+                                }
+                            } else {
+                                str2 = this.currentStory.storyItem.fwd_from.from_name;
+                                if (str2 != null) {
+                                    spannableStringBuilder2.append((CharSequence) str2);
+                                }
+                            }
+                            this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    PeerStoriesView.$r8$lambda$LQ09k75UbBwPhT6MfRaFqLuURzg(this.f$0, reply, view);
+                                }
+                            });
+                            SpannableString spannableString111 = new SpannableString(".");
+                            DotDividerSpan dotDividerSpan6 = new DotDividerSpan();
+                            dotDividerSpan6.setTopPadding(AndroidUtilities.dp(1.5f));
+                            dotDividerSpan6.setSize(5.0f);
+                            spannableString111.setSpan(dotDividerSpan6, 0, spannableString111.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString111).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                            spannableStringBuilder = spannableStringBuilder2;
+                        } else {
+                            j = 0;
+                            if (!this.isGroup) {
+                            }
+                            storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                            charSequence2 = storyDate;
+                            if (this.currentStory.storyItem.edited) {
+                                SpannableStringBuilder spannableStringBuilderValueOf3 = SpannableStringBuilder.valueOf(storyDate);
+                                DotDividerSpan dotDividerSpan7 = new DotDividerSpan();
+                                dotDividerSpan7.setTopPadding(AndroidUtilities.dp(1.5f));
+                                dotDividerSpan7.setSize(5.0f);
+                                spannableStringBuilderValueOf3.append((CharSequence) " . ").setSpan(dotDividerSpan7, spannableStringBuilderValueOf3.length() - 2, spannableStringBuilderValueOf3.length() - 1, 0);
+                                spannableStringBuilderValueOf3.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                                charSequence2 = spannableStringBuilderValueOf3;
+                            }
+                            charSequence = charSequence2;
+                        }
+                        z14 = false;
+                        charSequence = spannableStringBuilder;
+                    }
+                    if (charSequence != null) {
+                        storyViewer4 = this.storyViewer;
+                        if (storyViewer4 != null) {
+                            if (!(charSequence instanceof SpannableStringBuilder)) {
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            SpannableString spannableString112 = new SpannableString("p ");
+                            spannableString112.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString112);
+                            charSequence4 = spannableStringBuilder3;
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        this.headerView.setSubtitle(charSequence4, z14);
+                    }
+                    hintView2 = this.privacyHint;
+                    if (hintView2 != null) {
+                        hintView2.hide(false);
+                    }
+                    hintView3 = this.soundTooltip;
+                    if (hintView3 != null) {
+                        hintView3.hide(false);
+                    }
+                }
+                charSequence3 = string;
+                charSequence = charSequence3;
+                if (charSequence != null) {
+                    storyViewer4 = this.storyViewer;
+                    if (storyViewer4 != null) {
+                        if (!(charSequence instanceof SpannableStringBuilder)) {
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        SpannableString spannableString113 = new SpannableString("p ");
+                        spannableString113.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString113);
+                        charSequence4 = spannableStringBuilder3;
+                    }
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    this.headerView.setSubtitle(charSequence4, z14);
+                }
                 hintView2 = this.privacyHint;
                 if (hintView2 != null) {
                     hintView2.hide(false);
@@ -6970,30 +8356,30 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     hintView3.hide(false);
                 }
             }
-            StoryItemHolder storyItemHolder9 = this.currentStory;
-            storyItem10 = storyItemHolder9.storyItem;
-            if (storyItem17 != storyItem10 && uploadingStory9 == storyItemHolder9.uploadingStory) {
-                if (storyItemHolder9.captionTranslated != (storyItem10 != null && storyItem10.translated && storyItem10.translatedText != null && TextUtils.equals(storyItem10.translatedLng, TranslateAlert2.getToLanguage()))) {
-                    this.currentStory.updateCaption();
-                }
+            StoryItemHolder storyItemHolder11 = this.currentStory;
+            storyItem14 = storyItemHolder11.storyItem;
+            if (storyItem21 != storyItem14) {
+                this.currentStory.updateCaption();
             } else {
                 this.currentStory.updateCaption();
             }
             storyItemHolder3 = this.currentStory;
-            if ((!storyItemHolder3.captionTranslated || storyItem17 != storyItemHolder3.storyItem) && (delegate = this.delegate) != null) {
+            if (!storyItemHolder3.captionTranslated) {
+                delegate.setTranslating(false);
+            } else {
                 delegate.setTranslating(false);
             }
-            if (this.currentStory.isLive || (storyViewer4 = this.storyViewer) == null || (livePlayer5 = storyViewer4.livePlayer) == null || !this.currentStory.isThisCall(livePlayer5.getCallId()) || !this.storyViewer.livePlayer.commentsDisabled()) {
-                z7 = false;
+            if (this.currentStory.isLive) {
+                z17 = false;
             } else {
-                z7 = true;
+                z17 = false;
             }
-            if (z7 != this.areLiveCommentsDisabled) {
-                this.areLiveCommentsDisabled = z7;
-                if (z7) {
+            if (z17 != this.areLiveCommentsDisabled) {
+                this.areLiveCommentsDisabled = z17;
+                if (z17) {
                     createPremiumBlockedText();
                 }
-                if (this.premiumBlockedText != null && (this.isPremiumBlocked || this.areLiveCommentsDisabled)) {
+                if (this.premiumBlockedText != null) {
                     updatePremiumBlockedText();
                 }
                 chatActivityEnterView9 = this.chatActivityEnterView;
@@ -7028,10 +8414,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     linearLayout3.setVisibility(0);
                 }
             } else {
-                if (this.dialogId < 0) {
-                    chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                if (this.dialogId < j) {
+                    chat4 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
                 } else {
-                    chat2 = null;
+                    chat4 = null;
                 }
                 if (this.currentStory.isLive) {
                     if (this.chatActivityEnterView == null) {
@@ -7041,10 +8427,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     createPaidReactionsButton();
                     createMuteButton();
                     this.chatActivityEnterView.setVisibility(0);
-                } else if ((!UserObject.isService(this.dialogId) || isBotsPreview()) && (chatActivityEnterView2 = this.chatActivityEnterView) != null) {
+                } else if (!UserObject.isService(this.dialogId)) {
                     chatActivityEnterView2.setVisibility(8);
-                } else if (!this.isSelf && ((!this.isChannel || (this.isGroup && (ChatObject.canSendPlain(chat2) || ChatObject.isPossibleRemoveChatRestrictionsByBoosts(chat2)))) && (chatActivityEnterView3 = this.chatActivityEnterView) != null)) {
-                    chatActivityEnterView3.setVisibility(0);
+                } else {
+                    chatActivityEnterView2.setVisibility(8);
                 }
                 chatActivityEnterView4 = this.chatActivityEnterView;
                 if (chatActivityEnterView4 != null) {
@@ -7052,7 +8438,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         onLongClickListener = new View.OnLongClickListener() {
                             @Override
                             public final boolean onLongClick(View view) {
-                                return this.f$0.lambda$updatePosition$48(view);
+                                return PeerStoriesView.m4344$r8$lambda$Mxc9g7SqQoz_TBpACZPZxJuRuU(this.f$0, view);
                             }
                         };
                     } else {
@@ -7060,19 +8446,21 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     }
                     chatActivityEnterView4.setOnSendButtonLongClick(onLongClickListener);
                     this.chatActivityEnterView.setLiveComment(this.currentStory.isLive, disabledPaidFeatures(true));
-                    ChatActivityEnterView chatActivityEnterView10 = this.chatActivityEnterView;
-                    if (this.currentStory.isLive || disabledPaidFeatures(true) || !(this.keyboardVisible || this.chatActivityEnterView.emojiViewVisible)) {
-                        z8 = false;
+                    ChatActivityEnterView chatActivityEnterView11 = this.chatActivityEnterView;
+                    if (this.currentStory.isLive) {
+                        z18 = false;
                     } else {
-                        z8 = true;
+                        z18 = false;
                     }
-                    chatActivityEnterView10.setSuggestionButtonVisible(z8, true);
+                    chatActivityEnterView11.setSuggestionButtonVisible(z18, true);
                 }
-                if (this.isPremiumBlocked && this.premiumBlockedText == null) {
+                if (this.isPremiumBlocked) {
                     createPremiumBlockedText();
                 }
                 if (this.premiumBlockedText != null) {
-                    if (!this.isPremiumBlocked || this.areLiveCommentsDisabled) {
+                    if (!this.isPremiumBlocked) {
+                        updatePremiumBlockedText();
+                    } else {
                         updatePremiumBlockedText();
                     }
                     this.premiumBlockedText.setVisibility(((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled) ? 8 : 0);
@@ -7083,12 +8471,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
                 frameLayout = this.selfView;
                 if (frameLayout != null) {
-                    if (this.isSelf || this.currentStory.isLive) {
-                        i2 = 8;
+                    if (this.isSelf) {
+                        i3 = 8;
                     } else {
-                        i2 = 0;
+                        i3 = 8;
                     }
-                    frameLayout.setVisibility(i2);
+                    frameLayout.setVisibility(i3);
                 }
                 frameLayout2 = this.unsupportedContainer;
                 if (frameLayout2 != null) {
@@ -7106,18 +8494,18 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 linearLayout2 = this.bottomActionsLinearLayout;
                 if (linearLayout2 != null) {
                     if (isBotsPreview()) {
-                        i = 8;
+                        i2 = 8;
                     } else {
-                        i = 0;
+                        i2 = 0;
                     }
-                    linearLayout2.setVisibility(i);
+                    linearLayout2.setVisibility(i2);
                 }
             }
             chatActivitySideControlsButtonsLayout = this.sideControlsButtonsLayout;
             if (chatActivitySideControlsButtonsLayout != null) {
                 chatActivityEnterView7 = this.chatActivityEnterView;
-                if (chatActivityEnterView7 == null && chatActivityEnterView7.getVisibility() == 0 && !this.currentStory.isLive) {
-                    i19 = 0;
+                if (chatActivityEnterView7 == null) {
+                    i19 = 8;
                 } else {
                     i19 = 8;
                 }
@@ -7125,8 +8513,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             commentButton = this.commentButton;
             if (commentButton != null) {
-                if (this.unsupported && this.currentStory.isLive) {
-                    i18 = 0;
+                if (this.unsupported) {
+                    i18 = 8;
                 } else {
                     i18 = 8;
                 }
@@ -7136,48 +8524,48 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             muteButton = this.muteButton;
             if (muteButton != null) {
-                if (this.unsupported && this.currentStory.isLive && (livePlayer4 = LivePlayer.recording) != null && this.currentStory.isThisCall(livePlayer4.getCallId())) {
-                    i17 = 0;
+                if (this.unsupported) {
+                    i17 = 8;
                 } else {
                     i17 = 8;
                 }
                 muteButton.setVisibility(i17);
-                MuteButton muteButton3 = this.muteButton;
+                MuteButton muteButton5 = this.muteButton;
                 livePlayer2 = LivePlayer.recording;
-                if (livePlayer2 == null && livePlayer2.isMuted()) {
-                    z14 = true;
+                if (livePlayer2 == null) {
+                    z24 = false;
                 } else {
-                    z14 = false;
+                    z24 = false;
                 }
-                muteButton3.setMuted(z14, true);
-                MuteButton muteButton4 = this.muteButton;
+                muteButton5.setMuted(z24, true);
+                MuteButton muteButton6 = this.muteButton;
                 livePlayer3 = LivePlayer.recording;
-                if (livePlayer3 != null || livePlayer3.isConnected()) {
-                    z15 = true;
+                if (livePlayer3 != null) {
+                    z25 = true;
                 } else {
-                    z15 = false;
+                    z25 = true;
                 }
-                muteButton4.setConnected(z15, true);
+                muteButton6.setConnected(z25, true);
             }
             if (this.starsButton != null) {
-                PaidReactionButton.PaidReactionButtonEffectsView paidReactionButtonEffectsView = this.starsButtonEffectsView;
-                if (this.unsupported && this.currentStory.isLive) {
-                    i15 = 0;
+                PaidReactionButton.PaidReactionButtonEffectsView paidReactionButtonEffectsView2 = this.starsButtonEffectsView;
+                if (this.unsupported) {
+                    i15 = 8;
                 } else {
                     i15 = 8;
                 }
-                paidReactionButtonEffectsView.setVisibility(i15);
-                PaidReactionButton paidReactionButton = this.starsButton;
-                if (this.unsupported && this.currentStory.isLive) {
-                    i16 = 0;
+                paidReactionButtonEffectsView2.setVisibility(i15);
+                PaidReactionButton paidReactionButton2 = this.starsButton;
+                if (this.unsupported) {
+                    i16 = 8;
                 } else {
                     i16 = 8;
                 }
-                paidReactionButton.setVisibility(i16);
+                paidReactionButton2.setVisibility(i16);
                 layoutParams = (FrameLayout.LayoutParams) this.starsButton.getLayoutParams();
                 muteButton2 = this.muteButton;
-                if (muteButton2 == null && muteButton2.getVisibility() == 0) {
-                    f3 = 54.0f;
+                if (muteButton2 == null) {
+                    f3 = 7.0f;
                 } else {
                     f3 = 7.0f;
                 }
@@ -7188,55 +8576,70 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
             }
             if (this.currentStory.isLive) {
-                if (this.isActive) {
-                    this.delegate.setIsCaption(false);
-                    Delegate delegate2 = this.delegate;
-                    this.isCaptionPartVisible = false;
-                    delegate2.setIsCaptionPartVisible(false);
-                }
-                this.storyCaptionView.setVisibility(8);
-            } else {
                 storyItemHolder6 = this.currentStory;
-                if ((storyItemHolder6.caption == null || storyItemHolder6.getReply() != null || this.currentStory.getMusic() != null) && !this.unsupported) {
-                    StoryCaptionView.StoryCaptionTextView storyCaptionTextView = this.storyCaptionView.captionTextview;
-                    StoryItemHolder storyItemHolder10 = this.currentStory;
-                    CharSequence charSequence2 = storyItemHolder10.caption;
-                    StoryCaptionView.Panel reply2 = storyItemHolder10.getReply();
-                    StoryCaptionView.Panel music = this.currentStory.getMusic();
+                if (storyItemHolder6.caption == null) {
+                    StoryCaptionView.StoryCaptionTextView storyCaptionTextView2 = this.storyCaptionView.captionTextview;
+                    StoryItemHolder storyItemHolder12 = this.currentStory;
+                    CharSequence charSequence6 = storyItemHolder12.caption;
+                    StoryCaptionView.Panel reply3 = storyItemHolder12.getReply();
+                    StoryCaptionView.Panel music2 = this.currentStory.getMusic();
                     if (this.storyViewer.isTranslating) {
                         storyItemHolder7 = this.currentStory;
-                        if (storyItemHolder7.captionTranslated && (storyItem15 = storyItemHolder7.storyItem) != null && storyItem15.translated) {
-                            z12 = true;
+                        if (storyItemHolder7.captionTranslated) {
+                            z22 = false;
                         } else {
-                            z12 = false;
+                            z22 = false;
                         }
                     } else {
-                        z12 = false;
+                        z22 = false;
                     }
-                    if (storyItem17 == this.currentStory.storyItem) {
-                        z13 = true;
+                    if (storyItem21 == this.currentStory.storyItem) {
+                        z23 = true;
                     } else {
-                        z13 = false;
+                        z23 = false;
                     }
-                    storyCaptionTextView.setText(charSequence2, reply2, music, z12, z13);
+                    storyCaptionTextView2.setText(charSequence6, reply3, music2, z22, z23);
                     this.storyCaptionView.setVisibility(0);
                 } else {
-                    if (this.isActive) {
-                        this.delegate.setIsCaption(false);
-                        Delegate delegate3 = this.delegate;
-                        this.isCaptionPartVisible = false;
-                        delegate3.setIsCaptionPartVisible(false);
+                    StoryCaptionView.StoryCaptionTextView storyCaptionTextView3 = this.storyCaptionView.captionTextview;
+                    StoryItemHolder storyItemHolder13 = this.currentStory;
+                    CharSequence charSequence7 = storyItemHolder13.caption;
+                    StoryCaptionView.Panel reply4 = storyItemHolder13.getReply();
+                    StoryCaptionView.Panel music3 = this.currentStory.getMusic();
+                    if (this.storyViewer.isTranslating) {
+                        storyItemHolder7 = this.currentStory;
+                        if (storyItemHolder7.captionTranslated) {
+                            z22 = false;
+                        } else {
+                            z22 = false;
+                        }
+                    } else {
+                        z22 = false;
                     }
-                    this.storyCaptionView.setVisibility(8);
+                    if (storyItem21 == this.currentStory.storyItem) {
+                        z23 = true;
+                    } else {
+                        z23 = false;
+                    }
+                    storyCaptionTextView3.setText(charSequence7, reply4, music3, z22, z23);
+                    this.storyCaptionView.setVisibility(0);
                 }
+            } else {
+                if (this.isActive) {
+                    this.delegate.setIsCaption(false);
+                    Delegate delegate4 = this.delegate;
+                    this.isCaptionPartVisible = false;
+                    delegate4.setIsCaptionPartVisible(false);
+                }
+                this.storyCaptionView.setVisibility(8);
             }
-            storyItem11 = this.currentStory.storyItem;
-            if (storyItem11 != null) {
-                messageMedia2 = storyItem11.media;
-                if (messageMedia2 instanceof TLRPC.TL_messageMediaVideoStream) {
-                    if (this.liveCommentsView.setup(this.dialogId, ((TLRPC.TL_messageMediaVideoStream) messageMedia2).call)) {
+            storyItem15 = this.currentStory.storyItem;
+            if (storyItem15 != null) {
+                messageMedia7 = storyItem15.media;
+                if (messageMedia7 instanceof TLRPC.TL_messageMediaVideoStream) {
+                    if (this.liveCommentsView.setup(this.dialogId, ((TLRPC.TL_messageMediaVideoStream) messageMedia7).call)) {
                         this.liveCommentsView.setCollapsed(false, false);
-                        this.messageStars = 0L;
+                        this.messageStars = j;
                         chatActivityEnterView6 = this.chatActivityEnterView;
                         if (chatActivityEnterView6 != null) {
                             chatActivityEnterView6.checkSendButton(true);
@@ -7254,56 +8657,56 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 this.liveCommentsView.setVisibility(8);
             }
             this.storyContainer.invalidate();
-            if (this.delegate != null && isSelectedPeer()) {
+            if (this.delegate != null) {
                 this.delegate.onPeerSelected(this.dialogId, this.selectedPosition);
             }
             if (this.isChannel) {
-                ImageView imageView3 = this.shareButton;
-                if (this.allowShare || this.currentStory.isLive) {
+                ImageView imageView5 = this.shareButton;
+                if (this.allowShare) {
                     i12 = 4;
                 } else {
-                    i12 = 0;
+                    i12 = 4;
                 }
-                imageView3.setVisibility(i12);
+                imageView5.setVisibility(i12);
                 frameLayout4 = this.repostButtonContainer;
                 if (frameLayout4 != null) {
-                    if (this.allowRepost || this.currentStory.isLive) {
+                    if (this.allowRepost) {
                         i14 = 8;
                     } else {
-                        i14 = 0;
+                        i14 = 8;
                     }
                     frameLayout4.setVisibility(i14);
                 }
-                FrameLayout frameLayout6 = this.likeButtonContainer;
-                if (!this.isFailed || this.currentStory.isLive) {
+                FrameLayout frameLayout9 = this.likeButtonContainer;
+                if (this.isFailed) {
                     i13 = 8;
                 } else {
-                    i13 = 0;
+                    i13 = 8;
                 }
-                frameLayout6.setVisibility(i13);
+                frameLayout9.setVisibility(i13);
             } else {
-                ImageView imageView4 = this.shareButton;
-                if (this.allowShare || this.currentStory.isLive) {
-                    i3 = 4;
+                ImageView imageView6 = this.shareButton;
+                if (this.allowShare) {
+                    i4 = 4;
                 } else {
-                    i3 = 0;
+                    i4 = 4;
                 }
-                imageView4.setVisibility(i3);
+                imageView6.setVisibility(i4);
                 frameLayout3 = this.repostButtonContainer;
                 if (frameLayout3 != null) {
                     frameLayout3.setVisibility(8);
                 }
-                FrameLayout frameLayout7 = this.likeButtonContainer;
-                if (!this.isSelf || this.currentStory.isLive) {
-                    i4 = 8;
+                FrameLayout frameLayout10 = this.likeButtonContainer;
+                if (this.isSelf) {
+                    i5 = 8;
                 } else {
-                    i4 = 0;
+                    i5 = 8;
                 }
-                frameLayout7.setVisibility(i4);
+                frameLayout10.setVisibility(i5);
                 this.likeButtonContainer.getLayoutParams().width = AndroidUtilities.dp(40.0f);
             }
             this.likeButtonContainer.requestLayout();
-            this.storyViewer.savedPositions.append(this.dialogId, i20);
+            this.storyViewer.savedPositions.append(this.dialogId, i);
             if (this.isActive) {
                 requestVideoPlayer(0L);
                 updatePreloadImages();
@@ -7311,22 +8714,20 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             this.liveCommentsView.setLivePlayer(this.storyViewer.livePlayer);
             this.listPosition = 0;
-            if (this.storyViewer.storiesList != null && (storyItem14 = this.currentStory.storyItem) != null) {
-                int i21 = storyItem14.id;
-                for (i11 = 0; i11 < this.storyViewer.storiesList.messageObjects.size(); i11++) {
+            if (this.storyViewer.storiesList != null) {
+                int i22 = storyItem18.id;
+                while (i11 < this.storyViewer.storiesList.messageObjects.size()) {
                     messageObject = (MessageObject) this.storyViewer.storiesList.messageObjects.get(i11);
-                    if (messageObject == null && messageObject.getId() == i21) {
-                        this.listPosition = i11;
-                        break;
+                    if (messageObject == null) {
                     }
                 }
             }
-            i5 = this.selectedPosition;
-            this.linesPosition = i5;
-            i6 = this.count;
-            this.linesCount = i6;
+            i6 = this.selectedPosition;
+            this.linesPosition = i6;
+            i7 = this.count;
+            this.linesCount = i7;
             if (this.storyViewer.reversed) {
-                this.linesPosition = (i6 - 1) - i5;
+                this.linesPosition = (i7 - 1) - i6;
             }
             if (this.currentStory.isVideo()) {
                 this.muteIconContainer.setVisibility(0);
@@ -7339,13 +8740,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 if (this.currentStory.hasSound()) {
                     this.muteIconView.setVisibility(0);
                     this.noSoundIconView.setVisibility(8);
-                    FrameLayout frameLayout8 = this.muteIconContainer;
+                    FrameLayout frameLayout11 = this.muteIconContainer;
                     if (this.storyViewer.soundEnabled()) {
                         i10 = R.string.Mute;
                     } else {
                         i10 = R.string.Unmute;
                     }
-                    frameLayout8.setContentDescription(LocaleController.getString(i10));
+                    frameLayout11.setContentDescription(LocaleController.getString(i10));
                 } else {
                     this.muteIconView.setVisibility(8);
                     this.noSoundIconView.setVisibility(0);
@@ -7356,71 +8757,70 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 this.muteIconContainer.setVisibility(8);
             }
             storyItemHolder4 = this.currentStory;
-            uploadingStory6 = storyItemHolder4.uploadingStory;
-            if (uploadingStory6 != null) {
-                StoryPrivacyButton storyPrivacyButton = this.privacyButton;
-                boolean z22 = this.isSelf;
-                if (z3 || !this.editedPrivacy) {
-                    z11 = false;
+            uploadingStory4 = storyItemHolder4.uploadingStory;
+            if (uploadingStory4 != null) {
+                StoryPrivacyButton storyPrivacyButton5 = this.privacyButton;
+                boolean z33 = this.isSelf;
+                if (z13) {
+                    z21 = false;
                 } else {
-                    z11 = true;
+                    z21 = false;
                 }
-                storyPrivacyButton.set(z22, uploadingStory6, z11);
+                storyPrivacyButton5.set(z33, uploadingStory4, z21);
             } else {
-                storyItem12 = storyItemHolder4.storyItem;
-                if (storyItem12 != null) {
-                    StoryPrivacyButton storyPrivacyButton2 = this.privacyButton;
-                    boolean z23 = this.isSelf;
-                    if (z3 || !this.editedPrivacy) {
-                        z10 = false;
+                storyItem16 = storyItemHolder4.storyItem;
+                if (storyItem16 != null) {
+                    StoryPrivacyButton storyPrivacyButton6 = this.privacyButton;
+                    boolean z34 = this.isSelf;
+                    if (z13) {
+                        z20 = false;
                     } else {
-                        z10 = true;
+                        z20 = false;
                     }
-                    storyPrivacyButton2.set(z23, storyItem12, z10);
+                    storyPrivacyButton6.set(z34, storyItem16, z20);
                 } else {
-                    StoryPrivacyButton storyPrivacyButton3 = this.privacyButton;
-                    boolean z24 = this.isSelf;
-                    if (z3 || !this.editedPrivacy) {
-                        z9 = false;
+                    StoryPrivacyButton storyPrivacyButton7 = this.privacyButton;
+                    boolean z35 = this.isSelf;
+                    if (z13) {
+                        z19 = false;
                     } else {
-                        z9 = true;
+                        z19 = false;
                     }
-                    storyPrivacyButton3.set(z24, (TL_stories.StoryItem) null, z9);
+                    storyPrivacyButton7.set(z35, (TL_stories.StoryItem) null, z19);
                 }
             }
             this.editedPrivacy = false;
-            StoryPrivacyButton storyPrivacyButton4 = this.privacyButton;
+            StoryPrivacyButton storyPrivacyButton8 = this.privacyButton;
             if (this.muteIconContainer.getVisibility() == 0) {
                 f = -AndroidUtilities.dp(44.0f);
             } else {
                 f = 0.0f;
             }
-            storyPrivacyButton4.setTranslationX(f);
-            if (z5) {
+            storyPrivacyButton8.setTranslationX(f);
+            if (z15) {
                 this.drawReactionEffect = false;
-                storyItem13 = this.currentStory.storyItem;
-                if (storyItem13 != null || (reaction = storyItem13.sent_reaction) == null) {
+                storyItem17 = this.currentStory.storyItem;
+                if (storyItem17 != null) {
                     this.storiesLikeButton.setReaction(null);
                 } else {
-                    this.storiesLikeButton.setReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction));
+                    this.storiesLikeButton.setReaction(null);
                 }
             }
-            uploadingStory7 = this.currentStory.uploadingStory;
-            if (uploadingStory7 == null && uploadingStory7.failed) {
-                createFailView();
-                this.failView.set(this.currentStory.uploadingStory.entry.error);
-                this.failView.setVisibility(0);
-                ViewPropertyAnimator viewPropertyAnimator2 = this.failViewAnimator;
-                if (viewPropertyAnimator2 != null) {
-                    viewPropertyAnimator2.cancel();
-                    this.failViewAnimator = null;
-                }
-                if (z3) {
-                    ViewPropertyAnimator interpolator = this.failView.animate().alpha(1.0f).setDuration(180L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                    this.failViewAnimator = interpolator;
-                    interpolator.start();
-                } else {
-                    this.failView.setAlpha(1.0f);
+            uploadingStory5 = this.currentStory.uploadingStory;
+            if (uploadingStory5 == null) {
+                if (this.failView != null) {
+                    viewPropertyAnimator = this.failViewAnimator;
+                    if (viewPropertyAnimator != null) {
+                        viewPropertyAnimator.cancel();
+                        this.failViewAnimator = null;
+                    }
+                    if (!z13) {
+                        this.failView.setAlpha(0.0f);
+                        this.failView.setVisibility(8);
+                    } else {
+                        this.failView.setAlpha(0.0f);
+                        this.failView.setVisibility(8);
+                    }
                 }
             } else if (this.failView != null) {
                 viewPropertyAnimator = this.failViewAnimator;
@@ -7428,78 +8828,1532 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     viewPropertyAnimator.cancel();
                     this.failViewAnimator = null;
                 }
-                if (!z3 && this.failView.getVisibility() == 0) {
-                    ViewPropertyAnimator viewPropertyAnimatorWithEndAction = this.failView.animate().alpha(0.0f).setDuration(180L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$updatePosition$49();
-                        }
-                    });
-                    this.failViewAnimator = viewPropertyAnimatorWithEndAction;
-                    viewPropertyAnimatorWithEndAction.start();
+                if (!z13) {
+                    this.failView.setAlpha(0.0f);
+                    this.failView.setVisibility(8);
                 } else {
                     this.failView.setAlpha(0.0f);
                     this.failView.setVisibility(8);
                 }
             }
             this.sharedResources.setIconMuted(!this.storyViewer.soundEnabled(), false);
-            if (this.isActive && this.currentStory.storyItem != null) {
+            if (this.isActive) {
                 FileLog.d("StoryViewer displayed story dialogId=" + this.dialogId + " storyId=" + this.currentStory.storyItem.id + " " + this.currentStory.getMediaDebugString());
             }
             if (this.isSelf) {
                 SelfStoryViewsPage.preload(this.currentAccount, this.dialogId, this.currentStory.storyItem);
             }
-            SimpleTextView simpleTextView = this.headerView.titleView;
+            SimpleTextView simpleTextView2 = this.headerView.titleView;
             storiesList2 = this.storyViewer.storiesList;
-            if (storiesList2 != null || storiesList2.getCount() == this.linesCount) {
-                i7 = 0;
+            if (storiesList2 != null) {
                 iDp = 0;
             } else {
-                iDp = AndroidUtilities.dp(56.0f);
-                i7 = 0;
+                iDp = 0;
             }
-            simpleTextView.setPadding(i7, i7, iDp, i7);
+            simpleTextView2.setPadding(0, 0, iDp, 0);
             MessagesController.getInstance(this.currentAccount).getTranslateController().detectStoryLanguage(this.currentStory.storyItem);
-            if (!z && !this.isSelf && this.reactionsTooltipRunnable == null && !SharedConfig.storyReactionsLongPressHint && SharedConfig.storiesIntroShown) {
-                Runnable runnable = new Runnable() {
+            if (!z) {
+                Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$updatePosition$50();
+                        PeerStoriesView.$r8$lambda$JGvDzWPg74y7Di3T5fMEChy6Yak(this.f$0);
                     }
                 };
-                this.reactionsTooltipRunnable = runnable;
-                AndroidUtilities.runOnUIThread(runnable, 500L);
+                this.reactionsTooltipRunnable = runnable2;
+                AndroidUtilities.runOnUIThread(runnable2, 500L);
             }
             hintView4 = this.soundTooltip;
-            if ((hintView4 != null || !hintView4.shown()) && this.currentStory.hasSound() && !this.storyViewer.soundEnabled()) {
+            if (hintView4 != null) {
                 if (MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) < 2) {
                     AndroidUtilities.cancelRunOnUIThread(this.showTapToSoundHint);
                     AndroidUtilities.runOnUIThread(this.showTapToSoundHint, 250L);
                 }
+            } else if (MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) < 2) {
+                AndroidUtilities.cancelRunOnUIThread(this.showTapToSoundHint);
+                AndroidUtilities.runOnUIThread(this.showTapToSoundHint, 250L);
             }
             imageView = this.optionsIconView;
             if (imageView != null) {
-                if (isBotsPreview() || isEditBotsPreview() || ((storyItemHolder5 = this.currentStory) != null && storyItemHolder5.isVideo)) {
+                if (isBotsPreview()) {
                     i9 = 0;
                 } else {
-                    i9 = 8;
+                    i9 = 0;
                 }
                 imageView.setVisibility(i9);
             }
             imageView2 = this.pipIconView;
             if (imageView2 != null) {
-                if (this.currentStory.isLive || this.privacyButton.draw) {
+                if (this.currentStory.isLive) {
                     i8 = 8;
                 } else {
-                    i8 = 0;
+                    i8 = 8;
                 }
                 imageView2.setVisibility(i8);
             }
         }
-        z2 = z17;
-        storyItem4 = this.currentStory.storyItem;
-        if (storyItem4 != null) {
-            this.storyViewer.dayStoryId = storyItem4.id;
+        storyItem = (i20 < 0 || i20 >= this.storyItems.size()) ? null : (TL_stories.StoryItem) this.storyItems.get(i20);
+        int size2 = i20 - this.storyItems.size();
+        uploadingStory = (size2 < 0 || size2 >= this.uploadingStories.size()) ? null : (StoriesController.UploadingStory) this.uploadingStories.get(size2);
+        storyItem2 = storyItem;
+        this.currentStory.editingSourceItem = null;
+        if (uploadingStory != null) {
+            this.isEditing = false;
+            boolean z210 = uploadingStory.failed;
+            this.isFailed = z210;
+            this.isUploading = !z210;
+            this.imageReceiver.setCrossfadeWithOldImage(false);
+            this.imageReceiver.setCrossfadeDuration(150);
+            bitmap = uploadingStory.entry.thumbBitmap;
+            if (bitmap != null) {
+                Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(bitmap);
+                Utilities.blurBitmap(bitmapCreateBitmap2, 3);
+                bitmapDrawable = new BitmapDrawable(bitmapCreateBitmap2);
+            } else {
+                bitmapDrawable = null;
+            }
+            if (!uploadingStory.isVideo) {
+                i = i20;
+                z2 = z26;
+                z3 = z27;
+                z4 = z28;
+                uploadingStory6 = uploadingStory;
+                this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory6.firstFramePath), storyImageFilter, null, null, bitmapDrawable, 0L, null, null, 0);
+            } else {
+                i = i20;
+                z2 = z26;
+                z3 = z27;
+                z4 = z28;
+                uploadingStory6 = uploadingStory;
+                this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory6.firstFramePath), storyImageFilter, null, null, bitmapDrawable, 0L, null, null, 0);
+            }
+            this.currentStory.set(uploadingStory6);
+            this.storyAreasView.set(null, StoryMediaAreasView.getMediaAreasFor(uploadingStory6.entry), this.emojiAnimationsOverlay);
+            this.allowShareLink = false;
+            this.allowRepost = false;
+            this.allowShare = false;
+        } else {
+            i = i20;
+            z2 = z26;
+            z3 = z27;
+            z4 = z28;
+            this.isUploading = false;
+            this.isEditing = false;
+            this.isFailed = false;
+            if (storyItem2 == null) {
+                storyViewer = this.storyViewer;
+                if (storyViewer != null) {
+                    storyViewer.close(true);
+                    return;
+                }
+                return;
+            }
+            uploadingStoryFindEditingStory = this.storiesController.findEditingStory(this.dialogId, storyItem2);
+            if (uploadingStoryFindEditingStory != null) {
+                this.isEditing = true;
+                this.imageReceiver.setCrossfadeWithOldImage(false);
+                this.imageReceiver.setCrossfadeDuration(this.onImageReceiverThumbLoaded != null ? 0 : 150);
+                if (uploadingStoryFindEditingStory.isVideo) {
+                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStoryFindEditingStory.firstFramePath), storyImageFilter, null, 0L, null, null, 0);
+                } else {
+                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStoryFindEditingStory.firstFramePath), storyImageFilter, null, 0L, null, null, 0);
+                }
+                this.currentStory.set(uploadingStoryFindEditingStory);
+                this.storyAreasView.set(null, StoryMediaAreasView.getMediaAreasFor(uploadingStoryFindEditingStory.entry), this.emojiAnimationsOverlay);
+                this.currentStory.editingSourceItem = storyItem2;
+                this.allowShareLink = false;
+                this.allowRepost = false;
+                this.allowShare = false;
+            } else {
+                messageMedia = storyItem2.media;
+                if (messageMedia == null) {
+                    zEndsWith = false;
+                } else {
+                    zEndsWith = false;
+                }
+                storyItem2.dialogId = this.dialogId;
+                this.imageReceiver.setCrossfadeWithOldImage(z3);
+                this.imageReceiver.setCrossfadeDuration(150);
+                messageMedia2 = storyItem2.media;
+                if (messageMedia2 instanceof TLRPC.TL_messageMediaUnsupported) {
+                    this.unsupported = true;
+                    MessagesController.getInstance(this.currentAccount).getStoriesController().checkUnsupportedStory(this.dialogId, storyItem2.id);
+                    z5 = z3;
+                } else {
+                    str = storyItem2.attachPath;
+                    if (str != null) {
+                        if (messageMedia2 == null) {
+                            zEndsWith = str.toLowerCase().endsWith(".mp4");
+                        }
+                        if (zEndsWith) {
+                            messageMedia5 = storyItem2.media;
+                            if (messageMedia5 != null) {
+                                drawableCreateStripedBitmap2 = ImageLoader.createStripedBitmap(messageMedia5.getDocument().thumbs);
+                            } else {
+                                drawableCreateStripedBitmap2 = null;
+                            }
+                            if (storyItem2.firstFramePath != null) {
+                                if (ImageLoader.getInstance().isInMemCache(ImageLocation.getForPath(storyItem2.firstFramePath).getKey(null, null, false) + "@" + storyImageFilter, false)) {
+                                    z5 = z3;
+                                    storyItem4 = storyItem2;
+                                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem2.firstFramePath), storyImageFilter, null, null, drawableCreateStripedBitmap2, 0L, null, null, 0);
+                                } else {
+                                    z5 = z3;
+                                    storyItem4 = storyItem2;
+                                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem4.attachPath), storyImageFilter + "_pframe", null, null, drawableCreateStripedBitmap2, 0L, null, null, 0);
+                                }
+                            } else {
+                                z5 = z3;
+                                storyItem4 = storyItem2;
+                                this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem4.attachPath), storyImageFilter + "_pframe", null, null, drawableCreateStripedBitmap2, 0L, null, null, 0);
+                            }
+                        } else {
+                            z5 = z3;
+                            storyItem4 = storyItem2;
+                            messageMedia4 = storyItem4.media;
+                            if (messageMedia4 != null) {
+                                photo2 = messageMedia4.photo;
+                            } else {
+                                photo2 = null;
+                            }
+                            if (photo2 != null) {
+                                drawableCreateStripedBitmap = ImageLoader.createStripedBitmap(photo2.sizes);
+                            } else {
+                                drawableCreateStripedBitmap = null;
+                            }
+                            if (z5) {
+                                this.imageReceiver.setImage(ImageLocation.getForPath(storyItem4.attachPath), storyImageFilter, ImageLocation.getForPath(storyItem4.firstFramePath), storyImageFilter, drawableCreateStripedBitmap, 0L, null, null, 0);
+                            } else {
+                                this.imageReceiver.setImage(ImageLocation.getForPath(storyItem4.attachPath), storyImageFilter, null, null, drawableCreateStripedBitmap, 0L, null, null, 0);
+                            }
+                        }
+                        storyItem2 = storyItem4;
+                    } else {
+                        z5 = z3;
+                        storyItem3 = storyItem2;
+                        StoryViewer storyViewer8 = this.storyViewer;
+                        if (storyViewer8.storiesList == null) {
+                        }
+                        storyItem3.dialogId = this.dialogId;
+                        if (zEndsWith) {
+                            TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(storyItem3.media.getDocument().thumbs, 1000);
+                            if (drawable == null) {
+                                drawable = ImageLoader.createStripedBitmap(storyItem3.media.getDocument().thumbs);
+                            }
+                            storyItem2 = storyItem3;
+                            this.imageReceiver.setImage(null, null, ImageLocation.getForDocument(storyItem3.media.getDocument()), storyImageFilter + "_pframe", ImageLocation.getForDocument(closestPhotoSizeWithSize3, storyItem3.media.getDocument()), storyImageFilter, drawable, 0L, null, storyItem2, 0);
+                        } else {
+                            storyItem2 = storyItem3;
+                            messageMedia3 = storyItem2.media;
+                            if (messageMedia3 != null) {
+                                photo = messageMedia3.photo;
+                            } else {
+                                photo = null;
+                            }
+                            if (photo == null) {
+                                this.imageReceiver.clearImage();
+                            } else {
+                                this.imageReceiver.clearImage();
+                            }
+                        }
+                    }
+                }
+                storyItem2.dialogId = this.dialogId;
+                StoryMediaAreasView storyMediaAreasView2 = this.storyAreasView;
+                if (z) {
+                    storyItem5 = null;
+                } else {
+                    storyItem5 = storyItem2;
+                }
+                storyMediaAreasView2.set(storyItem5, this.emojiAnimationsOverlay);
+                this.currentStory.set(storyItem2);
+                if (this.unsupported) {
+                    z6 = false;
+                } else {
+                    z6 = false;
+                }
+                this.allowShareLink = z6;
+                this.allowShare = z6;
+                if (z6) {
+                    if (this.currentStory.allowScreenshots()) {
+                        z12 = false;
+                    } else {
+                        z12 = false;
+                    }
+                    this.allowShare = z12;
+                }
+                if (this.allowShare) {
+                    storyItem6 = this.currentStory.storyItem;
+                    if (storyItem6.pinned) {
+                        z11 = true;
+                    } else {
+                        z11 = true;
+                    }
+                    this.allowShare = z11;
+                }
+                z7 = this.allowShare;
+                this.allowRepost = z7;
+                if (z7) {
+                    chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                    if (chat2 == null) {
+                        z10 = false;
+                    } else {
+                        z10 = false;
+                    }
+                    this.allowRepost = z10;
+                }
+                if (this.allowShareLink) {
+                    if (this.isChannel) {
+                        chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                        if (chat != null) {
+                            z9 = false;
+                        } else {
+                            z9 = false;
+                        }
+                        this.allowShareLink = z9;
+                    } else {
+                        user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+                        if (user == null) {
+                            z8 = false;
+                        } else {
+                            z8 = false;
+                        }
+                        this.allowShareLink = z8;
+                    }
+                }
+                NotificationsController.getInstance(this.currentAccount).processReadStories(this.dialogId, storyItem2.id);
+            }
+            storyItem8 = this.currentStory.storyItem;
+            if (storyItem8 != null) {
+                this.storyViewer.dayStoryId = storyItem8.id;
+            }
+            this.storyViewer.storiesViewPager.checkAllowScreenshots();
+            this.imageChanged = true;
+            if (!this.isSelf) {
+                updateUserViews(false);
+            } else {
+                updateUserViews(false);
+            }
+            storyItemHolder = this.currentStory;
+            if (getStoryId(storyItemHolder.storyItem, storyItemHolder.uploadingStory) == getStoryId(storyItem21, uploadingStory7)) {
+                z13 = true;
+            } else {
+                z13 = true;
+            }
+            if (z13) {
+                z14 = false;
+            } else {
+                z14 = false;
+            }
+            storyViewer2 = this.storyViewer;
+            if (storyViewer2 != null) {
+                z15 = false;
+            } else {
+                z15 = false;
+            }
+            j = 0;
+            if (uploadingStory7 != null) {
+                chatActivityEnterView = this.chatActivityEnterView;
+                if (chatActivityEnterView != null) {
+                    if (storyItem21 != null) {
+                        this.storyViewer.saveDraft(storyItem21.dialogId, storyItem21, this.chatActivityEnterView.getEditField().getText());
+                    }
+                    this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
+                    if (this.currentStory.isLive) {
+                        z16 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
+                    } else {
+                        z16 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+                    }
+                } else {
+                    z16 = true;
+                }
+                if (this.currentStory.isLive) {
+                    loadSendAsPeers(z16);
+                }
+                this.emojiAnimationsOverlay.clear();
+                this.currentImageTime = 0L;
+                this.switchEventSent = false;
+                uploadingStory2 = this.currentStory.uploadingStory;
+                if (uploadingStory2 != null) {
+                    radialProgress = this.headerView.radialProgress;
+                    if (radialProgress != null) {
+                        radialProgress.setProgress(uploadingStory2.progress, false);
+                    }
+                    this.headerView.backupImageView.invalidate();
+                } else if (!z14) {
+                    this.headerView.progressToUploading = 0.0f;
+                }
+                Bulletin.hideVisible(this.storyContainer);
+                this.storyCaptionView.reset();
+                cancelWaiting();
+                z15 = true;
+            } else {
+                chatActivityEnterView = this.chatActivityEnterView;
+                if (chatActivityEnterView != null) {
+                    if (storyItem21 != null) {
+                        this.storyViewer.saveDraft(storyItem21.dialogId, storyItem21, this.chatActivityEnterView.getEditField().getText());
+                    }
+                    this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
+                    if (this.currentStory.isLive) {
+                        z16 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
+                    } else {
+                        z16 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+                    }
+                } else {
+                    z16 = true;
+                }
+                if (this.currentStory.isLive) {
+                    loadSendAsPeers(z16);
+                }
+                this.emojiAnimationsOverlay.clear();
+                this.currentImageTime = 0L;
+                this.switchEventSent = false;
+                uploadingStory2 = this.currentStory.uploadingStory;
+                if (uploadingStory2 != null) {
+                    radialProgress = this.headerView.radialProgress;
+                    if (radialProgress != null) {
+                        radialProgress.setProgress(uploadingStory2.progress, false);
+                    }
+                    this.headerView.backupImageView.invalidate();
+                } else if (!z14) {
+                    this.headerView.progressToUploading = 0.0f;
+                }
+                Bulletin.hideVisible(this.storyContainer);
+                this.storyCaptionView.reset();
+                cancelWaiting();
+                z15 = true;
+            }
+            if (z15) {
+                this.headerView.setOnSubtitleClick(null);
+                this.watchersCount = 0;
+                setTitle(false, this.dialogId, this.currentStory.isLive);
+                uploadingStory3 = this.currentStory.uploadingStory;
+                if (uploadingStory3 != null) {
+                    if (uploadingStory3.failed) {
+                        string = LocaleController.getString(R.string.FailedToUploadStory);
+                    } else {
+                        string = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                    }
+                } else if (isBotsPreview()) {
+                    storyItem12 = this.currentStory.storyItem;
+                    if (storyItem12 != null) {
+                        document = messageMedia6.document;
+                        if (document != null) {
+                            string = LocaleController.formatStoryDate(document.date);
+                        } else {
+                            photo3 = messageMedia6.photo;
+                            if (photo3 != null) {
+                                string = LocaleController.formatStoryDate(photo3.date);
+                            }
+                            charSequence = charSequence3;
+                            if (charSequence != null) {
+                                storyViewer4 = this.storyViewer;
+                                if (storyViewer4 != null) {
+                                    if (!(charSequence instanceof SpannableStringBuilder)) {
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        spannableStringBuilder3 = charSequence;
+                                        spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                                    }
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    spannableStringBuilder3 = charSequence;
+                                    SpannableString spannableString114 = new SpannableString("p ");
+                                    spannableString114.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString114);
+                                    charSequence4 = spannableStringBuilder3;
+                                }
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                this.headerView.setSubtitle(charSequence4, z14);
+                            }
+                            hintView2 = this.privacyHint;
+                            if (hintView2 != null) {
+                                hintView2.hide(false);
+                            }
+                            hintView3 = this.soundTooltip;
+                            if (hintView3 != null) {
+                                hintView3.hide(false);
+                            }
+                        }
+                    }
+                    charSequence3 = "";
+                    charSequence = charSequence3;
+                    if (charSequence != null) {
+                        storyViewer4 = this.storyViewer;
+                        if (storyViewer4 != null) {
+                            if (!(charSequence instanceof SpannableStringBuilder)) {
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            SpannableString spannableString115 = new SpannableString("p ");
+                            spannableString115.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString115);
+                            charSequence4 = spannableStringBuilder3;
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        this.headerView.setSubtitle(charSequence4, z14);
+                    }
+                    hintView2 = this.privacyHint;
+                    if (hintView2 != null) {
+                        hintView2.hide(false);
+                    }
+                    hintView3 = this.soundTooltip;
+                    if (hintView3 != null) {
+                        hintView3.hide(false);
+                    }
+                } else {
+                    storyItemHolder2 = this.currentStory;
+                    storyItem10 = storyItemHolder2.storyItem;
+                    if (storyItem10 == null) {
+                        j = 0;
+                        charSequence = null;
+                    } else if (storyItem10.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                        SpannableStringBuilder spannableStringBuilder8 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
+                        spannableStringBuilder8.setSpan(new ReplacementSpan() {
+                            private final RectF rect = new RectF();
+                            private final Paint bg = new Paint(1);
+                            private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
+
+                            @Override
+                            public int getSize(Paint paint, CharSequence charSequence8, int i23, int i24, Paint.FontMetricsInt fontMetricsInt) {
+                                return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
+                            }
+
+                            @Override
+                            public void draw(Canvas canvas, CharSequence charSequence8, int i23, int i24, float f4, int i25, int i26, int i27, Paint paint) {
+                                float fDp = ((i25 + i27) / 2.0f) + AndroidUtilities.dp(1.33f);
+                                this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
+                                this.bg.setColor(-572850);
+                                RectF rectF = this.rect;
+                                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                                this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
+                            }
+                        }, 0, spannableStringBuilder8.length(), 33);
+                        spannableStringBuilder8.append((CharSequence) "  ");
+                        storyViewer3 = this.storyViewer;
+                        if (storyViewer3 != null) {
+                            this.watchersCount = livePlayer.getWatchersCount();
+                        }
+                        spannableStringBuilder8.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
+                        string = spannableStringBuilder8;
+                    } else if (storyItem10.date == -1) {
+                        string = LocaleController.getString(R.string.CachedStory);
+                    } else {
+                        if (storyItemHolder2.getReply() != null) {
+                            reply = this.currentStory.getReply();
+                            spannableStringBuilder2 = new SpannableStringBuilder();
+                            j = 0;
+                            SpannableString spannableString116 = new SpannableString("r");
+                            spannableString116.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString116.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) spannableString116).append((CharSequence) " ");
+                            if (reply.peerId != null) {
+                                avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                                SpannableString spannableString117 = new SpannableString("a");
+                                spannableString117.setSpan(avatarSpan, 0, 1, 33);
+                                spannableStringBuilder2.append((CharSequence) spannableString117).append((CharSequence) " ");
+                                if (reply.peerId.longValue() > 0) {
+                                    TLRPC.User user6 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
+                                    avatarSpan.setUser(user6);
+                                    spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user6));
+                                } else {
+                                    chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                    avatarSpan.setChat(chat3);
+                                    if (chat3 != null) {
+                                        spannableStringBuilder2.append((CharSequence) chat3.title);
+                                    }
+                                }
+                            } else {
+                                str2 = this.currentStory.storyItem.fwd_from.from_name;
+                                if (str2 != null) {
+                                    spannableStringBuilder2.append((CharSequence) str2);
+                                }
+                            }
+                            this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    PeerStoriesView.$r8$lambda$LQ09k75UbBwPhT6MfRaFqLuURzg(this.f$0, reply, view);
+                                }
+                            });
+                            SpannableString spannableString118 = new SpannableString(".");
+                            DotDividerSpan dotDividerSpan8 = new DotDividerSpan();
+                            dotDividerSpan8.setTopPadding(AndroidUtilities.dp(1.5f));
+                            dotDividerSpan8.setSize(5.0f);
+                            spannableString118.setSpan(dotDividerSpan8, 0, spannableString118.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString118).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                            spannableStringBuilder = spannableStringBuilder2;
+                        } else {
+                            j = 0;
+                            if (!this.isGroup) {
+                            }
+                            storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                            charSequence2 = storyDate;
+                            if (this.currentStory.storyItem.edited) {
+                                SpannableStringBuilder spannableStringBuilderValueOf4 = SpannableStringBuilder.valueOf(storyDate);
+                                DotDividerSpan dotDividerSpan9 = new DotDividerSpan();
+                                dotDividerSpan9.setTopPadding(AndroidUtilities.dp(1.5f));
+                                dotDividerSpan9.setSize(5.0f);
+                                spannableStringBuilderValueOf4.append((CharSequence) " . ").setSpan(dotDividerSpan9, spannableStringBuilderValueOf4.length() - 2, spannableStringBuilderValueOf4.length() - 1, 0);
+                                spannableStringBuilderValueOf4.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                                charSequence2 = spannableStringBuilderValueOf4;
+                            }
+                            charSequence = charSequence2;
+                        }
+                        z14 = false;
+                        charSequence = spannableStringBuilder;
+                    }
+                    if (charSequence != null) {
+                        storyViewer4 = this.storyViewer;
+                        if (storyViewer4 != null) {
+                            if (!(charSequence instanceof SpannableStringBuilder)) {
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            SpannableString spannableString119 = new SpannableString("p ");
+                            spannableString119.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString119);
+                            charSequence4 = spannableStringBuilder3;
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        this.headerView.setSubtitle(charSequence4, z14);
+                    }
+                    hintView2 = this.privacyHint;
+                    if (hintView2 != null) {
+                        hintView2.hide(false);
+                    }
+                    hintView3 = this.soundTooltip;
+                    if (hintView3 != null) {
+                        hintView3.hide(false);
+                    }
+                }
+                charSequence3 = string;
+                charSequence = charSequence3;
+                if (charSequence != null) {
+                    storyViewer4 = this.storyViewer;
+                    if (storyViewer4 != null) {
+                        if (!(charSequence instanceof SpannableStringBuilder)) {
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        SpannableString spannableString1110 = new SpannableString("p ");
+                        spannableString1110.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString1110);
+                        charSequence4 = spannableStringBuilder3;
+                    }
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    this.headerView.setSubtitle(charSequence4, z14);
+                }
+                hintView2 = this.privacyHint;
+                if (hintView2 != null) {
+                    hintView2.hide(false);
+                }
+                hintView3 = this.soundTooltip;
+                if (hintView3 != null) {
+                    hintView3.hide(false);
+                }
+            } else {
+                this.headerView.setOnSubtitleClick(null);
+                this.watchersCount = 0;
+                setTitle(false, this.dialogId, this.currentStory.isLive);
+                uploadingStory3 = this.currentStory.uploadingStory;
+                if (uploadingStory3 != null) {
+                    if (uploadingStory3.failed) {
+                        string = LocaleController.getString(R.string.FailedToUploadStory);
+                    } else {
+                        string = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                    }
+                } else if (isBotsPreview()) {
+                    storyItem12 = this.currentStory.storyItem;
+                    if (storyItem12 != null) {
+                        document = messageMedia6.document;
+                        if (document != null) {
+                            string = LocaleController.formatStoryDate(document.date);
+                        } else {
+                            photo3 = messageMedia6.photo;
+                            if (photo3 != null) {
+                                string = LocaleController.formatStoryDate(photo3.date);
+                            }
+                            charSequence = charSequence3;
+                            if (charSequence != null) {
+                                storyViewer4 = this.storyViewer;
+                                if (storyViewer4 != null) {
+                                    if (!(charSequence instanceof SpannableStringBuilder)) {
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        charSequence4 = charSequence;
+                                        spannableStringBuilder3 = charSequence;
+                                        spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                                    }
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    spannableStringBuilder3 = charSequence;
+                                    SpannableString spannableString1111 = new SpannableString("p ");
+                                    spannableString1111.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString1111);
+                                    charSequence4 = spannableStringBuilder3;
+                                }
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                this.headerView.setSubtitle(charSequence4, z14);
+                            }
+                            hintView2 = this.privacyHint;
+                            if (hintView2 != null) {
+                                hintView2.hide(false);
+                            }
+                            hintView3 = this.soundTooltip;
+                            if (hintView3 != null) {
+                                hintView3.hide(false);
+                            }
+                        }
+                    }
+                    charSequence3 = "";
+                    charSequence = charSequence3;
+                    if (charSequence != null) {
+                        storyViewer4 = this.storyViewer;
+                        if (storyViewer4 != null) {
+                            if (!(charSequence instanceof SpannableStringBuilder)) {
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            SpannableString spannableString1112 = new SpannableString("p ");
+                            spannableString1112.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString1112);
+                            charSequence4 = spannableStringBuilder3;
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        this.headerView.setSubtitle(charSequence4, z14);
+                    }
+                    hintView2 = this.privacyHint;
+                    if (hintView2 != null) {
+                        hintView2.hide(false);
+                    }
+                    hintView3 = this.soundTooltip;
+                    if (hintView3 != null) {
+                        hintView3.hide(false);
+                    }
+                } else {
+                    storyItemHolder2 = this.currentStory;
+                    storyItem10 = storyItemHolder2.storyItem;
+                    if (storyItem10 == null) {
+                        j = 0;
+                        charSequence = null;
+                    } else if (storyItem10.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                        SpannableStringBuilder spannableStringBuilder9 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
+                        spannableStringBuilder9.setSpan(new ReplacementSpan() {
+                            private final RectF rect = new RectF();
+                            private final Paint bg = new Paint(1);
+                            private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
+
+                            @Override
+                            public int getSize(Paint paint, CharSequence charSequence8, int i23, int i24, Paint.FontMetricsInt fontMetricsInt) {
+                                return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
+                            }
+
+                            @Override
+                            public void draw(Canvas canvas, CharSequence charSequence8, int i23, int i24, float f4, int i25, int i26, int i27, Paint paint) {
+                                float fDp = ((i25 + i27) / 2.0f) + AndroidUtilities.dp(1.33f);
+                                this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
+                                this.bg.setColor(-572850);
+                                RectF rectF = this.rect;
+                                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                                this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
+                            }
+                        }, 0, spannableStringBuilder9.length(), 33);
+                        spannableStringBuilder9.append((CharSequence) "  ");
+                        storyViewer3 = this.storyViewer;
+                        if (storyViewer3 != null) {
+                            this.watchersCount = livePlayer.getWatchersCount();
+                        }
+                        spannableStringBuilder9.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
+                        string = spannableStringBuilder9;
+                    } else if (storyItem10.date == -1) {
+                        string = LocaleController.getString(R.string.CachedStory);
+                    } else {
+                        if (storyItemHolder2.getReply() != null) {
+                            reply = this.currentStory.getReply();
+                            spannableStringBuilder2 = new SpannableStringBuilder();
+                            j = 0;
+                            SpannableString spannableString1113 = new SpannableString("r");
+                            spannableString1113.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString1113.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) spannableString1113).append((CharSequence) " ");
+                            if (reply.peerId != null) {
+                                avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                                SpannableString spannableString1114 = new SpannableString("a");
+                                spannableString1114.setSpan(avatarSpan, 0, 1, 33);
+                                spannableStringBuilder2.append((CharSequence) spannableString1114).append((CharSequence) " ");
+                                if (reply.peerId.longValue() > 0) {
+                                    TLRPC.User user7 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
+                                    avatarSpan.setUser(user7);
+                                    spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user7));
+                                } else {
+                                    chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                    avatarSpan.setChat(chat3);
+                                    if (chat3 != null) {
+                                        spannableStringBuilder2.append((CharSequence) chat3.title);
+                                    }
+                                }
+                            } else {
+                                str2 = this.currentStory.storyItem.fwd_from.from_name;
+                                if (str2 != null) {
+                                    spannableStringBuilder2.append((CharSequence) str2);
+                                }
+                            }
+                            this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    PeerStoriesView.$r8$lambda$LQ09k75UbBwPhT6MfRaFqLuURzg(this.f$0, reply, view);
+                                }
+                            });
+                            SpannableString spannableString1115 = new SpannableString(".");
+                            DotDividerSpan dotDividerSpan10 = new DotDividerSpan();
+                            dotDividerSpan10.setTopPadding(AndroidUtilities.dp(1.5f));
+                            dotDividerSpan10.setSize(5.0f);
+                            spannableString1115.setSpan(dotDividerSpan10, 0, spannableString1115.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString1115).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                            spannableStringBuilder = spannableStringBuilder2;
+                        } else {
+                            j = 0;
+                            if (!this.isGroup) {
+                            }
+                            storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                            charSequence2 = storyDate;
+                            if (this.currentStory.storyItem.edited) {
+                                SpannableStringBuilder spannableStringBuilderValueOf5 = SpannableStringBuilder.valueOf(storyDate);
+                                DotDividerSpan dotDividerSpan11 = new DotDividerSpan();
+                                dotDividerSpan11.setTopPadding(AndroidUtilities.dp(1.5f));
+                                dotDividerSpan11.setSize(5.0f);
+                                spannableStringBuilderValueOf5.append((CharSequence) " . ").setSpan(dotDividerSpan11, spannableStringBuilderValueOf5.length() - 2, spannableStringBuilderValueOf5.length() - 1, 0);
+                                spannableStringBuilderValueOf5.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                                charSequence2 = spannableStringBuilderValueOf5;
+                            }
+                            charSequence = charSequence2;
+                        }
+                        z14 = false;
+                        charSequence = spannableStringBuilder;
+                    }
+                    if (charSequence != null) {
+                        storyViewer4 = this.storyViewer;
+                        if (storyViewer4 != null) {
+                            if (!(charSequence instanceof SpannableStringBuilder)) {
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            SpannableString spannableString1116 = new SpannableString("p ");
+                            spannableString1116.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString1116);
+                            charSequence4 = spannableStringBuilder3;
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        this.headerView.setSubtitle(charSequence4, z14);
+                    }
+                    hintView2 = this.privacyHint;
+                    if (hintView2 != null) {
+                        hintView2.hide(false);
+                    }
+                    hintView3 = this.soundTooltip;
+                    if (hintView3 != null) {
+                        hintView3.hide(false);
+                    }
+                }
+                charSequence3 = string;
+                charSequence = charSequence3;
+                if (charSequence != null) {
+                    storyViewer4 = this.storyViewer;
+                    if (storyViewer4 != null) {
+                        if (!(charSequence instanceof SpannableStringBuilder)) {
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        SpannableString spannableString1117 = new SpannableString("p ");
+                        spannableString1117.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString1117);
+                        charSequence4 = spannableStringBuilder3;
+                    }
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    this.headerView.setSubtitle(charSequence4, z14);
+                }
+                hintView2 = this.privacyHint;
+                if (hintView2 != null) {
+                    hintView2.hide(false);
+                }
+                hintView3 = this.soundTooltip;
+                if (hintView3 != null) {
+                    hintView3.hide(false);
+                }
+            }
+            StoryItemHolder storyItemHolder14 = this.currentStory;
+            storyItem14 = storyItemHolder14.storyItem;
+            if (storyItem21 != storyItem14) {
+                this.currentStory.updateCaption();
+            } else {
+                this.currentStory.updateCaption();
+            }
+            storyItemHolder3 = this.currentStory;
+            if (!storyItemHolder3.captionTranslated) {
+                delegate.setTranslating(false);
+            } else {
+                delegate.setTranslating(false);
+            }
+            if (this.currentStory.isLive) {
+                z17 = false;
+            } else {
+                z17 = false;
+            }
+            if (z17 != this.areLiveCommentsDisabled) {
+                this.areLiveCommentsDisabled = z17;
+                if (z17) {
+                    createPremiumBlockedText();
+                }
+                if (this.premiumBlockedText != null) {
+                    updatePremiumBlockedText();
+                }
+                chatActivityEnterView9 = this.chatActivityEnterView;
+                if (chatActivityEnterView9 != null) {
+                    chatActivityEnterView9.setEnabled((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled);
+                    this.chatActivityEnterView.updateSendAsButton();
+                }
+                checkStealthMode(true);
+            }
+            linearLayout = this.premiumBlockedText;
+            if (linearLayout != null) {
+                linearLayout.setVisibility(((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled) ? 8 : 0);
+            }
+            if (this.unsupported) {
+                createUnsupportedContainer();
+                createReplyDisabledView();
+                this.unsupportedContainer.setVisibility(0);
+                this.replyDisabledTextView.setVisibility(0);
+                this.allowShareLink = false;
+                this.allowRepost = false;
+                this.allowShare = false;
+                chatActivityEnterView8 = this.chatActivityEnterView;
+                if (chatActivityEnterView8 != null) {
+                    chatActivityEnterView8.setVisibility(8);
+                }
+                frameLayout5 = this.selfView;
+                if (frameLayout5 != null) {
+                    frameLayout5.setVisibility(8);
+                }
+                linearLayout3 = this.bottomActionsLinearLayout;
+                if (linearLayout3 != null) {
+                    linearLayout3.setVisibility(0);
+                }
+            } else {
+                if (this.dialogId < j) {
+                    chat4 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                } else {
+                    chat4 = null;
+                }
+                if (this.currentStory.isLive) {
+                    if (this.chatActivityEnterView == null) {
+                        createEnterView();
+                    }
+                    createCommentButton();
+                    createPaidReactionsButton();
+                    createMuteButton();
+                    this.chatActivityEnterView.setVisibility(0);
+                } else if (!UserObject.isService(this.dialogId)) {
+                    chatActivityEnterView2.setVisibility(8);
+                } else {
+                    chatActivityEnterView2.setVisibility(8);
+                }
+                chatActivityEnterView4 = this.chatActivityEnterView;
+                if (chatActivityEnterView4 != null) {
+                    if (this.currentStory.isLive) {
+                        onLongClickListener = new View.OnLongClickListener() {
+                            @Override
+                            public final boolean onLongClick(View view) {
+                                return PeerStoriesView.m4344$r8$lambda$Mxc9g7SqQoz_TBpACZPZxJuRuU(this.f$0, view);
+                            }
+                        };
+                    } else {
+                        onLongClickListener = null;
+                    }
+                    chatActivityEnterView4.setOnSendButtonLongClick(onLongClickListener);
+                    this.chatActivityEnterView.setLiveComment(this.currentStory.isLive, disabledPaidFeatures(true));
+                    ChatActivityEnterView chatActivityEnterView12 = this.chatActivityEnterView;
+                    if (this.currentStory.isLive) {
+                        z18 = false;
+                    } else {
+                        z18 = false;
+                    }
+                    chatActivityEnterView12.setSuggestionButtonVisible(z18, true);
+                }
+                if (this.isPremiumBlocked) {
+                    createPremiumBlockedText();
+                }
+                if (this.premiumBlockedText != null) {
+                    if (!this.isPremiumBlocked) {
+                        updatePremiumBlockedText();
+                    } else {
+                        updatePremiumBlockedText();
+                    }
+                    this.premiumBlockedText.setVisibility(((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled) ? 8 : 0);
+                }
+                chatActivityEnterView5 = this.chatActivityEnterView;
+                if (chatActivityEnterView5 != null) {
+                    chatActivityEnterView5.setEnabled((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled);
+                }
+                frameLayout = this.selfView;
+                if (frameLayout != null) {
+                    if (this.isSelf) {
+                        i3 = 8;
+                    } else {
+                        i3 = 8;
+                    }
+                    frameLayout.setVisibility(i3);
+                }
+                frameLayout2 = this.unsupportedContainer;
+                if (frameLayout2 != null) {
+                    frameLayout2.setVisibility(8);
+                }
+                if (UserObject.isService(this.dialogId)) {
+                    createReplyDisabledView();
+                    this.replyDisabledTextView.setVisibility(0);
+                } else {
+                    textView = this.replyDisabledTextView;
+                    if (textView != null) {
+                        textView.setVisibility(8);
+                    }
+                }
+                linearLayout2 = this.bottomActionsLinearLayout;
+                if (linearLayout2 != null) {
+                    if (isBotsPreview()) {
+                        i2 = 8;
+                    } else {
+                        i2 = 0;
+                    }
+                    linearLayout2.setVisibility(i2);
+                }
+            }
+            chatActivitySideControlsButtonsLayout = this.sideControlsButtonsLayout;
+            if (chatActivitySideControlsButtonsLayout != null) {
+                chatActivityEnterView7 = this.chatActivityEnterView;
+                if (chatActivityEnterView7 == null) {
+                    i19 = 8;
+                } else {
+                    i19 = 8;
+                }
+                chatActivitySideControlsButtonsLayout.setVisibility(i19);
+            }
+            commentButton = this.commentButton;
+            if (commentButton != null) {
+                if (this.unsupported) {
+                    i18 = 8;
+                } else {
+                    i18 = 8;
+                }
+                commentButton.setVisibility(i18);
+                this.commentButton.setCollapsed(this.liveCommentsView.isCollapsed(), false);
+                this.commentButton.setCount(this.liveCommentsView.getUnreadMessagesCount());
+            }
+            muteButton = this.muteButton;
+            if (muteButton != null) {
+                if (this.unsupported) {
+                    i17 = 8;
+                } else {
+                    i17 = 8;
+                }
+                muteButton.setVisibility(i17);
+                MuteButton muteButton7 = this.muteButton;
+                livePlayer2 = LivePlayer.recording;
+                if (livePlayer2 == null) {
+                    z24 = false;
+                } else {
+                    z24 = false;
+                }
+                muteButton7.setMuted(z24, true);
+                MuteButton muteButton8 = this.muteButton;
+                livePlayer3 = LivePlayer.recording;
+                if (livePlayer3 != null) {
+                    z25 = true;
+                } else {
+                    z25 = true;
+                }
+                muteButton8.setConnected(z25, true);
+            }
+            if (this.starsButton != null) {
+                PaidReactionButton.PaidReactionButtonEffectsView paidReactionButtonEffectsView3 = this.starsButtonEffectsView;
+                if (this.unsupported) {
+                    i15 = 8;
+                } else {
+                    i15 = 8;
+                }
+                paidReactionButtonEffectsView3.setVisibility(i15);
+                PaidReactionButton paidReactionButton3 = this.starsButton;
+                if (this.unsupported) {
+                    i16 = 8;
+                } else {
+                    i16 = 8;
+                }
+                paidReactionButton3.setVisibility(i16);
+                layoutParams = (FrameLayout.LayoutParams) this.starsButton.getLayoutParams();
+                muteButton2 = this.muteButton;
+                if (muteButton2 == null) {
+                    f3 = 7.0f;
+                } else {
+                    f3 = 7.0f;
+                }
+                iDp2 = AndroidUtilities.dp(f3);
+                if (layoutParams.rightMargin != iDp2) {
+                    layoutParams.rightMargin = iDp2;
+                    this.starsButton.setLayoutParams(layoutParams);
+                }
+            }
+            if (this.currentStory.isLive) {
+                storyItemHolder6 = this.currentStory;
+                if (storyItemHolder6.caption == null) {
+                    StoryCaptionView.StoryCaptionTextView storyCaptionTextView4 = this.storyCaptionView.captionTextview;
+                    StoryItemHolder storyItemHolder15 = this.currentStory;
+                    CharSequence charSequence8 = storyItemHolder15.caption;
+                    StoryCaptionView.Panel reply5 = storyItemHolder15.getReply();
+                    StoryCaptionView.Panel music4 = this.currentStory.getMusic();
+                    if (this.storyViewer.isTranslating) {
+                        storyItemHolder7 = this.currentStory;
+                        if (storyItemHolder7.captionTranslated) {
+                            z22 = false;
+                        } else {
+                            z22 = false;
+                        }
+                    } else {
+                        z22 = false;
+                    }
+                    if (storyItem21 == this.currentStory.storyItem) {
+                        z23 = true;
+                    } else {
+                        z23 = false;
+                    }
+                    storyCaptionTextView4.setText(charSequence8, reply5, music4, z22, z23);
+                    this.storyCaptionView.setVisibility(0);
+                } else {
+                    StoryCaptionView.StoryCaptionTextView storyCaptionTextView5 = this.storyCaptionView.captionTextview;
+                    StoryItemHolder storyItemHolder16 = this.currentStory;
+                    CharSequence charSequence9 = storyItemHolder16.caption;
+                    StoryCaptionView.Panel reply6 = storyItemHolder16.getReply();
+                    StoryCaptionView.Panel music5 = this.currentStory.getMusic();
+                    if (this.storyViewer.isTranslating) {
+                        storyItemHolder7 = this.currentStory;
+                        if (storyItemHolder7.captionTranslated) {
+                            z22 = false;
+                        } else {
+                            z22 = false;
+                        }
+                    } else {
+                        z22 = false;
+                    }
+                    if (storyItem21 == this.currentStory.storyItem) {
+                        z23 = true;
+                    } else {
+                        z23 = false;
+                    }
+                    storyCaptionTextView5.setText(charSequence9, reply6, music5, z22, z23);
+                    this.storyCaptionView.setVisibility(0);
+                }
+            } else {
+                if (this.isActive) {
+                    this.delegate.setIsCaption(false);
+                    Delegate delegate5 = this.delegate;
+                    this.isCaptionPartVisible = false;
+                    delegate5.setIsCaptionPartVisible(false);
+                }
+                this.storyCaptionView.setVisibility(8);
+            }
+            storyItem15 = this.currentStory.storyItem;
+            if (storyItem15 != null) {
+                messageMedia7 = storyItem15.media;
+                if (messageMedia7 instanceof TLRPC.TL_messageMediaVideoStream) {
+                    if (this.liveCommentsView.setup(this.dialogId, ((TLRPC.TL_messageMediaVideoStream) messageMedia7).call)) {
+                        this.liveCommentsView.setCollapsed(false, false);
+                        this.messageStars = j;
+                        chatActivityEnterView6 = this.chatActivityEnterView;
+                        if (chatActivityEnterView6 != null) {
+                            chatActivityEnterView6.checkSendButton(true);
+                            this.chatActivityEnterView.updateSendButtonPaid();
+                            checkStealthMode(true);
+                        }
+                    }
+                    this.liveCommentsView.setVisibility(0);
+                } else {
+                    this.liveCommentsView.setup(this.dialogId, null);
+                    this.liveCommentsView.setVisibility(8);
+                }
+            } else {
+                this.liveCommentsView.setup(this.dialogId, null);
+                this.liveCommentsView.setVisibility(8);
+            }
+            this.storyContainer.invalidate();
+            if (this.delegate != null) {
+                this.delegate.onPeerSelected(this.dialogId, this.selectedPosition);
+            }
+            if (this.isChannel) {
+                ImageView imageView7 = this.shareButton;
+                if (this.allowShare) {
+                    i12 = 4;
+                } else {
+                    i12 = 4;
+                }
+                imageView7.setVisibility(i12);
+                frameLayout4 = this.repostButtonContainer;
+                if (frameLayout4 != null) {
+                    if (this.allowRepost) {
+                        i14 = 8;
+                    } else {
+                        i14 = 8;
+                    }
+                    frameLayout4.setVisibility(i14);
+                }
+                FrameLayout frameLayout12 = this.likeButtonContainer;
+                if (this.isFailed) {
+                    i13 = 8;
+                } else {
+                    i13 = 8;
+                }
+                frameLayout12.setVisibility(i13);
+            } else {
+                ImageView imageView8 = this.shareButton;
+                if (this.allowShare) {
+                    i4 = 4;
+                } else {
+                    i4 = 4;
+                }
+                imageView8.setVisibility(i4);
+                frameLayout3 = this.repostButtonContainer;
+                if (frameLayout3 != null) {
+                    frameLayout3.setVisibility(8);
+                }
+                FrameLayout frameLayout13 = this.likeButtonContainer;
+                if (this.isSelf) {
+                    i5 = 8;
+                } else {
+                    i5 = 8;
+                }
+                frameLayout13.setVisibility(i5);
+                this.likeButtonContainer.getLayoutParams().width = AndroidUtilities.dp(40.0f);
+            }
+            this.likeButtonContainer.requestLayout();
+            this.storyViewer.savedPositions.append(this.dialogId, i);
+            if (this.isActive) {
+                requestVideoPlayer(0L);
+                updatePreloadImages();
+                this.imageReceiver.bumpPriority();
+            }
+            this.liveCommentsView.setLivePlayer(this.storyViewer.livePlayer);
+            this.listPosition = 0;
+            if (this.storyViewer.storiesList != null) {
+                int i23 = storyItem18.id;
+                while (i11 < this.storyViewer.storiesList.messageObjects.size()) {
+                    messageObject = (MessageObject) this.storyViewer.storiesList.messageObjects.get(i11);
+                    if (messageObject == null) {
+                    }
+                }
+            }
+            i6 = this.selectedPosition;
+            this.linesPosition = i6;
+            i7 = this.count;
+            this.linesCount = i7;
+            if (this.storyViewer.reversed) {
+                this.linesPosition = (i7 - 1) - i6;
+            }
+            if (this.currentStory.isVideo()) {
+                this.muteIconContainer.setVisibility(0);
+                if (this.currentStory.hasSound()) {
+                    f2 = 1.0f;
+                } else {
+                    f2 = 0.5f;
+                }
+                this.muteIconViewAlpha = f2;
+                if (this.currentStory.hasSound()) {
+                    this.muteIconView.setVisibility(0);
+                    this.noSoundIconView.setVisibility(8);
+                    FrameLayout frameLayout14 = this.muteIconContainer;
+                    if (this.storyViewer.soundEnabled()) {
+                        i10 = R.string.Mute;
+                    } else {
+                        i10 = R.string.Unmute;
+                    }
+                    frameLayout14.setContentDescription(LocaleController.getString(i10));
+                } else {
+                    this.muteIconView.setVisibility(8);
+                    this.noSoundIconView.setVisibility(0);
+                    this.muteIconContainer.setContentDescription(LocaleController.getString(R.string.NoSound));
+                }
+                this.muteIconContainer.setAlpha(this.muteIconViewAlpha * (1.0f - this.outT));
+            } else {
+                this.muteIconContainer.setVisibility(8);
+            }
+            storyItemHolder4 = this.currentStory;
+            uploadingStory4 = storyItemHolder4.uploadingStory;
+            if (uploadingStory4 != null) {
+                StoryPrivacyButton storyPrivacyButton9 = this.privacyButton;
+                boolean z36 = this.isSelf;
+                if (z13) {
+                    z21 = false;
+                } else {
+                    z21 = false;
+                }
+                storyPrivacyButton9.set(z36, uploadingStory4, z21);
+            } else {
+                storyItem16 = storyItemHolder4.storyItem;
+                if (storyItem16 != null) {
+                    StoryPrivacyButton storyPrivacyButton10 = this.privacyButton;
+                    boolean z37 = this.isSelf;
+                    if (z13) {
+                        z20 = false;
+                    } else {
+                        z20 = false;
+                    }
+                    storyPrivacyButton10.set(z37, storyItem16, z20);
+                } else {
+                    StoryPrivacyButton storyPrivacyButton11 = this.privacyButton;
+                    boolean z38 = this.isSelf;
+                    if (z13) {
+                        z19 = false;
+                    } else {
+                        z19 = false;
+                    }
+                    storyPrivacyButton11.set(z38, (TL_stories.StoryItem) null, z19);
+                }
+            }
+            this.editedPrivacy = false;
+            StoryPrivacyButton storyPrivacyButton12 = this.privacyButton;
+            if (this.muteIconContainer.getVisibility() == 0) {
+                f = -AndroidUtilities.dp(44.0f);
+            } else {
+                f = 0.0f;
+            }
+            storyPrivacyButton12.setTranslationX(f);
+            if (z15) {
+                this.drawReactionEffect = false;
+                storyItem17 = this.currentStory.storyItem;
+                if (storyItem17 != null) {
+                    this.storiesLikeButton.setReaction(null);
+                } else {
+                    this.storiesLikeButton.setReaction(null);
+                }
+            }
+            uploadingStory5 = this.currentStory.uploadingStory;
+            if (uploadingStory5 == null) {
+                if (this.failView != null) {
+                    viewPropertyAnimator = this.failViewAnimator;
+                    if (viewPropertyAnimator != null) {
+                        viewPropertyAnimator.cancel();
+                        this.failViewAnimator = null;
+                    }
+                    if (!z13) {
+                        this.failView.setAlpha(0.0f);
+                        this.failView.setVisibility(8);
+                    } else {
+                        this.failView.setAlpha(0.0f);
+                        this.failView.setVisibility(8);
+                    }
+                }
+            } else if (this.failView != null) {
+                viewPropertyAnimator = this.failViewAnimator;
+                if (viewPropertyAnimator != null) {
+                    viewPropertyAnimator.cancel();
+                    this.failViewAnimator = null;
+                }
+                if (!z13) {
+                    this.failView.setAlpha(0.0f);
+                    this.failView.setVisibility(8);
+                } else {
+                    this.failView.setAlpha(0.0f);
+                    this.failView.setVisibility(8);
+                }
+            }
+            this.sharedResources.setIconMuted(!this.storyViewer.soundEnabled(), false);
+            if (this.isActive) {
+                FileLog.d("StoryViewer displayed story dialogId=" + this.dialogId + " storyId=" + this.currentStory.storyItem.id + " " + this.currentStory.getMediaDebugString());
+            }
+            if (this.isSelf) {
+                SelfStoryViewsPage.preload(this.currentAccount, this.dialogId, this.currentStory.storyItem);
+            }
+            SimpleTextView simpleTextView3 = this.headerView.titleView;
+            storiesList2 = this.storyViewer.storiesList;
+            if (storiesList2 != null) {
+                iDp = 0;
+            } else {
+                iDp = 0;
+            }
+            simpleTextView3.setPadding(0, 0, iDp, 0);
+            MessagesController.getInstance(this.currentAccount).getTranslateController().detectStoryLanguage(this.currentStory.storyItem);
+            if (!z) {
+                Runnable runnable3 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        PeerStoriesView.$r8$lambda$JGvDzWPg74y7Di3T5fMEChy6Yak(this.f$0);
+                    }
+                };
+                this.reactionsTooltipRunnable = runnable3;
+                AndroidUtilities.runOnUIThread(runnable3, 500L);
+            }
+            hintView4 = this.soundTooltip;
+            if (hintView4 != null) {
+                if (MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) < 2) {
+                    AndroidUtilities.cancelRunOnUIThread(this.showTapToSoundHint);
+                    AndroidUtilities.runOnUIThread(this.showTapToSoundHint, 250L);
+                }
+            } else if (MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) < 2) {
+                AndroidUtilities.cancelRunOnUIThread(this.showTapToSoundHint);
+                AndroidUtilities.runOnUIThread(this.showTapToSoundHint, 250L);
+            }
+            imageView = this.optionsIconView;
+            if (imageView != null) {
+                if (isBotsPreview()) {
+                    i9 = 0;
+                } else {
+                    i9 = 0;
+                }
+                imageView.setVisibility(i9);
+            }
+            imageView2 = this.pipIconView;
+            if (imageView2 != null) {
+                if (this.currentStory.isLive) {
+                    i8 = 8;
+                } else {
+                    i8 = 8;
+                }
+                imageView2.setVisibility(i8);
+            }
+        }
+        z5 = z3;
+        storyItem8 = this.currentStory.storyItem;
+        if (storyItem8 != null) {
+            this.storyViewer.dayStoryId = storyItem8.id;
         }
         this.storyViewer.storiesViewPager.checkAllowScreenshots();
         this.imageChanged = true;
@@ -7509,254 +10363,340 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             updateUserViews(false);
         }
         storyItemHolder = this.currentStory;
-        if (getStoryId(storyItemHolder.storyItem, storyItemHolder.uploadingStory) == getStoryId(storyItem17, uploadingStory9)) {
-            z3 = true;
+        if (getStoryId(storyItemHolder.storyItem, storyItemHolder.uploadingStory) == getStoryId(storyItem21, uploadingStory7)) {
+            z13 = true;
         } else {
-            z3 = true;
+            z13 = true;
         }
-        if (z3) {
-            z4 = false;
+        if (z13) {
+            z14 = false;
         } else {
-            z4 = false;
+            z14 = false;
         }
-        storyViewer = this.storyViewer;
-        if (storyViewer != null) {
-            z5 = false;
+        storyViewer2 = this.storyViewer;
+        if (storyViewer2 != null) {
+            z15 = false;
         } else {
-            z5 = false;
+            z15 = false;
         }
-        if (uploadingStory9 != null) {
+        j = 0;
+        if (uploadingStory7 != null) {
             chatActivityEnterView = this.chatActivityEnterView;
             if (chatActivityEnterView != null) {
-                if (storyItem17 != null) {
-                    this.storyViewer.saveDraft(storyItem17.dialogId, storyItem17, this.chatActivityEnterView.getEditField().getText());
+                if (storyItem21 != null) {
+                    this.storyViewer.saveDraft(storyItem21.dialogId, storyItem21, this.chatActivityEnterView.getEditField().getText());
                 }
                 this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
                 if (this.currentStory.isLive) {
-                    z6 = true;
+                    z16 = true;
                     this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
                 } else {
-                    z6 = true;
+                    z16 = true;
                     this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
                 }
             } else {
-                z6 = true;
+                z16 = true;
             }
             if (this.currentStory.isLive) {
-                loadSendAsPeers(z6);
+                loadSendAsPeers(z16);
             }
             this.emojiAnimationsOverlay.clear();
             this.currentImageTime = 0L;
             this.switchEventSent = false;
-            uploadingStory4 = this.currentStory.uploadingStory;
-            if (uploadingStory4 != null) {
+            uploadingStory2 = this.currentStory.uploadingStory;
+            if (uploadingStory2 != null) {
                 radialProgress = this.headerView.radialProgress;
                 if (radialProgress != null) {
-                    radialProgress.setProgress(uploadingStory4.progress, false);
+                    radialProgress.setProgress(uploadingStory2.progress, false);
                 }
                 this.headerView.backupImageView.invalidate();
-            } else if (!z4) {
+            } else if (!z14) {
                 this.headerView.progressToUploading = 0.0f;
             }
             Bulletin.hideVisible(this.storyContainer);
             this.storyCaptionView.reset();
             cancelWaiting();
-            z5 = true;
+            z15 = true;
         } else {
             chatActivityEnterView = this.chatActivityEnterView;
             if (chatActivityEnterView != null) {
-                if (storyItem17 != null) {
-                    this.storyViewer.saveDraft(storyItem17.dialogId, storyItem17, this.chatActivityEnterView.getEditField().getText());
+                if (storyItem21 != null) {
+                    this.storyViewer.saveDraft(storyItem21.dialogId, storyItem21, this.chatActivityEnterView.getEditField().getText());
                 }
                 this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
                 if (this.currentStory.isLive) {
-                    z6 = true;
+                    z16 = true;
                     this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
                 } else {
-                    z6 = true;
+                    z16 = true;
                     this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
                 }
             } else {
-                z6 = true;
+                z16 = true;
             }
             if (this.currentStory.isLive) {
-                loadSendAsPeers(z6);
+                loadSendAsPeers(z16);
             }
             this.emojiAnimationsOverlay.clear();
             this.currentImageTime = 0L;
             this.switchEventSent = false;
-            uploadingStory4 = this.currentStory.uploadingStory;
-            if (uploadingStory4 != null) {
+            uploadingStory2 = this.currentStory.uploadingStory;
+            if (uploadingStory2 != null) {
                 radialProgress = this.headerView.radialProgress;
                 if (radialProgress != null) {
-                    radialProgress.setProgress(uploadingStory4.progress, false);
+                    radialProgress.setProgress(uploadingStory2.progress, false);
                 }
                 this.headerView.backupImageView.invalidate();
-            } else if (!z4) {
+            } else if (!z14) {
                 this.headerView.progressToUploading = 0.0f;
             }
             Bulletin.hideVisible(this.storyContainer);
             this.storyCaptionView.reset();
             cancelWaiting();
-            z5 = true;
+            z15 = true;
         }
-        if (!z5) {
+        if (z15) {
             this.headerView.setOnSubtitleClick(null);
             this.watchersCount = 0;
             setTitle(false, this.dialogId, this.currentStory.isLive);
-            uploadingStory5 = this.currentStory.uploadingStory;
-            if (uploadingStory5 != null) {
-                if (uploadingStory5.failed) {
-                    storyDate2 = LocaleController.getString(R.string.FailedToUploadStory);
+            uploadingStory3 = this.currentStory.uploadingStory;
+            if (uploadingStory3 != null) {
+                if (uploadingStory3.failed) {
+                    string = LocaleController.getString(R.string.FailedToUploadStory);
                 } else {
-                    storyDate2 = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                    string = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                }
+            } else if (isBotsPreview()) {
+                storyItem12 = this.currentStory.storyItem;
+                if (storyItem12 != null) {
+                    document = messageMedia6.document;
+                    if (document != null) {
+                        string = LocaleController.formatStoryDate(document.date);
+                    } else {
+                        photo3 = messageMedia6.photo;
+                        if (photo3 != null) {
+                            string = LocaleController.formatStoryDate(photo3.date);
+                        }
+                        charSequence = charSequence3;
+                        if (charSequence != null) {
+                            storyViewer4 = this.storyViewer;
+                            if (storyViewer4 != null) {
+                                if (!(charSequence instanceof SpannableStringBuilder)) {
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    spannableStringBuilder3 = charSequence;
+                                    spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                                }
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                SpannableString spannableString1118 = new SpannableString("p ");
+                                spannableString1118.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                                ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString1118);
+                                charSequence4 = spannableStringBuilder3;
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            this.headerView.setSubtitle(charSequence4, z14);
+                        }
+                        hintView2 = this.privacyHint;
+                        if (hintView2 != null) {
+                            hintView2.hide(false);
+                        }
+                        hintView3 = this.soundTooltip;
+                        if (hintView3 != null) {
+                            hintView3.hide(false);
+                        }
+                    }
+                }
+                charSequence3 = "";
+                charSequence = charSequence3;
+                if (charSequence != null) {
+                    storyViewer4 = this.storyViewer;
+                    if (storyViewer4 != null) {
+                        if (!(charSequence instanceof SpannableStringBuilder)) {
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        SpannableString spannableString1119 = new SpannableString("p ");
+                        spannableString1119.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString1119);
+                        charSequence4 = spannableStringBuilder3;
+                    }
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    this.headerView.setSubtitle(charSequence4, z14);
+                }
+                hintView2 = this.privacyHint;
+                if (hintView2 != null) {
+                    hintView2.hide(false);
+                }
+                hintView3 = this.soundTooltip;
+                if (hintView3 != null) {
+                    hintView3.hide(false);
                 }
             } else {
-                if (isBotsPreview()) {
-                    storyItem8 = this.currentStory.storyItem;
-                    if (storyItem8 != null) {
-                        document = messageMedia.document;
-                        if (document != null) {
-                            storyDate2 = LocaleController.formatStoryDate(document.date);
-                        } else {
-                            photo = messageMedia.photo;
-                            if (photo != null) {
-                                storyDate2 = LocaleController.formatStoryDate(photo.date);
-                            }
-                        }
-                    }
-                    string = "";
-                } else {
-                    storyItemHolder2 = this.currentStory;
-                    storyItem6 = storyItemHolder2.storyItem;
-                    if (storyItem6 == null) {
-                        string = null;
-                    } else if (storyItem6.media instanceof TLRPC.TL_messageMediaVideoStream) {
-                        SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
-                        spannableStringBuilder6.setSpan(new ReplacementSpan() {
-                            private final RectF rect = new RectF();
-                            private final Paint bg = new Paint(1);
-                            private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
+                storyItemHolder2 = this.currentStory;
+                storyItem10 = storyItemHolder2.storyItem;
+                if (storyItem10 == null) {
+                    j = 0;
+                    charSequence = null;
+                } else if (storyItem10.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                    SpannableStringBuilder spannableStringBuilder10 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
+                    spannableStringBuilder10.setSpan(new ReplacementSpan() {
+                        private final RectF rect = new RectF();
+                        private final Paint bg = new Paint(1);
+                        private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
 
-                            @Override
-                            public int getSize(Paint paint, CharSequence charSequence3, int i22, int i23, Paint.FontMetricsInt fontMetricsInt) {
-                                return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
-                            }
+                        @Override
+                        public int getSize(Paint paint, CharSequence charSequence10, int i24, int i25, Paint.FontMetricsInt fontMetricsInt) {
+                            return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
+                        }
 
-                            @Override
-                            public void draw(Canvas canvas, CharSequence charSequence3, int i22, int i23, float f4, int i24, int i25, int i26, Paint paint) {
-                                float fDp = ((i24 + i26) / 2.0f) + AndroidUtilities.dp(1.33f);
-                                this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
-                                this.bg.setColor(-572850);
-                                RectF rectF = this.rect;
-                                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
-                                this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
-                            }
-                        }, 0, spannableStringBuilder6.length(), 33);
-                        spannableStringBuilder6.append((CharSequence) "  ");
-                        storyViewer2 = this.storyViewer;
-                        if (storyViewer2 != null) {
-                            this.watchersCount = livePlayer.getWatchersCount();
+                        @Override
+                        public void draw(Canvas canvas, CharSequence charSequence10, int i24, int i25, float f4, int i26, int i27, int i28, Paint paint) {
+                            float fDp = ((i26 + i28) / 2.0f) + AndroidUtilities.dp(1.33f);
+                            this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
+                            this.bg.setColor(-572850);
+                            RectF rectF = this.rect;
+                            canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                            this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
                         }
-                        spannableStringBuilder6.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
-                        storyDate2 = spannableStringBuilder6;
-                    } else if (storyItem6.date == -1) {
-                        string = LocaleController.getString(R.string.CachedStory);
-                    } else {
-                        if (storyItemHolder2.getReply() != null) {
-                            reply = this.currentStory.getReply();
-                            spannableStringBuilder2 = new SpannableStringBuilder();
-                            SpannableString spannableString8 = new SpannableString("r");
-                            spannableString8.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString8.length(), 33);
-                            spannableStringBuilder2.append((CharSequence) spannableString8).append((CharSequence) " ");
-                            if (reply.peerId != null) {
-                                avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
-                                SpannableString spannableString9 = new SpannableString("a");
-                                spannableString9.setSpan(avatarSpan, 0, 1, 33);
-                                spannableStringBuilder2.append((CharSequence) spannableString9).append((CharSequence) " ");
-                                if (reply.peerId.longValue() > 0) {
-                                    TLRPC.User user4 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
-                                    avatarSpan.setUser(user4);
-                                    spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user4));
-                                } else {
-                                    chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
-                                    avatarSpan.setChat(chat);
-                                    if (chat != null) {
-                                        spannableStringBuilder2.append((CharSequence) chat.title);
-                                    }
-                                }
-                            } else {
-                                str = this.currentStory.storyItem.fwd_from.from_name;
-                                if (str != null) {
-                                    spannableStringBuilder2.append((CharSequence) str);
-                                }
-                            }
-                            this.headerView.setOnSubtitleClick(new View.OnClickListener() {
-                                @Override
-                                public final void onClick(View view) {
-                                    this.f$0.lambda$updatePosition$44(reply, view);
-                                }
-                            });
-                            SpannableString spannableString10 = new SpannableString(".");
-                            DotDividerSpan dotDividerSpan4 = new DotDividerSpan();
-                            dotDividerSpan4.setTopPadding(AndroidUtilities.dp(1.5f));
-                            dotDividerSpan4.setSize(5.0f);
-                            spannableString10.setSpan(dotDividerSpan4, 0, spannableString10.length(), 33);
-                            spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString10).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
-                            spannableStringBuilder = spannableStringBuilder2;
-                        } else {
-                            if (!this.isGroup) {
-                            }
-                            storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
-                            string = storyDate;
-                            if (this.currentStory.storyItem.edited) {
-                                spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(storyDate);
-                                DotDividerSpan dotDividerSpan5 = new DotDividerSpan();
-                                dotDividerSpan5.setTopPadding(AndroidUtilities.dp(1.5f));
-                                dotDividerSpan5.setSize(5.0f);
-                                spannableStringBuilderValueOf.append((CharSequence) " . ").setSpan(dotDividerSpan5, spannableStringBuilderValueOf.length() - 2, spannableStringBuilderValueOf.length() - 1, 0);
-                                spannableStringBuilderValueOf.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
-                            }
-                        }
-                        z4 = false;
-                        string = spannableStringBuilder;
-                    }
-                }
-                if (string != null) {
-                    string = spannableStringBuilderValueOf;
+                    }, 0, spannableStringBuilder10.length(), 33);
+                    spannableStringBuilder10.append((CharSequence) "  ");
                     storyViewer3 = this.storyViewer;
                     if (storyViewer3 != null) {
-                        if (!(string instanceof SpannableStringBuilder)) {
-                            charSequence = string;
-                            charSequence = string;
-                            charSequence = string;
-                            charSequence = string;
-                            spannableStringBuilder3 = string;
-                            spannableStringBuilder3 = new SpannableStringBuilder(string);
-                        }
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        spannableStringBuilder3 = string;
-                        SpannableString spannableString11 = new SpannableString("p ");
-                        spannableString11.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
-                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString11);
-                        charSequence = spannableStringBuilder3;
+                        this.watchersCount = livePlayer.getWatchersCount();
                     }
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    this.headerView.setSubtitle(charSequence, z4);
+                    spannableStringBuilder10.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
+                    string = spannableStringBuilder10;
+                } else if (storyItem10.date == -1) {
+                    string = LocaleController.getString(R.string.CachedStory);
+                } else {
+                    if (storyItemHolder2.getReply() != null) {
+                        reply = this.currentStory.getReply();
+                        spannableStringBuilder2 = new SpannableStringBuilder();
+                        j = 0;
+                        SpannableString spannableString11110 = new SpannableString("r");
+                        spannableString11110.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString11110.length(), 33);
+                        spannableStringBuilder2.append((CharSequence) spannableString11110).append((CharSequence) " ");
+                        if (reply.peerId != null) {
+                            avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                            SpannableString spannableString11111 = new SpannableString("a");
+                            spannableString11111.setSpan(avatarSpan, 0, 1, 33);
+                            spannableStringBuilder2.append((CharSequence) spannableString11111).append((CharSequence) " ");
+                            if (reply.peerId.longValue() > 0) {
+                                TLRPC.User user8 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
+                                avatarSpan.setUser(user8);
+                                spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user8));
+                            } else {
+                                chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                avatarSpan.setChat(chat3);
+                                if (chat3 != null) {
+                                    spannableStringBuilder2.append((CharSequence) chat3.title);
+                                }
+                            }
+                        } else {
+                            str2 = this.currentStory.storyItem.fwd_from.from_name;
+                            if (str2 != null) {
+                                spannableStringBuilder2.append((CharSequence) str2);
+                            }
+                        }
+                        this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                PeerStoriesView.$r8$lambda$LQ09k75UbBwPhT6MfRaFqLuURzg(this.f$0, reply, view);
+                            }
+                        });
+                        SpannableString spannableString11112 = new SpannableString(".");
+                        DotDividerSpan dotDividerSpan12 = new DotDividerSpan();
+                        dotDividerSpan12.setTopPadding(AndroidUtilities.dp(1.5f));
+                        dotDividerSpan12.setSize(5.0f);
+                        spannableString11112.setSpan(dotDividerSpan12, 0, spannableString11112.length(), 33);
+                        spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString11112).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                        spannableStringBuilder = spannableStringBuilder2;
+                    } else {
+                        j = 0;
+                        if (!this.isGroup) {
+                        }
+                        storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                        charSequence2 = storyDate;
+                        if (this.currentStory.storyItem.edited) {
+                            SpannableStringBuilder spannableStringBuilderValueOf6 = SpannableStringBuilder.valueOf(storyDate);
+                            DotDividerSpan dotDividerSpan13 = new DotDividerSpan();
+                            dotDividerSpan13.setTopPadding(AndroidUtilities.dp(1.5f));
+                            dotDividerSpan13.setSize(5.0f);
+                            spannableStringBuilderValueOf6.append((CharSequence) " . ").setSpan(dotDividerSpan13, spannableStringBuilderValueOf6.length() - 2, spannableStringBuilderValueOf6.length() - 1, 0);
+                            spannableStringBuilderValueOf6.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                            charSequence2 = spannableStringBuilderValueOf6;
+                        }
+                        charSequence = charSequence2;
+                    }
+                    z14 = false;
+                    charSequence = spannableStringBuilder;
                 }
-                string = spannableStringBuilderValueOf;
+                if (charSequence != null) {
+                    storyViewer4 = this.storyViewer;
+                    if (storyViewer4 != null) {
+                        if (!(charSequence instanceof SpannableStringBuilder)) {
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        SpannableString spannableString11113 = new SpannableString("p ");
+                        spannableString11113.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString11113);
+                        charSequence4 = spannableStringBuilder3;
+                    }
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    this.headerView.setSubtitle(charSequence4, z14);
+                }
                 hintView2 = this.privacyHint;
                 if (hintView2 != null) {
                     hintView2.hide(false);
@@ -7766,42 +10706,41 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     hintView3.hide(false);
                 }
             }
-            string = storyDate2;
-            if (string != null) {
-                string = spannableStringBuilderValueOf;
-                storyViewer3 = this.storyViewer;
-                if (storyViewer3 != null) {
-                    if (!(string instanceof SpannableStringBuilder)) {
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        spannableStringBuilder3 = string;
-                        spannableStringBuilder3 = new SpannableStringBuilder(string);
+            charSequence3 = string;
+            charSequence = charSequence3;
+            if (charSequence != null) {
+                storyViewer4 = this.storyViewer;
+                if (storyViewer4 != null) {
+                    if (!(charSequence instanceof SpannableStringBuilder)) {
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
                     }
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    spannableStringBuilder3 = string;
-                    SpannableString spannableString12 = new SpannableString("p ");
-                    spannableString12.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
-                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString12);
-                    charSequence = spannableStringBuilder3;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    spannableStringBuilder3 = charSequence;
+                    SpannableString spannableString11114 = new SpannableString("p ");
+                    spannableString11114.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString11114);
+                    charSequence4 = spannableStringBuilder3;
                 }
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                this.headerView.setSubtitle(charSequence, z4);
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                this.headerView.setSubtitle(charSequence4, z14);
             }
-            string = spannableStringBuilderValueOf;
             hintView2 = this.privacyHint;
             if (hintView2 != null) {
                 hintView2.hide(false);
@@ -7814,159 +10753,244 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.headerView.setOnSubtitleClick(null);
             this.watchersCount = 0;
             setTitle(false, this.dialogId, this.currentStory.isLive);
-            uploadingStory5 = this.currentStory.uploadingStory;
-            if (uploadingStory5 != null) {
-                if (uploadingStory5.failed) {
-                    storyDate2 = LocaleController.getString(R.string.FailedToUploadStory);
+            uploadingStory3 = this.currentStory.uploadingStory;
+            if (uploadingStory3 != null) {
+                if (uploadingStory3.failed) {
+                    string = LocaleController.getString(R.string.FailedToUploadStory);
                 } else {
-                    storyDate2 = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                    string = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                }
+            } else if (isBotsPreview()) {
+                storyItem12 = this.currentStory.storyItem;
+                if (storyItem12 != null) {
+                    document = messageMedia6.document;
+                    if (document != null) {
+                        string = LocaleController.formatStoryDate(document.date);
+                    } else {
+                        photo3 = messageMedia6.photo;
+                        if (photo3 != null) {
+                            string = LocaleController.formatStoryDate(photo3.date);
+                        }
+                        charSequence = charSequence3;
+                        if (charSequence != null) {
+                            storyViewer4 = this.storyViewer;
+                            if (storyViewer4 != null) {
+                                if (!(charSequence instanceof SpannableStringBuilder)) {
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    charSequence4 = charSequence;
+                                    spannableStringBuilder3 = charSequence;
+                                    spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                                }
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                charSequence4 = charSequence;
+                                spannableStringBuilder3 = charSequence;
+                                SpannableString spannableString11115 = new SpannableString("p ");
+                                spannableString11115.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                                ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString11115);
+                                charSequence4 = spannableStringBuilder3;
+                            }
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            this.headerView.setSubtitle(charSequence4, z14);
+                        }
+                        hintView2 = this.privacyHint;
+                        if (hintView2 != null) {
+                            hintView2.hide(false);
+                        }
+                        hintView3 = this.soundTooltip;
+                        if (hintView3 != null) {
+                            hintView3.hide(false);
+                        }
+                    }
+                }
+                charSequence3 = "";
+                charSequence = charSequence3;
+                if (charSequence != null) {
+                    storyViewer4 = this.storyViewer;
+                    if (storyViewer4 != null) {
+                        if (!(charSequence instanceof SpannableStringBuilder)) {
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        SpannableString spannableString11116 = new SpannableString("p ");
+                        spannableString11116.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString11116);
+                        charSequence4 = spannableStringBuilder3;
+                    }
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    this.headerView.setSubtitle(charSequence4, z14);
+                }
+                hintView2 = this.privacyHint;
+                if (hintView2 != null) {
+                    hintView2.hide(false);
+                }
+                hintView3 = this.soundTooltip;
+                if (hintView3 != null) {
+                    hintView3.hide(false);
                 }
             } else {
-                if (isBotsPreview()) {
-                    storyItem8 = this.currentStory.storyItem;
-                    if (storyItem8 != null) {
-                        document = messageMedia.document;
-                        if (document != null) {
-                            storyDate2 = LocaleController.formatStoryDate(document.date);
-                        } else {
-                            photo = messageMedia.photo;
-                            if (photo != null) {
-                                storyDate2 = LocaleController.formatStoryDate(photo.date);
-                            }
-                        }
-                    }
-                    string = "";
-                } else {
-                    storyItemHolder2 = this.currentStory;
-                    storyItem6 = storyItemHolder2.storyItem;
-                    if (storyItem6 == null) {
-                        string = null;
-                    } else if (storyItem6.media instanceof TLRPC.TL_messageMediaVideoStream) {
-                        SpannableStringBuilder spannableStringBuilder7 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
-                        spannableStringBuilder7.setSpan(new ReplacementSpan() {
-                            private final RectF rect = new RectF();
-                            private final Paint bg = new Paint(1);
-                            private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
+                storyItemHolder2 = this.currentStory;
+                storyItem10 = storyItemHolder2.storyItem;
+                if (storyItem10 == null) {
+                    j = 0;
+                    charSequence = null;
+                } else if (storyItem10.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                    SpannableStringBuilder spannableStringBuilder11 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
+                    spannableStringBuilder11.setSpan(new ReplacementSpan() {
+                        private final RectF rect = new RectF();
+                        private final Paint bg = new Paint(1);
+                        private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
 
-                            @Override
-                            public int getSize(Paint paint, CharSequence charSequence3, int i22, int i23, Paint.FontMetricsInt fontMetricsInt) {
-                                return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
-                            }
+                        @Override
+                        public int getSize(Paint paint, CharSequence charSequence10, int i24, int i25, Paint.FontMetricsInt fontMetricsInt) {
+                            return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
+                        }
 
-                            @Override
-                            public void draw(Canvas canvas, CharSequence charSequence3, int i22, int i23, float f4, int i24, int i25, int i26, Paint paint) {
-                                float fDp = ((i24 + i26) / 2.0f) + AndroidUtilities.dp(1.33f);
-                                this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
-                                this.bg.setColor(-572850);
-                                RectF rectF = this.rect;
-                                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
-                                this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
-                            }
-                        }, 0, spannableStringBuilder7.length(), 33);
-                        spannableStringBuilder7.append((CharSequence) "  ");
-                        storyViewer2 = this.storyViewer;
-                        if (storyViewer2 != null) {
-                            this.watchersCount = livePlayer.getWatchersCount();
+                        @Override
+                        public void draw(Canvas canvas, CharSequence charSequence10, int i24, int i25, float f4, int i26, int i27, int i28, Paint paint) {
+                            float fDp = ((i26 + i28) / 2.0f) + AndroidUtilities.dp(1.33f);
+                            this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
+                            this.bg.setColor(-572850);
+                            RectF rectF = this.rect;
+                            canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                            this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
                         }
-                        spannableStringBuilder7.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
-                        storyDate2 = spannableStringBuilder7;
-                    } else if (storyItem6.date == -1) {
-                        string = LocaleController.getString(R.string.CachedStory);
-                    } else {
-                        if (storyItemHolder2.getReply() != null) {
-                            reply = this.currentStory.getReply();
-                            spannableStringBuilder2 = new SpannableStringBuilder();
-                            SpannableString spannableString13 = new SpannableString("r");
-                            spannableString13.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString13.length(), 33);
-                            spannableStringBuilder2.append((CharSequence) spannableString13).append((CharSequence) " ");
-                            if (reply.peerId != null) {
-                                avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
-                                SpannableString spannableString14 = new SpannableString("a");
-                                spannableString14.setSpan(avatarSpan, 0, 1, 33);
-                                spannableStringBuilder2.append((CharSequence) spannableString14).append((CharSequence) " ");
-                                if (reply.peerId.longValue() > 0) {
-                                    TLRPC.User user5 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
-                                    avatarSpan.setUser(user5);
-                                    spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user5));
-                                } else {
-                                    chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
-                                    avatarSpan.setChat(chat);
-                                    if (chat != null) {
-                                        spannableStringBuilder2.append((CharSequence) chat.title);
-                                    }
-                                }
-                            } else {
-                                str = this.currentStory.storyItem.fwd_from.from_name;
-                                if (str != null) {
-                                    spannableStringBuilder2.append((CharSequence) str);
-                                }
-                            }
-                            this.headerView.setOnSubtitleClick(new View.OnClickListener() {
-                                @Override
-                                public final void onClick(View view) {
-                                    this.f$0.lambda$updatePosition$44(reply, view);
-                                }
-                            });
-                            SpannableString spannableString15 = new SpannableString(".");
-                            DotDividerSpan dotDividerSpan6 = new DotDividerSpan();
-                            dotDividerSpan6.setTopPadding(AndroidUtilities.dp(1.5f));
-                            dotDividerSpan6.setSize(5.0f);
-                            spannableString15.setSpan(dotDividerSpan6, 0, spannableString15.length(), 33);
-                            spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString15).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
-                            spannableStringBuilder = spannableStringBuilder2;
-                        } else {
-                            if (!this.isGroup) {
-                            }
-                            storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
-                            string = storyDate;
-                            if (this.currentStory.storyItem.edited) {
-                                spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(storyDate);
-                                DotDividerSpan dotDividerSpan7 = new DotDividerSpan();
-                                dotDividerSpan7.setTopPadding(AndroidUtilities.dp(1.5f));
-                                dotDividerSpan7.setSize(5.0f);
-                                spannableStringBuilderValueOf.append((CharSequence) " . ").setSpan(dotDividerSpan7, spannableStringBuilderValueOf.length() - 2, spannableStringBuilderValueOf.length() - 1, 0);
-                                spannableStringBuilderValueOf.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
-                            }
-                        }
-                        z4 = false;
-                        string = spannableStringBuilder;
-                    }
-                }
-                if (string != null) {
-                    string = spannableStringBuilderValueOf;
+                    }, 0, spannableStringBuilder11.length(), 33);
+                    spannableStringBuilder11.append((CharSequence) "  ");
                     storyViewer3 = this.storyViewer;
                     if (storyViewer3 != null) {
-                        if (!(string instanceof SpannableStringBuilder)) {
-                            charSequence = string;
-                            charSequence = string;
-                            charSequence = string;
-                            charSequence = string;
-                            spannableStringBuilder3 = string;
-                            spannableStringBuilder3 = new SpannableStringBuilder(string);
-                        }
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        spannableStringBuilder3 = string;
-                        SpannableString spannableString16 = new SpannableString("p ");
-                        spannableString16.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
-                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString16);
-                        charSequence = spannableStringBuilder3;
+                        this.watchersCount = livePlayer.getWatchersCount();
                     }
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    this.headerView.setSubtitle(charSequence, z4);
+                    spannableStringBuilder11.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
+                    string = spannableStringBuilder11;
+                } else if (storyItem10.date == -1) {
+                    string = LocaleController.getString(R.string.CachedStory);
+                } else {
+                    if (storyItemHolder2.getReply() != null) {
+                        reply = this.currentStory.getReply();
+                        spannableStringBuilder2 = new SpannableStringBuilder();
+                        j = 0;
+                        SpannableString spannableString11117 = new SpannableString("r");
+                        spannableString11117.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString11117.length(), 33);
+                        spannableStringBuilder2.append((CharSequence) spannableString11117).append((CharSequence) " ");
+                        if (reply.peerId != null) {
+                            avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                            SpannableString spannableString11118 = new SpannableString("a");
+                            spannableString11118.setSpan(avatarSpan, 0, 1, 33);
+                            spannableStringBuilder2.append((CharSequence) spannableString11118).append((CharSequence) " ");
+                            if (reply.peerId.longValue() > 0) {
+                                TLRPC.User user9 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
+                                avatarSpan.setUser(user9);
+                                spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user9));
+                            } else {
+                                chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                avatarSpan.setChat(chat3);
+                                if (chat3 != null) {
+                                    spannableStringBuilder2.append((CharSequence) chat3.title);
+                                }
+                            }
+                        } else {
+                            str2 = this.currentStory.storyItem.fwd_from.from_name;
+                            if (str2 != null) {
+                                spannableStringBuilder2.append((CharSequence) str2);
+                            }
+                        }
+                        this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                PeerStoriesView.$r8$lambda$LQ09k75UbBwPhT6MfRaFqLuURzg(this.f$0, reply, view);
+                            }
+                        });
+                        SpannableString spannableString11119 = new SpannableString(".");
+                        DotDividerSpan dotDividerSpan14 = new DotDividerSpan();
+                        dotDividerSpan14.setTopPadding(AndroidUtilities.dp(1.5f));
+                        dotDividerSpan14.setSize(5.0f);
+                        spannableString11119.setSpan(dotDividerSpan14, 0, spannableString11119.length(), 33);
+                        spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString11119).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                        spannableStringBuilder = spannableStringBuilder2;
+                    } else {
+                        j = 0;
+                        if (!this.isGroup) {
+                        }
+                        storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                        charSequence2 = storyDate;
+                        if (this.currentStory.storyItem.edited) {
+                            SpannableStringBuilder spannableStringBuilderValueOf7 = SpannableStringBuilder.valueOf(storyDate);
+                            DotDividerSpan dotDividerSpan15 = new DotDividerSpan();
+                            dotDividerSpan15.setTopPadding(AndroidUtilities.dp(1.5f));
+                            dotDividerSpan15.setSize(5.0f);
+                            spannableStringBuilderValueOf7.append((CharSequence) " . ").setSpan(dotDividerSpan15, spannableStringBuilderValueOf7.length() - 2, spannableStringBuilderValueOf7.length() - 1, 0);
+                            spannableStringBuilderValueOf7.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                            charSequence2 = spannableStringBuilderValueOf7;
+                        }
+                        charSequence = charSequence2;
+                    }
+                    z14 = false;
+                    charSequence = spannableStringBuilder;
                 }
-                string = spannableStringBuilderValueOf;
+                if (charSequence != null) {
+                    storyViewer4 = this.storyViewer;
+                    if (storyViewer4 != null) {
+                        if (!(charSequence instanceof SpannableStringBuilder)) {
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            charSequence4 = charSequence;
+                            spannableStringBuilder3 = charSequence;
+                            spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
+                        }
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        SpannableString spannableString111110 = new SpannableString("p ");
+                        spannableString111110.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString111110);
+                        charSequence4 = spannableStringBuilder3;
+                    }
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    this.headerView.setSubtitle(charSequence4, z14);
+                }
                 hintView2 = this.privacyHint;
                 if (hintView2 != null) {
                     hintView2.hide(false);
@@ -7976,42 +11000,41 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     hintView3.hide(false);
                 }
             }
-            string = storyDate2;
-            if (string != null) {
-                string = spannableStringBuilderValueOf;
-                storyViewer3 = this.storyViewer;
-                if (storyViewer3 != null) {
-                    if (!(string instanceof SpannableStringBuilder)) {
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        charSequence = string;
-                        spannableStringBuilder3 = string;
-                        spannableStringBuilder3 = new SpannableStringBuilder(string);
+            charSequence3 = string;
+            charSequence = charSequence3;
+            if (charSequence != null) {
+                storyViewer4 = this.storyViewer;
+                if (storyViewer4 != null) {
+                    if (!(charSequence instanceof SpannableStringBuilder)) {
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        charSequence4 = charSequence;
+                        spannableStringBuilder3 = charSequence;
+                        spannableStringBuilder3 = new SpannableStringBuilder(charSequence);
                     }
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    charSequence = string;
-                    spannableStringBuilder3 = string;
-                    SpannableString spannableString17 = new SpannableString("p ");
-                    spannableString17.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
-                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString17);
-                    charSequence = spannableStringBuilder3;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    charSequence4 = charSequence;
+                    spannableStringBuilder3 = charSequence;
+                    SpannableString spannableString111111 = new SpannableString("p ");
+                    spannableString111111.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString111111);
+                    charSequence4 = spannableStringBuilder3;
                 }
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                charSequence = string;
-                this.headerView.setSubtitle(charSequence, z4);
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                charSequence4 = charSequence;
+                this.headerView.setSubtitle(charSequence4, z14);
             }
-            string = spannableStringBuilderValueOf;
             hintView2 = this.privacyHint;
             if (hintView2 != null) {
                 hintView2.hide(false);
@@ -8021,9 +11044,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 hintView3.hide(false);
             }
         }
-        StoryItemHolder storyItemHolder11 = this.currentStory;
-        storyItem10 = storyItemHolder11.storyItem;
-        if (storyItem17 != storyItem10) {
+        StoryItemHolder storyItemHolder17 = this.currentStory;
+        storyItem14 = storyItemHolder17.storyItem;
+        if (storyItem21 != storyItem14) {
             this.currentStory.updateCaption();
         } else {
             this.currentStory.updateCaption();
@@ -8035,13 +11058,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             delegate.setTranslating(false);
         }
         if (this.currentStory.isLive) {
-            z7 = false;
+            z17 = false;
         } else {
-            z7 = false;
+            z17 = false;
         }
-        if (z7 != this.areLiveCommentsDisabled) {
-            this.areLiveCommentsDisabled = z7;
-            if (z7) {
+        if (z17 != this.areLiveCommentsDisabled) {
+            this.areLiveCommentsDisabled = z17;
+            if (z17) {
                 createPremiumBlockedText();
             }
             if (this.premiumBlockedText != null) {
@@ -8079,10 +11102,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 linearLayout3.setVisibility(0);
             }
         } else {
-            if (this.dialogId < 0) {
-                chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+            if (this.dialogId < j) {
+                chat4 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
             } else {
-                chat2 = null;
+                chat4 = null;
             }
             if (this.currentStory.isLive) {
                 if (this.chatActivityEnterView == null) {
@@ -8103,7 +11126,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     onLongClickListener = new View.OnLongClickListener() {
                         @Override
                         public final boolean onLongClick(View view) {
-                            return this.f$0.lambda$updatePosition$48(view);
+                            return PeerStoriesView.m4344$r8$lambda$Mxc9g7SqQoz_TBpACZPZxJuRuU(this.f$0, view);
                         }
                     };
                 } else {
@@ -8111,13 +11134,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
                 chatActivityEnterView4.setOnSendButtonLongClick(onLongClickListener);
                 this.chatActivityEnterView.setLiveComment(this.currentStory.isLive, disabledPaidFeatures(true));
-                ChatActivityEnterView chatActivityEnterView11 = this.chatActivityEnterView;
+                ChatActivityEnterView chatActivityEnterView13 = this.chatActivityEnterView;
                 if (this.currentStory.isLive) {
-                    z8 = false;
+                    z18 = false;
                 } else {
-                    z8 = false;
+                    z18 = false;
                 }
-                chatActivityEnterView11.setSuggestionButtonVisible(z8, true);
+                chatActivityEnterView13.setSuggestionButtonVisible(z18, true);
             }
             if (this.isPremiumBlocked) {
                 createPremiumBlockedText();
@@ -8137,11 +11160,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             frameLayout = this.selfView;
             if (frameLayout != null) {
                 if (this.isSelf) {
-                    i2 = 8;
+                    i3 = 8;
                 } else {
-                    i2 = 8;
+                    i3 = 8;
                 }
-                frameLayout.setVisibility(i2);
+                frameLayout.setVisibility(i3);
             }
             frameLayout2 = this.unsupportedContainer;
             if (frameLayout2 != null) {
@@ -8159,11 +11182,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             linearLayout2 = this.bottomActionsLinearLayout;
             if (linearLayout2 != null) {
                 if (isBotsPreview()) {
-                    i = 8;
+                    i2 = 8;
                 } else {
-                    i = 0;
+                    i2 = 0;
                 }
-                linearLayout2.setVisibility(i);
+                linearLayout2.setVisibility(i2);
             }
         }
         chatActivitySideControlsButtonsLayout = this.sideControlsButtonsLayout;
@@ -8195,38 +11218,38 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 i17 = 8;
             }
             muteButton.setVisibility(i17);
-            MuteButton muteButton5 = this.muteButton;
+            MuteButton muteButton9 = this.muteButton;
             livePlayer2 = LivePlayer.recording;
             if (livePlayer2 == null) {
-                z14 = false;
+                z24 = false;
             } else {
-                z14 = false;
+                z24 = false;
             }
-            muteButton5.setMuted(z14, true);
-            MuteButton muteButton6 = this.muteButton;
+            muteButton9.setMuted(z24, true);
+            MuteButton muteButton10 = this.muteButton;
             livePlayer3 = LivePlayer.recording;
             if (livePlayer3 != null) {
-                z15 = true;
+                z25 = true;
             } else {
-                z15 = true;
+                z25 = true;
             }
-            muteButton6.setConnected(z15, true);
+            muteButton10.setConnected(z25, true);
         }
         if (this.starsButton != null) {
-            PaidReactionButton.PaidReactionButtonEffectsView paidReactionButtonEffectsView2 = this.starsButtonEffectsView;
+            PaidReactionButton.PaidReactionButtonEffectsView paidReactionButtonEffectsView4 = this.starsButtonEffectsView;
             if (this.unsupported) {
                 i15 = 8;
             } else {
                 i15 = 8;
             }
-            paidReactionButtonEffectsView2.setVisibility(i15);
-            PaidReactionButton paidReactionButton2 = this.starsButton;
+            paidReactionButtonEffectsView4.setVisibility(i15);
+            PaidReactionButton paidReactionButton4 = this.starsButton;
             if (this.unsupported) {
                 i16 = 8;
             } else {
                 i16 = 8;
             }
-            paidReactionButton2.setVisibility(i16);
+            paidReactionButton4.setVisibility(i16);
             layoutParams = (FrameLayout.LayoutParams) this.starsButton.getLayoutParams();
             muteButton2 = this.muteButton;
             if (muteButton2 == null) {
@@ -8243,68 +11266,68 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (this.currentStory.isLive) {
             storyItemHolder6 = this.currentStory;
             if (storyItemHolder6.caption == null) {
-                StoryCaptionView.StoryCaptionTextView storyCaptionTextView2 = this.storyCaptionView.captionTextview;
-                StoryItemHolder storyItemHolder12 = this.currentStory;
-                CharSequence charSequence3 = storyItemHolder12.caption;
-                StoryCaptionView.Panel reply3 = storyItemHolder12.getReply();
-                StoryCaptionView.Panel music2 = this.currentStory.getMusic();
+                StoryCaptionView.StoryCaptionTextView storyCaptionTextView6 = this.storyCaptionView.captionTextview;
+                StoryItemHolder storyItemHolder18 = this.currentStory;
+                CharSequence charSequence10 = storyItemHolder18.caption;
+                StoryCaptionView.Panel reply7 = storyItemHolder18.getReply();
+                StoryCaptionView.Panel music6 = this.currentStory.getMusic();
                 if (this.storyViewer.isTranslating) {
                     storyItemHolder7 = this.currentStory;
                     if (storyItemHolder7.captionTranslated) {
-                        z12 = false;
+                        z22 = false;
                     } else {
-                        z12 = false;
+                        z22 = false;
                     }
                 } else {
-                    z12 = false;
+                    z22 = false;
                 }
-                if (storyItem17 == this.currentStory.storyItem) {
-                    z13 = true;
+                if (storyItem21 == this.currentStory.storyItem) {
+                    z23 = true;
                 } else {
-                    z13 = false;
+                    z23 = false;
                 }
-                storyCaptionTextView2.setText(charSequence3, reply3, music2, z12, z13);
+                storyCaptionTextView6.setText(charSequence10, reply7, music6, z22, z23);
                 this.storyCaptionView.setVisibility(0);
             } else {
-                StoryCaptionView.StoryCaptionTextView storyCaptionTextView3 = this.storyCaptionView.captionTextview;
-                StoryItemHolder storyItemHolder13 = this.currentStory;
-                CharSequence charSequence4 = storyItemHolder13.caption;
-                StoryCaptionView.Panel reply4 = storyItemHolder13.getReply();
-                StoryCaptionView.Panel music3 = this.currentStory.getMusic();
+                StoryCaptionView.StoryCaptionTextView storyCaptionTextView7 = this.storyCaptionView.captionTextview;
+                StoryItemHolder storyItemHolder19 = this.currentStory;
+                CharSequence charSequence11 = storyItemHolder19.caption;
+                StoryCaptionView.Panel reply8 = storyItemHolder19.getReply();
+                StoryCaptionView.Panel music7 = this.currentStory.getMusic();
                 if (this.storyViewer.isTranslating) {
                     storyItemHolder7 = this.currentStory;
                     if (storyItemHolder7.captionTranslated) {
-                        z12 = false;
+                        z22 = false;
                     } else {
-                        z12 = false;
+                        z22 = false;
                     }
                 } else {
-                    z12 = false;
+                    z22 = false;
                 }
-                if (storyItem17 == this.currentStory.storyItem) {
-                    z13 = true;
+                if (storyItem21 == this.currentStory.storyItem) {
+                    z23 = true;
                 } else {
-                    z13 = false;
+                    z23 = false;
                 }
-                storyCaptionTextView3.setText(charSequence4, reply4, music3, z12, z13);
+                storyCaptionTextView7.setText(charSequence11, reply8, music7, z22, z23);
                 this.storyCaptionView.setVisibility(0);
             }
         } else {
             if (this.isActive) {
                 this.delegate.setIsCaption(false);
-                Delegate delegate4 = this.delegate;
+                Delegate delegate6 = this.delegate;
                 this.isCaptionPartVisible = false;
-                delegate4.setIsCaptionPartVisible(false);
+                delegate6.setIsCaptionPartVisible(false);
             }
             this.storyCaptionView.setVisibility(8);
         }
-        storyItem11 = this.currentStory.storyItem;
-        if (storyItem11 != null) {
-            messageMedia2 = storyItem11.media;
-            if (messageMedia2 instanceof TLRPC.TL_messageMediaVideoStream) {
-                if (this.liveCommentsView.setup(this.dialogId, ((TLRPC.TL_messageMediaVideoStream) messageMedia2).call)) {
+        storyItem15 = this.currentStory.storyItem;
+        if (storyItem15 != null) {
+            messageMedia7 = storyItem15.media;
+            if (messageMedia7 instanceof TLRPC.TL_messageMediaVideoStream) {
+                if (this.liveCommentsView.setup(this.dialogId, ((TLRPC.TL_messageMediaVideoStream) messageMedia7).call)) {
                     this.liveCommentsView.setCollapsed(false, false);
-                    this.messageStars = 0L;
+                    this.messageStars = j;
                     chatActivityEnterView6 = this.chatActivityEnterView;
                     if (chatActivityEnterView6 != null) {
                         chatActivityEnterView6.checkSendButton(true);
@@ -8326,13 +11349,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.delegate.onPeerSelected(this.dialogId, this.selectedPosition);
         }
         if (this.isChannel) {
-            ImageView imageView5 = this.shareButton;
+            ImageView imageView9 = this.shareButton;
             if (this.allowShare) {
                 i12 = 4;
             } else {
                 i12 = 4;
             }
-            imageView5.setVisibility(i12);
+            imageView9.setVisibility(i12);
             frameLayout4 = this.repostButtonContainer;
             if (frameLayout4 != null) {
                 if (this.allowRepost) {
@@ -8342,36 +11365,36 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
                 frameLayout4.setVisibility(i14);
             }
-            FrameLayout frameLayout9 = this.likeButtonContainer;
+            FrameLayout frameLayout15 = this.likeButtonContainer;
             if (this.isFailed) {
                 i13 = 8;
             } else {
                 i13 = 8;
             }
-            frameLayout9.setVisibility(i13);
+            frameLayout15.setVisibility(i13);
         } else {
-            ImageView imageView6 = this.shareButton;
+            ImageView imageView10 = this.shareButton;
             if (this.allowShare) {
-                i3 = 4;
+                i4 = 4;
             } else {
-                i3 = 4;
+                i4 = 4;
             }
-            imageView6.setVisibility(i3);
+            imageView10.setVisibility(i4);
             frameLayout3 = this.repostButtonContainer;
             if (frameLayout3 != null) {
                 frameLayout3.setVisibility(8);
             }
-            FrameLayout frameLayout10 = this.likeButtonContainer;
+            FrameLayout frameLayout16 = this.likeButtonContainer;
             if (this.isSelf) {
-                i4 = 8;
+                i5 = 8;
             } else {
-                i4 = 8;
+                i5 = 8;
             }
-            frameLayout10.setVisibility(i4);
+            frameLayout16.setVisibility(i5);
             this.likeButtonContainer.getLayoutParams().width = AndroidUtilities.dp(40.0f);
         }
         this.likeButtonContainer.requestLayout();
-        this.storyViewer.savedPositions.append(this.dialogId, i20);
+        this.storyViewer.savedPositions.append(this.dialogId, i);
         if (this.isActive) {
             requestVideoPlayer(0L);
             updatePreloadImages();
@@ -8380,19 +11403,19 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.liveCommentsView.setLivePlayer(this.storyViewer.livePlayer);
         this.listPosition = 0;
         if (this.storyViewer.storiesList != null) {
-            int i22 = storyItem14.id;
+            int i24 = storyItem18.id;
             while (i11 < this.storyViewer.storiesList.messageObjects.size()) {
                 messageObject = (MessageObject) this.storyViewer.storiesList.messageObjects.get(i11);
                 if (messageObject == null) {
                 }
             }
         }
-        i5 = this.selectedPosition;
-        this.linesPosition = i5;
-        i6 = this.count;
-        this.linesCount = i6;
+        i6 = this.selectedPosition;
+        this.linesPosition = i6;
+        i7 = this.count;
+        this.linesCount = i7;
         if (this.storyViewer.reversed) {
-            this.linesPosition = (i6 - 1) - i5;
+            this.linesPosition = (i7 - 1) - i6;
         }
         if (this.currentStory.isVideo()) {
             this.muteIconContainer.setVisibility(0);
@@ -8405,13 +11428,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (this.currentStory.hasSound()) {
                 this.muteIconView.setVisibility(0);
                 this.noSoundIconView.setVisibility(8);
-                FrameLayout frameLayout11 = this.muteIconContainer;
+                FrameLayout frameLayout17 = this.muteIconContainer;
                 if (this.storyViewer.soundEnabled()) {
                     i10 = R.string.Mute;
                 } else {
                     i10 = R.string.Unmute;
                 }
-                frameLayout11.setContentDescription(LocaleController.getString(i10));
+                frameLayout17.setContentDescription(LocaleController.getString(i10));
             } else {
                 this.muteIconView.setVisibility(8);
                 this.noSoundIconView.setVisibility(0);
@@ -8422,64 +11445,64 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.muteIconContainer.setVisibility(8);
         }
         storyItemHolder4 = this.currentStory;
-        uploadingStory6 = storyItemHolder4.uploadingStory;
-        if (uploadingStory6 != null) {
-            StoryPrivacyButton storyPrivacyButton5 = this.privacyButton;
-            boolean z25 = this.isSelf;
-            if (z3) {
-                z11 = false;
+        uploadingStory4 = storyItemHolder4.uploadingStory;
+        if (uploadingStory4 != null) {
+            StoryPrivacyButton storyPrivacyButton13 = this.privacyButton;
+            boolean z39 = this.isSelf;
+            if (z13) {
+                z21 = false;
             } else {
-                z11 = false;
+                z21 = false;
             }
-            storyPrivacyButton5.set(z25, uploadingStory6, z11);
+            storyPrivacyButton13.set(z39, uploadingStory4, z21);
         } else {
-            storyItem12 = storyItemHolder4.storyItem;
-            if (storyItem12 != null) {
-                StoryPrivacyButton storyPrivacyButton6 = this.privacyButton;
-                boolean z26 = this.isSelf;
-                if (z3) {
-                    z10 = false;
+            storyItem16 = storyItemHolder4.storyItem;
+            if (storyItem16 != null) {
+                StoryPrivacyButton storyPrivacyButton14 = this.privacyButton;
+                boolean z310 = this.isSelf;
+                if (z13) {
+                    z20 = false;
                 } else {
-                    z10 = false;
+                    z20 = false;
                 }
-                storyPrivacyButton6.set(z26, storyItem12, z10);
+                storyPrivacyButton14.set(z310, storyItem16, z20);
             } else {
-                StoryPrivacyButton storyPrivacyButton7 = this.privacyButton;
-                boolean z27 = this.isSelf;
-                if (z3) {
-                    z9 = false;
+                StoryPrivacyButton storyPrivacyButton15 = this.privacyButton;
+                boolean z311 = this.isSelf;
+                if (z13) {
+                    z19 = false;
                 } else {
-                    z9 = false;
+                    z19 = false;
                 }
-                storyPrivacyButton7.set(z27, (TL_stories.StoryItem) null, z9);
+                storyPrivacyButton15.set(z311, (TL_stories.StoryItem) null, z19);
             }
         }
         this.editedPrivacy = false;
-        StoryPrivacyButton storyPrivacyButton8 = this.privacyButton;
+        StoryPrivacyButton storyPrivacyButton16 = this.privacyButton;
         if (this.muteIconContainer.getVisibility() == 0) {
             f = -AndroidUtilities.dp(44.0f);
         } else {
             f = 0.0f;
         }
-        storyPrivacyButton8.setTranslationX(f);
-        if (z5) {
+        storyPrivacyButton16.setTranslationX(f);
+        if (z15) {
             this.drawReactionEffect = false;
-            storyItem13 = this.currentStory.storyItem;
-            if (storyItem13 != null) {
+            storyItem17 = this.currentStory.storyItem;
+            if (storyItem17 != null) {
                 this.storiesLikeButton.setReaction(null);
             } else {
                 this.storiesLikeButton.setReaction(null);
             }
         }
-        uploadingStory7 = this.currentStory.uploadingStory;
-        if (uploadingStory7 == null) {
+        uploadingStory5 = this.currentStory.uploadingStory;
+        if (uploadingStory5 == null) {
             if (this.failView != null) {
                 viewPropertyAnimator = this.failViewAnimator;
                 if (viewPropertyAnimator != null) {
                     viewPropertyAnimator.cancel();
                     this.failViewAnimator = null;
                 }
-                if (!z3) {
+                if (!z13) {
                     this.failView.setAlpha(0.0f);
                     this.failView.setVisibility(8);
                 } else {
@@ -8493,7 +11516,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 viewPropertyAnimator.cancel();
                 this.failViewAnimator = null;
             }
-            if (!z3) {
+            if (!z13) {
                 this.failView.setAlpha(0.0f);
                 this.failView.setVisibility(8);
             } else {
@@ -8508,26 +11531,24 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (this.isSelf) {
             SelfStoryViewsPage.preload(this.currentAccount, this.dialogId, this.currentStory.storyItem);
         }
-        SimpleTextView simpleTextView2 = this.headerView.titleView;
+        SimpleTextView simpleTextView4 = this.headerView.titleView;
         storiesList2 = this.storyViewer.storiesList;
         if (storiesList2 != null) {
-            i7 = 0;
             iDp = 0;
         } else {
-            i7 = 0;
             iDp = 0;
         }
-        simpleTextView2.setPadding(i7, i7, iDp, i7);
+        simpleTextView4.setPadding(0, 0, iDp, 0);
         MessagesController.getInstance(this.currentAccount).getTranslateController().detectStoryLanguage(this.currentStory.storyItem);
         if (!z) {
-            Runnable runnable2 = new Runnable() {
+            Runnable runnable4 = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updatePosition$50();
+                    PeerStoriesView.$r8$lambda$JGvDzWPg74y7Di3T5fMEChy6Yak(this.f$0);
                 }
             };
-            this.reactionsTooltipRunnable = runnable2;
-            AndroidUtilities.runOnUIThread(runnable2, 500L);
+            this.reactionsTooltipRunnable = runnable4;
+            AndroidUtilities.runOnUIThread(runnable4, 500L);
         }
         hintView4 = this.soundTooltip;
         if (hintView4 != null) {
@@ -8559,8 +11580,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$updatePosition$44(StoryCaptionView.Panel panel, View view) {
+    public static void $r8$lambda$LQ09k75UbBwPhT6MfRaFqLuURzg(PeerStoriesView peerStoriesView, StoryCaptionView.Panel panel, View view) {
         Integer num;
+        peerStoriesView.getClass();
         if (panel.peerId != null) {
             Bundle bundle = new Bundle();
             if (panel.peerId.longValue() >= 0) {
@@ -8570,71 +11592,68 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             if (panel.isRepostMessage && (num = panel.messageId) != null) {
                 bundle.putInt("message_id", num.intValue());
-                this.storyViewer.presentFragment(new ChatActivity(bundle));
+                peerStoriesView.storyViewer.presentFragment(new ChatActivity(bundle));
                 return;
             } else {
-                this.storyViewer.presentFragment(new ProfileActivity(bundle));
+                peerStoriesView.storyViewer.presentFragment(new ProfileActivity(bundle));
                 return;
             }
         }
-        BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.StoryHidAccount)).setTag(3).show(true);
+        BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.StoryHidAccount)).setTag(3).show(true);
     }
 
-    public void lambda$updatePosition$45(long j, View view) {
+    public static void $r8$lambda$nCz5bmOr1EGblbmVLBAB2zq2qY4(PeerStoriesView peerStoriesView, long j, View view) {
+        peerStoriesView.getClass();
         Bundle bundle = new Bundle();
         if (j >= 0) {
             bundle.putLong("user_id", j);
         } else {
             bundle.putLong("chat_id", -j);
         }
-        this.storyViewer.presentFragment(new ProfileActivity(bundle));
+        peerStoriesView.storyViewer.presentFragment(new ProfileActivity(bundle));
     }
 
-    public boolean lambda$updatePosition$48(View view) {
-        if (disabledPaidFeatures(true)) {
+    public static boolean m4344$r8$lambda$Mxc9g7SqQoz_TBpACZPZxJuRuU(final PeerStoriesView peerStoriesView, View view) {
+        if (peerStoriesView.disabledPaidFeatures(true)) {
             return false;
         }
-        ItemOptions.makeOptions(this.storyViewer.containerView, this.resourcesProvider, view).add(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new Runnable() {
+        ItemOptions.makeOptions(peerStoriesView.storyViewer.containerView, peerStoriesView.resourcesProvider, view).add(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updatePosition$46();
+                this.f$0.onHighlightLiveMessage();
             }
-        }).addIf(this.messageStars > 0, R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new Runnable() {
+        }).addIf(peerStoriesView.messageStars > 0, R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updatePosition$47();
+                PeerStoriesView.$r8$lambda$QQtKEB2SYlHNd9Caa48xkXBnF00(this.f$0);
             }
         }).setGravity(5).forceTop(true).show();
         return true;
     }
 
-    public void lambda$updatePosition$47() {
-        this.messageStars = 0L;
-        ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
+    public static void $r8$lambda$QQtKEB2SYlHNd9Caa48xkXBnF00(PeerStoriesView peerStoriesView) {
+        peerStoriesView.messageStars = 0L;
+        ChatActivityEnterView chatActivityEnterView = peerStoriesView.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             chatActivityEnterView.checkSendButton(true);
-            this.chatActivityEnterView.updateSendButtonPaid();
-            checkStealthMode(true);
+            peerStoriesView.chatActivityEnterView.updateSendButtonPaid();
+            peerStoriesView.checkStealthMode(true);
         }
     }
 
-    public void lambda$updatePosition$49() {
-        this.failView.setVisibility(8);
-    }
-
-    public void lambda$updatePosition$50() {
-        if (this.storyViewer.isShown()) {
-            this.reactionsTooltipRunnable = null;
-            if (this.reactionsLongpressTooltip == null) {
-                HintView2 joint = new HintView2(getContext(), 3).setJoint(1.0f, -22.0f);
-                this.reactionsLongpressTooltip = joint;
+    public static void $r8$lambda$JGvDzWPg74y7Di3T5fMEChy6Yak(PeerStoriesView peerStoriesView) {
+        if (peerStoriesView.storyViewer.isShown()) {
+            peerStoriesView.reactionsTooltipRunnable = null;
+            if (peerStoriesView.reactionsLongpressTooltip == null) {
+                HintView2 joint = new HintView2(peerStoriesView.getContext(), 3).setJoint(1.0f, -22.0f);
+                peerStoriesView.reactionsLongpressTooltip = joint;
                 joint.setBgColor(ColorUtils.setAlphaComponent(ColorUtils.blendARGB(-16777216, -1, 0.13f), 240));
-                this.reactionsLongpressTooltip.setBounce(false);
-                this.reactionsLongpressTooltip.setText(LocaleController.getString(R.string.ReactionLongTapHint));
-                this.reactionsLongpressTooltip.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
-                this.storyContainer.addView(this.reactionsLongpressTooltip, LayoutHelper.createFrame(-1, -2.0f, 85, 0.0f, 0.0f, 0.0f, this.BIG_SCREEN ? 0.0f : 56.0f));
+                peerStoriesView.reactionsLongpressTooltip.setBounce(false);
+                peerStoriesView.reactionsLongpressTooltip.setText(LocaleController.getString(R.string.ReactionLongTapHint));
+                peerStoriesView.reactionsLongpressTooltip.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
+                peerStoriesView.storyContainer.addView(peerStoriesView.reactionsLongpressTooltip, LayoutHelper.createFrame(-1, -2.0f, 85, 0.0f, 0.0f, 0.0f, peerStoriesView.BIG_SCREEN ? 0.0f : 56.0f));
             }
-            this.reactionsLongpressTooltip.show();
+            peerStoriesView.reactionsLongpressTooltip.show();
             SharedConfig.setStoriesReactionsLongPressHintUsed(true);
         }
     }
@@ -8650,12 +11669,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return (storyViewer == null || (storiesList = storyViewer.storiesList) == null || storiesList.type != 4) ? false : true;
     }
 
-    public void lambda$new$51() {
-        showNoSoundHint(false);
+    public static void m4337$r8$lambda$4Pl85XOve4oOA68ys7aTrUws1c(PeerStoriesView peerStoriesView) {
+        peerStoriesView.showNoSoundHint(false);
         MessagesController.getGlobalMainSettings().edit().putInt("taptostorysoundhint", MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) + 1).apply();
     }
 
-    public void lambda$updatePosition$46() {
+    public void onHighlightLiveMessage() {
         MessagesController.getGlobalMainSettings().edit().putInt("taptostoryhighlighthint", 3).apply();
         TLRPC.TL_textWithEntities textWithEntities = this.chatActivityEnterView.getTextWithEntities();
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
@@ -8668,19 +11687,20 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         HighlightMessageSheet.open(context, i, clientUserId, DialogObject.getShortName(i, this.dialogId), textWithEntities, getMessageMinPrice(), this.messageStars, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$onHighlightLiveMessage$52((Long) obj);
+                PeerStoriesView.$r8$lambda$NchTgFd80XfKEe3ImTbpu5QY_nk(this.f$0, (Long) obj);
             }
         }, new DarkThemeResourceProvider());
     }
 
-    public void lambda$onHighlightLiveMessage$52(Long l) {
-        this.messageStars = l.longValue();
-        ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
+    public static void $r8$lambda$NchTgFd80XfKEe3ImTbpu5QY_nk(PeerStoriesView peerStoriesView, Long l) {
+        peerStoriesView.getClass();
+        peerStoriesView.messageStars = l.longValue();
+        ChatActivityEnterView chatActivityEnterView = peerStoriesView.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             chatActivityEnterView.checkSendButton(true);
-            this.chatActivityEnterView.updateSendButtonPaid();
+            peerStoriesView.chatActivityEnterView.updateSendButtonPaid();
         }
-        checkStealthMode(true);
+        peerStoriesView.checkStealthMode(true);
     }
 
     private void createReplyDisabledView() {
@@ -9573,17 +12593,18 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         TL_stories.StoryItem storyItem;
         Uri uri2;
         String str;
+        String str2;
+        boolean z;
         if (uri == null || (storyItem = this.currentStory.storyItem) == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             return;
         }
         String string = uri.toString();
-        boolean z = false;
         if (string.contains("com.google.android.apps.photos.contentprovider")) {
             try {
-                String str2 = string.split("/1/")[1];
-                int iIndexOf = str2.indexOf("/ACTUAL");
+                String str3 = string.split("/1/")[1];
+                int iIndexOf = str3.indexOf("/ACTUAL");
                 if (iIndexOf != -1) {
-                    uri2 = Uri.parse(URLDecoder.decode(str2.substring(0, iIndexOf), "UTF-8"));
+                    uri2 = Uri.parse(URLDecoder.decode(str3.substring(0, iIndexOf), "UTF-8"));
                 } else {
                     uri2 = uri;
                 }
@@ -9594,26 +12615,31 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             uri2 = uri;
         }
         String path = AndroidUtilities.getPath(uri2);
-        if (!BuildVars.NO_SCOPED_STORAGE) {
-            str = path;
-            z = true;
-        } else if (path == null) {
-            String string2 = uri2.toString();
-            String strCopyFileToCache = MediaController.copyFileToCache(uri2, "file");
-            if (strCopyFileToCache == null) {
-                showAttachmentError();
-                return;
+        if (BuildVars.NO_SCOPED_STORAGE) {
+            if (path == null) {
+                String string2 = uri2.toString();
+                String strCopyFileToCache = MediaController.copyFileToCache(uri2, "file");
+                if (strCopyFileToCache == null) {
+                    showAttachmentError();
+                    return;
+                } else {
+                    str2 = string2;
+                    str = strCopyFileToCache;
+                }
             } else {
-                str = string2;
-                path = strCopyFileToCache;
+                str = path;
+                str2 = str;
             }
+            z = false;
         } else {
             str = path;
+            str2 = str;
+            z = true;
         }
         if (z) {
             SendMessagesHelper.prepareSendingDocument(getAccountInstance(), null, null, uri2, null, null, this.dialogId, null, null, storyItem, null, null, true, 0, null, null, false);
         } else {
-            SendMessagesHelper.prepareSendingDocument(getAccountInstance(), path, str, null, null, null, this.dialogId, null, null, storyItem, null, null, true, 0, null, null, false);
+            SendMessagesHelper.prepareSendingDocument(getAccountInstance(), str, str2, null, null, null, this.dialogId, null, null, storyItem, null, null, true, 0, null, null, false);
         }
     }
 
@@ -9771,7 +12797,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (this.currentStory.isLive) {
             return false;
         }
-        return this.isSelf || (this.isChannel && this.userCanSeeViews);
+        if (this.isSelf) {
+            return true;
+        }
+        return this.isChannel && this.userCanSeeViews;
     }
 
     public static class PeerHeaderView extends FrameLayout {
@@ -9865,7 +12894,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        this.f$0.lambda$setSubtitle$0(valueAnimator2);
+                        PeerStoriesView.PeerHeaderView.m4374$r8$lambda$YcdQEJk_j9jqRJoaMxe8F5bXs(this.f$0, valueAnimator2);
                     }
                 });
                 this.subtitleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -9888,13 +12917,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.subtitleView[1].setAlpha(0.0f);
         }
 
-        public void lambda$setSubtitle$0(ValueAnimator valueAnimator) {
+        public static void m4374$r8$lambda$YcdQEJk_j9jqRJoaMxe8F5bXs(PeerHeaderView peerHeaderView, ValueAnimator valueAnimator) {
+            peerHeaderView.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.subtitleView[0].setAlpha(fFloatValue);
+            peerHeaderView.subtitleView[0].setAlpha(fFloatValue);
             float f = 1.0f - fFloatValue;
-            this.subtitleView[0].setTranslationY((-AndroidUtilities.dp(4.0f)) * f);
-            this.subtitleView[1].setAlpha(f);
-            this.subtitleView[1].setTranslationY(fFloatValue * AndroidUtilities.dp(4.0f));
+            peerHeaderView.subtitleView[0].setTranslationY((-AndroidUtilities.dp(4.0f)) * f);
+            peerHeaderView.subtitleView[1].setAlpha(f);
+            peerHeaderView.subtitleView[1].setTranslationY(fFloatValue * AndroidUtilities.dp(4.0f));
         }
 
         @Override
@@ -9991,13 +13021,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
         boolean isThisCall(long j) {
             TL_stories.StoryItem storyItem = this.storyItem;
-            if (storyItem != null) {
-                TLRPC.MessageMedia messageMedia = storyItem.media;
-                if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.id) {
-                    return true;
-                }
+            if (storyItem == null) {
+                return false;
             }
-            return false;
+            TLRPC.MessageMedia messageMedia = storyItem.media;
+            return (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.id;
         }
 
         public String getMediaDebugString() {
@@ -10284,6 +13312,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     @Override
     protected void onMeasure(int i, int i2) {
         int size;
+        char c;
         ReactionsContainerLayout reactionsContainerLayout;
         MentionsContainerView mentionsContainerView;
         if (this.storyViewer.ATTACH_TO_FRAGMENT) {
@@ -10368,7 +13397,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$onMeasure$53(valueAnimator2);
+                    PeerStoriesView.$r8$lambda$NQQASAY6tffpsNfGQ5KAZEZUiXs(this.f$0, valueAnimator2);
                 }
             });
             this.keyboardAnimator.addListener(new AnimatorListenerAdapter() {
@@ -10459,10 +13488,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (!this.BIG_SCREEN) {
                 this.replyDisabledTextView.setTextColor(ColorUtils.setAlphaComponent(-1, 191));
                 layoutParams3.topMargin = ((iDp + size2) - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(40.0f);
+                c = 0;
             } else {
+                c = 0;
                 this.replyDisabledTextView.setTextColor(ColorUtils.blendARGB(-16777216, -1, 0.5f));
                 layoutParams3.topMargin = iDp + size2 + AndroidUtilities.dp(12.0f);
             }
+        } else {
+            c = 0;
         }
         InstantCameraView instantCameraView = this.instantCameraView;
         if (instantCameraView != null) {
@@ -10503,7 +13536,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (layoutParams5.rightMargin != fDp) {
             int i3 = (int) fDp;
             layoutParams5.rightMargin = i3;
-            ((FrameLayout.LayoutParams) this.headerView.subtitleView[0].getLayoutParams()).rightMargin = i3;
+            ((FrameLayout.LayoutParams) this.headerView.subtitleView[c].getLayoutParams()).rightMargin = i3;
             ((FrameLayout.LayoutParams) this.headerView.subtitleView[1].getLayoutParams()).rightMargin = i3;
             this.headerView.forceLayout();
         }
@@ -10511,9 +13544,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.wasBigScreen = this.BIG_SCREEN;
     }
 
-    public void lambda$onMeasure$53(ValueAnimator valueAnimator) {
-        this.animatingKeyboardHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public static void $r8$lambda$NQQASAY6tffpsNfGQ5KAZEZUiXs(PeerStoriesView peerStoriesView, ValueAnimator valueAnimator) {
+        peerStoriesView.getClass();
+        peerStoriesView.animatingKeyboardHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        peerStoriesView.invalidate();
     }
 
     @Override
@@ -10747,6 +13781,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
+        Canvas canvas2;
         BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode;
         float fDp;
         if (view == this.mentionContainer) {
@@ -10758,9 +13793,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (view == chatActivityEnterView) {
-            if (this.progressToKeyboard > 0.0f && !this.currentStory.isLive) {
+            if (this.progressToKeyboard <= 0.0f || this.currentStory.isLive) {
+                canvas2 = canvas;
+            } else {
                 this.sharedResources.dimPaint.setAlpha((int) (this.progressToKeyboard * 63.75f));
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.sharedResources.dimPaint);
+                canvas2 = canvas;
+                canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.sharedResources.dimPaint);
             }
             this.sharedResources.rect1.set(this.chatActivityEnterView.getX(), this.chatActivityEnterView.getY() + this.chatActivityEnterView.getAnimatedTop() + AndroidUtilities.dp(1.33f), this.chatActivityEnterView.getX() + this.chatActivityEnterView.getMeasuredWidth(), this.chatActivityEnterView.getY() + this.chatActivityEnterView.getMeasuredHeight());
             float fDp2 = AndroidUtilities.dp(40.0f);
@@ -10794,36 +13832,37 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 blurredBackgroundDrawable.setBounds((int) this.sharedResources.finalRect.left, (int) this.sharedResources.finalRect.top, (int) this.sharedResources.finalRect.right, (int) this.sharedResources.finalRect.bottom);
                 this.inputFieldBackground.setRadius(fDp3);
                 this.inputFieldBackground.setAlpha((int) ((1.0f - this.progressToDismiss) * 255.0f * getHideInterfaceAlpha() * (1.0f - this.outT)));
-                this.inputFieldBackground.draw(canvas);
+                this.inputFieldBackground.draw(canvas2);
             } else {
-                canvas.drawRoundRect(this.sharedResources.finalRect, fDp3, fDp3, this.inputBackgroundPaint);
+                canvas2.drawRoundRect(this.sharedResources.finalRect, fDp3, fDp3, this.inputBackgroundPaint);
             }
             if (this.progressToKeyboard < 0.5f) {
-                canvas.save();
-                canvas.clipRect(this.sharedResources.finalRect);
-                boolean zDrawChild2 = super.drawChild(canvas, view, j);
-                canvas.restore();
+                canvas2.save();
+                canvas2.clipRect(this.sharedResources.finalRect);
+                boolean zDrawChild2 = super.drawChild(canvas2, view, j);
+                canvas2.restore();
                 return zDrawChild2;
             }
         } else {
+            canvas2 = canvas;
             if (chatActivityEnterView != null && chatActivityEnterView.isPopupView(view)) {
                 float fDp4 = AndroidUtilities.dp(30.0f);
                 this.sharedResources.popupRect.set(0.0f, view.getY() + AndroidUtilities.dp(1.0f), getWidth(), getHeight() + AndroidUtilities.dp(20.0f));
                 this.clipPath.rewind();
                 this.clipPath.addRoundRect(this.sharedResources.popupRect, fDp4, fDp4, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(this.clipPath);
+                canvas2.save();
+                canvas2.clipPath(this.clipPath);
                 BlurredBackgroundDrawable blurredBackgroundDrawable2 = this.emojiKeyboardBackground;
                 if (blurredBackgroundDrawable2 != null) {
                     blurredBackgroundDrawable2.setBounds((int) this.sharedResources.popupRect.left, (int) this.sharedResources.popupRect.top, (int) this.sharedResources.popupRect.right, (int) this.sharedResources.popupRect.bottom);
                     this.emojiKeyboardBackground.setRadius(fDp4, fDp4, fDp4, fDp4);
                     this.emojiKeyboardBackground.setAlpha(255);
-                    this.emojiKeyboardBackground.draw(canvas);
+                    this.emojiKeyboardBackground.draw(canvas2);
                 } else {
-                    canvas.drawRoundRect(this.sharedResources.popupRect, fDp4, fDp4, this.inputBackgroundPaint);
+                    canvas2.drawRoundRect(this.sharedResources.popupRect, fDp4, fDp4, this.inputBackgroundPaint);
                 }
-                boolean zDrawChild3 = super.drawChild(canvas, view, j);
-                canvas.restore();
+                boolean zDrawChild3 = super.drawChild(canvas2, view, j);
+                canvas2.restore();
                 return zDrawChild3;
             }
             ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
@@ -10833,7 +13872,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 ReactionsContainerLayout reactionsContainerLayout2 = this.likesReactionLayout;
                 if (view == reactionsContainerLayout2) {
                     view.setTranslationY((((-(reactionsContainerLayout2.getMeasuredHeight() - this.likesReactionLayout.getPaddingBottom())) + this.likeButtonContainer.getY()) + this.bottomActionsLinearLayout.getY()) - AndroidUtilities.dp(18.0f));
-                } else if (view == this.storyContainer && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && (blurredBackgroundSourceRenderNode = this.blurredBackgroundSourceRenderNodeWithSaturation) != null && !blurredBackgroundSourceRenderNode.inRecording()) {
+                } else if (view == this.storyContainer && Build.VERSION.SDK_INT >= 31 && canvas2.isHardwareAccelerated() && (blurredBackgroundSourceRenderNode = this.blurredBackgroundSourceRenderNodeWithSaturation) != null && !blurredBackgroundSourceRenderNode.inRecording()) {
                     RecordingCanvas recordingCanvasBeginRecording = this.blurredBackgroundSourceRenderNodeWithSaturation.beginRecording(getMeasuredWidth(), getMeasuredHeight());
                     recordingCanvasBeginRecording.drawColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
                     recordingCanvasBeginRecording.translate(this.storyContainer.getX(), this.storyContainer.getY());
@@ -10842,7 +13881,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
             }
         }
-        return super.drawChild(canvas, view, j);
+        return super.drawChild(canvas2, view, j);
     }
 
     public void checkInstantCameraView() {
@@ -11007,30 +14046,42 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             onReactionClickedInternal(view, visibleReaction, z, z2, !z);
         }
 
-        void onReactionClickedInternal(final View view, final ReactionsLayoutInBubble.VisibleReaction visibleReaction, final boolean z, final boolean z2, boolean z3) {
-            if (z3 && PeerStoriesView.this.applyMessageToChat(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$onReactionClickedInternal$0(view, visibleReaction, z, z2);
+        public void onReactionClickedInternal(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, final boolean z2, boolean z3) {
+            final AnonymousClass38 anonymousClass38;
+            final View view2;
+            final ReactionsLayoutInBubble.VisibleReaction visibleReaction2;
+            final boolean z4;
+            if (z3) {
+                anonymousClass38 = this;
+                view2 = view;
+                visibleReaction2 = visibleReaction;
+                z4 = z;
+                if (PeerStoriesView.this.applyMessageToChat(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.onReactionClickedInternal(view2, visibleReaction2, z4, z2, false);
+                    }
+                })) {
+                    return;
                 }
-            })) {
-                return;
+            } else {
+                anonymousClass38 = this;
+                view2 = view;
+                visibleReaction2 = visibleReaction;
+                z4 = z;
             }
             AlertsCreator.ensurePaidMessageConfirmation(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId, 1, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onReactionClickedInternal$2(z, visibleReaction, view, (Long) obj);
+                    PeerStoriesView.AnonymousClass38.$r8$lambda$vhJvbbLV_ZDlnJH8meRAPkqvLek(this.f$0, z4, visibleReaction2, view2, (Long) obj);
                 }
             });
         }
 
-        public void lambda$onReactionClickedInternal$0(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
-            onReactionClickedInternal(view, visibleReaction, z, z2, false);
-        }
-
-        public void lambda$onReactionClickedInternal$2(boolean z, ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view, Long l) {
+        public static void $r8$lambda$vhJvbbLV_ZDlnJH8meRAPkqvLek(final AnonymousClass38 anonymousClass38, boolean z, ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view, Long l) {
             ReactionsEffectOverlay reactionsEffectOverlay;
             TLRPC.Document documentFindDocument;
+            anonymousClass38.getClass();
             if (z && visibleReaction.emojicon != null) {
                 try {
                     PeerStoriesView.this.performHapticFeedback(0);
@@ -11082,7 +14133,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 BulletinFactory.of(peerStoriesView3.storyContainer, peerStoriesView3.resourcesProvider).createEmojiBulletin(documentFindDocument, LocaleController.getString(R.string.ReactionSent), LocaleController.getString(R.string.ViewInChat), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onReactionClickedInternal$1();
+                        PeerStoriesView.this.openChat();
                     }
                 }).setDuration(5000).show();
             }
@@ -11090,10 +14141,6 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 PeerStoriesView.this.reactionsContainerLayout.getReactionsWindow().dismissWithAlpha();
             }
             PeerStoriesView.this.closeKeyboardOrEmoji();
-        }
-
-        public void lambda$onReactionClickedInternal$1() {
-            PeerStoriesView.this.openChat();
         }
 
         @Override
@@ -11172,7 +14219,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onReactionClicked$1(visibleReaction, view);
+                    PeerStoriesView.AnonymousClass40.$r8$lambda$sem1UuSABrCy1DABGj9_aem8wTM(this.f$0, visibleReaction, view);
                 }
             };
             if (!z) {
@@ -11182,7 +14229,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onReactionClicked$1(ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view) {
+        public static void $r8$lambda$sem1UuSABrCy1DABGj9_aem8wTM(final AnonymousClass40 anonymousClass40, ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view) {
             TLRPC.TL_availableReaction tL_availableReaction;
             PeerStoriesView.this.movingReaction = true;
             final boolean[] zArr = {false};
@@ -11255,7 +14302,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onReactionClicked$0(valueAnimatorOfFloat, zArr, valueAnimator);
+                    PeerStoriesView.AnonymousClass40.m4353$r8$lambda$FZqjGmHLR0CW40D4duRBjPv5kw(this.f$0, valueAnimatorOfFloat, zArr, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -11286,7 +14333,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             PeerStoriesView.this.showLikesReaction(false);
         }
 
-        public void lambda$onReactionClicked$0(ValueAnimator valueAnimator, boolean[] zArr, ValueAnimator valueAnimator2) {
+        public static void m4353$r8$lambda$FZqjGmHLR0CW40D4duRBjPv5kw(AnonymousClass40 anonymousClass40, ValueAnimator valueAnimator, boolean[] zArr, ValueAnimator valueAnimator2) {
             PeerStoriesView.this.movingReactionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             PeerStoriesView.this.invalidate();
             if (PeerStoriesView.this.movingReactionProgress <= 0.8f || zArr[0]) {
@@ -11319,14 +14366,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$needEnterText$54();
+                this.f$0.delegate.requestAdjust(true);
             }
         }, 300L);
         return zIsKeyboardVisible;
-    }
-
-    public void lambda$needEnterText$54() {
-        this.delegate.requestAdjust(true);
     }
 
     public void setViewsThumbImageReceiver(float f, float f2, float f3, SelfStoriesPreviewView.ImageHolder imageHolder) {
@@ -11424,35 +14467,38 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.delegate.showDialog(new StoryPrivacyBottomSheet(getContext(), storyItem.pinned ? Integer.MAX_VALUE : storyItem.expire_date - storyItem.date, this.resourcesProvider).setValue(storyPrivacy).enableSharing(false).isEdit(true).whenSelectedRules(new StoryPrivacyBottomSheet.DoneCallback() {
             @Override
             public final void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy2, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, Runnable runnable, Runnable runnable2) {
-                this.f$0.lambda$editPrivacy$57(storyItem, storyPrivacy2, z, z2, z3, z4, inputPeer, i, runnable, runnable2);
+                PeerStoriesView.$r8$lambda$Z3INrK9Ig1_QaWRrBaFrkkVLD9U(this.f$0, storyItem, storyPrivacy2, z, z2, z3, z4, inputPeer, i, runnable, runnable2);
             }
         }, false));
     }
 
-    public void lambda$editPrivacy$57(final TL_stories.StoryItem storyItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, final Runnable runnable, Runnable runnable2) {
+    public static void $r8$lambda$Z3INrK9Ig1_QaWRrBaFrkkVLD9U(final PeerStoriesView peerStoriesView, final TL_stories.StoryItem storyItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, final Runnable runnable, Runnable runnable2) {
+        peerStoriesView.getClass();
         TL_stories.TL_stories_editStory tL_stories_editStory = new TL_stories.TL_stories_editStory();
-        tL_stories_editStory.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(storyItem.dialogId);
+        tL_stories_editStory.peer = MessagesController.getInstance(peerStoriesView.currentAccount).getInputPeer(storyItem.dialogId);
         tL_stories_editStory.id = storyItem.id;
         tL_stories_editStory.flags |= 4;
         tL_stories_editStory.privacy_rules = storyPrivacy.rules;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_editStory, new RequestDelegate() {
+        ConnectionsManager.getInstance(peerStoriesView.currentAccount).sendRequest(tL_stories_editStory, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$editPrivacy$56(runnable, storyItem, storyPrivacy, tLObject, tL_error);
+                PeerStoriesView.$r8$lambda$kgfCLm4gzI7KIP6SRXK4_HwlC0g(this.f$0, runnable, storyItem, storyPrivacy, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$editPrivacy$56(final Runnable runnable, final TL_stories.StoryItem storyItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$kgfCLm4gzI7KIP6SRXK4_HwlC0g(final PeerStoriesView peerStoriesView, final Runnable runnable, final TL_stories.StoryItem storyItem, final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        peerStoriesView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$editPrivacy$55(runnable, tL_error, storyItem, storyPrivacy);
+                PeerStoriesView.$r8$lambda$K_lfX9Y370c6pXMv2GGKSJWaDNM(this.f$0, runnable, tL_error, storyItem, storyPrivacy);
             }
         });
     }
 
-    public void lambda$editPrivacy$55(Runnable runnable, TLRPC.TL_error tL_error, TL_stories.StoryItem storyItem, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
+    public static void $r8$lambda$K_lfX9Y370c6pXMv2GGKSJWaDNM(PeerStoriesView peerStoriesView, Runnable runnable, TLRPC.TL_error tL_error, TL_stories.StoryItem storyItem, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
+        peerStoriesView.getClass();
         if (runnable != null) {
             runnable.run();
         }
@@ -11463,18 +14509,18 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             storyItem.close_friends = i == 1;
             storyItem.contacts = i == 2;
             storyItem.selected_contacts = i == 3;
-            MessagesController.getInstance(this.currentAccount).getStoriesController().updateStoryItem(storyItem.dialogId, storyItem, true, true);
-            this.editedPrivacy = true;
+            MessagesController.getInstance(peerStoriesView.currentAccount).getStoriesController().updateStoryItem(storyItem.dialogId, storyItem, true, true);
+            peerStoriesView.editedPrivacy = true;
             int i2 = storyPrivacy.type;
             if (i2 == 4) {
-                BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString("StorySharedToEveryone")).show();
+                BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString("StorySharedToEveryone")).show();
             } else if (i2 == 1) {
-                BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString("StorySharedToCloseFriends")).show();
+                BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString("StorySharedToCloseFriends")).show();
             } else if (i2 == 2) {
                 if (storyPrivacy.selectedUserIds.isEmpty()) {
-                    BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString("StorySharedToAllContacts")).show();
+                    BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString("StorySharedToAllContacts")).show();
                 } else {
-                    BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.formatPluralString("StorySharedToAllContactsExcluded", storyPrivacy.selectedUserIds.size(), new Object[0])).show();
+                    BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.formatPluralString("StorySharedToAllContactsExcluded", storyPrivacy.selectedUserIds.size(), new Object[0])).show();
                 }
             } else if (i2 == 3) {
                 HashSet hashSet = new HashSet();
@@ -11483,12 +14529,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 while (it.hasNext()) {
                     hashSet.addAll((ArrayList) it.next());
                 }
-                BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.formatPluralString("StorySharedToContacts", hashSet.size(), new Object[0])).show();
+                BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.formatPluralString("StorySharedToContacts", hashSet.size(), new Object[0])).show();
             }
         } else {
-            BulletinFactory.of(this.storyContainer, this.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.UnknownError)).show();
+            BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.UnknownError)).show();
         }
-        updatePosition();
+        peerStoriesView.updatePosition();
     }
 
     public boolean checkRecordLocked(final boolean z) {
@@ -11507,7 +14553,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         builder.setPositiveButton(LocaleController.getString(R.string.DiscardVoiceMessageAction), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$checkRecordLocked$58(z, alertDialog, i);
+                PeerStoriesView.m4342$r8$lambda$8Jhxkv8b6JNGFMv8rAWshEGC8A(this.f$0, z, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Continue), null);
@@ -11515,11 +14561,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return true;
     }
 
-    public void lambda$checkRecordLocked$58(boolean z, AlertDialog alertDialog, int i) {
-        ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
+    public static void m4342$r8$lambda$8Jhxkv8b6JNGFMv8rAWshEGC8A(PeerStoriesView peerStoriesView, boolean z, AlertDialog alertDialog, int i) {
+        ChatActivityEnterView chatActivityEnterView = peerStoriesView.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             if (z) {
-                this.storyViewer.close(true);
+                peerStoriesView.storyViewer.close(true);
             } else {
                 chatActivityEnterView.cancelRecordingAudioVideo();
             }
@@ -11536,7 +14582,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateOut$59(valueAnimator2);
+                PeerStoriesView.$r8$lambda$1n0tgYwurLNMlQz9WDGYVk7KK1I(this.f$0, valueAnimator2);
             }
         });
         this.outAnimator.addListener(new AnimatorListenerAdapter() {
@@ -11587,48 +14633,49 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.outAnimator.start();
     }
 
-    public void lambda$animateOut$59(ValueAnimator valueAnimator) {
-        this.outT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.headerView.setTranslationY((-AndroidUtilities.dp(8.0f)) * this.outT);
-        this.headerView.setAlpha(1.0f - this.outT);
-        this.optionsIconView.setTranslationY((-AndroidUtilities.dp(8.0f)) * this.outT);
-        this.optionsIconView.setAlpha(1.0f - this.outT);
-        this.pipIconView.setTranslationY((-AndroidUtilities.dp(8.0f)) * this.outT);
-        this.pipIconView.setAlpha(1.0f - this.outT);
-        this.muteIconContainer.setTranslationY((-AndroidUtilities.dp(8.0f)) * this.outT);
-        this.muteIconContainer.setAlpha(this.muteIconViewAlpha * (1.0f - this.outT));
-        FrameLayout frameLayout = this.selfView;
+    public static void $r8$lambda$1n0tgYwurLNMlQz9WDGYVk7KK1I(PeerStoriesView peerStoriesView, ValueAnimator valueAnimator) {
+        peerStoriesView.getClass();
+        peerStoriesView.outT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        peerStoriesView.headerView.setTranslationY((-AndroidUtilities.dp(8.0f)) * peerStoriesView.outT);
+        peerStoriesView.headerView.setAlpha(1.0f - peerStoriesView.outT);
+        peerStoriesView.optionsIconView.setTranslationY((-AndroidUtilities.dp(8.0f)) * peerStoriesView.outT);
+        peerStoriesView.optionsIconView.setAlpha(1.0f - peerStoriesView.outT);
+        peerStoriesView.pipIconView.setTranslationY((-AndroidUtilities.dp(8.0f)) * peerStoriesView.outT);
+        peerStoriesView.pipIconView.setAlpha(1.0f - peerStoriesView.outT);
+        peerStoriesView.muteIconContainer.setTranslationY((-AndroidUtilities.dp(8.0f)) * peerStoriesView.outT);
+        peerStoriesView.muteIconContainer.setAlpha(peerStoriesView.muteIconViewAlpha * (1.0f - peerStoriesView.outT));
+        FrameLayout frameLayout = peerStoriesView.selfView;
         if (frameLayout != null) {
-            frameLayout.setTranslationY(AndroidUtilities.dp(8.0f) * this.outT);
-            this.selfView.setAlpha(1.0f - this.outT);
+            frameLayout.setTranslationY(AndroidUtilities.dp(8.0f) * peerStoriesView.outT);
+            peerStoriesView.selfView.setAlpha(1.0f - peerStoriesView.outT);
         }
-        StoryPrivacyButton storyPrivacyButton = this.privacyButton;
+        StoryPrivacyButton storyPrivacyButton = peerStoriesView.privacyButton;
         if (storyPrivacyButton != null) {
-            storyPrivacyButton.setTranslationY((-AndroidUtilities.dp(8.0f)) * this.outT);
-            this.privacyButton.setAlpha(1.0f - this.outT);
+            storyPrivacyButton.setTranslationY((-AndroidUtilities.dp(8.0f)) * peerStoriesView.outT);
+            peerStoriesView.privacyButton.setAlpha(1.0f - peerStoriesView.outT);
         }
-        this.storyCaptionView.setAlpha(1.0f - this.outT);
-        Delegate delegate = this.delegate;
+        peerStoriesView.storyCaptionView.setAlpha(1.0f - peerStoriesView.outT);
+        Delegate delegate = peerStoriesView.delegate;
         float progressToDismiss = delegate == null ? 0.0f : delegate.getProgressToDismiss();
-        float hideInterfaceAlpha = getHideInterfaceAlpha();
-        FrameLayout frameLayout2 = this.likeButtonContainer;
+        float hideInterfaceAlpha = peerStoriesView.getHideInterfaceAlpha();
+        FrameLayout frameLayout2 = peerStoriesView.likeButtonContainer;
         if (frameLayout2 != null) {
-            frameLayout2.setAlpha((1.0f - progressToDismiss) * hideInterfaceAlpha * (1.0f - this.outT));
+            frameLayout2.setAlpha((1.0f - progressToDismiss) * hideInterfaceAlpha * (1.0f - peerStoriesView.outT));
         }
-        ImageView imageView = this.shareButton;
+        ImageView imageView = peerStoriesView.shareButton;
         if (imageView != null) {
-            imageView.setAlpha((1.0f - progressToDismiss) * hideInterfaceAlpha * (1.0f - this.outT));
+            imageView.setAlpha((1.0f - progressToDismiss) * hideInterfaceAlpha * (1.0f - peerStoriesView.outT));
         }
-        FrameLayout frameLayout3 = this.repostButtonContainer;
+        FrameLayout frameLayout3 = peerStoriesView.repostButtonContainer;
         if (frameLayout3 != null) {
-            frameLayout3.setAlpha(hideInterfaceAlpha * (1.0f - progressToDismiss) * (1.0f - this.outT));
+            frameLayout3.setAlpha(hideInterfaceAlpha * (1.0f - progressToDismiss) * (1.0f - peerStoriesView.outT));
         }
-        ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
+        ChatActivityEnterView chatActivityEnterView = peerStoriesView.chatActivityEnterView;
         if (chatActivityEnterView != null) {
-            chatActivityEnterView.setAlpha(1.0f - this.outT);
-            invalidate();
+            chatActivityEnterView.setAlpha(1.0f - peerStoriesView.outT);
+            peerStoriesView.invalidate();
         }
-        this.storyContainer.invalidate();
+        peerStoriesView.storyContainer.invalidate();
     }
 
     public int getListPosition() {

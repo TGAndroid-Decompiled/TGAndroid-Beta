@@ -14,10 +14,6 @@ public class TL_keyboard {
     public static abstract class ButtonTypeProto extends TLObject {
     }
 
-    public static TLObject access$400(InputSerializedData inputSerializedData, int i, boolean z) {
-        return TLdeserializeLegacy(inputSerializedData, i, z);
-    }
-
     private TL_keyboard() {
     }
 
@@ -722,14 +718,19 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            ArrayList<TLObject> arrayListDeserialize = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+            ArrayList arrayListDeserialize = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                 @Override
                 public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                    return TL_keyboard.access$400(inputSerializedData2, i, z2);
+                    return TL_keyboard.TLdeserializeLegacy(inputSerializedData2, i, z2);
                 }
             }, z);
             this.buttons = new ArrayList<>(arrayListDeserialize.size());
-            for (TLObject tLObject : arrayListDeserialize) {
+            int size = arrayListDeserialize.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayListDeserialize.get(i);
+                i++;
+                TLObject tLObject = (TLObject) obj;
                 if (tLObject instanceof KeyboardInlineButton) {
                     this.buttons.add((KeyboardInlineButton) tLObject);
                 }

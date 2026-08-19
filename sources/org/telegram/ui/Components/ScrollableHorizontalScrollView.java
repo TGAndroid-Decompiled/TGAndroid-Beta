@@ -60,7 +60,7 @@ public abstract class ScrollableHorizontalScrollView extends HorizontalScrollVie
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$scrollTo$0(valueAnimator2);
+                ScrollableHorizontalScrollView.$r8$lambda$LoUjiMHB75HABA7pTR0eoEgDe9A(this.f$0, valueAnimator2);
             }
         });
         this.scrollAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -83,8 +83,9 @@ public abstract class ScrollableHorizontalScrollView extends HorizontalScrollVie
         this.scrollAnimator.start();
     }
 
-    public void lambda$scrollTo$0(ValueAnimator valueAnimator) {
-        setScrollX((int) ((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public static void $r8$lambda$LoUjiMHB75HABA7pTR0eoEgDe9A(ScrollableHorizontalScrollView scrollableHorizontalScrollView, ValueAnimator valueAnimator) {
+        scrollableHorizontalScrollView.getClass();
+        scrollableHorizontalScrollView.setScrollX((int) ((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public void resetScrollTo() {

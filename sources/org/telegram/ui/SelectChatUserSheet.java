@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
@@ -127,7 +126,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         this.searchEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                return this.f$0.lambda$new$0(textView, i2, keyEvent);
+                return SelectChatUserSheet.$r8$lambda$hH1KEymLbUzC8050ElS557ztlU0(this.f$0, textView, i2, keyEvent);
             }
         });
         this.searchEdit.addTextChangedListener(new AnonymousClass2());
@@ -173,7 +172,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                this.f$0.lambda$new$1(view, i3);
+                SelectChatUserSheet.$r8$lambda$P6QTyAbqH6TXyZnNpWUh_rF1VSw(this.f$0, view, i3);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
@@ -232,7 +231,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$new$2(view2);
+                SelectChatUserSheet.m4030$r8$lambda$ST_YPWFLsJpd0zM5wAXp8FOROI(this.f$0, view2);
             }
         });
         UniversalAdapter universalAdapter = this.adapter;
@@ -243,14 +242,15 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         this.members.load();
     }
 
-    public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean $r8$lambda$hH1KEymLbUzC8050ElS557ztlU0(SelectChatUserSheet selectChatUserSheet, TextView textView, int i, KeyEvent keyEvent) {
+        selectChatUserSheet.getClass();
         if (keyEvent == null) {
             return false;
         }
         if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
             return false;
         }
-        AndroidUtilities.hideKeyboard(this.searchEdit);
+        AndroidUtilities.hideKeyboard(selectChatUserSheet.searchEdit);
         return false;
     }
 
@@ -258,7 +258,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         private final Runnable updateSearchRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$$0();
+                this.f$0.updateSearch();
             }
         };
 
@@ -277,14 +277,14 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         public void afterTextChanged(Editable editable) {
             if (editable.length() <= 0) {
                 AndroidUtilities.cancelRunOnUIThread(this.updateSearchRunnable);
-                lambda$$0();
+                updateSearch();
             } else {
                 AndroidUtilities.cancelRunOnUIThread(this.updateSearchRunnable);
                 AndroidUtilities.runOnUIThread(this.updateSearchRunnable, 300L);
             }
         }
 
-        public void lambda$$0() {
+        public void updateSearch() {
             TLRPC.TL_channelParticipantsSearch tL_channelParticipantsSearch = new TLRPC.TL_channelParticipantsSearch();
             tL_channelParticipantsSearch.q = SelectChatUserSheet.this.searchEdit.getText().toString();
             SelectChatUserSheet.this.search.setFilter(tL_channelParticipantsSearch);
@@ -292,24 +292,24 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$new$1(View view, int i) {
-        UItem item = this.adapter.getItem(i - 1);
+    public static void $r8$lambda$P6QTyAbqH6TXyZnNpWUh_rF1VSw(SelectChatUserSheet selectChatUserSheet, View view, int i) {
+        UItem item = selectChatUserSheet.adapter.getItem(i - 1);
         if (item == null) {
             return;
         }
         Object obj = item.object;
         if ((obj instanceof TLRPC.User) || (obj instanceof TLRPC.Chat)) {
             ((ProfileSearchCell) view).setChecked(true, true);
-            this.selectedOwner = (TLObject) item.object;
-            updateButton(true);
-            this.adapter.update(true);
+            selectChatUserSheet.selectedOwner = (TLObject) item.object;
+            selectChatUserSheet.updateButton(true);
+            selectChatUserSheet.adapter.update(true);
         }
     }
 
-    public void lambda$new$2(View view) {
-        if ((this.selectedOwner instanceof TLRPC.User) && !this.button.isLoading()) {
-            this.button.setLoading(true);
-            lambda$initTransfer$4((TLRPC.User) this.selectedOwner, null, null);
+    public static void m4030$r8$lambda$ST_YPWFLsJpd0zM5wAXp8FOROI(SelectChatUserSheet selectChatUserSheet, View view) {
+        if ((selectChatUserSheet.selectedOwner instanceof TLRPC.User) && !selectChatUserSheet.button.isLoading()) {
+            selectChatUserSheet.button.setLoading(true);
+            selectChatUserSheet.initTransfer((TLRPC.User) selectChatUserSheet.selectedOwner, null, null);
         }
     }
 
@@ -350,9 +350,13 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
     }
 
     private boolean isInitialOwnerAdmin() {
-        Iterator it = this.admins.users.iterator();
-        while (it.hasNext()) {
-            if (DialogObject.getDialogId((TLObject) it.next()) == DialogObject.getDialogId(this.initialOwner)) {
+        ArrayList arrayList = this.admins.users;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            if (DialogObject.getDialogId((TLObject) obj) == DialogObject.getDialogId(this.initialOwner)) {
                 return true;
             }
         }
@@ -370,7 +374,13 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         arrayList.add(UItem.asSpace(3, AndroidUtilities.dp(64.0f)));
         ParticipantsList participantsList = this.search;
         if (participantsList != null && !TextUtils.isEmpty(participantsList.filter.q)) {
-            for (TLObject tLObject : this.search.users) {
+            ArrayList arrayList2 = this.search.users;
+            int size = arrayList2.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList2.get(i);
+                i++;
+                TLObject tLObject = (TLObject) obj;
                 if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject)))) {
                     hashSet.add(Long.valueOf(DialogObject.getDialogId(tLObject)));
                     arrayList.add(UItem.asProfileCell(tLObject).setChecked(DialogObject.getDialogId(tLObject) == DialogObject.getDialogId(this.selectedOwner)));
@@ -395,7 +405,13 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
             arrayList.add(UItem.asProfileCell(this.initialOwner).setChecked(DialogObject.getDialogId(this.initialOwner) == DialogObject.getDialogId(this.selectedOwner)));
             z = false;
         }
-        for (TLObject tLObject2 : this.admins.users) {
+        ArrayList arrayList3 = this.admins.users;
+        int size2 = arrayList3.size();
+        int i2 = 0;
+        while (i2 < size2) {
+            Object obj2 = arrayList3.get(i2);
+            i2++;
+            TLObject tLObject2 = (TLObject) obj2;
             if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject2)))) {
                 if (z) {
                     arrayList.add(UItem.asGraySection(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.ChannelAdmins : R.string.GroupAdmins)));
@@ -419,7 +435,13 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
             arrayList.add(UItem.asProfileCell(this.initialOwner).setChecked(DialogObject.getDialogId(this.initialOwner) == DialogObject.getDialogId(this.selectedOwner)));
             z2 = false;
         }
-        for (TLObject tLObject4 : this.members.users) {
+        ArrayList arrayList4 = this.members.users;
+        int size3 = arrayList4.size();
+        int i3 = 0;
+        while (i3 < size3) {
+            Object obj3 = arrayList4.get(i3);
+            i3++;
+            TLObject tLObject4 = (TLObject) obj3;
             if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject4)))) {
                 if (z2) {
                     arrayList.add(UItem.asGraySection(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.ChannelSubscribers2 : R.string.GroupMembers2)));
@@ -438,8 +460,8 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
+    public void dismiss() {
+        super.dismiss();
         this.admins.detach();
         this.members.detach();
         this.search.detach();
@@ -500,9 +522,13 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         }
 
         private void emit() {
-            Iterator it = this.listeners.iterator();
-            while (it.hasNext()) {
-                ((Runnable) it.next()).run();
+            ArrayList arrayList = this.listeners;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ((Runnable) obj).run();
             }
         }
 
@@ -531,41 +557,45 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_channels_getParticipants, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        this.f$0.lambda$load$0((TLRPC.channels_ChannelParticipants) obj, (TLRPC.TL_error) obj2);
+                        SelectChatUserSheet.ParticipantsList.m4036$r8$lambda$vunGDU99sxSUIOIsiDMywI41Y(this.f$0, (TLRPC.channels_ChannelParticipants) obj, (TLRPC.TL_error) obj2);
                     }
                 });
             }
         }
 
-        public void lambda$load$0(TLRPC.channels_ChannelParticipants channels_channelparticipants, TLRPC.TL_error tL_error) {
+        public static void m4036$r8$lambda$vunGDU99sxSUIOIsiDMywI41Y(ParticipantsList participantsList, TLRPC.channels_ChannelParticipants channels_channelparticipants, TLRPC.TL_error tL_error) {
             if (tL_error != null) {
-                if (this.clearOnLoad) {
-                    this.users.clear();
-                    this.clearOnLoad = false;
+                if (participantsList.clearOnLoad) {
+                    participantsList.users.clear();
+                    participantsList.clearOnLoad = false;
                 }
-                this.endReached = true;
-                this.loading = false;
-                emit();
+                participantsList.endReached = true;
+                participantsList.loading = false;
+                participantsList.emit();
                 return;
             }
-            MessagesController.getInstance(this.currentAccount).putUsers(channels_channelparticipants.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(channels_channelparticipants.chats, false);
-            if (this.clearOnLoad) {
-                this.users.clear();
-                this.clearOnLoad = false;
+            MessagesController.getInstance(participantsList.currentAccount).putUsers(channels_channelparticipants.users, false);
+            MessagesController.getInstance(participantsList.currentAccount).putChats(channels_channelparticipants.chats, false);
+            if (participantsList.clearOnLoad) {
+                participantsList.users.clear();
+                participantsList.clearOnLoad = false;
             }
-            Iterator<TLRPC.ChannelParticipant> it = channels_channelparticipants.participants.iterator();
-            while (it.hasNext()) {
-                TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(DialogObject.getPeerDialogId(it.next().peer));
+            ArrayList<TLRPC.ChannelParticipant> arrayList = channels_channelparticipants.participants;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                TLRPC.ChannelParticipant channelParticipant = arrayList.get(i);
+                i++;
+                TLObject userOrChat = MessagesController.getInstance(participantsList.currentAccount).getUserOrChat(DialogObject.getPeerDialogId(channelParticipant.peer));
                 if (userOrChat != null) {
-                    this.users.add(userOrChat);
+                    participantsList.users.add(userOrChat);
                 }
             }
             if (channels_channelparticipants.participants.size() < 30) {
-                this.endReached = true;
+                participantsList.endReached = true;
             }
-            this.loading = false;
-            emit();
+            participantsList.loading = false;
+            participantsList.emit();
         }
 
         public void cancel() {
@@ -611,7 +641,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$initTransfer$4(final TLRPC.User user, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
+    public void initTransfer(final TLRPC.User user, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
         if (getContext() != null) {
             this.context = getContext();
         }
@@ -626,7 +656,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
             MessagesController.getInstance(this.currentAccount).convertToMegaGroup(this.context, this.chat.id, safeLastFragment, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j) {
-                    this.f$0.lambda$initTransfer$3(user, inputCheckPasswordSRP, twoStepVerificationActivity, j);
+                    SelectChatUserSheet.$r8$lambda$1zO3FkZ_hwl6DTDuNHeGxmlC3S4(this.f$0, user, inputCheckPasswordSRP, twoStepVerificationActivity, j);
                 }
             });
             return;
@@ -646,60 +676,63 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_editCreator, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$initTransfer$13(inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator, tLObject, tL_error);
+                SelectChatUserSheet.m4034$r8$lambda$ts719iyW9rJGzqPBoRLixZGHUw(this.f$0, inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$initTransfer$3(TLRPC.User user, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity, long j) {
-        if (j != 0) {
-            this.chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
-            lambda$initTransfer$4(user, inputCheckPasswordSRP, twoStepVerificationActivity);
+    public static void $r8$lambda$1zO3FkZ_hwl6DTDuNHeGxmlC3S4(SelectChatUserSheet selectChatUserSheet, TLRPC.User user, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity, long j) {
+        if (j == 0) {
+            selectChatUserSheet.getClass();
+        } else {
+            selectChatUserSheet.chat = MessagesController.getInstance(selectChatUserSheet.currentAccount).getChat(Long.valueOf(j));
+            selectChatUserSheet.initTransfer(user, inputCheckPasswordSRP, twoStepVerificationActivity);
         }
     }
 
-    public void lambda$initTransfer$13(final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, final TLRPC.TL_channels_editCreator tL_channels_editCreator, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4034$r8$lambda$ts719iyW9rJGzqPBoRLixZGHUw(final SelectChatUserSheet selectChatUserSheet, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, final TLRPC.TL_channels_editCreator tL_channels_editCreator, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        selectChatUserSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$initTransfer$12(tL_error, inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator);
+                SelectChatUserSheet.m4031$r8$lambda$TAinPVKhWCvK77EVwOTCus1GCg(this.f$0, tL_error, inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator);
             }
         });
     }
 
-    public void lambda$initTransfer$12(TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
-        int i;
+    public static void m4031$r8$lambda$TAinPVKhWCvK77EVwOTCus1GCg(final SelectChatUserSheet selectChatUserSheet, TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
         if (tL_error == null) {
-            if (inputCheckPasswordSRP != null) {
-                Runnable runnable = this.whenTransferred;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                lambda$new$0();
-                twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.finishFragment();
+            if (inputCheckPasswordSRP == null) {
+                selectChatUserSheet.getClass();
                 return;
             }
+            Runnable runnable = selectChatUserSheet.whenTransferred;
+            if (runnable != null) {
+                runnable.run();
+            }
+            selectChatUserSheet.dismiss();
+            twoStepVerificationActivity.needHideProgress();
+            twoStepVerificationActivity.finishFragment();
             return;
         }
-        if (this.context == null) {
+        if (selectChatUserSheet.context == null) {
             return;
         }
         if ("PASSWORD_HASH_INVALID".equals(tL_error.text)) {
             if (inputCheckPasswordSRP == null) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
-                builder.setTitle(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.EditAdminChannelTransfer : R.string.EditAdminGroupTransfer));
-                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.EditAdminTransferReadyAlertText2, this.chat.title, UserObject.getFirstName(user))));
+                AlertDialog.Builder builder = new AlertDialog.Builder(selectChatUserSheet.context);
+                builder.setTitle(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(selectChatUserSheet.chat) ? R.string.EditAdminChannelTransfer : R.string.EditAdminGroupTransfer));
+                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.EditAdminTransferReadyAlertText2, selectChatUserSheet.chat.title, UserObject.getFirstName(user))));
                 builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferChangeOwner), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i2) {
-                        this.f$0.lambda$initTransfer$5(user, alertDialog, i2);
+                    public final void onClick(AlertDialog alertDialog, int i) {
+                        SelectChatUserSheet.m4035$r8$lambda$zOPtzdJbSxvin3IiCurxo81UQ(this.f$0, user, alertDialog, i);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i2) {
-                        this.f$0.lambda$initTransfer$6(alertDialog, i2);
+                    public final void onClick(AlertDialog alertDialog, int i) {
+                        this.f$0.button.setLoading(false);
                     }
                 });
                 builder.show();
@@ -707,192 +740,179 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
             }
             return;
         }
-        if ("PASSWORD_MISSING".equals(tL_error.text) || tL_error.text.startsWith("PASSWORD_TOO_FRESH_") || tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
-            if (twoStepVerificationActivity != null) {
-                twoStepVerificationActivity.needHideProgress();
-            }
-            AlertDialog.Builder builder2 = new AlertDialog.Builder(this.context);
-            builder2.setTitle(LocaleController.getString(R.string.EditAdminTransferAlertTitle));
-            LinearLayout linearLayout = new LinearLayout(this.context);
-            linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
-            linearLayout.setOrientation(1);
-            builder2.setView(linearLayout);
-            TextView textView = new TextView(this.context);
-            int i2 = Theme.key_dialogTextBlack;
-            textView.setTextColor(Theme.getColor(i2));
-            textView.setTextSize(1, 16.0f);
-            textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            if (ChatObject.isChannelAndNotMegaGroup(this.chat)) {
-                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.EditChannelAdminTransferAlertText, UserObject.getFirstName(user))));
-            } else {
-                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.EditAdminTransferAlertText, UserObject.getFirstName(user))));
-            }
-            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
-            LinearLayout linearLayout2 = new LinearLayout(this.context);
-            linearLayout2.setOrientation(0);
-            linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-            ImageView imageView = new ImageView(this.context);
-            int i3 = R.drawable.list_circle;
-            imageView.setImageResource(i3);
-            imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-            int color = Theme.getColor(i2);
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
-            TextView textView2 = new TextView(this.context);
-            textView2.setTextColor(Theme.getColor(i2));
-            textView2.setTextSize(1, 16.0f);
-            textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText1)));
-            if (LocaleController.isRTL) {
-                linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
-                linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2, 5));
-            } else {
-                linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2));
-                linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
-            }
-            LinearLayout linearLayout3 = new LinearLayout(this.context);
-            linearLayout3.setOrientation(0);
-            linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-            ImageView imageView2 = new ImageView(this.context);
-            imageView2.setImageResource(i3);
-            imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
-            TextView textView3 = new TextView(this.context);
-            textView3.setTextColor(Theme.getColor(i2));
-            textView3.setTextSize(1, 16.0f);
-            textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText2)));
-            if (LocaleController.isRTL) {
-                linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
-                i = 5;
-                linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2, 5));
-            } else {
-                i = 5;
-                linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2));
-                linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
-            }
-            if ("PASSWORD_MISSING".equals(tL_error.text)) {
-                builder2.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new AlertDialog.OnButtonClickListener() {
+        if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
+            if ("SRP_ID_INVALID".equals(tL_error.text)) {
+                ConnectionsManager.getInstance(selectChatUserSheet.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i4) {
-                        this.f$0.lambda$initTransfer$7(alertDialog, i4);
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error2) {
+                        SelectChatUserSheet.$r8$lambda$du53B3ST6d7sQsueO5l0ct1YHlk(this.f$0, twoStepVerificationActivity, user, tLObject, tL_error2);
                     }
-                });
-                builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
-                    @Override
-                    public final void onClick(AlertDialog alertDialog, int i4) {
-                        this.f$0.lambda$initTransfer$8(alertDialog, i4);
-                    }
-                });
-            } else {
-                TextView textView4 = new TextView(this.context);
-                textView4.setTextColor(Theme.getColor(i2));
-                textView4.setTextSize(1, 16.0f);
-                if (!LocaleController.isRTL) {
-                    i = 3;
+                }, 8);
+                return;
+            }
+            if (!tL_error.text.equals("CHANNELS_TOO_MUCH")) {
+                if (twoStepVerificationActivity != null) {
+                    twoStepVerificationActivity.needHideProgress();
+                    twoStepVerificationActivity.finishFragment();
                 }
-                textView4.setGravity(i | 48);
-                textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
-                linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-                builder2.setNegativeButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
-                    @Override
-                    public final void onClick(AlertDialog alertDialog, int i4) {
-                        this.f$0.lambda$initTransfer$9(alertDialog, i4);
-                    }
-                });
-            }
-            builder2.show();
-            return;
-        }
-        if ("SRP_ID_INVALID".equals(tL_error.text)) {
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error2) {
-                    this.f$0.lambda$initTransfer$11(twoStepVerificationActivity, user, tLObject, tL_error2);
-                }
-            }, 8);
-            return;
-        }
-        if (tL_error.text.equals("CHANNELS_TOO_MUCH")) {
-            if (this.context != null && !AccountInstance.getInstance(this.currentAccount).getUserConfig().isPremium()) {
                 BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
                 if (safeLastFragment == null) {
                     return;
                 }
-                showDialog(new LimitReachedBottomSheet(safeLastFragment, this.context, 5, this.currentAccount, null));
+                AlertsCreator.showAddUserAlert(tL_error, safeLastFragment, ChatObject.isChannelAndNotMegaGroup(selectChatUserSheet.chat), ChatObject.isCommunity(selectChatUserSheet.chat), tL_channels_editCreator);
                 return;
             }
-            BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
-            if (safeLastFragment2 == null) {
+            if (selectChatUserSheet.context != null && !AccountInstance.getInstance(selectChatUserSheet.currentAccount).getUserConfig().isPremium()) {
+                BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
+                if (safeLastFragment2 == null) {
+                    return;
+                }
+                selectChatUserSheet.showDialog(new LimitReachedBottomSheet(safeLastFragment2, selectChatUserSheet.context, 5, selectChatUserSheet.currentAccount, null));
                 return;
             }
-            lambda$new$0();
-            safeLastFragment2.presentFragment(new TooManyCommunitiesActivity(1));
+            BaseFragment safeLastFragment3 = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment3 == null) {
+                return;
+            }
+            selectChatUserSheet.dismiss();
+            safeLastFragment3.presentFragment(new TooManyCommunitiesActivity(1));
             return;
         }
         if (twoStepVerificationActivity != null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.finishFragment();
         }
-        BaseFragment safeLastFragment3 = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment3 == null) {
-            return;
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(selectChatUserSheet.context);
+        builder2.setTitle(LocaleController.getString(R.string.EditAdminTransferAlertTitle));
+        LinearLayout linearLayout = new LinearLayout(selectChatUserSheet.context);
+        linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
+        linearLayout.setOrientation(1);
+        builder2.setView(linearLayout);
+        TextView textView = new TextView(selectChatUserSheet.context);
+        int i = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i));
+        textView.setTextSize(1, 16.0f);
+        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        if (ChatObject.isChannelAndNotMegaGroup(selectChatUserSheet.chat)) {
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.EditChannelAdminTransferAlertText, UserObject.getFirstName(user))));
+        } else {
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.EditAdminTransferAlertText, UserObject.getFirstName(user))));
         }
-        AlertsCreator.showAddUserAlert(tL_error, safeLastFragment3, ChatObject.isChannelAndNotMegaGroup(this.chat), ChatObject.isCommunity(this.chat), tL_channels_editCreator);
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
+        LinearLayout linearLayout2 = new LinearLayout(selectChatUserSheet.context);
+        linearLayout2.setOrientation(0);
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
+        ImageView imageView = new ImageView(selectChatUserSheet.context);
+        int i2 = R.drawable.list_circle;
+        imageView.setImageResource(i2);
+        imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
+        int color = Theme.getColor(i);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
+        TextView textView2 = new TextView(selectChatUserSheet.context);
+        textView2.setTextColor(Theme.getColor(i));
+        textView2.setTextSize(1, 16.0f);
+        textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText1)));
+        if (LocaleController.isRTL) {
+            linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
+            linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2, 5));
+        } else {
+            linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2));
+            linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
+        }
+        LinearLayout linearLayout3 = new LinearLayout(selectChatUserSheet.context);
+        linearLayout3.setOrientation(0);
+        linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(selectChatUserSheet.context);
+        imageView2.setImageResource(i2);
+        imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
+        imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
+        TextView textView3 = new TextView(selectChatUserSheet.context);
+        textView3.setTextColor(Theme.getColor(i));
+        textView3.setTextSize(1, 16.0f);
+        textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText2)));
+        if (LocaleController.isRTL) {
+            linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
+            linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2, 5));
+        } else {
+            linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2));
+            linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
+        }
+        if ("PASSWORD_MISSING".equals(tL_error.text)) {
+            builder2.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i3) {
+                    SelectChatUserSheet.$r8$lambda$DWOue2MNnCOQtZBTrrqCPmoGkdM(this.f$0, alertDialog, i3);
+                }
+            });
+            builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i3) {
+                    this.f$0.button.setLoading(false);
+                }
+            });
+        } else {
+            TextView textView4 = new TextView(selectChatUserSheet.context);
+            textView4.setTextColor(Theme.getColor(i));
+            textView4.setTextSize(1, 16.0f);
+            textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+            textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
+            linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
+            builder2.setNegativeButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i3) {
+                    this.f$0.button.setLoading(false);
+                }
+            });
+        }
+        builder2.show();
     }
 
-    public void lambda$initTransfer$5(final TLRPC.User user, AlertDialog alertDialog, int i) {
+    public static void m4035$r8$lambda$zOPtzdJbSxvin3IiCurxo81UQ(final SelectChatUserSheet selectChatUserSheet, final TLRPC.User user, AlertDialog alertDialog, int i) {
+        selectChatUserSheet.getClass();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
             return;
         }
-        lambda$new$0();
+        selectChatUserSheet.dismiss();
         final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         twoStepVerificationActivity.setDelegate(0, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
             public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                this.f$0.lambda$initTransfer$4(user, twoStepVerificationActivity, inputCheckPasswordSRP);
+                this.f$0.initTransfer(user, inputCheckPasswordSRP, twoStepVerificationActivity);
             }
         });
         safeLastFragment.presentFragment(twoStepVerificationActivity);
     }
 
-    public void lambda$initTransfer$6(AlertDialog alertDialog, int i) {
-        this.button.setLoading(false);
-    }
-
-    public void lambda$initTransfer$7(AlertDialog alertDialog, int i) {
+    public static void $r8$lambda$DWOue2MNnCOQtZBTrrqCPmoGkdM(SelectChatUserSheet selectChatUserSheet, AlertDialog alertDialog, int i) {
+        selectChatUserSheet.getClass();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
             return;
         }
-        lambda$new$0();
+        selectChatUserSheet.dismiss();
         safeLastFragment.presentFragment(new TwoStepVerificationSetupActivity(6, null));
     }
 
-    public void lambda$initTransfer$8(AlertDialog alertDialog, int i) {
-        this.button.setLoading(false);
-    }
-
-    public void lambda$initTransfer$9(AlertDialog alertDialog, int i) {
-        this.button.setLoading(false);
-    }
-
-    public void lambda$initTransfer$11(final TwoStepVerificationActivity twoStepVerificationActivity, final TLRPC.User user, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$du53B3ST6d7sQsueO5l0ct1YHlk(final SelectChatUserSheet selectChatUserSheet, final TwoStepVerificationActivity twoStepVerificationActivity, final TLRPC.User user, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        selectChatUserSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$initTransfer$10(tL_error, tLObject, twoStepVerificationActivity, user);
+                SelectChatUserSheet.m4028$r8$lambda$0pVaPRupvXV8DV7i3mFmoSfEV8(this.f$0, tL_error, tLObject, twoStepVerificationActivity, user);
             }
         });
     }
 
-    public void lambda$initTransfer$10(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.User user) {
+    public static void m4028$r8$lambda$0pVaPRupvXV8DV7i3mFmoSfEV8(SelectChatUserSheet selectChatUserSheet, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.User user) {
+        selectChatUserSheet.getClass();
         if (tL_error == null) {
             TL_account.Password password = (TL_account.Password) tLObject;
             twoStepVerificationActivity.setCurrentPasswordInfo(null, password);
             TwoStepVerificationActivity.initPasswordNewAlgo(password);
-            lambda$initTransfer$4(user, twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
+            selectChatUserSheet.initTransfer(user, twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
         }
     }
 }

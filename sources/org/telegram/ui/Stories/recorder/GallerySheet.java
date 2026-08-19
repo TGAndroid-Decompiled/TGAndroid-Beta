@@ -40,13 +40,13 @@ public class GallerySheet extends BottomSheet {
         galleryListView.setOnBackClickListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$0();
+                this.f$0.dismiss();
             }
         });
         galleryListView.setOnSelectListener(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$new$1(obj, (Bitmap) obj2);
+                GallerySheet.m4506$r8$lambda$boleV3p_swaWSlzgvrOP5qHLLs(this.f$0, obj, (Bitmap) obj2);
             }
         });
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context);
@@ -56,12 +56,13 @@ public class GallerySheet extends BottomSheet {
         this.containerView.addView(galleryListView);
     }
 
-    public void lambda$new$1(Object obj, Bitmap bitmap) {
+    public static void m4506$r8$lambda$boleV3p_swaWSlzgvrOP5qHLLs(GallerySheet gallerySheet, Object obj, Bitmap bitmap) {
         Utilities.Callback callback;
-        if (obj == null || this.galleryListViewOpening != null || !(obj instanceof MediaController.PhotoEntry) || (callback = this.onGalleryListener) == null) {
-            return;
+        if (obj == null) {
+            gallerySheet.getClass();
+        } else if (gallerySheet.galleryListViewOpening == null && (obj instanceof MediaController.PhotoEntry) && (callback = gallerySheet.onGalleryListener) != null) {
+            callback.run((MediaController.PhotoEntry) obj);
         }
-        callback.run((MediaController.PhotoEntry) obj);
     }
 
     @Override
@@ -70,19 +71,15 @@ public class GallerySheet extends BottomSheet {
         animate(true, null);
     }
 
-    public void lambda$dismiss$2() {
-        super.lambda$new$0();
-    }
-
     @Override
-    public void lambda$new$0() {
+    public void dismiss() {
         animate(false, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$dismiss$2();
+                super/*org.telegram.ui.ActionBar.BottomSheet*/.dismiss();
             }
         });
-        super.lambda$new$0();
+        super.dismiss();
     }
 
     @Override
@@ -93,7 +90,7 @@ public class GallerySheet extends BottomSheet {
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0 && motionEvent.getY() < this.listView.top()) {
-            lambda$new$0();
+            dismiss();
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -111,7 +108,7 @@ public class GallerySheet extends BottomSheet {
             this.galleryOpenCloseSpringAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    this.f$0.lambda$animate$3(height, runnable, dynamicAnimation, z2, f, f2);
+                    GallerySheet.$r8$lambda$x37FlltTpeb4zFQvqEKMRa4TFIQ(this.f$0, height, runnable, dynamicAnimation, z2, f, f2);
                 }
             });
             this.galleryOpenCloseSpringAnimator.start();
@@ -122,7 +119,7 @@ public class GallerySheet extends BottomSheet {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$animate$4(valueAnimator);
+                this.f$0.listView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
             }
         });
         this.galleryOpenCloseAnimator.addListener(new AnimatorListenerAdapter() {
@@ -141,21 +138,18 @@ public class GallerySheet extends BottomSheet {
         this.galleryOpenCloseAnimator.start();
     }
 
-    public void lambda$animate$3(float f, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f2, float f3) {
+    public static void $r8$lambda$x37FlltTpeb4zFQvqEKMRa4TFIQ(GallerySheet gallerySheet, float f, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f2, float f3) {
         if (z) {
+            gallerySheet.getClass();
             return;
         }
-        this.listView.setTranslationY(f);
-        this.listView.ignoreScroll = false;
-        this.galleryOpenCloseSpringAnimator = null;
-        this.galleryListViewOpening = null;
+        gallerySheet.listView.setTranslationY(f);
+        gallerySheet.listView.ignoreScroll = false;
+        gallerySheet.galleryOpenCloseSpringAnimator = null;
+        gallerySheet.galleryListViewOpening = null;
         if (runnable != null) {
             runnable.run();
         }
-    }
-
-    public void lambda$animate$4(ValueAnimator valueAnimator) {
-        this.listView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     public void setOnGalleryImage(Utilities.Callback callback) {

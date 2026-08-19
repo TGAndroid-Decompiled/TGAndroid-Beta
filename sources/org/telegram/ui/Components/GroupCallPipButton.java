@@ -430,9 +430,10 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                         return;
                     }
                     if (this.progressToPrepareRemove != 1.0f) {
-                        f7 = this.previousState != null ? this.progressToState : 1.0f;
+                        float f20 = this.previousState != null ? this.progressToState : 1.0f;
                         weavingState.update(16L, this.amplitude);
                         this.currentState.setToPaint(this.paint);
+                        f7 = f20;
                         this.blobDrawable.maxRadius = AndroidUtilities.dp(40.0f);
                         this.blobDrawable.minRadius = AndroidUtilities.dp(32.0f);
                         this.blobDrawable2.maxRadius = AndroidUtilities.dp(38.0f);

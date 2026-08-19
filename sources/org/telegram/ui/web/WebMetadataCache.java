@@ -127,7 +127,7 @@ public class WebMetadataCache {
         }
     }
 
-    private static final class MetadataFile extends TLObject {
+    static final class MetadataFile extends TLObject {
         public final ArrayList array;
 
         private MetadataFile() {
@@ -197,15 +197,15 @@ public class WebMetadataCache {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$load$1();
+                WebMetadataCache.$r8$lambda$GPcF8HnHTI7svLi0lIMiiPOg2Vw(this.f$0);
             }
         });
     }
 
-    public void lambda$load$1() {
-        File cacheFile = getCacheFile();
+    public static void $r8$lambda$GPcF8HnHTI7svLi0lIMiiPOg2Vw(final WebMetadataCache webMetadataCache) {
+        File cacheFile = webMetadataCache.getCacheFile();
         if (!cacheFile.exists()) {
-            this.loaded = true;
+            webMetadataCache.loaded = true;
             return;
         }
         final ArrayList arrayList = new ArrayList();
@@ -220,18 +220,19 @@ public class WebMetadataCache {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$load$0(arrayList);
+                WebMetadataCache.$r8$lambda$zspukuyN0kEK8HOwNUHx6E_10zA(this.f$0, arrayList);
             }
         });
     }
 
-    public void lambda$load$0(ArrayList arrayList) {
+    public static void $r8$lambda$zspukuyN0kEK8HOwNUHx6E_10zA(WebMetadataCache webMetadataCache, ArrayList arrayList) {
+        webMetadataCache.getClass();
         for (int i = 0; i < arrayList.size(); i++) {
             WebMetadata webMetadata = (WebMetadata) arrayList.get(i);
-            this.cache.put(webMetadata.domain, webMetadata);
+            webMetadataCache.cache.put(webMetadata.domain, webMetadata);
         }
-        this.loaded = true;
-        this.loading = false;
+        webMetadataCache.loaded = true;
+        webMetadataCache.loading = false;
     }
 
     public void scheduleSave() {
@@ -270,19 +271,19 @@ public class WebMetadataCache {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$save$3(arrayList);
+                WebMetadataCache.$r8$lambda$g46RWQrFUs2ijBAvU24OJzuEsls(this.f$0, arrayList);
             }
         });
     }
 
-    public void lambda$save$3(ArrayList arrayList) {
-        File cacheFile = getCacheFile();
+    public static void $r8$lambda$g46RWQrFUs2ijBAvU24OJzuEsls(final WebMetadataCache webMetadataCache, ArrayList arrayList) {
+        File cacheFile = webMetadataCache.getCacheFile();
         if (!cacheFile.exists()) {
             try {
                 cacheFile.createNewFile();
             } catch (Exception e) {
                 FileLog.e(e);
-                this.saving = false;
+                webMetadataCache.saving = false;
                 return;
             }
         }
@@ -300,13 +301,9 @@ public class WebMetadataCache {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$save$2();
+                this.f$0.saving = false;
             }
         });
-    }
-
-    public void lambda$save$2() {
-        this.saving = false;
     }
 
     public void clear() {

@@ -107,15 +107,15 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             this.greetingsView.setNextSticker(MediaDataController.getInstance(this.currentAccount).getGreetingsSticker(), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateRandomSticker$0();
+                    BusinessIntroActivity.$r8$lambda$PbARWy0eIoa8MmB0N1zQfcVqoSc(this.f$0);
                 }
             });
         }
     }
 
-    public void lambda$updateRandomSticker$0() {
-        AndroidUtilities.cancelRunOnUIThread(this.updateRandomStickerRunnable);
-        AndroidUtilities.runOnUIThread(this.updateRandomStickerRunnable, 5000L);
+    public static void $r8$lambda$PbARWy0eIoa8MmB0N1zQfcVqoSc(BusinessIntroActivity businessIntroActivity) {
+        AndroidUtilities.cancelRunOnUIThread(businessIntroActivity.updateRandomStickerRunnable);
+        AndroidUtilities.runOnUIThread(businessIntroActivity.updateRandomStickerRunnable, 5000L);
     }
 
     @Override
@@ -281,22 +281,23 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         new KeyboardNotifier(this.fragmentView, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$createView$1((Integer) obj);
+                BusinessIntroActivity.$r8$lambda$oceY_pMzncPnCVtICOzUUsN2CSo(this.f$0, (Integer) obj);
             }
         });
         return this.fragmentView;
     }
 
-    public void lambda$createView$1(Integer num) {
+    public static void $r8$lambda$oceY_pMzncPnCVtICOzUUsN2CSo(BusinessIntroActivity businessIntroActivity, Integer num) {
+        businessIntroActivity.getClass();
         boolean z = num.intValue() > AndroidUtilities.dp(20.0f);
-        if (this.keyboardVisible == z) {
+        if (businessIntroActivity.keyboardVisible == z) {
             return;
         }
-        this.keyboardVisible = z;
+        businessIntroActivity.keyboardVisible = z;
         if (z) {
             return;
         }
-        this.listView.smoothScrollToPosition(0);
+        businessIntroActivity.listView.smoothScrollToPosition(0);
     }
 
     public void updateGreetingScale() {
@@ -405,7 +406,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
                 @Override
                 public final Object run(Object obj, Object obj2, Object obj3) {
-                    return this.f$0.lambda$onClick$2(view, obj, (TLRPC.Document) obj2, (Boolean) obj3);
+                    return BusinessIntroActivity.m1363$r8$lambda$bFjW5sE_ZIngwHbbmJAdGFzbA(this.f$0, view, obj, (TLRPC.Document) obj2, (Boolean) obj3);
                 }
             });
             emojiBottomSheet.whenPlusSelected(new Runnable() {
@@ -434,14 +435,14 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         }
     }
 
-    public Boolean lambda$onClick$2(View view, Object obj, TLRPC.Document document, Boolean bool) {
-        this.stickerRandom = false;
-        AndroidUtilities.cancelRunOnUIThread(this.updateRandomStickerRunnable);
-        ChatGreetingsView chatGreetingsView = this.greetingsView;
-        this.sticker = document;
+    public static Boolean m1363$r8$lambda$bFjW5sE_ZIngwHbbmJAdGFzbA(BusinessIntroActivity businessIntroActivity, View view, Object obj, TLRPC.Document document, Boolean bool) {
+        businessIntroActivity.stickerRandom = false;
+        AndroidUtilities.cancelRunOnUIThread(businessIntroActivity.updateRandomStickerRunnable);
+        ChatGreetingsView chatGreetingsView = businessIntroActivity.greetingsView;
+        businessIntroActivity.sticker = document;
         chatGreetingsView.setSticker(document);
         ((TextCell) view).setValueSticker(document);
-        checkDone(true, false);
+        businessIntroActivity.checkDone(true, false);
         return Boolean.TRUE;
     }
 
@@ -452,15 +453,17 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         if (str == null) {
             str = "";
         }
-        if (TextUtils.equals(string, str)) {
-            String string2 = this.messageEdit.getText().toString();
-            String str2 = this.currentMessage;
-            if (TextUtils.equals(string2, str2 != null ? str2 : "")) {
-                boolean z = this.stickerRandom;
-                if (((z || (document = this.sticker) == null) ? 0L : document.id) == this.currentSticker && (z || this.inputSticker == null)) {
-                    return false;
-                }
-            }
+        if (!TextUtils.equals(string, str)) {
+            return true;
+        }
+        String string2 = this.messageEdit.getText().toString();
+        String str2 = this.currentMessage;
+        if (!TextUtils.equals(string2, str2 != null ? str2 : "")) {
+            return true;
+        }
+        boolean z = this.stickerRandom;
+        if (((z || (document = this.sticker) == null) ? 0L : document.id) == this.currentSticker) {
+            return (z || this.inputSticker == null) ? false : true;
         }
         return true;
     }
@@ -530,33 +533,37 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         getConnectionsManager().sendRequest(updatebusinessintro, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$processDone$4(tLObject, tL_error);
+                BusinessIntroActivity.$r8$lambda$vwouftzYVBIlVfqbZuUV7PUPODo(this.f$0, tLObject, tL_error);
             }
         });
         getMessagesStorage().updateUserInfo(userFull, false);
     }
 
-    public void lambda$processDone$4(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$vwouftzYVBIlVfqbZuUV7PUPODo(final BusinessIntroActivity businessIntroActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        businessIntroActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processDone$3(tL_error, tLObject);
+                BusinessIntroActivity.$r8$lambda$IJseFU17Pg78EA8NqjhDvfk6D1o(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$processDone$3(TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void $r8$lambda$IJseFU17Pg78EA8NqjhDvfk6D1o(BusinessIntroActivity businessIntroActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
-            this.doneButtonDrawable.animateToProgress(0.0f);
+            businessIntroActivity.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);
-        } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-            this.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+            return;
+        }
+        businessIntroActivity.getClass();
+        if (tLObject instanceof TLRPC.TL_boolFalse) {
+            businessIntroActivity.doneButtonDrawable.animateToProgress(0.0f);
+            BulletinFactory.of(businessIntroActivity).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            if (this.inputSticker != null) {
-                getMessagesController().loadFullUser(getUserConfig().getCurrentUser(), 0, true);
+            if (businessIntroActivity.inputSticker != null) {
+                businessIntroActivity.getMessagesController().loadFullUser(businessIntroActivity.getUserConfig().getCurrentUser(), 0, true);
             }
-            finishFragment();
+            businessIntroActivity.finishFragment();
         }
     }
 
@@ -574,25 +581,17 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$onBackPressed$5(alertDialog, i);
+                this.f$0.processDone();
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$onBackPressed$6(alertDialog, i);
+                this.f$0.finishFragment();
             }
         });
         showDialog(builder.create());
         return false;
-    }
-
-    public void lambda$onBackPressed$5(AlertDialog alertDialog, int i) {
-        processDone();
-    }
-
-    public void lambda$onBackPressed$6(AlertDialog alertDialog, int i) {
-        finishFragment();
     }
 
     public void openCustomStickerEditor() {
@@ -695,7 +694,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
 
     public void setCustomSticker(String str, TLRPC.InputDocument inputDocument) {
         UniversalAdapter universalAdapter;
-        this.chatAttachAlert.lambda$new$0();
+        this.chatAttachAlert.dismiss();
         this.inputStickerPath = str;
         this.inputSticker = inputDocument;
         this.stickerRandom = false;

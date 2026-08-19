@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -76,9 +75,13 @@ public class RequestPeerRequirementsCell extends LinearLayout {
             headerCell.setBackgroundColor(Theme.getColor(i));
             addView(headerCell, LayoutHelper.createLinear(-1, -2));
             addView(emptyView(9, Theme.getColor(i)), LayoutHelper.createLinear(-1, -2));
-            Iterator it = this.requirements.iterator();
-            while (it.hasNext()) {
-                addView(new RequirementCell(getContext(), (Requirement) it.next()), LayoutHelper.createLinear(-1, -2));
+            ArrayList arrayList = this.requirements;
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList.get(i2);
+                i2++;
+                addView(new RequirementCell(getContext(), (Requirement) obj), LayoutHelper.createLinear(-1, -2));
             }
             addView(emptyView(12, Theme.getColor(Theme.key_windowBackgroundWhite)), LayoutHelper.createLinear(-1, -2));
             addView(emptyView(12, Theme.getThemedDrawableByKey(getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow)), LayoutHelper.createLinear(-1, -2));

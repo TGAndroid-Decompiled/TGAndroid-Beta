@@ -147,18 +147,20 @@ public class MP3Frame {
     }
 
     boolean isChecksumError() {
-        if (this.header.getProtection() != 0 || this.header.getLayer() != 1) {
-            return false;
+        if (this.header.getProtection() == 0 && this.header.getLayer() == 1) {
+            CRC16 crc16 = new CRC16();
+            crc16.update(this.bytes[2]);
+            crc16.update(this.bytes[3]);
+            int sideInfoSize = this.header.getSideInfoSize();
+            for (int i = 0; i < sideInfoSize; i++) {
+                crc16.update(this.bytes[i + 6]);
+            }
+            byte[] bArr = this.bytes;
+            if (((bArr[5] & 255) | ((bArr[4] & 255) << 8)) != crc16.getValue()) {
+                return true;
+            }
         }
-        CRC16 crc16 = new CRC16();
-        crc16.update(this.bytes[2]);
-        crc16.update(this.bytes[3]);
-        int sideInfoSize = this.header.getSideInfoSize();
-        for (int i = 0; i < sideInfoSize; i++) {
-            crc16.update(this.bytes[i + 6]);
-        }
-        byte[] bArr = this.bytes;
-        return ((bArr[5] & 255) | ((bArr[4] & 255) << 8)) != crc16.getValue();
+        return false;
     }
 
     public int getSize() {

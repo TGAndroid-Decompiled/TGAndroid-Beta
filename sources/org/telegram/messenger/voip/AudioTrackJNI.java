@@ -84,34 +84,35 @@ public class AudioTrackJNI {
         Thread thread = new Thread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$startThread$0();
+                AudioTrackJNI.$r8$lambda$5btg7YbwPgTwQrACptyq6bfRxXI(this.f$0);
             }
         });
         this.thread = thread;
         thread.start();
     }
 
-    public void lambda$startThread$0() {
+    public static void $r8$lambda$5btg7YbwPgTwQrACptyq6bfRxXI(AudioTrackJNI audioTrackJNI) {
+        audioTrackJNI.getClass();
         try {
-            this.audioTrack.play();
-            ByteBuffer byteBufferAllocateDirect = this.needResampling ? ByteBuffer.allocateDirect(1920) : null;
-            ByteBuffer byteBufferAllocateDirect2 = this.needResampling ? ByteBuffer.allocateDirect(1764) : null;
-            while (this.running) {
+            audioTrackJNI.audioTrack.play();
+            ByteBuffer byteBufferAllocateDirect = audioTrackJNI.needResampling ? ByteBuffer.allocateDirect(1920) : null;
+            ByteBuffer byteBufferAllocateDirect2 = audioTrackJNI.needResampling ? ByteBuffer.allocateDirect(1764) : null;
+            while (audioTrackJNI.running) {
                 try {
-                    if (this.needResampling) {
-                        nativeCallback(this.buffer);
+                    if (audioTrackJNI.needResampling) {
+                        audioTrackJNI.nativeCallback(audioTrackJNI.buffer);
                         byteBufferAllocateDirect.rewind();
-                        byteBufferAllocateDirect.put(this.buffer);
+                        byteBufferAllocateDirect.put(audioTrackJNI.buffer);
                         Resampler.convert48to44(byteBufferAllocateDirect, byteBufferAllocateDirect2);
                         byteBufferAllocateDirect2.rewind();
-                        byteBufferAllocateDirect2.get(this.buffer, 0, 1764);
-                        this.audioTrack.write(this.buffer, 0, 1764);
+                        byteBufferAllocateDirect2.get(audioTrackJNI.buffer, 0, 1764);
+                        audioTrackJNI.audioTrack.write(audioTrackJNI.buffer, 0, 1764);
                     } else {
-                        nativeCallback(this.buffer);
-                        this.audioTrack.write(this.buffer, 0, 1920);
+                        audioTrackJNI.nativeCallback(audioTrackJNI.buffer);
+                        audioTrackJNI.audioTrack.write(audioTrackJNI.buffer, 0, 1920);
                     }
-                    if (!this.running) {
-                        this.audioTrack.stop();
+                    if (!audioTrackJNI.running) {
+                        audioTrackJNI.audioTrack.stop();
                         break;
                     }
                     continue;

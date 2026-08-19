@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -107,13 +106,18 @@ public class SearchAdapterHelper {
         queryServerSearch(str, z, z2, z3, z4, z5, j, z6, i, i2, j2, null);
     }
 
-    public void queryServerSearch(final String str, boolean z, final boolean z2, final boolean z3, final boolean z4, final boolean z5, long j, boolean z6, int i, final int i2, final long j2, final Runnable runnable) {
-        boolean z7;
+    public void queryServerSearch(final String str, boolean z, final boolean z2, final boolean z3, boolean z4, final boolean z5, long j, boolean z6, int i, final int i2, final long j2, final Runnable runnable) {
+        final boolean z7;
         boolean z8;
         String str2;
-        Iterator it = this.pendingRequestIds.iterator();
-        while (it.hasNext()) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(((Integer) it.next()).intValue(), true);
+        ArrayList arrayList = this.pendingRequestIds;
+        int size = arrayList.size();
+        int i3 = 0;
+        int i4 = 0;
+        while (i4 < size) {
+            Object obj = arrayList.get(i4);
+            i4++;
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(((Integer) obj).intValue(), true);
         }
         this.pendingRequestIds.clear();
         if (str == null) {
@@ -127,7 +131,7 @@ public class SearchAdapterHelper {
             this.delegate.onDataSetChanged(i2);
             return;
         }
-        final ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
         if (str.length() > 0) {
             if (j != 0) {
                 TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
@@ -144,49 +148,51 @@ public class SearchAdapterHelper {
                 tL_channels_getParticipants.limit = 50;
                 tL_channels_getParticipants.offset = 0;
                 tL_channels_getParticipants.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(j);
-                arrayList.add(new Pair(tL_channels_getParticipants, new RequestDelegate() {
+                z7 = z4;
+                arrayList2.add(new Pair(tL_channels_getParticipants, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$queryServerSearch$0(str, z4, tLObject, tL_error);
+                        SearchAdapterHelper.$r8$lambda$8nMTsF0cRgFdXzeKoWWyiu9bcAQ(this.f$0, str, z7, tLObject, tL_error);
                     }
                 }));
             } else {
+                z7 = z4;
                 this.lastFoundChannel = str.toLowerCase();
             }
-            z7 = false;
+            z8 = false;
         } else {
+            z7 = z4;
             this.groupSearch.clear();
             this.groupSearchMap.clear();
-            z7 = true;
+            z8 = true;
         }
-        if (!z) {
-            z8 = z7;
-        } else if (str.length() > 0) {
-            TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
-            tL_contacts_search.q = str;
-            tL_contacts_search.limit = 20;
-            arrayList.add(new Pair(tL_contacts_search, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$queryServerSearch$1(i2, z2, z5, z3, z4, j2, str, tLObject, tL_error);
-                }
-            }));
-            z8 = z7;
-        } else {
-            this.globalSearch.clear();
-            this.globalSearchMap.clear();
-            this.localServerSearch.clear();
-            z8 = false;
+        if (z) {
+            if (str.length() > 0) {
+                TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
+                tL_contacts_search.q = str;
+                tL_contacts_search.limit = 20;
+                arrayList2.add(new Pair(tL_contacts_search, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        SearchAdapterHelper.$r8$lambda$twGuWATPsTaEk9ejBR2vR_Tfgu8(this.f$0, i2, z2, z5, z3, z7, j2, str, tLObject, tL_error);
+                    }
+                }));
+            } else {
+                this.globalSearch.clear();
+                this.globalSearchMap.clear();
+                this.localServerSearch.clear();
+                z8 = false;
+            }
         }
         if (!z5 && z6 && str.startsWith("+") && str.length() > 3) {
             this.phonesSearch.clear();
             this.phoneSearchMap.clear();
             String strStripExceptNumbers = PhoneFormat.stripExceptNumbers(str);
-            ArrayList<TLRPC.TL_contact> arrayList2 = ContactsController.getInstance(this.currentAccount).contacts;
-            int size = arrayList2.size();
+            ArrayList<TLRPC.TL_contact> arrayList3 = ContactsController.getInstance(this.currentAccount).contacts;
+            int size2 = arrayList3.size();
             boolean z9 = false;
-            for (int i3 = 0; i3 < size; i3++) {
-                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList2.get(i3).user_id));
+            for (int i5 = 0; i5 < size2; i5++) {
+                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList3.get(i5).user_id));
                 if (user != null && (str2 = user.phone) != null && str2.startsWith(strStripExceptNumbers)) {
                     if (!z9) {
                         z9 = user.phone.length() == strStripExceptNumbers.length();
@@ -201,63 +207,71 @@ public class SearchAdapterHelper {
             }
             z8 = false;
         }
-        final AtomicInteger atomicInteger = new AtomicInteger(0);
-        final ArrayList arrayList3 = new ArrayList();
-        for (int i4 = 0; i4 < arrayList.size(); i4++) {
-            TLObject tLObject = (TLObject) ((Pair) arrayList.get(i4)).first;
-            arrayList3.add(null);
+        AtomicInteger atomicInteger = new AtomicInteger(0);
+        ArrayList arrayList4 = new ArrayList();
+        while (i3 < arrayList2.size()) {
+            TLObject tLObject = (TLObject) ((Pair) arrayList2.get(i3)).first;
+            arrayList4.add(null);
             final AtomicInteger atomicInteger2 = new AtomicInteger();
-            final int i5 = i4;
+            final AtomicInteger atomicInteger3 = atomicInteger;
+            final ArrayList arrayList5 = arrayList4;
+            final int i6 = i3;
+            final ArrayList arrayList6 = arrayList2;
             atomicInteger2.set(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$queryServerSearch$3(arrayList3, i5, atomicInteger2, atomicInteger, arrayList, i2, runnable, tLObject2, tL_error);
+                    SearchAdapterHelper.$r8$lambda$4LfToSZ7_7zZ5yOfzMj4basnOVg(this.f$0, arrayList5, i6, atomicInteger2, atomicInteger3, arrayList6, i2, runnable, tLObject2, tL_error);
                 }
             }));
             this.pendingRequestIds.add(Integer.valueOf(atomicInteger2.get()));
+            i3++;
+            arrayList2 = arrayList6;
+            atomicInteger = atomicInteger3;
+            arrayList4 = arrayList5;
         }
         if (z8) {
             this.delegate.onDataSetChanged(i2);
         }
     }
 
-    public void lambda$queryServerSearch$0(String str, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$8nMTsF0cRgFdXzeKoWWyiu9bcAQ(SearchAdapterHelper searchAdapterHelper, String str, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
+        searchAdapterHelper.getClass();
         if (tL_error == null) {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
-            this.lastFoundChannel = str.toLowerCase();
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_channels_channelParticipants.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(tL_channels_channelParticipants.chats, false);
-            this.groupSearch.clear();
-            this.groupSearchMap.clear();
-            this.groupSearch.addAll(tL_channels_channelParticipants.participants);
-            long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+            searchAdapterHelper.lastFoundChannel = str.toLowerCase();
+            MessagesController.getInstance(searchAdapterHelper.currentAccount).putUsers(tL_channels_channelParticipants.users, false);
+            MessagesController.getInstance(searchAdapterHelper.currentAccount).putChats(tL_channels_channelParticipants.chats, false);
+            searchAdapterHelper.groupSearch.clear();
+            searchAdapterHelper.groupSearchMap.clear();
+            searchAdapterHelper.groupSearch.addAll(tL_channels_channelParticipants.participants);
+            long clientUserId = UserConfig.getInstance(searchAdapterHelper.currentAccount).getClientUserId();
             int size = tL_channels_channelParticipants.participants.size();
             for (int i = 0; i < size; i++) {
                 TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i);
                 long peerId = MessageObject.getPeerId(channelParticipant.peer);
                 if (!z && peerId == clientUserId) {
-                    this.groupSearch.remove(channelParticipant);
+                    searchAdapterHelper.groupSearch.remove(channelParticipant);
                 } else {
-                    this.groupSearchMap.put(peerId, channelParticipant);
+                    searchAdapterHelper.groupSearchMap.put(peerId, channelParticipant);
                 }
             }
         }
     }
 
-    public void lambda$queryServerSearch$1(int i, boolean z, boolean z2, boolean z3, boolean z4, long j, String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$twGuWATPsTaEk9ejBR2vR_Tfgu8(SearchAdapterHelper searchAdapterHelper, int i, boolean z, boolean z2, boolean z3, boolean z4, long j, String str, TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.Chat chat;
         TLRPC.User user;
         ArrayList<TLRPC.Peer> arrayList;
         TLRPC.Chat chat2;
         TLRPC.User user2;
-        if (this.delegate.canApplySearchResults(i) && tL_error == null) {
+        if (searchAdapterHelper.delegate.canApplySearchResults(i) && tL_error == null) {
             TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
-            this.globalSearch.clear();
-            this.globalSearchMap.clear();
-            this.localServerSearch.clear();
-            MessagesController.getInstance(this.currentAccount).putChats(tL_contacts_found.chats, false);
-            MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_found.users, false);
-            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_contacts_found.users, tL_contacts_found.chats, true, true);
+            searchAdapterHelper.globalSearch.clear();
+            searchAdapterHelper.globalSearchMap.clear();
+            searchAdapterHelper.localServerSearch.clear();
+            MessagesController.getInstance(searchAdapterHelper.currentAccount).putChats(tL_contacts_found.chats, false);
+            MessagesController.getInstance(searchAdapterHelper.currentAccount).putUsers(tL_contacts_found.users, false);
+            MessagesStorage.getInstance(searchAdapterHelper.currentAccount).putUsersAndChats(tL_contacts_found.users, tL_contacts_found.chats, true, true);
             LongSparseArray longSparseArray = new LongSparseArray();
             LongSparseArray longSparseArray2 = new LongSparseArray();
             for (int i2 = 0; i2 < tL_contacts_found.chats.size(); i2++) {
@@ -270,7 +284,7 @@ public class SearchAdapterHelper {
             }
             for (int i4 = 0; i4 < 2; i4++) {
                 if (i4 == 0) {
-                    if (this.allResultsAreGlobal) {
+                    if (searchAdapterHelper.allResultsAreGlobal) {
                         arrayList = tL_contacts_found.my_results;
                     }
                 } else {
@@ -298,17 +312,17 @@ public class SearchAdapterHelper {
                         user2 = null;
                     }
                     if (chat2 != null) {
-                        if (z && ((!z2 || ChatObject.canAddBotsToChat(chat2)) && ((this.allowGlobalResults || !ChatObject.isNotInChat(chat2)) && filter(chat2)))) {
-                            this.globalSearch.add(chat2);
-                            this.globalSearchMap.put(-chat2.id, chat2);
+                        if (z && ((!z2 || ChatObject.canAddBotsToChat(chat2)) && ((searchAdapterHelper.allowGlobalResults || !ChatObject.isNotInChat(chat2)) && searchAdapterHelper.filter(chat2)))) {
+                            searchAdapterHelper.globalSearch.add(chat2);
+                            searchAdapterHelper.globalSearchMap.put(-chat2.id, chat2);
                         }
-                    } else if (user2 != null && !z2 && ((z3 || !user2.bot) && ((z4 || !user2.self) && ((this.allowGlobalResults || i4 != 1 || user2.contact) && filter(user2))))) {
-                        this.globalSearch.add(user2);
-                        this.globalSearchMap.put(user2.id, user2);
+                    } else if (user2 != null && !z2 && ((z3 || !user2.bot) && ((z4 || !user2.self) && ((searchAdapterHelper.allowGlobalResults || i4 != 1 || user2.contact) && searchAdapterHelper.filter(user2))))) {
+                        searchAdapterHelper.globalSearch.add(user2);
+                        searchAdapterHelper.globalSearchMap.put(user2.id, user2);
                     }
                 }
             }
-            if (!this.allResultsAreGlobal) {
+            if (!searchAdapterHelper.allResultsAreGlobal) {
                 for (int i6 = 0; i6 < tL_contacts_found.my_results.size(); i6++) {
                     TLRPC.Peer peer2 = tL_contacts_found.my_results.get(i6);
                     long j5 = peer2.user_id;
@@ -331,34 +345,36 @@ public class SearchAdapterHelper {
                         user = null;
                     }
                     if (chat != null) {
-                        if (z && ((!z2 || ChatObject.canAddBotsToChat(chat)) && (-chat.id) != j && filter(chat))) {
-                            this.localServerSearch.add(chat);
-                            this.globalSearchMap.put(-chat.id, chat);
+                        if (z && ((!z2 || ChatObject.canAddBotsToChat(chat)) && (-chat.id) != j && searchAdapterHelper.filter(chat))) {
+                            searchAdapterHelper.localServerSearch.add(chat);
+                            searchAdapterHelper.globalSearchMap.put(-chat.id, chat);
                         }
-                    } else if (user != null && !z2 && ((z3 || !user.bot) && ((z4 || !user.self) && user.id != j && filter(user)))) {
-                        this.localServerSearch.add(user);
-                        this.globalSearchMap.put(user.id, user);
+                    } else if (user != null && !z2 && ((z3 || !user.bot) && ((z4 || !user.self) && user.id != j && searchAdapterHelper.filter(user)))) {
+                        searchAdapterHelper.localServerSearch.add(user);
+                        searchAdapterHelper.globalSearchMap.put(user.id, user);
                     }
                 }
             }
-            this.lastFoundUsername = str.toLowerCase();
+            searchAdapterHelper.lastFoundUsername = str.toLowerCase();
         }
     }
 
-    public void lambda$queryServerSearch$3(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final AtomicInteger atomicInteger2, final ArrayList arrayList2, final int i2, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$4LfToSZ7_7zZ5yOfzMj4basnOVg(final SearchAdapterHelper searchAdapterHelper, final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final AtomicInteger atomicInteger2, final ArrayList arrayList2, final int i2, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        searchAdapterHelper.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$queryServerSearch$2(arrayList, i, tLObject, tL_error, atomicInteger, atomicInteger2, arrayList2, i2, runnable);
+                SearchAdapterHelper.$r8$lambda$KEM9tdvcm39o4s0VbGsImX_uFMg(this.f$0, arrayList, i, tLObject, tL_error, atomicInteger, atomicInteger2, arrayList2, i2, runnable);
             }
         });
     }
 
-    public void lambda$queryServerSearch$2(ArrayList arrayList, int i, TLObject tLObject, TLRPC.TL_error tL_error, AtomicInteger atomicInteger, AtomicInteger atomicInteger2, ArrayList arrayList2, int i2, Runnable runnable) {
+    public static void $r8$lambda$KEM9tdvcm39o4s0VbGsImX_uFMg(SearchAdapterHelper searchAdapterHelper, ArrayList arrayList, int i, TLObject tLObject, TLRPC.TL_error tL_error, AtomicInteger atomicInteger, AtomicInteger atomicInteger2, ArrayList arrayList2, int i2, Runnable runnable) {
+        searchAdapterHelper.getClass();
         arrayList.set(i, new Pair(tLObject, tL_error));
         Integer numValueOf = Integer.valueOf(atomicInteger.get());
-        if (this.pendingRequestIds.contains(numValueOf)) {
-            this.pendingRequestIds.remove(numValueOf);
+        if (searchAdapterHelper.pendingRequestIds.contains(numValueOf)) {
+            searchAdapterHelper.pendingRequestIds.remove(numValueOf);
             if (atomicInteger2.incrementAndGet() == arrayList2.size()) {
                 for (int i3 = 0; i3 < arrayList2.size(); i3++) {
                     RequestDelegate requestDelegate = (RequestDelegate) ((Pair) arrayList2.get(i3)).second;
@@ -367,13 +383,13 @@ public class SearchAdapterHelper {
                         requestDelegate.run((TLObject) pair.first, (TLRPC.TL_error) pair.second);
                     }
                 }
-                removeGroupSearchFromGlobal();
-                ArrayList arrayList3 = this.localSearchResults;
+                searchAdapterHelper.removeGroupSearchFromGlobal();
+                ArrayList arrayList3 = searchAdapterHelper.localSearchResults;
                 if (arrayList3 != null) {
-                    mergeResults(arrayList3, this.localRecentResults);
+                    searchAdapterHelper.mergeResults(arrayList3, searchAdapterHelper.localRecentResults);
                 }
-                mergeExcludeResults();
-                this.delegate.onDataSetChanged(i2);
+                searchAdapterHelper.mergeExcludeResults();
+                searchAdapterHelper.delegate.onDataSetChanged(i2);
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -413,15 +429,16 @@ public class SearchAdapterHelper {
         MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadRecentHashtags$6();
+                SearchAdapterHelper.$r8$lambda$haNYPVrlkJo4mVsc9IvRACWptRI(this.f$0);
             }
         });
         return false;
     }
 
-    public void lambda$loadRecentHashtags$6() {
+    public static void $r8$lambda$haNYPVrlkJo4mVsc9IvRACWptRI(final SearchAdapterHelper searchAdapterHelper) {
+        searchAdapterHelper.getClass();
         try {
-            SQLiteCursor sQLiteCursorQueryFinalized = MessagesStorage.getInstance(this.currentAccount).getDatabase().queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
+            SQLiteCursor sQLiteCursorQueryFinalized = MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getDatabase().queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
             final ArrayList arrayList = new ArrayList();
             final HashMap map = new HashMap();
             while (sQLiteCursorQueryFinalized.next()) {
@@ -435,13 +452,13 @@ public class SearchAdapterHelper {
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return SearchAdapterHelper.lambda$loadRecentHashtags$4((SearchAdapterHelper.HashtagObject) obj, (SearchAdapterHelper.HashtagObject) obj2);
+                    return SearchAdapterHelper.$r8$lambda$T4q89PGiVpYuJ8ZXW8u0FTBmGek((SearchAdapterHelper.HashtagObject) obj, (SearchAdapterHelper.HashtagObject) obj2);
                 }
             });
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadRecentHashtags$5(arrayList, map);
+                    this.f$0.setHashtags(arrayList, map);
                 }
             });
         } catch (Exception e) {
@@ -449,7 +466,7 @@ public class SearchAdapterHelper {
         }
     }
 
-    public static int lambda$loadRecentHashtags$4(HashtagObject hashtagObject, HashtagObject hashtagObject2) {
+    public static int $r8$lambda$T4q89PGiVpYuJ8ZXW8u0FTBmGek(HashtagObject hashtagObject, HashtagObject hashtagObject2) {
         int i = hashtagObject.date;
         int i2 = hashtagObject2.date;
         if (i < i2) {
@@ -597,16 +614,17 @@ public class SearchAdapterHelper {
         MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$putRecentHashtags$7(arrayList);
+                SearchAdapterHelper.$r8$lambda$yYrJXyB58tDVkco8WH5pegNwkNg(this.f$0, arrayList);
             }
         });
     }
 
-    public void lambda$putRecentHashtags$7(ArrayList arrayList) {
+    public static void $r8$lambda$yYrJXyB58tDVkco8WH5pegNwkNg(SearchAdapterHelper searchAdapterHelper, ArrayList arrayList) {
         int i;
+        searchAdapterHelper.getClass();
         try {
-            MessagesStorage.getInstance(this.currentAccount).getDatabase().beginTransaction();
-            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = MessagesStorage.getInstance(this.currentAccount).getDatabase().executeFast("REPLACE INTO hashtag_recent_v2 VALUES(?, ?)");
+            MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getDatabase().beginTransaction();
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getDatabase().executeFast("REPLACE INTO hashtag_recent_v2 VALUES(?, ?)");
             int i2 = 0;
             while (true) {
                 if (i2 >= arrayList.size() || i2 == 100) {
@@ -622,7 +640,7 @@ public class SearchAdapterHelper {
             }
             sQLitePreparedStatementExecuteFast.dispose();
             if (arrayList.size() > 100) {
-                SQLitePreparedStatement sQLitePreparedStatementExecuteFast2 = MessagesStorage.getInstance(this.currentAccount).getDatabase().executeFast("DELETE FROM hashtag_recent_v2 WHERE id = ?");
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast2 = MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getDatabase().executeFast("DELETE FROM hashtag_recent_v2 WHERE id = ?");
                 for (i = 100; i < arrayList.size(); i++) {
                     sQLitePreparedStatementExecuteFast2.requery();
                     sQLitePreparedStatementExecuteFast2.bindString(1, ((HashtagObject) arrayList.get(i)).hashtag);
@@ -630,7 +648,7 @@ public class SearchAdapterHelper {
                 }
                 sQLitePreparedStatementExecuteFast2.dispose();
             }
-            MessagesStorage.getInstance(this.currentAccount).getDatabase().commitTransaction();
+            MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getDatabase().commitTransaction();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -681,20 +699,21 @@ public class SearchAdapterHelper {
         MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$clearRecentHashtags$8();
+                SearchAdapterHelper.$r8$lambda$op9OD6mP0NzCaMyD4RoNNN3tvF8(this.f$0);
             }
         });
     }
 
-    public void lambda$clearRecentHashtags$8() {
+    public static void $r8$lambda$op9OD6mP0NzCaMyD4RoNNN3tvF8(SearchAdapterHelper searchAdapterHelper) {
+        searchAdapterHelper.getClass();
         try {
-            MessagesStorage.getInstance(this.currentAccount).getDatabase().executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
+            MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getDatabase().executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
-    public void lambda$loadRecentHashtags$5(ArrayList arrayList, HashMap map) {
+    public void setHashtags(ArrayList arrayList, HashMap map) {
         this.hashtags = arrayList;
         this.hashtagsByText = map;
         this.hashtagsLoadedFromDb = true;

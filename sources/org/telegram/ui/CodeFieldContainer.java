@@ -259,7 +259,7 @@ public abstract class CodeFieldContainer extends LinearLayout {
                 this.codeField[i6].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public final boolean onEditorAction(TextView textView, int i8, KeyEvent keyEvent) {
-                        return this.f$0.lambda$setNumbersCount$0(textView, i8, keyEvent);
+                        return CodeFieldContainer.$r8$lambda$bc3bVopa_Atk62RspIDNvpQvmQI(this.f$0, textView, i8, keyEvent);
                     }
                 });
                 i6++;
@@ -276,12 +276,13 @@ public abstract class CodeFieldContainer extends LinearLayout {
         }
     }
 
-    public boolean lambda$setNumbersCount$0(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
+    public static boolean $r8$lambda$bc3bVopa_Atk62RspIDNvpQvmQI(CodeFieldContainer codeFieldContainer, TextView textView, int i, KeyEvent keyEvent) {
+        if (i == 5) {
+            codeFieldContainer.processNextPressed();
+            return true;
         }
-        processNextPressed();
-        return true;
+        codeFieldContainer.getClass();
+        return false;
     }
 
     public String getCode() {

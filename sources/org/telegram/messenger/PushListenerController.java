@@ -37,12 +37,12 @@ public class PushListenerController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PushListenerController.lambda$sendRegistrationToServer$1(str, i);
+                PushListenerController.m964$r8$lambda$gWkEZv3oxmETvqnhw1v3CFWl4(str, i);
             }
         });
     }
 
-    public static void lambda$sendRegistrationToServer$1(final String str, final int i) {
+    public static void m964$r8$lambda$gWkEZv3oxmETvqnhw1v3CFWl4(final String str, final int i) {
         boolean z;
         ConnectionsManager.setRegId(str, i, SharedConfig.pushStringStatus);
         if (str == null) {
@@ -84,15 +84,11 @@ public class PushListenerController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PushListenerController.lambda$sendRegistrationToServer$0(i2, i, str);
+                        MessagesController.getInstance(i2).registerForPush(i, str);
                     }
                 });
             }
         }
-    }
-
-    public static void lambda$sendRegistrationToServer$0(int i, int i2, String str) {
-        MessagesController.getInstance(i).registerForPush(i2, str);
     }
 
     public static void processRemoteMessage(int i, final String str, final long j) {
@@ -104,7 +100,7 @@ public class PushListenerController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PushListenerController.lambda$processRemoteMessage$7(str2, str, j);
+                PushListenerController.$r8$lambda$nYIZ4V9UJXbKQeRZEvfo7jiLnHo(str2, str, j);
             }
         });
         try {
@@ -116,7 +112,7 @@ public class PushListenerController {
         }
     }
 
-    public static void lambda$processRemoteMessage$7(final String str, final String str2, final long j) {
+    public static void $r8$lambda$nYIZ4V9UJXbKQeRZEvfo7jiLnHo(final String str, final String str2, final long j) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " PRE INIT APP");
         }
@@ -132,31 +128,19 @@ public class PushListenerController {
         });
     }
 
-    public static void lambda$processRemoteMessage$6(java.lang.String r67, java.lang.String r68, long r69) {
+    public static void lambda$processRemoteMessage$6(java.lang.String r68, java.lang.String r69, long r70) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$6(java.lang.String, java.lang.String, long):void");
     }
 
-    public static void lambda$processRemoteMessage$2(int i, TLRPC.TL_updates tL_updates) {
-        MessagesController.getInstance(i).processUpdates(tL_updates, false);
-    }
-
-    public static void lambda$processRemoteMessage$3(int i) {
+    public static void $r8$lambda$P1a24T7VvkcTjlUqZlJxlqIf4HM(int i) {
         if (UserConfig.getInstance(i).getClientUserId() != 0) {
             UserConfig.getInstance(i).clearConfig();
             MessagesController.getInstance(i).performLogout(0);
         }
     }
 
-    public static void lambda$processRemoteMessage$4(int i) {
-        LocationController.getInstance(i).setNewLocationEndWatchTime();
-    }
-
-    public static void lambda$processRemoteMessage$5(int i, long j, int i2) {
-        MessagesController.getInstance(i).reportMessageDelivery(j, i2, true);
-    }
-
     private static String getReactedText(String str, Object[] objArr) {
-        str.hashCode();
+        str.getClass();
         switch (str) {
             case "CHAT_REACT_CONTACT":
                 return LocaleController.formatString(R.string.PushChatReactContact, objArr);
@@ -281,19 +265,20 @@ public class PushListenerController {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onRequestPushToken$1();
+                    PushListenerController.GooglePushListenerServiceProvider.$r8$lambda$gT5eU7N3XlxjHqspPS2JecxQcmM(this.f$0);
                 }
             });
         }
 
-        public void lambda$onRequestPushToken$1() {
+        public static void $r8$lambda$gT5eU7N3XlxjHqspPS2JecxQcmM(final GooglePushListenerServiceProvider googlePushListenerServiceProvider) {
+            googlePushListenerServiceProvider.getClass();
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
                 FirebaseApp.initializeApp(ApplicationLoader.applicationContext);
                 FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public final void onComplete(Task task) {
-                        this.f$0.lambda$onRequestPushToken$0(task);
+                        PushListenerController.GooglePushListenerServiceProvider.$r8$lambda$Bgux8VgBg6mpsPaBEPXd9XSPbcQ(this.f$0, task);
                     }
                 });
             } catch (Throwable th) {
@@ -301,21 +286,22 @@ public class PushListenerController {
             }
         }
 
-        public void lambda$onRequestPushToken$0(Task task) {
+        public static void $r8$lambda$Bgux8VgBg6mpsPaBEPXd9XSPbcQ(GooglePushListenerServiceProvider googlePushListenerServiceProvider, Task task) {
+            googlePushListenerServiceProvider.getClass();
             SharedConfig.pushStringGetTimeEnd = SystemClock.elapsedRealtime();
             if (!task.isSuccessful()) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("Failed to get regid");
                 }
                 SharedConfig.pushStringStatus = "__FIREBASE_FAILED__";
-                PushListenerController.sendRegistrationToServer(getPushType(), null);
+                PushListenerController.sendRegistrationToServer(googlePushListenerServiceProvider.getPushType(), null);
                 return;
             }
             String str = (String) task.getResult();
             if (TextUtils.isEmpty(str)) {
                 return;
             }
-            PushListenerController.sendRegistrationToServer(getPushType(), str);
+            PushListenerController.sendRegistrationToServer(googlePushListenerServiceProvider.getPushType(), str);
         }
 
         @Override

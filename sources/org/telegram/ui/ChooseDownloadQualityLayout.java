@@ -101,15 +101,11 @@ public class ChooseDownloadQualityLayout {
             actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$update$1(messageObject, quality, view);
+                    this.f$0.callback.onQualitySelected(messageObject, quality);
                 }
             });
             actionBarMenuSubItemAddItem.setSelectorColor(268435455);
         }
         return true;
-    }
-
-    public void lambda$update$1(MessageObject messageObject, VideoPlayer.Quality quality, View view) {
-        this.callback.onQualitySelected(messageObject, quality);
     }
 }

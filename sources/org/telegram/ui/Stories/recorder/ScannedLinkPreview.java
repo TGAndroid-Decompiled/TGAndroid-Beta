@@ -122,7 +122,7 @@ public class ScannedLinkPreview extends View {
             this.currentCancel = ResolvedLink.resolve(this.currentAccount, str, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$setLink$0((ScannedLinkPreview.ResolvedLink) obj);
+                    ScannedLinkPreview.$r8$lambda$wiYEV2WTsyApUEs3rpLBoo8cfSQ(this.f$0, (ScannedLinkPreview.ResolvedLink) obj);
                 }
             });
             return;
@@ -140,13 +140,13 @@ public class ScannedLinkPreview extends View {
         }
     }
 
-    public void lambda$setLink$0(ResolvedLink resolvedLink) {
-        this.currentCancel = null;
-        this.resolved = resolvedLink;
-        this.hasResolved = resolvedLink != null;
-        setup();
-        invalidate();
-        Runnable runnable = this.resolvedListener;
+    public static void $r8$lambda$wiYEV2WTsyApUEs3rpLBoo8cfSQ(ScannedLinkPreview scannedLinkPreview, ResolvedLink resolvedLink) {
+        scannedLinkPreview.currentCancel = null;
+        scannedLinkPreview.resolved = resolvedLink;
+        scannedLinkPreview.hasResolved = resolvedLink != null;
+        scannedLinkPreview.setup();
+        scannedLinkPreview.invalidate();
+        Runnable runnable = scannedLinkPreview.resolvedListener;
         if (runnable != null) {
             runnable.run();
         }
@@ -178,7 +178,10 @@ public class ScannedLinkPreview extends View {
         Object obj;
         float f = this.animatedAlpha.set(this.hasResolved);
         Text text = this.title;
-        if (text == null || this.subtitle == null || f <= 0.0f) {
+        if (text == null || this.subtitle == null) {
+            return;
+        }
+        if (f <= 0.0f) {
             return;
         }
         text.ellipsize(getWidth() * 0.7f);
@@ -232,7 +235,7 @@ public class ScannedLinkPreview extends View {
         }
         float fCenterY = this.bounds.centerY() - (((this.title.getHeight() + fDp4) + this.subtitle.getHeight()) / 2.0f);
         Text text2 = this.title;
-        text2.draw(canvas, this.bounds.left + (this.hasImage ? fDp5 + fDp3 + fDp5 : 0.0f) + fDp, fCenterY + (text2.getHeight() / 2.0f), -1, f);
+        text2.draw(canvas, this.bounds.left + (this.hasImage ? fDp5 + fDp3 + fDp5 : 0.0f) + fDp, (text2.getHeight() / 2.0f) + fCenterY, -1, f);
         this.subtitle.draw(canvas, this.bounds.left + (this.hasImage ? fDp3 + fDp5 + fDp5 : 0.0f) + fDp, fCenterY + this.title.getHeight() + fDp4 + (this.subtitle.getHeight() / 2.0f), Theme.blendOver(-16777216, -1610612737), f);
         canvas.restore();
     }
@@ -277,7 +280,7 @@ public class ScannedLinkPreview extends View {
                 callback.run(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$dispatchTouchEvent$1((BaseFragment) obj);
+                        ScannedLinkPreview.$r8$lambda$nRxLRc5cdHGIpB86bm4Y8RKUdWA(this.f$0, (BaseFragment) obj);
                     }
                 });
             }
@@ -290,8 +293,8 @@ public class ScannedLinkPreview extends View {
         return this.touch || this.bounce.isPressed();
     }
 
-    public void lambda$dispatchTouchEvent$1(BaseFragment baseFragment) {
-        ResolvedLink resolvedLink = this.resolved;
+    public static void $r8$lambda$nRxLRc5cdHGIpB86bm4Y8RKUdWA(ScannedLinkPreview scannedLinkPreview, BaseFragment baseFragment) {
+        ResolvedLink resolvedLink = scannedLinkPreview.resolved;
         if (resolvedLink != null || baseFragment == null) {
             resolvedLink.open(baseFragment);
         }
@@ -343,7 +346,7 @@ public class ScannedLinkPreview extends View {
                 return messagesController.getUserNameResolver().resolve(str3, queryParameter, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        ScannedLinkPreview.ResolvedLink.lambda$resolve$0(callback, messagesController, str, (Long) obj);
+                        ScannedLinkPreview.ResolvedLink.m4564$r8$lambda$ZU95PTWNIUggcw96yv0AFkIIfE(callback, messagesController, str, (Long) obj);
                     }
                 });
             } catch (Exception e) {
@@ -353,7 +356,7 @@ public class ScannedLinkPreview extends View {
             }
         }
 
-        public static void lambda$resolve$0(Utilities.Callback callback, MessagesController messagesController, String str, Long l) {
+        public static void m4564$r8$lambda$ZU95PTWNIUggcw96yv0AFkIIfE(Utilities.Callback callback, MessagesController messagesController, String str, Long l) {
             if (l == null) {
                 callback.run(null);
                 return;

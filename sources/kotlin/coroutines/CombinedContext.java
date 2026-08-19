@@ -88,15 +88,14 @@ public final class CombinedContext implements CoroutineContext, Serializable {
     }
 
     public boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof CombinedContext) {
-                CombinedContext combinedContext = (CombinedContext) obj;
-                if (combinedContext.size() != size() || !combinedContext.containsAll(this)) {
-                }
-            }
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof CombinedContext)) {
             return false;
         }
-        return true;
+        CombinedContext combinedContext = (CombinedContext) obj;
+        return combinedContext.size() == size() && combinedContext.containsAll(this);
     }
 
     public int hashCode() {

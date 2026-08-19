@@ -289,38 +289,44 @@ public class SharedLinkCell extends FrameLayout {
     }
 
     private void gatherRichMessageLinks(ArrayList arrayList) {
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            gatherRichMessageLinks((TL_iv.PageBlock) it.next());
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            gatherRichMessageLinks((TL_iv.PageBlock) obj);
         }
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
+        String host;
         String str;
-        String string;
         String str2;
         boolean z;
+        boolean z2;
+        float f;
         SpannableStringBuilder spannableStringBuilder;
         CharSequence charSequence;
         int iDp;
         CharSequence charSequence2;
-        TLRPC.PhotoSize photoSize;
-        boolean z2;
         int i3;
-        int lineBottom;
+        TLRPC.PhotoSize photoSize;
         int i4;
-        TLRPC.PhotoSize photoSize2;
+        int i5;
+        int lineBottom;
         TLRPC.Message message;
         TL_iv.RichMessage richMessage;
         int iLastIndexOf;
+        int i6;
+        SpannableStringBuilder spannableStringBuilder2;
         CharSequence charSequence3;
-        int i5;
         String strSubstring;
         SpannableStringBuilder spannableStringBuilderValueOf;
         int iLastIndexOf2;
-        int i6;
-        int i7 = 0;
+        CharSequence charSequence4;
+        int i7;
+        int i8 = 0;
         this.drawLinkImageView = false;
         this.descriptionLayout = null;
         this.titleLayout = null;
@@ -331,7 +337,7 @@ public class SharedLinkCell extends FrameLayout {
         int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.dp(8.0f);
         MessageObject messageObject = this.message;
         TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
-        int i8 = 1;
+        int i9 = 1;
         if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
             TLRPC.WebPage webPage = messageMedia.webpage;
             if (webPage instanceof TLRPC.TL_webPage) {
@@ -339,149 +345,204 @@ public class SharedLinkCell extends FrameLayout {
                     messageObject.generateThumbs(true);
                 }
                 boolean z3 = (webPage.photo == null || this.message.photoThumbs == null) ? false : true;
-                string = webPage.title;
-                if (string == null) {
-                    string = webPage.site_name;
+                String str3 = webPage.title;
+                if (str3 == null) {
+                    str3 = webPage.site_name;
                 }
-                String str3 = webPage.description;
-                str = webPage.url;
+                String str4 = webPage.description;
+                String str5 = webPage.url;
                 z = z3;
-                str2 = str3;
+                host = str3;
+                str = str5;
+                str2 = str4;
             } else {
+                host = null;
                 str = null;
-                string = null;
                 str2 = null;
                 z = false;
             }
         } else {
+            host = null;
             str = null;
-            string = null;
             str2 = null;
             z = false;
         }
         MessageObject messageObject2 = this.message;
-        int i9 = 46;
+        int i10 = 46;
         if (messageObject2 == null || messageObject2.messageOwner.entities.isEmpty()) {
+            z2 = z;
+            f = 8.0f;
             spannableStringBuilder = null;
             charSequence = str2;
         } else {
+            CharSequence charSequence5 = str2;
+            int i11 = 0;
+            String host2 = host;
             SpannableStringBuilder spannableStringBuilderValueOf2 = null;
-            int i10 = 0;
-            CharSequence charSequence4 = str2;
-            while (i10 < this.message.messageOwner.entities.size()) {
-                TLRPC.MessageEntity messageEntity = this.message.messageOwner.entities.get(i10);
-                if (messageEntity.length > 0 && (i5 = messageEntity.offset) >= 0 && i5 < this.message.messageOwner.message.length()) {
+            while (i11 < this.message.messageOwner.entities.size()) {
+                TLRPC.MessageEntity messageEntity = this.message.messageOwner.entities.get(i11);
+                if (messageEntity.length > 0 && (i6 = messageEntity.offset) >= 0 && i6 < this.message.messageOwner.message.length()) {
                     if (messageEntity.offset + messageEntity.length > this.message.messageOwner.message.length()) {
-                        charSequence3 = charSequence4;
-                        charSequence3 = charSequence4;
-                        charSequence3 = charSequence4;
                         messageEntity.length = this.message.messageOwner.message.length() - messageEntity.offset;
                     }
-                    if (i10 == 0 && str != null && (messageEntity.offset != 0 || messageEntity.length != this.message.messageOwner.message.length())) {
-                        if (this.message.messageOwner.entities.size() != i8) {
+                    if (i11 == 0 && str != null && (messageEntity.offset != 0 || messageEntity.length != this.message.messageOwner.message.length())) {
+                        if (this.message.messageOwner.entities.size() != i9) {
                             spannableStringBuilderValueOf2 = SpannableStringBuilder.valueOf(this.message.messageOwner.message);
                             MediaDataController.addTextStyleRuns(this.message, spannableStringBuilderValueOf2);
-                        } else if (charSequence4 == null) {
+                        } else if (charSequence5 == null) {
                             spannableStringBuilderValueOf2 = SpannableStringBuilder.valueOf(this.message.messageOwner.message);
                             MediaDataController.addTextStyleRuns(this.message, spannableStringBuilderValueOf2);
                         }
                     }
-                    SpannableStringBuilder spannableStringBuilder2 = spannableStringBuilderValueOf2;
+                    SpannableStringBuilder spannableStringBuilder3 = spannableStringBuilderValueOf2;
                     try {
                         if ((messageEntity instanceof TLRPC.TL_messageEntityTextUrl) || (messageEntity instanceof TLRPC.TL_messageEntityUrl)) {
                             if (messageEntity instanceof TLRPC.TL_messageEntityUrl) {
-                                String str4 = this.message.messageOwner.message;
-                                int i11 = messageEntity.offset;
-                                strSubstring = str4.substring(i11, messageEntity.length + i11);
+                                String str6 = this.message.messageOwner.message;
+                                int i12 = messageEntity.offset;
+                                strSubstring = str6.substring(i12, messageEntity.length + i12);
                             } else {
                                 strSubstring = messageEntity.url;
                             }
-                            if (string == null || string.length() == 0) {
-                                charSequence4 = charSequence4;
-                                string = Uri.parse(strSubstring.toString()).getHost();
-                                if (string == null) {
-                                    string = strSubstring.toString();
+                            if (host2 == null || host2.length() == 0) {
+                                charSequence4 = charSequence5;
+                                host2 = Uri.parse(strSubstring.toString()).getHost();
+                                if (host2 == null) {
+                                    host2 = strSubstring.toString();
                                 }
-                                if (string != null && (iLastIndexOf2 = string.lastIndexOf(i9)) >= 0) {
-                                    String strSubstring2 = string.substring(i7, iLastIndexOf2);
-                                    int iLastIndexOf3 = strSubstring2.lastIndexOf(i9);
+                                if (host2 != null && (iLastIndexOf2 = host2.lastIndexOf(i10)) >= 0) {
+                                    String strSubstring2 = host2.substring(i8, iLastIndexOf2);
+                                    int iLastIndexOf3 = strSubstring2.lastIndexOf(i10);
                                     if (iLastIndexOf3 >= 0) {
-                                        strSubstring2 = strSubstring2.substring(iLastIndexOf3 + i8);
+                                        strSubstring2 = strSubstring2.substring(iLastIndexOf3 + i9);
                                     }
-                                    string = strSubstring2.substring(i7, i8).toUpperCase() + strSubstring2.substring(i8);
+                                    host2 = strSubstring2.substring(i8, i9).toUpperCase() + strSubstring2.substring(i9);
                                 }
                                 if (messageEntity.offset != 0 || messageEntity.length != this.message.messageOwner.message.length()) {
-                                    charSequence4 = charSequence4;
+                                    charSequence4 = charSequence5;
                                     spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(this.message.messageOwner.message);
                                     MediaDataController.addTextStyleRuns(this.message, spannableStringBuilderValueOf);
                                     charSequence4 = spannableStringBuilderValueOf;
                                 }
                                 spannableStringBuilderValueOf2 = spannableStringBuilder2;
-                                charSequence3 = charSequence4;
                             }
-                        } else if ((messageEntity instanceof TLRPC.TL_messageEntityEmail) && (string == null || string.length() == 0)) {
+                        } else if ((messageEntity instanceof TLRPC.TL_messageEntityEmail) && (host2 == null || host2.length() == 0)) {
                             StringBuilder sb = new StringBuilder();
                             sb.append("mailto:");
-                            String str5 = this.message.messageOwner.message;
-                            int i12 = messageEntity.offset;
-                            sb.append(str5.substring(i12, messageEntity.length + i12));
-                            strSubstring = sb.toString();
-                            String str6 = this.message.messageOwner.message;
+                            String str7 = this.message.messageOwner.message;
                             int i13 = messageEntity.offset;
-                            string = str6.substring(i13, messageEntity.length + i13);
+                            sb.append(str7.substring(i13, messageEntity.length + i13));
+                            strSubstring = sb.toString();
+                            String str8 = this.message.messageOwner.message;
+                            int i14 = messageEntity.offset;
+                            host2 = str8.substring(i14, messageEntity.length + i14);
                             if (messageEntity.offset != 0 || messageEntity.length != this.message.messageOwner.message.length()) {
-                                charSequence4 = charSequence4;
+                                charSequence4 = charSequence5;
                                 spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(this.message.messageOwner.message);
                                 MediaDataController.addTextStyleRuns(this.message, spannableStringBuilderValueOf);
                                 charSequence4 = spannableStringBuilderValueOf;
                             }
                             spannableStringBuilderValueOf2 = spannableStringBuilder2;
-                            charSequence3 = charSequence4;
                         } else {
                             strSubstring = null;
-                            charSequence4 = charSequence4;
+                            charSequence4 = charSequence5;
                         }
                         if (strSubstring != null) {
                             if (AndroidUtilities.charSequenceContains(strSubstring, "://") || strSubstring.toString().toLowerCase().indexOf("http") == 0 || strSubstring.toString().toLowerCase().indexOf("mailto") == 0) {
-                                i6 = 0;
+                                i7 = 0;
                             } else {
                                 strSubstring = "http://" + ((Object) strSubstring);
-                                i6 = 7;
+                                i7 = 7;
                             }
                             SpannableString spannableStringValueOf = SpannableString.valueOf(strSubstring);
-                            int i14 = messageEntity.offset;
-                            int i15 = messageEntity.length + i14;
-                            for (TLRPC.MessageEntity messageEntity2 : this.message.messageOwner.entities) {
-                                int i16 = messageEntity2.offset;
-                                int i17 = messageEntity2.length + i16;
-                                if ((messageEntity2 instanceof TLRPC.TL_messageEntitySpoiler) && i14 <= i17 && i15 >= i16) {
-                                    TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-                                    textStyleRun.flags |= 256;
-                                    spannableStringValueOf.setSpan(new TextStyleSpan(textStyleRun), Math.max(i14, i16), Math.min(i15, i17) + i6, 33);
+                            int i15 = messageEntity.offset;
+                            int i16 = messageEntity.length + i15;
+                            ArrayList<TLRPC.MessageEntity> arrayList = this.message.messageOwner.entities;
+                            try {
+                                int size2 = arrayList.size();
+                                int i17 = 0;
+                                while (i17 < size2) {
+                                    TLRPC.MessageEntity messageEntity2 = arrayList.get(i17);
+                                    i17++;
+                                    TLRPC.MessageEntity messageEntity3 = messageEntity2;
+                                    int i18 = i7;
+                                    int i19 = messageEntity3.offset;
+                                    spannableStringBuilder2 = spannableStringBuilder3;
+                                    try {
+                                        int i20 = messageEntity3.length + i19;
+                                        if (!(messageEntity3 instanceof TLRPC.TL_messageEntitySpoiler) || i15 > i20 || i16 < i19) {
+                                            z = z;
+                                        } else {
+                                            TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+                                            z = z;
+                                            try {
+                                                textStyleRun.flags |= 256;
+                                                spannableStringValueOf.setSpan(new TextStyleSpan(textStyleRun), Math.max(i15, i19), Math.min(i16, i20) + i18, 33);
+                                            } catch (Exception e) {
+                                                e = e;
+                                                charSequence3 = charSequence4;
+                                                FileLog.e(e);
+                                                charSequence5 = charSequence3;
+                                                spannableStringBuilderValueOf2 = spannableStringBuilder2;
+                                                i11++;
+                                                z = z;
+                                                i8 = 0;
+                                                i10 = 46;
+                                                i9 = 1;
+                                                charSequence5 = charSequence5;
+                                            }
+                                        }
+                                        i7 = i18;
+                                        spannableStringBuilder3 = spannableStringBuilder2;
+                                        z = z;
+                                    } catch (Exception e2) {
+                                        e = e2;
+                                        z = z;
+                                        charSequence3 = charSequence4;
+                                        FileLog.e(e);
+                                        charSequence5 = charSequence3;
+                                        spannableStringBuilderValueOf2 = spannableStringBuilder2;
+                                        i11++;
+                                        z = z;
+                                        i8 = 0;
+                                        i10 = 46;
+                                        i9 = 1;
+                                        charSequence5 = charSequence5;
+                                    }
                                 }
+                                spannableStringBuilder2 = spannableStringBuilder3;
+                                z = z;
+                                this.links.add(spannableStringValueOf);
+                                charSequence5 = charSequence4;
+                            } catch (Exception e3) {
+                                e = e3;
+                                spannableStringBuilder2 = spannableStringBuilder3;
                             }
-                            this.links.add(spannableStringValueOf);
+                        } else {
+                            spannableStringBuilder2 = spannableStringBuilder3;
+                            z = z;
+                            charSequence5 = charSequence4;
                         }
-                    } catch (Exception e) {
-                        FileLog.e(e);
+                    } catch (Exception e4) {
+                        e = e4;
+                        spannableStringBuilder2 = spannableStringBuilder3;
+                        z = z;
+                        charSequence3 = charSequence5;
                     }
                     spannableStringBuilderValueOf2 = spannableStringBuilder2;
-                    charSequence3 = charSequence4;
                 }
-                charSequence3 = charSequence4;
-                charSequence3 = charSequence4;
-                charSequence3 = charSequence4;
-                charSequence3 = charSequence4;
-                charSequence3 = charSequence4;
-                charSequence3 = charSequence4;
-                i10++;
-                i7 = 0;
-                i9 = 46;
-                i8 = 1;
-                charSequence4 = charSequence3;
+                i11++;
+                z = z;
+                i8 = 0;
+                i10 = 46;
+                i9 = 1;
+                charSequence5 = charSequence5;
             }
+            z2 = z;
+            f = 8.0f;
             spannableStringBuilder = spannableStringBuilderValueOf2;
-            charSequence = charSequence4;
+            host = host2;
+            charSequence = charSequence5;
         }
         if (str != null && this.links.isEmpty()) {
             this.links.add(str);
@@ -490,45 +551,48 @@ public class SharedLinkCell extends FrameLayout {
         if (messageObject3 != null && (message = messageObject3.messageOwner) != null && (richMessage = message.rich_message) != null) {
             gatherRichMessageLinks(richMessage.blocks);
             if (!this.links.isEmpty()) {
-                String string2 = ((CharSequence) this.links.get(0)).toString();
-                if (string == null || string.length() == 0) {
-                    String host = Uri.parse(string2.toString()).getHost();
-                    string = host == null ? string2.toString() : host;
-                    if (string != null && (iLastIndexOf = string.lastIndexOf(46)) >= 0) {
-                        String strSubstring3 = string.substring(0, iLastIndexOf);
+                String string = ((CharSequence) this.links.get(0)).toString();
+                if (host == null || host.length() == 0) {
+                    host = Uri.parse(string.toString()).getHost();
+                    if (host == null) {
+                        host = string.toString();
+                    }
+                    if (host != null && (iLastIndexOf = host.lastIndexOf(46)) >= 0) {
+                        String strSubstring3 = host.substring(0, iLastIndexOf);
                         int iLastIndexOf4 = strSubstring3.lastIndexOf(46);
                         if (iLastIndexOf4 >= 0) {
                             strSubstring3 = strSubstring3.substring(iLastIndexOf4 + 1);
                         }
-                        string = strSubstring3.substring(0, 1).toUpperCase() + strSubstring3.substring(1);
+                        host = strSubstring3.substring(0, 1).toUpperCase() + strSubstring3.substring(1);
                     }
                 }
             }
         }
+        String str9 = host;
         if (this.viewType == 1) {
             String strStringForMessageListDate = LocaleController.stringForMessageListDate(this.message.messageOwner.date);
             int iCeil = (int) Math.ceil(this.description2TextPaint.measureText(strStringForMessageListDate));
             this.dateLayout = ChatMessageCell.generateStaticLayout(strStringForMessageListDate, this.description2TextPaint, iCeil, iCeil, 0, 1);
-            this.dateLayoutX = (size - iCeil) - AndroidUtilities.dp(8.0f);
-            iDp = iCeil + AndroidUtilities.dp(12.0f);
+            this.dateLayoutX = (size - iCeil) - AndroidUtilities.dp(f);
+            iDp = AndroidUtilities.dp(12.0f) + iCeil;
         } else {
             iDp = 0;
         }
-        if (string != null) {
+        if (str9 != null) {
             try {
-                CharSequence charSequenceHighlightText = AndroidUtilities.highlightText(string, this.message.highlightedWords, (Theme.ResourcesProvider) null);
-                int i18 = size - iDp;
-                StaticLayout staticLayoutGenerateStaticLayout = ChatMessageCell.generateStaticLayout(charSequenceHighlightText != null ? charSequenceHighlightText : string, this.titleTextPaint, i18 - AndroidUtilities.dp(4.0f), i18 - AndroidUtilities.dp(4.0f), 0, 3);
+                CharSequence charSequenceHighlightText = AndroidUtilities.highlightText(str9, this.message.highlightedWords, (Theme.ResourcesProvider) null);
+                int i21 = size - iDp;
+                StaticLayout staticLayoutGenerateStaticLayout = ChatMessageCell.generateStaticLayout(charSequenceHighlightText != null ? charSequenceHighlightText : str9, this.titleTextPaint, i21 - AndroidUtilities.dp(4.0f), i21 - AndroidUtilities.dp(4.0f), 0, 3);
                 this.titleLayout = staticLayoutGenerateStaticLayout;
                 if (staticLayoutGenerateStaticLayout.getLineCount() > 0) {
-                    int i19 = this.titleY;
+                    int i22 = this.titleY;
                     StaticLayout staticLayout = this.titleLayout;
-                    this.descriptionY = i19 + staticLayout.getLineBottom(staticLayout.getLineCount() - 1) + AndroidUtilities.dp(4.0f);
+                    this.descriptionY = i22 + staticLayout.getLineBottom(staticLayout.getLineCount() - 1) + AndroidUtilities.dp(4.0f);
                 }
-            } catch (Exception e2) {
-                FileLog.e(e2);
+            } catch (Exception e5) {
+                FileLog.e(e5);
             }
-            this.letterDrawable.setTitle(string);
+            this.letterDrawable.setTitle(str9);
         }
         this.description2Y = this.descriptionY;
         StaticLayout staticLayout2 = this.titleLayout;
@@ -544,33 +608,43 @@ public class SharedLinkCell extends FrameLayout {
                 StaticLayout staticLayoutGenerateStaticLayout2 = ChatMessageCell.generateStaticLayout(charSequence2, this.descriptionTextPaint, size, size, 0, iMax);
                 this.descriptionLayout = staticLayoutGenerateStaticLayout2;
                 if (staticLayoutGenerateStaticLayout2.getLineCount() > 0) {
-                    int i20 = this.descriptionY;
+                    int i23 = this.descriptionY;
                     StaticLayout staticLayout3 = this.descriptionLayout;
-                    this.description2Y = i20 + staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
+                    this.description2Y = i23 + staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
                 }
                 this.spoilersPool.addAll(this.descriptionLayoutSpoilers);
                 this.descriptionLayoutSpoilers.clear();
                 if (!this.message.isSpoilersRevealed) {
                     SpoilerEffect.addSpoilers(this, this.descriptionLayout, this.spoilersPool, this.descriptionLayoutSpoilers);
                 }
-            } catch (Exception e3) {
-                FileLog.e(e3);
+            } catch (Exception e6) {
+                FileLog.e(e6);
             }
         }
         if (spannableStringBuilder != null) {
             try {
-                this.descriptionLayout2 = ChatMessageCell.generateStaticLayout(spannableStringBuilder, this.descriptionTextPaint, size, size, 0, iMax);
-                if (this.descriptionLayout != null) {
-                    this.description2Y += AndroidUtilities.dp(10.0f);
+                SpannableStringBuilder spannableStringBuilder4 = spannableStringBuilder;
+                i3 = iMax;
+                try {
+                    this.descriptionLayout2 = ChatMessageCell.generateStaticLayout(spannableStringBuilder4, this.descriptionTextPaint, size, size, 0, iMax);
+                    if (this.descriptionLayout != null) {
+                        this.description2Y += AndroidUtilities.dp(10.0f);
+                    }
+                    this.spoilersPool.addAll(this.descriptionLayout2Spoilers);
+                    this.descriptionLayout2Spoilers.clear();
+                    if (!this.message.isSpoilersRevealed) {
+                        SpoilerEffect.addSpoilers(this, this.descriptionLayout2, this.spoilersPool, this.descriptionLayout2Spoilers);
+                    }
+                } catch (Exception e7) {
+                    e = e7;
+                    FileLog.e(e);
                 }
-                this.spoilersPool.addAll(this.descriptionLayout2Spoilers);
-                this.descriptionLayout2Spoilers.clear();
-                if (!this.message.isSpoilersRevealed) {
-                    SpoilerEffect.addSpoilers(this, this.descriptionLayout2, this.spoilersPool, this.descriptionLayout2Spoilers);
-                }
-            } catch (Exception e4) {
-                FileLog.e(e4);
+            } catch (Exception e8) {
+                e = e8;
+                i3 = iMax;
             }
+        } else {
+            i3 = iMax;
         }
         MessageObject messageObject4 = this.message;
         if (messageObject4 == null || TextUtils.isEmpty(messageObject4.messageOwner.message)) {
@@ -584,85 +658,85 @@ public class SharedLinkCell extends FrameLayout {
         }
         StaticLayout staticLayout4 = this.captionLayout;
         if (staticLayout4 != null) {
-            int i21 = this.descriptionY;
-            this.captionY = i21;
-            int lineBottom2 = i21 + staticLayout4.getLineBottom(staticLayout4.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
+            int i24 = this.descriptionY;
+            this.captionY = i24;
+            int lineBottom2 = i24 + staticLayout4.getLineBottom(staticLayout4.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
             this.descriptionY = lineBottom2;
             this.description2Y = lineBottom2;
         }
         if (!this.links.isEmpty()) {
-            for (int i22 = 0; i22 < this.linkSpoilers.size(); i22++) {
-                this.spoilersPool.addAll((Collection) this.linkSpoilers.get(i22));
+            for (int i25 = 0; i25 < this.linkSpoilers.size(); i25++) {
+                this.spoilersPool.addAll((Collection) this.linkSpoilers.get(i25));
             }
             this.linkSpoilers.clear();
-            int i23 = 0;
-            while (i23 < this.links.size()) {
+            for (int i26 = 0; i26 < this.links.size(); i26++) {
                 try {
-                    CharSequence charSequence5 = (CharSequence) this.links.get(i23);
-                    CharSequence charSequenceEllipsize = TextUtils.ellipsize(AndroidUtilities.replaceNewLines(SpannableStringBuilder.valueOf(charSequence5)), this.descriptionTextPaint, Math.min((int) Math.ceil(this.descriptionTextPaint.measureText(charSequence5, 0, charSequence5.length())), size), TextUtils.TruncateAt.MIDDLE);
-                    photoSize2 = photoSize;
+                    CharSequence charSequence6 = (CharSequence) this.links.get(i26);
+                    CharSequence charSequenceEllipsize = TextUtils.ellipsize(AndroidUtilities.replaceNewLines(SpannableStringBuilder.valueOf(charSequence6)), this.descriptionTextPaint, Math.min((int) Math.ceil(this.descriptionTextPaint.measureText(charSequence6, 0, charSequence6.length())), size), TextUtils.TruncateAt.MIDDLE);
+                    int i27 = size;
                     try {
-                        StaticLayout staticLayout5 = new StaticLayout(charSequenceEllipsize, this.descriptionTextPaint, size, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                        StaticLayout staticLayout5 = new StaticLayout(charSequenceEllipsize, this.descriptionTextPaint, i27, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                        size = i27;
                         this.linkY = this.description2Y;
                         StaticLayout staticLayout6 = this.descriptionLayout2;
                         if (staticLayout6 != null && staticLayout6.getLineCount() != 0) {
-                            int i24 = this.linkY;
+                            int i28 = this.linkY;
                             StaticLayout staticLayout7 = this.descriptionLayout2;
-                            this.linkY = i24 + staticLayout7.getLineBottom(staticLayout7.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
+                            this.linkY = i28 + staticLayout7.getLineBottom(staticLayout7.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
                         }
                         if (!this.message.isSpoilersRevealed) {
-                            ArrayList arrayList = new ArrayList();
+                            ArrayList arrayList2 = new ArrayList();
                             if (charSequenceEllipsize instanceof Spannable) {
-                                SpoilerEffect.addSpoilers(this, staticLayout5, (Spannable) charSequenceEllipsize, this.spoilersPool, arrayList);
+                                SpoilerEffect.addSpoilers(this, staticLayout5, (Spannable) charSequenceEllipsize, this.spoilersPool, arrayList2);
                             }
-                            this.linkSpoilers.put(i23, arrayList);
+                            this.linkSpoilers.put(i26, arrayList2);
                         }
                         this.linkLayout.add(staticLayout5);
-                    } catch (Exception e5) {
-                        e = e5;
+                    } catch (Exception e9) {
+                        e = e9;
+                        size = i27;
                         FileLog.e(e);
                     }
-                } catch (Exception e6) {
-                    e = e6;
-                    photoSize2 = photoSize;
+                } catch (Exception e10) {
+                    e = e10;
                 }
-                i23++;
-                photoSize = photoSize2;
             }
         }
-        TLRPC.PhotoSize photoSize3 = photoSize;
         int iDp2 = AndroidUtilities.dp(52.0f);
-        int size2 = LocaleController.isRTL ? (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(10.0f)) - iDp2 : AndroidUtilities.dp(10.0f);
-        this.letterDrawable.setBounds(size2, AndroidUtilities.dp(11.0f), size2 + iDp2, AndroidUtilities.dp(63.0f));
-        if (z) {
+        int size3 = LocaleController.isRTL ? (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(10.0f)) - iDp2 : AndroidUtilities.dp(10.0f);
+        this.letterDrawable.setBounds(size3, AndroidUtilities.dp(11.0f), size3 + iDp2, AndroidUtilities.dp(63.0f));
+        if (z2) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(this.message.photoThumbs, iDp2, true);
             TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(this.message.photoThumbs, 80);
-            if (closestPhotoSizeWithSize2 == closestPhotoSizeWithSize) {
-                closestPhotoSizeWithSize2 = photoSize3;
+            if (closestPhotoSizeWithSize2 != closestPhotoSizeWithSize) {
+                photoSize = closestPhotoSizeWithSize2;
             }
             if (closestPhotoSizeWithSize != null) {
                 closestPhotoSizeWithSize.size = -1;
             }
-            if (closestPhotoSizeWithSize2 != null) {
-                closestPhotoSizeWithSize2.size = -1;
+            if (photoSize != null) {
+                photoSize.size = -1;
             }
-            float f = iDp2;
-            this.linkImageView.setImageCoords(size2, AndroidUtilities.dp(11.0f), f, f);
+            float f2 = iDp2;
+            this.linkImageView.setImageCoords(size3, AndroidUtilities.dp(11.0f), f2, f2);
             FileLoader.getAttachFileName(closestPhotoSizeWithSize);
             Locale locale = Locale.US;
-            this.linkImageView.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, this.message.photoThumbsObject), String.format(locale, "%d_%d", Integer.valueOf(iDp2), Integer.valueOf(iDp2)), ImageLocation.getForObject(closestPhotoSizeWithSize2, this.message.photoThumbsObject), String.format(locale, "%d_%d_b", Integer.valueOf(iDp2), Integer.valueOf(iDp2)), 0L, null, this.message, 0);
-            z2 = true;
+            this.linkImageView.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, this.message.photoThumbsObject), String.format(locale, "%d_%d", Integer.valueOf(iDp2), Integer.valueOf(iDp2)), ImageLocation.getForObject(photoSize, this.message.photoThumbsObject), String.format(locale, "%d_%d_b", Integer.valueOf(iDp2), Integer.valueOf(iDp2)), 0L, null, this.message, 0);
+            i4 = 1;
             this.drawLinkImageView = true;
         } else {
-            z2 = true;
+            i4 = 1;
         }
-        if (this.viewType == z2) {
-            StaticLayout staticLayoutGenerateStaticLayout3 = ChatMessageCell.generateStaticLayout(FilteredSearchView.createFromInfoString(this.message, z2, 2, this.description2TextPaint), this.description2TextPaint, size, size, 0, iMax);
+        if (this.viewType == i4) {
+            StaticLayout staticLayoutGenerateStaticLayout3 = ChatMessageCell.generateStaticLayout(FilteredSearchView.createFromInfoString(this.message, i4, 2, this.description2TextPaint), this.description2TextPaint, size, size, 0, i3);
             this.fromInfoLayout = staticLayoutGenerateStaticLayout3;
-            i3 = 0;
-            this.fromInfoLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.fromInfoLayoutEmojis, staticLayoutGenerateStaticLayout3);
+            AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.fromInfoLayoutEmojis;
+            Layout[] layoutArr = new Layout[i4];
+            i5 = 0;
+            layoutArr[0] = staticLayoutGenerateStaticLayout3;
+            this.fromInfoLayoutEmojis = AnimatedEmojiSpan.update(0, this, emojiGroupedSpans, layoutArr);
         } else {
-            i3 = 0;
+            i5 = 0;
         }
         StaticLayout staticLayout8 = this.titleLayout;
         if (staticLayout8 == null || staticLayout8.getLineCount() == 0) {
@@ -690,15 +764,12 @@ public class SharedLinkCell extends FrameLayout {
             }
         }
         int lineBottom3 = 0;
-        while (i3 < this.linkLayout.size()) {
-            StaticLayout staticLayout16 = (StaticLayout) this.linkLayout.get(i3);
+        while (i5 < this.linkLayout.size()) {
+            StaticLayout staticLayout16 = (StaticLayout) this.linkLayout.get(i5);
             if (staticLayout16.getLineCount() > 0) {
-                i4 = 1;
                 lineBottom3 += staticLayout16.getLineBottom(staticLayout16.getLineCount() - 1);
-            } else {
-                i4 = 1;
             }
-            i3 += i4;
+            i5++;
         }
         int lineBottom4 = lineBottom + lineBottom3;
         if (this.fromInfoLayout != null) {
@@ -892,7 +963,7 @@ public class SharedLinkCell extends FrameLayout {
         this.spoilerPressed.setOnRippleEndCallback(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$startSpoilerRipples$1();
+                SharedLinkCell.$r8$lambda$KtNjZWwSpUwdIZT146obVDMUTAs(this.f$0);
             }
         });
         int i4 = i - iDp;
@@ -944,21 +1015,22 @@ public class SharedLinkCell extends FrameLayout {
         this.spoilerPressed = null;
     }
 
-    public void lambda$startSpoilerRipples$1() {
-        post(new Runnable() {
+    public static void $r8$lambda$KtNjZWwSpUwdIZT146obVDMUTAs(final SharedLinkCell sharedLinkCell) {
+        sharedLinkCell.getClass();
+        sharedLinkCell.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$startSpoilerRipples$0();
+                SharedLinkCell.$r8$lambda$dNONtQFtBlY2WaZBv6WDIvsAgZs(this.f$0);
             }
         });
     }
 
-    public void lambda$startSpoilerRipples$0() {
-        this.message.isSpoilersRevealed = true;
-        this.linkSpoilers.clear();
-        this.descriptionLayoutSpoilers.clear();
-        this.descriptionLayout2Spoilers.clear();
-        invalidate();
+    public static void $r8$lambda$dNONtQFtBlY2WaZBv6WDIvsAgZs(SharedLinkCell sharedLinkCell) {
+        sharedLinkCell.message.isSpoilersRevealed = true;
+        sharedLinkCell.linkSpoilers.clear();
+        sharedLinkCell.descriptionLayoutSpoilers.clear();
+        sharedLinkCell.descriptionLayout2Spoilers.clear();
+        sharedLinkCell.invalidate();
     }
 
     private int getYOffsetForType(int i) {
@@ -996,46 +1068,47 @@ public class SharedLinkCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Canvas canvas2 = canvas;
         if (this.viewType == 1) {
             this.description2TextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
         }
         if (this.dateLayout != null) {
-            canvas.save();
-            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline) + (LocaleController.isRTL ? 0 : this.dateLayoutX), this.titleY);
-            this.dateLayout.draw(canvas);
-            canvas.restore();
+            canvas2.save();
+            canvas2.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline) + (LocaleController.isRTL ? 0 : this.dateLayoutX), this.titleY);
+            this.dateLayout.draw(canvas2);
+            canvas2.restore();
         }
         if (this.titleLayout != null) {
-            canvas.save();
+            canvas2.save();
             float fDp = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL) {
                 StaticLayout staticLayout = this.dateLayout;
                 fDp += staticLayout == null ? 0.0f : staticLayout.getWidth() + AndroidUtilities.dp(4.0f);
             }
-            canvas.translate(fDp, this.titleY);
-            this.titleLayout.draw(canvas);
-            canvas.restore();
+            canvas2.translate(fDp, this.titleY);
+            this.titleLayout.draw(canvas2);
+            canvas2.restore();
         }
         if (this.captionLayout != null) {
             this.captionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-            canvas.save();
-            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.captionY);
-            this.captionLayout.draw(canvas);
-            canvas.restore();
+            canvas2.save();
+            canvas2.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.captionY);
+            this.captionLayout.draw(canvas2);
+            canvas2.restore();
         }
         if (this.descriptionLayout != null) {
             this.descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-            canvas.save();
-            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
-            SpoilerEffect.renderWithRipple(this, false, this.descriptionTextPaint.getColor(), -AndroidUtilities.dp(2.0f), this.patchedDescriptionLayout, 0, this.descriptionLayout, this.descriptionLayoutSpoilers, canvas, false);
-            canvas.restore();
+            canvas2.save();
+            canvas2.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
+            SpoilerEffect.renderWithRipple(this, false, this.descriptionTextPaint.getColor(), -AndroidUtilities.dp(2.0f), this.patchedDescriptionLayout, 0, this.descriptionLayout, this.descriptionLayoutSpoilers, canvas2, false);
+            canvas2.restore();
         }
         if (this.descriptionLayout2 != null) {
             this.descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-            canvas.save();
-            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.description2Y);
-            SpoilerEffect.renderWithRipple(this, false, this.descriptionTextPaint.getColor(), -AndroidUtilities.dp(2.0f), this.patchedDescriptionLayout2, 0, this.descriptionLayout2, this.descriptionLayout2Spoilers, canvas, false);
-            canvas.restore();
+            canvas2.save();
+            canvas2.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.description2Y);
+            SpoilerEffect.renderWithRipple(this, false, this.descriptionTextPaint.getColor(), -AndroidUtilities.dp(2.0f), this.patchedDescriptionLayout2, 0, this.descriptionLayout2, this.descriptionLayout2Spoilers, canvas2, false);
+            canvas2.restore();
         }
         if (!this.linkLayout.isEmpty()) {
             this.descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
@@ -1044,8 +1117,8 @@ public class SharedLinkCell extends FrameLayout {
                 StaticLayout staticLayout2 = (StaticLayout) this.linkLayout.get(i);
                 List list = (List) this.linkSpoilers.get(i);
                 if (staticLayout2.getLineCount() > 0) {
-                    canvas.save();
-                    canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY + lineBottom);
+                    canvas2.save();
+                    canvas2.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY + lineBottom);
                     this.path.rewind();
                     if (list != null) {
                         Iterator it = list.iterator();
@@ -1054,47 +1127,48 @@ public class SharedLinkCell extends FrameLayout {
                             this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
                         }
                     }
-                    canvas.save();
-                    canvas.clipPath(this.path, Region.Op.DIFFERENCE);
-                    staticLayout2.draw(canvas);
-                    canvas.restore();
-                    canvas.save();
-                    canvas.clipPath(this.path);
+                    canvas2.save();
+                    canvas2.clipPath(this.path, Region.Op.DIFFERENCE);
+                    staticLayout2.draw(canvas2);
+                    canvas2.restore();
+                    canvas2.save();
+                    canvas2.clipPath(this.path);
                     this.path.rewind();
                     if (list != null && !list.isEmpty()) {
                         ((SpoilerEffect) list.get(0)).getRipplePath(this.path);
                     }
-                    canvas.clipPath(this.path);
-                    staticLayout2.draw(canvas);
-                    canvas.restore();
+                    canvas2.clipPath(this.path);
+                    staticLayout2.draw(canvas2);
+                    canvas2.restore();
                     if (list != null) {
                         Iterator it2 = list.iterator();
                         while (it2.hasNext()) {
-                            ((SpoilerEffect) it2.next()).draw(canvas);
+                            ((SpoilerEffect) it2.next()).draw(canvas2);
                         }
                     }
-                    canvas.restore();
+                    canvas2.restore();
                     lineBottom += staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
                 }
             }
-            if (this.linksCollector.draw(canvas)) {
+            if (this.linksCollector.draw(canvas2)) {
                 invalidate();
             }
         }
         if (this.fromInfoLayout != null) {
-            canvas.save();
-            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.fromInfoLayoutY);
-            this.fromInfoLayout.draw(canvas);
+            canvas2.save();
+            canvas2.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.fromInfoLayoutY);
+            this.fromInfoLayout.draw(canvas2);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.fromInfoLayout, this.fromInfoLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
-            canvas.restore();
+            canvas2 = canvas;
+            canvas2.restore();
         }
-        this.letterDrawable.draw(canvas);
+        this.letterDrawable.draw(canvas2);
         if (this.drawLinkImageView) {
-            this.linkImageView.draw(canvas);
+            this.linkImageView.draw(canvas2);
         }
         if (this.needDivider) {
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas2.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {
                 canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }

@@ -35,7 +35,7 @@ public class SpoilerEffectBitmapFactory {
     private final Choreographer.FrameCallback postFrameCallback = new Choreographer.FrameCallback() {
         @Override
         public final void doFrame(long j) {
-            this.f$0.lambda$new$0(j);
+            SpoilerEffectBitmapFactory.$r8$lambda$9p1KgXPIDtnrwlFOtCTLYaQADg0(this.f$0, j);
         }
     };
     private final Rect clipRegionDump = new Rect();
@@ -146,10 +146,10 @@ public class SpoilerEffectBitmapFactory {
         this.clipRegion.union(0, 0, iMin - i7, iMin2 - i7);
     }
 
-    public void lambda$new$0(long j) {
-        checkUpdateImpl();
-        this.clipRegion.set(0, 0, 0, 0);
-        this.invalidated = false;
+    public static void $r8$lambda$9p1KgXPIDtnrwlFOtCTLYaQADg0(SpoilerEffectBitmapFactory spoilerEffectBitmapFactory, long j) {
+        spoilerEffectBitmapFactory.checkUpdateImpl();
+        spoilerEffectBitmapFactory.clipRegion.set(0, 0, 0, 0);
+        spoilerEffectBitmapFactory.invalidated = false;
     }
 
     private void checkUpdateImpl() {
@@ -164,42 +164,42 @@ public class SpoilerEffectBitmapFactory {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkUpdateImpl$2(i);
+                SpoilerEffectBitmapFactory.$r8$lambda$rwflfYYxgopfkPhUQIbEEB2X_SM(this.f$0, i);
             }
         });
     }
 
-    public void lambda$checkUpdateImpl$2(final int i) {
-        Buffer[] bufferArr = this.bitmapBuffers;
+    public static void $r8$lambda$rwflfYYxgopfkPhUQIbEEB2X_SM(final SpoilerEffectBitmapFactory spoilerEffectBitmapFactory, final int i) {
+        Buffer[] bufferArr = spoilerEffectBitmapFactory.bitmapBuffers;
         if (bufferArr[i] == null) {
-            bufferArr[i] = new Buffer(this.size);
+            bufferArr[i] = new Buffer(spoilerEffectBitmapFactory.size);
         }
-        Bitmap bitmap = this.backgroundBitmap;
+        Bitmap bitmap = spoilerEffectBitmapFactory.backgroundBitmap;
         if (bitmap == null) {
-            int i2 = this.size;
-            this.backgroundBitmap = Bitmap.createBitmap(i2, i2, Bitmap.Config.ALPHA_8);
-            this.backgroundCanvas = new Canvas(this.backgroundBitmap);
+            int i2 = spoilerEffectBitmapFactory.size;
+            spoilerEffectBitmapFactory.backgroundBitmap = Bitmap.createBitmap(i2, i2, Bitmap.Config.ALPHA_8);
+            spoilerEffectBitmapFactory.backgroundCanvas = new Canvas(spoilerEffectBitmapFactory.backgroundBitmap);
         } else {
             bitmap.eraseColor(0);
         }
-        doDraw(this.backgroundCanvas, this.clipRegionDump);
-        Utilities.copyBitmaps(this.backgroundBitmap, this.bitmapBuffers[i].bitmap);
+        spoilerEffectBitmapFactory.doDraw(spoilerEffectBitmapFactory.backgroundCanvas, spoilerEffectBitmapFactory.clipRegionDump);
+        Utilities.copyBitmaps(spoilerEffectBitmapFactory.backgroundBitmap, spoilerEffectBitmapFactory.bitmapBuffers[i].bitmap);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$checkUpdateImpl$1(i);
+                SpoilerEffectBitmapFactory.$r8$lambda$87pyNMDXRBb9ZANZMXZ7SjAHdyg(this.f$0, i);
             }
         });
     }
 
-    public void lambda$checkUpdateImpl$1(int i) {
-        this.currentBitmapBuffer = i;
-        this.shaderPaint.setShader(this.bitmapBuffers[i].shader);
-        this.isRunning = false;
-        this.isDrawnWithClipRegion = true;
+    public static void $r8$lambda$87pyNMDXRBb9ZANZMXZ7SjAHdyg(SpoilerEffectBitmapFactory spoilerEffectBitmapFactory, int i) {
+        spoilerEffectBitmapFactory.currentBitmapBuffer = i;
+        spoilerEffectBitmapFactory.shaderPaint.setShader(spoilerEffectBitmapFactory.bitmapBuffers[i].shader);
+        spoilerEffectBitmapFactory.isRunning = false;
+        spoilerEffectBitmapFactory.isDrawnWithClipRegion = true;
     }
 
-    private static class Buffer {
+    static class Buffer {
         private final Bitmap bitmap;
         private final BitmapShader shader;
 

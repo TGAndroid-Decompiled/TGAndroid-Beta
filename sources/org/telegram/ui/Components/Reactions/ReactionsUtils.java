@@ -107,14 +107,11 @@ public abstract class ReactionsUtils {
         limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
             @Override
             public final void run() {
-                ReactionsUtils.lambda$showLimitReachedDialogForReactions$0(lastFragment, j);
+                BaseFragment baseFragment = lastFragment;
+                baseFragment.presentFragment(StatisticActivity.create(baseFragment.getMessagesController().getChat(Long.valueOf(-j))));
             }
         });
         limitReachedBottomSheet.show();
-    }
-
-    public static void lambda$showLimitReachedDialogForReactions$0(BaseFragment baseFragment, long j) {
-        baseFragment.presentFragment(StatisticActivity.create(baseFragment.getMessagesController().getChat(Long.valueOf(-j))));
     }
 
     public static SpannableString createSpannableText(AnimatedEmojiSpan animatedEmojiSpan, String str) {
@@ -162,14 +159,20 @@ public abstract class ReactionsUtils {
         if (chatFull != null && ChatObject.isChannelAndNotMegaGroup(chat)) {
             TLRPC.ChatReactions chatReactions = chatFull.available_reactions;
             if (chatReactions instanceof TLRPC.TL_chatReactionsSome) {
-                for (TLRPC.Reaction reaction : ((TLRPC.TL_chatReactionsSome) chatReactions).reactions) {
-                    if (reaction instanceof TLRPC.TL_reactionEmoji) {
-                        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(((TLRPC.TL_reactionEmoji) reaction).emoticon);
+                ArrayList<TLRPC.Reaction> arrayList2 = ((TLRPC.TL_chatReactionsSome) chatReactions).reactions;
+                int size = arrayList2.size();
+                int i = 0;
+                while (i < size) {
+                    TLRPC.Reaction reaction = arrayList2.get(i);
+                    i++;
+                    TLRPC.Reaction reaction2 = reaction;
+                    if (reaction2 instanceof TLRPC.TL_reactionEmoji) {
+                        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(((TLRPC.TL_reactionEmoji) reaction2).emoticon);
                         if (tL_availableReaction != null) {
                             animatedEmojiDrawableMake = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), tL_availableReaction.activate_animation);
                         }
                     } else {
-                        animatedEmojiDrawableMake = reaction instanceof TLRPC.TL_reactionCustomEmoji ? AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), ((TLRPC.TL_reactionCustomEmoji) reaction).document_id) : null;
+                        animatedEmojiDrawableMake = reaction2 instanceof TLRPC.TL_reactionCustomEmoji ? AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), ((TLRPC.TL_reactionCustomEmoji) reaction2).document_id) : null;
                     }
                     if (animatedEmojiDrawableMake != null) {
                         arrayList.add(animatedEmojiDrawableMake);

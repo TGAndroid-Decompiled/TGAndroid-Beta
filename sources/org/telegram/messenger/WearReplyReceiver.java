@@ -35,7 +35,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                        WearReplyReceiver.$r8$lambda$0GZdQXBmuJobg22hpdaOrwhRICE(this.f$0, accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                     }
                 });
                 return;
@@ -44,7 +44,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                    WearReplyReceiver.$r8$lambda$xUwpbw6rYF_U6i0mwB6MDuDwBTU(this.f$0, accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                 }
             });
             return;
@@ -52,39 +52,43 @@ public class WearReplyReceiver extends BroadcastReceiver {
         sendMessage(accountInstance, charSequence, longExtra, longExtra2, intExtra, intArrayExtra);
     }
 
-    public void lambda$onReceive$1(final AccountInstance accountInstance, final long j, final CharSequence charSequence, final long j2, final int i, final int[] iArr) {
+    public static void $r8$lambda$0GZdQXBmuJobg22hpdaOrwhRICE(final WearReplyReceiver wearReplyReceiver, final AccountInstance accountInstance, final long j, final CharSequence charSequence, final long j2, final int i, final int[] iArr) {
+        wearReplyReceiver.getClass();
         final TLRPC.User userSync = accountInstance.getMessagesStorage().getUserSync(j);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onReceive$0(accountInstance, userSync, charSequence, j, j2, i, iArr);
+                WearReplyReceiver.$r8$lambda$tjK12x6hUXEHtlX5cK6YjtPSLDc(this.f$0, accountInstance, userSync, charSequence, j, j2, i, iArr);
             }
         });
     }
 
-    public void lambda$onReceive$0(AccountInstance accountInstance, TLRPC.User user, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
+    public static void $r8$lambda$tjK12x6hUXEHtlX5cK6YjtPSLDc(WearReplyReceiver wearReplyReceiver, AccountInstance accountInstance, TLRPC.User user, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
+        wearReplyReceiver.getClass();
         accountInstance.getMessagesController().putUser(user, true);
-        sendMessage(accountInstance, charSequence, j, j2, i, iArr);
+        wearReplyReceiver.sendMessage(accountInstance, charSequence, j, j2, i, iArr);
     }
 
-    public void lambda$onReceive$3(final AccountInstance accountInstance, final long j, final CharSequence charSequence, final long j2, final int i, final int[] iArr) {
+    public static void $r8$lambda$xUwpbw6rYF_U6i0mwB6MDuDwBTU(final WearReplyReceiver wearReplyReceiver, final AccountInstance accountInstance, final long j, final CharSequence charSequence, final long j2, final int i, final int[] iArr) {
+        wearReplyReceiver.getClass();
         final TLRPC.Chat chatSync = accountInstance.getMessagesStorage().getChatSync(-j);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onReceive$2(accountInstance, chatSync, charSequence, j, j2, i, iArr);
+                WearReplyReceiver.$r8$lambda$0U_NgXVbIc5H7G7w3HW0O3ZlLV0(this.f$0, accountInstance, chatSync, charSequence, j, j2, i, iArr);
             }
         });
     }
 
-    public void lambda$onReceive$2(AccountInstance accountInstance, TLRPC.Chat chat, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
+    public static void $r8$lambda$0U_NgXVbIc5H7G7w3HW0O3ZlLV0(WearReplyReceiver wearReplyReceiver, AccountInstance accountInstance, TLRPC.Chat chat, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
+        wearReplyReceiver.getClass();
         accountInstance.getMessagesController().putChat(chat, true);
-        sendMessage(accountInstance, charSequence, j, j2, i, iArr);
+        wearReplyReceiver.sendMessage(accountInstance, charSequence, j, j2, i, iArr);
     }
 
     private void sendMessage(AccountInstance accountInstance, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
         MessageObject messageObject;
-        MessageObject messageObject2;
+        MessageObject messageObject2 = null;
         if (i != 0) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.message = "";
@@ -103,8 +107,6 @@ public class WearReplyReceiver extends BroadcastReceiver {
             tL_message2.action = tL_messageActionTopicCreate;
             tL_messageActionTopicCreate.title = "";
             messageObject2 = new MessageObject(accountInstance.getCurrentAccount(), tL_message2, false, false);
-        } else {
-            messageObject2 = null;
         }
         accountInstance.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, messageObject, messageObject2, null, true, null, null, null, true, 0, 0, null, false));
         if (iArr != null && iArr.length > 0) {

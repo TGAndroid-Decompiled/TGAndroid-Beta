@@ -126,15 +126,11 @@ public class GalleryEmptyView extends LinearLayout {
         });
     }
 
-    public void lambda$doOnEmojiButton$2(Utilities.Callback callback, View view) {
-        callback.run(Long.valueOf(this.emojiDocumentId));
-    }
-
     public void doOnEmojiButton(final Utilities.Callback callback) {
         this.useAnEmojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$doOnEmojiButton$2(callback, view);
+                callback.run(Long.valueOf(this.f$0.emojiDocumentId));
             }
         });
     }

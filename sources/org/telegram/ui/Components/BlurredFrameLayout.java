@@ -29,7 +29,10 @@ public abstract class BlurredFrameLayout extends FrameLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        if (SharedConfig.chatBlurEnabled() && this.sizeNotifierFrameLayout != null && this.drawBlur && this.backgroundColor != 0) {
+        Canvas canvas2;
+        if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null || !this.drawBlur || this.backgroundColor == 0) {
+            canvas2 = canvas;
+        } else {
             if (this.backgroundPaint == null) {
                 this.backgroundPaint = new Paint();
             }
@@ -49,11 +52,12 @@ public abstract class BlurredFrameLayout extends FrameLayout {
                         return;
                     }
                 } else {
-                    sizeNotifierFrameLayout.drawBlurRect(canvas, y, this.blurBounds, this.backgroundPaint, this.isTopView);
+                    canvas2 = canvas;
+                    sizeNotifierFrameLayout.drawBlurRect(canvas2, y, this.blurBounds, this.backgroundPaint, this.isTopView);
                 }
             }
         }
-        super.dispatchDraw(canvas);
+        super.dispatchDraw(canvas2);
     }
 
     @Override

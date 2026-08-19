@@ -97,7 +97,7 @@ public class ThemeEditorView {
         try {
             EditorAlert editorAlert = this.editorAlert;
             if (editorAlert != null) {
-                editorAlert.lambda$new$0();
+                editorAlert.dismiss();
                 this.editorAlert = null;
             }
         } catch (Exception e2) {
@@ -168,7 +168,7 @@ public class ThemeEditorView {
                 this.clearSearchImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$new$0(view2);
+                        ThemeEditorView.EditorAlert.SearchField.$r8$lambda$Cwgyjs_BXj4cx2yOUWSJHeH9iIY(this.f$0, view2);
                     }
                 });
                 EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
@@ -234,24 +234,25 @@ public class ThemeEditorView {
                 this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                        return this.f$0.lambda$new$1(textView, i, keyEvent);
+                        return ThemeEditorView.EditorAlert.SearchField.$r8$lambda$X3uA_oPgqDiI5na0I2yMs2DY8Eo(this.f$0, textView, i, keyEvent);
                     }
                 });
             }
 
-            public void lambda$new$0(View view) {
-                this.searchEditText.setText("");
-                AndroidUtilities.showKeyboard(this.searchEditText);
+            public static void $r8$lambda$Cwgyjs_BXj4cx2yOUWSJHeH9iIY(SearchField searchField, View view) {
+                searchField.searchEditText.setText("");
+                AndroidUtilities.showKeyboard(searchField.searchEditText);
             }
 
-            public boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
+            public static boolean $r8$lambda$X3uA_oPgqDiI5na0I2yMs2DY8Eo(SearchField searchField, TextView textView, int i, KeyEvent keyEvent) {
+                searchField.getClass();
                 if (keyEvent == null) {
                     return false;
                 }
                 if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
                     return false;
                 }
-                AndroidUtilities.hideKeyboard(this.searchEditText);
+                AndroidUtilities.hideKeyboard(searchField.searchEditText);
                 return false;
             }
 
@@ -397,14 +398,14 @@ public class ThemeEditorView {
                     this.colorEditText[i].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                            return ThemeEditorView.EditorAlert.ColorPicker.lambda$new$0(textView, i2, keyEvent);
+                            return ThemeEditorView.EditorAlert.ColorPicker.$r8$lambda$3gFCoh40y0U6cWAAdKaY8DNqa6E(textView, i2, keyEvent);
                         }
                     });
                     i++;
                 }
             }
 
-            public static boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
+            public static boolean $r8$lambda$3gFCoh40y0U6cWAAdKaY8DNqa6E(TextView textView, int i, KeyEvent keyEvent) {
                 if (i != 6) {
                     return false;
                 }
@@ -421,7 +422,6 @@ public class ThemeEditorView {
 
             @Override
             protected void onDraw(Canvas canvas) {
-                float f;
                 int width = (getWidth() / 2) - (this.paramValueSliderWidth * 2);
                 int height = (getHeight() / 2) - AndroidUtilities.dp(8.0f);
                 Bitmap bitmap = this.colorWheelBitmap;
@@ -431,11 +431,11 @@ public class ThemeEditorView {
                 int i2 = ((int) ((-Math.cos(radians)) * ((double) this.colorHSV[1]) * ((double) this.colorWheelRadius))) + width;
                 double d = -Math.sin(radians);
                 float[] fArr = this.colorHSV;
-                float f2 = fArr[1];
-                int i3 = ((int) (d * ((double) f2) * ((double) this.colorWheelRadius))) + height;
+                float f = fArr[1];
+                int i3 = ((int) (d * ((double) f) * ((double) this.colorWheelRadius))) + height;
                 float[] fArr2 = this.hsvTemp;
                 fArr2[0] = fArr[0];
-                fArr2[1] = f2;
+                fArr2[1] = f;
                 fArr2[2] = 1.0f;
                 drawPointerArrow(canvas, i2, i3, Color.HSVToColor(fArr2));
                 int i4 = this.colorWheelRadius;
@@ -447,24 +447,21 @@ public class ThemeEditorView {
                     this.colorGradient = new LinearGradient(i5, i6, i5 + iDp, i6 + i7, new int[]{-16777216, Color.HSVToColor(this.hsvTemp)}, (float[]) null, Shader.TileMode.CLAMP);
                 }
                 this.valueSliderPaint.setShader(this.colorGradient);
-                float f3 = i6;
-                float f4 = i6 + i7;
-                canvas.drawRect(i5, f3, i5 + iDp, f4, this.valueSliderPaint);
+                float f2 = i6;
+                float f3 = i6 + i7;
+                canvas.drawRect(i5, f2, i5 + iDp, f3, this.valueSliderPaint);
                 int i8 = iDp / 2;
                 float[] fArr3 = this.colorHSV;
-                float f5 = i7;
-                drawPointerArrow(canvas, i5 + i8, (int) ((fArr3[2] * f5) + f3), Color.HSVToColor(fArr3));
+                float f4 = i7;
+                drawPointerArrow(canvas, i5 + i8, (int) (f2 + (fArr3[2] * f4)), Color.HSVToColor(fArr3));
                 int i9 = i5 + (this.paramValueSliderWidth * 2);
                 if (this.alphaGradient == null) {
                     int iHSVToColor = Color.HSVToColor(this.hsvTemp);
-                    f = f4;
-                    this.alphaGradient = new LinearGradient(i9, f3, i9 + iDp, f, new int[]{iHSVToColor, iHSVToColor & 16777215}, (float[]) null, Shader.TileMode.CLAMP);
-                } else {
-                    f = f4;
+                    this.alphaGradient = new LinearGradient(i9, f2, i9 + iDp, f3, new int[]{iHSVToColor, iHSVToColor & 16777215}, (float[]) null, Shader.TileMode.CLAMP);
                 }
                 this.valueSliderPaint.setShader(this.alphaGradient);
-                canvas.drawRect(i9, f3, iDp + i9, f, this.valueSliderPaint);
-                drawPointerArrow(canvas, i9 + i8, (int) (f3 + ((1.0f - this.alpha) * f5)), (Color.HSVToColor(this.colorHSV) & 16777215) | (((int) (this.alpha * 255.0f)) << 24));
+                canvas.drawRect(i9, f2, iDp + i9, f3, this.valueSliderPaint);
+                drawPointerArrow(canvas, i9 + i8, (int) (f2 + ((1.0f - this.alpha) * f4)), (Color.HSVToColor(this.colorHSV) & 16777215) | (((int) (this.alpha * 255.0f)) << 24));
             }
 
             private void drawPointerArrow(Canvas canvas, int i, int i2, int i3) {
@@ -521,7 +518,7 @@ public class ThemeEditorView {
             }
 
             @Override
-            public boolean onTouchEvent(android.view.MotionEvent r16) {
+            public boolean onTouchEvent(android.view.MotionEvent r18) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThemeEditorView.EditorAlert.ColorPicker.onTouchEvent(android.view.MotionEvent):boolean");
             }
 
@@ -567,7 +564,7 @@ public class ThemeEditorView {
                 @Override
                 public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                     if (motionEvent.getAction() == 0 && EditorAlert.this.scrollOffsetY != 0 && motionEvent.getY() < EditorAlert.this.scrollOffsetY) {
-                        EditorAlert.this.lambda$new$0();
+                        EditorAlert.this.dismiss();
                         return true;
                     }
                     return super.onInterceptTouchEvent(motionEvent);
@@ -732,7 +729,7 @@ public class ThemeEditorView {
             this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i2) throws Throwable {
-                    this.f$0.lambda$new$0(view, i2);
+                    ThemeEditorView.EditorAlert.$r8$lambda$Vqu1h1faAbamf_CGAf7QeoX6aAo(this.f$0, view, i2);
                 }
             });
             this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -781,7 +778,7 @@ public class ThemeEditorView {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$new$1(view);
+                    this.f$0.dismiss();
                 }
             });
             TextView textView2 = new TextView(context);
@@ -796,7 +793,7 @@ public class ThemeEditorView {
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) throws Throwable {
-                    this.f$0.lambda$new$2(view);
+                    ThemeEditorView.EditorAlert.$r8$lambda$OqPLqwKBDNsx96uUbeGecDrK7vU(this.f$0, view);
                 }
             });
             FrameLayout frameLayout4 = new FrameLayout(context);
@@ -816,7 +813,7 @@ public class ThemeEditorView {
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) throws Throwable {
-                    this.f$0.lambda$new$3(view);
+                    ThemeEditorView.EditorAlert.$r8$lambda$K6RvopFy2TYnkxnrX4Nfoi9cgLE(this.f$0, view);
                 }
             });
             LinearLayout linearLayout = new LinearLayout(context);
@@ -834,7 +831,7 @@ public class ThemeEditorView {
             textView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) throws Throwable {
-                    this.f$0.lambda$new$4(view);
+                    ThemeEditorView.EditorAlert.$r8$lambda$mg14mEyPyo7VUYa0E80TTnDjOTo(this.f$0, view);
                 }
             });
             TextView textView5 = new TextView(context);
@@ -849,21 +846,22 @@ public class ThemeEditorView {
             textView5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) throws Throwable {
-                    this.f$0.lambda$new$5(view);
+                    this.f$0.setColorPickerVisible(false);
                 }
             });
         }
 
-        public void lambda$new$0(View view, int i) throws Throwable {
+        public static void $r8$lambda$Vqu1h1faAbamf_CGAf7QeoX6aAo(EditorAlert editorAlert, View view, int i) throws Throwable {
             if (i == 0) {
+                editorAlert.getClass();
                 return;
             }
-            RecyclerView.Adapter adapter = this.listView.getAdapter();
-            ListAdapter listAdapter = this.listAdapter;
+            RecyclerView.Adapter adapter = editorAlert.listView.getAdapter();
+            ListAdapter listAdapter = editorAlert.listAdapter;
             if (adapter == listAdapter) {
                 ThemeEditorView.this.currentThemeDesription = listAdapter.getItem(i - 1);
             } else {
-                ThemeEditorView.this.currentThemeDesription = this.searchAdapter.getItem(i - 1);
+                ThemeEditorView.this.currentThemeDesription = editorAlert.searchAdapter.getItem(i - 1);
             }
             ThemeEditorView.this.currentThemeDesriptionPosition = i;
             for (int i2 = 0; i2 < ThemeEditorView.this.currentThemeDesription.size(); i2++) {
@@ -874,39 +872,31 @@ public class ThemeEditorView {
                 }
                 themeDescription.startEditing();
                 if (i2 == 0) {
-                    this.colorPicker.setColor(themeDescription.getCurrentColor());
+                    editorAlert.colorPicker.setColor(themeDescription.getCurrentColor());
                 }
             }
-            setColorPickerVisible(true);
+            editorAlert.setColorPickerVisible(true);
         }
 
-        public void lambda$new$1(View view) {
-            lambda$new$0();
-        }
-
-        public void lambda$new$2(View view) throws Throwable {
+        public static void $r8$lambda$OqPLqwKBDNsx96uUbeGecDrK7vU(EditorAlert editorAlert, View view) throws Throwable {
             Theme.saveCurrentTheme(ThemeEditorView.this.themeInfo, true, false, false);
-            setOnDismissListener((DialogInterface.OnDismissListener) null);
-            lambda$new$0();
+            editorAlert.setOnDismissListener((DialogInterface.OnDismissListener) null);
+            editorAlert.dismiss();
             ThemeEditorView.this.close();
         }
 
-        public void lambda$new$3(View view) throws Throwable {
+        public static void $r8$lambda$K6RvopFy2TYnkxnrX4Nfoi9cgLE(EditorAlert editorAlert, View view) throws Throwable {
             for (int i = 0; i < ThemeEditorView.this.currentThemeDesription.size(); i++) {
                 ((ThemeDescription) ThemeEditorView.this.currentThemeDesription.get(i)).setPreviousColor();
             }
-            setColorPickerVisible(false);
+            editorAlert.setColorPickerVisible(false);
         }
 
-        public void lambda$new$4(View view) throws Throwable {
+        public static void $r8$lambda$mg14mEyPyo7VUYa0E80TTnDjOTo(EditorAlert editorAlert, View view) throws Throwable {
             for (int i = 0; i < ThemeEditorView.this.currentThemeDesription.size(); i++) {
                 ((ThemeDescription) ThemeEditorView.this.currentThemeDesription.get(i)).setDefaultColor();
             }
-            setColorPickerVisible(false);
-        }
-
-        public void lambda$new$5(View view) throws Throwable {
-            setColorPickerVisible(false);
+            editorAlert.setColorPickerVisible(false);
         }
 
         private void runShadowAnimation(final int i, final boolean z) {
@@ -956,27 +946,42 @@ public class ThemeEditorView {
         }
 
         public void setColorPickerVisible(boolean z) throws Throwable {
+            ?? r2;
             if (!z) {
                 if (ThemeEditorView.this.parentActivity != null) {
+                    r2 = 0;
                     ((LaunchActivity) ThemeEditorView.this.parentActivity).rebuildAllFragments(false);
+                } else {
+                    r2 = 0;
                 }
-                Theme.saveCurrentTheme(ThemeEditorView.this.themeInfo, false, false, false);
+                Theme.saveCurrentTheme(ThemeEditorView.this.themeInfo, r2, r2, r2);
                 if (this.listView.getAdapter() == this.listAdapter) {
                     AndroidUtilities.hideKeyboard(getCurrentFocus());
                 }
                 this.animationInProgress = true;
-                this.listView.setVisibility(0);
-                this.bottomSaveLayout.setVisibility(0);
-                this.searchField.setVisibility(0);
+                this.listView.setVisibility(r2);
+                this.bottomSaveLayout.setVisibility(r2);
+                this.searchField.setVisibility(r2);
                 this.listView.setAlpha(0.0f);
                 AnimatorSet animatorSet = new AnimatorSet();
                 ColorPicker colorPicker = this.colorPicker;
                 Property property = View.ALPHA;
-                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(colorPicker, (Property<ColorPicker, Float>) property, 0.0f);
-                ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this.bottomLayout, (Property<FrameLayout, Float>) property, 0.0f);
-                ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(this.listView, (Property<RecyclerListView, Float>) property, 1.0f);
-                ObjectAnimator objectAnimatorOfFloat4 = ObjectAnimator.ofFloat(this.frameLayout, (Property<FrameLayout, Float>) property, 1.0f);
-                View view = this.shadow[0];
+                float[] fArr = new float[1];
+                fArr[r2] = 0.0f;
+                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(colorPicker, (Property<ColorPicker, Float>) property, fArr);
+                FrameLayout frameLayout = this.bottomLayout;
+                float[] fArr2 = new float[1];
+                fArr2[r2] = 0.0f;
+                ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr2);
+                RecyclerListView recyclerListView = this.listView;
+                float[] fArr3 = new float[1];
+                fArr3[r2] = 1.0f;
+                ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) property, fArr3);
+                FrameLayout frameLayout2 = this.frameLayout;
+                float[] fArr4 = new float[1];
+                fArr4[r2] = 1.0f;
+                ObjectAnimator objectAnimatorOfFloat4 = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property, fArr4);
+                View view = this.shadow[r2];
                 animatorSet.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, objectAnimatorOfFloat4, ObjectAnimator.ofFloat(view, (Property<View, Float>) property, view.getTag() == null ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.searchEmptyView, (Property<EmptyTextProgressView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.bottomSaveLayout, (Property<FrameLayout, Float>) property, 1.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", this.previousScrollPosition));
                 animatorSet.setDuration(150L);
                 animatorSet.setInterpolator(ThemeEditorView.this.decelerateInterpolator);
@@ -1127,7 +1132,7 @@ public class ThemeEditorView {
                 return spannableStringBuilder;
             }
 
-            public void lambda$searchDialogs$1(String str, int i) {
+            public void searchDialogsInternal(String str, int i) {
                 try {
                     String lowerCase = str.trim().toLowerCase();
                     if (lowerCase.length() == 0) {
@@ -1171,13 +1176,13 @@ public class ThemeEditorView {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$updateSearchResults$0(i, arrayList, arrayList2);
+                        ThemeEditorView.EditorAlert.SearchAdapter.$r8$lambda$27Mjg22KgW9KrAIgKcms9JlkqrY(this.f$0, i, arrayList, arrayList2);
                     }
                 });
             }
 
-            public void lambda$updateSearchResults$0(int i, ArrayList arrayList, ArrayList arrayList2) {
-                if (i != this.lastSearchId) {
+            public static void $r8$lambda$27Mjg22KgW9KrAIgKcms9JlkqrY(SearchAdapter searchAdapter, int i, ArrayList arrayList, ArrayList arrayList2) {
+                if (i != searchAdapter.lastSearchId) {
                     return;
                 }
                 if (EditorAlert.this.listView.getAdapter() != EditorAlert.this.searchAdapter) {
@@ -1186,15 +1191,15 @@ public class ThemeEditorView {
                     EditorAlert.this.listView.setAdapter(EditorAlert.this.searchAdapter);
                     EditorAlert.this.searchAdapter.notifyDataSetChanged();
                 }
-                boolean z = !this.searchResult.isEmpty() && arrayList.isEmpty();
-                boolean z2 = this.searchResult.isEmpty() && arrayList.isEmpty();
+                boolean z = !searchAdapter.searchResult.isEmpty() && arrayList.isEmpty();
+                boolean z2 = searchAdapter.searchResult.isEmpty() && arrayList.isEmpty();
                 if (z) {
                     EditorAlert editorAlert2 = EditorAlert.this;
                     editorAlert2.topBeforeSwitch = editorAlert2.getCurrentTop();
                 }
-                this.searchResult = arrayList;
-                this.searchNames = arrayList2;
-                notifyDataSetChanged();
+                searchAdapter.searchResult = arrayList;
+                searchAdapter.searchNames = arrayList2;
+                searchAdapter.notifyDataSetChanged();
                 if (!z2 && !z && EditorAlert.this.topBeforeSwitch > 0) {
                     EditorAlert.this.layoutManager.scrollToPositionWithOffset(0, -EditorAlert.this.topBeforeSwitch);
                     EditorAlert.this.topBeforeSwitch = -1000;
@@ -1222,7 +1227,7 @@ public class ThemeEditorView {
                     this.searchRunnable = new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$searchDialogs$1(str, i);
+                            this.f$0.searchDialogsInternal(str, i);
                         }
                     };
                     Utilities.searchQueue.postRunnable(this.searchRunnable, 300L);
@@ -1267,7 +1272,7 @@ public class ThemeEditorView {
             }
         }
 
-        private class ListAdapter extends RecyclerListView.SelectionAdapter {
+        class ListAdapter extends RecyclerListView.SelectionAdapter {
             private Context context;
             private ArrayList items = new ArrayList();
 
@@ -1405,7 +1410,7 @@ public class ThemeEditorView {
         private float startX;
         private float startY;
 
-        public static void lambda$onTouchEvent$0(DialogInterface dialogInterface) {
+        public static void $r8$lambda$oc9I2dK8GKQWkypXPayXK8aXBxc(DialogInterface dialogInterface) {
         }
 
         @Override
@@ -1452,13 +1457,13 @@ public class ThemeEditorView {
                             ThemeEditorView.this.editorAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                 @Override
                                 public final void onDismiss(DialogInterface dialogInterface) {
-                                    ThemeEditorView.AnonymousClass1.lambda$onTouchEvent$0(dialogInterface);
+                                    ThemeEditorView.AnonymousClass1.$r8$lambda$oc9I2dK8GKQWkypXPayXK8aXBxc(dialogInterface);
                                 }
                             });
                             ThemeEditorView.this.editorAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                 @Override
                                 public final void onDismiss(DialogInterface dialogInterface) {
-                                    this.f$0.lambda$onTouchEvent$1(dialogInterface);
+                                    ThemeEditorView.AnonymousClass1.$r8$lambda$K7JBG7otDo833XGaTwQegwERSWs(this.f$0, dialogInterface);
                                 }
                             });
                             ThemeEditorView.this.editorAlert.show();
@@ -1511,7 +1516,7 @@ public class ThemeEditorView {
             return true;
         }
 
-        public void lambda$onTouchEvent$1(DialogInterface dialogInterface) {
+        public static void $r8$lambda$K7JBG7otDo833XGaTwQegwERSWs(AnonymousClass1 anonymousClass1, DialogInterface dialogInterface) {
             ThemeEditorView.this.editorAlert = null;
             ThemeEditorView.this.show();
         }
@@ -1615,10 +1620,12 @@ public class ThemeEditorView {
     }
 
     public void animateToBoundsMaybe() {
+        float f;
         ArrayList arrayList;
         boolean z;
         AnimatorSet animatorSet;
         int i;
+        float f2;
         int sideCoord = getSideCoord(true, 0, 0.0f, this.editorWidth);
         int sideCoord2 = getSideCoord(true, 1, 0.0f, this.editorWidth);
         int sideCoord3 = getSideCoord(false, 0, 0.0f, this.editorHeight);
@@ -1626,6 +1633,7 @@ public class ThemeEditorView {
         SharedPreferences.Editor editorEdit = this.preferences.edit();
         int iDp = AndroidUtilities.dp(20.0f);
         if (Math.abs(sideCoord - this.windowLayoutParams.x) <= iDp || ((i = this.windowLayoutParams.x) < 0 && i > (-this.editorWidth) / 4)) {
+            f = 0.0f;
             ArrayList arrayList2 = new ArrayList();
             editorEdit.putInt("sidex", 0);
             if (this.windowView.getAlpha() != 1.0f) {
@@ -1637,74 +1645,73 @@ public class ThemeEditorView {
             if (Math.abs(sideCoord2 - i) > iDp) {
                 int i2 = this.windowLayoutParams.x;
                 int i3 = AndroidUtilities.displaySize.x;
+                f = 0.0f;
                 int i4 = this.editorWidth;
-                if (i2 > i3 - i4 && i2 < i3 - ((i4 / 4) * 3)) {
-                    arrayList = new ArrayList();
-                    editorEdit.putInt("sidex", 1);
+                f2 = 1.0f;
+                if (i2 <= i3 - i4 || i2 >= i3 - ((i4 / 4) * 3)) {
                     if (this.windowView.getAlpha() != 1.0f) {
-                        arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
-                    }
-                    arrayList.add(ObjectAnimator.ofInt(this, "x", sideCoord2));
-                } else if (this.windowView.getAlpha() != 1.0f) {
-                    arrayList = new ArrayList();
-                    if (this.windowLayoutParams.x < 0) {
-                        arrayList.add(ObjectAnimator.ofInt(this, "x", -this.editorWidth));
+                        arrayList = new ArrayList();
+                        if (this.windowLayoutParams.x < 0) {
+                            arrayList.add(ObjectAnimator.ofInt(this, "x", -this.editorWidth));
+                        } else {
+                            arrayList.add(ObjectAnimator.ofInt(this, "x", AndroidUtilities.displaySize.x));
+                        }
+                        z = true;
                     } else {
-                        arrayList.add(ObjectAnimator.ofInt(this, "x", AndroidUtilities.displaySize.x));
+                        editorEdit.putFloat("px", (this.windowLayoutParams.x - sideCoord) / (sideCoord2 - sideCoord));
+                        editorEdit.putInt("sidex", 2);
+                        arrayList = null;
                     }
-                    z = true;
-                } else {
-                    editorEdit.putFloat("px", (this.windowLayoutParams.x - sideCoord) / (sideCoord2 - sideCoord));
-                    editorEdit.putInt("sidex", 2);
-                    arrayList = null;
+                    if (!z) {
+                        if (Math.abs(sideCoord3 - this.windowLayoutParams.y) > iDp || this.windowLayoutParams.y <= ActionBar.getCurrentActionBarHeight()) {
+                            if (arrayList == null) {
+                                arrayList = new ArrayList();
+                            }
+                            editorEdit.putInt("sidey", 0);
+                            arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord3));
+                        } else if (Math.abs(sideCoord4 - this.windowLayoutParams.y) <= iDp) {
+                            if (arrayList == null) {
+                                arrayList = new ArrayList();
+                            }
+                            editorEdit.putInt("sidey", 1);
+                            arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord4));
+                        } else {
+                            editorEdit.putFloat("py", (this.windowLayoutParams.y - sideCoord3) / (sideCoord4 - sideCoord3));
+                            editorEdit.putInt("sidey", 2);
+                        }
+                        editorEdit.commit();
+                    }
+                    if (arrayList != null) {
+                        if (this.decelerateInterpolator == null) {
+                            this.decelerateInterpolator = new DecelerateInterpolator();
+                        }
+                        animatorSet = new AnimatorSet();
+                        animatorSet.setInterpolator(this.decelerateInterpolator);
+                        animatorSet.setDuration(150L);
+                        if (z) {
+                            arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, f));
+                            animatorSet.addListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animator) throws Throwable {
+                                    Theme.saveCurrentTheme(ThemeEditorView.this.themeInfo, true, false, false);
+                                    ThemeEditorView.this.destroy();
+                                }
+                            });
+                        }
+                        animatorSet.playTogether(arrayList);
+                        animatorSet.start();
+                    }
                 }
             } else {
-                arrayList = new ArrayList();
-                editorEdit.putInt("sidex", 1);
-                if (this.windowView.getAlpha() != 1.0f) {
-                    arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
-                }
-                arrayList.add(ObjectAnimator.ofInt(this, "x", sideCoord2));
+                f = 0.0f;
+                f2 = 1.0f;
             }
-            if (!z) {
-                if (Math.abs(sideCoord3 - this.windowLayoutParams.y) > iDp || this.windowLayoutParams.y <= ActionBar.getCurrentActionBarHeight()) {
-                    if (arrayList == null) {
-                        arrayList = new ArrayList();
-                    }
-                    editorEdit.putInt("sidey", 0);
-                    arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord3));
-                } else if (Math.abs(sideCoord4 - this.windowLayoutParams.y) <= iDp) {
-                    if (arrayList == null) {
-                        arrayList = new ArrayList();
-                    }
-                    editorEdit.putInt("sidey", 1);
-                    arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord4));
-                } else {
-                    editorEdit.putFloat("py", (this.windowLayoutParams.y - sideCoord3) / (sideCoord4 - sideCoord3));
-                    editorEdit.putInt("sidey", 2);
-                }
-                editorEdit.commit();
+            arrayList = new ArrayList();
+            editorEdit.putInt("sidex", 1);
+            if (this.windowView.getAlpha() != f2) {
+                arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, f2));
             }
-            if (arrayList != null) {
-                if (this.decelerateInterpolator == null) {
-                    this.decelerateInterpolator = new DecelerateInterpolator();
-                }
-                animatorSet = new AnimatorSet();
-                animatorSet.setInterpolator(this.decelerateInterpolator);
-                animatorSet.setDuration(150L);
-                if (z) {
-                    arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
-                    animatorSet.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) throws Throwable {
-                            Theme.saveCurrentTheme(ThemeEditorView.this.themeInfo, true, false, false);
-                            ThemeEditorView.this.destroy();
-                        }
-                    });
-                }
-                animatorSet.playTogether(arrayList);
-                animatorSet.start();
-            }
+            arrayList.add(ObjectAnimator.ofInt(this, "x", sideCoord2));
         }
         z = false;
         if (!z) {
@@ -1731,7 +1738,7 @@ public class ThemeEditorView {
             animatorSet.setInterpolator(this.decelerateInterpolator);
             animatorSet.setDuration(150L);
             if (z) {
-                arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
+                arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, f));
                 animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) throws Throwable {

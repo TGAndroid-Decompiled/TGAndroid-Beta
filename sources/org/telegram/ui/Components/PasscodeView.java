@@ -46,7 +46,6 @@ import androidx.dynamicanimation.animation.SpringForce;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.LinkedList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -109,7 +108,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         void didAcceptedPassword(PasscodeView passcodeView);
     }
 
-    public static boolean lambda$onShow$15(View view, MotionEvent motionEvent) {
+    public static boolean $r8$lambda$H5Dfq1BJIWmILnuepA0ZvnztQII(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -145,7 +144,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
     }
 
-    private class AnimatingTextView extends FrameLayout {
+    class AnimatingTextView extends FrameLayout {
         private ArrayList characterTextViews;
         private AnimatorSet currentAnimation;
         private Runnable dotRunnable;
@@ -205,27 +204,29 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.0f, 1.0f));
             Property property2 = View.SCALE_Y;
             arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property2, 0.0f, 1.0f));
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.ALPHA, 0.0f, 1.0f));
-            Property property3 = View.TRANSLATION_Y;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property3, AndroidUtilities.dp(20.0f), 0.0f));
+            Property property3 = View.ALPHA;
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property3, 0.0f, 1.0f));
+            float[] fArr = {AndroidUtilities.dp(20.0f), 0.0f};
+            Property property4 = View.TRANSLATION_Y;
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property4, fArr));
             TextView textView2 = (TextView) this.dotTextViews.get(length);
             textView2.setTranslationX(getXForTextView(length));
             textView2.setAlpha(0.0f);
             arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property, 0.0f, 1.0f));
             arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.0f, 1.0f));
-            arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property3, AndroidUtilities.dp(20.0f), 0.0f));
+            arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property4, AndroidUtilities.dp(20.0f), 0.0f));
             for (int i = length + 1; i < 4; i++) {
                 TextView textView3 = (TextView) this.characterTextViews.get(i);
                 if (textView3.getAlpha() != 0.0f) {
-                    arrayList.add(ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) View.SCALE_X, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) View.SCALE_Y, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) View.ALPHA, 0.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property, 0.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property2, 0.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, 0.0f));
                 }
                 TextView textView4 = (TextView) this.dotTextViews.get(i);
                 if (textView4.getAlpha() != 0.0f) {
-                    arrayList.add(ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) View.SCALE_X, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) View.SCALE_Y, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) View.ALPHA, 0.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property, 0.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property2, 0.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property3, 0.0f));
                 }
             }
             Runnable runnable = this.dotRunnable;
@@ -240,16 +241,16 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     }
                     ArrayList arrayList2 = new ArrayList();
                     TextView textView5 = (TextView) AnimatingTextView.this.characterTextViews.get(length);
-                    Property property4 = View.SCALE_X;
-                    arrayList2.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property4, 0.0f));
-                    Property property5 = View.SCALE_Y;
+                    Property property5 = View.SCALE_X;
                     arrayList2.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property5, 0.0f));
-                    Property property6 = View.ALPHA;
+                    Property property6 = View.SCALE_Y;
                     arrayList2.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property6, 0.0f));
+                    Property property7 = View.ALPHA;
+                    arrayList2.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property7, 0.0f));
                     TextView textView6 = (TextView) AnimatingTextView.this.dotTextViews.get(length);
-                    arrayList2.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property4, 1.0f));
                     arrayList2.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property5, 1.0f));
                     arrayList2.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property6, 1.0f));
+                    arrayList2.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property7, 1.0f));
                     AnimatingTextView.this.currentAnimation = new AnimatorSet();
                     AnimatingTextView.this.currentAnimation.setDuration(150L);
                     AnimatingTextView.this.currentAnimation.playTogether(arrayList2);
@@ -269,22 +270,19 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             AndroidUtilities.runOnUIThread(runnable2, 1500L);
             for (int i2 = 0; i2 < length; i2++) {
                 TextView textView5 = (TextView) this.characterTextViews.get(i2);
-                Property property4 = View.TRANSLATION_X;
-                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property4, getXForTextView(i2)));
-                Property property5 = View.SCALE_X;
-                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property5, 0.0f));
-                Property property6 = View.SCALE_Y;
-                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property6, 0.0f));
-                Property property7 = View.ALPHA;
-                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property7, 0.0f));
-                Property property8 = View.TRANSLATION_Y;
-                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property8, 0.0f));
+                float[] fArr2 = {getXForTextView(i2)};
+                Property property5 = View.TRANSLATION_X;
+                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property5, fArr2));
+                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property, 0.0f));
+                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property2, 0.0f));
+                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property3, 0.0f));
+                arrayList.add(ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property4, 0.0f));
                 TextView textView6 = (TextView) this.dotTextViews.get(i2);
-                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property4, getXForTextView(i2)));
-                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property5, 1.0f));
-                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property6, 1.0f));
-                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property7, 1.0f));
-                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property8, 0.0f));
+                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property5, getXForTextView(i2)));
+                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property2, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property3, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property4, 0.0f));
             }
             AnimatorSet animatorSet = this.currentAnimation;
             if (animatorSet != null) {
@@ -316,44 +314,56 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
 
         public boolean eraseLastCharacter() {
+            ArrayList arrayList;
+            int i;
+            Property property;
             if (this.stringBuilder.length() == 0) {
                 return false;
             }
             try {
                 performHapticFeedback(3);
+                while (true) {
+                    property = View.TRANSLATION_X;
+                    if (i >= 4) {
+                        break;
+                    }
+                    TextView textView = (TextView) this.characterTextViews.get(i);
+                    float alpha = textView.getAlpha();
+                    Property property2 = View.TRANSLATION_Y;
+                    Property property3 = View.ALPHA;
+                    Property property4 = View.SCALE_Y;
+                    Property property5 = View.SCALE_X;
+                    if (alpha != 0.0f) {
+                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property5, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property4, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property3, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property2, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, getXForTextView(i)));
+                    }
+                    TextView textView2 = (TextView) this.dotTextViews.get(i);
+                    if (textView2.getAlpha() != 0.0f) {
+                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property5, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property4, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property3, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property, getXForTextView(i)));
+                    }
+                    i++;
+                }
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            ArrayList arrayList = new ArrayList();
+            arrayList = new ArrayList();
             int length = this.stringBuilder.length() - 1;
             if (length != 0) {
                 this.stringBuilder.deleteCharAt(length);
             }
-            for (int i = length; i < 4; i++) {
-                TextView textView = (TextView) this.characterTextViews.get(i);
-                if (textView.getAlpha() != 0.0f) {
-                    arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.SCALE_X, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.SCALE_Y, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.ALPHA, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.TRANSLATION_Y, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.TRANSLATION_X, getXForTextView(i)));
-                }
-                TextView textView2 = (TextView) this.dotTextViews.get(i);
-                if (textView2.getAlpha() != 0.0f) {
-                    arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) View.SCALE_X, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) View.SCALE_Y, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) View.ALPHA, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) View.TRANSLATION_Y, 0.0f));
-                    arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) View.TRANSLATION_X, getXForTextView(i)));
-                }
-            }
+            i = length;
             if (length == 0) {
                 this.stringBuilder.deleteCharAt(length);
             }
             for (int i2 = 0; i2 < length; i2++) {
-                TextView textView3 = (TextView) this.characterTextViews.get(i2);
-                Property property = View.TRANSLATION_X;
-                arrayList.add(ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property, getXForTextView(i2)));
+                arrayList.add(ObjectAnimator.ofFloat((TextView) this.characterTextViews.get(i2), (Property<TextView, Float>) property, getXForTextView(i2)));
                 arrayList.add(ObjectAnimator.ofFloat((TextView) this.dotTextViews.get(i2), (Property<TextView, Float>) property, getXForTextView(i2)));
             }
             Runnable runnable = this.dotRunnable;
@@ -403,16 +413,20 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 ArrayList arrayList = new ArrayList();
                 for (int i = 0; i < 4; i++) {
                     TextView textView = (TextView) this.characterTextViews.get(i);
-                    if (textView.getAlpha() != 0.0f) {
-                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.SCALE_X, 0.0f));
-                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.SCALE_Y, 0.0f));
-                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.ALPHA, 0.0f));
+                    float alpha = textView.getAlpha();
+                    Property property = View.ALPHA;
+                    Property property2 = View.SCALE_Y;
+                    Property property3 = View.SCALE_X;
+                    if (alpha != 0.0f) {
+                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property3, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property2, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.0f));
                     }
                     TextView textView2 = (TextView) this.dotTextViews.get(i);
                     if (textView2.getAlpha() != 0.0f) {
-                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) View.SCALE_X, 0.0f));
-                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) View.SCALE_Y, 0.0f));
-                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) View.ALPHA, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property3, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.0f));
+                        arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property, 0.0f));
                     }
                 }
                 AnimatorSet animatorSet2 = new AnimatorSet();
@@ -473,7 +487,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
     }
 
-    private static class InnerAnimator {
+    static class InnerAnimator {
         private AnimatorSet animatorSet;
         private float startRadius;
 
@@ -580,7 +594,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView3, int i2, KeyEvent keyEvent) {
-                return this.f$0.lambda$new$0(textView3, i2, keyEvent);
+                return PasscodeView.$r8$lambda$8Aeplxlmafs07aBjE7NT6rkAkjk(this.f$0, textView3, i2, keyEvent);
             }
         });
         this.passwordEditText.addTextChangedListener(new AnonymousClass2());
@@ -618,7 +632,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.checkImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.processDone(false);
             }
         });
         ImageView imageView4 = new ImageView(context);
@@ -631,7 +645,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.fingerprintImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$2(view);
+                this.f$0.checkFingerprint();
             }
         });
         View view = new View(context);
@@ -686,7 +700,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 passcodeButton.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view2) {
-                        return this.f$0.lambda$new$3(view2);
+                        return PasscodeView.m2536$r8$lambda$3tFBSsYu3h6UhL7qNVARC6D2nE(this.f$0, view2);
                     }
                 });
                 passcodeButton.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
@@ -717,7 +731,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             passcodeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$new$6(view2);
+                    PasscodeView.$r8$lambda$NlUHzBjXF_D6_VgUT7Jgxnw7KVU(this.f$0, view2);
                 }
             });
             this.numberFrameLayouts.add(passcodeButton);
@@ -729,12 +743,13 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         checkFingerprintButton();
     }
 
-    public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 6) {
-            return false;
+    public static boolean $r8$lambda$8Aeplxlmafs07aBjE7NT6rkAkjk(PasscodeView passcodeView, TextView textView, int i, KeyEvent keyEvent) {
+        if (i == 6) {
+            passcodeView.processDone(false);
+            return true;
         }
-        processDone(false);
-        return true;
+        passcodeView.getClass();
+        return false;
     }
 
     class AnonymousClass2 implements TextWatcher {
@@ -752,6 +767,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 final MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) PasscodeView.this.backgroundDrawable;
                 motionBackgroundDrawable.setAnimationProgressProvider(null);
                 float posAnimationProgress = motionBackgroundDrawable.getPosAnimationProgress();
+                int i4 = 0;
                 boolean z2 = true;
                 if (i2 == 0 && i3 == 1) {
                     motionBackgroundDrawable.switchToNextPosition(true);
@@ -771,26 +787,31 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     PasscodeView.this.backgroundSpringQueue.offer(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$beforeTextChanged$0(z, motionBackgroundDrawable);
+                            PasscodeView.AnonymousClass2.$r8$lambda$yIfWbzKcAp1LKqEEcryH9gb8w4w(this.f$0, z, motionBackgroundDrawable);
                         }
                     });
                     PasscodeView.this.backgroundSpringNextQueue.offer(Boolean.valueOf(z));
                     ArrayList arrayList = new ArrayList();
                     ArrayList arrayList2 = new ArrayList();
-                    for (int i4 = 0; i4 < PasscodeView.this.backgroundSpringQueue.size(); i4++) {
-                        Runnable runnable = (Runnable) PasscodeView.this.backgroundSpringQueue.get(i4);
-                        if (((Boolean) PasscodeView.this.backgroundSpringNextQueue.get(i4)).booleanValue() != z) {
+                    for (int i5 = 0; i5 < PasscodeView.this.backgroundSpringQueue.size(); i5++) {
+                        Runnable runnable = (Runnable) PasscodeView.this.backgroundSpringQueue.get(i5);
+                        if (((Boolean) PasscodeView.this.backgroundSpringNextQueue.get(i5)).booleanValue() != z) {
                             arrayList.add(runnable);
-                            arrayList2.add(Integer.valueOf(i4));
+                            arrayList2.add(Integer.valueOf(i5));
                         }
                     }
-                    Iterator it = arrayList.iterator();
-                    while (it.hasNext()) {
-                        PasscodeView.this.backgroundSpringQueue.remove((Runnable) it.next());
+                    int size = arrayList.size();
+                    int i6 = 0;
+                    while (i6 < size) {
+                        Object obj = arrayList.get(i6);
+                        i6++;
+                        PasscodeView.this.backgroundSpringQueue.remove((Runnable) obj);
                     }
-                    Iterator it2 = arrayList2.iterator();
-                    while (it2.hasNext()) {
-                        int iIntValue = ((Integer) it2.next()).intValue();
+                    int size2 = arrayList2.size();
+                    while (i4 < size2) {
+                        Object obj2 = arrayList2.get(i4);
+                        i4++;
+                        int iIntValue = ((Integer) obj2).intValue();
                         if (iIntValue < PasscodeView.this.backgroundSpringNextQueue.size()) {
                             PasscodeView.this.backgroundSpringNextQueue.remove(iIntValue);
                         }
@@ -799,7 +820,8 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             }
         }
 
-        public void lambda$beforeTextChanged$0(boolean z, MotionBackgroundDrawable motionBackgroundDrawable) {
+        public static void $r8$lambda$yIfWbzKcAp1LKqEEcryH9gb8w4w(AnonymousClass2 anonymousClass2, boolean z, MotionBackgroundDrawable motionBackgroundDrawable) {
+            anonymousClass2.getClass();
             if (z) {
                 motionBackgroundDrawable.switchToNextPosition(true);
             } else {
@@ -816,88 +838,81 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
     }
 
-    public void lambda$new$1(View view) {
-        processDone(false);
-    }
-
-    public void lambda$new$2(View view) {
-        checkFingerprint();
-    }
-
-    public boolean lambda$new$3(View view) {
-        this.passwordEditText.setText("");
-        this.passwordEditText2.eraseAllCharacters(true);
-        Drawable drawable = this.backgroundDrawable;
+    public static boolean m2536$r8$lambda$3tFBSsYu3h6UhL7qNVARC6D2nE(PasscodeView passcodeView, View view) {
+        passcodeView.passwordEditText.setText("");
+        passcodeView.passwordEditText2.eraseAllCharacters(true);
+        Drawable drawable = passcodeView.backgroundDrawable;
         if (drawable instanceof MotionBackgroundDrawable) {
             ((MotionBackgroundDrawable) drawable).switchToPrevPosition(true);
         }
         return true;
     }
 
-    public void lambda$new$6(View view) {
+    public static void $r8$lambda$NlUHzBjXF_D6_VgUT7Jgxnw7KVU(final PasscodeView passcodeView, View view) {
         boolean zEraseLastCharacter;
         final boolean z;
-        if (this.pinShown) {
+        if (passcodeView.pinShown) {
             int iIntValue = ((Integer) view.getTag()).intValue();
+            int i = 0;
             switch (iIntValue) {
                 case 0:
-                    this.passwordEditText2.appendCharacter("0");
+                    passcodeView.passwordEditText2.appendCharacter("0");
                     zEraseLastCharacter = false;
                     break;
                 case 1:
-                    this.passwordEditText2.appendCharacter("1");
+                    passcodeView.passwordEditText2.appendCharacter("1");
                     zEraseLastCharacter = false;
                     break;
                 case 2:
-                    this.passwordEditText2.appendCharacter("2");
+                    passcodeView.passwordEditText2.appendCharacter("2");
                     zEraseLastCharacter = false;
                     break;
                 case 3:
-                    this.passwordEditText2.appendCharacter("3");
+                    passcodeView.passwordEditText2.appendCharacter("3");
                     zEraseLastCharacter = false;
                     break;
                 case 4:
-                    this.passwordEditText2.appendCharacter("4");
+                    passcodeView.passwordEditText2.appendCharacter("4");
                     zEraseLastCharacter = false;
                     break;
                 case 5:
-                    this.passwordEditText2.appendCharacter("5");
+                    passcodeView.passwordEditText2.appendCharacter("5");
                     zEraseLastCharacter = false;
                     break;
                 case 6:
-                    this.passwordEditText2.appendCharacter("6");
+                    passcodeView.passwordEditText2.appendCharacter("6");
                     zEraseLastCharacter = false;
                     break;
                 case 7:
-                    this.passwordEditText2.appendCharacter("7");
+                    passcodeView.passwordEditText2.appendCharacter("7");
                     zEraseLastCharacter = false;
                     break;
                 case 8:
-                    this.passwordEditText2.appendCharacter("8");
+                    passcodeView.passwordEditText2.appendCharacter("8");
                     zEraseLastCharacter = false;
                     break;
                 case 9:
-                    this.passwordEditText2.appendCharacter("9");
+                    passcodeView.passwordEditText2.appendCharacter("9");
                     zEraseLastCharacter = false;
                     break;
                 case 10:
-                    checkFingerprint();
+                    passcodeView.checkFingerprint();
                     zEraseLastCharacter = false;
                     break;
                 case 11:
-                    zEraseLastCharacter = this.passwordEditText2.eraseLastCharacter();
+                    zEraseLastCharacter = passcodeView.passwordEditText2.eraseLastCharacter();
                     break;
                 default:
                     zEraseLastCharacter = false;
                     break;
             }
-            if (this.passwordEditText2.length() == 4) {
-                processDone(false);
+            if (passcodeView.passwordEditText2.length() == 4) {
+                passcodeView.processDone(false);
             }
             if (iIntValue == 11) {
                 return;
             }
-            Drawable drawable = this.backgroundDrawable;
+            Drawable drawable = passcodeView.backgroundDrawable;
             if (drawable instanceof MotionBackgroundDrawable) {
                 final MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) drawable;
                 motionBackgroundDrawable.setAnimationProgressProvider(null);
@@ -916,55 +931,61 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 }
                 if (z2) {
                     if (posAnimationProgress >= 1.0f) {
-                        animateBackground(motionBackgroundDrawable);
+                        passcodeView.animateBackground(motionBackgroundDrawable);
                         return;
                     }
-                    this.backgroundSpringQueue.offer(new Runnable() {
+                    passcodeView.backgroundSpringQueue.offer(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$new$4(z, motionBackgroundDrawable);
+                            PasscodeView.$r8$lambda$ODjCPCt_gcwu6tuWtb2RZAcyXb0(this.f$0, z, motionBackgroundDrawable);
                         }
                     });
-                    this.backgroundSpringNextQueue.offer(Boolean.valueOf(z));
+                    passcodeView.backgroundSpringNextQueue.offer(Boolean.valueOf(z));
                     ArrayList arrayList = new ArrayList();
                     ArrayList arrayList2 = new ArrayList();
-                    for (int i = 0; i < this.backgroundSpringQueue.size(); i++) {
-                        Runnable runnable = (Runnable) this.backgroundSpringQueue.get(i);
-                        Boolean bool = (Boolean) this.backgroundSpringNextQueue.get(i);
+                    for (int i2 = 0; i2 < passcodeView.backgroundSpringQueue.size(); i2++) {
+                        Runnable runnable = (Runnable) passcodeView.backgroundSpringQueue.get(i2);
+                        Boolean bool = (Boolean) passcodeView.backgroundSpringNextQueue.get(i2);
                         if (bool != null && bool.booleanValue() != z) {
                             arrayList.add(runnable);
-                            arrayList2.add(Integer.valueOf(i));
+                            arrayList2.add(Integer.valueOf(i2));
                         }
                     }
-                    Iterator it = arrayList.iterator();
-                    while (it.hasNext()) {
-                        this.backgroundSpringQueue.remove((Runnable) it.next());
+                    int size = arrayList.size();
+                    int i3 = 0;
+                    while (i3 < size) {
+                        Object obj = arrayList.get(i3);
+                        i3++;
+                        passcodeView.backgroundSpringQueue.remove((Runnable) obj);
                     }
                     Collections.sort(arrayList2, new Comparator() {
                         @Override
-                        public final int compare(Object obj, Object obj2) {
-                            return PasscodeView.lambda$new$5((Integer) obj, (Integer) obj2);
+                        public final int compare(Object obj2, Object obj3) {
+                            return PasscodeView.$r8$lambda$XwH3rO00AdjVez4H4tXn9ep16PU((Integer) obj2, (Integer) obj3);
                         }
                     });
-                    Iterator it2 = arrayList2.iterator();
-                    while (it2.hasNext()) {
-                        this.backgroundSpringNextQueue.remove(((Integer) it2.next()).intValue());
+                    int size2 = arrayList2.size();
+                    while (i < size2) {
+                        Object obj2 = arrayList2.get(i);
+                        i++;
+                        passcodeView.backgroundSpringNextQueue.remove(((Integer) obj2).intValue());
                     }
                 }
             }
         }
     }
 
-    public void lambda$new$4(boolean z, MotionBackgroundDrawable motionBackgroundDrawable) {
+    public static void $r8$lambda$ODjCPCt_gcwu6tuWtb2RZAcyXb0(PasscodeView passcodeView, boolean z, MotionBackgroundDrawable motionBackgroundDrawable) {
+        passcodeView.getClass();
         if (z) {
             motionBackgroundDrawable.switchToNextPosition(true);
         } else {
             motionBackgroundDrawable.switchToPrevPosition(true);
         }
-        animateBackground(motionBackgroundDrawable);
+        passcodeView.animateBackground(motionBackgroundDrawable);
     }
 
-    public static int lambda$new$5(Integer num, Integer num2) {
+    public static int $r8$lambda$XwH3rO00AdjVez4H4tXn9ep16PU(Integer num, Integer num2) {
         return num2.intValue() - num.intValue();
     }
 
@@ -977,7 +998,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         motionBackgroundDrawable.setAnimationProgressProvider(new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                return PasscodeView.lambda$animateBackground$7(floatValueHolder, (MotionBackgroundDrawable) obj);
+                return Float.valueOf(floatValueHolder.getValue() / 100.0f);
             }
         });
         SpringAnimation spring = new SpringAnimation(floatValueHolder).setSpring(new SpringForce(100.0f).setStiffness(300.0f).setDampingRatio(1.0f));
@@ -985,7 +1006,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         spring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                this.f$0.lambda$animateBackground$8(motionBackgroundDrawable, dynamicAnimation, z, f, f2);
+                PasscodeView.m2534$r8$lambda$1w_uAz6Sj8H2M659bmD393DxjY(this.f$0, motionBackgroundDrawable, dynamicAnimation, z, f, f2);
             }
         });
         this.backgroundAnimationSpring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
@@ -997,22 +1018,18 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.backgroundAnimationSpring.start();
     }
 
-    public static Float lambda$animateBackground$7(FloatValueHolder floatValueHolder, MotionBackgroundDrawable motionBackgroundDrawable) {
-        return Float.valueOf(floatValueHolder.getValue() / 100.0f);
-    }
-
-    public void lambda$animateBackground$8(MotionBackgroundDrawable motionBackgroundDrawable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-        this.backgroundAnimationSpring = null;
+    public static void m2534$r8$lambda$1w_uAz6Sj8H2M659bmD393DxjY(PasscodeView passcodeView, MotionBackgroundDrawable motionBackgroundDrawable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        passcodeView.backgroundAnimationSpring = null;
         motionBackgroundDrawable.setAnimationProgressProvider(null);
         if (z) {
             return;
         }
         motionBackgroundDrawable.setPosAnimationProgress(1.0f);
-        if (this.backgroundSpringQueue.isEmpty()) {
+        if (passcodeView.backgroundSpringQueue.isEmpty()) {
             return;
         }
-        ((Runnable) this.backgroundSpringQueue.poll()).run();
-        this.backgroundSpringNextQueue.poll();
+        ((Runnable) passcodeView.backgroundSpringQueue.poll()).run();
+        passcodeView.backgroundSpringNextQueue.poll();
     }
 
     private void setNextFocus(View view, int i) {
@@ -1075,7 +1092,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
         SharedConfig.appLocked = false;
         SharedConfig.saveConfig();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetPasscode, new Object[0]);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didSetPasscode, new Object[0]);
         setOnTouchListener(null);
         PasscodeViewDelegate passcodeViewDelegate = this.delegate;
         if (passcodeViewDelegate != null) {
@@ -1087,17 +1104,17 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processDone$11();
+                PasscodeView.m2538$r8$lambda$aSJvweTmOfBKBlaypRJPpD0lI(this.f$0);
             }
         });
     }
 
-    public void lambda$processDone$11() {
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.shownT, 0.0f);
+    public static void m2538$r8$lambda$aSJvweTmOfBKBlaypRJPpD0lI(final PasscodeView passcodeView) {
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(passcodeView.shownT, 0.0f);
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$processDone$10(valueAnimator);
+                PasscodeView.$r8$lambda$uXvUT2VDeosidrMfLoJ6kuJ0xrU(this.f$0, valueAnimator);
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -1105,8 +1122,8 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             public void onAnimationEnd(Animator animator) {
                 PasscodeView.this.setVisibility(8);
                 PasscodeView.this.onHidden();
-                PasscodeView passcodeView = PasscodeView.this;
-                passcodeView.onAnimationUpdate(passcodeView.shownT = 0.0f);
+                PasscodeView passcodeView2 = PasscodeView.this;
+                passcodeView2.onAnimationUpdate(passcodeView2.shownT = 0.0f);
                 PasscodeView.this.setAlpha(0.0f);
             }
         });
@@ -1115,11 +1132,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         valueAnimatorOfFloat.start();
     }
 
-    public void lambda$processDone$10(ValueAnimator valueAnimator) {
+    public static void $r8$lambda$uXvUT2VDeosidrMfLoJ6kuJ0xrU(PasscodeView passcodeView, ValueAnimator valueAnimator) {
+        passcodeView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.shownT = fFloatValue;
-        onAnimationUpdate(fFloatValue);
-        setAlpha(this.shownT);
+        passcodeView.shownT = fFloatValue;
+        passcodeView.onAnimationUpdate(fFloatValue);
+        passcodeView.setAlpha(passcodeView.shownT);
     }
 
     private void shakeTextView(float f, int i) {
@@ -1188,7 +1206,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onResume$12();
+                        PasscodeView.$r8$lambda$AGkLwZKMMUsJntDEZSpLD4gOXIY(this.f$0);
                     }
                 }, 200L);
             }
@@ -1196,13 +1214,13 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
     }
 
-    public void lambda$onResume$12() {
+    public static void $r8$lambda$AGkLwZKMMUsJntDEZSpLD4gOXIY(PasscodeView passcodeView) {
         EditTextBoldCursor editTextBoldCursor;
-        if (this.retryTextView.getVisibility() == 0 || (editTextBoldCursor = this.passwordEditText) == null) {
+        if (passcodeView.retryTextView.getVisibility() == 0 || (editTextBoldCursor = passcodeView.passwordEditText) == null) {
             return;
         }
         editTextBoldCursor.requestFocus();
-        AndroidUtilities.showKeyboard(this.passwordEditText);
+        AndroidUtilities.showKeyboard(passcodeView.passwordEditText);
     }
 
     public boolean onBackPressed() {
@@ -1227,30 +1245,30 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             this.keyboardNotifier = new KeyboardNotifier((View) getParent(), new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onAttachedToWindow$13((Integer) obj);
+                    PasscodeView.$r8$lambda$Vrs1xp_tNzl11spFsM3gEMcHLXE(this.f$0, (Integer) obj);
                 }
             });
         }
     }
 
-    public void lambda$onAttachedToWindow$13(Integer num) {
+    public static void $r8$lambda$Vrs1xp_tNzl11spFsM3gEMcHLXE(PasscodeView passcodeView, Integer num) {
         float height;
-        if (getContext() == null) {
+        if (passcodeView.getContext() == null) {
             return;
         }
-        boolean z = getContext().getResources().getConfiguration().orientation == 2;
+        boolean z = passcodeView.getContext().getResources().getConfiguration().orientation == 2;
         int iIntValue = num.intValue() - AndroidUtilities.navigationBarHeight;
         if (SharedConfig.passcodeType == 1) {
-            ViewPropertyAnimator viewPropertyAnimatorAnimate = this.passwordFrameLayout.animate();
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = passcodeView.passwordFrameLayout.animate();
             if (iIntValue <= AndroidUtilities.dp(20.0f)) {
                 height = 0.0f;
             } else {
-                height = (((getHeight() - iIntValue) / 2.0f) - (this.passwordFrameLayout.getHeight() / (z ? 1.0f : 2.0f))) - this.passwordFrameLayout.getTop();
+                height = (((passcodeView.getHeight() - iIntValue) / 2.0f) - (passcodeView.passwordFrameLayout.getHeight() / (z ? 1.0f : 2.0f))) - passcodeView.passwordFrameLayout.getTop();
             }
             ViewPropertyAnimator duration = viewPropertyAnimatorAnimate.translationY(height).setDuration(320L);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             duration.setInterpolator(cubicBezierInterpolator).start();
-            this.imageView.animate().alpha(iIntValue > AndroidUtilities.dp(20.0f) ? 0.0f : 1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator);
+            passcodeView.imageView.animate().alpha(iIntValue > AndroidUtilities.dp(20.0f) ? 0.0f : 1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator);
         }
     }
 
@@ -1272,7 +1290,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$showPin$14(valueAnimator2);
+                PasscodeView.m2535$r8$lambda$2Fli5gQf7dRPfhA6cm6fXWN1L4(this.f$0, valueAnimator2);
             }
         });
         this.pinAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1293,18 +1311,19 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.pinAnimator.start();
     }
 
-    public void lambda$showPin$14(ValueAnimator valueAnimator) {
+    public static void m2535$r8$lambda$2Fli5gQf7dRPfhA6cm6fXWN1L4(PasscodeView passcodeView, ValueAnimator valueAnimator) {
+        passcodeView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.numbersFrameLayout.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, fFloatValue));
-        this.numbersFrameLayout.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, fFloatValue));
-        this.numbersFrameLayout.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, fFloatValue));
-        this.passcodeTextView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, fFloatValue));
-        this.passcodeTextView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, fFloatValue));
-        this.passcodeTextView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, fFloatValue));
-        this.passwordEditText2.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, fFloatValue));
+        passcodeView.numbersFrameLayout.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, fFloatValue));
+        passcodeView.numbersFrameLayout.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, fFloatValue));
+        passcodeView.numbersFrameLayout.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, fFloatValue));
+        passcodeView.passcodeTextView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, fFloatValue));
+        passcodeView.passcodeTextView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, fFloatValue));
+        passcodeView.passcodeTextView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, fFloatValue));
+        passcodeView.passwordEditText2.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, fFloatValue));
     }
 
-    private void checkFingerprint() {
+    public void checkFingerprint() {
         Activity activityFindActivity;
         if (Build.VERSION.SDK_INT >= 23 && (activityFindActivity = AndroidUtilities.findActivity(getContext())) != null && this.fingerprintView.getVisibility() == 0 && !ApplicationLoader.mainInterfacePaused) {
             if (!(activityFindActivity instanceof LaunchActivity) || ((LaunchActivity) activityFindActivity).allowShowFingerprintDialog(this)) {
@@ -1520,7 +1539,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return PasscodeView.lambda$onShow$15(view, motionEvent);
+                return PasscodeView.$r8$lambda$H5Dfq1BJIWmILnuepA0ZvnztQII(view, motionEvent);
             }
         });
     }
@@ -1540,19 +1559,20 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         public void onGlobalLayout() {
             float f;
             int iDp;
-            int i = 2;
-            float f2 = 1.0f;
+            char c;
+            char c2;
             PasscodeView.this.setAlpha(1.0f);
             PasscodeView.this.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-            char c = 0;
+            char c3 = 0;
             PasscodeView.this.imageView.getAnimatedDrawable().setCurrentFrame(0, false);
             PasscodeView.this.imageView.getAnimatedDrawable().setCustomEndFrame(37);
             PasscodeView.this.imageView.playAnimation();
+            int i = 1;
             PasscodeView.this.showPin(true);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onGlobalLayout$0();
+                    PasscodeView.AnonymousClass9.$r8$lambda$toWN5b4EL0NI5wepuMSu6ZsPiD0(this.f$0);
                 }
             }, 350L);
             AnimatorSet animatorSet = new AnimatorSet();
@@ -1583,44 +1603,52 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 final AnimatorSet animatorSet2 = null;
                 InnerAnimator innerAnimator = new InnerAnimator();
                 childAt.getLocationInWindow(PasscodeView.this.pos);
-                int measuredWidth = PasscodeView.this.pos[c] + (childAt.getMeasuredWidth() / i);
-                int measuredHeight = PasscodeView.this.pos[1] + (childAt.getMeasuredHeight() / 2);
+                int measuredWidth = PasscodeView.this.pos[c3] + (childAt.getMeasuredWidth() / 2);
+                int measuredHeight = PasscodeView.this.pos[i] + (childAt.getMeasuredHeight() / 2);
                 int i13 = this.val$x - measuredWidth;
                 int i14 = this.val$y - measuredHeight;
                 innerAnimator.startRadius = ((float) Math.sqrt((i13 * i13) + (i14 * i14))) - AndroidUtilities.dp(40.0f);
                 if (i12 != -1) {
                     animatorSet2 = new AnimatorSet();
                     Property property = View.SCALE_X;
-                    float[] fArr = new float[1];
-                    fArr[c] = f2;
+                    float[] fArr = new float[i];
+                    fArr[c3] = 1.0f;
                     ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property, fArr);
                     Property property2 = View.SCALE_Y;
-                    float[] fArr2 = new float[1];
-                    fArr2[c] = f2;
-                    ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property2, fArr2);
-                    Animator[] animatorArr = new Animator[2];
-                    animatorArr[c] = objectAnimatorOfFloat;
-                    animatorArr[1] = objectAnimatorOfFloat2;
-                    animatorSet2.playTogether(animatorArr);
+                    c = 0;
+                    float[] fArr2 = new float[i];
+                    fArr2[0] = 1.0f;
+                    c2 = 1;
+                    animatorSet2.playTogether(objectAnimatorOfFloat, ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property2, fArr2));
                     animatorSet2.setDuration(140L);
                     animatorSet2.setInterpolator(new DecelerateInterpolator());
+                } else {
+                    c = 0;
+                    c2 = 1;
                 }
                 innerAnimator.animatorSet = new AnimatorSet();
                 AnimatorSet animatorSet3 = innerAnimator.animatorSet;
                 Property property3 = View.SCALE_X;
-                float f3 = i12 == -1 ? 0.9f : 0.6f;
-                float f4 = i12 == -1 ? 1.0f : 1.04f;
+                float f2 = i12 == -1 ? 0.9f : 0.6f;
+                float f3 = i12 == -1 ? 1.0f : 1.04f;
                 float[] fArr3 = new float[2];
-                fArr3[c] = f3;
-                fArr3[1] = f4;
-                ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property3, fArr3);
+                fArr3[c] = f2;
+                fArr3[c2] = f3;
+                ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property3, fArr3);
                 Property property4 = View.SCALE_Y;
-                float f5 = i12 == -1 ? 0.9f : 0.6f;
-                float f6 = i12 == -1 ? 1.0f : 1.04f;
+                float f4 = i12 == -1 ? 0.9f : 0.6f;
+                float f5 = i12 == -1 ? 1.0f : 1.04f;
                 float[] fArr4 = new float[2];
-                fArr4[c] = f5;
-                fArr4[1] = f6;
-                animatorSet3.playTogether(objectAnimatorOfFloat3, ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property4, fArr4), ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f));
+                fArr4[c] = f4;
+                fArr4[c2] = f5;
+                ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property4, fArr4);
+                int i15 = childCount;
+                ObjectAnimator objectAnimatorOfFloat4 = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
+                Animator[] animatorArr = new Animator[3];
+                animatorArr[c] = objectAnimatorOfFloat2;
+                animatorArr[c2] = objectAnimatorOfFloat3;
+                animatorArr[2] = objectAnimatorOfFloat4;
+                animatorSet3.playTogether(animatorArr);
                 innerAnimator.animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
@@ -1634,9 +1662,9 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 innerAnimator.animatorSet.setInterpolator(new DecelerateInterpolator());
                 PasscodeView.this.innerAnimators.add(innerAnimator);
                 i12++;
-                i = 2;
-                f2 = 1.0f;
-                c = 0;
+                childCount = i15;
+                c3 = 0;
+                i = 1;
             }
             arrayList.add(ObjectAnimator.ofFloat(PasscodeView.this.backgroundFrameLayout, (Property<FrameLayout, Float>) View.ALPHA, 0.0f, 1.0f));
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -1644,7 +1672,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onGlobalLayout$1(dMax, valueAnimator);
+                    PasscodeView.AnonymousClass9.$r8$lambda$_NbAib0NkyzfFz1PIwilEJyKkoQ(this.f$0, dMax, valueAnimator);
                 }
             });
             TimeInterpolator timeInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -1654,7 +1682,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onGlobalLayout$2(valueAnimator);
+                    PasscodeView.AnonymousClass9.m2539$r8$lambda$vqfHCGUP_1YQr8FSjoTpBXL7KQ(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat2.addListener(new AnimatorListenerAdapter() {
@@ -1697,14 +1725,16 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             animatorSet4.start();
         }
 
-        public void lambda$onGlobalLayout$0() {
+        public static void $r8$lambda$toWN5b4EL0NI5wepuMSu6ZsPiD0(AnonymousClass9 anonymousClass9) {
+            anonymousClass9.getClass();
             try {
                 PasscodeView.this.imageView.performHapticFeedback(3, 2);
             } catch (Exception unused) {
             }
         }
 
-        public void lambda$onGlobalLayout$1(double d, ValueAnimator valueAnimator) {
+        public static void $r8$lambda$_NbAib0NkyzfFz1PIwilEJyKkoQ(AnonymousClass9 anonymousClass9, double d, ValueAnimator valueAnimator) {
+            anonymousClass9.getClass();
             double animatedFraction = d * ((double) valueAnimator.getAnimatedFraction());
             int i = 0;
             while (i < PasscodeView.this.innerAnimators.size()) {
@@ -1718,7 +1748,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             }
         }
 
-        public void lambda$onGlobalLayout$2(ValueAnimator valueAnimator) {
+        public static void m2539$r8$lambda$vqfHCGUP_1YQr8FSjoTpBXL7KQ(AnonymousClass9 anonymousClass9, ValueAnimator valueAnimator) {
             PasscodeView passcodeView = PasscodeView.this;
             passcodeView.onAnimationUpdate(passcodeView.shownT = ((Float) valueAnimator.getAnimatedValue()).floatValue());
         }
@@ -1727,6 +1757,8 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     @Override
     protected void onMeasure(int i, int i2) {
         int iDp;
+        float f;
+        float f2;
         int size = View.MeasureSpec.getSize(i);
         int iDp2 = AndroidUtilities.displaySize.y;
         int iDp3 = AndroidUtilities.dp(28.0f);
@@ -1740,15 +1772,18 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
         if (z) {
             RLottieImageView rLottieImageView = this.imageView;
-            float f = size;
             if (SharedConfig.passcodeType == 0) {
-                f /= 2.0f;
+                f = 40.0f;
+                f2 = size / 2.0f;
+            } else {
+                f = 40.0f;
+                f2 = size;
             }
-            rLottieImageView.setTranslationX((f / 2.0f) - AndroidUtilities.dp(29.0f));
+            rLottieImageView.setTranslationX((f2 / 2.0f) - AndroidUtilities.dp(29.0f));
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.passwordFrameLayout.getLayoutParams();
             layoutParams.width = SharedConfig.passcodeType == 0 ? size / 2 : size;
             layoutParams.height = AndroidUtilities.dp(180.0f);
-            layoutParams.topMargin = ((iDp2 - AndroidUtilities.dp(140.0f)) / 2) + (SharedConfig.passcodeType == 0 ? AndroidUtilities.dp(40.0f) : 0);
+            layoutParams.topMargin = ((iDp2 - AndroidUtilities.dp(140.0f)) / 2) + (SharedConfig.passcodeType == 0 ? AndroidUtilities.dp(f) : 0);
             this.passwordFrameLayout.setLayoutParams(layoutParams);
             FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.numbersContainer.getLayoutParams();
             layoutParams2.height = iDp2;
