@@ -236,13 +236,13 @@ public class ScrimOptions extends Dialog {
         animateOpenTo(false, 2.0f, new Runnable() {
             @Override
             public final void run() {
-                ScrimOptions.m2714$r8$lambda$8V3yZuc7FCgSPXDzxeQbV1JQ6U(this.f$0);
+                ScrimOptions.m2723$r8$lambda$8V3yZuc7FCgSPXDzxeQbV1JQ6U(this.f$0);
             }
         });
         this.windowView.invalidate();
     }
 
-    public static void m2714$r8$lambda$8V3yZuc7FCgSPXDzxeQbV1JQ6U(final ScrimOptions scrimOptions) {
+    public static void m2723$r8$lambda$8V3yZuc7FCgSPXDzxeQbV1JQ6U(final ScrimOptions scrimOptions) {
         scrimOptions.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -266,7 +266,7 @@ public class ScrimOptions extends Dialog {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ScrimOptions.m2713$r8$lambda$6MkXxIYJUu4hMIegmVvwNJvYM(this.f$0, valueAnimator2);
+                ScrimOptions.m2722$r8$lambda$6MkXxIYJUu4hMIegmVvwNJvYM(this.f$0, valueAnimator2);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -289,7 +289,7 @@ public class ScrimOptions extends Dialog {
         this.openAnimator.start();
     }
 
-    public static void m2713$r8$lambda$6MkXxIYJUu4hMIegmVvwNJvYM(ScrimOptions scrimOptions, ValueAnimator valueAnimator) {
+    public static void m2722$r8$lambda$6MkXxIYJUu4hMIegmVvwNJvYM(ScrimOptions scrimOptions, ValueAnimator valueAnimator) {
         scrimOptions.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         scrimOptions.openProgress = fFloatValue;

@@ -81,7 +81,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
     public final ArrayList selected = new ArrayList();
     private boolean shownEditItem = true;
 
-    public static boolean m1398$r8$lambda$ifxmYZdj0M51BTjeMLg3okpfY(View view, MotionEvent motionEvent) {
+    public static boolean m1404$r8$lambda$ifxmYZdj0M51BTjeMLg3okpfY(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -106,7 +106,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         this.countText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return QuickRepliesActivity.m1398$r8$lambda$ifxmYZdj0M51BTjeMLg3okpfY(view, motionEvent);
+                return QuickRepliesActivity.m1404$r8$lambda$ifxmYZdj0M51BTjeMLg3okpfY(view, motionEvent);
             }
         });
         ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateActionMode.addItem(1, R.drawable.msg_edit);
@@ -192,12 +192,12 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             QuickRepliesActivity.openRenameReplyAlert(QuickRepliesActivity.this.getContext(), ((BaseFragment) QuickRepliesActivity.this).currentAccount, null, quickReplyFindReply, ((BaseFragment) QuickRepliesActivity.this).resourceProvider, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    QuickRepliesActivity.AnonymousClass1.m1401$r8$lambda$n3SewBrXU1N7eqWWi1x8Slu0U(this.f$0, iIntValue, (String) obj);
+                    QuickRepliesActivity.AnonymousClass1.m1407$r8$lambda$n3SewBrXU1N7eqWWi1x8Slu0U(this.f$0, iIntValue, (String) obj);
                 }
             });
         }
 
-        public static void m1401$r8$lambda$n3SewBrXU1N7eqWWi1x8Slu0U(AnonymousClass1 anonymousClass1, int i, String str) {
+        public static void m1407$r8$lambda$n3SewBrXU1N7eqWWi1x8Slu0U(AnonymousClass1 anonymousClass1, int i, String str) {
             QuickRepliesActivity.this.clearSelection();
             QuickRepliesController.getInstance(((BaseFragment) QuickRepliesActivity.this).currentAccount).renameReply(i, str);
         }
@@ -460,7 +460,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         final Utilities.Callback callback2 = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                QuickRepliesActivity.m1396$r8$lambda$VHsMSvYMPiYKY5kqrnTah4CNd4(runnableArr, valueAnimatorArr, textView2, textView, (Boolean) obj);
+                QuickRepliesActivity.m1402$r8$lambda$VHsMSvYMPiYKY5kqrnTah4CNd4(runnableArr, valueAnimatorArr, textView2, textView, (Boolean) obj);
             }
         };
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
@@ -554,7 +554,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             r11.overrideDismissListener(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    QuickRepliesActivity.m1394$r8$lambda$QvBAgX4oJR40YLK8c3o2Ep4iU(editTextBoldCursor, (Runnable) obj);
+                    QuickRepliesActivity.m1400$r8$lambda$QvBAgX4oJR40YLK8c3o2Ep4iU(editTextBoldCursor, (Runnable) obj);
                 }
             });
             AlertDialog alertDialogCreate2 = r11.create();
@@ -577,7 +577,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
     }
 
-    public static void m1396$r8$lambda$VHsMSvYMPiYKY5kqrnTah4CNd4(Runnable[] runnableArr, ValueAnimator[] valueAnimatorArr, final TextView textView, final TextView textView2, Boolean bool) {
+    public static void m1402$r8$lambda$VHsMSvYMPiYKY5kqrnTah4CNd4(Runnable[] runnableArr, ValueAnimator[] valueAnimatorArr, final TextView textView, final TextView textView2, Boolean bool) {
         AndroidUtilities.cancelRunOnUIThread(runnableArr[0]);
         ValueAnimator valueAnimator = valueAnimatorArr[0];
         if (valueAnimator != null) {
@@ -635,7 +635,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void m1394$r8$lambda$QvBAgX4oJR40YLK8c3o2Ep4iU(EditTextBoldCursor editTextBoldCursor, Runnable runnable) {
+    public static void m1400$r8$lambda$QvBAgX4oJR40YLK8c3o2Ep4iU(EditTextBoldCursor editTextBoldCursor, Runnable runnable) {
         AndroidUtilities.hideKeyboard(editTextBoldCursor);
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }

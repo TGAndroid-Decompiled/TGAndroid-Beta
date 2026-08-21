@@ -118,7 +118,7 @@ public class LogoutActivity extends BaseFragment {
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                LogoutActivity.m3524$r8$lambda$jKfizhyDcxi7l9RfNgzUDAVpJY(this.f$0, view, i, f, f2);
+                LogoutActivity.m3532$r8$lambda$jKfizhyDcxi7l9RfNgzUDAVpJY(this.f$0, view, i, f, f2);
             }
         });
         this.listView.setSections();
@@ -126,7 +126,7 @@ public class LogoutActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public static void m3524$r8$lambda$jKfizhyDcxi7l9RfNgzUDAVpJY(LogoutActivity logoutActivity, View view, int i, float f, float f2) {
+    public static void m3532$r8$lambda$jKfizhyDcxi7l9RfNgzUDAVpJY(LogoutActivity logoutActivity, View view, int i, float f, float f2) {
         Integer numValueOf = null;
         if (i == logoutActivity.addAccountRow) {
             int i2 = 0;

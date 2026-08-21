@@ -200,7 +200,7 @@ public class VideoPlayerRewinder {
                     videoPlayer2.seekTo(j, false, new Runnable() {
                         @Override
                         public final void run() {
-                            VideoPlayerRewinder.m1153$r8$lambda$fEERfiqyKnmLcZ80xcHeqUUew(this.f$0);
+                            VideoPlayerRewinder.m1159$r8$lambda$fEERfiqyKnmLcZ80xcHeqUUew(this.f$0);
                         }
                     });
                 }
@@ -209,7 +209,7 @@ public class VideoPlayerRewinder {
         setPlaybackSpeed(this.playSpeed * rewindSpeed);
     }
 
-    public static void m1153$r8$lambda$fEERfiqyKnmLcZ80xcHeqUUew(VideoPlayerRewinder videoPlayerRewinder) {
+    public static void m1159$r8$lambda$fEERfiqyKnmLcZ80xcHeqUUew(VideoPlayerRewinder videoPlayerRewinder) {
         VideoFramesRewinder videoFramesRewinder = videoPlayerRewinder.framesRewinder;
         if (videoFramesRewinder != null) {
             videoFramesRewinder.clearCurrent();

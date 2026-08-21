@@ -44,7 +44,7 @@ public class StableAnimator extends TimeAnimator {
         setTimeListener(new TimeAnimator.TimeListener() {
             @Override
             public final void onTimeUpdate(TimeAnimator timeAnimator, long j, long j2) {
-                StableAnimator.m2819$r8$lambda$JW24i3o97WzNdDy57JetywWaRA(this.f$0, timeAnimator, j, j2);
+                StableAnimator.m2828$r8$lambda$JW24i3o97WzNdDy57JetywWaRA(this.f$0, timeAnimator, j, j2);
             }
         });
         int duration = (int) (getDuration() / AndroidUtilities.screenRefreshTime);
@@ -53,7 +53,7 @@ public class StableAnimator extends TimeAnimator {
         super.start();
     }
 
-    public static void m2819$r8$lambda$JW24i3o97WzNdDy57JetywWaRA(StableAnimator stableAnimator, TimeAnimator timeAnimator, long j, long j2) {
+    public static void m2828$r8$lambda$JW24i3o97WzNdDy57JetywWaRA(StableAnimator stableAnimator, TimeAnimator timeAnimator, long j, long j2) {
         int i;
         int i2 = stableAnimator.times;
         if (i2 > 0 && (i = stableAnimator.totalTimes) > 0) {

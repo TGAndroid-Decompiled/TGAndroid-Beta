@@ -1143,7 +1143,7 @@ public abstract class MessageEntityView extends EntityView {
             }, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    MessageEntityView.m2514$r8$lambda$f1ac0PpokJUyMxQsIQ_HjZDFT0(this.f$0, (Integer) obj, (Integer) obj2);
+                    MessageEntityView.m2524$r8$lambda$f1ac0PpokJUyMxQsIQ_HjZDFT0(this.f$0, (Integer) obj, (Integer) obj2);
                 }
             });
         }
@@ -1157,7 +1157,7 @@ public abstract class MessageEntityView extends EntityView {
         }
     }
 
-    public static void m2514$r8$lambda$f1ac0PpokJUyMxQsIQ_HjZDFT0(final MessageEntityView messageEntityView, Integer num, Integer num2) {
+    public static void m2524$r8$lambda$f1ac0PpokJUyMxQsIQ_HjZDFT0(final MessageEntityView messageEntityView, Integer num, Integer num2) {
         messageEntityView.getClass();
         messageEntityView.videoWidth = num.intValue();
         messageEntityView.videoHeight = num2.intValue();

@@ -95,7 +95,7 @@ public class BusinessBotButton extends FrameLayout {
         clickableAnimatedTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BusinessBotButton.m1362$r8$lambda$550M6GcBr_Sg4fGMNk_Htw8rcY(this.f$0, view);
+                BusinessBotButton.m1368$r8$lambda$550M6GcBr_Sg4fGMNk_Htw8rcY(this.f$0, view);
             }
         });
         clickableAnimatedTextView.setOnWidthUpdatedListener(new Runnable() {
@@ -115,13 +115,13 @@ public class BusinessBotButton extends FrameLayout {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BusinessBotButton.m1361$r8$lambda$zCiV6C2OIaXYF5zw34UD61q81U(this.f$0, chatActivity, resourcesProvider, view);
+                BusinessBotButton.m1367$r8$lambda$zCiV6C2OIaXYF5zw34UD61q81U(this.f$0, chatActivity, resourcesProvider, view);
             }
         });
         addView(imageView, LayoutHelper.createFrame(32, 32.0f, 21, 8.0f, 0.0f, 6.0f, 0.0f));
     }
 
-    public static void m1362$r8$lambda$550M6GcBr_Sg4fGMNk_Htw8rcY(BusinessBotButton businessBotButton, View view) {
+    public static void m1368$r8$lambda$550M6GcBr_Sg4fGMNk_Htw8rcY(BusinessBotButton businessBotButton, View view) {
         boolean z = businessBotButton.paused;
         businessBotButton.paused = !z;
         businessBotButton.pauseButton.setText(LocaleController.getString(!z ? R.string.BizBotStart : R.string.BizBotStop), true);
@@ -139,7 +139,7 @@ public class BusinessBotButton extends FrameLayout {
         ConnectionsManager.getInstance(businessBotButton.currentAccount).sendRequest(toggleconnectedbotpaused, null);
     }
 
-    public static void m1361$r8$lambda$zCiV6C2OIaXYF5zw34UD61q81U(final BusinessBotButton businessBotButton, ChatActivity chatActivity, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m1367$r8$lambda$zCiV6C2OIaXYF5zw34UD61q81U(final BusinessBotButton businessBotButton, ChatActivity chatActivity, Theme.ResourcesProvider resourcesProvider, View view) {
         businessBotButton.getClass();
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(chatActivity.getLayoutContainer(), resourcesProvider, businessBotButton.menuView);
         itemOptionsMakeOptions.add(R.drawable.msg_cancel, (CharSequence) LocaleController.getString(R.string.BizBotRemove), true, new Runnable() {

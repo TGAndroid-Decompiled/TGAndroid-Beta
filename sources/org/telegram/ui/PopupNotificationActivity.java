@@ -680,14 +680,14 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         builder.setNegativeButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                PopupNotificationActivity.m3763$r8$lambda$F2SEjS59ijpvlZkyVaCYPuPZTc(this.f$0, alertDialog, i2);
+                PopupNotificationActivity.m3771$r8$lambda$F2SEjS59ijpvlZkyVaCYPuPZTc(this.f$0, alertDialog, i2);
             }
         });
         builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
         builder.show();
     }
 
-    public static void m3763$r8$lambda$F2SEjS59ijpvlZkyVaCYPuPZTc(PopupNotificationActivity popupNotificationActivity, AlertDialog alertDialog, int i) {
+    public static void m3771$r8$lambda$F2SEjS59ijpvlZkyVaCYPuPZTc(PopupNotificationActivity popupNotificationActivity, AlertDialog alertDialog, int i) {
         popupNotificationActivity.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -1011,7 +1011,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                         textView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                PopupNotificationActivity.m3761$r8$lambda$0ZtfsiHWK_MLtvBGQtp_ZoMqlU(i6, messageObject, view);
+                                PopupNotificationActivity.m3769$r8$lambda$0ZtfsiHWK_MLtvBGQtp_ZoMqlU(i6, messageObject, view);
                             }
                         });
                         linearLayout3 = linearLayout2;
@@ -1044,7 +1044,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         return linearLayout;
     }
 
-    public static void m3761$r8$lambda$0ZtfsiHWK_MLtvBGQtp_ZoMqlU(int i, MessageObject messageObject, View view) {
+    public static void m3769$r8$lambda$0ZtfsiHWK_MLtvBGQtp_ZoMqlU(int i, MessageObject messageObject, View view) {
         TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) view.getTag();
         if (keyboardButtonProto != null) {
             SendMessagesHelper.getInstance(i).sendNotificationCallback(messageObject.getDialogId(), messageObject.getId(), keyboardButtonProto.getData());

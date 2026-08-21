@@ -412,13 +412,13 @@ public class DownloadController extends BaseController implements NotificationCe
             getConnectionsManager().sendRequest(new TL_account.getAutoDownloadSettings(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    DownloadController.m417$r8$lambda$3XCINFDrpmT681ezG92zUagPh8(this.f$0, tLObject, tL_error);
+                    DownloadController.m425$r8$lambda$3XCINFDrpmT681ezG92zUagPh8(this.f$0, tLObject, tL_error);
                 }
             });
         }
     }
 
-    public static void m417$r8$lambda$3XCINFDrpmT681ezG92zUagPh8(final DownloadController downloadController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m425$r8$lambda$3XCINFDrpmT681ezG92zUagPh8(final DownloadController downloadController, final TLObject tLObject, TLRPC.TL_error tL_error) {
         downloadController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1621,7 +1621,7 @@ public class DownloadController extends BaseController implements NotificationCe
                         downloadController.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                             @Override
                             public final void run() {
-                                DownloadController.m418$r8$lambda$P6r9uZLaAu0ltVJKMeLziP6q5U(this.f$0, messageObject);
+                                DownloadController.m426$r8$lambda$P6r9uZLaAu0ltVJKMeLziP6q5U(this.f$0, messageObject);
                             }
                         });
                         return;
@@ -1633,7 +1633,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 downloadController.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        DownloadController.m418$r8$lambda$P6r9uZLaAu0ltVJKMeLziP6q5U(this.f$0, messageObject);
+                        DownloadController.m426$r8$lambda$P6r9uZLaAu0ltVJKMeLziP6q5U(this.f$0, messageObject);
                     }
                 });
                 return;
@@ -1641,7 +1641,7 @@ public class DownloadController extends BaseController implements NotificationCe
         }
     }
 
-    public static void m418$r8$lambda$P6r9uZLaAu0ltVJKMeLziP6q5U(DownloadController downloadController, MessageObject messageObject) {
+    public static void m426$r8$lambda$P6r9uZLaAu0ltVJKMeLziP6q5U(DownloadController downloadController, MessageObject messageObject) {
         downloadController.getClass();
         try {
             downloadController.getMessagesStorage().getDatabase().executeFast(String.format(Locale.ENGLISH, "UPDATE downloading_documents SET state = 1, date = %d WHERE hash = %d AND id = %d", Long.valueOf(System.currentTimeMillis()), Integer.valueOf(messageObject.getDocument().dc_id), Long.valueOf(messageObject.getDocument().id))).stepThis().dispose();
@@ -1684,7 +1684,7 @@ public class DownloadController extends BaseController implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DownloadController.m419$r8$lambda$f7_RkOXf_LiagAZYva90hZkd4(this.f$0, messageObject, i);
+                DownloadController.m427$r8$lambda$f7_RkOXf_LiagAZYva90hZkd4(this.f$0, messageObject, i);
             }
         });
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
@@ -1695,7 +1695,7 @@ public class DownloadController extends BaseController implements NotificationCe
         });
     }
 
-    public static void m419$r8$lambda$f7_RkOXf_LiagAZYva90hZkd4(DownloadController downloadController, MessageObject messageObject, int i) {
+    public static void m427$r8$lambda$f7_RkOXf_LiagAZYva90hZkd4(DownloadController downloadController, MessageObject messageObject, int i) {
         downloadController.getClass();
         TLRPC.Document document = messageObject.getDocument();
         for (int i2 = 0; i2 < downloadController.downloadingFiles.size(); i2++) {
@@ -1884,12 +1884,12 @@ public class DownloadController extends BaseController implements NotificationCe
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DownloadController.m420$r8$lambda$mso2FcYyMfwylGUaFPzFDYSwQ(this.f$0, arrayList);
+                DownloadController.m428$r8$lambda$mso2FcYyMfwylGUaFPzFDYSwQ(this.f$0, arrayList);
             }
         });
     }
 
-    public static void m420$r8$lambda$mso2FcYyMfwylGUaFPzFDYSwQ(DownloadController downloadController, ArrayList arrayList) {
+    public static void m428$r8$lambda$mso2FcYyMfwylGUaFPzFDYSwQ(DownloadController downloadController, ArrayList arrayList) {
         downloadController.getClass();
         try {
             SQLitePreparedStatement sQLitePreparedStatementExecuteFast = downloadController.getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");

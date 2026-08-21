@@ -853,7 +853,7 @@ public class EmojiThemes {
         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                EmojiThemes.m1265$r8$lambda$D2OoQt7FvhF17OM8fYlxVX5oHM(resultCallback, j, imageReceiver2, z, z2, z3);
+                EmojiThemes.m1271$r8$lambda$D2OoQt7FvhF17OM8fYlxVX5oHM(resultCallback, j, imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -869,7 +869,7 @@ public class EmojiThemes {
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 
-    public static void m1265$r8$lambda$D2OoQt7FvhF17OM8fYlxVX5oHM(ResultCallback resultCallback, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void m1271$r8$lambda$D2OoQt7FvhF17OM8fYlxVX5oHM(ResultCallback resultCallback, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (!z || bitmapSafe == null) {
             return;

@@ -232,7 +232,7 @@ public class AddressBarList extends FrameLayout {
                 arrayList.add(Address2View.Factory.as(0, str2, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        AddressBarList.m5022$r8$lambda$stNWdARcmIlhL7aOAk6QpqvU(this.f$0, str2, view);
+                        AddressBarList.m5033$r8$lambda$stNWdARcmIlhL7aOAk6QpqvU(this.f$0, str2, view);
                     }
                 }, i2 == 0, i2 == recentSearches.size() - 1, this));
                 i2++;
@@ -264,7 +264,7 @@ public class AddressBarList extends FrameLayout {
         }
     }
 
-    public static void m5022$r8$lambda$stNWdARcmIlhL7aOAk6QpqvU(AddressBarList addressBarList, String str, View view) {
+    public static void m5033$r8$lambda$stNWdARcmIlhL7aOAk6QpqvU(AddressBarList addressBarList, String str, View view) {
         Utilities.Callback callback = addressBarList.onQueryInsertClick;
         if (callback != null) {
             callback.run(str);
@@ -442,12 +442,12 @@ public class AddressBarList extends FrameLayout {
         this.lastTask = new HttpGetTask(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                AddressBarList.m5019$r8$lambda$BBrE1eH0RTg_UqaYETTgoD4liM(this.f$0, z, (String) obj);
+                AddressBarList.m5030$r8$lambda$BBrE1eH0RTg_UqaYETTgoD4liM(this.f$0, z, (String) obj);
             }
         }).execute(SearchEngine.getCurrent().getAutocompleteURL(str));
     }
 
-    public static void m5019$r8$lambda$BBrE1eH0RTg_UqaYETTgoD4liM(final AddressBarList addressBarList, final boolean z, final String str) {
+    public static void m5030$r8$lambda$BBrE1eH0RTg_UqaYETTgoD4liM(final AddressBarList addressBarList, final boolean z, final String str) {
         addressBarList.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1008,7 +1008,7 @@ public class AddressBarList extends FrameLayout {
                 Collections.sort(arrayList, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return AddressBarList.m5021$r8$lambda$M1RWMsq_khurYUX4HFPRF86Yew((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
+                        return AddressBarList.m5032$r8$lambda$M1RWMsq_khurYUX4HFPRF86Yew((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
                     }
                 });
             } catch (Exception e) {
@@ -1047,7 +1047,7 @@ public class AddressBarList extends FrameLayout {
         sharedPreferences.edit().putString("queries_json", jSONArray2.toString()).apply();
     }
 
-    public static int m5021$r8$lambda$M1RWMsq_khurYUX4HFPRF86Yew(QueryEntry queryEntry, QueryEntry queryEntry2) {
+    public static int m5032$r8$lambda$M1RWMsq_khurYUX4HFPRF86Yew(QueryEntry queryEntry, QueryEntry queryEntry2) {
         return (int) (queryEntry2.rank - queryEntry.rank);
     }
 

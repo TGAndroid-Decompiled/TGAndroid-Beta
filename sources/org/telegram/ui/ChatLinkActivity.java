@@ -490,7 +490,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatLinkActivity.m1861$r8$lambda$feNablx9h8fsB1rJRmiMYqooNo(this.f$0, alertDialogArr, iSendRequest);
+                ChatLinkActivity.m1867$r8$lambda$feNablx9h8fsB1rJRmiMYqooNo(this.f$0, alertDialogArr, iSendRequest);
             }
         }, 500L);
     }
@@ -530,7 +530,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         chatLinkActivity.finishFragment();
     }
 
-    public static void m1861$r8$lambda$feNablx9h8fsB1rJRmiMYqooNo(final ChatLinkActivity chatLinkActivity, AlertDialog[] alertDialogArr, final int i) {
+    public static void m1867$r8$lambda$feNablx9h8fsB1rJRmiMYqooNo(final ChatLinkActivity chatLinkActivity, AlertDialog[] alertDialogArr, final int i) {
         chatLinkActivity.getClass();
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog == null) {
@@ -641,7 +641,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             getMessagesController().convertToMegaGroup(getParentActivity(), chat.id, this, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j) {
-                    ChatLinkActivity.m1859$r8$lambda$HavA6xXd0GGHFhxYdidY0lZZU(this.f$0, baseFragment, j);
+                    ChatLinkActivity.m1865$r8$lambda$HavA6xXd0GGHFhxYdidY0lZZU(this.f$0, baseFragment, j);
                 }
             });
             return;
@@ -664,7 +664,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         }, 500L);
     }
 
-    public static void m1859$r8$lambda$HavA6xXd0GGHFhxYdidY0lZZU(ChatLinkActivity chatLinkActivity, BaseFragment baseFragment, long j) {
+    public static void m1865$r8$lambda$HavA6xXd0GGHFhxYdidY0lZZU(ChatLinkActivity chatLinkActivity, BaseFragment baseFragment, long j) {
         if (j == 0) {
             chatLinkActivity.getClass();
         } else {
@@ -1076,7 +1076,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                     ChatLinkActivity.this.getMessagesController().convertToMegaGroup(ChatLinkActivity.this.getParentActivity(), this.val$chat.id, ChatLinkActivity.this, new MessagesStorage.LongCallback() {
                         @Override
                         public final void run(long j) {
-                            ChatLinkActivity.ListAdapter.AnonymousClass1.m1863$r8$lambda$11vV_bNlf2IWHN3BUOVXo_wsLM(this.f$0, runnable2, j);
+                            ChatLinkActivity.ListAdapter.AnonymousClass1.m1869$r8$lambda$11vV_bNlf2IWHN3BUOVXo_wsLM(this.f$0, runnable2, j);
                         }
                     }, runnable);
                 } else {
@@ -1084,7 +1084,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 }
             }
 
-            public static void m1863$r8$lambda$11vV_bNlf2IWHN3BUOVXo_wsLM(AnonymousClass1 anonymousClass1, Runnable runnable, long j) {
+            public static void m1869$r8$lambda$11vV_bNlf2IWHN3BUOVXo_wsLM(AnonymousClass1 anonymousClass1, Runnable runnable, long j) {
                 if (j == 0) {
                     anonymousClass1.getClass();
                     return;
@@ -1127,12 +1127,12 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 }, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.AnonymousClass1.m1864$r8$lambda$E_KZHUUGdBzBazsyfkuhp34fSo(this.f$0, runnable);
+                        ChatLinkActivity.ListAdapter.AnonymousClass1.m1870$r8$lambda$E_KZHUUGdBzBazsyfkuhp34fSo(this.f$0, runnable);
                     }
                 });
             }
 
-            public static void m1864$r8$lambda$E_KZHUUGdBzBazsyfkuhp34fSo(AnonymousClass1 anonymousClass1, Runnable runnable) {
+            public static void m1870$r8$lambda$E_KZHUUGdBzBazsyfkuhp34fSo(AnonymousClass1 anonymousClass1, Runnable runnable) {
                 ChatLinkActivity.this.joinRequestProgress = false;
                 runnable.run();
             }
@@ -1141,12 +1141,12 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 return new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.AnonymousClass1.m1866$r8$lambda$sZxQV8vCAXSMukS3icRJCTg8HI(this.f$0, runnable);
+                        ChatLinkActivity.ListAdapter.AnonymousClass1.m1872$r8$lambda$sZxQV8vCAXSMukS3icRJCTg8HI(this.f$0, runnable);
                     }
                 };
             }
 
-            public static void m1866$r8$lambda$sZxQV8vCAXSMukS3icRJCTg8HI(AnonymousClass1 anonymousClass1, Runnable runnable) {
+            public static void m1872$r8$lambda$sZxQV8vCAXSMukS3icRJCTg8HI(AnonymousClass1 anonymousClass1, Runnable runnable) {
                 ChatLinkActivity.this.joinToSendProgress = false;
                 ChatLinkActivity.this.joinRequestProgress = false;
                 runnable.run();
@@ -1163,13 +1163,13 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 migrateIfNeeded(runnableOverrideCancel, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.AnonymousClass1.m1867$r8$lambda$yq6lzvo1CABliAvK5joi61lmJs(this.f$0, chat, z, runnable);
+                        ChatLinkActivity.ListAdapter.AnonymousClass1.m1873$r8$lambda$yq6lzvo1CABliAvK5joi61lmJs(this.f$0, chat, z, runnable);
                     }
                 });
                 return true;
             }
 
-            public static void m1867$r8$lambda$yq6lzvo1CABliAvK5joi61lmJs(final AnonymousClass1 anonymousClass1, final TLRPC.Chat chat, final boolean z, final Runnable runnable) {
+            public static void m1873$r8$lambda$yq6lzvo1CABliAvK5joi61lmJs(final AnonymousClass1 anonymousClass1, final TLRPC.Chat chat, final boolean z, final Runnable runnable) {
                 anonymousClass1.getClass();
                 chat.join_to_send = z;
                 ChatLinkActivity.this.getMessagesController().toggleChatJoinToSend(chat.id, z, new Runnable() {
@@ -1200,12 +1200,12 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 }, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.AnonymousClass1.m1862$r8$lambda$pjIyjZdHQEzdEgop3n9uqXq20(this.f$0, chat);
+                        ChatLinkActivity.ListAdapter.AnonymousClass1.m1868$r8$lambda$pjIyjZdHQEzdEgop3n9uqXq20(this.f$0, chat);
                     }
                 });
             }
 
-            public static void m1862$r8$lambda$pjIyjZdHQEzdEgop3n9uqXq20(AnonymousClass1 anonymousClass1, TLRPC.Chat chat) {
+            public static void m1868$r8$lambda$pjIyjZdHQEzdEgop3n9uqXq20(AnonymousClass1 anonymousClass1, TLRPC.Chat chat) {
                 anonymousClass1.getClass();
                 chat.join_request = true;
                 anonymousClass1.isJoinRequest = true;

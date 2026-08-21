@@ -48,7 +48,7 @@ public abstract class FloatingDebugController {
             floatingDebugView.dismiss(new Runnable() {
                 @Override
                 public final void run() {
-                    FloatingDebugController.m2335$r8$lambda$vjnbHUwRPIFZGxpn6HtKtrH0fU(launchActivity);
+                    FloatingDebugController.m2345$r8$lambda$vjnbHUwRPIFZGxpn6HtKtrH0fU(launchActivity);
                 }
             });
         }
@@ -58,7 +58,7 @@ public abstract class FloatingDebugController {
         }
     }
 
-    public static void m2335$r8$lambda$vjnbHUwRPIFZGxpn6HtKtrH0fU(LaunchActivity launchActivity) {
+    public static void m2345$r8$lambda$vjnbHUwRPIFZGxpn6HtKtrH0fU(LaunchActivity launchActivity) {
         launchActivity.getMainContainerFrameLayout().removeView(debugView);
         debugView = null;
     }

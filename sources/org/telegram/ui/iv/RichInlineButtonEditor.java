@@ -131,12 +131,12 @@ public abstract class RichInlineButtonEditor {
         inlineButtonEdit.showInputDialog(LocaleController.getString(z2 ? R.string.RichEditorEditCopyButton : R.string.RichEditorCreateCopyButton), LocaleController.getString(R.string.RichEditorButtonCopyText), label, false, !z, new EditTextCaption.InputDialogCallback() {
             @Override
             public final void run(String str) {
-                RichInlineButtonEditor.m4991$r8$lambda$k4UyibSmgnkrb0D_htrUlGmT84(inlineButtonEdit, str);
+                RichInlineButtonEditor.m5002$r8$lambda$k4UyibSmgnkrb0D_htrUlGmT84(inlineButtonEdit, str);
             }
         });
     }
 
-    public static void m4991$r8$lambda$k4UyibSmgnkrb0D_htrUlGmT84(RichEditorListView.InlineButtonEdit inlineButtonEdit, String str) {
+    public static void m5002$r8$lambda$k4UyibSmgnkrb0D_htrUlGmT84(RichEditorListView.InlineButtonEdit inlineButtonEdit, String str) {
         if (TextUtils.isEmpty(str)) {
             return;
         }
@@ -194,12 +194,12 @@ public abstract class RichInlineButtonEditor {
         showBlockTextAndValueDialog(context, resourcesProvider, blockButtonEdit, z, LocaleController.getString(zExists ? R.string.RichEditorEditCopyButton : R.string.RichEditorCreateCopyButton), LocaleController.getString(R.string.RichEditorButtonCopyText), type instanceof TL_keyboard.TL_inlineButtonTypeCopy ? ((TL_keyboard.TL_inlineButtonTypeCopy) type).copy_text : "", new BlockApply() {
             @Override
             public final void run(String str, String str2) {
-                RichInlineButtonEditor.m4995$r8$lambda$plAy2ajP4WFvyMss9W5bArwOH0(blockButtonEdit, str, str2);
+                RichInlineButtonEditor.m5006$r8$lambda$plAy2ajP4WFvyMss9W5bArwOH0(blockButtonEdit, str, str2);
             }
         });
     }
 
-    public static void m4995$r8$lambda$plAy2ajP4WFvyMss9W5bArwOH0(RichEditorListView.BlockButtonEdit blockButtonEdit, String str, String str2) {
+    public static void m5006$r8$lambda$plAy2ajP4WFvyMss9W5bArwOH0(RichEditorListView.BlockButtonEdit blockButtonEdit, String str, String str2) {
         TL_keyboard.TL_inlineButtonTypeCopy tL_inlineButtonTypeCopy = new TL_keyboard.TL_inlineButtonTypeCopy();
         tL_inlineButtonTypeCopy.copy_text = str2;
         blockButtonEdit.apply(str, tL_inlineButtonTypeCopy);
@@ -217,7 +217,7 @@ public abstract class RichInlineButtonEditor {
         builderCreateInputDialogBuilder.setTitle(str).setView(linearLayout).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                RichInlineButtonEditor.m4992$r8$lambda$kiEtvQxyO3MGj9F2wc7QVpOmzw(editTextBoldCursorCreateField, editTextBoldCursorCreateField2, blockApply, alertDialog, i);
+                RichInlineButtonEditor.m5003$r8$lambda$kiEtvQxyO3MGj9F2wc7QVpOmzw(editTextBoldCursorCreateField, editTextBoldCursorCreateField2, blockApply, alertDialog, i);
             }
         });
         addCancelAndDelete(builderCreateInputDialogBuilder, blockButtonEdit);
@@ -227,7 +227,7 @@ public abstract class RichInlineButtonEditor {
         showInputDialog(builderCreateInputDialogBuilder, editTextBoldCursorCreateField, blockButtonEdit.exists() ? -3 : 0, resourcesProvider);
     }
 
-    public static void m4992$r8$lambda$kiEtvQxyO3MGj9F2wc7QVpOmzw(EditTextBoldCursor editTextBoldCursor, EditTextBoldCursor editTextBoldCursor2, BlockApply blockApply, AlertDialog alertDialog, int i) {
+    public static void m5003$r8$lambda$kiEtvQxyO3MGj9F2wc7QVpOmzw(EditTextBoldCursor editTextBoldCursor, EditTextBoldCursor editTextBoldCursor2, BlockApply blockApply, AlertDialog alertDialog, int i) {
         String strTrim = editTextBoldCursor.getText().toString().trim();
         String strTrim2 = editTextBoldCursor2.getText().toString().trim();
         if (TextUtils.isEmpty(strTrim) || TextUtils.isEmpty(strTrim2)) {
@@ -247,7 +247,7 @@ public abstract class RichInlineButtonEditor {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                RichInlineButtonEditor.m4990$r8$lambda$aQAC9urWRNFWGEd1_EG2stusKg(editTextBoldCursorCreateField, baseFragment, z, blockButtonEdit);
+                RichInlineButtonEditor.m5001$r8$lambda$aQAC9urWRNFWGEd1_EG2stusKg(editTextBoldCursorCreateField, baseFragment, z, blockButtonEdit);
             }
         };
         AlertDialog.Builder builderCreateInputDialogBuilder = createInputDialogBuilder(context, resourcesProvider, z);
@@ -276,7 +276,7 @@ public abstract class RichInlineButtonEditor {
         showInputDialog(builderCreateInputDialogBuilder, editTextBoldCursorCreateField, i, resourcesProvider);
     }
 
-    public static void m4990$r8$lambda$aQAC9urWRNFWGEd1_EG2stusKg(EditTextBoldCursor editTextBoldCursor, BaseFragment baseFragment, boolean z, final RichEditorListView.BlockButtonEdit blockButtonEdit) {
+    public static void m5001$r8$lambda$aQAC9urWRNFWGEd1_EG2stusKg(EditTextBoldCursor editTextBoldCursor, BaseFragment baseFragment, boolean z, final RichEditorListView.BlockButtonEdit blockButtonEdit) {
         final String strTrim = editTextBoldCursor.getText().toString().trim();
         if (TextUtils.isEmpty(strTrim)) {
             return;
@@ -284,12 +284,12 @@ public abstract class RichInlineButtonEditor {
         showUserPicker(baseFragment, z, new UserPicked() {
             @Override
             public final void run(long j) {
-                RichInlineButtonEditor.m4997$r8$lambda$umXAv4tsqZtiYmQE9KLOcy84t8(blockButtonEdit, strTrim, j);
+                RichInlineButtonEditor.m5008$r8$lambda$umXAv4tsqZtiYmQE9KLOcy84t8(blockButtonEdit, strTrim, j);
             }
         });
     }
 
-    public static void m4997$r8$lambda$umXAv4tsqZtiYmQE9KLOcy84t8(RichEditorListView.BlockButtonEdit blockButtonEdit, String str, long j) {
+    public static void m5008$r8$lambda$umXAv4tsqZtiYmQE9KLOcy84t8(RichEditorListView.BlockButtonEdit blockButtonEdit, String str, long j) {
         TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
         tL_inlineButtonTypeUserProfile.user_id = j;
         blockButtonEdit.apply(str, tL_inlineButtonTypeUserProfile);
@@ -358,7 +358,7 @@ public abstract class RichInlineButtonEditor {
         alertDialogCreate.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                RichInlineButtonEditor.m4989$r8$lambda$WxOSkdjUS_c3XezDSneFYNktOY(editTextBoldCursor, dialogInterface);
+                RichInlineButtonEditor.m5000$r8$lambda$WxOSkdjUS_c3XezDSneFYNktOY(editTextBoldCursor, dialogInterface);
             }
         });
         alertDialogCreate.showDelayed(250L);
@@ -368,7 +368,7 @@ public abstract class RichInlineButtonEditor {
         return alertDialogCreate;
     }
 
-    public static void m4989$r8$lambda$WxOSkdjUS_c3XezDSneFYNktOY(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void m5000$r8$lambda$WxOSkdjUS_c3XezDSneFYNktOY(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
         editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
@@ -391,7 +391,7 @@ public abstract class RichInlineButtonEditor {
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z2, boolean z3, int i, int i2, TopicsFragment topicsFragment) {
-                return RichInlineButtonEditor.m4998$r8$lambda$xD89Y_QWSGhRCV4ruUcWuJky28(userPicked, dialogsActivity2, arrayList, charSequence, z2, z3, i, i2, topicsFragment);
+                return RichInlineButtonEditor.m5009$r8$lambda$xD89Y_QWSGhRCV4ruUcWuJky28(userPicked, dialogsActivity2, arrayList, charSequence, z2, z3, i, i2, topicsFragment);
             }
 
             @Override
@@ -409,7 +409,7 @@ public abstract class RichInlineButtonEditor {
         baseFragment.presentFragment(dialogsActivity);
     }
 
-    public static boolean m4998$r8$lambda$xD89Y_QWSGhRCV4ruUcWuJky28(UserPicked userPicked, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public static boolean m5009$r8$lambda$xD89Y_QWSGhRCV4ruUcWuJky28(UserPicked userPicked, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         if (arrayList == null || arrayList.isEmpty() || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId <= 0) {
             return false;
         }

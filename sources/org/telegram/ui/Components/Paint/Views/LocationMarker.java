@@ -184,7 +184,7 @@ public class LocationMarker extends View {
             MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    LocationMarker.m2513$r8$lambda$NnUrPcxtH70pLxzfRxskgyUioA(this.f$0, str, (TLRPC.TL_messages_stickerSet) obj);
+                    LocationMarker.m2523$r8$lambda$NnUrPcxtH70pLxzfRxskgyUioA(this.f$0, str, (TLRPC.TL_messages_stickerSet) obj);
                 }
             });
             this.flagImageReceiver.setImage(ImageLocation.getForDocument(this.flagDocument), "80_80", getEmojiThumb(str), null, null, 0);
@@ -201,7 +201,7 @@ public class LocationMarker extends View {
         locationMarker.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(locationMarker.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(locationMarker.flagDocument), "80_80", null, null, locationMarker.getEmojiThumb(str), 0L, null, null, 0);
     }
 
-    public static void m2513$r8$lambda$NnUrPcxtH70pLxzfRxskgyUioA(LocationMarker locationMarker, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public static void m2523$r8$lambda$NnUrPcxtH70pLxzfRxskgyUioA(LocationMarker locationMarker, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         TLRPC.Document documentFindDocument = locationMarker.findDocument(tL_messages_stickerSet, str);
         locationMarker.flagAnimatedDocument = documentFindDocument;
         if (documentFindDocument == null) {

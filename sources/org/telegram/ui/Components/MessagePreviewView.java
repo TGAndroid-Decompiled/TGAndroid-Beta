@@ -665,7 +665,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     frameLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            MessagePreviewView.Page.m2443$r8$lambda$Z0pn8mvK2ATES9e0aQoD5pcM8k(this.f$0, view);
+                            MessagePreviewView.Page.m2453$r8$lambda$Z0pn8mvK2ATES9e0aQoD5pcM8k(this.f$0, view);
                         }
                     });
                     frameLayout.addView(page.quoteButton, LayoutHelper.createFrame(-1, 48.0f));
@@ -728,7 +728,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                 page.deleteReplyButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        MessagePreviewView.Page.m2439$r8$lambda$FSslgx3ySuOhzC5eHmykrOE6Zc(this.f$0, view);
+                        MessagePreviewView.Page.m2449$r8$lambda$FSslgx3ySuOhzC5eHmykrOE6Zc(this.f$0, view);
                     }
                 });
                 page.menu.addView((View) page.deleteReplyButton, LayoutHelper.createLinear(-1, i3));
@@ -820,7 +820,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                         toggleButton6.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                MessagePreviewView.Page.m2447$r8$lambda$qY4b7so1gqn6RbQOmB1bhgC0Os(this.f$0, toggleButton6, toggleButton5, view);
+                                MessagePreviewView.Page.m2457$r8$lambda$qY4b7so1gqn6RbQOmB1bhgC0Os(this.f$0, toggleButton6, toggleButton5, view);
                             }
                         });
                     }
@@ -1345,7 +1345,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
         }
 
-        public static void m2443$r8$lambda$Z0pn8mvK2ATES9e0aQoD5pcM8k(Page page, View view) {
+        public static void m2453$r8$lambda$Z0pn8mvK2ATES9e0aQoD5pcM8k(Page page, View view) {
             MessagePreviewView messagePreviewView = MessagePreviewView.this;
             MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
             if (messagePreviewParams.quote != null && !messagePreviewView.showOutdatedQuote) {
@@ -1392,7 +1392,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
         }
 
-        public static void m2439$r8$lambda$FSslgx3ySuOhzC5eHmykrOE6Zc(Page page, View view) {
+        public static void m2449$r8$lambda$FSslgx3ySuOhzC5eHmykrOE6Zc(Page page, View view) {
             MessagePreviewView messagePreviewView = MessagePreviewView.this;
             if (messagePreviewView.showOutdatedQuote) {
                 messagePreviewView.removeQuote();
@@ -1407,7 +1407,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                 BulletinFactory.of(messagePreviewView, messagePreviewView.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceSingleTag("Subscribe to **Telegram Premium** to forward formatted messages without the sender’s name.", new Runnable() {
                     @Override
                     public final void run() {
-                        MessagePreviewView.Page.m2441$r8$lambda$MKt2q81W8_5NkAiOdFo5SdemzA(this.f$0, context);
+                        MessagePreviewView.Page.m2451$r8$lambda$MKt2q81W8_5NkAiOdFo5SdemzA(this.f$0, context);
                     }
                 })).show();
                 return;
@@ -1428,7 +1428,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             page.updateSubtitle(true);
         }
 
-        public static void m2441$r8$lambda$MKt2q81W8_5NkAiOdFo5SdemzA(final Page page, final Context context) {
+        public static void m2451$r8$lambda$MKt2q81W8_5NkAiOdFo5SdemzA(final Page page, final Context context) {
             MessagePreviewView.this.dismiss(false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -1445,7 +1445,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
         }
 
-        public static void m2447$r8$lambda$qY4b7so1gqn6RbQOmB1bhgC0Os(Page page, ToggleButton toggleButton, ToggleButton toggleButton2, View view) {
+        public static void m2457$r8$lambda$qY4b7so1gqn6RbQOmB1bhgC0Os(Page page, ToggleButton toggleButton, ToggleButton toggleButton2, View view) {
             MessagePreviewView messagePreviewView = MessagePreviewView.this;
             MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
             boolean z = messagePreviewParams.hideCaption;

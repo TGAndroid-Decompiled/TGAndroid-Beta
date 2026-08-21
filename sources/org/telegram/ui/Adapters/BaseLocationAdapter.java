@@ -83,24 +83,24 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                BaseLocationAdapter.m1278$r8$lambda$UzOocwjEU5x3EeNBE12gwvGt9I(this.f$0, str, location);
+                BaseLocationAdapter.m1284$r8$lambda$UzOocwjEU5x3EeNBE12gwvGt9I(this.f$0, str, location);
             }
         };
         this.searchRunnable = runnable;
         dispatchQueue.postRunnable(runnable, 400L);
     }
 
-    public static void m1278$r8$lambda$UzOocwjEU5x3EeNBE12gwvGt9I(final BaseLocationAdapter baseLocationAdapter, final String str, final Location location) {
+    public static void m1284$r8$lambda$UzOocwjEU5x3EeNBE12gwvGt9I(final BaseLocationAdapter baseLocationAdapter, final String str, final Location location) {
         baseLocationAdapter.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BaseLocationAdapter.m1282$r8$lambda$y90nmaRInFalsuFNKur0trYb3U(this.f$0, str, location);
+                BaseLocationAdapter.m1288$r8$lambda$y90nmaRInFalsuFNKur0trYb3U(this.f$0, str, location);
             }
         });
     }
 
-    public static void m1282$r8$lambda$y90nmaRInFalsuFNKur0trYb3U(BaseLocationAdapter baseLocationAdapter, String str, Location location) {
+    public static void m1288$r8$lambda$y90nmaRInFalsuFNKur0trYb3U(BaseLocationAdapter baseLocationAdapter, String str, Location location) {
         baseLocationAdapter.searchRunnable = null;
         baseLocationAdapter.lastSearchLocation = null;
         baseLocationAdapter.searchPlacesWithQuery(str, location, true);
@@ -225,7 +225,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            BaseLocationAdapter.m1279$r8$lambda$X38L9THsqmGcopAtll3U7NJl_0(this.f$0, currentLocale, str3, locale, location3, str);
+                            BaseLocationAdapter.m1285$r8$lambda$X38L9THsqmGcopAtll3U7NJl_0(this.f$0, currentLocale, str3, locale, location3, str);
                         }
                     });
                 } else {
@@ -240,7 +240,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
                 baseLocationAdapter.currentRequestNum = ConnectionsManager.getInstance(baseLocationAdapter.currentAccount).sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        BaseLocationAdapter.m1280$r8$lambda$ZC2XbztLqEWm164HtZHxnTSS8(this.f$0, str3, tLObject, tL_error);
+                        BaseLocationAdapter.m1286$r8$lambda$ZC2XbztLqEWm164HtZHxnTSS8(this.f$0, str3, tLObject, tL_error);
                     }
                 });
                 update(true);
@@ -252,7 +252,7 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         }
     }
 
-    public static void m1279$r8$lambda$X38L9THsqmGcopAtll3U7NJl_0(final BaseLocationAdapter baseLocationAdapter, Locale locale, String str, Locale locale2, final Location location, final String str2) {
+    public static void m1285$r8$lambda$X38L9THsqmGcopAtll3U7NJl_0(final BaseLocationAdapter baseLocationAdapter, Locale locale, String str, Locale locale2, final Location location, final String str2) {
         List<Address> list;
         List<Address> list2;
         HashSet hashSet;
@@ -1095,12 +1095,12 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BaseLocationAdapter.m1281$r8$lambda$gr5_sHZ3bA1F39VYaMSAdJTd0(this.f$0, location, str2, arrayList);
+                BaseLocationAdapter.m1287$r8$lambda$gr5_sHZ3bA1F39VYaMSAdJTd0(this.f$0, location, str2, arrayList);
             }
         });
     }
 
-    public static void m1281$r8$lambda$gr5_sHZ3bA1F39VYaMSAdJTd0(BaseLocationAdapter baseLocationAdapter, Location location, String str, ArrayList arrayList) {
+    public static void m1287$r8$lambda$gr5_sHZ3bA1F39VYaMSAdJTd0(BaseLocationAdapter baseLocationAdapter, Location location, String str, ArrayList arrayList) {
         baseLocationAdapter.searchingLocations = false;
         if (location == null) {
             baseLocationAdapter.currentRequestNum = 0;
@@ -1114,17 +1114,17 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         baseLocationAdapter.update(true);
     }
 
-    public static void m1280$r8$lambda$ZC2XbztLqEWm164HtZHxnTSS8(final BaseLocationAdapter baseLocationAdapter, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1286$r8$lambda$ZC2XbztLqEWm164HtZHxnTSS8(final BaseLocationAdapter baseLocationAdapter, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         baseLocationAdapter.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BaseLocationAdapter.m1277$r8$lambda$9fAnmZcQFtCjpcrhZURpZasDmY(this.f$0, tL_error, str, tLObject);
+                BaseLocationAdapter.m1283$r8$lambda$9fAnmZcQFtCjpcrhZURpZasDmY(this.f$0, tL_error, str, tLObject);
             }
         });
     }
 
-    public static void m1277$r8$lambda$9fAnmZcQFtCjpcrhZURpZasDmY(BaseLocationAdapter baseLocationAdapter, TLRPC.TL_error tL_error, String str, TLObject tLObject) {
+    public static void m1283$r8$lambda$9fAnmZcQFtCjpcrhZURpZasDmY(BaseLocationAdapter baseLocationAdapter, TLRPC.TL_error tL_error, String str, TLObject tLObject) {
         if (tL_error == null) {
             baseLocationAdapter.currentRequestNum = 0;
             baseLocationAdapter.searching = false;

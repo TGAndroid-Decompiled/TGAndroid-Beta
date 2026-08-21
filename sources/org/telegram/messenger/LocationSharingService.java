@@ -44,12 +44,12 @@ public class LocationSharingService extends Service implements NotificationCente
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                LocationSharingService.m510$r8$lambda$jDpuTonJalawPNBnRWljHyRr88();
+                LocationSharingService.m516$r8$lambda$jDpuTonJalawPNBnRWljHyRr88();
             }
         });
     }
 
-    public static void m510$r8$lambda$jDpuTonJalawPNBnRWljHyRr88() {
+    public static void m516$r8$lambda$jDpuTonJalawPNBnRWljHyRr88() {
         for (int i = 0; i < 4; i++) {
             LocationController.getInstance(i).update();
         }

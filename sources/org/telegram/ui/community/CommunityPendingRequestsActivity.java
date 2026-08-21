@@ -279,14 +279,14 @@ public class CommunityPendingRequestsActivity extends BaseFragment implements Fa
                 new CommunityInviteOnlySheet(getContext(), chat, data.requestFromUser, new Runnable() {
                     @Override
                     public final void run() {
-                        CommunityPendingRequestsActivity.m4867$r8$lambda$agN6v2Z85kITDOXEQ078tXVcec(this.f$0, data);
+                        CommunityPendingRequestsActivity.m4878$r8$lambda$agN6v2Z85kITDOXEQ078tXVcec(this.f$0, data);
                     }
                 }).show();
             }
         }
     }
 
-    public static void m4867$r8$lambda$agN6v2Z85kITDOXEQ078tXVcec(CommunityPendingRequestsActivity communityPendingRequestsActivity, CommunityPendingRequestCell.Data data) {
+    public static void m4878$r8$lambda$agN6v2Z85kITDOXEQ078tXVcec(CommunityPendingRequestsActivity communityPendingRequestsActivity, CommunityPendingRequestCell.Data data) {
         communityPendingRequestsActivity.getClass();
         communityPendingRequestsActivity.presentFragment(ChatActivity.of(data.requestFromUser.id));
     }

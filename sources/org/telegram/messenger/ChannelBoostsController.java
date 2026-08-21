@@ -81,7 +81,7 @@ public class ChannelBoostsController {
         BoostRepository.getMyBoosts(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChannelBoostsController.m367$r8$lambda$QUjpU3jxTyAfx8XRNTCZyEH0Y(canApplyBoost, tL_premium_boostsStatus, consumer, (TL_stories.TL_premium_myBoosts) obj);
+                ChannelBoostsController.m375$r8$lambda$QUjpU3jxTyAfx8XRNTCZyEH0Y(canApplyBoost, tL_premium_boostsStatus, consumer, (TL_stories.TL_premium_myBoosts) obj);
             }
         }, new Utilities.Callback() {
             @Override
@@ -91,7 +91,7 @@ public class ChannelBoostsController {
         });
     }
 
-    public static void m367$r8$lambda$QUjpU3jxTyAfx8XRNTCZyEH0Y(CanApplyBoost canApplyBoost, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, Consumer consumer, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
+    public static void m375$r8$lambda$QUjpU3jxTyAfx8XRNTCZyEH0Y(CanApplyBoost canApplyBoost, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, Consumer consumer, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
         canApplyBoost.isMaxLvl = tL_premium_boostsStatus.next_level_boosts <= 0;
         canApplyBoost.setMyBoosts(tL_premium_myBoosts);
         consumer.accept(canApplyBoost);

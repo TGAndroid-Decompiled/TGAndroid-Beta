@@ -128,7 +128,7 @@ public class FilesMigrationService extends Service {
                         streamConvert.forEach(new Consumer() {
                             @Override
                             public final void s(Object obj) {
-                                FilesMigrationService.m473$r8$lambda$gcPhkMdBFERemd7i1MOR00gJ8E(this.f$0, file2, (Path) obj);
+                                FilesMigrationService.m479$r8$lambda$gcPhkMdBFERemd7i1MOR00gJ8E(this.f$0, file2, (Path) obj);
                             }
 
                             public Consumer andThen(Consumer consumer) {
@@ -158,7 +158,7 @@ public class FilesMigrationService extends Service {
         }
     }
 
-    public static void m473$r8$lambda$gcPhkMdBFERemd7i1MOR00gJ8E(FilesMigrationService filesMigrationService, File file, Path path) {
+    public static void m479$r8$lambda$gcPhkMdBFERemd7i1MOR00gJ8E(FilesMigrationService filesMigrationService, File file, Path path) {
         filesMigrationService.getClass();
         File file2 = new File(file, path.getFileName().toString());
         if (Files.isDirectory(path, new LinkOption[0])) {

@@ -302,7 +302,7 @@ public class AnimatedTextView extends View {
                 }, new RegionCallback() {
                     @Override
                     public final void run(CharSequence charSequence2, int i, int i2) {
-                        AnimatedTextView.AnimatedTextDrawable.m2013$r8$lambda$KKkvb9IRV3ogkhBtOR_yxzWLFc(this.f$0, iWidth, arrayList2, charSequence2, i, i2);
+                        AnimatedTextView.AnimatedTextDrawable.m2019$r8$lambda$KKkvb9IRV3ogkhBtOR_yxzWLFc(this.f$0, iWidth, arrayList2, charSequence2, i, i2);
                     }
                 });
                 clearCurrentParts();
@@ -414,7 +414,7 @@ public class AnimatedTextView extends View {
             animatedTextDrawable.currentHeight = Math.max(animatedTextDrawable.currentHeight, staticLayoutMakeLayout.getHeight());
         }
 
-        public static void m2013$r8$lambda$KKkvb9IRV3ogkhBtOR_yxzWLFc(AnimatedTextDrawable animatedTextDrawable, int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
+        public static void m2019$r8$lambda$KKkvb9IRV3ogkhBtOR_yxzWLFc(AnimatedTextDrawable animatedTextDrawable, int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
             StaticLayout staticLayoutMakeLayout = animatedTextDrawable.makeLayout(charSequence, i - ((int) Math.ceil(animatedTextDrawable.oldWidth)));
             Part part = animatedTextDrawable.new Part(staticLayoutMakeLayout, animatedTextDrawable.oldWidth, -1);
             arrayList.add(part);
@@ -856,7 +856,7 @@ public class AnimatedTextView extends View {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    AnimatedTextView.AnimatedTextDrawable.m2012$r8$lambda$5Xa8UhjvezF5loJshRleRQfmEQ(this.f$0, textColor, i, valueAnimator2);
+                    AnimatedTextView.AnimatedTextDrawable.m2018$r8$lambda$5Xa8UhjvezF5loJshRleRQfmEQ(this.f$0, textColor, i, valueAnimator2);
                 }
             });
             this.colorAnimator.addListener(new AnimatorListenerAdapter() {
@@ -870,7 +870,7 @@ public class AnimatedTextView extends View {
             this.colorAnimator.start();
         }
 
-        public static void m2012$r8$lambda$5Xa8UhjvezF5loJshRleRQfmEQ(AnimatedTextDrawable animatedTextDrawable, int i, int i2, ValueAnimator valueAnimator) {
+        public static void m2018$r8$lambda$5Xa8UhjvezF5loJshRleRQfmEQ(AnimatedTextDrawable animatedTextDrawable, int i, int i2, ValueAnimator valueAnimator) {
             animatedTextDrawable.getClass();
             animatedTextDrawable.setTextColor(ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
             animatedTextDrawable.invalidateSelf();

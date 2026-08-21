@@ -118,7 +118,7 @@ public abstract class PermissionRequest {
                         new AlertDialog.Builder(activityFindActivity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
                             @Override
                             public final void onClick(AlertDialog alertDialog, int i3) {
-                                PermissionRequest.m2542$r8$lambda$rqSIchz3KrqjwF9F5tplg1vFfk(activityFindActivity, alertDialog, i3);
+                                PermissionRequest.m2552$r8$lambda$rqSIchz3KrqjwF9F5tplg1vFfk(activityFindActivity, alertDialog, i3);
                             }
                         }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
                         if (callback != null) {
@@ -142,7 +142,7 @@ public abstract class PermissionRequest {
         }
     }
 
-    public static void m2542$r8$lambda$rqSIchz3KrqjwF9F5tplg1vFfk(Activity activity, AlertDialog alertDialog, int i) {
+    public static void m2552$r8$lambda$rqSIchz3KrqjwF9F5tplg1vFfk(Activity activity, AlertDialog alertDialog, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -175,12 +175,12 @@ public abstract class PermissionRequest {
         requestPermissions(new String[]{str}, callback != null ? new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PermissionRequest.m2541$r8$lambda$iRU0goqpimQBvdfDKQXDlUe4eE(callback, (int[]) obj);
+                PermissionRequest.m2551$r8$lambda$iRU0goqpimQBvdfDKQXDlUe4eE(callback, (int[]) obj);
             }
         } : null);
     }
 
-    public static void m2541$r8$lambda$iRU0goqpimQBvdfDKQXDlUe4eE(Utilities.Callback callback, int[] iArr) {
+    public static void m2551$r8$lambda$iRU0goqpimQBvdfDKQXDlUe4eE(Utilities.Callback callback, int[] iArr) {
         boolean z = false;
         if (iArr.length >= 1 && iArr[0] == 0) {
             z = true;

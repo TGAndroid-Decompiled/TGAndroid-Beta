@@ -60,12 +60,12 @@ public class MemberRequestsController extends BaseController {
         return getConnectionsManager().sendRequest(tL_messages_getChatInviteImporters, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MemberRequestsController.m634$r8$lambda$kR9XSLwkdrTaPBQRsPYLUQMwKU(this.f$0, tL_chatInviteImporter, zIsEmpty, j, requestDelegate, tLObject, tL_error);
+                MemberRequestsController.m640$r8$lambda$kR9XSLwkdrTaPBQRsPYLUQMwKU(this.f$0, tL_chatInviteImporter, zIsEmpty, j, requestDelegate, tLObject, tL_error);
             }
         });
     }
 
-    public static void m634$r8$lambda$kR9XSLwkdrTaPBQRsPYLUQMwKU(final MemberRequestsController memberRequestsController, final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z, final long j, final RequestDelegate requestDelegate, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m640$r8$lambda$kR9XSLwkdrTaPBQRsPYLUQMwKU(final MemberRequestsController memberRequestsController, final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z, final long j, final RequestDelegate requestDelegate, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         memberRequestsController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

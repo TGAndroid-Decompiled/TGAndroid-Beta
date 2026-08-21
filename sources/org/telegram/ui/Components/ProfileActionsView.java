@@ -710,12 +710,12 @@ public class ProfileActionsView extends View {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileActionsView.m2667$r8$lambda$OjjXUNTuSBpvk6MSXxCJw5b3FU(this.f$0, arrayList);
+                ProfileActionsView.m2676$r8$lambda$OjjXUNTuSBpvk6MSXxCJw5b3FU(this.f$0, arrayList);
             }
         });
     }
 
-    public static void m2667$r8$lambda$OjjXUNTuSBpvk6MSXxCJw5b3FU(ProfileActionsView profileActionsView, List list) {
+    public static void m2676$r8$lambda$OjjXUNTuSBpvk6MSXxCJw5b3FU(ProfileActionsView profileActionsView, List list) {
         int i = profileActionsView.activeCount;
         int size = list.size();
         profileActionsView.activeCount = size;

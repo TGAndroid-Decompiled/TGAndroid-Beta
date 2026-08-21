@@ -150,7 +150,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         public TLRPC.TL_messageMediaVenue venue;
     }
 
-    public static boolean m2168$r8$lambda$NV4s6CRnI_tkfHRJSUIsAp0RZ4(View view, MotionEvent motionEvent) {
+    public static boolean m2178$r8$lambda$NV4s6CRnI_tkfHRJSUIsAp0RZ4(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -302,7 +302,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), ChatAttachAlertLocationLayout.this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ChatAttachAlertLocationLayout.MapOverlayView.m2176$r8$lambda$Q9iLFx9MJlLqtGgkunjnKKdqrM(this.f$0, venueLocation, (Long) obj);
+                        ChatAttachAlertLocationLayout.MapOverlayView.m2186$r8$lambda$Q9iLFx9MJlLqtGgkunjnKKdqrM(this.f$0, venueLocation, (Long) obj);
                     }
                 });
             }
@@ -313,7 +313,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             ChatAttachAlertLocationLayout.this.parentAlert.dismiss(true);
         }
 
-        public static void m2176$r8$lambda$Q9iLFx9MJlLqtGgkunjnKKdqrM(MapOverlayView mapOverlayView, VenueLocation venueLocation, Long l) {
+        public static void m2186$r8$lambda$Q9iLFx9MJlLqtGgkunjnKKdqrM(MapOverlayView mapOverlayView, VenueLocation venueLocation, Long l) {
             ChatAttachAlertLocationLayout.this.delegate.didSelectLocation(venueLocation.venue, ChatAttachAlertLocationLayout.this.locationType, true, 0, l.longValue());
             ChatAttachAlertLocationLayout.this.parentAlert.dismiss(true);
         }
@@ -558,7 +558,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.mapTypeButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
             public final void onItemClick(int i6) {
-                ChatAttachAlertLocationLayout.m2163$r8$lambda$8r3dgrr7wqIuF0pxHO2GaqS714(this.f$0, i6);
+                ChatAttachAlertLocationLayout.m2173$r8$lambda$8r3dgrr7wqIuF0pxHO2GaqS714(this.f$0, i6);
             }
         });
         this.locationButton = new ImageView(context);
@@ -579,7 +579,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChatAttachAlertLocationLayout.m2172$r8$lambda$hfwbYBs946IprBHQ19YJokaEa4(this.f$0, view2);
+                ChatAttachAlertLocationLayout.m2182$r8$lambda$hfwbYBs946IprBHQ19YJokaEa4(this.f$0, view2);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
@@ -592,7 +592,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.emptyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                return ChatAttachAlertLocationLayout.m2168$r8$lambda$NV4s6CRnI_tkfHRJSUIsAp0RZ4(view2, motionEvent);
+                return ChatAttachAlertLocationLayout.m2178$r8$lambda$NV4s6CRnI_tkfHRJSUIsAp0RZ4(view2, motionEvent);
             }
         });
         ImageView imageView2 = new ImageView(context);
@@ -722,20 +722,20 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         iMapViewOnCreateMapView.setOnDispatchTouchEventInterceptor(new IMapsProvider.ITouchInterceptor() {
             @Override
             public final boolean onInterceptTouchEvent(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
-                return ChatAttachAlertLocationLayout.m2174$r8$lambda$mjNFTcfkICUYYlTs8jX3JGeGyQ(this.f$0, motionEvent, iCallableMethod);
+                return ChatAttachAlertLocationLayout.m2184$r8$lambda$mjNFTcfkICUYYlTs8jX3JGeGyQ(this.f$0, motionEvent, iCallableMethod);
             }
         });
         this.mapView.setOnInterceptTouchEventInterceptor(new IMapsProvider.ITouchInterceptor() {
             @Override
             public final boolean onInterceptTouchEvent(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
-                return ChatAttachAlertLocationLayout.m2171$r8$lambda$fYhEZ9lktTX8kb2lmNj7xPxcWI(this.f$0, motionEvent, iCallableMethod);
+                return ChatAttachAlertLocationLayout.m2181$r8$lambda$fYhEZ9lktTX8kb2lmNj7xPxcWI(this.f$0, motionEvent, iCallableMethod);
             }
         });
         final IMapsProvider.IMapView iMapView = this.mapView;
         new Thread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.m2175$r8$lambda$vJ5fjgybqZH2fRK9xr39Dh2HPo(this.f$0, iMapView);
+                ChatAttachAlertLocationLayout.m2185$r8$lambda$vJ5fjgybqZH2fRK9xr39Dh2HPo(this.f$0, iMapView);
             }
         }).start();
         ImageView imageView3 = new ImageView(context);
@@ -795,7 +795,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         chatAttachAlertLocationLayout.showResults();
     }
 
-    public static void m2163$r8$lambda$8r3dgrr7wqIuF0pxHO2GaqS714(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, int i) {
+    public static void m2173$r8$lambda$8r3dgrr7wqIuF0pxHO2GaqS714(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, int i) {
         IMapsProvider.IMap iMap = chatAttachAlertLocationLayout.map;
         if (iMap == null) {
             return;
@@ -809,7 +809,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public static void m2172$r8$lambda$hfwbYBs946IprBHQ19YJokaEa4(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, View view) {
+    public static void m2182$r8$lambda$hfwbYBs946IprBHQ19YJokaEa4(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, View view) {
         Activity parentActivity;
         if (Build.VERSION.SDK_INT >= 23 && (parentActivity = chatAttachAlertLocationLayout.getParentActivity()) != null && parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
             AlertsCreator.createLocationRequiredDialog(chatAttachAlertLocationLayout.getParentActivity(), true).show();
@@ -911,7 +911,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 AlertsCreator.createScheduleDatePickerDialog(chatAttachAlertLocationLayout.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i, int i2) {
-                        ChatAttachAlertLocationLayout.m2169$r8$lambda$SNaPuyxeNKschRWYTUO8tzlgcA(this.f$0, tL_messageMediaGeo, l, z, i, i2);
+                        ChatAttachAlertLocationLayout.m2179$r8$lambda$SNaPuyxeNKschRWYTUO8tzlgcA(this.f$0, tL_messageMediaGeo, l, z, i, i2);
                     }
                 }, resourcesProvider);
                 return;
@@ -921,7 +921,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         chatAttachAlertLocationLayout.parentAlert.dismiss(true);
     }
 
-    public static void m2169$r8$lambda$SNaPuyxeNKschRWYTUO8tzlgcA(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, TLRPC.TL_messageMediaGeo tL_messageMediaGeo, Long l, boolean z, int i, int i2) {
+    public static void m2179$r8$lambda$SNaPuyxeNKschRWYTUO8tzlgcA(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, TLRPC.TL_messageMediaGeo tL_messageMediaGeo, Long l, boolean z, int i, int i2) {
         chatAttachAlertLocationLayout.delegate.didSelectLocation(tL_messageMediaGeo, chatAttachAlertLocationLayout.locationType, z, i, l.longValue());
         chatAttachAlertLocationLayout.parentAlert.dismiss(true);
     }
@@ -948,7 +948,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         chatAttachAlertLocationLayout.parentAlert.dismiss(true);
     }
 
-    public static boolean m2174$r8$lambda$mjNFTcfkICUYYlTs8jX3JGeGyQ(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
+    public static boolean m2184$r8$lambda$mjNFTcfkICUYYlTs8jX3JGeGyQ(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
         MotionEvent motionEventObtain;
         MotionEvent motionEvent2;
         if (chatAttachAlertLocationLayout.yOffset != 0.0f) {
@@ -966,7 +966,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         return zBooleanValue;
     }
 
-    public static boolean m2171$r8$lambda$fYhEZ9lktTX8kb2lmNj7xPxcWI(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
+    public static boolean m2181$r8$lambda$fYhEZ9lktTX8kb2lmNj7xPxcWI(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
         Location location;
         chatAttachAlertLocationLayout.getClass();
         int action = motionEvent.getAction();
@@ -1011,7 +1011,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         return ((Boolean) iCallableMethod.call(motionEvent)).booleanValue();
     }
 
-    public static void m2175$r8$lambda$vJ5fjgybqZH2fRK9xr39Dh2HPo(final ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, final IMapsProvider.IMapView iMapView) {
+    public static void m2185$r8$lambda$vJ5fjgybqZH2fRK9xr39Dh2HPo(final ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, final IMapsProvider.IMapView iMapView) {
         chatAttachAlertLocationLayout.getClass();
         try {
             iMapView.onCreate(null);
@@ -1052,7 +1052,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         iMap.setOnMapLoadedCallback(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.m2170$r8$lambda$bNlkunpKBAfZDpgGMQkgBanWHk(this.f$0);
+                ChatAttachAlertLocationLayout.m2180$r8$lambda$bNlkunpKBAfZDpgGMQkgBanWHk(this.f$0);
             }
         });
         if (chatAttachAlertLocationLayout.isActiveThemeDark()) {
@@ -1062,7 +1062,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         chatAttachAlertLocationLayout.onMapInit();
     }
 
-    public static void m2170$r8$lambda$bNlkunpKBAfZDpgGMQkgBanWHk(final ChatAttachAlertLocationLayout chatAttachAlertLocationLayout) {
+    public static void m2180$r8$lambda$bNlkunpKBAfZDpgGMQkgBanWHk(final ChatAttachAlertLocationLayout chatAttachAlertLocationLayout) {
         chatAttachAlertLocationLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1324,22 +1324,22 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         AlertsCreator.createLocationUpdateDialog(getParentActivity(), false, DialogObject.isUserDialog(this.dialogId) ? this.parentAlert.baseFragment.getMessagesController().getUser(Long.valueOf(this.dialogId)) : null, new MessagesStorage.IntCallback() {
             @Override
             public final void run(int i) {
-                ChatAttachAlertLocationLayout.m2164$r8$lambda$9XNva0pYsff9po8Vy1Pn_aQoGA(this.f$0, i);
+                ChatAttachAlertLocationLayout.m2174$r8$lambda$9XNva0pYsff9po8Vy1Pn_aQoGA(this.f$0, i);
             }
         }, this.resourcesProvider).show();
     }
 
-    public static void m2164$r8$lambda$9XNva0pYsff9po8Vy1Pn_aQoGA(final ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, final int i) {
+    public static void m2174$r8$lambda$9XNva0pYsff9po8Vy1Pn_aQoGA(final ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, final int i) {
         ChatAttachAlert chatAttachAlert = chatAttachAlertLocationLayout.parentAlert;
         AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), chatAttachAlertLocationLayout.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatAttachAlertLocationLayout.m2166$r8$lambda$J_omEMfuF_LKh6fEC32C7gskBU(this.f$0, i, (Long) obj);
+                ChatAttachAlertLocationLayout.m2176$r8$lambda$J_omEMfuF_LKh6fEC32C7gskBU(this.f$0, i, (Long) obj);
             }
         });
     }
 
-    public static void m2166$r8$lambda$J_omEMfuF_LKh6fEC32C7gskBU(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, int i, Long l) {
+    public static void m2176$r8$lambda$J_omEMfuF_LKh6fEC32C7gskBU(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, int i, Long l) {
         chatAttachAlertLocationLayout.getClass();
         TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
         TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
@@ -1465,7 +1465,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.map.setOnMarkerClickListener(new IMapsProvider.OnMarkerClickListener() {
             @Override
             public final boolean onClick(IMapsProvider.IMarker iMarker) {
-                return ChatAttachAlertLocationLayout.m2173$r8$lambda$mDapeCUUv6uBgrRkzNVPtzHCw(this.f$0, iMarker);
+                return ChatAttachAlertLocationLayout.m2183$r8$lambda$mDapeCUUv6uBgrRkzNVPtzHCw(this.f$0, iMarker);
             }
         });
         this.map.setOnCameraMoveListener(new Runnable() {
@@ -1478,7 +1478,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.m2162$r8$lambda$727sJqREijb248Mty6pHOwW8i4(this.f$0);
+                ChatAttachAlertLocationLayout.m2172$r8$lambda$727sJqREijb248Mty6pHOwW8i4(this.f$0);
             }
         }, 200L);
         if (this.checkGpsEnabled && getParentActivity() != null) {
@@ -1559,7 +1559,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         chatAttachAlertLocationLayout.isFirstLocation = false;
     }
 
-    public static boolean m2173$r8$lambda$mDapeCUUv6uBgrRkzNVPtzHCw(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, IMapsProvider.IMarker iMarker) {
+    public static boolean m2183$r8$lambda$mDapeCUUv6uBgrRkzNVPtzHCw(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, IMapsProvider.IMarker iMarker) {
         chatAttachAlertLocationLayout.getClass();
         if (!(iMarker.getTag() instanceof VenueLocation)) {
             return true;
@@ -1583,7 +1583,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public static void m2162$r8$lambda$727sJqREijb248Mty6pHOwW8i4(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout) {
+    public static void m2172$r8$lambda$727sJqREijb248Mty6pHOwW8i4(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout) {
         if (chatAttachAlertLocationLayout.loadingMapView.getTag() == null) {
             chatAttachAlertLocationLayout.loadingMapView.animate().alpha(0.0f).setDuration(180L).start();
         }
@@ -1870,7 +1870,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        ChatAttachAlertLocationLayout.m2167$r8$lambda$MV7uuRDYd7K9E6crLSph_UnHQ(this.f$0, fArr);
+                                        ChatAttachAlertLocationLayout.m2177$r8$lambda$MV7uuRDYd7K9E6crLSph_UnHQ(this.f$0, fArr);
                                     }
                                 });
                                 return;
@@ -1902,7 +1902,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         chatAttachAlertLocationLayout.resetMapPosition(dArr[0], dArr[1]);
     }
 
-    public static void m2167$r8$lambda$MV7uuRDYd7K9E6crLSph_UnHQ(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, float[] fArr) {
+    public static void m2177$r8$lambda$MV7uuRDYd7K9E6crLSph_UnHQ(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout, float[] fArr) {
         chatAttachAlertLocationLayout.getClass();
         chatAttachAlertLocationLayout.resetMapPosition(fArr[0], fArr[1]);
     }
@@ -2019,14 +2019,14 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertLocationLayout.m2165$r8$lambda$CY1fVoa049WHS9HDxsDB6k_Q6Q(this.f$0);
+                ChatAttachAlertLocationLayout.m2175$r8$lambda$CY1fVoa049WHS9HDxsDB6k_Q6Q(this.f$0);
             }
         }, this.parentAlert.delegate.needEnterComment() ? 200L : 0L);
         this.layoutManager.scrollToPositionWithOffset(0, 0);
         updateClipView();
     }
 
-    public static void m2165$r8$lambda$CY1fVoa049WHS9HDxsDB6k_Q6Q(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout) {
+    public static void m2175$r8$lambda$CY1fVoa049WHS9HDxsDB6k_Q6Q(ChatAttachAlertLocationLayout chatAttachAlertLocationLayout) {
         int i;
         Activity parentActivity;
         String[] strArr;

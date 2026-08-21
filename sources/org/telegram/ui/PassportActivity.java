@@ -961,14 +961,14 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            PassportActivity.m3608$r8$lambda$iY5oC0CTvJkA5YbIFf8gJGl6W4(this.f$0);
+                            PassportActivity.m3616$r8$lambda$iY5oC0CTvJkA5YbIFf8gJGl6W4(this.f$0);
                         }
                     }, 200L);
                 }
                 AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
             }
 
-            public static void m3608$r8$lambda$iY5oC0CTvJkA5YbIFf8gJGl6W4(PassportActivity passportActivity) {
+            public static void m3616$r8$lambda$iY5oC0CTvJkA5YbIFf8gJGl6W4(PassportActivity passportActivity) {
                 ViewGroup viewGroup;
                 ViewGroup[] viewGroupArr = passportActivity.inputFieldContainers;
                 if (viewGroupArr == null || (viewGroup = viewGroupArr[0]) == null || viewGroup.getVisibility() != 0) {
@@ -1193,7 +1193,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                                         builder.setNegativeButton(LocaleController.getString(R.string.Edit), new AlertDialog.OnButtonClickListener() {
                                             @Override
                                             public final void onClick(AlertDialog alertDialog, int i2) {
-                                                PassportActivity.AnonymousClass3.m3616$r8$lambda$FFF4CFeKgk_Ne8UBwhhw9089Q(this.f$0, i, alertDialog, i2);
+                                                PassportActivity.AnonymousClass3.m3624$r8$lambda$FFF4CFeKgk_Ne8UBwhhw9089Q(this.f$0, i, alertDialog, i2);
                                             }
                                         });
                                         PassportActivity.this.showDialog(builder.create());
@@ -1313,7 +1313,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     anonymousClass3.onIdentityDone(runnable, errorRunnable);
                 }
 
-                public static void m3616$r8$lambda$FFF4CFeKgk_Ne8UBwhhw9089Q(AnonymousClass3 anonymousClass3, int i, AlertDialog alertDialog, int i2) {
+                public static void m3624$r8$lambda$FFF4CFeKgk_Ne8UBwhhw9089Q(AnonymousClass3 anonymousClass3, int i, AlertDialog alertDialog, int i2) {
                     PassportActivity passportActivity = PassportActivity.this;
                     passportActivity.onFieldError(passportActivity.inputFields[i]);
                 }
@@ -1582,22 +1582,22 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        PassportActivity.m3599$r8$lambda$DAljIjsH8pbqsXx3chyrrDsbDg(this.f$0, tLObject, tL_error);
+                        PassportActivity.m3607$r8$lambda$DAljIjsH8pbqsXx3chyrrDsbDg(this.f$0, tLObject, tL_error);
                     }
                 }), this.classGuid);
             }
 
-            public static void m3599$r8$lambda$DAljIjsH8pbqsXx3chyrrDsbDg(final PassportActivity passportActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            public static void m3607$r8$lambda$DAljIjsH8pbqsXx3chyrrDsbDg(final PassportActivity passportActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
                 passportActivity.getClass();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PassportActivity.m3613$r8$lambda$vOemIGqXR4_ukAtrAsNV2MG3e0(this.f$0, tLObject);
+                        PassportActivity.m3621$r8$lambda$vOemIGqXR4_ukAtrAsNV2MG3e0(this.f$0, tLObject);
                     }
                 });
             }
 
-            public static void m3613$r8$lambda$vOemIGqXR4_ukAtrAsNV2MG3e0(PassportActivity passportActivity, TLObject tLObject) {
+            public static void m3621$r8$lambda$vOemIGqXR4_ukAtrAsNV2MG3e0(PassportActivity passportActivity, TLObject tLObject) {
                 passportActivity.getClass();
                 if (tLObject != null) {
                     TL_account.Password password = (TL_account.Password) tLObject;
@@ -1871,12 +1871,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PassportActivity.m3606$r8$lambda$_w_RZbip5cP1g6uSYu5WD1gfOU(this.f$0, tL_error, tLObject);
+                        PassportActivity.m3614$r8$lambda$_w_RZbip5cP1g6uSYu5WD1gfOU(this.f$0, tL_error, tLObject);
                     }
                 });
             }
 
-            public static void m3606$r8$lambda$_w_RZbip5cP1g6uSYu5WD1gfOU(final PassportActivity passportActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+            public static void m3614$r8$lambda$_w_RZbip5cP1g6uSYu5WD1gfOU(final PassportActivity passportActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
                 String pluralString;
                 passportActivity.needHideProgress();
                 if (tL_error == null) {
@@ -2107,12 +2107,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     dispatchQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            PassportActivity.AnonymousClass8.m3619$r8$lambda$UVtyHscuAF42jADYfHHFTbfUf0(this.f$0, bArr, str);
+                            PassportActivity.AnonymousClass8.m3627$r8$lambda$UVtyHscuAF42jADYfHHFTbfUf0(this.f$0, bArr, str);
                         }
                     });
                 }
 
-                public static void m3619$r8$lambda$UVtyHscuAF42jADYfHHFTbfUf0(final AnonymousClass8 anonymousClass8, byte[] bArr, String str) {
+                public static void m3627$r8$lambda$UVtyHscuAF42jADYfHHFTbfUf0(final AnonymousClass8 anonymousClass8, byte[] bArr, String str) {
                     anonymousClass8.getClass();
                     Utilities.random.setSeed(PassportActivity.this.currentPassword.secure_random);
                     TL_account.updatePasswordSettings updatepasswordsettings = new TL_account.updatePasswordSettings();
@@ -2164,7 +2164,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                             ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error2) {
-                                    PassportActivity.AnonymousClass8.m3617$r8$lambda$pkcqJj9ECs5DkeAS3Dv47EpwI0(this.f$0, tLObject, tL_error2);
+                                    PassportActivity.AnonymousClass8.m3625$r8$lambda$pkcqJj9ECs5DkeAS3Dv47EpwI0(this.f$0, tLObject, tL_error2);
                                 }
                             }, 8);
                             return;
@@ -2176,7 +2176,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     anonymousClass8.openRequestInterface();
                 }
 
-                public static void m3617$r8$lambda$pkcqJj9ECs5DkeAS3Dv47EpwI0(final AnonymousClass8 anonymousClass8, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+                public static void m3625$r8$lambda$pkcqJj9ECs5DkeAS3Dv47EpwI0(final AnonymousClass8 anonymousClass8, final TLObject tLObject, final TLRPC.TL_error tL_error) {
                     anonymousClass8.getClass();
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -2236,12 +2236,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            PassportActivity.AnonymousClass8.m3618$r8$lambda$7FF5vIBx69V1lYce247YLdWOfA(this.f$0, tL_error, tLObject, z);
+                            PassportActivity.AnonymousClass8.m3626$r8$lambda$7FF5vIBx69V1lYce247YLdWOfA(this.f$0, tL_error, tLObject, z);
                         }
                     });
                 }
 
-                public static void m3618$r8$lambda$7FF5vIBx69V1lYce247YLdWOfA(AnonymousClass8 anonymousClass8, TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
+                public static void m3626$r8$lambda$7FF5vIBx69V1lYce247YLdWOfA(AnonymousClass8 anonymousClass8, TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
                     if (tL_error != null) {
                         anonymousClass8.getClass();
                         return;
@@ -2295,12 +2295,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            PassportActivity.AnonymousClass8.m3621$r8$lambda$p_D1Jm0CVa0IUg7OSOHuZvsPjE(this.f$0, passwordsettings, z, bArr);
+                            PassportActivity.AnonymousClass8.m3629$r8$lambda$p_D1Jm0CVa0IUg7OSOHuZvsPjE(this.f$0, passwordsettings, z, bArr);
                         }
                     });
                 }
 
-                public static void m3621$r8$lambda$p_D1Jm0CVa0IUg7OSOHuZvsPjE(final AnonymousClass8 anonymousClass8, TL_account.passwordSettings passwordsettings, boolean z, byte[] bArr) {
+                public static void m3629$r8$lambda$p_D1Jm0CVa0IUg7OSOHuZvsPjE(final AnonymousClass8 anonymousClass8, TL_account.passwordSettings passwordsettings, boolean z, byte[] bArr) {
                     PassportActivity.this.currentEmail = passwordsettings.email;
                     if (z) {
                         PassportActivity passportActivity = PassportActivity.this;
@@ -2312,7 +2312,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                             ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(new TL_account.getAllSecureValues(), new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                    PassportActivity.AnonymousClass8.m3620$r8$lambda$c0dnErPaM0xMqqO55yr1hVCcto(this.f$0, tLObject, tL_error);
+                                    PassportActivity.AnonymousClass8.m3628$r8$lambda$c0dnErPaM0xMqqO55yr1hVCcto(this.f$0, tLObject, tL_error);
                                 }
                             });
                             return;
@@ -2338,7 +2338,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     }
                 }
 
-                public static void m3620$r8$lambda$c0dnErPaM0xMqqO55yr1hVCcto(final AnonymousClass8 anonymousClass8, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+                public static void m3628$r8$lambda$c0dnErPaM0xMqqO55yr1hVCcto(final AnonymousClass8 anonymousClass8, final TLObject tLObject, final TLRPC.TL_error tL_error) {
                     anonymousClass8.getClass();
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -2930,12 +2930,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PassportActivity.m3609$r8$lambda$k5Alf7TbuWfq72_Wi54A_owy4Q(this.f$0, tL_error);
+                        PassportActivity.m3617$r8$lambda$k5Alf7TbuWfq72_Wi54A_owy4Q(this.f$0, tL_error);
                     }
                 });
             }
 
-            public static void m3609$r8$lambda$k5Alf7TbuWfq72_Wi54A_owy4Q(PassportActivity passportActivity, TLRPC.TL_error tL_error) {
+            public static void m3617$r8$lambda$k5Alf7TbuWfq72_Wi54A_owy4Q(PassportActivity passportActivity, TLRPC.TL_error tL_error) {
                 if (tL_error == null) {
                     passportActivity.ignoreOnFailure = true;
                     passportActivity.callCallback(true);
@@ -3334,7 +3334,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     textSettingsCell.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            PassportActivity.m3604$r8$lambda$U0BF77mZFgCuvL5R6p9cCizw00(this.f$0, view);
+                            PassportActivity.m3612$r8$lambda$U0BF77mZFgCuvL5R6p9cCizw00(this.f$0, view);
                         }
                     });
                     TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
@@ -3389,7 +3389,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 this.linearLayout2.addView(this.bottomCell, LayoutHelper.createLinear(-1, -2));
             }
 
-            public static void m3604$r8$lambda$U0BF77mZFgCuvL5R6p9cCizw00(PassportActivity passportActivity, View view) {
+            public static void m3612$r8$lambda$U0BF77mZFgCuvL5R6p9cCizw00(PassportActivity passportActivity, View view) {
                 passportActivity.useCurrentValue = true;
                 passportActivity.doneItem.callOnClick();
                 passportActivity.useCurrentValue = false;
@@ -3710,7 +3710,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 textSettingsCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        PassportActivity.m3596$r8$lambda$3g_G9zkPRWl9B5FEdlziXR1SWk(this.f$0, view2);
+                        PassportActivity.m3604$r8$lambda$3g_G9zkPRWl9B5FEdlziXR1SWk(this.f$0, view2);
                     }
                 });
                 TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
@@ -3739,7 +3739,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 this.linearLayout2.addView(this.bottomCell, LayoutHelper.createLinear(-1, -2));
             }
 
-            public static void m3596$r8$lambda$3g_G9zkPRWl9B5FEdlziXR1SWk(PassportActivity passportActivity, View view) {
+            public static void m3604$r8$lambda$3g_G9zkPRWl9B5FEdlziXR1SWk(PassportActivity passportActivity, View view) {
                 passportActivity.useCurrentValue = true;
                 passportActivity.doneItem.callOnClick();
                 passportActivity.useCurrentValue = false;
@@ -3871,7 +3871,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     this.uploadDocumentCell.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            PassportActivity.m3598$r8$lambda$CDoIeVndKpTdJGDKKOyMQWwDG0(this.f$0, view);
+                            PassportActivity.m3606$r8$lambda$CDoIeVndKpTdJGDKKOyMQWwDG0(this.f$0, view);
                         }
                     });
                     TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
@@ -4207,7 +4207,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 updateUploadText(4);
             }
 
-            public static void m3598$r8$lambda$CDoIeVndKpTdJGDKKOyMQWwDG0(PassportActivity passportActivity, View view) {
+            public static void m3606$r8$lambda$CDoIeVndKpTdJGDKKOyMQWwDG0(PassportActivity passportActivity, View view) {
                 passportActivity.uploadingFileType = 0;
                 passportActivity.openAttachMenu();
             }
@@ -4264,7 +4264,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 builder.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        PassportActivity.m3602$r8$lambda$O7Kcjg1wfohYsiYG7nzUJzBuf0(this.f$0, zArr, alertDialog, i);
+                        PassportActivity.m3610$r8$lambda$O7Kcjg1wfohYsiYG7nzUJzBuf0(this.f$0, zArr, alertDialog, i);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -4300,7 +4300,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 showDialog(builder.create());
             }
 
-            public static void m3602$r8$lambda$O7Kcjg1wfohYsiYG7nzUJzBuf0(PassportActivity passportActivity, boolean[] zArr, AlertDialog alertDialog, int i) {
+            public static void m3610$r8$lambda$O7Kcjg1wfohYsiYG7nzUJzBuf0(PassportActivity passportActivity, boolean[] zArr, AlertDialog alertDialog, int i) {
                 if (!passportActivity.documentOnly) {
                     passportActivity.currentValues.clear();
                 }
@@ -4708,7 +4708,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                                 this.inputFields[i2].setOnTouchListener(new View.OnTouchListener() {
                                     @Override
                                     public final boolean onTouch(View view3, MotionEvent motionEvent) {
-                                        return PassportActivity.m3607$r8$lambda$gTYsgvmLkqZeyKgLAOZnPQCgI(this.f$0, view3, motionEvent);
+                                        return PassportActivity.m3615$r8$lambda$gTYsgvmLkqZeyKgLAOZnPQCgI(this.f$0, view3, motionEvent);
                                     }
                                 });
                                 this.inputFields[i2].setInputType(0);
@@ -5156,7 +5156,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         this.uploadTranslationCell.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view4) {
-                                PassportActivity.m3595$r8$lambda$0C6Y4HGiPCpinS7_kYWsR4Zn8(this.f$0, view4);
+                                PassportActivity.m3603$r8$lambda$0C6Y4HGiPCpinS7_kYWsR4Zn8(this.f$0, view4);
                             }
                         });
                         TextInfoPrivacyCell textInfoPrivacyCell5 = new TextInfoPrivacyCell(context);
@@ -5241,7 +5241,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 passportActivity.openAttachMenu();
             }
 
-            public static void m3595$r8$lambda$0C6Y4HGiPCpinS7_kYWsR4Zn8(PassportActivity passportActivity, View view) {
+            public static void m3603$r8$lambda$0C6Y4HGiPCpinS7_kYWsR4Zn8(PassportActivity passportActivity, View view) {
                 passportActivity.uploadingFileType = 4;
                 passportActivity.openAttachMenu();
             }
@@ -5319,7 +5319,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 passportActivity.presentFragment(cameraScanActivity);
             }
 
-            public static boolean m3607$r8$lambda$gTYsgvmLkqZeyKgLAOZnPQCgI(final PassportActivity passportActivity, final View view, MotionEvent motionEvent) {
+            public static boolean m3615$r8$lambda$gTYsgvmLkqZeyKgLAOZnPQCgI(final PassportActivity passportActivity, final View view, MotionEvent motionEvent) {
                 if (passportActivity.getParentActivity() == null) {
                     return false;
                 }
@@ -5394,7 +5394,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         AlertDialog.Builder builderCreateDatePickerDialog = AlertsCreator.createDatePickerDialog(context, i, i2, i3, i4, i5, iIntValue, str, iIntValue2 == 8, new AlertsCreator.DatePickerDelegate() {
                             @Override
                             public final void didSelectDate(int i6, int i7, int i8) {
-                                PassportActivity.m3600$r8$lambda$GGeb_VPx5pW2RxlyJxCZyDYUDA(this.f$0, iIntValue2, editTextBoldCursor, i6, i7, i8);
+                                PassportActivity.m3608$r8$lambda$GGeb_VPx5pW2RxlyJxCZyDYUDA(this.f$0, iIntValue2, editTextBoldCursor, i6, i7, i8);
                             }
                         });
                         if (iIntValue2 == 8) {
@@ -5413,7 +5413,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 return true;
             }
 
-            public static void m3600$r8$lambda$GGeb_VPx5pW2RxlyJxCZyDYUDA(PassportActivity passportActivity, int i, EditTextBoldCursor editTextBoldCursor, int i2, int i3, int i4) {
+            public static void m3608$r8$lambda$GGeb_VPx5pW2RxlyJxCZyDYUDA(PassportActivity passportActivity, int i, EditTextBoldCursor editTextBoldCursor, int i2, int i3, int i4) {
                 if (i == 8) {
                     int[] iArr = passportActivity.currentExpireDate;
                     iArr[0] = i2;
@@ -5807,7 +5807,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 secureDocumentCell.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view) {
-                        return PassportActivity.m3605$r8$lambda$VRp7raSYGJplM7DrTajAEJDN6U(this.f$0, i, secureDocument, secureDocumentCell, str2, view);
+                        return PassportActivity.m3613$r8$lambda$VRp7raSYGJplM7DrTajAEJDN6U(this.f$0, i, secureDocument, secureDocumentCell, str2, view);
                     }
                 });
             }
@@ -5852,7 +5852,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 }
             }
 
-            public static boolean m3605$r8$lambda$VRp7raSYGJplM7DrTajAEJDN6U(final PassportActivity passportActivity, final int i, final SecureDocument secureDocument, final SecureDocumentCell secureDocumentCell, final String str, View view) {
+            public static boolean m3613$r8$lambda$VRp7raSYGJplM7DrTajAEJDN6U(final PassportActivity passportActivity, final int i, final SecureDocument secureDocument, final SecureDocumentCell secureDocumentCell, final String str, View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(passportActivity.getParentActivity());
                 if (i == 1) {
                     builder.setMessage(LocaleController.getString(R.string.PassportDeleteSelfie));
@@ -7480,13 +7480,13 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            PassportActivity.m3597$r8$lambda$4C1uX9eGZPucbj4xT4sirbTxRY(this.f$0);
+                            PassportActivity.m3605$r8$lambda$4C1uX9eGZPucbj4xT4sirbTxRY(this.f$0);
                         }
                     });
                 }
             }
 
-            public static void m3597$r8$lambda$4C1uX9eGZPucbj4xT4sirbTxRY(PassportActivity passportActivity) {
+            public static void m3605$r8$lambda$4C1uX9eGZPucbj4xT4sirbTxRY(PassportActivity passportActivity) {
                 EditTextBoldCursor[] editTextBoldCursorArr = passportActivity.inputExtraFields;
                 if (editTextBoldCursorArr != null) {
                     passportActivity.scrollToField(editTextBoldCursorArr[0]);
@@ -7844,7 +7844,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         builder.setItems((CharSequence[]) arrayList2.toArray(new CharSequence[0]), new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i3) {
-                                PassportActivity.m3603$r8$lambda$R__yOOlirRkCXzkxedIIdHphFc(this.f$0, tL_secureRequiredType, arrayList, z, dialogInterface, i3);
+                                PassportActivity.m3611$r8$lambda$R__yOOlirRkCXzkxedIIdHphFc(this.f$0, tL_secureRequiredType, arrayList, z, dialogInterface, i3);
                             }
                         });
                         passportActivity.showDialog(builder.create());
@@ -7870,7 +7870,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 passportActivity.openTypeActivity(tL_secureRequiredType, tL_secureRequiredType2, arrayList, z);
             }
 
-            public static void m3603$r8$lambda$R__yOOlirRkCXzkxedIIdHphFc(PassportActivity passportActivity, TLRPC.TL_secureRequiredType tL_secureRequiredType, ArrayList arrayList, boolean z, DialogInterface dialogInterface, int i) {
+            public static void m3611$r8$lambda$R__yOOlirRkCXzkxedIIdHphFc(PassportActivity passportActivity, TLRPC.TL_secureRequiredType tL_secureRequiredType, ArrayList arrayList, boolean z, DialogInterface dialogInterface, int i) {
                 passportActivity.getClass();
                 passportActivity.openTypeActivity(tL_secureRequiredType, (TLRPC.TL_secureRequiredType) arrayList.get(i), arrayList, z);
             }
@@ -9028,7 +9028,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                                         AndroidUtilities.runOnUIThread(new Runnable() {
                                             @Override
                                             public final void run() {
-                                                PassportActivity.m3611$r8$lambda$l5CFj9i4ivrYVU596dr0wMEqd4(this.f$0, resultRecognize);
+                                                PassportActivity.m3619$r8$lambda$l5CFj9i4ivrYVU596dr0wMEqd4(this.f$0, resultRecognize);
                                             }
                                         });
                                         z2 = true;
@@ -9091,7 +9091,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 passportActivity.updateUploadText(i);
             }
 
-            public static void m3611$r8$lambda$l5CFj9i4ivrYVU596dr0wMEqd4(PassportActivity passportActivity, MrzRecognizer.Result result) {
+            public static void m3619$r8$lambda$l5CFj9i4ivrYVU596dr0wMEqd4(PassportActivity passportActivity, MrzRecognizer.Result result) {
                 int i;
                 int i2;
                 passportActivity.getClass();
@@ -9965,12 +9965,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            PassportActivity.PhoneConfirmationView.m3622$r8$lambda$0GndYJyYFGo8E2KmIOTA_ILeNo(this.f$0, tL_error, verifyphone);
+                            PassportActivity.PhoneConfirmationView.m3630$r8$lambda$0GndYJyYFGo8E2KmIOTA_ILeNo(this.f$0, tL_error, verifyphone);
                         }
                     });
                 }
 
-                public static void m3622$r8$lambda$0GndYJyYFGo8E2KmIOTA_ILeNo(PhoneConfirmationView phoneConfirmationView, TLRPC.TL_error tL_error, TL_account.verifyPhone verifyphone) {
+                public static void m3630$r8$lambda$0GndYJyYFGo8E2KmIOTA_ILeNo(PhoneConfirmationView phoneConfirmationView, TLRPC.TL_error tL_error, TL_account.verifyPhone verifyphone) {
                     int i;
                     int i2;
                     PassportActivity.this.needHideProgress();
@@ -10039,7 +10039,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         builder.setNegativeButton(LocaleController.getString(R.string.Stop), new AlertDialog.OnButtonClickListener() {
                             @Override
                             public final void onClick(AlertDialog alertDialog, int i) {
-                                PassportActivity.PhoneConfirmationView.m3623$r8$lambda$Yl8nc1rFr779tNbf8jJyD3qH80(this.f$0, alertDialog, i);
+                                PassportActivity.PhoneConfirmationView.m3631$r8$lambda$Yl8nc1rFr779tNbf8jJyD3qH80(this.f$0, alertDialog, i);
                             }
                         });
                         PassportActivity.this.showDialog(builder.create());
@@ -10069,7 +10069,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     return true;
                 }
 
-                public static void m3623$r8$lambda$Yl8nc1rFr779tNbf8jJyD3qH80(PhoneConfirmationView phoneConfirmationView, AlertDialog alertDialog, int i) {
+                public static void m3631$r8$lambda$Yl8nc1rFr779tNbf8jJyD3qH80(PhoneConfirmationView phoneConfirmationView, AlertDialog alertDialog, int i) {
                     phoneConfirmationView.onBackPressed(true);
                     PassportActivity.this.setPage(0, true, null);
                 }

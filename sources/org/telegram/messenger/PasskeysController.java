@@ -39,13 +39,13 @@ public class PasskeysController {
             ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.initPasskeyRegistration(), new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    PasskeysController.m962$r8$lambda$uzlz7C9RirnBVnV8ty3z_v7jkQ(alertDialog, callback2, credentialManagerCreate, context, i, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
+                    PasskeysController.m968$r8$lambda$uzlz7C9RirnBVnV8ty3z_v7jkQ(alertDialog, callback2, credentialManagerCreate, context, i, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
     }
 
-    public static void m962$r8$lambda$uzlz7C9RirnBVnV8ty3z_v7jkQ(AlertDialog alertDialog, final Utilities.Callback2 callback2, CredentialManager credentialManager, final Context context, final int i, TL_account.passkeyRegistrationOptions passkeyregistrationoptions, TLRPC.TL_error tL_error) {
+    public static void m968$r8$lambda$uzlz7C9RirnBVnV8ty3z_v7jkQ(AlertDialog alertDialog, final Utilities.Callback2 callback2, CredentialManager credentialManager, final Context context, final int i, TL_account.passkeyRegistrationOptions passkeyregistrationoptions, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (tL_error != null) {
             callback2.run(null, tL_error.text);
@@ -190,7 +190,7 @@ public class PasskeysController {
         return new Runnable() {
             @Override
             public final void run() {
-                PasskeysController.m961$r8$lambda$r0BjSG3ZEIMsdcfxhA6pR0B2FM(zArr, runnableArr);
+                PasskeysController.m967$r8$lambda$r0BjSG3ZEIMsdcfxhA6pR0B2FM(zArr, runnableArr);
             }
         };
     }
@@ -318,7 +318,7 @@ public class PasskeysController {
         }
     }
 
-    public static void m961$r8$lambda$r0BjSG3ZEIMsdcfxhA6pR0B2FM(boolean[] zArr, Runnable[] runnableArr) {
+    public static void m967$r8$lambda$r0BjSG3ZEIMsdcfxhA6pR0B2FM(boolean[] zArr, Runnable[] runnableArr) {
         zArr[0] = true;
         Runnable runnable = runnableArr[0];
         if (runnable != null) {

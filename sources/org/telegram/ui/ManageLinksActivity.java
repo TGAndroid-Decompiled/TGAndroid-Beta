@@ -359,14 +359,14 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                 manageLinksActivity2.getNotificationCenter().doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        ManageLinksActivity.m3536$r8$lambda$OAuw5ymj7jsqLNsCkmkQrtxvIA(manageLinksActivity2, tL_chatInviteExported, tL_error, tLObject, z);
+                        ManageLinksActivity.m3544$r8$lambda$OAuw5ymj7jsqLNsCkmkQrtxvIA(manageLinksActivity2, tL_chatInviteExported, tL_error, tLObject, z);
                     }
                 });
             }
         });
     }
 
-    public static void m3536$r8$lambda$OAuw5ymj7jsqLNsCkmkQrtxvIA(ManageLinksActivity manageLinksActivity, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
+    public static void m3544$r8$lambda$OAuw5ymj7jsqLNsCkmkQrtxvIA(ManageLinksActivity manageLinksActivity, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject, boolean z) {
         boolean z2;
         boolean z3;
         DiffCallback diffCallbackSaveListState = manageLinksActivity.saveListState();
@@ -673,7 +673,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                ManageLinksActivity.m3534$r8$lambda$LXsXyqGTUJIuZzWYVJxvprmSM(this.f$0, context, view, i2);
+                ManageLinksActivity.m3542$r8$lambda$LXsXyqGTUJIuZzWYVJxvprmSM(this.f$0, context, view, i2);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -691,7 +691,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         return this.fragmentView;
     }
 
-    public static void m3534$r8$lambda$LXsXyqGTUJIuZzWYVJxvprmSM(final ManageLinksActivity manageLinksActivity, Context context, View view, int i) {
+    public static void m3542$r8$lambda$LXsXyqGTUJIuZzWYVJxvprmSM(final ManageLinksActivity manageLinksActivity, Context context, View view, int i) {
         if (i == manageLinksActivity.creatorRow) {
             TLRPC.User user = (TLRPC.User) manageLinksActivity.users.get(Long.valueOf(manageLinksActivity.invite.admin_id));
             if (user != null) {
@@ -734,7 +734,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i4) {
-                    ManageLinksActivity.m3537$r8$lambda$hHbL2QxMYCIDjQCkQXv69Xghzg(this.f$0, alertDialog, i4);
+                    ManageLinksActivity.m3545$r8$lambda$hHbL2QxMYCIDjQCkQXv69Xghzg(this.f$0, alertDialog, i4);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -754,7 +754,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         manageLinksActivity.presentFragment(manageLinksActivity2);
     }
 
-    public static void m3537$r8$lambda$hHbL2QxMYCIDjQCkQXv69Xghzg(final ManageLinksActivity manageLinksActivity, AlertDialog alertDialog, int i) {
+    public static void m3545$r8$lambda$hHbL2QxMYCIDjQCkQXv69Xghzg(final ManageLinksActivity manageLinksActivity, AlertDialog alertDialog, int i) {
         manageLinksActivity.getClass();
         TLRPC.TL_messages_deleteRevokedExportedChatInvites tL_messages_deleteRevokedExportedChatInvites = new TLRPC.TL_messages_deleteRevokedExportedChatInvites();
         tL_messages_deleteRevokedExportedChatInvites.peer = manageLinksActivity.getMessagesController().getInputPeer(-manageLinksActivity.currentChatId);
@@ -777,12 +777,12 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ManageLinksActivity.m3533$r8$lambda$3xDwJ1BoqsdvNZWBv0DyPWNCKk(this.f$0, tL_error);
+                ManageLinksActivity.m3541$r8$lambda$3xDwJ1BoqsdvNZWBv0DyPWNCKk(this.f$0, tL_error);
             }
         });
     }
 
-    public static void m3533$r8$lambda$3xDwJ1BoqsdvNZWBv0DyPWNCKk(ManageLinksActivity manageLinksActivity, TLRPC.TL_error tL_error) {
+    public static void m3541$r8$lambda$3xDwJ1BoqsdvNZWBv0DyPWNCKk(ManageLinksActivity manageLinksActivity, TLRPC.TL_error tL_error) {
         manageLinksActivity.deletingRevokedLinks = false;
         if (tL_error == null) {
             DiffCallback diffCallbackSaveListState = manageLinksActivity.saveListState();
@@ -1312,7 +1312,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                     itemOptionsMakeOptions.add(R.drawable.msg_share, LocaleController.getString(R.string.ShareLink), new Runnable() {
                         @Override
                         public final void run() {
-                            ManageLinksActivity.LinkCell.m3540$r8$lambda$omckYb3HVQHGVjzZLWRdQFu6Ow(this.f$0);
+                            ManageLinksActivity.LinkCell.m3548$r8$lambda$omckYb3HVQHGVjzZLWRdQFu6Ow(this.f$0);
                         }
                     });
                     itemOptionsMakeOptions.addIf(!linkCell.invite.permanent && ManageLinksActivity.this.canEdit, R.drawable.msg_edit, LocaleController.getString(R.string.EditLink), new Runnable() {
@@ -1357,7 +1357,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             }
         }
 
-        public static void m3540$r8$lambda$omckYb3HVQHGVjzZLWRdQFu6Ow(LinkCell linkCell) {
+        public static void m3548$r8$lambda$omckYb3HVQHGVjzZLWRdQFu6Ow(LinkCell linkCell) {
             linkCell.getClass();
             try {
                 if (linkCell.invite.link == null) {
@@ -1721,12 +1721,12 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ManageLinksActivity.m3535$r8$lambda$NKxAn10bSAV8tLt_UvRing0lM(this.f$0, tL_error, tL_chatInviteExported);
+                ManageLinksActivity.m3543$r8$lambda$NKxAn10bSAV8tLt_UvRing0lM(this.f$0, tL_error, tL_chatInviteExported);
             }
         });
     }
 
-    public static void m3535$r8$lambda$NKxAn10bSAV8tLt_UvRing0lM(ManageLinksActivity manageLinksActivity, TLRPC.TL_error tL_error, TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public static void m3543$r8$lambda$NKxAn10bSAV8tLt_UvRing0lM(ManageLinksActivity manageLinksActivity, TLRPC.TL_error tL_error, TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         if (tL_error == null) {
             manageLinksActivity.linkEditActivityCallback.onLinkRemoved(tL_chatInviteExported);
         } else {
@@ -1810,13 +1810,13 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ManageLinksActivity.AnonymousClass6.m3538$r8$lambda$entEJz7UsRyLGVIbajEG_nf4(this.f$0, tLObject);
+                        ManageLinksActivity.AnonymousClass6.m3546$r8$lambda$entEJz7UsRyLGVIbajEG_nf4(this.f$0, tLObject);
                     }
                 }, 200L);
             }
         }
 
-        public static void m3538$r8$lambda$entEJz7UsRyLGVIbajEG_nf4(AnonymousClass6 anonymousClass6, TLObject tLObject) {
+        public static void m3546$r8$lambda$entEJz7UsRyLGVIbajEG_nf4(AnonymousClass6 anonymousClass6, TLObject tLObject) {
             DiffCallback diffCallbackSaveListState = ManageLinksActivity.this.saveListState();
             ManageLinksActivity.this.invites.add(0, (TLRPC.TL_chatInviteExported) tLObject);
             if (ManageLinksActivity.this.info != null) {

@@ -183,7 +183,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         baseChartView.invalidate();
     }
 
-    public static void m1582$r8$lambda$l2zuMU38wWH2AefNKR5hI652s(BaseChartView baseChartView, ValueAnimator valueAnimator) {
+    public static void m1588$r8$lambda$l2zuMU38wWH2AefNKR5hI652s(BaseChartView baseChartView, ValueAnimator valueAnimator) {
         baseChartView.getClass();
         baseChartView.currentMinHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         baseChartView.invalidate();
@@ -260,7 +260,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         this.minHeightUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                BaseChartView.m1582$r8$lambda$l2zuMU38wWH2AefNKR5hI652s(this.f$0, valueAnimator);
+                BaseChartView.m1588$r8$lambda$l2zuMU38wWH2AefNKR5hI652s(this.f$0, valueAnimator);
             }
         };
         this.selectionAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {
@@ -1142,7 +1142,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
             ValueAnimator valueAnimatorCreateAnimator = createAnimator(0.0f, 255.0f, new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    BaseChartView.m1581$r8$lambda$_UIUglac59bP3yG86uAeXTH42s(this.f$0, chartHorizontalLinesDataCreateHorizontalLinesData, valueAnimator2);
+                    BaseChartView.m1587$r8$lambda$_UIUglac59bP3yG86uAeXTH42s(this.f$0, chartHorizontalLinesDataCreateHorizontalLinesData, valueAnimator2);
                 }
             });
             this.alphaAnimator = valueAnimatorCreateAnimator;
@@ -1157,7 +1157,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         }
     }
 
-    public static void m1581$r8$lambda$_UIUglac59bP3yG86uAeXTH42s(BaseChartView baseChartView, ChartHorizontalLinesData chartHorizontalLinesData, ValueAnimator valueAnimator) {
+    public static void m1587$r8$lambda$_UIUglac59bP3yG86uAeXTH42s(BaseChartView baseChartView, ChartHorizontalLinesData chartHorizontalLinesData, ValueAnimator valueAnimator) {
         baseChartView.getClass();
         chartHorizontalLinesData.alpha = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
         ArrayList arrayList = baseChartView.horizontalLines;
@@ -1690,7 +1690,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                     ValueAnimator valueAnimatorCreateAnimator = createAnimator(lineViewData.alpha, 1.0f, new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator5) {
-                            BaseChartView.m1580$r8$lambda$O1lCwxWXI0SnEBgbROnHINexw(this.f$0, lineViewData, valueAnimator5);
+                            BaseChartView.m1586$r8$lambda$O1lCwxWXI0SnEBgbROnHINexw(this.f$0, lineViewData, valueAnimator5);
                         }
                     });
                     lineViewData.animatorIn = valueAnimatorCreateAnimator;
@@ -1719,7 +1719,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         }
     }
 
-    public static void m1580$r8$lambda$O1lCwxWXI0SnEBgbROnHINexw(BaseChartView baseChartView, LineViewData lineViewData, ValueAnimator valueAnimator) {
+    public static void m1586$r8$lambda$O1lCwxWXI0SnEBgbROnHINexw(BaseChartView baseChartView, LineViewData lineViewData, ValueAnimator valueAnimator) {
         baseChartView.getClass();
         lineViewData.alpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         baseChartView.invalidatePickerChart = true;

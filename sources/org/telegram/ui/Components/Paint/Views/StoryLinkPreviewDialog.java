@@ -217,7 +217,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         toggleButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryLinkPreviewDialog.m2531$r8$lambda$ALT2h9uMvRgCMrKTv_S0I2OkCY(this.f$0, i, view);
+                StoryLinkPreviewDialog.m2541$r8$lambda$ALT2h9uMvRgCMrKTv_S0I2OkCY(this.f$0, i, view);
             }
         });
         itemOptionsMakeOptions.addView(toggleButton2);
@@ -264,7 +264,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         storyLinkPreviewDialog.linkView.set(i, storyLinkPreviewDialog.link, true);
     }
 
-    public static void m2531$r8$lambda$ALT2h9uMvRgCMrKTv_S0I2OkCY(StoryLinkPreviewDialog storyLinkPreviewDialog, int i, View view) {
+    public static void m2541$r8$lambda$ALT2h9uMvRgCMrKTv_S0I2OkCY(StoryLinkPreviewDialog storyLinkPreviewDialog, int i, View view) {
         LinkPreview.WebPagePreview webPagePreview = storyLinkPreviewDialog.link;
         boolean z = webPagePreview.largePhoto;
         webPagePreview.largePhoto = !z;

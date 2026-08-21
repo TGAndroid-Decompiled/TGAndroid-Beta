@@ -108,7 +108,7 @@ public abstract class AvatarPreviewPagerIndicator extends View implements Profil
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AvatarPreviewPagerIndicator.m1346$r8$lambda$wXg0i3IKSb4KfUj5y5ToQNbcjc(this.f$0, valueAnimator);
+                AvatarPreviewPagerIndicator.m1352$r8$lambda$wXg0i3IKSb4KfUj5y5ToQNbcjc(this.f$0, valueAnimator);
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -133,7 +133,7 @@ public abstract class AvatarPreviewPagerIndicator extends View implements Profil
         this.textPaint.setTextSize(AndroidUtilities.dpf2(15.0f));
     }
 
-    public static void m1346$r8$lambda$wXg0i3IKSb4KfUj5y5ToQNbcjc(AvatarPreviewPagerIndicator avatarPreviewPagerIndicator, ValueAnimator valueAnimator) {
+    public static void m1352$r8$lambda$wXg0i3IKSb4KfUj5y5ToQNbcjc(AvatarPreviewPagerIndicator avatarPreviewPagerIndicator, ValueAnimator valueAnimator) {
         float[] fArr = avatarPreviewPagerIndicator.animatorValues;
         float animatedFraction = valueAnimator.getAnimatedFraction();
         avatarPreviewPagerIndicator.currentAnimationValue = animatedFraction;

@@ -3,8 +3,6 @@ package org.telegram.messenger;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Debug;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
@@ -47,6 +45,7 @@ public class FileLog {
     private static HashSet<String> privateFields = null;
     private static final String tag = "tmessages";
     private boolean initied;
+    private boolean initiing;
     private OutputStreamWriter streamWriter = null;
     private FastDateFormat dateFormat = null;
     private FastDateFormat fileDateFormat = null;
@@ -69,6 +68,9 @@ public class FileLog {
                 if (fileLog == null) {
                     fileLog = new FileLog();
                     Instance = fileLog;
+                    if (BuildVars.LOGS_ENABLED) {
+                        fileLog.init();
+                    }
                 }
             } catch (Throwable th) {
                 throw th;
@@ -77,10 +79,7 @@ public class FileLog {
         return fileLog;
     }
 
-    public FileLog() {
-        if (BuildVars.LOGS_ENABLED) {
-            init();
-        }
+    private FileLog() {
     }
 
     public static void dumpResponseAndRequest(final int i, TLObject tLObject, TLObject tLObject2, final TLRPC.TL_error tL_error, final long j, final long j2, final int i2) {
@@ -103,7 +102,7 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.m447$r8$lambda$TbpBHKbdIrkiw9Ph1QNW6DiAvI(j, j2, i2, i, jCurrentTimeMillis, str, str3, tL_error);
+                        FileLog.m454$r8$lambda$TbpBHKbdIrkiw9Ph1QNW6DiAvI(j, j2, i2, i, jCurrentTimeMillis, str, str3, tL_error);
                     }
                 });
             } catch (Throwable th) {
@@ -112,7 +111,7 @@ public class FileLog {
         }
     }
 
-    public static void m447$r8$lambda$TbpBHKbdIrkiw9Ph1QNW6DiAvI(long j, long j2, int i, int i2, long j3, String str, String str2, TLRPC.TL_error tL_error) {
+    public static void m454$r8$lambda$TbpBHKbdIrkiw9Ph1QNW6DiAvI(long j, long j2, int i, int i2, long j3, String str, String str2, TLRPC.TL_error tL_error) {
         try {
             String str3 = "requestMsgId=" + j + " requestingTime=" + (System.currentTimeMillis() - j2) + " request_token=" + i + " account=" + i2;
             getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j3) + " " + str3);
@@ -153,7 +152,7 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.m450$r8$lambda$zqRYPgC_YdSVtSz1dAmPwy_uUw(jCurrentTimeMillis, j, i, string);
+                        FileLog.m457$r8$lambda$zqRYPgC_YdSVtSz1dAmPwy_uUw(jCurrentTimeMillis, j, i, string);
                     }
                 });
             } catch (Throwable unused) {
@@ -161,7 +160,7 @@ public class FileLog {
         }
     }
 
-    public static void m450$r8$lambda$zqRYPgC_YdSVtSz1dAmPwy_uUw(long j, long j2, int i, String str) {
+    public static void m457$r8$lambda$zqRYPgC_YdSVtSz1dAmPwy_uUw(long j, long j2, int i, String str) {
         try {
             getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j) + " msgId=" + j2 + " account=" + i);
             getInstance().tlStreamWriter.write("\n");
@@ -290,10 +289,11 @@ public class FileLog {
         }
     }
 
-    public void init() {
+    private void init() {
         if (this.initied) {
             return;
         }
+        this.initiing = true;
         Locale locale = Locale.US;
         this.dateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss.SSS", locale);
         FastDateFormat fastDateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss", locale);
@@ -322,14 +322,6 @@ public class FileLog {
             this.tlStreamWriter.flush();
         } catch (Exception e2) {
             e2.printStackTrace();
-        }
-        if (BuildVars.DEBUG_VERSION) {
-            new ANRDetector(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.dumpANR();
-                }
-            });
         }
         this.initied = true;
     }
@@ -497,7 +489,7 @@ public class FileLog {
         }
     }
 
-    public void dumpANR() {
+    public static void dumpANR() {
         StringBuilder sb = new StringBuilder();
         Iterator<Map.Entry<Thread, StackTraceElement[]>> it = Thread.getAllStackTraces().entrySet().iterator();
         while (true) {
@@ -516,7 +508,7 @@ public class FileLog {
                 sb.append("\n\n");
             } else {
                 e("ANR thread dump\n" + sb.toString());
-                dumpMemory(false);
+                getInstance().dumpMemory(false);
                 return;
             }
         }
@@ -536,7 +528,7 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.m446$r8$lambda$Cka7Jn8J8_XFnXWLJvFPiIg4A4(th);
+                        FileLog.m453$r8$lambda$Cka7Jn8J8_XFnXWLJvFPiIg4A4(th);
                     }
                 });
                 return;
@@ -548,7 +540,7 @@ public class FileLog {
         }
     }
 
-    public static void m446$r8$lambda$Cka7Jn8J8_XFnXWLJvFPiIg4A4(Throwable th) {
+    public static void m453$r8$lambda$Cka7Jn8J8_XFnXWLJvFPiIg4A4(Throwable th) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: " + th + "\n");
             for (StackTraceElement stackTraceElement : th.getStackTrace()) {
@@ -582,14 +574,14 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.m449$r8$lambda$bYZ1YvZDkuzSWHS46PDhtH0hTE(str);
+                        FileLog.m456$r8$lambda$bYZ1YvZDkuzSWHS46PDhtH0hTE(str);
                     }
                 });
             }
         }
     }
 
-    public static void m449$r8$lambda$bYZ1YvZDkuzSWHS46PDhtH0hTE(String str) {
+    public static void m456$r8$lambda$bYZ1YvZDkuzSWHS46PDhtH0hTE(String str) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " D/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
@@ -609,14 +601,14 @@ public class FileLog {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.m448$r8$lambda$W1fml6687f73UJ9cxSD3wMPIB4(str);
+                        FileLog.m455$r8$lambda$W1fml6687f73UJ9cxSD3wMPIB4(str);
                     }
                 });
             }
         }
     }
 
-    public static void m448$r8$lambda$W1fml6687f73UJ9cxSD3wMPIB4(String str) {
+    public static void m455$r8$lambda$W1fml6687f73UJ9cxSD3wMPIB4(String str) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
@@ -642,41 +634,6 @@ public class FileLog {
     public static class IgnoreSentException extends Exception {
         public IgnoreSentException(String str) {
             super(str);
-        }
-    }
-
-    public class ANRDetector {
-        private final long TIMEOUT_MS = 5000;
-        private final Handler mainHandler = new Handler(Looper.getMainLooper());
-        private boolean isUIThreadResponsive = true;
-
-        public ANRDetector(final Runnable runnable) {
-            new Thread(new Runnable() {
-                @Override
-                public final void run() {
-                    FileLog.ANRDetector.m451$r8$lambda$_BnewbbfzQ78PVhPUWgvar4WoM(this.f$0, runnable);
-                }
-            }).start();
-        }
-
-        public static void m451$r8$lambda$_BnewbbfzQ78PVhPUWgvar4WoM(final ANRDetector aNRDetector, Runnable runnable) {
-            while (true) {
-                aNRDetector.isUIThreadResponsive = false;
-                aNRDetector.mainHandler.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.isUIThreadResponsive = true;
-                    }
-                });
-                try {
-                    Thread.sleep(5000L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (!aNRDetector.isUIThreadResponsive) {
-                    runnable.run();
-                }
-            }
         }
     }
 }

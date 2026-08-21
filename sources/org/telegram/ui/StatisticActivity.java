@@ -381,7 +381,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StatisticActivity.m4284$r8$lambda$muDCMVa4CXRFy1IS8Zu3XyqCaU(this.f$0, arrayList);
+                    StatisticActivity.m4295$r8$lambda$muDCMVa4CXRFy1IS8Zu3XyqCaU(this.f$0, arrayList);
                 }
             });
             if (statisticActivity.recentPostsAll.size() > 0) {
@@ -466,7 +466,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public static void m4284$r8$lambda$muDCMVa4CXRFy1IS8Zu3XyqCaU(StatisticActivity statisticActivity, List list) {
+    public static void m4295$r8$lambda$muDCMVa4CXRFy1IS8Zu3XyqCaU(StatisticActivity statisticActivity, List list) {
         if (statisticActivity.storiesList.load(list)) {
             return;
         }
@@ -722,7 +722,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             glassTabView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StatisticActivity.m4282$r8$lambda$emGqoXSZrXy19uF1fq9_QyO9t0(this.f$0, i, view);
+                    StatisticActivity.m4293$r8$lambda$emGqoXSZrXy19uF1fq9_QyO9t0(this.f$0, i, view);
                 }
             });
             statisticActivity.tabsView.addView(statisticActivity.tabs[i]);
@@ -1061,13 +1061,13 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         statisticActivity.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i4) {
-                StatisticActivity.m4283$r8$lambda$kEkZE0HbmSI7D_aTYZ4yR_UkMU(this.f$0, view, i4);
+                StatisticActivity.m4294$r8$lambda$kEkZE0HbmSI7D_aTYZ4yR_UkMU(this.f$0, view, i4);
             }
         });
         statisticActivity.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i4) {
-                return StatisticActivity.m4281$r8$lambda$PEyqvXSHa4vf7M2xmIy6P6TvQ4(this.f$0, view, i4);
+                return StatisticActivity.m4292$r8$lambda$PEyqvXSHa4vf7M2xmIy6P6TvQ4(this.f$0, view, i4);
             }
         });
         frameLayout.addView(statisticActivity.recyclerListView);
@@ -1115,12 +1115,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         return statisticActivity.fragmentView;
     }
 
-    public static void m4282$r8$lambda$emGqoXSZrXy19uF1fq9_QyO9t0(StatisticActivity statisticActivity, int i, View view) {
+    public static void m4293$r8$lambda$emGqoXSZrXy19uF1fq9_QyO9t0(StatisticActivity statisticActivity, int i, View view) {
         statisticActivity.viewPagerFixed.scrollToPosition(i);
         statisticActivity.selectTab(i, true);
     }
 
-    public static void m4283$r8$lambda$kEkZE0HbmSI7D_aTYZ4yR_UkMU(StatisticActivity statisticActivity, View view, int i) {
+    public static void m4294$r8$lambda$kEkZE0HbmSI7D_aTYZ4yR_UkMU(StatisticActivity statisticActivity, View view, int i) {
         Adapter adapter = statisticActivity.adapter;
         int i2 = adapter.recentPostsStartRow;
         if (i >= i2 && i <= adapter.recentPostsEndRow) {
@@ -1157,7 +1157,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public static boolean m4281$r8$lambda$PEyqvXSHa4vf7M2xmIy6P6TvQ4(final StatisticActivity statisticActivity, View view, int i) {
+    public static boolean m4292$r8$lambda$PEyqvXSHa4vf7M2xmIy6P6TvQ4(final StatisticActivity statisticActivity, View view, int i) {
         Adapter adapter = statisticActivity.adapter;
         int i2 = adapter.recentPostsStartRow;
         if (i >= i2 && i <= adapter.recentPostsEndRow) {
@@ -2067,13 +2067,13 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_loadAsyncGraph, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StatisticActivity.ChartCell.m4290$r8$lambda$PIMefeHoqO1NWuOY58kfntDwm8(this.f$0, str, zoomCancelable, tLObject, tL_error);
+                        StatisticActivity.ChartCell.m4301$r8$lambda$PIMefeHoqO1NWuOY58kfntDwm8(this.f$0, str, zoomCancelable, tLObject, tL_error);
                     }
                 }, null, null, 0, StatisticActivity.this.chat.stats_dc, 1, true), ((BaseFragment) StatisticActivity.this).classGuid);
             }
         }
 
-        public static void m4290$r8$lambda$PIMefeHoqO1NWuOY58kfntDwm8(final ChartCell chartCell, final String str, final ZoomCancelable zoomCancelable, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4301$r8$lambda$PIMefeHoqO1NWuOY58kfntDwm8(final ChartCell chartCell, final String str, final ZoomCancelable zoomCancelable, TLObject tLObject, TLRPC.TL_error tL_error) {
             final ChartData chartDataCreateChartData;
             chartCell.getClass();
             boolean z = true;
@@ -2507,7 +2507,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    StatisticActivity.BaseChartCell.m4286$r8$lambda$_OzAqP348x8OrzuMilfqlht5c8(this.f$0, transitionParams, f3, valueAnimator);
+                    StatisticActivity.BaseChartCell.m4297$r8$lambda$_OzAqP348x8OrzuMilfqlht5c8(this.f$0, transitionParams, f3, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setDuration(400L);
@@ -2515,7 +2515,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             return valueAnimatorOfFloat;
         }
 
-        public static void m4286$r8$lambda$_OzAqP348x8OrzuMilfqlht5c8(BaseChartCell baseChartCell, TransitionParams transitionParams, float f, ValueAnimator valueAnimator) {
+        public static void m4297$r8$lambda$_OzAqP348x8OrzuMilfqlht5c8(BaseChartCell baseChartCell, TransitionParams transitionParams, float f, ValueAnimator valueAnimator) {
             BaseChartView baseChartView = baseChartCell.chartView;
             float f2 = baseChartView.chartWidth;
             ChartPickerDelegate chartPickerDelegate = baseChartView.pickerDelegate;
@@ -2970,12 +2970,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StatisticActivity.m4279$r8$lambda$08MebfnkhBWW_md2pHcri4VjW4(this.f$0, arrayList);
+                StatisticActivity.m4290$r8$lambda$08MebfnkhBWW_md2pHcri4VjW4(this.f$0, arrayList);
             }
         });
     }
 
-    public static void m4279$r8$lambda$08MebfnkhBWW_md2pHcri4VjW4(StatisticActivity statisticActivity, ArrayList arrayList) {
+    public static void m4290$r8$lambda$08MebfnkhBWW_md2pHcri4VjW4(StatisticActivity statisticActivity, ArrayList arrayList) {
         statisticActivity.messagesIsLoading = false;
         if (arrayList.isEmpty()) {
             return;
@@ -3233,7 +3233,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                StatisticActivity.m4280$r8$lambda$KOSxZp9L4pMOxr2VoNCzTZ0joM(this.f$0);
+                StatisticActivity.m4291$r8$lambda$KOSxZp9L4pMOxr2VoNCzTZ0joM(this.f$0);
             }
 
             @Override
@@ -3334,7 +3334,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         return arrayList;
     }
 
-    public static void m4280$r8$lambda$KOSxZp9L4pMOxr2VoNCzTZ0joM(StatisticActivity statisticActivity) {
+    public static void m4291$r8$lambda$KOSxZp9L4pMOxr2VoNCzTZ0joM(StatisticActivity statisticActivity) {
         RecyclerListView recyclerListView = statisticActivity.recyclerListView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

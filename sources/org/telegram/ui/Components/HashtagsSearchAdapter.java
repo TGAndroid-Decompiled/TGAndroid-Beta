@@ -113,14 +113,14 @@ public abstract class HashtagsSearchAdapter extends UniversalAdapter {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                HashtagsSearchAdapter.m2368$r8$lambda$HUrBpdTFncWWyEi2Yg2z3xmHlk(this.f$0, i, hashtag);
+                HashtagsSearchAdapter.m2378$r8$lambda$HUrBpdTFncWWyEi2Yg2z3xmHlk(this.f$0, i, hashtag);
             }
         };
         this.searchRunnable = runnable;
         AndroidUtilities.runOnUIThread(runnable, 300L);
     }
 
-    public static void m2368$r8$lambda$HUrBpdTFncWWyEi2Yg2z3xmHlk(final HashtagsSearchAdapter hashtagsSearchAdapter, final int i, String str) {
+    public static void m2378$r8$lambda$HUrBpdTFncWWyEi2Yg2z3xmHlk(final HashtagsSearchAdapter hashtagsSearchAdapter, final int i, String str) {
         if (i != hashtagsSearchAdapter.searchId) {
             return;
         }

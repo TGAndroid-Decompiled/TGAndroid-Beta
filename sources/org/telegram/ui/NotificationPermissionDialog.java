@@ -236,7 +236,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    NotificationPermissionDialog.CounterView.m3564$r8$lambda$DkepYEpaFmy9K12nAn4_1IhwTI(this.f$0, valueAnimator2);
+                    NotificationPermissionDialog.CounterView.m3572$r8$lambda$DkepYEpaFmy9K12nAn4_1IhwTI(this.f$0, valueAnimator2);
                 }
             });
             this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -251,7 +251,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
             this.countAnimator.start();
         }
 
-        public static void m3564$r8$lambda$DkepYEpaFmy9K12nAn4_1IhwTI(CounterView counterView, ValueAnimator valueAnimator) {
+        public static void m3572$r8$lambda$DkepYEpaFmy9K12nAn4_1IhwTI(CounterView counterView, ValueAnimator valueAnimator) {
             counterView.getClass();
             counterView.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
             counterView.invalidate();

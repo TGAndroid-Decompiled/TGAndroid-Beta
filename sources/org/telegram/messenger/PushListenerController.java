@@ -37,12 +37,12 @@ public class PushListenerController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PushListenerController.m964$r8$lambda$gWkEZv3oxmETvqnhw1v3CFWl4(str, i);
+                PushListenerController.m970$r8$lambda$gWkEZv3oxmETvqnhw1v3CFWl4(str, i);
             }
         });
     }
 
-    public static void m964$r8$lambda$gWkEZv3oxmETvqnhw1v3CFWl4(final String str, final int i) {
+    public static void m970$r8$lambda$gWkEZv3oxmETvqnhw1v3CFWl4(final String str, final int i) {
         boolean z;
         ConnectionsManager.setRegId(str, i, SharedConfig.pushStringStatus);
         if (str == null) {

@@ -410,12 +410,12 @@ public class GiveawayResultsMessageCell {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GiveawayResultsMessageCell.m2665$r8$lambda$kTQvcxCPh48zQLLCS3hyqK1gHw(this.f$0, messageObject, tL_messageMediaGiveawayResults);
+                GiveawayResultsMessageCell.m2674$r8$lambda$kTQvcxCPh48zQLLCS3hyqK1gHw(this.f$0, messageObject, tL_messageMediaGiveawayResults);
             }
         });
     }
 
-    public static void m2665$r8$lambda$kTQvcxCPh48zQLLCS3hyqK1gHw(GiveawayResultsMessageCell giveawayResultsMessageCell, MessageObject messageObject, TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults) {
+    public static void m2674$r8$lambda$kTQvcxCPh48zQLLCS3hyqK1gHw(GiveawayResultsMessageCell giveawayResultsMessageCell, MessageObject messageObject, TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults) {
         giveawayResultsMessageCell.getClass();
         if (messageObject.getDialogId() == (-tL_messageMediaGiveawayResults.channel_id)) {
             giveawayResultsMessageCell.parentView.getDelegate().didPressReplyMessage(giveawayResultsMessageCell.parentView, tL_messageMediaGiveawayResults.launch_msg_id, 0.0f, 0.0f, false);

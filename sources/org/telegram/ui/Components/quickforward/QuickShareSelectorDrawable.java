@@ -729,12 +729,12 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         return new Interpolator() {
             @Override
             public final float getInterpolation(float f4) {
-                return QuickShareSelectorDrawable.m2966$r8$lambda$TFdbEg5B8rng8gyNxj41ZbRLAs(z, f2, f3, interpolator, f4);
+                return QuickShareSelectorDrawable.m2975$r8$lambda$TFdbEg5B8rng8gyNxj41ZbRLAs(z, f2, f3, interpolator, f4);
             }
         };
     }
 
-    public static float m2966$r8$lambda$TFdbEg5B8rng8gyNxj41ZbRLAs(boolean z, float f, float f2, Interpolator interpolator, float f3) {
+    public static float m2975$r8$lambda$TFdbEg5B8rng8gyNxj41ZbRLAs(boolean z, float f, float f2, Interpolator interpolator, float f3) {
         if (z) {
             return 1.0f - interpolator.getInterpolation(1.0f - MathUtils.clamp((f3 - f) / (f2 - f), 0.0f, 1.0f));
         }

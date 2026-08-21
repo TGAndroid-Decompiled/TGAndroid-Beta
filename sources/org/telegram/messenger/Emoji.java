@@ -1550,7 +1550,7 @@ public class Emoji {
         Collections.sort(recentEmoji, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return Emoji.m422$r8$lambda$tEFea3Q0DiBPnoNT35a881s2dE((String) obj, (String) obj2);
+                return Emoji.m430$r8$lambda$tEFea3Q0DiBPnoNT35a881s2dE((String) obj, (String) obj2);
             }
         });
         while (true) {
@@ -1563,7 +1563,7 @@ public class Emoji {
         }
     }
 
-    public static int m422$r8$lambda$tEFea3Q0DiBPnoNT35a881s2dE(String str, String str2) {
+    public static int m430$r8$lambda$tEFea3Q0DiBPnoNT35a881s2dE(String str, String str2) {
         HashMap<String, Integer> map = emojiUseHistory;
         Integer num = map.get(str);
         Integer num2 = map.get(str2);

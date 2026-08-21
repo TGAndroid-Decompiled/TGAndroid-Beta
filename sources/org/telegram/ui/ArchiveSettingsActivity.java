@@ -90,7 +90,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                ArchiveSettingsActivity.m1310$r8$lambda$R3NmrF357752hjuPnasQdGiLrc(this.f$0, view, i);
+                ArchiveSettingsActivity.m1316$r8$lambda$R3NmrF357752hjuPnasQdGiLrc(this.f$0, view, i);
             }
         });
         getContactsController().loadGlobalPrivacySetting();
@@ -103,7 +103,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         return this.fragmentView;
     }
 
-    public static void m1310$r8$lambda$R3NmrF357752hjuPnasQdGiLrc(final ArchiveSettingsActivity archiveSettingsActivity, View view, int i) {
+    public static void m1316$r8$lambda$R3NmrF357752hjuPnasQdGiLrc(final ArchiveSettingsActivity archiveSettingsActivity, View view, int i) {
         if (i < 0) {
             archiveSettingsActivity.getClass();
             return;

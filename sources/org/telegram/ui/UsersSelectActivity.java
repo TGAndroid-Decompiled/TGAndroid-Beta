@@ -549,7 +549,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         this.spansContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UsersSelectActivity.m4760$r8$lambda$LJ_HOsErIXcytip20leT2xNkc0(this.f$0, view);
+                UsersSelectActivity.m4771$r8$lambda$LJ_HOsErIXcytip20leT2xNkc0(this.f$0, view);
             }
         });
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
@@ -816,7 +816,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         return this.fragmentView;
     }
 
-    public static void m4760$r8$lambda$LJ_HOsErIXcytip20leT2xNkc0(UsersSelectActivity usersSelectActivity, View view) {
+    public static void m4771$r8$lambda$LJ_HOsErIXcytip20leT2xNkc0(UsersSelectActivity usersSelectActivity, View view) {
         usersSelectActivity.editText.clearFocus();
         usersSelectActivity.editText.requestFocus();
         AndroidUtilities.showKeyboard(usersSelectActivity.editText);
@@ -1856,7 +1856,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                UsersSelectActivity.m4761$r8$lambda$M9P3wo2x572uyzfrTtEJgmf8Pw(this.f$0);
+                UsersSelectActivity.m4772$r8$lambda$M9P3wo2x572uyzfrTtEJgmf8Pw(this.f$0);
             }
 
             @Override
@@ -1911,7 +1911,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         return arrayList;
     }
 
-    public static void m4761$r8$lambda$M9P3wo2x572uyzfrTtEJgmf8Pw(UsersSelectActivity usersSelectActivity) {
+    public static void m4772$r8$lambda$M9P3wo2x572uyzfrTtEJgmf8Pw(UsersSelectActivity usersSelectActivity) {
         RecyclerListView recyclerListView = usersSelectActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

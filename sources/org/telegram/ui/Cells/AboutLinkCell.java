@@ -610,12 +610,12 @@ public abstract class AboutLinkCell extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AboutLinkCell.AnonymousClass3.m1469$r8$lambda$kreJ2xNgwXZ5aC2Ca76LOUDrNo(this.f$0);
+                    AboutLinkCell.AnonymousClass3.m1475$r8$lambda$kreJ2xNgwXZ5aC2Ca76LOUDrNo(this.f$0);
                 }
             }, z ? 0L : 350L);
         }
 
-        public static void m1469$r8$lambda$kreJ2xNgwXZ5aC2Ca76LOUDrNo(AnonymousClass3 anonymousClass3) {
+        public static void m1475$r8$lambda$kreJ2xNgwXZ5aC2Ca76LOUDrNo(AnonymousClass3 anonymousClass3) {
             if (anonymousClass3.thisLoading != null) {
                 AboutLinkCell.this.links.removeLoading(anonymousClass3.thisLoading, true);
             }

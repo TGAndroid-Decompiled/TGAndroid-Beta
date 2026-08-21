@@ -103,7 +103,7 @@ public class TermsOfServiceView extends FrameLayout {
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                TermsOfServiceView.m2871$r8$lambda$iVlWSzx6rq5DGS9L9RvCs2hHvQ(this.f$0, view2);
+                TermsOfServiceView.m2880$r8$lambda$iVlWSzx6rq5DGS9L9RvCs2hHvQ(this.f$0, view2);
             }
         });
         View view2 = new View(context);
@@ -121,7 +121,7 @@ public class TermsOfServiceView extends FrameLayout {
         builder.setPositiveButton(LocaleController.getString(R.string.DeclineDeactivate), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                TermsOfServiceView.m2867$r8$lambda$Bx6yIotGYJOs92_e2RlzTbzLNw(this.f$0, alertDialog, i);
+                TermsOfServiceView.m2876$r8$lambda$Bx6yIotGYJOs92_e2RlzTbzLNw(this.f$0, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Back), null);
@@ -129,21 +129,21 @@ public class TermsOfServiceView extends FrameLayout {
         builder.show();
     }
 
-    public static void m2867$r8$lambda$Bx6yIotGYJOs92_e2RlzTbzLNw(final TermsOfServiceView termsOfServiceView, AlertDialog alertDialog, int i) {
+    public static void m2876$r8$lambda$Bx6yIotGYJOs92_e2RlzTbzLNw(final TermsOfServiceView termsOfServiceView, AlertDialog alertDialog, int i) {
         AlertDialog.Builder builder = new AlertDialog.Builder(termsOfServiceView.getContext());
         builder.setMessage(LocaleController.getString(R.string.TosDeclineDeleteAccount));
         builder.setTitle(LocaleController.getString(R.string.AppName));
         builder.setPositiveButton(LocaleController.getString(R.string.Deactivate), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog2, int i2) {
-                TermsOfServiceView.m2868$r8$lambda$XS2WdDe8LJLKd9qO3q1b8vuIag(this.f$0, alertDialog2, i2);
+                TermsOfServiceView.m2877$r8$lambda$XS2WdDe8LJLKd9qO3q1b8vuIag(this.f$0, alertDialog2, i2);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         builder.show();
     }
 
-    public static void m2868$r8$lambda$XS2WdDe8LJLKd9qO3q1b8vuIag(final TermsOfServiceView termsOfServiceView, AlertDialog alertDialog, int i) {
+    public static void m2877$r8$lambda$XS2WdDe8LJLKd9qO3q1b8vuIag(final TermsOfServiceView termsOfServiceView, AlertDialog alertDialog, int i) {
         termsOfServiceView.getClass();
         final AlertDialog alertDialog2 = new AlertDialog(termsOfServiceView.getContext(), 3);
         alertDialog2.setCanCancel(false);
@@ -152,23 +152,23 @@ public class TermsOfServiceView extends FrameLayout {
         ConnectionsManager.getInstance(termsOfServiceView.currentAccount).sendRequest(deleteaccount, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TermsOfServiceView.m2869$r8$lambda$YvZnBp54sEFqeExaG8lYLREsOw(this.f$0, alertDialog2, tLObject, tL_error);
+                TermsOfServiceView.m2878$r8$lambda$YvZnBp54sEFqeExaG8lYLREsOw(this.f$0, alertDialog2, tLObject, tL_error);
             }
         });
         alertDialog2.show();
     }
 
-    public static void m2869$r8$lambda$YvZnBp54sEFqeExaG8lYLREsOw(final TermsOfServiceView termsOfServiceView, final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m2878$r8$lambda$YvZnBp54sEFqeExaG8lYLREsOw(final TermsOfServiceView termsOfServiceView, final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         termsOfServiceView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TermsOfServiceView.m2872$r8$lambda$iqCDrmJos2obDULFWL9W8xYFE(this.f$0, alertDialog, tLObject, tL_error);
+                TermsOfServiceView.m2881$r8$lambda$iqCDrmJos2obDULFWL9W8xYFE(this.f$0, alertDialog, tLObject, tL_error);
             }
         });
     }
 
-    public static void m2872$r8$lambda$iqCDrmJos2obDULFWL9W8xYFE(TermsOfServiceView termsOfServiceView, AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m2881$r8$lambda$iqCDrmJos2obDULFWL9W8xYFE(TermsOfServiceView termsOfServiceView, AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
         termsOfServiceView.getClass();
         try {
             alertDialog.dismiss();
@@ -192,7 +192,7 @@ public class TermsOfServiceView extends FrameLayout {
         }
     }
 
-    public static void m2871$r8$lambda$iVlWSzx6rq5DGS9L9RvCs2hHvQ(final TermsOfServiceView termsOfServiceView, View view) {
+    public static void m2880$r8$lambda$iVlWSzx6rq5DGS9L9RvCs2hHvQ(final TermsOfServiceView termsOfServiceView, View view) {
         if (termsOfServiceView.currentTos.min_age_confirm != 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             builder.setTitle(LocaleController.getString(R.string.TosAgeTitle));

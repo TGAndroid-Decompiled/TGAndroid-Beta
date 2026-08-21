@@ -72,7 +72,7 @@ public abstract class PhotoUtilities {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoUtilities.m1131$r8$lambda$7MejB92G72HNHArTnHvAEjZ0Ys(inputFile, inputFile2, d, videoSize, i, photoSize2, photoSize, runnable, iNavigationLayout, imageUpdater);
+                        PhotoUtilities.m1137$r8$lambda$7MejB92G72HNHArTnHvAEjZ0Ys(inputFile, inputFile2, d, videoSize, i, photoSize2, photoSize, runnable, iNavigationLayout, imageUpdater);
                     }
                 });
             }
@@ -99,7 +99,7 @@ public abstract class PhotoUtilities {
         });
     }
 
-    public static void m1131$r8$lambda$7MejB92G72HNHArTnHvAEjZ0Ys(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, TLRPC.VideoSize videoSize, final int i, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, final Runnable runnable, final INavigationLayout iNavigationLayout, ImageUpdater imageUpdater) {
+    public static void m1137$r8$lambda$7MejB92G72HNHArTnHvAEjZ0Ys(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, TLRPC.VideoSize videoSize, final int i, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, final Runnable runnable, final INavigationLayout iNavigationLayout, ImageUpdater imageUpdater) {
         TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
         if (inputFile != null) {
             tL_photos_uploadProfilePhoto.file = inputFile;
@@ -121,7 +121,7 @@ public abstract class PhotoUtilities {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoUtilities.m1134$r8$lambda$qx2kormntPEvjsmL_mb7R_n0Dg(tLObject, i, photoSize, photoSize, runnable, iNavigationLayout);
+                        PhotoUtilities.m1140$r8$lambda$qx2kormntPEvjsmL_mb7R_n0Dg(tLObject, i, photoSize, photoSize, runnable, iNavigationLayout);
                     }
                 });
             }
@@ -129,7 +129,7 @@ public abstract class PhotoUtilities {
         imageUpdater.onPause();
     }
 
-    public static void m1134$r8$lambda$qx2kormntPEvjsmL_mb7R_n0Dg(TLObject tLObject, final int i, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, Runnable runnable, final INavigationLayout iNavigationLayout) {
+    public static void m1140$r8$lambda$qx2kormntPEvjsmL_mb7R_n0Dg(TLObject tLObject, final int i, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, Runnable runnable, final INavigationLayout iNavigationLayout) {
         if (tLObject instanceof TLRPC.TL_photos_photo) {
             TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
             MessagesController.getInstance(i).putUsers(tL_photos_photo.users, false);
@@ -156,13 +156,13 @@ public abstract class PhotoUtilities {
             BulletinFactory.of(iNavigationLayout.getLastFragment()).createUsersBulletin(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoUtilities.m1132$r8$lambda$ozcDEvBk9PRJN_Uvr7r6EfrkSw(i, iNavigationLayout);
+                    PhotoUtilities.m1138$r8$lambda$ozcDEvBk9PRJN_Uvr7r6EfrkSw(i, iNavigationLayout);
                 }
             }), null).show();
         }
     }
 
-    public static void m1132$r8$lambda$ozcDEvBk9PRJN_Uvr7r6EfrkSw(int i, INavigationLayout iNavigationLayout) {
+    public static void m1138$r8$lambda$ozcDEvBk9PRJN_Uvr7r6EfrkSw(int i, INavigationLayout iNavigationLayout) {
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", UserConfig.getInstance(i).clientUserId);
         iNavigationLayout.getLastFragment().presentFragment(new ProfileActivity(bundle));
@@ -224,7 +224,7 @@ public abstract class PhotoUtilities {
 
             @Override
             public final void didUploadPhoto(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.VideoSize videoSize2) {
-                PhotoUtilities.m1130$r8$lambda$4UaqjCAnbRsMNEcpG9vGjmmDbE(chatActivity, fileLocationArr, fileLocationArr2, clientUserId, inputFile, inputFile2, d, str, photoSize, photoSize2, z, videoSize2);
+                PhotoUtilities.m1136$r8$lambda$4UaqjCAnbRsMNEcpG9vGjmmDbE(chatActivity, fileLocationArr, fileLocationArr2, clientUserId, inputFile, inputFile2, d, str, photoSize, photoSize2, z, videoSize2);
             }
 
             @Override
@@ -285,19 +285,19 @@ public abstract class PhotoUtilities {
             BulletinFactory.of(chatActivity).createUsersBulletin(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoUtilities.m1133$r8$lambda$qLMsmLE_mPCuS_MPL8DHMzZJas(j, chatActivity);
+                    PhotoUtilities.m1139$r8$lambda$qLMsmLE_mPCuS_MPL8DHMzZJas(j, chatActivity);
                 }
             }), null).show();
         }
     }
 
-    public static void m1133$r8$lambda$qLMsmLE_mPCuS_MPL8DHMzZJas(long j, ChatActivity chatActivity) {
+    public static void m1139$r8$lambda$qLMsmLE_mPCuS_MPL8DHMzZJas(long j, ChatActivity chatActivity) {
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", j);
         chatActivity.presentFragment(new ProfileActivity(bundle));
     }
 
-    public static void m1130$r8$lambda$4UaqjCAnbRsMNEcpG9vGjmmDbE(final ChatActivity chatActivity, final TLRPC.FileLocation[] fileLocationArr, final TLRPC.FileLocation[] fileLocationArr2, final long j, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.VideoSize videoSize) {
+    public static void m1136$r8$lambda$4UaqjCAnbRsMNEcpG9vGjmmDbE(final ChatActivity chatActivity, final TLRPC.FileLocation[] fileLocationArr, final TLRPC.FileLocation[] fileLocationArr2, final long j, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z, TLRPC.VideoSize videoSize) {
         if (inputFile != null || inputFile2 != null || videoSize != null) {
             TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
             if (inputFile != null) {

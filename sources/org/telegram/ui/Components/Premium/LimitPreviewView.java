@@ -471,7 +471,7 @@ public class LimitPreviewView extends LinearLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    LimitPreviewView.m2577$r8$lambda$93f7gEB1YqhVT1TebQ3xJwA08(this.f$0, z5, f8, f3, f9, f7, z6, f6, z3, z4, valueAnimator);
+                    LimitPreviewView.m2587$r8$lambda$93f7gEB1YqhVT1TebQ3xJwA08(this.f$0, z5, f8, f3, f9, f7, z6, f6, z3, z4, valueAnimator);
                 }
             });
             this.arrowAnimator.addListener(new AnimatorListenerAdapter() {
@@ -546,7 +546,7 @@ public class LimitPreviewView extends LinearLayout {
         }
     }
 
-    public static void m2577$r8$lambda$93f7gEB1YqhVT1TebQ3xJwA08(LimitPreviewView limitPreviewView, boolean z, float f, float f2, float f3, float f4, boolean z2, float f5, boolean z3, boolean z4, ValueAnimator valueAnimator) {
+    public static void m2587$r8$lambda$93f7gEB1YqhVT1TebQ3xJwA08(LimitPreviewView limitPreviewView, boolean z, float f, float f2, float f3, float f4, boolean z2, float f5, boolean z3, boolean z4, ValueAnimator valueAnimator) {
         limitPreviewView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float fMin = Math.min(1.0f, fFloatValue);
@@ -809,7 +809,7 @@ public class LimitPreviewView extends LinearLayout {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    LimitPreviewView.m2579$r8$lambda$_CuaWokFkxFoRhtFqFhgtRIXDM(this.f$0, tl_starsRating2);
+                    LimitPreviewView.m2589$r8$lambda$_CuaWokFkxFoRhtFqFhgtRIXDM(this.f$0, tl_starsRating2);
                 }
             };
             this.animateStarRatingRunnable = runnable;
@@ -841,7 +841,7 @@ public class LimitPreviewView extends LinearLayout {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    LimitPreviewView.m2578$r8$lambda$EZXAzRQXnjrCHXaeJ59FJVwKAc(this.f$0, tl_starsRating2);
+                    LimitPreviewView.m2588$r8$lambda$EZXAzRQXnjrCHXaeJ59FJVwKAc(this.f$0, tl_starsRating2);
                 }
             };
             this.animateStarRatingRunnable = runnable2;
@@ -849,7 +849,7 @@ public class LimitPreviewView extends LinearLayout {
         }
     }
 
-    public static void m2579$r8$lambda$_CuaWokFkxFoRhtFqFhgtRIXDM(LimitPreviewView limitPreviewView, TL_stars.Tl_starsRating tl_starsRating) {
+    public static void m2589$r8$lambda$_CuaWokFkxFoRhtFqFhgtRIXDM(LimitPreviewView limitPreviewView, TL_stars.Tl_starsRating tl_starsRating) {
         limitPreviewView.animateStarRatingRunnable = null;
         if (limitPreviewView.isAttachedToWindow()) {
             ValueAnimator valueAnimator = limitPreviewView.arrowAnimator;
@@ -903,7 +903,7 @@ public class LimitPreviewView extends LinearLayout {
         }
     }
 
-    public static void m2578$r8$lambda$EZXAzRQXnjrCHXaeJ59FJVwKAc(LimitPreviewView limitPreviewView, TL_stars.Tl_starsRating tl_starsRating) {
+    public static void m2588$r8$lambda$EZXAzRQXnjrCHXaeJ59FJVwKAc(LimitPreviewView limitPreviewView, TL_stars.Tl_starsRating tl_starsRating) {
         limitPreviewView.animateStarRatingRunnable = null;
         if (limitPreviewView.isAttachedToWindow()) {
             ValueAnimator valueAnimator = limitPreviewView.arrowAnimator;

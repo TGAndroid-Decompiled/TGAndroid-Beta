@@ -80,7 +80,7 @@ public class AddReactionsSpan extends ReplacementSpan {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AddReactionsSpan.m2690$r8$lambda$aIE8q3SgfDMxNMOnVXv54JQ85U(this.f$0, view, valueAnimator);
+                AddReactionsSpan.m2699$r8$lambda$aIE8q3SgfDMxNMOnVXv54JQ85U(this.f$0, view, valueAnimator);
             }
         });
         valueAnimatorOfInt.addListener(new AnimatorListenerAdapter() {
@@ -93,7 +93,7 @@ public class AddReactionsSpan extends ReplacementSpan {
         valueAnimatorOfInt.start();
     }
 
-    public static void m2690$r8$lambda$aIE8q3SgfDMxNMOnVXv54JQ85U(AddReactionsSpan addReactionsSpan, View view, ValueAnimator valueAnimator) {
+    public static void m2699$r8$lambda$aIE8q3SgfDMxNMOnVXv54JQ85U(AddReactionsSpan addReactionsSpan, View view, ValueAnimator valueAnimator) {
         addReactionsSpan.getClass();
         addReactionsSpan.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         view.invalidate();

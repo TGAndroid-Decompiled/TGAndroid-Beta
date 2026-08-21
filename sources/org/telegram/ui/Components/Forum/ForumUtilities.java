@@ -425,7 +425,7 @@ public abstract class ForumUtilities {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ForumUtilities.m2351$r8$lambda$UvVVsxZYltUoPSD6n9UdoutH7g(chatActivity);
+                            ForumUtilities.m2361$r8$lambda$UvVVsxZYltUoPSD6n9UdoutH7g(chatActivity);
                         }
                     }, 500L);
                 } else {
@@ -442,7 +442,7 @@ public abstract class ForumUtilities {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ForumUtilities.m2350$r8$lambda$4eqg6ncDIbyd5NC7XptnRU1QEc(topicsFragment);
+                        ForumUtilities.m2360$r8$lambda$4eqg6ncDIbyd5NC7XptnRU1QEc(topicsFragment);
                     }
                 }, 500L);
             } else {
@@ -451,13 +451,13 @@ public abstract class ForumUtilities {
         }
     }
 
-    public static void m2351$r8$lambda$UvVVsxZYltUoPSD6n9UdoutH7g(ChatActivity chatActivity) {
+    public static void m2361$r8$lambda$UvVVsxZYltUoPSD6n9UdoutH7g(ChatActivity chatActivity) {
         if (chatActivity.getParentLayout() != null) {
             TopicsFragment.prepareToSwitchAnimation(chatActivity);
         }
     }
 
-    public static void m2350$r8$lambda$4eqg6ncDIbyd5NC7XptnRU1QEc(TopicsFragment topicsFragment) {
+    public static void m2360$r8$lambda$4eqg6ncDIbyd5NC7XptnRU1QEc(TopicsFragment topicsFragment) {
         if (topicsFragment.getParentLayout() != null) {
             topicsFragment.switchToChat(true);
         }

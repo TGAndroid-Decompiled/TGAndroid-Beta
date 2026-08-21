@@ -72,7 +72,7 @@ public class StickerTabView extends FrameLayout {
         textView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public final void onLayoutChange(View view, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10) {
-                StickerTabView.m2830$r8$lambda$98Fg2i4gsCKlio1UBi4_6tQvb4(this.f$0, view, i3, i4, i5, i6, i7, i8, i9, i10);
+                StickerTabView.m2839$r8$lambda$98Fg2i4gsCKlio1UBi4_6tQvb4(this.f$0, view, i3, i4, i5, i6, i7, i8, i9, i10);
             }
         });
         this.textView.setLines(1);
@@ -84,7 +84,7 @@ public class StickerTabView extends FrameLayout {
         this.textView.setVisibility(8);
     }
 
-    public static void m2830$r8$lambda$98Fg2i4gsCKlio1UBi4_6tQvb4(StickerTabView stickerTabView, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+    public static void m2839$r8$lambda$98Fg2i4gsCKlio1UBi4_6tQvb4(StickerTabView stickerTabView, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
         TextView textView = stickerTabView.textView;
         if (textView == null || textView.getLayout() == null) {
             return;

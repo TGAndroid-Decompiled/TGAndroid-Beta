@@ -197,7 +197,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 MediaDataController.getInstance(StickersSearchAdapter.this.currentAccount).getEmojiSuggestions(StickersSearchAdapter.this.delegate.getLastSearchKeyboardLanguage(), StickersSearchAdapter.this.searchQuery, false, new MediaDataController.KeywordResultCallback() {
                     @Override
                     public final void run(ArrayList arrayList3, String str) {
-                        StickersSearchAdapter.AnonymousClass1.m1309$r8$lambda$k6nzq7FZ5hRb6hIyb4EJyBiC0(this.f$0, iAccess$804, allStickers, arrayList3, str);
+                        StickersSearchAdapter.AnonymousClass1.m1315$r8$lambda$k6nzq7FZ5hRb6hIyb4EJyBiC0(this.f$0, iAccess$804, allStickers, arrayList3, str);
                     }
                 }, false);
             }
@@ -261,14 +261,14 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 stickersSearchAdapter3.reqId2 = ConnectionsManager.getInstance(stickersSearchAdapter3.currentAccount).sendRequest(tL_messages_getStickers, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StickersSearchAdapter.AnonymousClass1.m1307$r8$lambda$MI08X5zQ6VvrvTXuaRphGzdoI(this.f$0, tL_messages_getStickers, arrayList, longSparseArray, tLObject, tL_error);
+                        StickersSearchAdapter.AnonymousClass1.m1313$r8$lambda$MI08X5zQ6VvrvTXuaRphGzdoI(this.f$0, tL_messages_getStickers, arrayList, longSparseArray, tLObject, tL_error);
                     }
                 });
             }
             StickersSearchAdapter.this.notifyDataSetChanged();
         }
 
-        public static void m1309$r8$lambda$k6nzq7FZ5hRb6hIyb4EJyBiC0(AnonymousClass1 anonymousClass1, int i, HashMap map, ArrayList arrayList, String str) {
+        public static void m1315$r8$lambda$k6nzq7FZ5hRb6hIyb4EJyBiC0(AnonymousClass1 anonymousClass1, int i, HashMap map, ArrayList arrayList, String str) {
             if (i != StickersSearchAdapter.this.emojiSearchId) {
                 return;
             }
@@ -297,13 +297,13 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StickersSearchAdapter.AnonymousClass1.m1308$r8$lambda$PXolxkPj98siI4G_UbdSy4exE(this.f$0, tL_messages_searchStickerSets, tLObject);
+                        StickersSearchAdapter.AnonymousClass1.m1314$r8$lambda$PXolxkPj98siI4G_UbdSy4exE(this.f$0, tL_messages_searchStickerSets, tLObject);
                     }
                 });
             }
         }
 
-        public static void m1308$r8$lambda$PXolxkPj98siI4G_UbdSy4exE(AnonymousClass1 anonymousClass1, TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets, TLObject tLObject) {
+        public static void m1314$r8$lambda$PXolxkPj98siI4G_UbdSy4exE(AnonymousClass1 anonymousClass1, TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets, TLObject tLObject) {
             anonymousClass1.getClass();
             if (tL_messages_searchStickerSets.q.equals(StickersSearchAdapter.this.searchQuery)) {
                 anonymousClass1.clear();
@@ -315,7 +315,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
             }
         }
 
-        public static void m1307$r8$lambda$MI08X5zQ6VvrvTXuaRphGzdoI(final AnonymousClass1 anonymousClass1, final TLRPC.TL_messages_getStickers tL_messages_getStickers, final ArrayList arrayList, final LongSparseArray longSparseArray, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m1313$r8$lambda$MI08X5zQ6VvrvTXuaRphGzdoI(final AnonymousClass1 anonymousClass1, final TLRPC.TL_messages_getStickers tL_messages_getStickers, final ArrayList arrayList, final LongSparseArray longSparseArray, final TLObject tLObject, TLRPC.TL_error tL_error) {
             anonymousClass1.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

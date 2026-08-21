@@ -198,12 +198,12 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GiftInfoBottomSheet.AnonymousClass2.m2638$r8$lambda$IXs29PEC1DO6dXlYNCK1ojvTw(this.f$0);
+                    GiftInfoBottomSheet.AnonymousClass2.m2647$r8$lambda$IXs29PEC1DO6dXlYNCK1ojvTw(this.f$0);
                 }
             }, 200L);
         }
 
-        public static void m2638$r8$lambda$IXs29PEC1DO6dXlYNCK1ojvTw(AnonymousClass2 anonymousClass2) {
+        public static void m2647$r8$lambda$IXs29PEC1DO6dXlYNCK1ojvTw(AnonymousClass2 anonymousClass2) {
             anonymousClass2.getClass();
             GiftInfoBottomSheet.this.getBaseFragment().showDialog(new PremiumPreviewBottomSheet(GiftInfoBottomSheet.this.getBaseFragment(), ((BottomSheet) GiftInfoBottomSheet.this).currentAccount, null, null, null, ((BottomSheet) GiftInfoBottomSheet.this).resourcesProvider).setAnimateConfetti(true).setOutboundGift(true));
         }

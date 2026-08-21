@@ -385,7 +385,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i2) {
-                    PeerColorActivity.Page.m3655$r8$lambda$pqExD_dDPzDBq7g_IUhuGMKQY4(this.f$0, i, view, i2);
+                    PeerColorActivity.Page.m3663$r8$lambda$pqExD_dDPzDBq7g_IUhuGMKQY4(this.f$0, i, view, i2);
                 }
             });
             this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -500,7 +500,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                         peerColorGrid.setOnColorClick(new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                PeerColorActivity.Page.AnonymousClass4.m3656$r8$lambda$47OPN75tKCTcf5LBKy1ymkIm5Y(this.f$0, (Integer) obj);
+                                PeerColorActivity.Page.AnonymousClass4.m3664$r8$lambda$47OPN75tKCTcf5LBKy1ymkIm5Y(this.f$0, (Integer) obj);
                             }
                         });
                         giftCell = peerColorGrid;
@@ -573,7 +573,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 return new RecyclerListView.Holder(emptyView);
             }
 
-            public static void m3656$r8$lambda$47OPN75tKCTcf5LBKy1ymkIm5Y(AnonymousClass4 anonymousClass4, Integer num) {
+            public static void m3664$r8$lambda$47OPN75tKCTcf5LBKy1ymkIm5Y(AnonymousClass4 anonymousClass4, Integer num) {
                 Page.this.selectedColor = num.intValue();
                 Page.this.selectedEmojiCollectible = null;
                 Page.this.selectedPeerCollectible = null;
@@ -816,7 +816,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
         }
 
-        public static void m3655$r8$lambda$pqExD_dDPzDBq7g_IUhuGMKQY4(Page page, int i, View view, int i2) {
+        public static void m3663$r8$lambda$pqExD_dDPzDBq7g_IUhuGMKQY4(Page page, int i, View view, int i2) {
             ProfilePreview profilePreview;
             Page page2;
             page.getClass();
@@ -1919,7 +1919,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.tabsView.onTabSelected(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PeerColorActivity.m3653$r8$lambda$b37c5gisLOhyUOtZx1oLuRhmHQ(this.f$0, (Integer) obj);
+                    PeerColorActivity.m3661$r8$lambda$b37c5gisLOhyUOtZx1oLuRhmHQ(this.f$0, (Integer) obj);
                 }
             });
             this.actionBarContainer.addView(this.tabsView, LayoutHelper.createFrame(-1, 40, 17));
@@ -1993,7 +1993,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         return frameLayout;
     }
 
-    public static void m3653$r8$lambda$b37c5gisLOhyUOtZx1oLuRhmHQ(PeerColorActivity peerColorActivity, Integer num) {
+    public static void m3661$r8$lambda$b37c5gisLOhyUOtZx1oLuRhmHQ(PeerColorActivity peerColorActivity, Integer num) {
         ViewPagerFixed viewPagerFixed = peerColorActivity.viewPager;
         if (viewPagerFixed != null) {
             viewPagerFixed.scrollToPosition(num.intValue());

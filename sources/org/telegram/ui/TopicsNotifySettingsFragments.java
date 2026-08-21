@@ -41,7 +41,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
     ArrayList items;
     RecyclerListView recyclerListView;
 
-    public static void m4716$r8$lambda$c3dNfmvd9QA3F1Dmf28JyLaDVg(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4727$r8$lambda$c3dNfmvd9QA3F1Dmf28JyLaDVg(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public TopicsNotifySettingsFragments(Bundle bundle) {
@@ -210,7 +210,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         getConnectionsManager().sendRequest(updatenotifysettings, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TopicsNotifySettingsFragments.m4716$r8$lambda$c3dNfmvd9QA3F1Dmf28JyLaDVg(tLObject, tL_error);
+                TopicsNotifySettingsFragments.m4727$r8$lambda$c3dNfmvd9QA3F1Dmf28JyLaDVg(tLObject, tL_error);
             }
         });
     }

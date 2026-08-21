@@ -576,7 +576,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         this.listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return EmojiPacksAlert.m2282$r8$lambda$1r8Y4QNmBNnms7fg8jxS8Ol6Hg(this.f$0, onItemClickListener, view, motionEvent);
+                return EmojiPacksAlert.m2292$r8$lambda$1r8Y4QNmBNnms7fg8jxS8Ol6Hg(this.f$0, onItemClickListener, view, motionEvent);
             }
         });
         this.gridLayoutManager.setReverseLayout(false);
@@ -778,7 +778,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static boolean m2282$r8$lambda$1r8Y4QNmBNnms7fg8jxS8Ol6Hg(EmojiPacksAlert emojiPacksAlert, RecyclerListView.OnItemClickListener onItemClickListener, View view, MotionEvent motionEvent) {
+    public static boolean m2292$r8$lambda$1r8Y4QNmBNnms7fg8jxS8Ol6Hg(EmojiPacksAlert emojiPacksAlert, RecyclerListView.OnItemClickListener onItemClickListener, View view, MotionEvent motionEvent) {
         emojiPacksAlert.getClass();
         return ContentPreviewViewer.getInstance().onTouch(motionEvent, emojiPacksAlert.listView, 0, onItemClickListener, emojiPacksAlert.previewDelegate, emojiPacksAlert.resourcesProvider);
     }
@@ -1297,7 +1297,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            EmojiPacksAlert.m2286$r8$lambda$Mi5pnaOTVrNYesse_DeFfyypO0(stickerSet, tL_error, z, view, baseFragment, tL_messages_stickerSet, tLObject2, i, callback, runnable);
+                            EmojiPacksAlert.m2296$r8$lambda$Mi5pnaOTVrNYesse_DeFfyypO0(stickerSet, tL_error, z, view, baseFragment, tL_messages_stickerSet, tLObject2, i, callback, runnable);
                         }
                     });
                 }
@@ -1305,7 +1305,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2286$r8$lambda$Mi5pnaOTVrNYesse_DeFfyypO0(TLRPC.StickerSet stickerSet, TLRPC.TL_error tL_error, boolean z, View view, BaseFragment baseFragment, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, TLObject tLObject, int i, Utilities.Callback callback, final Runnable runnable) {
+    public static void m2296$r8$lambda$Mi5pnaOTVrNYesse_DeFfyypO0(TLRPC.StickerSet stickerSet, TLRPC.TL_error tL_error, boolean z, View view, BaseFragment baseFragment, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, TLObject tLObject, int i, Utilities.Callback callback, final Runnable runnable) {
         int i2;
         if (stickerSet.masks) {
             i2 = 1;
@@ -1458,7 +1458,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             this.addButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    EmojiPacksAlert.m2283$r8$lambda$E0FXwsmeWduBYsRtpba2or6QM(this.f$0, arrayList4, view);
+                    EmojiPacksAlert.m2293$r8$lambda$E0FXwsmeWduBYsRtpba2or6QM(this.f$0, arrayList4, view);
                 }
             });
             updateShowButton(true);
@@ -1486,7 +1486,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         updateShowButton(false);
     }
 
-    public static void m2283$r8$lambda$E0FXwsmeWduBYsRtpba2or6QM(final EmojiPacksAlert emojiPacksAlert, final ArrayList arrayList, View view) {
+    public static void m2293$r8$lambda$E0FXwsmeWduBYsRtpba2or6QM(final EmojiPacksAlert emojiPacksAlert, final ArrayList arrayList, View view) {
         emojiPacksAlert.getClass();
         final int size = arrayList.size();
         final int[] iArr = new int[2];
@@ -1494,7 +1494,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             installSet(emojiPacksAlert.fragment, (TLObject) arrayList.get(i), size == 1, size > 1 ? new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    EmojiPacksAlert.m2284$r8$lambda$Lyk_Zp7TJ5Xy2bPmkMntdGPYkA(this.f$0, iArr, size, arrayList, (Boolean) obj);
+                    EmojiPacksAlert.m2294$r8$lambda$Lyk_Zp7TJ5Xy2bPmkMntdGPYkA(this.f$0, iArr, size, arrayList, (Boolean) obj);
                 }
             } : null, null);
         }
@@ -1504,7 +1504,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2284$r8$lambda$Lyk_Zp7TJ5Xy2bPmkMntdGPYkA(EmojiPacksAlert emojiPacksAlert, int[] iArr, int i, ArrayList arrayList, Boolean bool) {
+    public static void m2294$r8$lambda$Lyk_Zp7TJ5Xy2bPmkMntdGPYkA(EmojiPacksAlert emojiPacksAlert, int[] iArr, int i, ArrayList arrayList, Boolean bool) {
         emojiPacksAlert.getClass();
         iArr[0] = iArr[0] + 1;
         if (bool.booleanValue()) {
@@ -1869,12 +1869,12 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiPacksAlert.AnonymousClass9.m2287$r8$lambda$UE6bLL60OCTBUCSSNXqumIXKGY(this.f$0, longSparseArray, i);
+                    EmojiPacksAlert.AnonymousClass9.m2297$r8$lambda$UE6bLL60OCTBUCSSNXqumIXKGY(this.f$0, longSparseArray, i);
                 }
             }, 100L);
         }
 
-        public static void m2287$r8$lambda$UE6bLL60OCTBUCSSNXqumIXKGY(AnonymousClass9 anonymousClass9, androidx.collection.LongSparseArray longSparseArray, int i) {
+        public static void m2297$r8$lambda$UE6bLL60OCTBUCSSNXqumIXKGY(AnonymousClass9 anonymousClass9, androidx.collection.LongSparseArray longSparseArray, int i) {
             UndoView undoView;
             if (EmojiPacksAlert.this.fragment instanceof ChatActivity) {
                 undoView = ((ChatActivity) EmojiPacksAlert.this.fragment).getUndoView();
@@ -2079,7 +2079,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 this.removeButtonView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        EmojiPacksAlert.EmojiPackHeader.m2288$r8$lambda$7j3HueFqT1B_FOr7pbFbRe5yE(this.f$0, view);
+                        EmojiPacksAlert.EmojiPackHeader.m2298$r8$lambda$7j3HueFqT1B_FOr7pbFbRe5yE(this.f$0, view);
                     }
                 });
                 this.removeButtonView.setClickable(false);
@@ -2154,7 +2154,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             emojiPackHeader.toggle(true, true);
         }
 
-        public static void m2288$r8$lambda$7j3HueFqT1B_FOr7pbFbRe5yE(final EmojiPackHeader emojiPackHeader, View view) {
+        public static void m2298$r8$lambda$7j3HueFqT1B_FOr7pbFbRe5yE(final EmojiPackHeader emojiPackHeader, View view) {
             EmojiPacksAlert.uninstallSet(emojiPackHeader.dummyFragment, emojiPackHeader.set, true, new Runnable() {
                 @Override
                 public final void run() {
@@ -2493,7 +2493,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
-                        EmojiPacksAlert.EmojiPacksLoader.m2293$r8$lambda$ZJLTrOPBSP0PMZ9CluuqhnuMpw(this.f$0, tLObject3, tL_error);
+                        EmojiPacksAlert.EmojiPacksLoader.m2303$r8$lambda$ZJLTrOPBSP0PMZ9CluuqhnuMpw(this.f$0, tLObject3, tL_error);
                     }
                 });
                 return;
@@ -2506,7 +2506,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 TLRPC.TL_messages_stickerSet stickerSet2 = MediaDataController.getInstance(this.currentAccount).getStickerSet((TLRPC.InputStickerSet) this.inputStickerSets.get(i), null, false, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        EmojiPacksAlert.EmojiPacksLoader.m2292$r8$lambda$XGIHjPp6lkNLpfU_nD_HGm8B_c(this.f$0, zArr, (TLRPC.TL_messages_stickerSet) obj);
+                        EmojiPacksAlert.EmojiPacksLoader.m2302$r8$lambda$XGIHjPp6lkNLpfU_nD_HGm8B_c(this.f$0, zArr, (TLRPC.TL_messages_stickerSet) obj);
                     }
                 });
                 if (this.data.length == 1 && stickerSet2 != null && (stickerSet = stickerSet2.set) != null && !stickerSet.emojis) {
@@ -2526,7 +2526,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             onUpdate();
         }
 
-        public static void m2293$r8$lambda$ZJLTrOPBSP0PMZ9CluuqhnuMpw(final EmojiPacksLoader emojiPacksLoader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m2303$r8$lambda$ZJLTrOPBSP0PMZ9CluuqhnuMpw(final EmojiPacksLoader emojiPacksLoader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             emojiPacksLoader.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2563,7 +2563,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             BulletinFactory.of(EmojiPacksAlert.this.fragment).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         }
 
-        public static void m2292$r8$lambda$XGIHjPp6lkNLpfU_nD_HGm8B_c(final EmojiPacksLoader emojiPacksLoader, boolean[] zArr, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        public static void m2302$r8$lambda$XGIHjPp6lkNLpfU_nD_HGm8B_c(final EmojiPacksLoader emojiPacksLoader, boolean[] zArr, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
             emojiPacksLoader.getClass();
             if (tL_messages_stickerSet != null || zArr[0]) {
                 return;
@@ -2572,12 +2572,12 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiPacksAlert.EmojiPacksLoader.m2291$r8$lambda$Bx8Fkt5v19O4UVmV8J_wkdT1tk(this.f$0);
+                    EmojiPacksAlert.EmojiPacksLoader.m2301$r8$lambda$Bx8Fkt5v19O4UVmV8J_wkdT1tk(this.f$0);
                 }
             });
         }
 
-        public static void m2291$r8$lambda$Bx8Fkt5v19O4UVmV8J_wkdT1tk(EmojiPacksLoader emojiPacksLoader) {
+        public static void m2301$r8$lambda$Bx8Fkt5v19O4UVmV8J_wkdT1tk(EmojiPacksLoader emojiPacksLoader) {
             EmojiPacksAlert.this.dismiss();
             if (EmojiPacksAlert.this.fragment == null || EmojiPacksAlert.this.fragment.getParentActivity() == null) {
                 return;

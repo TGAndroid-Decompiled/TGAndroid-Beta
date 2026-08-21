@@ -195,7 +195,7 @@ public class AcceptDeclineView extends View {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            AcceptDeclineView.m2968$r8$lambda$IbfpJBh3X899dR0VGTKVYLe7a8(this.f$0, valueAnimator);
+                            AcceptDeclineView.m2977$r8$lambda$IbfpJBh3X899dR0VGTKVYLe7a8(this.f$0, valueAnimator);
                         }
                     });
                     valueAnimatorOfFloat.start();
@@ -233,7 +233,7 @@ public class AcceptDeclineView extends View {
                         valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                AcceptDeclineView.m2968$r8$lambda$IbfpJBh3X899dR0VGTKVYLe7a8(this.f$0, valueAnimator);
+                                AcceptDeclineView.m2977$r8$lambda$IbfpJBh3X899dR0VGTKVYLe7a8(this.f$0, valueAnimator);
                             }
                         });
                         valueAnimatorOfFloat3.start();
@@ -269,7 +269,7 @@ public class AcceptDeclineView extends View {
         return false;
     }
 
-    public static void m2968$r8$lambda$IbfpJBh3X899dR0VGTKVYLe7a8(AcceptDeclineView acceptDeclineView, ValueAnimator valueAnimator) {
+    public static void m2977$r8$lambda$IbfpJBh3X899dR0VGTKVYLe7a8(AcceptDeclineView acceptDeclineView, ValueAnimator valueAnimator) {
         acceptDeclineView.getClass();
         acceptDeclineView.leftOffsetX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         acceptDeclineView.invalidate();

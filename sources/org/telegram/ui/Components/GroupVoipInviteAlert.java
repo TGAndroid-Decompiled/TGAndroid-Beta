@@ -699,12 +699,12 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupVoipInviteAlert.SearchAdapter.m2365$r8$lambda$rdIHZpsNuxb6Ms3uedjnASGMFg(this.f$0, i, arrayList);
+                    GroupVoipInviteAlert.SearchAdapter.m2375$r8$lambda$rdIHZpsNuxb6Ms3uedjnASGMFg(this.f$0, i, arrayList);
                 }
             });
         }
 
-        public static void m2365$r8$lambda$rdIHZpsNuxb6Ms3uedjnASGMFg(SearchAdapter searchAdapter, int i, ArrayList arrayList) {
+        public static void m2375$r8$lambda$rdIHZpsNuxb6Ms3uedjnASGMFg(SearchAdapter searchAdapter, int i, ArrayList arrayList) {
             if (i != searchAdapter.lastSearchId) {
                 return;
             }

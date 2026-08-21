@@ -118,7 +118,7 @@ public class QRCodeBottomSheet extends BottomSheet {
             this.button2TextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    QRCodeBottomSheet.m2677$r8$lambda$hGgDgb2IyX0ylcB_79toVXuOp0(str2, context, view);
+                    QRCodeBottomSheet.m2686$r8$lambda$hGgDgb2IyX0ylcB_79toVXuOp0(str2, context, view);
                 }
             });
             linearLayout.addView(this.button2TextView, LayoutHelper.createLinear(-1, 48, 80, 16, 3, 16, 16));
@@ -143,7 +143,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         }
     }
 
-    public static void m2677$r8$lambda$hGgDgb2IyX0ylcB_79toVXuOp0(String str, Context context, View view) {
+    public static void m2686$r8$lambda$hGgDgb2IyX0ylcB_79toVXuOp0(String str, Context context, View view) {
         Intent intent = new Intent("android.intent.action.SEND");
         intent.setType("text/plain");
         intent.putExtra("android.intent.extra.TEXT", str);

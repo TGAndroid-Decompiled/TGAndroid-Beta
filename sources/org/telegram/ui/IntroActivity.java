@@ -281,7 +281,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.switchLanguageTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                IntroActivity.m3324$r8$lambda$_ElmO9SCTF2Y_G_CIMzrlIbXOo(this.f$0, view);
+                IntroActivity.m3332$r8$lambda$_ElmO9SCTF2Y_G_CIMzrlIbXOo(this.f$0, view);
             }
         });
         float f = 4;
@@ -391,7 +391,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         introActivity.destroyed = true;
     }
 
-    public static void m3324$r8$lambda$_ElmO9SCTF2Y_G_CIMzrlIbXOo(IntroActivity introActivity, View view) {
+    public static void m3332$r8$lambda$_ElmO9SCTF2Y_G_CIMzrlIbXOo(IntroActivity introActivity, View view) {
         if (introActivity.startPressed || introActivity.localeInfo == null) {
             return;
         }
@@ -638,7 +638,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         private final GenericProvider telegramMaskProvider;
         private final int[] textures;
 
-        public static Bitmap m3325$r8$lambda$7LXCaMmSl_zxBSp3pQPev_oFIc(Void r6) {
+        public static Bitmap m3333$r8$lambda$7LXCaMmSl_zxBSp3pQPev_oFIc(Void r6) {
             int iDp = AndroidUtilities.dp(150.0f);
             Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), iDp, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmapCreateBitmap);
@@ -655,7 +655,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             this.telegramMaskProvider = new GenericProvider() {
                 @Override
                 public final Object provide(Object obj) {
-                    return IntroActivity.EGLThread.m3325$r8$lambda$7LXCaMmSl_zxBSp3pQPev_oFIc((Void) obj);
+                    return IntroActivity.EGLThread.m3333$r8$lambda$7LXCaMmSl_zxBSp3pQPev_oFIc((Void) obj);
                 }
             };
             this.drawRunnable = new Runnable() {
@@ -907,12 +907,12 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    IntroActivity.EGLThread.m3326$r8$lambda$LcdJc3TAXcftAtQwqQ4ZW4Hns0(this.f$0);
+                    IntroActivity.EGLThread.m3334$r8$lambda$LcdJc3TAXcftAtQwqQ4ZW4Hns0(this.f$0);
                 }
             });
         }
 
-        public static void m3326$r8$lambda$LcdJc3TAXcftAtQwqQ4ZW4Hns0(EGLThread eGLThread) {
+        public static void m3334$r8$lambda$LcdJc3TAXcftAtQwqQ4ZW4Hns0(EGLThread eGLThread) {
             eGLThread.finish();
             Looper looperMyLooper = Looper.myLooper();
             if (looperMyLooper != null) {

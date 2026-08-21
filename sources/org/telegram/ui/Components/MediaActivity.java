@@ -267,7 +267,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             actionBarMenuSubItemAddSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    MediaActivity.m2430$r8$lambda$E7pTo51h2ckezgK3zPyZy35dE(this.f$0, view);
+                    MediaActivity.m2440$r8$lambda$E7pTo51h2ckezgK3zPyZy35dE(this.f$0, view);
                 }
             });
             ActionBarMenuSubItem actionBarMenuSubItemAddSubItem2 = this.optionsItem.addSubItem(9, R.drawable.msg_zoomout, LocaleController.getString(R.string.MediaZoomOut));
@@ -275,7 +275,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             actionBarMenuSubItemAddSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    MediaActivity.m2433$r8$lambda$GN5T1QeQASBByvZssgLi1OcWtE(this.f$0, view);
+                    MediaActivity.m2443$r8$lambda$GN5T1QeQASBByvZssgLi1OcWtE(this.f$0, view);
                 }
             });
             ActionBarMenuSubItem actionBarMenuSubItemAddSubItem3 = this.optionsItem.addSubItem(10, R.drawable.msg_calendar2, LocaleController.getString(R.string.Calendar));
@@ -289,7 +289,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             this.showPhotosItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    MediaActivity.m2435$r8$lambda$h0mNMsrI0mtl2Eo_mwLwYNeQAo(this.f$0, view);
+                    MediaActivity.m2445$r8$lambda$h0mNMsrI0mtl2Eo_mwLwYNeQAo(this.f$0, view);
                 }
             });
             ActionBarMenuSubItem actionBarMenuSubItemAddSubItem5 = this.optionsItem.addSubItem(7, 0, (CharSequence) LocaleController.getString(R.string.MediaShowVideos), true);
@@ -298,7 +298,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             this.showVideosItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    MediaActivity.m2437$r8$lambda$y7_E4MTouDfU74ULTBaGRNY4i0(this.f$0, view);
+                    MediaActivity.m2447$r8$lambda$y7_E4MTouDfU74ULTBaGRNY4i0(this.f$0, view);
                 }
             });
         }
@@ -923,7 +923,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }
     }
 
-    public static void m2430$r8$lambda$E7pTo51h2ckezgK3zPyZy35dE(MediaActivity mediaActivity, View view) {
+    public static void m2440$r8$lambda$E7pTo51h2ckezgK3zPyZy35dE(MediaActivity mediaActivity, View view) {
         Boolean boolZoomIn = mediaActivity.sharedMediaLayout.zoomIn();
         if (boolZoomIn == null) {
             return;
@@ -935,7 +935,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         mediaActivity.zoomInItem.animate().alpha(mediaActivity.zoomInItem.isEnabled() ? 1.0f : 0.5f).start();
     }
 
-    public static void m2433$r8$lambda$GN5T1QeQASBByvZssgLi1OcWtE(MediaActivity mediaActivity, View view) {
+    public static void m2443$r8$lambda$GN5T1QeQASBByvZssgLi1OcWtE(MediaActivity mediaActivity, View view) {
         Boolean boolZoomOut = mediaActivity.sharedMediaLayout.zoomOut();
         if (boolZoomOut == null) {
             return;
@@ -946,7 +946,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         mediaActivity.zoomInItem.animate().alpha(mediaActivity.zoomInItem.isEnabled() ? 1.0f : 0.5f).start();
     }
 
-    public static void m2435$r8$lambda$h0mNMsrI0mtl2Eo_mwLwYNeQAo(MediaActivity mediaActivity, View view) {
+    public static void m2445$r8$lambda$h0mNMsrI0mtl2Eo_mwLwYNeQAo(MediaActivity mediaActivity, View view) {
         boolean z = mediaActivity.filterPhotos;
         if (z && !mediaActivity.filterVideos) {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
@@ -963,7 +963,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         mediaActivity.sharedMediaLayout.setStoriesFilter(mediaActivity.filterPhotos, mediaActivity.filterVideos);
     }
 
-    public static void m2437$r8$lambda$y7_E4MTouDfU74ULTBaGRNY4i0(MediaActivity mediaActivity, View view) {
+    public static void m2447$r8$lambda$y7_E4MTouDfU74ULTBaGRNY4i0(MediaActivity mediaActivity, View view) {
         boolean z = mediaActivity.filterVideos;
         if (z && !mediaActivity.filterPhotos) {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
@@ -1028,7 +1028,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                MediaActivity.m2434$r8$lambda$LQ9Fc079CMz4ntqmlD1J_YCrHs(this.f$0, zArr2, arrayList, zArr);
+                MediaActivity.m2444$r8$lambda$LQ9Fc079CMz4ntqmlD1J_YCrHs(this.f$0, zArr2, arrayList, zArr);
             }
         };
         if (z) {
@@ -1039,12 +1039,12 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         bulletinShow.setOnHideListener(new Runnable() {
             @Override
             public final void run() {
-                MediaActivity.m2432$r8$lambda$x8kCnpm3xJuGbTra4n8aQmzbgE(this.f$0, zArr2);
+                MediaActivity.m2442$r8$lambda$x8kCnpm3xJuGbTra4n8aQmzbgE(this.f$0, zArr2);
             }
         });
     }
 
-    public static void m2434$r8$lambda$LQ9Fc079CMz4ntqmlD1J_YCrHs(MediaActivity mediaActivity, boolean[] zArr, ArrayList arrayList, boolean[] zArr2) {
+    public static void m2444$r8$lambda$LQ9Fc079CMz4ntqmlD1J_YCrHs(MediaActivity mediaActivity, boolean[] zArr, ArrayList arrayList, boolean[] zArr2) {
         mediaActivity.getClass();
         zArr[0] = true;
         AndroidUtilities.cancelRunOnUIThread(mediaActivity.applyBulletin);
@@ -1054,7 +1054,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         mediaActivity.getMessagesController().getStoriesController().updateStoriesInLists(mediaActivity.dialogId, arrayList);
     }
 
-    public static void m2432$r8$lambda$x8kCnpm3xJuGbTra4n8aQmzbgE(MediaActivity mediaActivity, boolean[] zArr) {
+    public static void m2442$r8$lambda$x8kCnpm3xJuGbTra4n8aQmzbgE(MediaActivity mediaActivity, boolean[] zArr) {
         Runnable runnable;
         mediaActivity.getClass();
         if (!zArr[0] && (runnable = mediaActivity.applyBulletin) != null) {
@@ -1269,7 +1269,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 this.subtitleAnimator[i].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        MediaActivity.m2431$r8$lambda$Zs9cAenV_0Nd3YH1C7bkGMyJh0(this.f$0, i, valueAnimator2);
+                        MediaActivity.m2441$r8$lambda$Zs9cAenV_0Nd3YH1C7bkGMyJh0(this.f$0, i, valueAnimator2);
                     }
                 });
                 this.subtitleAnimator[i].addListener(new AnimatorListenerAdapter() {
@@ -1300,7 +1300,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }
     }
 
-    public static void m2431$r8$lambda$Zs9cAenV_0Nd3YH1C7bkGMyJh0(MediaActivity mediaActivity, int i, ValueAnimator valueAnimator) {
+    public static void m2441$r8$lambda$Zs9cAenV_0Nd3YH1C7bkGMyJh0(MediaActivity mediaActivity, int i, ValueAnimator valueAnimator) {
         mediaActivity.subtitleT[i] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         mediaActivity.nameTextView[i].setScaleX(AndroidUtilities.lerp(1.111f, 1.0f, mediaActivity.subtitleT[i]));
         mediaActivity.nameTextView[i].setScaleY(AndroidUtilities.lerp(1.111f, 1.0f, mediaActivity.subtitleT[i]));

@@ -409,7 +409,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         this.codeField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView2, int i4, KeyEvent keyEvent) {
-                return NewContactBottomSheet.m3562$r8$lambda$zUbfzP3VVt15RzrxiYpTWmUXBM(this.f$0, textView2, i4, keyEvent);
+                return NewContactBottomSheet.m3570$r8$lambda$zUbfzP3VVt15RzrxiYpTWmUXBM(this.f$0, textView2, i4, keyEvent);
             }
         });
         this.codeDividerView = new View(context);
@@ -605,7 +605,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         this.notesField.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView3, int i4, KeyEvent keyEvent) {
-                return NewContactBottomSheet.m3554$r8$lambda$64rMt4vQG1jw_171dGzGkEBGSw(this.f$0, textView3, i4, keyEvent);
+                return NewContactBottomSheet.m3562$r8$lambda$64rMt4vQG1jw_171dGzGkEBGSw(this.f$0, textView3, i4, keyEvent);
             }
         });
         updateQrButtonVisible(false);
@@ -809,7 +809,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         newContactBottomSheet.parentFragment.showAsSheet(countrySelectActivity);
     }
 
-    public static boolean m3562$r8$lambda$zUbfzP3VVt15RzrxiYpTWmUXBM(NewContactBottomSheet newContactBottomSheet, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m3570$r8$lambda$zUbfzP3VVt15RzrxiYpTWmUXBM(NewContactBottomSheet newContactBottomSheet, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
             newContactBottomSheet.getClass();
             return false;
@@ -901,7 +901,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         CameraScanActivity.showAsSheet((Activity) LaunchActivity.instance, false, 1, (CameraScanActivity.CameraScanActivityDelegate) newContactBottomSheet.new AnonymousClass7());
     }
 
-    public static boolean m3554$r8$lambda$64rMt4vQG1jw_171dGzGkEBGSw(NewContactBottomSheet newContactBottomSheet, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m3562$r8$lambda$64rMt4vQG1jw_171dGzGkEBGSw(NewContactBottomSheet newContactBottomSheet, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
             newContactBottomSheet.getClass();
             return false;
@@ -943,7 +943,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             this.notesField.animate().alpha(zIsChecked ? 1.0f : 0.0f).setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactBottomSheet.m3553$r8$lambda$5rJUUFxydFN8hZdniJwRLuCHoc(this.f$0, z2);
+                    NewContactBottomSheet.m3561$r8$lambda$5rJUUFxydFN8hZdniJwRLuCHoc(this.f$0, z2);
                 }
             }).start();
             return;
@@ -975,7 +975,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public static void m3553$r8$lambda$5rJUUFxydFN8hZdniJwRLuCHoc(NewContactBottomSheet newContactBottomSheet, boolean z) {
+    public static void m3561$r8$lambda$5rJUUFxydFN8hZdniJwRLuCHoc(NewContactBottomSheet newContactBottomSheet, boolean z) {
         if (z) {
             newContactBottomSheet.notesField.setVisibility(4);
         } else {
@@ -1056,7 +1056,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                 MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        NewContactBottomSheet.m3558$r8$lambda$mN2ZDyrMSpx1slOFg6VNskPc0(this.f$0, tL_contact, callback);
+                        NewContactBottomSheet.m3566$r8$lambda$mN2ZDyrMSpx1slOFg6VNskPc0(this.f$0, tL_contact, callback);
                     }
                 });
                 return;
@@ -1067,7 +1067,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         this.requestingPhoneId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolvePhone, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                NewContactBottomSheet.m3560$r8$lambda$ryoYoqrqdoguzhJwVAGcvCcxz0(this.f$0, callback, tLObject, tL_error);
+                NewContactBottomSheet.m3568$r8$lambda$ryoYoqrqdoguzhJwVAGcvCcxz0(this.f$0, callback, tLObject, tL_error);
             }
         });
     }
@@ -1115,7 +1115,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public static void m3558$r8$lambda$mN2ZDyrMSpx1slOFg6VNskPc0(NewContactBottomSheet newContactBottomSheet, TLRPC.TL_contact tL_contact, final Utilities.Callback callback) {
+    public static void m3566$r8$lambda$mN2ZDyrMSpx1slOFg6VNskPc0(NewContactBottomSheet newContactBottomSheet, TLRPC.TL_contact tL_contact, final Utilities.Callback callback) {
         final TLRPC.User user = MessagesStorage.getInstance(newContactBottomSheet.currentAccount).getUser(tL_contact.user_id);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1125,7 +1125,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         });
     }
 
-    public static void m3560$r8$lambda$ryoYoqrqdoguzhJwVAGcvCcxz0(final NewContactBottomSheet newContactBottomSheet, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3568$r8$lambda$ryoYoqrqdoguzhJwVAGcvCcxz0(final NewContactBottomSheet newContactBottomSheet, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
         newContactBottomSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1187,7 +1187,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             PermissionRequest.ensurePermission(R.raw.permission_request_contacts, R.string.PermissionNoContactsSaving, "android.permission.WRITE_CONTACTS", new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    NewContactBottomSheet.m3557$r8$lambda$JXgSJtRTlk66mlCpuY6zl4PPCM(this.f$0, (Boolean) obj);
+                    NewContactBottomSheet.m3565$r8$lambda$JXgSJtRTlk66mlCpuY6zl4PPCM(this.f$0, (Boolean) obj);
                 }
             });
         } else {
@@ -1195,7 +1195,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public static void m3557$r8$lambda$JXgSJtRTlk66mlCpuY6zl4PPCM(NewContactBottomSheet newContactBottomSheet, Boolean bool) {
+    public static void m3565$r8$lambda$JXgSJtRTlk66mlCpuY6zl4PPCM(NewContactBottomSheet newContactBottomSheet, Boolean bool) {
         newContactBottomSheet.getClass();
         if (bool.booleanValue()) {
             newContactBottomSheet.done();
@@ -1224,7 +1224,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_importContacts, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                NewContactBottomSheet.m3555$r8$lambda$96TydLE2DpY3SIBk70Le4eGhQ(this.f$0, tL_inputPhoneContact, tL_contacts_importContacts, tLObject, tL_error);
+                NewContactBottomSheet.m3563$r8$lambda$96TydLE2DpY3SIBk70Le4eGhQ(this.f$0, tL_inputPhoneContact, tL_contacts_importContacts, tLObject, tL_error);
             }
         }, 2), this.classGuid);
         if (this.checkBox.isChecked()) {
@@ -1232,18 +1232,18 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public static void m3555$r8$lambda$96TydLE2DpY3SIBk70Le4eGhQ(final NewContactBottomSheet newContactBottomSheet, final TLRPC.TL_inputPhoneContact tL_inputPhoneContact, final TLRPC.TL_contacts_importContacts tL_contacts_importContacts, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3563$r8$lambda$96TydLE2DpY3SIBk70Le4eGhQ(final NewContactBottomSheet newContactBottomSheet, final TLRPC.TL_inputPhoneContact tL_inputPhoneContact, final TLRPC.TL_contacts_importContacts tL_contacts_importContacts, TLObject tLObject, final TLRPC.TL_error tL_error) {
         newContactBottomSheet.getClass();
         final TLRPC.TL_contacts_importedContacts tL_contacts_importedContacts = (TLRPC.TL_contacts_importedContacts) tLObject;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NewContactBottomSheet.m3556$r8$lambda$DH9rTpCKi9Bm0rWtAlXYvECKfs(this.f$0, tL_contacts_importedContacts, tL_inputPhoneContact, tL_error, tL_contacts_importContacts);
+                NewContactBottomSheet.m3564$r8$lambda$DH9rTpCKi9Bm0rWtAlXYvECKfs(this.f$0, tL_contacts_importedContacts, tL_inputPhoneContact, tL_error, tL_contacts_importContacts);
             }
         });
     }
 
-    public static void m3556$r8$lambda$DH9rTpCKi9Bm0rWtAlXYvECKfs(NewContactBottomSheet newContactBottomSheet, TLRPC.TL_contacts_importedContacts tL_contacts_importedContacts, TLRPC.TL_inputPhoneContact tL_inputPhoneContact, TLRPC.TL_error tL_error, TLRPC.TL_contacts_importContacts tL_contacts_importContacts) {
+    public static void m3564$r8$lambda$DH9rTpCKi9Bm0rWtAlXYvECKfs(NewContactBottomSheet newContactBottomSheet, TLRPC.TL_contacts_importedContacts tL_contacts_importedContacts, TLRPC.TL_inputPhoneContact tL_inputPhoneContact, TLRPC.TL_error tL_error, TLRPC.TL_contacts_importContacts tL_contacts_importContacts) {
         newContactBottomSheet.donePressed = false;
         if (tL_contacts_importedContacts != null) {
             if (!tL_contacts_importedContacts.users.isEmpty()) {

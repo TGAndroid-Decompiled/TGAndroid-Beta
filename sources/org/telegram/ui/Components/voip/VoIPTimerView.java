@@ -27,7 +27,7 @@ public class VoIPTimerView extends View {
     StaticLayout timerLayout;
     Runnable updater;
 
-    public static void m3000$r8$lambda$xsiNA0j6b08VDtkukzVFm69eYo(VoIPTimerView voIPTimerView) {
+    public static void m3009$r8$lambda$xsiNA0j6b08VDtkukzVFm69eYo(VoIPTimerView voIPTimerView) {
         if (voIPTimerView.getVisibility() == 0) {
             voIPTimerView.updateTimer();
         }
@@ -44,7 +44,7 @@ public class VoIPTimerView extends View {
         this.updater = new Runnable() {
             @Override
             public final void run() {
-                VoIPTimerView.m3000$r8$lambda$xsiNA0j6b08VDtkukzVFm69eYo(this.f$0);
+                VoIPTimerView.m3009$r8$lambda$xsiNA0j6b08VDtkukzVFm69eYo(this.f$0);
             }
         };
         this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));

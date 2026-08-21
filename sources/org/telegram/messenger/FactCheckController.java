@@ -130,7 +130,7 @@ public class FactCheckController {
             map.put(keyOf, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    FactCheckController.m425$r8$lambda$YpyzKWAXZ62JyqavMM7ThmuLNA(this.f$0, keyOf, messageObject, (TLRPC.TL_factCheck) obj);
+                    FactCheckController.m433$r8$lambda$YpyzKWAXZ62JyqavMM7ThmuLNA(this.f$0, keyOf, messageObject, (TLRPC.TL_factCheck) obj);
                 }
             });
             scheduleLoadMissing();
@@ -138,7 +138,7 @@ public class FactCheckController {
         return messageObject.messageOwner.factcheck;
     }
 
-    public static void m425$r8$lambda$YpyzKWAXZ62JyqavMM7ThmuLNA(FactCheckController factCheckController, Key key, MessageObject messageObject, TLRPC.TL_factCheck tL_factCheck) {
+    public static void m433$r8$lambda$YpyzKWAXZ62JyqavMM7ThmuLNA(FactCheckController factCheckController, Key key, MessageObject messageObject, TLRPC.TL_factCheck tL_factCheck) {
         factCheckController.localCache.put(key.hash, tL_factCheck);
         messageObject.messageOwner.factcheck = tL_factCheck;
     }
@@ -205,12 +205,12 @@ public class FactCheckController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FactCheckController.m424$r8$lambda$GvN_9hEQzghOq9aC9QT86GzSjs(this.f$0, tLObject, tL_getFactCheck, arrayList, map);
+                FactCheckController.m432$r8$lambda$GvN_9hEQzghOq9aC9QT86GzSjs(this.f$0, tLObject, tL_getFactCheck, arrayList, map);
             }
         });
     }
 
-    public static void m424$r8$lambda$GvN_9hEQzghOq9aC9QT86GzSjs(FactCheckController factCheckController, TLObject tLObject, TLRPC.TL_getFactCheck tL_getFactCheck, ArrayList arrayList, HashMap map) {
+    public static void m432$r8$lambda$GvN_9hEQzghOq9aC9QT86GzSjs(FactCheckController factCheckController, TLObject tLObject, TLRPC.TL_getFactCheck tL_getFactCheck, ArrayList arrayList, HashMap map) {
         factCheckController.getClass();
         ArrayList arrayList2 = new ArrayList();
         if (tLObject instanceof Vector) {
@@ -350,13 +350,13 @@ public class FactCheckController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FactCheckController.m427$r8$lambda$hwZvWtn8X40ulbUsYqEavkirk8(messagesStorage, tL_factCheck);
+                FactCheckController.m435$r8$lambda$hwZvWtn8X40ulbUsYqEavkirk8(messagesStorage, tL_factCheck);
             }
         });
         clearExpiredInDatabase();
     }
 
-    public static void m427$r8$lambda$hwZvWtn8X40ulbUsYqEavkirk8(MessagesStorage messagesStorage, TLRPC.TL_factCheck tL_factCheck) {
+    public static void m435$r8$lambda$hwZvWtn8X40ulbUsYqEavkirk8(MessagesStorage messagesStorage, TLRPC.TL_factCheck tL_factCheck) {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
@@ -689,12 +689,12 @@ public class FactCheckController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                FactCheckController.m426$r8$lambda$bDHYcR4M_VJInkzsX9NNrgeQzY(this.f$0, tL_textWithEntities, z, alertDialog, tLObject2, tL_error);
+                FactCheckController.m434$r8$lambda$bDHYcR4M_VJInkzsX9NNrgeQzY(this.f$0, tL_textWithEntities, z, alertDialog, tLObject2, tL_error);
             }
         });
     }
 
-    public static void m426$r8$lambda$bDHYcR4M_VJInkzsX9NNrgeQzY(final FactCheckController factCheckController, final TLRPC.TL_textWithEntities tL_textWithEntities, final boolean z, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m434$r8$lambda$bDHYcR4M_VJInkzsX9NNrgeQzY(final FactCheckController factCheckController, final TLRPC.TL_textWithEntities tL_textWithEntities, final boolean z, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
         factCheckController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

@@ -325,14 +325,14 @@ public class TimelineView extends View {
                     this.thumbs = timelineView.new VideoThumbsLoader(z2, str, i, iDp, j > 2 ? Long.valueOf(j) : null, TimelineView.this.getMaxScrollDuration(), TimelineView.this.coverStart, TimelineView.this.coverEnd, new Runnable() {
                         @Override
                         public final void run() {
-                            TimelineView.Track.m4651$r8$lambda$5nKwQ2tgX4hRgpG5diUTp4Qn7g(this.f$0);
+                            TimelineView.Track.m4662$r8$lambda$5nKwQ2tgX4hRgpG5diUTp4Qn7g(this.f$0);
                         }
                     });
                 }
             }
         }
 
-        public static void m4651$r8$lambda$5nKwQ2tgX4hRgpG5diUTp4Qn7g(Track track) {
+        public static void m4662$r8$lambda$5nKwQ2tgX4hRgpG5diUTp4Qn7g(Track track) {
             VideoThumbsLoader videoThumbsLoader = track.thumbs;
             if (videoThumbsLoader == null || videoThumbsLoader.getDuration() <= 0) {
                 return;
@@ -530,7 +530,7 @@ public class TimelineView extends View {
                 ItemOptions.makeOptions(viewGroup, resourcesProvider, timelineView).addView(onValueChange).addSpaceGap().add(R.drawable.msg_delete, LocaleController.getString(R.string.StoryAudioRemove), new Runnable() {
                     @Override
                     public final void run() {
-                        TimelineView.m4648$r8$lambda$kx2RWR0HuGWZWCMCnhKwT75y4(this.f$0);
+                        TimelineView.m4659$r8$lambda$kx2RWR0HuGWZWCMCnhKwT75y4(this.f$0);
                     }
                 }).setGravity(5).forceTop(true).translate((-(timelineView.w - Math.min((i3 - i4) - i5, (i4 + i5) + ((((timelineView.audioOffset - timelineView.scroll) + (AndroidUtilities.lerp(timelineView.audioRight, 1.0f, timelineView.audioSelectedT.get()) * timelineView.audioDuration)) / jMin) * timelineView.sw)))) + AndroidUtilities.dp(18.0f), timelineView.audioBounds.top).show().setBlurBackground(blurManager, -view.getX(), -view.getY());
                 timelineView.performHapticFeedback(0, 1);
@@ -540,7 +540,7 @@ public class TimelineView extends View {
                 SliderView onValueChange2 = new SliderView(timelineView.getContext(), 0).setMinMax(0.0f, 1.5f).setValue(timelineView.roundVolume).setOnValueChange(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        TimelineView.m4647$r8$lambda$cGqD5y3W4FcwjXr1H28Dw0Gpno(this.f$0, (Float) obj);
+                        TimelineView.m4658$r8$lambda$cGqD5y3W4FcwjXr1H28Dw0Gpno(this.f$0, (Float) obj);
                     }
                 });
                 long jMin2 = Math.min(timelineView.getBaseDuration(), timelineView.getMaxScrollDuration());
@@ -560,7 +560,7 @@ public class TimelineView extends View {
                 ItemOptions.makeOptions(viewGroup, resourcesProvider, timelineView).addView(new SliderView(timelineView.getContext(), 0).setMinMax(0.0f, 1.5f).setValue(timelineView.videoTrack.volume).setOnValueChange(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        TimelineView.m4649$r8$lambda$lokWYyMBVmGgLaI60HGFVf3AAg(this.f$0, (Float) obj);
+                        TimelineView.m4660$r8$lambda$lokWYyMBVmGgLaI60HGFVf3AAg(this.f$0, (Float) obj);
                     }
                 })).setGravity(5).forceTop(true).translate(AndroidUtilities.dp(18.0f), timelineView.videoBounds.top).show().setBlurBackground(blurManager, -view.getX(), -view.getY());
                 timelineView.performHapticFeedback(0, 1);
@@ -590,14 +590,14 @@ public class TimelineView extends View {
         }
     }
 
-    public static void m4648$r8$lambda$kx2RWR0HuGWZWCMCnhKwT75y4(TimelineView timelineView) {
+    public static void m4659$r8$lambda$kx2RWR0HuGWZWCMCnhKwT75y4(TimelineView timelineView) {
         TimelineDelegate timelineDelegate = timelineView.delegate;
         if (timelineDelegate != null) {
             timelineDelegate.onAudioRemove();
         }
     }
 
-    public static void m4647$r8$lambda$cGqD5y3W4FcwjXr1H28Dw0Gpno(TimelineView timelineView, Float f) {
+    public static void m4658$r8$lambda$cGqD5y3W4FcwjXr1H28Dw0Gpno(TimelineView timelineView, Float f) {
         timelineView.getClass();
         timelineView.roundVolume = f.floatValue();
         TimelineDelegate timelineDelegate = timelineView.delegate;
@@ -613,7 +613,7 @@ public class TimelineView extends View {
         }
     }
 
-    public static void m4649$r8$lambda$lokWYyMBVmGgLaI60HGFVf3AAg(TimelineView timelineView, Float f) {
+    public static void m4660$r8$lambda$lokWYyMBVmGgLaI60HGFVf3AAg(TimelineView timelineView, Float f) {
         timelineView.videoTrack.volume = f.floatValue();
         TimelineDelegate timelineDelegate = timelineView.delegate;
         if (timelineDelegate != null) {

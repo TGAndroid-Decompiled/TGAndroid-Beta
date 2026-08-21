@@ -275,7 +275,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
         final Context val$context;
 
-        public static void m3580$r8$lambda$ugWLPNTPhGiocKqwuTFr7BFCY(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m3588$r8$lambda$ugWLPNTPhGiocKqwuTFr7BFCY(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         AnonymousClass1(Context context) {
@@ -391,7 +391,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 NotificationsSoundActivity.this.getConnectionsManager().sendRequest(saveringtone, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        NotificationsSoundActivity.AnonymousClass1.m3580$r8$lambda$ugWLPNTPhGiocKqwuTFr7BFCY(tLObject, tL_error);
+                        NotificationsSoundActivity.AnonymousClass1.m3588$r8$lambda$ugWLPNTPhGiocKqwuTFr7BFCY(tLObject, tL_error);
                     }
                 });
             }

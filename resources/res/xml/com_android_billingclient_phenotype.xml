@@ -3,6 +3,10 @@
     <phenotype-registration>
         <configuration-package>com.android.billingclient
         </configuration-package>
+        <log-sources>
+            <log-source>PLAY_BILLING_LIBRARY
+            </log-source>
+        </log-sources>
         <auto-subpackage>true
         </auto-subpackage>
     </phenotype-registration>

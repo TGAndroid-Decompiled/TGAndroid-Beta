@@ -313,13 +313,13 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         Collections.sort(arrayList3, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return OpeningHoursActivity.m1392$r8$lambda$e8LPlc3wpOcbipb8BSgQa5RZ4c((TL_account.TL_businessWeeklyOpen) obj, (TL_account.TL_businessWeeklyOpen) obj2);
+                return OpeningHoursActivity.m1398$r8$lambda$e8LPlc3wpOcbipb8BSgQa5RZ4c((TL_account.TL_businessWeeklyOpen) obj, (TL_account.TL_businessWeeklyOpen) obj2);
             }
         });
         return arrayList3;
     }
 
-    public static int m1392$r8$lambda$e8LPlc3wpOcbipb8BSgQa5RZ4c(TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen, TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2) {
+    public static int m1398$r8$lambda$e8LPlc3wpOcbipb8BSgQa5RZ4c(TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen, TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2) {
         return tL_businessWeeklyOpen.start_minute - tL_businessWeeklyOpen2.start_minute;
     }
 
@@ -479,12 +479,12 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                OpeningHoursActivity.m1391$r8$lambda$RajLrQn80CHNvZkSsV72oNMisg(this.f$0, tL_error, tLObject);
+                OpeningHoursActivity.m1397$r8$lambda$RajLrQn80CHNvZkSsV72oNMisg(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m1391$r8$lambda$RajLrQn80CHNvZkSsV72oNMisg(OpeningHoursActivity openingHoursActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m1397$r8$lambda$RajLrQn80CHNvZkSsV72oNMisg(OpeningHoursActivity openingHoursActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
             openingHoursActivity.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);
@@ -682,7 +682,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         }).onDone(new Runnable() {
             @Override
             public final void run() {
-                OpeningHoursActivity.m1390$r8$lambda$LLuwiBV7Nwzy7aoFu9A7bfKPN4(this.f$0, uItem);
+                OpeningHoursActivity.m1396$r8$lambda$LLuwiBV7Nwzy7aoFu9A7bfKPN4(this.f$0, uItem);
             }
         }));
     }
@@ -700,7 +700,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         openingHoursActivity.checkDone(true);
     }
 
-    public static void m1390$r8$lambda$LLuwiBV7Nwzy7aoFu9A7bfKPN4(OpeningHoursActivity openingHoursActivity, UItem uItem) {
+    public static void m1396$r8$lambda$LLuwiBV7Nwzy7aoFu9A7bfKPN4(OpeningHoursActivity openingHoursActivity, UItem uItem) {
         openingHoursActivity.getClass();
         openingHoursActivity.adaptPrevDay(uItem.id);
     }

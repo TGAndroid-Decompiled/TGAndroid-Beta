@@ -180,7 +180,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        SpoilersTextView.m2967$r8$lambda$NPeLUXgdxoyt4INz4etcRGmgxA(this.f$0, linkSpanDrawable, clickableSpanHit);
+                        SpoilersTextView.m2976$r8$lambda$NPeLUXgdxoyt4INz4etcRGmgxA(this.f$0, linkSpanDrawable, clickableSpanHit);
                     }
                 }, ViewConfiguration.getLongPressTimeout());
                 return true;
@@ -214,7 +214,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public static void m2967$r8$lambda$NPeLUXgdxoyt4INz4etcRGmgxA(SpoilersTextView spoilersTextView, LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+    public static void m2976$r8$lambda$NPeLUXgdxoyt4INz4etcRGmgxA(SpoilersTextView spoilersTextView, LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
         LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = spoilersTextView.onLongPressListener;
         if (onLinkPress == null || spoilersTextView.pressedLink != linkSpanDrawable) {
             return;

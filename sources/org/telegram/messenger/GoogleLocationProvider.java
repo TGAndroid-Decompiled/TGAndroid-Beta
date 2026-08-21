@@ -38,12 +38,12 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         this.locationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener() {
             @Override
             public final void onComplete(Task task) {
-                GoogleLocationProvider.m478$r8$lambda$pgimAzDDNnR94RGDhgpM2y3jLE(consumer, task);
+                GoogleLocationProvider.m484$r8$lambda$pgimAzDDNnR94RGDhgpM2y3jLE(consumer, task);
             }
         });
     }
 
-    public static void m478$r8$lambda$pgimAzDDNnR94RGDhgpM2y3jLE(Consumer consumer, Task task) {
+    public static void m484$r8$lambda$pgimAzDDNnR94RGDhgpM2y3jLE(Consumer consumer, Task task) {
         if (task.getException() != null) {
             return;
         }

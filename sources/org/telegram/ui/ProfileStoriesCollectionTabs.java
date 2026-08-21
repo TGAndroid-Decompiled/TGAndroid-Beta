@@ -102,7 +102,7 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
         tabsViewCreateTabsView.setPreTabClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                return ProfileStoriesCollectionTabs.m3934$r8$lambda$jugj49GTYchGqFg_rZSVDI7n38(this.f$0, delegate, (Integer) obj, (Integer) obj2);
+                return ProfileStoriesCollectionTabs.m3943$r8$lambda$jugj49GTYchGqFg_rZSVDI7n38(this.f$0, delegate, (Integer) obj, (Integer) obj2);
             }
         });
         tabsViewCreateTabsView.setOnTabLongClick(new Utilities.Callback2Return() {
@@ -115,7 +115,7 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
         setVisibility(!storiesCollections.collections.isEmpty(), false, true);
     }
 
-    public static Boolean m3934$r8$lambda$jugj49GTYchGqFg_rZSVDI7n38(ProfileStoriesCollectionTabs profileStoriesCollectionTabs, Delegate delegate, Integer num, Integer num2) {
+    public static Boolean m3943$r8$lambda$jugj49GTYchGqFg_rZSVDI7n38(ProfileStoriesCollectionTabs profileStoriesCollectionTabs, Delegate delegate, Integer num, Integer num2) {
         if (profileStoriesCollectionTabs.reorderingCollections) {
             return Boolean.TRUE;
         }

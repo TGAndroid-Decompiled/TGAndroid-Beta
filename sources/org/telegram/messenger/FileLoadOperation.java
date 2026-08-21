@@ -295,7 +295,7 @@ public class FileLoadOperation {
         this.cancelAfterNoStreamListeners = new Runnable() {
             @Override
             public final void run() {
-                FileLoadOperation.m429$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(this.f$0);
+                FileLoadOperation.m437$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(this.f$0);
             }
         };
         updateParams();
@@ -409,7 +409,7 @@ public class FileLoadOperation {
         this.cancelAfterNoStreamListeners = new Runnable() {
             @Override
             public final void run() {
-                FileLoadOperation.m429$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(this.f$0);
+                FileLoadOperation.m437$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(this.f$0);
             }
         };
         updateParams();
@@ -442,7 +442,7 @@ public class FileLoadOperation {
         this.cancelAfterNoStreamListeners = new Runnable() {
             @Override
             public final void run() {
-                FileLoadOperation.m429$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(this.f$0);
+                FileLoadOperation.m437$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(this.f$0);
             }
         };
         updateParams();
@@ -485,7 +485,7 @@ public class FileLoadOperation {
         this.cancelAfterNoStreamListeners = new Runnable() {
             @Override
             public final void run() {
-                FileLoadOperation.m429$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(this.f$0);
+                FileLoadOperation.m437$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(this.f$0);
             }
         };
         updateParams();
@@ -637,7 +637,7 @@ public class FileLoadOperation {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return FileLoadOperation.m433$r8$lambda$jrrmjRfBdFxX5rOyA6qI6qziWE((FileLoadOperation.Range) obj, (FileLoadOperation.Range) obj2);
+                return FileLoadOperation.m441$r8$lambda$jrrmjRfBdFxX5rOyA6qI6qziWE((FileLoadOperation.Range) obj, (FileLoadOperation.Range) obj2);
             }
         });
         while (i < arrayList.size() - 1) {
@@ -657,7 +657,7 @@ public class FileLoadOperation {
         arrayList.add(new Range(j, j2));
     }
 
-    public static int m433$r8$lambda$jrrmjRfBdFxX5rOyA6qI6qziWE(Range range, Range range2) {
+    public static int m441$r8$lambda$jrrmjRfBdFxX5rOyA6qI6qziWE(Range range, Range range2) {
         if (range.start > range2.start) {
             return 1;
         }
@@ -716,7 +716,7 @@ public class FileLoadOperation {
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            FileLoadOperation.m430$r8$lambda$MdKLK1tGNaOfCQR1nMxBOyXfeU(this.f$0, arrayList2);
+                            FileLoadOperation.m438$r8$lambda$MdKLK1tGNaOfCQR1nMxBOyXfeU(this.f$0, arrayList2);
                         }
                     };
                     this.fileWriteRunnable = runnable;
@@ -734,7 +734,7 @@ public class FileLoadOperation {
         }
     }
 
-    public static void m430$r8$lambda$MdKLK1tGNaOfCQR1nMxBOyXfeU(FileLoadOperation fileLoadOperation, ArrayList arrayList) {
+    public static void m438$r8$lambda$MdKLK1tGNaOfCQR1nMxBOyXfeU(FileLoadOperation fileLoadOperation, ArrayList arrayList) {
         fileLoadOperation.getClass();
         long jCurrentTimeMillis = System.currentTimeMillis();
         try {
@@ -889,7 +889,7 @@ public class FileLoadOperation {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoadOperation.m437$r8$lambda$z09YniD4r24QWQ5cEQps6s3T0(this.f$0, jArr, j, j2, countDownLatch);
+                FileLoadOperation.m445$r8$lambda$z09YniD4r24QWQ5cEQps6s3T0(this.f$0, jArr, j, j2, countDownLatch);
             }
         });
         try {
@@ -899,7 +899,7 @@ public class FileLoadOperation {
         return jArr;
     }
 
-    public static void m437$r8$lambda$z09YniD4r24QWQ5cEQps6s3T0(FileLoadOperation fileLoadOperation, long[] jArr, long j, long j2, CountDownLatch countDownLatch) {
+    public static void m445$r8$lambda$z09YniD4r24QWQ5cEQps6s3T0(FileLoadOperation fileLoadOperation, long[] jArr, long j, long j2, CountDownLatch countDownLatch) {
         FileLoadOperation fileLoadOperation2;
         fileLoadOperation.getClass();
         try {
@@ -946,7 +946,7 @@ public class FileLoadOperation {
         fileLoadOperation.streamListeners.remove(fileLoadOperationStream);
     }
 
-    public static void m429$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(FileLoadOperation fileLoadOperation) {
+    public static void m437$r8$lambda$IbDGTS_pBx3XIQphxaYlWvQU(FileLoadOperation fileLoadOperation) {
         fileLoadOperation.pause();
         FileLoader.getInstance(fileLoadOperation.currentAccount).cancelLoadFile(fileLoadOperation.getFileName());
     }
@@ -1560,7 +1560,7 @@ public class FileLoadOperation {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoadOperation.m436$r8$lambda$uxa2nRVkcn7jYcobqxOcHprXhM(this.f$0, zArr);
+                    FileLoadOperation.m444$r8$lambda$uxa2nRVkcn7jYcobqxOcHprXhM(this.f$0, zArr);
                 }
             });
             return r12;
@@ -1649,7 +1649,7 @@ public class FileLoadOperation {
         }
     }
 
-    public static void m436$r8$lambda$uxa2nRVkcn7jYcobqxOcHprXhM(FileLoadOperation fileLoadOperation, boolean[] zArr) {
+    public static void m444$r8$lambda$uxa2nRVkcn7jYcobqxOcHprXhM(FileLoadOperation fileLoadOperation, boolean[] zArr) {
         boolean z = fileLoadOperation.isPreloadVideoOperation && zArr[0];
         int i = fileLoadOperation.preloadPrefixSize;
         boolean z2 = i > 0 && fileLoadOperation.downloadedBytes >= ((long) i) && fileLoadOperation.canFinishPreload();
@@ -1746,7 +1746,7 @@ public class FileLoadOperation {
             cancelRequests(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoadOperation.m431$r8$lambda$ZbkCjEZwmArqOgVJyY5DVszwQk(this.f$0);
+                    FileLoadOperation.m439$r8$lambda$ZbkCjEZwmArqOgVJyY5DVszwQk(this.f$0);
                 }
             });
         }
@@ -1805,7 +1805,7 @@ public class FileLoadOperation {
         }
     }
 
-    public static void m431$r8$lambda$ZbkCjEZwmArqOgVJyY5DVszwQk(FileLoadOperation fileLoadOperation) {
+    public static void m439$r8$lambda$ZbkCjEZwmArqOgVJyY5DVszwQk(FileLoadOperation fileLoadOperation) {
         if (fileLoadOperation.state == 5) {
             fileLoadOperation.onFail(false, 1);
         }
@@ -1832,7 +1832,7 @@ public class FileLoadOperation {
                         requestInfo.whenCancelled = new Runnable() {
                             @Override
                             public final void run() {
-                                FileLoadOperation.m435$r8$lambda$nGf2vg6_qrzCPXWCMNer3l8Da0(requestInfo, iArr, runnable);
+                                FileLoadOperation.m443$r8$lambda$nGf2vg6_qrzCPXWCMNer3l8Da0(requestInfo, iArr, runnable);
                             }
                         };
                         iArr[0] = iArr[0] + 1;
@@ -1840,7 +1840,7 @@ public class FileLoadOperation {
                         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo.requestToken, true, new Runnable() {
                             @Override
                             public final void run() {
-                                FileLoadOperation.m428$r8$lambda$CDuAUjvsTX7Jq3JXybbY9NKqJ4(requestInfo);
+                                FileLoadOperation.m436$r8$lambda$CDuAUjvsTX7Jq3JXybbY9NKqJ4(requestInfo);
                             }
                         });
                     }
@@ -1858,7 +1858,7 @@ public class FileLoadOperation {
         }
     }
 
-    public static void m435$r8$lambda$nGf2vg6_qrzCPXWCMNer3l8Da0(RequestInfo requestInfo, int[] iArr, Runnable runnable) {
+    public static void m443$r8$lambda$nGf2vg6_qrzCPXWCMNer3l8Da0(RequestInfo requestInfo, int[] iArr, Runnable runnable) {
         requestInfo.whenCancelled = null;
         requestInfo.cancelled = true;
         int i = iArr[0] - 1;
@@ -1868,7 +1868,7 @@ public class FileLoadOperation {
         }
     }
 
-    public static void m428$r8$lambda$CDuAUjvsTX7Jq3JXybbY9NKqJ4(RequestInfo requestInfo) {
+    public static void m436$r8$lambda$CDuAUjvsTX7Jq3JXybbY9NKqJ4(RequestInfo requestInfo) {
         Runnable runnable = requestInfo.whenCancelled;
         if (runnable != null) {
             runnable.run();
@@ -2779,7 +2779,7 @@ public class FileLoadOperation {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoadOperation.m434$r8$lambda$maafuPct8aqEBc9YU0uxFjKukM(this.f$0, i);
+                    FileLoadOperation.m442$r8$lambda$maafuPct8aqEBc9YU0uxFjKukM(this.f$0, i);
                 }
             });
             return;
@@ -2791,7 +2791,7 @@ public class FileLoadOperation {
         notifyStreamListeners();
     }
 
-    public static void m434$r8$lambda$maafuPct8aqEBc9YU0uxFjKukM(FileLoadOperation fileLoadOperation, int i) {
+    public static void m442$r8$lambda$maafuPct8aqEBc9YU0uxFjKukM(FileLoadOperation fileLoadOperation, int i) {
         FileLoadOperationDelegate fileLoadOperationDelegate = fileLoadOperation.delegate;
         if (fileLoadOperationDelegate != null) {
             fileLoadOperationDelegate.didFailedLoadingFile(fileLoadOperation, i);
@@ -3202,7 +3202,7 @@ public class FileLoadOperation {
                                     final int iSendRequestSync = connectionsManager.sendRequestSync(tLObject, new RequestDelegate() {
                                         @Override
                                         public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                                            FileLoadOperation.m432$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
+                                            FileLoadOperation.m440$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
                                         }
                                     }, null, null, i15, i10, i6, z2);
                                     requestInfo.requestToken = iSendRequestSync;
@@ -3272,7 +3272,7 @@ public class FileLoadOperation {
                                 final int iSendRequestSync2 = connectionsManager2.sendRequestSync(tLObject, new RequestDelegate() {
                                     @Override
                                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                                        FileLoadOperation.m432$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
+                                        FileLoadOperation.m440$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
                                     }
                                 }, null, null, i16, i10, i6, z2);
                                 requestInfo.requestToken = iSendRequestSync2;
@@ -3328,7 +3328,7 @@ public class FileLoadOperation {
                             final int iSendRequestSync3 = connectionsManager3.sendRequestSync(tLObject, new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                                    FileLoadOperation.m432$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
+                                    FileLoadOperation.m440$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
                                 }
                             }, null, null, i17, i10, i6, z2);
                             requestInfo.requestToken = iSendRequestSync3;
@@ -3558,7 +3558,7 @@ public class FileLoadOperation {
                     final int iSendRequestSync4 = connectionsManager4.sendRequestSync(tLObject, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                            FileLoadOperation.m432$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
+                            FileLoadOperation.m440$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
                         }
                     }, null, null, i19, i10, i6, z2);
                     requestInfo.requestToken = iSendRequestSync4;
@@ -3611,7 +3611,7 @@ public class FileLoadOperation {
                     final int iSendRequestSync5 = connectionsManager5.sendRequestSync(tLObject, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                            FileLoadOperation.m432$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
+                            FileLoadOperation.m440$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(this.f$0, requestInfo, i10, i6, tLObject, tLObject2, tL_error);
                         }
                     }, null, null, i110, i10, i6, z2);
                     requestInfo.requestToken = iSendRequestSync5;
@@ -3649,7 +3649,7 @@ public class FileLoadOperation {
         requestInfo.response.freeResources();
     }
 
-    public static void m432$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(final FileLoadOperation fileLoadOperation, final RequestInfo requestInfo, int i, final int i2, TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error) {
+    public static void m440$r8$lambda$cms_68n3kdyASkghRjcxIfsFy8(final FileLoadOperation fileLoadOperation, final RequestInfo requestInfo, int i, final int i2, TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error) {
         byte[] bArr;
         fileLoadOperation.getClass();
         if (requestInfo.cancelled) {

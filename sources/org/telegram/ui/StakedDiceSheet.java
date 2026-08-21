@@ -149,7 +149,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             Utilities.Callback2Return callback2Return = new Utilities.Callback2Return() {
                 @Override
                 public final Object run(Object obj, Object obj2) {
-                    return StakedDiceSheet.m4064$r8$lambda$Avzvs7HEBCdkCHlzfUQfHJlva8(context, iArr, resourcesProvider, tableView, (Integer) obj, (Float) obj2);
+                    return StakedDiceSheet.m4073$r8$lambda$Avzvs7HEBCdkCHlzfUQfHJlva8(context, iArr, resourcesProvider, tableView, (Integer) obj, (Float) obj2);
                 }
             };
             if (tL_emojiGameDiceInfo.params.size() == 7) {
@@ -291,7 +291,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             Utilities.CallbackReturn callbackReturn = new Utilities.CallbackReturn() {
                 @Override
                 public final Object run(Object obj) {
-                    return StakedDiceSheet.m4065$r8$lambda$U3QzNjIEL4Nod70FOH84Lt4RXk(context, resourcesProvider, editTextBoldCursor, (Long) obj);
+                    return StakedDiceSheet.m4074$r8$lambda$U3QzNjIEL4Nod70FOH84Lt4RXk(context, resourcesProvider, editTextBoldCursor, (Long) obj);
                 }
             };
             long[] jArr = MessagesController.getInstance(i).tonStakediceStakeSuggestedAmounts;
@@ -337,7 +337,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static TableView.TableRowContent m4064$r8$lambda$Avzvs7HEBCdkCHlzfUQfHJlva8(Context context, int[] iArr, Theme.ResourcesProvider resourcesProvider, TableView tableView, Integer num, Float f) {
+    public static TableView.TableRowContent m4073$r8$lambda$Avzvs7HEBCdkCHlzfUQfHJlva8(Context context, int[] iArr, Theme.ResourcesProvider resourcesProvider, TableView tableView, Integer num, Float f) {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -367,7 +367,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
         return new TableView.TableRowContent(tableView, linearLayout, false);
     }
 
-    public static View m4065$r8$lambda$U3QzNjIEL4Nod70FOH84Lt4RXk(Context context, Theme.ResourcesProvider resourcesProvider, final EditTextBoldCursor editTextBoldCursor, final Long l) {
+    public static View m4074$r8$lambda$U3QzNjIEL4Nod70FOH84Lt4RXk(Context context, Theme.ResourcesProvider resourcesProvider, final EditTextBoldCursor editTextBoldCursor, final Long l) {
         TextView textView = new TextView(context);
         textView.setGravity(17);
         textView.setTextSize(1, 13.0f);

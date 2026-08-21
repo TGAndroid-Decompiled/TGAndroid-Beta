@@ -195,12 +195,12 @@ public class PaintTypeface {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaintTypeface.m2467$r8$lambda$uHiyhdBVm0IHOhLbZgqUwvUtTU(arrayList);
+                PaintTypeface.m2477$r8$lambda$uHiyhdBVm0IHOhLbZgqUwvUtTU(arrayList);
             }
         });
     }
 
-    public static void m2467$r8$lambda$uHiyhdBVm0IHOhLbZgqUwvUtTU(ArrayList arrayList) {
+    public static void m2477$r8$lambda$uHiyhdBVm0IHOhLbZgqUwvUtTU(ArrayList arrayList) {
         typefaces = arrayList;
         loadingTypefaces = false;
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.customTypefacesLoaded, new Object[0]);

@@ -143,12 +143,12 @@ public class PaidReactionButton extends View {
             this.hideCounterRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PaidReactionButton.PaidReactionButtonEffectsView.m4332$r8$lambda$vpIAAgrDJtdfYngYmN4gFB_tSY(this.f$0);
+                    PaidReactionButton.PaidReactionButtonEffectsView.m4343$r8$lambda$vpIAAgrDJtdfYngYmN4gFB_tSY(this.f$0);
                 }
             };
         }
 
-        public static void m4332$r8$lambda$vpIAAgrDJtdfYngYmN4gFB_tSY(PaidReactionButtonEffectsView paidReactionButtonEffectsView) {
+        public static void m4343$r8$lambda$vpIAAgrDJtdfYngYmN4gFB_tSY(PaidReactionButtonEffectsView paidReactionButtonEffectsView) {
             paidReactionButtonEffectsView.counterShown = false;
             paidReactionButtonEffectsView.invalidate();
             paidReactionButtonEffectsView.hide();

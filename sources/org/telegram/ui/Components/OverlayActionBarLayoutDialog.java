@@ -146,7 +146,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         this.frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                return OverlayActionBarLayoutDialog.m2458$r8$lambda$AKWEMZGytT31G2x4IT_NdAkiqA(view, windowInsets);
+                return OverlayActionBarLayoutDialog.m2468$r8$lambda$AKWEMZGytT31G2x4IT_NdAkiqA(view, windowInsets);
             }
         });
         if (i >= 26) {
@@ -154,7 +154,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         }
     }
 
-    public static WindowInsets m2458$r8$lambda$AKWEMZGytT31G2x4IT_NdAkiqA(View view, WindowInsets windowInsets) {
+    public static WindowInsets m2468$r8$lambda$AKWEMZGytT31G2x4IT_NdAkiqA(View view, WindowInsets windowInsets) {
         view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
         return windowInsets;
     }

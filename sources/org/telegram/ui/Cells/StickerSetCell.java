@@ -205,7 +205,7 @@ public class StickerSetCell extends FrameLayout {
         this.sideButtons.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StickerSetCell.m1503$r8$lambda$ZcxGIGWf2quKDH9jLLUoG8940(this.f$0, view);
+                StickerSetCell.m1509$r8$lambda$ZcxGIGWf2quKDH9jLLUoG8940(this.f$0, view);
             }
         });
         TextView textView4 = new TextView(context) {
@@ -249,7 +249,7 @@ public class StickerSetCell extends FrameLayout {
         updateButtonState(0, false);
     }
 
-    public static void m1503$r8$lambda$ZcxGIGWf2quKDH9jLLUoG8940(StickerSetCell stickerSetCell, View view) {
+    public static void m1509$r8$lambda$ZcxGIGWf2quKDH9jLLUoG8940(StickerSetCell stickerSetCell, View view) {
         if (stickerSetCell.premiumButtonView.getVisibility() == 0 && stickerSetCell.premiumButtonView.isEnabled()) {
             stickerSetCell.premiumButtonView.performClick();
             return;
@@ -403,12 +403,12 @@ public class StickerSetCell extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerSetCell.m1505$r8$lambda$GSV0ZOc0M4KQGzFfeviHnJQOA(this.f$0, document);
+                StickerSetCell.m1511$r8$lambda$GSV0ZOc0M4KQGzFfeviHnJQOA(this.f$0, document);
             }
         });
     }
 
-    public static void m1505$r8$lambda$GSV0ZOc0M4KQGzFfeviHnJQOA(StickerSetCell stickerSetCell, TLRPC.Document document) {
+    public static void m1511$r8$lambda$GSV0ZOc0M4KQGzFfeviHnJQOA(StickerSetCell stickerSetCell, TLRPC.Document document) {
         if (stickerSetCell.stickersSet.documents.isEmpty()) {
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetCell.stickersSet;
             if (tL_messages_stickerSet.set.thumb_document_id == document.id) {
@@ -530,7 +530,7 @@ public class StickerSetCell extends FrameLayout {
                 duration.setInterpolator(interpolator).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        StickerSetCell.m1504$r8$lambda$t_3viipGdfHoZbMu46z3dRMeaQ(this.f$0, z);
+                        StickerSetCell.m1510$r8$lambda$t_3viipGdfHoZbMu46z3dRMeaQ(this.f$0, z);
                     }
                 }).start();
                 if (this.emojis) {
@@ -571,7 +571,7 @@ public class StickerSetCell extends FrameLayout {
         }
     }
 
-    public static void m1504$r8$lambda$t_3viipGdfHoZbMu46z3dRMeaQ(StickerSetCell stickerSetCell, boolean z) {
+    public static void m1510$r8$lambda$t_3viipGdfHoZbMu46z3dRMeaQ(StickerSetCell stickerSetCell, boolean z) {
         if (z) {
             stickerSetCell.getClass();
         } else {

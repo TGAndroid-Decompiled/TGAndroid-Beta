@@ -1616,7 +1616,7 @@ public class ReactionsLayoutInBubble {
                     Runnable runnable2 = new Runnable() {
                         @Override
                         public final void run() {
-                            ReactionsLayoutInBubble.m2707$r8$lambda$UHLi4PuOVSFhhIPvKr7DAdhnuY(this.f$0, reactionButton);
+                            ReactionsLayoutInBubble.m2716$r8$lambda$UHLi4PuOVSFhhIPvKr7DAdhnuY(this.f$0, reactionButton);
                         }
                     };
                     this.longPressRunnable = runnable2;
@@ -1658,7 +1658,7 @@ public class ReactionsLayoutInBubble {
         return this.pressed;
     }
 
-    public static void m2707$r8$lambda$UHLi4PuOVSFhhIPvKr7DAdhnuY(ReactionsLayoutInBubble reactionsLayoutInBubble, ReactionButton reactionButton) {
+    public static void m2716$r8$lambda$UHLi4PuOVSFhhIPvKr7DAdhnuY(ReactionsLayoutInBubble reactionsLayoutInBubble, ReactionButton reactionButton) {
         reactionsLayoutInBubble.getClass();
         reactionsLayoutInBubble.didPressReaction(reactionButton.reactionCount, true, 0.0f, 0.0f);
         reactionButton.bounce.setPressed(false);

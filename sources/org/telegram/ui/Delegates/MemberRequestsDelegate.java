@@ -567,12 +567,12 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MemberRequestsDelegate.m3044$r8$lambda$dggnKzWsiWyjGQcB9a26_oQK1I(this.f$0, tL_error, tLObject, tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest);
+                MemberRequestsDelegate.m3053$r8$lambda$dggnKzWsiWyjGQcB9a26_oQK1I(this.f$0, tL_error, tLObject, tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest);
             }
         });
     }
 
-    public static void m3044$r8$lambda$dggnKzWsiWyjGQcB9a26_oQK1I(MemberRequestsDelegate memberRequestsDelegate, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
+    public static void m3053$r8$lambda$dggnKzWsiWyjGQcB9a26_oQK1I(MemberRequestsDelegate memberRequestsDelegate, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
         String string;
         BaseFragment baseFragment = memberRequestsDelegate.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
@@ -995,7 +995,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    MemberRequestsDelegate.PreviewDialog.m3047$r8$lambda$yEDy06tDqXGAKOB4oJ2cBZ2f70(this.f$0, view);
+                    MemberRequestsDelegate.PreviewDialog.m3056$r8$lambda$yEDy06tDqXGAKOB4oJ2cBZ2f70(this.f$0, view);
                 }
             });
             actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
@@ -1020,7 +1020,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             }
         }
 
-        public static void m3047$r8$lambda$yEDy06tDqXGAKOB4oJ2cBZ2f70(PreviewDialog previewDialog, View view) {
+        public static void m3056$r8$lambda$yEDy06tDqXGAKOB4oJ2cBZ2f70(PreviewDialog previewDialog, View view) {
             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = previewDialog.importer;
             if (tL_chatInviteImporter != null) {
                 MemberRequestsDelegate.this.onDismissClicked(tL_chatInviteImporter);
@@ -1072,12 +1072,12 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MemberRequestsDelegate.PreviewDialog.m3046$r8$lambda$9SL8pZ3LyZ43rVtm7YirVYg0SQ(this.f$0);
+                    MemberRequestsDelegate.PreviewDialog.m3055$r8$lambda$9SL8pZ3LyZ43rVtm7YirVYg0SQ(this.f$0);
                 }
             }, 80L);
         }
 
-        public static void m3046$r8$lambda$9SL8pZ3LyZ43rVtm7YirVYg0SQ(PreviewDialog previewDialog) {
+        public static void m3055$r8$lambda$9SL8pZ3LyZ43rVtm7YirVYg0SQ(PreviewDialog previewDialog) {
             previewDialog.updateBackgroundBitmap();
             previewDialog.runAnimation(true);
         }

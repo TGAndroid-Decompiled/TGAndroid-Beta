@@ -449,14 +449,14 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
                 this.reqForumId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_search, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        DialogsSearchAdapter.m1293$r8$lambda$w7EuHJ7qQrrPagAvdzGuQ5HZK4(this.f$0, str, i2, i, tL_messages_search, tLObject, tL_error);
+                        DialogsSearchAdapter.m1299$r8$lambda$w7EuHJ7qQrrPagAvdzGuQ5HZK4(this.f$0, str, i2, i, tL_messages_search, tLObject, tL_error);
                     }
                 }, 2);
             }
         }
     }
 
-    public static void m1293$r8$lambda$w7EuHJ7qQrrPagAvdzGuQ5HZK4(final DialogsSearchAdapter dialogsSearchAdapter, final String str, final int i, final int i2, final TLRPC.TL_messages_search tL_messages_search, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1299$r8$lambda$w7EuHJ7qQrrPagAvdzGuQ5HZK4(final DialogsSearchAdapter dialogsSearchAdapter, final String str, final int i, final int i2, final TLRPC.TL_messages_search tL_messages_search, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         dialogsSearchAdapter.getClass();
         final ArrayList arrayList = new ArrayList();
         if (tL_error == null) {
@@ -606,14 +606,14 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
                 this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        DialogsSearchAdapter.m1287$r8$lambda$yt0In8I2Y6ix78uslnPeXTE5Z0(this.f$0, str, i4, i, tL_messages_searchGlobal, tLObject, tL_error);
+                        DialogsSearchAdapter.m1293$r8$lambda$yt0In8I2Y6ix78uslnPeXTE5Z0(this.f$0, str, i4, i, tL_messages_searchGlobal, tLObject, tL_error);
                     }
                 }, 2);
             }
         }
     }
 
-    public static void m1287$r8$lambda$yt0In8I2Y6ix78uslnPeXTE5Z0(final DialogsSearchAdapter dialogsSearchAdapter, final String str, final int i, final int i2, final TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1293$r8$lambda$yt0In8I2Y6ix78uslnPeXTE5Z0(final DialogsSearchAdapter dialogsSearchAdapter, final String str, final int i, final int i2, final TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         dialogsSearchAdapter.getClass();
         final ArrayList arrayList = new ArrayList();
         if (tL_error == null) {
@@ -1072,13 +1072,13 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsSearchAdapter.m1288$r8$lambda$CkM8b2VOUBpJQiKB2SbRIDGEw4(this.f$0, lowerCase, i, str);
+                    DialogsSearchAdapter.m1294$r8$lambda$CkM8b2VOUBpJQiKB2SbRIDGEw4(this.f$0, lowerCase, i, str);
                 }
             });
         }
     }
 
-    public static void m1288$r8$lambda$CkM8b2VOUBpJQiKB2SbRIDGEw4(final DialogsSearchAdapter dialogsSearchAdapter, String str, int i, String str2) {
+    public static void m1294$r8$lambda$CkM8b2VOUBpJQiKB2SbRIDGEw4(final DialogsSearchAdapter dialogsSearchAdapter, String str, int i, String str2) {
         dialogsSearchAdapter.getClass();
         ArrayList<Object> arrayList = new ArrayList<>();
         ArrayList<CharSequence> arrayList2 = new ArrayList<>();
@@ -1094,12 +1094,12 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsSearchAdapter.m1292$r8$lambda$tFcNmQj_r90HTeslPs3PrhWs4(this.f$0);
+                DialogsSearchAdapter.m1298$r8$lambda$tFcNmQj_r90HTeslPs3PrhWs4(this.f$0);
             }
         });
     }
 
-    public static void m1292$r8$lambda$tFcNmQj_r90HTeslPs3PrhWs4(DialogsSearchAdapter dialogsSearchAdapter) {
+    public static void m1298$r8$lambda$tFcNmQj_r90HTeslPs3PrhWs4(DialogsSearchAdapter dialogsSearchAdapter) {
         FilteredSearchView.Delegate delegate = dialogsSearchAdapter.filtersDelegate;
         if (delegate != null) {
             delegate.updateFiltersView(false, null, dialogsSearchAdapter.localTipDates, dialogsSearchAdapter.localTipArchive);
@@ -1373,7 +1373,7 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
             Runnable runnable4 = new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsSearchAdapter.m1289$r8$lambda$JlRRQZw6T6QgTJ8KvLuHHlGSUk(this.f$0, i4, str2);
+                    DialogsSearchAdapter.m1295$r8$lambda$JlRRQZw6T6QgTJ8KvLuHHlGSUk(this.f$0, i4, str2);
                 }
             };
             this.searchHashtagRunnable = runnable4;
@@ -1386,12 +1386,12 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsSearchAdapter.m1291$r8$lambda$ZE5LTthMendYCCTCgBFodqtguw(this.f$0, tLObject);
+                DialogsSearchAdapter.m1297$r8$lambda$ZE5LTthMendYCCTCgBFodqtguw(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m1291$r8$lambda$ZE5LTthMendYCCTCgBFodqtguw(DialogsSearchAdapter dialogsSearchAdapter, TLObject tLObject) {
+    public static void m1297$r8$lambda$ZE5LTthMendYCCTCgBFodqtguw(DialogsSearchAdapter dialogsSearchAdapter, TLObject tLObject) {
         dialogsSearchAdapter.sponsoredReqId = 0;
         if (tLObject instanceof TLRPC.TL_contacts_sponsoredPeersEmpty) {
             if (dialogsSearchAdapter.sponsoredPeers.isEmpty()) {
@@ -1454,7 +1454,7 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         dialogsSearchAdapter.searchForumMessagesInternal(str2, i);
     }
 
-    public static void m1289$r8$lambda$JlRRQZw6T6QgTJ8KvLuHHlGSUk(final DialogsSearchAdapter dialogsSearchAdapter, final int i, final String str) {
+    public static void m1295$r8$lambda$JlRRQZw6T6QgTJ8KvLuHHlGSUk(final DialogsSearchAdapter dialogsSearchAdapter, final int i, final String str) {
         dialogsSearchAdapter.searchHashtagRunnable = null;
         if (i != dialogsSearchAdapter.lastSearchId) {
             return;
@@ -1764,7 +1764,7 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         return (itemViewType == 1 || itemViewType == 4 || itemViewType == 10) ? false : true;
     }
 
-    public static void m1286$r8$lambda$pvv1W5vFLs_XyTXnspTPmObJts(DialogsSearchAdapter dialogsSearchAdapter, View view, int i) {
+    public static void m1292$r8$lambda$pvv1W5vFLs_XyTXnspTPmObJts(DialogsSearchAdapter dialogsSearchAdapter, View view, int i) {
         dialogsSearchAdapter.getClass();
         if (view instanceof HintDialogCell) {
             HintDialogCell hintDialogCell = (HintDialogCell) view;
@@ -1869,7 +1869,7 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
                 recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                     @Override
                     public final void onItemClick(View view, int i2) {
-                        DialogsSearchAdapter.m1286$r8$lambda$pvv1W5vFLs_XyTXnspTPmObJts(this.f$0, view, i2);
+                        DialogsSearchAdapter.m1292$r8$lambda$pvv1W5vFLs_XyTXnspTPmObJts(this.f$0, view, i2);
                     }
                 });
                 recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {

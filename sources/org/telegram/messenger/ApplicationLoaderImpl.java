@@ -99,7 +99,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                     Crashes.getMinidumpDirectory().thenAccept(new AppCenterConsumer() {
                         @Override
                         public final void accept(Object obj) {
-                            ApplicationLoaderImpl.m357$r8$lambda$iduE1Rxk3r4juvJqEO1Jt_RGXI((String) obj);
+                            ApplicationLoaderImpl.m358$r8$lambda$iduE1Rxk3r4juvJqEO1Jt_RGXI((String) obj);
                         }
                     });
                     CustomProperties customProperties = new CustomProperties();
@@ -131,7 +131,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         }
     }
 
-    public static void m357$r8$lambda$iduE1Rxk3r4juvJqEO1Jt_RGXI(String str) {
+    public static void m358$r8$lambda$iduE1Rxk3r4juvJqEO1Jt_RGXI(String str) {
         if (str != null) {
             Utilities.setupNativeCrashesListener(str);
         }

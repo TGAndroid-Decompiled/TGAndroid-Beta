@@ -164,7 +164,7 @@ public class BlurBehindDrawable {
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    BlurBehindDrawable.m2045$r8$lambda$XKdQ65xAo6OpibVcjPecf1TO_M(this.f$0);
+                                    BlurBehindDrawable.m2055$r8$lambda$XKdQ65xAo6OpibVcjPecf1TO_M(this.f$0);
                                 }
                             });
                             return;
@@ -213,7 +213,7 @@ public class BlurBehindDrawable {
         }
     }
 
-    public static void m2045$r8$lambda$XKdQ65xAo6OpibVcjPecf1TO_M(BlurBehindDrawable blurBehindDrawable) {
+    public static void m2055$r8$lambda$XKdQ65xAo6OpibVcjPecf1TO_M(BlurBehindDrawable blurBehindDrawable) {
         blurBehindDrawable.error = true;
         blurBehindDrawable.parentView.invalidate();
     }

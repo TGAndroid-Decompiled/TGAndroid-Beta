@@ -240,7 +240,7 @@ public class GiftAuctionController extends BaseController {
             StarsController.getInstance(this.currentAccount).getBalance(new Runnable() {
                 @Override
                 public final void run() {
-                    GiftAuctionController.m474$r8$lambda$7E4L5QssfAIusB7dvKoHXdRpHQ(this.f$0, callback2, j, params, j2);
+                    GiftAuctionController.m480$r8$lambda$7E4L5QssfAIusB7dvKoHXdRpHQ(this.f$0, callback2, j, params, j2);
                 }
             });
             return;
@@ -273,7 +273,7 @@ public class GiftAuctionController extends BaseController {
         });
     }
 
-    public static void m474$r8$lambda$7E4L5QssfAIusB7dvKoHXdRpHQ(GiftAuctionController giftAuctionController, Utilities.Callback2 callback2, long j, AuctionBidSheet.Params params, long j2) {
+    public static void m480$r8$lambda$7E4L5QssfAIusB7dvKoHXdRpHQ(GiftAuctionController giftAuctionController, Utilities.Callback2 callback2, long j, AuctionBidSheet.Params params, long j2) {
         if (StarsController.getInstance(giftAuctionController.currentAccount).balanceAvailable()) {
             giftAuctionController.sendBid(j, params, j2, callback2);
         } else if (callback2 != null) {
@@ -296,13 +296,13 @@ public class GiftAuctionController extends BaseController {
             giftAuctionController.getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    GiftAuctionController.m476$r8$lambda$_M0c0sp4nkrCsxe1dpd9cCfnJg(this.f$0, auctionInternal, callback2, (TLRPC.payments_PaymentResult) obj, (TLRPC.TL_error) obj2);
+                    GiftAuctionController.m482$r8$lambda$_M0c0sp4nkrCsxe1dpd9cCfnJg(this.f$0, auctionInternal, callback2, (TLRPC.payments_PaymentResult) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
     }
 
-    public static void m476$r8$lambda$_M0c0sp4nkrCsxe1dpd9cCfnJg(final GiftAuctionController giftAuctionController, AuctionInternal auctionInternal, Utilities.Callback2 callback2, TLRPC.payments_PaymentResult payments_paymentresult, TLRPC.TL_error tL_error) {
+    public static void m482$r8$lambda$_M0c0sp4nkrCsxe1dpd9cCfnJg(final GiftAuctionController giftAuctionController, AuctionInternal auctionInternal, Utilities.Callback2 callback2, TLRPC.payments_PaymentResult payments_paymentresult, TLRPC.TL_error tL_error) {
         giftAuctionController.getClass();
         auctionInternal.pendingBid = false;
         if (payments_paymentresult instanceof TLRPC.TL_payments_paymentResult) {

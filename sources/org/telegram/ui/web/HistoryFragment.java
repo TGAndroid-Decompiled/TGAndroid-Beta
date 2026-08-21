@@ -142,7 +142,7 @@ public class HistoryFragment extends UniversalFragment {
                     AndroidUtilities.forEachViews((RecyclerView) HistoryFragment.this.listView, new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            HistoryFragment.AnonymousClass1.m5061$r8$lambda$KfK5PG5YTgdWSPyA_5pT_hC880((View) obj);
+                            HistoryFragment.AnonymousClass1.m5072$r8$lambda$KfK5PG5YTgdWSPyA_5pT_hC880((View) obj);
                         }
                     });
                     return;
@@ -151,7 +151,7 @@ public class HistoryFragment extends UniversalFragment {
             }
         }
 
-        public static void m5061$r8$lambda$KfK5PG5YTgdWSPyA_5pT_hC880(View view) {
+        public static void m5072$r8$lambda$KfK5PG5YTgdWSPyA_5pT_hC880(View view) {
             if (view instanceof AddressBarList.BookmarkView) {
                 ((AddressBarList.BookmarkView) view).setChecked(false);
             }
@@ -235,12 +235,12 @@ public class HistoryFragment extends UniversalFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    HistoryFragment.AnonymousClass2.m5062$r8$lambda$fSENqpFyOH68rKlgcgyhcCWg8Q(this.f$0, arrayList2);
+                    HistoryFragment.AnonymousClass2.m5073$r8$lambda$fSENqpFyOH68rKlgcgyhcCWg8Q(this.f$0, arrayList2);
                 }
             });
         }
 
-        public static void m5062$r8$lambda$fSENqpFyOH68rKlgcgyhcCWg8Q(AnonymousClass2 anonymousClass2, ArrayList arrayList) {
+        public static void m5073$r8$lambda$fSENqpFyOH68rKlgcgyhcCWg8Q(AnonymousClass2 anonymousClass2, ArrayList arrayList) {
             HistoryFragment.this.searchResults.clear();
             HistoryFragment.this.searchResults.addAll(arrayList);
             HistoryFragment.this.searchLoading = false;

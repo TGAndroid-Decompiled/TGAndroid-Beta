@@ -463,7 +463,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         itemOptionsMakeOptions.add(R.drawable.msg_contact_add, LocaleController.getString(R.string.NewContact), new Runnable() {
             @Override
             public final void run() {
-                MainTabsActivity.m3531$r8$lambda$npDe4u7PNAuhmdQ1joxZHuMgXw(this.f$0);
+                MainTabsActivity.m3539$r8$lambda$npDe4u7PNAuhmdQ1joxZHuMgXw(this.f$0);
             }
         });
         itemOptionsMakeOptions.add(R.drawable.msg_calls, LocaleController.getString(R.string.VoipChatRecentCalls), new Runnable() {
@@ -482,7 +482,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         return true;
     }
 
-    public static void m3531$r8$lambda$npDe4u7PNAuhmdQ1joxZHuMgXw(MainTabsActivity mainTabsActivity) {
+    public static void m3539$r8$lambda$npDe4u7PNAuhmdQ1joxZHuMgXw(MainTabsActivity mainTabsActivity) {
         mainTabsActivity.getClass();
         new NewContactBottomSheet(mainTabsActivity, mainTabsActivity.getContext()).show();
     }
@@ -502,7 +502,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         itemOptionsMakeOptions.add(R.drawable.menu_call_create, LocaleController.getString(R.string.GroupCallCreate2), new Runnable() {
             @Override
             public final void run() {
-                MainTabsActivity.m3526$r8$lambda$5XgUwWfaRWvI8kgHBEc3t3UHQA(this.f$0);
+                MainTabsActivity.m3534$r8$lambda$5XgUwWfaRWvI8kgHBEc3t3UHQA(this.f$0);
             }
         });
         if (getUserConfig().showCallsTab) {
@@ -529,7 +529,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         return true;
     }
 
-    public static void m3526$r8$lambda$5XgUwWfaRWvI8kgHBEc3t3UHQA(MainTabsActivity mainTabsActivity) {
+    public static void m3534$r8$lambda$5XgUwWfaRWvI8kgHBEc3t3UHQA(MainTabsActivity mainTabsActivity) {
         mainTabsActivity.getClass();
         CallLogActivity.openCreateCall(mainTabsActivity);
     }
@@ -710,7 +710,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             itemOptionsMakeOptions.add(R.drawable.msg_addbot, LocaleController.getString(R.string.AddAccount), new Runnable() {
                 @Override
                 public final void run() {
-                    MainTabsActivity.m3529$r8$lambda$VZeHFa41OSgQS8rMdCwCRnoAAA(this.f$0);
+                    MainTabsActivity.m3537$r8$lambda$VZeHFa41OSgQS8rMdCwCRnoAAA(this.f$0);
                 }
             });
         }
@@ -728,7 +728,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                 linearLayoutAccountView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        MainTabsActivity.m3525$r8$lambda$T1Vd9SdSrWh9X20aQFtddcKqR8(this.f$0, iIntValue, itemOptionsMakeOptions, view2);
+                        MainTabsActivity.m3533$r8$lambda$T1Vd9SdSrWh9X20aQFtddcKqR8(this.f$0, iIntValue, itemOptionsMakeOptions, view2);
                     }
                 });
                 itemOptionsMakeOptions.addView(linearLayoutAccountView, LayoutHelper.createLinear(230, 48));
@@ -753,7 +753,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         return j < j2 ? -1 : 0;
     }
 
-    public static void m3529$r8$lambda$VZeHFa41OSgQS8rMdCwCRnoAAA(MainTabsActivity mainTabsActivity) {
+    public static void m3537$r8$lambda$VZeHFa41OSgQS8rMdCwCRnoAAA(MainTabsActivity mainTabsActivity) {
         mainTabsActivity.getClass();
         int i = 0;
         Integer numValueOf = null;
@@ -778,7 +778,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         }
     }
 
-    public static void m3525$r8$lambda$T1Vd9SdSrWh9X20aQFtddcKqR8(MainTabsActivity mainTabsActivity, int i, ItemOptions itemOptions, View view) {
+    public static void m3533$r8$lambda$T1Vd9SdSrWh9X20aQFtddcKqR8(MainTabsActivity mainTabsActivity, int i, ItemOptions itemOptions, View view) {
         if (mainTabsActivity.currentAccount == i) {
             return;
         }
@@ -1241,14 +1241,14 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MainTabsActivity.m3530$r8$lambda$hj3bb5tzwZ9Rn62KQfobfHCebc(this.f$0);
+                    MainTabsActivity.m3538$r8$lambda$hj3bb5tzwZ9Rn62KQfobfHCebc(this.f$0);
                 }
             }, 1500L);
         }
         this.accountSwitchHintShown = true;
     }
 
-    public static void m3530$r8$lambda$hj3bb5tzwZ9Rn62KQfobfHCebc(final MainTabsActivity mainTabsActivity) {
+    public static void m3538$r8$lambda$hj3bb5tzwZ9Rn62KQfobfHCebc(final MainTabsActivity mainTabsActivity) {
         GlassTabView[] glassTabViewArr;
         if (mainTabsActivity.getContext() == null || (glassTabViewArr = mainTabsActivity.tabs) == null) {
             return;

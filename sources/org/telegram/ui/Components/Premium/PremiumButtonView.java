@@ -380,14 +380,14 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
         cellFlickerDrawable.setOnRestartCallback(new Runnable() {
             @Override
             public final void run() {
-                PremiumButtonView.m2587$r8$lambda$zRkv0O1Cyq7obwNcXr8cmU0hCk(this.f$0);
+                PremiumButtonView.m2597$r8$lambda$zRkv0O1Cyq7obwNcXr8cmU0hCk(this.f$0);
             }
         });
         invalidate();
         this.iconView.setVisibility(0);
     }
 
-    public static void m2587$r8$lambda$zRkv0O1Cyq7obwNcXr8cmU0hCk(PremiumButtonView premiumButtonView) {
+    public static void m2597$r8$lambda$zRkv0O1Cyq7obwNcXr8cmU0hCk(PremiumButtonView premiumButtonView) {
         premiumButtonView.iconView.getAnimatedDrawable().setCurrentFrame(0, true);
         premiumButtonView.iconView.playAnimation();
     }

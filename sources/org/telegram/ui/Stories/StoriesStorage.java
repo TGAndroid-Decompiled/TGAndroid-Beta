@@ -43,12 +43,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.m4428$r8$lambda$9u6F3myX5xQvhHtjDkuGoUPy7E(this.f$0, consumer);
+                StoriesStorage.m4439$r8$lambda$9u6F3myX5xQvhHtjDkuGoUPy7E(this.f$0, consumer);
             }
         });
     }
 
-    public static void m4428$r8$lambda$9u6F3myX5xQvhHtjDkuGoUPy7E(StoriesStorage storiesStorage, final Consumer consumer) {
+    public static void m4439$r8$lambda$9u6F3myX5xQvhHtjDkuGoUPy7E(StoriesStorage storiesStorage, final Consumer consumer) {
         ?? QueryFinalized;
         ?? r19;
         int i;
@@ -565,12 +565,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.m4429$r8$lambda$GFELulQoI13tlGnwYSU_XKzFYk(this.f$0, peerStories);
+                StoriesStorage.m4440$r8$lambda$GFELulQoI13tlGnwYSU_XKzFYk(this.f$0, peerStories);
             }
         });
     }
 
-    public static void m4429$r8$lambda$GFELulQoI13tlGnwYSU_XKzFYk(StoriesStorage storiesStorage, TL_stories.PeerStories peerStories) {
+    public static void m4440$r8$lambda$GFELulQoI13tlGnwYSU_XKzFYk(StoriesStorage storiesStorage, TL_stories.PeerStories peerStories) {
         storiesStorage.getClass();
         for (int i = 0; i < peerStories.stories.size(); i++) {
             storiesStorage.updateStoryItemInternal(DialogObject.getPeerDialogId(peerStories.peer), peerStories.stories.get(i));
@@ -668,7 +668,7 @@ public class StoriesStorage {
                 int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StoriesStorage.m4432$r8$lambda$utWQUwJSy8Hgkkvu7nb4tyueM(this.f$0, taskStart2, arrayList3, jKeyAt2, z, timer2, iArr, runnable, tLObject, tL_error);
+                        StoriesStorage.m4443$r8$lambda$utWQUwJSy8Hgkkvu7nb4tyueM(this.f$0, taskStart2, arrayList3, jKeyAt2, z, timer2, iArr, runnable, tLObject, tL_error);
                     }
                 });
                 if (i != 0) {
@@ -682,7 +682,7 @@ public class StoriesStorage {
         runnable.run();
     }
 
-    public static void m4432$r8$lambda$utWQUwJSy8Hgkkvu7nb4tyueM(final StoriesStorage storiesStorage, Timer.Task task, final ArrayList arrayList, long j, boolean z, Timer timer, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4443$r8$lambda$utWQUwJSy8Hgkkvu7nb4tyueM(final StoriesStorage storiesStorage, Timer.Task task, final ArrayList arrayList, long j, boolean z, Timer timer, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
         storiesStorage.getClass();
         Timer.done(task);
         if (tLObject != null) {
@@ -844,12 +844,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.m4430$r8$lambda$Iigzwfpurb5ZkJNj0Rzj2cctUY(this.f$0, consumer);
+                StoriesStorage.m4441$r8$lambda$Iigzwfpurb5ZkJNj0Rzj2cctUY(this.f$0, consumer);
             }
         });
     }
 
-    public static void m4430$r8$lambda$Iigzwfpurb5ZkJNj0Rzj2cctUY(StoriesStorage storiesStorage, final Consumer consumer) {
+    public static void m4441$r8$lambda$Iigzwfpurb5ZkJNj0Rzj2cctUY(StoriesStorage storiesStorage, final Consumer consumer) {
         SQLiteDatabase database = storiesStorage.storage.getDatabase();
         final LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
         try {
@@ -872,12 +872,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.m4427$r8$lambda$2q3trS93R5ZsuJpcM6B6KcCFWQ(this.f$0, peerStories);
+                StoriesStorage.m4438$r8$lambda$2q3trS93R5ZsuJpcM6B6KcCFWQ(this.f$0, peerStories);
             }
         });
     }
 
-    public static void m4427$r8$lambda$2q3trS93R5ZsuJpcM6B6KcCFWQ(StoriesStorage storiesStorage, TL_stories.PeerStories peerStories) {
+    public static void m4438$r8$lambda$2q3trS93R5ZsuJpcM6B6KcCFWQ(StoriesStorage storiesStorage, TL_stories.PeerStories peerStories) {
         storiesStorage.getClass();
         storiesStorage.putStoriesInternal(DialogObject.getPeerDialogId(peerStories.peer), peerStories);
     }

@@ -123,7 +123,7 @@ public class ContactsController extends BaseController {
             return false;
         }
 
-        public static void m411$r8$lambda$V7bWM39F88C9Ch7Xl0TeFehTo() {
+        public static void m419$r8$lambda$V7bWM39F88C9Ch7Xl0TeFehTo() {
             for (int i = 0; i < 4; i++) {
                 if (UserConfig.getInstance(i).isClientActivated()) {
                     ConnectionsManager.getInstance(i).resumeNetworkMaybe();
@@ -137,7 +137,7 @@ public class ContactsController extends BaseController {
             this.checkRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ContactsController.MyContentObserver.m411$r8$lambda$V7bWM39F88C9Ch7Xl0TeFehTo();
+                    ContactsController.MyContentObserver.m419$r8$lambda$V7bWM39F88C9Ch7Xl0TeFehTo();
                 }
             };
         }
@@ -306,13 +306,13 @@ public class ContactsController extends BaseController {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ContactsController.m390$r8$lambda$8jMKxJf3mScD6YkmPu1qP_3Cl0(this.f$0);
+                    ContactsController.m398$r8$lambda$8jMKxJf3mScD6YkmPu1qP_3Cl0(this.f$0);
                 }
             });
         }
     }
 
-    public static void m390$r8$lambda$8jMKxJf3mScD6YkmPu1qP_3Cl0(ContactsController contactsController) {
+    public static void m398$r8$lambda$8jMKxJf3mScD6YkmPu1qP_3Cl0(ContactsController contactsController) {
         contactsController.getClass();
         try {
             if (hasContactsPermission()) {
@@ -384,13 +384,13 @@ public class ContactsController extends BaseController {
             getConnectionsManager().sendRequest(new TLRPC.TL_help_getInviteText(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ContactsController.m388$r8$lambda$6gFBbEOGWiS1BEcHnDTkEJg27c(this.f$0, tLObject, tL_error);
+                    ContactsController.m396$r8$lambda$6gFBbEOGWiS1BEcHnDTkEJg27c(this.f$0, tLObject, tL_error);
                 }
             }, 2);
         }
     }
 
-    public static void m388$r8$lambda$6gFBbEOGWiS1BEcHnDTkEJg27c(final ContactsController contactsController, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m396$r8$lambda$6gFBbEOGWiS1BEcHnDTkEJg27c(final ContactsController contactsController, TLObject tLObject, TLRPC.TL_error tL_error) {
         contactsController.getClass();
         if (tLObject != null) {
             final TLRPC.TL_help_inviteText tL_help_inviteText = (TLRPC.TL_help_inviteText) tLObject;
@@ -538,12 +538,12 @@ public class ContactsController extends BaseController {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m385$r8$lambda$R8puVEywPYPkoEGanSWoebVLU(this.f$0);
+                ContactsController.m393$r8$lambda$R8puVEywPYPkoEGanSWoebVLU(this.f$0);
             }
         });
     }
 
-    public static void m385$r8$lambda$R8puVEywPYPkoEGanSWoebVLU(ContactsController contactsController) {
+    public static void m393$r8$lambda$R8puVEywPYPkoEGanSWoebVLU(ContactsController contactsController) {
         contactsController.getClass();
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("force import contacts");
@@ -601,12 +601,12 @@ public class ContactsController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m408$r8$lambda$o0_Qsu1nB13fJl_DmqNKBeCBxk(this.f$0, runnable);
+                ContactsController.m416$r8$lambda$o0_Qsu1nB13fJl_DmqNKBeCBxk(this.f$0, runnable);
             }
         });
     }
 
-    public static void m408$r8$lambda$o0_Qsu1nB13fJl_DmqNKBeCBxk(ContactsController contactsController, Runnable runnable) {
+    public static void m416$r8$lambda$o0_Qsu1nB13fJl_DmqNKBeCBxk(ContactsController contactsController, Runnable runnable) {
         contactsController.getClass();
         AccountManager accountManager = AccountManager.get(ApplicationLoader.applicationContext);
         try {
@@ -728,7 +728,7 @@ public class ContactsController extends BaseController {
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ContactsController.m392$r8$lambda$Inbq6QrnoSr15gdr4U5iOQXoYk(this.f$0);
+                        ContactsController.m400$r8$lambda$Inbq6QrnoSr15gdr4U5iOQXoYk(this.f$0);
                     }
                 });
             } catch (Throwable th) {
@@ -737,7 +737,7 @@ public class ContactsController extends BaseController {
         }
     }
 
-    public static void m392$r8$lambda$Inbq6QrnoSr15gdr4U5iOQXoYk(ContactsController contactsController) {
+    public static void m400$r8$lambda$Inbq6QrnoSr15gdr4U5iOQXoYk(ContactsController contactsController) {
         if (!contactsController.contacts.isEmpty() || contactsController.contactsLoaded) {
             synchronized (contactsController.loadContactsSync) {
                 contactsController.loadingContacts = false;
@@ -1262,12 +1262,12 @@ public class ContactsController extends BaseController {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m386$r8$lambda$1J6pwQFtklDiCvnjpl68cfAJqk(this.f$0, sparseArray);
+                ContactsController.m394$r8$lambda$1J6pwQFtklDiCvnjpl68cfAJqk(this.f$0, sparseArray);
             }
         });
     }
 
-    public static void m386$r8$lambda$1J6pwQFtklDiCvnjpl68cfAJqk(ContactsController contactsController, SparseArray sparseArray) {
+    public static void m394$r8$lambda$1J6pwQFtklDiCvnjpl68cfAJqk(ContactsController contactsController, SparseArray sparseArray) {
         if (contactsController.migratingContacts) {
             return;
         }
@@ -1992,7 +1992,7 @@ public class ContactsController extends BaseController {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ContactsController.m391$r8$lambda$Cxx6ppn2ZIgCYY1XVmWBjTBfw(this.f$0, map31, map30, z3, map33, arrayList9, map32);
+                    ContactsController.m399$r8$lambda$Cxx6ppn2ZIgCYY1XVmWBjTBfw(this.f$0, map31, map30, z3, map33, arrayList9, map32);
                 }
             });
             return;
@@ -2070,12 +2070,12 @@ public class ContactsController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m401$r8$lambda$YSr23CPplMLSh2Kz4dutpK7ghI(this.f$0, map3, arrayList, map4);
+                ContactsController.m409$r8$lambda$YSr23CPplMLSh2Kz4dutpK7ghI(this.f$0, map3, arrayList, map4);
             }
         });
     }
 
-    public static void m401$r8$lambda$YSr23CPplMLSh2Kz4dutpK7ghI(ContactsController contactsController, HashMap map, ArrayList arrayList, HashMap map2) {
+    public static void m409$r8$lambda$YSr23CPplMLSh2Kz4dutpK7ghI(ContactsController contactsController, HashMap map, ArrayList arrayList, HashMap map2) {
         contactsController.mergePhonebookAndTelegramContacts(map, arrayList, map2);
         contactsController.updateUnregisteredContacts();
         contactsController.getNotificationCenter().postNotificationName(NotificationCenter.contactsDidLoad, new Object[0]);
@@ -2172,7 +2172,7 @@ public class ContactsController extends BaseController {
         contactsController.getNotificationCenter().postNotificationName(NotificationCenter.contactsImported, new Object[0]);
     }
 
-    public static void m391$r8$lambda$Cxx6ppn2ZIgCYY1XVmWBjTBfw(final ContactsController contactsController, HashMap map, HashMap map2, boolean z, final HashMap map3, final ArrayList arrayList, final HashMap map4) {
+    public static void m399$r8$lambda$Cxx6ppn2ZIgCYY1XVmWBjTBfw(final ContactsController contactsController, HashMap map, HashMap map2, boolean z, final HashMap map3, final ArrayList arrayList, final HashMap map4) {
         contactsController.contactsBookSPhones = map;
         contactsController.contactsBook = map2;
         contactsController.contactsSyncInProgress = false;
@@ -2295,7 +2295,7 @@ public class ContactsController extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ContactsController.m409$r8$lambda$rMrPpoD2aWy4eWvNRNvjJSkDxA(this.f$0);
+                        ContactsController.m417$r8$lambda$rMrPpoD2aWy4eWvNRNvjJSkDxA(this.f$0);
                     }
                 });
                 if (BuildVars.LOGS_ENABLED) {
@@ -2310,7 +2310,7 @@ public class ContactsController extends BaseController {
         }
     }
 
-    public static void m409$r8$lambda$rMrPpoD2aWy4eWvNRNvjJSkDxA(ContactsController contactsController) {
+    public static void m417$r8$lambda$rMrPpoD2aWy4eWvNRNvjJSkDxA(ContactsController contactsController) {
         synchronized (contactsController.loadContactsSync) {
             contactsController.loadingContacts = false;
         }
@@ -2501,7 +2501,7 @@ public class ContactsController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m406$r8$lambda$eBU4ijZpnJaQE_58t7m8z9CDXI(this.f$0, arrayList, concurrentHashMap5, map3, map4, arrayList5, arrayList10, i, z, z2);
+                ContactsController.m414$r8$lambda$eBU4ijZpnJaQE_58t7m8z9CDXI(this.f$0, arrayList, concurrentHashMap5, map3, map4, arrayList5, arrayList10, i, z, z2);
             }
         });
         if (!contactsController.delayedContactsUpdate.isEmpty() && contactsController.contactsLoaded && contactsController.contactsBookLoaded) {
@@ -2549,7 +2549,7 @@ public class ContactsController extends BaseController {
         return collator.compare(str, str2);
     }
 
-    public static void m406$r8$lambda$eBU4ijZpnJaQE_58t7m8z9CDXI(ContactsController contactsController, ArrayList arrayList, ConcurrentHashMap concurrentHashMap, HashMap map, HashMap map2, ArrayList arrayList2, ArrayList arrayList3, int i, boolean z, boolean z2) {
+    public static void m414$r8$lambda$eBU4ijZpnJaQE_58t7m8z9CDXI(ContactsController contactsController, ArrayList arrayList, ConcurrentHashMap concurrentHashMap, HashMap map, HashMap map2, ArrayList arrayList2, ArrayList arrayList3, int i, boolean z, boolean z2) {
         contactsController.contacts = arrayList;
         contactsController.contactsDict = concurrentHashMap;
         contactsController.usersSectionsDict = map;
@@ -2580,7 +2580,7 @@ public class ContactsController extends BaseController {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m404$r8$lambda$cL9qTXJ9G8sZHvZemeEl1tk_lY(this.f$0, map, map2);
+                ContactsController.m412$r8$lambda$cL9qTXJ9G8sZHvZemeEl1tk_lY(this.f$0, map, map2);
             }
         });
         if (contactsController.contactsSyncInProgress) {
@@ -2590,7 +2590,7 @@ public class ContactsController extends BaseController {
         contactsController.getMessagesStorage().getCachedPhoneBook(false);
     }
 
-    public static void m404$r8$lambda$cL9qTXJ9G8sZHvZemeEl1tk_lY(ContactsController contactsController, HashMap map, HashMap map2) {
+    public static void m412$r8$lambda$cL9qTXJ9G8sZHvZemeEl1tk_lY(ContactsController contactsController, HashMap map, HashMap map2) {
         contactsController.contactsByPhone = map;
         contactsController.contactsByShortPhone = map2;
     }
@@ -2663,7 +2663,7 @@ public class ContactsController extends BaseController {
             Collections.sort((ArrayList) it.next(), new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return ContactsController.m400$r8$lambda$WzPKw0eDXIhv6oQVE8ad2kfSmY(localeCollator, obj, obj2);
+                    return ContactsController.m408$r8$lambda$WzPKw0eDXIhv6oQVE8ad2kfSmY(localeCollator, obj, obj2);
                 }
             });
         }
@@ -2681,7 +2681,7 @@ public class ContactsController extends BaseController {
         });
     }
 
-    public static int m400$r8$lambda$WzPKw0eDXIhv6oQVE8ad2kfSmY(Collator collator, Object obj, Object obj2) {
+    public static int m408$r8$lambda$WzPKw0eDXIhv6oQVE8ad2kfSmY(Collator collator, Object obj, Object obj2) {
         String name;
         String name2 = "";
         if (obj instanceof TLRPC.User) {
@@ -2824,14 +2824,14 @@ public class ContactsController extends BaseController {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return ContactsController.m407$r8$lambda$hj1bMqpqHFptNGw1SaNPswetxQ(localeCollator, (String) obj, (String) obj2);
+                return ContactsController.m415$r8$lambda$hj1bMqpqHFptNGw1SaNPswetxQ(localeCollator, (String) obj, (String) obj2);
             }
         });
         this.usersSectionsDict = map;
         this.sortedUsersSectionsArray = arrayList;
     }
 
-    public static int m407$r8$lambda$hj1bMqpqHFptNGw1SaNPswetxQ(Collator collator, String str, String str2) {
+    public static int m415$r8$lambda$hj1bMqpqHFptNGw1SaNPswetxQ(Collator collator, String str, String str2) {
         char cCharAt = str.charAt(0);
         char cCharAt2 = str2.charAt(0);
         if (cCharAt == '#') {
@@ -3239,12 +3239,12 @@ public class ContactsController extends BaseController {
         Utilities.phoneBookQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m393$r8$lambda$KdxsDzNdBySWkSquPm6yasNp8U(str);
+                ContactsController.m401$r8$lambda$KdxsDzNdBySWkSquPm6yasNp8U(str);
             }
         });
     }
 
-    public static void m393$r8$lambda$KdxsDzNdBySWkSquPm6yasNp8U(String str) {
+    public static void m401$r8$lambda$KdxsDzNdBySWkSquPm6yasNp8U(String str) {
         Uri uri = Uri.parse(str);
         ContentValues contentValues = new ContentValues();
         contentValues.put("last_time_contacted", Long.valueOf(System.currentTimeMillis()));
@@ -3326,12 +3326,12 @@ public class ContactsController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m405$r8$lambda$dnmSr_UMKHuy09fawHYxlZ6qOc(this.f$0, updates, user);
+                ContactsController.m413$r8$lambda$dnmSr_UMKHuy09fawHYxlZ6qOc(this.f$0, updates, user);
             }
         });
     }
 
-    public static void m405$r8$lambda$dnmSr_UMKHuy09fawHYxlZ6qOc(ContactsController contactsController, TLRPC.Updates updates, TLRPC.User user) {
+    public static void m413$r8$lambda$dnmSr_UMKHuy09fawHYxlZ6qOc(ContactsController contactsController, TLRPC.Updates updates, TLRPC.User user) {
         Contact contact;
         contactsController.getClass();
         boolean z = false;
@@ -3478,7 +3478,7 @@ public class ContactsController extends BaseController {
         Utilities.phoneBookQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m410$r8$lambda$xLhJdolOg4uQPwq5ga5LWgeT4I(this.f$0, arrayList2);
+                ContactsController.m418$r8$lambda$xLhJdolOg4uQPwq5ga5LWgeT4I(this.f$0, arrayList2);
             }
         });
         for (int i = 0; i < arrayList2.size(); i++) {
@@ -3499,7 +3499,7 @@ public class ContactsController extends BaseController {
         });
     }
 
-    public static void m410$r8$lambda$xLhJdolOg4uQPwq5ga5LWgeT4I(ContactsController contactsController, ArrayList arrayList) {
+    public static void m418$r8$lambda$xLhJdolOg4uQPwq5ga5LWgeT4I(ContactsController contactsController, ArrayList arrayList) {
         contactsController.getClass();
         int size = arrayList.size();
         int i = 0;
@@ -3555,13 +3555,13 @@ public class ContactsController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ContactsController.m397$r8$lambda$TOvYMlA3iNJx3_7sqUtCyo_U9c(this.f$0, editor, tLObject);
+                    ContactsController.m405$r8$lambda$TOvYMlA3iNJx3_7sqUtCyo_U9c(this.f$0, editor, tLObject);
                 }
             });
         }
     }
 
-    public static void m397$r8$lambda$TOvYMlA3iNJx3_7sqUtCyo_U9c(ContactsController contactsController, SharedPreferences.Editor editor, TLObject tLObject) {
+    public static void m405$r8$lambda$TOvYMlA3iNJx3_7sqUtCyo_U9c(ContactsController contactsController, SharedPreferences.Editor editor, TLObject tLObject) {
         contactsController.getClass();
         editor.remove("needGetStatuses").commit();
         Vector vector = (Vector) tLObject;
@@ -3614,12 +3614,12 @@ public class ContactsController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m396$r8$lambda$QeuYjZ85W8_XtjVCKOQwkDyCKA(this.f$0, tL_error, tLObject);
+                ContactsController.m404$r8$lambda$QeuYjZ85W8_XtjVCKOQwkDyCKA(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m396$r8$lambda$QeuYjZ85W8_XtjVCKOQwkDyCKA(ContactsController contactsController, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m404$r8$lambda$QeuYjZ85W8_XtjVCKOQwkDyCKA(ContactsController contactsController, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error == null) {
             contactsController.getClass();
             contactsController.globalPrivacySettings = (TLRPC.GlobalPrivacySettings) tLObject;
@@ -3708,7 +3708,7 @@ public class ContactsController extends BaseController {
                     getConnectionsManager().sendRequest(getprivacy, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            ContactsController.m403$r8$lambda$brnNmFoFrGQlcVWonzCFJH2XeE(this.f$0, i, tLObject, tL_error);
+                            ContactsController.m411$r8$lambda$brnNmFoFrGQlcVWonzCFJH2XeE(this.f$0, i, tLObject, tL_error);
                         }
                     });
                 }
@@ -3766,7 +3766,7 @@ public class ContactsController extends BaseController {
                 getConnectionsManager().sendRequest(getprivacy, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ContactsController.m403$r8$lambda$brnNmFoFrGQlcVWonzCFJH2XeE(this.f$0, i, tLObject, tL_error);
+                        ContactsController.m411$r8$lambda$brnNmFoFrGQlcVWonzCFJH2XeE(this.f$0, i, tLObject, tL_error);
                     }
                 });
             }
@@ -3779,12 +3779,12 @@ public class ContactsController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m387$r8$lambda$21SCJa7j9t8TgEA_pMr4c7txqE(this.f$0, tL_error, tLObject);
+                ContactsController.m395$r8$lambda$21SCJa7j9t8TgEA_pMr4c7txqE(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m387$r8$lambda$21SCJa7j9t8TgEA_pMr4c7txqE(ContactsController contactsController, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m395$r8$lambda$21SCJa7j9t8TgEA_pMr4c7txqE(ContactsController contactsController, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error == null) {
             contactsController.getClass();
             contactsController.deleteAccountTTL = ((TLRPC.TL_accountDaysTTL) tLObject).days;
@@ -3795,17 +3795,17 @@ public class ContactsController extends BaseController {
         contactsController.getNotificationCenter().postNotificationName(NotificationCenter.privacyRulesUpdated, new Object[0]);
     }
 
-    public static void m403$r8$lambda$brnNmFoFrGQlcVWonzCFJH2XeE(final ContactsController contactsController, final int i, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m411$r8$lambda$brnNmFoFrGQlcVWonzCFJH2XeE(final ContactsController contactsController, final int i, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         contactsController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsController.m395$r8$lambda$PorMFGOnt91XsHK5vYPTvJ1Bc(this.f$0, tL_error, tLObject, i);
+                ContactsController.m403$r8$lambda$PorMFGOnt91XsHK5vYPTvJ1Bc(this.f$0, tL_error, tLObject, i);
             }
         });
     }
 
-    public static void m395$r8$lambda$PorMFGOnt91XsHK5vYPTvJ1Bc(ContactsController contactsController, TLRPC.TL_error tL_error, TLObject tLObject, int i) {
+    public static void m403$r8$lambda$PorMFGOnt91XsHK5vYPTvJ1Bc(ContactsController contactsController, TLRPC.TL_error tL_error, TLObject tLObject, int i) {
         if (tL_error == null) {
             contactsController.getClass();
             TL_account.privacyRules privacyrules = (TL_account.privacyRules) tLObject;

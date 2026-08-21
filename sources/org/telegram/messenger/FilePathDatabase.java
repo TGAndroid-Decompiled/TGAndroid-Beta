@@ -771,7 +771,7 @@ public class FilePathDatabase {
         postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FilePathDatabase.m452$r8$lambda$o620mQhbbKNtJWoFd8lNpFxXqw(this.f$0, str, zArr, countDownLatch);
+                FilePathDatabase.m458$r8$lambda$o620mQhbbKNtJWoFd8lNpFxXqw(this.f$0, str, zArr, countDownLatch);
             }
         });
         try {
@@ -782,7 +782,7 @@ public class FilePathDatabase {
         return zArr[0];
     }
 
-    public static void m452$r8$lambda$o620mQhbbKNtJWoFd8lNpFxXqw(FilePathDatabase filePathDatabase, String str, boolean[] zArr, CountDownLatch countDownLatch) {
+    public static void m458$r8$lambda$o620mQhbbKNtJWoFd8lNpFxXqw(FilePathDatabase filePathDatabase, String str, boolean[] zArr, CountDownLatch countDownLatch) {
         filePathDatabase.ensureDatabaseCreated();
         try {
             SQLiteCursor sQLiteCursorQueryFinalized = filePathDatabase.database.queryFinalized("SELECT flags FROM paths WHERE path = '" + str + "'", new Object[0]);

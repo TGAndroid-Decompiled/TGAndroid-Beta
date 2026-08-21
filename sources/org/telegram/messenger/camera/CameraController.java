@@ -268,7 +268,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CameraController.m1106$r8$lambda$qg5BQMvbtkVb51CBefrAaGWnbk(this.f$0, z, e, runnable);
+                    CameraController.m1112$r8$lambda$qg5BQMvbtkVb51CBefrAaGWnbk(this.f$0, z, e, runnable);
                 }
             });
         }
@@ -303,7 +303,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.cameraInitied, new Object[0]);
     }
 
-    public static void m1106$r8$lambda$qg5BQMvbtkVb51CBefrAaGWnbk(final CameraController cameraController, boolean z, Exception exc, final Runnable runnable) {
+    public static void m1112$r8$lambda$qg5BQMvbtkVb51CBefrAaGWnbk(final CameraController cameraController, boolean z, Exception exc, final Runnable runnable) {
         cameraController.onFinishCameraInitRunnables.clear();
         cameraController.loadingCameras = false;
         cameraController.cameraInitied = false;
@@ -631,12 +631,12 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         this.threadPool.execute(new Runnable() {
             @Override
             public final void run() {
-                CameraController.m1104$r8$lambda$c11EIZgps2Ar8HFB03Ow4Twjrc(this.f$0, cameraSession);
+                CameraController.m1110$r8$lambda$c11EIZgps2Ar8HFB03Ow4Twjrc(this.f$0, cameraSession);
             }
         });
     }
 
-    public static void m1104$r8$lambda$c11EIZgps2Ar8HFB03Ow4Twjrc(CameraController cameraController, CameraSession cameraSession) {
+    public static void m1110$r8$lambda$c11EIZgps2Ar8HFB03Ow4Twjrc(CameraController cameraController, CameraSession cameraSession) {
         Camera cameraOpen;
         cameraController.getClass();
         CameraInfo cameraInfo = cameraSession.cameraInfo;
@@ -737,12 +737,12 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         this.threadPool.execute(new Runnable() {
             @Override
             public final void run() {
-                CameraController.m1105$r8$lambda$o3zou9RKBDhH_ExdjeZcDN08ao(this.f$0, cameraSession, runnable2, surfaceTexture, runnable);
+                CameraController.m1111$r8$lambda$o3zou9RKBDhH_ExdjeZcDN08ao(this.f$0, cameraSession, runnable2, surfaceTexture, runnable);
             }
         });
     }
 
-    public static void m1105$r8$lambda$o3zou9RKBDhH_ExdjeZcDN08ao(CameraController cameraController, CameraSession cameraSession, Runnable runnable, SurfaceTexture surfaceTexture, Runnable runnable2) {
+    public static void m1111$r8$lambda$o3zou9RKBDhH_ExdjeZcDN08ao(CameraController cameraController, CameraSession cameraSession, Runnable runnable, SurfaceTexture surfaceTexture, Runnable runnable2) {
         cameraController.getClass();
         CameraInfo cameraInfo = cameraSession.cameraInfo;
         Camera camera = cameraInfo.camera;
@@ -803,7 +803,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             this.threadPool.execute(new Runnable() {
                 @Override
                 public final void run() {
-                    CameraController.m1099$r8$lambda$95kzzmdFuY9H2wnGr4XIxxytAw(this.f$0, obj, iCameraView, file, z2, runnable);
+                    CameraController.m1105$r8$lambda$95kzzmdFuY9H2wnGr4XIxxytAw(this.f$0, obj, iCameraView, file, z2, runnable);
                 }
             });
             return;
@@ -815,13 +815,13 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             this.threadPool.execute(new Runnable() {
                 @Override
                 public final void run() {
-                    CameraController.m1103$r8$lambda$ai2_buMDK0lHMHZYI8FKWDX6uo(this.f$0, camera, cameraSession, z, file, cameraInfo, videoTakeCallback, runnable);
+                    CameraController.m1109$r8$lambda$ai2_buMDK0lHMHZYI8FKWDX6uo(this.f$0, camera, cameraSession, z, file, cameraInfo, videoTakeCallback, runnable);
                 }
             });
         }
     }
 
-    public static void m1099$r8$lambda$95kzzmdFuY9H2wnGr4XIxxytAw(final CameraController cameraController, Object obj, final ICameraView iCameraView, final File file, final boolean z, final Runnable runnable) {
+    public static void m1105$r8$lambda$95kzzmdFuY9H2wnGr4XIxxytAw(final CameraController cameraController, Object obj, final ICameraView iCameraView, final File file, final boolean z, final Runnable runnable) {
         cameraController.getClass();
         try {
             if (obj instanceof CameraSession) {
@@ -864,7 +864,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         }
     }
 
-    public static void m1103$r8$lambda$ai2_buMDK0lHMHZYI8FKWDX6uo(CameraController cameraController, Camera camera, CameraSession cameraSession, boolean z, File file, CameraInfo cameraInfo, VideoTakeCallback videoTakeCallback, Runnable runnable) {
+    public static void m1109$r8$lambda$ai2_buMDK0lHMHZYI8FKWDX6uo(CameraController cameraController, Camera camera, CameraSession cameraSession, boolean z, File file, CameraInfo cameraInfo, VideoTakeCallback videoTakeCallback, Runnable runnable) {
         cameraController.getClass();
         if (camera != null) {
             try {
@@ -1117,13 +1117,13 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             this.threadPool.execute(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    CameraController.m1102$r8$lambda$Tu8odydgQJpd1yYZUXXEuNvA4(this.f$0, obj, z, z2);
+                    CameraController.m1108$r8$lambda$Tu8odydgQJpd1yYZUXXEuNvA4(this.f$0, obj, z, z2);
                 }
             });
         }
     }
 
-    public static void m1102$r8$lambda$Tu8odydgQJpd1yYZUXXEuNvA4(CameraController cameraController, Object obj, boolean z, boolean z2) throws Throwable {
+    public static void m1108$r8$lambda$Tu8odydgQJpd1yYZUXXEuNvA4(CameraController cameraController, Object obj, boolean z, boolean z2) throws Throwable {
         cameraController.getClass();
         try {
             MediaRecorder mediaRecorder = cameraController.recorder;
@@ -1244,12 +1244,12 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         return new Camera.ErrorCallback() {
             @Override
             public final void onError(int i, Camera camera) {
-                CameraController.m1098$r8$lambda$0_yRrb1FBaLfsnrx3EIxNIBRQQ(this.f$0, cameraSession, i, camera);
+                CameraController.m1104$r8$lambda$0_yRrb1FBaLfsnrx3EIxNIBRQQ(this.f$0, cameraSession, i, camera);
             }
         };
     }
 
-    public static void m1098$r8$lambda$0_yRrb1FBaLfsnrx3EIxNIBRQQ(CameraController cameraController, CameraSession cameraSession, int i, Camera camera) {
+    public static void m1104$r8$lambda$0_yRrb1FBaLfsnrx3EIxNIBRQQ(CameraController cameraController, CameraSession cameraSession, int i, Camera camera) {
         if (cameraController.errorCallbacks != null) {
             for (int i2 = 0; i2 < cameraController.errorCallbacks.size(); i2++) {
                 ErrorCallback errorCallback = cameraController.errorCallbacks.get(i2);

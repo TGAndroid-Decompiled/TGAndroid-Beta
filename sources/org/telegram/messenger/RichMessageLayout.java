@@ -204,6 +204,7 @@ public class RichMessageLayout {
     public float translationLoadingValue;
     public MultiLayoutTypingAnimator typingAnimator;
     public final ArrayList<RichUnsupportedBlock> unsupportedBlocks;
+    public final ArrayList<RichUnsupportedBlock> unsupportedBlocksRoot;
     public View view;
 
     public static class FoundLink {
@@ -275,6 +276,7 @@ public class RichMessageLayout {
 
     public RichMessageLayout(MessageObject messageObject, int i, RichMessageLayout richMessageLayout) {
         this.unsupportedBlocks = new ArrayList<>();
+        this.unsupportedBlocksRoot = new ArrayList<>();
         this.blocks = new ArrayList<>();
         this.quotes = new ArrayList<>();
         this.anchors = new HashMap<>();
@@ -299,6 +301,7 @@ public class RichMessageLayout {
 
     private RichMessageLayout(int i, int i2, Theme.ResourcesProvider resourcesProvider) {
         this.unsupportedBlocks = new ArrayList<>();
+        this.unsupportedBlocksRoot = new ArrayList<>();
         this.blocks = new ArrayList<>();
         this.quotes = new ArrayList<>();
         this.anchors = new HashMap<>();
@@ -425,6 +428,7 @@ public class RichMessageLayout {
             }
         }
         this.unsupportedBlocks.clear();
+        this.unsupportedBlocksRoot.clear();
         this.blocks.clear();
         this.quotes.clear();
         this.anchors.clear();
@@ -1213,14 +1217,14 @@ public class RichMessageLayout {
             }
             return null;
         }
-        float f = 12.0f;
+        int i16 = i5;
         if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
-            int i16 = rect.left;
+            int i17 = rect.left;
             int size3 = this.blocks.size();
             TL_iv.pageBlockBlockquote pageblockblockquote = (TL_iv.pageBlockBlockquote) pageBlock;
-            CharSequence text = formatText(pageBlock.text, setBlockFlags(i5, getBlockTextFlag(pageBlock)));
+            CharSequence text = formatText(pageBlock.text, setBlockFlags(i16, getBlockTextFlag(pageBlock)));
             TL_iv.RichText richText = pageblockblockquote.caption;
-            CharSequence text2 = (richText == null || TextUtils.isEmpty(getString(richText))) ? null : formatText(pageblockblockquote.caption, setBlockFlags(i5, 11));
+            CharSequence text2 = (richText == null || TextUtils.isEmpty(getString(richText))) ? null : formatText(pageblockblockquote.caption, setBlockFlags(i16, 11));
             if (pageblockblockquote.collapsed) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
                 if (text2 != null) {
@@ -1240,41 +1244,42 @@ public class RichMessageLayout {
             }
             richQuoteBlock.accessibilityLabelResId = R.string.ArticleQuote;
             this.blocks.add(richQuoteBlock);
-            this.quotes.add(new QuoteBackground(size3, this.blocks.size() - 1, i16, i, AndroidUtilities.dp(8.0f), pageblockblockquote.collapsed ? AndroidUtilities.dp(8.0f) : 0));
+            this.quotes.add(new QuoteBackground(size3, this.blocks.size() - 1, i17, i, AndroidUtilities.dp(8.0f), pageblockblockquote.collapsed ? AndroidUtilities.dp(8.0f) : 0));
             return richQuoteBlock;
         }
+        int i18 = 9;
         if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
-            int i17 = rect.left;
-            int i18 = i + 1;
+            int i19 = rect.left;
+            int i20 = i + 1;
             int size4 = this.blocks.size();
             TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
             TL_iv.RichText richText2 = pageblockblockquoteblocks.caption;
             boolean z4 = (richText2 == null || TextUtils.isEmpty(getString(richText2))) ? false : true;
-            int i19 = 0;
-            while (i19 < pageblockblockquoteblocks.blocks.size()) {
-                emitBlock(pageblockblockquoteblocks.blocks.get(i19), i18, new Rect(rect.left + AndroidUtilities.dp(f), rect.top + (i19 == 0 ? AndroidUtilities.dp(4.0f) : 0), rect.right + AndroidUtilities.dp(12.0f), rect.bottom + ((!(i19 == pageblockblockquoteblocks.blocks.size() - 1) || z4) ? 0 : AndroidUtilities.dp(4.0f))), setBlockFlags(i5, 9), previousBlockIsParagraph(pageblockblockquoteblocks.blocks, i19));
-                i19++;
+            int i21 = 0;
+            while (i21 < pageblockblockquoteblocks.blocks.size()) {
+                emitBlock(pageblockblockquoteblocks.blocks.get(i21), i20, new Rect(rect.left + AndroidUtilities.dp(12.0f), rect.top + (i21 == 0 ? AndroidUtilities.dp(4.0f) : 0), rect.right + AndroidUtilities.dp(12.0f), rect.bottom + ((!(i21 == pageblockblockquoteblocks.blocks.size() + (-1)) || z4) ? 0 : AndroidUtilities.dp(4.0f))), setBlockFlags(i16, i18), previousBlockIsParagraph(pageblockblockquoteblocks.blocks, i21));
+                i21++;
                 size4 = size4;
-                f = 12.0f;
+                i18 = 9;
             }
-            int i20 = size4;
-            if (this.blocks.size() > i20) {
-                this.blocks.get(i20).accessibilityParentLabelResId = R.string.ArticleQuote;
+            int i22 = size4;
+            if (this.blocks.size() > i22) {
+                this.blocks.get(i22).accessibilityParentLabelResId = R.string.ArticleQuote;
             }
             if (z4) {
-                RichTextBlock richTextBlock4 = new RichTextBlock(this, new Rect(rect.left + AndroidUtilities.dp(12.0f), rect.top, rect.right + AndroidUtilities.dp(12.0f), rect.bottom + AndroidUtilities.dp(6.0f)), this.maxWidth, new SpannableStringBuilder(formatText(pageblockblockquoteblocks.caption, setBlockFlags(i5, 11))));
+                RichTextBlock richTextBlock4 = new RichTextBlock(this, new Rect(rect.left + AndroidUtilities.dp(12.0f), rect.top, rect.right + AndroidUtilities.dp(12.0f), rect.bottom + AndroidUtilities.dp(6.0f)), this.maxWidth, new SpannableStringBuilder(formatText(pageblockblockquoteblocks.caption, setBlockFlags(i16, 11))));
                 richTextBlock4.quoteAuthorStart = 0;
                 richTextBlock4.setContentPadding(AndroidUtilities.dp(2.0f), 0);
                 this.blocks.add(richTextBlock4);
             }
-            this.quotes.add(new QuoteBackground(i20, this.blocks.size() - 1, i17, i));
+            this.quotes.add(new QuoteBackground(i22, this.blocks.size() - 1, i19, i));
             return null;
         }
         if (pageBlock instanceof TL_iv.pageBlockPullquote) {
             TL_iv.pageBlockPullquote pageblockpullquote = (TL_iv.pageBlockPullquote) pageBlock;
-            CharSequence text3 = formatText(pageBlock.text, setBlockFlags(i5, getBlockTextFlag(pageBlock)));
+            CharSequence text3 = formatText(pageBlock.text, setBlockFlags(i16, getBlockTextFlag(pageBlock)));
             TL_iv.RichText richText3 = pageblockpullquote.caption;
-            RichPullquoteBlock richPullquoteBlock = new RichPullquoteBlock(this, new Rect(rect.left + AndroidUtilities.dp(30.0f), rect.top + AndroidUtilities.dp(16.0f), rect.right + AndroidUtilities.dp(30.0f), rect.bottom + AndroidUtilities.dp(16.0f)), this.maxWidth, text3, (richText3 == null || TextUtils.isEmpty(getString(richText3))) ? null : formatText(pageblockpullquote.caption, setBlockFlags(i5, 11)));
+            RichPullquoteBlock richPullquoteBlock = new RichPullquoteBlock(this, new Rect(rect.left + AndroidUtilities.dp(30.0f), rect.top + AndroidUtilities.dp(16.0f), rect.right + AndroidUtilities.dp(30.0f), rect.bottom + AndroidUtilities.dp(16.0f)), this.maxWidth, text3, (richText3 == null || TextUtils.isEmpty(getString(richText3))) ? null : formatText(pageblockpullquote.caption, setBlockFlags(i16, 11)));
             richPullquoteBlock.accessibilityLabelResId = R.string.ArticlePullquote;
             this.blocks.add(richPullquoteBlock);
             return richPullquoteBlock;
@@ -1305,35 +1310,35 @@ public class RichMessageLayout {
             TL_iv.pageBlockPhoto pageblockphoto = (TL_iv.pageBlockPhoto) pageBlock;
             RichPhotoBlock richPhotoBlock = new RichPhotoBlock(this, rect, this.maxWidth, pageblockphoto, this.blocks.isEmpty());
             this.blocks.add(richPhotoBlock);
-            emitCaption(pageblockphoto.caption, rect, i5);
+            emitCaption(pageblockphoto.caption, rect, i16);
             return richPhotoBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockVideo) {
             TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
             RichVideoBlock richVideoBlock = new RichVideoBlock(this, rect, this.maxWidth, pageblockvideo, this.blocks.isEmpty());
             this.blocks.add(richVideoBlock);
-            emitCaption(pageblockvideo.caption, rect, i5);
+            emitCaption(pageblockvideo.caption, rect, i16);
             return richVideoBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockCollage) {
             TL_iv.pageBlockCollage pageblockcollage = (TL_iv.pageBlockCollage) pageBlock;
             RichCollageBlock richCollageBlock = new RichCollageBlock(this, rect, this.maxWidth, pageblockcollage, this.blocks.isEmpty());
             this.blocks.add(richCollageBlock);
-            emitCaption(pageblockcollage.caption, rect, i5);
+            emitCaption(pageblockcollage.caption, rect, i16);
             return richCollageBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
             TL_iv.pageBlockSlideshow pageblockslideshow = (TL_iv.pageBlockSlideshow) pageBlock;
             RichSlideshowBlock richSlideshowBlock = new RichSlideshowBlock(this, rect, this.maxWidth, pageblockslideshow, this.blocks.isEmpty());
             this.blocks.add(richSlideshowBlock);
-            emitCaption(pageblockslideshow.caption, rect, i5);
+            emitCaption(pageblockslideshow.caption, rect, i16);
             return richSlideshowBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockMap) {
             TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) pageBlock;
             RichMapBlock richMapBlock = new RichMapBlock(this, rect, this.maxWidth, pageblockmap);
             this.blocks.add(richMapBlock);
-            emitCaption(pageblockmap.caption, rect, i5);
+            emitCaption(pageblockmap.caption, rect, i16);
             return richMapBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockAudio) {
@@ -1341,9 +1346,9 @@ public class RichMessageLayout {
             if (this.audioBlocks.get(pageblockaudio) == null && (document = getDocument(pageblockaudio.audio_id)) != null) {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                int i21 = -Long.valueOf(pageblockaudio.audio_id).hashCode();
-                pageblockaudio.mid = i21;
-                tL_message.id = i21;
+                int i23 = -Long.valueOf(pageblockaudio.audio_id).hashCode();
+                pageblockaudio.mid = i23;
+                tL_message.id = i23;
                 tL_message.realId = this.messageObject.getRealId();
                 tL_message.dialog_id = this.messageObject.getDialogId();
                 TLRPC.Peer peer = this.messageObject.messageOwner.peer_id;
@@ -1369,18 +1374,18 @@ public class RichMessageLayout {
             }
             RichAudioBlock richAudioBlock = new RichAudioBlock(this, rect, this.maxWidth, pageblockaudio);
             this.blocks.add(richAudioBlock);
-            emitCaption(pageblockaudio.caption, rect, i5);
+            emitCaption(pageblockaudio.caption, rect, i16);
             return richAudioBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockDocument) {
             TL_iv.pageBlockDocument pageblockdocument = (TL_iv.pageBlockDocument) pageBlock;
             RichDocumentBlock richDocumentBlock = new RichDocumentBlock(this, rect, this.maxWidth, pageblockdocument);
             this.blocks.add(richDocumentBlock);
-            emitCaption(pageblockdocument.caption, rect, i5);
+            emitCaption(pageblockdocument.caption, rect, i16);
             return richDocumentBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockCover) {
-            return emitBlock(((TL_iv.pageBlockCover) pageBlock).cover, i, rect, i5, false);
+            return emitBlock(((TL_iv.pageBlockCover) pageBlock).cover, i, rect, i16, false);
         }
         if (pageBlock instanceof TL_iv.pageBlockAnchor) {
             String str = ((TL_iv.pageBlockAnchor) pageBlock).name;
@@ -1390,17 +1395,25 @@ public class RichMessageLayout {
             return null;
         }
         if (pageBlock instanceof TL_iv.pageBlockUnsupported) {
-            RichUnsupportedBlock richUnsupportedBlock = new RichUnsupportedBlock(this, new Rect(-AndroidUtilities.dp(7.0f), Math.max(AndroidUtilities.dp(14.0f), rect.top), -AndroidUtilities.dp(7.0f), Math.max(AndroidUtilities.dp(14.0f), rect.bottom)), this.maxWidth, this.blocks.size());
+            int iDp4 = BitwiseUtils.hasFlag(i16, 9) ? AndroidUtilities.dp(6.0f) : i > 0 ? AndroidUtilities.dp(4.0f) : 0;
+            RichUnsupportedBlock richUnsupportedBlock = new RichUnsupportedBlock(this, new Rect((rect.left + iDp4) - AndroidUtilities.dp(7.0f), Math.max(AndroidUtilities.dp(14.0f), rect.top), (rect.right + iDp4) - AndroidUtilities.dp(7.0f), Math.max(AndroidUtilities.dp(14.0f), rect.bottom)), this.maxWidth, this.blocks.size(), i);
             this.unsupportedBlocks.add(richUnsupportedBlock);
+            if (i == 0) {
+                this.unsupportedBlocksRoot.add(richUnsupportedBlock);
+            }
             this.blocks.add(richUnsupportedBlock);
             return richUnsupportedBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockDetails) {
             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
-            RichDetailsBlock richDetailsBlock = new RichDetailsBlock(this, rect, this.maxWidth, pageblockdetails, formatText(pageblockdetails.title, i2 & (-17)));
+            RichDetailsBlock richDetailsBlock = new RichDetailsBlock(this, rect, this.maxWidth, pageblockdetails, formatText(pageblockdetails.title, i16 & (-17)));
             this.blocks.add(richDetailsBlock);
-            for (int i22 = 0; i22 < pageblockdetails.blocks.size(); i22++) {
-                emitBlock(pageblockdetails.blocks.get(i22), i + 1, rect, i2, previousBlockIsParagraph(pageblockdetails.blocks, i22));
+            int i24 = 0;
+            while (i24 < pageblockdetails.blocks.size()) {
+                int i25 = i16;
+                emitBlock(pageblockdetails.blocks.get(i24), i + 1, rect, i25, previousBlockIsParagraph(pageblockdetails.blocks, i24));
+                i24++;
+                i16 = i25;
             }
             this.blocks.add(new RichDetailsEndBlock(this, new Rect(rect.left, 0, rect.right, 0), this.maxWidth));
             for (int size5 = this.blocks.size(); size5 < this.blocks.size(); size5++) {
@@ -1469,8 +1482,16 @@ public class RichMessageLayout {
         return !this.unsupportedBlocks.isEmpty();
     }
 
+    public boolean hasRootUnsupportedBlocks() {
+        return !this.unsupportedBlocksRoot.isEmpty();
+    }
+
     public ArrayList<RichUnsupportedBlock> getUnsupportedHoles() {
         return this.unsupportedBlocks;
+    }
+
+    public ArrayList<RichUnsupportedBlock> getUnsupportedHolesRoot() {
+        return this.unsupportedBlocksRoot;
     }
 
     public int getMinWidth() {
@@ -3302,13 +3323,13 @@ public class RichMessageLayout {
             MultiLayoutTypingAnimator.drawLayoutWithLastLineFade(canvas, this.layout, i, f, new MultiLayoutTypingAnimator.Renderer() {
                 @Override
                 public final void draw(Canvas canvas2) {
-                    RichMessageLayout.Text.m971$r8$lambda$FUqCBmxqHhV4tEuL_WnwRHKIBA(this.f$0, view, themedColor, canvas2);
+                    RichMessageLayout.Text.m977$r8$lambda$FUqCBmxqHhV4tEuL_WnwRHKIBA(this.f$0, view, themedColor, canvas2);
                 }
             });
             canvas.restore();
         }
 
-        public static void m971$r8$lambda$FUqCBmxqHhV4tEuL_WnwRHKIBA(Text text, View view, int i, Canvas canvas) {
+        public static void m977$r8$lambda$FUqCBmxqHhV4tEuL_WnwRHKIBA(Text text, View view, int i, Canvas canvas) {
             SpoilerEffect.renderWithRipple(view, false, i, 0, text.spoilersPatchedTextLayout, 0, text.layout, text.spoilers, canvas, false);
             SquigglyLinesSpan.drawOnText(canvas, text.layout);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, text.layout, text.animatedEmojiStack, 0.0f, text.spoilers, 0.0f, 0.0f, 0.0f, 1.0f);
@@ -5669,6 +5690,7 @@ public class RichMessageLayout {
 
     public static class RichUnsupportedBlock extends RichBlock implements Drawable.Callback {
         public final int index;
+        public final int level;
         public Bitmap tornBitmap;
         public TornEdge.Params tornParams;
         public final UnsupportedBlockDrawable unsupportedBlockDrawable;
@@ -5683,9 +5705,10 @@ public class RichMessageLayout {
         public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
         }
 
-        public RichUnsupportedBlock(final RichMessageLayout richMessageLayout, Rect rect, int i, int i2) {
+        public RichUnsupportedBlock(final RichMessageLayout richMessageLayout, Rect rect, int i, int i2, int i3) {
             super(richMessageLayout, rect, i);
             this.index = i2;
+            this.level = i3;
             UnsupportedBlockDrawable unsupportedBlockDrawable = new UnsupportedBlockDrawable(richMessageLayout.resourcesProvider);
             this.unsupportedBlockDrawable = unsupportedBlockDrawable;
             unsupportedBlockDrawable.setCallback(this);
@@ -5695,15 +5718,15 @@ public class RichMessageLayout {
             unsupportedBlockDrawable.setOnClickListener(new Runnable() {
                 @Override
                 public final void run() {
-                    RichMessageLayout.RichUnsupportedBlock.m969$r8$lambda$hWM9UH9UMJ4IikZyjX2ZmyCfbc(richMessageLayout);
+                    RichMessageLayout.RichUnsupportedBlock.m975$r8$lambda$hWM9UH9UMJ4IikZyjX2ZmyCfbc(richMessageLayout);
                 }
             });
-            int i3 = this.maxWidth;
-            this.unsupportedBlockWidth = i3;
-            this.unsupportedBlockHeight = unsupportedBlockDrawable.measure(i3);
+            int i4 = this.maxWidth;
+            this.unsupportedBlockWidth = i4;
+            this.unsupportedBlockHeight = unsupportedBlockDrawable.measure(i4);
         }
 
-        public static void m969$r8$lambda$hWM9UH9UMJ4IikZyjX2ZmyCfbc(RichMessageLayout richMessageLayout) {
+        public static void m975$r8$lambda$hWM9UH9UMJ4IikZyjX2ZmyCfbc(RichMessageLayout richMessageLayout) {
             if (richMessageLayout.delegate != null) {
                 richMessageLayout.delegate.didPressAppUpdateButton();
             }
@@ -6616,6 +6639,9 @@ public class RichMessageLayout {
         private static int getButtonIcon(TL_keyboard.InlineButtonType inlineButtonType) {
             if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) {
                 return R.drawable.mini_inline_copy_16;
+            }
+            if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrlAuth) {
+                return R.drawable.mini_inline_arrow_16;
             }
             if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) {
                 if (LinkManager.isWebAppLink(((TL_keyboard.TL_inlineButtonTypeUrl) inlineButtonType).url)) {
@@ -7718,7 +7744,7 @@ public class RichMessageLayout {
             this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    RichMessageLayout.SpoilerReveal.m970$r8$lambda$zoFitFNCti7Tg9VCCnNdtPsZeM(this.f$0, view, valueAnimator);
+                    RichMessageLayout.SpoilerReveal.m976$r8$lambda$zoFitFNCti7Tg9VCCnNdtPsZeM(this.f$0, view, valueAnimator);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {
@@ -7736,7 +7762,7 @@ public class RichMessageLayout {
             this.animator.start();
         }
 
-        public static void m970$r8$lambda$zoFitFNCti7Tg9VCCnNdtPsZeM(SpoilerReveal spoilerReveal, View view, ValueAnimator valueAnimator) {
+        public static void m976$r8$lambda$zoFitFNCti7Tg9VCCnNdtPsZeM(SpoilerReveal spoilerReveal, View view, ValueAnimator valueAnimator) {
             spoilerReveal.getClass();
             spoilerReveal.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             if (view != null) {
@@ -12286,7 +12312,7 @@ public class RichMessageLayout {
                         this.textSelectionLongPressRunnable = new Runnable() {
                             @Override
                             public final void run() {
-                                RichMessageLayout.PreviewView.m966$r8$lambda$c4DRL7GyiQ7XJI7OUWNG4XAFWs(this.f$0);
+                                RichMessageLayout.PreviewView.m972$r8$lambda$c4DRL7GyiQ7XJI7OUWNG4XAFWs(this.f$0);
                             }
                         };
                     }
@@ -12307,7 +12333,7 @@ public class RichMessageLayout {
             return super.onTouchEvent(motionEvent);
         }
 
-        public static void m966$r8$lambda$c4DRL7GyiQ7XJI7OUWNG4XAFWs(PreviewView previewView) {
+        public static void m972$r8$lambda$c4DRL7GyiQ7XJI7OUWNG4XAFWs(PreviewView previewView) {
             RichMessageLayout richMessageLayout = previewView.layout;
             if (richMessageLayout == null || !richMessageLayout.isPressingLink()) {
                 previewView.textSelectionHelper.trySelect(previewView);

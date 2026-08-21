@@ -250,7 +250,7 @@ public class WebInstantView {
             new HttpGetBitmapTask(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    WebInstantView.m5076$r8$lambda$hFjnVezg1x57UM9BcTjIWS8dlo(this.f$0, webPhoto, (Bitmap) obj);
+                    WebInstantView.m5087$r8$lambda$hFjnVezg1x57UM9BcTjIWS8dlo(this.f$0, webPhoto, (Bitmap) obj);
                 }
             }).execute(webPhoto.url);
         } catch (Exception e) {
@@ -258,17 +258,17 @@ public class WebInstantView {
         }
     }
 
-    public static void m5076$r8$lambda$hFjnVezg1x57UM9BcTjIWS8dlo(final WebInstantView webInstantView, final WebPhoto webPhoto, final Bitmap bitmap) {
+    public static void m5087$r8$lambda$hFjnVezg1x57UM9BcTjIWS8dlo(final WebInstantView webInstantView, final WebPhoto webPhoto, final Bitmap bitmap) {
         webInstantView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebInstantView.m5077$r8$lambda$qkSjPlFAa_0jByXyiAFVISRM8(this.f$0, webPhoto, bitmap);
+                WebInstantView.m5088$r8$lambda$qkSjPlFAa_0jByXyiAFVISRM8(this.f$0, webPhoto, bitmap);
             }
         });
     }
 
-    public static void m5077$r8$lambda$qkSjPlFAa_0jByXyiAFVISRM8(WebInstantView webInstantView, WebPhoto webPhoto, Bitmap bitmap) {
+    public static void m5088$r8$lambda$qkSjPlFAa_0jByXyiAFVISRM8(WebInstantView webInstantView, WebPhoto webPhoto, Bitmap bitmap) {
         Object obj;
         webInstantView.getClass();
         if (loadingPhotos == null) {
@@ -1397,7 +1397,7 @@ public class WebInstantView {
             this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getWebPage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    WebInstantView.Loader.m5079$r8$lambda$RYaDXqpohU2_yiNxwr4F7AfdU(this.f$0, tLObject, tL_error);
+                    WebInstantView.Loader.m5090$r8$lambda$RYaDXqpohU2_yiNxwr4F7AfdU(this.f$0, tLObject, tL_error);
                 }
             });
         }
@@ -1413,7 +1413,7 @@ public class WebInstantView {
             loader.notifyUpdate();
         }
 
-        public static void m5079$r8$lambda$RYaDXqpohU2_yiNxwr4F7AfdU(final Loader loader, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m5090$r8$lambda$RYaDXqpohU2_yiNxwr4F7AfdU(final Loader loader, final TLObject tLObject, TLRPC.TL_error tL_error) {
             loader.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

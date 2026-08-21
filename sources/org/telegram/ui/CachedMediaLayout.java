@@ -302,7 +302,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_viewintopic, LocaleController.getString(R.string.ViewInChat), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            CachedMediaLayout.AnonymousClass1.m1432$r8$lambda$H6Dlzvcu4aeyycMq2m0jzndFRI(this.f$0, itemInner, baseFragment, view2);
+                            CachedMediaLayout.AnonymousClass1.m1438$r8$lambda$H6Dlzvcu4aeyycMq2m0jzndFRI(this.f$0, itemInner, baseFragment, view2);
                         }
                     });
                 }
@@ -347,7 +347,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             }
         }
 
-        public static void m1432$r8$lambda$H6Dlzvcu4aeyycMq2m0jzndFRI(AnonymousClass1 anonymousClass1, ItemInner itemInner, BaseFragment baseFragment, View view) {
+        public static void m1438$r8$lambda$H6Dlzvcu4aeyycMq2m0jzndFRI(AnonymousClass1 anonymousClass1, ItemInner itemInner, BaseFragment baseFragment, View view) {
             anonymousClass1.getClass();
             Bundle bundle = new Bundle();
             long j = itemInner.file.dialogId;
@@ -951,7 +951,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() throws Throwable {
-                        CachedMediaLayout.m1431$r8$lambda$SXwQEwURU4BsHU8U5Grstgo0Hw(this.f$0, fileInfo, tL_documentAttributeAudio);
+                        CachedMediaLayout.m1437$r8$lambda$SXwQEwURU4BsHU8U5Grstgo0Hw(this.f$0, fileInfo, tL_documentAttributeAudio);
                     }
                 });
             }
@@ -966,7 +966,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         }
     }
 
-    public static void m1431$r8$lambda$SXwQEwURU4BsHU8U5Grstgo0Hw(final CachedMediaLayout cachedMediaLayout, final CacheModel.FileInfo fileInfo, final TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio) throws Throwable {
+    public static void m1437$r8$lambda$SXwQEwURU4BsHU8U5Grstgo0Hw(final CachedMediaLayout cachedMediaLayout, final CacheModel.FileInfo fileInfo, final TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio) throws Throwable {
         String str;
         Throwable th;
         MediaMetadataRetriever mediaMetadataRetriever;
@@ -1010,7 +1010,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    CachedMediaLayout.m1430$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(this.f$0, fileInfo, tL_documentAttributeAudio, str3, str2);
+                                    CachedMediaLayout.m1436$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(this.f$0, fileInfo, tL_documentAttributeAudio, str3, str2);
                                 }
                             });
                         }
@@ -1041,12 +1041,12 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CachedMediaLayout.m1430$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(this.f$0, fileInfo, tL_documentAttributeAudio, str3, str2);
+                CachedMediaLayout.m1436$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(this.f$0, fileInfo, tL_documentAttributeAudio, str3, str2);
             }
         });
     }
 
-    public static void m1430$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(CachedMediaLayout cachedMediaLayout, CacheModel.FileInfo fileInfo, TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio, String str, String str2) {
+    public static void m1436$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(CachedMediaLayout cachedMediaLayout, CacheModel.FileInfo fileInfo, TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio, String str, String str2) {
         cachedMediaLayout.getClass();
         CacheModel.FileInfo.FileMetadata fileMetadata = fileInfo.metadata;
         fileMetadata.loading = false;

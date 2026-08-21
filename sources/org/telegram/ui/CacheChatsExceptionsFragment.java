@@ -119,7 +119,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
 
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i3, int i4, TopicsFragment topicsFragment) {
-                    return CacheChatsExceptionsFragment.m1416$r8$lambda$ZbRlHZgNb8zBrVy_2YDlhOFLI(this.f$0, dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i3, i4, topicsFragment);
+                    return CacheChatsExceptionsFragment.m1422$r8$lambda$ZbRlHZgNb8zBrVy_2YDlhOFLI(this.f$0, dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i3, i4, topicsFragment);
                 }
 
                 @Override
@@ -138,7 +138,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             keepMediaPopupView.setCallback(new KeepMediaPopupView.Callback() {
                 @Override
                 public final void onKeepMediaChange(int i3, int i4) {
-                    CacheChatsExceptionsFragment.m1417$r8$lambda$zMD6Dd4_Zot_McJfsgLFFYkog(this.f$0, keepMediaException, i3, i4);
+                    CacheChatsExceptionsFragment.m1423$r8$lambda$zMD6Dd4_Zot_McJfsgLFFYkog(this.f$0, keepMediaException, i3, i4);
                 }
             });
             return;
@@ -155,7 +155,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         }
     }
 
-    public static boolean m1416$r8$lambda$ZbRlHZgNb8zBrVy_2YDlhOFLI(CacheChatsExceptionsFragment cacheChatsExceptionsFragment, DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public static boolean m1422$r8$lambda$ZbRlHZgNb8zBrVy_2YDlhOFLI(CacheChatsExceptionsFragment cacheChatsExceptionsFragment, DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         cacheChatsExceptionsFragment.getClass();
         dialogsActivity.finishFragment();
         CacheByChatsController.KeepMediaException keepMediaException = null;
@@ -205,7 +205,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         return true;
     }
 
-    public static void m1417$r8$lambda$zMD6Dd4_Zot_McJfsgLFFYkog(CacheChatsExceptionsFragment cacheChatsExceptionsFragment, CacheByChatsController.KeepMediaException keepMediaException, int i, int i2) {
+    public static void m1423$r8$lambda$zMD6Dd4_Zot_McJfsgLFFYkog(CacheChatsExceptionsFragment cacheChatsExceptionsFragment, CacheByChatsController.KeepMediaException keepMediaException, int i, int i2) {
         cacheChatsExceptionsFragment.getClass();
         if (i2 == CacheByChatsController.KEEP_MEDIA_DELETE) {
             cacheChatsExceptionsFragment.exceptionsDialogs.remove(keepMediaException);
@@ -250,13 +250,13 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             keepMediaPopupView.setCallback(new KeepMediaPopupView.Callback() {
                 @Override
                 public final void onKeepMediaChange(int i3, int i4) {
-                    CacheChatsExceptionsFragment.m1418$r8$lambda$GfPdSETVFtRWsTy2iU8CXPsUNU(this.f$0, keepMediaException, i3, i4);
+                    CacheChatsExceptionsFragment.m1424$r8$lambda$GfPdSETVFtRWsTy2iU8CXPsUNU(this.f$0, keepMediaException, i3, i4);
                 }
             });
         }
     }
 
-    public static void m1418$r8$lambda$GfPdSETVFtRWsTy2iU8CXPsUNU(CacheChatsExceptionsFragment cacheChatsExceptionsFragment, CacheByChatsController.KeepMediaException keepMediaException, int i, int i2) {
+    public static void m1424$r8$lambda$GfPdSETVFtRWsTy2iU8CXPsUNU(CacheChatsExceptionsFragment cacheChatsExceptionsFragment, CacheByChatsController.KeepMediaException keepMediaException, int i, int i2) {
         cacheChatsExceptionsFragment.getClass();
         keepMediaException.keepMedia = i2;
         cacheChatsExceptionsFragment.getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(cacheChatsExceptionsFragment.currentType, cacheChatsExceptionsFragment.exceptionsDialogs);

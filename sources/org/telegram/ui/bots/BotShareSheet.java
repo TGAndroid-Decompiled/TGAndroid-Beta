@@ -118,7 +118,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
                 final Runnable runnableLoadWebPagePreview = loadWebPagePreview(i, tL_botInlineMessageMediaWebPage.url, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        BotShareSheet.m4810$r8$lambda$17G8wWARGR8C2AS8tVfVpEZg(alertDialog, context, i, j, tL_messages_preparedInlineMessage, resourcesProvider, runnable, callback2, (TLRPC.WebPage) obj);
+                        BotShareSheet.m4821$r8$lambda$17G8wWARGR8C2AS8tVfVpEZg(alertDialog, context, i, j, tL_messages_preparedInlineMessage, resourcesProvider, runnable, callback2, (TLRPC.WebPage) obj);
                     }
                 });
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -154,7 +154,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
                     final HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            BotShareSheet.m4812$r8$lambda$gk81yP_ZCVQadcySBmcZi6q25U(fileArr, runnable2, (File) obj);
+                            BotShareSheet.m4823$r8$lambda$gk81yP_ZCVQadcySBmcZi6q25U(fileArr, runnable2, (File) obj);
                         }
                     }, null);
                     httpGetFileTask.setDestFile(file);
@@ -175,7 +175,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         runnable2.run();
     }
 
-    public static void m4810$r8$lambda$17G8wWARGR8C2AS8tVfVpEZg(AlertDialog alertDialog, Context context, int i, long j, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, Theme.ResourcesProvider resourcesProvider, Runnable runnable, Utilities.Callback2 callback2, TLRPC.WebPage webPage) {
+    public static void m4821$r8$lambda$17G8wWARGR8C2AS8tVfVpEZg(AlertDialog alertDialog, Context context, int i, long j, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, Theme.ResourcesProvider resourcesProvider, Runnable runnable, Utilities.Callback2 callback2, TLRPC.WebPage webPage) {
         alertDialog.dismiss();
         new BotShareSheet(context, i, j, tL_messages_preparedInlineMessage, null, webPage, resourcesProvider, runnable, callback2).show();
     }
@@ -185,7 +185,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         new BotShareSheet(context, i, j, tL_messages_preparedInlineMessage, fileArr[0], null, resourcesProvider, runnable, callback2).show();
     }
 
-    public static void m4812$r8$lambda$gk81yP_ZCVQadcySBmcZi6q25U(File[] fileArr, Runnable runnable, File file) {
+    public static void m4823$r8$lambda$gk81yP_ZCVQadcySBmcZi6q25U(File[] fileArr, Runnable runnable, File file) {
         fileArr[0] = file;
         runnable.run();
     }
@@ -204,7 +204,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         return new Runnable() {
             @Override
             public final void run() {
-                BotShareSheet.m4811$r8$lambda$LNROlNhlx5gJOifXQCOoF3A5Pk(iArr, i, notificationCenterDelegateArr);
+                BotShareSheet.m4822$r8$lambda$LNROlNhlx5gJOifXQCOoF3A5Pk(iArr, i, notificationCenterDelegateArr);
             }
         };
     }
@@ -251,7 +251,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         callback.run(null);
     }
 
-    public static void m4811$r8$lambda$LNROlNhlx5gJOifXQCOoF3A5Pk(int[] iArr, int i, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+    public static void m4822$r8$lambda$LNROlNhlx5gJOifXQCOoF3A5Pk(int[] iArr, int i, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
         if (iArr[0] >= 0) {
             ConnectionsManager.getInstance(i).cancelRequest(iArr[0], true);
             iArr[0] = -1;

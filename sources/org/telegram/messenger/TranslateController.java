@@ -528,13 +528,13 @@ public class TranslateController extends BaseController {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return TranslateController.m1067$r8$lambda$RKYBV3LL51u7AYW1T61sADJpBE(currentLocaleInfo, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
+                return TranslateController.m1073$r8$lambda$RKYBV3LL51u7AYW1T61sADJpBE(currentLocaleInfo, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
             }
         });
         return arrayList;
     }
 
-    public static int m1067$r8$lambda$RKYBV3LL51u7AYW1T61sADJpBE(LocaleController.LocaleInfo localeInfo, LocaleController.LocaleInfo localeInfo2, LocaleController.LocaleInfo localeInfo3) {
+    public static int m1073$r8$lambda$RKYBV3LL51u7AYW1T61sADJpBE(LocaleController.LocaleInfo localeInfo, LocaleController.LocaleInfo localeInfo2, LocaleController.LocaleInfo localeInfo3) {
         if (localeInfo2 == localeInfo) {
             return -1;
         }
@@ -617,7 +617,7 @@ public class TranslateController extends BaseController {
                     pushToSummarize(messageObject, null, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            TranslateController.m1063$r8$lambda$HvTgRwK5GcjWaT7zkYW742KQpQ(this.f$0, messageObject, dialogId, (TLRPC.TL_textWithEntities) obj);
+                            TranslateController.m1069$r8$lambda$HvTgRwK5GcjWaT7zkYW742KQpQ(this.f$0, messageObject, dialogId, (TLRPC.TL_textWithEntities) obj);
                         }
                     });
                 }
@@ -704,7 +704,7 @@ public class TranslateController extends BaseController {
         }
     }
 
-    public static void m1063$r8$lambda$HvTgRwK5GcjWaT7zkYW742KQpQ(TranslateController translateController, MessageObject messageObject, long j, TLRPC.TL_textWithEntities tL_textWithEntities) {
+    public static void m1069$r8$lambda$HvTgRwK5GcjWaT7zkYW742KQpQ(TranslateController translateController, MessageObject messageObject, long j, TLRPC.TL_textWithEntities tL_textWithEntities) {
         translateController.getClass();
         TLRPC.Message message = messageObject.messageOwner;
         message.summaryText = tL_textWithEntities;
@@ -874,13 +874,13 @@ public class TranslateController extends BaseController {
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    TranslateController.m1065$r8$lambda$JoHp7sovwDngpPE5ehULmgato(this.f$0, j);
+                    TranslateController.m1071$r8$lambda$JoHp7sovwDngpPE5ehULmgato(this.f$0, j);
                 }
             });
         }
     }
 
-    public static void m1065$r8$lambda$JoHp7sovwDngpPE5ehULmgato(final TranslateController translateController, long j) {
+    public static void m1071$r8$lambda$JoHp7sovwDngpPE5ehULmgato(final TranslateController translateController, long j) {
         final ArrayList arrayList = (ArrayList) translateController.messagesController.dialogMessage.get(j);
         if (arrayList == null) {
             return;
@@ -897,12 +897,12 @@ public class TranslateController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TranslateController.m1072$r8$lambda$jT29g3JDVipHMkSegxj4mRrhGg(this.f$0, arrayList2, arrayList);
+                TranslateController.m1078$r8$lambda$jT29g3JDVipHMkSegxj4mRrhGg(this.f$0, arrayList2, arrayList);
             }
         });
     }
 
-    public static void m1072$r8$lambda$jT29g3JDVipHMkSegxj4mRrhGg(TranslateController translateController, ArrayList arrayList, ArrayList arrayList2) {
+    public static void m1078$r8$lambda$jT29g3JDVipHMkSegxj4mRrhGg(TranslateController translateController, ArrayList arrayList, ArrayList arrayList2) {
         TLRPC.Message message;
         translateController.getClass();
         boolean z = false;
@@ -980,12 +980,12 @@ public class TranslateController extends BaseController {
         }
     }
 
-    public static void m1064$r8$lambda$Il6BrDEcyC2Rwhtw120IqUy3M(final TranslateController translateController, final MessageObject messageObject, final long j, final int i, final String str) {
+    public static void m1070$r8$lambda$Il6BrDEcyC2Rwhtw120IqUy3M(final TranslateController translateController, final MessageObject messageObject, final long j, final int i, final String str) {
         translateController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TranslateController.m1078$r8$lambda$yTIWv6vWLmmxLzdMMsKYCSf64(this.f$0, str, messageObject, j, i);
+                TranslateController.m1084$r8$lambda$yTIWv6vWLmmxLzdMMsKYCSf64(this.f$0, str, messageObject, j, i);
             }
         });
     }
@@ -995,7 +995,7 @@ public class TranslateController extends BaseController {
         LanguageDetector.detectLanguage(str, new LanguageDetector.StringCallback() {
             @Override
             public final void run(String str2) {
-                TranslateController.m1064$r8$lambda$Il6BrDEcyC2Rwhtw120IqUy3M(this.f$0, messageObject, j, i, str2);
+                TranslateController.m1070$r8$lambda$Il6BrDEcyC2Rwhtw120IqUy3M(this.f$0, messageObject, j, i, str2);
             }
         }, new LanguageDetector.ExceptionCallback() {
             @Override
@@ -1005,7 +1005,7 @@ public class TranslateController extends BaseController {
         });
     }
 
-    public static void m1078$r8$lambda$yTIWv6vWLmmxLzdMMsKYCSf64(TranslateController translateController, String str, MessageObject messageObject, long j, int i) {
+    public static void m1084$r8$lambda$yTIWv6vWLmmxLzdMMsKYCSf64(TranslateController translateController, String str, MessageObject messageObject, long j, int i) {
         translateController.getClass();
         if (str == null) {
             str = "und";
@@ -1103,12 +1103,12 @@ public class TranslateController extends BaseController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                TranslateController.m1074$r8$lambda$pQlO5f0EZ1ciKTYxVc821AhTb0(this.f$0, iHash, callback, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                TranslateController.m1080$r8$lambda$pQlO5f0EZ1ciKTYxVc821AhTb0(this.f$0, iHash, callback, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m1074$r8$lambda$pQlO5f0EZ1ciKTYxVc821AhTb0(TranslateController translateController, int i, Utilities.Callback callback, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_error tL_error) {
+    public static void m1080$r8$lambda$pQlO5f0EZ1ciKTYxVc821AhTb0(TranslateController translateController, int i, Utilities.Callback callback, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_error tL_error) {
         final BaseFragment safeLastFragment;
         if (tL_textWithEntities != null) {
             translateController.loadingSummarizations.remove(Integer.valueOf(i));
@@ -1235,7 +1235,7 @@ public class TranslateController extends BaseController {
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        TranslateController.m1068$r8$lambda$SmMmat049gxaZeBWy4_ofpvRh4(this.f$0, map2, dialogId, pendingTranslation2, z, set2);
+                        TranslateController.m1074$r8$lambda$SmMmat049gxaZeBWy4_ofpvRh4(this.f$0, map2, dialogId, pendingTranslation2, z, set2);
                     }
                 };
                 pendingTranslation2.runnable = runnable2;
@@ -1247,7 +1247,7 @@ public class TranslateController extends BaseController {
         }
     }
 
-    public static void m1068$r8$lambda$SmMmat049gxaZeBWy4_ofpvRh4(final TranslateController translateController, HashMap map, final long j, final PendingTranslation pendingTranslation, final boolean z, final Set set) {
+    public static void m1074$r8$lambda$SmMmat049gxaZeBWy4_ofpvRh4(final TranslateController translateController, HashMap map, final long j, final PendingTranslation pendingTranslation, final boolean z, final Set set) {
         long j2;
         synchronized (translateController) {
             try {
@@ -1293,7 +1293,7 @@ public class TranslateController extends BaseController {
         int iSendRequest = translateController.getConnectionsManager().sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TranslateController.m1069$r8$lambda$TooG91vwljouScVqOtfjOmxEdk(this.f$0, pendingTranslation, z, j3, set, tLObject, tL_error);
+                TranslateController.m1075$r8$lambda$TooG91vwljouScVqOtfjOmxEdk(this.f$0, pendingTranslation, z, j3, set, tLObject, tL_error);
             }
         });
         synchronized (translateController) {
@@ -1313,18 +1313,18 @@ public class TranslateController extends BaseController {
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 1, LocaleController.getString(bool.booleanValue() ? R.string.TranslationFailedAlert1 : R.string.TranslationFailedAlert2));
     }
 
-    public static void m1069$r8$lambda$TooG91vwljouScVqOtfjOmxEdk(final TranslateController translateController, final PendingTranslation pendingTranslation, final boolean z, final long j, final Set set, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1075$r8$lambda$TooG91vwljouScVqOtfjOmxEdk(final TranslateController translateController, final PendingTranslation pendingTranslation, final boolean z, final long j, final Set set, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         translateController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                TranslateController.m1057$r8$lambda$ej46Q7tY3xB_RHmvdf6LPvwalE(this.f$0, pendingTranslation, tLObject, z, tL_error, j, set);
+                TranslateController.m1063$r8$lambda$ej46Q7tY3xB_RHmvdf6LPvwalE(this.f$0, pendingTranslation, tLObject, z, tL_error, j, set);
             }
         });
     }
 
-    public static void m1057$r8$lambda$ej46Q7tY3xB_RHmvdf6LPvwalE(final org.telegram.messenger.TranslateController r16, org.telegram.messenger.TranslateController.PendingTranslation r17, org.telegram.tgnet.TLObject r18, final boolean r19, org.telegram.tgnet.TLRPC.TL_error r20, final long r21, java.util.Set r23) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TranslateController.m1057$r8$lambda$ej46Q7tY3xB_RHmvdf6LPvwalE(org.telegram.messenger.TranslateController, org.telegram.messenger.TranslateController$PendingTranslation, org.telegram.tgnet.TLObject, boolean, org.telegram.tgnet.TLRPC$TL_error, long, java.util.Set):void");
+    public static void m1063$r8$lambda$ej46Q7tY3xB_RHmvdf6LPvwalE(final org.telegram.messenger.TranslateController r16, org.telegram.messenger.TranslateController.PendingTranslation r17, org.telegram.tgnet.TLObject r18, final boolean r19, org.telegram.tgnet.TLRPC.TL_error r20, final long r21, java.util.Set r23) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TranslateController.m1063$r8$lambda$ej46Q7tY3xB_RHmvdf6LPvwalE(org.telegram.messenger.TranslateController, org.telegram.messenger.TranslateController$PendingTranslation, org.telegram.tgnet.TLObject, boolean, org.telegram.tgnet.TLRPC$TL_error, long, java.util.Set):void");
     }
 
     public static void $r8$lambda$l0WZtlRjyXBieCVIo1nfxXOMGCg(TranslateController translateController, Utilities.Callback4 callback4, boolean z, int i, String str, long j, String str2, Boolean bool) {
@@ -1408,7 +1408,7 @@ public class TranslateController extends BaseController {
                     Runnable runnable2 = new Runnable() {
                         @Override
                         public final void run() {
-                            TranslateController.m1062$r8$lambda$EJ81Q3xin7dpc4XME_xv5y6o6A(this.f$0, dialogId, pendingPollTranslation);
+                            TranslateController.m1068$r8$lambda$EJ81Q3xin7dpc4XME_xv5y6o6A(this.f$0, dialogId, pendingPollTranslation);
                         }
                     };
                     pendingPollTranslation.runnable = runnable2;
@@ -1421,7 +1421,7 @@ public class TranslateController extends BaseController {
         }
     }
 
-    public static void m1062$r8$lambda$EJ81Q3xin7dpc4XME_xv5y6o6A(final TranslateController translateController, final long j, final PendingPollTranslation pendingPollTranslation) {
+    public static void m1068$r8$lambda$EJ81Q3xin7dpc4XME_xv5y6o6A(final TranslateController translateController, final long j, final PendingPollTranslation pendingPollTranslation) {
         synchronized (translateController) {
             try {
                 ArrayList<PendingTranslation> arrayList = translateController.pendingTranslations.get(Long.valueOf(j));
@@ -1482,12 +1482,12 @@ public class TranslateController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TranslateController.m1075$r8$lambda$po3akajAwyyDU2tdjSseUL8rPQ(this.f$0, pendingPollTranslation, tLObject, tL_error, j);
+                TranslateController.m1081$r8$lambda$po3akajAwyyDU2tdjSseUL8rPQ(this.f$0, pendingPollTranslation, tLObject, tL_error, j);
             }
         });
     }
 
-    public static void m1075$r8$lambda$po3akajAwyyDU2tdjSseUL8rPQ(TranslateController translateController, PendingPollTranslation pendingPollTranslation, TLObject tLObject, TLRPC.TL_error tL_error, long j) {
+    public static void m1081$r8$lambda$po3akajAwyyDU2tdjSseUL8rPQ(TranslateController translateController, PendingPollTranslation pendingPollTranslation, TLObject tLObject, TLRPC.TL_error tL_error, long j) {
         ArrayList<Integer> arrayList;
         ArrayList<Utilities.Callback3<Integer, PollText, String>> arrayList2;
         ArrayList<Pair<PollText, PollText>> arrayList3;
@@ -1776,7 +1776,7 @@ public class TranslateController extends BaseController {
         int iSendRequest = translateController.getConnectionsManager().sendRequest(tL_messages_translateRichMessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TranslateController.m1058$r8$lambda$qW6fYWmNQdw8WG9XBmG6lIdbio(this.f$0, pendingRichTranslation, j, tLObject, tL_error);
+                TranslateController.m1064$r8$lambda$qW6fYWmNQdw8WG9XBmG6lIdbio(this.f$0, pendingRichTranslation, j, tLObject, tL_error);
             }
         });
         synchronized (translateController) {
@@ -1784,7 +1784,7 @@ public class TranslateController extends BaseController {
         }
     }
 
-    public static void m1058$r8$lambda$qW6fYWmNQdw8WG9XBmG6lIdbio(final TranslateController translateController, final PendingRichTranslation pendingRichTranslation, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1064$r8$lambda$qW6fYWmNQdw8WG9XBmG6lIdbio(final TranslateController translateController, final PendingRichTranslation pendingRichTranslation, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         translateController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -2244,7 +2244,7 @@ public class TranslateController extends BaseController {
         }, new LanguageDetector.ExceptionCallback() {
             @Override
             public final void run(Exception exc) {
-                TranslateController.m1060$r8$lambda$5lTWXpO9WlYHyDIgfd59hAce7s(this.f$0, storyItem, storyKey, exc);
+                TranslateController.m1066$r8$lambda$5lTWXpO9WlYHyDIgfd59hAce7s(this.f$0, storyItem, storyKey, exc);
             }
         });
     }
@@ -2266,7 +2266,7 @@ public class TranslateController extends BaseController {
         translateController.detectingStories.remove(storyKey);
     }
 
-    public static void m1060$r8$lambda$5lTWXpO9WlYHyDIgfd59hAce7s(final TranslateController translateController, final TL_stories.StoryItem storyItem, final StoryKey storyKey, Exception exc) {
+    public static void m1066$r8$lambda$5lTWXpO9WlYHyDIgfd59hAce7s(final TranslateController translateController, final TL_stories.StoryItem storyItem, final StoryKey storyKey, Exception exc) {
         translateController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -2337,7 +2337,7 @@ public class TranslateController extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranslateController.m1071$r8$lambda$cmp7prDZzcZtwP1JUXtDYbyBWg(this.f$0, storyItem, str, storyKey, runnable);
+                        TranslateController.m1077$r8$lambda$cmp7prDZzcZtwP1JUXtDYbyBWg(this.f$0, storyItem, str, storyKey, runnable);
                     }
                 });
                 return;
@@ -2355,12 +2355,12 @@ public class TranslateController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TranslateController.m1076$r8$lambda$r9BLZMr9OJTTKpQlFZinA3MB_g(this.f$0, storyItem, str, storyKey, runnable);
+                TranslateController.m1082$r8$lambda$r9BLZMr9OJTTKpQlFZinA3MB_g(this.f$0, storyItem, str, storyKey, runnable);
             }
         });
     }
 
-    public static void m1071$r8$lambda$cmp7prDZzcZtwP1JUXtDYbyBWg(TranslateController translateController, TL_stories.StoryItem storyItem, String str, StoryKey storyKey, Runnable runnable) {
+    public static void m1077$r8$lambda$cmp7prDZzcZtwP1JUXtDYbyBWg(TranslateController translateController, TL_stories.StoryItem storyItem, String str, StoryKey storyKey, Runnable runnable) {
         translateController.getClass();
         storyItem.translatedLng = str;
         storyItem.translatedText = null;
@@ -2382,7 +2382,7 @@ public class TranslateController extends BaseController {
         }
     }
 
-    public static void m1076$r8$lambda$r9BLZMr9OJTTKpQlFZinA3MB_g(TranslateController translateController, TL_stories.StoryItem storyItem, String str, StoryKey storyKey, Runnable runnable) {
+    public static void m1082$r8$lambda$r9BLZMr9OJTTKpQlFZinA3MB_g(TranslateController translateController, TL_stories.StoryItem storyItem, String str, StoryKey storyKey, Runnable runnable) {
         translateController.getClass();
         storyItem.translatedLng = str;
         storyItem.translatedText = null;
@@ -2443,12 +2443,12 @@ public class TranslateController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TranslateController.m1077$r8$lambda$tBjIuUZ6pqd7UbSP6M0OHi7Mfg(this.f$0, messageObject, str, messageKey, callback);
+                TranslateController.m1083$r8$lambda$tBjIuUZ6pqd7UbSP6M0OHi7Mfg(this.f$0, messageObject, str, messageKey, callback);
             }
         });
     }
 
-    public static void m1077$r8$lambda$tBjIuUZ6pqd7UbSP6M0OHi7Mfg(TranslateController translateController, MessageObject messageObject, String str, MessageKey messageKey, Utilities.Callback callback) {
+    public static void m1083$r8$lambda$tBjIuUZ6pqd7UbSP6M0OHi7Mfg(TranslateController translateController, MessageObject messageObject, String str, MessageKey messageKey, Utilities.Callback callback) {
         translateController.getClass();
         messageObject.messageOwner.originalLanguage = str;
         translateController.getMessagesStorage().updateMessageCustomParams(messageKey.dialogId, messageObject.messageOwner);
@@ -2463,12 +2463,12 @@ public class TranslateController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TranslateController.m1070$r8$lambda$bOZSl6xnvPMMBvYBfEX3i0Eg3A(this.f$0, messageObject, messageKey, callback);
+                TranslateController.m1076$r8$lambda$bOZSl6xnvPMMBvYBfEX3i0Eg3A(this.f$0, messageObject, messageKey, callback);
             }
         });
     }
 
-    public static void m1070$r8$lambda$bOZSl6xnvPMMBvYBfEX3i0Eg3A(TranslateController translateController, MessageObject messageObject, MessageKey messageKey, Utilities.Callback callback) {
+    public static void m1076$r8$lambda$bOZSl6xnvPMMBvYBfEX3i0Eg3A(TranslateController translateController, MessageObject messageObject, MessageKey messageKey, Utilities.Callback callback) {
         translateController.getClass();
         messageObject.messageOwner.originalLanguage = "und";
         translateController.getMessagesStorage().updateMessageCustomParams(messageKey.dialogId, messageObject.messageOwner);
@@ -2550,7 +2550,7 @@ public class TranslateController extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranslateController.m1056$r8$lambda$bPTZWVRtVAVptiBG9gJG16dyJo(this.f$0, messageObject, str, messageKey, runnable, j);
+                        TranslateController.m1062$r8$lambda$bPTZWVRtVAVptiBG9gJG16dyJo(this.f$0, messageObject, str, messageKey, runnable, j);
                     }
                 });
                 return;
@@ -2573,7 +2573,7 @@ public class TranslateController extends BaseController {
         });
     }
 
-    public static void m1056$r8$lambda$bPTZWVRtVAVptiBG9gJG16dyJo(TranslateController translateController, MessageObject messageObject, String str, MessageKey messageKey, Runnable runnable, long j) {
+    public static void m1062$r8$lambda$bPTZWVRtVAVptiBG9gJG16dyJo(TranslateController translateController, MessageObject messageObject, String str, MessageKey messageKey, Runnable runnable, long j) {
         translateController.getClass();
         TLRPC.Message message = messageObject.messageOwner;
         message.translatedToLanguage = str;

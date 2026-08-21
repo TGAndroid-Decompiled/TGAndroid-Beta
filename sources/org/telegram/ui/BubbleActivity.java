@@ -136,12 +136,12 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         this.passcodeView.setDelegate(new PasscodeView.PasscodeViewDelegate() {
             @Override
             public final void didAcceptedPassword(PasscodeView passcodeView) {
-                BubbleActivity.m1357$r8$lambda$fM9tj6eZMwp4Xqa9KuqzjzSaD4(this.f$0, passcodeView);
+                BubbleActivity.m1363$r8$lambda$fM9tj6eZMwp4Xqa9KuqzjzSaD4(this.f$0, passcodeView);
             }
         });
     }
 
-    public static void m1357$r8$lambda$fM9tj6eZMwp4Xqa9KuqzjzSaD4(BubbleActivity bubbleActivity, PasscodeView passcodeView) {
+    public static void m1363$r8$lambda$fM9tj6eZMwp4Xqa9KuqzjzSaD4(BubbleActivity bubbleActivity, PasscodeView passcodeView) {
         BubbleActivity bubbleActivity2;
         bubbleActivity.getClass();
         SharedConfig.isWaitingForPasscodeEnter = false;

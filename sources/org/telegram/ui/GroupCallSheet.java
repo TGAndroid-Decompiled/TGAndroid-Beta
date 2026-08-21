@@ -266,7 +266,7 @@ public abstract class GroupCallSheet {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                GroupCallSheet.m3300$r8$lambda$plmRm_ZCfuxi0WM15hUydZwDTE(bottomSheetCreate, context, checkBox2, i, inputGroupCall, view2);
+                GroupCallSheet.m3308$r8$lambda$plmRm_ZCfuxi0WM15hUydZwDTE(bottomSheetCreate, context, checkBox2, i, inputGroupCall, view2);
             }
         });
         bottomSheetCreate.fixNavigationBar();
@@ -282,7 +282,7 @@ public abstract class GroupCallSheet {
         MessagesController.getGlobalMainSettings().edit().putBoolean("callmiconstart", checkBox2.isChecked()).apply();
     }
 
-    public static void m3300$r8$lambda$plmRm_ZCfuxi0WM15hUydZwDTE(BottomSheet bottomSheet, Context context, CheckBox2 checkBox2, int i, TLRPC.InputGroupCall inputGroupCall, View view) {
+    public static void m3308$r8$lambda$plmRm_ZCfuxi0WM15hUydZwDTE(BottomSheet bottomSheet, Context context, CheckBox2 checkBox2, int i, TLRPC.InputGroupCall inputGroupCall, View view) {
         bottomSheet.dismiss();
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         if (activityFindActivity == null) {

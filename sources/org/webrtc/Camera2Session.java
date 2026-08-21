@@ -141,7 +141,7 @@ class Camera2Session implements CameraSession {
                 Camera2Session.this.surfaceTextureHelper.startListening(new VideoSink() {
                     @Override
                     public final void onFrame(VideoFrame videoFrame) {
-                        Camera2Session.CaptureSessionCallback.m5082$r8$lambda$ZzHOhveMDi0ypJsV9EdfM3Bwm0(this.f$0, videoFrame);
+                        Camera2Session.CaptureSessionCallback.m5093$r8$lambda$ZzHOhveMDi0ypJsV9EdfM3Bwm0(this.f$0, videoFrame);
                     }
 
                     @Override
@@ -156,7 +156,7 @@ class Camera2Session implements CameraSession {
             }
         }
 
-        public static void m5082$r8$lambda$ZzHOhveMDi0ypJsV9EdfM3Bwm0(CaptureSessionCallback captureSessionCallback, VideoFrame videoFrame) {
+        public static void m5093$r8$lambda$ZzHOhveMDi0ypJsV9EdfM3Bwm0(CaptureSessionCallback captureSessionCallback, VideoFrame videoFrame) {
             Camera2Session.this.checkIsOnCameraThread();
             if (Camera2Session.this.state == SessionState.RUNNING) {
                 if (!Camera2Session.this.firstFrameReported) {

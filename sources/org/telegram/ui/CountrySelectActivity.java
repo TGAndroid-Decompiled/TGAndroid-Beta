@@ -177,7 +177,7 @@ public class CountrySelectActivity extends BaseFragment {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                CountrySelectActivity.m3034$r8$lambda$eXzLmdgisnCW26jJi69v3oZTk0(this.f$0, view, i2);
+                CountrySelectActivity.m3043$r8$lambda$eXzLmdgisnCW26jJi69v3oZTk0(this.f$0, view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -191,7 +191,7 @@ public class CountrySelectActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public static void m3034$r8$lambda$eXzLmdgisnCW26jJi69v3oZTk0(CountrySelectActivity countrySelectActivity, View view, int i) {
+    public static void m3043$r8$lambda$eXzLmdgisnCW26jJi69v3oZTk0(CountrySelectActivity countrySelectActivity, View view, int i) {
         Country item;
         CountrySelectActivityDelegate countrySelectActivityDelegate;
         if (countrySelectActivity.searching && countrySelectActivity.searchWas) {

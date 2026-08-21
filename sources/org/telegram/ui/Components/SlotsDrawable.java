@@ -215,14 +215,14 @@ public final class SlotsDrawable extends RLottieDiceDrawable {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    SlotsDrawable.m2817$r8$lambda$HoLF80lylyZN5RCpcUvTLNNQVA(this.f$0, tL_messages_stickerSet, i, messageObject, chatMessageCell);
+                    SlotsDrawable.m2826$r8$lambda$HoLF80lylyZN5RCpcUvTLNNQVA(this.f$0, tL_messages_stickerSet, i, messageObject, chatMessageCell);
                 }
             });
         }
         return true;
     }
 
-    public static void m2817$r8$lambda$HoLF80lylyZN5RCpcUvTLNNQVA(final SlotsDrawable slotsDrawable, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i, MessageObject messageObject, ChatMessageCell chatMessageCell) {
+    public static void m2826$r8$lambda$HoLF80lylyZN5RCpcUvTLNNQVA(final SlotsDrawable slotsDrawable, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i, MessageObject messageObject, ChatMessageCell chatMessageCell) {
         int i2;
         final TLRPC.TL_messages_stickerSet tL_messages_stickerSet2;
         final int i3;
@@ -273,7 +273,7 @@ public final class SlotsDrawable extends RLottieDiceDrawable {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                SlotsDrawable.m2816$r8$lambda$9KLqIfaDM0m_YCfSseYHuHp5_Y(document, i3, messageObject2, chatMessageCell2, tL_messages_stickerSet2);
+                                SlotsDrawable.m2825$r8$lambda$9KLqIfaDM0m_YCfSseYHuHp5_Y(document, i3, messageObject2, chatMessageCell2, tL_messages_stickerSet2);
                             }
                         });
                         z = true;
@@ -311,7 +311,7 @@ public final class SlotsDrawable extends RLottieDiceDrawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SlotsDrawable.m2815$r8$lambda$0697Yu3W1JsOVpeAcxDXTa6hV0(this.f$0, i5, chatMessageCell3);
+                    SlotsDrawable.m2824$r8$lambda$0697Yu3W1JsOVpeAcxDXTa6hV0(this.f$0, i5, chatMessageCell3);
                 }
             });
         }
@@ -325,12 +325,12 @@ public final class SlotsDrawable extends RLottieDiceDrawable {
         slotsDrawable.recycle(true);
     }
 
-    public static void m2816$r8$lambda$9KLqIfaDM0m_YCfSseYHuHp5_Y(TLRPC.Document document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public static void m2825$r8$lambda$9KLqIfaDM0m_YCfSseYHuHp5_Y(TLRPC.Document document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         DownloadController.getInstance(i).addLoadingFileObserver(FileLoader.getAttachFileName(document), messageObject, chatMessageCell);
         FileLoader.getInstance(i).loadFile(document, tL_messages_stickerSet, 1, 1);
     }
 
-    public static void m2815$r8$lambda$0697Yu3W1JsOVpeAcxDXTa6hV0(SlotsDrawable slotsDrawable, int i, ChatMessageCell chatMessageCell) {
+    public static void m2824$r8$lambda$0697Yu3W1JsOVpeAcxDXTa6hV0(SlotsDrawable slotsDrawable, int i, ChatMessageCell chatMessageCell) {
         slotsDrawable.loadingInBackground = false;
         if (!slotsDrawable.secondLoadingInBackground && slotsDrawable.destroyAfterLoading) {
             slotsDrawable.recycle(true);

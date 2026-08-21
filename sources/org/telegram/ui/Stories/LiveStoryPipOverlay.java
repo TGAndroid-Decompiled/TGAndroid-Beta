@@ -74,7 +74,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            LiveStoryPipOverlay.m4329$r8$lambda$RtxvIMOP4pyBZhC7EFpjUQ_GaU((LiveStoryPipOverlay) obj, f);
+            LiveStoryPipOverlay.m4340$r8$lambda$RtxvIMOP4pyBZhC7EFpjUQ_GaU((LiveStoryPipOverlay) obj, f);
         }
     });
     private static LiveStoryPipOverlay instance = new LiveStoryPipOverlay();
@@ -142,7 +142,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         AndroidUtilities.updateViewLayout(liveStoryPipOverlay.windowManager, liveStoryPipOverlay.contentView, layoutParams);
     }
 
-    public static void m4329$r8$lambda$RtxvIMOP4pyBZhC7EFpjUQ_GaU(LiveStoryPipOverlay liveStoryPipOverlay, float f) {
+    public static void m4340$r8$lambda$RtxvIMOP4pyBZhC7EFpjUQ_GaU(LiveStoryPipOverlay liveStoryPipOverlay, float f) {
         WindowManager.LayoutParams layoutParams = liveStoryPipOverlay.windowLayoutParams;
         liveStoryPipOverlay.pipY = f;
         layoutParams.y = (int) f;

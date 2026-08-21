@@ -1050,7 +1050,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            VoIPService.m1205$r8$lambda$eg6hqgUuQp7vrwttFzaqgsYk2s(this.f$0);
+                            VoIPService.m1211$r8$lambda$eg6hqgUuQp7vrwttFzaqgsYk2s(this.f$0);
                         }
                     };
                     this.delayedStartOutgoingCall = runnable;
@@ -1128,7 +1128,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public static void m1205$r8$lambda$eg6hqgUuQp7vrwttFzaqgsYk2s(VoIPService voIPService) {
+    public static void m1211$r8$lambda$eg6hqgUuQp7vrwttFzaqgsYk2s(VoIPService voIPService) {
         voIPService.delayedStartOutgoingCall = null;
         voIPService.startOutgoingCall();
     }
@@ -1397,12 +1397,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         ConnectionsManager.getInstance(voIPService.currentAccount).sendRequest(discardcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                VoIPService.m1175$r8$lambda$2b4qZU942ziZSS6T11isiix4(this.f$0, tLObject, tL_error);
+                VoIPService.m1181$r8$lambda$2b4qZU942ziZSS6T11isiix4(this.f$0, tLObject, tL_error);
             }
         }, 65536);
     }
 
-    public static void m1175$r8$lambda$2b4qZU942ziZSS6T11isiix4(final VoIPService voIPService, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1181$r8$lambda$2b4qZU942ziZSS6T11isiix4(final VoIPService voIPService, TLObject tLObject, TLRPC.TL_error tL_error) {
         voIPService.getClass();
         if (BuildVars.LOGS_ENABLED) {
             if (tL_error != null) {
@@ -2153,7 +2153,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1184$r8$lambda$DfDSwYdLKDS40DKI0VIJPUAMSs(this.f$0);
+                VoIPService.m1190$r8$lambda$DfDSwYdLKDS40DKI0VIJPUAMSs(this.f$0);
             }
         });
         Runnable runnable2 = this.timeoutRunnable;
@@ -2164,14 +2164,14 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         Runnable runnable3 = new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1206$r8$lambda$uOPDaeMzMDarQPnST1v9lzWCNc(this.f$0);
+                VoIPService.m1212$r8$lambda$uOPDaeMzMDarQPnST1v9lzWCNc(this.f$0);
             }
         };
         this.timeoutRunnable = runnable3;
         AndroidUtilities.runOnUIThread(runnable3, MessagesController.getInstance(this.currentAccount).callRingTimeout);
     }
 
-    public static void m1184$r8$lambda$DfDSwYdLKDS40DKI0VIJPUAMSs(VoIPService voIPService) {
+    public static void m1190$r8$lambda$DfDSwYdLKDS40DKI0VIJPUAMSs(VoIPService voIPService) {
         int i = voIPService.spPlayId;
         if (i != 0) {
             voIPService.soundPool.stop(i);
@@ -2179,7 +2179,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         voIPService.spPlayId = voIPService.soundPool.play(voIPService.spRingbackID, 1.0f, 1.0f, 0, -1, 1.0f);
     }
 
-    public static void m1206$r8$lambda$uOPDaeMzMDarQPnST1v9lzWCNc(VoIPService voIPService) {
+    public static void m1212$r8$lambda$uOPDaeMzMDarQPnST1v9lzWCNc(VoIPService voIPService) {
         voIPService.timeoutRunnable = null;
         voIPService.declineIncomingCall(3, null);
     }
@@ -2292,12 +2292,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1179$r8$lambda$AEH9LFXMipXFKhJRGOX2FKSba8(this.f$0, tL_error, tLObject);
+                VoIPService.m1185$r8$lambda$AEH9LFXMipXFKhJRGOX2FKSba8(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m1179$r8$lambda$AEH9LFXMipXFKhJRGOX2FKSba8(VoIPService voIPService, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m1185$r8$lambda$AEH9LFXMipXFKhJRGOX2FKSba8(VoIPService voIPService, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
             voIPService.callFailed();
             return;
@@ -2514,7 +2514,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    VoIPService.m1182$r8$lambda$CWKr3GBtfPZfJhRL1nfuUjNJdI(this.f$0, groupCallParticipant);
+                                    VoIPService.m1188$r8$lambda$CWKr3GBtfPZfJhRL1nfuUjNJdI(this.f$0, groupCallParticipant);
                                 }
                             });
                             if (!BuildVars.LOGS_ENABLED) {
@@ -2553,7 +2553,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         voIPService.mySource[0] = i;
     }
 
-    public static void m1182$r8$lambda$CWKr3GBtfPZfJhRL1nfuUjNJdI(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant) {
+    public static void m1188$r8$lambda$CWKr3GBtfPZfJhRL1nfuUjNJdI(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant) {
         voIPService.mySource[0] = groupCallParticipant.source;
     }
 
@@ -2757,7 +2757,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             this.conference.requestLastBlock(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.m1180$r8$lambda$ARrUTdhumhG8yHT58nc1Mb7mG4(this.f$0, runnable);
+                    VoIPService.m1186$r8$lambda$ARrUTdhumhG8yHT58nc1Mb7mG4(this.f$0, runnable);
                 }
             });
         }
@@ -2867,12 +2867,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1183$r8$lambda$CWtxETwL7Ux5h4TGnfK4ZWdcVU(this.f$0, tLObject, i, str, tL_error);
+                VoIPService.m1189$r8$lambda$CWtxETwL7Ux5h4TGnfK4ZWdcVU(this.f$0, tLObject, i, str, tL_error);
             }
         });
     }
 
-    public static void m1183$r8$lambda$CWtxETwL7Ux5h4TGnfK4ZWdcVU(VoIPService voIPService, TLObject tLObject, int i, String str, TLRPC.TL_error tL_error) {
+    public static void m1189$r8$lambda$CWtxETwL7Ux5h4TGnfK4ZWdcVU(VoIPService voIPService, TLObject tLObject, int i, String str, TLRPC.TL_error tL_error) {
         voIPService.getClass();
         if (!(tLObject instanceof TL_phone.groupCall)) {
             if (tL_error != null) {
@@ -2927,12 +2927,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         ConnectionsManager.getInstance(voIPService.currentAccount).sendRequest(joingroupcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                VoIPService.m1186$r8$lambda$GNaXxA8MARuhKTXk7s4Q9Jj20(this.f$0, i, z, str, tLObject, tL_error);
+                VoIPService.m1192$r8$lambda$GNaXxA8MARuhKTXk7s4Q9Jj20(this.f$0, i, z, str, tLObject, tL_error);
             }
         });
     }
 
-    public static void m1186$r8$lambda$GNaXxA8MARuhKTXk7s4Q9Jj20(final VoIPService voIPService, final int i, final boolean z, final String str, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1192$r8$lambda$GNaXxA8MARuhKTXk7s4Q9Jj20(final VoIPService voIPService, final int i, final boolean z, final String str, TLObject tLObject, final TLRPC.TL_error tL_error) {
         voIPService.getClass();
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -2974,7 +2974,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                VoIPService.m1196$r8$lambda$Rh7ALMumpH1d51T8oEbhk7shw(this.f$0, groupCallParticipant);
+                                VoIPService.m1202$r8$lambda$Rh7ALMumpH1d51T8oEbhk7shw(this.f$0, groupCallParticipant);
                             }
                         });
                         if (!BuildVars.LOGS_ENABLED) {
@@ -3008,7 +3008,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1189$r8$lambda$N893OrLCQ4Ksb6Sxy1wL99PBec(this.f$0, tL_error, str);
+                VoIPService.m1195$r8$lambda$N893OrLCQ4Ksb6Sxy1wL99PBec(this.f$0, tL_error, str);
             }
         });
     }
@@ -3017,7 +3017,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         voIPService.mySource[0] = i;
     }
 
-    public static void m1196$r8$lambda$Rh7ALMumpH1d51T8oEbhk7shw(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant) {
+    public static void m1202$r8$lambda$Rh7ALMumpH1d51T8oEbhk7shw(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant) {
         voIPService.mySource[0] = groupCallParticipant.source;
     }
 
@@ -3156,7 +3156,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1197$r8$lambda$Uh5RZOSjbwT9k_6eIHX6Ds5lc(this.f$0, hashSet, str);
+                VoIPService.m1203$r8$lambda$Uh5RZOSjbwT9k_6eIHX6Ds5lc(this.f$0, hashSet, str);
             }
         });
     }
@@ -3210,7 +3210,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         NotificationCenter.getInstance(voIPService.currentAccount).postNotificationName(NotificationCenter.groupCallUpdated, 0L, Long.valueOf(voIPService.groupCall.call.id), Boolean.FALSE);
     }
 
-    public static void m1197$r8$lambda$Uh5RZOSjbwT9k_6eIHX6Ds5lc(final VoIPService voIPService, HashSet hashSet, final String str) {
+    public static void m1203$r8$lambda$Uh5RZOSjbwT9k_6eIHX6Ds5lc(final VoIPService voIPService, HashSet hashSet, final String str) {
         voIPService.getClass();
         TL_account.getRequirementsToContact getrequirementstocontact = new TL_account.getRequirementsToContact();
         final ArrayList arrayList = new ArrayList();
@@ -3281,7 +3281,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.m1195$r8$lambda$ROpPpcjbHR2HmW3949NqUq9BrQ(this.f$0, updates, j);
+                    VoIPService.m1201$r8$lambda$ROpPpcjbHR2HmW3949NqUq9BrQ(this.f$0, updates, j);
                 }
             });
         } else if (tL_error != null && "USER_PRIVACY_RESTRICTED".equalsIgnoreCase(tL_error.text)) {
@@ -3298,7 +3298,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         });
     }
 
-    public static void m1195$r8$lambda$ROpPpcjbHR2HmW3949NqUq9BrQ(VoIPService voIPService, TLRPC.Updates updates, long j) {
+    public static void m1201$r8$lambda$ROpPpcjbHR2HmW3949NqUq9BrQ(VoIPService voIPService, TLRPC.Updates updates, long j) {
         int i;
         voIPService.getClass();
         TLRPC.Update update = updates.update;
@@ -3379,7 +3379,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            VoIPService.m1193$r8$lambda$PaPBzqvxL3xvJckB30htjhFQH0(tLObject, arrayList, arrayList, runnable);
+                            VoIPService.m1199$r8$lambda$PaPBzqvxL3xvJckB30htjhFQH0(tLObject, arrayList, arrayList, runnable);
                         }
                     });
                 }
@@ -3398,7 +3398,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         limitReachedBottomSheet.show();
     }
 
-    public static void m1193$r8$lambda$PaPBzqvxL3xvJckB30htjhFQH0(TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, Runnable runnable) {
+    public static void m1199$r8$lambda$PaPBzqvxL3xvJckB30htjhFQH0(TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, Runnable runnable) {
         if (tLObject instanceof Vector) {
             Vector vector = (Vector) tLObject;
             for (int i = 0; i < Math.min(arrayList.size(), vector.objects.size()); i++) {
@@ -3410,7 +3410,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         runnable.run();
     }
 
-    public static void m1189$r8$lambda$N893OrLCQ4Ksb6Sxy1wL99PBec(VoIPService voIPService, TLRPC.TL_error tL_error, String str) {
+    public static void m1195$r8$lambda$N893OrLCQ4Ksb6Sxy1wL99PBec(VoIPService voIPService, TLRPC.TL_error tL_error, String str) {
         voIPService.getClass();
         if ("JOIN_AS_PEER_INVALID".equals(tL_error.text)) {
             voIPService.hangUp(2);
@@ -3436,7 +3436,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         voIPService.hangUp(0);
     }
 
-    public static void m1180$r8$lambda$ARrUTdhumhG8yHT58nc1Mb7mG4(VoIPService voIPService, Runnable runnable) {
+    public static void m1186$r8$lambda$ARrUTdhumhG8yHT58nc1Mb7mG4(VoIPService voIPService, Runnable runnable) {
         ConferenceCall conferenceCall = voIPService.conference;
         if (conferenceCall == null) {
             return;
@@ -3505,7 +3505,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.m1200$r8$lambda$ah7hn0Dz_WsMMJMBipNVSp5Gs(this.f$0, updates);
+                    VoIPService.m1206$r8$lambda$ah7hn0Dz_WsMMJMBipNVSp5Gs(this.f$0, updates);
                 }
             });
             MessagesController.getInstance(voIPService.currentAccount).processUpdates(updates, false);
@@ -3515,7 +3515,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1172$r8$lambda$O47cob9wN87f5c7LempkcLFbE(this.f$0, tL_error);
+                VoIPService.m1178$r8$lambda$O47cob9wN87f5c7LempkcLFbE(this.f$0, tL_error);
             }
         });
     }
@@ -3524,7 +3524,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         voIPService.mySource[1] = i;
     }
 
-    public static void m1200$r8$lambda$ah7hn0Dz_WsMMJMBipNVSp5Gs(VoIPService voIPService, TLRPC.Updates updates) {
+    public static void m1206$r8$lambda$ah7hn0Dz_WsMMJMBipNVSp5Gs(VoIPService voIPService, TLRPC.Updates updates) {
         if (voIPService.tgVoip[1] != null) {
             long selfId = voIPService.getSelfId();
             int size = updates.updates.size();
@@ -3564,7 +3564,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public static void m1172$r8$lambda$O47cob9wN87f5c7LempkcLFbE(VoIPService voIPService, TLRPC.TL_error tL_error) {
+    public static void m1178$r8$lambda$O47cob9wN87f5c7LempkcLFbE(VoIPService voIPService, TLRPC.TL_error tL_error) {
         TLRPC.ChatFull chatFull;
         voIPService.getClass();
         if ("GROUPCALL_VIDEO_TOO_MUCH".equals(tL_error.text)) {
@@ -3643,7 +3643,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 voIPService.checkRequestId = ConnectionsManager.getInstance(voIPService.currentAccount).sendRequest(checkgroupcall, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        VoIPService.m1192$r8$lambda$PYgQ7vPV1bvoJP9difQXEtcs(this.f$0, checkgroupcall, tLObject, tL_error);
+                        VoIPService.m1198$r8$lambda$PYgQ7vPV1bvoJP9difQXEtcs(this.f$0, checkgroupcall, tLObject, tL_error);
                     }
                 });
                 return;
@@ -3651,17 +3651,17 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public static void m1192$r8$lambda$PYgQ7vPV1bvoJP9difQXEtcs(final VoIPService voIPService, final TL_phone.checkGroupCall checkgroupcall, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1198$r8$lambda$PYgQ7vPV1bvoJP9difQXEtcs(final VoIPService voIPService, final TL_phone.checkGroupCall checkgroupcall, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         voIPService.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1194$r8$lambda$QUMkkkmmspvGvdYJGw6WWYMjvg(this.f$0, tL_error, tLObject, checkgroupcall);
+                VoIPService.m1200$r8$lambda$QUMkkkmmspvGvdYJGw6WWYMjvg(this.f$0, tL_error, tLObject, checkgroupcall);
             }
         });
     }
 
-    public static void m1194$r8$lambda$QUMkkkmmspvGvdYJGw6WWYMjvg(final VoIPService voIPService, TLRPC.TL_error tL_error, TLObject tLObject, TL_phone.checkGroupCall checkgroupcall) {
+    public static void m1200$r8$lambda$QUMkkkmmspvGvdYJGw6WWYMjvg(final VoIPService voIPService, TLRPC.TL_error tL_error, TLObject tLObject, TL_phone.checkGroupCall checkgroupcall) {
         boolean z;
         boolean z2;
         TLRPC.GroupCall groupCall;
@@ -3848,7 +3848,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }, new NativeInstance.AudioLevelsCallback() {
                 @Override
                 public final void run(int[] iArr, float[] fArr, boolean[] zArr2) {
-                    VoIPService.m1203$r8$lambda$e_s3KWNzjJ3fRRmnO_OaT9djE(this.f$0, i, iArr, fArr, zArr2);
+                    VoIPService.m1209$r8$lambda$e_s3KWNzjJ3fRRmnO_OaT9djE(this.f$0, i, iArr, fArr, zArr2);
                 }
             }, new NativeInstance.VideoSourcesCallback() {
                 @Override
@@ -3907,7 +3907,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         voIPService.startScreenCapture(i2, str);
     }
 
-    public static void m1203$r8$lambda$e_s3KWNzjJ3fRRmnO_OaT9djE(VoIPService voIPService, int i, int[] iArr, float[] fArr, boolean[] zArr) {
+    public static void m1209$r8$lambda$e_s3KWNzjJ3fRRmnO_OaT9djE(VoIPService voIPService, int i, int[] iArr, float[] fArr, boolean[] zArr) {
         if (sharedInstance == null) {
             voIPService.getClass();
             return;
@@ -4134,7 +4134,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.m1199$r8$lambda$Z16JJjGa9Hqa5p5dBV1ZzlV5IA(this.f$0, i);
+                    VoIPService.m1205$r8$lambda$Z16JJjGa9Hqa5p5dBV1ZzlV5IA(this.f$0, i);
                 }
             };
             this.switchingStreamTimeoutRunnable = runnable;
@@ -4148,7 +4148,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.m1185$r8$lambda$EUu2wxoAhhwVt9X1_17o2sioTg(this.f$0);
+                    VoIPService.m1191$r8$lambda$EUu2wxoAhhwVt9X1_17o2sioTg(this.f$0);
                 }
             });
             return;
@@ -4167,7 +4167,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.m1201$r8$lambda$bOznTLrvFyyp2OwbaB480bA(this.f$0);
+                    VoIPService.m1207$r8$lambda$bOznTLrvFyyp2OwbaB480bA(this.f$0);
                 }
             });
             Runnable runnable3 = this.connectingSoundRunnable;
@@ -4193,7 +4193,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         setParticipantsVolume();
     }
 
-    public static void m1199$r8$lambda$Z16JJjGa9Hqa5p5dBV1ZzlV5IA(VoIPService voIPService, int i) {
+    public static void m1205$r8$lambda$Z16JJjGa9Hqa5p5dBV1ZzlV5IA(VoIPService voIPService, int i) {
         if (voIPService.switchingStreamTimeoutRunnable == null) {
             return;
         }
@@ -4202,7 +4202,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         voIPService.switchingStreamTimeoutRunnable = null;
     }
 
-    public static void m1185$r8$lambda$EUu2wxoAhhwVt9X1_17o2sioTg(VoIPService voIPService) {
+    public static void m1191$r8$lambda$EUu2wxoAhhwVt9X1_17o2sioTg(VoIPService voIPService) {
         int i = voIPService.spPlayId;
         if (i != 0) {
             voIPService.soundPool.stop(i);
@@ -4210,7 +4210,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         voIPService.spPlayId = voIPService.soundPool.play(voIPService.spVoiceChatConnecting, 1.0f, 1.0f, 0, -1, 1.0f);
     }
 
-    public static void m1201$r8$lambda$bOznTLrvFyyp2OwbaB480bA(VoIPService voIPService) {
+    public static void m1207$r8$lambda$bOznTLrvFyyp2OwbaB480bA(VoIPService voIPService) {
         int i = voIPService.spPlayId;
         if (i != 0) {
             voIPService.soundPool.stop(i);
@@ -4474,12 +4474,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1177$r8$lambda$4JckTfrZx48zgks8FfKvqbEfME(this.f$0, i, i2);
+                VoIPService.m1183$r8$lambda$4JckTfrZx48zgks8FfKvqbEfME(this.f$0, i, i2);
             }
         });
     }
 
-    public static void m1177$r8$lambda$4JckTfrZx48zgks8FfKvqbEfME(VoIPService voIPService, int i, int i2) {
+    public static void m1183$r8$lambda$4JckTfrZx48zgks8FfKvqbEfME(VoIPService voIPService, int i, int i2) {
         voIPService.remoteAudioState = i;
         voIPService.remoteVideoState = i2;
         voIPService.checkIsNear();
@@ -4760,12 +4760,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1191$r8$lambda$PEvuSZ7Kyv4FtLzmboLuw905to(this.f$0);
+                VoIPService.m1197$r8$lambda$PEvuSZ7Kyv4FtLzmboLuw905to(this.f$0);
             }
         }, 500L);
     }
 
-    public static void m1191$r8$lambda$PEvuSZ7Kyv4FtLzmboLuw905to(final VoIPService voIPService) {
+    public static void m1197$r8$lambda$PEvuSZ7Kyv4FtLzmboLuw905to(final VoIPService voIPService) {
         voIPService.getClass();
         VoipAudioManager voipAudioManager = VoipAudioManager.get();
         if ((voIPService.isBluetoothHeadsetConnected() && voIPService.hasEarpiece()) || voIPService.isHeadsetPlugged || voIPService.isSpeakerphoneOn()) {
@@ -4813,7 +4813,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             bottomSheetCreate.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    VoIPService.m1202$r8$lambda$ehpzHbar0wrE5t2DJBpcihOqlU(bottomSheetCreate, num, dialogInterface);
+                    VoIPService.m1208$r8$lambda$ehpzHbar0wrE5t2DJBpcihOqlU(bottomSheetCreate, num, dialogInterface);
                 }
             });
             if (z) {
@@ -4871,7 +4871,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         voIPService.setAudioOutput(i);
     }
 
-    public static void m1202$r8$lambda$ehpzHbar0wrE5t2DJBpcihOqlU(BottomSheet bottomSheet, Integer num, DialogInterface dialogInterface) {
+    public static void m1208$r8$lambda$ehpzHbar0wrE5t2DJBpcihOqlU(BottomSheet bottomSheet, Integer num, DialogInterface dialogInterface) {
         for (int i = 0; i < bottomSheet.getItemViews().size(); i++) {
             int i2 = Theme.key_dialogTextBlack;
             bottomSheet.setItemColor(i, Theme.getColor(i2), Theme.getColor(i2));
@@ -5139,7 +5139,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public final void onPrepared(MediaPlayer mediaPlayer2) {
-                        VoIPService.m1174$r8$lambda$fIOorHUu4TIrsbyV3VE0vQua0A(this.f$0, mediaPlayer2);
+                        VoIPService.m1180$r8$lambda$fIOorHUu4TIrsbyV3VE0vQua0A(this.f$0, mediaPlayer2);
                     }
                 });
                 this.ringtonePlayer.setLooping(true);
@@ -5234,7 +5234,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public static void m1174$r8$lambda$fIOorHUu4TIrsbyV3VE0vQua0A(VoIPService voIPService, MediaPlayer mediaPlayer) {
+    public static void m1180$r8$lambda$fIOorHUu4TIrsbyV3VE0vQua0A(VoIPService voIPService, MediaPlayer mediaPlayer) {
         voIPService.getClass();
         try {
             voIPService.ringtonePlayer.start();
@@ -5601,7 +5601,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPService.m1178$r8$lambda$9WJqJHIL_F88sjqOlnyaCjHYBg(this.f$0);
+                        VoIPService.m1184$r8$lambda$9WJqJHIL_F88sjqOlnyaCjHYBg(this.f$0);
                     }
                 }, 5000L);
                 return;
@@ -5654,7 +5654,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         callEnded();
     }
 
-    public static void m1178$r8$lambda$9WJqJHIL_F88sjqOlnyaCjHYBg(VoIPService voIPService) {
+    public static void m1184$r8$lambda$9WJqJHIL_F88sjqOlnyaCjHYBg(VoIPService voIPService) {
         if (voIPService.currentState == 10) {
             voIPService.callEnded();
         }
@@ -5698,7 +5698,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPService.m1188$r8$lambda$LLDYO9cNfOzRgqxSoZ6K5O7iQ0(this.f$0);
+                        VoIPService.m1194$r8$lambda$LLDYO9cNfOzRgqxSoZ6K5O7iQ0(this.f$0);
                     }
                 };
                 this.delayedStartOutgoingCall = runnable;
@@ -5712,7 +5712,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return this.systemCallConnection;
     }
 
-    public static void m1188$r8$lambda$LLDYO9cNfOzRgqxSoZ6K5O7iQ0(VoIPService voIPService) {
+    public static void m1194$r8$lambda$LLDYO9cNfOzRgqxSoZ6K5O7iQ0(VoIPService voIPService) {
         voIPService.delayedStartOutgoingCall = null;
         voIPService.startOutgoingCall();
     }
@@ -6699,12 +6699,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1204$r8$lambda$eca7UJ0mGhm6ane5QXrHd1NSAY(this.f$0, i);
+                VoIPService.m1210$r8$lambda$eca7UJ0mGhm6ane5QXrHd1NSAY(this.f$0, i);
             }
         });
     }
 
-    public static void m1204$r8$lambda$eca7UJ0mGhm6ane5QXrHd1NSAY(final VoIPService voIPService, int i) {
+    public static void m1210$r8$lambda$eca7UJ0mGhm6ane5QXrHd1NSAY(final VoIPService voIPService, int i) {
         if (voIPService.convertingVoip != null) {
             return;
         }
@@ -6755,7 +6755,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPService.m1173$r8$lambda$X3lZ561g4VDtRHehdf0Htya8(this.f$0);
+                    VoIPService.m1179$r8$lambda$X3lZ561g4VDtRHehdf0Htya8(this.f$0);
                 }
             });
         }
@@ -6770,7 +6770,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public static void m1173$r8$lambda$X3lZ561g4VDtRHehdf0Htya8(VoIPService voIPService) {
+    public static void m1179$r8$lambda$X3lZ561g4VDtRHehdf0Htya8(VoIPService voIPService) {
         int i = voIPService.spPlayId;
         if (i != 0) {
             voIPService.soundPool.stop(i);
@@ -6803,12 +6803,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPService.m1190$r8$lambda$NrfFTKHUxeIEstXKpz_aaDsOuI(this.f$0, i);
+                VoIPService.m1196$r8$lambda$NrfFTKHUxeIEstXKpz_aaDsOuI(this.f$0, i);
             }
         });
     }
 
-    public static void m1190$r8$lambda$NrfFTKHUxeIEstXKpz_aaDsOuI(VoIPService voIPService, int i) {
+    public static void m1196$r8$lambda$NrfFTKHUxeIEstXKpz_aaDsOuI(VoIPService voIPService, int i) {
         voIPService.signalBarCount = i;
         for (int i2 = 0; i2 < voIPService.stateListeners.size(); i2++) {
             voIPService.stateListeners.get(i2).onSignalBarsCountChanged(i);

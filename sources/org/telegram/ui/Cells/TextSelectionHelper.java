@@ -328,7 +328,7 @@ public abstract class TextSelectionHelper {
     protected final Runnable showActionsRunnable = new Runnable() {
         @Override
         public final void run() {
-            TextSelectionHelper.m1510$r8$lambda$_3hcbbUSid9jAXmOJQlf1qSKao(this.f$0);
+            TextSelectionHelper.m1516$r8$lambda$_3hcbbUSid9jAXmOJQlf1qSKao(this.f$0);
         }
     };
     private final Runnable hideActionsRunnable = new Runnable() {
@@ -695,7 +695,7 @@ public abstract class TextSelectionHelper {
         return this.selectionStart >= 0 && this.selectionEnd >= 0;
     }
 
-    public static void m1510$r8$lambda$_3hcbbUSid9jAXmOJQlf1qSKao(TextSelectionHelper textSelectionHelper) {
+    public static void m1516$r8$lambda$_3hcbbUSid9jAXmOJQlf1qSKao(TextSelectionHelper textSelectionHelper) {
         textSelectionHelper.textSelectionOverlay.invalidate();
         textSelectionHelper.showActions();
     }
@@ -777,7 +777,7 @@ public abstract class TextSelectionHelper {
                     textView3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            TextSelectionHelper.m1508$r8$lambda$07VzERo4RZPzXxAqgxdZM5ikpc(this.f$0, view);
+                            TextSelectionHelper.m1514$r8$lambda$07VzERo4RZPzXxAqgxdZM5ikpc(this.f$0, view);
                         }
                     });
                     this.popupLayout.addView(textView3, LayoutHelper.createFrame(-2, 48.0f));
@@ -794,7 +794,7 @@ public abstract class TextSelectionHelper {
                     textView4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            TextSelectionHelper.m1509$r8$lambda$TGWBzGElweUm2FLpGRGwqHr9nc(this.f$0, view);
+                            TextSelectionHelper.m1515$r8$lambda$TGWBzGElweUm2FLpGRGwqHr9nc(this.f$0, view);
                         }
                     });
                     this.popupLayout.addView(textView4, LayoutHelper.createFrame(-2, 48.0f));
@@ -833,12 +833,12 @@ public abstract class TextSelectionHelper {
         return false;
     }
 
-    public static void m1508$r8$lambda$07VzERo4RZPzXxAqgxdZM5ikpc(TextSelectionHelper textSelectionHelper, View view) {
+    public static void m1514$r8$lambda$07VzERo4RZPzXxAqgxdZM5ikpc(TextSelectionHelper textSelectionHelper, View view) {
         textSelectionHelper.onCutAction();
         textSelectionHelper.hideActions();
     }
 
-    public static void m1509$r8$lambda$TGWBzGElweUm2FLpGRGwqHr9nc(TextSelectionHelper textSelectionHelper, View view) {
+    public static void m1515$r8$lambda$TGWBzGElweUm2FLpGRGwqHr9nc(TextSelectionHelper textSelectionHelper, View view) {
         textSelectionHelper.onPasteAction();
         textSelectionHelper.hideActions();
     }
@@ -1839,7 +1839,7 @@ public abstract class TextSelectionHelper {
                 LanguageDetector.detectLanguage(TextSelectionHelper.this.getSelectedText().toString(), new LanguageDetector.StringCallback() {
                     @Override
                     public final void run(String str) {
-                        TextSelectionHelper.AnonymousClass4.m1511$r8$lambda$UtrDKgTYOAA_qlRCc320OdoDg(this.f$0, menu, str);
+                        TextSelectionHelper.AnonymousClass4.m1517$r8$lambda$UtrDKgTYOAA_qlRCc320OdoDg(this.f$0, menu, str);
                     }
                 }, new LanguageDetector.ExceptionCallback() {
                     @Override
@@ -1854,7 +1854,7 @@ public abstract class TextSelectionHelper {
             return true;
         }
 
-        public static void m1511$r8$lambda$UtrDKgTYOAA_qlRCc320OdoDg(AnonymousClass4 anonymousClass4, Menu menu, String str) {
+        public static void m1517$r8$lambda$UtrDKgTYOAA_qlRCc320OdoDg(AnonymousClass4 anonymousClass4, Menu menu, String str) {
             anonymousClass4.translateFromLanguage = str;
             anonymousClass4.updateTranslateButton(menu);
         }
@@ -2526,7 +2526,7 @@ public abstract class TextSelectionHelper {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    TextSelectionHelper.ChatListTextSelectionHelper.m1513$r8$lambda$4xHg0DJ5LTgErQkPBpsbUneYdM(this.f$0, z, valueAnimator);
+                    TextSelectionHelper.ChatListTextSelectionHelper.m1519$r8$lambda$4xHg0DJ5LTgErQkPBpsbUneYdM(this.f$0, z, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setDuration(250L);
@@ -2538,7 +2538,7 @@ public abstract class TextSelectionHelper {
             SharedConfig.removeTextSelectionHint();
         }
 
-        public static void m1513$r8$lambda$4xHg0DJ5LTgErQkPBpsbUneYdM(ChatListTextSelectionHelper chatListTextSelectionHelper, boolean z, ValueAnimator valueAnimator) {
+        public static void m1519$r8$lambda$4xHg0DJ5LTgErQkPBpsbUneYdM(ChatListTextSelectionHelper chatListTextSelectionHelper, boolean z, ValueAnimator valueAnimator) {
             chatListTextSelectionHelper.getClass();
             chatListTextSelectionHelper.enterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             TextSelectionOverlay textSelectionOverlay = chatListTextSelectionHelper.textSelectionOverlay;
@@ -2953,7 +2953,7 @@ public abstract class TextSelectionHelper {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    TextSelectionHelper.ChatListTextSelectionHelper.m1514$r8$lambda$Gcwvj2Ry5WM_FcJtCCC93mDpYk(chatMessageCell, id, valueAnimator);
+                    TextSelectionHelper.ChatListTextSelectionHelper.m1520$r8$lambda$Gcwvj2Ry5WM_FcJtCCC93mDpYk(chatMessageCell, id, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -2967,7 +2967,7 @@ public abstract class TextSelectionHelper {
             this.animatorSparseArray.put(id, valueAnimatorOfFloat);
         }
 
-        public static void m1514$r8$lambda$Gcwvj2Ry5WM_FcJtCCC93mDpYk(ChatMessageCell chatMessageCell, int i, ValueAnimator valueAnimator) {
+        public static void m1520$r8$lambda$Gcwvj2Ry5WM_FcJtCCC93mDpYk(ChatMessageCell chatMessageCell, int i, ValueAnimator valueAnimator) {
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             if (chatMessageCell.getMessageObject() == null || chatMessageCell.getMessageObject().getId() != i) {
                 return;

@@ -700,7 +700,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 passcodeButton.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view2) {
-                        return PasscodeView.m2536$r8$lambda$3tFBSsYu3h6UhL7qNVARC6D2nE(this.f$0, view2);
+                        return PasscodeView.m2546$r8$lambda$3tFBSsYu3h6UhL7qNVARC6D2nE(this.f$0, view2);
                     }
                 });
                 passcodeButton.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
@@ -838,7 +838,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
     }
 
-    public static boolean m2536$r8$lambda$3tFBSsYu3h6UhL7qNVARC6D2nE(PasscodeView passcodeView, View view) {
+    public static boolean m2546$r8$lambda$3tFBSsYu3h6UhL7qNVARC6D2nE(PasscodeView passcodeView, View view) {
         passcodeView.passwordEditText.setText("");
         passcodeView.passwordEditText2.eraseAllCharacters(true);
         Drawable drawable = passcodeView.backgroundDrawable;
@@ -1006,7 +1006,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         spring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                PasscodeView.m2534$r8$lambda$1w_uAz6Sj8H2M659bmD393DxjY(this.f$0, motionBackgroundDrawable, dynamicAnimation, z, f, f2);
+                PasscodeView.m2544$r8$lambda$1w_uAz6Sj8H2M659bmD393DxjY(this.f$0, motionBackgroundDrawable, dynamicAnimation, z, f, f2);
             }
         });
         this.backgroundAnimationSpring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
@@ -1018,7 +1018,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.backgroundAnimationSpring.start();
     }
 
-    public static void m2534$r8$lambda$1w_uAz6Sj8H2M659bmD393DxjY(PasscodeView passcodeView, MotionBackgroundDrawable motionBackgroundDrawable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+    public static void m2544$r8$lambda$1w_uAz6Sj8H2M659bmD393DxjY(PasscodeView passcodeView, MotionBackgroundDrawable motionBackgroundDrawable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
         passcodeView.backgroundAnimationSpring = null;
         motionBackgroundDrawable.setAnimationProgressProvider(null);
         if (z) {
@@ -1104,12 +1104,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PasscodeView.m2538$r8$lambda$aSJvweTmOfBKBlaypRJPpD0lI(this.f$0);
+                PasscodeView.m2548$r8$lambda$aSJvweTmOfBKBlaypRJPpD0lI(this.f$0);
             }
         });
     }
 
-    public static void m2538$r8$lambda$aSJvweTmOfBKBlaypRJPpD0lI(final PasscodeView passcodeView) {
+    public static void m2548$r8$lambda$aSJvweTmOfBKBlaypRJPpD0lI(final PasscodeView passcodeView) {
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(passcodeView.shownT, 0.0f);
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -1290,7 +1290,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                PasscodeView.m2535$r8$lambda$2Fli5gQf7dRPfhA6cm6fXWN1L4(this.f$0, valueAnimator2);
+                PasscodeView.m2545$r8$lambda$2Fli5gQf7dRPfhA6cm6fXWN1L4(this.f$0, valueAnimator2);
             }
         });
         this.pinAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1311,7 +1311,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.pinAnimator.start();
     }
 
-    public static void m2535$r8$lambda$2Fli5gQf7dRPfhA6cm6fXWN1L4(PasscodeView passcodeView, ValueAnimator valueAnimator) {
+    public static void m2545$r8$lambda$2Fli5gQf7dRPfhA6cm6fXWN1L4(PasscodeView passcodeView, ValueAnimator valueAnimator) {
         passcodeView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         passcodeView.numbersFrameLayout.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, fFloatValue));
@@ -1682,7 +1682,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PasscodeView.AnonymousClass9.m2539$r8$lambda$vqfHCGUP_1YQr8FSjoTpBXL7KQ(this.f$0, valueAnimator);
+                    PasscodeView.AnonymousClass9.m2549$r8$lambda$vqfHCGUP_1YQr8FSjoTpBXL7KQ(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat2.addListener(new AnimatorListenerAdapter() {
@@ -1748,7 +1748,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             }
         }
 
-        public static void m2539$r8$lambda$vqfHCGUP_1YQr8FSjoTpBXL7KQ(AnonymousClass9 anonymousClass9, ValueAnimator valueAnimator) {
+        public static void m2549$r8$lambda$vqfHCGUP_1YQr8FSjoTpBXL7KQ(AnonymousClass9 anonymousClass9, ValueAnimator valueAnimator) {
             PasscodeView passcodeView = PasscodeView.this;
             passcodeView.onAnimationUpdate(passcodeView.shownT = ((Float) valueAnimator.getAnimatedValue()).floatValue());
         }

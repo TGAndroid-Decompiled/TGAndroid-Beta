@@ -362,7 +362,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ButtonWithCounterView.m4458$r8$lambda$gtZ1_cao5dYLT3r28lqOPplaIM(this.f$0, valueAnimator);
+                    ButtonWithCounterView.m4469$r8$lambda$gtZ1_cao5dYLT3r28lqOPplaIM(this.f$0, valueAnimator);
                 }
             });
             this.subTextVisibleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -396,7 +396,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         this.subTextVisibleAnimator.start();
     }
 
-    public static void m4458$r8$lambda$gtZ1_cao5dYLT3r28lqOPplaIM(ButtonWithCounterView buttonWithCounterView, ValueAnimator valueAnimator) {
+    public static void m4469$r8$lambda$gtZ1_cao5dYLT3r28lqOPplaIM(ButtonWithCounterView buttonWithCounterView, ValueAnimator valueAnimator) {
         buttonWithCounterView.getClass();
         buttonWithCounterView.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         buttonWithCounterView.invalidate();
@@ -428,7 +428,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonWithCounterView.m4459$r8$lambda$rynekNmEGsmy05tO9wSGvngw8w(this.f$0, valueAnimator2);
+                    ButtonWithCounterView.m4470$r8$lambda$rynekNmEGsmy05tO9wSGvngw8w(this.f$0, valueAnimator2);
                 }
             });
             this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -444,7 +444,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
     }
 
-    public static void m4459$r8$lambda$rynekNmEGsmy05tO9wSGvngw8w(ButtonWithCounterView buttonWithCounterView, ValueAnimator valueAnimator) {
+    public static void m4470$r8$lambda$rynekNmEGsmy05tO9wSGvngw8w(ButtonWithCounterView buttonWithCounterView, ValueAnimator valueAnimator) {
         buttonWithCounterView.getClass();
         buttonWithCounterView.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         buttonWithCounterView.invalidate();

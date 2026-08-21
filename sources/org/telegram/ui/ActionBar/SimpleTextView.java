@@ -540,17 +540,12 @@ public class SimpleTextView extends View implements Drawable.Callback {
             this.currentScrollDelay = 500;
             checkUi_layerType();
         }
-        int intrinsicWidth = 0;
         createLayout((((((size - getPaddingLeft()) - getPaddingRight()) - this.minusWidth) - ((!this.leftDrawableOutside || (drawable6 = this.leftDrawable) == null) ? 0 : drawable6.getIntrinsicWidth() + this.drawablePadding)) - ((!this.rightDrawableOutside || (drawable5 = this.rightDrawable) == null) ? 0 : drawable5.getIntrinsicWidth() + this.drawablePadding)) - ((!this.rightDrawableOutside || (drawable4 = this.rightDrawable2) == null) ? 0 : drawable4.getIntrinsicWidth() + this.drawablePadding));
         if (View.MeasureSpec.getMode(i2) != 1073741824) {
             size2 = getPaddingBottom() + getPaddingTop() + this.textHeight;
         }
         if (this.widthWrapContent) {
-            int paddingLeft = getPaddingLeft() + this.textWidth + getPaddingRight() + this.minusWidth + ((!this.leftDrawableOutside || (drawable3 = this.leftDrawable) == null) ? 0 : drawable3.getIntrinsicWidth() + this.drawablePadding) + ((!this.rightDrawableOutside || (drawable2 = this.rightDrawable) == null) ? 0 : drawable2.getIntrinsicWidth() + this.drawablePadding);
-            if (this.rightDrawableOutside && (drawable = this.rightDrawable2) != null) {
-                intrinsicWidth = drawable.getIntrinsicWidth() + this.drawablePadding;
-            }
-            size = Math.min(size, paddingLeft + intrinsicWidth);
+            size = Math.max(Math.min(size, getPaddingLeft() + this.textWidth + getPaddingRight() + this.minusWidth + ((!this.leftDrawableOutside || (drawable3 = this.leftDrawable) == null) ? 0 : drawable3.getIntrinsicWidth() + this.drawablePadding) + ((!this.rightDrawableOutside || (drawable2 = this.rightDrawable) == null) ? 0 : drawable2.getIntrinsicWidth() + this.drawablePadding) + ((!this.rightDrawableOutside || (drawable = this.rightDrawable2) == null) ? 0 : drawable.getIntrinsicWidth() + this.drawablePadding)), 0);
         }
         setMeasuredDimension(size, size2);
         if ((this.gravity & 112) == 16) {

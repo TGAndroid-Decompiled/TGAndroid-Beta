@@ -427,7 +427,7 @@ public class AndroidUtilities {
         sUrlMatchFilter = new Linkify.MatchFilter() {
             @Override
             public final boolean acceptMatch(CharSequence charSequence, int i, int i2) {
-                return AndroidUtilities.m351$r8$lambda$TqylQ7mqSnaj2Z10Afg6KQFADI(charSequence, i, i2);
+                return AndroidUtilities.m352$r8$lambda$TqylQ7mqSnaj2Z10Afg6KQFADI(charSequence, i, i2);
             }
         };
         hasCallPermissions = Build.VERSION.SDK_INT >= 23;
@@ -1188,7 +1188,7 @@ public class AndroidUtilities {
             PixelCopy.request(window, bitmapCreateBitmap, new PixelCopy.OnPixelCopyFinishedListener() {
                 @Override
                 public final void onPixelCopyFinished(int i) {
-                    AndroidUtilities.m352$r8$lambda$U1mjz0c6pNXEGrZtp2rsOmuR0(zArr, countDownLatch, i);
+                    AndroidUtilities.m353$r8$lambda$U1mjz0c6pNXEGrZtp2rsOmuR0(zArr, countDownLatch, i);
                 }
             }, Utilities.searchQueue.getHandler());
             try {
@@ -1204,7 +1204,7 @@ public class AndroidUtilities {
         return null;
     }
 
-    public static void m352$r8$lambda$U1mjz0c6pNXEGrZtp2rsOmuR0(boolean[] zArr, CountDownLatch countDownLatch, int i) {
+    public static void m353$r8$lambda$U1mjz0c6pNXEGrZtp2rsOmuR0(boolean[] zArr, CountDownLatch countDownLatch, int i) {
         zArr[0] = i == 0;
         countDownLatch.countDown();
     }
@@ -1416,7 +1416,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static boolean m351$r8$lambda$TqylQ7mqSnaj2Z10Afg6KQFADI(CharSequence charSequence, int i, int i2) {
+    public static boolean m352$r8$lambda$TqylQ7mqSnaj2Z10Afg6KQFADI(CharSequence charSequence, int i, int i2) {
         return i == 0 || charSequence.charAt(i - 1) != '@';
     }
 
@@ -1557,7 +1557,7 @@ public class AndroidUtilities {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return AndroidUtilities.m345$r8$lambda$KhNaetepuZm8ZT4fOcBgykfoI((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
+                return AndroidUtilities.m346$r8$lambda$KhNaetepuZm8ZT4fOcBgykfoI((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
             }
         });
         int size = arrayList.size();
@@ -1584,7 +1584,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static int m345$r8$lambda$KhNaetepuZm8ZT4fOcBgykfoI(LinkSpec linkSpec, LinkSpec linkSpec2) {
+    public static int m346$r8$lambda$KhNaetepuZm8ZT4fOcBgykfoI(LinkSpec linkSpec, LinkSpec linkSpec2) {
         int i;
         int i2;
         int i3 = linkSpec.start;
@@ -1931,7 +1931,7 @@ public class AndroidUtilities {
             builder.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    AndroidUtilities.m346$r8$lambda$0F4KjwNtH7eKBB5ZrPUMWlqPs(mapsAppPackageName, baseFragment, alertDialog, i);
+                    AndroidUtilities.m347$r8$lambda$0F4KjwNtH7eKBB5ZrPUMWlqPs(mapsAppPackageName, baseFragment, alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1940,7 +1940,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static void m346$r8$lambda$0F4KjwNtH7eKBB5ZrPUMWlqPs(String str, BaseFragment baseFragment, AlertDialog alertDialog, int i) {
+    public static void m347$r8$lambda$0F4KjwNtH7eKBB5ZrPUMWlqPs(String str, BaseFragment baseFragment, AlertDialog alertDialog, int i) {
         try {
             baseFragment.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + str)), 500);
         } catch (Exception e) {
@@ -2648,7 +2648,7 @@ public class AndroidUtilities {
                         SmsRetriever.getClient(ApplicationLoader.applicationContext).startSmsRetriever().addOnSuccessListener(new OnSuccessListener() {
                             @Override
                             public final void onSuccess(Object obj) {
-                                AndroidUtilities.m353$r8$lambda$dKQXBreTUdF5kIsZL6V7Cs10O8((Void) obj);
+                                AndroidUtilities.m354$r8$lambda$dKQXBreTUdF5kIsZL6V7Cs10O8((Void) obj);
                             }
                         });
                     } catch (Throwable th) {
@@ -2661,7 +2661,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static void m353$r8$lambda$dKQXBreTUdF5kIsZL6V7Cs10O8(Void r0) {
+    public static void m354$r8$lambda$dKQXBreTUdF5kIsZL6V7Cs10O8(Void r0) {
         if (BuildVars.DEBUG_VERSION) {
             FileLog.d("sms listener registered");
         }
@@ -3638,7 +3638,7 @@ public class AndroidUtilities {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AndroidUtilities.m347$r8$lambda$DGvZlClrtqLPaMCojvBJkoqsKw(view, valueAnimator);
+                AndroidUtilities.m348$r8$lambda$DGvZlClrtqLPaMCojvBJkoqsKw(view, valueAnimator);
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -3652,7 +3652,7 @@ public class AndroidUtilities {
         view.setTag(i, valueAnimatorOfFloat);
     }
 
-    public static void m347$r8$lambda$DGvZlClrtqLPaMCojvBJkoqsKw(View view, ValueAnimator valueAnimator) {
+    public static void m348$r8$lambda$DGvZlClrtqLPaMCojvBJkoqsKw(View view, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         view.setTranslationX((float) (((double) (fFloatValue * 4.0f * (1.0f - fFloatValue))) * Math.sin(((double) fFloatValue) * 3.141592653589793d * 4.0d) * ((double) dp(4.0f))));
     }
@@ -4455,12 +4455,12 @@ public class AndroidUtilities {
         return formatSpannable(charSequence, new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                return AndroidUtilities.m348$r8$lambda$HdTPIrhZ_L2Eqd5xsnOlmLDUHc((Integer) obj);
+                return AndroidUtilities.m349$r8$lambda$HdTPIrhZ_L2Eqd5xsnOlmLDUHc((Integer) obj);
             }
         }, charSequenceArr);
     }
 
-    public static String m348$r8$lambda$HdTPIrhZ_L2Eqd5xsnOlmLDUHc(Integer num) {
+    public static String m349$r8$lambda$HdTPIrhZ_L2Eqd5xsnOlmLDUHc(Integer num) {
         return "%" + (num.intValue() + 1) + "$s";
     }
 
@@ -4913,7 +4913,7 @@ public class AndroidUtilities {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                AndroidUtilities.m355$r8$lambda$l1fSG_4RC5jpITD8R0TCrisuD0(zArr, textViewButtonsArr, str, str2, str3, str4, str5);
+                AndroidUtilities.m356$r8$lambda$l1fSG_4RC5jpITD8R0TCrisuD0(zArr, textViewButtonsArr, str, str2, str3, str4, str5);
             }
         };
         final SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
@@ -4929,7 +4929,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static void m355$r8$lambda$l1fSG_4RC5jpITD8R0TCrisuD0(boolean[] zArr, final ButtonSpan.TextViewButtons[] textViewButtonsArr, String str, String str2, String str3, String str4, String str5) {
+    public static void m356$r8$lambda$l1fSG_4RC5jpITD8R0TCrisuD0(boolean[] zArr, final ButtonSpan.TextViewButtons[] textViewButtonsArr, String str, String str2, String str3, String str4, String str5) {
         if (zArr[0]) {
             return;
         }
@@ -5692,7 +5692,7 @@ public class AndroidUtilities {
             recyclerListView.highlightRow(new RecyclerListView.IntReturnCallback() {
                 @Override
                 public final int run() {
-                    return AndroidUtilities.m350$r8$lambda$QxMhWRdvcx9cRyLAR_Y2rjd93g(baseFragment, str, recyclerListView);
+                    return AndroidUtilities.m351$r8$lambda$QxMhWRdvcx9cRyLAR_Y2rjd93g(baseFragment, str, recyclerListView);
                 }
             });
             declaredField.setAccessible(false);
@@ -5700,7 +5700,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static int m350$r8$lambda$QxMhWRdvcx9cRyLAR_Y2rjd93g(BaseFragment baseFragment, String str, RecyclerListView recyclerListView) {
+    public static int m351$r8$lambda$QxMhWRdvcx9cRyLAR_Y2rjd93g(BaseFragment baseFragment, String str, RecyclerListView recyclerListView) {
         try {
             Field declaredField = baseFragment.getClass().getDeclaredField(str);
             declaredField.setAccessible(true);
@@ -5808,13 +5808,13 @@ public class AndroidUtilities {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AndroidUtilities.m356$r8$lambda$q5ryWUXeNuuQiMIHtcfWCQIB24(imageView, atomicBoolean, drawable, valueAnimator);
+                AndroidUtilities.m357$r8$lambda$q5ryWUXeNuuQiMIHtcfWCQIB24(imageView, atomicBoolean, drawable, valueAnimator);
             }
         });
         duration.start();
     }
 
-    public static void m356$r8$lambda$q5ryWUXeNuuQiMIHtcfWCQIB24(ImageView imageView, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
+    public static void m357$r8$lambda$q5ryWUXeNuuQiMIHtcfWCQIB24(ImageView imageView, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float fAbs = Math.abs(fFloatValue - 0.5f) + 0.5f;
         imageView.setScaleX(fAbs);
@@ -6802,13 +6802,13 @@ public class AndroidUtilities {
         ViewTreeObserver.OnPreDrawListener onPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public final boolean onPreDraw() {
-                return AndroidUtilities.m349$r8$lambda$P1s5XUkdUHRTsyRlcvqgE_br54(viewTreeObserver, onPreDrawListenerArr, zArr, runnable);
+                return AndroidUtilities.m350$r8$lambda$P1s5XUkdUHRTsyRlcvqgE_br54(viewTreeObserver, onPreDrawListenerArr, zArr, runnable);
             }
         };
         viewTreeObserver.addOnPreDrawListener(onPreDrawListener);
     }
 
-    public static boolean m349$r8$lambda$P1s5XUkdUHRTsyRlcvqgE_br54(ViewTreeObserver viewTreeObserver, ViewTreeObserver.OnPreDrawListener[] onPreDrawListenerArr, boolean[] zArr, Runnable runnable) {
+    public static boolean m350$r8$lambda$P1s5XUkdUHRTsyRlcvqgE_br54(ViewTreeObserver viewTreeObserver, ViewTreeObserver.OnPreDrawListener[] onPreDrawListenerArr, boolean[] zArr, Runnable runnable) {
         if (viewTreeObserver.isAlive()) {
             viewTreeObserver.removeOnPreDrawListener(onPreDrawListenerArr[0]);
         }
@@ -6876,6 +6876,10 @@ public class AndroidUtilities {
             FileLog.e(e2);
             return false;
         }
+    }
+
+    public static String getHelloWorld() {
+        return "Hello World!";
     }
 
     public static String getBuildVersionInfo() {

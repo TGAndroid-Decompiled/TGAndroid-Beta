@@ -1492,14 +1492,14 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.m2188$r8$lambda$Nj5B9IguX1XoP5OIQrsk_MUJbE(this.f$0, valueAnimator);
+                    ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.m2198$r8$lambda$Nj5B9IguX1XoP5OIQrsk_MUJbE(this.f$0, valueAnimator);
                 }
             });
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.setDuration(200L);
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.start();
         }
 
-        public static void m2188$r8$lambda$Nj5B9IguX1XoP5OIQrsk_MUJbE(PreviewGroupsView previewGroupsView, ValueAnimator valueAnimator) {
+        public static void m2198$r8$lambda$Nj5B9IguX1XoP5OIQrsk_MUJbE(PreviewGroupsView previewGroupsView, ValueAnimator valueAnimator) {
             previewGroupsView.getClass();
             previewGroupsView.draggingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             previewGroupsView.invalidate();

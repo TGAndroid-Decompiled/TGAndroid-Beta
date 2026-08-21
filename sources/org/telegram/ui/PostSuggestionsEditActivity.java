@@ -259,12 +259,12 @@ public class PostSuggestionsEditActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PostSuggestionsEditActivity.m3767$r8$lambda$ovwa6PDNpCWlcNiBU1zev29OLA(this.f$0, tL_error, tLObject, updatepaidmessagesprice);
+                PostSuggestionsEditActivity.m3775$r8$lambda$ovwa6PDNpCWlcNiBU1zev29OLA(this.f$0, tL_error, tLObject, updatepaidmessagesprice);
             }
         });
     }
 
-    public static void m3767$r8$lambda$ovwa6PDNpCWlcNiBU1zev29OLA(PostSuggestionsEditActivity postSuggestionsEditActivity, TLRPC.TL_error tL_error, TLObject tLObject, TL_stars.updatePaidMessagesPrice updatepaidmessagesprice) {
+    public static void m3775$r8$lambda$ovwa6PDNpCWlcNiBU1zev29OLA(PostSuggestionsEditActivity postSuggestionsEditActivity, TLRPC.TL_error tL_error, TLObject tLObject, TL_stars.updatePaidMessagesPrice updatepaidmessagesprice) {
         if (tL_error != null) {
             postSuggestionsEditActivity.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);

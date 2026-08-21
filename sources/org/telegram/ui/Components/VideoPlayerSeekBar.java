@@ -331,7 +331,7 @@ public class VideoPlayerSeekBar {
             Collections.sort(this.timestamps, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return VideoPlayerSeekBar.m2937$r8$lambda$o3EHnMr9BcAI6WfiUzSrQzpwFA((Pair) obj, (Pair) obj2);
+                    return VideoPlayerSeekBar.m2946$r8$lambda$o3EHnMr9BcAI6WfiUzSrQzpwFA((Pair) obj, (Pair) obj2);
                 }
             });
         } catch (Exception e) {
@@ -347,7 +347,7 @@ public class VideoPlayerSeekBar {
         }
     }
 
-    public static int m2937$r8$lambda$o3EHnMr9BcAI6WfiUzSrQzpwFA(Pair pair, Pair pair2) {
+    public static int m2946$r8$lambda$o3EHnMr9BcAI6WfiUzSrQzpwFA(Pair pair, Pair pair2) {
         if (((Float) pair.first).floatValue() > ((Float) pair2.first).floatValue()) {
             return 1;
         }

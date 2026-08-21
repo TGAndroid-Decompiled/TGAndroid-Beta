@@ -128,7 +128,7 @@ public abstract class BoostDialogs {
         bulletinFactory.createSimpleBulletin(i, string, AndroidUtilities.replaceSingleTag(string2, Theme.key_undo_cancelColor, 0, new Runnable() {
             @Override
             public final void run() {
-                BoostDialogs.m2603$r8$lambda$go7JRZCOKY9jSvHOkD6dtEM5VU(chat);
+                BoostDialogs.m2613$r8$lambda$go7JRZCOKY9jSvHOkD6dtEM5VU(chat);
             }
         }, resourcesProvider)).setDuration(5000).show();
     }
@@ -142,7 +142,7 @@ public abstract class BoostDialogs {
         }, 300L);
     }
 
-    public static void m2603$r8$lambda$go7JRZCOKY9jSvHOkD6dtEM5VU(TLRPC.Chat chat) {
+    public static void m2613$r8$lambda$go7JRZCOKY9jSvHOkD6dtEM5VU(TLRPC.Chat chat) {
         if (chat != null) {
             BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
             bottomSheetParams.transitionFromLeft = true;
@@ -162,12 +162,12 @@ public abstract class BoostDialogs {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostDialogs.m2599$r8$lambda$Wlhhib8TJhPesjG7DAW42R6DoM(spannableStringBuilderReplaceTags);
+                BoostDialogs.m2609$r8$lambda$Wlhhib8TJhPesjG7DAW42R6DoM(spannableStringBuilderReplaceTags);
             }
         }, 450L);
     }
 
-    public static void m2599$r8$lambda$Wlhhib8TJhPesjG7DAW42R6DoM(CharSequence charSequence) {
+    public static void m2609$r8$lambda$Wlhhib8TJhPesjG7DAW42R6DoM(CharSequence charSequence) {
         BulletinFactory bulletinFactoryGlobal = BulletinFactory.global();
         if (bulletinFactoryGlobal != null) {
             bulletinFactoryGlobal.createSimpleBulletinWithIconSize(R.raw.forward, charSequence, 30).show();
@@ -757,7 +757,7 @@ public abstract class BoostDialogs {
         builder.setPositiveButton(LocaleController.getString("Add", R.string.Add), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                BoostDialogs.m2600$r8$lambda$XQXY3GnmQJl_ETJARL_GGHa3zQ(atomicBoolean, runnable2, alertDialog, i);
+                BoostDialogs.m2610$r8$lambda$XQXY3GnmQJl_ETJARL_GGHa3zQ(atomicBoolean, runnable2, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -775,7 +775,7 @@ public abstract class BoostDialogs {
         builder.show();
     }
 
-    public static void m2600$r8$lambda$XQXY3GnmQJl_ETJARL_GGHa3zQ(AtomicBoolean atomicBoolean, Runnable runnable, AlertDialog alertDialog, int i) {
+    public static void m2610$r8$lambda$XQXY3GnmQJl_ETJARL_GGHa3zQ(AtomicBoolean atomicBoolean, Runnable runnable, AlertDialog alertDialog, int i) {
         atomicBoolean.set(true);
         runnable.run();
     }
@@ -874,7 +874,7 @@ public abstract class BoostDialogs {
         BoostRepository.getGiveawayInfo(messageObject, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BoostDialogs.m2602$r8$lambda$gpY5WECZOxGjtBvgYQyOdQKExk(messageObject, (TLRPC.payments_GiveawayInfo) obj);
+                BoostDialogs.m2612$r8$lambda$gpY5WECZOxGjtBvgYQyOdQKExk(messageObject, (TLRPC.payments_GiveawayInfo) obj);
             }
         }, new Utilities.Callback() {
             @Override
@@ -884,7 +884,7 @@ public abstract class BoostDialogs {
         });
     }
 
-    public static void m2602$r8$lambda$gpY5WECZOxGjtBvgYQyOdQKExk(MessageObject messageObject, final TLRPC.payments_GiveawayInfo payments_giveawayinfo) {
+    public static void m2612$r8$lambda$gpY5WECZOxGjtBvgYQyOdQKExk(MessageObject messageObject, final TLRPC.payments_GiveawayInfo payments_giveawayinfo) {
         TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway;
         TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaGiveawayResults) {

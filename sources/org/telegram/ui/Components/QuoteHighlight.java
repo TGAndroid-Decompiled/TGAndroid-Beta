@@ -56,7 +56,7 @@ public class QuoteHighlight extends Path {
         this.t = new AnimatedFloat(0.0f, new Runnable() {
             @Override
             public final void run() {
-                QuoteHighlight.m2678$r8$lambda$4waOk2vMbE18qeSW6UP2HXYHDU(chatMessageCell);
+                QuoteHighlight.m2687$r8$lambda$4waOk2vMbE18qeSW6UP2HXYHDU(chatMessageCell);
             }
         }, 350L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.id = i;
@@ -70,7 +70,7 @@ public class QuoteHighlight extends Path {
         paint.setPathEffect(new CornerPathEffect(iDp));
     }
 
-    public static void m2678$r8$lambda$4waOk2vMbE18qeSW6UP2HXYHDU(ChatMessageCell chatMessageCell) {
+    public static void m2687$r8$lambda$4waOk2vMbE18qeSW6UP2HXYHDU(ChatMessageCell chatMessageCell) {
         if (chatMessageCell != null) {
             chatMessageCell.invalidate();
         }

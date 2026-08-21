@@ -622,7 +622,7 @@ public class ConferenceCall {
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(sendconferencecallbroadcast, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            ConferenceCall.m1155$r8$lambda$WnB99vM_TB7yxPHV5mMfzIJEA(this.f$0, jCurrentTimeMillis, tLObject, tL_error);
+                            ConferenceCall.m1161$r8$lambda$WnB99vM_TB7yxPHV5mMfzIJEA(this.f$0, jCurrentTimeMillis, tLObject, tL_error);
                         }
                     }, 64);
                     i2++;
@@ -654,7 +654,7 @@ public class ConferenceCall {
         }
     }
 
-    public static void m1155$r8$lambda$WnB99vM_TB7yxPHV5mMfzIJEA(final ConferenceCall conferenceCall, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1161$r8$lambda$WnB99vM_TB7yxPHV5mMfzIJEA(final ConferenceCall conferenceCall, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         conferenceCall.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -712,7 +712,7 @@ public class ConferenceCall {
 
                     @Override
                     public final Object apply(Object obj) {
-                        return ConferenceCall.m1157$r8$lambda$l2DLYo9iQuRY1Qymj89k3Qq7zM((ConferenceCall.CallParticipant) obj);
+                        return ConferenceCall.m1163$r8$lambda$l2DLYo9iQuRY1Qymj89k3Qq7zM((ConferenceCall.CallParticipant) obj);
                     }
 
                     public Function compose(Function function) {
@@ -754,7 +754,7 @@ public class ConferenceCall {
         }
     }
 
-    public static String m1157$r8$lambda$l2DLYo9iQuRY1Qymj89k3Qq7zM(CallParticipant callParticipant) {
+    public static String m1163$r8$lambda$l2DLYo9iQuRY1Qymj89k3Qq7zM(CallParticipant callParticipant) {
         return "[" + callParticipant.user_id + "]: " + DialogObject.getName(callParticipant.user_id);
     }
 
@@ -826,7 +826,7 @@ public class ConferenceCall {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(deleteconferencecallparticipants, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ConferenceCall.m1154$r8$lambda$KgWLRHiEEg4uZiGc_2Zm4_3eQI(this.f$0, jCurrentTimeMillis, tLObject, tL_error);
+                        ConferenceCall.m1160$r8$lambda$KgWLRHiEEg4uZiGc_2Zm4_3eQI(this.f$0, jCurrentTimeMillis, tLObject, tL_error);
                     }
                 });
             } catch (Exception e) {
@@ -838,7 +838,7 @@ public class ConferenceCall {
         }
     }
 
-    public static void m1154$r8$lambda$KgWLRHiEEg4uZiGc_2Zm4_3eQI(final ConferenceCall conferenceCall, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1160$r8$lambda$KgWLRHiEEg4uZiGc_2Zm4_3eQI(final ConferenceCall conferenceCall, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         conferenceCall.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

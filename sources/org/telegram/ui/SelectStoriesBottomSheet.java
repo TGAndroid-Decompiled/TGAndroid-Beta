@@ -63,7 +63,7 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                SelectStoriesBottomSheet.m4038$r8$lambda$EPXWdL0t1J3afAkZkuAhy8C3Po(this.f$0, callback, view2);
+                SelectStoriesBottomSheet.m4047$r8$lambda$EPXWdL0t1J3afAkZkuAhy8C3Po(this.f$0, callback, view2);
             }
         });
         frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, (1.0f / AndroidUtilities.density) + 10.0f, 10.0f, 10.0f));
@@ -107,7 +107,7 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
         this.adapter.update(true);
     }
 
-    public static void m4038$r8$lambda$EPXWdL0t1J3afAkZkuAhy8C3Po(SelectStoriesBottomSheet selectStoriesBottomSheet, Utilities.Callback callback, View view) {
+    public static void m4047$r8$lambda$EPXWdL0t1J3afAkZkuAhy8C3Po(SelectStoriesBottomSheet selectStoriesBottomSheet, Utilities.Callback callback, View view) {
         if (selectStoriesBottomSheet.storiesList.getCount() == 0) {
             return;
         }

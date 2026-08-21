@@ -126,7 +126,7 @@ public class DispatchQueueMainThreadSync extends Thread {
         this.handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @Override
             public final boolean handleMessage(Message message) {
-                return DispatchQueueMainThreadSync.m414$r8$lambda$E779pQCgwglpboUjyEXnUhMILs(this.f$0, message);
+                return DispatchQueueMainThreadSync.m422$r8$lambda$E779pQCgwglpboUjyEXnUhMILs(this.f$0, message);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -142,7 +142,7 @@ public class DispatchQueueMainThreadSync extends Thread {
         Looper.loop();
     }
 
-    public static boolean m414$r8$lambda$E779pQCgwglpboUjyEXnUhMILs(DispatchQueueMainThreadSync dispatchQueueMainThreadSync, Message message) {
+    public static boolean m422$r8$lambda$E779pQCgwglpboUjyEXnUhMILs(DispatchQueueMainThreadSync dispatchQueueMainThreadSync, Message message) {
         dispatchQueueMainThreadSync.handleMessage(message);
         return true;
     }

@@ -328,7 +328,7 @@ public abstract class Browser {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        Browser.m1094$r8$lambda$r0CCMiFnrGCwmVQpGqtZgRrTxo(progress, alertDialogArr, tLObject, i, uri, context, z);
+                                        Browser.m1100$r8$lambda$r0CCMiFnrGCwmVQpGqtZgRrTxo(progress, alertDialogArr, tLObject, i, uri, context, z);
                                     }
                                 });
                             }
@@ -584,7 +584,7 @@ public abstract class Browser {
         openInExternalBrowser(context, uriNormalizeScheme.toString(), z4, browserPackageName);
     }
 
-    public static void m1094$r8$lambda$r0CCMiFnrGCwmVQpGqtZgRrTxo(Progress progress, AlertDialog[] alertDialogArr, TLObject tLObject, int i, Uri uri, Context context, boolean z) {
+    public static void m1100$r8$lambda$r0CCMiFnrGCwmVQpGqtZgRrTxo(Progress progress, AlertDialog[] alertDialogArr, TLObject tLObject, int i, Uri uri, Context context, boolean z) {
         if (progress != null) {
             progress.end();
         } else {

@@ -164,7 +164,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.aiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CaptionPhotoViewer.m2061$r8$lambda$lvCr3OU7SGv7V8UYHoNyXCA8S0(this.f$0, view);
+                CaptionPhotoViewer.m2071$r8$lambda$lvCr3OU7SGv7V8UYHoNyXCA8S0(this.f$0, view);
             }
         });
         imageView2.setOnClickListener(new View.OnClickListener() {
@@ -175,13 +175,13 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         });
     }
 
-    public static void m2061$r8$lambda$lvCr3OU7SGv7V8UYHoNyXCA8S0(final CaptionPhotoViewer captionPhotoViewer, View view) {
+    public static void m2071$r8$lambda$lvCr3OU7SGv7V8UYHoNyXCA8S0(final CaptionPhotoViewer captionPhotoViewer, View view) {
         captionPhotoViewer.getClass();
         MessagesController.getGlobalMainSettings().edit().putInt("aihintshown", 3).apply();
         new AIEditorAlert(captionPhotoViewer.getContext(), new DarkThemeResourceProvider()).setText(captionPhotoViewer.editText.getText()).setOnUse(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                CaptionPhotoViewer.m2059$r8$lambda$duzMCqUquEXRcGBfzZkMn2KHHw(this.f$0, (CharSequence) obj);
+                CaptionPhotoViewer.m2069$r8$lambda$duzMCqUquEXRcGBfzZkMn2KHHw(this.f$0, (CharSequence) obj);
             }
         }).setOnSend(0L, true, new Utilities.Callback4() {
             @Override
@@ -191,7 +191,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         }).show();
     }
 
-    public static void m2059$r8$lambda$duzMCqUquEXRcGBfzZkMn2KHHw(CaptionPhotoViewer captionPhotoViewer, CharSequence charSequence) {
+    public static void m2069$r8$lambda$duzMCqUquEXRcGBfzZkMn2KHHw(CaptionPhotoViewer captionPhotoViewer, CharSequence charSequence) {
         captionPhotoViewer.editText.setText(charSequence);
         captionPhotoViewer.editText.setSelection(charSequence.length(), charSequence.length());
     }
@@ -397,7 +397,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             this.timerButton.animate().alpha(z ? 1.0f : 0.0f).translationX(z ? 0.0f : AndroidUtilities.dp(8.0f)).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    CaptionPhotoViewer.m2063$r8$lambda$urkB2IxFGOTvJHjkiChnjNPiq4(this.f$0, z);
+                    CaptionPhotoViewer.m2073$r8$lambda$urkB2IxFGOTvJHjkiChnjNPiq4(this.f$0, z);
                 }
             }).start();
         } else {
@@ -413,7 +413,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.editText.setLayoutParams(marginLayoutParams);
     }
 
-    public static void m2063$r8$lambda$urkB2IxFGOTvJHjkiChnjNPiq4(CaptionPhotoViewer captionPhotoViewer, boolean z) {
+    public static void m2073$r8$lambda$urkB2IxFGOTvJHjkiChnjNPiq4(CaptionPhotoViewer captionPhotoViewer, boolean z) {
         if (z) {
             captionPhotoViewer.getClass();
         } else {
@@ -593,7 +593,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.aiButton.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.6f).scaleY(z ? 1.0f : 0.6f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(420L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                CaptionPhotoViewer.m2060$r8$lambda$ezVo2wPMVjn64G4J3AEOYseNMg(this.f$0, z);
+                CaptionPhotoViewer.m2070$r8$lambda$ezVo2wPMVjn64G4J3AEOYseNMg(this.f$0, z);
             }
         }).start();
         if (z) {
@@ -633,7 +633,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         }
     }
 
-    public static void m2060$r8$lambda$ezVo2wPMVjn64G4J3AEOYseNMg(CaptionPhotoViewer captionPhotoViewer, boolean z) {
+    public static void m2070$r8$lambda$ezVo2wPMVjn64G4J3AEOYseNMg(CaptionPhotoViewer captionPhotoViewer, boolean z) {
         if (z) {
             captionPhotoViewer.getClass();
         } else {

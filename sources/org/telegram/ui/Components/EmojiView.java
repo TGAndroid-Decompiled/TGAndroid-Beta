@@ -1602,7 +1602,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                         bulletinFactoryOf.createSimpleBulletin(R.raw.saved_messages, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiHint2)), LocaleController.getString(R.string.Open), new Runnable() {
                             @Override
                             public final void run() {
-                                EmojiView.m2302$r8$lambda$OydL_669jjb6qqjsS0tph8qdCM(this.f$0);
+                                EmojiView.m2312$r8$lambda$OydL_669jjb6qqjsS0tph8qdCM(this.f$0);
                             }
                         }).show();
                     }
@@ -1639,7 +1639,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         }
     }
 
-    public static void m2302$r8$lambda$OydL_669jjb6qqjsS0tph8qdCM(EmojiView emojiView) {
+    public static void m2312$r8$lambda$OydL_669jjb6qqjsS0tph8qdCM(EmojiView emojiView) {
         emojiView.getClass();
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", UserConfig.getInstance(emojiView.currentAccount).getClientUserId());
@@ -2332,7 +2332,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 this.gifGridView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public final boolean onTouch(View view3, MotionEvent motionEvent) {
-                        return EmojiView.m2300$r8$lambda$IbpgSkwTK3dvoZOPWogKGhCMQg(this.f$0, resourcesProvider, view3, motionEvent);
+                        return EmojiView.m2310$r8$lambda$IbpgSkwTK3dvoZOPWogKGhCMQg(this.f$0, resourcesProvider, view3, motionEvent);
                     }
                 });
                 RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
@@ -2837,7 +2837,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             this.searchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view4) {
-                    EmojiView.m2303$r8$lambda$Y6b8MrBke2pjKOLpuLn61JMNWg(this.f$0, view4);
+                    EmojiView.m2313$r8$lambda$Y6b8MrBke2pjKOLpuLn61JMNWg(this.f$0, view4);
                 }
             });
         } else {
@@ -3031,7 +3031,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         }
     }
 
-    public static boolean m2300$r8$lambda$IbpgSkwTK3dvoZOPWogKGhCMQg(EmojiView emojiView, Theme.ResourcesProvider resourcesProvider, View view, MotionEvent motionEvent) {
+    public static boolean m2310$r8$lambda$IbpgSkwTK3dvoZOPWogKGhCMQg(EmojiView emojiView, Theme.ResourcesProvider resourcesProvider, View view, MotionEvent motionEvent) {
         emojiView.getClass();
         return ContentPreviewViewer.getInstance().onTouch(motionEvent, emojiView.gifGridView, 0, emojiView.gifOnItemClickListener, emojiView.contentPreviewViewerDelegate, resourcesProvider);
     }
@@ -3136,7 +3136,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         final BaseFragment val$fragment;
         final boolean val$shouldDrawBackground;
 
-        public static void m2304$r8$lambda$zgL8FEgwNpCOrFHgecDnqVhLX0(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m2314$r8$lambda$zgL8FEgwNpCOrFHgecDnqVhLX0(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         AnonymousClass23(Context context, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment, boolean z) {
@@ -3229,7 +3229,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             ConnectionsManager.getInstance(EmojiView.this.currentAccount).sendRequest(tL_messages_reorderStickerSets, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    EmojiView.AnonymousClass23.m2304$r8$lambda$zgL8FEgwNpCOrFHgecDnqVhLX0(tLObject, tL_error);
+                    EmojiView.AnonymousClass23.m2314$r8$lambda$zgL8FEgwNpCOrFHgecDnqVhLX0(tLObject, tL_error);
                 }
             });
             NotificationCenter.getInstance(EmojiView.this.currentAccount).postNotificationName(NotificationCenter.stickersDidLoad, 0, Boolean.TRUE);
@@ -3322,7 +3322,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         }
     }
 
-    public static void m2303$r8$lambda$Y6b8MrBke2pjKOLpuLn61JMNWg(EmojiView emojiView, View view) {
+    public static void m2313$r8$lambda$Y6b8MrBke2pjKOLpuLn61JMNWg(EmojiView emojiView, View view) {
         SearchField searchField;
         int currentItem = emojiView.pager.getCurrentItem();
         if (currentItem == 0) {
@@ -4195,7 +4195,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             this.headerView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    EmojiView.EmojiPackHeader.m2307$r8$lambda$a9pUedPBmCeRvo3E4460Ghh_3s(this.f$0, view);
+                    EmojiView.EmojiPackHeader.m2317$r8$lambda$a9pUedPBmCeRvo3E4460Ghh_3s(this.f$0, view);
                 }
             });
             TextView textView = new TextView(context);
@@ -4216,7 +4216,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             this.buttonsView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    EmojiView.EmojiPackHeader.m2309$r8$lambda$lAfqkJpelgnVoZBdWg3AT3Ow0(this.f$0, view);
+                    EmojiView.EmojiPackHeader.m2319$r8$lambda$lAfqkJpelgnVoZBdWg3AT3Ow0(this.f$0, view);
                 }
             });
             addView(this.buttonsView, LayoutHelper.createFrameRelatively(-2.0f, -1.0f, 8388725));
@@ -4234,7 +4234,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             this.addButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    EmojiView.EmojiPackHeader.m2306$r8$lambda$T0QXOqA9aeQuAFPwKWYerdzYco(this.f$0, view);
+                    EmojiView.EmojiPackHeader.m2316$r8$lambda$T0QXOqA9aeQuAFPwKWYerdzYco(this.f$0, view);
                 }
             });
             this.buttonsView.addView(this.addButtonView, LayoutHelper.createFrameRelatively(-2.0f, 26.0f, 8388661));
@@ -4281,7 +4281,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             setWillNotDraw(false);
         }
 
-        public static void m2307$r8$lambda$a9pUedPBmCeRvo3E4460Ghh_3s(EmojiPackHeader emojiPackHeader, View view) {
+        public static void m2317$r8$lambda$a9pUedPBmCeRvo3E4460Ghh_3s(EmojiPackHeader emojiPackHeader, View view) {
             TLRPC.StickerSet stickerSet;
             EmojiPack emojiPack = emojiPackHeader.pack;
             if (emojiPack == null || (stickerSet = emojiPack.set) == null) {
@@ -4290,7 +4290,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             EmojiView.this.openEmojiPackAlert(stickerSet);
         }
 
-        public static void m2309$r8$lambda$lAfqkJpelgnVoZBdWg3AT3Ow0(EmojiPackHeader emojiPackHeader, View view) {
+        public static void m2319$r8$lambda$lAfqkJpelgnVoZBdWg3AT3Ow0(EmojiPackHeader emojiPackHeader, View view) {
             TextView textView = emojiPackHeader.addButtonView;
             if (textView != null && textView.getVisibility() == 0 && emojiPackHeader.addButtonView.isEnabled()) {
                 emojiPackHeader.addButtonView.performClick();
@@ -4307,7 +4307,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             }
         }
 
-        public static void m2306$r8$lambda$T0QXOqA9aeQuAFPwKWYerdzYco(EmojiPackHeader emojiPackHeader, View view) {
+        public static void m2316$r8$lambda$T0QXOqA9aeQuAFPwKWYerdzYco(EmojiPackHeader emojiPackHeader, View view) {
             TLRPC.StickerSet stickerSet;
             View childAt;
             Integer numValueOf;
@@ -7213,7 +7213,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             return "recent".equals(obj2) ? EmojiView.this.recentTabNum : EmojiView.this.favTabNum;
         }
 
-        public static void m2318$r8$lambda$Y0HXZa0PRumWsDixi7o4WqU1_c(final StickersGridAdapter stickersGridAdapter, StickerSetNameCell stickerSetNameCell, View view) {
+        public static void m2328$r8$lambda$Y0HXZa0PRumWsDixi7o4WqU1_c(final StickersGridAdapter stickersGridAdapter, StickerSetNameCell stickerSetNameCell, View view) {
             RecyclerView.ViewHolder childViewHolder;
             if (EmojiView.this.stickersGridView.indexOfChild(stickerSetNameCell) == -1 || (childViewHolder = EmojiView.this.stickersGridView.getChildViewHolder(stickerSetNameCell)) == null) {
                 return;
@@ -7289,7 +7289,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     stickerSetNameCell.setOnIconClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            EmojiView.StickersGridAdapter.m2318$r8$lambda$Y0HXZa0PRumWsDixi7o4WqU1_c(this.f$0, stickerSetNameCell, view);
+                            EmojiView.StickersGridAdapter.m2328$r8$lambda$Y0HXZa0PRumWsDixi7o4WqU1_c(this.f$0, stickerSetNameCell, view);
                         }
                     });
                     emptyCell = stickerSetNameCell;
@@ -7772,7 +7772,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             return itemViewType == 0 || itemViewType == 4 || itemViewType == 3 || itemViewType == 6;
         }
 
-        public static void m2305$r8$lambda$_8SkK1xx8U0I_jWlM6PpUrV6wE(EmojiGridAdapter emojiGridAdapter, View view) {
+        public static void m2315$r8$lambda$_8SkK1xx8U0I_jWlM6PpUrV6wE(EmojiGridAdapter emojiGridAdapter, View view) {
             if (EmojiView.this.featuredEmojiSets == null || EmojiView.this.featuredEmojiSets.isEmpty() || ((TLRPC.StickerSetCovered) EmojiView.this.featuredEmojiSets.get(0)).set == null) {
                 return;
             }
@@ -7830,7 +7830,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     stickerSetNameCell.setOnIconClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            EmojiView.EmojiGridAdapter.m2305$r8$lambda$_8SkK1xx8U0I_jWlM6PpUrV6wE(this.f$0, view2);
+                            EmojiView.EmojiGridAdapter.m2315$r8$lambda$_8SkK1xx8U0I_jWlM6PpUrV6wE(this.f$0, view2);
                         }
                     });
                     view = stickerSetNameCell;
@@ -8771,18 +8771,18 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                             final int iSendRequest = connectionsManager.sendRequest(tL_messages_getEmojiURL, new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                    EmojiView.EmojiSearchAdapter.AnonymousClass4.AnonymousClass1.m2312$r8$lambda$tc9ZhZ62F5yGe8xuvZbXmiv040(this.f$0, alertDialogArr, builder, tLObject, tL_error);
+                                    EmojiView.EmojiSearchAdapter.AnonymousClass4.AnonymousClass1.m2322$r8$lambda$tc9ZhZ62F5yGe8xuvZbXmiv040(this.f$0, alertDialogArr, builder, tLObject, tL_error);
                                 }
                             });
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    EmojiView.EmojiSearchAdapter.AnonymousClass4.AnonymousClass1.m2311$r8$lambda$62JGtaN9BzyLnqUw0WLGFF9vDI(this.f$0, alertDialogArr, iSendRequest);
+                                    EmojiView.EmojiSearchAdapter.AnonymousClass4.AnonymousClass1.m2321$r8$lambda$62JGtaN9BzyLnqUw0WLGFF9vDI(this.f$0, alertDialogArr, iSendRequest);
                                 }
                             }, 1000L);
                         }
 
-                        public static void m2312$r8$lambda$tc9ZhZ62F5yGe8xuvZbXmiv040(final AnonymousClass1 anonymousClass1, final AlertDialog[] alertDialogArr, final BottomSheet.Builder builder, final TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public static void m2322$r8$lambda$tc9ZhZ62F5yGe8xuvZbXmiv040(final AnonymousClass1 anonymousClass1, final AlertDialog[] alertDialogArr, final BottomSheet.Builder builder, final TLObject tLObject, TLRPC.TL_error tL_error) {
                             anonymousClass1.getClass();
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
@@ -8805,7 +8805,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                             }
                         }
 
-                        public static void m2311$r8$lambda$62JGtaN9BzyLnqUw0WLGFF9vDI(final AnonymousClass1 anonymousClass1, AlertDialog[] alertDialogArr, final int i) {
+                        public static void m2321$r8$lambda$62JGtaN9BzyLnqUw0WLGFF9vDI(final AnonymousClass1 anonymousClass1, AlertDialog[] alertDialogArr, final int i) {
                             anonymousClass1.getClass();
                             AlertDialog alertDialog = alertDialogArr[0];
                             if (alertDialog == null) {
@@ -9040,12 +9040,12 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 EmojiSearchAdapter.this.searchEmoji(new Runnable() {
                     @Override
                     public final void run() {
-                        EmojiView.EmojiSearchAdapter.AnonymousClass5.m2315$r8$lambda$SBXXhBG_N77sON3A0B2txPrhHY(this.f$0, arrayList);
+                        EmojiView.EmojiSearchAdapter.AnonymousClass5.m2325$r8$lambda$SBXXhBG_N77sON3A0B2txPrhHY(this.f$0, arrayList);
                     }
                 }, arrayList, true);
             }
 
-            public static void m2315$r8$lambda$SBXXhBG_N77sON3A0B2txPrhHY(AnonymousClass5 anonymousClass5, ArrayList arrayList) {
+            public static void m2325$r8$lambda$SBXXhBG_N77sON3A0B2txPrhHY(AnonymousClass5 anonymousClass5, ArrayList arrayList) {
                 EmojiView.this.emojiSearchField.showProgress(false);
                 EmojiSearchAdapter emojiSearchAdapter = EmojiSearchAdapter.this;
                 emojiSearchAdapter.isCompleted = emojiSearchAdapter.resultGlobal.size() >= arrayList.size();
@@ -9071,7 +9071,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 final Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        EmojiView.EmojiSearchAdapter.AnonymousClass5.m2313$r8$lambda$GePZ2xNfRSA6X8ULgB9m7XdOSo(this.f$0, str);
+                        EmojiView.EmojiSearchAdapter.AnonymousClass5.m2323$r8$lambda$GePZ2xNfRSA6X8ULgB9m7XdOSo(this.f$0, str);
                     }
                 };
                 if (Emoji.fullyConsistsOfEmojis(str)) {
@@ -9086,7 +9086,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 }
             }
 
-            public static void m2313$r8$lambda$GePZ2xNfRSA6X8ULgB9m7XdOSo(final AnonymousClass5 anonymousClass5, final String str) {
+            public static void m2323$r8$lambda$GePZ2xNfRSA6X8ULgB9m7XdOSo(final AnonymousClass5 anonymousClass5, final String str) {
                 anonymousClass5.getClass();
                 String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
                 if (!Arrays.equals(EmojiView.this.lastSearchKeyboardLanguage, currentKeyboardLanguage)) {
@@ -9121,7 +9121,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 }, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        EmojiView.EmojiSearchAdapter.AnonymousClass5.m2314$r8$lambda$JVhUsBtFD_kGlcgpr2k6fN9W0I(this.f$0, str, arrayList2, (Runnable) obj);
+                        EmojiView.EmojiSearchAdapter.AnonymousClass5.m2324$r8$lambda$JVhUsBtFD_kGlcgpr2k6fN9W0I(this.f$0, str, arrayList2, (Runnable) obj);
                     }
                 }, new Utilities.Callback() {
                     @Override
@@ -9168,7 +9168,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 }
             }
 
-            public static void m2314$r8$lambda$JVhUsBtFD_kGlcgpr2k6fN9W0I(AnonymousClass5 anonymousClass5, String str, ArrayList arrayList, Runnable runnable) {
+            public static void m2324$r8$lambda$JVhUsBtFD_kGlcgpr2k6fN9W0I(AnonymousClass5 anonymousClass5, String str, ArrayList arrayList, Runnable runnable) {
                 TLRPC.StickerSet stickerSet;
                 ArrayList<TLRPC.Document> arrayList2;
                 TLRPC.TL_messages_stickerSet stickerSet2;
@@ -9616,13 +9616,13 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        EmojiView.GifAdapter.m2316$r8$lambda$rgwyOU6xNGoheCpNRUd520uMo(this.f$0, tLObject);
+                        EmojiView.GifAdapter.m2326$r8$lambda$rgwyOU6xNGoheCpNRUd520uMo(this.f$0, tLObject);
                     }
                 });
             }
         }
 
-        public static void m2316$r8$lambda$rgwyOU6xNGoheCpNRUd520uMo(GifAdapter gifAdapter, TLObject tLObject) {
+        public static void m2326$r8$lambda$rgwyOU6xNGoheCpNRUd520uMo(GifAdapter gifAdapter, TLObject tLObject) {
             gifAdapter.getClass();
             TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
             MessagesController.getInstance(EmojiView.this.currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);
@@ -10224,7 +10224,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     MediaDataController.getInstance(EmojiView.this.currentAccount).getEmojiSuggestions(EmojiView.this.lastSearchKeyboardLanguage, StickersSearchGridAdapter.this.searchQuery, true, new MediaDataController.KeywordResultCallback() {
                         @Override
                         public final void run(ArrayList arrayList, String str) {
-                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.m2324$r8$lambda$mW_cJZLWccx2Ra1lJRuU_nxGGg(this.f$0, allStickers, runnable, arrayList, str);
+                            EmojiView.StickersSearchGridAdapter.AnonymousClass1.m2334$r8$lambda$mW_cJZLWccx2Ra1lJRuU_nxGGg(this.f$0, allStickers, runnable, arrayList, str);
                         }
                     }, false);
                     return;
@@ -10232,7 +10232,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 runnable.run();
             }
 
-            public static void m2324$r8$lambda$mW_cJZLWccx2Ra1lJRuU_nxGGg(AnonymousClass1 anonymousClass1, HashMap map, Runnable runnable, ArrayList arrayList, String str) {
+            public static void m2334$r8$lambda$mW_cJZLWccx2Ra1lJRuU_nxGGg(AnonymousClass1 anonymousClass1, HashMap map, Runnable runnable, ArrayList arrayList, String str) {
                 if (StickersSearchGridAdapter.this.emojiSearchId != anonymousClass1.lastId) {
                     return;
                 }
@@ -10358,12 +10358,12 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 MediaDataController.getInstance(EmojiView.this.currentAccount).searchStickerSets(false, this.query, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        EmojiView.StickersSearchGridAdapter.AnonymousClass1.m2322$r8$lambda$LBlli0tE7CqBdmdw4YYH2RTGs(this.f$0, runnable, (ArrayList) obj);
+                        EmojiView.StickersSearchGridAdapter.AnonymousClass1.m2332$r8$lambda$LBlli0tE7CqBdmdw4YYH2RTGs(this.f$0, runnable, (ArrayList) obj);
                     }
                 });
             }
 
-            public static void m2322$r8$lambda$LBlli0tE7CqBdmdw4YYH2RTGs(AnonymousClass1 anonymousClass1, Runnable runnable, ArrayList arrayList) {
+            public static void m2332$r8$lambda$LBlli0tE7CqBdmdw4YYH2RTGs(AnonymousClass1 anonymousClass1, Runnable runnable, ArrayList arrayList) {
                 ArrayList<TLRPC.Document> arrayList2;
                 anonymousClass1.getClass();
                 int size = arrayList.size();
@@ -10773,7 +10773,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             return obj instanceof TLRPC.StickerSetCovered ? 3 : 2;
         }
 
-        public static void m2319$r8$lambda$Ih6lFcQ31LBdASK9PNzXwSEY(StickersSearchGridAdapter stickersSearchGridAdapter, View view) {
+        public static void m2329$r8$lambda$Ih6lFcQ31LBdASK9PNzXwSEY(StickersSearchGridAdapter stickersSearchGridAdapter, View view) {
             stickersSearchGridAdapter.getClass();
             FeaturedStickerSetInfoCell featuredStickerSetInfoCell = (FeaturedStickerSetInfoCell) view.getParent();
             TLRPC.StickerSetCovered stickerSet = featuredStickerSetInfoCell.getStickerSet();
@@ -10816,7 +10816,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     featuredStickerSetInfoCell.setAddOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            EmojiView.StickersSearchGridAdapter.m2319$r8$lambda$Ih6lFcQ31LBdASK9PNzXwSEY(this.f$0, view);
+                            EmojiView.StickersSearchGridAdapter.m2329$r8$lambda$Ih6lFcQ31LBdASK9PNzXwSEY(this.f$0, view);
                         }
                     });
                     emptyCell = featuredStickerSetInfoCell;

@@ -162,10 +162,10 @@ public class NotificationsController extends BaseController implements Notificat
     private static final DispatchQueue notificationsQueue = new DispatchQueue("notificationsQueue");
     public static long globalSecretChatId = DialogObject.makeEncryptedDialogId(1);
 
-    public static void m936$r8$lambda$1t1axbSYGQIU_GMVkHnzrj3Llc(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m942$r8$lambda$1t1axbSYGQIU_GMVkHnzrj3Llc(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
-    public static void m940$r8$lambda$H_bZLJEQVx9OdWW6ZrpVB2xjp0(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m946$r8$lambda$H_bZLJEQVx9OdWW6ZrpVB2xjp0(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public static void $r8$lambda$TMEsjTkj9lYdR59uaNuAf1n8IoU(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -279,7 +279,7 @@ public class NotificationsController extends BaseController implements Notificat
         this.notificationDelayRunnable = new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m948$r8$lambda$YjlEA4UsSMCZjKLgnFG9tPD1uY(this.f$0);
+                NotificationsController.m954$r8$lambda$YjlEA4UsSMCZjKLgnFG9tPD1uY(this.f$0);
             }
         };
         this.dialogsNotificationsFacade = new NotificationsSettingsFacade(this.currentAccount);
@@ -292,7 +292,7 @@ public class NotificationsController extends BaseController implements Notificat
         });
     }
 
-    public static void m948$r8$lambda$YjlEA4UsSMCZjKLgnFG9tPD1uY(NotificationsController notificationsController) {
+    public static void m954$r8$lambda$YjlEA4UsSMCZjKLgnFG9tPD1uY(NotificationsController notificationsController) {
         notificationsController.getClass();
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("delay reached");
@@ -487,12 +487,12 @@ public class NotificationsController extends BaseController implements Notificat
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m944$r8$lambda$UkCGl5RrEJ0cfBQHKFazw8DYEY(this.f$0, j, j2);
+                NotificationsController.m950$r8$lambda$UkCGl5RrEJ0cfBQHKFazw8DYEY(this.f$0, j, j2);
             }
         });
     }
 
-    public static void m944$r8$lambda$UkCGl5RrEJ0cfBQHKFazw8DYEY(NotificationsController notificationsController, long j, long j2) {
+    public static void m950$r8$lambda$UkCGl5RrEJ0cfBQHKFazw8DYEY(NotificationsController notificationsController, long j, long j2) {
         notificationsController.openedDialogId = j;
         notificationsController.openedTopicId = j2;
     }
@@ -556,12 +556,12 @@ public class NotificationsController extends BaseController implements Notificat
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m937$r8$lambda$9je_l1dCrLbSBh5ZPR5sV7qzY8(this.f$0);
+                NotificationsController.m943$r8$lambda$9je_l1dCrLbSBh5ZPR5sV7qzY8(this.f$0);
             }
         });
     }
 
-    public static void m937$r8$lambda$9je_l1dCrLbSBh5ZPR5sV7qzY8(final NotificationsController notificationsController) {
+    public static void m943$r8$lambda$9je_l1dCrLbSBh5ZPR5sV7qzY8(final NotificationsController notificationsController) {
         notificationsController.getClass();
         final ArrayList arrayList = new ArrayList();
         for (int i = 0; i < notificationsController.pushMessages.size(); i++) {
@@ -578,12 +578,12 @@ public class NotificationsController extends BaseController implements Notificat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m951$r8$lambda$fWygwckxgAuKqh6UZhdBNL_fbg(this.f$0, arrayList);
+                NotificationsController.m957$r8$lambda$fWygwckxgAuKqh6UZhdBNL_fbg(this.f$0, arrayList);
             }
         });
     }
 
-    public static void m951$r8$lambda$fWygwckxgAuKqh6UZhdBNL_fbg(NotificationsController notificationsController, ArrayList arrayList) {
+    public static void m957$r8$lambda$fWygwckxgAuKqh6UZhdBNL_fbg(NotificationsController notificationsController, ArrayList arrayList) {
         notificationsController.popupReplyMessages = arrayList;
         Intent intent = new Intent(ApplicationLoader.applicationContext, (Class<?>) PopupNotificationActivity.class);
         intent.putExtra("force", true);
@@ -598,12 +598,12 @@ public class NotificationsController extends BaseController implements Notificat
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m946$r8$lambda$XLBG2o6oPQF1GomXw6vC__VvGI(this.f$0, longSparseArray, z, arrayList);
+                NotificationsController.m952$r8$lambda$XLBG2o6oPQF1GomXw6vC__VvGI(this.f$0, longSparseArray, z, arrayList);
             }
         });
     }
 
-    public static void m946$r8$lambda$XLBG2o6oPQF1GomXw6vC__VvGI(final NotificationsController notificationsController, LongSparseArray longSparseArray, boolean z, final ArrayList arrayList) {
+    public static void m952$r8$lambda$XLBG2o6oPQF1GomXw6vC__VvGI(final NotificationsController notificationsController, LongSparseArray longSparseArray, boolean z, final ArrayList arrayList) {
         Integer num;
         int i;
         Integer num2;
@@ -812,7 +812,7 @@ public class NotificationsController extends BaseController implements Notificat
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationsController.m949$r8$lambda$cQtLpzui0CzihBzXg0Zyu_2y1Y(this.f$0, arrayList);
+                    NotificationsController.m955$r8$lambda$cQtLpzui0CzihBzXg0Zyu_2y1Y(this.f$0, arrayList);
                 }
             });
         }
@@ -837,7 +837,7 @@ public class NotificationsController extends BaseController implements Notificat
         }
     }
 
-    public static void m949$r8$lambda$cQtLpzui0CzihBzXg0Zyu_2y1Y(NotificationsController notificationsController, ArrayList arrayList) {
+    public static void m955$r8$lambda$cQtLpzui0CzihBzXg0Zyu_2y1Y(NotificationsController notificationsController, ArrayList arrayList) {
         notificationsController.getClass();
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
@@ -859,12 +859,12 @@ public class NotificationsController extends BaseController implements Notificat
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m958$r8$lambda$wikeq51v71LMWj1H0CS3F1rH8(this.f$0, i);
+                NotificationsController.m964$r8$lambda$wikeq51v71LMWj1H0CS3F1rH8(this.f$0, i);
             }
         });
     }
 
-    public static void m958$r8$lambda$wikeq51v71LMWj1H0CS3F1rH8(NotificationsController notificationsController, int i) {
+    public static void m964$r8$lambda$wikeq51v71LMWj1H0CS3F1rH8(NotificationsController notificationsController, int i) {
         int i2 = 0;
         boolean z = false;
         while (i2 < notificationsController.pushMessages.size()) {
@@ -943,12 +943,12 @@ public class NotificationsController extends BaseController implements Notificat
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m952$r8$lambda$fjjypkd1tkGySJVbOi2WVp2hUo(this.f$0, j, i);
+                NotificationsController.m958$r8$lambda$fjjypkd1tkGySJVbOi2WVp2hUo(this.f$0, j, i);
             }
         });
     }
 
-    public static void m952$r8$lambda$fjjypkd1tkGySJVbOi2WVp2hUo(NotificationsController notificationsController, long j, int i) {
+    public static void m958$r8$lambda$fjjypkd1tkGySJVbOi2WVp2hUo(NotificationsController notificationsController, long j, int i) {
         boolean z;
         StoryNotification storyNotification = (StoryNotification) notificationsController.storyPushMessagesDict.get(j);
         if (storyNotification != null) {
@@ -986,12 +986,12 @@ public class NotificationsController extends BaseController implements Notificat
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m955$r8$lambda$sxZ2Lkjhs_92jVazC7vsmujxbc(this.f$0);
+                NotificationsController.m961$r8$lambda$sxZ2Lkjhs_92jVazC7vsmujxbc(this.f$0);
             }
         });
     }
 
-    public static void m955$r8$lambda$sxZ2Lkjhs_92jVazC7vsmujxbc(NotificationsController notificationsController) {
+    public static void m961$r8$lambda$sxZ2Lkjhs_92jVazC7vsmujxbc(NotificationsController notificationsController) {
         boolean zIsEmpty = notificationsController.storyPushMessages.isEmpty();
         notificationsController.storyPushMessages.clear();
         notificationsController.storyPushMessagesDict.clear();
@@ -1006,12 +1006,12 @@ public class NotificationsController extends BaseController implements Notificat
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m943$r8$lambda$Te7iXqov7nGXMKaqGRt6vHJQvo(this.f$0);
+                NotificationsController.m949$r8$lambda$Te7iXqov7nGXMKaqGRt6vHJQvo(this.f$0);
             }
         });
     }
 
-    public static void m943$r8$lambda$Te7iXqov7nGXMKaqGRt6vHJQvo(NotificationsController notificationsController) {
+    public static void m949$r8$lambda$Te7iXqov7nGXMKaqGRt6vHJQvo(NotificationsController notificationsController) {
         int i = 0;
         boolean z = false;
         while (i < notificationsController.pushMessages.size()) {
@@ -1203,12 +1203,12 @@ public class NotificationsController extends BaseController implements Notificat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m954$r8$lambda$okgPiAtDPWzWvHm3PnDTT_MEmc(this.f$0, arrayList);
+                NotificationsController.m960$r8$lambda$okgPiAtDPWzWvHm3PnDTT_MEmc(this.f$0, arrayList);
             }
         });
     }
 
-    public static void m954$r8$lambda$okgPiAtDPWzWvHm3PnDTT_MEmc(NotificationsController notificationsController, ArrayList arrayList) {
+    public static void m960$r8$lambda$okgPiAtDPWzWvHm3PnDTT_MEmc(NotificationsController notificationsController, ArrayList arrayList) {
         notificationsController.getClass();
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
@@ -2213,7 +2213,7 @@ public class NotificationsController extends BaseController implements Notificat
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            NotificationsController.m939$r8$lambda$BpOgJyPo1GDwY3RPWlPuboZ3ZA(this.f$0, size);
+                            NotificationsController.m945$r8$lambda$BpOgJyPo1GDwY3RPWlPuboZ3ZA(this.f$0, size);
                         }
                     });
                 }
@@ -2252,7 +2252,7 @@ public class NotificationsController extends BaseController implements Notificat
         }
     }
 
-    public static void m939$r8$lambda$BpOgJyPo1GDwY3RPWlPuboZ3ZA(NotificationsController notificationsController, int i) {
+    public static void m945$r8$lambda$BpOgJyPo1GDwY3RPWlPuboZ3ZA(NotificationsController notificationsController, int i) {
         notificationsController.getClass();
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.notificationsCountUpdated, Integer.valueOf(notificationsController.currentAccount));
         notificationsController.getNotificationCenter().postNotificationName(NotificationCenter.dialogsUnreadCounterChanged, Integer.valueOf(i));
@@ -2276,12 +2276,12 @@ public class NotificationsController extends BaseController implements Notificat
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m938$r8$lambda$ALMGl2KEmzFLTKmQWGOoXdAJO4(this.f$0, longSparseIntArray, arrayList);
+                NotificationsController.m944$r8$lambda$ALMGl2KEmzFLTKmQWGOoXdAJO4(this.f$0, longSparseIntArray, arrayList);
             }
         });
     }
 
-    public static void m938$r8$lambda$ALMGl2KEmzFLTKmQWGOoXdAJO4(final NotificationsController notificationsController, LongSparseIntArray longSparseIntArray, final ArrayList arrayList) {
+    public static void m944$r8$lambda$ALMGl2KEmzFLTKmQWGOoXdAJO4(final NotificationsController notificationsController, LongSparseIntArray longSparseIntArray, final ArrayList arrayList) {
         int iIntValue;
         boolean z;
         boolean zIsGlobalNotificationsEnabled;
@@ -2436,7 +2436,7 @@ public class NotificationsController extends BaseController implements Notificat
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationsController.m957$r8$lambda$wYml7LEGBP9OwuBBoiGkG0553g(this.f$0, arrayList);
+                    NotificationsController.m963$r8$lambda$wYml7LEGBP9OwuBBoiGkG0553g(this.f$0, arrayList);
                 }
             });
         }
@@ -2451,7 +2451,7 @@ public class NotificationsController extends BaseController implements Notificat
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationsController.m953$r8$lambda$kWgqnzNS4Zr6gXPTRz6HG3Lm0Y(this.f$0, size);
+                    NotificationsController.m959$r8$lambda$kWgqnzNS4Zr6gXPTRz6HG3Lm0Y(this.f$0, size);
                 }
             });
         }
@@ -2461,7 +2461,7 @@ public class NotificationsController extends BaseController implements Notificat
         }
     }
 
-    public static void m957$r8$lambda$wYml7LEGBP9OwuBBoiGkG0553g(NotificationsController notificationsController, ArrayList arrayList) {
+    public static void m963$r8$lambda$wYml7LEGBP9OwuBBoiGkG0553g(NotificationsController notificationsController, ArrayList arrayList) {
         notificationsController.getClass();
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
@@ -2470,7 +2470,7 @@ public class NotificationsController extends BaseController implements Notificat
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.pushMessagesUpdated, new Object[0]);
     }
 
-    public static void m953$r8$lambda$kWgqnzNS4Zr6gXPTRz6HG3Lm0Y(NotificationsController notificationsController, int i) {
+    public static void m959$r8$lambda$kWgqnzNS4Zr6gXPTRz6HG3Lm0Y(NotificationsController notificationsController, int i) {
         notificationsController.getClass();
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.notificationsCountUpdated, Integer.valueOf(notificationsController.currentAccount));
         notificationsController.getNotificationCenter().postNotificationName(NotificationCenter.dialogsUnreadCounterChanged, Integer.valueOf(i));
@@ -2719,7 +2719,7 @@ public class NotificationsController extends BaseController implements Notificat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.m942$r8$lambda$RyBK0NfdMZxyaUBSyeUzVqpw0(this.f$0, size);
+                NotificationsController.m948$r8$lambda$RyBK0NfdMZxyaUBSyeUzVqpw0(this.f$0, size);
             }
         });
         notificationsController2.showOrUpdateNotification(SystemClock.elapsedRealtime() / 1000 < 60);
@@ -2728,7 +2728,7 @@ public class NotificationsController extends BaseController implements Notificat
         }
     }
 
-    public static void m942$r8$lambda$RyBK0NfdMZxyaUBSyeUzVqpw0(NotificationsController notificationsController, int i) {
+    public static void m948$r8$lambda$RyBK0NfdMZxyaUBSyeUzVqpw0(NotificationsController notificationsController, int i) {
         if (notificationsController.total_unread_count == 0) {
             notificationsController.popupMessages.clear();
             NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.pushMessagesUpdated, new Object[0]);
@@ -8194,7 +8194,7 @@ public class NotificationsController extends BaseController implements Notificat
         getConnectionsManager().sendRequest(updatenotifysettings, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                NotificationsController.m936$r8$lambda$1t1axbSYGQIU_GMVkHnzrj3Llc(tLObject, tL_error);
+                NotificationsController.m942$r8$lambda$1t1axbSYGQIU_GMVkHnzrj3Llc(tLObject, tL_error);
             }
         });
     }
@@ -8225,7 +8225,7 @@ public class NotificationsController extends BaseController implements Notificat
             getConnectionsManager().sendRequest(setreactionsnotifysettings, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    NotificationsController.m940$r8$lambda$H_bZLJEQVx9OdWW6ZrpVB2xjp0(tLObject, tL_error);
+                    NotificationsController.m946$r8$lambda$H_bZLJEQVx9OdWW6ZrpVB2xjp0(tLObject, tL_error);
                 }
             });
             return;

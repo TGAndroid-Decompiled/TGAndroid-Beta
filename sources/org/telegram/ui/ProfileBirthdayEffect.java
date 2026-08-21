@@ -262,7 +262,7 @@ public class ProfileBirthdayEffect extends View {
             MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ProfileBirthdayEffect.BirthdayEffectFetcher.m3927$r8$lambda$BwgwOW4HpUfoY1zUP152wOsIE(this.f$0, str2, (TLRPC.TL_messages_stickerSet) obj);
+                    ProfileBirthdayEffect.BirthdayEffectFetcher.m3936$r8$lambda$BwgwOW4HpUfoY1zUP152wOsIE(this.f$0, str2, (TLRPC.TL_messages_stickerSet) obj);
                 }
             });
         }
@@ -312,7 +312,7 @@ public class ProfileBirthdayEffect extends View {
             birthdayEffectFetcher.checkWhenLoaded();
         }
 
-        public static void m3927$r8$lambda$BwgwOW4HpUfoY1zUP152wOsIE(final BirthdayEffectFetcher birthdayEffectFetcher, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        public static void m3936$r8$lambda$BwgwOW4HpUfoY1zUP152wOsIE(final BirthdayEffectFetcher birthdayEffectFetcher, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
             birthdayEffectFetcher.getClass();
             TLRPC.Document documentFindSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, str);
             if (documentFindSticker == null) {
@@ -327,7 +327,7 @@ public class ProfileBirthdayEffect extends View {
             birthdayEffectFetcher.interactionAsset.setEmoji(documentFindSticker, filterWidth + "_" + filterWidth + "_precache", tL_messages_stickerSet, new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileBirthdayEffect.BirthdayEffectFetcher.m3928$r8$lambda$zCQ1IMrKpXBx3e5jMsHdKFJ1HA(this.f$0);
+                    ProfileBirthdayEffect.BirthdayEffectFetcher.m3937$r8$lambda$zCQ1IMrKpXBx3e5jMsHdKFJ1HA(this.f$0);
                 }
             });
             birthdayEffectFetcher.interactionAsset.onAttachedToWindow();
@@ -335,7 +335,7 @@ public class ProfileBirthdayEffect extends View {
             birthdayEffectFetcher.checkWhenLoaded();
         }
 
-        public static void m3928$r8$lambda$zCQ1IMrKpXBx3e5jMsHdKFJ1HA(BirthdayEffectFetcher birthdayEffectFetcher) {
+        public static void m3937$r8$lambda$zCQ1IMrKpXBx3e5jMsHdKFJ1HA(BirthdayEffectFetcher birthdayEffectFetcher) {
             birthdayEffectFetcher.loadedAssets.add(birthdayEffectFetcher.interactionAsset);
             birthdayEffectFetcher.checkWhenLoaded();
         }
@@ -427,7 +427,7 @@ public class ProfileBirthdayEffect extends View {
                     lottieAnimation.whenCacheDone = new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileBirthdayEffect.ImageReceiverAsset.AnonymousClass1.m3929$r8$lambda$KpChqogLAmWFbTAkMrzQEJILDc(runnableArr);
+                            ProfileBirthdayEffect.ImageReceiverAsset.AnonymousClass1.m3938$r8$lambda$KpChqogLAmWFbTAkMrzQEJILDc(runnableArr);
                         }
                     };
                 } else {
@@ -436,7 +436,7 @@ public class ProfileBirthdayEffect extends View {
                 }
             }
 
-            public static void m3929$r8$lambda$KpChqogLAmWFbTAkMrzQEJILDc(Runnable[] runnableArr) {
+            public static void m3938$r8$lambda$KpChqogLAmWFbTAkMrzQEJILDc(Runnable[] runnableArr) {
                 runnableArr[0].run();
                 runnableArr[0] = null;
             }

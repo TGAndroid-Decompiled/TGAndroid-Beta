@@ -385,7 +385,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 cameraSessionWrapper3.destroy(false, null, new Runnable() {
                     @Override
                     public final void run() {
-                        CameraView.m1107$r8$lambda$DkTE0gZdelySS_J29tF4LIj4(this.f$0);
+                        CameraView.m1113$r8$lambda$DkTE0gZdelySS_J29tF4LIj4(this.f$0);
                     }
                 });
                 this.cameraSession[1] = null;
@@ -402,7 +402,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         this.toggledDualAsSave = false;
     }
 
-    public static void m1107$r8$lambda$DkTE0gZdelySS_J29tF4LIj4(CameraView cameraView) {
+    public static void m1113$r8$lambda$DkTE0gZdelySS_J29tF4LIj4(CameraView cameraView) {
         cameraView.closingDualCamera = false;
         cameraView.dualCameraAppeared = false;
         cameraView.addToDualWait(400L);
@@ -754,14 +754,14 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.cameraSession[0].destroy(false, null, new Runnable() {
                 @Override
                 public final void run() {
-                    CameraView.m1109$r8$lambda$cgs0U3hwc6byRKgHnI7SdFI8qc(this.f$0);
+                    CameraView.m1115$r8$lambda$cgs0U3hwc6byRKgHnI7SdFI8qc(this.f$0);
                 }
             });
             this.cameraSession[0] = null;
         }
     }
 
-    public static void m1109$r8$lambda$cgs0U3hwc6byRKgHnI7SdFI8qc(CameraView cameraView) {
+    public static void m1115$r8$lambda$cgs0U3hwc6byRKgHnI7SdFI8qc(CameraView cameraView) {
         cameraView.inited = false;
         synchronized (cameraView.layoutLock) {
             cameraView.firstFrameRendered = false;
@@ -971,7 +971,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    CameraView.m1108$r8$lambda$Qlczs1AK18LV5k7MwUWFH1Ug4(this.f$0, valueAnimator2);
+                    CameraView.m1114$r8$lambda$Qlczs1AK18LV5k7MwUWFH1Ug4(this.f$0, valueAnimator2);
                 }
             });
             this.textureViewAnimator.addListener(new AnimatorListenerAdapter() {
@@ -987,7 +987,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         this.textureView.setAlpha(z ? 1.0f : 0.0f);
     }
 
-    public static void m1108$r8$lambda$Qlczs1AK18LV5k7MwUWFH1Ug4(CameraView cameraView, ValueAnimator valueAnimator) {
+    public static void m1114$r8$lambda$Qlczs1AK18LV5k7MwUWFH1Ug4(CameraView cameraView, ValueAnimator valueAnimator) {
         cameraView.getClass();
         cameraView.textureView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
@@ -3479,7 +3479,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         this.fileWriteQueue.postRunnable(new Runnable() {
                             @Override
                             public final void run() {
-                                CameraView.VideoRecorder.m1113$r8$lambda$afDhP0tE7Brvxij8uOuQh6p6Fc(this.f$0, byteBufferCloneByteBuffer2, bufferInfo6);
+                                CameraView.VideoRecorder.m1119$r8$lambda$afDhP0tE7Brvxij8uOuQh6p6Fc(this.f$0, byteBufferCloneByteBuffer2, bufferInfo6);
                             }
                         });
                     }
@@ -3500,7 +3500,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         }
 
-        public static void m1113$r8$lambda$afDhP0tE7Brvxij8uOuQh6p6Fc(VideoRecorder videoRecorder, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
+        public static void m1119$r8$lambda$afDhP0tE7Brvxij8uOuQh6p6Fc(VideoRecorder videoRecorder, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
             videoRecorder.getClass();
             try {
                 videoRecorder.mediaMuxer.writeSampleData(videoRecorder.audioTrackIndex, byteBuffer, bufferInfo, false);

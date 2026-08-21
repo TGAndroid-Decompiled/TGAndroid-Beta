@@ -346,7 +346,7 @@ public class ProxySettingsActivity extends BaseFragment {
             this.inputFields[i2].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
-                    return ProxySettingsActivity.m3937$r8$lambda$3SCZ7ikAEgGrn7_6xdn4CfavdM(this.f$0, textView, i5, keyEvent);
+                    return ProxySettingsActivity.m3946$r8$lambda$3SCZ7ikAEgGrn7_6xdn4CfavdM(this.f$0, textView, i5, keyEvent);
                 }
             });
             i2++;
@@ -417,7 +417,7 @@ public class ProxySettingsActivity extends BaseFragment {
         proxySettingsActivity.setProxyType(((Integer) view.getTag()).intValue(), true);
     }
 
-    public static boolean m3937$r8$lambda$3SCZ7ikAEgGrn7_6xdn4CfavdM(ProxySettingsActivity proxySettingsActivity, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m3946$r8$lambda$3SCZ7ikAEgGrn7_6xdn4CfavdM(ProxySettingsActivity proxySettingsActivity, TextView textView, int i, KeyEvent keyEvent) {
         proxySettingsActivity.getClass();
         if (i != 5) {
             if (i != 6) {
@@ -462,7 +462,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 proxySettingsActivity.setProxyType(proxySettingsActivity.pasteType, true, new Runnable() {
                     @Override
                     public final void run() {
-                        ProxySettingsActivity.m3938$r8$lambda$7p4kX1uEqO_sRSYuQU66Q6iRbc(this.f$0);
+                        ProxySettingsActivity.m3947$r8$lambda$7p4kX1uEqO_sRSYuQU66Q6iRbc(this.f$0);
                     }
                 });
                 return;
@@ -470,7 +470,7 @@ public class ProxySettingsActivity extends BaseFragment {
         }
     }
 
-    public static void m3938$r8$lambda$7p4kX1uEqO_sRSYuQU66Q6iRbc(ProxySettingsActivity proxySettingsActivity) {
+    public static void m3947$r8$lambda$7p4kX1uEqO_sRSYuQU66Q6iRbc(ProxySettingsActivity proxySettingsActivity) {
         AndroidUtilities.hideKeyboard(proxySettingsActivity.inputFieldsContainer.findFocus());
         for (int i = 0; i < proxySettingsActivity.pasteFields.length; i++) {
             int i2 = proxySettingsActivity.pasteType;

@@ -209,13 +209,13 @@ public class NotificationBadge {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        NotificationBadge.NewHtcHomeBadger.m931$r8$lambda$LNOrzcbHoddZHaXpWj71zfhB0w(intent, intent2);
+                        NotificationBadge.NewHtcHomeBadger.m937$r8$lambda$LNOrzcbHoddZHaXpWj71zfhB0w(intent, intent2);
                     }
                 });
             }
         }
 
-        public static void m931$r8$lambda$LNOrzcbHoddZHaXpWj71zfhB0w(Intent intent, Intent intent2) {
+        public static void m937$r8$lambda$LNOrzcbHoddZHaXpWj71zfhB0w(Intent intent, Intent intent2) {
             ApplicationLoader.applicationContext.sendBroadcast(intent);
             ApplicationLoader.applicationContext.sendBroadcast(intent2);
         }

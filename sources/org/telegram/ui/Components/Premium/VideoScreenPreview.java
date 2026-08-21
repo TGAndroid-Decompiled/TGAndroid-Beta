@@ -281,12 +281,12 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoScreenPreview.m2597$r8$lambda$uhPOCGoEW4sKRGT2owdMDblTA(this.f$0, pathToAttach);
+                VideoScreenPreview.m2607$r8$lambda$uhPOCGoEW4sKRGT2owdMDblTA(this.f$0, pathToAttach);
             }
         });
     }
 
-    public static void m2597$r8$lambda$uhPOCGoEW4sKRGT2owdMDblTA(VideoScreenPreview videoScreenPreview, File file) {
+    public static void m2607$r8$lambda$uhPOCGoEW4sKRGT2owdMDblTA(VideoScreenPreview videoScreenPreview, File file) {
         videoScreenPreview.file = file;
         videoScreenPreview.checkVideo();
     }

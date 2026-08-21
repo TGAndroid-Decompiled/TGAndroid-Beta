@@ -99,7 +99,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     private final BidderCell[] topBidderCells;
     private final BoolAnimator winningColor;
 
-    public static void m3181$r8$lambda$G2Xuq_D6dRrzaq7lKN44Yo7tEw(View view, int i) {
+    public static void m3190$r8$lambda$G2Xuq_D6dRrzaq7lKN44Yo7tEw(View view, int i) {
     }
 
     public static void $r8$lambda$kEbIuDGYjHhgjjOWj68BRjfmH0Q(View view) {
@@ -323,7 +323,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i9) {
-                AuctionBidSheet.m3181$r8$lambda$G2Xuq_D6dRrzaq7lKN44Yo7tEw(view, i9);
+                AuctionBidSheet.m3190$r8$lambda$G2Xuq_D6dRrzaq7lKN44Yo7tEw(view, i9);
             }
         });
         long j2 = auctionSubscribeToGiftAuction.auctionUserState.bid_amount;
@@ -365,12 +365,12 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         GiftAuctionController.getInstance(auctionBidSheet.currentAccount).getOrRequestAcquiredGifts(auctionBidSheet.giftId, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                AuctionBidSheet.m3183$r8$lambda$h2wHd9jQuvxe9b4cz_YE0FszUs(this.f$0, zArr, resourcesProvider, (List) obj);
+                AuctionBidSheet.m3192$r8$lambda$h2wHd9jQuvxe9b4cz_YE0FszUs(this.f$0, zArr, resourcesProvider, (List) obj);
             }
         });
     }
 
-    public static void m3183$r8$lambda$h2wHd9jQuvxe9b4cz_YE0FszUs(AuctionBidSheet auctionBidSheet, boolean[] zArr, Theme.ResourcesProvider resourcesProvider, List list) {
+    public static void m3192$r8$lambda$h2wHd9jQuvxe9b4cz_YE0FszUs(AuctionBidSheet auctionBidSheet, boolean[] zArr, Theme.ResourcesProvider resourcesProvider, List list) {
         auctionBidSheet.getClass();
         zArr[0] = false;
         new AcquiredGiftsSheet(auctionBidSheet.getContext(), resourcesProvider, auctionBidSheet.auction, list).show();
@@ -823,12 +823,12 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         GiftAuctionController.getInstance(this.currentAccount).sendBid(this.giftId, this.params, i, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AuctionBidSheet.m3184$r8$lambda$wwPZ2vn5WSlX0CHaaELu6_6lQc(this.f$0, j, (Boolean) obj, (String) obj2);
+                AuctionBidSheet.m3193$r8$lambda$wwPZ2vn5WSlX0CHaaELu6_6lQc(this.f$0, j, (Boolean) obj, (String) obj2);
             }
         });
     }
 
-    public static void m3184$r8$lambda$wwPZ2vn5WSlX0CHaaELu6_6lQc(AuctionBidSheet auctionBidSheet, long j, Boolean bool, String str) {
+    public static void m3193$r8$lambda$wwPZ2vn5WSlX0CHaaELu6_6lQc(AuctionBidSheet auctionBidSheet, long j, Boolean bool, String str) {
         auctionBidSheet.buttonView.setLoading(false);
         auctionBidSheet.bidIsPending = false;
         if (bool != null) {

@@ -13,7 +13,7 @@ public class PostRunnableHolder {
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                PostRunnableHolder.m2565$r8$lambda$lDJ5QuXANnbRC3hW4n6peU24c(this.f$0, runnable);
+                PostRunnableHolder.m2575$r8$lambda$lDJ5QuXANnbRC3hW4n6peU24c(this.f$0, runnable);
             }
         };
         this.wrappedRunnable.put(runnable, runnable2);
@@ -24,7 +24,7 @@ public class PostRunnableHolder {
         }
     }
 
-    public static void m2565$r8$lambda$lDJ5QuXANnbRC3hW4n6peU24c(PostRunnableHolder postRunnableHolder, Runnable runnable) {
+    public static void m2575$r8$lambda$lDJ5QuXANnbRC3hW4n6peU24c(PostRunnableHolder postRunnableHolder, Runnable runnable) {
         postRunnableHolder.getClass();
         runnable.run();
         postRunnableHolder.wrappedRunnable.remove(runnable);

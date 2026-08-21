@@ -44,7 +44,7 @@ public class StealthModeAlert extends BottomSheet {
         void onButtonClicked(boolean z);
     }
 
-    public static void m4386$r8$lambda$8RCZlFLwVhO4hPcjt6fZFCu1jw() {
+    public static void m4397$r8$lambda$8RCZlFLwVhO4hPcjt6fZFCu1jw() {
     }
 
     public StealthModeAlert(Context context, final float f, final int i, final Theme.ResourcesProvider resourcesProvider) {
@@ -52,7 +52,7 @@ public class StealthModeAlert extends BottomSheet {
         this.updateButtonRunnuble = new Runnable() {
             @Override
             public final void run() {
-                StealthModeAlert.m4385$r8$lambda$5J2ZA_uyc3MprowZnuPODGSG0(this.f$0);
+                StealthModeAlert.m4396$r8$lambda$5J2ZA_uyc3MprowZnuPODGSG0(this.f$0);
             }
         };
         this.type = i;
@@ -218,7 +218,7 @@ public class StealthModeAlert extends BottomSheet {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            StealthModeAlert.m4386$r8$lambda$8RCZlFLwVhO4hPcjt6fZFCu1jw();
+                            StealthModeAlert.m4397$r8$lambda$8RCZlFLwVhO4hPcjt6fZFCu1jw();
                         }
                     });
                 }
@@ -270,7 +270,7 @@ public class StealthModeAlert extends BottomSheet {
         }
     }
 
-    public static void m4385$r8$lambda$5J2ZA_uyc3MprowZnuPODGSG0(StealthModeAlert stealthModeAlert) {
+    public static void m4396$r8$lambda$5J2ZA_uyc3MprowZnuPODGSG0(StealthModeAlert stealthModeAlert) {
         if (stealthModeAlert.isShowing()) {
             stealthModeAlert.updateButton(true);
         }

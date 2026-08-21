@@ -359,7 +359,7 @@ public class FilterChatlistActivity extends BaseFragment {
         getConnectionsManager().sendRequest(tL_chatlists_editExportedInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                FilterChatlistActivity.m3134$r8$lambda$6L_RjtrvtRG3gGSkmHVwP02JVk(this.f$0, tLObject, tL_error);
+                FilterChatlistActivity.m3143$r8$lambda$6L_RjtrvtRG3gGSkmHVwP02JVk(this.f$0, tLObject, tL_error);
             }
         });
         Utilities.Callback callback = this.onEdit;
@@ -368,7 +368,7 @@ public class FilterChatlistActivity extends BaseFragment {
         }
     }
 
-    public static void m3134$r8$lambda$6L_RjtrvtRG3gGSkmHVwP02JVk(final FilterChatlistActivity filterChatlistActivity, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3143$r8$lambda$6L_RjtrvtRG3gGSkmHVwP02JVk(final FilterChatlistActivity filterChatlistActivity, TLObject tLObject, final TLRPC.TL_error tL_error) {
         filterChatlistActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -411,7 +411,7 @@ public class FilterChatlistActivity extends BaseFragment {
         this.savingTitleReqId = getConnectionsManager().sendRequest(tL_chatlists_editExportedInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                FilterChatlistActivity.m3136$r8$lambda$bK5aeV_4U3rITbbD23Q1Qeaqw(this.f$0, tLObject, tL_error);
+                FilterChatlistActivity.m3145$r8$lambda$bK5aeV_4U3rITbbD23Q1Qeaqw(this.f$0, tLObject, tL_error);
             }
         });
         Utilities.Callback callback = this.onEdit;
@@ -420,7 +420,7 @@ public class FilterChatlistActivity extends BaseFragment {
         }
     }
 
-    public static void m3136$r8$lambda$bK5aeV_4U3rITbbD23Q1Qeaqw(final FilterChatlistActivity filterChatlistActivity, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3145$r8$lambda$bK5aeV_4U3rITbbD23Q1Qeaqw(final FilterChatlistActivity filterChatlistActivity, TLObject tLObject, final TLRPC.TL_error tL_error) {
         filterChatlistActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -583,12 +583,12 @@ public class FilterChatlistActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        FilterChatlistActivity.ListAdapter.AnonymousClass1.m3140$r8$lambda$4PVJndXz_3GnGiobTpgS2vhaxU(this.f$0, alertDialog);
+                        FilterChatlistActivity.ListAdapter.AnonymousClass1.m3149$r8$lambda$4PVJndXz_3GnGiobTpgS2vhaxU(this.f$0, alertDialog);
                     }
                 });
             }
 
-            public static void m3140$r8$lambda$4PVJndXz_3GnGiobTpgS2vhaxU(AnonymousClass1 anonymousClass1, AlertDialog alertDialog) {
+            public static void m3149$r8$lambda$4PVJndXz_3GnGiobTpgS2vhaxU(AnonymousClass1 anonymousClass1, AlertDialog alertDialog) {
                 anonymousClass1.getClass();
                 alertDialog.dismiss();
                 if (FilterChatlistActivity.this.onDelete != null) {
@@ -636,7 +636,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                        return FilterChatlistActivity.ListAdapter.AnonymousClass1.m3141$r8$lambda$7YDJLZtC9zlvS_dgDCiC9wZWSw(builder, textView, i2, keyEvent);
+                        return FilterChatlistActivity.ListAdapter.AnonymousClass1.m3150$r8$lambda$7YDJLZtC9zlvS_dgDCiC9wZWSw(builder, textView, i2, keyEvent);
                     }
                 });
                 editTextBoldCursor.addTextChangedListener(new TextWatcher() {
@@ -697,7 +697,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 editTextBoldCursor.requestFocus();
             }
 
-            public static boolean m3141$r8$lambda$7YDJLZtC9zlvS_dgDCiC9wZWSw(AlertDialog.Builder builder, TextView textView, int i, KeyEvent keyEvent) {
+            public static boolean m3150$r8$lambda$7YDJLZtC9zlvS_dgDCiC9wZWSw(AlertDialog.Builder builder, TextView textView, int i, KeyEvent keyEvent) {
                 AndroidUtilities.hideKeyboard(textView);
                 builder.create().getButton(-1).callOnClick();
                 return false;
@@ -1160,7 +1160,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.optionsIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.m3137$r8$lambda$0DbWmZ2XbUZWrbgXfVbgUijwdQ(this.f$0, view);
+                    FilterChatlistActivity.InviteLinkCell.m3146$r8$lambda$0DbWmZ2XbUZWrbgXfVbgUijwdQ(this.f$0, view);
                 }
             });
             this.linkBox.addView(this.optionsIcon, LayoutHelper.createFrame(40, 40.0f, 21, 4.0f, 4.0f, 4.0f, 4.0f));
@@ -1242,7 +1242,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.buttonsBox.addView(this.generateButton, LayoutHelper.createFrame(-1, -1.0f));
         }
 
-        public static void m3137$r8$lambda$0DbWmZ2XbUZWrbgXfVbgUijwdQ(final InviteLinkCell inviteLinkCell, View view) {
+        public static void m3146$r8$lambda$0DbWmZ2XbUZWrbgXfVbgUijwdQ(final InviteLinkCell inviteLinkCell, View view) {
             if (inviteLinkCell.linkBox.getBackground() instanceof RippleDrawable) {
                 inviteLinkCell.linkBox.getBackground().setState(new int[]{16842919, 16842910});
                 inviteLinkCell.postDelayed(new Runnable() {
@@ -1363,7 +1363,7 @@ public class FilterChatlistActivity extends BaseFragment {
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FilterChatlistActivity.InviteLinkCell.m3139$r8$lambda$yF6vznT8WWZZQHXr7aG_pztKiI(this.f$0, view);
+                    FilterChatlistActivity.InviteLinkCell.m3148$r8$lambda$yF6vznT8WWZZQHXr7aG_pztKiI(this.f$0, view);
                 }
             });
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getContext(), false, true);
@@ -1458,7 +1458,7 @@ public class FilterChatlistActivity extends BaseFragment {
             inviteLinkCell.editname();
         }
 
-        public static void m3139$r8$lambda$yF6vznT8WWZZQHXr7aG_pztKiI(InviteLinkCell inviteLinkCell, View view) {
+        public static void m3148$r8$lambda$yF6vznT8WWZZQHXr7aG_pztKiI(InviteLinkCell inviteLinkCell, View view) {
             ActionBarPopupWindow actionBarPopupWindow = inviteLinkCell.actionBarPopupWindow;
             if (actionBarPopupWindow != null) {
                 actionBarPopupWindow.dismiss();

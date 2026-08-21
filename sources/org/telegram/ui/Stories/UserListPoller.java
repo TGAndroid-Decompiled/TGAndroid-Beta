@@ -57,12 +57,12 @@ public class UserListPoller {
             ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequestTyped(tL_stories_getPeerMaxIDs, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    UserListPoller.AnonymousClass1.m4452$r8$lambda$TSLJOqgHbjqw1Eo52kACYthvjA(this.f$0, arrayList, (Vector) obj, (TLRPC.TL_error) obj2);
+                    UserListPoller.AnonymousClass1.m4463$r8$lambda$TSLJOqgHbjqw1Eo52kACYthvjA(this.f$0, arrayList, (Vector) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
 
-        public static void m4452$r8$lambda$TSLJOqgHbjqw1Eo52kACYthvjA(AnonymousClass1 anonymousClass1, ArrayList arrayList, Vector vector, TLRPC.TL_error tL_error) {
+        public static void m4463$r8$lambda$TSLJOqgHbjqw1Eo52kACYthvjA(AnonymousClass1 anonymousClass1, ArrayList arrayList, Vector vector, TLRPC.TL_error tL_error) {
             anonymousClass1.getClass();
             if (vector != null) {
                 ArrayList arrayList2 = new ArrayList();

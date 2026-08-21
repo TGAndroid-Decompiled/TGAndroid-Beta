@@ -1398,12 +1398,12 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                InstantCameraView.m2373$r8$lambda$2SQ5YgcmhKZvaAMJOTewmspzCs(this.f$0, i, surfaceTexture);
+                InstantCameraView.m2383$r8$lambda$2SQ5YgcmhKZvaAMJOTewmspzCs(this.f$0, i, surfaceTexture);
             }
         });
     }
 
-    public static void m2373$r8$lambda$2SQ5YgcmhKZvaAMJOTewmspzCs(final InstantCameraView instantCameraView, int i, SurfaceTexture surfaceTexture) {
+    public static void m2383$r8$lambda$2SQ5YgcmhKZvaAMJOTewmspzCs(final InstantCameraView instantCameraView, int i, SurfaceTexture surfaceTexture) {
         if (instantCameraView.cameraThread == null) {
             return;
         }
@@ -1421,7 +1421,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             CameraController.getInstance().openRound(instantCameraView.cameraSession, surfaceTexture, new Runnable() {
                 @Override
                 public final void run() {
-                    InstantCameraView.m2374$r8$lambda$OeAFjb6Fa1P3EmSAKQMMg8TNeo(this.f$0);
+                    InstantCameraView.m2384$r8$lambda$OeAFjb6Fa1P3EmSAKQMMg8TNeo(this.f$0);
                 }
             }, new Runnable() {
                 @Override
@@ -1446,7 +1446,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         instantCameraView.camera2SessionCurrent.open(surfaceTexture);
     }
 
-    public static void m2374$r8$lambda$OeAFjb6Fa1P3EmSAKQMMg8TNeo(InstantCameraView instantCameraView) {
+    public static void m2384$r8$lambda$OeAFjb6Fa1P3EmSAKQMMg8TNeo(InstantCameraView instantCameraView) {
         CameraGLThread cameraGLThread;
         if (instantCameraView.cameraSession != null) {
             instantCameraView.updateFlash();
@@ -1749,7 +1749,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                             this.cameraSurface[i].setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
                                 @Override
                                 public final void onFrameAvailable(SurfaceTexture surfaceTexture2) {
-                                    InstantCameraView.CameraGLThread.m2375$r8$lambda$qcoCSU53TlHuax00Yf2ZD5lGt8(this.f$0, i, surfaceTexture2);
+                                    InstantCameraView.CameraGLThread.m2385$r8$lambda$qcoCSU53TlHuax00Yf2ZD5lGt8(this.f$0, i, surfaceTexture2);
                                 }
                             });
                             InstantCameraView.this.createCamera(i, this.cameraSurface[i]);
@@ -1775,7 +1775,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             return false;
         }
 
-        public static void m2375$r8$lambda$qcoCSU53TlHuax00Yf2ZD5lGt8(CameraGLThread cameraGLThread, int i, SurfaceTexture surfaceTexture) {
+        public static void m2385$r8$lambda$qcoCSU53TlHuax00Yf2ZD5lGt8(CameraGLThread cameraGLThread, int i, SurfaceTexture surfaceTexture) {
             InstantCameraView.this.cameraTextureAvailable = true;
             cameraGLThread.requestRender(i == 0, i == 1);
         }
@@ -1939,14 +1939,14 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            InstantCameraView.CameraGLThread.m2376$r8$lambda$voqW9208L1zjjNNi0q4KqWiDQg(this.f$0);
+                            InstantCameraView.CameraGLThread.m2386$r8$lambda$voqW9208L1zjjNNi0q4KqWiDQg(this.f$0);
                         }
                     });
                 }
             }
         }
 
-        public static void m2376$r8$lambda$voqW9208L1zjjNNi0q4KqWiDQg(CameraGLThread cameraGLThread) {
+        public static void m2386$r8$lambda$voqW9208L1zjjNNi0q4KqWiDQg(CameraGLThread cameraGLThread) {
             if (InstantCameraView.this.textureView == null) {
                 return;
             }
@@ -2812,7 +2812,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     this.fileWriteQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            InstantCameraView.VideoRecorder.m2378$r8$lambda$6iLVWvA00gNO2SeVqJkO_Jk3ak(this.f$0, countDownLatch);
+                            InstantCameraView.VideoRecorder.m2388$r8$lambda$6iLVWvA00gNO2SeVqJkO_Jk3ak(this.f$0, countDownLatch);
                         }
                     });
                     try {
@@ -2830,7 +2830,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             });
         }
 
-        public static void m2378$r8$lambda$6iLVWvA00gNO2SeVqJkO_Jk3ak(VideoRecorder videoRecorder, CountDownLatch countDownLatch) {
+        public static void m2388$r8$lambda$6iLVWvA00gNO2SeVqJkO_Jk3ak(VideoRecorder videoRecorder, CountDownLatch countDownLatch) {
             videoRecorder.getClass();
             try {
                 videoRecorder.mediaMuxer.finishMovie(InstantCameraView.this.previewFile);
@@ -2958,7 +2958,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            InstantCameraView.VideoRecorder.m2381$r8$lambda$R0rO08UakWF_Sm4lRrbvr4ip1M(this.f$0, sendOptions);
+                            InstantCameraView.VideoRecorder.m2391$r8$lambda$R0rO08UakWF_Sm4lRrbvr4ip1M(this.f$0, sendOptions);
                         }
                     });
                 }
@@ -3111,7 +3111,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             });
         }
 
-        public static void m2381$r8$lambda$R0rO08UakWF_Sm4lRrbvr4ip1M(VideoRecorder videoRecorder, SendOptions sendOptions) {
+        public static void m2391$r8$lambda$R0rO08UakWF_Sm4lRrbvr4ip1M(VideoRecorder videoRecorder, SendOptions sendOptions) {
             InstantCameraView.this.videoEditedInfo = new VideoEditedInfo();
             InstantCameraView.this.videoEditedInfo.startTime = -1L;
             InstantCameraView.this.videoEditedInfo.endTime = -1L;
@@ -3195,7 +3195,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     AlertsCreator.createScheduleDatePickerDialog(InstantCameraView.this.delegate.getParentActivity(), InstantCameraView.this.delegate.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
                         public final void didSelectDate(boolean z, int i2, int i3) {
-                            InstantCameraView.VideoRecorder.m2384$r8$lambda$_35LB_r3LJOZFcxvVss_kGbFlA(this.f$0, sendOptions, videoEditedInfo3, z, i2, i3);
+                            InstantCameraView.VideoRecorder.m2394$r8$lambda$_35LB_r3LJOZFcxvVss_kGbFlA(this.f$0, sendOptions, videoEditedInfo3, z, i2, i3);
                         }
                     }, new Runnable() {
                         @Override
@@ -3219,7 +3219,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             NotificationCenter.getInstance(InstantCameraView.this.currentAccount).postNotificationName(NotificationCenter.audioDidSent, Integer.valueOf(InstantCameraView.this.recordingGuid), videoEditedInfo3, videoRecorder.videoFile.getAbsolutePath(), videoRecorder.keyframeThumbs);
         }
 
-        public static void m2384$r8$lambda$_35LB_r3LJOZFcxvVss_kGbFlA(VideoRecorder videoRecorder, SendOptions sendOptions, VideoEditedInfo videoEditedInfo, boolean z, int i, int i2) {
+        public static void m2394$r8$lambda$_35LB_r3LJOZFcxvVss_kGbFlA(VideoRecorder videoRecorder, SendOptions sendOptions, VideoEditedInfo videoEditedInfo, boolean z, int i, int i2) {
             int i3;
             int i4;
             MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, videoRecorder.videoFile.getAbsolutePath(), 0, true, 0, 0, 0L);
@@ -3391,7 +3391,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InstantCameraView.VideoRecorder.m2379$r8$lambda$BHa5ryb2zIPA0DUEkh96P8VFiM(this.f$0, z);
+                        InstantCameraView.VideoRecorder.m2389$r8$lambda$BHa5ryb2zIPA0DUEkh96P8VFiM(this.f$0, z);
                     }
                 });
                 if (this.eglDisplay != EGL14.EGL_NO_DISPLAY) {
@@ -3469,7 +3469,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             }
         }
 
-        public static void m2379$r8$lambda$BHa5ryb2zIPA0DUEkh96P8VFiM(VideoRecorder videoRecorder, boolean z) {
+        public static void m2389$r8$lambda$BHa5ryb2zIPA0DUEkh96P8VFiM(VideoRecorder videoRecorder, boolean z) {
             if (InstantCameraView.this.cancelled) {
                 return;
             }
@@ -3555,7 +3555,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                                             this.fileWriteQueue.postRunnable(new Runnable() {
                                                 @Override
                                                 public final void run() {
-                                                    InstantCameraView.VideoRecorder.m2383$r8$lambda$ZCnSHQyFRoHXLtnY0_vUKj2UuE(this.f$0, byteBufferCloneByteBuffer, bufferInfo3);
+                                                    InstantCameraView.VideoRecorder.m2393$r8$lambda$ZCnSHQyFRoHXLtnY0_vUKj2UuE(this.f$0, byteBufferCloneByteBuffer, bufferInfo3);
                                                 }
                                             });
                                         } else {
@@ -3661,7 +3661,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                             this.fileWriteQueue.postRunnable(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    InstantCameraView.VideoRecorder.m2380$r8$lambda$O3RmmscIQ3vkWWoZAsHaxPzCJc(this.f$0, byteBufferCloneByteBuffer2, bufferInfo6);
+                                    InstantCameraView.VideoRecorder.m2390$r8$lambda$O3RmmscIQ3vkWWoZAsHaxPzCJc(this.f$0, byteBufferCloneByteBuffer2, bufferInfo6);
                                 }
                             });
                             MediaCodec mediaCodec = this.audioEncoder;
@@ -3691,7 +3691,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             }
         }
 
-        public static void m2383$r8$lambda$ZCnSHQyFRoHXLtnY0_vUKj2UuE(VideoRecorder videoRecorder, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
+        public static void m2393$r8$lambda$ZCnSHQyFRoHXLtnY0_vUKj2UuE(VideoRecorder videoRecorder, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
             long jWriteSampleData;
             videoRecorder.getClass();
             try {
@@ -3706,7 +3706,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             videoRecorder.didWriteData(videoRecorder.videoFile, jWriteSampleData, false);
         }
 
-        public static void m2380$r8$lambda$O3RmmscIQ3vkWWoZAsHaxPzCJc(VideoRecorder videoRecorder, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
+        public static void m2390$r8$lambda$O3RmmscIQ3vkWWoZAsHaxPzCJc(VideoRecorder videoRecorder, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
             long jWriteSampleData;
             videoRecorder.getClass();
             try {

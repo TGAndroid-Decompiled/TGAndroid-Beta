@@ -267,7 +267,7 @@ public abstract class SetupEmojiStatusSheet {
         alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                SetupEmojiStatusSheet.m4855$r8$lambda$xBcQe_QLK_Xp3dKHzBejZphvM(zArr2, zArr, context, i, user, callback2, dialogInterface);
+                SetupEmojiStatusSheet.m4866$r8$lambda$xBcQe_QLK_Xp3dKHzBejZphvM(zArr2, zArr, context, i, user, callback2, dialogInterface);
             }
         });
     }
@@ -309,14 +309,14 @@ public abstract class SetupEmojiStatusSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        SetupEmojiStatusSheet.m4853$r8$lambda$HIic6tNxbal5Rj9WJRo00n2yQ(tLObject, zArr, callback2, userFull);
+                        SetupEmojiStatusSheet.m4864$r8$lambda$HIic6tNxbal5Rj9WJRo00n2yQ(tLObject, zArr, callback2, userFull);
                     }
                 });
             }
         });
     }
 
-    public static void m4853$r8$lambda$HIic6tNxbal5Rj9WJRo00n2yQ(TLObject tLObject, boolean[] zArr, Utilities.Callback2 callback2, TLRPC.UserFull userFull) {
+    public static void m4864$r8$lambda$HIic6tNxbal5Rj9WJRo00n2yQ(TLObject tLObject, boolean[] zArr, Utilities.Callback2 callback2, TLRPC.UserFull userFull) {
         if (!(tLObject instanceof TLRPC.TL_boolTrue)) {
             if (zArr[0]) {
                 return;
@@ -333,7 +333,7 @@ public abstract class SetupEmojiStatusSheet {
         callback2.run(Boolean.TRUE, "allowed");
     }
 
-    public static void m4855$r8$lambda$xBcQe_QLK_Xp3dKHzBejZphvM(boolean[] zArr, boolean[] zArr2, Context context, int i, TLRPC.User user, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
+    public static void m4866$r8$lambda$xBcQe_QLK_Xp3dKHzBejZphvM(boolean[] zArr, boolean[] zArr2, Context context, int i, TLRPC.User user, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
         if (zArr[0] || zArr2[0]) {
             return;
         }
@@ -430,12 +430,12 @@ public abstract class SetupEmojiStatusSheet {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SetupEmojiStatusSheet.UserEmojiStatusDrawable.m4856$r8$lambda$yOBkabJzM8U06bV60Bju_lf0wk(this.f$0);
+                    SetupEmojiStatusSheet.UserEmojiStatusDrawable.m4867$r8$lambda$yOBkabJzM8U06bV60Bju_lf0wk(this.f$0);
                 }
             }, 2500L);
         }
 
-        public static void m4856$r8$lambda$yOBkabJzM8U06bV60Bju_lf0wk(UserEmojiStatusDrawable userEmojiStatusDrawable) {
+        public static void m4867$r8$lambda$yOBkabJzM8U06bV60Bju_lf0wk(UserEmojiStatusDrawable userEmojiStatusDrawable) {
             if (userEmojiStatusDrawable.attached) {
                 userEmojiStatusDrawable.setRandomStatus();
             }

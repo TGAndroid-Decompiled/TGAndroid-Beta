@@ -302,7 +302,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ActionBarMenuItem.m1232$r8$lambda$rQHuzatoH0YsD9X2ETRW8vTJP8(this.f$0);
+                        ActionBarMenuItem.m1238$r8$lambda$rQHuzatoH0YsD9X2ETRW8vTJP8(this.f$0);
                     }
                 };
                 this.showMenuRunnable = runnable;
@@ -381,7 +381,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return super.onTouchEvent(motionEvent);
     }
 
-    public static void m1232$r8$lambda$rQHuzatoH0YsD9X2ETRW8vTJP8(ActionBarMenuItem actionBarMenuItem) {
+    public static void m1238$r8$lambda$rQHuzatoH0YsD9X2ETRW8vTJP8(ActionBarMenuItem actionBarMenuItem) {
         if (actionBarMenuItem.getParent() != null) {
             actionBarMenuItem.getParent().requestDisallowInterceptTouchEvent(true);
         }
@@ -448,7 +448,7 @@ public class ActionBarMenuItem extends FrameLayout {
         this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                ActionBarMenuItem.m1230$r8$lambda$4PD5qbrCvKOiszB6q1HIFW8IE0(this.f$0, keyEvent);
+                ActionBarMenuItem.m1236$r8$lambda$4PD5qbrCvKOiszB6q1HIFW8IE0(this.f$0, keyEvent);
             }
         });
     }
@@ -467,7 +467,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return false;
     }
 
-    public static void m1230$r8$lambda$4PD5qbrCvKOiszB6q1HIFW8IE0(ActionBarMenuItem actionBarMenuItem, KeyEvent keyEvent) {
+    public static void m1236$r8$lambda$4PD5qbrCvKOiszB6q1HIFW8IE0(ActionBarMenuItem actionBarMenuItem, KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         actionBarMenuItem.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = actionBarMenuItem.popupWindow) != null && actionBarPopupWindow.isShowing()) {
@@ -562,13 +562,13 @@ public class ActionBarMenuItem extends FrameLayout {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ActionBarMenuItem.m1233$r8$lambda$rtsddqioakLlrdTlqwzv3ecpYQ(this.f$0, view);
+                ActionBarMenuItem.m1239$r8$lambda$rtsddqioakLlrdTlqwzv3ecpYQ(this.f$0, view);
             }
         });
         return textView;
     }
 
-    public static void m1233$r8$lambda$rtsddqioakLlrdTlqwzv3ecpYQ(ActionBarMenuItem actionBarMenuItem, View view) {
+    public static void m1239$r8$lambda$rtsddqioakLlrdTlqwzv3ecpYQ(ActionBarMenuItem actionBarMenuItem, View view) {
         ActionBarPopupWindow actionBarPopupWindow = actionBarMenuItem.popupWindow;
         if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
             if (actionBarMenuItem.processedPopupClick) {
@@ -665,13 +665,13 @@ public class ActionBarMenuItem extends FrameLayout {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ActionBarMenuItem.m1231$r8$lambda$p7RTfMelczeuAiCu149pzZRrYE(this.f$0, view2);
+                ActionBarMenuItem.m1237$r8$lambda$p7RTfMelczeuAiCu149pzZRrYE(this.f$0, view2);
             }
         });
         return view;
     }
 
-    public static void m1231$r8$lambda$p7RTfMelczeuAiCu149pzZRrYE(ActionBarMenuItem actionBarMenuItem, View view) {
+    public static void m1237$r8$lambda$p7RTfMelczeuAiCu149pzZRrYE(ActionBarMenuItem actionBarMenuItem, View view) {
         ActionBarMenu actionBarMenu = actionBarMenuItem.parentMenu;
         if (actionBarMenu != null) {
             actionBarMenu.onItemClick(((Integer) view.getTag()).intValue());
@@ -1842,7 +1842,7 @@ public class ActionBarMenuItem extends FrameLayout {
                         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ActionBarMenuItem.m1229$r8$lambda$NJhDDla4DURI7dqdzbvOVVRHs(this.f$0, valueAnimator);
+                                ActionBarMenuItem.m1235$r8$lambda$NJhDDla4DURI7dqdzbvOVVRHs(this.f$0, valueAnimator);
                             }
                         });
                         duration.playTogether(ObjectAnimator.ofFloat(this.clearButton, (Property<ImageView, Float>) property4, 0.0f), ObjectAnimator.ofFloat(this.clearButton, (Property<ImageView, Float>) property3, 0.0f), ObjectAnimator.ofFloat(this.clearButton, (Property<ImageView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.clearButton, (Property<ImageView, Float>) property, 45.0f), valueAnimatorOfFloat);
@@ -1908,7 +1908,7 @@ public class ActionBarMenuItem extends FrameLayout {
         }
     }
 
-    public static void m1229$r8$lambda$NJhDDla4DURI7dqdzbvOVVRHs(ActionBarMenuItem actionBarMenuItem, ValueAnimator valueAnimator) {
+    public static void m1235$r8$lambda$NJhDDla4DURI7dqdzbvOVVRHs(ActionBarMenuItem actionBarMenuItem, ValueAnimator valueAnimator) {
         actionBarMenuItem.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         View view = actionBarMenuItem.searchAdditionalButton;
@@ -2619,7 +2619,7 @@ public class ActionBarMenuItem extends FrameLayout {
                     actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            ActionBarMenuItem.Item.m1234$r8$lambda$2OS0skZYNrS0nzx6kdhp_KhGLU(this.f$0, actionBarMenuItem, view);
+                            ActionBarMenuItem.Item.m1240$r8$lambda$2OS0skZYNrS0nzx6kdhp_KhGLU(this.f$0, actionBarMenuItem, view);
                         }
                     });
                     Integer num = this.textColor;
@@ -2650,7 +2650,7 @@ public class ActionBarMenuItem extends FrameLayout {
                     actionBarMenuSubItem2.openSwipeBackLayout = new Runnable() {
                         @Override
                         public final void run() {
-                            ActionBarMenuItem.Item.m1235$r8$lambda$XCtaINqCCgAfz9UMfY_1BLwZN8(actionBarMenuItem, iAddViewToSwipeBack);
+                            ActionBarMenuItem.Item.m1241$r8$lambda$XCtaINqCCgAfz9UMfY_1BLwZN8(actionBarMenuItem, iAddViewToSwipeBack);
                         }
                     };
                     actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
@@ -2690,7 +2690,7 @@ public class ActionBarMenuItem extends FrameLayout {
             return this.view;
         }
 
-        public static void m1234$r8$lambda$2OS0skZYNrS0nzx6kdhp_KhGLU(Item item, ActionBarMenuItem actionBarMenuItem, View view) {
+        public static void m1240$r8$lambda$2OS0skZYNrS0nzx6kdhp_KhGLU(Item item, ActionBarMenuItem actionBarMenuItem, View view) {
             item.getClass();
             if (actionBarMenuItem.popupWindow != null && actionBarMenuItem.popupWindow.isShowing() && item.dismiss) {
                 if (actionBarMenuItem.processedPopupClick) {
@@ -2706,7 +2706,7 @@ public class ActionBarMenuItem extends FrameLayout {
             }
         }
 
-        public static void m1235$r8$lambda$XCtaINqCCgAfz9UMfY_1BLwZN8(ActionBarMenuItem actionBarMenuItem, int i) {
+        public static void m1241$r8$lambda$XCtaINqCCgAfz9UMfY_1BLwZN8(ActionBarMenuItem actionBarMenuItem, int i) {
             if (actionBarMenuItem.popupLayout.getSwipeBack() != null) {
                 actionBarMenuItem.popupLayout.getSwipeBack().openForeground(i);
             }

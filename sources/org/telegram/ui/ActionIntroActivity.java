@@ -518,7 +518,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ActionIntroActivity.m1276$r8$lambda$YoXUHFDOYw97s_yFcToiLUcjTk(this.f$0, view);
+                ActionIntroActivity.m1282$r8$lambda$YoXUHFDOYw97s_yFcToiLUcjTk(this.f$0, view);
             }
         });
         int i10 = this.currentType;
@@ -593,7 +593,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         return this.fragmentView;
     }
 
-    public static void m1276$r8$lambda$YoXUHFDOYw97s_yFcToiLUcjTk(final ActionIntroActivity actionIntroActivity, View view) {
+    public static void m1282$r8$lambda$YoXUHFDOYw97s_yFcToiLUcjTk(final ActionIntroActivity actionIntroActivity, View view) {
         if (actionIntroActivity.getParentActivity() == null) {
             return;
         }

@@ -98,7 +98,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-                return PremiumPreviewGiftLinkBottomSheet.m2641$r8$lambda$UgaBuxxFI61SFp4i0M18dgpa9U(this.f$0, str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
+                return PremiumPreviewGiftLinkBottomSheet.m2650$r8$lambda$UgaBuxxFI61SFp4i0M18dgpa9U(this.f$0, str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
             }
 
             @Override
@@ -110,7 +110,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         dismiss();
     }
 
-    public static boolean m2641$r8$lambda$UgaBuxxFI61SFp4i0M18dgpa9U(PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public static boolean m2650$r8$lambda$UgaBuxxFI61SFp4i0M18dgpa9U(PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         premiumPreviewGiftLinkBottomSheet.getClass();
         long j = 0;
         int i3 = 0;
@@ -208,7 +208,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         BoostRepository.applyGiftCode(premiumPreviewGiftLinkBottomSheet.slug, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PremiumPreviewGiftLinkBottomSheet.m2639$r8$lambda$0lHm0LXGIfmCZ2Bq_tiwdKDl0M(this.f$0, (Void) obj);
+                PremiumPreviewGiftLinkBottomSheet.m2648$r8$lambda$0lHm0LXGIfmCZ2Bq_tiwdKDl0M(this.f$0, (Void) obj);
             }
         }, new Utilities.Callback() {
             @Override
@@ -218,7 +218,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         });
     }
 
-    public static void m2639$r8$lambda$0lHm0LXGIfmCZ2Bq_tiwdKDl0M(final PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, Void r3) {
+    public static void m2648$r8$lambda$0lHm0LXGIfmCZ2Bq_tiwdKDl0M(final PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, Void r3) {
         premiumPreviewGiftLinkBottomSheet.actionBtn.updateLoading(false);
         premiumPreviewGiftLinkBottomSheet.dismiss();
         AndroidUtilities.runOnUIThread(new Runnable() {

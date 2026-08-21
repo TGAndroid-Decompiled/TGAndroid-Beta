@@ -80,12 +80,12 @@ public class NotificationsSettingsFacade {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsSettingsFacade.m959$r8$lambda$Dyc1qFf1nfrov3gU38IqpW2W9I(this.f$0, j, j2, peerNotifySettings);
+                NotificationsSettingsFacade.m965$r8$lambda$Dyc1qFf1nfrov3gU38IqpW2W9I(this.f$0, j, j2, peerNotifySettings);
             }
         });
     }
 
-    public static void m959$r8$lambda$Dyc1qFf1nfrov3gU38IqpW2W9I(final NotificationsSettingsFacade notificationsSettingsFacade, long j, long j2, TLRPC.PeerNotifySettings peerNotifySettings) {
+    public static void m965$r8$lambda$Dyc1qFf1nfrov3gU38IqpW2W9I(final NotificationsSettingsFacade notificationsSettingsFacade, long j, long j2, TLRPC.PeerNotifySettings peerNotifySettings) {
         boolean z;
         int i;
         int i2;

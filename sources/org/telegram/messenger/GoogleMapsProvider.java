@@ -141,12 +141,12 @@ public class GoogleMapsProvider implements IMapsProvider {
             this.googleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
                 @Override
                 public final void onCameraMoveStarted(int i) {
-                    GoogleMapsProvider.GoogleMapImpl.m480$r8$lambda$r9kkoqpW97OxjoEF5_g6CEGB9s(onCameraMoveStartedListener, i);
+                    GoogleMapsProvider.GoogleMapImpl.m486$r8$lambda$r9kkoqpW97OxjoEF5_g6CEGB9s(onCameraMoveStartedListener, i);
                 }
             });
         }
 
-        public static void m480$r8$lambda$r9kkoqpW97OxjoEF5_g6CEGB9s(IMapsProvider.OnCameraMoveStartedListener onCameraMoveStartedListener, int i) {
+        public static void m486$r8$lambda$r9kkoqpW97OxjoEF5_g6CEGB9s(IMapsProvider.OnCameraMoveStartedListener onCameraMoveStartedListener, int i) {
             int i2 = 2;
             if (i != 2) {
                 i2 = 3;
@@ -236,12 +236,12 @@ public class GoogleMapsProvider implements IMapsProvider {
             this.googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public final boolean onMarkerClick(Marker marker) {
-                    return GoogleMapsProvider.GoogleMapImpl.m479$r8$lambda$Dqer7Rwgy7g1OY28igqup4aAZ4(this.f$0, onMarkerClickListener, marker);
+                    return GoogleMapsProvider.GoogleMapImpl.m485$r8$lambda$Dqer7Rwgy7g1OY28igqup4aAZ4(this.f$0, onMarkerClickListener, marker);
                 }
             });
         }
 
-        public static boolean m479$r8$lambda$Dqer7Rwgy7g1OY28igqup4aAZ4(GoogleMapImpl googleMapImpl, IMapsProvider.OnMarkerClickListener onMarkerClickListener, Marker marker) {
+        public static boolean m485$r8$lambda$Dqer7Rwgy7g1OY28igqup4aAZ4(GoogleMapImpl googleMapImpl, IMapsProvider.OnMarkerClickListener onMarkerClickListener, Marker marker) {
             GoogleMarker googleMarker = googleMapImpl.implToAbsMarkerMap.get(marker);
             if (googleMarker == null) {
                 googleMarker = new GoogleMarker(marker);
@@ -639,12 +639,12 @@ public class GoogleMapsProvider implements IMapsProvider {
             this.mapView.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public final void onMapReady(GoogleMap googleMap) {
-                    GoogleMapsProvider.GoogleMapView.m481$r8$lambda$fUp_KBihKS9VTxCZNiQuwh8QKg(this.f$0, consumer, googleMap);
+                    GoogleMapsProvider.GoogleMapView.m487$r8$lambda$fUp_KBihKS9VTxCZNiQuwh8QKg(this.f$0, consumer, googleMap);
                 }
             });
         }
 
-        public static void m481$r8$lambda$fUp_KBihKS9VTxCZNiQuwh8QKg(GoogleMapView googleMapView, Consumer consumer, GoogleMap googleMap) {
+        public static void m487$r8$lambda$fUp_KBihKS9VTxCZNiQuwh8QKg(GoogleMapView googleMapView, Consumer consumer, GoogleMap googleMap) {
             googleMapView.getClass();
             consumer.accept(new GoogleMapImpl(googleMap));
             googleMapView.findGlSurfaceView(googleMapView.mapView);

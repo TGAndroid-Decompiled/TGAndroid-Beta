@@ -1275,7 +1275,7 @@ public class EditTextBoldCursor extends EditTextEffects {
             this.floatingToolbarPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
                 @Override
                 public final boolean onPreDraw() {
-                    return EditTextBoldCursor.m2264$r8$lambda$ORqNHs4RTfN0BrsU5GDNmUYeTI(this.f$0);
+                    return EditTextBoldCursor.m2274$r8$lambda$ORqNHs4RTfN0BrsU5GDNmUYeTI(this.f$0);
                 }
             };
             FloatingActionMode floatingActionMode2 = this.floatingActionMode;
@@ -1290,7 +1290,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         return super.startActionMode(callback);
     }
 
-    public static boolean m2264$r8$lambda$ORqNHs4RTfN0BrsU5GDNmUYeTI(EditTextBoldCursor editTextBoldCursor) {
+    public static boolean m2274$r8$lambda$ORqNHs4RTfN0BrsU5GDNmUYeTI(EditTextBoldCursor editTextBoldCursor) {
         FloatingActionMode floatingActionMode = editTextBoldCursor.floatingActionMode;
         if (floatingActionMode == null) {
             return true;

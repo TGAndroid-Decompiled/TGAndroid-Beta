@@ -39,7 +39,7 @@ public class DialogsEmptyCell extends LinearLayout {
     private ValueAnimator utyanAnimator;
     private float utyanCollapseProgress;
 
-    public static boolean m1485$r8$lambda$ugpKNg6fsNS82BgCbqgLNnBV0(View view, MotionEvent motionEvent) {
+    public static boolean m1491$r8$lambda$ugpKNg6fsNS82BgCbqgLNnBV0(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -52,7 +52,7 @@ public class DialogsEmptyCell extends LinearLayout {
         setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return DialogsEmptyCell.m1485$r8$lambda$ugpKNg6fsNS82BgCbqgLNnBV0(view, motionEvent);
+                return DialogsEmptyCell.m1491$r8$lambda$ugpKNg6fsNS82BgCbqgLNnBV0(view, motionEvent);
             }
         });
         RLottieImageView rLottieImageView = new RLottieImageView(context);

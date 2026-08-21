@@ -459,7 +459,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         this.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                FragmentContextView.m2357$r8$lambda$uXHkT7drq_FgQRHtHgLXfVWodk(this.f$0, view2);
+                FragmentContextView.m2367$r8$lambda$uXHkT7drq_FgQRHtHgLXfVWodk(this.f$0, view2);
             }
         });
         RLottieImageView rLottieImageView = new RLottieImageView(context);
@@ -659,7 +659,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         setLeftMargin(this.leftMargin);
     }
 
-    public static void m2357$r8$lambda$uXHkT7drq_FgQRHtHgLXfVWodk(FragmentContextView fragmentContextView, View view) {
+    public static void m2367$r8$lambda$uXHkT7drq_FgQRHtHgLXfVWodk(FragmentContextView fragmentContextView, View view) {
         if (fragmentContextView.currentStyle == 0) {
             if (MediaController.getInstance().isMessagePaused()) {
                 MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
@@ -680,7 +680,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             this.toggleMicRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    FragmentContextView.AnonymousClass7.m2359$r8$lambda$Gjq1APK11OXDbXnso6_L12kjHg(this.f$0);
+                    FragmentContextView.AnonymousClass7.m2369$r8$lambda$Gjq1APK11OXDbXnso6_L12kjHg(this.f$0);
                 }
             };
             this.pressRunnable = new Runnable() {
@@ -691,7 +691,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             };
         }
 
-        public static void m2359$r8$lambda$Gjq1APK11OXDbXnso6_L12kjHg(AnonymousClass7 anonymousClass7) {
+        public static void m2369$r8$lambda$Gjq1APK11OXDbXnso6_L12kjHg(AnonymousClass7 anonymousClass7) {
             anonymousClass7.getClass();
             if (VoIPService.getSharedInstance() == null) {
                 return;
@@ -1058,7 +1058,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         this.playbackSpeedButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view) {
-                return FragmentContextView.m2352$r8$lambda$GS0tr0tmb4cN_ALo4sGgaGTls(this.f$0, view);
+                return FragmentContextView.m2362$r8$lambda$GS0tr0tmb4cN_ALo4sGgaGTls(this.f$0, view);
             }
         });
         updatePlaybackButton(false);
@@ -1107,7 +1107,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         fragmentContextView.checkSpeedHint();
     }
 
-    public static boolean m2352$r8$lambda$GS0tr0tmb4cN_ALo4sGgaGTls(final FragmentContextView fragmentContextView, View view) {
+    public static boolean m2362$r8$lambda$GS0tr0tmb4cN_ALo4sGgaGTls(final FragmentContextView fragmentContextView, View view) {
         fragmentContextView.getClass();
         final float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(fragmentContextView.isMusic);
         fragmentContextView.speedSlider.setSpeed(playbackSpeed, false);
@@ -1123,14 +1123,14 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         fragmentContextView.playbackSpeedButton.setOnMenuDismiss(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                FragmentContextView.m2356$r8$lambda$gt7TwfN6pXp3ZEPrVzO7fBRBII(this.f$0, playbackSpeed, (Boolean) obj);
+                FragmentContextView.m2366$r8$lambda$gt7TwfN6pXp3ZEPrVzO7fBRBII(this.f$0, playbackSpeed, (Boolean) obj);
             }
         });
         MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
         return true;
     }
 
-    public static void m2356$r8$lambda$gt7TwfN6pXp3ZEPrVzO7fBRBII(FragmentContextView fragmentContextView, float f, Boolean bool) {
+    public static void m2366$r8$lambda$gt7TwfN6pXp3ZEPrVzO7fBRBII(FragmentContextView fragmentContextView, float f, Boolean bool) {
         fragmentContextView.getClass();
         if (bool.booleanValue()) {
             return;

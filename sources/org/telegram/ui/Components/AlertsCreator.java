@@ -200,14 +200,14 @@ public abstract class AlertsCreator {
         return true;
     }
 
-    public static boolean m1949$r8$lambda$JUaPqHmSQm6PEospDnLDYcZ9Y(View view, MotionEvent motionEvent) {
+    public static boolean m1955$r8$lambda$JUaPqHmSQm6PEospDnLDYcZ9Y(View view, MotionEvent motionEvent) {
         return true;
     }
 
     public static void $r8$lambda$JiwJr3bR3ySTvE4ZdMp08xfUBy0() {
     }
 
-    public static boolean m1950$r8$lambda$K7vo9YwhxUSJbTe2hKmpWuB6k(View view, MotionEvent motionEvent) {
+    public static boolean m1956$r8$lambda$K7vo9YwhxUSJbTe2hKmpWuB6k(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -219,20 +219,20 @@ public abstract class AlertsCreator {
         return true;
     }
 
-    public static void m1958$r8$lambda$OLVI5eDnZ8w8SUCLcFYmVk2GHE(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1964$r8$lambda$OLVI5eDnZ8w8SUCLcFYmVk2GHE(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public static void $r8$lambda$RfLFCYJmkf8JaY8ibbNSRDlPIBw(NumberPicker numberPicker, int i, int i2) {
     }
 
-    public static boolean m1966$r8$lambda$TmYfcFcaRGTgdgpdW4v5JmRx8A(View view, MotionEvent motionEvent) {
+    public static boolean m1972$r8$lambda$TmYfcFcaRGTgdgpdW4v5JmRx8A(View view, MotionEvent motionEvent) {
         return true;
     }
 
     public static void $r8$lambda$_r3RcvTconMV7D20v6ZBT5fPT8k(AlertDialog alertDialog, int i) {
     }
 
-    public static boolean m1972$r8$lambda$ctKtqQvkBzLZn5oZ6H_VO9PI(View view, MotionEvent motionEvent) {
+    public static boolean m1978$r8$lambda$ctKtqQvkBzLZn5oZ6H_VO9PI(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -267,12 +267,12 @@ public abstract class AlertsCreator {
         return new AlertDialog.Builder(context).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoLocationFriends))).setTopAnimation(R.raw.permission_request_location, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.m2000$r8$lambda$z9OV7Sej2fK9BMVVPq5XSk9LM(context, alertDialog, i);
+                AlertsCreator.m2006$r8$lambda$z9OV7Sej2fK9BMVVPq5XSk9LM(context, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create();
     }
 
-    public static void m2000$r8$lambda$z9OV7Sej2fK9BMVVPq5XSk9LM(Context context, AlertDialog alertDialog, int i) {
+    public static void m2006$r8$lambda$z9OV7Sej2fK9BMVVPq5XSk9LM(Context context, AlertDialog alertDialog, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -343,7 +343,7 @@ public abstract class AlertsCreator {
         return topAnimation.setMessage(AndroidUtilities.replaceTags(str)).setPositiveButton(LocaleController.getString(z ? R.string.PermissionOpenSettings : R.string.BotWebViewRequestAllow), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
-                AlertsCreator.m1992$r8$lambda$tUfQ2PKxixHa2KrEl7AuAV6nLo(z, context, atomicBoolean, consumer, alertDialog, i3);
+                AlertsCreator.m1998$r8$lambda$tUfQ2PKxixHa2KrEl7AuAV6nLo(z, context, atomicBoolean, consumer, alertDialog, i3);
             }
         }).setNegativeButton(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new AlertDialog.OnButtonClickListener() {
             @Override
@@ -358,7 +358,7 @@ public abstract class AlertsCreator {
         }).create();
     }
 
-    public static void m1992$r8$lambda$tUfQ2PKxixHa2KrEl7AuAV6nLo(boolean z, Context context, AtomicBoolean atomicBoolean, Consumer consumer, AlertDialog alertDialog, int i) {
+    public static void m1998$r8$lambda$tUfQ2PKxixHa2KrEl7AuAV6nLo(boolean z, Context context, AtomicBoolean atomicBoolean, Consumer consumer, AlertDialog alertDialog, int i) {
         if (z) {
             try {
                 Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -390,12 +390,12 @@ public abstract class AlertsCreator {
         return new AlertDialog.Builder(context, resourcesProvider).setMessage(LocaleController.getString(R.string.ApkRestricted)).setTopAnimation(R.raw.permission_request_apk, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.m1931$r8$lambda$423SrzgdSx4Htk3AIZLaUXHAbI(context, alertDialog, i);
+                AlertsCreator.m1937$r8$lambda$423SrzgdSx4Htk3AIZLaUXHAbI(context, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create();
     }
 
-    public static void m1931$r8$lambda$423SrzgdSx4Htk3AIZLaUXHAbI(Context context, AlertDialog alertDialog, int i) {
+    public static void m1937$r8$lambda$423SrzgdSx4Htk3AIZLaUXHAbI(Context context, AlertDialog alertDialog, int i) {
         try {
             context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
         } catch (Exception e) {
@@ -1109,7 +1109,7 @@ public abstract class AlertsCreator {
         alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                AlertsCreator.m1929$r8$lambda$0gG6wS6rVuahA1HzAWarVn01Bo(editTextBoldCursor, baseFragment, activityFindActivity, dialogInterface);
+                AlertsCreator.m1935$r8$lambda$0gG6wS6rVuahA1HzAWarVn01Bo(editTextBoldCursor, baseFragment, activityFindActivity, dialogInterface);
             }
         });
         alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
@@ -1152,7 +1152,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void m1929$r8$lambda$0gG6wS6rVuahA1HzAWarVn01Bo(EditTextBoldCursor editTextBoldCursor, BaseFragment baseFragment, Activity activity, DialogInterface dialogInterface) {
+    public static void m1935$r8$lambda$0gG6wS6rVuahA1HzAWarVn01Bo(EditTextBoldCursor editTextBoldCursor, BaseFragment baseFragment, Activity activity, DialogInterface dialogInterface) {
         AndroidUtilities.hideKeyboard(editTextBoldCursor);
         if (baseFragment != null) {
             AndroidUtilities.requestAdjustResize(activity, baseFragment.getClassGuid());
@@ -1232,7 +1232,7 @@ public abstract class AlertsCreator {
             builder.setNeutralButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    AlertsCreator.m1961$r8$lambda$QBsRViuFHoT2tZXxJrB59PHg(runnable, alertDialog, i2);
+                    AlertsCreator.m1967$r8$lambda$QBsRViuFHoT2tZXxJrB59PHg(runnable, alertDialog, i2);
                 }
             });
         }
@@ -1288,7 +1288,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void m1961$r8$lambda$QBsRViuFHoT2tZXxJrB59PHg(Runnable runnable, AlertDialog alertDialog, int i) {
+    public static void m1967$r8$lambda$QBsRViuFHoT2tZXxJrB59PHg(Runnable runnable, AlertDialog alertDialog, int i) {
         runnable.run();
         alertDialog.dismiss();
     }
@@ -1663,7 +1663,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.BlockAndDeleteReplies), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.m1983$r8$lambda$nZty1amtSGod2dJ4IIrC60e7KI(user2, accountInstance, chatActivity, chat2, messageObject, checkBoxCellArr, resourcesProvider, alertDialog, i);
+                AlertsCreator.m1989$r8$lambda$nZty1amtSGod2dJ4IIrC60e7KI(user2, accountInstance, chatActivity, chat2, messageObject, checkBoxCellArr, resourcesProvider, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1686,7 +1686,7 @@ public abstract class AlertsCreator {
         checkBoxCellArr[num.intValue()].setChecked(!checkBoxCellArr[num.intValue()].isChecked(), true);
     }
 
-    public static void m1983$r8$lambda$nZty1amtSGod2dJ4IIrC60e7KI(TLRPC.User user, final AccountInstance accountInstance, ChatActivity chatActivity, TLRPC.Chat chat, MessageObject messageObject, CheckBoxCell[] checkBoxCellArr, Theme.ResourcesProvider resourcesProvider, AlertDialog alertDialog, int i) {
+    public static void m1989$r8$lambda$nZty1amtSGod2dJ4IIrC60e7KI(TLRPC.User user, final AccountInstance accountInstance, ChatActivity chatActivity, TLRPC.Chat chat, MessageObject messageObject, CheckBoxCell[] checkBoxCellArr, Theme.ResourcesProvider resourcesProvider, AlertDialog alertDialog, int i) {
         UndoView undoView;
         if (user != null) {
             accountInstance.getMessagesStorage().deleteUserChatHistory(chatActivity.getDialogId(), user.id);
@@ -2023,7 +2023,7 @@ public abstract class AlertsCreator {
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        AlertsCreator.m1982$r8$lambda$lVM18fDfbPN8jTUkYUZ879ND04(j2, i3, zIsGlobalNotificationsEnabled, i, intCallback2, i2, baseFragment, arrayList, arrayList2, intCallback, builder, view);
+                        AlertsCreator.m1988$r8$lambda$lVM18fDfbPN8jTUkYUZ879ND04(j2, i3, zIsGlobalNotificationsEnabled, i, intCallback2, i2, baseFragment, arrayList, arrayList2, intCallback, builder, view);
                     }
                 });
             }
@@ -2038,7 +2038,7 @@ public abstract class AlertsCreator {
         baseFragment.showDialog(builder.create());
     }
 
-    public static void m1982$r8$lambda$lVM18fDfbPN8jTUkYUZ879ND04(long j, int i, boolean z, int i2, MessagesStorage.IntCallback intCallback, int i3, BaseFragment baseFragment, ArrayList arrayList, ArrayList arrayList2, MessagesStorage.IntCallback intCallback2, AlertDialog.Builder builder, View view) {
+    public static void m1988$r8$lambda$lVM18fDfbPN8jTUkYUZ879ND04(long j, int i, boolean z, int i2, MessagesStorage.IntCallback intCallback, int i3, BaseFragment baseFragment, ArrayList arrayList, ArrayList arrayList2, MessagesStorage.IntCallback intCallback2, AlertDialog.Builder builder, View view) {
         int i4;
         int i5;
         int iIntValue = ((Integer) view.getTag()).intValue();
@@ -2445,7 +2445,7 @@ public abstract class AlertsCreator {
             ConnectionsManager.getInstance(currentAccount).sendRequest(new TLRPC.TL_help_getSupport(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    AlertsCreator.m1941$r8$lambda$DfSDyQJvVN5LJevi0cw_Sj1nE0(mainSettings, alertDialog, currentAccount, baseFragment, tLObject, tL_error);
+                    AlertsCreator.m1947$r8$lambda$DfSDyQJvVN5LJevi0cw_Sj1nE0(mainSettings, alertDialog, currentAccount, baseFragment, tLObject, tL_error);
                 }
             });
             return;
@@ -2456,26 +2456,26 @@ public abstract class AlertsCreator {
         baseFragment.presentFragment(new ChatActivity(bundle));
     }
 
-    public static void m1941$r8$lambda$DfSDyQJvVN5LJevi0cw_Sj1nE0(final SharedPreferences sharedPreferences, final AlertDialog alertDialog, final int i, final BaseFragment baseFragment, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1947$r8$lambda$DfSDyQJvVN5LJevi0cw_Sj1nE0(final SharedPreferences sharedPreferences, final AlertDialog alertDialog, final int i, final BaseFragment baseFragment, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             final TLRPC.TL_help_support tL_help_support = (TLRPC.TL_help_support) tLObject;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AlertsCreator.m1965$r8$lambda$TLFygnMlUG_PIaKeYLD1x9mJgM(sharedPreferences, tL_help_support, alertDialog, i, baseFragment);
+                    AlertsCreator.m1971$r8$lambda$TLFygnMlUG_PIaKeYLD1x9mJgM(sharedPreferences, tL_help_support, alertDialog, i, baseFragment);
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AlertsCreator.m1933$r8$lambda$50UI4skuLQ_kxgSy6wU5uHII4c(alertDialog);
+                    AlertsCreator.m1939$r8$lambda$50UI4skuLQ_kxgSy6wU5uHII4c(alertDialog);
                 }
             });
         }
     }
 
-    public static void m1965$r8$lambda$TLFygnMlUG_PIaKeYLD1x9mJgM(SharedPreferences sharedPreferences, TLRPC.TL_help_support tL_help_support, AlertDialog alertDialog, int i, BaseFragment baseFragment) {
+    public static void m1971$r8$lambda$TLFygnMlUG_PIaKeYLD1x9mJgM(SharedPreferences sharedPreferences, TLRPC.TL_help_support tL_help_support, AlertDialog alertDialog, int i, BaseFragment baseFragment) {
         SharedPreferences.Editor editorEdit = sharedPreferences.edit();
         editorEdit.putLong("support_id2", tL_help_support.user.id);
         SerializedData serializedData = new SerializedData();
@@ -2497,7 +2497,7 @@ public abstract class AlertsCreator {
         baseFragment.presentFragment(new ChatActivity(bundle));
     }
 
-    public static void m1933$r8$lambda$50UI4skuLQ_kxgSy6wU5uHII4c(AlertDialog alertDialog) {
+    public static void m1939$r8$lambda$50UI4skuLQ_kxgSy6wU5uHII4c(AlertDialog alertDialog) {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
@@ -2628,7 +2628,7 @@ public abstract class AlertsCreator {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.m1960$r8$lambda$PDvkNJsF5cbbEBjcZiEaZNJtLw(user, baseFragment, builder, view);
+                AlertsCreator.m1966$r8$lambda$PDvkNJsF5cbbEBjcZiEaZNJtLw(user, baseFragment, builder, view);
             }
         });
         SpannableString spannableStringValueOf = SpannableString.valueOf(LocaleController.getString(R.string.MoreAboutThisBot) + "  ");
@@ -2654,7 +2654,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Start), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.m1947$r8$lambda$HyH6bWL04JWAb9MyQvOd7B4a3E(runnable, alertDialog, i);
+                AlertsCreator.m1953$r8$lambda$HyH6bWL04JWAb9MyQvOd7B4a3E(runnable, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -2673,7 +2673,7 @@ public abstract class AlertsCreator {
         }));
     }
 
-    public static void m1960$r8$lambda$PDvkNJsF5cbbEBjcZiEaZNJtLw(TLRPC.User user, BaseFragment baseFragment, AlertDialog.Builder builder, View view) {
+    public static void m1966$r8$lambda$PDvkNJsF5cbbEBjcZiEaZNJtLw(TLRPC.User user, BaseFragment baseFragment, AlertDialog.Builder builder, View view) {
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", user.id);
         if (baseFragment.getMessagesController().checkCanOpenChat(bundle, baseFragment)) {
@@ -2682,7 +2682,7 @@ public abstract class AlertsCreator {
         builder.getDismissRunnable().run();
     }
 
-    public static void m1947$r8$lambda$HyH6bWL04JWAb9MyQvOd7B4a3E(Runnable runnable, AlertDialog alertDialog, int i) {
+    public static void m1953$r8$lambda$HyH6bWL04JWAb9MyQvOd7B4a3E(Runnable runnable, AlertDialog alertDialog, int i) {
         if (runnable != null) {
             runnable.run();
         }
@@ -2885,7 +2885,7 @@ public abstract class AlertsCreator {
             linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebViewStartPermission2), new Runnable() {
                 @Override
                 public final void run() {
-                    AlertsCreator.m1959$r8$lambda$Ot_y6Y6xcQUoS6nfW3cthhDiKc(alertDialogCreate, context);
+                    AlertsCreator.m1965$r8$lambda$Ot_y6Y6xcQUoS6nfW3cthhDiKc(alertDialogCreate, context);
                 }
             }));
         }
@@ -3006,7 +3006,7 @@ public abstract class AlertsCreator {
         linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebViewStartPermission2), new Runnable() {
             @Override
             public final void run() {
-                AlertsCreator.m1959$r8$lambda$Ot_y6Y6xcQUoS6nfW3cthhDiKc(alertDialogCreate2, context);
+                AlertsCreator.m1965$r8$lambda$Ot_y6Y6xcQUoS6nfW3cthhDiKc(alertDialogCreate2, context);
             }
         }));
     }
@@ -3025,7 +3025,7 @@ public abstract class AlertsCreator {
         ((CheckBoxCell) view).setChecked(atomicBoolean.get(), true);
     }
 
-    public static void m1959$r8$lambda$Ot_y6Y6xcQUoS6nfW3cthhDiKc(AlertDialog alertDialog, Context context) {
+    public static void m1965$r8$lambda$Ot_y6Y6xcQUoS6nfW3cthhDiKc(AlertDialog alertDialog, Context context) {
         if (alertDialog != null) {
             alertDialog.dismiss();
         }
@@ -3104,13 +3104,13 @@ public abstract class AlertsCreator {
         showAlertWithCheckboxWithBalance(activity, LocaleController.getString(R.string.MessageLockedStarsConfirmTitle), spannableStringBuilder, LocaleController.getString(R.string.MessageLockedStarsConfirmMessageDontAsk), LocaleController.formatPluralStringComma("MessageLockedStarsConfirmMessagePay", i2), new Utilities.Callback() {
             @Override
             public final void run(Object obj2) {
-                AlertsCreator.m1985$r8$lambda$qteJxMvPmrnMXT0INQ_tQkGWDM(i, arrayList, jMax, activity, resourcesProvider, callback, map, (Boolean) obj2);
+                AlertsCreator.m1991$r8$lambda$qteJxMvPmrnMXT0INQ_tQkGWDM(i, arrayList, jMax, activity, resourcesProvider, callback, map, (Boolean) obj2);
             }
         }, resourcesProvider);
         return true;
     }
 
-    public static void m1985$r8$lambda$qteJxMvPmrnMXT0INQ_tQkGWDM(final int i, final ArrayList arrayList, final long j, final Activity activity, final Theme.ResourcesProvider resourcesProvider, final Utilities.Callback callback, final HashMap map, Boolean bool) {
+    public static void m1991$r8$lambda$qteJxMvPmrnMXT0INQ_tQkGWDM(final int i, final ArrayList arrayList, final long j, final Activity activity, final Theme.ResourcesProvider resourcesProvider, final Utilities.Callback callback, final HashMap map, Boolean bool) {
         if (bool.booleanValue()) {
             SharedPreferences.Editor editorEdit = MessagesController.getInstance(i).getMainSettings().edit();
             int size = arrayList.size();
@@ -3998,7 +3998,7 @@ public abstract class AlertsCreator {
                 MessagesStorage.getInstance(baseFragment.getCurrentAccount()).getMessagesCount(user.id, new MessagesStorage.IntCallback() {
                     @Override
                     public final void run(int i3) {
-                        AlertsCreator.m1944$r8$lambda$FdBSQ4DmWtLy0vf3rBePlw_ls(baseFragment, z4, chat, user, z5, zArr, z6, booleanCallback, resourcesProvider, i3);
+                        AlertsCreator.m1950$r8$lambda$FdBSQ4DmWtLy0vf3rBePlw_ls(baseFragment, z4, chat, user, z5, zArr, z6, booleanCallback, resourcesProvider, i3);
                     }
                 });
                 return;
@@ -4022,7 +4022,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void m1944$r8$lambda$FdBSQ4DmWtLy0vf3rBePlw_ls(BaseFragment baseFragment, boolean z, TLRPC.Chat chat, TLRPC.User user, boolean z2, boolean[] zArr, boolean z3, MessagesStorage.BooleanCallback booleanCallback, Theme.ResourcesProvider resourcesProvider, int i) {
+    public static void m1950$r8$lambda$FdBSQ4DmWtLy0vf3rBePlw_ls(BaseFragment baseFragment, boolean z, TLRPC.Chat chat, TLRPC.User user, boolean z2, boolean[] zArr, boolean z3, MessagesStorage.BooleanCallback booleanCallback, Theme.ResourcesProvider resourcesProvider, int i) {
         if (i >= 50) {
             createClearOrDeleteDialogAlert(baseFragment, z, true, chat, user, false, z2, zArr[0], z3, booleanCallback, resourcesProvider);
         } else if (booleanCallback != null) {
@@ -4045,7 +4045,7 @@ public abstract class AlertsCreator {
                     new SelectChatUserSheet(context, chat, user3, new Runnable() {
                         @Override
                         public final void run() {
-                            AlertsCreator.m1940$r8$lambda$DP3Flx_19e7kX7lERIqvkgTuYg(i, booleanCallback);
+                            AlertsCreator.m1946$r8$lambda$DP3Flx_19e7kX7lERIqvkgTuYg(i, booleanCallback);
                         }
                     }, resourcesProvider).show();
                 }
@@ -4063,7 +4063,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void m1940$r8$lambda$DP3Flx_19e7kX7lERIqvkgTuYg(int i, final MessagesStorage.BooleanCallback booleanCallback) {
+    public static void m1946$r8$lambda$DP3Flx_19e7kX7lERIqvkgTuYg(int i, final MessagesStorage.BooleanCallback booleanCallback) {
         NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.closeChats, new Object[0]);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -4351,7 +4351,7 @@ public abstract class AlertsCreator {
                 checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        AlertsCreator.m1996$r8$lambda$yj4QfQ35aeJDKheKrPH5XwNjc8(zArr, view);
+                        AlertsCreator.m2002$r8$lambda$yj4QfQ35aeJDKheKrPH5XwNjc8(zArr, view);
                     }
                 });
             } else if (chat != null && z && !ChatObject.isPublic(chat) && !ChatObject.isChannelAndNotMegaGroup(chat) && !ChatObject.isMonoForum(chat)) {
@@ -4380,7 +4380,7 @@ public abstract class AlertsCreator {
                 checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        AlertsCreator.m1996$r8$lambda$yj4QfQ35aeJDKheKrPH5XwNjc8(zArr, view);
+                        AlertsCreator.m2002$r8$lambda$yj4QfQ35aeJDKheKrPH5XwNjc8(zArr, view);
                     }
                 });
             }
@@ -4410,7 +4410,7 @@ public abstract class AlertsCreator {
             checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.m1996$r8$lambda$yj4QfQ35aeJDKheKrPH5XwNjc8(zArr, view);
+                    AlertsCreator.m2002$r8$lambda$yj4QfQ35aeJDKheKrPH5XwNjc8(zArr, view);
                 }
             });
         }
@@ -4433,7 +4433,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void m1996$r8$lambda$yj4QfQ35aeJDKheKrPH5XwNjc8(boolean[] zArr, View view) {
+    public static void m2002$r8$lambda$yj4QfQ35aeJDKheKrPH5XwNjc8(boolean[] zArr, View view) {
         boolean z = !zArr[0];
         zArr[0] = z;
         ((CheckBoxCell) view).setChecked(z, true);
@@ -4490,12 +4490,12 @@ public abstract class AlertsCreator {
         baseFragment.showDialog(new AlertDialog.Builder(parentActivity).setView(frameLayout).setPositiveButton(LocaleController.getString(R.string.Call), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.m1997$r8$lambda$yoV6i0tGFOpY7IWqiwllviv51E(baseFragment, user, z, alertDialog, i);
+                AlertsCreator.m2003$r8$lambda$yoV6i0tGFOpY7IWqiwllviv51E(baseFragment, user, z, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create());
     }
 
-    public static void m1997$r8$lambda$yoV6i0tGFOpY7IWqiwllviv51E(BaseFragment baseFragment, TLRPC.User user, boolean z, AlertDialog alertDialog, int i) {
+    public static void m2003$r8$lambda$yoV6i0tGFOpY7IWqiwllviv51E(BaseFragment baseFragment, TLRPC.User user, boolean z, AlertDialog alertDialog, int i) {
         TLRPC.UserFull userFull = baseFragment.getMessagesController().getUserFull(user.id);
         VoIPHelper.startCall(user, z, userFull != null && userFull.video_calls_available, baseFragment.getParentActivity(), userFull, baseFragment.getAccountInstance());
     }
@@ -4619,7 +4619,7 @@ public abstract class AlertsCreator {
             ConnectionsManager.getInstance(i).sendRequest(updateprofile, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    AlertsCreator.m1958$r8$lambda$OLVI5eDnZ8w8SUCLcFYmVk2GHE(tLObject, tL_error);
+                    AlertsCreator.m1964$r8$lambda$OLVI5eDnZ8w8SUCLcFYmVk2GHE(tLObject, tL_error);
                 }
             }, 2);
         } else {
@@ -4733,7 +4733,7 @@ public abstract class AlertsCreator {
         TextView.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-                return AlertsCreator.m1979$r8$lambda$jnpxz8nqTU8eRWzJ6gbrEZoB2A(alertDialogCreate, onButtonClickListener, textView, i3, keyEvent);
+                return AlertsCreator.m1985$r8$lambda$jnpxz8nqTU8eRWzJ6gbrEZoB2A(alertDialogCreate, onButtonClickListener, textView, i3, keyEvent);
             }
         };
         if (editText != null) {
@@ -4806,7 +4806,7 @@ public abstract class AlertsCreator {
         AndroidUtilities.hideKeyboard(editText2);
     }
 
-    public static boolean m1979$r8$lambda$jnpxz8nqTU8eRWzJ6gbrEZoB2A(AlertDialog alertDialog, AlertDialog.OnButtonClickListener onButtonClickListener, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m1985$r8$lambda$jnpxz8nqTU8eRWzJ6gbrEZoB2A(AlertDialog alertDialog, AlertDialog.OnButtonClickListener onButtonClickListener, TextView textView, int i, KeyEvent keyEvent) {
         if ((i != 6 && keyEvent.getKeyCode() != 66) || !alertDialog.isShowing()) {
             return false;
         }
@@ -4854,13 +4854,13 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Invite), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.m1956$r8$lambda$NaHT1_Fs_AGQ7fQZGZg0qXf_dw(str3, baseFragment, alertDialog, i);
+                AlertsCreator.m1962$r8$lambda$NaHT1_Fs_AGQ7fQZGZg0qXf_dw(str3, baseFragment, alertDialog, i);
             }
         });
         baseFragment.showDialog(builder.create());
     }
 
-    public static void m1956$r8$lambda$NaHT1_Fs_AGQ7fQZGZg0qXf_dw(String str, BaseFragment baseFragment, AlertDialog alertDialog, int i) {
+    public static void m1962$r8$lambda$NaHT1_Fs_AGQ7fQZGZg0qXf_dw(String str, BaseFragment baseFragment, AlertDialog alertDialog, int i) {
         try {
             Intent intent = new Intent("android.intent.action.VIEW", Uri.fromParts("sms", str, null));
             intent.putExtra("sms_body", ContactsController.getInstance(baseFragment.getCurrentAccount()).getInviteText(1));
@@ -5157,7 +5157,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.m1950$r8$lambda$K7vo9YwhxUSJbTe2hKmpWuB6k(view, motionEvent);
+                return AlertsCreator.m1956$r8$lambda$K7vo9YwhxUSJbTe2hKmpWuB6k(view, motionEvent);
             }
         });
         linearLayout2.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
@@ -5904,7 +5904,7 @@ public abstract class AlertsCreator {
             Runnable runnable3 = new Runnable() {
                 @Override
                 public final void run() {
-                    AlertsCreator.m1963$r8$lambda$QqFTRS_CNNCUsxLI7GAiISvtY(iArr, iArr2, strArr, textView4);
+                    AlertsCreator.m1969$r8$lambda$QqFTRS_CNNCUsxLI7GAiISvtY(iArr, iArr2, strArr, textView4);
                 }
             };
             runnable3.run();
@@ -5929,7 +5929,7 @@ public abstract class AlertsCreator {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.m1938$r8$lambda$7m6PwJyNaMAbxvc4PvB70ZsnA(zArr2, str, clientUserId, j, numberPicker, numberPicker2, numberPicker3, calendar, scheduleDatePickerDelegate, zArr, iArr4, r14, view);
+                AlertsCreator.m1944$r8$lambda$7m6PwJyNaMAbxvc4PvB70ZsnA(zArr2, str, clientUserId, j, numberPicker, numberPicker2, numberPicker3, calendar, scheduleDatePickerDelegate, zArr, iArr4, r14, view);
             }
         });
         r14.setCustomView(r43);
@@ -5948,7 +5948,7 @@ public abstract class AlertsCreator {
             textView5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.m1946$r8$lambda$HVgR70FEHMhocCffrRID_G51t4(frameLayout3, resourcesProvider, bottomSheetShow, frameLayout6, iArr5, strArr2, iArr4, runnable4, view);
+                    AlertsCreator.m1952$r8$lambda$HVgR70FEHMhocCffrRID_G51t4(frameLayout3, resourcesProvider, bottomSheetShow, frameLayout6, iArr5, strArr2, iArr4, runnable4, view);
                 }
             });
         }
@@ -6000,7 +6000,7 @@ public abstract class AlertsCreator {
         checkScheduleDate(textView, null, i3, numberPicker, numberPicker2, numberPicker3);
     }
 
-    public static void m1963$r8$lambda$QqFTRS_CNNCUsxLI7GAiISvtY(int[] iArr, int[] iArr2, String[] strArr, TextView textView) {
+    public static void m1969$r8$lambda$QqFTRS_CNNCUsxLI7GAiISvtY(int[] iArr, int[] iArr2, String[] strArr, TextView textView) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.MessageScheduledRepeatOption));
         spannableStringBuilder.append((CharSequence) " ");
@@ -6029,7 +6029,7 @@ public abstract class AlertsCreator {
         textView.setText(spannableStringBuilder);
     }
 
-    public static void m1938$r8$lambda$7m6PwJyNaMAbxvc4PvB70ZsnA(boolean[] zArr, String str, long j, long j2, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, ScheduleDatePickerDelegate scheduleDatePickerDelegate, boolean[] zArr2, int[] iArr, BottomSheet.Builder builder, View view) {
+    public static void m1944$r8$lambda$7m6PwJyNaMAbxvc4PvB70ZsnA(boolean[] zArr, String str, long j, long j2, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, ScheduleDatePickerDelegate scheduleDatePickerDelegate, boolean[] zArr2, int[] iArr, BottomSheet.Builder builder, View view) {
         int i;
         zArr[0] = false;
         if (str != null) {
@@ -6057,7 +6057,7 @@ public abstract class AlertsCreator {
         runnable.run();
     }
 
-    public static void m1946$r8$lambda$HVgR70FEHMhocCffrRID_G51t4(FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider, BottomSheet bottomSheet, FrameLayout frameLayout2, int[] iArr, String[] strArr, final int[] iArr2, final Runnable runnable, View view) {
+    public static void m1952$r8$lambda$HVgR70FEHMhocCffrRID_G51t4(FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider, BottomSheet bottomSheet, FrameLayout frameLayout2, int[] iArr, String[] strArr, final int[] iArr2, final Runnable runnable, View view) {
         if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
             BulletinFactory.of(frameLayout, resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.MessageScheduledRepeatPremium), new Runnable() {
                 @Override
@@ -6073,7 +6073,7 @@ public abstract class AlertsCreator {
             itemOptionsMakeOptions.add(strArr[i], new Runnable() {
                 @Override
                 public final void run() {
-                    AlertsCreator.m1939$r8$lambda$CG7XFeaK4NJS8WGUWD8ZTEZvNM(iArr2, i2, runnable);
+                    AlertsCreator.m1945$r8$lambda$CG7XFeaK4NJS8WGUWD8ZTEZvNM(iArr2, i2, runnable);
                 }
             });
         }
@@ -6092,7 +6092,7 @@ public abstract class AlertsCreator {
         safeLastFragment.showAsSheet(new PremiumPreviewFragment("schedule_repeat"), bottomSheetParams);
     }
 
-    public static void m1939$r8$lambda$CG7XFeaK4NJS8WGUWD8ZTEZvNM(int[] iArr, int i, Runnable runnable) {
+    public static void m1945$r8$lambda$CG7XFeaK4NJS8WGUWD8ZTEZvNM(int[] iArr, int i, Runnable runnable) {
         iArr[0] = i;
         runnable.run();
     }
@@ -6456,7 +6456,7 @@ public abstract class AlertsCreator {
         numberPicker2.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i6) {
-                return AlertsCreator.m1964$r8$lambda$RHnjPFDKA0IdadReOgNV5gw1XA(i6);
+                return AlertsCreator.m1970$r8$lambda$RHnjPFDKA0IdadReOgNV5gw1XA(i6);
             }
         });
         numberPicker2.setOnScrollListener(onScrollListener);
@@ -6466,7 +6466,7 @@ public abstract class AlertsCreator {
         numberPicker3.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i6) {
-                return AlertsCreator.m1999$r8$lambda$zB8DXy7jLz1wfPU7KxCjeSdbE(i5, i6);
+                return AlertsCreator.m2005$r8$lambda$zB8DXy7jLz1wfPU7KxCjeSdbE(i5, i6);
             }
         });
         linearLayout2.addView(numberPicker3, LayoutHelper.createLinear(0, 270, 0.25f));
@@ -6534,7 +6534,7 @@ public abstract class AlertsCreator {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.m1928$r8$lambda$RTUKpavGH9wcWdYlcUP03KJyRo(numberPicker, numberPicker2, numberPicker3, i5, builder, callback, view);
+                AlertsCreator.m1934$r8$lambda$RTUKpavGH9wcWdYlcUP03KJyRo(numberPicker, numberPicker2, numberPicker3, i5, builder, callback, view);
             }
         });
         if (z2) {
@@ -6604,7 +6604,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static String m1964$r8$lambda$RHnjPFDKA0IdadReOgNV5gw1XA(int i) {
+    public static String m1970$r8$lambda$RHnjPFDKA0IdadReOgNV5gw1XA(int i) {
         switch (i) {
             case 0:
                 return LocaleController.getString(R.string.January);
@@ -6633,7 +6633,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static String m1999$r8$lambda$zB8DXy7jLz1wfPU7KxCjeSdbE(int i, int i2) {
+    public static String m2005$r8$lambda$zB8DXy7jLz1wfPU7KxCjeSdbE(int i, int i2) {
         return i2 == i ? "—" : String.format("%02d", Integer.valueOf(i2));
     }
 
@@ -6675,7 +6675,7 @@ public abstract class AlertsCreator {
         runnable.run();
     }
 
-    public static void m1928$r8$lambda$RTUKpavGH9wcWdYlcUP03KJyRo(NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, int i, BottomSheet.Builder builder, Utilities.Callback callback, View view) {
+    public static void m1934$r8$lambda$RTUKpavGH9wcWdYlcUP03KJyRo(NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, int i, BottomSheet.Builder builder, Utilities.Callback callback, View view) {
         TL_account.TL_birthday tL_birthday = new TL_account.TL_birthday();
         tL_birthday.day = numberPicker.getValue();
         tL_birthday.month = numberPicker2.getValue() + 1;
@@ -6713,7 +6713,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i2) {
-                return AlertsCreator.m1998$r8$lambda$yxpnQHVaxgqJm5fjO5ZVhq0QwM(i2);
+                return AlertsCreator.m2004$r8$lambda$yxpnQHVaxgqJm5fjO5ZVhq0QwM(i2);
             }
         });
         final NumberPicker numberPicker2 = new NumberPicker(context, resourcesProvider);
@@ -6822,7 +6822,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.m1972$r8$lambda$ctKtqQvkBzLZn5oZ6H_VO9PI(view, motionEvent);
+                return AlertsCreator.m1978$r8$lambda$ctKtqQvkBzLZn5oZ6H_VO9PI(view, motionEvent);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context) {
@@ -6858,7 +6858,7 @@ public abstract class AlertsCreator {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.m1976$r8$lambda$h_XcHNlTI1EbwXkklFwQPsiOqs(zArr, numberPicker, numberPicker2, numberPicker3, numberPicker4, formattedDatePickerDelegate, iArr, builder, view);
+                AlertsCreator.m1982$r8$lambda$h_XcHNlTI1EbwXkklFwQPsiOqs(zArr, numberPicker, numberPicker2, numberPicker3, numberPicker4, formattedDatePickerDelegate, iArr, builder, view);
             }
         });
         builder.setCustomView(frameLayout);
@@ -6875,7 +6875,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static String m1998$r8$lambda$yxpnQHVaxgqJm5fjO5ZVhq0QwM(int i) {
+    public static String m2004$r8$lambda$yxpnQHVaxgqJm5fjO5ZVhq0QwM(int i) {
         return "" + i;
     }
 
@@ -6890,7 +6890,7 @@ public abstract class AlertsCreator {
         return LocaleController.getInstance().getFormatterMonthYear().format(calendar.getTimeInMillis());
     }
 
-    public static void m1976$r8$lambda$h_XcHNlTI1EbwXkklFwQPsiOqs(boolean[] zArr, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, NumberPicker numberPicker4, FormattedDatePickerDelegate formattedDatePickerDelegate, int[] iArr, BottomSheet.Builder builder, View view) {
+    public static void m1982$r8$lambda$h_XcHNlTI1EbwXkklFwQPsiOqs(boolean[] zArr, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, NumberPicker numberPicker4, FormattedDatePickerDelegate formattedDatePickerDelegate, int[] iArr, BottomSheet.Builder builder, View view) {
         zArr[0] = false;
         formattedDatePickerDelegate.didSelectDate((int) (checkFormattedDateInput(null, numberPicker, numberPicker2, numberPicker3, numberPicker4) / 1000), iArr[0]);
         builder.getDismissRunnable().run();
@@ -7031,7 +7031,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.m1927$r8$lambda$7KrKpIeJiZytsohTe5zsLPOoU(i3);
+                return AlertsCreator.m1933$r8$lambda$7KrKpIeJiZytsohTe5zsLPOoU(i3);
             }
         });
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
@@ -7114,7 +7114,7 @@ public abstract class AlertsCreator {
         return builder3;
     }
 
-    public static String m1927$r8$lambda$7KrKpIeJiZytsohTe5zsLPOoU(int i) {
+    public static String m1933$r8$lambda$7KrKpIeJiZytsohTe5zsLPOoU(int i) {
         if (i == 0) {
             return LocaleController.getString(R.string.MessageScheduleToday);
         }
@@ -7227,7 +7227,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.m1949$r8$lambda$JUaPqHmSQm6PEospDnLDYcZ9Y(view, motionEvent);
+                return AlertsCreator.m1955$r8$lambda$JUaPqHmSQm6PEospDnLDYcZ9Y(view, motionEvent);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
@@ -7433,7 +7433,7 @@ public abstract class AlertsCreator {
         textView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return AlertsCreator.m1966$r8$lambda$TmYfcFcaRGTgdgpdW4v5JmRx8A(view, motionEvent);
+                return AlertsCreator.m1972$r8$lambda$TmYfcFcaRGTgdgpdW4v5JmRx8A(view, motionEvent);
             }
         });
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -7464,7 +7464,7 @@ public abstract class AlertsCreator {
         animatedTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.m2001$r8$lambda$zQ71STz_78Tm5KNamx0WU7BCA(iArr, numberPicker, scheduleDatePickerDelegate, builder, view);
+                AlertsCreator.m2007$r8$lambda$zQ71STz_78Tm5KNamx0WU7BCA(iArr, numberPicker, scheduleDatePickerDelegate, builder, view);
             }
         });
         builder.setCustomView(linearLayout);
@@ -7502,7 +7502,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void m2001$r8$lambda$zQ71STz_78Tm5KNamx0WU7BCA(int[] iArr, NumberPicker numberPicker, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
+    public static void m2007$r8$lambda$zQ71STz_78Tm5KNamx0WU7BCA(int[] iArr, NumberPicker numberPicker, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
         scheduleDatePickerDelegate.didSelectDate(true, iArr[numberPicker.getValue()], 0);
         builder.getDismissRunnable().run();
     }
@@ -7688,7 +7688,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i) {
-                return AlertsCreator.m1987$r8$lambda$rflMfZyqS0dZ6vs7LG_HZx0w6Q(iArr, i);
+                return AlertsCreator.m1993$r8$lambda$rflMfZyqS0dZ6vs7LG_HZx0w6Q(iArr, i);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context) {
@@ -7766,7 +7766,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static String m1987$r8$lambda$rflMfZyqS0dZ6vs7LG_HZx0w6Q(int[] iArr, int i) {
+    public static String m1993$r8$lambda$rflMfZyqS0dZ6vs7LG_HZx0w6Q(int[] iArr, int i) {
         int i2 = iArr[i];
         if (i2 == 0) {
             return LocaleController.getString(R.string.MuteNever);
@@ -7950,7 +7950,7 @@ public abstract class AlertsCreator {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.m1945$r8$lambda$FeujI2eoXN7IFkSzgOjbF9fdg(j, numberPicker, numberPicker2, numberPicker3, calendar, intCallback, builder, view);
+                AlertsCreator.m1951$r8$lambda$FeujI2eoXN7IFkSzgOjbF9fdg(j, numberPicker, numberPicker2, numberPicker3, calendar, intCallback, builder, view);
             }
         });
         builder.setCustomView(linearLayout);
@@ -7990,7 +7990,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void m1945$r8$lambda$FeujI2eoXN7IFkSzgOjbF9fdg(long j, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, MessagesStorage.IntCallback intCallback, BottomSheet.Builder builder, View view) {
+    public static void m1951$r8$lambda$FeujI2eoXN7IFkSzgOjbF9fdg(long j, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, MessagesStorage.IntCallback intCallback, BottomSheet.Builder builder, View view) {
         checkCalendarDate(j, numberPicker, numberPicker2, numberPicker3);
         calendar.set(1, numberPicker3.getValue());
         calendar.set(2, numberPicker2.getValue());
@@ -8012,13 +8012,13 @@ public abstract class AlertsCreator {
         builder.setItems(new CharSequence[]{LocaleController.formatString("MuteFor", i, LocaleController.formatPluralString("Hours", 1, new Object[0])), LocaleController.formatString("MuteFor", i, LocaleController.formatPluralString("Hours", 8, new Object[0])), LocaleController.formatString("MuteFor", i, LocaleController.formatPluralString("Days", 2, new Object[0])), LocaleController.getString(R.string.MuteDisable)}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                AlertsCreator.m1974$r8$lambda$ef5VQCTbBOe_qaO48sHPKVYcfE(j, j2, baseFragment, resourcesProvider, dialogInterface, i2);
+                AlertsCreator.m1980$r8$lambda$ef5VQCTbBOe_qaO48sHPKVYcfE(j, j2, baseFragment, resourcesProvider, dialogInterface, i2);
             }
         });
         return builder.create();
     }
 
-    public static void m1974$r8$lambda$ef5VQCTbBOe_qaO48sHPKVYcfE(long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i) {
+    public static void m1980$r8$lambda$ef5VQCTbBOe_qaO48sHPKVYcfE(long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i) {
         int i2;
         if (i == 0) {
             i2 = 0;
@@ -8043,13 +8043,13 @@ public abstract class AlertsCreator {
         builder.setItems(new CharSequence[]{LocaleController.formatString("MuteFor", i2, LocaleController.formatPluralString("Hours", 1, new Object[0])), LocaleController.formatString("MuteFor", i2, LocaleController.formatPluralString("Hours", 8, new Object[0])), LocaleController.formatString("MuteFor", i2, LocaleController.formatPluralString("Days", 2, new Object[0])), LocaleController.getString(R.string.MuteDisable)}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
-                AlertsCreator.m1954$r8$lambda$MLpqeoItyYxOiXMWGrOXsikK2A(arrayList, i, baseFragment, resourcesProvider, dialogInterface, i3);
+                AlertsCreator.m1960$r8$lambda$MLpqeoItyYxOiXMWGrOXsikK2A(arrayList, i, baseFragment, resourcesProvider, dialogInterface, i3);
             }
         });
         return builder.create();
     }
 
-    public static void m1954$r8$lambda$MLpqeoItyYxOiXMWGrOXsikK2A(ArrayList arrayList, int i, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i2) {
+    public static void m1960$r8$lambda$MLpqeoItyYxOiXMWGrOXsikK2A(ArrayList arrayList, int i, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i2) {
         int i3;
         if (i2 == 0) {
             i3 = 0;
@@ -8402,7 +8402,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Set), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i5) {
-                AlertsCreator.m1984$r8$lambda$qojMeL26Gxr08M0myzdWd9xCwk(j, sharedPrefKey, iArr, j2, i, runnable, alertDialog, i5);
+                AlertsCreator.m1990$r8$lambda$qojMeL26Gxr08M0myzdWd9xCwk(j, sharedPrefKey, iArr, j2, i, runnable, alertDialog, i5);
             }
         });
         builder.setNeutralButton(LocaleController.getString(R.string.LedDisabled), new AlertDialog.OnButtonClickListener() {
@@ -8431,7 +8431,7 @@ public abstract class AlertsCreator {
         iArr[0] = TextColorCell.colorsToSave[((Integer) view.getTag()).intValue()];
     }
 
-    public static void m1984$r8$lambda$qojMeL26Gxr08M0myzdWd9xCwk(long j, String str, int[] iArr, long j2, int i, Runnable runnable, AlertDialog alertDialog, int i2) {
+    public static void m1990$r8$lambda$qojMeL26Gxr08M0myzdWd9xCwk(long j, String str, int[] iArr, long j2, int i, Runnable runnable, AlertDialog alertDialog, int i2) {
         SharedPreferences.Editor editorEdit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
         if (j != 0) {
             editorEdit.putInt("color_" + str, iArr[0]);
@@ -8541,7 +8541,7 @@ public abstract class AlertsCreator {
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AlertsCreator.m1977$r8$lambda$htgzC239K3aMC6XCGEorU_u2I8(iArr, j, str2, j2, builder, runnable, view);
+                    AlertsCreator.m1983$r8$lambda$htgzC239K3aMC6XCGEorU_u2I8(iArr, j, str2, j2, builder, runnable, view);
                 }
             });
             i3++;
@@ -8553,7 +8553,7 @@ public abstract class AlertsCreator {
         return builder.create();
     }
 
-    public static void m1977$r8$lambda$htgzC239K3aMC6XCGEorU_u2I8(int[] iArr, long j, String str, long j2, AlertDialog.Builder builder, Runnable runnable, View view) {
+    public static void m1983$r8$lambda$htgzC239K3aMC6XCGEorU_u2I8(int[] iArr, long j, String str, long j2, AlertDialog.Builder builder, Runnable runnable, View view) {
         iArr[0] = ((Integer) view.getTag()).intValue();
         SharedPreferences.Editor editorEdit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
         if (j != 0) {
@@ -8643,7 +8643,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.ShareFile), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                AlertsCreator.m1990$r8$lambda$tCYtRsH65mgszRwAV6vMp291X8(iArr, intCallback, alertDialog, i2);
+                AlertsCreator.m1996$r8$lambda$tCYtRsH65mgszRwAV6vMp291X8(iArr, intCallback, alertDialog, i2);
             }
         });
         builder.setNeutralButton(LocaleController.getString(R.string.Cancel), null);
@@ -8661,7 +8661,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void m1990$r8$lambda$tCYtRsH65mgszRwAV6vMp291X8(int[] iArr, MessagesStorage.IntCallback intCallback, AlertDialog alertDialog, int i) {
+    public static void m1996$r8$lambda$tCYtRsH65mgszRwAV6vMp291X8(int[] iArr, MessagesStorage.IntCallback intCallback, AlertDialog alertDialog, int i) {
         int i2;
         int i3 = iArr[0];
         if (i3 == 0) {
@@ -8771,7 +8771,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Enable), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.m1955$r8$lambda$NM8dWZ3VRvOos5CntgUnlVVKTc(activity, z, alertDialog, i);
+                AlertsCreator.m1961$r8$lambda$NM8dWZ3VRvOos5CntgUnlVVKTc(activity, z, alertDialog, i);
             }
         });
         builder.notDrawBackgroundOnTopView(true);
@@ -8780,7 +8780,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static void m1955$r8$lambda$NM8dWZ3VRvOos5CntgUnlVVKTc(Activity activity, boolean z, AlertDialog alertDialog, int i) {
+    public static void m1961$r8$lambda$NM8dWZ3VRvOos5CntgUnlVVKTc(Activity activity, boolean z, AlertDialog alertDialog, int i) {
         if (activity == null || Build.VERSION.SDK_INT < 23) {
             return;
         }
@@ -8830,7 +8830,7 @@ public abstract class AlertsCreator {
         builder.setPositiveButton(LocaleController.getString(R.string.Enable), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AlertsCreator.m1969$r8$lambda$UphUSWQK17Ccf1fYtYmm9ww5q8(context, alertDialog, i);
+                AlertsCreator.m1975$r8$lambda$UphUSWQK17Ccf1fYtYmm9ww5q8(context, alertDialog, i);
             }
         });
         builder.notDrawBackgroundOnTopView(true);
@@ -8839,7 +8839,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static void m1969$r8$lambda$UphUSWQK17Ccf1fYtYmm9ww5q8(Context context, AlertDialog alertDialog, int i) {
+    public static void m1975$r8$lambda$UphUSWQK17Ccf1fYtYmm9ww5q8(Context context, AlertDialog alertDialog, int i) {
         if (context != null) {
             try {
                 if (Build.VERSION.SDK_INT >= 23) {
@@ -9129,7 +9129,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i2) {
-                return AlertsCreator.m1986$r8$lambda$rUjl1vLvbTmHOmMCAXUUwCUKCI(i2);
+                return AlertsCreator.m1992$r8$lambda$rUjl1vLvbTmHOmMCAXUUwCUKCI(i2);
             }
         });
         builder.setView(numberPicker);
@@ -9142,7 +9142,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static String m1986$r8$lambda$rUjl1vLvbTmHOmMCAXUUwCUKCI(int i) {
+    public static String m1992$r8$lambda$rUjl1vLvbTmHOmMCAXUUwCUKCI(int i) {
         if (i == 0) {
             return LocaleController.getString(R.string.ShortMessageLifetimeForever);
         }
@@ -9208,7 +9208,7 @@ public abstract class AlertsCreator {
                 accountSelectCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        AlertsCreator.m1936$r8$lambda$6TKM3SXam8Y6Q2ZmVm8zM5T8pI(alertDialogArr, dismissRunnable, accountSelectDelegate, view);
+                        AlertsCreator.m1942$r8$lambda$6TKM3SXam8Y6Q2ZmVm8zM5T8pI(alertDialogArr, dismissRunnable, accountSelectDelegate, view);
                     }
                 });
             }
@@ -9221,7 +9221,7 @@ public abstract class AlertsCreator {
         return alertDialogCreate;
     }
 
-    public static void m1936$r8$lambda$6TKM3SXam8Y6Q2ZmVm8zM5T8pI(AlertDialog[] alertDialogArr, Runnable runnable, AccountSelectDelegate accountSelectDelegate, View view) {
+    public static void m1942$r8$lambda$6TKM3SXam8Y6Q2ZmVm8zM5T8pI(AlertDialog[] alertDialogArr, Runnable runnable, AccountSelectDelegate accountSelectDelegate, View view) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog != null) {
             alertDialog.setOnDismissListener(null);
@@ -9477,7 +9477,7 @@ public abstract class AlertsCreator {
 
                     @Override
                     public final boolean test(Object obj) {
-                        return AlertsCreator.m1942$r8$lambda$EFq37VBW8vo0QsyMmv_jA_FETI((MessageObject) obj);
+                        return AlertsCreator.m1948$r8$lambda$EFq37VBW8vo0QsyMmv_jA_FETI((MessageObject) obj);
                     }
                 }).mapToLong(new ToLongFunction() {
                     @Override
@@ -9487,7 +9487,7 @@ public abstract class AlertsCreator {
                 }).distinct().mapToObj(new LongFunction() {
                     @Override
                     public final Object apply(long j4) {
-                        return AlertsCreator.m1934$r8$lambda$50d03PVFVJwpfTfrOOU3f0D5oQ(i18, j4);
+                        return AlertsCreator.m1940$r8$lambda$50d03PVFVJwpfTfrOOU3f0D5oQ(i18, j4);
                     }
                 }).filter(new Predicate() {
                     public Predicate and(Predicate predicate) {
@@ -9548,7 +9548,7 @@ public abstract class AlertsCreator {
                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                         @Override
                                         public final void run() {
-                                            AlertsCreator.m1973$r8$lambda$eNEnxorrMcDedDjvVEOR6O2cik(iArr, iArr, i, tLObject, channelParticipantArr, i, alertDialogArr, baseFragment, user, chat, encryptedChat, chatFull, j, messageObject, sparseArrayArr, groupedMessages, i, i, runnable, runnable, resourcesProvider);
+                                            AlertsCreator.m1979$r8$lambda$eNEnxorrMcDedDjvVEOR6O2cik(iArr, iArr, i, tLObject, channelParticipantArr, i, alertDialogArr, baseFragment, user, chat, encryptedChat, chatFull, j, messageObject, sparseArrayArr, groupedMessages, i, i, runnable, runnable, resourcesProvider);
                                         }
                                     });
                                 }
@@ -9601,7 +9601,7 @@ public abstract class AlertsCreator {
                     checkBoxCell.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            AlertsCreator.m1981$r8$lambda$kbgx7kFYJqcwpgFkA8zr3Y_hjw(zArr, view);
+                            AlertsCreator.m1987$r8$lambda$kbgx7kFYJqcwpgFkA8zr3Y_hjw(zArr, view);
                         }
                     });
                     builder5.setView(frameLayout);
@@ -9679,7 +9679,7 @@ public abstract class AlertsCreator {
             AlertDialog.OnButtonClickListener onButtonClickListener = new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i37) {
-                    AlertsCreator.m1932$r8$lambda$49VA2U1NeUd0CG7QK1ZL_Kd4_E(j3, z20, i35, messageObject, groupedMessages, encryptedChat, j, i, zArr, i2, sparseArrayArr, runnable, alertDialog, i37);
+                    AlertsCreator.m1938$r8$lambda$49VA2U1NeUd0CG7QK1ZL_Kd4_E(j3, z20, i35, messageObject, groupedMessages, encryptedChat, j, i, zArr, i2, sparseArrayArr, runnable, alertDialog, i37);
                 }
             };
             if (!z20) {
@@ -9940,11 +9940,11 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static boolean m1942$r8$lambda$EFq37VBW8vo0QsyMmv_jA_FETI(MessageObject messageObject) {
+    public static boolean m1948$r8$lambda$EFq37VBW8vo0QsyMmv_jA_FETI(MessageObject messageObject) {
         return !messageObject.isEphemeral();
     }
 
-    public static TLObject m1934$r8$lambda$50d03PVFVJwpfTfrOOU3f0D5oQ(int i, long j) {
+    public static TLObject m1940$r8$lambda$50d03PVFVJwpfTfrOOU3f0D5oQ(int i, long j) {
         if (j > 0) {
             return MessagesController.getInstance(i).getUser(Long.valueOf(j));
         }
@@ -9961,7 +9961,7 @@ public abstract class AlertsCreator {
         return false;
     }
 
-    public static void m1973$r8$lambda$eNEnxorrMcDedDjvVEOR6O2cik(int[] iArr, int[] iArr2, int i, TLObject tLObject, TLRPC.ChannelParticipant[] channelParticipantArr, int i2, AlertDialog[] alertDialogArr, BaseFragment baseFragment, TLRPC.User user, TLRPC.Chat chat, TLRPC.EncryptedChat encryptedChat, TLRPC.ChatFull chatFull, long j, MessageObject messageObject, SparseArray[] sparseArrayArr, MessageObject.GroupedMessages groupedMessages, int i3, int i4, Runnable runnable, Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
+    public static void m1979$r8$lambda$eNEnxorrMcDedDjvVEOR6O2cik(int[] iArr, int[] iArr2, int i, TLObject tLObject, TLRPC.ChannelParticipant[] channelParticipantArr, int i2, AlertDialog[] alertDialogArr, BaseFragment baseFragment, TLRPC.User user, TLRPC.Chat chat, TLRPC.EncryptedChat encryptedChat, TLRPC.ChatFull chatFull, long j, MessageObject messageObject, SparseArray[] sparseArrayArr, MessageObject.GroupedMessages groupedMessages, int i3, int i4, Runnable runnable, Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
         iArr[0] = iArr[0] + 1;
         iArr2[i] = 0;
         if (tLObject != null) {
@@ -10002,7 +10002,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void m1981$r8$lambda$kbgx7kFYJqcwpgFkA8zr3Y_hjw(boolean[] zArr, View view) {
+    public static void m1987$r8$lambda$kbgx7kFYJqcwpgFkA8zr3Y_hjw(boolean[] zArr, View view) {
         boolean z = !zArr[0];
         zArr[0] = z;
         ((CheckBoxCell) view).setChecked(z, true);
@@ -10014,7 +10014,7 @@ public abstract class AlertsCreator {
         ((CheckBoxCell) view).setChecked(z, true);
     }
 
-    public static void m1932$r8$lambda$49VA2U1NeUd0CG7QK1ZL_Kd4_E(long j, boolean z, int i, MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, TLRPC.EncryptedChat encryptedChat, long j2, int i2, boolean[] zArr, int i3, SparseArray[] sparseArrayArr, Runnable runnable, AlertDialog alertDialog, int i4) {
+    public static void m1938$r8$lambda$49VA2U1NeUd0CG7QK1ZL_Kd4_E(long j, boolean z, int i, MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, TLRPC.EncryptedChat encryptedChat, long j2, int i2, boolean[] zArr, int i3, SparseArray[] sparseArrayArr, Runnable runnable, AlertDialog alertDialog, int i4) {
         ArrayList<Long> arrayList;
         long j3;
         TLRPC.Peer peer;
@@ -10171,7 +10171,7 @@ public abstract class AlertsCreator {
         alertDialogCreate.getButton(-1).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) throws Throwable {
-                AlertsCreator.m1962$r8$lambda$QKtMfAVTeEyfiIdaREtYzDIn4Q(baseFragment, editTextBoldCursor, themeAccent, themeInfo, alertDialogCreate, view);
+                AlertsCreator.m1968$r8$lambda$QKtMfAVTeEyfiIdaREtYzDIn4Q(baseFragment, editTextBoldCursor, themeAccent, themeInfo, alertDialogCreate, view);
             }
         });
     }
@@ -10186,7 +10186,7 @@ public abstract class AlertsCreator {
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void m1962$r8$lambda$QKtMfAVTeEyfiIdaREtYzDIn4Q(final BaseFragment baseFragment, final EditTextBoldCursor editTextBoldCursor, Theme.ThemeAccent themeAccent, Theme.ThemeInfo themeInfo, final AlertDialog alertDialog, View view) throws Throwable {
+    public static void m1968$r8$lambda$QKtMfAVTeEyfiIdaREtYzDIn4Q(final BaseFragment baseFragment, final EditTextBoldCursor editTextBoldCursor, Theme.ThemeAccent themeAccent, Theme.ThemeInfo themeInfo, final AlertDialog alertDialog, View view) throws Throwable {
         if (baseFragment.getParentActivity() == null) {
             return;
         }
@@ -10556,7 +10556,7 @@ public abstract class AlertsCreator {
         numberPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return AlertsCreator.m1980$r8$lambda$kRcsrOaKcYAxS2nZY24ZTyBooc(i2, i3);
+                return AlertsCreator.m1986$r8$lambda$kRcsrOaKcYAxS2nZY24ZTyBooc(i2, i3);
             }
         });
         final int i3 = i == 1 ? 5 : 3;
@@ -10651,7 +10651,7 @@ public abstract class AlertsCreator {
         bottomSheetShow.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                AlertsCreator.m1971$r8$lambda$_uZXHpSghzjq7fwWAYiRCNqfU(runnable, zArr, dialogInterface);
+                AlertsCreator.m1977$r8$lambda$_uZXHpSghzjq7fwWAYiRCNqfU(runnable, zArr, dialogInterface);
             }
         });
         bottomSheetShow.setBackgroundColor(scheduleDatePickerColors.backgroundColor);
@@ -10659,7 +10659,7 @@ public abstract class AlertsCreator {
         return builder;
     }
 
-    public static String m1980$r8$lambda$kRcsrOaKcYAxS2nZY24ZTyBooc(int i, int i2) {
+    public static String m1986$r8$lambda$kRcsrOaKcYAxS2nZY24ZTyBooc(int i, int i2) {
         if (i2 == 0) {
             return LocaleController.getString(R.string.MessageScheduleToday);
         }
@@ -10691,7 +10691,7 @@ public abstract class AlertsCreator {
         builder.getDismissRunnable().run();
     }
 
-    public static void m1971$r8$lambda$_uZXHpSghzjq7fwWAYiRCNqfU(Runnable runnable, boolean[] zArr, DialogInterface dialogInterface) {
+    public static void m1977$r8$lambda$_uZXHpSghzjq7fwWAYiRCNqfU(Runnable runnable, boolean[] zArr, DialogInterface dialogInterface) {
         if (runnable == null || !zArr[0]) {
             return;
         }
@@ -10988,7 +10988,7 @@ public abstract class AlertsCreator {
         builder.show().setOnDismissListener(new Runnable() {
             @Override
             public final void run() {
-                AlertsCreator.m1978$r8$lambda$iAiQlrBcPuFoBOcGOpxoD_JGZU(zArr, runnable);
+                AlertsCreator.m1984$r8$lambda$iAiQlrBcPuFoBOcGOpxoD_JGZU(zArr, runnable);
             }
         });
     }
@@ -10998,7 +10998,7 @@ public abstract class AlertsCreator {
         runnable.run();
     }
 
-    public static void m1978$r8$lambda$iAiQlrBcPuFoBOcGOpxoD_JGZU(boolean[] zArr, Runnable runnable) {
+    public static void m1984$r8$lambda$iAiQlrBcPuFoBOcGOpxoD_JGZU(boolean[] zArr, Runnable runnable) {
         if (!zArr[0] || runnable == null) {
             return;
         }

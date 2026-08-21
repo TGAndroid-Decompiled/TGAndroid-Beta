@@ -264,7 +264,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                     new AlertDialog.Builder(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()).setTitle(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLink : R.string.UsernameActivateLink)).setMessage(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLinkProfileMessage : R.string.UsernameActivateLinkProfileMessage)).setPositiveButton(LocaleController.getString(tL_username.active ? R.string.Hide : R.string.Show), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i2) {
-                            ChangeUsernameActivity.AnonymousClass2.m1525$r8$lambda$fgmGFe6kqpqdznQOTm5nk5GemI(this.f$0, tL_username, i, view, alertDialog, i2);
+                            ChangeUsernameActivity.AnonymousClass2.m1531$r8$lambda$fgmGFe6kqpqdznQOTm5nk5GemI(this.f$0, tL_username, i, view, alertDialog, i2);
                         }
                     }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                         @Override
@@ -280,7 +280,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
         }
 
-        public static void m1525$r8$lambda$fgmGFe6kqpqdznQOTm5nk5GemI(final AnonymousClass2 anonymousClass2, final TLRPC.TL_username tL_username, final int i, View view, AlertDialog alertDialog, int i2) {
+        public static void m1531$r8$lambda$fgmGFe6kqpqdznQOTm5nk5GemI(final AnonymousClass2 anonymousClass2, final TLRPC.TL_username tL_username, final int i, View view, AlertDialog alertDialog, int i2) {
             TLObject tLObject;
             anonymousClass2.getClass();
             final boolean z = tL_username.active;
@@ -301,24 +301,24 @@ public class ChangeUsernameActivity extends BaseFragment {
             ChangeUsernameActivity.this.getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    ChangeUsernameActivity.AnonymousClass2.m1524$r8$lambda$HGQXMPYiCwXrOybaxn4Or7u2bs(this.f$0, str, i, z2, tL_username, z, tLObject2, tL_error);
+                    ChangeUsernameActivity.AnonymousClass2.m1530$r8$lambda$HGQXMPYiCwXrOybaxn4Or7u2bs(this.f$0, str, i, z2, tL_username, z, tLObject2, tL_error);
                 }
             });
             ChangeUsernameActivity.this.loadingUsernames.add(tL_username.username);
             ((UsernameCell) view).setLoading(true);
         }
 
-        public static void m1524$r8$lambda$HGQXMPYiCwXrOybaxn4Or7u2bs(final AnonymousClass2 anonymousClass2, final String str, final int i, final boolean z, final TLRPC.TL_username tL_username, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m1530$r8$lambda$HGQXMPYiCwXrOybaxn4Or7u2bs(final AnonymousClass2 anonymousClass2, final String str, final int i, final boolean z, final TLRPC.TL_username tL_username, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             anonymousClass2.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.AnonymousClass2.m1526$r8$lambda$hPJSUOLr2cSQBif0BkFqQjM9xc(this.f$0, str, tLObject, i, z, tL_error, tL_username, z2);
+                    ChangeUsernameActivity.AnonymousClass2.m1532$r8$lambda$hPJSUOLr2cSQBif0BkFqQjM9xc(this.f$0, str, tLObject, i, z, tL_error, tL_username, z2);
                 }
             });
         }
 
-        public static void m1526$r8$lambda$hPJSUOLr2cSQBif0BkFqQjM9xc(final AnonymousClass2 anonymousClass2, String str, TLObject tLObject, int i, boolean z, TLRPC.TL_error tL_error, final TLRPC.TL_username tL_username, final boolean z2) {
+        public static void m1532$r8$lambda$hPJSUOLr2cSQBif0BkFqQjM9xc(final AnonymousClass2 anonymousClass2, String str, TLObject tLObject, int i, boolean z, TLRPC.TL_error tL_error, final TLRPC.TL_username tL_username, final boolean z2) {
             TLRPC.TL_username tL_username2;
             ChangeUsernameActivity.this.loadingUsernames.remove(str);
             if (tLObject instanceof TLRPC.TL_boolTrue) {
@@ -648,14 +648,14 @@ public class ChangeUsernameActivity extends BaseFragment {
             getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    ChangeUsernameActivity.m1523$r8$lambda$zq5vETz5Wdi_jfJWX9XSOXLMw(tLObject2, tL_error);
+                    ChangeUsernameActivity.m1529$r8$lambda$zq5vETz5Wdi_jfJWX9XSOXLMw(tLObject2, tL_error);
                 }
             });
             updateUser();
         }
     }
 
-    public static void m1523$r8$lambda$zq5vETz5Wdi_jfJWX9XSOXLMw(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1529$r8$lambda$zq5vETz5Wdi_jfJWX9XSOXLMw(TLObject tLObject, TLRPC.TL_error tL_error) {
         boolean z = tLObject instanceof TLRPC.TL_boolTrue;
     }
 
@@ -986,7 +986,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ChangeUsernameActivity.UsernameCell.m1528$r8$lambda$iFLdOd_VQ20CZjjdd9JPbn8ptc(this.f$0, valueAnimator2);
+                        ChangeUsernameActivity.UsernameCell.m1534$r8$lambda$iFLdOd_VQ20CZjjdd9JPbn8ptc(this.f$0, valueAnimator2);
                     }
                 });
                 this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1001,7 +1001,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
         }
 
-        public static void m1528$r8$lambda$iFLdOd_VQ20CZjjdd9JPbn8ptc(UsernameCell usernameCell, ValueAnimator valueAnimator) {
+        public static void m1534$r8$lambda$iFLdOd_VQ20CZjjdd9JPbn8ptc(UsernameCell usernameCell, ValueAnimator valueAnimator) {
             usernameCell.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             usernameCell.loadingFloat = fFloatValue;
@@ -1075,7 +1075,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ChangeUsernameActivity.UsernameCell.m1529$r8$lambda$wHtagMpcAHEysU6XTttlTffN4E(this.f$0, valueAnimator2);
+                        ChangeUsernameActivity.UsernameCell.m1535$r8$lambda$wHtagMpcAHEysU6XTttlTffN4E(this.f$0, valueAnimator2);
                     }
                 });
                 this.activeViewTextColorAnimator.setDuration(120L);
@@ -1089,7 +1089,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.activeView.setTextColor(iBlendARGB);
         }
 
-        public static void m1529$r8$lambda$wHtagMpcAHEysU6XTttlTffN4E(UsernameCell usernameCell, ValueAnimator valueAnimator) {
+        public static void m1535$r8$lambda$wHtagMpcAHEysU6XTttlTffN4E(UsernameCell usernameCell, ValueAnimator valueAnimator) {
             usernameCell.getClass();
             usernameCell.activeViewTextColorT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, usernameCell.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, usernameCell.resourcesProvider), usernameCell.activeViewTextColorT);
@@ -1375,7 +1375,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.m1522$r8$lambda$oT2bNa1CZ2MPAy5CkauJKgLpk0(this.f$0, str);
+                    ChangeUsernameActivity.m1528$r8$lambda$oT2bNa1CZ2MPAy5CkauJKgLpk0(this.f$0, str);
                 }
             };
             this.checkRunnable = runnable2;
@@ -1384,7 +1384,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         return true;
     }
 
-    public static void m1522$r8$lambda$oT2bNa1CZ2MPAy5CkauJKgLpk0(final ChangeUsernameActivity changeUsernameActivity, final String str) {
+    public static void m1528$r8$lambda$oT2bNa1CZ2MPAy5CkauJKgLpk0(final ChangeUsernameActivity changeUsernameActivity, final String str) {
         changeUsernameActivity.getClass();
         final TL_account.checkUsername checkusername = new TL_account.checkUsername();
         checkusername.username = str;

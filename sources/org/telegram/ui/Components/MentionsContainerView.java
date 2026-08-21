@@ -628,7 +628,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                     this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f5, float f6) {
-                            MentionsContainerView.m2438$r8$lambda$wMMgskb3IAyZ0RrV69cCFP5vQ(this.f$0, z, dynamicAnimation, z3, f5, f6);
+                            MentionsContainerView.m2448$r8$lambda$wMMgskb3IAyZ0RrV69cCFP5vQ(this.f$0, z, dynamicAnimation, z3, f5, f6);
                         }
                     });
                 }
@@ -659,7 +659,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         mentionsContainerView.hideT = AndroidUtilities.lerp(f, f2, (f5 - f3) / (f4 - f3));
     }
 
-    public static void m2438$r8$lambda$wMMgskb3IAyZ0RrV69cCFP5vQ(MentionsContainerView mentionsContainerView, boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
+    public static void m2448$r8$lambda$wMMgskb3IAyZ0RrV69cCFP5vQ(MentionsContainerView mentionsContainerView, boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
         if (z2) {
             mentionsContainerView.getClass();
             return;

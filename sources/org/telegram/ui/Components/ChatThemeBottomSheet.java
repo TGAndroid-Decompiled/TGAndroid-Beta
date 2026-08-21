@@ -218,7 +218,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         rLottieImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatThemeBottomSheet.m2220$r8$lambda$lYtczirnquNpLs4lIQDLJFpg(this.f$0, view);
+                ChatThemeBottomSheet.m2230$r8$lambda$lYtczirnquNpLs4lIQDLJFpg(this.f$0, view);
             }
         });
         this.rootLayout.addView(rLottieImageView, LayoutHelper.createFrame(44, 44.0f, 8388661, 0.0f, -2.0f, 7.0f, 0.0f));
@@ -244,7 +244,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i4) {
-                ChatThemeBottomSheet.m2221$r8$lambda$p2yvP2zmRVGxDDpwL7FMP72qA(this.f$0, view, i4);
+                ChatThemeBottomSheet.m2231$r8$lambda$p2yvP2zmRVGxDDpwL7FMP72qA(this.f$0, view, i4);
             }
         });
         recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -359,14 +359,14 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public static void m2220$r8$lambda$lYtczirnquNpLs4lIQDLJFpg(ChatThemeBottomSheet chatThemeBottomSheet, View view) {
+    public static void m2230$r8$lambda$lYtczirnquNpLs4lIQDLJFpg(ChatThemeBottomSheet chatThemeBottomSheet, View view) {
         if (chatThemeBottomSheet.changeDayNightViewAnimator != null) {
             return;
         }
         chatThemeBottomSheet.setupLightDarkTheme(!chatThemeBottomSheet.forceDark);
     }
 
-    public static void m2221$r8$lambda$p2yvP2zmRVGxDDpwL7FMP72qA(ChatThemeBottomSheet chatThemeBottomSheet, View view, final int i) {
+    public static void m2231$r8$lambda$p2yvP2zmRVGxDDpwL7FMP72qA(ChatThemeBottomSheet chatThemeBottomSheet, View view, final int i) {
         if (chatThemeBottomSheet.adapter.items.get(i) == chatThemeBottomSheet.selectedItem || chatThemeBottomSheet.changeDayNightView != null) {
             return;
         }
@@ -1141,7 +1141,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             this.chatActivity.getMessagesController().getBoostsController().userCanBoostChannel(this.chatActivity.getDialogId(), this.boostsStatus, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChatThemeBottomSheet.m2219$r8$lambda$Csf6qgt7rBocirnr8gry407kw(this.f$0, (ChannelBoostsController.CanApplyBoost) obj);
+                    ChatThemeBottomSheet.m2229$r8$lambda$Csf6qgt7rBocirnr8gry407kw(this.f$0, (ChannelBoostsController.CanApplyBoost) obj);
                 }
             });
             return;
@@ -1190,7 +1190,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public static void m2219$r8$lambda$Csf6qgt7rBocirnr8gry407kw(final ChatThemeBottomSheet chatThemeBottomSheet, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public static void m2229$r8$lambda$Csf6qgt7rBocirnr8gry407kw(final ChatThemeBottomSheet chatThemeBottomSheet, ChannelBoostsController.CanApplyBoost canApplyBoost) {
         if (chatThemeBottomSheet.getContext() == null) {
             return;
         }
@@ -1444,12 +1444,12 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatThemeBottomSheet.Adapter.m2229$r8$lambda$0ABXeAIslDNH8wjXf2dSMbDeMQ(this.f$0, tLObject, themeInfo);
+                    ChatThemeBottomSheet.Adapter.m2239$r8$lambda$0ABXeAIslDNH8wjXf2dSMbDeMQ(this.f$0, tLObject, themeInfo);
                 }
             });
         }
 
-        public static void m2229$r8$lambda$0ABXeAIslDNH8wjXf2dSMbDeMQ(Adapter adapter, TLObject tLObject, Theme.ThemeInfo themeInfo) {
+        public static void m2239$r8$lambda$0ABXeAIslDNH8wjXf2dSMbDeMQ(Adapter adapter, TLObject tLObject, Theme.ThemeInfo themeInfo) {
             adapter.getClass();
             if (tLObject instanceof TLRPC.TL_wallPaper) {
                 TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) tLObject;
@@ -1635,7 +1635,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             themePreviewActivity.setDelegate(new ThemePreviewActivity.WallpaperActivityDelegate() {
                 @Override
                 public final void didSetNewBackground(TLRPC.WallPaper wallPaper) {
-                    ChatThemeBottomSheet.AnonymousClass13.m2225$r8$lambda$6B6WDLeuVbLuzsLDEUWunT_UD0(chatAttachAlert, callback, wallPaper);
+                    ChatThemeBottomSheet.AnonymousClass13.m2235$r8$lambda$6B6WDLeuVbLuzsLDEUWunT_UD0(chatAttachAlert, callback, wallPaper);
                 }
             });
             BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
@@ -1645,7 +1645,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             this.val$fragment.showAsSheet(themePreviewActivity, bottomSheetParams);
         }
 
-        public static void m2225$r8$lambda$6B6WDLeuVbLuzsLDEUWunT_UD0(ChatAttachAlert chatAttachAlert, Utilities.Callback callback, TLRPC.WallPaper wallPaper) {
+        public static void m2235$r8$lambda$6B6WDLeuVbLuzsLDEUWunT_UD0(ChatAttachAlert chatAttachAlert, Utilities.Callback callback, TLRPC.WallPaper wallPaper) {
             chatAttachAlert.dismissInternal();
             if (callback != null) {
                 callback.run(wallPaper);
@@ -1798,13 +1798,13 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             themePreviewActivity.setDelegate(new ThemePreviewActivity.WallpaperActivityDelegate() {
                 @Override
                 public final void didSetNewBackground(TLRPC.WallPaper wallPaper) {
-                    ChatThemeBottomSheet.AnonymousClass14.m2226$r8$lambda$eXJQVAgDENQ69xosYBcAAUqRY(this.f$0, wallPaper);
+                    ChatThemeBottomSheet.AnonymousClass14.m2236$r8$lambda$eXJQVAgDENQ69xosYBcAAUqRY(this.f$0, wallPaper);
                 }
             });
             ChatThemeBottomSheet.this.showAsSheet(themePreviewActivity);
         }
 
-        public static void m2226$r8$lambda$eXJQVAgDENQ69xosYBcAAUqRY(AnonymousClass14 anonymousClass14, TLRPC.WallPaper wallPaper) {
+        public static void m2236$r8$lambda$eXJQVAgDENQ69xosYBcAAUqRY(AnonymousClass14 anonymousClass14, TLRPC.WallPaper wallPaper) {
             ChatThemeBottomSheet.this.chatAttachAlert.dismissInternal();
             ChatThemeBottomSheet.this.dismiss();
         }

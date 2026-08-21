@@ -190,7 +190,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     private TextInfoPrivacyCell verifyInfoCell;
     private TextCell welcomeMessagesCell;
 
-    public static boolean m1837$r8$lambda$sZ3VDA2UpoqvnlILdeYRWh7Quw(View view, MotionEvent motionEvent) {
+    public static boolean m1843$r8$lambda$sZ3VDA2UpoqvnlILdeYRWh7Quw(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -355,12 +355,12 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         getConnectionsManager().sendRequest(tL_messages_getExportedChatInvites, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatEditActivity.m1825$r8$lambda$PlhowYFCPmliuBBxG6m68KqCNk(this.f$0, tLObject, tL_error);
+                ChatEditActivity.m1831$r8$lambda$PlhowYFCPmliuBBxG6m68KqCNk(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m1825$r8$lambda$PlhowYFCPmliuBBxG6m68KqCNk(final ChatEditActivity chatEditActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1831$r8$lambda$PlhowYFCPmliuBBxG6m68KqCNk(final ChatEditActivity chatEditActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         chatEditActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -672,7 +672,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         sizeNotifierFrameLayout2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return ChatEditActivity.m1837$r8$lambda$sZ3VDA2UpoqvnlILdeYRWh7Quw(view, motionEvent);
+                return ChatEditActivity.m1843$r8$lambda$sZ3VDA2UpoqvnlILdeYRWh7Quw(view, motionEvent);
             }
         });
         this.fragmentView = sizeNotifierFrameLayout2;
@@ -744,7 +744,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             this.avatarContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ChatEditActivity.m1833$r8$lambda$je_Pb18bjodthj4CUl_B8Aqryc(this.f$0, view2);
+                    ChatEditActivity.m1839$r8$lambda$je_Pb18bjodthj4CUl_B8Aqryc(this.f$0, view2);
                 }
             });
         } else {
@@ -882,7 +882,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 this.typeCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ChatEditActivity.m1814$r8$lambda$098XGVHpfkNPaejTiT0D7gzVzU(this.f$0, view2);
+                        ChatEditActivity.m1820$r8$lambda$098XGVHpfkNPaejTiT0D7gzVzU(this.f$0, view2);
                     }
                 });
             }
@@ -921,7 +921,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 chatEditActivity.colorCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ChatEditActivity.m1828$r8$lambda$Uwd4JAZ1KzRcWij8VJcCmdTYa8(this.f$0, view2);
+                        ChatEditActivity.m1834$r8$lambda$Uwd4JAZ1KzRcWij8VJcCmdTYa8(this.f$0, view2);
                     }
                 });
             } else {
@@ -940,7 +940,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 chatEditActivity.getMessagesController().getBoostsController().getBoostsStats(j, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        ChatEditActivity.m1840$r8$lambda$xrz1JwqTdeCu2z07McARRQ6xM0(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
+                        ChatEditActivity.m1846$r8$lambda$xrz1JwqTdeCu2z07McARRQ6xM0(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
                     }
                 });
                 chatEditActivity.typeEditContainer.addView(chatEditActivity.autoTranslationCell, LayoutHelper.createLinear(-1, -2));
@@ -993,7 +993,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 chatEditActivity.forumsCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ChatEditActivity.m1815$r8$lambda$2Vfs_XhayBM19IHN0YFQ0vTr_U(this.f$0, frameLayout, view2);
+                        ChatEditActivity.m1821$r8$lambda$2Vfs_XhayBM19IHN0YFQ0vTr_U(this.f$0, frameLayout, view2);
                     }
                 });
             } else {
@@ -1201,7 +1201,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             chatEditActivity.publicLinkCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ChatEditActivity.m1835$r8$lambda$pvTy6EaEUeauJh8ul_IGb6kc(this.f$0, view2);
+                    ChatEditActivity.m1841$r8$lambda$pvTy6EaEUeauJh8ul_IGb6kc(this.f$0, view2);
                 }
             });
             chatEditActivity.updatePublicLinksCount();
@@ -1246,7 +1246,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             chatEditActivity.editCommandsCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ChatEditActivity.m1820$r8$lambda$CNCyxXbpqNMXoNSNjGq1Vs33HE(this.f$0, view2);
+                    ChatEditActivity.m1826$r8$lambda$CNCyxXbpqNMXoNSNjGq1Vs33HE(this.f$0, view2);
                 }
             });
             TextCell textCell32 = new TextCell(context2);
@@ -1257,7 +1257,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             chatEditActivity.changeBotSettingsCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ChatEditActivity.m1827$r8$lambda$TgpJsT_JtB0OqSRKRv7EU946M(this.f$0, view2);
+                    ChatEditActivity.m1833$r8$lambda$TgpJsT_JtB0OqSRKRv7EU946M(this.f$0, view2);
                 }
             });
         }
@@ -1371,7 +1371,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 chatEditActivity.starsBalanceCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ChatEditActivity.m1841$r8$lambda$zQKxp_BCblddrPxOaBKe0ai8GI(this.f$0, botStarsController, view2);
+                        ChatEditActivity.m1847$r8$lambda$zQKxp_BCblddrPxOaBKe0ai8GI(this.f$0, botStarsController, view2);
                     }
                 });
                 if (!botStarsController.isStarsBalanceAvailable(chatEditActivity.userId)) {
@@ -1426,7 +1426,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 chatEditActivity.communityUnlinkCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ChatEditActivity.m1830$r8$lambda$YJE_zkAEL7dqptnkKMXINCb3zk(this.f$0, z6, j3, j2, view2);
+                        ChatEditActivity.m1836$r8$lambda$YJE_zkAEL7dqptnkKMXINCb3zk(this.f$0, z6, j3, j2, view2);
                     }
                 });
                 viewGroup.addView(chatEditActivity2.communityUnlinkCell, LayoutHelper.createLinear(-1, -2));
@@ -1454,7 +1454,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 chatEditActivity2.communityCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ChatEditActivity.m1838$r8$lambda$w58xf7GYLW4T8jw4UiDeOjpmaU(this.f$0, j3, view2);
+                        ChatEditActivity.m1844$r8$lambda$w58xf7GYLW4T8jw4UiDeOjpmaU(this.f$0, j3, view2);
                     }
                 });
                 TextInfoPrivacyCell textInfoPrivacyCell6 = new TextInfoPrivacyCell(context2, 12, chatEditActivity2.resourceProvider);
@@ -1495,7 +1495,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                     AlertsCreator.createClearOrDeleteDialogAlert(chatEditActivity3, false, chatEditActivity3.currentChat, null, false, true, true, false, new MessagesStorage.BooleanCallback() {
                         @Override
                         public final void run(boolean z7) {
-                            ChatEditActivity.m1836$r8$lambda$qyIb0v9vX1LUIfiJBLH5qXjAQ(chatEditActivity3, z7);
+                            ChatEditActivity.m1842$r8$lambda$qyIb0v9vX1LUIfiJBLH5qXjAQ(chatEditActivity3, z7);
                         }
                     });
                 }
@@ -1526,7 +1526,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         return chatEditActivity2.fragmentView;
     }
 
-    public static void m1833$r8$lambda$je_Pb18bjodthj4CUl_B8Aqryc(ChatEditActivity chatEditActivity, View view) {
+    public static void m1839$r8$lambda$je_Pb18bjodthj4CUl_B8Aqryc(ChatEditActivity chatEditActivity, View view) {
         if (chatEditActivity.imageUpdater.isUploadingImage()) {
             return;
         }
@@ -1614,7 +1614,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         chatEditActivity.getMessagesController().loadFullChat(chatEditActivity.chatId, 0, true);
     }
 
-    public static void m1814$r8$lambda$098XGVHpfkNPaejTiT0D7gzVzU(ChatEditActivity chatEditActivity, View view) {
+    public static void m1820$r8$lambda$098XGVHpfkNPaejTiT0D7gzVzU(ChatEditActivity chatEditActivity, View view) {
         long j = chatEditActivity.chatId;
         TextCell textCell = chatEditActivity.locationCell;
         ChatEditTypeActivity chatEditTypeActivity = new ChatEditTypeActivity(j, textCell != null && textCell.getVisibility() == 0);
@@ -1639,12 +1639,12 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         chatEditActivity.presentFragment(postSuggestionsEditActivity);
     }
 
-    public static void m1828$r8$lambda$Uwd4JAZ1KzRcWij8VJcCmdTYa8(ChatEditActivity chatEditActivity, View view) {
+    public static void m1834$r8$lambda$Uwd4JAZ1KzRcWij8VJcCmdTYa8(ChatEditActivity chatEditActivity, View view) {
         chatEditActivity.presentFragment(new ChannelColorActivity(-chatEditActivity.currentChat.id).setOnApplied(chatEditActivity));
         MessagesController.getInstance(chatEditActivity.currentAccount).getMainSettings().edit().putInt("boostingappearance", MessagesController.getInstance(chatEditActivity.currentAccount).getMainSettings().getInt("boostingappearance", 0) + 1).apply();
     }
 
-    public static void m1840$r8$lambda$xrz1JwqTdeCu2z07McARRQ6xM0(ChatEditActivity chatEditActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public static void m1846$r8$lambda$xrz1JwqTdeCu2z07McARRQ6xM0(ChatEditActivity chatEditActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         if (tL_premium_boostsStatus != null) {
             chatEditActivity.autoTranslationCell.getCheckBox().setIcon(tL_premium_boostsStatus.level < chatEditActivity.getMessagesController().channelAutotranslationLevelMin ? R.drawable.permission_locked : 0);
         } else {
@@ -1687,7 +1687,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             chatEditActivity.getMessagesController().getBoostsController().userCanBoostChannel(j, tL_premium_boostsStatus, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChatEditActivity.m1824$r8$lambda$Pbjc6fZgX9B3VtQqr_pSBMp3tU(this.f$0, alertDialog, tL_premium_boostsStatus, j, (ChannelBoostsController.CanApplyBoost) obj);
+                    ChatEditActivity.m1830$r8$lambda$Pbjc6fZgX9B3VtQqr_pSBMp3tU(this.f$0, alertDialog, tL_premium_boostsStatus, j, (ChannelBoostsController.CanApplyBoost) obj);
                 }
             });
             return;
@@ -1707,7 +1707,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }, 64);
     }
 
-    public static void m1824$r8$lambda$Pbjc6fZgX9B3VtQqr_pSBMp3tU(final ChatEditActivity chatEditActivity, AlertDialog alertDialog, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, long j, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public static void m1830$r8$lambda$Pbjc6fZgX9B3VtQqr_pSBMp3tU(final ChatEditActivity chatEditActivity, AlertDialog alertDialog, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, long j, ChannelBoostsController.CanApplyBoost canApplyBoost) {
         chatEditActivity.getClass();
         alertDialog.dismiss();
         if (chatEditActivity.getContext() == null) {
@@ -1722,14 +1722,14 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatEditActivity.m1823$r8$lambda$PBc1njLPCiEz7WtrjFCIR_1dI(this.f$0, chat);
+                    ChatEditActivity.m1829$r8$lambda$PBc1njLPCiEz7WtrjFCIR_1dI(this.f$0, chat);
                 }
             });
         }
         chatEditActivity.showDialog(limitReachedBottomSheet);
     }
 
-    public static void m1823$r8$lambda$PBc1njLPCiEz7WtrjFCIR_1dI(ChatEditActivity chatEditActivity, TLRPC.Chat chat) {
+    public static void m1829$r8$lambda$PBc1njLPCiEz7WtrjFCIR_1dI(ChatEditActivity chatEditActivity, TLRPC.Chat chat) {
         chatEditActivity.getClass();
         chatEditActivity.presentFragment(StatisticActivity.create(chat));
     }
@@ -1790,7 +1790,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             radioButtonCellArr[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ChatEditActivity.m1822$r8$lambda$MrerE0VrPCeysl2bCX22cSlT3E(this.f$0, radioButtonCellArr, builder, view2);
+                    ChatEditActivity.m1828$r8$lambda$MrerE0VrPCeysl2bCX22cSlT3E(this.f$0, radioButtonCellArr, builder, view2);
                 }
             });
         }
@@ -1798,7 +1798,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         chatEditActivity.showDialog(builder.create());
     }
 
-    public static void m1822$r8$lambda$MrerE0VrPCeysl2bCX22cSlT3E(ChatEditActivity chatEditActivity, RadioButtonCell[] radioButtonCellArr, BottomSheet.Builder builder, View view) {
+    public static void m1828$r8$lambda$MrerE0VrPCeysl2bCX22cSlT3E(ChatEditActivity chatEditActivity, RadioButtonCell[] radioButtonCellArr, BottomSheet.Builder builder, View view) {
         chatEditActivity.getClass();
         Integer num = (Integer) view.getTag();
         radioButtonCellArr[0].setChecked(num.intValue() == 0, true);
@@ -1815,7 +1815,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         chatEditActivity.presentFragment(groupColorActivity);
     }
 
-    public static void m1815$r8$lambda$2Vfs_XhayBM19IHN0YFQ0vTr_U(final ChatEditActivity chatEditActivity, FrameLayout frameLayout, final View view) {
+    public static void m1821$r8$lambda$2Vfs_XhayBM19IHN0YFQ0vTr_U(final ChatEditActivity chatEditActivity, FrameLayout frameLayout, final View view) {
         SpannableStringBuilder spannableStringBuilderReplaceTags;
         if (!chatEditActivity.canForum) {
             TLRPC.ChatFull chatFull = chatEditActivity.info;
@@ -1837,13 +1837,13 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         enableTopicsActivity.setOnForumChanged(chatEditActivity.forum, chatEditActivity.forumTabs, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ChatEditActivity.m1839$r8$lambda$xExt86mSzW30kS1DZH4k4COSU(this.f$0, view, (Boolean) obj, (Boolean) obj2);
+                ChatEditActivity.m1845$r8$lambda$xExt86mSzW30kS1DZH4k4COSU(this.f$0, view, (Boolean) obj, (Boolean) obj2);
             }
         });
         chatEditActivity.presentFragment(enableTopicsActivity);
     }
 
-    public static void m1839$r8$lambda$xExt86mSzW30kS1DZH4k4COSU(final ChatEditActivity chatEditActivity, View view, Boolean bool, Boolean bool2) {
+    public static void m1845$r8$lambda$xExt86mSzW30kS1DZH4k4COSU(final ChatEditActivity chatEditActivity, View view, Boolean bool, Boolean bool2) {
         chatEditActivity.getClass();
         chatEditActivity.forum = bool.booleanValue();
         chatEditActivity.forumTabs = bool2.booleanValue();
@@ -1976,7 +1976,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         chatEditActivity.presentFragment(new ChannelAdminLogActivity(chatEditActivity.currentChat));
     }
 
-    public static void m1835$r8$lambda$pvTy6EaEUeauJh8ul_IGb6kc(ChatEditActivity chatEditActivity, View view) {
+    public static void m1841$r8$lambda$pvTy6EaEUeauJh8ul_IGb6kc(ChatEditActivity chatEditActivity, View view) {
         chatEditActivity.getClass();
         Bundle bundle = new Bundle();
         bundle.putLong("bot_id", chatEditActivity.userId);
@@ -1988,12 +1988,12 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         Browser.openUrl(view.getContext(), "https://t.me/BotFather?start=" + chatEditActivity.getActiveUsername(chatEditActivity.currentUser) + "-intro");
     }
 
-    public static void m1820$r8$lambda$CNCyxXbpqNMXoNSNjGq1Vs33HE(ChatEditActivity chatEditActivity, View view) {
+    public static void m1826$r8$lambda$CNCyxXbpqNMXoNSNjGq1Vs33HE(ChatEditActivity chatEditActivity, View view) {
         chatEditActivity.getClass();
         Browser.openUrl(view.getContext(), "https://t.me/BotFather?start=" + chatEditActivity.getActiveUsername(chatEditActivity.currentUser) + "-commands");
     }
 
-    public static void m1827$r8$lambda$TgpJsT_JtB0OqSRKRv7EU946M(ChatEditActivity chatEditActivity, View view) {
+    public static void m1833$r8$lambda$TgpJsT_JtB0OqSRKRv7EU946M(ChatEditActivity chatEditActivity, View view) {
         chatEditActivity.getClass();
         Browser.openUrl(view.getContext(), "https://t.me/BotFather?start=" + chatEditActivity.getActiveUsername(chatEditActivity.currentUser));
     }
@@ -2004,7 +2004,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
     }
 
-    public static void m1841$r8$lambda$zQKxp_BCblddrPxOaBKe0ai8GI(ChatEditActivity chatEditActivity, BotStarsController botStarsController, View view) {
+    public static void m1847$r8$lambda$zQKxp_BCblddrPxOaBKe0ai8GI(ChatEditActivity chatEditActivity, BotStarsController botStarsController, View view) {
         if (botStarsController.isStarsBalanceAvailable(chatEditActivity.userId)) {
             chatEditActivity.presentFragment(new BotStarsActivity(0, chatEditActivity.userId));
         }
@@ -2020,7 +2020,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         chatEditActivity.showDialog(new CommunitySheet(chatEditActivity, j));
     }
 
-    public static void m1830$r8$lambda$YJE_zkAEL7dqptnkKMXINCb3zk(final ChatEditActivity chatEditActivity, boolean z, final long j, final long j2, View view) {
+    public static void m1836$r8$lambda$YJE_zkAEL7dqptnkKMXINCb3zk(final ChatEditActivity chatEditActivity, boolean z, final long j, final long j2, View view) {
         int i;
         chatEditActivity.getClass();
         String string = LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity);
@@ -2055,14 +2055,14 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         AndroidUtilities.removeFromParent(chatEditActivity.communityUnlinkCell);
     }
 
-    public static void m1838$r8$lambda$w58xf7GYLW4T8jw4UiDeOjpmaU(ChatEditActivity chatEditActivity, long j, View view) {
+    public static void m1844$r8$lambda$w58xf7GYLW4T8jw4UiDeOjpmaU(ChatEditActivity chatEditActivity, long j, View view) {
         chatEditActivity.getClass();
         Bundle bundle = new Bundle();
         bundle.putLong("dialog_id", j);
         chatEditActivity.presentFragment(new CommunityCreateActivity(bundle));
     }
 
-    public static void m1836$r8$lambda$qyIb0v9vX1LUIfiJBLH5qXjAQ(ChatEditActivity chatEditActivity, boolean z) {
+    public static void m1842$r8$lambda$qyIb0v9vX1LUIfiJBLH5qXjAQ(ChatEditActivity chatEditActivity, boolean z) {
         chatEditActivity.getClass();
         if (AndroidUtilities.isTablet()) {
             chatEditActivity.getNotificationCenter().postNotificationName(NotificationCenter.closeChats, Long.valueOf(-chatEditActivity.chatId));
@@ -2109,7 +2109,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
             @Override
             public final void run() {
-                ChatEditActivity.m1818$r8$lambda$7BHwzHs66HbKvJ9Tk74Awf7ups(this.f$0);
+                ChatEditActivity.m1824$r8$lambda$7BHwzHs66HbKvJ9Tk74Awf7ups(this.f$0);
             }
         }, new DialogInterface.OnDismissListener() {
             @Override
@@ -2122,7 +2122,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.setAvatarCell.imageView.playAnimation();
     }
 
-    public static void m1818$r8$lambda$7BHwzHs66HbKvJ9Tk74Awf7ups(final ChatEditActivity chatEditActivity) {
+    public static void m1824$r8$lambda$7BHwzHs66HbKvJ9Tk74Awf7ups(final ChatEditActivity chatEditActivity) {
         chatEditActivity.avatar = null;
         if (chatEditActivity.userId == 0) {
             MessagesController.getInstance(chatEditActivity.currentAccount).changeChatAvatar(chatEditActivity.chatId, null, null, null, null, 0.0d, null, null, null, null);
@@ -2516,12 +2516,12 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatEditActivity.m1816$r8$lambda$3tGh3dYE0BcOdG7KZZkCPyV3b8(this.f$0, photoSize2, inputFile, inputFile2, videoSize, photoSize, d, str);
+                ChatEditActivity.m1822$r8$lambda$3tGh3dYE0BcOdG7KZZkCPyV3b8(this.f$0, photoSize2, inputFile, inputFile2, videoSize, photoSize, d, str);
             }
         });
     }
 
-    public static void m1816$r8$lambda$3tGh3dYE0BcOdG7KZZkCPyV3b8(final ChatEditActivity chatEditActivity, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2, double d, String str) {
+    public static void m1822$r8$lambda$3tGh3dYE0BcOdG7KZZkCPyV3b8(final ChatEditActivity chatEditActivity, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2, double d, String str) {
         chatEditActivity.getClass();
         TLRPC.FileLocation fileLocation = photoSize.location;
         chatEditActivity.avatar = fileLocation;
@@ -2744,13 +2744,13 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             final int iSendRequest = getConnectionsManager().sendRequest(setbotinfo, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChatEditActivity.m1813$r8$lambda$ksSMT1jupWPEPaqa6w5F_shOo(this.f$0, setbotinfo, tLObject, tL_error);
+                    ChatEditActivity.m1819$r8$lambda$ksSMT1jupWPEPaqa6w5F_shOo(this.f$0, setbotinfo, tLObject, tL_error);
                 }
             });
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    ChatEditActivity.m1832$r8$lambda$jFzXME9DSmt63gLnKJOhqLRTag(this.f$0, iSendRequest, dialogInterface);
+                    ChatEditActivity.m1838$r8$lambda$jFzXME9DSmt63gLnKJOhqLRTag(this.f$0, iSendRequest, dialogInterface);
                 }
             });
             this.progressDialog.show();
@@ -2760,7 +2760,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             getMessagesController().convertToMegaGroup(getParentActivity(), this.chatId, this, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j) {
-                    ChatEditActivity.m1817$r8$lambda$6Zf6YbAnhBwXX_6SERo86iXe7s(this.f$0, j);
+                    ChatEditActivity.m1823$r8$lambda$6Zf6YbAnhBwXX_6SERo86iXe7s(this.f$0, j);
                 }
             });
             return;
@@ -2821,7 +2821,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         finishFragment();
     }
 
-    public static void m1813$r8$lambda$ksSMT1jupWPEPaqa6w5F_shOo(final ChatEditActivity chatEditActivity, TL_bots.setBotInfo setbotinfo, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1819$r8$lambda$ksSMT1jupWPEPaqa6w5F_shOo(final ChatEditActivity chatEditActivity, TL_bots.setBotInfo setbotinfo, TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.UserFull userFull = chatEditActivity.userInfo;
         if (userFull != null) {
             userFull.about = setbotinfo.about;
@@ -2840,13 +2840,13 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         chatEditActivity.finishFragment();
     }
 
-    public static void m1832$r8$lambda$jFzXME9DSmt63gLnKJOhqLRTag(ChatEditActivity chatEditActivity, int i, DialogInterface dialogInterface) {
+    public static void m1838$r8$lambda$jFzXME9DSmt63gLnKJOhqLRTag(ChatEditActivity chatEditActivity, int i, DialogInterface dialogInterface) {
         chatEditActivity.donePressed = false;
         chatEditActivity.progressDialog = null;
         chatEditActivity.getConnectionsManager().cancelRequest(i, true);
     }
 
-    public static void m1817$r8$lambda$6Zf6YbAnhBwXX_6SERo86iXe7s(ChatEditActivity chatEditActivity, long j) {
+    public static void m1823$r8$lambda$6Zf6YbAnhBwXX_6SERo86iXe7s(ChatEditActivity chatEditActivity, long j) {
         if (j == 0) {
             chatEditActivity.donePressed = false;
             return;

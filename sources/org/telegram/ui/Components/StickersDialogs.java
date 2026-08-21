@@ -37,7 +37,7 @@ import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 
 public abstract class StickersDialogs {
-    public static void m2856$r8$lambda$_hnR8VeKoqzA2OPCRcOT4Rt9Us() {
+    public static void m2865$r8$lambda$_hnR8VeKoqzA2OPCRcOT4Rt9Us() {
     }
 
     private static int getThemedColor(int i, Theme.ResourcesProvider resourcesProvider) {
@@ -187,7 +187,7 @@ public abstract class StickersDialogs {
         AlertDialog alertDialogCreate = new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.StickersDeleteStickerSetTitle)).setMessage(LocaleController.getString(R.string.StickersDeleteStickerSetDescription)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                StickersDialogs.m2855$r8$lambda$YO0w2MC46Ze4CtRzzGkru9YLik(runnable, stickerSet, alertDialog, i);
+                StickersDialogs.m2864$r8$lambda$YO0w2MC46Ze4CtRzzGkru9YLik(runnable, stickerSet, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
         alertDialogCreate.show();
@@ -197,7 +197,7 @@ public abstract class StickersDialogs {
         }
     }
 
-    public static void m2855$r8$lambda$YO0w2MC46Ze4CtRzzGkru9YLik(Runnable runnable, TLRPC.StickerSet stickerSet, AlertDialog alertDialog, int i) {
+    public static void m2864$r8$lambda$YO0w2MC46Ze4CtRzzGkru9YLik(Runnable runnable, TLRPC.StickerSet stickerSet, AlertDialog alertDialog, int i) {
         runnable.run();
         TLRPC.TL_stickers_deleteStickerSet tL_stickers_deleteStickerSet = new TLRPC.TL_stickers_deleteStickerSet();
         tL_stickers_deleteStickerSet.stickerset = MediaDataController.getInputStickerSet(stickerSet);
@@ -207,7 +207,7 @@ public abstract class StickersDialogs {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StickersDialogs.m2856$r8$lambda$_hnR8VeKoqzA2OPCRcOT4Rt9Us();
+                        StickersDialogs.m2865$r8$lambda$_hnR8VeKoqzA2OPCRcOT4Rt9Us();
                     }
                 });
             }
@@ -221,7 +221,7 @@ public abstract class StickersDialogs {
         emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
             @Override
             public final Object run(Object obj, Object obj2, Object obj3) {
-                return StickersDialogs.m2858$r8$lambda$o7KvI6jticMZZAlTouYSxsHIg(i, context, tL_messages_stickerSet, obj, (TLRPC.Document) obj2, (Boolean) obj3);
+                return StickersDialogs.m2867$r8$lambda$o7KvI6jticMZZAlTouYSxsHIg(i, context, tL_messages_stickerSet, obj, (TLRPC.Document) obj2, (Boolean) obj3);
             }
         });
         if (baseFragment.visibleDialog != null) {
@@ -231,7 +231,7 @@ public abstract class StickersDialogs {
         }
     }
 
-    public static Boolean m2858$r8$lambda$o7KvI6jticMZZAlTouYSxsHIg(final int i, Context context, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final Object obj, final TLRPC.Document document, Boolean bool) {
+    public static Boolean m2867$r8$lambda$o7KvI6jticMZZAlTouYSxsHIg(final int i, Context context, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final Object obj, final TLRPC.Document document, Boolean bool) {
         String strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document, "😀", Integer.valueOf(i));
         String str = TextUtils.isEmpty(strFindAnimatedEmojiEmoticon) ? "😀" : strFindAnimatedEmojiEmoticon;
         final AlertDialog alertDialog = new AlertDialog(context, 3);
@@ -317,7 +317,7 @@ public abstract class StickersDialogs {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                StickersDialogs.m2854$r8$lambda$KwNe0gshzMmIwENIJT3PkIZ_Wc(actionBarPopupWindow, arrayList2, tL_messages_stickerSet, baseFragment, resourcesProvider, view2);
+                StickersDialogs.m2863$r8$lambda$KwNe0gshzMmIwENIJT3PkIZ_Wc(actionBarPopupWindow, arrayList2, tL_messages_stickerSet, baseFragment, resourcesProvider, view2);
             }
         };
         for (int i = 0; i < arrayList.size(); i++) {
@@ -340,7 +340,7 @@ public abstract class StickersDialogs {
         actionBarPopupWindow.dimBehind();
     }
 
-    public static void m2854$r8$lambda$KwNe0gshzMmIwENIJT3PkIZ_Wc(ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m2863$r8$lambda$KwNe0gshzMmIwENIJT3PkIZ_Wc(ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
         int iIntValue = ((Integer) view.getTag()).intValue();
         actionBarPopupWindow.dismiss();
         if (((Integer) arrayList.get(iIntValue)).intValue() == 1) {

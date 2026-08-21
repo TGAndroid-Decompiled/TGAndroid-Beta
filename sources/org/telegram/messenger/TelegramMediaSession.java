@@ -107,12 +107,12 @@ public class TelegramMediaSession {
         NotificationCenter.getGlobalInstance().addObserver(new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
-                TelegramMediaSession.m1043$r8$lambda$jezY6QMUp6ToucBD3AhEsJ7cOI(this.f$0, i2, i3, objArr);
+                TelegramMediaSession.m1049$r8$lambda$jezY6QMUp6ToucBD3AhEsJ7cOI(this.f$0, i2, i3, objArr);
             }
         }, NotificationCenter.activeAccountChanged);
     }
 
-    public static void m1043$r8$lambda$jezY6QMUp6ToucBD3AhEsJ7cOI(final TelegramMediaSession telegramMediaSession, int i, int i2, Object[] objArr) {
+    public static void m1049$r8$lambda$jezY6QMUp6ToucBD3AhEsJ7cOI(final TelegramMediaSession telegramMediaSession, int i, int i2, Object[] objArr) {
         telegramMediaSession.getClass();
         if (i == NotificationCenter.activeAccountChanged) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -248,7 +248,7 @@ public class TelegramMediaSession {
             loadBrowseChildren("__ROOT__", new BrowseChildrenCallback() {
                 @Override
                 public final void onResult(List list) {
-                    TelegramMediaSession.m1042$r8$lambda$Ihmoqjmr_ZUGE1ktuid1SDG9ao(runnable, list);
+                    TelegramMediaSession.m1048$r8$lambda$Ihmoqjmr_ZUGE1ktuid1SDG9ao(runnable, list);
                 }
             });
         } else if (runnable != null) {
@@ -256,7 +256,7 @@ public class TelegramMediaSession {
         }
     }
 
-    public static void m1042$r8$lambda$Ihmoqjmr_ZUGE1ktuid1SDG9ao(Runnable runnable, List list) {
+    public static void m1048$r8$lambda$Ihmoqjmr_ZUGE1ktuid1SDG9ao(Runnable runnable, List list) {
         if (runnable != null) {
             runnable.run();
         }

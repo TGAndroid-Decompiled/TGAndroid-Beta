@@ -179,7 +179,7 @@ public class ProximitySheet extends FrameLayout {
         this.kmPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i) {
-                return ProximitySheet.m2670$r8$lambda$vaBtl43X7tr72GGTyl6V9hROOs(this.f$0, i);
+                return ProximitySheet.m2679$r8$lambda$vaBtl43X7tr72GGTyl6V9hROOs(this.f$0, i);
             }
         });
         this.kmPicker.setMinValue(0);
@@ -189,7 +189,7 @@ public class ProximitySheet extends FrameLayout {
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
             @Override
             public final void onValueChange(NumberPicker numberPicker3, int i, int i2) {
-                ProximitySheet.m2671$r8$lambda$wPdvT0rDpRyWg9bXdSZ3Fc7t0(this.f$0, numberPicker3, i, i2);
+                ProximitySheet.m2680$r8$lambda$wPdvT0rDpRyWg9bXdSZ3Fc7t0(this.f$0, numberPicker3, i, i2);
             }
         };
         this.kmPicker.setOnValueChangedListener(onValueChangeListener);
@@ -233,11 +233,11 @@ public class ProximitySheet extends FrameLayout {
         this.containerView.addView(this.customView, LayoutHelper.createFrame(-1, -2, 51));
     }
 
-    public static String m2670$r8$lambda$vaBtl43X7tr72GGTyl6V9hROOs(ProximitySheet proximitySheet, int i) {
+    public static String m2679$r8$lambda$vaBtl43X7tr72GGTyl6V9hROOs(ProximitySheet proximitySheet, int i) {
         return proximitySheet.useImperialSystem ? LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i)) : LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i));
     }
 
-    public static void m2671$r8$lambda$wPdvT0rDpRyWg9bXdSZ3Fc7t0(ProximitySheet proximitySheet, NumberPicker numberPicker, int i, int i2) {
+    public static void m2680$r8$lambda$wPdvT0rDpRyWg9bXdSZ3Fc7t0(ProximitySheet proximitySheet, NumberPicker numberPicker, int i, int i2) {
         proximitySheet.getClass();
         try {
             proximitySheet.performHapticFeedback(3, 2);
@@ -640,14 +640,14 @@ public class ProximitySheet extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProximitySheet.AnonymousClass6.m2672$r8$lambda$j8w1UjXHqA9fqvMaTIeip71P_s(this.f$0);
+                        ProximitySheet.AnonymousClass6.m2681$r8$lambda$j8w1UjXHqA9fqvMaTIeip71P_s(this.f$0);
                     }
                 });
             }
             NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
         }
 
-        public static void m2672$r8$lambda$j8w1UjXHqA9fqvMaTIeip71P_s(AnonymousClass6 anonymousClass6) {
+        public static void m2681$r8$lambda$j8w1UjXHqA9fqvMaTIeip71P_s(AnonymousClass6 anonymousClass6) {
             anonymousClass6.getClass();
             try {
                 ProximitySheet.this.dismissInternal();

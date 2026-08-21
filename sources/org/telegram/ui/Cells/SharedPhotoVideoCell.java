@@ -281,7 +281,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
             this.photoVideoViews[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    SharedPhotoVideoCell.m1500$r8$lambda$YA7eRDVeo7pdDIbTErpWGZNuI(this.f$0, view);
+                    SharedPhotoVideoCell.m1506$r8$lambda$YA7eRDVeo7pdDIbTErpWGZNuI(this.f$0, view);
                 }
             });
             this.photoVideoViews[i2].setOnLongClickListener(new View.OnLongClickListener() {
@@ -293,7 +293,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
         }
     }
 
-    public static void m1500$r8$lambda$YA7eRDVeo7pdDIbTErpWGZNuI(SharedPhotoVideoCell sharedPhotoVideoCell, View view) {
+    public static void m1506$r8$lambda$YA7eRDVeo7pdDIbTErpWGZNuI(SharedPhotoVideoCell sharedPhotoVideoCell, View view) {
         if (sharedPhotoVideoCell.delegate != null) {
             int iIntValue = ((Integer) view.getTag()).intValue();
             sharedPhotoVideoCell.delegate.didClickItem(sharedPhotoVideoCell, sharedPhotoVideoCell.indeces[iIntValue], sharedPhotoVideoCell.messageObjects[iIntValue], iIntValue);

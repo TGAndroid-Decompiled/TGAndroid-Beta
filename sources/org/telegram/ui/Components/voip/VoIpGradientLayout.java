@@ -195,7 +195,7 @@ public class VoIpGradientLayout extends FrameLayout {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoIpGradientLayout.m3003$r8$lambda$NdAtpf0Wp0qwPG1r12koW7hMYs(this.f$0, valueAnimator);
+                VoIpGradientLayout.m3012$r8$lambda$NdAtpf0Wp0qwPG1r12koW7hMYs(this.f$0, valueAnimator);
             }
         });
         this.callingAnimator.setRepeatCount(-1);
@@ -207,7 +207,7 @@ public class VoIpGradientLayout extends FrameLayout {
         }
     }
 
-    public static void m3003$r8$lambda$NdAtpf0Wp0qwPG1r12koW7hMYs(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
+    public static void m3012$r8$lambda$NdAtpf0Wp0qwPG1r12koW7hMYs(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
         voIpGradientLayout.getClass();
         voIpGradientLayout.alphaBlueViolet = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         voIpGradientLayout.invalidate();

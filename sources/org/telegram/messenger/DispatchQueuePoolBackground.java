@@ -102,12 +102,12 @@ public class DispatchQueuePoolBackground {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DispatchQueuePoolBackground.m415$r8$lambda$kdj_O_LqsCSAkhlAhxnyAt8aQU(this.f$0, dispatchQueue);
+                DispatchQueuePoolBackground.m423$r8$lambda$kdj_O_LqsCSAkhlAhxnyAt8aQU(this.f$0, dispatchQueue);
             }
         });
     }
 
-    public static void m415$r8$lambda$kdj_O_LqsCSAkhlAhxnyAt8aQU(DispatchQueuePoolBackground dispatchQueuePoolBackground, DispatchQueue dispatchQueue) {
+    public static void m423$r8$lambda$kdj_O_LqsCSAkhlAhxnyAt8aQU(DispatchQueuePoolBackground dispatchQueuePoolBackground, DispatchQueue dispatchQueue) {
         dispatchQueuePoolBackground.totalTasksCount--;
         int i = dispatchQueuePoolBackground.busyQueuesMap.get(dispatchQueue.index) - 1;
         if (i == 0) {
@@ -164,12 +164,12 @@ public class DispatchQueuePoolBackground {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DispatchQueuePoolBackground.m416$r8$lambda$olCmqjv06XbZi7A_RYb7NkHJQA(arrayList2);
+                DispatchQueuePoolBackground.m424$r8$lambda$olCmqjv06XbZi7A_RYb7NkHJQA(arrayList2);
             }
         });
     }
 
-    public static void m416$r8$lambda$olCmqjv06XbZi7A_RYb7NkHJQA(final ArrayList arrayList) {
+    public static void m424$r8$lambda$olCmqjv06XbZi7A_RYb7NkHJQA(final ArrayList arrayList) {
         backgroundQueue.execute((ArrayList<Runnable>) arrayList);
         arrayList.clear();
         AndroidUtilities.runOnUIThread(new Runnable() {

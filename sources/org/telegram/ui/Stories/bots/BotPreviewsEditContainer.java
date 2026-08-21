@@ -278,14 +278,14 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         tabsViewCreateTabsView.setPreTabClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                return BotPreviewsEditContainer.m4454$r8$lambda$DqBxhg5FKuU67rHBRd2Z8QOmJs(this.f$0, (Integer) obj, (Integer) obj2);
+                return BotPreviewsEditContainer.m4465$r8$lambda$DqBxhg5FKuU67rHBRd2Z8QOmJs(this.f$0, (Integer) obj, (Integer) obj2);
             }
         });
         addView(tabsViewCreateTabsView, LayoutHelper.createFrame(-1, 42, 48));
         updateLangs(false);
     }
 
-    public static Boolean m4454$r8$lambda$DqBxhg5FKuU67rHBRd2Z8QOmJs(BotPreviewsEditContainer botPreviewsEditContainer, Integer num, Integer num2) {
+    public static Boolean m4465$r8$lambda$DqBxhg5FKuU67rHBRd2Z8QOmJs(BotPreviewsEditContainer botPreviewsEditContainer, Integer num, Integer num2) {
         botPreviewsEditContainer.getClass();
         if (num.intValue() == -1) {
             botPreviewsEditContainer.addTranslation();
@@ -311,12 +311,12 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotPreviewsEditContainer.m4455$r8$lambda$WiwNshCu0txWIeAQxYn8rqNx7k(this.f$0, str);
+                BotPreviewsEditContainer.m4466$r8$lambda$WiwNshCu0txWIeAQxYn8rqNx7k(this.f$0, str);
             }
         }, 120L);
     }
 
-    public static void m4455$r8$lambda$WiwNshCu0txWIeAQxYn8rqNx7k(BotPreviewsEditContainer botPreviewsEditContainer, String str) {
+    public static void m4466$r8$lambda$WiwNshCu0txWIeAQxYn8rqNx7k(BotPreviewsEditContainer botPreviewsEditContainer, String str) {
         int i = 0;
         while (true) {
             if (i >= botPreviewsEditContainer.langLists.size()) {
@@ -660,7 +660,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    BotPreviewsEditContainer.m4456$r8$lambda$ny00lQ3lqX_sga8u7GliUNtgA(this.f$0, valueAnimator2);
+                    BotPreviewsEditContainer.m4467$r8$lambda$ny00lQ3lqX_sga8u7GliUNtgA(this.f$0, valueAnimator2);
                 }
             });
             this.tabsAnimator.addListener(new AnimatorListenerAdapter() {
@@ -677,7 +677,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         }
     }
 
-    public static void m4456$r8$lambda$ny00lQ3lqX_sga8u7GliUNtgA(BotPreviewsEditContainer botPreviewsEditContainer, ValueAnimator valueAnimator) {
+    public static void m4467$r8$lambda$ny00lQ3lqX_sga8u7GliUNtgA(BotPreviewsEditContainer botPreviewsEditContainer, ValueAnimator valueAnimator) {
         botPreviewsEditContainer.getClass();
         botPreviewsEditContainer.tabsAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         botPreviewsEditContainer.tabsView.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(42.0f), 0, botPreviewsEditContainer.tabsAlpha));
@@ -901,7 +901,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             footerView.set(str, string3, runnable, string2, (z || count <= 0) ? new Runnable() {
                 @Override
                 public final void run() {
-                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.m4457$r8$lambda$b3iLNlcjIDsSOZXCIhCO0DT3M(this.f$0, z);
+                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.m4468$r8$lambda$b3iLNlcjIDsSOZXCIhCO0DT3M(this.f$0, z);
                 }
             } : null);
             if (z) {
@@ -935,7 +935,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
         }
 
-        public static void m4457$r8$lambda$b3iLNlcjIDsSOZXCIhCO0DT3M(BotPreviewsEditLangContainer botPreviewsEditLangContainer, boolean z) {
+        public static void m4468$r8$lambda$b3iLNlcjIDsSOZXCIhCO0DT3M(BotPreviewsEditLangContainer botPreviewsEditLangContainer, boolean z) {
             if (z) {
                 BotPreviewsEditContainer.this.addTranslation();
             } else {

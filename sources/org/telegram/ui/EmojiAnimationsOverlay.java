@@ -879,7 +879,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                     Runnable runnable3 = new Runnable() {
                         @Override
                         public final void run() {
-                            EmojiAnimationsOverlay.m3126$r8$lambda$TLVLtInfEgE3kCRzi3T6Wjpu04(this.f$0);
+                            EmojiAnimationsOverlay.m3135$r8$lambda$TLVLtInfEgE3kCRzi3T6Wjpu04(this.f$0);
                         }
                     };
                     this.sentInteractionsRunnable = runnable3;
@@ -910,7 +910,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         emojiAnimationsOverlay.showStickerSetBulletin((TLRPC.TL_messages_stickerSet) tLObject, messageObject);
     }
 
-    public static void m3126$r8$lambda$TLVLtInfEgE3kCRzi3T6Wjpu04(EmojiAnimationsOverlay emojiAnimationsOverlay) {
+    public static void m3135$r8$lambda$TLVLtInfEgE3kCRzi3T6Wjpu04(EmojiAnimationsOverlay emojiAnimationsOverlay) {
         emojiAnimationsOverlay.sendCurrentTaps();
         emojiAnimationsOverlay.sentInteractionsRunnable = null;
     }

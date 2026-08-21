@@ -823,7 +823,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                ProxyListActivity.m3935$r8$lambda$5pbN7GOeBsh_eBQYt4oGxgPw4(proxyInfo, j);
+                                ProxyListActivity.m3944$r8$lambda$5pbN7GOeBsh_eBQYt4oGxgPw4(proxyInfo, j);
                             }
                         });
                     }
@@ -832,7 +832,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public static void m3935$r8$lambda$5pbN7GOeBsh_eBQYt4oGxgPw4(SharedConfig.ProxyInfo proxyInfo, long j) {
+    public static void m3944$r8$lambda$5pbN7GOeBsh_eBQYt4oGxgPw4(SharedConfig.ProxyInfo proxyInfo, long j) {
         proxyInfo.availableCheckTime = SystemClock.elapsedRealtime();
         proxyInfo.checking = false;
         if (j == -1) {
@@ -869,7 +869,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             this.listView.forAllChild(new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ProxyListActivity.m3936$r8$lambda$mS7dIEBPcGbwhsbLjStKlTHsCM(this.f$0, (View) obj);
+                    ProxyListActivity.m3945$r8$lambda$mS7dIEBPcGbwhsbLjStKlTHsCM(this.f$0, (View) obj);
                 }
             });
             updateRows(false);
@@ -922,7 +922,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         updateRows(true);
     }
 
-    public static void m3936$r8$lambda$mS7dIEBPcGbwhsbLjStKlTHsCM(ProxyListActivity proxyListActivity, View view) {
+    public static void m3945$r8$lambda$mS7dIEBPcGbwhsbLjStKlTHsCM(ProxyListActivity proxyListActivity, View view) {
         View view2 = proxyListActivity.listView.getChildViewHolder(view).itemView;
         if (view2 instanceof TextDetailProxyCell) {
             TextDetailProxyCell textDetailProxyCell = (TextDetailProxyCell) view2;

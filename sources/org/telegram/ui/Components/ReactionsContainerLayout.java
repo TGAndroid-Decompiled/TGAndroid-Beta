@@ -468,7 +468,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i4) {
-                ReactionsContainerLayout.m2708$r8$lambda$mOMHWqWb9ed5Wtn4VHPXYBCVUg(this.f$0, view, i4);
+                ReactionsContainerLayout.m2717$r8$lambda$mOMHWqWb9ed5Wtn4VHPXYBCVUg(this.f$0, view, i4);
             }
         });
         recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -492,7 +492,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         MediaDataController.getInstance(i2).preloadDefaultReactions();
     }
 
-    public static void m2708$r8$lambda$mOMHWqWb9ed5Wtn4VHPXYBCVUg(ReactionsContainerLayout reactionsContainerLayout, View view, int i) {
+    public static void m2717$r8$lambda$mOMHWqWb9ed5Wtn4VHPXYBCVUg(ReactionsContainerLayout reactionsContainerLayout, View view, int i) {
         ReactionsContainerDelegate reactionsContainerDelegate = reactionsContainerLayout.delegate;
         if (reactionsContainerDelegate == null || !(view instanceof ReactionHolderView)) {
             return;
@@ -1759,7 +1759,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ReactionsContainerLayout.m2709$r8$lambda$xfFRlSi3xQH1dSiq1caexevWKE(this.f$0, (View) obj);
+                ReactionsContainerLayout.m2718$r8$lambda$xfFRlSi3xQH1dSiq1caexevWKE(this.f$0, (View) obj);
             }
         });
         this.lastVisibleViews.clear();
@@ -1771,7 +1771,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         invalidate();
     }
 
-    public static void m2709$r8$lambda$xfFRlSi3xQH1dSiq1caexevWKE(ReactionsContainerLayout reactionsContainerLayout, View view) {
+    public static void m2718$r8$lambda$xfFRlSi3xQH1dSiq1caexevWKE(ReactionsContainerLayout reactionsContainerLayout, View view) {
         reactionsContainerLayout.getClass();
         if (view instanceof ReactionHolderView) {
             ReactionHolderView reactionHolderView = (ReactionHolderView) view;
@@ -2378,7 +2378,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ReactionsContainerLayout.ReactionHolderView.m2711$r8$lambda$YfNtnNnbmNsKyuYR4tQ_8eo(this.f$0, valueAnimator);
+                        ReactionsContainerLayout.ReactionHolderView.m2720$r8$lambda$YfNtnNnbmNsKyuYR4tQ_8eo(this.f$0, valueAnimator);
                     }
                 });
                 this.enterAnimator.setDuration(150L);
@@ -2390,7 +2390,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             return false;
         }
 
-        public static void m2711$r8$lambda$YfNtnNnbmNsKyuYR4tQ_8eo(ReactionHolderView reactionHolderView, ValueAnimator valueAnimator) {
+        public static void m2720$r8$lambda$YfNtnNnbmNsKyuYR4tQ_8eo(ReactionHolderView reactionHolderView, ValueAnimator valueAnimator) {
             reactionHolderView.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             reactionHolderView.enterScale = fFloatValue;

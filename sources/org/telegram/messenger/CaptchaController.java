@@ -82,7 +82,7 @@ public class CaptchaController {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    CaptchaController.m366$r8$lambda$stKJxtC1RPLdV30yoHtFVwBWyI(request2, exc);
+                    CaptchaController.m374$r8$lambda$stKJxtC1RPLdV30yoHtFVwBWyI(request2, exc);
                 }
             });
         }
@@ -102,7 +102,7 @@ public class CaptchaController {
         request.done("RECAPTCHA_FAILED_TASK_EXCEPTION_" + formatException(exc));
     }
 
-    public static void m366$r8$lambda$stKJxtC1RPLdV30yoHtFVwBWyI(Request request, Exception exc) {
+    public static void m374$r8$lambda$stKJxtC1RPLdV30yoHtFVwBWyI(Request request, Exception exc) {
         FileLog.e("CaptchaController: getTasksClient failure", exc);
         request.done("RECAPTCHA_FAILED_GETCLIENT_EXCEPTION_" + formatException(exc));
     }

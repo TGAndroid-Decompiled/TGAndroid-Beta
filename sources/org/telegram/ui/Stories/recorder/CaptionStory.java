@@ -209,12 +209,12 @@ public abstract class CaptionStory extends CaptionContainerView {
         this.periodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CaptionStory.m4465$r8$lambda$UYhTYZP4Oy50LGKcbD6TMMOgyk(this.f$0, frameLayout, resourcesProvider, view);
+                CaptionStory.m4476$r8$lambda$UYhTYZP4Oy50LGKcbD6TMMOgyk(this.f$0, frameLayout, resourcesProvider, view);
             }
         });
     }
 
-    public static void m4465$r8$lambda$UYhTYZP4Oy50LGKcbD6TMMOgyk(final CaptionStory captionStory, FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m4476$r8$lambda$UYhTYZP4Oy50LGKcbD6TMMOgyk(final CaptionStory captionStory, FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider, View view) {
         String pluralString;
         ItemOptions itemOptions = captionStory.periodPopup;
         if (itemOptions != null && itemOptions.isShown()) {

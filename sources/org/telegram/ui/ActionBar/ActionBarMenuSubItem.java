@@ -295,7 +295,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ActionBarMenuSubItem.m1237$r8$lambda$oSRpsz_FbzUub0sZQJmG9oUyvc(this.f$0, i, i2, valueAnimator2);
+                ActionBarMenuSubItem.m1243$r8$lambda$oSRpsz_FbzUub0sZQJmG9oUyvc(this.f$0, i, i2, valueAnimator2);
             }
         });
         this.enabledAnimator.addListener(new AnimatorListenerAdapter() {
@@ -310,7 +310,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
         this.enabledAnimator.start();
     }
 
-    public static void m1237$r8$lambda$oSRpsz_FbzUub0sZQJmG9oUyvc(ActionBarMenuSubItem actionBarMenuSubItem, int i, int i2, ValueAnimator valueAnimator) {
+    public static void m1243$r8$lambda$oSRpsz_FbzUub0sZQJmG9oUyvc(ActionBarMenuSubItem actionBarMenuSubItem, int i, int i2, ValueAnimator valueAnimator) {
         actionBarMenuSubItem.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         actionBarMenuSubItem.setTextColor(ColorUtils.blendARGB(i, i2, fFloatValue));

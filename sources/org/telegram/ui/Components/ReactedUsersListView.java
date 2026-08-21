@@ -270,7 +270,7 @@ public class ReactedUsersListView extends FrameLayout {
         Collections.sort(this.userReactions, Comparator$CC.comparingInt(new ToIntFunction() {
             @Override
             public final int applyAsInt(Object obj) {
-                return ReactedUsersListView.m2688$r8$lambda$CdvtuBtO2AQTL87BPwQ1yaYY((TLRPC.MessagePeerReaction) obj);
+                return ReactedUsersListView.m2697$r8$lambda$CdvtuBtO2AQTL87BPwQ1yaYY((TLRPC.MessagePeerReaction) obj);
             }
         }));
         this.adapter.notifyDataSetChanged();
@@ -278,7 +278,7 @@ public class ReactedUsersListView extends FrameLayout {
         return this;
     }
 
-    public static int m2688$r8$lambda$CdvtuBtO2AQTL87BPwQ1yaYY(TLRPC.MessagePeerReaction messagePeerReaction) {
+    public static int m2697$r8$lambda$CdvtuBtO2AQTL87BPwQ1yaYY(TLRPC.MessagePeerReaction messagePeerReaction) {
         int i = messagePeerReaction.date;
         if (i <= 0 || messagePeerReaction.reaction != null) {
             return Integer.MIN_VALUE;
@@ -383,7 +383,7 @@ public class ReactedUsersListView extends FrameLayout {
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ReactedUsersListView.m2687$r8$lambda$5MMP5ZqejrNbaMpE456kPCtgR8(this.f$0, valueAnimator);
+                        ReactedUsersListView.m2696$r8$lambda$5MMP5ZqejrNbaMpE456kPCtgR8(this.f$0, valueAnimator);
                     }
                 });
                 duration.addListener(new AnimatorListenerAdapter() {
@@ -415,7 +415,7 @@ public class ReactedUsersListView extends FrameLayout {
         return -i;
     }
 
-    public static void m2687$r8$lambda$5MMP5ZqejrNbaMpE456kPCtgR8(ReactedUsersListView reactedUsersListView, ValueAnimator valueAnimator) {
+    public static void m2696$r8$lambda$5MMP5ZqejrNbaMpE456kPCtgR8(ReactedUsersListView reactedUsersListView, ValueAnimator valueAnimator) {
         reactedUsersListView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         reactedUsersListView.listView.setAlpha(fFloatValue);

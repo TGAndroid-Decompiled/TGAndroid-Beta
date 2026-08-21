@@ -158,7 +158,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                FragmentSearchField.m2361$r8$lambda$xyGqNEQ_1dyzu284zPSgNEFWSE(this.f$0, view);
+                FragmentSearchField.m2371$r8$lambda$xyGqNEQ_1dyzu284zPSgNEFWSE(this.f$0, view);
             }
         });
         addView(imageView2, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
@@ -178,7 +178,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         updateColors();
     }
 
-    public static void m2361$r8$lambda$xyGqNEQ_1dyzu284zPSgNEFWSE(FragmentSearchField fragmentSearchField, View view) {
+    public static void m2371$r8$lambda$xyGqNEQ_1dyzu284zPSgNEFWSE(FragmentSearchField fragmentSearchField, View view) {
         if (fragmentSearchField.hasRemovableFilters()) {
             SearchFiltersListener searchFiltersListener = fragmentSearchField.searchFiltersListener;
             if (searchFiltersListener != null) {
@@ -497,7 +497,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
             searchFilterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FragmentSearchField.m2360$r8$lambda$6iTX3sskoVI41WBuE8KbfIh3n0(this.f$0, searchFilterView, view);
+                    FragmentSearchField.m2370$r8$lambda$6iTX3sskoVI41WBuE8KbfIh3n0(this.f$0, searchFilterView, view);
                 }
             });
             LinearLayout linearLayout = this.searchFilterLayout;
@@ -512,7 +512,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         this.searchFilterLayout.setTag(!zIsEmpty ? 1 : null);
     }
 
-    public static void m2360$r8$lambda$6iTX3sskoVI41WBuE8KbfIh3n0(FragmentSearchField fragmentSearchField, ActionBarMenuItem.SearchFilterView searchFilterView, View view) {
+    public static void m2370$r8$lambda$6iTX3sskoVI41WBuE8KbfIh3n0(FragmentSearchField fragmentSearchField, ActionBarMenuItem.SearchFilterView searchFilterView, View view) {
         int iIndexOf = fragmentSearchField.currentSearchFilters.indexOf(searchFilterView.getFilter());
         if (fragmentSearchField.selectedFilterIndex != iIndexOf) {
             fragmentSearchField.selectedFilterIndex = iIndexOf;

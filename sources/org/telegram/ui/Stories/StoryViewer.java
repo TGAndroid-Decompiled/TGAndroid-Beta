@@ -730,7 +730,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 onBackInvokedDispatcherFindOnBackInvokedDispatcher.registerOnBackInvokedCallback(0, new OnBackInvokedCallback() {
                     @Override
                     public final void onBackInvoked() {
-                        StoryViewer.m4446$r8$lambda$bSfwY8okinijPMZpwEi4JWN80A(this.f$0);
+                        StoryViewer.m4457$r8$lambda$bSfwY8okinijPMZpwEi4JWN80A(this.f$0);
                     }
                 });
             }
@@ -1660,7 +1660,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     storiesViewPager.onNextIdle(new Runnable() {
                         @Override
                         public final void run() {
-                            StoryViewer.AnonymousClass5.m4451$r8$lambda$69d_Nv_lynm13eWuzkoM9A_Hwk(this.f$0, storiesList, arrayList);
+                            StoryViewer.AnonymousClass5.m4462$r8$lambda$69d_Nv_lynm13eWuzkoM9A_Hwk(this.f$0, storiesList, arrayList);
                         }
                     });
                     return;
@@ -1688,7 +1688,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             StoryViewer.this.close(false);
         }
 
-        public static void m4451$r8$lambda$69d_Nv_lynm13eWuzkoM9A_Hwk(AnonymousClass5 anonymousClass5, StoriesController.StoriesList storiesList, ArrayList arrayList) {
+        public static void m4462$r8$lambda$69d_Nv_lynm13eWuzkoM9A_Hwk(AnonymousClass5 anonymousClass5, StoriesController.StoriesList storiesList, ArrayList arrayList) {
             StoryViewer storyViewer = StoryViewer.this;
             storyViewer.storiesViewPager.setDays(storiesList.dialogId, arrayList, storyViewer.currentAccount);
         }
@@ -2135,7 +2135,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         return WindowInsetsCompat.CONSUMED;
     }
 
-    public static void m4446$r8$lambda$bSfwY8okinijPMZpwEi4JWN80A(StoryViewer storyViewer) {
+    public static void m4457$r8$lambda$bSfwY8okinijPMZpwEi4JWN80A(StoryViewer storyViewer) {
         storyViewer.getClass();
         LaunchActivity launchActivity = LaunchActivity.instance;
         if (launchActivity != null) {
@@ -2245,7 +2245,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    StoryViewer.m4445$r8$lambda$HGErF3bXB4taP1Oqextz5fqh4Y(this.f$0, dialogInterface);
+                    StoryViewer.m4456$r8$lambda$HGErF3bXB4taP1Oqextz5fqh4Y(this.f$0, dialogInterface);
                 }
             });
             dialog.show();
@@ -2258,7 +2258,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public static void m4445$r8$lambda$HGErF3bXB4taP1Oqextz5fqh4Y(StoryViewer storyViewer, DialogInterface dialogInterface) {
+    public static void m4456$r8$lambda$HGErF3bXB4taP1Oqextz5fqh4Y(StoryViewer storyViewer, DialogInterface dialogInterface) {
         if (dialogInterface == storyViewer.currentDialog) {
             storyViewer.currentDialog = null;
             storyViewer.updatePlayingMode();
@@ -2270,13 +2270,13 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         attachedSheet.setOnDismissListener(new Runnable() {
             @Override
             public final void run() {
-                StoryViewer.m4449$r8$lambda$nC7Kz4po3qUAQF8j_z6tDPCVAI(this.f$0);
+                StoryViewer.m4460$r8$lambda$nC7Kz4po3qUAQF8j_z6tDPCVAI(this.f$0);
             }
         });
         return true;
     }
 
-    public static void m4449$r8$lambda$nC7Kz4po3qUAQF8j_z6tDPCVAI(StoryViewer storyViewer) {
+    public static void m4460$r8$lambda$nC7Kz4po3qUAQF8j_z6tDPCVAI(StoryViewer storyViewer) {
         storyViewer.currentSheet = null;
         storyViewer.updatePlayingMode();
     }
@@ -2290,7 +2290,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    StoryViewer.m4448$r8$lambda$gVXenKJy40BbqgaE5XHZktw7dE(this.f$0, valueAnimator);
+                    StoryViewer.m4459$r8$lambda$gVXenKJy40BbqgaE5XHZktw7dE(this.f$0, valueAnimator);
                 }
             });
             this.swipeToReplyBackAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2313,7 +2313,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public static void m4448$r8$lambda$gVXenKJy40BbqgaE5XHZktw7dE(StoryViewer storyViewer, ValueAnimator valueAnimator) {
+    public static void m4459$r8$lambda$gVXenKJy40BbqgaE5XHZktw7dE(StoryViewer storyViewer, ValueAnimator valueAnimator) {
         storyViewer.getClass();
         storyViewer.swipeToReplyOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         storyViewer.swipeToReplyProgress = Utilities.clamp(storyViewer.swipeToReplyOffset / AndroidUtilities.dp(200.0f), 1.0f, 0.0f);
@@ -2952,7 +2952,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryViewer.m4447$r8$lambda$e8qkpnC4wRlziCAhFA34qHeuG4(this.f$0);
+                StoryViewer.m4458$r8$lambda$e8qkpnC4wRlziCAhFA34qHeuG4(this.f$0);
             }
         }, 16L);
     }
@@ -2971,7 +2971,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public static void m4447$r8$lambda$e8qkpnC4wRlziCAhFA34qHeuG4(StoryViewer storyViewer) {
+    public static void m4458$r8$lambda$e8qkpnC4wRlziCAhFA34qHeuG4(StoryViewer storyViewer) {
         if (storyViewer.openCloseAnimator == null) {
             return;
         }
@@ -3117,7 +3117,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public View mo1343getWindowView() {
+    public View mo1349getWindowView() {
         return this.windowView;
     }
 
@@ -3293,12 +3293,12 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryViewer.m4443$r8$lambda$Nk2rgIwGu2ifMZL58Ek4ZZAb2k(this.f$0);
+                StoryViewer.m4454$r8$lambda$Nk2rgIwGu2ifMZL58Ek4ZZAb2k(this.f$0);
             }
         }, 30L);
     }
 
-    public static void m4443$r8$lambda$Nk2rgIwGu2ifMZL58Ek4ZZAb2k(StoryViewer storyViewer) {
+    public static void m4454$r8$lambda$Nk2rgIwGu2ifMZL58Ek4ZZAb2k(StoryViewer storyViewer) {
         storyViewer.allowSelfStoriesView = true;
         storyViewer.cancelSwipeToViews(true);
     }

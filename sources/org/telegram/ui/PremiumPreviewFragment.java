@@ -208,7 +208,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     private final int type;
     private final boolean whiteBackground;
 
-    public static void m3769$r8$lambda$82wlIM89uxa2gEUOPt0ZHWL6oI(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3777$r8$lambda$82wlIM89uxa2gEUOPt0ZHWL6oI(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public static void $r8$lambda$LjJhhSFXJsz4l2Rs4ktCtmnJrzI(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1642,14 +1642,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PremiumPreviewFragment.m3771$r8$lambda$L3NU01o3sPubvPT51xDWyvXzLQ(billingResult, baseFragment, z, list, i, subscriptionUpdateParams, subscriptionTier);
+                        PremiumPreviewFragment.m3779$r8$lambda$L3NU01o3sPubvPT51xDWyvXzLQ(billingResult, baseFragment, z, list, i, subscriptionUpdateParams, subscriptionTier);
                     }
                 });
             }
         });
     }
 
-    public static void m3771$r8$lambda$L3NU01o3sPubvPT51xDWyvXzLQ(BillingResult billingResult, final BaseFragment baseFragment, final boolean z, List list, final int i, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier) {
+    public static void m3779$r8$lambda$L3NU01o3sPubvPT51xDWyvXzLQ(BillingResult billingResult, final BaseFragment baseFragment, final boolean z, List list, final int i, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier) {
         if (billingResult.getResponseCode() == 0) {
             final Runnable runnable = new Runnable() {
                 @Override
@@ -1675,7 +1675,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         ConnectionsManager.getInstance(i).sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                PremiumPreviewFragment.m3768$r8$lambda$6jew7CtL0cInUdEVCw9VPbiy1Y(i, runnable, baseFragment, tL_payments_assignPlayMarketTransaction, tLObject, tL_error);
+                                PremiumPreviewFragment.m3776$r8$lambda$6jew7CtL0cInUdEVCw9VPbiy1Y(i, runnable, baseFragment, tL_payments_assignPlayMarketTransaction, tLObject, tL_error);
                             }
                         }, 66);
                         return;
@@ -1740,7 +1740,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ((LaunchActivity) baseFragment.getParentActivity()).getFireworksOverlay().start();
     }
 
-    public static void m3768$r8$lambda$6jew7CtL0cInUdEVCw9VPbiy1Y(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3776$r8$lambda$6jew7CtL0cInUdEVCw9VPbiy1Y(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(runnable);
@@ -2676,7 +2676,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PremiumPreviewFragment.BackgroundView.m3776$r8$lambda$cVFufR2j5wFbUOIvaqovdZnVDQ(this.f$0, recyclerListView, duration, valueAnimator);
+                        PremiumPreviewFragment.BackgroundView.m3784$r8$lambda$cVFufR2j5wFbUOIvaqovdZnVDQ(this.f$0, recyclerListView, duration, valueAnimator);
                     }
                 });
                 duration.addListener(new AnimatorListenerAdapter() {
@@ -2697,7 +2697,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             this.tierListViewVisible = !z;
         }
 
-        public static void m3776$r8$lambda$cVFufR2j5wFbUOIvaqovdZnVDQ(BackgroundView backgroundView, View view, ValueAnimator valueAnimator, ValueAnimator valueAnimator2) {
+        public static void m3784$r8$lambda$cVFufR2j5wFbUOIvaqovdZnVDQ(BackgroundView backgroundView, View view, ValueAnimator valueAnimator, ValueAnimator valueAnimator2) {
             float fDp;
             backgroundView.getClass();
             float fFloatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
@@ -2732,7 +2732,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 this.buttonContainerInternal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) throws Throwable {
-                        PremiumPreviewFragment.m3770$r8$lambda$GxGJYE9phieD0BI2A53pgYkk(this.f$0, view);
+                        PremiumPreviewFragment.m3778$r8$lambda$GxGJYE9phieD0BI2A53pgYkk(this.f$0, view);
                     }
                 });
                 return;
@@ -2754,7 +2754,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 this.buttonContainerInternal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) throws Throwable {
-                        PremiumPreviewFragment.m3772$r8$lambda$LM9QePQEHyzvNOhIrPTVJNSueE(this.f$0, view);
+                        PremiumPreviewFragment.m3780$r8$lambda$LM9QePQEHyzvNOhIrPTVJNSueE(this.f$0, view);
                     }
                 });
                 this.premiumButtonView.setFlickerDisabled(false);
@@ -2762,12 +2762,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    public static void m3770$r8$lambda$GxGJYE9phieD0BI2A53pgYkk(PremiumPreviewFragment premiumPreviewFragment, View view) throws Throwable {
+    public static void m3778$r8$lambda$GxGJYE9phieD0BI2A53pgYkk(PremiumPreviewFragment premiumPreviewFragment, View view) throws Throwable {
         premiumPreviewFragment.getClass();
         buyPremium(premiumPreviewFragment);
     }
 
-    public static void m3772$r8$lambda$LM9QePQEHyzvNOhIrPTVJNSueE(PremiumPreviewFragment premiumPreviewFragment, View view) throws Throwable {
+    public static void m3780$r8$lambda$LM9QePQEHyzvNOhIrPTVJNSueE(PremiumPreviewFragment premiumPreviewFragment, View view) throws Throwable {
         TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption;
         SubscriptionTier subscriptionTier = (SubscriptionTier) premiumPreviewFragment.subscriptionTiers.get(premiumPreviewFragment.selectedTierIndex);
         SubscriptionTier subscriptionTier2 = premiumPreviewFragment.currentSubscriptionTier;
@@ -2998,7 +2998,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_help_saveAppLog, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PremiumPreviewFragment.m3769$r8$lambda$82wlIM89uxa2gEUOPt0ZHWL6oI(tLObject, tL_error);
+                PremiumPreviewFragment.m3777$r8$lambda$82wlIM89uxa2gEUOPt0ZHWL6oI(tLObject, tL_error);
             }
         });
     }

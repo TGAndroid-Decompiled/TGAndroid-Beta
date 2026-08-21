@@ -6848,7 +6848,7 @@ public abstract class Theme {
                             ConnectionsManager.getInstance(themeInfoFillThemeValues.account).sendRequest(getwallpaper, new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                    Theme.ThemeInfo.m1275$r8$lambda$c_j19Zuji1OQz3z1YRI_mf1uqU(this.f$0, themeInfoFillThemeValues, tLObject, tL_error);
+                                    Theme.ThemeInfo.m1281$r8$lambda$c_j19Zuji1OQz3z1YRI_mf1uqU(this.f$0, themeInfoFillThemeValues, tLObject, tL_error);
                                 }
                             });
                             return;
@@ -6869,7 +6869,7 @@ public abstract class Theme {
             });
         }
 
-        public static void m1275$r8$lambda$c_j19Zuji1OQz3z1YRI_mf1uqU(final ThemeInfo themeInfo, final ThemeInfo themeInfo2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m1281$r8$lambda$c_j19Zuji1OQz3z1YRI_mf1uqU(final ThemeInfo themeInfo, final ThemeInfo themeInfo2, final TLObject tLObject, TLRPC.TL_error tL_error) {
             themeInfo.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -6931,12 +6931,12 @@ public abstract class Theme {
         Collections.sort(themeInfo.themeAccents, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return Theme.m1274$r8$lambda$iIb89iYIwD07Wnq6O3Bw32oCr8((Theme.ThemeAccent) obj, (Theme.ThemeAccent) obj2);
+                return Theme.m1280$r8$lambda$iIb89iYIwD07Wnq6O3Bw32oCr8((Theme.ThemeAccent) obj, (Theme.ThemeAccent) obj2);
             }
         });
     }
 
-    public static int m1274$r8$lambda$iIb89iYIwD07Wnq6O3Bw32oCr8(ThemeAccent themeAccent, ThemeAccent themeAccent2) {
+    public static int m1280$r8$lambda$iIb89iYIwD07Wnq6O3Bw32oCr8(ThemeAccent themeAccent, ThemeAccent themeAccent2) {
         if (isHome(themeAccent)) {
             return -1;
         }
@@ -7933,12 +7933,12 @@ public abstract class Theme {
         Collections.sort(themes, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return Theme.m1269$r8$lambda$5DwEtG8oZHyp3J5BcUaprxPJb8((Theme.ThemeInfo) obj, (Theme.ThemeInfo) obj2);
+                return Theme.m1275$r8$lambda$5DwEtG8oZHyp3J5BcUaprxPJb8((Theme.ThemeInfo) obj, (Theme.ThemeInfo) obj2);
             }
         });
     }
 
-    public static int m1269$r8$lambda$5DwEtG8oZHyp3J5BcUaprxPJb8(ThemeInfo themeInfo, ThemeInfo themeInfo2) {
+    public static int m1275$r8$lambda$5DwEtG8oZHyp3J5BcUaprxPJb8(ThemeInfo themeInfo, ThemeInfo themeInfo2) {
         if (themeInfo.pathToFile == null && themeInfo.assetName == null) {
             return -1;
         }
@@ -9448,7 +9448,7 @@ public abstract class Theme {
                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                         @Override
                                         public final void run() {
-                                            Theme.m1273$r8$lambda$YaQiMDK_ThvoQBl6AnzeXT7s8(tLObject, themeAccent, themeInfo, tL_theme);
+                                            Theme.m1279$r8$lambda$YaQiMDK_ThvoQBl6AnzeXT7s8(tLObject, themeAccent, themeInfo, tL_theme);
                                         }
                                     });
                                 }
@@ -9461,7 +9461,7 @@ public abstract class Theme {
         }
     }
 
-    public static void m1273$r8$lambda$YaQiMDK_ThvoQBl6AnzeXT7s8(TLObject tLObject, ThemeAccent themeAccent, ThemeInfo themeInfo, TLRPC.TL_theme tL_theme) {
+    public static void m1279$r8$lambda$YaQiMDK_ThvoQBl6AnzeXT7s8(TLObject tLObject, ThemeAccent themeAccent, ThemeInfo themeInfo, TLRPC.TL_theme tL_theme) {
         boolean z;
         TLRPC.WallPaperSettings wallPaperSettings;
         boolean z2 = false;
@@ -14426,13 +14426,13 @@ public abstract class Theme {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                Theme.m1271$r8$lambda$IfQcXDUUx0gKIvGuTBUT9VHuMI(messageObject);
+                Theme.m1277$r8$lambda$IfQcXDUUx0gKIvGuTBUT9VHuMI(messageObject);
             }
         }, 200L);
         chat_msgAudioVisualizeDrawable = null;
     }
 
-    public static void m1271$r8$lambda$IfQcXDUUx0gKIvGuTBUT9VHuMI(MessageObject messageObject) {
+    public static void m1277$r8$lambda$IfQcXDUUx0gKIvGuTBUT9VHuMI(MessageObject messageObject) {
         AudioVisualizerDrawable audioVisualizerDrawable = (AudioVisualizerDrawable) animatedOutVisualizerDrawables.remove(messageObject);
         if (audioVisualizerDrawable != null) {
             audioVisualizerDrawable.setParentView(null);

@@ -268,13 +268,13 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                SearchTagsList.m2722$r8$lambda$tu8GnLCrzWmRY9LIh7t4g7afY(this.f$0, i, baseFragment, view, i2);
+                SearchTagsList.m2731$r8$lambda$tu8GnLCrzWmRY9LIh7t4g7afY(this.f$0, i, baseFragment, view, i2);
             }
         });
         recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                return SearchTagsList.m2725$r8$lambda$bGblWiYTzLdUxNnt5FZNLEem0(this.f$0, i, baseFragment, resourcesProvider, view, i2);
+                return SearchTagsList.m2734$r8$lambda$bGblWiYTzLdUxNnt5FZNLEem0(this.f$0, i, baseFragment, resourcesProvider, view, i2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
@@ -316,7 +316,7 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         updateTags(false);
     }
 
-    public static void m2722$r8$lambda$tu8GnLCrzWmRY9LIh7t4g7afY(SearchTagsList searchTagsList, int i, BaseFragment baseFragment, View view, int i2) {
+    public static void m2731$r8$lambda$tu8GnLCrzWmRY9LIh7t4g7afY(SearchTagsList searchTagsList, int i, BaseFragment baseFragment, View view, int i2) {
         if (i2 < 0) {
             searchTagsList.getClass();
             return;
@@ -363,7 +363,7 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         }
     }
 
-    public static boolean m2725$r8$lambda$bGblWiYTzLdUxNnt5FZNLEem0(final SearchTagsList searchTagsList, final int i, BaseFragment baseFragment, final Theme.ResourcesProvider resourcesProvider, View view, int i2) {
+    public static boolean m2734$r8$lambda$bGblWiYTzLdUxNnt5FZNLEem0(final SearchTagsList searchTagsList, final int i, BaseFragment baseFragment, final Theme.ResourcesProvider resourcesProvider, View view, int i2) {
         if (i2 < 0) {
             searchTagsList.getClass();
             return false;
@@ -552,7 +552,7 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
             alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    SearchTagsList.m2724$r8$lambda$QWtQVpfjJxod0CvJzmeboPJIgY(currentFocus, dialogInterface);
+                    SearchTagsList.m2733$r8$lambda$QWtQVpfjJxod0CvJzmeboPJIgY(currentFocus, dialogInterface);
                 }
             });
             currentDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -593,7 +593,7 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         }
     }
 
-    public static void m2724$r8$lambda$QWtQVpfjJxod0CvJzmeboPJIgY(View view, DialogInterface dialogInterface) {
+    public static void m2733$r8$lambda$QWtQVpfjJxod0CvJzmeboPJIgY(View view, DialogInterface dialogInterface) {
         currentDialog = null;
         view.requestFocus();
     }
@@ -616,13 +616,13 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
         this.listView.forAllChild(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                SearchTagsList.m2726$r8$lambda$bnK_fL57Bm_UKP5v67jy7uz8dA((View) obj);
+                SearchTagsList.m2735$r8$lambda$bnK_fL57Bm_UKP5v67jy7uz8dA((View) obj);
             }
         });
         this.chosen = 0L;
     }
 
-    public static void m2726$r8$lambda$bnK_fL57Bm_UKP5v67jy7uz8dA(View view) {
+    public static void m2735$r8$lambda$bnK_fL57Bm_UKP5v67jy7uz8dA(View view) {
         if (view instanceof TagButton) {
             ((TagButton) view).setChosen(false, true);
         }

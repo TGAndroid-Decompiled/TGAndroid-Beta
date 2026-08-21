@@ -329,13 +329,13 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
             ConnectionsManager.getInstance(this.accountNum).sendRequest(tL_help_getAppUpdate, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BlockingUpdateView.m2044$r8$lambda$Tf63wIwJLQECXnytaYLfB3IrDQ(this.f$0, tLObject, tL_error);
+                    BlockingUpdateView.m2054$r8$lambda$Tf63wIwJLQECXnytaYLfB3IrDQ(this.f$0, tLObject, tL_error);
                 }
             });
         }
     }
 
-    public static void m2044$r8$lambda$Tf63wIwJLQECXnytaYLfB3IrDQ(final BlockingUpdateView blockingUpdateView, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m2054$r8$lambda$Tf63wIwJLQECXnytaYLfB3IrDQ(final BlockingUpdateView blockingUpdateView, final TLObject tLObject, TLRPC.TL_error tL_error) {
         blockingUpdateView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

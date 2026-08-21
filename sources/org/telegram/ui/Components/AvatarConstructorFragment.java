@@ -628,7 +628,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             BulletinFactory.of(this.bottomBulletinContainer, this.resourceProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.PremiumAvatarToast), new Runnable() {
                 @Override
                 public final void run() {
-                    AvatarConstructorFragment.m2037$r8$lambda$E2Er4RKfLzsjKVwl0k_3153GPM(this.f$0);
+                    AvatarConstructorFragment.m2047$r8$lambda$E2Er4RKfLzsjKVwl0k_3153GPM(this.f$0);
                 }
             })).show();
             return;
@@ -643,7 +643,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         }
     }
 
-    public static void m2037$r8$lambda$E2Er4RKfLzsjKVwl0k_3153GPM(AvatarConstructorFragment avatarConstructorFragment) {
+    public static void m2047$r8$lambda$E2Er4RKfLzsjKVwl0k_3153GPM(AvatarConstructorFragment avatarConstructorFragment) {
         avatarConstructorFragment.getClass();
         avatarConstructorFragment.presentFragment(new PremiumPreviewFragment("avatar"));
     }
@@ -1071,7 +1071,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                     setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
                         public final void onItemClick(View view, int i5) {
-                            AvatarConstructorFragment.BackgroundSelectView.m2040$r8$lambda$Zmtk0pXwqDw9cuxlxklwbblNqw(this.f$0, view, i5);
+                            AvatarConstructorFragment.BackgroundSelectView.m2050$r8$lambda$Zmtk0pXwqDw9cuxlxklwbblNqw(this.f$0, view, i5);
                         }
                     });
                     RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
@@ -1125,7 +1125,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             }
         }
 
-        public static void m2040$r8$lambda$Zmtk0pXwqDw9cuxlxklwbblNqw(BackgroundSelectView backgroundSelectView, View view, int i) {
+        public static void m2050$r8$lambda$Zmtk0pXwqDw9cuxlxklwbblNqw(BackgroundSelectView backgroundSelectView, View view, int i) {
             BackgroundGradient backgroundGradient;
             backgroundSelectView.getClass();
             if (view instanceof GradientSelectorView) {
@@ -1579,7 +1579,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        AvatarConstructorFragment.m2038$r8$lambda$OoTy3EifudqqjaSKEvt8hwPLNE(this.f$0, valueAnimator2);
+                        AvatarConstructorFragment.m2048$r8$lambda$OoTy3EifudqqjaSKEvt8hwPLNE(this.f$0, valueAnimator2);
                     }
                 });
                 this.lightProgressAnimator.setDuration(150L).start();
@@ -1592,7 +1592,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         return z;
     }
 
-    public static void m2038$r8$lambda$OoTy3EifudqqjaSKEvt8hwPLNE(AvatarConstructorFragment avatarConstructorFragment, ValueAnimator valueAnimator) {
+    public static void m2048$r8$lambda$OoTy3EifudqqjaSKEvt8hwPLNE(AvatarConstructorFragment avatarConstructorFragment, ValueAnimator valueAnimator) {
         avatarConstructorFragment.getClass();
         avatarConstructorFragment.setProgressToLightStatusBar(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }

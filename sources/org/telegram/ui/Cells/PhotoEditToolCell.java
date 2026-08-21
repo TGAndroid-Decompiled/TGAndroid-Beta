@@ -74,12 +74,12 @@ public class PhotoEditToolCell extends FrameLayout {
         this.seekBar.setDelegate(new PhotoEditorSeekBar.PhotoEditorSeekBarDelegate() {
             @Override
             public final void onProgressChanged(int i, int i2) {
-                PhotoEditToolCell.m1494$r8$lambda$sha01_7rLqEIc9Zi9O8gUGzaes(this.f$0, photoEditorSeekBarDelegate, i, i2);
+                PhotoEditToolCell.m1500$r8$lambda$sha01_7rLqEIc9Zi9O8gUGzaes(this.f$0, photoEditorSeekBarDelegate, i, i2);
             }
         });
     }
 
-    public static void m1494$r8$lambda$sha01_7rLqEIc9Zi9O8gUGzaes(PhotoEditToolCell photoEditToolCell, PhotoEditorSeekBar.PhotoEditorSeekBarDelegate photoEditorSeekBarDelegate, int i, int i2) {
+    public static void m1500$r8$lambda$sha01_7rLqEIc9Zi9O8gUGzaes(PhotoEditToolCell photoEditToolCell, PhotoEditorSeekBar.PhotoEditorSeekBarDelegate photoEditorSeekBarDelegate, int i, int i2) {
         photoEditToolCell.getClass();
         photoEditorSeekBarDelegate.onProgressChanged(i, i2);
         if (i2 > 0) {

@@ -160,12 +160,12 @@ public class SuggestBirthdayActionLayout {
         AlertsCreator.createBirthdayPickerDialog(this.view.getContext(), LocaleController.getString(R.string.DateOfBirth), LocaleController.getString(R.string.DateOfBirthAddToProfile), this.birthday, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                SuggestBirthdayActionLayout.m2859$r8$lambda$VFGVibElkC_BVbKBCMewXhqjLQ(this.f$0, (TL_account.TL_birthday) obj);
+                SuggestBirthdayActionLayout.m2868$r8$lambda$VFGVibElkC_BVbKBCMewXhqjLQ(this.f$0, (TL_account.TL_birthday) obj);
             }
         }, null, true, false, this.resourcesProvider).show();
     }
 
-    public static void m2859$r8$lambda$VFGVibElkC_BVbKBCMewXhqjLQ(final SuggestBirthdayActionLayout suggestBirthdayActionLayout, TL_account.TL_birthday tL_birthday) {
+    public static void m2868$r8$lambda$VFGVibElkC_BVbKBCMewXhqjLQ(final SuggestBirthdayActionLayout suggestBirthdayActionLayout, TL_account.TL_birthday tL_birthday) {
         suggestBirthdayActionLayout.getClass();
         TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
         updatebirthday.flags |= 1;

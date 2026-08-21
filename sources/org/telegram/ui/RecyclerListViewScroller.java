@@ -33,7 +33,7 @@ public class RecyclerListViewScroller {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                RecyclerListViewScroller.m3958$r8$lambda$AMpEom35Z2wyZyp4yAFj6uWZmo(this.f$0, iArr, valueAnimator2);
+                RecyclerListViewScroller.m3967$r8$lambda$AMpEom35Z2wyZyp4yAFj6uWZmo(this.f$0, iArr, valueAnimator2);
             }
         });
         this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -48,7 +48,7 @@ public class RecyclerListViewScroller {
         this.valueAnimator.start();
     }
 
-    public static void m3958$r8$lambda$AMpEom35Z2wyZyp4yAFj6uWZmo(RecyclerListViewScroller recyclerListViewScroller, int[] iArr, ValueAnimator valueAnimator) {
+    public static void m3967$r8$lambda$AMpEom35Z2wyZyp4yAFj6uWZmo(RecyclerListViewScroller recyclerListViewScroller, int[] iArr, ValueAnimator valueAnimator) {
         recyclerListViewScroller.getClass();
         int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         int i = iIntValue - recyclerListViewScroller.lastScrolled;

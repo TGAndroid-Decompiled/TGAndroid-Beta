@@ -85,7 +85,7 @@ public class RLottieDiceDrawable extends RLottieDrawable {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                RLottieDiceDrawable.m2680$r8$lambda$wapA9tk9_GK1WyqqGCZMqNTSCk(this.f$0, frameCount);
+                RLottieDiceDrawable.m2689$r8$lambda$wapA9tk9_GK1WyqqGCZMqNTSCk(this.f$0, frameCount);
             }
         });
     }
@@ -98,7 +98,7 @@ public class RLottieDiceDrawable extends RLottieDrawable {
         rLottieDiceDrawable.recycle(true);
     }
 
-    public static void m2680$r8$lambda$wapA9tk9_GK1WyqqGCZMqNTSCk(RLottieDiceDrawable rLottieDiceDrawable, int i) {
+    public static void m2689$r8$lambda$wapA9tk9_GK1WyqqGCZMqNTSCk(RLottieDiceDrawable rLottieDiceDrawable, int i) {
         rLottieDiceDrawable.secondLoadingInBackground = false;
         if (rLottieDiceDrawable.destroyAfterLoading) {
             rLottieDiceDrawable.recycle(true);
@@ -136,14 +136,14 @@ public class RLottieDiceDrawable extends RLottieDrawable {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    RLottieDiceDrawable.m2679$r8$lambda$H7Qj3l2T4Jv6szGnMIwge5ryFY(this.f$0, res);
+                    RLottieDiceDrawable.m2688$r8$lambda$H7Qj3l2T4Jv6szGnMIwge5ryFY(this.f$0, res);
                 }
             });
         }
         return true;
     }
 
-    public static void m2679$r8$lambda$H7Qj3l2T4Jv6szGnMIwge5ryFY(final RLottieDiceDrawable rLottieDiceDrawable, String str) {
+    public static void m2688$r8$lambda$H7Qj3l2T4Jv6szGnMIwge5ryFY(final RLottieDiceDrawable rLottieDiceDrawable, String str) {
         rLottieDiceDrawable.nativePtr = RLottieNative.createFromRawJson(str, "dice", rLottieDiceDrawable.metaData, null);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

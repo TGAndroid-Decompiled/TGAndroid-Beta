@@ -45,12 +45,12 @@ public class VoipAudioManager {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VoipAudioManager.m1209$r8$lambda$GkupENbEtcGx9B_eS_5XMimzM(this.f$0, callback2);
+                VoipAudioManager.m1215$r8$lambda$GkupENbEtcGx9B_eS_5XMimzM(this.f$0, callback2);
             }
         });
     }
 
-    public static void m1209$r8$lambda$GkupENbEtcGx9B_eS_5XMimzM(VoipAudioManager voipAudioManager, final Utilities.Callback2 callback2) {
+    public static void m1215$r8$lambda$GkupENbEtcGx9B_eS_5XMimzM(VoipAudioManager voipAudioManager, final Utilities.Callback2 callback2) {
         AudioManager audioManager = voipAudioManager.getAudioManager();
         final boolean zIsBluetoothScoOn = audioManager.isBluetoothScoOn();
         final boolean zIsSpeakerphoneOn = audioManager.isSpeakerphoneOn();

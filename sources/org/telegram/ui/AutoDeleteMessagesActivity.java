@@ -163,12 +163,12 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AutoDeleteMessagesActivity.AnonymousClass2.m1345$r8$lambda$s7SvMV_DYjxhRNn1KfmL1wxAQ(this.f$0, arrayList);
+                    AutoDeleteMessagesActivity.AnonymousClass2.m1351$r8$lambda$s7SvMV_DYjxhRNn1KfmL1wxAQ(this.f$0, arrayList);
                 }
             }, 100L);
         }
 
-        public static void m1345$r8$lambda$s7SvMV_DYjxhRNn1KfmL1wxAQ(AnonymousClass2 anonymousClass2, ArrayList arrayList) {
+        public static void m1351$r8$lambda$s7SvMV_DYjxhRNn1KfmL1wxAQ(AnonymousClass2 anonymousClass2, ArrayList arrayList) {
             anonymousClass2.getClass();
             if (arrayList.isEmpty()) {
                 return;

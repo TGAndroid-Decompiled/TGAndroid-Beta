@@ -25,13 +25,13 @@ public class GroupCallStatusIcon {
     private Runnable shakeHandCallback = new Runnable() {
         @Override
         public final void run() {
-            GroupCallStatusIcon.m2979$r8$lambda$iUSg5CwNgobxBuUEf7sm5Zp0xU(this.f$0);
+            GroupCallStatusIcon.m2988$r8$lambda$iUSg5CwNgobxBuUEf7sm5Zp0xU(this.f$0);
         }
     };
     private Runnable raiseHandCallback = new Runnable() {
         @Override
         public final void run() {
-            GroupCallStatusIcon.m2977$r8$lambda$Q2X7GT50hFIASvkVcIe9D0_jHs(this.f$0);
+            GroupCallStatusIcon.m2986$r8$lambda$Q2X7GT50hFIASvkVcIe9D0_jHs(this.f$0);
         }
     };
     private Runnable updateRunnable = new Runnable() {
@@ -51,7 +51,7 @@ public class GroupCallStatusIcon {
         void onStatusChanged();
     }
 
-    public static void m2979$r8$lambda$iUSg5CwNgobxBuUEf7sm5Zp0xU(GroupCallStatusIcon groupCallStatusIcon) {
+    public static void m2988$r8$lambda$iUSg5CwNgobxBuUEf7sm5Zp0xU(GroupCallStatusIcon groupCallStatusIcon) {
         groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(null, 0);
         groupCallStatusIcon.micDrawable.setOnFinishCallback(null, 0);
         RLottieImageView rLottieImageView = groupCallStatusIcon.iconView;
@@ -60,7 +60,7 @@ public class GroupCallStatusIcon {
         }
     }
 
-    public static void m2977$r8$lambda$Q2X7GT50hFIASvkVcIe9D0_jHs(GroupCallStatusIcon groupCallStatusIcon) {
+    public static void m2986$r8$lambda$Q2X7GT50hFIASvkVcIe9D0_jHs(GroupCallStatusIcon groupCallStatusIcon) {
         int i;
         groupCallStatusIcon.getClass();
         int iNextInt = Utilities.random.nextInt(100);

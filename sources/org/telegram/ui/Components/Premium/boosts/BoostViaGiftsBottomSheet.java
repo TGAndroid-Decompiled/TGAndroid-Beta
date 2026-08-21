@@ -170,7 +170,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         this.adapter.setItems(chat, arrayList, this.recyclerListView, new SlideChooseView.Callback() {
             @Override
             public final void onOptionSelected(int i2) {
-                BoostViaGiftsBottomSheet.m2625$r8$lambda$9sicDQhv4jz2gJRm7Od1nh7NtE(this.f$0, i2);
+                BoostViaGiftsBottomSheet.m2634$r8$lambda$9sicDQhv4jz2gJRm7Od1nh7NtE(this.f$0, i2);
             }
 
             @Override
@@ -180,7 +180,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }, new ChatCell.ChatDeleteListener() {
             @Override
             public final void onChatDeleted(TLRPC.Chat chat2) {
-                BoostViaGiftsBottomSheet.m2630$r8$lambda$KydXvLavnzYW94jGjRNO7o2ZM8(this.f$0, chat2);
+                BoostViaGiftsBottomSheet.m2639$r8$lambda$KydXvLavnzYW94jGjRNO7o2ZM8(this.f$0, chat2);
             }
         }, new EnterPrizeCell.AfterTextChangedListener() {
             @Override
@@ -194,7 +194,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         actionBtnCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BoostViaGiftsBottomSheet.m2631$r8$lambda$PRItOfs7H08UfDJljjQkmFMFmw(this.f$0, prepaidGiveaway, j, baseFragment, view);
+                BoostViaGiftsBottomSheet.m2640$r8$lambda$PRItOfs7H08UfDJljjQkmFMFmw(this.f$0, prepaidGiveaway, j, baseFragment, view);
             }
         });
         updateActionButton(false);
@@ -312,7 +312,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         boostViaGiftsBottomSheet.updateRows(false, true);
     }
 
-    public static void m2625$r8$lambda$9sicDQhv4jz2gJRm7Od1nh7NtE(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, int i) {
+    public static void m2634$r8$lambda$9sicDQhv4jz2gJRm7Od1nh7NtE(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, int i) {
         if (boostViaGiftsBottomSheet.selectedBoostType == BoostTypeCell.TYPE_PREMIUM) {
             boostViaGiftsBottomSheet.selectedSliderIndex = i;
         } else {
@@ -327,7 +327,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         boostViaGiftsBottomSheet.adapter.updateBoostCounter(boostViaGiftsBottomSheet.getSelectedSliderValueWithBoosts());
     }
 
-    public static void m2630$r8$lambda$KydXvLavnzYW94jGjRNO7o2ZM8(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.Chat chat) {
+    public static void m2639$r8$lambda$KydXvLavnzYW94jGjRNO7o2ZM8(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.Chat chat) {
         boostViaGiftsBottomSheet.selectedChats.remove(chat);
         boostViaGiftsBottomSheet.updateRows(true, true);
     }
@@ -338,7 +338,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         boostViaGiftsBottomSheet.updateRows(true, true);
     }
 
-    public static void m2631$r8$lambda$PRItOfs7H08UfDJljjQkmFMFmw(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final TL_stories.PrepaidGiveaway prepaidGiveaway, final long j, BaseFragment baseFragment, View view) {
+    public static void m2640$r8$lambda$PRItOfs7H08UfDJljjQkmFMFmw(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final TL_stories.PrepaidGiveaway prepaidGiveaway, final long j, BaseFragment baseFragment, View view) {
         if (boostViaGiftsBottomSheet.actionBtn.isLoading()) {
             return;
         }
@@ -348,7 +348,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             BoostDialogs.showStartGiveawayDialog(new Runnable() {
                 @Override
                 public final void run() {
-                    BoostViaGiftsBottomSheet.m2627$r8$lambda$7x7WIhUZU4CwXrwbL0ONB70TDE(this.f$0, prepaidGiveaway, tL_prepaidStarsGiveaway, j, j2);
+                    BoostViaGiftsBottomSheet.m2636$r8$lambda$7x7WIhUZU4CwXrwbL0ONB70TDE(this.f$0, prepaidGiveaway, tL_prepaidStarsGiveaway, j, j2);
                 }
             });
             return;
@@ -424,7 +424,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                 }, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        BoostViaGiftsBottomSheet.m2636$r8$lambda$twPkYp4Q9SVzO6OpMuy7OIIiY(this.f$0, (TLRPC.TL_error) obj);
+                        BoostViaGiftsBottomSheet.m2645$r8$lambda$twPkYp4Q9SVzO6OpMuy7OIIiY(this.f$0, (TLRPC.TL_error) obj);
                     }
                 });
                 return;
@@ -432,7 +432,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }
     }
 
-    public static void m2627$r8$lambda$7x7WIhUZU4CwXrwbL0ONB70TDE(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final TL_stories.PrepaidGiveaway prepaidGiveaway, final TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, final long j, final long j2) {
+    public static void m2636$r8$lambda$7x7WIhUZU4CwXrwbL0ONB70TDE(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final TL_stories.PrepaidGiveaway prepaidGiveaway, final TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, final long j, final long j2) {
         int iPrepareServerDate = BoostRepository.prepareServerDate(boostViaGiftsBottomSheet.selectedEndDate);
         boolean z = boostViaGiftsBottomSheet.selectedParticipantsType == ParticipantsTypeCell.TYPE_NEW;
         boostViaGiftsBottomSheet.actionBtn.updateLoading(true);
@@ -444,7 +444,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BoostViaGiftsBottomSheet.m2628$r8$lambda$EzFbEqpt97TJVqwHL9hS3ts20(this.f$0, (TLRPC.TL_error) obj);
+                BoostViaGiftsBottomSheet.m2637$r8$lambda$EzFbEqpt97TJVqwHL9hS3ts20(this.f$0, (TLRPC.TL_error) obj);
             }
         });
     }
@@ -479,7 +479,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationName(NotificationCenter.boostByChannelCreated, boostViaGiftsBottomSheet.currentChat, Boolean.TRUE, prepaidGiveaway);
     }
 
-    public static void m2628$r8$lambda$EzFbEqpt97TJVqwHL9hS3ts20(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.TL_error tL_error) {
+    public static void m2637$r8$lambda$EzFbEqpt97TJVqwHL9hS3ts20(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.TL_error tL_error) {
         boostViaGiftsBottomSheet.actionBtn.updateLoading(false);
         BoostDialogs.showToastError(boostViaGiftsBottomSheet.getContext(), tL_error);
     }
@@ -557,7 +557,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationName(NotificationCenter.boostByChannelCreated, boostViaGiftsBottomSheet.currentChat, Boolean.TRUE);
     }
 
-    public static void m2636$r8$lambda$twPkYp4Q9SVzO6OpMuy7OIIiY(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.TL_error tL_error) {
+    public static void m2645$r8$lambda$twPkYp4Q9SVzO6OpMuy7OIIiY(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, TLRPC.TL_error tL_error) {
         boostViaGiftsBottomSheet.actionBtn.updateLoading(false);
         BoostDialogs.showToastError(boostViaGiftsBottomSheet.getContext(), tL_error);
     }
@@ -587,12 +587,12 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         BoostRepository.loadGiftOptions(this.currentAccount, this.currentChat, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BoostViaGiftsBottomSheet.m2629$r8$lambda$Kq_qLB8NBwFwbhTzYAJBFwtWSI(this.f$0, (List) obj);
+                BoostViaGiftsBottomSheet.m2638$r8$lambda$Kq_qLB8NBwFwbhTzYAJBFwtWSI(this.f$0, (List) obj);
             }
         });
     }
 
-    public static void m2629$r8$lambda$Kq_qLB8NBwFwbhTzYAJBFwtWSI(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, List list) {
+    public static void m2638$r8$lambda$Kq_qLB8NBwFwbhTzYAJBFwtWSI(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, List list) {
         boostViaGiftsBottomSheet.giftCodeOptions.clear();
         boostViaGiftsBottomSheet.giftCodeOptions.addAll(list);
         boostViaGiftsBottomSheet.updateRows(true, true);
@@ -908,7 +908,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                 this.items.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BoostingStoriesFeaturesAndTerms), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                     @Override
                     public final void run() {
-                        BoostViaGiftsBottomSheet.m2637$r8$lambda$x0JBU7LysW7QGFvzdlBW0PonuI(this.f$0);
+                        BoostViaGiftsBottomSheet.m2646$r8$lambda$x0JBU7LysW7QGFvzdlBW0PonuI(this.f$0);
                     }
                 }, this.resourcesProvider), true));
             }
@@ -978,7 +978,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }
     }
 
-    public static void m2637$r8$lambda$x0JBU7LysW7QGFvzdlBW0PonuI(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet) {
+    public static void m2646$r8$lambda$x0JBU7LysW7QGFvzdlBW0PonuI(final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet) {
         PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(boostViaGiftsBottomSheet.getBaseFragment(), boostViaGiftsBottomSheet.currentAccount, null, boostViaGiftsBottomSheet.resourcesProvider);
         premiumPreviewBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override

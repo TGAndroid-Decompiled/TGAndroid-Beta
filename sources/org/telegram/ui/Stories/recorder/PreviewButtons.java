@@ -271,12 +271,12 @@ public class PreviewButtons extends FrameLayout {
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PreviewButtons.ShareButtonView.m4549$r8$lambda$kNWOefqax4KpCRrV9EFj9AC7OM(this.f$0, view);
+                    PreviewButtons.ShareButtonView.m4560$r8$lambda$kNWOefqax4KpCRrV9EFj9AC7OM(this.f$0, view);
                 }
             });
         }
 
-        public static void m4549$r8$lambda$kNWOefqax4KpCRrV9EFj9AC7OM(ShareButtonView shareButtonView, View view) {
+        public static void m4560$r8$lambda$kNWOefqax4KpCRrV9EFj9AC7OM(ShareButtonView shareButtonView, View view) {
             if (!PreviewButtons.this.appearing || PreviewButtons.this.onClickListener == null) {
                 return;
             }
@@ -382,12 +382,12 @@ public class PreviewButtons extends FrameLayout {
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PreviewButtons.ButtonView.m4548$r8$lambda$WOftaA4x1I8qtFMw7cFnCLuWlQ(this.f$0, i, view);
+                    PreviewButtons.ButtonView.m4559$r8$lambda$WOftaA4x1I8qtFMw7cFnCLuWlQ(this.f$0, i, view);
                 }
             });
         }
 
-        public static void m4548$r8$lambda$WOftaA4x1I8qtFMw7cFnCLuWlQ(ButtonView buttonView, int i, View view) {
+        public static void m4559$r8$lambda$WOftaA4x1I8qtFMw7cFnCLuWlQ(ButtonView buttonView, int i, View view) {
             if (!PreviewButtons.this.appearing || PreviewButtons.this.onClickListener == null) {
                 return;
             }

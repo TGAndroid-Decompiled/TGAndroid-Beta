@@ -97,14 +97,14 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         this.infoText = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new Runnable() {
             @Override
             public final void run() {
-                DialogsBotsAdapter.m2258$r8$lambda$5ginHUpWaAKzzFssKEgml0kyyU(this.f$0, resourcesProvider, context);
+                DialogsBotsAdapter.m2268$r8$lambda$5ginHUpWaAKzzFssKEgml0kyyU(this.f$0, resourcesProvider, context);
             }
         }), true);
         update(false);
         MediaDataController.getInstance(i).loadHints(true);
     }
 
-    public static void m2258$r8$lambda$5ginHUpWaAKzzFssKEgml0kyyU(DialogsBotsAdapter dialogsBotsAdapter, Theme.ResourcesProvider resourcesProvider, final Context context) {
+    public static void m2268$r8$lambda$5ginHUpWaAKzzFssKEgml0kyyU(DialogsBotsAdapter dialogsBotsAdapter, Theme.ResourcesProvider resourcesProvider, final Context context) {
         dialogsBotsAdapter.getClass();
         final AlertDialog[] alertDialogArr = new AlertDialog[1];
         SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(LocaleController.getString(R.string.AppsTabInfoText), resourcesProvider, new Runnable() {
@@ -327,7 +327,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_contacts_search, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                DialogsBotsAdapter.m2259$r8$lambda$EB7zYrWozrF5aIZNKyretPsmmk(this.f$0, tL_contacts_search, (TLRPC.TL_contacts_found) obj, (TLRPC.TL_error) obj2);
+                DialogsBotsAdapter.m2269$r8$lambda$EB7zYrWozrF5aIZNKyretPsmmk(this.f$0, tL_contacts_search, (TLRPC.TL_contacts_found) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
@@ -382,7 +382,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         }
     }
 
-    public static void m2259$r8$lambda$EB7zYrWozrF5aIZNKyretPsmmk(DialogsBotsAdapter dialogsBotsAdapter, TLRPC.TL_contacts_search tL_contacts_search, TLRPC.TL_contacts_found tL_contacts_found, TLRPC.TL_error tL_error) {
+    public static void m2269$r8$lambda$EB7zYrWozrF5aIZNKyretPsmmk(DialogsBotsAdapter dialogsBotsAdapter, TLRPC.TL_contacts_search tL_contacts_search, TLRPC.TL_contacts_found tL_contacts_found, TLRPC.TL_error tL_error) {
         TLRPC.User user;
         TLRPC.User user2;
         dialogsBotsAdapter.getClass();
@@ -518,12 +518,12 @@ public class DialogsBotsAdapter extends UniversalAdapter {
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    DialogsBotsAdapter.PopularBots.m2261$r8$lambda$1g_w1JOQo39YjABdFsnZYrDw(this.f$0, messagesStorage, runnable);
+                    DialogsBotsAdapter.PopularBots.m2271$r8$lambda$1g_w1JOQo39YjABdFsnZYrDw(this.f$0, messagesStorage, runnable);
                 }
             });
         }
 
-        public static void m2261$r8$lambda$1g_w1JOQo39YjABdFsnZYrDw(final PopularBots popularBots, MessagesStorage messagesStorage, final Runnable runnable) throws Throwable {
+        public static void m2271$r8$lambda$1g_w1JOQo39YjABdFsnZYrDw(final PopularBots popularBots, MessagesStorage messagesStorage, final Runnable runnable) throws Throwable {
             SQLiteCursor sQLiteCursor;
             String str;
             final String str2;

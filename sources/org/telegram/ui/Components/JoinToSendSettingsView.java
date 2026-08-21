@@ -81,7 +81,7 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         this.joinRequestCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                JoinToSendSettingsView.m2413$r8$lambda$Zv9kTF8BQ25g9jXYExBg9gjMgo(this.f$0, view);
+                JoinToSendSettingsView.m2423$r8$lambda$Zv9kTF8BQ25g9jXYExBg9gjMgo(this.f$0, view);
             }
         });
         addView(this.joinRequestCell);
@@ -119,30 +119,30 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinToSendSettingsView.m2411$r8$lambda$u1sh2swYYhznA4BFT3aXspsE(this.f$0, z, z2);
+                JoinToSendSettingsView.m2421$r8$lambda$u1sh2swYYhznA4BFT3aXspsE(this.f$0, z, z2);
             }
         });
     }
 
-    public static void m2411$r8$lambda$u1sh2swYYhznA4BFT3aXspsE(JoinToSendSettingsView joinToSendSettingsView, boolean z, boolean z2) {
+    public static void m2421$r8$lambda$u1sh2swYYhznA4BFT3aXspsE(JoinToSendSettingsView joinToSendSettingsView, boolean z, boolean z2) {
         joinToSendSettingsView.setJoinRequest(z);
         joinToSendSettingsView.setJoinToSend(z2);
     }
 
-    public static void m2413$r8$lambda$Zv9kTF8BQ25g9jXYExBg9gjMgo(final JoinToSendSettingsView joinToSendSettingsView, View view) {
+    public static void m2423$r8$lambda$Zv9kTF8BQ25g9jXYExBg9gjMgo(final JoinToSendSettingsView joinToSendSettingsView, View view) {
         final boolean z = joinToSendSettingsView.isJoinRequest;
         boolean z2 = !z;
         if (joinToSendSettingsView.onJoinRequestToggle(z2, new Runnable() {
             @Override
             public final void run() {
-                JoinToSendSettingsView.m2414$r8$lambda$tsjpCh2Mcmji2Sj9_iG5wFYFo(this.f$0, z);
+                JoinToSendSettingsView.m2424$r8$lambda$tsjpCh2Mcmji2Sj9_iG5wFYFo(this.f$0, z);
             }
         })) {
             joinToSendSettingsView.setJoinRequest(z2);
         }
     }
 
-    public static void m2414$r8$lambda$tsjpCh2Mcmji2Sj9_iG5wFYFo(final JoinToSendSettingsView joinToSendSettingsView, final boolean z) {
+    public static void m2424$r8$lambda$tsjpCh2Mcmji2Sj9_iG5wFYFo(final JoinToSendSettingsView joinToSendSettingsView, final boolean z) {
         joinToSendSettingsView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -257,7 +257,7 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         this.toggleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                JoinToSendSettingsView.m2412$r8$lambda$UO92od15dztir2dSRmQqQurnfo(this.f$0, valueAnimator2);
+                JoinToSendSettingsView.m2422$r8$lambda$UO92od15dztir2dSRmQqQurnfo(this.f$0, valueAnimator2);
             }
         });
         this.toggleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -274,7 +274,7 @@ public abstract class JoinToSendSettingsView extends LinearLayout {
         this.toggleAnimator.start();
     }
 
-    public static void m2412$r8$lambda$UO92od15dztir2dSRmQqQurnfo(JoinToSendSettingsView joinToSendSettingsView, ValueAnimator valueAnimator) {
+    public static void m2422$r8$lambda$UO92od15dztir2dSRmQqQurnfo(JoinToSendSettingsView joinToSendSettingsView, ValueAnimator valueAnimator) {
         joinToSendSettingsView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         joinToSendSettingsView.toggleValue = fFloatValue;

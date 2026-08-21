@@ -326,12 +326,12 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.m2939$r8$lambda$x5YWDyWIv9zlVmKosc2cNdTMc4(this.f$0, frameAtTime);
+                VideoSeekPreviewImage.m2948$r8$lambda$x5YWDyWIv9zlVmKosc2cNdTMc4(this.f$0, frameAtTime);
             }
         });
     }
 
-    public static void m2939$r8$lambda$x5YWDyWIv9zlVmKosc2cNdTMc4(VideoSeekPreviewImage videoSeekPreviewImage, Bitmap bitmap) {
+    public static void m2948$r8$lambda$x5YWDyWIv9zlVmKosc2cNdTMc4(VideoSeekPreviewImage videoSeekPreviewImage, Bitmap bitmap) {
         int i;
         if (bitmap != null) {
             if (videoSeekPreviewImage.bitmapToDraw != null) {
@@ -768,7 +768,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.m2938$r8$lambda$ki_w1uMAMmT7QDPD07EFHTQhw(this.f$0);
+                VideoSeekPreviewImage.m2947$r8$lambda$ki_w1uMAMmT7QDPD07EFHTQhw(this.f$0);
             }
         });
         setVisibility(4);
@@ -788,7 +788,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         }
     }
 
-    public static void m2938$r8$lambda$ki_w1uMAMmT7QDPD07EFHTQhw(VideoSeekPreviewImage videoSeekPreviewImage) {
+    public static void m2947$r8$lambda$ki_w1uMAMmT7QDPD07EFHTQhw(VideoSeekPreviewImage videoSeekPreviewImage) {
         videoSeekPreviewImage.pendingProgress = 0.0f;
         AnimatedFileDrawable animatedFileDrawable = videoSeekPreviewImage.fileDrawable;
         if (animatedFileDrawable != null) {

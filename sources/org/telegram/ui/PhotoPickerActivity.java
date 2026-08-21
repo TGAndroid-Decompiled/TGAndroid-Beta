@@ -764,7 +764,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             this.writeButton.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view2) {
-                    return PhotoPickerActivity.m3660$r8$lambda$E1U8Gs4cOgF7YeI7PlJyGiqPks(this.f$0, view2);
+                    return PhotoPickerActivity.m3668$r8$lambda$E1U8Gs4cOgF7YeI7PlJyGiqPks(this.f$0, view2);
                 }
             });
             this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
@@ -1205,7 +1205,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static boolean m3660$r8$lambda$E1U8Gs4cOgF7YeI7PlJyGiqPks(final PhotoPickerActivity photoPickerActivity, View view) {
+    public static boolean m3668$r8$lambda$E1U8Gs4cOgF7YeI7PlJyGiqPks(final PhotoPickerActivity photoPickerActivity, View view) {
         ChatActivity chatActivity = photoPickerActivity.chatActivity;
         if (chatActivity != null && photoPickerActivity.maxSelectedPhotos != 1) {
             chatActivity.getCurrentChat();
@@ -1233,7 +1233,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 photoPickerActivity.sendPopupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                     @Override
                     public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                        PhotoPickerActivity.m3662$r8$lambda$POpWQi3ZO_80kbuV7_2XqMVl3E(this.f$0, keyEvent);
+                        PhotoPickerActivity.m3670$r8$lambda$POpWQi3ZO_80kbuV7_2XqMVl3E(this.f$0, keyEvent);
                     }
                 });
                 photoPickerActivity.sendPopupLayout.setShownFromBottom(false);
@@ -1256,7 +1256,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                         photoPickerActivity.itemCells[i].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
-                                PhotoPickerActivity.m3661$r8$lambda$KzAJvcsRagu_lKJjgAdwvzm4gA(this.f$0, i, view2);
+                                PhotoPickerActivity.m3669$r8$lambda$KzAJvcsRagu_lKJjgAdwvzm4gA(this.f$0, i, view2);
                             }
                         });
                     }
@@ -1287,7 +1287,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         return false;
     }
 
-    public static void m3662$r8$lambda$POpWQi3ZO_80kbuV7_2XqMVl3E(PhotoPickerActivity photoPickerActivity, KeyEvent keyEvent) {
+    public static void m3670$r8$lambda$POpWQi3ZO_80kbuV7_2XqMVl3E(PhotoPickerActivity photoPickerActivity, KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         photoPickerActivity.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = photoPickerActivity.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
@@ -1295,7 +1295,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3661$r8$lambda$KzAJvcsRagu_lKJjgAdwvzm4gA(final PhotoPickerActivity photoPickerActivity, int i, View view) {
+    public static void m3669$r8$lambda$KzAJvcsRagu_lKJjgAdwvzm4gA(final PhotoPickerActivity photoPickerActivity, int i, View view) {
         ActionBarPopupWindow actionBarPopupWindow = photoPickerActivity.sendPopupWindow;
         if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
             photoPickerActivity.sendPopupWindow.dismiss();
@@ -1721,13 +1721,13 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoPickerActivity.m3664$r8$lambda$sxw4BJQjLxHgrY6GqODxDUxRsg(this.f$0, tLObject, z);
+                    PhotoPickerActivity.m3672$r8$lambda$sxw4BJQjLxHgrY6GqODxDUxRsg(this.f$0, tLObject, z);
                 }
             });
         }
     }
 
-    public static void m3664$r8$lambda$sxw4BJQjLxHgrY6GqODxDUxRsg(PhotoPickerActivity photoPickerActivity, TLObject tLObject, boolean z) {
+    public static void m3672$r8$lambda$sxw4BJQjLxHgrY6GqODxDUxRsg(PhotoPickerActivity photoPickerActivity, TLObject tLObject, boolean z) {
         photoPickerActivity.getClass();
         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
         MessagesController.getInstance(photoPickerActivity.currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);

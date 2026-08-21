@@ -263,7 +263,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    BackgroundGradientDrawable.m2043$r8$lambda$qMFTH1bibwNIf3Ut0Pbft0cNf0(this.f$0, runnableArr, bitmapCreateDitheredGradientBitmap, intSize, i, listenerArr);
+                    BackgroundGradientDrawable.m2053$r8$lambda$qMFTH1bibwNIf3Ut0Pbft0cNf0(this.f$0, runnableArr, bitmapCreateDitheredGradientBitmap, intSize, i, listenerArr);
                 }
             };
         } finally {
@@ -271,13 +271,13 @@ public class BackgroundGradientDrawable extends GradientDrawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BackgroundGradientDrawable.m2043$r8$lambda$qMFTH1bibwNIf3Ut0Pbft0cNf0(this.f$0, runnableArr, bitmap, intSize, i, listenerArr);
+                    BackgroundGradientDrawable.m2053$r8$lambda$qMFTH1bibwNIf3Ut0Pbft0cNf0(this.f$0, runnableArr, bitmap, intSize, i, listenerArr);
                 }
             });
         }
     }
 
-    public static void m2043$r8$lambda$qMFTH1bibwNIf3Ut0Pbft0cNf0(BackgroundGradientDrawable backgroundGradientDrawable, Runnable[] runnableArr, Bitmap bitmap, IntSize intSize, int i, Listener[] listenerArr) {
+    public static void m2053$r8$lambda$qMFTH1bibwNIf3Ut0Pbft0cNf0(BackgroundGradientDrawable backgroundGradientDrawable, Runnable[] runnableArr, Bitmap bitmap, IntSize intSize, int i, Listener[] listenerArr) {
         if (!backgroundGradientDrawable.ditheringRunnables.contains(runnableArr)) {
             if (bitmap != null) {
                 bitmap.recycle();

@@ -675,7 +675,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                GroupCreateFinalActivity.m3315$r8$lambda$nY5v_XSg3ZVMvvzX8d57Nnffxc(this.f$0, view2);
+                GroupCreateFinalActivity.m3323$r8$lambda$nY5v_XSg3ZVMvvzX8d57Nnffxc(this.f$0, view2);
             }
         });
         this.floatingButton.setContentDescription(LocaleController.getString(R.string.Done));
@@ -687,7 +687,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         groupCreateFinalActivity.imageUpdater.openMenu(groupCreateFinalActivity.avatar != null, new Runnable() {
             @Override
             public final void run() {
-                GroupCreateFinalActivity.m3314$r8$lambda$NZQwb6DwRV2weE09GcJONZ9GQw(this.f$0);
+                GroupCreateFinalActivity.m3322$r8$lambda$NZQwb6DwRV2weE09GcJONZ9GQw(this.f$0);
             }
         }, new DialogInterface.OnDismissListener() {
             @Override
@@ -700,7 +700,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         groupCreateFinalActivity.avatarEditor.playAnimation();
     }
 
-    public static void m3314$r8$lambda$NZQwb6DwRV2weE09GcJONZ9GQw(GroupCreateFinalActivity groupCreateFinalActivity) {
+    public static void m3322$r8$lambda$NZQwb6DwRV2weE09GcJONZ9GQw(GroupCreateFinalActivity groupCreateFinalActivity) {
         groupCreateFinalActivity.avatar = null;
         groupCreateFinalActivity.avatarBig = null;
         groupCreateFinalActivity.inputPhoto = null;
@@ -784,7 +784,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         groupCreateFinalActivity.currentGroupCreateAddress = messageMedia.address;
     }
 
-    public static void m3315$r8$lambda$nY5v_XSg3ZVMvvzX8d57Nnffxc(GroupCreateFinalActivity groupCreateFinalActivity, View view) {
+    public static void m3323$r8$lambda$nY5v_XSg3ZVMvvzX8d57Nnffxc(GroupCreateFinalActivity groupCreateFinalActivity, View view) {
         if (groupCreateFinalActivity.donePressed) {
             return;
         }
@@ -830,12 +830,12 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupCreateFinalActivity.m3313$r8$lambda$7ZtCZkKbzrE0uJIIUPVrjWSNU(this.f$0, inputFile, inputFile2, videoSize, str, d, photoSize2, photoSize);
+                GroupCreateFinalActivity.m3321$r8$lambda$7ZtCZkKbzrE0uJIIUPVrjWSNU(this.f$0, inputFile, inputFile2, videoSize, str, d, photoSize2, photoSize);
             }
         });
     }
 
-    public static void m3313$r8$lambda$7ZtCZkKbzrE0uJIIUPVrjWSNU(GroupCreateFinalActivity groupCreateFinalActivity, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, String str, double d, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+    public static void m3321$r8$lambda$7ZtCZkKbzrE0uJIIUPVrjWSNU(GroupCreateFinalActivity groupCreateFinalActivity, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, String str, double d, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
         groupCreateFinalActivity.getClass();
         if (inputFile != null || inputFile2 != null || videoSize != null) {
             groupCreateFinalActivity.inputPhoto = inputFile;

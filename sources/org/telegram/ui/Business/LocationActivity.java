@@ -639,7 +639,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    LocationActivity.m1389$r8$lambda$7zd_vhlrazjnEWAXTmKIpBHWs(this.f$0, locationActivity, alertDialog);
+                    LocationActivity.m1395$r8$lambda$7zd_vhlrazjnEWAXTmKIpBHWs(this.f$0, locationActivity, alertDialog);
                 }
             });
             return;
@@ -671,7 +671,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         locationActivity.checkDone(true);
     }
 
-    public static void m1389$r8$lambda$7zd_vhlrazjnEWAXTmKIpBHWs(final LocationActivity locationActivity, final org.telegram.ui.LocationActivity locationActivity2, final AlertDialog alertDialog) {
+    public static void m1395$r8$lambda$7zd_vhlrazjnEWAXTmKIpBHWs(final LocationActivity locationActivity, final org.telegram.ui.LocationActivity locationActivity2, final AlertDialog alertDialog) {
         locationActivity.getClass();
         try {
             List<Address> fromLocationName = new Geocoder(locationActivity.getContext(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(locationActivity.address, 1);

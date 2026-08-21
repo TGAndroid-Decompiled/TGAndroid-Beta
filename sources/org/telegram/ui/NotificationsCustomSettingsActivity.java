@@ -602,7 +602,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     ItemOptions itemOptionsAddIf = gravity.addIf(z5, R.drawable.msg_mute, (CharSequence) LocaleController.getString(R.string.NotificationsStoryMute), false, new Runnable() {
                         @Override
                         public final void run() {
-                            NotificationsCustomSettingsActivity.m3571$r8$lambda$o3uOuthDszJE2uNA0xWBDKm8QQ(this.f$0, notificationException4, view, z4);
+                            NotificationsCustomSettingsActivity.m3579$r8$lambda$o3uOuthDszJE2uNA0xWBDKm8QQ(this.f$0, notificationException4, view, z4);
                         }
                     });
                     if (notificationException4.notify <= 0 || notificationException4.auto) {
@@ -642,7 +642,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 ItemOptions itemOptionsAddIf3 = gravity2.addIf(z5, R.drawable.msg_mute, (CharSequence) LocaleController.getString(R.string.NotificationsStoryMute), false, new Runnable() {
                     @Override
                     public final void run() {
-                        NotificationsCustomSettingsActivity.m3571$r8$lambda$o3uOuthDszJE2uNA0xWBDKm8QQ(this.f$0, notificationException4, view, z4);
+                        NotificationsCustomSettingsActivity.m3579$r8$lambda$o3uOuthDszJE2uNA0xWBDKm8QQ(this.f$0, notificationException4, view, z4);
                     }
                 });
                 if (notificationException4.notify <= 0) {
@@ -994,7 +994,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
 
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList3, CharSequence charSequence, boolean z11, boolean z12, int i5, int i6, TopicsFragment topicsFragment) {
-                    return NotificationsCustomSettingsActivity.m3569$r8$lambda$_rlh2Cyi75iBt8qHzqn24vn32c(this.f$0, dialogsActivity2, arrayList3, charSequence, z11, z12, i5, i6, topicsFragment);
+                    return NotificationsCustomSettingsActivity.m3577$r8$lambda$_rlh2Cyi75iBt8qHzqn24vn32c(this.f$0, dialogsActivity2, arrayList3, charSequence, z11, z12, i5, i6, topicsFragment);
                 }
 
                 @Override
@@ -1012,7 +1012,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i5) {
-                    NotificationsCustomSettingsActivity.m3572$r8$lambda$tFIuritolHhmIXmGL000awaen8(this.f$0, alertDialog, i5);
+                    NotificationsCustomSettingsActivity.m3580$r8$lambda$tFIuritolHhmIXmGL000awaen8(this.f$0, alertDialog, i5);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1095,7 +1095,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 notificationsCustomSettingsActivity.showDialog(AlertsCreator.createPopupSelectDialog(notificationsCustomSettingsActivity.getParentActivity(), notificationsCustomSettingsActivity.currentType, new Runnable() {
                     @Override
                     public final void run() {
-                        NotificationsCustomSettingsActivity.m3570$r8$lambda$hww0rcag4wa0J2qw43Wipve2o4(this.f$0, view, i);
+                        NotificationsCustomSettingsActivity.m3578$r8$lambda$hww0rcag4wa0J2qw43Wipve2o4(this.f$0, view, i);
                     }
                 }));
                 return;
@@ -1131,7 +1131,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 notificationsCustomSettingsActivity.showDialog(AlertsCreator.createPrioritySelectDialog(notificationsCustomSettingsActivity.getParentActivity(), 0L, 0, notificationsCustomSettingsActivity.currentType, new Runnable() {
                     @Override
                     public final void run() {
-                        NotificationsCustomSettingsActivity.m3565$r8$lambda$AsxpGLdN6cHuT_v_0YJ7oSwIDQ(this.f$0, view, i);
+                        NotificationsCustomSettingsActivity.m3573$r8$lambda$AsxpGLdN6cHuT_v_0YJ7oSwIDQ(this.f$0, view, i);
                     }
                 }));
                 return;
@@ -1250,7 +1250,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         }
     }
 
-    public static void m3571$r8$lambda$o3uOuthDszJE2uNA0xWBDKm8QQ(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, NotificationsSettingsActivity.NotificationException notificationException, View view, boolean z) {
+    public static void m3579$r8$lambda$o3uOuthDszJE2uNA0xWBDKm8QQ(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, NotificationsSettingsActivity.NotificationException notificationException, View view, boolean z) {
         notificationsCustomSettingsActivity.actionBar.closeSearchField();
         notificationsCustomSettingsActivity.updateMute(notificationException, view, -1, z, true);
     }
@@ -1260,7 +1260,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         notificationsCustomSettingsActivity.updateMute(notificationException, view, -1, z, false);
     }
 
-    public static boolean m3569$r8$lambda$_rlh2Cyi75iBt8qHzqn24vn32c(final NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public static boolean m3577$r8$lambda$_rlh2Cyi75iBt8qHzqn24vn32c(final NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         notificationsCustomSettingsActivity.getClass();
         int i3 = 0;
         long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
@@ -1305,7 +1305,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
             @Override
             public final void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException2) {
-                NotificationsCustomSettingsActivity.m3567$r8$lambda$IvBJHyb9GaycFslvmq77uXtCTw(this.f$0, notificationException2);
+                NotificationsCustomSettingsActivity.m3575$r8$lambda$IvBJHyb9GaycFslvmq77uXtCTw(this.f$0, notificationException2);
             }
 
             @Override
@@ -1317,12 +1317,12 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         return true;
     }
 
-    public static void m3567$r8$lambda$IvBJHyb9GaycFslvmq77uXtCTw(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, NotificationsSettingsActivity.NotificationException notificationException) {
+    public static void m3575$r8$lambda$IvBJHyb9GaycFslvmq77uXtCTw(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, NotificationsSettingsActivity.NotificationException notificationException) {
         notificationsCustomSettingsActivity.exceptions.add(0, notificationException);
         notificationsCustomSettingsActivity.updateRows(true);
     }
 
-    public static void m3572$r8$lambda$tFIuritolHhmIXmGL000awaen8(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, AlertDialog alertDialog, int i) {
+    public static void m3580$r8$lambda$tFIuritolHhmIXmGL000awaen8(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, AlertDialog alertDialog, int i) {
         SharedPreferences.Editor editorEdit = notificationsCustomSettingsActivity.getNotificationsSettings().edit();
         int size = notificationsCustomSettingsActivity.exceptions.size();
         for (int i2 = 0; i2 < size; i2++) {
@@ -1361,7 +1361,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         notificationsCustomSettingsActivity.updateRows(true);
     }
 
-    public static void m3570$r8$lambda$hww0rcag4wa0J2qw43Wipve2o4(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i) {
+    public static void m3578$r8$lambda$hww0rcag4wa0J2qw43Wipve2o4(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i) {
         notificationsCustomSettingsActivity.getClass();
         if (view instanceof TextSettingsCell) {
             if (i >= 0 && i < notificationsCustomSettingsActivity.items.size()) {
@@ -1387,7 +1387,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         notificationsCustomSettingsActivity.updateRows(true);
     }
 
-    public static void m3565$r8$lambda$AsxpGLdN6cHuT_v_0YJ7oSwIDQ(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i) {
+    public static void m3573$r8$lambda$AsxpGLdN6cHuT_v_0YJ7oSwIDQ(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i) {
         notificationsCustomSettingsActivity.getClass();
         if (view instanceof TextSettingsCell) {
             if (i >= 0 && i < notificationsCustomSettingsActivity.items.size()) {
@@ -1732,7 +1732,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    NotificationsCustomSettingsActivity.m3568$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList30, arrayList2, arrayList31, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
+                                    NotificationsCustomSettingsActivity.m3576$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList30, arrayList2, arrayList31, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
                                 }
                             });
                         }
@@ -1773,7 +1773,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                NotificationsCustomSettingsActivity.m3568$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList32, arrayList2, arrayList33, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
+                                NotificationsCustomSettingsActivity.m3576$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList32, arrayList2, arrayList33, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
                             }
                         });
                     }
@@ -1820,7 +1820,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    NotificationsCustomSettingsActivity.m3568$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList34, arrayList2, arrayList35, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
+                                    NotificationsCustomSettingsActivity.m3576$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList34, arrayList2, arrayList35, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
                                 }
                             });
                         }
@@ -1860,7 +1860,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                NotificationsCustomSettingsActivity.m3568$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList36, arrayList2, arrayList37, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
+                                NotificationsCustomSettingsActivity.m3576$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList36, arrayList2, arrayList37, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
                             }
                         });
                     }
@@ -1929,12 +1929,12 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NotificationsCustomSettingsActivity.m3568$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList38, arrayList2, arrayList39, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
+                NotificationsCustomSettingsActivity.m3576$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(this.f$0, arrayList38, arrayList2, arrayList39, arrayList7, arrayList8, arrayList28, arrayList29, arrayList11);
             }
         });
     }
 
-    public static void m3568$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8) {
+    public static void m3576$r8$lambda$_AZI8HKIyzzFo9f7FDg27BeQYg(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8) {
         notificationsCustomSettingsActivity.getMessagesController().putUsers(arrayList, true);
         notificationsCustomSettingsActivity.getMessagesController().putChats(arrayList2, true);
         notificationsCustomSettingsActivity.getMessagesController().putEncryptedChats(arrayList3, true);
@@ -2302,12 +2302,12 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationsCustomSettingsActivity.SearchAdapter.m3576$r8$lambda$pmyGaGeks3N3newrlTMG09I4S4(this.f$0, str);
+                    NotificationsCustomSettingsActivity.SearchAdapter.m3584$r8$lambda$pmyGaGeks3N3newrlTMG09I4S4(this.f$0, str);
                 }
             });
         }
 
-        public static void m3576$r8$lambda$pmyGaGeks3N3newrlTMG09I4S4(final SearchAdapter searchAdapter, final String str) {
+        public static void m3584$r8$lambda$pmyGaGeks3N3newrlTMG09I4S4(final SearchAdapter searchAdapter, final String str) {
             searchAdapter.searchAdapterHelper.queryServerSearch(str, true, (NotificationsCustomSettingsActivity.this.currentType == 1 || NotificationsCustomSettingsActivity.this.currentType == 3) ? false : true, true, false, false, 0L, false, 0, 0);
             final ArrayList arrayList = new ArrayList(NotificationsCustomSettingsActivity.this.exceptions);
             Utilities.searchQueue.postRunnable(new Runnable() {
@@ -2851,12 +2851,12 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationsCustomSettingsActivity.SearchAdapter.m3574$r8$lambda$3fQPM60XiPsvGvzEalghPqSU4U(this.f$0, arrayList2, arrayList3, arrayList);
+                    NotificationsCustomSettingsActivity.SearchAdapter.m3582$r8$lambda$3fQPM60XiPsvGvzEalghPqSU4U(this.f$0, arrayList2, arrayList3, arrayList);
                 }
             });
         }
 
-        public static void m3574$r8$lambda$3fQPM60XiPsvGvzEalghPqSU4U(SearchAdapter searchAdapter, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
+        public static void m3582$r8$lambda$3fQPM60XiPsvGvzEalghPqSU4U(SearchAdapter searchAdapter, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
             if (NotificationsCustomSettingsActivity.this.searching) {
                 searchAdapter.searchRunnable = null;
                 searchAdapter.searchResult = arrayList;

@@ -201,12 +201,12 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsSettingsActivity.m3578$r8$lambda$P_A6RQck9sbGCvk1lkbQc4JRR4(this.f$0, arrayList, runnable);
+                NotificationsSettingsActivity.m3586$r8$lambda$P_A6RQck9sbGCvk1lkbQc4JRR4(this.f$0, arrayList, runnable);
             }
         });
     }
 
-    public static void m3578$r8$lambda$P_A6RQck9sbGCvk1lkbQc4JRR4(final NotificationsSettingsActivity notificationsSettingsActivity, ArrayList arrayList, final Runnable runnable) {
+    public static void m3586$r8$lambda$P_A6RQck9sbGCvk1lkbQc4JRR4(final NotificationsSettingsActivity notificationsSettingsActivity, ArrayList arrayList, final Runnable runnable) {
         boolean z;
         ArrayList<TLRPC.Chat> arrayList2;
         ArrayList<TLRPC.User> arrayList3;
@@ -906,7 +906,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             builder.setPositiveButton(LocaleController.getString("Reset", R.string.Reset), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i4) {
-                    NotificationsSettingsActivity.m3579$r8$lambda$dp9jwDqimedbijyv0bOqsHHBSg(this.f$0, alertDialog, i4);
+                    NotificationsSettingsActivity.m3587$r8$lambda$dp9jwDqimedbijyv0bOqsHHBSg(this.f$0, alertDialog, i4);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1096,7 +1096,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         notificationsSettingsActivity.adapter.notifyItemChanged(i2);
     }
 
-    public static void m3579$r8$lambda$dp9jwDqimedbijyv0bOqsHHBSg(final NotificationsSettingsActivity notificationsSettingsActivity, AlertDialog alertDialog, int i) {
+    public static void m3587$r8$lambda$dp9jwDqimedbijyv0bOqsHHBSg(final NotificationsSettingsActivity notificationsSettingsActivity, AlertDialog alertDialog, int i) {
         if (notificationsSettingsActivity.reseting) {
             return;
         }

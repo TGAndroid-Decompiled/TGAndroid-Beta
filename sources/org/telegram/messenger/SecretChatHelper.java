@@ -250,7 +250,7 @@ public class SecretChatHelper extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretChatHelper.m983$r8$lambda$UUrkgN957ZKhCstsmZmtaXf5AI(this.f$0, encryptedChatDB, encryptedChat);
+                    SecretChatHelper.m989$r8$lambda$UUrkgN957ZKhCstsmZmtaXf5AI(this.f$0, encryptedChatDB, encryptedChat);
                 }
             });
         }
@@ -277,7 +277,7 @@ public class SecretChatHelper extends BaseController {
         secretChatHelper.getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
     }
 
-    public static void m983$r8$lambda$UUrkgN957ZKhCstsmZmtaXf5AI(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, TLRPC.EncryptedChat encryptedChat2) {
+    public static void m989$r8$lambda$UUrkgN957ZKhCstsmZmtaXf5AI(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, TLRPC.EncryptedChat encryptedChat2) {
         if (encryptedChat != null) {
             secretChatHelper.getMessagesController().putEncryptedChat(encryptedChat2, false);
         }
@@ -591,12 +591,12 @@ public class SecretChatHelper extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SecretChatHelper.m993$r8$lambda$xzI2pYgaGGaRYGh292JRdTMwkU(this.f$0, encryptedChat, decryptedMessage, message, inputEncryptedFile, messageObject, str);
+                SecretChatHelper.m999$r8$lambda$xzI2pYgaGGaRYGh292JRdTMwkU(this.f$0, encryptedChat, decryptedMessage, message, inputEncryptedFile, messageObject, str);
             }
         });
     }
 
-    public static void m993$r8$lambda$xzI2pYgaGGaRYGh292JRdTMwkU(final SecretChatHelper secretChatHelper, final TLRPC.EncryptedChat encryptedChat, final TLRPC.DecryptedMessage decryptedMessage, final TLRPC.Message message, TLRPC.InputEncryptedFile inputEncryptedFile, final MessageObject messageObject, final String str) {
+    public static void m999$r8$lambda$xzI2pYgaGGaRYGh292JRdTMwkU(final SecretChatHelper secretChatHelper, final TLRPC.EncryptedChat encryptedChat, final TLRPC.DecryptedMessage decryptedMessage, final TLRPC.Message message, TLRPC.InputEncryptedFile inputEncryptedFile, final MessageObject messageObject, final String str) {
         TLObject tLObject;
         TLObject tLObject2;
         secretChatHelper.getClass();
@@ -1474,7 +1474,7 @@ public class SecretChatHelper extends BaseController {
         secretChatHelper.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SecretChatHelper.m981$r8$lambda$NXrCZintHKRCG9BWtq4g5pSFM(this.f$0, j);
+                SecretChatHelper.m987$r8$lambda$NXrCZintHKRCG9BWtq4g5pSFM(this.f$0, j);
             }
         });
         secretChatHelper.getMessagesStorage().deleteDialog(j, 1);
@@ -1482,17 +1482,17 @@ public class SecretChatHelper extends BaseController {
         secretChatHelper.getNotificationCenter().postNotificationName(NotificationCenter.removeAllMessagesFromDialog, Long.valueOf(j), Boolean.FALSE, null);
     }
 
-    public static void m981$r8$lambda$NXrCZintHKRCG9BWtq4g5pSFM(final SecretChatHelper secretChatHelper, final long j) {
+    public static void m987$r8$lambda$NXrCZintHKRCG9BWtq4g5pSFM(final SecretChatHelper secretChatHelper, final long j) {
         secretChatHelper.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SecretChatHelper.m987$r8$lambda$be7auxADMyqxuZrFeqMwUI_tvg(this.f$0, j);
+                SecretChatHelper.m993$r8$lambda$be7auxADMyqxuZrFeqMwUI_tvg(this.f$0, j);
             }
         });
     }
 
-    public static void m987$r8$lambda$be7auxADMyqxuZrFeqMwUI_tvg(SecretChatHelper secretChatHelper, long j) {
+    public static void m993$r8$lambda$be7auxADMyqxuZrFeqMwUI_tvg(SecretChatHelper secretChatHelper, long j) {
         secretChatHelper.getNotificationsController().processReadMessages(null, j, 0, Integer.MAX_VALUE, false);
         LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
         longSparseIntArray.put(j, 0);
@@ -1616,7 +1616,7 @@ public class SecretChatHelper extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretChatHelper.m989$r8$lambda$hivG1uv381SKgjPAtpvA_H9nOk(this.f$0, arrayList3);
+                    SecretChatHelper.m995$r8$lambda$hivG1uv381SKgjPAtpvA_H9nOk(this.f$0, arrayList3);
                 }
             });
             secretChatHelper.getSendMessagesHelper().processUnsentMessages(arrayList3, null, new ArrayList<>(), new ArrayList<>(), arrayList4);
@@ -1626,7 +1626,7 @@ public class SecretChatHelper extends BaseController {
         }
     }
 
-    public static void m989$r8$lambda$hivG1uv381SKgjPAtpvA_H9nOk(SecretChatHelper secretChatHelper, ArrayList arrayList) {
+    public static void m995$r8$lambda$hivG1uv381SKgjPAtpvA_H9nOk(SecretChatHelper secretChatHelper, ArrayList arrayList) {
         secretChatHelper.getClass();
         for (int i = 0; i < arrayList.size(); i++) {
             MessageObject messageObject = new MessageObject(secretChatHelper.currentAccount, (TLRPC.Message) arrayList.get(i), false, true);
@@ -1862,7 +1862,7 @@ public class SecretChatHelper extends BaseController {
                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                         @Override
                                         public final void run() {
-                                            SecretChatHelper.m982$r8$lambda$PwZxHG9KXSQk_UcjnOCdGjr9o(this.f$0, tL_encryptedChatDiscarded);
+                                            SecretChatHelper.m988$r8$lambda$PwZxHG9KXSQk_UcjnOCdGjr9o(this.f$0, tL_encryptedChatDiscarded);
                                         }
                                     });
                                     secretChatHelper.declineSecretChat(encryptedChatDB.id, false);
@@ -1987,7 +1987,7 @@ public class SecretChatHelper extends BaseController {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        SecretChatHelper.m982$r8$lambda$PwZxHG9KXSQk_UcjnOCdGjr9o(this.f$0, tL_encryptedChatDiscarded2);
+                                        SecretChatHelper.m988$r8$lambda$PwZxHG9KXSQk_UcjnOCdGjr9o(this.f$0, tL_encryptedChatDiscarded2);
                                     }
                                 });
                                 secretChatHelper.declineSecretChat(encryptedChatDB.id, false);
@@ -2037,7 +2037,7 @@ public class SecretChatHelper extends BaseController {
         return null;
     }
 
-    public static void m982$r8$lambda$PwZxHG9KXSQk_UcjnOCdGjr9o(SecretChatHelper secretChatHelper, TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded) {
+    public static void m988$r8$lambda$PwZxHG9KXSQk_UcjnOCdGjr9o(SecretChatHelper secretChatHelper, TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded) {
         secretChatHelper.getMessagesController().putEncryptedChat(tL_encryptedChatDiscarded, false);
         secretChatHelper.getMessagesStorage().updateEncryptedChat(tL_encryptedChatDiscarded);
         secretChatHelper.getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatUpdated, tL_encryptedChatDiscarded);
@@ -2119,7 +2119,7 @@ public class SecretChatHelper extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretChatHelper.m991$r8$lambda$q57nA3dkkO7ohYp8tSaBKTjA(this.f$0, tL_encryptedChatDiscarded);
+                    SecretChatHelper.m997$r8$lambda$q57nA3dkkO7ohYp8tSaBKTjA(this.f$0, tL_encryptedChatDiscarded);
                 }
             });
             declineSecretChat(encryptedChat.id, false);
@@ -2163,7 +2163,7 @@ public class SecretChatHelper extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SecretChatHelper.m991$r8$lambda$q57nA3dkkO7ohYp8tSaBKTjA(this.f$0, tL_encryptedChatDiscarded2);
+                SecretChatHelper.m997$r8$lambda$q57nA3dkkO7ohYp8tSaBKTjA(this.f$0, tL_encryptedChatDiscarded2);
             }
         });
         declineSecretChat(encryptedChat.id, false);
@@ -2174,7 +2174,7 @@ public class SecretChatHelper extends BaseController {
         secretChatHelper.sendNotifyLayerMessage(encryptedChat, null);
     }
 
-    public static void m991$r8$lambda$q57nA3dkkO7ohYp8tSaBKTjA(SecretChatHelper secretChatHelper, TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded) {
+    public static void m997$r8$lambda$q57nA3dkkO7ohYp8tSaBKTjA(SecretChatHelper secretChatHelper, TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded) {
         secretChatHelper.getMessagesController().putEncryptedChat(tL_encryptedChatDiscarded, false);
         secretChatHelper.getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatUpdated, tL_encryptedChatDiscarded);
     }
@@ -2233,12 +2233,12 @@ public class SecretChatHelper extends BaseController {
         getConnectionsManager().sendRequest(tL_messages_getDhConfig, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SecretChatHelper.m984$r8$lambda$Ww7ZXoP_XhyslLTxbTR8lWqyfA(this.f$0, encryptedChat, tLObject, tL_error);
+                SecretChatHelper.m990$r8$lambda$Ww7ZXoP_XhyslLTxbTR8lWqyfA(this.f$0, encryptedChat, tLObject, tL_error);
             }
         });
     }
 
-    public static void m984$r8$lambda$Ww7ZXoP_XhyslLTxbTR8lWqyfA(final SecretChatHelper secretChatHelper, final TLRPC.EncryptedChat encryptedChat, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m990$r8$lambda$Ww7ZXoP_XhyslLTxbTR8lWqyfA(final SecretChatHelper secretChatHelper, final TLRPC.EncryptedChat encryptedChat, TLObject tLObject, TLRPC.TL_error tL_error) {
         byte[] bArr;
         if (tL_error == null) {
             secretChatHelper.getClass();
@@ -2375,7 +2375,7 @@ public class SecretChatHelper extends BaseController {
         final int iSendRequest = getConnectionsManager().sendRequest(tL_messages_getDhConfig, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SecretChatHelper.m986$r8$lambda$ZWxofWHvxWzT2BitTcL0tkFSE(this.f$0, context, alertDialog, user, tLObject, tL_error);
+                SecretChatHelper.m992$r8$lambda$ZWxofWHvxWzT2BitTcL0tkFSE(this.f$0, context, alertDialog, user, tLObject, tL_error);
             }
         }, 2);
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -2390,7 +2390,7 @@ public class SecretChatHelper extends BaseController {
         }
     }
 
-    public static void m986$r8$lambda$ZWxofWHvxWzT2BitTcL0tkFSE(final SecretChatHelper secretChatHelper, final Context context, final AlertDialog alertDialog, final TLRPC.User user, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m992$r8$lambda$ZWxofWHvxWzT2BitTcL0tkFSE(final SecretChatHelper secretChatHelper, final Context context, final AlertDialog alertDialog, final TLRPC.User user, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             secretChatHelper.getClass();
             TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
@@ -2399,7 +2399,7 @@ public class SecretChatHelper extends BaseController {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            SecretChatHelper.m985$r8$lambda$YqWuikQ_EiNlArvmwjHadrTP0(context, alertDialog);
+                            SecretChatHelper.m991$r8$lambda$YqWuikQ_EiNlArvmwjHadrTP0(context, alertDialog);
                         }
                     });
                     return;
@@ -2440,7 +2440,7 @@ public class SecretChatHelper extends BaseController {
         });
     }
 
-    public static void m985$r8$lambda$YqWuikQ_EiNlArvmwjHadrTP0(Context context, AlertDialog alertDialog) {
+    public static void m991$r8$lambda$YqWuikQ_EiNlArvmwjHadrTP0(Context context, AlertDialog alertDialog) {
         try {
             if (((Activity) context).isFinishing()) {
                 return;
@@ -2465,7 +2465,7 @@ public class SecretChatHelper extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretChatHelper.m992$r8$lambda$rIG46ga8d7JXGQrccavketIhS8(this.f$0, context, alertDialog);
+                    SecretChatHelper.m998$r8$lambda$rIG46ga8d7JXGQrccavketIhS8(this.f$0, context, alertDialog);
                 }
             });
         }
@@ -2500,12 +2500,12 @@ public class SecretChatHelper extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SecretChatHelper.m980$r8$lambda$HCizDH_TaDqYc_MCnFFPyCrfe4(this.f$0);
+                SecretChatHelper.m986$r8$lambda$HCizDH_TaDqYc_MCnFFPyCrfe4(this.f$0);
             }
         });
     }
 
-    public static void m980$r8$lambda$HCizDH_TaDqYc_MCnFFPyCrfe4(SecretChatHelper secretChatHelper) {
+    public static void m986$r8$lambda$HCizDH_TaDqYc_MCnFFPyCrfe4(SecretChatHelper secretChatHelper) {
         if (secretChatHelper.delayedEncryptedChatUpdates.isEmpty()) {
             return;
         }
@@ -2513,7 +2513,7 @@ public class SecretChatHelper extends BaseController {
         secretChatHelper.delayedEncryptedChatUpdates.clear();
     }
 
-    public static void m992$r8$lambda$rIG46ga8d7JXGQrccavketIhS8(SecretChatHelper secretChatHelper, Context context, AlertDialog alertDialog) {
+    public static void m998$r8$lambda$rIG46ga8d7JXGQrccavketIhS8(SecretChatHelper secretChatHelper, Context context, AlertDialog alertDialog) {
         secretChatHelper.getClass();
         if (((Activity) context).isFinishing()) {
             return;

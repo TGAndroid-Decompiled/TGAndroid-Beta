@@ -132,7 +132,7 @@ public class CrossfadeDrawable extends Drawable {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                CrossfadeDrawable.m2249$r8$lambda$DMQFPc8rjFUiIHvrkcVE7MqkU(this.f$0, valueAnimator2);
+                CrossfadeDrawable.m2259$r8$lambda$DMQFPc8rjFUiIHvrkcVE7MqkU(this.f$0, valueAnimator2);
             }
         });
         this.animator.setDuration((long) (Math.abs(getProgress() - f) * 200.0f));
@@ -140,7 +140,7 @@ public class CrossfadeDrawable extends Drawable {
         this.animator.start();
     }
 
-    public static void m2249$r8$lambda$DMQFPc8rjFUiIHvrkcVE7MqkU(CrossfadeDrawable crossfadeDrawable, ValueAnimator valueAnimator) {
+    public static void m2259$r8$lambda$DMQFPc8rjFUiIHvrkcVE7MqkU(CrossfadeDrawable crossfadeDrawable, ValueAnimator valueAnimator) {
         crossfadeDrawable.getClass();
         crossfadeDrawable.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
         crossfadeDrawable.invalidateSelf();

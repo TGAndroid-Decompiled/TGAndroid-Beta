@@ -866,7 +866,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
                         groupCallMiniTextureView10.runOnFrameRendered(new Runnable() {
                             @Override
                             public final void run() {
-                                GroupCallRenderersContainer.m2975$r8$lambda$AbKeKg9tBuzfCJWPAgsSLga9Y(this.f$0, groupCallMiniTextureView, groupCallMiniTextureView4);
+                                GroupCallRenderersContainer.m2984$r8$lambda$AbKeKg9tBuzfCJWPAgsSLga9Y(this.f$0, groupCallMiniTextureView, groupCallMiniTextureView4);
                             }
                         });
                         clearCurrentFullscreenTextureView();
@@ -1072,7 +1072,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         }
     }
 
-    public static void m2975$r8$lambda$AbKeKg9tBuzfCJWPAgsSLga9Y(GroupCallRenderersContainer groupCallRenderersContainer, final GroupCallMiniTextureView groupCallMiniTextureView, final GroupCallMiniTextureView groupCallMiniTextureView2) {
+    public static void m2984$r8$lambda$AbKeKg9tBuzfCJWPAgsSLga9Y(GroupCallRenderersContainer groupCallRenderersContainer, final GroupCallMiniTextureView groupCallMiniTextureView, final GroupCallMiniTextureView groupCallMiniTextureView2) {
         ValueAnimator valueAnimator = groupCallRenderersContainer.replaceFullscreenViewAnimator;
         if (valueAnimator != null) {
             valueAnimator.start();
@@ -1397,7 +1397,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    GroupCallRenderersContainer.m2976$r8$lambda$_DMzcQbqAigJHMlvwXxev8CyjA(this.f$0, f, f2, f3, valueAnimator);
+                    GroupCallRenderersContainer.m2985$r8$lambda$_DMzcQbqAigJHMlvwXxev8CyjA(this.f$0, f, f2, f3, valueAnimator);
                 }
             });
             this.zoomBackAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1420,7 +1420,7 @@ public abstract class GroupCallRenderersContainer extends FrameLayout {
         this.isInPinchToZoomTouchMode = false;
     }
 
-    public static void m2976$r8$lambda$_DMzcQbqAigJHMlvwXxev8CyjA(GroupCallRenderersContainer groupCallRenderersContainer, float f, float f2, float f3, ValueAnimator valueAnimator) {
+    public static void m2985$r8$lambda$_DMzcQbqAigJHMlvwXxev8CyjA(GroupCallRenderersContainer groupCallRenderersContainer, float f, float f2, float f3, ValueAnimator valueAnimator) {
         groupCallRenderersContainer.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         groupCallRenderersContainer.pinchScale = (f * fFloatValue) + ((1.0f - fFloatValue) * 1.0f);

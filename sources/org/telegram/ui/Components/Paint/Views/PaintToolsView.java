@@ -154,7 +154,7 @@ public class PaintToolsView extends LinearLayout {
                 this.nextSelectedAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        PaintToolsView.m2517$r8$lambda$CBoPz9vHBRW5o5Ro4fKCjOuUEw(this.f$0, valueAnimator2);
+                        PaintToolsView.m2527$r8$lambda$CBoPz9vHBRW5o5Ro4fKCjOuUEw(this.f$0, valueAnimator2);
                     }
                 });
                 this.nextSelectedAnimator.addListener(new AnimatorListenerAdapter() {
@@ -173,7 +173,7 @@ public class PaintToolsView extends LinearLayout {
         }
     }
 
-    public static void m2517$r8$lambda$CBoPz9vHBRW5o5Ro4fKCjOuUEw(PaintToolsView paintToolsView, ValueAnimator valueAnimator) {
+    public static void m2527$r8$lambda$CBoPz9vHBRW5o5Ro4fKCjOuUEw(PaintToolsView paintToolsView, ValueAnimator valueAnimator) {
         paintToolsView.getClass();
         paintToolsView.nextSelectedIndexProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         paintToolsView.invalidate();

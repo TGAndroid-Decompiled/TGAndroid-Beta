@@ -275,7 +275,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
                 final Bulletin bulletinMake = Bulletin.make(senderSelectPopup.bulletinContainer, new SelectSendAsPremiumHintBulletinLayout(context, chatActivity.themeDelegate, z, new Runnable() {
                     @Override
                     public final void run() {
-                        SenderSelectPopup.m2737$r8$lambda$cUC7CtfggusastdaceE74OOxYM(this.f$0, chatActivity);
+                        SenderSelectPopup.m2746$r8$lambda$cUC7CtfggusastdaceE74OOxYM(this.f$0, chatActivity);
                     }
                 }), 1500);
                 bulletinMake.getLayout().addCallback(new Bulletin.Layout.Callback() {
@@ -335,7 +335,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         onSelectCallback.onPeerSelected(senderSelectPopup.recyclerView, (SenderView) view, tL_sendAsPeer.peer);
     }
 
-    public static void m2737$r8$lambda$cUC7CtfggusastdaceE74OOxYM(SenderSelectPopup senderSelectPopup, ChatActivity chatActivity) {
+    public static void m2746$r8$lambda$cUC7CtfggusastdaceE74OOxYM(SenderSelectPopup senderSelectPopup, ChatActivity chatActivity) {
         senderSelectPopup.getClass();
         if (chatActivity != null) {
             chatActivity.presentFragment(new PremiumPreviewFragment("select_sender"));
@@ -434,14 +434,14 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
             springAnimation3.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                    SenderSelectPopup.m2736$r8$lambda$_6W3DMOCSH53PGUEyiY3VBiV4A(this.f$0, springAnimation3, dynamicAnimation, z, f, f2);
+                    SenderSelectPopup.m2745$r8$lambda$_6W3DMOCSH53PGUEyiY3VBiV4A(this.f$0, springAnimation3, dynamicAnimation, z, f, f2);
                 }
             });
             springAnimation3.start();
         }
     }
 
-    public static void m2736$r8$lambda$_6W3DMOCSH53PGUEyiY3VBiV4A(SenderSelectPopup senderSelectPopup, SpringAnimation springAnimation, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+    public static void m2745$r8$lambda$_6W3DMOCSH53PGUEyiY3VBiV4A(SenderSelectPopup senderSelectPopup, SpringAnimation springAnimation, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
         if (z) {
             senderSelectPopup.getClass();
         } else {
@@ -494,7 +494,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         ((SpringAnimation) arrayList2.get(0)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                SenderSelectPopup.m2738$r8$lambda$gdKHUMFEkH1Jar1Sp5ix4t0F9E(this.f$0, dynamicAnimation, z, f, f2);
+                SenderSelectPopup.m2747$r8$lambda$gdKHUMFEkH1Jar1Sp5ix4t0F9E(this.f$0, dynamicAnimation, z, f, f2);
             }
         });
         int size2 = arrayList2.size();
@@ -513,7 +513,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         }
     }
 
-    public static void m2738$r8$lambda$gdKHUMFEkH1Jar1Sp5ix4t0F9E(SenderSelectPopup senderSelectPopup, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+    public static void m2747$r8$lambda$gdKHUMFEkH1Jar1Sp5ix4t0F9E(SenderSelectPopup senderSelectPopup, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
         senderSelectPopup.runningCustomSprings = false;
         senderSelectPopup.dismiss();
     }

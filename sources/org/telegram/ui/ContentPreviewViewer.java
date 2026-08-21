@@ -530,7 +530,7 @@ public class ContentPreviewViewer {
             ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_select, LocaleController.getString(R.string.PollSubmitVotesNoCaps), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ContentPreviewViewer.m3028$r8$lambda$tkyGMSz02QrJ4wbVAEH10LNTQ(this.f$0, view);
+                    ContentPreviewViewer.m3037$r8$lambda$tkyGMSz02QrJ4wbVAEH10LNTQ(this.f$0, view);
                 }
             });
         } else {
@@ -569,7 +569,7 @@ public class ContentPreviewViewer {
         contentPreviewViewer.dismissPopupWindow();
     }
 
-    public static void m3028$r8$lambda$tkyGMSz02QrJ4wbVAEH10LNTQ(ContentPreviewViewer contentPreviewViewer, View view) {
+    public static void m3037$r8$lambda$tkyGMSz02QrJ4wbVAEH10LNTQ(ContentPreviewViewer contentPreviewViewer, View view) {
         ContentPreviewViewerDelegate contentPreviewViewerDelegate = contentPreviewViewer.delegate;
         if (contentPreviewViewerDelegate != null) {
             contentPreviewViewerDelegate.sendVote();
@@ -918,7 +918,7 @@ public class ContentPreviewViewer {
                             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    ContentPreviewViewer.AnonymousClass1.m3033$r8$lambda$sbp9JRhENABbzc6hglEJ4JE2oQ(this.f$0, valueAnimator);
+                                    ContentPreviewViewer.AnonymousClass1.m3042$r8$lambda$sbp9JRhENABbzc6hglEJ4JE2oQ(this.f$0, valueAnimator);
                                 }
                             });
                             valueAnimatorOfFloat2.setDuration(350L);
@@ -1351,7 +1351,7 @@ public class ContentPreviewViewer {
                 AlertsCreator.createScheduleDatePickerDialog(ContentPreviewViewer.this.parentActivity, contentPreviewViewerDelegate.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i, int i2) {
-                        ContentPreviewViewer.AnonymousClass1.m3030$r8$lambda$A0w10c_2iINDu1BCl2zbeU__VY(contentPreviewViewerDelegate, document, botInlineResult, obj, z, i, i2);
+                        ContentPreviewViewer.AnonymousClass1.m3039$r8$lambda$A0w10c_2iINDu1BCl2zbeU__VY(contentPreviewViewerDelegate, document, botInlineResult, obj, z, i, i2);
                     }
                 }, ContentPreviewViewer.this.resourcesProvider);
             } else if (((Integer) arrayList.get(iIntValue)).intValue() == 11) {
@@ -1360,7 +1360,7 @@ public class ContentPreviewViewer {
             ContentPreviewViewer.this.dismissPopupWindow();
         }
 
-        public static void m3030$r8$lambda$A0w10c_2iINDu1BCl2zbeU__VY(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document, TLRPC.BotInlineResult botInlineResult, Object obj, boolean z, int i, int i2) {
+        public static void m3039$r8$lambda$A0w10c_2iINDu1BCl2zbeU__VY(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document, TLRPC.BotInlineResult botInlineResult, Object obj, boolean z, int i, int i2) {
             Object obj2 = document;
             if (document == null) {
                 obj2 = botInlineResult;
@@ -1368,7 +1368,7 @@ public class ContentPreviewViewer {
             contentPreviewViewerDelegate.sendGif(obj2, obj, z, i, i2);
         }
 
-        public static void m3033$r8$lambda$sbp9JRhENABbzc6hglEJ4JE2oQ(AnonymousClass1 anonymousClass1, ValueAnimator valueAnimator) {
+        public static void m3042$r8$lambda$sbp9JRhENABbzc6hglEJ4JE2oQ(AnonymousClass1 anonymousClass1, ValueAnimator valueAnimator) {
             ContentPreviewViewer.this.currentMoveYProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             ContentPreviewViewer contentPreviewViewer = ContentPreviewViewer.this;
             contentPreviewViewer.moveY = contentPreviewViewer.startMoveY + ((ContentPreviewViewer.this.finalMoveY - ContentPreviewViewer.this.startMoveY) * ContentPreviewViewer.this.currentMoveYProgress);
@@ -1488,13 +1488,13 @@ public class ContentPreviewViewer {
             this.unlockPremiumView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ContentPreviewViewer.m3026$r8$lambda$ghKq5v5k4mJ8wjky0Y7vYRD8g(this.f$0, view);
+                    ContentPreviewViewer.m3035$r8$lambda$ghKq5v5k4mJ8wjky0Y7vYRD8g(this.f$0, view);
                 }
             });
             this.unlockPremiumView.premiumButtonView.buttonLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ContentPreviewViewer.m3029$r8$lambda$tNOOHHc29wZe8hu3J_SIr7Ljww(this.f$0, view);
+                    ContentPreviewViewer.m3038$r8$lambda$tNOOHHc29wZe8hu3J_SIr7Ljww(this.f$0, view);
                 }
             });
         }
@@ -1503,13 +1503,13 @@ public class ContentPreviewViewer {
         this.unlockPremiumView.setTranslationY(0.0f);
     }
 
-    public static void m3026$r8$lambda$ghKq5v5k4mJ8wjky0Y7vYRD8g(ContentPreviewViewer contentPreviewViewer, View view) {
+    public static void m3035$r8$lambda$ghKq5v5k4mJ8wjky0Y7vYRD8g(ContentPreviewViewer contentPreviewViewer, View view) {
         contentPreviewViewer.menuVisible = false;
         contentPreviewViewer.containerView.invalidate();
         contentPreviewViewer.close();
     }
 
-    public static void m3029$r8$lambda$tNOOHHc29wZe8hu3J_SIr7Ljww(ContentPreviewViewer contentPreviewViewer, View view) {
+    public static void m3038$r8$lambda$tNOOHHc29wZe8hu3J_SIr7Ljww(ContentPreviewViewer contentPreviewViewer, View view) {
         Activity activity = contentPreviewViewer.parentActivity;
         if (activity instanceof LaunchActivity) {
             LaunchActivity launchActivity = (LaunchActivity) activity;
@@ -2124,7 +2124,7 @@ public class ContentPreviewViewer {
         this.containerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return ContentPreviewViewer.m3027$r8$lambda$rEamMEvg0YwKsXkv_uLuJ_zMNE(this.f$0, view, motionEvent);
+                return ContentPreviewViewer.m3036$r8$lambda$rEamMEvg0YwKsXkv_uLuJ_zMNE(this.f$0, view, motionEvent);
             }
         });
         MessagesController.getInstance(this.currentAccount);
@@ -2152,7 +2152,7 @@ public class ContentPreviewViewer {
         return windowInsetsCompat;
     }
 
-    public static boolean m3027$r8$lambda$rEamMEvg0YwKsXkv_uLuJ_zMNE(ContentPreviewViewer contentPreviewViewer, View view, MotionEvent motionEvent) {
+    public static boolean m3036$r8$lambda$rEamMEvg0YwKsXkv_uLuJ_zMNE(ContentPreviewViewer contentPreviewViewer, View view, MotionEvent motionEvent) {
         contentPreviewViewer.getClass();
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 6 && motionEvent.getAction() != 3) {
             return true;
@@ -2597,7 +2597,7 @@ public class ContentPreviewViewer {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ContentPreviewViewer.m3024$r8$lambda$JOFXodyJSZ7FlzllWTh6gGAp48(this.f$0);
+                        ContentPreviewViewer.m3033$r8$lambda$JOFXodyJSZ7FlzllWTh6gGAp48(this.f$0);
                     }
                 });
                 Bitmap bitmap = this.blurrBitmap;
@@ -2618,7 +2618,7 @@ public class ContentPreviewViewer {
         }
     }
 
-    public static void m3024$r8$lambda$JOFXodyJSZ7FlzllWTh6gGAp48(ContentPreviewViewer contentPreviewViewer) {
+    public static void m3033$r8$lambda$JOFXodyJSZ7FlzllWTh6gGAp48(ContentPreviewViewer contentPreviewViewer) {
         contentPreviewViewer.centerImage.setImageBitmap((Bitmap) null);
         PaintingOverlay paintingOverlay = contentPreviewViewer.paintingOverlay;
         if (paintingOverlay != null) {
@@ -2715,7 +2715,7 @@ public class ContentPreviewViewer {
         AndroidUtilities.runOnUIThread(this.showSheetRunnable, 16L);
     }
 
-    public static void m3025$r8$lambda$TzeycnTRUgigleVJyTmBF5ox_Y(final ContentPreviewViewer contentPreviewViewer, final List list, final TLRPC.TL_messages_getMyStickers tL_messages_getMyStickers, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3034$r8$lambda$TzeycnTRUgigleVJyTmBF5ox_Y(final ContentPreviewViewer contentPreviewViewer, final List list, final TLRPC.TL_messages_getMyStickers tL_messages_getMyStickers, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         contentPreviewViewer.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -2729,7 +2729,7 @@ public class ContentPreviewViewer {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMyStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ContentPreviewViewer.m3025$r8$lambda$TzeycnTRUgigleVJyTmBF5ox_Y(this.f$0, list, tL_messages_getMyStickers, tLObject, tL_error);
+                ContentPreviewViewer.m3034$r8$lambda$TzeycnTRUgigleVJyTmBF5ox_Y(this.f$0, list, tL_messages_getMyStickers, tLObject, tL_error);
             }
         });
     }

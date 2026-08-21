@@ -63,7 +63,7 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoiceMessageEnterTransition.m4781$r8$lambda$Pxvumdlmt5wFXfBgrdT9AxDtmo(this.f$0, messageEnterTransitionContainer, valueAnimator);
+                VoiceMessageEnterTransition.m4792$r8$lambda$Pxvumdlmt5wFXfBgrdT9AxDtmo(this.f$0, messageEnterTransitionContainer, valueAnimator);
             }
         });
         valueAnimatorOfFloat.setInterpolator(new LinearInterpolator());
@@ -83,7 +83,7 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         }
     }
 
-    public static void m4781$r8$lambda$Pxvumdlmt5wFXfBgrdT9AxDtmo(VoiceMessageEnterTransition voiceMessageEnterTransition, MessageEnterTransitionContainer messageEnterTransitionContainer, ValueAnimator valueAnimator) {
+    public static void m4792$r8$lambda$Pxvumdlmt5wFXfBgrdT9AxDtmo(VoiceMessageEnterTransition voiceMessageEnterTransition, MessageEnterTransitionContainer messageEnterTransitionContainer, ValueAnimator valueAnimator) {
         voiceMessageEnterTransition.getClass();
         voiceMessageEnterTransition.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         messageEnterTransitionContainer.invalidate();

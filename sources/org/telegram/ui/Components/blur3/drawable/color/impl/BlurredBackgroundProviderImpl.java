@@ -65,9 +65,16 @@ public abstract class BlurredBackgroundProviderImpl {
         return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
-                return Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground), z ? 0.85f : 0.825f);
+                return BlurredBackgroundProviderImpl.$r8$lambda$_MNZOQxDhKpxyt8Pz4xciFU2jeM(resourcesProvider2, z);
             }
         }).setStrokeColorTop(1157627903, 0).setStrokeColorBottom(587202559, 0).setShadowColor(939524096, 0).setShadowLayer(AndroidUtilities.dpf2(3.5f), 0.0f, 0.0f).setStrokeWidth(AndroidUtilities.dpf2(0.6666667f), AndroidUtilities.dpf2(0.6666667f)).build();
+    }
+
+    public static int $r8$lambda$_MNZOQxDhKpxyt8Pz4xciFU2jeM(Theme.ResourcesProvider resourcesProvider, boolean z) {
+        if (LiteMode.isEnabled(256)) {
+            return Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground), z ? 0.85f : 0.825f);
+        }
+        return Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground);
     }
 
     public static BlurredBackgroundProvider scrimMenuBackground(Theme.ResourcesProvider resourcesProvider) {
@@ -180,12 +187,12 @@ public abstract class BlurredBackgroundProviderImpl {
         return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
-                return BlurredBackgroundProviderImpl.m2947$r8$lambda$ldkZ9ywvHefc1Qpop31ljYskGw(resourcesProvider2, z);
+                return BlurredBackgroundProviderImpl.m2956$r8$lambda$ldkZ9ywvHefc1Qpop31ljYskGw(resourcesProvider2, z);
             }
         }).setStrokeColorTop(687865855, 687865855).setStrokeColorBottom(352321535, 352321535).setStrokeWidth(AndroidUtilities.dpf2(0.6666667f), AndroidUtilities.dpf2(0.6666667f)).build();
     }
 
-    public static int m2947$r8$lambda$ldkZ9ywvHefc1Qpop31ljYskGw(Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public static int m2956$r8$lambda$ldkZ9ywvHefc1Qpop31ljYskGw(Theme.ResourcesProvider resourcesProvider, boolean z) {
         LiteMode.isEnabled(262144);
         return 0;
     }

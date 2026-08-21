@@ -787,7 +787,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.valueView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public final void onFocusChange(View view, boolean z) {
-                    ColorPickerBottomSheet.SliderCell.m2461$r8$lambda$gQTF5tYLPwl757tpzLH0EfU8Lc(this.f$0, view, z);
+                    ColorPickerBottomSheet.SliderCell.m2471$r8$lambda$gQTF5tYLPwl757tpzLH0EfU8Lc(this.f$0, view, z);
                 }
             });
             this.valueView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -799,7 +799,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             addView(this.valueView, LayoutHelper.createFrame(72, 36, 85));
         }
 
-        public static void m2461$r8$lambda$gQTF5tYLPwl757tpzLH0EfU8Lc(SliderCell sliderCell, View view, boolean z) {
+        public static void m2471$r8$lambda$gQTF5tYLPwl757tpzLH0EfU8Lc(SliderCell sliderCell, View view, boolean z) {
             if (z) {
                 sliderCell.getClass();
             } else if (TextUtils.isEmpty(sliderCell.valueView.getText())) {

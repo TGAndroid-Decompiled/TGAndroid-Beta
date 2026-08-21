@@ -182,7 +182,7 @@ public class OldVideoPlayerRewinder {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    OldVideoPlayerRewinder.m1136$r8$lambda$tiXpNlTfN5uHqqpmyXCUMARuOM(this.f$0);
+                    OldVideoPlayerRewinder.m1142$r8$lambda$tiXpNlTfN5uHqqpmyXCUMARuOM(this.f$0);
                 }
             };
             this.updateRewindRunnable = runnable2;
@@ -190,7 +190,7 @@ public class OldVideoPlayerRewinder {
         }
     }
 
-    public static void m1136$r8$lambda$tiXpNlTfN5uHqqpmyXCUMARuOM(OldVideoPlayerRewinder oldVideoPlayerRewinder) {
+    public static void m1142$r8$lambda$tiXpNlTfN5uHqqpmyXCUMARuOM(OldVideoPlayerRewinder oldVideoPlayerRewinder) {
         oldVideoPlayerRewinder.updateRewindRunnable = null;
         oldVideoPlayerRewinder.incrementRewindCount();
     }

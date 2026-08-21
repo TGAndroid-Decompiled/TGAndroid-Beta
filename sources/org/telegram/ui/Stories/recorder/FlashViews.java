@@ -119,12 +119,12 @@ public class FlashViews {
         callback.run(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                FlashViews.m4490$r8$lambda$3ObZRIGMTKpzqpmiu2tFCI0xNU(this.f$0, (Runnable) obj);
+                FlashViews.m4501$r8$lambda$3ObZRIGMTKpzqpmiu2tFCI0xNU(this.f$0, (Runnable) obj);
             }
         });
     }
 
-    public static void m4490$r8$lambda$3ObZRIGMTKpzqpmiu2tFCI0xNU(final FlashViews flashViews, final Runnable runnable) {
+    public static void m4501$r8$lambda$3ObZRIGMTKpzqpmiu2tFCI0xNU(final FlashViews flashViews, final Runnable runnable) {
         flashViews.setScreenBrightness(-1.0f);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

@@ -176,7 +176,7 @@ public class BotAdView extends FrameLayout {
         this.removeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotAdView.m4800$r8$lambda$puxQK1wOL9Nff1GJAcexXGGAU(runnable, view);
+                BotAdView.m4811$r8$lambda$puxQK1wOL9Nff1GJAcexXGGAU(runnable, view);
             }
         });
         setOnClickListener(new View.OnClickListener() {
@@ -211,7 +211,7 @@ public class BotAdView extends FrameLayout {
         clickableSpan.onClick(botAdView.textView);
     }
 
-    public static void m4800$r8$lambda$puxQK1wOL9Nff1GJAcexXGGAU(Runnable runnable, View view) {
+    public static void m4811$r8$lambda$puxQK1wOL9Nff1GJAcexXGGAU(Runnable runnable, View view) {
         if (runnable != null) {
             runnable.run();
         }

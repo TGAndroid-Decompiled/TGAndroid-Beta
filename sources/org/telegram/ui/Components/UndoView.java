@@ -1564,12 +1564,12 @@ public class UndoView extends FrameLayout {
         undoView.parentFragment.getConnectionsManager().sendRequest(tL_payments_getPaymentReceipt, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                UndoView.m2927$r8$lambda$6d5vqfSMidtBNRUIWmlOqbnglA(this.f$0, tLObject, tL_error);
+                UndoView.m2936$r8$lambda$6d5vqfSMidtBNRUIWmlOqbnglA(this.f$0, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public static void m2927$r8$lambda$6d5vqfSMidtBNRUIWmlOqbnglA(final UndoView undoView, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m2936$r8$lambda$6d5vqfSMidtBNRUIWmlOqbnglA(final UndoView undoView, final TLObject tLObject, TLRPC.TL_error tL_error) {
         undoView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

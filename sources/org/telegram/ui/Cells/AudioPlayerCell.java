@@ -58,7 +58,7 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
     private final int titleY;
     private int viewType;
 
-    public static void m1472$r8$lambda$rQ9o2aGm7Anfro19pIupw3wso(View view) {
+    public static void m1478$r8$lambda$rQ9o2aGm7Anfro19pIupw3wso(View view) {
     }
 
     @Override
@@ -83,7 +83,7 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AudioPlayerCell.m1472$r8$lambda$rQ9o2aGm7Anfro19pIupw3wso(view);
+                AudioPlayerCell.m1478$r8$lambda$rQ9o2aGm7Anfro19pIupw3wso(view);
             }
         });
         RadialProgress2 radialProgress2 = new RadialProgress2(this, resourcesProvider);

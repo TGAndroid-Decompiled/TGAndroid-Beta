@@ -195,7 +195,7 @@ public class FileUploadOperation {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileUploadOperation.m469$r8$lambda$XoSyT1qMtr3FbhlkVj3o0rAPQ4(this.f$0);
+                FileUploadOperation.m475$r8$lambda$XoSyT1qMtr3FbhlkVj3o0rAPQ4(this.f$0);
             }
         });
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
@@ -203,7 +203,7 @@ public class FileUploadOperation {
         cleanup();
     }
 
-    public static void m469$r8$lambda$XoSyT1qMtr3FbhlkVj3o0rAPQ4(FileUploadOperation fileUploadOperation) {
+    public static void m475$r8$lambda$XoSyT1qMtr3FbhlkVj3o0rAPQ4(FileUploadOperation fileUploadOperation) {
         for (int i = 0; i < fileUploadOperation.requestTokens.size(); i++) {
             ConnectionsManager.getInstance(fileUploadOperation.currentAccount).cancelRequest(fileUploadOperation.requestTokens.valueAt(i), true);
         }
@@ -610,7 +610,7 @@ public class FileUploadOperation {
                 iArr[0] = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject2, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
-                        FileUploadOperation.m471$r8$lambda$xvTb41RA9qgxehxtlT7WGhJ0Y(this.f$0, i20, iArr, objectSize, bArr7, i19, i22, i18, j6, tLObject3, tL_error);
+                        FileUploadOperation.m477$r8$lambda$xvTb41RA9qgxehxtlT7WGhJ0Y(this.f$0, i20, iArr, objectSize, bArr7, i19, i22, i18, j6, tLObject3, tL_error);
                     }
                 }, null, new WriteToSocketDelegate() {
                     @Override
@@ -637,7 +637,7 @@ public class FileUploadOperation {
         }
     }
 
-    public static void m471$r8$lambda$xvTb41RA9qgxehxtlT7WGhJ0Y(final FileUploadOperation fileUploadOperation, int i, final int[] iArr, int i2, byte[] bArr, int i3, int i4, int i5, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m477$r8$lambda$xvTb41RA9qgxehxtlT7WGhJ0Y(final FileUploadOperation fileUploadOperation, int i, final int[] iArr, int i2, byte[] bArr, int i3, int i4, int i5, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         long jMax;
         TLRPC.InputEncryptedFile tL_inputEncryptedFileUploaded;
         TLRPC.InputFile tL_inputFile;

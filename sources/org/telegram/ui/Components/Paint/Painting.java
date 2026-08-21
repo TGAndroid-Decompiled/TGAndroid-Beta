@@ -201,7 +201,7 @@ public class Painting {
                     painting2.renderView.performInContext(new Runnable() {
                         @Override
                         public final void run() {
-                            Painting.m2470$r8$lambda$9XyceSV8btCEil5MQI4naFiOdQ(painting2, valueAnimator2);
+                            Painting.m2480$r8$lambda$9XyceSV8btCEil5MQI4naFiOdQ(painting2, valueAnimator2);
                         }
                     });
                 }
@@ -229,7 +229,7 @@ public class Painting {
         }
     }
 
-    public static void m2470$r8$lambda$9XyceSV8btCEil5MQI4naFiOdQ(Painting painting, ValueAnimator valueAnimator) {
+    public static void m2480$r8$lambda$9XyceSV8btCEil5MQI4naFiOdQ(Painting painting, ValueAnimator valueAnimator) {
         painting.getClass();
         painting.helperAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         PaintingDelegate paintingDelegate = painting.delegate;
@@ -248,12 +248,12 @@ public class Painting {
             Painting.this.renderView.performInContext(new Runnable() {
                 @Override
                 public final void run() {
-                    Painting.AnonymousClass1.m2473$r8$lambda$Bvg8vy1mCO7AEU9TV83zkXlvZA(this.f$0);
+                    Painting.AnonymousClass1.m2483$r8$lambda$Bvg8vy1mCO7AEU9TV83zkXlvZA(this.f$0);
                 }
             });
         }
 
-        public static void m2473$r8$lambda$Bvg8vy1mCO7AEU9TV83zkXlvZA(AnonymousClass1 anonymousClass1) {
+        public static void m2483$r8$lambda$Bvg8vy1mCO7AEU9TV83zkXlvZA(AnonymousClass1 anonymousClass1) {
             if (Painting.this.delegate != null) {
                 Painting.this.delegate.contentChanged();
             }
@@ -716,13 +716,13 @@ public class Painting {
         this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
             @Override
             public final void run() {
-                Painting.m2472$r8$lambda$hh3hQW4dPckPJR7byoIR2JGsJ4(this.f$0, slice, slice2, z);
+                Painting.m2482$r8$lambda$hh3hQW4dPckPJR7byoIR2JGsJ4(this.f$0, slice, slice2, z);
             }
         });
         return slice;
     }
 
-    public static void m2472$r8$lambda$hh3hQW4dPckPJR7byoIR2JGsJ4(Painting painting, Slice slice, Slice slice2, boolean z) {
+    public static void m2482$r8$lambda$hh3hQW4dPckPJR7byoIR2JGsJ4(Painting painting, Slice slice, Slice slice2, boolean z) {
         painting.restoreSlice(slice);
         painting.restoreSlice(slice2);
         painting.hasBlur = z;

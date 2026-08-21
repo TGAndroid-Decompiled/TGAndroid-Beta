@@ -430,7 +430,7 @@ public class QrActivity extends BaseFragment {
             this.themesViewController.shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    QrActivity.m3942$r8$lambda$LWCugrTkaZEK1dDy2aGp3IInz4(this.f$0, view2);
+                    QrActivity.m3951$r8$lambda$LWCugrTkaZEK1dDy2aGp3IInz4(this.f$0, view2);
                 }
             });
             linearLayout = this.themesViewController.scanButtonWrap;
@@ -438,7 +438,7 @@ public class QrActivity extends BaseFragment {
                 linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        QrActivity.m3940$r8$lambda$Dv4IqRo1fT1Hs05ilVetzRPwOw(this.f$0, view2);
+                        QrActivity.m3949$r8$lambda$Dv4IqRo1fT1Hs05ilVetzRPwOw(this.f$0, view2);
                     }
                 });
             }
@@ -448,7 +448,7 @@ public class QrActivity extends BaseFragment {
             Utilities.themeQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.m3945$r8$lambda$kpd93Rwr_5YV8QL0A9Y48yJAJc(this.f$0);
+                    QrActivity.m3954$r8$lambda$kpd93Rwr_5YV8QL0A9Y48yJAJc(this.f$0);
                 }
             }, 25L);
             View view2 = this.fragmentView;
@@ -556,7 +556,7 @@ public class QrActivity extends BaseFragment {
         this.themesViewController.shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                QrActivity.m3942$r8$lambda$LWCugrTkaZEK1dDy2aGp3IInz4(this.f$0, view3);
+                QrActivity.m3951$r8$lambda$LWCugrTkaZEK1dDy2aGp3IInz4(this.f$0, view3);
             }
         });
         linearLayout = this.themesViewController.scanButtonWrap;
@@ -564,7 +564,7 @@ public class QrActivity extends BaseFragment {
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
-                    QrActivity.m3940$r8$lambda$Dv4IqRo1fT1Hs05ilVetzRPwOw(this.f$0, view3);
+                    QrActivity.m3949$r8$lambda$Dv4IqRo1fT1Hs05ilVetzRPwOw(this.f$0, view3);
                 }
             });
         }
@@ -574,7 +574,7 @@ public class QrActivity extends BaseFragment {
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QrActivity.m3945$r8$lambda$kpd93Rwr_5YV8QL0A9Y48yJAJc(this.f$0);
+                QrActivity.m3954$r8$lambda$kpd93Rwr_5YV8QL0A9Y48yJAJc(this.f$0);
             }
         }, 25L);
         View view3 = this.fragmentView;
@@ -676,7 +676,7 @@ public class QrActivity extends BaseFragment {
         this.themesViewController.shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view4) {
-                QrActivity.m3942$r8$lambda$LWCugrTkaZEK1dDy2aGp3IInz4(this.f$0, view4);
+                QrActivity.m3951$r8$lambda$LWCugrTkaZEK1dDy2aGp3IInz4(this.f$0, view4);
             }
         });
         linearLayout = this.themesViewController.scanButtonWrap;
@@ -684,7 +684,7 @@ public class QrActivity extends BaseFragment {
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view4) {
-                    QrActivity.m3940$r8$lambda$Dv4IqRo1fT1Hs05ilVetzRPwOw(this.f$0, view4);
+                    QrActivity.m3949$r8$lambda$Dv4IqRo1fT1Hs05ilVetzRPwOw(this.f$0, view4);
                 }
             });
         }
@@ -694,7 +694,7 @@ public class QrActivity extends BaseFragment {
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QrActivity.m3945$r8$lambda$kpd93Rwr_5YV8QL0A9Y48yJAJc(this.f$0);
+                QrActivity.m3954$r8$lambda$kpd93Rwr_5YV8QL0A9Y48yJAJc(this.f$0);
             }
         }, 25L);
         View view4 = this.fragmentView;
@@ -726,12 +726,12 @@ public class QrActivity extends BaseFragment {
         qrActivity.qrView.requestLayout();
     }
 
-    public static void m3942$r8$lambda$LWCugrTkaZEK1dDy2aGp3IInz4(QrActivity qrActivity, View view) {
+    public static void m3951$r8$lambda$LWCugrTkaZEK1dDy2aGp3IInz4(QrActivity qrActivity, View view) {
         qrActivity.themesViewController.shareButton.setClickable(false);
         qrActivity.performShare();
     }
 
-    public static void m3940$r8$lambda$Dv4IqRo1fT1Hs05ilVetzRPwOw(QrActivity qrActivity, View view) {
+    public static void m3949$r8$lambda$Dv4IqRo1fT1Hs05ilVetzRPwOw(QrActivity qrActivity, View view) {
         if (qrActivity.getParentActivity() == null) {
             return;
         }
@@ -742,7 +742,7 @@ public class QrActivity extends BaseFragment {
         }
     }
 
-    public static void m3945$r8$lambda$kpd93Rwr_5YV8QL0A9Y48yJAJc(final QrActivity qrActivity) {
+    public static void m3954$r8$lambda$kpd93Rwr_5YV8QL0A9Y48yJAJc(final QrActivity qrActivity) {
         qrActivity.homeTheme.loadPreviewColors(qrActivity.currentAccount);
         View view = qrActivity.fragmentView;
         if (view == null) {
@@ -1046,7 +1046,7 @@ public class QrActivity extends BaseFragment {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    QrActivity.m3944$r8$lambda$ZW_m0pVUsunMtNVcOd__Ujrx6w(this.f$0, iArr, valueAnimator2);
+                    QrActivity.m3953$r8$lambda$ZW_m0pVUsunMtNVcOd__Ujrx6w(this.f$0, iArr, valueAnimator2);
                 }
             });
             this.patternAlphaAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1118,7 +1118,7 @@ public class QrActivity extends BaseFragment {
         });
     }
 
-    public static void m3944$r8$lambda$ZW_m0pVUsunMtNVcOd__Ujrx6w(QrActivity qrActivity, int[] iArr, ValueAnimator valueAnimator) {
+    public static void m3953$r8$lambda$ZW_m0pVUsunMtNVcOd__Ujrx6w(QrActivity qrActivity, int[] iArr, ValueAnimator valueAnimator) {
         qrActivity.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         MotionBackgroundDrawable motionBackgroundDrawable = qrActivity.prevMotionDrawable;
@@ -1202,12 +1202,12 @@ public class QrActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                QrActivity.m3946$r8$lambda$obtqP8oFLuMOLPGGTFrYAFQscI(this.f$0);
+                QrActivity.m3955$r8$lambda$obtqP8oFLuMOLPGGTFrYAFQscI(this.f$0);
             }
         }, 500L);
     }
 
-    public static void m3946$r8$lambda$obtqP8oFLuMOLPGGTFrYAFQscI(QrActivity qrActivity) {
+    public static void m3955$r8$lambda$obtqP8oFLuMOLPGGTFrYAFQscI(QrActivity qrActivity) {
         ThemeListViewController themeListViewController = qrActivity.themesViewController;
         if (themeListViewController == null) {
             return;
@@ -1253,7 +1253,7 @@ public class QrActivity extends BaseFragment {
                 userNameResolver.resolve(strExtractUsername, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        QrActivity.AnonymousClass5.m3949$r8$lambda$KDK0KdQ91ERRcA6QFQ50VYGPpg(baseFragment, (Long) obj);
+                        QrActivity.AnonymousClass5.m3958$r8$lambda$KDK0KdQ91ERRcA6QFQ50VYGPpg(baseFragment, (Long) obj);
                     }
                 });
                 return;
@@ -1266,7 +1266,7 @@ public class QrActivity extends BaseFragment {
             });
         }
 
-        public static void m3949$r8$lambda$KDK0KdQ91ERRcA6QFQ50VYGPpg(BaseFragment baseFragment, Long l) {
+        public static void m3958$r8$lambda$KDK0KdQ91ERRcA6QFQ50VYGPpg(BaseFragment baseFragment, Long l) {
             if (baseFragment.isFinished) {
                 return;
             }
@@ -1776,12 +1776,12 @@ public class QrActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.QrView.m3953$r8$lambda$w616M4O5q8HGxSJmK_NDTkv7nw(this.f$0, tL_exportedContactToken);
+                    QrActivity.QrView.m3962$r8$lambda$w616M4O5q8HGxSJmK_NDTkv7nw(this.f$0, tL_exportedContactToken);
                 }
             });
         }
 
-        public static void m3953$r8$lambda$w616M4O5q8HGxSJmK_NDTkv7nw(QrView qrView, TLRPC.TL_exportedContactToken tL_exportedContactToken) {
+        public static void m3962$r8$lambda$w616M4O5q8HGxSJmK_NDTkv7nw(QrView qrView, TLRPC.TL_exportedContactToken tL_exportedContactToken) {
             if (tL_exportedContactToken == null) {
                 qrView.getClass();
                 return;
@@ -1837,7 +1837,7 @@ public class QrActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        QrActivity.QrView.m3951$r8$lambda$eEAlmsK1LSnLv7sebfMzL_9yUw(this.f$0);
+                        QrActivity.QrView.m3960$r8$lambda$eEAlmsK1LSnLv7sebfMzL_9yUw(this.f$0);
                     }
                 });
                 return;
@@ -1975,7 +1975,7 @@ public class QrActivity extends BaseFragment {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        QrActivity.QrView.m3950$r8$lambda$X1PaoSG31Ze1Fz3wRftkDjyec(this.f$0, bitmapCreateBitmap, width3, i5, width4);
+                                        QrActivity.QrView.m3959$r8$lambda$X1PaoSG31Ze1Fz3wRftkDjyec(this.f$0, bitmapCreateBitmap, width3, i5, width4);
                                     }
                                 });
                             }
@@ -2025,7 +2025,7 @@ public class QrActivity extends BaseFragment {
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    QrActivity.QrView.m3950$r8$lambda$X1PaoSG31Ze1Fz3wRftkDjyec(this.f$0, bitmapCreateBitmap, width7, i5, width8);
+                                    QrActivity.QrView.m3959$r8$lambda$X1PaoSG31Ze1Fz3wRftkDjyec(this.f$0, bitmapCreateBitmap, width7, i5, width8);
                                 }
                             });
                         }
@@ -2081,12 +2081,12 @@ public class QrActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.QrView.m3950$r8$lambda$X1PaoSG31Ze1Fz3wRftkDjyec(this.f$0, bitmapCreateBitmap, width11, i5, width12);
+                    QrActivity.QrView.m3959$r8$lambda$X1PaoSG31Ze1Fz3wRftkDjyec(this.f$0, bitmapCreateBitmap, width11, i5, width12);
                 }
             });
         }
 
-        public static void m3951$r8$lambda$eEAlmsK1LSnLv7sebfMzL_9yUw(QrView qrView) {
+        public static void m3960$r8$lambda$eEAlmsK1LSnLv7sebfMzL_9yUw(QrView qrView) {
             qrView.firstPrepare = false;
             Bitmap bitmap = qrView.contentBitmap;
             if (bitmap != null) {
@@ -2101,7 +2101,7 @@ public class QrActivity extends BaseFragment {
             }
         }
 
-        public static void m3950$r8$lambda$X1PaoSG31Ze1Fz3wRftkDjyec(QrView qrView, Bitmap bitmap, float f, int i, float f2) {
+        public static void m3959$r8$lambda$X1PaoSG31Ze1Fz3wRftkDjyec(QrView qrView, Bitmap bitmap, float f, int i, float f2) {
             Bitmap bitmap2 = qrView.contentBitmap;
             qrView.contentBitmap = bitmap.extractAlpha();
             if (!qrView.firstPrepare) {
@@ -2309,7 +2309,7 @@ public class QrActivity extends BaseFragment {
             rLottieImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    QrActivity.ThemeListViewController.m3955$r8$lambda$4OBtkRWBOEXrYi6FQFtyYXbHDg(this.f$0, view);
+                    QrActivity.ThemeListViewController.m3964$r8$lambda$4OBtkRWBOEXrYi6FQFtyYXbHDg(this.f$0, view);
                 }
             });
             rLottieImageView.setAlpha(0.0f);
@@ -2404,7 +2404,7 @@ public class QrActivity extends BaseFragment {
             this.scanButton = null;
         }
 
-        public static void m3955$r8$lambda$4OBtkRWBOEXrYi6FQFtyYXbHDg(ThemeListViewController themeListViewController, View view) {
+        public static void m3964$r8$lambda$4OBtkRWBOEXrYi6FQFtyYXbHDg(ThemeListViewController themeListViewController, View view) {
             if (themeListViewController.changeDayNightViewAnimator != null) {
                 return;
             }
@@ -2463,7 +2463,7 @@ public class QrActivity extends BaseFragment {
             this.rootLayout.postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.ThemeListViewController.m3954$r8$lambda$xtrDv6MiWkfI9f2byet6l_CTm4(this.f$0, i);
+                    QrActivity.ThemeListViewController.m3963$r8$lambda$xtrDv6MiWkfI9f2byet6l_CTm4(this.f$0, i);
                 }
             }, 100L);
             for (int i2 = 0; i2 < this.recyclerView.getChildCount(); i2++) {
@@ -2481,7 +2481,7 @@ public class QrActivity extends BaseFragment {
             }
         }
 
-        public static void m3954$r8$lambda$xtrDv6MiWkfI9f2byet6l_CTm4(ThemeListViewController themeListViewController, int i) {
+        public static void m3963$r8$lambda$xtrDv6MiWkfI9f2byet6l_CTm4(ThemeListViewController themeListViewController, int i) {
             int iMax;
             RecyclerView.LayoutManager layoutManager = themeListViewController.recyclerView.getLayoutManager();
             if (layoutManager != null) {
@@ -2549,7 +2549,7 @@ public class QrActivity extends BaseFragment {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    QrActivity.ThemeListViewController.m3957$r8$lambda$VPyrCZN6X7Fj9pr8ghxopDINU(this.f$0, valueAnimator2);
+                    QrActivity.ThemeListViewController.m3966$r8$lambda$VPyrCZN6X7Fj9pr8ghxopDINU(this.f$0, valueAnimator2);
                 }
             });
             this.changeDayNightViewAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2572,18 +2572,18 @@ public class QrActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.ThemeListViewController.m3956$r8$lambda$BcpBJoGnuubS20po7YzhaIlMc(this.f$0, z);
+                    QrActivity.ThemeListViewController.m3965$r8$lambda$BcpBJoGnuubS20po7YzhaIlMc(this.f$0, z);
                 }
             });
         }
 
-        public static void m3957$r8$lambda$VPyrCZN6X7Fj9pr8ghxopDINU(ThemeListViewController themeListViewController, ValueAnimator valueAnimator) {
+        public static void m3966$r8$lambda$VPyrCZN6X7Fj9pr8ghxopDINU(ThemeListViewController themeListViewController, ValueAnimator valueAnimator) {
             themeListViewController.getClass();
             themeListViewController.changeDayNightViewProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             themeListViewController.changeDayNightView.invalidate();
         }
 
-        public static void m3956$r8$lambda$BcpBJoGnuubS20po7YzhaIlMc(ThemeListViewController themeListViewController, boolean z) {
+        public static void m3965$r8$lambda$BcpBJoGnuubS20po7YzhaIlMc(ThemeListViewController themeListViewController, boolean z) {
             ChatThemeBottomSheet.Adapter adapter = themeListViewController.adapter;
             if (adapter == null || adapter.items == null) {
                 return;

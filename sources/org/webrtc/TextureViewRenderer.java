@@ -520,7 +520,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                     Runnable runnable2 = new Runnable() {
                         @Override
                         public final void run() {
-                            TextureViewRenderer.m5091$r8$lambda$wtAVKtJ0HfkL3QYugafIwOl5W4(this.f$0, i, i2, i9, i5);
+                            TextureViewRenderer.m5102$r8$lambda$wtAVKtJ0HfkL3QYugafIwOl5W4(this.f$0, i, i2, i9, i5);
                         }
                     };
                     this.updateScreenRunnable = runnable2;
@@ -538,7 +538,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
     }
 
-    public static void m5091$r8$lambda$wtAVKtJ0HfkL3QYugafIwOl5W4(TextureViewRenderer textureViewRenderer, int i, int i2, int i3, int i4) {
+    public static void m5102$r8$lambda$wtAVKtJ0HfkL3QYugafIwOl5W4(TextureViewRenderer textureViewRenderer, int i, int i2, int i3, int i4) {
         textureViewRenderer.updateScreenRunnable = null;
         textureViewRenderer.videoWidth = i;
         textureViewRenderer.videoHeight = i2;
@@ -596,7 +596,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        TextureViewRenderer.m5092$r8$lambda$yc_DZEyKpurrKvjSc8Qvugm5Q(this.f$0, i2, i3);
+                        TextureViewRenderer.m5103$r8$lambda$yc_DZEyKpurrKvjSc8Qvugm5Q(this.f$0, i2, i3);
                     }
                 };
                 this.updateScreenRunnable = runnable2;
@@ -607,7 +607,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
     }
 
-    public static void m5092$r8$lambda$yc_DZEyKpurrKvjSc8Qvugm5Q(TextureViewRenderer textureViewRenderer, int i, int i2) {
+    public static void m5103$r8$lambda$yc_DZEyKpurrKvjSc8Qvugm5Q(TextureViewRenderer textureViewRenderer, int i, int i2) {
         textureViewRenderer.updateScreenRunnable = null;
         textureViewRenderer.rotatedFrameWidth = i;
         textureViewRenderer.rotatedFrameHeight = i2;

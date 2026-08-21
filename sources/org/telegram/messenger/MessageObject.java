@@ -6415,12 +6415,12 @@ public class MessageObject {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageObject.m635$r8$lambda$t6TV9rxYv2MakqVbV5U8_mkm2o(this.f$0, document);
+                MessageObject.m641$r8$lambda$t6TV9rxYv2MakqVbV5U8_mkm2o(this.f$0, document);
             }
         });
     }
 
-    public static void m635$r8$lambda$t6TV9rxYv2MakqVbV5U8_mkm2o(MessageObject messageObject, TLRPC.Document document) {
+    public static void m641$r8$lambda$t6TV9rxYv2MakqVbV5U8_mkm2o(MessageObject messageObject, TLRPC.Document document) {
         messageObject.emojiAnimatedSticker = document;
         NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.animatedEmojiDocumentLoaded, messageObject);
     }

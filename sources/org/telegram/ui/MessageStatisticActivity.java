@@ -333,7 +333,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i3) {
-                return MessageStatisticActivity.m3549$r8$lambda$p6gLYqoQpGIRcJY5mW_JEpd8w(this.f$0, view, i3);
+                return MessageStatisticActivity.m3557$r8$lambda$p6gLYqoQpGIRcJY5mW_JEpd8w(this.f$0, view, i3);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -469,7 +469,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         this.avatarContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessageStatisticActivity.m3547$r8$lambda$VYGdaMFQXiJ8cwqT7n49pQ1cO8(this.f$0, view);
+                MessageStatisticActivity.m3555$r8$lambda$VYGdaMFQXiJ8cwqT7n49pQ1cO8(this.f$0, view);
             }
         });
         updateMenu();
@@ -503,7 +503,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
     }
 
-    public static boolean m3549$r8$lambda$p6gLYqoQpGIRcJY5mW_JEpd8w(final MessageStatisticActivity messageStatisticActivity, View view, int i) {
+    public static boolean m3557$r8$lambda$p6gLYqoQpGIRcJY5mW_JEpd8w(final MessageStatisticActivity messageStatisticActivity, View view, int i) {
         if (i >= messageStatisticActivity.startRow && i < messageStatisticActivity.endRow) {
             try {
                 view.performHapticFeedback(0, 2);
@@ -554,7 +554,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
     }
 
-    public static void m3547$r8$lambda$VYGdaMFQXiJ8cwqT7n49pQ1cO8(MessageStatisticActivity messageStatisticActivity, View view) {
+    public static void m3555$r8$lambda$VYGdaMFQXiJ8cwqT7n49pQ1cO8(MessageStatisticActivity messageStatisticActivity, View view) {
         if (messageStatisticActivity.messageObject.isStory()) {
             return;
         }
@@ -656,12 +656,12 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.m3551$r8$lambda$vA5QRd_JjRfESQWWEfAcjkeE48(this.f$0, tL_error, tLObject);
+                MessageStatisticActivity.m3559$r8$lambda$vA5QRd_JjRfESQWWEfAcjkeE48(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m3551$r8$lambda$vA5QRd_JjRfESQWWEfAcjkeE48(MessageStatisticActivity messageStatisticActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m3559$r8$lambda$vA5QRd_JjRfESQWWEfAcjkeE48(MessageStatisticActivity messageStatisticActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error == null) {
             messageStatisticActivity.getClass();
             TL_stats.TL_publicForwards tL_publicForwards = (TL_stats.TL_publicForwards) tLObject;
@@ -713,12 +713,12 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.m3548$r8$lambda$d34WLKdlBNi78AaMwsVk_MXhWI(this.f$0, tL_error, tLObject);
+                MessageStatisticActivity.m3556$r8$lambda$d34WLKdlBNi78AaMwsVk_MXhWI(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m3548$r8$lambda$d34WLKdlBNi78AaMwsVk_MXhWI(MessageStatisticActivity messageStatisticActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m3556$r8$lambda$d34WLKdlBNi78AaMwsVk_MXhWI(MessageStatisticActivity messageStatisticActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error == null) {
             messageStatisticActivity.getClass();
             TL_stats.TL_publicForwards tL_publicForwards = (TL_stats.TL_publicForwards) tLObject;
@@ -858,7 +858,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessageStatisticActivity.m3550$r8$lambda$uGXucCXyP5yEI1oUWjTuZs0As(this.f$0, tL_error, chartData, str, tL_loadAsyncGraph);
+                    MessageStatisticActivity.m3558$r8$lambda$uGXucCXyP5yEI1oUWjTuZs0As(this.f$0, tL_error, chartData, str, tL_loadAsyncGraph);
                 }
             });
         }
@@ -866,7 +866,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessageStatisticActivity.m3546$r8$lambda$Qk_TwL5II0IDfBEei2zuL9YGqk(this.f$0, tLObject);
+                    MessageStatisticActivity.m3554$r8$lambda$Qk_TwL5II0IDfBEei2zuL9YGqk(this.f$0, tLObject);
                 }
             });
         }
@@ -875,18 +875,18 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.m3550$r8$lambda$uGXucCXyP5yEI1oUWjTuZs0As(this.f$0, tL_error, chartData2, str, tL_loadAsyncGraph);
+                MessageStatisticActivity.m3558$r8$lambda$uGXucCXyP5yEI1oUWjTuZs0As(this.f$0, tL_error, chartData2, str, tL_loadAsyncGraph);
             }
         });
     }
 
-    public static void m3546$r8$lambda$Qk_TwL5II0IDfBEei2zuL9YGqk(MessageStatisticActivity messageStatisticActivity, TLObject tLObject) {
+    public static void m3554$r8$lambda$Qk_TwL5II0IDfBEei2zuL9YGqk(MessageStatisticActivity messageStatisticActivity, TLObject tLObject) {
         if (messageStatisticActivity.getParentActivity() != null) {
             Toast.makeText(messageStatisticActivity.getParentActivity(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
         }
     }
 
-    public static void m3550$r8$lambda$uGXucCXyP5yEI1oUWjTuZs0As(MessageStatisticActivity messageStatisticActivity, TLRPC.TL_error tL_error, ChartData chartData, String str, TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph) {
+    public static void m3558$r8$lambda$uGXucCXyP5yEI1oUWjTuZs0As(MessageStatisticActivity messageStatisticActivity, TLRPC.TL_error tL_error, ChartData chartData, String str, TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph) {
         messageStatisticActivity.statsLoaded = true;
         if (tL_error != null || chartData == null) {
             messageStatisticActivity.updateRows();
@@ -1320,7 +1320,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                MessageStatisticActivity.m3552$r8$lambda$wAPJReqcEegg7Lkg1FBut3V8ao(this.f$0);
+                MessageStatisticActivity.m3560$r8$lambda$wAPJReqcEegg7Lkg1FBut3V8ao(this.f$0);
             }
 
             @Override
@@ -1359,7 +1359,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         return arrayList;
     }
 
-    public static void m3552$r8$lambda$wAPJReqcEegg7Lkg1FBut3V8ao(MessageStatisticActivity messageStatisticActivity) {
+    public static void m3560$r8$lambda$wAPJReqcEegg7Lkg1FBut3V8ao(MessageStatisticActivity messageStatisticActivity) {
         RecyclerListView recyclerListView = messageStatisticActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

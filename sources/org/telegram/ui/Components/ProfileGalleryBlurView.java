@@ -301,7 +301,7 @@ public class ProfileGalleryBlurView extends View {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileGalleryBlurView.m2669$r8$lambda$X24vuvHmmeB_uW3gim9woyEsg(this.f$0);
+                    ProfileGalleryBlurView.m2678$r8$lambda$X24vuvHmmeB_uW3gim9woyEsg(this.f$0);
                 }
             });
         } else {
@@ -309,7 +309,7 @@ public class ProfileGalleryBlurView extends View {
         }
     }
 
-    public static void m2669$r8$lambda$X24vuvHmmeB_uW3gim9woyEsg(ProfileGalleryBlurView profileGalleryBlurView) {
+    public static void m2678$r8$lambda$X24vuvHmmeB_uW3gim9woyEsg(ProfileGalleryBlurView profileGalleryBlurView) {
         profileGalleryBlurView.captureNextFrame();
         ProfileMetaballView.profileBlurQueue.postRunnable(profileGalleryBlurView.blurTask);
     }

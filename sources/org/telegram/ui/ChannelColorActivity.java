@@ -651,7 +651,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             ChatThemeBottomSheet.openGalleryForBackground(getParentActivity(), this, this.dialogId, this.resourceProvider, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ChannelColorActivity.m1551$r8$lambda$TjoFbm3ztA8UHWT827a8mbrD_0(this.f$0, (TLRPC.WallPaper) obj);
+                    ChannelColorActivity.m1557$r8$lambda$TjoFbm3ztA8UHWT827a8mbrD_0(this.f$0, (TLRPC.WallPaper) obj);
                 }
             }, new ThemePreviewActivity.DayNightSwitchDelegate() {
                 @Override
@@ -711,7 +711,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         channelColorActivity.updateColors(true);
     }
 
-    public static void m1551$r8$lambda$TjoFbm3ztA8UHWT827a8mbrD_0(final ChannelColorActivity channelColorActivity, TLRPC.WallPaper wallPaper) {
+    public static void m1557$r8$lambda$TjoFbm3ztA8UHWT827a8mbrD_0(final ChannelColorActivity channelColorActivity, TLRPC.WallPaper wallPaper) {
         channelColorActivity.currentWallpaper = wallPaper;
         channelColorActivity.selectedWallpaper = wallPaper;
         channelColorActivity.galleryWallpaper = wallPaper;
@@ -827,7 +827,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ChannelColorActivity.m1554$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(this.f$0, callback, tLObject, tL_error);
+                        ChannelColorActivity.m1560$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(this.f$0, callback, tLObject, tL_error);
                     }
                 });
             }
@@ -966,7 +966,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         getConnectionsManager().sendRequest(tL_channels_updateColor2, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelColorActivity.m1549$r8$lambda$C8kKo15K3PchMwrJ9lkLF4StE8(this.f$0, callback, tLObject, tL_error);
+                ChannelColorActivity.m1555$r8$lambda$C8kKo15K3PchMwrJ9lkLF4StE8(this.f$0, callback, tLObject, tL_error);
             }
         });
         if (this.currentProfileColor == this.selectedProfileColor) {
@@ -1003,7 +1003,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChannelColorActivity.m1554$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(this.f$0, callback, tLObject, tL_error);
+                    ChannelColorActivity.m1560$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(this.f$0, callback, tLObject, tL_error);
                 }
             });
         } else {
@@ -1040,7 +1040,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChannelColorActivity.m1554$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(this.f$0, callback, tLObject, tL_error);
+                    ChannelColorActivity.m1560$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(this.f$0, callback, tLObject, tL_error);
                 }
             });
         }
@@ -1173,7 +1173,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public static void m1549$r8$lambda$C8kKo15K3PchMwrJ9lkLF4StE8(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1555$r8$lambda$C8kKo15K3PchMwrJ9lkLF4StE8(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
         channelColorActivity.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             channelColorActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
@@ -1183,7 +1183,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public static void m1554$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1560$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
         channelColorActivity.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             channelColorActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
@@ -1281,7 +1281,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelColorActivity.m1553$r8$lambda$h9lgDhmy_WTrTUoMyYwiBVOCSI(this.f$0, chat);
+                    ChannelColorActivity.m1559$r8$lambda$h9lgDhmy_WTrTUoMyYwiBVOCSI(this.f$0, chat);
                 }
             });
         }
@@ -1289,7 +1289,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         channelColorActivity.button.setLoading(false);
     }
 
-    public static void m1553$r8$lambda$h9lgDhmy_WTrTUoMyYwiBVOCSI(ChannelColorActivity channelColorActivity, TLRPC.Chat chat) {
+    public static void m1559$r8$lambda$h9lgDhmy_WTrTUoMyYwiBVOCSI(ChannelColorActivity channelColorActivity, TLRPC.Chat chat) {
         channelColorActivity.getClass();
         channelColorActivity.presentFragment(StatisticActivity.create(chat));
     }
@@ -1496,7 +1496,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 peerColorPicker.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                     @Override
                     public final void onItemClick(View view, int i3) {
-                        ChannelColorActivity.Adapter.m1555$r8$lambda$wLc5xcXftoXAqktkIKIHyOBqi4(this.f$0, peerColorPicker, view, i3);
+                        ChannelColorActivity.Adapter.m1561$r8$lambda$wLc5xcXftoXAqktkIKIHyOBqi4(this.f$0, peerColorPicker, view, i3);
                     }
                 });
                 textInfoPrivacyCell = peerColorPicker;
@@ -1555,7 +1555,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             ChannelColorActivity.this.updateMessagesPreview(true);
         }
 
-        public static void m1555$r8$lambda$wLc5xcXftoXAqktkIKIHyOBqi4(Adapter adapter, PeerColorPicker peerColorPicker, View view, int i) {
+        public static void m1561$r8$lambda$wLc5xcXftoXAqktkIKIHyOBqi4(Adapter adapter, PeerColorPicker peerColorPicker, View view, int i) {
             ChannelColorActivity.this.selectedReplyColor = peerColorPicker.toColorId(i);
             ChannelColorActivity.this.updateButton(true);
             ChannelColorActivity.this.updateMessagesPreview(true);
@@ -2661,12 +2661,12 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelColorActivity.ThemeChooser.m1556$r8$lambda$7HvZqeaHo3noElDqTUdJv6LH2g(this.f$0, tLObject, themeInfo);
+                    ChannelColorActivity.ThemeChooser.m1562$r8$lambda$7HvZqeaHo3noElDqTUdJv6LH2g(this.f$0, tLObject, themeInfo);
                 }
             });
         }
 
-        public static void m1556$r8$lambda$7HvZqeaHo3noElDqTUdJv6LH2g(ThemeChooser themeChooser, TLObject tLObject, Theme.ThemeInfo themeInfo) {
+        public static void m1562$r8$lambda$7HvZqeaHo3noElDqTUdJv6LH2g(ThemeChooser themeChooser, TLObject tLObject, Theme.ThemeInfo themeInfo) {
             themeChooser.getClass();
             if (tLObject instanceof TLRPC.TL_wallPaper) {
                 TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) tLObject;
@@ -3078,12 +3078,12 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelColorActivity.m1548$r8$lambda$5blpapbXzMfWm4pzfC9d_Nu4ck(this.f$0);
+                ChannelColorActivity.m1554$r8$lambda$5blpapbXzMfWm4pzfC9d_Nu4ck(this.f$0);
             }
         });
     }
 
-    public static void m1548$r8$lambda$5blpapbXzMfWm4pzfC9d_Nu4ck(ChannelColorActivity channelColorActivity) {
+    public static void m1554$r8$lambda$5blpapbXzMfWm4pzfC9d_Nu4ck(ChannelColorActivity channelColorActivity) {
         Theme.ResourcesProvider resourcesProvider = channelColorActivity.resourceProvider;
         if (resourcesProvider instanceof ThemeDelegate) {
             ((ThemeDelegate) resourcesProvider).toggle();

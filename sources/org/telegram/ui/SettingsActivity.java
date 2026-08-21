@@ -735,7 +735,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         Collections.sort(this.accountNumbers, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return SettingsActivity.m4058$r8$lambda$IiepfaP1r9DHGITzIkOnCE1GO4((Integer) obj, (Integer) obj2);
+                return SettingsActivity.m4067$r8$lambda$IiepfaP1r9DHGITzIkOnCE1GO4((Integer) obj, (Integer) obj2);
             }
         });
         Set<String> set = getMessagesController().pendingSuggestions;
@@ -743,7 +743,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             arrayList.add(SuggestionCell.Factory.of(LocaleController.getString(R.string.GraceSuggestionTitle), LocaleController.getString(R.string.GraceSuggestionMessage), null, null, LocaleController.getString(R.string.GraceSuggestionButton), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    SettingsActivity.m4060$r8$lambda$RTUdQvT32BSqNdacMBwLrKVu50(this.f$0, view);
+                    SettingsActivity.m4069$r8$lambda$RTUdQvT32BSqNdacMBwLrKVu50(this.f$0, view);
                 }
             }));
             arrayList.add(UItem.asShadow(null));
@@ -868,7 +868,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         arrayList.add(UItem.asCustomShadow(this.versionView));
     }
 
-    public static int m4058$r8$lambda$IiepfaP1r9DHGITzIkOnCE1GO4(Integer num, Integer num2) {
+    public static int m4067$r8$lambda$IiepfaP1r9DHGITzIkOnCE1GO4(Integer num, Integer num2) {
         long j = UserConfig.getInstance(num.intValue()).loginTime;
         long j2 = UserConfig.getInstance(num2.intValue()).loginTime;
         if (j > j2) {
@@ -877,7 +877,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         return j < j2 ? -1 : 0;
     }
 
-    public static void m4060$r8$lambda$RTUdQvT32BSqNdacMBwLrKVu50(SettingsActivity settingsActivity, View view) {
+    public static void m4069$r8$lambda$RTUdQvT32BSqNdacMBwLrKVu50(SettingsActivity settingsActivity, View view) {
         Browser.openUrl(settingsActivity.getContext(), settingsActivity.getMessagesController().premiumManageSubscriptionUrl);
         settingsActivity.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
     }
@@ -916,7 +916,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 WebAppDisclaimerAlert.show(getContext(), new Consumer() {
                     @Override
                     public final void accept(Object obj2) {
-                        SettingsActivity.m4062$r8$lambda$wb9ptXjTwnHIuW9pxnZhXbhp3E(this.f$0, tL_attachMenuBot, (Boolean) obj2);
+                        SettingsActivity.m4071$r8$lambda$wb9ptXjTwnHIuW9pxnZhXbhp3E(this.f$0, tL_attachMenuBot, (Boolean) obj2);
                     }
                 }, null, null);
                 return;
@@ -1017,7 +1017,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public static void m4062$r8$lambda$wb9ptXjTwnHIuW9pxnZhXbhp3E(final SettingsActivity settingsActivity, final TLRPC.TL_attachMenuBot tL_attachMenuBot, Boolean bool) {
+    public static void m4071$r8$lambda$wb9ptXjTwnHIuW9pxnZhXbhp3E(final SettingsActivity settingsActivity, final TLRPC.TL_attachMenuBot tL_attachMenuBot, Boolean bool) {
         settingsActivity.getClass();
         TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
         tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(settingsActivity.currentAccount).getInputUser(tL_attachMenuBot.bot_id);
@@ -1026,12 +1026,12 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         ConnectionsManager.getInstance(settingsActivity.currentAccount).sendRequest(tL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SettingsActivity.m4061$r8$lambda$noJL0vaOZu19FWcmDfLxjKX_OE(this.f$0, tL_attachMenuBot, tLObject, tL_error);
+                SettingsActivity.m4070$r8$lambda$noJL0vaOZu19FWcmDfLxjKX_OE(this.f$0, tL_attachMenuBot, tLObject, tL_error);
             }
         }, 66);
     }
 
-    public static void m4061$r8$lambda$noJL0vaOZu19FWcmDfLxjKX_OE(final SettingsActivity settingsActivity, final TLRPC.TL_attachMenuBot tL_attachMenuBot, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4070$r8$lambda$noJL0vaOZu19FWcmDfLxjKX_OE(final SettingsActivity settingsActivity, final TLRPC.TL_attachMenuBot tL_attachMenuBot, TLObject tLObject, TLRPC.TL_error tL_error) {
         settingsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1874,7 +1874,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 settingsActivity.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        SettingsActivity.m4057$r8$lambda$CVz9hXwTRIiRUEANJVSSDBxve4(this.f$0, tLObject, tL_error);
+                        SettingsActivity.m4066$r8$lambda$CVz9hXwTRIiRUEANJVSSDBxve4(this.f$0, tLObject, tL_error);
                     }
                 });
                 return;
@@ -2158,7 +2158,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public static void m4057$r8$lambda$CVz9hXwTRIiRUEANJVSSDBxve4(final SettingsActivity settingsActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4066$r8$lambda$CVz9hXwTRIiRUEANJVSSDBxve4(final SettingsActivity settingsActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
         settingsActivity.getClass();
         TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
         tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";

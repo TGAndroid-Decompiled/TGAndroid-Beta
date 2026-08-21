@@ -45,24 +45,24 @@ public class RingtoneUploader implements NotificationCenter.NotificationCenterDe
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(uploadringtone, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        RingtoneUploader.m1123$r8$lambda$jbOppAXzptJ_jvu9jIeUDTVp9Q(this.f$0, tLObject, tL_error);
+                        RingtoneUploader.m1129$r8$lambda$jbOppAXzptJ_jvu9jIeUDTVp9Q(this.f$0, tLObject, tL_error);
                     }
                 });
             }
         }
     }
 
-    public static void m1123$r8$lambda$jbOppAXzptJ_jvu9jIeUDTVp9Q(final RingtoneUploader ringtoneUploader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1129$r8$lambda$jbOppAXzptJ_jvu9jIeUDTVp9Q(final RingtoneUploader ringtoneUploader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         ringtoneUploader.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                RingtoneUploader.m1122$r8$lambda$SeRFJ9lbeJZGK6JbUejxBryK_s(this.f$0, tLObject, tL_error);
+                RingtoneUploader.m1128$r8$lambda$SeRFJ9lbeJZGK6JbUejxBryK_s(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m1122$r8$lambda$SeRFJ9lbeJZGK6JbUejxBryK_s(RingtoneUploader ringtoneUploader, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1128$r8$lambda$SeRFJ9lbeJZGK6JbUejxBryK_s(RingtoneUploader ringtoneUploader, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             ringtoneUploader.getClass();
             ringtoneUploader.onComplete((TLRPC.Document) tLObject);

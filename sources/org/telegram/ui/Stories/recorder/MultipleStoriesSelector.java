@@ -85,7 +85,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         this.hideHint = new Runnable() {
             @Override
             public final void run() {
-                MultipleStoriesSelector.m4511$r8$lambda$cdCjhFGO0deaP4r_YAigmZnDGw(this.f$0);
+                MultipleStoriesSelector.m4522$r8$lambda$cdCjhFGO0deaP4r_YAigmZnDGw(this.f$0);
             }
         };
         this.buttonBounce = new ButtonBounce(this);
@@ -159,12 +159,12 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             AndroidUtilities.forEachViews((RecyclerView) MultipleStoriesSelector.this.listView, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    MultipleStoriesSelector.AnonymousClass1.m4513$r8$lambda$OBw0HtHC8Ji9WLVn6rrfE0aP7c(this.f$0, (View) obj);
+                    MultipleStoriesSelector.AnonymousClass1.m4524$r8$lambda$OBw0HtHC8Ji9WLVn6rrfE0aP7c(this.f$0, (View) obj);
                 }
             });
         }
 
-        public static void m4513$r8$lambda$OBw0HtHC8Ji9WLVn6rrfE0aP7c(AnonymousClass1 anonymousClass1, View view) {
+        public static void m4524$r8$lambda$OBw0HtHC8Ji9WLVn6rrfE0aP7c(AnonymousClass1 anonymousClass1, View view) {
             anonymousClass1.getClass();
             if (view instanceof EntryView) {
                 MultipleStoriesSelector multipleStoriesSelector = MultipleStoriesSelector.this;
@@ -260,7 +260,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         this.listView.adapter.update(false);
     }
 
-    public static void m4511$r8$lambda$cdCjhFGO0deaP4r_YAigmZnDGw(MultipleStoriesSelector multipleStoriesSelector) {
+    public static void m4522$r8$lambda$cdCjhFGO0deaP4r_YAigmZnDGw(MultipleStoriesSelector multipleStoriesSelector) {
         if (multipleStoriesSelector.hintShown) {
             multipleStoriesSelector.hintShown = false;
             multipleStoriesSelector.invalidate();
@@ -287,12 +287,12 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                MultipleStoriesSelector.m4512$r8$lambda$lHkKEmnJSDx2_w_YKtBtEdPFjM(this.f$0, i, (View) obj);
+                MultipleStoriesSelector.m4523$r8$lambda$lHkKEmnJSDx2_w_YKtBtEdPFjM(this.f$0, i, (View) obj);
             }
         });
     }
 
-    public static void m4512$r8$lambda$lHkKEmnJSDx2_w_YKtBtEdPFjM(MultipleStoriesSelector multipleStoriesSelector, int i, View view) {
+    public static void m4523$r8$lambda$lHkKEmnJSDx2_w_YKtBtEdPFjM(MultipleStoriesSelector multipleStoriesSelector, int i, View view) {
         int childAdapterPosition;
         UItem item;
         multipleStoriesSelector.getClass();
@@ -665,7 +665,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        MultipleStoriesSelector.EntryView.m4517$r8$lambda$oYbLqD9yWkVkEsTrwDgEu53VM(this.f$0, storyEntry);
+                        MultipleStoriesSelector.EntryView.m4528$r8$lambda$oYbLqD9yWkVkEsTrwDgEu53VM(this.f$0, storyEntry);
                     }
                 });
                 return;
@@ -705,12 +705,12 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MultipleStoriesSelector.EntryView.m4515$r8$lambda$Slf_HtSQFxJS0VJPc1V0kTEeY(this.f$0, storyEntry);
+                    MultipleStoriesSelector.EntryView.m4526$r8$lambda$Slf_HtSQFxJS0VJPc1V0kTEeY(this.f$0, storyEntry);
                 }
             });
         }
 
-        public static void m4517$r8$lambda$oYbLqD9yWkVkEsTrwDgEu53VM(final EntryView entryView, StoryEntry storyEntry) {
+        public static void m4528$r8$lambda$oYbLqD9yWkVkEsTrwDgEu53VM(final EntryView entryView, StoryEntry storyEntry) {
             entryView.getClass();
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
@@ -728,7 +728,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             });
         }
 
-        public static void m4515$r8$lambda$Slf_HtSQFxJS0VJPc1V0kTEeY(final EntryView entryView, StoryEntry storyEntry) {
+        public static void m4526$r8$lambda$Slf_HtSQFxJS0VJPc1V0kTEeY(final EntryView entryView, StoryEntry storyEntry) {
             entryView.getClass();
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;

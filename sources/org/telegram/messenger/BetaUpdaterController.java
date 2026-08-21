@@ -134,12 +134,12 @@ public class BetaUpdaterController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BetaUpdaterController.m359$r8$lambda$fsz3n_NR6ZdjRTY4e6lYYhKrkM(this.f$0, str, runnable);
+                BetaUpdaterController.m360$r8$lambda$fsz3n_NR6ZdjRTY4e6lYYhKrkM(this.f$0, str, runnable);
             }
         });
     }
 
-    public static void m359$r8$lambda$fsz3n_NR6ZdjRTY4e6lYYhKrkM(BetaUpdaterController betaUpdaterController, String str, Runnable runnable) {
+    public static void m360$r8$lambda$fsz3n_NR6ZdjRTY4e6lYYhKrkM(BetaUpdaterController betaUpdaterController, String str, Runnable runnable) {
         String str2;
         betaUpdaterController.checkingForUpdate = false;
         try {
@@ -279,7 +279,7 @@ public class BetaUpdaterController {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BetaUpdaterController.m360$r8$lambda$rWrbCAumhAkPQje3pEdS8p0L_M(this.f$0, (File) obj);
+                    BetaUpdaterController.m361$r8$lambda$rWrbCAumhAkPQje3pEdS8p0L_M(this.f$0, (File) obj);
                 }
             }, new Utilities.Callback() {
                 @Override
@@ -301,17 +301,17 @@ public class BetaUpdaterController {
         }
     }
 
-    public static void m360$r8$lambda$rWrbCAumhAkPQje3pEdS8p0L_M(final BetaUpdaterController betaUpdaterController, final File file) {
+    public static void m361$r8$lambda$rWrbCAumhAkPQje3pEdS8p0L_M(final BetaUpdaterController betaUpdaterController, final File file) {
         betaUpdaterController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BetaUpdaterController.m358$r8$lambda$7jnCGEmKStos3SMukfEyKvZNu8(this.f$0, file);
+                BetaUpdaterController.m359$r8$lambda$7jnCGEmKStos3SMukfEyKvZNu8(this.f$0, file);
             }
         });
     }
 
-    public static void m358$r8$lambda$7jnCGEmKStos3SMukfEyKvZNu8(BetaUpdaterController betaUpdaterController, File file) {
+    public static void m359$r8$lambda$7jnCGEmKStos3SMukfEyKvZNu8(BetaUpdaterController betaUpdaterController, File file) {
         if (file != null) {
             if (!TextUtils.isEmpty(betaUpdaterController.path)) {
                 try {

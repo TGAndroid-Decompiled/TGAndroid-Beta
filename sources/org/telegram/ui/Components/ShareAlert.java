@@ -571,7 +571,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_exportMessageLink, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ShareAlert.m2749$r8$lambda$RULzyCWd2fKBeF5C43IOjnhE8(this.f$0, context, tLObject, tL_error);
+                    ShareAlert.m2758$r8$lambda$RULzyCWd2fKBeF5C43IOjnhE8(this.f$0, context, tLObject, tL_error);
                 }
             });
         }
@@ -1399,7 +1399,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.searchGridView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i10) {
-                ShareAlert.m2747$r8$lambda$Dcwj_BA7YuJb6yzmAzXXXc2lnw(this.f$0, view, i10);
+                ShareAlert.m2756$r8$lambda$Dcwj_BA7YuJb6yzmAzXXXc2lnw(this.f$0, view, i10);
             }
         });
         this.searchGridView.setHasFixedSize(true);
@@ -1587,7 +1587,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 textView4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view3) {
-                        ShareAlert.m2744$r8$lambda$B9kV7A2GUsvS4lKeoQfg70Z2c(this.f$0, view3);
+                        ShareAlert.m2753$r8$lambda$B9kV7A2GUsvS4lKeoQfg70Z2c(this.f$0, view3);
                     }
                 });
                 this.pickerBottomLayout.addView(textView4, LayoutHelper.createFrame(-1, -1, 119));
@@ -1845,17 +1845,17 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         });
     }
 
-    public static void m2749$r8$lambda$RULzyCWd2fKBeF5C43IOjnhE8(final ShareAlert shareAlert, final Context context, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m2758$r8$lambda$RULzyCWd2fKBeF5C43IOjnhE8(final ShareAlert shareAlert, final Context context, final TLObject tLObject, TLRPC.TL_error tL_error) {
         shareAlert.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ShareAlert.m2752$r8$lambda$bmyCcpxlhi4PUqhpdEmLs_u_es(this.f$0, tLObject, context);
+                ShareAlert.m2761$r8$lambda$bmyCcpxlhi4PUqhpdEmLs_u_es(this.f$0, tLObject, context);
             }
         });
     }
 
-    public static void m2752$r8$lambda$bmyCcpxlhi4PUqhpdEmLs_u_es(ShareAlert shareAlert, TLObject tLObject, Context context) {
+    public static void m2761$r8$lambda$bmyCcpxlhi4PUqhpdEmLs_u_es(ShareAlert shareAlert, TLObject tLObject, Context context) {
         if (tLObject != null) {
             shareAlert.getClass();
             shareAlert.exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject;
@@ -1920,7 +1920,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         return 0;
     }
 
-    public static void m2747$r8$lambda$Dcwj_BA7YuJb6yzmAzXXXc2lnw(ShareAlert shareAlert, View view, int i) {
+    public static void m2756$r8$lambda$Dcwj_BA7YuJb6yzmAzXXXc2lnw(ShareAlert shareAlert, View view, int i) {
         if (i < 0) {
             shareAlert.getClass();
             return;
@@ -1973,7 +1973,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         safeLastFragment.presentFragment(new MessageStatisticActivity(messageObject));
     }
 
-    public static void m2744$r8$lambda$B9kV7A2GUsvS4lKeoQfg70Z2c(ShareAlert shareAlert, View view) {
+    public static void m2753$r8$lambda$B9kV7A2GUsvS4lKeoQfg70Z2c(ShareAlert shareAlert, View view) {
         if (shareAlert.selectedDialogs.size() == 0) {
             if (shareAlert.isChannel || shareAlert.linkToCopy[0] != null) {
                 shareAlert.dismiss();
@@ -2031,7 +2031,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 ShareAlert.this.topBackgroundAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ShareAlert.AnonymousClass21.m2754$r8$lambda$xaJhQ_cJNoTkaDGCAqZ56_zdBo(this.f$0, valueAnimator);
+                        ShareAlert.AnonymousClass21.m2763$r8$lambda$xaJhQ_cJNoTkaDGCAqZ56_zdBo(this.f$0, valueAnimator);
                     }
                 });
                 ShareAlert.this.topBackgroundAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -2042,7 +2042,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             ShareAlert.this.shadow[1].setTranslationY((-(ShareAlert.this.frameLayout2.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + ShareAlert.this.captionEditTextTopOffset + ShareAlert.this.currentPanTranslationY + ((ShareAlert.this.frameLayout2.getMeasuredHeight() - AndroidUtilities.dp(48.0f)) * (1.0f - getAlpha())));
         }
 
-        public static void m2754$r8$lambda$xaJhQ_cJNoTkaDGCAqZ56_zdBo(AnonymousClass21 anonymousClass21, ValueAnimator valueAnimator) {
+        public static void m2763$r8$lambda$xaJhQ_cJNoTkaDGCAqZ56_zdBo(AnonymousClass21 anonymousClass21, ValueAnimator valueAnimator) {
             ShareAlert.this.captionEditTextTopOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             ShareAlert.this.frameLayout2.invalidate();
             anonymousClass21.invalidate();
@@ -2207,14 +2207,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             bulletinCreateSimpleBulletin = BulletinFactory.of(this.bulletinContainer, this.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedNonPremium, userName)), LocaleController.getString(R.string.UserBlockedNonPremiumButton), new Runnable() {
                 @Override
                 public final void run() {
-                    ShareAlert.m2743$r8$lambda$9EDos9WlIJ5zJdEPwty4rLuXIQ(this.f$0);
+                    ShareAlert.m2752$r8$lambda$9EDos9WlIJ5zJdEPwty4rLuXIQ(this.f$0);
                 }
             });
         }
         bulletinCreateSimpleBulletin.show();
     }
 
-    public static void m2743$r8$lambda$9EDos9WlIJ5zJdEPwty4rLuXIQ(ShareAlert shareAlert) {
+    public static void m2752$r8$lambda$9EDos9WlIJ5zJdEPwty4rLuXIQ(ShareAlert shareAlert) {
         shareAlert.getClass();
         Runnable runnable = new Runnable() {
             @Override
@@ -2319,7 +2319,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 atomicReference.set(new Runnable() {
                     @Override
                     public final void run() {
-                        ShareAlert.m2746$r8$lambda$COFwoGZZ9KjzGXTzvz6Krgets(this.f$0, atomicReference, anonymousClass27, dialog);
+                        ShareAlert.m2755$r8$lambda$COFwoGZZ9KjzGXTzvz6Krgets(this.f$0, atomicReference, anonymousClass27, dialog);
                     }
                 });
                 NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
@@ -2447,7 +2447,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public static void m2746$r8$lambda$COFwoGZZ9KjzGXTzvz6Krgets(ShareAlert shareAlert, AtomicReference atomicReference, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLRPC.Dialog dialog) {
+    public static void m2755$r8$lambda$COFwoGZZ9KjzGXTzvz6Krgets(ShareAlert shareAlert, AtomicReference atomicReference, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLRPC.Dialog dialog) {
         shareAlert.getClass();
         atomicReference.set(null);
         notificationCenterDelegate.didReceivedNotification(NotificationCenter.topicsDidLoaded, shareAlert.currentAccount, Long.valueOf(-dialog.id));
@@ -2609,7 +2609,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                 @Override
                 public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                    ShareAlert.m2753$r8$lambda$p6H5T_k0OHxSJVpqrjSh2ZXW4(this.f$0, keyEvent);
+                    ShareAlert.m2762$r8$lambda$p6H5T_k0OHxSJVpqrjSh2ZXW4(this.f$0, keyEvent);
                 }
             });
             actionBarPopupWindowLayout.setShownFromBottom(false);
@@ -2631,13 +2631,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ShareAlert.m2750$r8$lambda$SE9rtxXfJ8_PziRbK7KjLWryKg(this.f$0, actionBarMenuSubItem, actionBarMenuSubItem2, view2);
+                    ShareAlert.m2759$r8$lambda$SE9rtxXfJ8_PziRbK7KjLWryKg(this.f$0, actionBarMenuSubItem, actionBarMenuSubItem2, view2);
                 }
             });
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ShareAlert.m2751$r8$lambda$Uncoq7WccoWl08COl4PU4d9VI(this.f$0, actionBarMenuSubItem, actionBarMenuSubItem2, view2);
+                    ShareAlert.m2760$r8$lambda$Uncoq7WccoWl08COl4PU4d9VI(this.f$0, actionBarMenuSubItem, actionBarMenuSubItem2, view2);
                 }
             });
             actionBarPopupWindowLayout.setupRadialSelectors(getThemedColor(Theme.key_dialogButtonSelector));
@@ -2696,7 +2696,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ShareAlert.m2742$r8$lambda$s8FT6P7I734RLBE1VAIu__BFzc(this.f$0, view2);
+                ShareAlert.m2751$r8$lambda$s8FT6P7I734RLBE1VAIu__BFzc(this.f$0, view2);
             }
         });
         actionBarPopupWindowLayout2.setupRadialSelectors(getThemedColor(Theme.key_dialogButtonSelector));
@@ -2729,7 +2729,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         return true;
     }
 
-    public static void m2753$r8$lambda$p6H5T_k0OHxSJVpqrjSh2ZXW4(ShareAlert shareAlert, KeyEvent keyEvent) {
+    public static void m2762$r8$lambda$p6H5T_k0OHxSJVpqrjSh2ZXW4(ShareAlert shareAlert, KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         shareAlert.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = shareAlert.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
@@ -2737,13 +2737,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public static void m2750$r8$lambda$SE9rtxXfJ8_PziRbK7KjLWryKg(ShareAlert shareAlert, ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
+    public static void m2759$r8$lambda$SE9rtxXfJ8_PziRbK7KjLWryKg(ShareAlert shareAlert, ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
         shareAlert.showSendersName = true;
         actionBarMenuSubItem.setChecked(true);
         actionBarMenuSubItem2.setChecked(!shareAlert.showSendersName);
     }
 
-    public static void m2751$r8$lambda$Uncoq7WccoWl08COl4PU4d9VI(ShareAlert shareAlert, ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
+    public static void m2760$r8$lambda$Uncoq7WccoWl08COl4PU4d9VI(ShareAlert shareAlert, ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
         shareAlert.showSendersName = false;
         actionBarMenuSubItem.setChecked(false);
         actionBarMenuSubItem2.setChecked(!shareAlert.showSendersName);
@@ -2765,7 +2765,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         shareAlert.sendInternal(false);
     }
 
-    public static void m2742$r8$lambda$s8FT6P7I734RLBE1VAIu__BFzc(ShareAlert shareAlert, View view) {
+    public static void m2751$r8$lambda$s8FT6P7I734RLBE1VAIu__BFzc(ShareAlert shareAlert, View view) {
         ActionBarPopupWindow actionBarPopupWindow = shareAlert.sendPopupWindow;
         if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
             shareAlert.sendPopupWindow.dismiss();
@@ -3638,12 +3638,12 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             MessagesStorage.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ShareAlert.ShareSearchAdapter.m2759$r8$lambda$wFSR2UrlZTadZk4YqMnzcdAzU4(this.f$0, str, i);
+                    ShareAlert.ShareSearchAdapter.m2768$r8$lambda$wFSR2UrlZTadZk4YqMnzcdAzU4(this.f$0, str, i);
                 }
             });
         }
 
-        public static void m2759$r8$lambda$wFSR2UrlZTadZk4YqMnzcdAzU4(ShareSearchAdapter shareSearchAdapter, String str, int i) {
+        public static void m2768$r8$lambda$wFSR2UrlZTadZk4YqMnzcdAzU4(ShareSearchAdapter shareSearchAdapter, String str, int i) {
             String str2;
             int i2;
             TLRPC.TL_chatAdminRights tL_chatAdminRights;
@@ -4024,14 +4024,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ShareAlert.ShareSearchAdapter.m2757$r8$lambda$IHKfdo1KUm5Zj03fXogqdkP1n0(this.f$0, i, str);
+                    ShareAlert.ShareSearchAdapter.m2766$r8$lambda$IHKfdo1KUm5Zj03fXogqdkP1n0(this.f$0, i, str);
                 }
             };
             shareSearchAdapter.searchRunnable2 = runnable;
             AndroidUtilities.runOnUIThread(runnable);
         }
 
-        public static void m2757$r8$lambda$IHKfdo1KUm5Zj03fXogqdkP1n0(ShareSearchAdapter shareSearchAdapter, int i, String str) {
+        public static void m2766$r8$lambda$IHKfdo1KUm5Zj03fXogqdkP1n0(ShareSearchAdapter shareSearchAdapter, int i, String str) {
             shareSearchAdapter.searchRunnable2 = null;
             if (i != shareSearchAdapter.lastSearchId) {
                 return;
@@ -4238,7 +4238,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                     @Override
                     public final void onItemClick(View view3, int i2) {
-                        ShareAlert.ShareSearchAdapter.m2758$r8$lambda$OMTumkQWqmSerVEXR5Az7T29lI(this.f$0, view3, i2);
+                        ShareAlert.ShareSearchAdapter.m2767$r8$lambda$OMTumkQWqmSerVEXR5Az7T29lI(this.f$0, view3, i2);
                     }
                 });
                 viewShowPremiumBlock = recyclerListView;
@@ -4246,7 +4246,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             return new RecyclerListView.Holder(viewShowPremiumBlock);
         }
 
-        public static void m2758$r8$lambda$OMTumkQWqmSerVEXR5Az7T29lI(ShareSearchAdapter shareSearchAdapter, View view, int i) {
+        public static void m2767$r8$lambda$OMTumkQWqmSerVEXR5Az7T29lI(ShareSearchAdapter shareSearchAdapter, View view, int i) {
             shareSearchAdapter.getClass();
             HintDialogCell hintDialogCell = (HintDialogCell) view;
             TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).hints.get(i);

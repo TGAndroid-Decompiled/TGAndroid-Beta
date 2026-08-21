@@ -181,7 +181,7 @@ public class DownloadButton extends ImageView {
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    DownloadButton.m4476$r8$lambda$22AjVVOAh3RsY6WjZc6c_AWzIE(this.f$0);
+                    DownloadButton.m4487$r8$lambda$22AjVVOAh3RsY6WjZc6c_AWzIE(this.f$0);
                 }
             });
         } else {
@@ -247,7 +247,7 @@ public class DownloadButton extends ImageView {
         }
     }
 
-    public static void m4476$r8$lambda$22AjVVOAh3RsY6WjZc6c_AWzIE(DownloadButton downloadButton) {
+    public static void m4487$r8$lambda$22AjVVOAh3RsY6WjZc6c_AWzIE(DownloadButton downloadButton) {
         if (!downloadButton.downloading || downloadButton.currentEntry == null) {
             return;
         }

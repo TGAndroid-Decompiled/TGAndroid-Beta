@@ -652,7 +652,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         this.updateRowsDelayed = new Runnable() {
             @Override
             public final void run() {
-                SelectAnimatedEmojiDialog.m4015$r8$lambda$uHop_huHj1xJMIWI7or3I9HibY(this.f$0);
+                SelectAnimatedEmojiDialog.m4024$r8$lambda$uHop_huHj1xJMIWI7or3I9HibY(this.f$0);
             }
         };
         this.durationScale = 1.0f;
@@ -916,7 +916,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                                 emojiTabButton.setOnLongClickListener(new View.OnLongClickListener() {
                                     @Override
                                     public final boolean onLongClick(View view2) {
-                                        return SelectAnimatedEmojiDialog.m4003$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view2);
+                                        return SelectAnimatedEmojiDialog.m4012$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view2);
                                     }
                                 });
                             }
@@ -1030,7 +1030,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                             emojiTabButton.setOnLongClickListener(new View.OnLongClickListener() {
                                 @Override
                                 public final boolean onLongClick(View view2) {
-                                    return SelectAnimatedEmojiDialog.m4003$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view2);
+                                    return SelectAnimatedEmojiDialog.m4012$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view2);
                                 }
                             });
                         }
@@ -1476,7 +1476,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                         emojiTabButton.setOnLongClickListener(new View.OnLongClickListener() {
                             @Override
                             public final boolean onLongClick(View view4) {
-                                return SelectAnimatedEmojiDialog.m4003$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view4);
+                                return SelectAnimatedEmojiDialog.m4012$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view4);
                             }
                         });
                     }
@@ -1969,7 +1969,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                     emojiTabButton.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
                         public final boolean onLongClick(View view7) {
-                            return SelectAnimatedEmojiDialog.m4003$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view7);
+                            return SelectAnimatedEmojiDialog.m4012$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view7);
                         }
                     });
                 }
@@ -2470,7 +2470,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 emojiTabButton.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view10) {
-                        return SelectAnimatedEmojiDialog.m4003$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view10);
+                        return SelectAnimatedEmojiDialog.m4012$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(this.f$0, view10);
                     }
                 });
             }
@@ -2846,7 +2846,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         }
     }
 
-    public static boolean m4003$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, View view) {
+    public static boolean m4012$r8$lambda$QCXkvQ9bkNtZguPabv3aBxtopI(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, View view) {
         selectAnimatedEmojiDialog.onRecentLongClick();
         try {
             selectAnimatedEmojiDialog.performHapticFeedback(0, 1);
@@ -3082,7 +3082,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         builder.setPositiveButton(LocaleController.getString(R.string.Clear), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                SelectAnimatedEmojiDialog.m4001$r8$lambda$CPc3dBnDJF5XSt8h2d_RZu0o20(this.f$0, alertDialog, i);
+                SelectAnimatedEmojiDialog.m4010$r8$lambda$CPc3dBnDJF5XSt8h2d_RZu0o20(this.f$0, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -3097,7 +3097,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         setDim(1.0f, true);
     }
 
-    public static void m4001$r8$lambda$CPc3dBnDJF5XSt8h2d_RZu0o20(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, AlertDialog alertDialog, int i) {
+    public static void m4010$r8$lambda$CPc3dBnDJF5XSt8h2d_RZu0o20(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, AlertDialog alertDialog, int i) {
         ConnectionsManager.getInstance(selectAnimatedEmojiDialog.currentAccount).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
         MediaDataController.getInstance(selectAnimatedEmojiDialog.currentAccount).clearRecentEmojiStatuses();
         selectAnimatedEmojiDialog.updateRows(false, true);
@@ -3391,7 +3391,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                SelectAnimatedEmojiDialog.m4010$r8$lambda$loeIBbFUHLDt3gXndl1ZiQGIRY(this.f$0, z, valueAnimator3);
+                SelectAnimatedEmojiDialog.m4019$r8$lambda$loeIBbFUHLDt3gXndl1ZiQGIRY(this.f$0, z, valueAnimator3);
             }
         });
         this.gridSwitchAnimator.addListener(new AnimatorListenerAdapter() {
@@ -3434,7 +3434,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         checkScroll();
     }
 
-    public static void m4010$r8$lambda$loeIBbFUHLDt3gXndl1ZiQGIRY(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, boolean z, ValueAnimator valueAnimator) {
+    public static void m4019$r8$lambda$loeIBbFUHLDt3gXndl1ZiQGIRY(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, boolean z, ValueAnimator valueAnimator) {
         selectAnimatedEmojiDialog.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         if (!z) {
@@ -3644,7 +3644,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 Runnable runnable3 = new Runnable() {
                     @Override
                     public final void run() {
-                        SelectAnimatedEmojiDialog.m4009$r8$lambda$jhgunHjppe1Nl3HY5HImC4pMa4(this.f$0);
+                        SelectAnimatedEmojiDialog.m4018$r8$lambda$jhgunHjppe1Nl3HY5HImC4pMa4(this.f$0);
                     }
                 };
                 this.clearSearchRunnable = runnable3;
@@ -3673,7 +3673,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         updateSearchBox();
     }
 
-    public static void m4009$r8$lambda$jhgunHjppe1Nl3HY5HImC4pMa4(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
+    public static void m4018$r8$lambda$jhgunHjppe1Nl3HY5HImC4pMa4(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
         ArrayList arrayList = selectAnimatedEmojiDialog.searchResult;
         if (arrayList != null) {
             arrayList.clear();
@@ -3715,7 +3715,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                     MediaDataController.getInstance(this.f$0.currentAccount).getEmojiSuggestions(SelectAnimatedEmojiDialog.lastSearchKeyboardLanguage, str, false, new MediaDataController.KeywordResultCallback() {
                         @Override
                         public final void run(ArrayList arrayList5, String str2) {
-                            SelectAnimatedEmojiDialog.m4000$r8$lambda$AjnXrckaUyOFf1LhEYN6gD_kg(linkedHashSet, runnable, arrayList5, str2);
+                            SelectAnimatedEmojiDialog.m4009$r8$lambda$AjnXrckaUyOFf1LhEYN6gD_kg(linkedHashSet, runnable, arrayList5, str2);
                         }
                     }, null, false, false, false, 0);
                 }
@@ -3727,7 +3727,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 callback = new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        SelectAnimatedEmojiDialog.m4002$r8$lambda$K_t75OL6eeYSYgWVYYjpPsL0Q0(this.f$0, str, arrayList2, arrayList, (Runnable) obj);
+                        SelectAnimatedEmojiDialog.m4011$r8$lambda$K_t75OL6eeYSYgWVYYjpPsL0Q0(this.f$0, str, arrayList2, arrayList, (Runnable) obj);
                     }
                 };
             } else {
@@ -3770,7 +3770,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         }, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                SelectAnimatedEmojiDialog.m4016$r8$lambda$vv2_DsahJM2nfdlJyjPQjbxxXg(this.f$0, zFullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList, (Runnable) obj);
+                SelectAnimatedEmojiDialog.m4025$r8$lambda$vv2_DsahJM2nfdlJyjPQjbxxXg(this.f$0, zFullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList, (Runnable) obj);
             }
         }, new Utilities.Callback() {
             @Override
@@ -3790,12 +3790,12 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SelectAnimatedEmojiDialog.m4014$r8$lambda$tHXBoLdIMVo0ki4SWZFKMYwaw(this.f$0, str, z, arrayList, map, arrayList2, linkedHashSet, linkedHashSet2, arrayList3, arrayList4, z2);
+                SelectAnimatedEmojiDialog.m4023$r8$lambda$tHXBoLdIMVo0ki4SWZFKMYwaw(this.f$0, str, z, arrayList, map, arrayList2, linkedHashSet, linkedHashSet2, arrayList3, arrayList4, z2);
             }
         });
     }
 
-    public static void m4014$r8$lambda$tHXBoLdIMVo0ki4SWZFKMYwaw(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, String str, boolean z, ArrayList arrayList, HashMap map, ArrayList arrayList2, LinkedHashSet linkedHashSet, LinkedHashSet linkedHashSet2, ArrayList arrayList3, ArrayList arrayList4, boolean z2) {
+    public static void m4023$r8$lambda$tHXBoLdIMVo0ki4SWZFKMYwaw(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, String str, boolean z, ArrayList arrayList, HashMap map, ArrayList arrayList2, LinkedHashSet linkedHashSet, LinkedHashSet linkedHashSet2, ArrayList arrayList3, ArrayList arrayList4, boolean z2) {
         Runnable runnable = selectAnimatedEmojiDialog.clearSearchRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -3870,7 +3870,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         selectAnimatedEmojiDialog.searchAdapter.updateRows(!z2);
     }
 
-    public static void m4000$r8$lambda$AjnXrckaUyOFf1LhEYN6gD_kg(LinkedHashSet linkedHashSet, Runnable runnable, ArrayList arrayList, String str) {
+    public static void m4009$r8$lambda$AjnXrckaUyOFf1LhEYN6gD_kg(LinkedHashSet linkedHashSet, Runnable runnable, ArrayList arrayList, String str) {
         for (int i = 0; i < arrayList.size(); i++) {
             try {
                 if (!((MediaDataController.KeywordResult) arrayList.get(i)).emoji.startsWith("animated_")) {
@@ -3885,7 +3885,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         runnable.run();
     }
 
-    public static void m4002$r8$lambda$K_t75OL6eeYSYgWVYYjpPsL0Q0(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, String str, ArrayList arrayList, ArrayList arrayList2, Runnable runnable) {
+    public static void m4011$r8$lambda$K_t75OL6eeYSYgWVYYjpPsL0Q0(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, String str, ArrayList arrayList, ArrayList arrayList2, Runnable runnable) {
         TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(selectAnimatedEmojiDialog.currentAccount).getAvailableEffects();
         if (availableEffects != null) {
             for (int i = 0; i < availableEffects.effects.size(); i++) {
@@ -3929,7 +3929,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             StickerCategoriesListView.search.fetch(UserConfig.selectedAccount, str, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    SelectAnimatedEmojiDialog.m4004$r8$lambda$Rx4qUjTWhwvkg983nASK1BOzd8(linkedHashSet, runnable, (TLRPC.TL_emojiList) obj);
+                    SelectAnimatedEmojiDialog.m4013$r8$lambda$Rx4qUjTWhwvkg983nASK1BOzd8(linkedHashSet, runnable, (TLRPC.TL_emojiList) obj);
                 }
             });
         } else {
@@ -3937,7 +3937,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         }
     }
 
-    public static void m4004$r8$lambda$Rx4qUjTWhwvkg983nASK1BOzd8(LinkedHashSet linkedHashSet, Runnable runnable, TLRPC.TL_emojiList tL_emojiList) {
+    public static void m4013$r8$lambda$Rx4qUjTWhwvkg983nASK1BOzd8(LinkedHashSet linkedHashSet, Runnable runnable, TLRPC.TL_emojiList tL_emojiList) {
         if (tL_emojiList != null) {
             linkedHashSet.addAll(tL_emojiList.document_id);
         }
@@ -3976,7 +3976,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         runnable.run();
     }
 
-    public static void m4016$r8$lambda$vv2_DsahJM2nfdlJyjPQjbxxXg(final SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, boolean z, final LinkedHashSet linkedHashSet, String str, final HashMap map, final ArrayList arrayList, final Runnable runnable) {
+    public static void m4025$r8$lambda$vv2_DsahJM2nfdlJyjPQjbxxXg(final SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, boolean z, final LinkedHashSet linkedHashSet, String str, final HashMap map, final ArrayList arrayList, final Runnable runnable) {
         ArrayList<TLRPC.Document> arrayList2;
         ArrayList<TLRPC.Document> arrayList3;
         if (z) {
@@ -5700,7 +5700,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        SelectAnimatedEmojiDialog.HeaderView.m4017$r8$lambda$k7I8r5Dptp4d9llghovAWxtrYA(this.f$0, valueAnimator2);
+                        SelectAnimatedEmojiDialog.HeaderView.m4026$r8$lambda$k7I8r5Dptp4d9llghovAWxtrYA(this.f$0, valueAnimator2);
                     }
                 });
                 this.lockAnimator.setDuration(200L);
@@ -5714,7 +5714,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             this.lockView.setAlpha(this.lockT);
         }
 
-        public static void m4017$r8$lambda$k7I8r5Dptp4d9llghovAWxtrYA(HeaderView headerView, ValueAnimator valueAnimator) {
+        public static void m4026$r8$lambda$k7I8r5Dptp4d9llghovAWxtrYA(HeaderView headerView, ValueAnimator valueAnimator) {
             headerView.getClass();
             headerView.lockT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             headerView.lockView.setTranslationX(AndroidUtilities.dp(-8.0f) * (1.0f - headerView.lockT));
@@ -6366,7 +6366,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                     animateEmojiSelect(imageViewEmoji, new Runnable() {
                         @Override
                         public final void run() {
-                            SelectAnimatedEmojiDialog.m4012$r8$lambda$qwCROphBujA1JTWT1SxcYWAA2Y(this.f$0, view, animatedEmojiSpan, document, imageViewEmoji);
+                            SelectAnimatedEmojiDialog.m4021$r8$lambda$qwCROphBujA1JTWT1SxcYWAA2Y(this.f$0, view, animatedEmojiSpan, document, imageViewEmoji);
                         }
                     });
                     return;
@@ -6378,7 +6378,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         onEmojiSelected(view, Long.valueOf(animatedEmojiSpan.documentId), document, null, null);
     }
 
-    public static void m4012$r8$lambda$qwCROphBujA1JTWT1SxcYWAA2Y(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, View view, AnimatedEmojiSpan animatedEmojiSpan, TLRPC.Document document, ImageViewEmoji imageViewEmoji) {
+    public static void m4021$r8$lambda$qwCROphBujA1JTWT1SxcYWAA2Y(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, View view, AnimatedEmojiSpan animatedEmojiSpan, TLRPC.Document document, ImageViewEmoji imageViewEmoji) {
         selectAnimatedEmojiDialog.getClass();
         selectAnimatedEmojiDialog.onEmojiSelected(view, Long.valueOf(animatedEmojiSpan.documentId), document, imageViewEmoji.starGift, null);
     }
@@ -7945,7 +7945,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         }
     }
 
-    public static void m4015$r8$lambda$uHop_huHj1xJMIWI7or3I9HibY(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
+    public static void m4024$r8$lambda$uHop_huHj1xJMIWI7or3I9HibY(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
         selectAnimatedEmojiDialog.getClass();
         NotificationCenter.getGlobalInstance().removeDelayed(selectAnimatedEmojiDialog.updateRows);
         NotificationCenter.getGlobalInstance().doOnIdle(selectAnimatedEmojiDialog.updateRows);
@@ -8075,7 +8075,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             HwEmojis.prepare(new Runnable() {
                 @Override
                 public final void run() {
-                    SelectAnimatedEmojiDialog.m4008$r8$lambda$iR2TEtgi6JnaEnSfMOLyJYCg(this.f$0);
+                    SelectAnimatedEmojiDialog.m4017$r8$lambda$iR2TEtgi6JnaEnSfMOLyJYCg(this.f$0);
                 }
             }, true);
             NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
@@ -8106,7 +8106,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         selectAnimatedEmojiDialog.updateShow(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public static void m4008$r8$lambda$iR2TEtgi6JnaEnSfMOLyJYCg(final SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
+    public static void m4017$r8$lambda$iR2TEtgi6JnaEnSfMOLyJYCg(final SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
         selectAnimatedEmojiDialog.getClass();
         HwEmojis.enableHw();
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -8400,7 +8400,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 this.categoriesListView.setOnScrollIntoOccupiedWidth(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        SelectAnimatedEmojiDialog.SearchBox.m4020$r8$lambda$XWQ854u3lZSTEe8P72_tcGfw2I(this.f$0, (Integer) obj);
+                        SelectAnimatedEmojiDialog.SearchBox.m4029$r8$lambda$XWQ854u3lZSTEe8P72_tcGfw2I(this.f$0, (Integer) obj);
                     }
                 });
                 this.categoriesListView.setOnCategoryClick(new Utilities.Callback() {
@@ -8413,7 +8413,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             }
         }
 
-        public static void m4020$r8$lambda$XWQ854u3lZSTEe8P72_tcGfw2I(SearchBox searchBox, Integer num) {
+        public static void m4029$r8$lambda$XWQ854u3lZSTEe8P72_tcGfw2I(SearchBox searchBox, Integer num) {
             searchBox.input.setTranslationX(-Math.max(0, num.intValue()));
             searchBox.showInputBoxGradient(num.intValue() > 0);
             searchBox.updateButton();
@@ -8466,7 +8466,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    SelectAnimatedEmojiDialog.SearchBox.m4019$r8$lambda$XDHLL4YMCMalyww5F5ku3vdT2M(this.f$0, valueAnimator2);
+                    SelectAnimatedEmojiDialog.SearchBox.m4028$r8$lambda$XDHLL4YMCMalyww5F5ku3vdT2M(this.f$0, valueAnimator2);
                 }
             });
             this.inputBoxGradientAnimator.setDuration(120L);
@@ -8474,7 +8474,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             this.inputBoxGradientAnimator.start();
         }
 
-        public static void m4019$r8$lambda$XDHLL4YMCMalyww5F5ku3vdT2M(SearchBox searchBox, ValueAnimator valueAnimator) {
+        public static void m4028$r8$lambda$XDHLL4YMCMalyww5F5ku3vdT2M(SearchBox searchBox, ValueAnimator valueAnimator) {
             searchBox.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             searchBox.inputBoxGradientAlpha = fFloatValue;
@@ -9078,19 +9078,19 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             ActionBarMenuItem.addItem(false, false, this.menuView, 0, LocaleController.getString(R.string.SetEmojiStatusUntil2Hours), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
-                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4026$r8$lambda$otMmABbzTRQ_ZgChO9YiDhqgfs(this.f$0, view3);
+                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4035$r8$lambda$otMmABbzTRQ_ZgChO9YiDhqgfs(this.f$0, view3);
                 }
             });
             ActionBarMenuItem.addItem(false, false, this.menuView, 0, LocaleController.getString(R.string.SetEmojiStatusUntil8Hours), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
-                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4027$r8$lambda$xDQ9q5wEcuggLNRMJBSDDBe9zA(this.f$0, view3);
+                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4036$r8$lambda$xDQ9q5wEcuggLNRMJBSDDBe9zA(this.f$0, view3);
                 }
             });
             ActionBarMenuItem.addItem(false, false, this.menuView, 0, LocaleController.getString(R.string.SetEmojiStatusUntil2Days), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
-                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4025$r8$lambda$oBoyHEampfY_4R2lm7E_Z4w6F4(this.f$0, view3);
+                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4034$r8$lambda$oBoyHEampfY_4R2lm7E_Z4w6F4(this.f$0, view3);
                 }
             });
             ActionBarMenuItem.addItem(false, true, this.menuView, 0, LocaleController.getString(R.string.SetEmojiStatusUntilOther), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
@@ -9181,17 +9181,17 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             selectStatusDurationDialog.done(Integer.valueOf((int) ((System.currentTimeMillis() / 1000) + 3600)));
         }
 
-        public static void m4026$r8$lambda$otMmABbzTRQ_ZgChO9YiDhqgfs(SelectStatusDurationDialog selectStatusDurationDialog, View view) {
+        public static void m4035$r8$lambda$otMmABbzTRQ_ZgChO9YiDhqgfs(SelectStatusDurationDialog selectStatusDurationDialog, View view) {
             selectStatusDurationDialog.getClass();
             selectStatusDurationDialog.done(Integer.valueOf((int) ((System.currentTimeMillis() / 1000) + 7200)));
         }
 
-        public static void m4027$r8$lambda$xDQ9q5wEcuggLNRMJBSDDBe9zA(SelectStatusDurationDialog selectStatusDurationDialog, View view) {
+        public static void m4036$r8$lambda$xDQ9q5wEcuggLNRMJBSDDBe9zA(SelectStatusDurationDialog selectStatusDurationDialog, View view) {
             selectStatusDurationDialog.getClass();
             selectStatusDurationDialog.done(Integer.valueOf((int) ((System.currentTimeMillis() / 1000) + 28800)));
         }
 
-        public static void m4025$r8$lambda$oBoyHEampfY_4R2lm7E_Z4w6F4(SelectStatusDurationDialog selectStatusDurationDialog, View view) {
+        public static void m4034$r8$lambda$oBoyHEampfY_4R2lm7E_Z4w6F4(SelectStatusDurationDialog selectStatusDurationDialog, View view) {
             selectStatusDurationDialog.getClass();
             selectStatusDurationDialog.done(Integer.valueOf((int) ((System.currentTimeMillis() / 1000) + 172800)));
         }
@@ -9204,26 +9204,26 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             BottomSheet.Builder builderCreateStatusUntilDatePickerDialog = AlertsCreator.createStatusUntilDatePickerDialog(context, System.currentTimeMillis() / 1000, new AlertsCreator.StatusUntilDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(int i) {
-                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4021$r8$lambda$B9IrBL_luvLZai2dqiK9u_uE4E(this.f$0, zArr, i);
+                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4030$r8$lambda$B9IrBL_luvLZai2dqiK9u_uE4E(this.f$0, zArr, i);
                 }
             });
             builderCreateStatusUntilDatePickerDialog.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4024$r8$lambda$XEB4iv7CJ4CfHd79mnHBTMMJ0(this.f$0, zArr, dialogInterface);
+                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4033$r8$lambda$XEB4iv7CJ4CfHd79mnHBTMMJ0(this.f$0, zArr, dialogInterface);
                 }
             });
             selectStatusDurationDialog.dateBottomSheet = builderCreateStatusUntilDatePickerDialog.show();
             selectStatusDurationDialog.animateMenuShow(false, null);
         }
 
-        public static void m4021$r8$lambda$B9IrBL_luvLZai2dqiK9u_uE4E(SelectStatusDurationDialog selectStatusDurationDialog, boolean[] zArr, int i) {
+        public static void m4030$r8$lambda$B9IrBL_luvLZai2dqiK9u_uE4E(SelectStatusDurationDialog selectStatusDurationDialog, boolean[] zArr, int i) {
             selectStatusDurationDialog.getClass();
             zArr[0] = true;
             selectStatusDurationDialog.done(Integer.valueOf(i));
         }
 
-        public static void m4024$r8$lambda$XEB4iv7CJ4CfHd79mnHBTMMJ0(SelectStatusDurationDialog selectStatusDurationDialog, boolean[] zArr, DialogInterface dialogInterface) {
+        public static void m4033$r8$lambda$XEB4iv7CJ4CfHd79mnHBTMMJ0(SelectStatusDurationDialog selectStatusDurationDialog, boolean[] zArr, DialogInterface dialogInterface) {
             selectStatusDurationDialog.getClass();
             if (!zArr[0]) {
                 selectStatusDurationDialog.animateMenuShow(true, null);
@@ -9263,18 +9263,18 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             animateShow(false, new Runnable() {
                 @Override
                 public final void run() {
-                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4023$r8$lambda$QHZT4k_7QL56MyKI5F6vPUltWI(this.f$0, num);
+                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4032$r8$lambda$QHZT4k_7QL56MyKI5F6vPUltWI(this.f$0, num);
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4022$r8$lambda$Ivp3FI4AOu5X0m0rlbRtX87XL4(this.f$0, num);
+                    SelectAnimatedEmojiDialog.SelectStatusDurationDialog.m4031$r8$lambda$Ivp3FI4AOu5X0m0rlbRtX87XL4(this.f$0, num);
                 }
             }, !z);
             animateMenuShow(false, null);
         }
 
-        public static void m4023$r8$lambda$QHZT4k_7QL56MyKI5F6vPUltWI(SelectStatusDurationDialog selectStatusDurationDialog, Integer num) {
+        public static void m4032$r8$lambda$QHZT4k_7QL56MyKI5F6vPUltWI(SelectStatusDurationDialog selectStatusDurationDialog, Integer num) {
             selectStatusDurationDialog.onEnd(num);
             try {
                 super.dismiss();
@@ -9282,7 +9282,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             }
         }
 
-        public static void m4022$r8$lambda$Ivp3FI4AOu5X0m0rlbRtX87XL4(SelectStatusDurationDialog selectStatusDurationDialog, Integer num) {
+        public static void m4031$r8$lambda$Ivp3FI4AOu5X0m0rlbRtX87XL4(SelectStatusDurationDialog selectStatusDurationDialog, Integer num) {
             selectStatusDurationDialog.getClass();
             if (num != null) {
                 try {

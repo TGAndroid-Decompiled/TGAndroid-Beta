@@ -406,7 +406,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
                 @Override
                 public final Object run(Object obj, Object obj2, Object obj3) {
-                    return BusinessIntroActivity.m1363$r8$lambda$bFjW5sE_ZIngwHbbmJAdGFzbA(this.f$0, view, obj, (TLRPC.Document) obj2, (Boolean) obj3);
+                    return BusinessIntroActivity.m1369$r8$lambda$bFjW5sE_ZIngwHbbmJAdGFzbA(this.f$0, view, obj, (TLRPC.Document) obj2, (Boolean) obj3);
                 }
             });
             emojiBottomSheet.whenPlusSelected(new Runnable() {
@@ -435,7 +435,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         }
     }
 
-    public static Boolean m1363$r8$lambda$bFjW5sE_ZIngwHbbmJAdGFzbA(BusinessIntroActivity businessIntroActivity, View view, Object obj, TLRPC.Document document, Boolean bool) {
+    public static Boolean m1369$r8$lambda$bFjW5sE_ZIngwHbbmJAdGFzbA(BusinessIntroActivity businessIntroActivity, View view, Object obj, TLRPC.Document document, Boolean bool) {
         businessIntroActivity.stickerRandom = false;
         AndroidUtilities.cancelRunOnUIThread(businessIntroActivity.updateRandomStickerRunnable);
         ChatGreetingsView chatGreetingsView = businessIntroActivity.greetingsView;

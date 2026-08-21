@@ -932,7 +932,7 @@ public class FileRefController extends BaseController {
                 botPreviewsList.requestReference(botPreview, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj2) {
-                        FileRefController.m457$r8$lambda$55aIEdZCma83pThOAM4DXkwzvM(this.f$0, str, str2, (StoriesController.BotPreview) obj2);
+                        FileRefController.m463$r8$lambda$55aIEdZCma83pThOAM4DXkwzvM(this.f$0, str, str2, (StoriesController.BotPreview) obj2);
                     }
                 });
                 return;
@@ -955,7 +955,7 @@ public class FileRefController extends BaseController {
             getConnectionsManager().sendRequest(new TLRPC.TL_help_getPremiumPromo(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    FileRefController.m461$r8$lambda$CsMplTyYZ49bpqTmF4RM5rUTmY(this.f$0, str, str2, tLObject, tL_error);
+                    FileRefController.m467$r8$lambda$CsMplTyYZ49bpqTmF4RM5rUTmY(this.f$0, str, str2, tLObject, tL_error);
                 }
             });
             return;
@@ -1315,7 +1315,7 @@ public class FileRefController extends BaseController {
         sendErrorToObject(objArr, 0);
     }
 
-    public static void m457$r8$lambda$55aIEdZCma83pThOAM4DXkwzvM(final FileRefController fileRefController, final String str, final String str2, final StoriesController.BotPreview botPreview) {
+    public static void m463$r8$lambda$55aIEdZCma83pThOAM4DXkwzvM(final FileRefController fileRefController, final String str, final String str2, final StoriesController.BotPreview botPreview) {
         fileRefController.getClass();
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
@@ -1325,7 +1325,7 @@ public class FileRefController extends BaseController {
         });
     }
 
-    public static void m461$r8$lambda$CsMplTyYZ49bpqTmF4RM5rUTmY(FileRefController fileRefController, String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m467$r8$lambda$CsMplTyYZ49bpqTmF4RM5rUTmY(FileRefController fileRefController, String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) {
         fileRefController.getClass();
         int iCurrentTimeMillis = (int) (System.currentTimeMillis() / 1000);
         if (tLObject instanceof TLRPC.TL_help_premiumPromo) {

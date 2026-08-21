@@ -77,7 +77,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
     public ArrayList topMessages;
     private float volume;
 
-    public static void m4319$r8$lambda$Zf53pjibKnjUHxoDqBPPYdZKM(int[] iArr, float[] fArr, boolean[] zArr) {
+    public static void m4330$r8$lambda$Zf53pjibKnjUHxoDqBPPYdZKM(int[] iArr, float[] fArr, boolean[] zArr) {
     }
 
     public boolean isMuted() {
@@ -235,7 +235,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }, new NativeInstance.AudioLevelsCallback() {
             @Override
             public final void run(int[] iArr, float[] fArr, boolean[] zArr) {
-                LivePlayer.m4319$r8$lambda$Zf53pjibKnjUHxoDqBPPYdZKM(iArr, fArr, zArr);
+                LivePlayer.m4330$r8$lambda$Zf53pjibKnjUHxoDqBPPYdZKM(iArr, fArr, zArr);
             }
         }, new NativeInstance.VideoSourcesCallback() {
             @Override
@@ -245,12 +245,12 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }, new NativeInstance.RequestBroadcastPartCallback() {
             @Override
             public final void run(long j, long j2, int i, int i2) {
-                LivePlayer.m4324$r8$lambda$rltNY6aNMAjO9tHS4ophS2JTmk(this.f$0, j, j2, i, i2);
+                LivePlayer.m4335$r8$lambda$rltNY6aNMAjO9tHS4ophS2JTmk(this.f$0, j, j2, i, i2);
             }
         }, new NativeInstance.RequestBroadcastPartCallback() {
             @Override
             public final void run(long j, long j2, int i, int i2) {
-                LivePlayer.m4314$r8$lambda$DNlrV04OYFirEHkkPoP_nOQSo(this.f$0, j, j2, i, i2);
+                LivePlayer.m4325$r8$lambda$DNlrV04OYFirEHkkPoP_nOQSo(this.f$0, j, j2, i, i2);
             }
         }, new NativeInstance.RequestCurrentTimeCallback() {
             @Override
@@ -279,12 +279,12 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         ConnectionsManager.getInstance(livePlayer.currentAccount).sendRequest(joingroupcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LivePlayer.m4315$r8$lambda$HYtfOfJLZx7y7b5eweQhCgynP0(this.f$0, tLObject, tL_error);
+                LivePlayer.m4326$r8$lambda$HYtfOfJLZx7y7b5eweQhCgynP0(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4315$r8$lambda$HYtfOfJLZx7y7b5eweQhCgynP0(final LivePlayer livePlayer, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4326$r8$lambda$HYtfOfJLZx7y7b5eweQhCgynP0(final LivePlayer livePlayer, final TLObject tLObject, TLRPC.TL_error tL_error) {
         livePlayer.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -344,7 +344,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 ConnectionsManager.getInstance(livePlayer.currentAccount).sendRequest(leavegroupcall, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        LivePlayer.m4325$r8$lambda$rzdQ0klCzqwUVZzE1SDZwXjlU(this.f$0, tLObject, tLObject2, tL_error2);
+                        LivePlayer.m4336$r8$lambda$rzdQ0klCzqwUVZzE1SDZwXjlU(this.f$0, tLObject, tLObject2, tL_error2);
                     }
                 });
                 return;
@@ -388,7 +388,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                     ConnectionsManager.getInstance(livePlayer.currentAccount).sendRequest(getgroupcall, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                            LivePlayer.m4322$r8$lambda$qJqZ5EZUeu_IVFb59xegJNTtj4(this.f$0, tLObject2, tL_error2);
+                            LivePlayer.m4333$r8$lambda$qJqZ5EZUeu_IVFb59xegJNTtj4(this.f$0, tLObject2, tL_error2);
                         }
                     });
                 }
@@ -419,7 +419,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public static void m4325$r8$lambda$rzdQ0klCzqwUVZzE1SDZwXjlU(LivePlayer livePlayer, TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error) {
+    public static void m4336$r8$lambda$rzdQ0klCzqwUVZzE1SDZwXjlU(LivePlayer livePlayer, TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error) {
         livePlayer.getClass();
         if (tLObject2 instanceof TLRPC.Updates) {
             MessagesController.getInstance(livePlayer.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
@@ -470,7 +470,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public static void m4322$r8$lambda$qJqZ5EZUeu_IVFb59xegJNTtj4(final LivePlayer livePlayer, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4333$r8$lambda$qJqZ5EZUeu_IVFb59xegJNTtj4(final LivePlayer livePlayer, TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo;
         livePlayer.getClass();
         if (tLObject instanceof TL_phone.groupCall) {
@@ -552,7 +552,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public static void m4324$r8$lambda$rltNY6aNMAjO9tHS4ophS2JTmk(final LivePlayer livePlayer, final long j, final long j2, final int i, final int i2) {
+    public static void m4335$r8$lambda$rltNY6aNMAjO9tHS4ophS2JTmk(final LivePlayer livePlayer, final long j, final long j2, final int i, final int i2) {
         StringBuilder sb;
         if (livePlayer.call == null) {
             return;
@@ -698,7 +698,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         livePlayer.init();
     }
 
-    public static void m4314$r8$lambda$DNlrV04OYFirEHkkPoP_nOQSo(final LivePlayer livePlayer, final long j, long j2, final int i, final int i2) {
+    public static void m4325$r8$lambda$DNlrV04OYFirEHkkPoP_nOQSo(final LivePlayer livePlayer, final long j, long j2, final int i, final int i2) {
         livePlayer.getClass();
         StringBuilder sb = new StringBuilder();
         sb.append("[LivePlayer] cancelling getFile time_ms=");
@@ -713,12 +713,12 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LivePlayer.m4323$r8$lambda$qNPOULTkM5yKw0WoOVl2aARIvw(this.f$0, i, j, i2);
+                LivePlayer.m4334$r8$lambda$qNPOULTkM5yKw0WoOVl2aARIvw(this.f$0, i, j, i2);
             }
         });
     }
 
-    public static void m4323$r8$lambda$qNPOULTkM5yKw0WoOVl2aARIvw(LivePlayer livePlayer, int i, long j, int i2) {
+    public static void m4334$r8$lambda$qNPOULTkM5yKw0WoOVl2aARIvw(LivePlayer livePlayer, int i, long j, int i2) {
         String str;
         livePlayer.getClass();
         if (i == 0) {
@@ -744,7 +744,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             ConnectionsManager.getInstance(livePlayer.currentAccount).sendRequest(getgroupcallstreamchannels, new RequestDelegateTimestamp() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error, long j2) {
-                    LivePlayer.m4320$r8$lambda$cu4KZB162RRCPwk9I3RkVjKaOU(this.f$0, j, tLObject, tL_error, j2);
+                    LivePlayer.m4331$r8$lambda$cu4KZB162RRCPwk9I3RkVjKaOU(this.f$0, j, tLObject, tL_error, j2);
                 }
             }, 65536, 2, livePlayer.getCallStreamDatacenterId());
             return;
@@ -755,7 +755,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public static void m4320$r8$lambda$cu4KZB162RRCPwk9I3RkVjKaOU(final LivePlayer livePlayer, long j, TLObject tLObject, TLRPC.TL_error tL_error, long j2) {
+    public static void m4331$r8$lambda$cu4KZB162RRCPwk9I3RkVjKaOU(final LivePlayer livePlayer, long j, TLObject tLObject, TLRPC.TL_error tL_error, long j2) {
         long j3 = 0;
         if (tL_error == null) {
             if (livePlayer.instance == null || livePlayer.destroyed) {
@@ -1082,12 +1082,12 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LivePlayer.m4316$r8$lambda$HlqZOlY8Z6vgKrGoT5QaDEKZfo(this.f$0, tLObject, tL_error);
+                LivePlayer.m4327$r8$lambda$HlqZOlY8Z6vgKrGoT5QaDEKZfo(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4316$r8$lambda$HlqZOlY8Z6vgKrGoT5QaDEKZfo(final LivePlayer livePlayer, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4327$r8$lambda$HlqZOlY8Z6vgKrGoT5QaDEKZfo(final LivePlayer livePlayer, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         livePlayer.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1147,12 +1147,12 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LivePlayer.m4318$r8$lambda$T5KicKhnwG7f3743MSgAzJo0ZE(this.f$0, tLObject, tL_error);
+                LivePlayer.m4329$r8$lambda$T5KicKhnwG7f3743MSgAzJo0ZE(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4318$r8$lambda$T5KicKhnwG7f3743MSgAzJo0ZE(final LivePlayer livePlayer, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4329$r8$lambda$T5KicKhnwG7f3743MSgAzJo0ZE(final LivePlayer livePlayer, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (livePlayer.destroyed) {
             return;
         }
@@ -1180,7 +1180,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LivePlayer.m4313$r8$lambda$8e3g8Wo2sC60d6jP41INFyqLqE(this.f$0);
+                        LivePlayer.m4324$r8$lambda$8e3g8Wo2sC60d6jP41INFyqLqE(this.f$0);
                     }
                 });
             } else if ("GROUPCALL_INVALID".equalsIgnoreCase(tL_error.text)) {
@@ -1203,7 +1203,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public static void m4313$r8$lambda$8e3g8Wo2sC60d6jP41INFyqLqE(LivePlayer livePlayer) {
+    public static void m4324$r8$lambda$8e3g8Wo2sC60d6jP41INFyqLqE(LivePlayer livePlayer) {
         if (livePlayer.instance != null) {
             DispatchQueue dispatchQueue = Utilities.globalQueue;
             NativeInstance nativeInstance = livePlayer.instance;

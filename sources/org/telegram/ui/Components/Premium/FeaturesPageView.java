@@ -81,7 +81,7 @@ public class FeaturesPageView extends BaseListPageView {
                 Collections.sort(arrayList, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return FeaturesPageView.m2574$r8$lambda$dXX_8nC6cQoBeyITZRw1xIN6w(sparseIntArray, (FeaturesPageView.Item) obj, (FeaturesPageView.Item) obj2);
+                        return FeaturesPageView.m2584$r8$lambda$dXX_8nC6cQoBeyITZRw1xIN6w(sparseIntArray, (FeaturesPageView.Item) obj, (FeaturesPageView.Item) obj2);
                     }
                 });
             }
@@ -99,7 +99,7 @@ public class FeaturesPageView extends BaseListPageView {
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return FeaturesPageView.m2574$r8$lambda$dXX_8nC6cQoBeyITZRw1xIN6w(sparseIntArray, (FeaturesPageView.Item) obj, (FeaturesPageView.Item) obj2);
+                    return FeaturesPageView.m2584$r8$lambda$dXX_8nC6cQoBeyITZRw1xIN6w(sparseIntArray, (FeaturesPageView.Item) obj, (FeaturesPageView.Item) obj2);
                 }
             });
         }
@@ -113,7 +113,7 @@ public class FeaturesPageView extends BaseListPageView {
         canvas2.drawRect(0.0f, 0.0f, featuresPageView.bitmap.getWidth(), featuresPageView.bitmap.getHeight(), paint2);
     }
 
-    public static int m2574$r8$lambda$dXX_8nC6cQoBeyITZRw1xIN6w(SparseIntArray sparseIntArray, Item item, Item item2) {
+    public static int m2584$r8$lambda$dXX_8nC6cQoBeyITZRw1xIN6w(SparseIntArray sparseIntArray, Item item, Item item2) {
         return sparseIntArray.get(item.order, Integer.MAX_VALUE) - sparseIntArray.get(item2.order, Integer.MAX_VALUE);
     }
 

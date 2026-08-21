@@ -602,7 +602,7 @@ public class PollVotesAlert extends BottomSheet {
                 Integer numValueOf = Integer.valueOf(getConnectionsManager().sendRequest(tL_messages_getPollVotes, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        PollVotesAlert.m2562$r8$lambda$8WJZCSz7TKrFYHRlh_JRAf4dCk(this.f$0, numArr, i3, arrayList, pollAnswerVoters, tLObject, tL_error);
+                        PollVotesAlert.m2572$r8$lambda$8WJZCSz7TKrFYHRlh_JRAf4dCk(this.f$0, numArr, i3, arrayList, pollAnswerVoters, tLObject, tL_error);
                     }
                 }));
                 numArr[i3] = numValueOf;
@@ -813,7 +813,7 @@ public class PollVotesAlert extends BottomSheet {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i8) {
-                PollVotesAlert.m2564$r8$lambda$g0aFoVQC8doE0iOkWBTp2as7Uo(this.f$0, context, view, i8);
+                PollVotesAlert.m2574$r8$lambda$g0aFoVQC8doE0iOkWBTp2as7Uo(this.f$0, context, view, i8);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -900,7 +900,7 @@ public class PollVotesAlert extends BottomSheet {
         this.containerView.addView(view, LayoutHelper.createFrame(-1, 1.0f));
     }
 
-    public static void m2562$r8$lambda$8WJZCSz7TKrFYHRlh_JRAf4dCk(final PollVotesAlert pollVotesAlert, final Integer[] numArr, final int i, final ArrayList arrayList, final TLRPC.PollAnswerVoters pollAnswerVoters, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m2572$r8$lambda$8WJZCSz7TKrFYHRlh_JRAf4dCk(final PollVotesAlert pollVotesAlert, final Integer[] numArr, final int i, final ArrayList arrayList, final TLRPC.PollAnswerVoters pollAnswerVoters, final TLObject tLObject, TLRPC.TL_error tL_error) {
         pollVotesAlert.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -977,7 +977,7 @@ public class PollVotesAlert extends BottomSheet {
         pollVotesAlert.dismiss();
     }
 
-    public static void m2564$r8$lambda$g0aFoVQC8doE0iOkWBTp2as7Uo(final PollVotesAlert pollVotesAlert, Context context, View view, int i) {
+    public static void m2574$r8$lambda$g0aFoVQC8doE0iOkWBTp2as7Uo(final PollVotesAlert pollVotesAlert, Context context, View view, int i) {
         pollVotesAlert.getClass();
         if (AndroidUtilities.isContextSafe(context)) {
             ArrayList arrayList = pollVotesAlert.queries;
@@ -1123,7 +1123,7 @@ public class PollVotesAlert extends BottomSheet {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return PollVotesAlert.m2563$r8$lambda$FQIb_wws2uU5VAs1x2U4THvRXQ((PollVotesAlert.Button) obj, (PollVotesAlert.Button) obj2);
+                return PollVotesAlert.m2573$r8$lambda$FQIb_wws2uU5VAs1x2U4THvRXQ((PollVotesAlert.Button) obj, (PollVotesAlert.Button) obj2);
             }
         });
         int iMin = Math.min(i, arrayList.size());
@@ -1132,7 +1132,7 @@ public class PollVotesAlert extends BottomSheet {
         }
     }
 
-    public static int m2563$r8$lambda$FQIb_wws2uU5VAs1x2U4THvRXQ(Button button, Button button2) {
+    public static int m2573$r8$lambda$FQIb_wws2uU5VAs1x2U4THvRXQ(Button button, Button button2) {
         if (button.decimal > button2.decimal) {
             return -1;
         }

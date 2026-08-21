@@ -317,7 +317,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         void didSetNewBackground(TLRPC.WallPaper wallPaper);
     }
 
-    public static void m4678$r8$lambda$2i4CDrimH8j2VLE_CYXrB74oqk() {
+    public static void m4689$r8$lambda$2i4CDrimH8j2VLE_CYXrB74oqk() {
     }
 
     public static void $r8$lambda$6v2qeXkA9uQMHaheGToXZeLTfTQ(View view, int i) {
@@ -359,12 +359,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         getMessagesController().getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ThemePreviewActivity.m4687$r8$lambda$ujzXCAm4yqYVDw_aFmuwwQB6eU(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
+                ThemePreviewActivity.m4698$r8$lambda$ujzXCAm4yqYVDw_aFmuwwQB6eU(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
             }
         });
     }
 
-    public static void m4687$r8$lambda$ujzXCAm4yqYVDw_aFmuwwQB6eU(ThemePreviewActivity themePreviewActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public static void m4698$r8$lambda$ujzXCAm4yqYVDw_aFmuwwQB6eU(ThemePreviewActivity themePreviewActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         themePreviewActivity.boostsStatus = tL_premium_boostsStatus;
         themePreviewActivity.checkedBoostsLevel = true;
         themePreviewActivity.updateApplyButton1(true);
@@ -1352,7 +1352,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
                     @Override
                     public final void onItemClick(View view, int i31, float f13, float f14) {
-                        ThemePreviewActivity.m4689$r8$lambda$yUgoSDSIx920vGr5qa_ApbKjww(this.f$0, view, i31, f13, f14);
+                        ThemePreviewActivity.m4700$r8$lambda$yUgoSDSIx920vGr5qa_ApbKjww(this.f$0, view, i31, f13, f14);
                     }
                 });
                 i4 = -1;
@@ -1555,7 +1555,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         this.dimmingSlider.setOnValueChange(new Utilities.Callback() {
                             @Override
                             public final void run(Object obj5) {
-                                ThemePreviewActivity.m4677$r8$lambda$1NbvpStwepfVDa_AAqQbAYfgNA(this.f$0, (Float) obj5);
+                                ThemePreviewActivity.m4688$r8$lambda$1NbvpStwepfVDa_AAqQbAYfgNA(this.f$0, (Float) obj5);
                             }
                         });
                         this.dimmingSliderContainer.addView(this.dimmingSlider);
@@ -2172,7 +2172,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public final void onGlobalLayout() {
-                    ThemePreviewActivity.m4686$r8$lambda$sflEnhuHtdEAXWIHmerLdo3NV4(this.f$0);
+                    ThemePreviewActivity.m4697$r8$lambda$sflEnhuHtdEAXWIHmerLdo3NV4(this.f$0);
                 }
             };
             this.onGlobalLayoutListener = onGlobalLayoutListener;
@@ -2524,7 +2524,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
                 @Override
                 public final void onItemClick(View view3, int i34, float f13, float f14) {
-                    ThemePreviewActivity.m4689$r8$lambda$yUgoSDSIx920vGr5qa_ApbKjww(this.f$0, view3, i34, f13, f14);
+                    ThemePreviewActivity.m4700$r8$lambda$yUgoSDSIx920vGr5qa_ApbKjww(this.f$0, view3, i34, f13, f14);
                 }
             });
             i4 = -1;
@@ -2704,7 +2704,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     this.dimmingSlider.setOnValueChange(new Utilities.Callback() {
                         @Override
                         public final void run(Object obj5) {
-                            ThemePreviewActivity.m4677$r8$lambda$1NbvpStwepfVDa_AAqQbAYfgNA(this.f$0, (Float) obj5);
+                            ThemePreviewActivity.m4688$r8$lambda$1NbvpStwepfVDa_AAqQbAYfgNA(this.f$0, (Float) obj5);
                         }
                     });
                     this.dimmingSliderContainer.addView(this.dimmingSlider);
@@ -3789,7 +3789,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     this.dimmingSlider.setOnValueChange(new Utilities.Callback() {
                         @Override
                         public final void run(Object obj5) {
-                            ThemePreviewActivity.m4677$r8$lambda$1NbvpStwepfVDa_AAqQbAYfgNA(this.f$0, (Float) obj5);
+                            ThemePreviewActivity.m4688$r8$lambda$1NbvpStwepfVDa_AAqQbAYfgNA(this.f$0, (Float) obj5);
                         }
                     });
                     this.dimmingSliderContainer.addView(this.dimmingSlider);
@@ -4762,7 +4762,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener2 = new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public final void onGlobalLayout() {
-                ThemePreviewActivity.m4686$r8$lambda$sflEnhuHtdEAXWIHmerLdo3NV4(this.f$0);
+                ThemePreviewActivity.m4697$r8$lambda$sflEnhuHtdEAXWIHmerLdo3NV4(this.f$0);
             }
         };
         this.onGlobalLayoutListener = onGlobalLayoutListener2;
@@ -5154,7 +5154,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         themePreviewActivity.invalidateBlur();
     }
 
-    public static void m4689$r8$lambda$yUgoSDSIx920vGr5qa_ApbKjww(ThemePreviewActivity themePreviewActivity, View view, int i, float f, float f2) {
+    public static void m4700$r8$lambda$yUgoSDSIx920vGr5qa_ApbKjww(ThemePreviewActivity themePreviewActivity, View view, int i, float f, float f2) {
         themePreviewActivity.getClass();
         if (view instanceof ChatMessageCell) {
             ChatMessageCell chatMessageCell = (ChatMessageCell) view;
@@ -5180,7 +5180,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    public static void m4677$r8$lambda$1NbvpStwepfVDa_AAqQbAYfgNA(ThemePreviewActivity themePreviewActivity, Float f) {
+    public static void m4688$r8$lambda$1NbvpStwepfVDa_AAqQbAYfgNA(ThemePreviewActivity themePreviewActivity, Float f) {
         themePreviewActivity.getClass();
         themePreviewActivity.dimAmount = f.floatValue();
         themePreviewActivity.backgroundImage.invalidate();
@@ -5410,7 +5410,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    public static void m4686$r8$lambda$sflEnhuHtdEAXWIHmerLdo3NV4(ThemePreviewActivity themePreviewActivity) {
+    public static void m4697$r8$lambda$sflEnhuHtdEAXWIHmerLdo3NV4(ThemePreviewActivity themePreviewActivity) {
         themePreviewActivity.getClass();
         themePreviewActivity.watchForKeyboardEndTime = SystemClock.elapsedRealtime() + 1500;
         themePreviewActivity.frameLayout.invalidate();
@@ -5887,7 +5887,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                                     ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
                                         @Override
                                         public final void run() {
-                                            ThemePreviewActivity.m4678$r8$lambda$2i4CDrimH8j2VLE_CYXrB74oqk();
+                                            ThemePreviewActivity.m4689$r8$lambda$2i4CDrimH8j2VLE_CYXrB74oqk();
                                         }
                                     });
                                     r15 = r13;
@@ -5895,7 +5895,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                                     ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
                                         @Override
                                         public final void run() {
-                                            ThemePreviewActivity.m4678$r8$lambda$2i4CDrimH8j2VLE_CYXrB74oqk();
+                                            ThemePreviewActivity.m4689$r8$lambda$2i4CDrimH8j2VLE_CYXrB74oqk();
                                         }
                                     });
                                     r15 = r13;
@@ -6172,7 +6172,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
                         @Override
                         public final void run() {
-                            ThemePreviewActivity.m4678$r8$lambda$2i4CDrimH8j2VLE_CYXrB74oqk();
+                            ThemePreviewActivity.m4689$r8$lambda$2i4CDrimH8j2VLE_CYXrB74oqk();
                         }
                     });
                     r15 = r13;
@@ -7200,12 +7200,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ThemePreviewActivity.m4683$r8$lambda$imLDks32R2Ur2yjv8vcXv1SEKM(this.f$0, tLObject);
+                ThemePreviewActivity.m4694$r8$lambda$imLDks32R2Ur2yjv8vcXv1SEKM(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m4683$r8$lambda$imLDks32R2Ur2yjv8vcXv1SEKM(ThemePreviewActivity themePreviewActivity, TLObject tLObject) {
+    public static void m4694$r8$lambda$imLDks32R2Ur2yjv8vcXv1SEKM(ThemePreviewActivity themePreviewActivity, TLObject tLObject) {
         themePreviewActivity.getClass();
         if (tLObject instanceof TLRPC.TL_wallPaper) {
             TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject;
@@ -7607,12 +7607,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ThemePreviewActivity.m4688$r8$lambda$x1Zgc3jsqHZu_u_wxarUZEzhGg(this.f$0, globalMainSettings);
+                ThemePreviewActivity.m4699$r8$lambda$x1Zgc3jsqHZu_u_wxarUZEzhGg(this.f$0, globalMainSettings);
             }
         }, 500L);
     }
 
-    public static void m4688$r8$lambda$x1Zgc3jsqHZu_u_wxarUZEzhGg(ThemePreviewActivity themePreviewActivity, SharedPreferences sharedPreferences) {
+    public static void m4699$r8$lambda$x1Zgc3jsqHZu_u_wxarUZEzhGg(ThemePreviewActivity themePreviewActivity, SharedPreferences sharedPreferences) {
         if (themePreviewActivity.colorType != 3) {
             return;
         }
@@ -10484,7 +10484,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ThemePreviewActivity.m4684$r8$lambda$mxPVSGvN3hJPwWs7u42kcNPav8(this.f$0);
+                ThemePreviewActivity.m4695$r8$lambda$mxPVSGvN3hJPwWs7u42kcNPav8(this.f$0);
             }
 
             @Override
@@ -10597,7 +10597,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         return arrayList;
     }
 
-    public static void m4684$r8$lambda$mxPVSGvN3hJPwWs7u42kcNPav8(ThemePreviewActivity themePreviewActivity) {
+    public static void m4695$r8$lambda$mxPVSGvN3hJPwWs7u42kcNPav8(ThemePreviewActivity themePreviewActivity) {
         ActionBarMenuItem actionBarMenuItem = themePreviewActivity.dropDownContainer;
         int i = 0;
         if (actionBarMenuItem != null) {
@@ -11277,12 +11277,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ThemePreviewActivity.m4685$r8$lambda$oas9CTr2XW9LE5om3hyG7dg0w(this.f$0);
+                ThemePreviewActivity.m4696$r8$lambda$oas9CTr2XW9LE5om3hyG7dg0w(this.f$0);
             }
         });
     }
 
-    public static void m4685$r8$lambda$oas9CTr2XW9LE5om3hyG7dg0w(final ThemePreviewActivity themePreviewActivity) {
+    public static void m4696$r8$lambda$oas9CTr2XW9LE5om3hyG7dg0w(final ThemePreviewActivity themePreviewActivity) {
         themePreviewActivity.onSwitchDayNightDelegate.switchDayNight(false);
         themePreviewActivity.setForceDark(themePreviewActivity.themeDelegate.isDark(), true);
         themePreviewActivity.setCurrentImage(false);

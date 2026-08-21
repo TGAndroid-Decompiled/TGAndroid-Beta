@@ -152,7 +152,7 @@ public class ChatThemeController extends BaseController {
             connectionsManager.sendRequestTyped(getchatthemes, new ChatThemeController$$ExternalSyntheticLambda8(dispatchQueue), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatThemeController.m374$r8$lambda$44Rz8eaPorJeYIAtpLzNNrhE8(this.f$0, resultCallback, z, (TL_account.Themes) obj, (TLRPC.TL_error) obj2);
+                    ChatThemeController.m382$r8$lambda$44Rz8eaPorJeYIAtpLzNNrhE8(this.f$0, resultCallback, z, (TL_account.Themes) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
@@ -163,7 +163,7 @@ public class ChatThemeController extends BaseController {
         resultCallback.onComplete(getEmojiThemes((z ? 1 : 0) | 2));
     }
 
-    public static void m374$r8$lambda$44Rz8eaPorJeYIAtpLzNNrhE8(final ChatThemeController chatThemeController, final ResultCallback resultCallback, final boolean z, TL_account.Themes themes, final TLRPC.TL_error tL_error) {
+    public static void m382$r8$lambda$44Rz8eaPorJeYIAtpLzNNrhE8(final ChatThemeController chatThemeController, final ResultCallback resultCallback, final boolean z, TL_account.Themes themes, final TLRPC.TL_error tL_error) {
         final List<EmojiThemes> allChatThemesFromPrefs;
         chatThemeController.getClass();
         boolean z2 = false;
@@ -206,12 +206,12 @@ public class ChatThemeController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatThemeController.m377$r8$lambda$Xxoj7_byVUM0PSz7uqh6jMmvwE(this.f$0, allChatThemesFromPrefs, resultCallback, z);
+                ChatThemeController.m385$r8$lambda$Xxoj7_byVUM0PSz7uqh6jMmvwE(this.f$0, allChatThemesFromPrefs, resultCallback, z);
             }
         });
     }
 
-    public static void m377$r8$lambda$Xxoj7_byVUM0PSz7uqh6jMmvwE(ChatThemeController chatThemeController, List list, ResultCallback resultCallback, boolean z) {
+    public static void m385$r8$lambda$Xxoj7_byVUM0PSz7uqh6jMmvwE(ChatThemeController chatThemeController, List list, ResultCallback resultCallback, boolean z) {
         chatThemeController.getClass();
         chatThemeController.allChatThemes = new ArrayList(list);
         resultCallback.onComplete(chatThemeController.getEmojiThemes((z ? 1 : 0) | 2));
@@ -456,7 +456,7 @@ public class ChatThemeController extends BaseController {
                 emojiThemes.loadWallpaperThumb(z ? 1 : 0, new ResultCallback() {
                     @Override
                     public final void onComplete(Object obj) {
-                        ChatThemeController.m375$r8$lambda$7yGZ6xw0koWfs7qcSov9oM4XIA(this.f$0, (Pair) obj);
+                        ChatThemeController.m383$r8$lambda$7yGZ6xw0koWfs7qcSov9oM4XIA(this.f$0, (Pair) obj);
                     }
 
                     @Override
@@ -473,7 +473,7 @@ public class ChatThemeController extends BaseController {
         }
     }
 
-    public static void m375$r8$lambda$7yGZ6xw0koWfs7qcSov9oM4XIA(ChatThemeController chatThemeController, Pair pair) {
+    public static void m383$r8$lambda$7yGZ6xw0koWfs7qcSov9oM4XIA(ChatThemeController chatThemeController, Pair pair) {
         if (pair != null) {
             chatThemeController.themeIdWallpaperThumbMap.put((Long) pair.first, (Bitmap) pair.second);
         } else {
@@ -493,13 +493,13 @@ public class ChatThemeController extends BaseController {
             chatThemeQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatThemeController.m378$r8$lambda$Zs8pYystiunLHPJJTOc_Qu4XXY(patternFile, resultCallback);
+                    ChatThemeController.m386$r8$lambda$Zs8pYystiunLHPJJTOc_Qu4XXY(patternFile, resultCallback);
                 }
             });
         }
     }
 
-    public static void m378$r8$lambda$Zs8pYystiunLHPJJTOc_Qu4XXY(File file, final ResultCallback resultCallback) {
+    public static void m386$r8$lambda$Zs8pYystiunLHPJJTOc_Qu4XXY(File file, final ResultCallback resultCallback) {
         final Bitmap bitmapDecodeFile;
         try {
             bitmapDecodeFile = file.exists() ? BitmapFactory.decodeFile(file.getAbsolutePath()) : null;
@@ -586,12 +586,12 @@ public class ChatThemeController extends BaseController {
         chatThemeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                ChatThemeController.m376$r8$lambda$WBpokJdYESI9ycPd61Ng0Z3BZ4(file, callback);
+                ChatThemeController.m384$r8$lambda$WBpokJdYESI9ycPd61Ng0Z3BZ4(file, callback);
             }
         });
     }
 
-    public static void m376$r8$lambda$WBpokJdYESI9ycPd61Ng0Z3BZ4(File file, final Utilities.Callback callback) throws Throwable {
+    public static void m384$r8$lambda$WBpokJdYESI9ycPd61Ng0Z3BZ4(File file, final Utilities.Callback callback) throws Throwable {
         ArrayList arrayList;
         Bitmap bitmap;
         ArrayList arrayList2;
@@ -1166,13 +1166,13 @@ public class ChatThemeController extends BaseController {
             connectionsManager.sendRequestTyped(tl_getUniqueGiftChatThemes, new ChatThemeController$$ExternalSyntheticLambda8(dispatchQueue), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatThemeController.m380$r8$lambda$uy9WD7HjET57HLSOK4Epdl5yRk(this.f$0, resultCallback, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
+                    ChatThemeController.m388$r8$lambda$uy9WD7HjET57HLSOK4Epdl5yRk(this.f$0, resultCallback, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
     }
 
-    public static void m380$r8$lambda$uy9WD7HjET57HLSOK4Epdl5yRk(final ChatThemeController chatThemeController, final ResultCallback resultCallback, TL_account.ChatThemes chatThemes, final TLRPC.TL_error tL_error) {
+    public static void m388$r8$lambda$uy9WD7HjET57HLSOK4Epdl5yRk(final ChatThemeController chatThemeController, final ResultCallback resultCallback, TL_account.ChatThemes chatThemes, final TLRPC.TL_error tL_error) {
         chatThemeController.getClass();
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {

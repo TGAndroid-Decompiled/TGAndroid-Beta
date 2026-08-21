@@ -84,22 +84,22 @@ public class TimezonesController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_help_getTimezonesList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TimezonesController.m1414$r8$lambda$f6dXHBZd0MEqZLgFSSBGh4Zd1Q(this.f$0, mainSettings, tLObject, tL_error);
+                TimezonesController.m1420$r8$lambda$f6dXHBZd0MEqZLgFSSBGh4Zd1Q(this.f$0, mainSettings, tLObject, tL_error);
             }
         });
     }
 
-    public static void m1414$r8$lambda$f6dXHBZd0MEqZLgFSSBGh4Zd1Q(final TimezonesController timezonesController, final SharedPreferences sharedPreferences, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1420$r8$lambda$f6dXHBZd0MEqZLgFSSBGh4Zd1Q(final TimezonesController timezonesController, final SharedPreferences sharedPreferences, final TLObject tLObject, TLRPC.TL_error tL_error) {
         timezonesController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TimezonesController.m1415$r8$lambda$tqrv1Lre0W6MbPeoaQYSWqckzk(this.f$0, tLObject, sharedPreferences);
+                TimezonesController.m1421$r8$lambda$tqrv1Lre0W6MbPeoaQYSWqckzk(this.f$0, tLObject, sharedPreferences);
             }
         });
     }
 
-    public static void m1415$r8$lambda$tqrv1Lre0W6MbPeoaQYSWqckzk(TimezonesController timezonesController, TLObject tLObject, SharedPreferences sharedPreferences) {
+    public static void m1421$r8$lambda$tqrv1Lre0W6MbPeoaQYSWqckzk(TimezonesController timezonesController, TLObject tLObject, SharedPreferences sharedPreferences) {
         timezonesController.getClass();
         if (tLObject instanceof TLRPC.TL_help_timezonesList) {
             timezonesController.timezones.clear();

@@ -100,7 +100,7 @@ public class SavedMessagesController {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return SavedMessagesController.m978$r8$lambda$xwdCB6KxU3Pc46Gnb89goEExbg((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
+                return SavedMessagesController.m984$r8$lambda$xwdCB6KxU3Pc46Gnb89goEExbg((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
             }
         });
         this.allDialogs.addAll(arrayList);
@@ -113,7 +113,7 @@ public class SavedMessagesController {
         }
     }
 
-    public static int m978$r8$lambda$xwdCB6KxU3Pc46Gnb89goEExbg(SavedDialog savedDialog, SavedDialog savedDialog2) {
+    public static int m984$r8$lambda$xwdCB6KxU3Pc46Gnb89goEExbg(SavedDialog savedDialog, SavedDialog savedDialog2) {
         return savedDialog2.getDate() - savedDialog.getDate();
     }
 
@@ -892,7 +892,7 @@ public class SavedMessagesController {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return SavedMessagesController.m976$r8$lambda$GSvuyxOt3q15EK34jiI6LY10MA((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
+                return SavedMessagesController.m982$r8$lambda$GSvuyxOt3q15EK34jiI6LY10MA((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
             }
         });
         Collections.sort(arrayList4, new Comparator() {
@@ -905,7 +905,7 @@ public class SavedMessagesController {
         return true;
     }
 
-    public static int m976$r8$lambda$GSvuyxOt3q15EK34jiI6LY10MA(SavedDialog savedDialog, SavedDialog savedDialog2) {
+    public static int m982$r8$lambda$GSvuyxOt3q15EK34jiI6LY10MA(SavedDialog savedDialog, SavedDialog savedDialog2) {
         return savedDialog2.getDate() - savedDialog.getDate();
     }
 
@@ -1205,12 +1205,12 @@ public class SavedMessagesController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SavedMessagesController.m974$r8$lambda$8G4CMo3lPE1pETe6PKqNuGB5sU(this.f$0, messagesStorage, arrayList);
+                SavedMessagesController.m980$r8$lambda$8G4CMo3lPE1pETe6PKqNuGB5sU(this.f$0, messagesStorage, arrayList);
             }
         });
     }
 
-    public static void m974$r8$lambda$8G4CMo3lPE1pETe6PKqNuGB5sU(final SavedMessagesController savedMessagesController, MessagesStorage messagesStorage, ArrayList arrayList) {
+    public static void m980$r8$lambda$8G4CMo3lPE1pETe6PKqNuGB5sU(final SavedMessagesController savedMessagesController, MessagesStorage messagesStorage, ArrayList arrayList) {
         savedMessagesController.getClass();
         SQLiteDatabase database = messagesStorage.getDatabase();
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
@@ -1276,12 +1276,12 @@ public class SavedMessagesController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SavedMessagesController.m977$r8$lambda$uCv9VrIpj2veb4AdyFaP_zjiCk(this.f$0, messagesStorage);
+                SavedMessagesController.m983$r8$lambda$uCv9VrIpj2veb4AdyFaP_zjiCk(this.f$0, messagesStorage);
             }
         });
     }
 
-    public static void m977$r8$lambda$uCv9VrIpj2veb4AdyFaP_zjiCk(final SavedMessagesController savedMessagesController, MessagesStorage messagesStorage) {
+    public static void m983$r8$lambda$uCv9VrIpj2veb4AdyFaP_zjiCk(final SavedMessagesController savedMessagesController, MessagesStorage messagesStorage) {
         savedMessagesController.getClass();
         try {
             SQLitePreparedStatement sQLitePreparedStatementExecuteFast = messagesStorage.getDatabase().executeFast("DELETE FROM saved_dialogs WHERE forumChatId = ?");
@@ -1442,22 +1442,22 @@ public class SavedMessagesController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSavedHistory, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SavedMessagesController.m972$r8$lambda$2DjbJS83c7KS3VLUtCax7fnWQA(this.f$0, j, tLObject, tL_error);
+                SavedMessagesController.m978$r8$lambda$2DjbJS83c7KS3VLUtCax7fnWQA(this.f$0, j, tLObject, tL_error);
             }
         });
     }
 
-    public static void m972$r8$lambda$2DjbJS83c7KS3VLUtCax7fnWQA(final SavedMessagesController savedMessagesController, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m978$r8$lambda$2DjbJS83c7KS3VLUtCax7fnWQA(final SavedMessagesController savedMessagesController, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
         savedMessagesController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SavedMessagesController.m975$r8$lambda$AOP7eZbhMaSJoZ4pXTpzdBub8w(this.f$0, tLObject, j);
+                SavedMessagesController.m981$r8$lambda$AOP7eZbhMaSJoZ4pXTpzdBub8w(this.f$0, tLObject, j);
             }
         });
     }
 
-    public static void m975$r8$lambda$AOP7eZbhMaSJoZ4pXTpzdBub8w(SavedMessagesController savedMessagesController, TLObject tLObject, long j) {
+    public static void m981$r8$lambda$AOP7eZbhMaSJoZ4pXTpzdBub8w(SavedMessagesController savedMessagesController, TLObject tLObject, long j) {
         savedMessagesController.getClass();
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;

@@ -455,7 +455,7 @@ public abstract class UsersAlertBase extends BottomSheet {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            UsersAlertBase.ContainerView.m2931$r8$lambda$escEspxYUkbGGIcbqNqz1PUPtw(this.f$0, valueAnimator2);
+                            UsersAlertBase.ContainerView.m2940$r8$lambda$escEspxYUkbGGIcbqNqz1PUPtw(this.f$0, valueAnimator2);
                         }
                     });
                     this.valueAnimator.setDuration(250L);
@@ -486,7 +486,7 @@ public abstract class UsersAlertBase extends BottomSheet {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
         }
 
-        public static void m2931$r8$lambda$escEspxYUkbGGIcbqNqz1PUPtw(ContainerView containerView, ValueAnimator valueAnimator) {
+        public static void m2940$r8$lambda$escEspxYUkbGGIcbqNqz1PUPtw(ContainerView containerView, ValueAnimator valueAnimator) {
             containerView.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             containerView.snapToTopOffset = fFloatValue;

@@ -328,13 +328,13 @@ public class AnimatedEmojiDrawable extends Drawable {
                 NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        AnimatedEmojiDrawable.EmojiDocumentFetcher.m2006$r8$lambda$gP9g9kES1clRerox0IvmkVnRn0(this.f$0, arrayList, hashSet);
+                        AnimatedEmojiDrawable.EmojiDocumentFetcher.m2012$r8$lambda$gP9g9kES1clRerox0IvmkVnRn0(this.f$0, arrayList, hashSet);
                     }
                 });
             }
         }
 
-        public static void m2006$r8$lambda$gP9g9kES1clRerox0IvmkVnRn0(final EmojiDocumentFetcher emojiDocumentFetcher, final ArrayList arrayList, final HashSet hashSet) {
+        public static void m2012$r8$lambda$gP9g9kES1clRerox0IvmkVnRn0(final EmojiDocumentFetcher emojiDocumentFetcher, final ArrayList arrayList, final HashSet hashSet) {
             emojiDocumentFetcher.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -366,12 +366,12 @@ public class AnimatedEmojiDrawable extends Drawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.m2004$r8$lambda$76I8IuDhzjM4RGEcXQZT0ZhNQ0(this.f$0, arrayList, tLObject);
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher.m2010$r8$lambda$76I8IuDhzjM4RGEcXQZT0ZhNQ0(this.f$0, arrayList, tLObject);
                 }
             });
         }
 
-        public static void m2004$r8$lambda$76I8IuDhzjM4RGEcXQZT0ZhNQ0(EmojiDocumentFetcher emojiDocumentFetcher, ArrayList arrayList, TLObject tLObject) {
+        public static void m2010$r8$lambda$76I8IuDhzjM4RGEcXQZT0ZhNQ0(EmojiDocumentFetcher emojiDocumentFetcher, ArrayList arrayList, TLObject tLObject) {
             emojiDocumentFetcher.getClass();
             HashSet hashSet = new HashSet(arrayList);
             if (tLObject instanceof Vector) {
@@ -394,12 +394,12 @@ public class AnimatedEmojiDrawable extends Drawable {
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.m2003$r8$lambda$OKn0aTSIpSYO7d5RsOVJPoYYo(this.f$0, arrayList);
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher.m2009$r8$lambda$OKn0aTSIpSYO7d5RsOVJPoYYo(this.f$0, arrayList);
                 }
             });
         }
 
-        public static void m2003$r8$lambda$OKn0aTSIpSYO7d5RsOVJPoYYo(EmojiDocumentFetcher emojiDocumentFetcher, ArrayList arrayList) {
+        public static void m2009$r8$lambda$OKn0aTSIpSYO7d5RsOVJPoYYo(EmojiDocumentFetcher emojiDocumentFetcher, ArrayList arrayList) {
             NativeByteBuffer nativeByteBuffer;
             try {
                 SQLitePreparedStatement sQLitePreparedStatementExecuteFast = MessagesStorage.getInstance(emojiDocumentFetcher.currentAccount).getDatabase().executeFast("REPLACE INTO animated_emoji VALUES(?, ?)");

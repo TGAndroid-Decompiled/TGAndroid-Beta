@@ -214,7 +214,7 @@ public class HeaderCell extends FrameLayout {
         this.goldenAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                HeaderCell.m2661$r8$lambda$yxHakWKcnYuCIiACk6m96TS_Sc(this.f$0, fArr, f, f2, z, valueAnimator2);
+                HeaderCell.m2670$r8$lambda$yxHakWKcnYuCIiACk6m96TS_Sc(this.f$0, fArr, f, f2, z, valueAnimator2);
             }
         });
         this.goldenAnimator.addListener(new AnimatorListenerAdapter() {
@@ -236,7 +236,7 @@ public class HeaderCell extends FrameLayout {
         this.goldenAnimator.start();
     }
 
-    public static void m2661$r8$lambda$yxHakWKcnYuCIiACk6m96TS_Sc(HeaderCell headerCell, float[] fArr, float f, float f2, boolean z, ValueAnimator valueAnimator) {
+    public static void m2670$r8$lambda$yxHakWKcnYuCIiACk6m96TS_Sc(HeaderCell headerCell, float[] fArr, float f, float f2, boolean z, ValueAnimator valueAnimator) {
         headerCell.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float f3 = fFloatValue - fArr[0];

@@ -125,7 +125,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i6) {
-                TranslateAlert3.m2913$r8$lambda$tDNqMAJKCG8KubBJ54N5_leE40(this.f$0, resourcesProvider, view, i6);
+                TranslateAlert3.m2922$r8$lambda$tDNqMAJKCG8KubBJ54N5_leE40(this.f$0, resourcesProvider, view, i6);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -137,7 +137,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         this.adapter.update(false);
     }
 
-    public static void m2913$r8$lambda$tDNqMAJKCG8KubBJ54N5_leE40(TranslateAlert3 translateAlert3, Theme.ResourcesProvider resourcesProvider, View view, int i) {
+    public static void m2922$r8$lambda$tDNqMAJKCG8KubBJ54N5_leE40(TranslateAlert3 translateAlert3, Theme.ResourcesProvider resourcesProvider, View view, int i) {
         UItem item = translateAlert3.adapter.getItem(i - 1);
         if (item == null) {
             return;
@@ -424,13 +424,13 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             this.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    TranslateAlert3.m2914$r8$lambda$vXB4S8kqYVmh5P34mUKhWoth6A(this.f$0, view);
+                    TranslateAlert3.m2923$r8$lambda$vXB4S8kqYVmh5P34mUKhWoth6A(this.f$0, view);
                 }
             });
         }
     }
 
-    public static void m2914$r8$lambda$vXB4S8kqYVmh5P34mUKhWoth6A(TranslateAlert3 translateAlert3, View view) {
+    public static void m2923$r8$lambda$vXB4S8kqYVmh5P34mUKhWoth6A(TranslateAlert3 translateAlert3, View view) {
         CharSequence charSequence = translateAlert3.translated;
         if (charSequence != null) {
             translateAlert3.onUseListener.run(charSequence);
@@ -488,7 +488,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_translateText, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    TranslateAlert3.m2912$r8$lambda$lfofoaMfIs2lFbB2nLJqR5za0(this.f$0, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
+                    TranslateAlert3.m2921$r8$lambda$lfofoaMfIs2lFbB2nLJqR5za0(this.f$0, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
@@ -514,7 +514,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void m2912$r8$lambda$lfofoaMfIs2lFbB2nLJqR5za0(final TranslateAlert3 translateAlert3, TLRPC.TL_messages_translateResult tL_messages_translateResult, TLRPC.TL_error tL_error) {
+    public static void m2921$r8$lambda$lfofoaMfIs2lFbB2nLJqR5za0(final TranslateAlert3 translateAlert3, TLRPC.TL_messages_translateResult tL_messages_translateResult, TLRPC.TL_error tL_error) {
         translateAlert3.requestId = -1;
         translateAlert3.button.setLoading(false);
         if (tL_error != null) {

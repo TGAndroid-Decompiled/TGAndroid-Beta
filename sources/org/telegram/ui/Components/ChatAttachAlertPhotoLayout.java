@@ -336,12 +336,12 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.gridView.forAllChild(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChatAttachAlertPhotoLayout.m2178$r8$lambda$1s4U2z0PrxoCfS2Rq6QYQ5kAFI(this.f$0, photoEntry, z, (View) obj);
+                ChatAttachAlertPhotoLayout.m2188$r8$lambda$1s4U2z0PrxoCfS2Rq6QYQ5kAFI(this.f$0, photoEntry, z, (View) obj);
             }
         });
     }
 
-    public static void m2178$r8$lambda$1s4U2z0PrxoCfS2Rq6QYQ5kAFI(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, MediaController.PhotoEntry photoEntry, boolean z, View view) {
+    public static void m2188$r8$lambda$1s4U2z0PrxoCfS2Rq6QYQ5kAFI(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, MediaController.PhotoEntry photoEntry, boolean z, View view) {
         chatAttachAlertPhotoLayout.getClass();
         if (view instanceof PhotoAttachPhotoCell) {
             PhotoAttachPhotoCell photoAttachPhotoCell = (PhotoAttachPhotoCell) view;
@@ -967,7 +967,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.gridView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i3) {
-                return ChatAttachAlertPhotoLayout.m2184$r8$lambda$fEc8I4HhUaw6k3ZXSznvyikv8(this.f$0, view, i3);
+                return ChatAttachAlertPhotoLayout.m2194$r8$lambda$fEc8I4HhUaw6k3ZXSznvyikv8(this.f$0, view, i3);
             }
         });
         RecyclerViewItemRangeSelector recyclerViewItemRangeSelector = new RecyclerViewItemRangeSelector(new RecyclerViewItemRangeSelector.RecyclerViewItemRangeSelectorDelegate() {
@@ -1122,7 +1122,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.zoomControlView.setDelegate(new ZoomControlView.ZoomControlViewDelegate() {
             @Override
             public final void didSetZoom(float f) {
-                ChatAttachAlertPhotoLayout.m2177$r8$lambda$Z5bB2ws3a3CMSGjpqWZdPryXeY(this.f$0, f);
+                ChatAttachAlertPhotoLayout.m2187$r8$lambda$Z5bB2ws3a3CMSGjpqWZdPryXeY(this.f$0, f);
             }
         });
         ShutterButton shutterButton = new ShutterButton(context);
@@ -1138,7 +1138,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.switchCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlertPhotoLayout.m2181$r8$lambda$RiktnUrq_bc6jVhRg4JoVZ4lKs(this.f$0, view);
+                ChatAttachAlertPhotoLayout.m2191$r8$lambda$RiktnUrq_bc6jVhRg4JoVZ4lKs(this.f$0, view);
             }
         });
         this.switchCameraButton.setContentDescription(LocaleController.getString(R.string.AccDescrSwitchCamera));
@@ -1366,7 +1366,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public static boolean m2184$r8$lambda$fEc8I4HhUaw6k3ZXSznvyikv8(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, View view, int i) {
+    public static boolean m2194$r8$lambda$fEc8I4HhUaw6k3ZXSznvyikv8(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, View view, int i) {
         ChatAttachAlert chatAttachAlert = chatAttachAlertPhotoLayout.parentAlert;
         if (!chatAttachAlert.storyMediaPicker) {
             if (i == 0 && chatAttachAlertPhotoLayout.selectedAlbumEntry == chatAttachAlertPhotoLayout.galleryAlbumEntry) {
@@ -1394,7 +1394,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         CameraController.getInstance().stopPreview(chatAttachAlertPhotoLayout.cameraView.getCameraSessionObject());
     }
 
-    public static void m2177$r8$lambda$Z5bB2ws3a3CMSGjpqWZdPryXeY(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, float f) {
+    public static void m2187$r8$lambda$Z5bB2ws3a3CMSGjpqWZdPryXeY(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, float f) {
         CameraViewInternal cameraViewInternal = chatAttachAlertPhotoLayout.cameraView;
         if (cameraViewInternal != null) {
             chatAttachAlertPhotoLayout.cameraZoom = f;
@@ -1449,14 +1449,14 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                         ChatAttachAlertPhotoLayout.this.videoRecordRunnable = new Runnable() {
                             @Override
                             public final void run() {
-                                ChatAttachAlertPhotoLayout.AnonymousClass10.m2186$r8$lambda$hAbRNaCJprMGTZMvnd0lbOdKhE(this.f$0);
+                                ChatAttachAlertPhotoLayout.AnonymousClass10.m2196$r8$lambda$hAbRNaCJprMGTZMvnd0lbOdKhE(this.f$0);
                             }
                         };
                         AndroidUtilities.lockOrientation(lastFragment.getParentActivity());
                         CameraController.getInstance().recordVideo(ChatAttachAlertPhotoLayout.this.cameraView.getCameraSessionObject(), this.outputFile, ChatAttachAlertPhotoLayout.this.parentAlert.avatarPicker != 0, new CameraController.VideoTakeCallback() {
                             @Override
                             public final void onFinishVideoRecording(String str, long j) {
-                                ChatAttachAlertPhotoLayout.AnonymousClass10.m2187$r8$lambda$1pCfsOk7YGqa3128VBkuFDPlZg(this.f$0, str, j);
+                                ChatAttachAlertPhotoLayout.AnonymousClass10.m2197$r8$lambda$1pCfsOk7YGqa3128VBkuFDPlZg(this.f$0, str, j);
                             }
                         }, new Runnable() {
                             @Override
@@ -1476,7 +1476,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             return false;
         }
 
-        public static void m2186$r8$lambda$hAbRNaCJprMGTZMvnd0lbOdKhE(AnonymousClass10 anonymousClass10) {
+        public static void m2196$r8$lambda$hAbRNaCJprMGTZMvnd0lbOdKhE(AnonymousClass10 anonymousClass10) {
             if (ChatAttachAlertPhotoLayout.this.videoRecordRunnable == null) {
                 return;
             }
@@ -1485,7 +1485,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             AndroidUtilities.runOnUIThread(ChatAttachAlertPhotoLayout.this.videoRecordRunnable, 1000L);
         }
 
-        public static void m2187$r8$lambda$1pCfsOk7YGqa3128VBkuFDPlZg(AnonymousClass10 anonymousClass10, String str, long j) {
+        public static void m2197$r8$lambda$1pCfsOk7YGqa3128VBkuFDPlZg(AnonymousClass10 anonymousClass10, String str, long j) {
             int i;
             int i2;
             if (anonymousClass10.outputFile != null) {
@@ -1620,7 +1620,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public static void m2181$r8$lambda$RiktnUrq_bc6jVhRg4JoVZ4lKs(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, View view) {
+    public static void m2191$r8$lambda$RiktnUrq_bc6jVhRg4JoVZ4lKs(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, View view) {
         CameraViewInternal cameraViewInternal;
         if (chatAttachAlertPhotoLayout.takingPhoto || (cameraViewInternal = chatAttachAlertPhotoLayout.cameraView) == null || !cameraViewInternal.isInited()) {
             return;
@@ -2143,7 +2143,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             Collections.sort(arrayList2, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return ChatAttachAlertPhotoLayout.m2180$r8$lambda$GQg7L31KvldWhCi96qPcDzTIG8(arrayList, (MediaController.AlbumEntry) obj, (MediaController.AlbumEntry) obj2);
+                    return ChatAttachAlertPhotoLayout.m2190$r8$lambda$GQg7L31KvldWhCi96qPcDzTIG8(arrayList, (MediaController.AlbumEntry) obj, (MediaController.AlbumEntry) obj2);
                 }
             });
         } else {
@@ -2169,7 +2169,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public static int m2180$r8$lambda$GQg7L31KvldWhCi96qPcDzTIG8(ArrayList arrayList, MediaController.AlbumEntry albumEntry, MediaController.AlbumEntry albumEntry2) {
+    public static int m2190$r8$lambda$GQg7L31KvldWhCi96qPcDzTIG8(ArrayList arrayList, MediaController.AlbumEntry albumEntry, MediaController.AlbumEntry albumEntry2) {
         int iIndexOf;
         int iIndexOf2;
         int i = albumEntry.bucketId;
@@ -2624,7 +2624,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             Runnable runnable3 = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertPhotoLayout.m2183$r8$lambda$_YmgPb42GNNJqQZrpm32uhVL8E(this.f$0);
+                    ChatAttachAlertPhotoLayout.m2193$r8$lambda$_YmgPb42GNNJqQZrpm32uhVL8E(this.f$0);
                 }
             };
             this.zoomControlHideRunnable = runnable3;
@@ -2637,7 +2637,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         chatAttachAlertPhotoLayout.zoomControlHideRunnable = null;
     }
 
-    public static void m2183$r8$lambda$_YmgPb42GNNJqQZrpm32uhVL8E(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+    public static void m2193$r8$lambda$_YmgPb42GNNJqQZrpm32uhVL8E(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
         chatAttachAlertPhotoLayout.showZoomControls(false, true);
         chatAttachAlertPhotoLayout.zoomControlHideRunnable = null;
     }
@@ -3701,7 +3701,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertPhotoLayout.m2182$r8$lambda$XlrXTwBXSWIte0kgBhR54SaKzM(this.f$0, z3);
+                    ChatAttachAlertPhotoLayout.m2192$r8$lambda$XlrXTwBXSWIte0kgBhR54SaKzM(this.f$0, z3);
                 }
             }, 200L);
             final ArrayList arrayList = new ArrayList();
@@ -3787,7 +3787,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 StarsIntroActivity.showMediaPriceSheet(getContext(), getStarsPrice(), true, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        ChatAttachAlertPhotoLayout.m2179$r8$lambda$2bQAyFw5ACc6vB2jvf8rkfzIhU(this.f$0, (Long) obj, (Runnable) obj2);
+                        ChatAttachAlertPhotoLayout.m2189$r8$lambda$2bQAyFw5ACc6vB2jvf8rkfzIhU(this.f$0, (Long) obj, (Runnable) obj2);
                     }
                 }, this.resourcesProvider);
                 return;
@@ -3863,7 +3863,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         chatAttachAlert.delegate.didPressedButton(4, true, true, 0, 0, 0L, chatAttachAlert.isCaptionAbove(), false, l.longValue());
     }
 
-    public static void m2182$r8$lambda$XlrXTwBXSWIte0kgBhR54SaKzM(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, boolean z) {
+    public static void m2192$r8$lambda$XlrXTwBXSWIte0kgBhR54SaKzM(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, boolean z) {
         chatAttachAlertPhotoLayout.spoilerItem.setText(LocaleController.getString(z ? R.string.DisablePhotoSpoiler : R.string.EnablePhotoSpoiler));
         if (z) {
             chatAttachAlertPhotoLayout.spoilerItem.setIcon(R.drawable.msg_spoiler_off);
@@ -3909,7 +3909,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public static void m2179$r8$lambda$2bQAyFw5ACc6vB2jvf8rkfzIhU(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Long l, Runnable runnable) {
+    public static void m2189$r8$lambda$2bQAyFw5ACc6vB2jvf8rkfzIhU(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Long l, Runnable runnable) {
         chatAttachAlertPhotoLayout.getClass();
         runnable.run();
         chatAttachAlertPhotoLayout.setStarsPrice(l.longValue());

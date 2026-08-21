@@ -45,12 +45,12 @@ public class QRScanner {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QRScanner.m4558$r8$lambda$MIkoa3N5R7Md9nU4Klkrz42HSY(this.f$0, context);
+                QRScanner.m4569$r8$lambda$MIkoa3N5R7Md9nU4Klkrz42HSY(this.f$0, context);
             }
         });
     }
 
-    public static void m4558$r8$lambda$MIkoa3N5R7Md9nU4Klkrz42HSY(QRScanner qRScanner, Context context) {
+    public static void m4569$r8$lambda$MIkoa3N5R7Md9nU4Klkrz42HSY(QRScanner qRScanner, Context context) {
         qRScanner.detector.set(new BarcodeDetector.Builder(context).setBarcodeFormats(256).build());
         qRScanner.attach(qRScanner.cameraView);
     }

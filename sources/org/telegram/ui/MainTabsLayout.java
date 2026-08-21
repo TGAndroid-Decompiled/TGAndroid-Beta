@@ -111,7 +111,7 @@ public class MainTabsLayout extends AnimatedLinearLayout {
 
             @Override
             public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                MainTabsLayout.m3532$r8$lambda$mmMt9sFZKYiZb3Epo40a3vJ6o(this.f$0, i, f, f2, factorAnimator);
+                MainTabsLayout.m3540$r8$lambda$mmMt9sFZKYiZb3Epo40a3vJ6o(this.f$0, i, f, f2, factorAnimator);
             }
         }, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
         this.clickHelper = new ClickHelper(new ClickHelper.Delegate() {
@@ -502,7 +502,7 @@ public class MainTabsLayout extends AnimatedLinearLayout {
         this.tabsWithIgnoreClick.add(view);
     }
 
-    public static void m3532$r8$lambda$mmMt9sFZKYiZb3Epo40a3vJ6o(MainTabsLayout mainTabsLayout, int i, float f, float f2, FactorAnimator factorAnimator) {
+    public static void m3540$r8$lambda$mmMt9sFZKYiZb3Epo40a3vJ6o(MainTabsLayout mainTabsLayout, int i, float f, float f2, FactorAnimator factorAnimator) {
         mainTabsLayout.getClass();
         mainTabsLayout.setScaleX(AndroidUtilities.lerp(1.0f, 1.019f, f));
         mainTabsLayout.setScaleY(AndroidUtilities.lerp(1.0f, 1.019f, f));

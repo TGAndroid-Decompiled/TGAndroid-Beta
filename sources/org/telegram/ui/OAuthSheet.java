@@ -385,7 +385,7 @@ public abstract class OAuthSheet {
                 showing = showMatchCodeSheet(context, i, tL_urlAuthResultRequest2.match_codes, str3, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj2) {
-                        OAuthSheet.m3583$r8$lambda$xnxdbcMFvYfYefG2jCmQJ3S1m4(context, strArr, tL_messages_requestUrlAuth, i, bottomSheetCreate, str3, resourcesProvider, (String) obj2);
+                        OAuthSheet.m3591$r8$lambda$xnxdbcMFvYfYefG2jCmQJ3S1m4(context, strArr, tL_messages_requestUrlAuth, i, bottomSheetCreate, str3, resourcesProvider, (String) obj2);
                     }
                 }, false, new Runnable() {
                     @Override
@@ -426,12 +426,12 @@ public abstract class OAuthSheet {
         ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                OAuthSheet.m3581$r8$lambda$QH7aFdNPh8Gei4JjHn1iAiSUKU(alertDialog, bottomSheet, z, num, tL_messages_requestUrlAuth, str, urlAuthResult, strArr, z2, botWebViewContainer, str2, resourcesProvider, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
+                OAuthSheet.m3589$r8$lambda$QH7aFdNPh8Gei4JjHn1iAiSUKU(alertDialog, bottomSheet, z, num, tL_messages_requestUrlAuth, str, urlAuthResult, strArr, z2, botWebViewContainer, str2, resourcesProvider, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m3581$r8$lambda$QH7aFdNPh8Gei4JjHn1iAiSUKU(AlertDialog alertDialog, BottomSheet bottomSheet, boolean z, Integer num, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z2, BotWebViewContainer botWebViewContainer, String str2, Theme.ResourcesProvider resourcesProvider, TLRPC.UrlAuthResult urlAuthResult2, TLRPC.TL_error tL_error) {
+    public static void m3589$r8$lambda$QH7aFdNPh8Gei4JjHn1iAiSUKU(AlertDialog alertDialog, BottomSheet bottomSheet, boolean z, Integer num, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z2, BotWebViewContainer botWebViewContainer, String str2, Theme.ResourcesProvider resourcesProvider, TLRPC.UrlAuthResult urlAuthResult2, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (urlAuthResult2 != null) {
             bottomSheet.dismiss();
@@ -544,7 +544,7 @@ public abstract class OAuthSheet {
             showMatchCodeSheet(context, i, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    OAuthSheet.m3582$r8$lambda$vmd5HyhxjlEvAUpkN27745VRlk(strArr, runnable, (String) obj);
+                    OAuthSheet.m3590$r8$lambda$vmd5HyhxjlEvAUpkN27745VRlk(strArr, runnable, (String) obj);
                 }
             }, true, new Runnable() {
                 @Override
@@ -557,7 +557,7 @@ public abstract class OAuthSheet {
         }
     }
 
-    public static void m3582$r8$lambda$vmd5HyhxjlEvAUpkN27745VRlk(String[] strArr, Runnable runnable, String str) {
+    public static void m3590$r8$lambda$vmd5HyhxjlEvAUpkN27745VRlk(String[] strArr, Runnable runnable, String str) {
         strArr[0] = str;
         runnable.run();
     }
@@ -608,7 +608,7 @@ public abstract class OAuthSheet {
         }
     }
 
-    public static void m3583$r8$lambda$xnxdbcMFvYfYefG2jCmQJ3S1m4(Context context, String[] strArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, int i, final BottomSheet bottomSheet, final String str, final Theme.ResourcesProvider resourcesProvider, String str2) {
+    public static void m3591$r8$lambda$xnxdbcMFvYfYefG2jCmQJ3S1m4(Context context, String[] strArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, int i, final BottomSheet bottomSheet, final String str, final Theme.ResourcesProvider resourcesProvider, String str2) {
         final AlertDialog alertDialog = new AlertDialog(context, 3);
         alertDialog.showDelayed(200L);
         TLRPC.TL_messages_checkUrlAuthMatchCode tL_messages_checkUrlAuthMatchCode = new TLRPC.TL_messages_checkUrlAuthMatchCode();

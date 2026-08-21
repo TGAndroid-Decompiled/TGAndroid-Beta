@@ -253,13 +253,13 @@ public class CodeHighlighting {
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    CodeHighlighting.m381$r8$lambda$GnQc0UFVOreAy2pkYwEC22lbb4(string, str, spannableString, callback);
+                    CodeHighlighting.m389$r8$lambda$GnQc0UFVOreAy2pkYwEC22lbb4(string, str, spannableString, callback);
                 }
             });
         }
     }
 
-    public static void m381$r8$lambda$GnQc0UFVOreAy2pkYwEC22lbb4(String str, String str2, SpannableString spannableString, final Utilities.Callback callback) throws Throwable {
+    public static void m389$r8$lambda$GnQc0UFVOreAy2pkYwEC22lbb4(String str, String str2, SpannableString spannableString, final Utilities.Callback callback) throws Throwable {
         final SpannableString spannableString2;
         if (compiledPatterns == null) {
             parse();
@@ -327,12 +327,12 @@ public class CodeHighlighting {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                CodeHighlighting.m382$r8$lambda$jQO9jOIHZCkw36qQVzRg3QK6o8(spannable, i, i2, str);
+                CodeHighlighting.m390$r8$lambda$jQO9jOIHZCkw36qQVzRg3QK6o8(spannable, i, i2, str);
             }
         });
     }
 
-    public static void m382$r8$lambda$jQO9jOIHZCkw36qQVzRg3QK6o8(final Spannable spannable, int i, int i2, String str) throws Throwable {
+    public static void m390$r8$lambda$jQO9jOIHZCkw36qQVzRg3QK6o8(final Spannable spannable, int i, int i2, String str) throws Throwable {
         if (compiledPatterns == null) {
             parse();
         }
@@ -371,7 +371,7 @@ public class CodeHighlighting {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CodeHighlighting.m383$r8$lambda$plxGIoXIX1WFe9rdhmpCX8CFw4(arrayList, spannable);
+                CodeHighlighting.m391$r8$lambda$plxGIoXIX1WFe9rdhmpCX8CFw4(arrayList, spannable);
             }
         });
     }
@@ -381,7 +381,7 @@ public class CodeHighlighting {
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiLoaded, new Object[0]);
     }
 
-    public static void m383$r8$lambda$plxGIoXIX1WFe9rdhmpCX8CFw4(ArrayList arrayList, Spannable spannable) {
+    public static void m391$r8$lambda$plxGIoXIX1WFe9rdhmpCX8CFw4(ArrayList arrayList, Spannable spannable) {
         long jCurrentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < arrayList.size(); i++) {
             CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);

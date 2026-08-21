@@ -738,7 +738,7 @@ public class ThanosEffect extends TextureView {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ThanosEffect.DrawingThread.m2878$r8$lambda$LZe6jOiLycQhtpeORUpDh17wQ(runnable, runnable2);
+                        ThanosEffect.DrawingThread.m2887$r8$lambda$LZe6jOiLycQhtpeORUpDh17wQ(runnable, runnable2);
                     }
                 });
                 ThanosEffect.ensureRunOnUIThread(this.destroy);
@@ -756,7 +756,7 @@ public class ThanosEffect extends TextureView {
             }
         }
 
-        public static void m2878$r8$lambda$LZe6jOiLycQhtpeORUpDh17wQ(Runnable runnable, Runnable runnable2) {
+        public static void m2887$r8$lambda$LZe6jOiLycQhtpeORUpDh17wQ(Runnable runnable, Runnable runnable2) {
             ThanosEffect.ensureRunOnUIThread(runnable);
             if (runnable2 != null) {
                 AndroidUtilities.runOnUIThread(runnable2);
@@ -932,7 +932,7 @@ public class ThanosEffect extends TextureView {
                 obj.startCallback = new Runnable() {
                     @Override
                     public final void run() {
-                        ThanosEffect.DrawingThread.Animation.m2879$r8$lambda$ffAyKhZFHxyOgaQ4fNT2BZuSYc(arrayList);
+                        ThanosEffect.DrawingThread.Animation.m2888$r8$lambda$ffAyKhZFHxyOgaQ4fNT2BZuSYc(arrayList);
                     }
                 };
                 for (int i5 = 0; i5 < arrayList.size(); i5++) {
@@ -1247,7 +1247,7 @@ public class ThanosEffect extends TextureView {
                 }
             }
 
-            public static void m2879$r8$lambda$ffAyKhZFHxyOgaQ4fNT2BZuSYc(ArrayList arrayList) {
+            public static void m2888$r8$lambda$ffAyKhZFHxyOgaQ4fNT2BZuSYc(ArrayList arrayList) {
                 for (int i = 0; i < arrayList.size(); i++) {
                     ((View) arrayList.get(i)).setVisibility(8);
                     if (arrayList.get(i) instanceof ChatMessageCell) {

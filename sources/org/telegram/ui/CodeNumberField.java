@@ -67,7 +67,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            CodeNumberField.m1902$r8$lambda$5g0GVwwllzQjIXFZT8itpR3Y64((CodeNumberField) obj, f);
+            CodeNumberField.m1908$r8$lambda$5g0GVwwllzQjIXFZT8itpR3Y64((CodeNumberField) obj, f);
         }
     }).setMultiplier(100.0f);
     private static final FloatPropertyCompat SUCCESS_PROGRESS = new SimpleFloatPropertyCompat("successProgress", new SimpleFloatPropertyCompat.Getter() {
@@ -78,7 +78,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            CodeNumberField.m1904$r8$lambda$UomGlqr4jGpJcdvkMj7Ervg9P4((CodeNumberField) obj, f);
+            CodeNumberField.m1910$r8$lambda$UomGlqr4jGpJcdvkMj7Ervg9P4((CodeNumberField) obj, f);
         }
     }).setMultiplier(100.0f);
     private static final FloatPropertyCompat SUCCESS_SCALE_PROGRESS = new SimpleFloatPropertyCompat("successScaleProgress", new SimpleFloatPropertyCompat.Getter() {
@@ -89,7 +89,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            CodeNumberField.m1905$r8$lambda$XQm0Un1gXrJzRog9t989rgHlYA((CodeNumberField) obj, f);
+            CodeNumberField.m1911$r8$lambda$XQm0Un1gXrJzRog9t989rgHlYA((CodeNumberField) obj, f);
         }
     }).setMultiplier(100.0f);
 
@@ -100,21 +100,21 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
         }
     }
 
-    public static void m1902$r8$lambda$5g0GVwwllzQjIXFZT8itpR3Y64(CodeNumberField codeNumberField, float f) {
+    public static void m1908$r8$lambda$5g0GVwwllzQjIXFZT8itpR3Y64(CodeNumberField codeNumberField, float f) {
         codeNumberField.errorProgress = f;
         if (codeNumberField.getParent() != null) {
             ((View) codeNumberField.getParent()).invalidate();
         }
     }
 
-    public static void m1904$r8$lambda$UomGlqr4jGpJcdvkMj7Ervg9P4(CodeNumberField codeNumberField, float f) {
+    public static void m1910$r8$lambda$UomGlqr4jGpJcdvkMj7Ervg9P4(CodeNumberField codeNumberField, float f) {
         codeNumberField.successProgress = f;
         if (codeNumberField.getParent() != null) {
             ((View) codeNumberField.getParent()).invalidate();
         }
     }
 
-    public static void m1905$r8$lambda$XQm0Un1gXrJzRog9t989rgHlYA(CodeNumberField codeNumberField, float f) {
+    public static void m1911$r8$lambda$XQm0Un1gXrJzRog9t989rgHlYA(CodeNumberField codeNumberField, float f) {
         codeNumberField.successScaleProgress = f;
         if (codeNumberField.getParent() != null) {
             ((View) codeNumberField.getParent()).invalidate();
@@ -233,14 +233,14 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CodeNumberField.m1903$r8$lambda$5ixkb8nTCtYwT0lysRUsR2xdPc(this.f$0, valueAnimator);
+                CodeNumberField.m1909$r8$lambda$5ixkb8nTCtYwT0lysRUsR2xdPc(this.f$0, valueAnimator);
             }
         });
         this.exitAnimator.setDuration(220L);
         this.exitAnimator.start();
     }
 
-    public static void m1903$r8$lambda$5ixkb8nTCtYwT0lysRUsR2xdPc(CodeNumberField codeNumberField, ValueAnimator valueAnimator) {
+    public static void m1909$r8$lambda$5ixkb8nTCtYwT0lysRUsR2xdPc(CodeNumberField codeNumberField, ValueAnimator valueAnimator) {
         codeNumberField.getClass();
         codeNumberField.exitAnimation = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         codeNumberField.invalidate();

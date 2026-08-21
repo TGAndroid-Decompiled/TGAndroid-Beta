@@ -130,7 +130,7 @@ public class DispatchQueue extends Thread {
         this.handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @Override
             public final boolean handleMessage(Message message) {
-                return DispatchQueue.m412$r8$lambda$dDxIPiVp7GAX22bRxD0uMTa364(this.f$0, message);
+                return DispatchQueue.m420$r8$lambda$dDxIPiVp7GAX22bRxD0uMTa364(this.f$0, message);
             }
         });
         this.syncLatch.countDown();
@@ -141,7 +141,7 @@ public class DispatchQueue extends Thread {
         Looper.loop();
     }
 
-    public static boolean m412$r8$lambda$dDxIPiVp7GAX22bRxD0uMTa364(DispatchQueue dispatchQueue, Message message) {
+    public static boolean m420$r8$lambda$dDxIPiVp7GAX22bRxD0uMTa364(DispatchQueue dispatchQueue, Message message) {
         dispatchQueue.handleMessage(message);
         return true;
     }

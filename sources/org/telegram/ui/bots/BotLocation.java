@@ -101,14 +101,14 @@ public class BotLocation {
                 builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionAllow), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        BotLocation.m4808$r8$lambda$xW3cdApB4WxZutddt_BLoC7ADU(this.f$0, runnable, alertDialog, i);
+                        BotLocation.m4819$r8$lambda$xW3cdApB4WxZutddt_BLoC7ADU(this.f$0, runnable, alertDialog, i);
                     }
                 });
             }
             builder.setNegativeButton(LocaleController.getString(R.string.BotLocationPermissionDecline), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    BotLocation.m4807$r8$lambda$wR4ZnsLyWlK0zsOBzQJ7tCxYKg(this.f$0, runnable, alertDialog, i);
+                    BotLocation.m4818$r8$lambda$wR4ZnsLyWlK0zsOBzQJ7tCxYKg(this.f$0, runnable, alertDialog, i);
                 }
             });
             builder.show();
@@ -135,7 +135,7 @@ public class BotLocation {
         }
     }
 
-    public static void m4808$r8$lambda$xW3cdApB4WxZutddt_BLoC7ADU(final BotLocation botLocation, final Runnable runnable, AlertDialog alertDialog, int i) {
+    public static void m4819$r8$lambda$xW3cdApB4WxZutddt_BLoC7ADU(final BotLocation botLocation, final Runnable runnable, AlertDialog alertDialog, int i) {
         if (!botLocation.appHasPermission()) {
             PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new Utilities.Callback() {
                 @Override
@@ -174,7 +174,7 @@ public class BotLocation {
         }
     }
 
-    public static void m4807$r8$lambda$wR4ZnsLyWlK0zsOBzQJ7tCxYKg(BotLocation botLocation, Runnable runnable, AlertDialog alertDialog, int i) {
+    public static void m4818$r8$lambda$wR4ZnsLyWlK0zsOBzQJ7tCxYKg(BotLocation botLocation, Runnable runnable, AlertDialog alertDialog, int i) {
         botLocation.requested = true;
         botLocation.granted = false;
         botLocation.save();
@@ -286,20 +286,20 @@ public class BotLocation {
             builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionAllow), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    BotLocation.m4806$r8$lambda$dPKSAzIc5cAAoA4U3kWQAcxDF4(this.f$0, zArr, callback2, alertDialog, i);
+                    BotLocation.m4817$r8$lambda$dPKSAzIc5cAAoA4U3kWQAcxDF4(this.f$0, zArr, callback2, alertDialog, i);
                 }
             });
         }
         builder.setNegativeButton(LocaleController.getString(R.string.BotLocationPermissionDecline), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                BotLocation.m4809$r8$lambda$yd5wcj5HHxuYpqhG8PFHvmFjeI(this.f$0, zArr, callback2, alertDialog, i);
+                BotLocation.m4820$r8$lambda$yd5wcj5HHxuYpqhG8PFHvmFjeI(this.f$0, zArr, callback2, alertDialog, i);
             }
         });
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                BotLocation.m4805$r8$lambda$86tC18Cxj1Ix_h60feMuwSKkCw(this.f$0, zArr, callback2, dialogInterface);
+                BotLocation.m4816$r8$lambda$86tC18Cxj1Ix_h60feMuwSKkCw(this.f$0, zArr, callback2, dialogInterface);
             }
         });
         builder.show();
@@ -320,7 +320,7 @@ public class BotLocation {
         }
     }
 
-    public static void m4806$r8$lambda$dPKSAzIc5cAAoA4U3kWQAcxDF4(final BotLocation botLocation, boolean[] zArr, final Utilities.Callback2 callback2, AlertDialog alertDialog, int i) {
+    public static void m4817$r8$lambda$dPKSAzIc5cAAoA4U3kWQAcxDF4(final BotLocation botLocation, boolean[] zArr, final Utilities.Callback2 callback2, AlertDialog alertDialog, int i) {
         botLocation.getClass();
         zArr[0] = true;
         if (!botLocation.appHasPermission()) {
@@ -365,7 +365,7 @@ public class BotLocation {
         }
     }
 
-    public static void m4809$r8$lambda$yd5wcj5HHxuYpqhG8PFHvmFjeI(BotLocation botLocation, boolean[] zArr, Utilities.Callback2 callback2, AlertDialog alertDialog, int i) {
+    public static void m4820$r8$lambda$yd5wcj5HHxuYpqhG8PFHvmFjeI(BotLocation botLocation, boolean[] zArr, Utilities.Callback2 callback2, AlertDialog alertDialog, int i) {
         botLocation.getClass();
         if (zArr[0]) {
             return;
@@ -383,7 +383,7 @@ public class BotLocation {
         }
     }
 
-    public static void m4805$r8$lambda$86tC18Cxj1Ix_h60feMuwSKkCw(BotLocation botLocation, boolean[] zArr, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
+    public static void m4816$r8$lambda$86tC18Cxj1Ix_h60feMuwSKkCw(BotLocation botLocation, boolean[] zArr, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
         botLocation.getClass();
         if (zArr[0]) {
             return;

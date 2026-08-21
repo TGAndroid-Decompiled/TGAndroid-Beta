@@ -55,12 +55,12 @@ public class EmojiColorPickerWindow extends PopupWindow {
         this.pickerView.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public final boolean onKey(View view, int i, KeyEvent keyEvent) {
-                return EmojiColorPickerWindow.m2281$r8$lambda$O92kydiWfMtyYraxj8TMJgARe0(this.f$0, view, i, keyEvent);
+                return EmojiColorPickerWindow.m2291$r8$lambda$O92kydiWfMtyYraxj8TMJgARe0(this.f$0, view, i, keyEvent);
             }
         });
     }
 
-    public static boolean m2281$r8$lambda$O92kydiWfMtyYraxj8TMJgARe0(EmojiColorPickerWindow emojiColorPickerWindow, View view, int i, KeyEvent keyEvent) {
+    public static boolean m2291$r8$lambda$O92kydiWfMtyYraxj8TMJgARe0(EmojiColorPickerWindow emojiColorPickerWindow, View view, int i, KeyEvent keyEvent) {
         emojiColorPickerWindow.getClass();
         if (i != 82 || keyEvent.getRepeatCount() != 0 || keyEvent.getAction() != 1 || !emojiColorPickerWindow.isShowing()) {
             return false;

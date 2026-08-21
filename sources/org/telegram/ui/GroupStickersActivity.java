@@ -466,12 +466,12 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupStickersActivity.m3318$r8$lambda$dA7c7Oi6RZ6l4chYed3Wx_q760(this.f$0, tL_error);
+                GroupStickersActivity.m3326$r8$lambda$dA7c7Oi6RZ6l4chYed3Wx_q760(this.f$0, tL_error);
             }
         });
     }
 
-    public static void m3318$r8$lambda$dA7c7Oi6RZ6l4chYed3Wx_q760(GroupStickersActivity groupStickersActivity, TLRPC.TL_error tL_error) {
+    public static void m3326$r8$lambda$dA7c7Oi6RZ6l4chYed3Wx_q760(GroupStickersActivity groupStickersActivity, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = groupStickersActivity.selectedStickerSet;
             if (tL_messages_stickerSet == null) {
@@ -651,14 +651,14 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    GroupStickersActivity.SearchAdapter.m3321$r8$lambda$cRNFcbOsDPM2Vcgk3y1oxA9NdM(this.f$0, str);
+                    GroupStickersActivity.SearchAdapter.m3329$r8$lambda$cRNFcbOsDPM2Vcgk3y1oxA9NdM(this.f$0, str);
                 }
             };
             this.lastCallback = runnable2;
             AndroidUtilities.runOnUIThread(runnable2, 300L);
         }
 
-        public static void m3321$r8$lambda$cRNFcbOsDPM2Vcgk3y1oxA9NdM(final SearchAdapter searchAdapter, final String str) {
+        public static void m3329$r8$lambda$cRNFcbOsDPM2Vcgk3y1oxA9NdM(final SearchAdapter searchAdapter, final String str) {
             TLObject tLObject;
             searchAdapter.lastQuery = str;
             if (GroupStickersActivity.this.isEmoji) {
@@ -1042,13 +1042,13 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                     AndroidUtilities.runOnUIThread(AddEmojiCell.this.lastCallback = new Runnable() {
                         @Override
                         public final void run() {
-                            GroupStickersActivity.AddEmojiCell.AnonymousClass1.m3320$r8$lambda$r6CbCvKbARSWJA89Vs65wo_g0(this.f$0, strTrim);
+                            GroupStickersActivity.AddEmojiCell.AnonymousClass1.m3328$r8$lambda$r6CbCvKbARSWJA89Vs65wo_g0(this.f$0, strTrim);
                         }
                     }, 300L);
                 }
             }
 
-            public static void m3320$r8$lambda$r6CbCvKbARSWJA89Vs65wo_g0(final AnonymousClass1 anonymousClass1, final String str) {
+            public static void m3328$r8$lambda$r6CbCvKbARSWJA89Vs65wo_g0(final AnonymousClass1 anonymousClass1, final String str) {
                 AddEmojiCell.this.lastQuery = str;
                 TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
                 TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
@@ -1068,13 +1068,13 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            GroupStickersActivity.AddEmojiCell.AnonymousClass1.m3319$r8$lambda$nfOWBzuYBsikzi_TanKpdTIpyU(this.f$0, tLObject);
+                            GroupStickersActivity.AddEmojiCell.AnonymousClass1.m3327$r8$lambda$nfOWBzuYBsikzi_TanKpdTIpyU(this.f$0, tLObject);
                         }
                     });
                 }
             }
 
-            public static void m3319$r8$lambda$nfOWBzuYBsikzi_TanKpdTIpyU(AnonymousClass1 anonymousClass1, TLObject tLObject) {
+            public static void m3327$r8$lambda$nfOWBzuYBsikzi_TanKpdTIpyU(AnonymousClass1 anonymousClass1, TLObject tLObject) {
                 if (tLObject != null) {
                     GroupStickersActivity.this.selectSetAfterSearch((TLRPC.TL_messages_stickerSet) tLObject);
                 } else {

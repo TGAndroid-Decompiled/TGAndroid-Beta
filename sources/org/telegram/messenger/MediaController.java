@@ -261,7 +261,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     AudioManager.OnAudioFocusChangeListener audioRecordFocusChangedListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public final void onAudioFocusChange(int i) {
-            MediaController.m529$r8$lambda$tc6LykL6OubRhwPO6e0fp3o4(this.f$0, i);
+            MediaController.m535$r8$lambda$tc6LykL6OubRhwPO6e0fp3o4(this.f$0, i);
         }
     };
     private final Object videoConvertSync = new Object();
@@ -967,7 +967,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
                 @Override
                 public final Bitmap decode(BitmapFactory.Options options) {
-                    return MediaController.PhotoEntry.m547$r8$lambda$fB__XHz1WJDu6VlbVsX7GHJr2Y(this.f$0, options);
+                    return MediaController.PhotoEntry.m553$r8$lambda$fB__XHz1WJDu6VlbVsX7GHJr2Y(this.f$0, options);
                 }
             }, AndroidUtilities.getPhotoSize(z), AndroidUtilities.getPhotoSize(z), false, true);
             if (this.imagePath != null) {
@@ -1066,7 +1066,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
 
-        public static Bitmap m547$r8$lambda$fB__XHz1WJDu6VlbVsX7GHJr2Y(PhotoEntry photoEntry, BitmapFactory.Options options) {
+        public static Bitmap m553$r8$lambda$fB__XHz1WJDu6VlbVsX7GHJr2Y(PhotoEntry photoEntry, BitmapFactory.Options options) {
             String str = photoEntry.filterPath;
             if (str == null) {
                 str = photoEntry.path;
@@ -1151,7 +1151,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void m529$r8$lambda$tc6LykL6OubRhwPO6e0fp3o4(MediaController mediaController, int i) {
+    public static void m535$r8$lambda$tc6LykL6OubRhwPO6e0fp3o4(MediaController mediaController, int i) {
         if (i != 1) {
             mediaController.hasRecordAudioFocus = false;
         } else {
@@ -1329,12 +1329,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(MediaController.refreshGalleryRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.GalleryObserverInternal.m538$r8$lambda$fuJFHLSkATZGJU2p_cnqJR4WTI(this.f$0);
+                    MediaController.GalleryObserverInternal.m544$r8$lambda$fuJFHLSkATZGJU2p_cnqJR4WTI(this.f$0);
                 }
             }, 2000L);
         }
 
-        public static void m538$r8$lambda$fuJFHLSkATZGJU2p_cnqJR4WTI(GalleryObserverInternal galleryObserverInternal) {
+        public static void m544$r8$lambda$fuJFHLSkATZGJU2p_cnqJR4WTI(GalleryObserverInternal galleryObserverInternal) {
             galleryObserverInternal.getClass();
             if (!PhotoViewer.getInstance().isVisible()) {
                 Runnable unused = MediaController.refreshGalleryRunnable = null;
@@ -1575,7 +1575,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaController.m527$r8$lambda$lfN0iuSzb1bb9fObGe6CMOtupk(this.f$0);
+                MediaController.m533$r8$lambda$lfN0iuSzb1bb9fObGe6CMOtupk(this.f$0);
             }
         });
         this.fileBuffer = ByteBuffer.allocateDirect(1920);
@@ -1628,7 +1628,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void m527$r8$lambda$lfN0iuSzb1bb9fObGe6CMOtupk(MediaController mediaController) {
+    public static void m533$r8$lambda$lfN0iuSzb1bb9fObGe6CMOtupk(MediaController mediaController) {
         mediaController.getClass();
         try {
             mediaController.currentPlaybackSpeed = MessagesController.getGlobalMainSettings().getFloat("playbackSpeed", 1.0f);
@@ -1833,13 +1833,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MediaController.AnonymousClass5.m534$r8$lambda$VQ9geI_7YXobCzzh9bpZOpfmk(this.f$0, messageObject);
+                        MediaController.AnonymousClass5.m540$r8$lambda$VQ9geI_7YXobCzzh9bpZOpfmk(this.f$0, messageObject);
                     }
                 });
             }
         }
 
-        public static void m534$r8$lambda$VQ9geI_7YXobCzzh9bpZOpfmk(AnonymousClass5 anonymousClass5, MessageObject messageObject) {
+        public static void m540$r8$lambda$VQ9geI_7YXobCzzh9bpZOpfmk(AnonymousClass5 anonymousClass5, MessageObject messageObject) {
             long duration;
             long currentPosition;
             final float f;
@@ -2018,7 +2018,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MediaController.m512$r8$lambda$3d7E2_MOCCaJHhGmiRFLS8djcc(this.f$0, arrayList);
+                        MediaController.m518$r8$lambda$3d7E2_MOCCaJHhGmiRFLS8djcc(this.f$0, arrayList);
                     }
                 });
             }
@@ -2034,7 +2034,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void m512$r8$lambda$3d7E2_MOCCaJHhGmiRFLS8djcc(MediaController mediaController, ArrayList arrayList) {
+    public static void m518$r8$lambda$3d7E2_MOCCaJHhGmiRFLS8djcc(MediaController mediaController, ArrayList arrayList) {
         NotificationCenter.getInstance(mediaController.lastChatAccount).postNotificationName(NotificationCenter.screenshotTook, new Object[0]);
         mediaController.checkScreenshots(arrayList);
     }
@@ -2731,7 +2731,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaController.m528$r8$lambda$mx6YVq4SoDbh5fiDCPo4uvgEss(this.f$0);
+                MediaController.m534$r8$lambda$mx6YVq4SoDbh5fiDCPo4uvgEss(this.f$0);
             }
         });
         PowerManager.WakeLock wakeLock = mediaController.proximityWakeLock;
@@ -2741,7 +2741,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         mediaController.proximityWakeLock.release();
     }
 
-    public static void m528$r8$lambda$mx6YVq4SoDbh5fiDCPo4uvgEss(MediaController mediaController) {
+    public static void m534$r8$lambda$mx6YVq4SoDbh5fiDCPo4uvgEss(MediaController mediaController) {
         Sensor sensor = mediaController.linearSensor;
         if (sensor != null) {
             mediaController.sensorManager.unregisterListener(mediaController, sensor);
@@ -3154,7 +3154,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             ConnectionsManager.getInstance(i2).sendRequest(tLObject, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    MediaController.m518$r8$lambda$MqBiUe76wGE8LE2cGPEXBxz7Q(this.f$0, i, i2, tLObject2, tL_error);
+                    MediaController.m524$r8$lambda$MqBiUe76wGE8LE2cGPEXBxz7Q(this.f$0, i, i2, tLObject2, tL_error);
                 }
             });
             return;
@@ -3172,17 +3172,17 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void m518$r8$lambda$MqBiUe76wGE8LE2cGPEXBxz7Q(final MediaController mediaController, final int i, final int i2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m524$r8$lambda$MqBiUe76wGE8LE2cGPEXBxz7Q(final MediaController mediaController, final int i, final int i2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         mediaController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaController.m526$r8$lambda$l4LxanS4uWapW068F9t3B6shT0(this.f$0, i, tL_error, tLObject, i2);
+                MediaController.m532$r8$lambda$l4LxanS4uWapW068F9t3B6shT0(this.f$0, i, tL_error, tLObject, i2);
             }
         });
     }
 
-    public static void m526$r8$lambda$l4LxanS4uWapW068F9t3B6shT0(MediaController mediaController, int i, TLRPC.TL_error tL_error, TLObject tLObject, int i2) {
+    public static void m532$r8$lambda$l4LxanS4uWapW068F9t3B6shT0(MediaController mediaController, int i, TLRPC.TL_error tL_error, TLObject tLObject, int i2) {
         PlaylistGlobalSearchParams playlistGlobalSearchParams;
         if (mediaController.playlistClassGuid != i || (playlistGlobalSearchParams = mediaController.playlistGlobalSearchParams) == null || mediaController.playingMessageObject == null || tL_error != null) {
             return;
@@ -3975,12 +3975,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaController.m511$r8$lambda$1bH_rYWkt8O_x70byciWe3w5KY(this.f$0, emojiSound, accountInstance, z);
+                MediaController.m517$r8$lambda$1bH_rYWkt8O_x70byciWe3w5KY(this.f$0, emojiSound, accountInstance, z);
             }
         });
     }
 
-    public static void m511$r8$lambda$1bH_rYWkt8O_x70byciWe3w5KY(final MediaController mediaController, MessagesController.EmojiSound emojiSound, final AccountInstance accountInstance, boolean z) {
+    public static void m517$r8$lambda$1bH_rYWkt8O_x70byciWe3w5KY(final MediaController mediaController, MessagesController.EmojiSound emojiSound, final AccountInstance accountInstance, boolean z) {
         mediaController.getClass();
         final TLRPC.TL_document tL_document = new TLRPC.TL_document();
         tL_document.access_hash = emojiSound.accessHash;
@@ -5567,7 +5567,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             mediaController.recordQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.m525$r8$lambda$hiVmb8VeGHagcQhRIk4KyNEfEs(this.f$0, z);
+                    MediaController.m531$r8$lambda$hiVmb8VeGHagcQhRIk4KyNEfEs(this.f$0, z);
                 }
             });
             return;
@@ -5581,7 +5581,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         });
     }
 
-    public static void m525$r8$lambda$hiVmb8VeGHagcQhRIk4KyNEfEs(final MediaController mediaController, final boolean z) {
+    public static void m531$r8$lambda$hiVmb8VeGHagcQhRIk4KyNEfEs(final MediaController mediaController, final boolean z) {
         mediaController.stopRecord();
         final TLRPC.TL_document tL_document = mediaController.recordingAudio;
         final File fileJoinRecord = mediaController.joinRecord(mediaController.recordingPrevAudioFile, mediaController.recordingAudioFile, tL_document);
@@ -5829,12 +5829,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaController.m530$r8$lambda$uOqZpc27AxnSlAurtfNfaVAfMM(this.f$0, absolutePath, str, messageObject);
+                MediaController.m536$r8$lambda$uOqZpc27AxnSlAurtfNfaVAfMM(this.f$0, absolutePath, str, messageObject);
             }
         });
     }
 
-    public static void m530$r8$lambda$uOqZpc27AxnSlAurtfNfaVAfMM(final MediaController mediaController, String str, final String str2, final MessageObject messageObject) {
+    public static void m536$r8$lambda$uOqZpc27AxnSlAurtfNfaVAfMM(final MediaController mediaController, String str, final String str2, final MessageObject messageObject) {
         mediaController.getClass();
         try {
             final byte[] waveform = getWaveform(str);
@@ -5903,7 +5903,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.fileEncodingQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.m520$r8$lambda$SGlusjxdCTAzDlYMZHvPaJiPXQ(this.f$0, file2, file, tL_document, i, z, i2, z2, j);
+                    MediaController.m526$r8$lambda$SGlusjxdCTAzDlYMZHvPaJiPXQ(this.f$0, file2, file, tL_document, i, z, i2, z2, j);
                 }
             });
         } else {
@@ -5931,7 +5931,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.ignoreOnPause = false;
     }
 
-    public static void m520$r8$lambda$SGlusjxdCTAzDlYMZHvPaJiPXQ(final MediaController mediaController, File file, File file2, final TLRPC.TL_document tL_document, final int i, final boolean z, final int i2, final boolean z2, final long j) {
+    public static void m526$r8$lambda$SGlusjxdCTAzDlYMZHvPaJiPXQ(final MediaController mediaController, File file, File file2, final TLRPC.TL_document tL_document, final int i, final boolean z, final int i2, final boolean z2, final long j) {
         mediaController.stopRecord();
         final File fileJoinRecord = mediaController.joinRecord(file, file2, tL_document);
         if (fileJoinRecord == null) {
@@ -5947,12 +5947,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaController.m513$r8$lambda$7UvXG4gWXELzZhIOfm2BvXvu4(this.f$0, fileJoinRecord, tL_document, i, z, i2, z2, j);
+                MediaController.m519$r8$lambda$7UvXG4gWXELzZhIOfm2BvXvu4(this.f$0, fileJoinRecord, tL_document, i, z, i2, z2, j);
             }
         });
     }
 
-    public static void m513$r8$lambda$7UvXG4gWXELzZhIOfm2BvXvu4(MediaController mediaController, File file, TLRPC.TL_document tL_document, int i, boolean z, int i2, boolean z2, long j) {
+    public static void m519$r8$lambda$7UvXG4gWXELzZhIOfm2BvXvu4(MediaController mediaController, File file, TLRPC.TL_document tL_document, int i, boolean z, int i2, boolean z2, long j) {
         boolean z3;
         char c;
         String str;
@@ -6027,12 +6027,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaController.m515$r8$lambda$CHkjTR2fDjXWcvKPPBRTC9cqKo(this.f$0, i, z, i2, z2, j);
+                MediaController.m521$r8$lambda$CHkjTR2fDjXWcvKPPBRTC9cqKo(this.f$0, i, z, i2, z2, j);
             }
         });
     }
 
-    public static void m515$r8$lambda$CHkjTR2fDjXWcvKPPBRTC9cqKo(final MediaController mediaController, final int i, boolean z, int i2, boolean z2, long j) {
+    public static void m521$r8$lambda$CHkjTR2fDjXWcvKPPBRTC9cqKo(final MediaController mediaController, final int i, boolean z, int i2, boolean z2, long j) {
         if (mediaController.sendAfterDone == 3) {
             mediaController.sendAfterDone = 0;
             mediaController.stopRecordingInternal(i, z, i2, z2, j);
@@ -6117,25 +6117,25 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.MediaLoader.m546$r8$lambda$un9oCPy2gekYxIU01aCtOzgHQ0(this.f$0);
+                    MediaController.MediaLoader.m552$r8$lambda$un9oCPy2gekYxIU01aCtOzgHQ0(this.f$0);
                 }
             }, 250L);
             new Thread(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    MediaController.MediaLoader.m544$r8$lambda$YpyDkVMW9xW5VReb0p_bGHuAw(this.f$0);
+                    MediaController.MediaLoader.m550$r8$lambda$YpyDkVMW9xW5VReb0p_bGHuAw(this.f$0);
                 }
             }).start();
         }
 
-        public static void m546$r8$lambda$un9oCPy2gekYxIU01aCtOzgHQ0(MediaLoader mediaLoader) {
+        public static void m552$r8$lambda$un9oCPy2gekYxIU01aCtOzgHQ0(MediaLoader mediaLoader) {
             if (mediaLoader.finished) {
                 return;
             }
             mediaLoader.progressDialog.show();
         }
 
-        public static void m544$r8$lambda$YpyDkVMW9xW5VReb0p_bGHuAw(MediaLoader mediaLoader) throws Throwable {
+        public static void m550$r8$lambda$YpyDkVMW9xW5VReb0p_bGHuAw(MediaLoader mediaLoader) throws Throwable {
             File externalStoragePublicDirectory;
             File file;
             File pathToMessage;
@@ -6326,7 +6326,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MediaController.MediaLoader.m540$r8$lambda$lgi5mmQ2tnOVTyY3xeOrXrv1ME(this.f$0, r2, closestPhotoSizeWithSize, messageObject, photo2, r6, document);
+                        MediaController.MediaLoader.m546$r8$lambda$lgi5mmQ2tnOVTyY3xeOrXrv1ME(this.f$0, r2, closestPhotoSizeWithSize, messageObject, photo2, r6, document);
                     }
                 });
                 this.waitingForFile.await();
@@ -6426,7 +6426,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return true;
         }
 
-        public static void m540$r8$lambda$lgi5mmQ2tnOVTyY3xeOrXrv1ME(MediaLoader mediaLoader, boolean z, TLRPC.PhotoSize photoSize, MessageObject messageObject, TLRPC.Photo photo, boolean z2, TLRPC.Document document) {
+        public static void m546$r8$lambda$lgi5mmQ2tnOVTyY3xeOrXrv1ME(MediaLoader mediaLoader, boolean z, TLRPC.PhotoSize photoSize, MessageObject messageObject, TLRPC.Photo photo, boolean z2, TLRPC.Document document) {
             MessageObject messageObject2;
             mediaLoader.getClass();
             if (z) {
@@ -6455,12 +6455,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.MediaLoader.m539$r8$lambda$jZ595KhUHeddw4dGNDDqKK8IA(this.f$0, messageObject);
+                    MediaController.MediaLoader.m545$r8$lambda$jZ595KhUHeddw4dGNDDqKK8IA(this.f$0, messageObject);
                 }
             });
         }
 
-        public static void m539$r8$lambda$jZ595KhUHeddw4dGNDDqKK8IA(MediaLoader mediaLoader, MessageObject messageObject) {
+        public static void m545$r8$lambda$jZ595KhUHeddw4dGNDDqKK8IA(MediaLoader mediaLoader, MessageObject messageObject) {
             mediaLoader.getClass();
             TLRPC.Document document = messageObject.getDocument();
             TLRPC.Document document2 = messageObject.qualityToSave;
@@ -6504,7 +6504,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                         AndroidUtilities.runOnUIThread(new Runnable() {
                                                             @Override
                                                             public final void run() {
-                                                                MediaController.MediaLoader.m542$r8$lambda$Jrbb5kxNwXd2VdTpLugumpxu4E(this.f$0);
+                                                                MediaController.MediaLoader.m548$r8$lambda$Jrbb5kxNwXd2VdTpLugumpxu4E(this.f$0);
                                                             }
                                                         });
                                                     }
@@ -6627,7 +6627,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                                     @Override
                                                     public final void run() {
-                                                        MediaController.MediaLoader.m545$r8$lambda$uktTbqBjw6m1O6ALic3XnWfCkw(this.f$0, i);
+                                                        MediaController.MediaLoader.m551$r8$lambda$uktTbqBjw6m1O6ALic3XnWfCkw(this.f$0, i);
                                                     }
                                                 });
                                                 if (channel2 != null) {
@@ -6698,7 +6698,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
 
-        public static void m542$r8$lambda$Jrbb5kxNwXd2VdTpLugumpxu4E(MediaLoader mediaLoader) {
+        public static void m548$r8$lambda$Jrbb5kxNwXd2VdTpLugumpxu4E(MediaLoader mediaLoader) {
             mediaLoader.getClass();
             try {
                 mediaLoader.progressDialog.dismiss();
@@ -6716,7 +6716,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
 
-        public static void m545$r8$lambda$uktTbqBjw6m1O6ALic3XnWfCkw(MediaLoader mediaLoader, int i) {
+        public static void m551$r8$lambda$uktTbqBjw6m1O6ALic3XnWfCkw(MediaLoader mediaLoader, int i) {
             mediaLoader.getClass();
             try {
                 mediaLoader.progressDialog.setProgress(i);
@@ -6740,14 +6740,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            MediaController.MediaLoader.m543$r8$lambda$YQhBjHx53w4ACKBE4gasn70X6k(this.f$0, iLongValue);
+                            MediaController.MediaLoader.m549$r8$lambda$YQhBjHx53w4ACKBE4gasn70X6k(this.f$0, iLongValue);
                         }
                     });
                 }
             }
         }
 
-        public static void m543$r8$lambda$YQhBjHx53w4ACKBE4gasn70X6k(MediaLoader mediaLoader, int i) {
+        public static void m549$r8$lambda$YQhBjHx53w4ACKBE4gasn70X6k(MediaLoader mediaLoader, int i) {
             mediaLoader.getClass();
             try {
                 mediaLoader.progressDialog.setProgress(i);
@@ -6809,7 +6809,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            MediaController.m517$r8$lambda$Iw__r2i1TFcSX1J2MWUisWw0cI(zArr2, alertDialog2);
+                            MediaController.m523$r8$lambda$Iw__r2i1TFcSX1J2MWUisWw0cI(zArr2, alertDialog2);
                         }
                     }, 250L);
                     alertDialog = alertDialog2;
@@ -6823,7 +6823,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             new Thread(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    MediaController.m524$r8$lambda$fBsru5e_YyNhMhNroeamuu0pqA(i, file, str2, alertDialog, zArr, str3, callback, zArr2);
+                    MediaController.m530$r8$lambda$fBsru5e_YyNhMhNroeamuu0pqA(i, file, str2, alertDialog, zArr, str3, callback, zArr2);
                 }
             }).start();
         }
@@ -6833,14 +6833,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         zArr[0] = true;
     }
 
-    public static void m517$r8$lambda$Iw__r2i1TFcSX1J2MWUisWw0cI(boolean[] zArr, AlertDialog alertDialog) {
+    public static void m523$r8$lambda$Iw__r2i1TFcSX1J2MWUisWw0cI(boolean[] zArr, AlertDialog alertDialog) {
         if (zArr[0]) {
             return;
         }
         alertDialog.show();
     }
 
-    public static void m524$r8$lambda$fBsru5e_YyNhMhNroeamuu0pqA(int i, File file, String str, final AlertDialog alertDialog, boolean[] zArr, String str2, final Utilities.Callback callback, final boolean[] zArr2) throws Throwable {
+    public static void m530$r8$lambda$fBsru5e_YyNhMhNroeamuu0pqA(int i, File file, String str, final AlertDialog alertDialog, boolean[] zArr, String str2, final Utilities.Callback callback, final boolean[] zArr2) throws Throwable {
         File externalStoragePublicDirectory;
         File file2;
         String str3;
@@ -7050,7 +7050,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                MediaController.m522$r8$lambda$ZHv9PpmmBv9GE4sgOSGeTdEU60(alertDialog, zArr2);
+                                MediaController.m528$r8$lambda$ZHv9PpmmBv9GE4sgOSGeTdEU60(alertDialog, zArr2);
                             }
                         });
                     }
@@ -7083,7 +7083,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.m522$r8$lambda$ZHv9PpmmBv9GE4sgOSGeTdEU60(alertDialog, zArr2);
+                    MediaController.m528$r8$lambda$ZHv9PpmmBv9GE4sgOSGeTdEU60(alertDialog, zArr2);
                 }
             });
         }
@@ -7105,7 +7105,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void m522$r8$lambda$ZHv9PpmmBv9GE4sgOSGeTdEU60(AlertDialog alertDialog, boolean[] zArr) {
+    public static void m528$r8$lambda$ZHv9PpmmBv9GE4sgOSGeTdEU60(AlertDialog alertDialog, boolean[] zArr) {
         try {
             if (alertDialog.isShowing()) {
                 alertDialog.dismiss();
@@ -7158,7 +7158,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         new Thread(new Runnable() {
             @Override
             public final void run() {
-                MediaController.m521$r8$lambda$UtsV44ocAZ5LGQgMhKcUlhqDU(file, file2, zArr, callback, alertDialog2, zArr2);
+                MediaController.m527$r8$lambda$UtsV44ocAZ5LGQgMhKcUlhqDU(file, file2, zArr, callback, alertDialog2, zArr2);
             }
         }).start();
     }
@@ -7174,7 +7174,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         alertDialog.show();
     }
 
-    public static void m521$r8$lambda$UtsV44ocAZ5LGQgMhKcUlhqDU(File file, File file2, boolean[] zArr, final Utilities.Callback callback, final AlertDialog alertDialog, final boolean[] zArr2) {
+    public static void m527$r8$lambda$UtsV44ocAZ5LGQgMhKcUlhqDU(File file, File file2, boolean[] zArr, final Utilities.Callback callback, final AlertDialog alertDialog, final boolean[] zArr2) {
         final Uri uriFromFile = null;
         boolean z = false;
         try {
@@ -7258,13 +7258,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaController.m531$r8$lambda$xtrxa7kAAADjJpoj0HDnR0g7dU(alertDialog, zArr2);
+                    MediaController.m537$r8$lambda$xtrxa7kAAADjJpoj0HDnR0g7dU(alertDialog, zArr2);
                 }
             });
         }
     }
 
-    public static void m531$r8$lambda$xtrxa7kAAADjJpoj0HDnR0g7dU(AlertDialog alertDialog, boolean[] zArr) {
+    public static void m537$r8$lambda$xtrxa7kAAADjJpoj0HDnR0g7dU(AlertDialog alertDialog, boolean[] zArr) {
         try {
             if (alertDialog.isShowing()) {
                 alertDialog.dismiss();
@@ -7928,14 +7928,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Thread thread = new Thread(new Runnable() {
             @Override
             public final void run() {
-                MediaController.m532$r8$lambda$z9B4BHdB6vIEakOD5HH5zsOx40(i);
+                MediaController.m538$r8$lambda$z9B4BHdB6vIEakOD5HH5zsOx40(i);
             }
         });
         thread.setPriority(1);
         thread.start();
     }
 
-    public static void m532$r8$lambda$z9B4BHdB6vIEakOD5HH5zsOx40(int i) {
+    public static void m538$r8$lambda$z9B4BHdB6vIEakOD5HH5zsOx40(int i) {
         SparseArray sparseArray;
         String string;
         ArrayList arrayList;
@@ -8182,7 +8182,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                         Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                                             @Override
                                                                                                                             public final int compare(Object obj, Object obj2) {
-                                                                                                                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                                return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                                             }
                                                                                                                         });
                                                                                                                     }
@@ -8214,7 +8214,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                 Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                                     @Override
                                                                                                                     public final int compare(Object obj, Object obj2) {
-                                                                                                                        return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                        return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                                     }
                                                                                                                 });
                                                                                                             }
@@ -8243,7 +8243,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                     Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                                         @Override
                                                                                                                         public final int compare(Object obj, Object obj2) {
-                                                                                                                            return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                            return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                                         }
                                                                                                                     });
                                                                                                                 }
@@ -8264,7 +8264,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                                 Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                                     @Override
                                                                                                                     public final int compare(Object obj, Object obj2) {
-                                                                                                                        return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                        return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                                     }
                                                                                                                 });
                                                                                                             }
@@ -8410,7 +8410,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                         Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                             @Override
                                                                                             public final int compare(Object obj, Object obj2) {
-                                                                                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                             }
                                                                                         });
                                                                                     }
@@ -8644,7 +8644,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                     Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                         @Override
                                                                                         public final int compare(Object obj, Object obj2) {
-                                                                                            return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                            return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                         }
                                                                                     });
                                                                                 }
@@ -8867,7 +8867,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                     Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                         @Override
                                                                                         public final int compare(Object obj, Object obj2) {
-                                                                                            return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                            return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                         }
                                                                                     });
                                                                                 }
@@ -9096,7 +9096,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                         Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                             @Override
                                                                                                             public final int compare(Object obj, Object obj2) {
-                                                                                                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                             }
                                                                                                         });
                                                                                                     }
@@ -9305,7 +9305,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                                 Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                                     @Override
                                                                                                     public final int compare(Object obj, Object obj2) {
-                                                                                                        return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                        return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                                     }
                                                                                                 });
                                                                                             }
@@ -9554,7 +9554,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                                                     Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                                         @Override
                                                                                         public final int compare(Object obj, Object obj2) {
-                                                                                            return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                            return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                                         }
                                                                                     });
                                                                                 }
@@ -9789,7 +9789,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                                             Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                                 @Override
                                                                 public final int compare(Object obj, Object obj2) {
-                                                                    return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                    return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                                 }
                                                             });
                                                         }
@@ -10066,7 +10066,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                             @Override
                             public final int compare(Object obj, Object obj2) {
-                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                             }
                         });
                     }
@@ -10456,7 +10456,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                             @Override
                             public final int compare(Object obj, Object obj2) {
-                                return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                             }
                         });
                     }
@@ -10672,7 +10672,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                             Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                                                 @Override
                                                 public final int compare(Object obj, Object obj2) {
-                                                    return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                    return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                                                 }
                                             });
                                         }
@@ -10711,14 +10711,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             Collections.sort(((AlbumEntry) arrayList5.get(i2)).photos, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return MediaController.m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                    return MediaController.m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
                 }
             });
         }
         broadcastNewPhotos(i, arrayList5, arrayList2, num15, albumEntry119, albumEntry3, albumEntry5, 0);
     }
 
-    public static int m519$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k(PhotoEntry photoEntry, PhotoEntry photoEntry2) {
+    public static int m525$r8$lambda$S1eYA6ZVUkGUDD_YKo2_vGv2_k(PhotoEntry photoEntry, PhotoEntry photoEntry2) {
         long j = photoEntry.dateTaken;
         long j2 = photoEntry2.dateTaken;
         if (j < j2) {

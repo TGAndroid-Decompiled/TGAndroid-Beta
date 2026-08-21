@@ -383,12 +383,12 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
             ConnectionsManager.getInstance(channelMessageFetcher.currentAccount).sendRequest(tL_channels_getMessages, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ProfileChannelCell.ChannelMessageFetcher.m1496$r8$lambda$y6kbaezH8lc59pPc6OUHkfb5iY(this.f$0, messagesStorage, j, i, arrayList, tLObject, tL_error);
+                    ProfileChannelCell.ChannelMessageFetcher.m1502$r8$lambda$y6kbaezH8lc59pPc6OUHkfb5iY(this.f$0, messagesStorage, j, i, arrayList, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m1496$r8$lambda$y6kbaezH8lc59pPc6OUHkfb5iY(final ChannelMessageFetcher channelMessageFetcher, final MessagesStorage messagesStorage, final long j, final int i, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m1502$r8$lambda$y6kbaezH8lc59pPc6OUHkfb5iY(final ChannelMessageFetcher channelMessageFetcher, final MessagesStorage messagesStorage, final long j, final int i, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
             channelMessageFetcher.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

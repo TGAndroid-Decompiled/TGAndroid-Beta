@@ -134,7 +134,7 @@ public final class FloatingToolbar {
         this.quoteShowCallback = callback0Return;
     }
 
-    public static int m1266$r8$lambda$oeoem8jsMsNfzaGiZfcKWwEphE(MenuItem menuItem, MenuItem menuItem2) {
+    public static int m1272$r8$lambda$oeoem8jsMsNfzaGiZfcKWwEphE(MenuItem menuItem, MenuItem menuItem2) {
         return menuItem.getOrder() - menuItem2.getOrder();
     }
 
@@ -166,7 +166,7 @@ public final class FloatingToolbar {
         this.mMenuItemComparator = new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return FloatingToolbar.m1266$r8$lambda$oeoem8jsMsNfzaGiZfcKWwEphE((MenuItem) obj, (MenuItem) obj2);
+                return FloatingToolbar.m1272$r8$lambda$oeoem8jsMsNfzaGiZfcKWwEphE((MenuItem) obj, (MenuItem) obj2);
             }
         };
         this.mWindowView = view;
@@ -1196,12 +1196,12 @@ public final class FloatingToolbar {
                 FloatingToolbarPopup.this.mContentContainer.post(new Runnable() {
                     @Override
                     public final void run() {
-                        FloatingToolbar.FloatingToolbarPopup.AnonymousClass14.m1267$r8$lambda$5Su373lkHwAC9hTmvadhNQz8Ig(this.f$0);
+                        FloatingToolbar.FloatingToolbarPopup.AnonymousClass14.m1273$r8$lambda$5Su373lkHwAC9hTmvadhNQz8Ig(this.f$0);
                     }
                 });
             }
 
-            public static void m1267$r8$lambda$5Su373lkHwAC9hTmvadhNQz8Ig(AnonymousClass14 anonymousClass14) {
+            public static void m1273$r8$lambda$5Su373lkHwAC9hTmvadhNQz8Ig(AnonymousClass14 anonymousClass14) {
                 FloatingToolbarPopup.this.setPanelsStatesAtRestingPosition();
                 FloatingToolbarPopup.this.setContentAreaAsTouchableSurface();
             }

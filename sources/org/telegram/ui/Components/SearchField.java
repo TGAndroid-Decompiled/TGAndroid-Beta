@@ -93,7 +93,7 @@ public abstract class SearchField extends FrameLayout {
         this.clearSearchImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                SearchField.m2719$r8$lambda$Go1mn5pfejzLu9c3Ox330EJkZo(this.f$0, view2);
+                SearchField.m2728$r8$lambda$Go1mn5pfejzLu9c3Ox330EJkZo(this.f$0, view2);
             }
         });
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
@@ -158,17 +158,17 @@ public abstract class SearchField extends FrameLayout {
         this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                return SearchField.m2720$r8$lambda$m9Nbora4R9xhAOQ4kZ91TTiwA0(this.f$0, textView, i, keyEvent);
+                return SearchField.m2729$r8$lambda$m9Nbora4R9xhAOQ4kZ91TTiwA0(this.f$0, textView, i, keyEvent);
             }
         });
     }
 
-    public static void m2719$r8$lambda$Go1mn5pfejzLu9c3Ox330EJkZo(SearchField searchField, View view) {
+    public static void m2728$r8$lambda$Go1mn5pfejzLu9c3Ox330EJkZo(SearchField searchField, View view) {
         searchField.searchEditText.setText("");
         AndroidUtilities.showKeyboard(searchField.searchEditText);
     }
 
-    public static boolean m2720$r8$lambda$m9Nbora4R9xhAOQ4kZ91TTiwA0(SearchField searchField, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m2729$r8$lambda$m9Nbora4R9xhAOQ4kZ91TTiwA0(SearchField searchField, TextView textView, int i, KeyEvent keyEvent) {
         searchField.getClass();
         if (keyEvent == null) {
             return false;

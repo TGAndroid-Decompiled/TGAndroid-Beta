@@ -501,7 +501,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         undoStore.setDelegate(new UndoStore.UndoStoreDelegate() {
             @Override
             public final void historyChanged() {
-                PaintView.m4537$r8$lambda$oBldUZaDbn8VHalkh5eS6GMZ6o(this.f$0);
+                PaintView.m4548$r8$lambda$oBldUZaDbn8VHalkh5eS6GMZ6o(this.f$0);
             }
         });
         View view = new View(context);
@@ -777,7 +777,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.m4520$r8$lambda$dGFoaS0jxh1gKM8vN1N0xK2n9w(this.f$0, view3);
+                PaintView.m4531$r8$lambda$dGFoaS0jxh1gKM8vN1N0xK2n9w(this.f$0, view3);
             }
         });
         this.undoButton.setAlpha(0.6f);
@@ -836,7 +836,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.cancelTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.m4541$r8$lambda$u9DlI6yf9KgnfSAfq24i4_Qzc(this.f$0, view3);
+                PaintView.m4552$r8$lambda$u9DlI6yf9KgnfSAfq24i4_Qzc(this.f$0, view3);
             }
         });
         this.cancelTextButton.setAlpha(0.0f);
@@ -1022,7 +1022,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.typefaceListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view3, int i6) {
-                PaintView.m4529$r8$lambda$R8Ui38q3MsqtWt7rypX78eyODE(this.f$0, view3, i6);
+                PaintView.m4540$r8$lambda$R8Ui38q3MsqtWt7rypX78eyODE(this.f$0, view3, i6);
             }
         });
         this.textOptionsView.setTypefaceListView(this.typefaceListView);
@@ -1052,7 +1052,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.colorsListView.setColorListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                PaintView.m4533$r8$lambda$eIPhcx0VA7U6ZTz5ULIuViGQxI(this.f$0, (Integer) obj);
+                PaintView.m4544$r8$lambda$eIPhcx0VA7U6ZTz5ULIuViGQxI(this.f$0, (Integer) obj);
             }
         });
         this.bottomLayout.addView(this.colorsListView, LayoutHelper.createFrame(-1, 84.0f, 48, 56.0f, 0.0f, 56.0f, 6.0f));
@@ -1065,7 +1065,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                PaintView.m4526$r8$lambda$KV4omYmCLKaQdbM8mfGFs26XIc(this.f$0, view3);
+                PaintView.m4537$r8$lambda$KV4omYmCLKaQdbM8mfGFs26XIc(this.f$0, view3);
             }
         });
         PaintDoneView paintDoneView = new PaintDoneView(context);
@@ -1088,7 +1088,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.weightChooserView.setOnUpdate(new Runnable() {
             @Override
             public final void run() {
-                PaintView.m4521$r8$lambda$8bnbpgQIcpNrDuY6Klv0Ys4ipo(this.f$0, i);
+                PaintView.m4532$r8$lambda$8bnbpgQIcpNrDuY6Klv0Ys4ipo(this.f$0, i);
             }
         });
         addView(this.weightChooserView, LayoutHelper.createFrame(-1, -1.0f));
@@ -1109,7 +1109,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.keyboardNotifier = new KeyboardNotifier(windowView, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PaintView.m4524$r8$lambda$ES9xyWYC0uOX1LRDjIWpITGOo8(this.f$0, windowView, (Integer) obj);
+                PaintView.m4535$r8$lambda$ES9xyWYC0uOX1LRDjIWpITGOo8(this.f$0, windowView, (Integer) obj);
             }
         }) {
             @Override
@@ -1123,7 +1123,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         EmojiBottomSheet.savedPosition = i5;
     }
 
-    public static void m4537$r8$lambda$oBldUZaDbn8VHalkh5eS6GMZ6o(PaintView paintView) {
+    public static void m4548$r8$lambda$oBldUZaDbn8VHalkh5eS6GMZ6o(PaintView paintView) {
         boolean zCanUndo = paintView.undoStore.canUndo();
         paintView.undoButton.animate().cancel();
         paintView.undoButton.animate().alpha(zCanUndo ? 1.0f : 0.6f).translationY(0.0f).setDuration(150L).start();
@@ -1133,7 +1133,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         paintView.undoAllButton.setClickable(zCanUndo);
     }
 
-    public static void m4520$r8$lambda$dGFoaS0jxh1gKM8vN1N0xK2n9w(PaintView paintView, View view) {
+    public static void m4531$r8$lambda$dGFoaS0jxh1gKM8vN1N0xK2n9w(PaintView paintView, View view) {
         RenderView renderView = paintView.renderView;
         if (renderView != null && (renderView.getCurrentBrush() instanceof Brush.Shape)) {
             paintView.renderView.clearShape();
@@ -1144,7 +1144,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         paintView.undoStore.undo();
     }
 
-    public static void m4541$r8$lambda$u9DlI6yf9KgnfSAfq24i4_Qzc(PaintView paintView, View view) {
+    public static void m4552$r8$lambda$u9DlI6yf9KgnfSAfq24i4_Qzc(PaintView paintView, View view) {
         EntityView entityView = paintView.currentEntityView;
         if (entityView instanceof TextPaintView) {
             AndroidUtilities.hideKeyboard(((TextPaintView) entityView).getFocusedView());
@@ -1156,7 +1156,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         paintView.selectEntity(null);
     }
 
-    public static void m4529$r8$lambda$R8Ui38q3MsqtWt7rypX78eyODE(PaintView paintView, View view, int i) {
+    public static void m4540$r8$lambda$R8Ui38q3MsqtWt7rypX78eyODE(PaintView paintView, View view, int i) {
         paintView.getClass();
         PaintTypeface paintTypeface = (PaintTypeface) PaintTypeface.get().get(i);
         paintView.textOptionsView.setTypeface(paintTypeface.getKey());
@@ -1164,13 +1164,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         paintView.showTypefaceMenu(false);
     }
 
-    public static void m4533$r8$lambda$eIPhcx0VA7U6ZTz5ULIuViGQxI(PaintView paintView, Integer num) {
+    public static void m4544$r8$lambda$eIPhcx0VA7U6ZTz5ULIuViGQxI(PaintView paintView, Integer num) {
         paintView.getClass();
         paintView.setNewColor(num.intValue());
         paintView.showColorList(false);
     }
 
-    public static void m4526$r8$lambda$KV4omYmCLKaQdbM8mfGFs26XIc(PaintView paintView, View view) {
+    public static void m4537$r8$lambda$KV4omYmCLKaQdbM8mfGFs26XIc(PaintView paintView, View view) {
         if (paintView.isColorListShown) {
             paintView.showColorList(false);
             return;
@@ -1269,12 +1269,12 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         paintView.colorPickerBottomSheet = null;
     }
 
-    public static void m4521$r8$lambda$8bnbpgQIcpNrDuY6Klv0Ys4ipo(PaintView paintView, int i) {
+    public static void m4532$r8$lambda$8bnbpgQIcpNrDuY6Klv0Ys4ipo(PaintView paintView, int i) {
         paintView.setCurrentSwatch(paintView.colorSwatch, true);
         PersistColorPalette.getInstance(i).setCurrentWeight(paintView.colorSwatch.brushWeight);
     }
 
-    public static void m4524$r8$lambda$ES9xyWYC0uOX1LRDjIWpITGOo8(PaintView paintView, StoryRecorder.WindowView windowView, Integer num) {
+    public static void m4535$r8$lambda$ES9xyWYC0uOX1LRDjIWpITGOo8(PaintView paintView, StoryRecorder.WindowView windowView, Integer num) {
         boolean z;
         paintView.getClass();
         int iMax = Math.max(0, Math.max(num.intValue() - windowView.getBottomPadding2(), paintView.emojiPadding - windowView.getPaddingUnderContainer()));
@@ -1502,7 +1502,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         textPaintView.setMinMaxFontSize((int) (0.5f * f), (int) (f * 2.0f), new Runnable() {
             @Override
             public final void run() {
-                PaintView.m4530$r8$lambda$VI7E7eB4xCOow7C5y4pHyXJp3A(this.f$0);
+                PaintView.m4541$r8$lambda$VI7E7eB4xCOow7C5y4pHyXJp3A(this.f$0);
             }
         });
         if (pointFStartPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
@@ -1536,7 +1536,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return textPaintView;
     }
 
-    public static void m4530$r8$lambda$VI7E7eB4xCOow7C5y4pHyXJp3A(PaintView paintView) {
+    public static void m4541$r8$lambda$VI7E7eB4xCOow7C5y4pHyXJp3A(PaintView paintView) {
         PaintWeightChooserView paintWeightChooserView = paintView.weightChooserView;
         if (paintWeightChooserView != null) {
             paintWeightChooserView.invalidate();
@@ -1980,7 +1980,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.drawTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PaintView.m4538$r8$lambda$pDzi3K0cRdyqqZAFZpx5xn1zcc(this.f$0, view);
+                PaintView.m4549$r8$lambda$pDzi3K0cRdyqqZAFZpx5xn1zcc(this.f$0, view);
             }
         });
         this.tabsLayout.addView(this.drawTab, LayoutHelper.createLinear(0, -2, 1.0f));
@@ -2022,7 +2022,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.tabsLayout.addView(this.textTab, LayoutHelper.createLinear(0, -2, 1.0f));
     }
 
-    public static void m4538$r8$lambda$pDzi3K0cRdyqqZAFZpx5xn1zcc(PaintView paintView, View view) {
+    public static void m4549$r8$lambda$pDzi3K0cRdyqqZAFZpx5xn1zcc(PaintView paintView, View view) {
         if (paintView.editingText) {
             paintView.selectEntity(null);
         } else {
@@ -2150,7 +2150,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         postDelayed(new Runnable() {
             @Override
             public final void run() {
-                PaintView.m4523$r8$lambda$CisvG___c2pZ0BvnUk9R52o8Zg(this.f$0);
+                PaintView.m4534$r8$lambda$CisvG___c2pZ0BvnUk9R52o8Zg(this.f$0);
             }
         }, 350L);
         final EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), false, this.resourcesProvider, false) {
@@ -2240,7 +2240,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         onOpenCloseStickersAlert(true);
     }
 
-    public static void m4523$r8$lambda$CisvG___c2pZ0BvnUk9R52o8Zg(PaintView paintView) {
+    public static void m4534$r8$lambda$CisvG___c2pZ0BvnUk9R52o8Zg(PaintView paintView) {
         if (paintView.facesBitmap != null) {
             paintView.detectFaces();
         }
@@ -2316,7 +2316,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 BulletinFactory.of(emojiBottomSheet.container, paintView.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.StoryLinkPremium), new Runnable() {
                     @Override
                     public final void run() {
-                        PaintView.m4542$r8$lambda$uYgGVVdkNZqPluSn4FKVqKnY5M(this.f$0);
+                        PaintView.m4553$r8$lambda$uYgGVVdkNZqPluSn4FKVqKnY5M(this.f$0);
                     }
                 })).show(true);
                 return Boolean.FALSE;
@@ -2348,7 +2348,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public static void m4542$r8$lambda$uYgGVVdkNZqPluSn4FKVqKnY5M(PaintView paintView) {
+    public static void m4553$r8$lambda$uYgGVVdkNZqPluSn4FKVqKnY5M(PaintView paintView) {
         paintView.getClass();
         new PremiumFeatureBottomSheet(new BaseFragment() {
             @Override
@@ -2478,7 +2478,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            PaintView.AnonymousClass24.m4546$r8$lambda$TJAqtHJ3gUHTAs7IV4QJfxXHk(messageMedia, tL_mediaAreaGeoPoint2);
+                            PaintView.AnonymousClass24.m4557$r8$lambda$TJAqtHJ3gUHTAs7IV4QJfxXHk(messageMedia, tL_mediaAreaGeoPoint2);
                         }
                     });
                     obj = tL_mediaAreaGeoPoint2;
@@ -2493,7 +2493,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.val$onLocationSelected.run(messageMedia, obj2);
         }
 
-        public static void m4546$r8$lambda$TJAqtHJ3gUHTAs7IV4QJfxXHk(TLRPC.MessageMedia messageMedia, TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint) {
+        public static void m4557$r8$lambda$TJAqtHJ3gUHTAs7IV4QJfxXHk(TLRPC.MessageMedia messageMedia, TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint) {
             try {
                 List<Address> fromLocationName = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocationName(messageMedia.title, 1);
                 if (fromLocationName.size() <= 0) {
@@ -4852,7 +4852,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             this.toolsTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    PaintView.m4518$r8$lambda$DIbbpaapYWjmsZJzBVLg_fcuw0(this.f$0, z, dynamicAnimation, z2, f, f2);
+                    PaintView.m4529$r8$lambda$DIbbpaapYWjmsZJzBVLg_fcuw0(this.f$0, z, dynamicAnimation, z2, f, f2);
                 }
             });
             this.toolsTransformAnimation.start();
@@ -4891,7 +4891,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public static void m4518$r8$lambda$DIbbpaapYWjmsZJzBVLg_fcuw0(PaintView paintView, boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
+    public static void m4529$r8$lambda$DIbbpaapYWjmsZJzBVLg_fcuw0(PaintView paintView, boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
         if (dynamicAnimation == paintView.toolsTransformAnimation) {
             paintView.toolsTransformAnimation = null;
             if (z) {
@@ -4925,7 +4925,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PaintView.m4536$r8$lambda$mteQzzDC7tzgEXQpoSvrxQWvJ8(this.f$0, num, i, valueAnimator);
+                        PaintView.m4547$r8$lambda$mteQzzDC7tzgEXQpoSvrxQWvJ8(this.f$0, num, i, valueAnimator);
                     }
                 });
                 duration.start();
@@ -4953,7 +4953,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public static void m4536$r8$lambda$mteQzzDC7tzgEXQpoSvrxQWvJ8(PaintView paintView, Integer num, int i, ValueAnimator valueAnimator) {
+    public static void m4547$r8$lambda$mteQzzDC7tzgEXQpoSvrxQWvJ8(PaintView paintView, Integer num, int i, ValueAnimator valueAnimator) {
         paintView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         paintView.colorSwatch.color = ColorUtils.blendARGB(num.intValue(), i, fFloatValue);
@@ -5354,7 +5354,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.m4525$r8$lambda$GNhtBFoirVO3CDXOZEO4Gvpbno(this.f$0, entityView, view);
+                    PaintView.m4536$r8$lambda$GNhtBFoirVO3CDXOZEO4Gvpbno(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textView, LayoutHelper.createLinear(-2, 44));
@@ -5375,7 +5375,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PaintView.m4528$r8$lambda$Mxl6eGfXO5oQa53MEAk7jFfRik(this.f$0, entityView, view);
+                        PaintView.m4539$r8$lambda$Mxl6eGfXO5oQa53MEAk7jFfRik(this.f$0, entityView, view);
                     }
                 });
             } else {
@@ -5394,7 +5394,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textViewCreateActionLayoutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.m4522$r8$lambda$CbOM6_4zBiAYvWEzAVUCZ8fdlA(this.f$0, entityView, view);
+                    PaintView.m4533$r8$lambda$CbOM6_4zBiAYvWEzAVUCZ8fdlA(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textViewCreateActionLayoutButton, LayoutHelper.createLinear(-2, 44));
@@ -5413,7 +5413,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textViewCreateActionLayoutButton3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.m4534$r8$lambda$fgGfZ_AtsetQxwR400Zd5yg9LU(this.f$0, entityView, view);
+                    PaintView.m4545$r8$lambda$fgGfZ_AtsetQxwR400Zd5yg9LU(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textViewCreateActionLayoutButton3, LayoutHelper.createLinear(-2, 44));
@@ -5467,7 +5467,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             textView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.m4532$r8$lambda$dtbLMoNsyc5VolIiUkbd4V6moE(this.f$0, entityView, view);
+                    PaintView.m4543$r8$lambda$dtbLMoNsyc5VolIiUkbd4V6moE(this.f$0, entityView, view);
                 }
             });
             linearLayout.addView(textView4, LayoutHelper.createLinear(-2, 44));
@@ -5493,7 +5493,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         linearLayout.setLayoutParams(layoutParams);
     }
 
-    public static void m4525$r8$lambda$GNhtBFoirVO3CDXOZEO4Gvpbno(PaintView paintView, EntityView entityView, View view) {
+    public static void m4536$r8$lambda$GNhtBFoirVO3CDXOZEO4Gvpbno(PaintView paintView, EntityView entityView, View view) {
         paintView.getClass();
         if (entityView instanceof RoundView) {
             paintView.onTryDeleteRound();
@@ -5507,7 +5507,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         paintView.popupWindow.dismiss(true);
     }
 
-    public static void m4528$r8$lambda$Mxl6eGfXO5oQa53MEAk7jFfRik(PaintView paintView, EntityView entityView, View view) {
+    public static void m4539$r8$lambda$Mxl6eGfXO5oQa53MEAk7jFfRik(PaintView paintView, EntityView entityView, View view) {
         paintView.getClass();
         try {
             ((TextPaintView) entityView).getEditText().onTextContextMenuItem(16908337);
@@ -5531,7 +5531,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         paintView.popupWindow.dismiss(true);
     }
 
-    public static void m4522$r8$lambda$CbOM6_4zBiAYvWEzAVUCZ8fdlA(final PaintView paintView, final EntityView entityView, View view) {
+    public static void m4533$r8$lambda$CbOM6_4zBiAYvWEzAVUCZ8fdlA(final PaintView paintView, final EntityView entityView, View view) {
         paintView.selectEntity(null);
         paintView.showLocationAlert((LocationView) entityView, new Utilities.Callback2() {
             @Override
@@ -5562,7 +5562,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         paintView.popupWindow.dismiss(true);
     }
 
-    public static void m4534$r8$lambda$fgGfZ_AtsetQxwR400Zd5yg9LU(PaintView paintView, EntityView entityView, View view) {
+    public static void m4545$r8$lambda$fgGfZ_AtsetQxwR400Zd5yg9LU(PaintView paintView, EntityView entityView, View view) {
         paintView.getClass();
         if (entityView instanceof StickerView) {
             ((StickerView) entityView).mirror(true);
@@ -5603,7 +5603,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         paintView.popupWindow.dismiss(true);
     }
 
-    public static void m4532$r8$lambda$dtbLMoNsyc5VolIiUkbd4V6moE(PaintView paintView, EntityView entityView, View view) {
+    public static void m4543$r8$lambda$dtbLMoNsyc5VolIiUkbd4V6moE(PaintView paintView, EntityView entityView, View view) {
         paintView.duplicateEntity(entityView);
         ActionBarPopupWindow actionBarPopupWindow = paintView.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
@@ -6403,7 +6403,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            PaintView.m4544$r8$lambda$yo_j9Gre4WHKMtEu5_BKfHXYlc(this.f$0, valueAnimator);
+                            PaintView.m4555$r8$lambda$yo_j9Gre4WHKMtEu5_BKfHXYlc(this.f$0, valueAnimator);
                         }
                     });
                     valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -6439,7 +6439,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         updatePlusEmojiKeyboardButton();
     }
 
-    public static void m4544$r8$lambda$yo_j9Gre4WHKMtEu5_BKfHXYlc(PaintView paintView, ValueAnimator valueAnimator) {
+    public static void m4555$r8$lambda$yo_j9Gre4WHKMtEu5_BKfHXYlc(PaintView paintView, ValueAnimator valueAnimator) {
         paintView.getClass();
         paintView.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }

@@ -260,7 +260,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessagePrivateSeenView.m2449$r8$lambda$1onCj4pvO6L8Hb9bbMPAmbQKA4(round, z, i, bottomSheet, runnable2, context, resourcesProvider, view);
+                MessagePrivateSeenView.m2459$r8$lambda$1onCj4pvO6L8Hb9bbMPAmbQKA4(round, z, i, bottomSheet, runnable2, context, resourcesProvider, view);
             }
         });
         if (!zPremiumFeaturesBlocked) {
@@ -311,7 +311,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         bottomSheet.show();
     }
 
-    public static void m2449$r8$lambda$1onCj4pvO6L8Hb9bbMPAmbQKA4(final ButtonWithCounterView buttonWithCounterView, boolean z, int i, final BottomSheet bottomSheet, final Runnable runnable, final Context context, final Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m2459$r8$lambda$1onCj4pvO6L8Hb9bbMPAmbQKA4(final ButtonWithCounterView buttonWithCounterView, boolean z, int i, final BottomSheet bottomSheet, final Runnable runnable, final Context context, final Theme.ResourcesProvider resourcesProvider, View view) {
         buttonWithCounterView.setLoading(true);
         if (z) {
             TL_account.setPrivacy setprivacy = new TL_account.setPrivacy();
@@ -323,7 +323,7 @@ public class MessagePrivateSeenView extends FrameLayout {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            MessagePrivateSeenView.m2450$r8$lambda$guwLb45BisSIq2eY_xOdk0X5nY(tL_error, buttonWithCounterView, bottomSheet, runnable);
+                            MessagePrivateSeenView.m2460$r8$lambda$guwLb45BisSIq2eY_xOdk0X5nY(tL_error, buttonWithCounterView, bottomSheet, runnable);
                         }
                     });
                 }
@@ -343,14 +343,14 @@ public class MessagePrivateSeenView extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagePrivateSeenView.m2452$r8$lambda$mFKiuqa7A9qEAjUuAbSEUUzIag(tL_error, context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable);
+                        MessagePrivateSeenView.m2462$r8$lambda$mFKiuqa7A9qEAjUuAbSEUUzIag(tL_error, context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable);
                     }
                 });
             }
         });
     }
 
-    public static void m2450$r8$lambda$guwLb45BisSIq2eY_xOdk0X5nY(TLRPC.TL_error tL_error, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
+    public static void m2460$r8$lambda$guwLb45BisSIq2eY_xOdk0X5nY(TLRPC.TL_error tL_error, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
         if (tL_error != null) {
             BulletinFactory.global().showForError(tL_error);
             return;
@@ -363,7 +363,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         }
     }
 
-    public static void m2452$r8$lambda$mFKiuqa7A9qEAjUuAbSEUUzIag(TLRPC.TL_error tL_error, Context context, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
+    public static void m2462$r8$lambda$mFKiuqa7A9qEAjUuAbSEUUzIag(TLRPC.TL_error tL_error, Context context, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
         if (tL_error != null) {
             BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider).showForError(tL_error);
             return;

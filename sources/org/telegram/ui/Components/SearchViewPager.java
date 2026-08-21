@@ -645,7 +645,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             ItemOptions itemOptionsAdd = itemOptionsMakeOptions.add(i, string, new Runnable() {
                 @Override
                 public final void run() {
-                    SearchViewPager.AnonymousClass1.m2729$r8$lambda$OtQBEU3jze9FqRLUauYb7kjWcs(this.f$0, dialogsActivity, context, itemOptionsMakeOptions);
+                    SearchViewPager.AnonymousClass1.m2738$r8$lambda$OtQBEU3jze9FqRLUauYb7kjWcs(this.f$0, dialogsActivity, context, itemOptionsMakeOptions);
                 }
             });
             int i2 = R.drawable.msg_block2;
@@ -654,7 +654,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             ItemOptions itemOptionsAddGap2 = itemOptionsAdd.add(i2, string2, new Runnable() {
                 @Override
                 public final void run() {
-                    SearchViewPager.AnonymousClass1.m2728$r8$lambda$6dIxMrummqxQKLRqedUM1kRV4(this.f$0, dialogsActivity2, tL_sponsoredPeer, itemOptionsMakeOptions);
+                    SearchViewPager.AnonymousClass1.m2737$r8$lambda$6dIxMrummqxQKLRqedUM1kRV4(this.f$0, dialogsActivity2, tL_sponsoredPeer, itemOptionsMakeOptions);
                 }
             }).addGap();
             int i3 = R.drawable.msg_cancel;
@@ -663,28 +663,28 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             itemOptionsAddGap2.add(i3, string3, new Runnable() {
                 @Override
                 public final void run() {
-                    SearchViewPager.AnonymousClass1.m2733$r8$lambda$llEFeBc6Rc4zl4N_yN_yeEHZO0(this.f$0, dialogsActivity3, itemOptionsMakeOptions);
+                    SearchViewPager.AnonymousClass1.m2742$r8$lambda$llEFeBc6Rc4zl4N_yN_yeEHZO0(this.f$0, dialogsActivity3, itemOptionsMakeOptions);
                 }
             }).setGravity(LocaleController.isRTL ? 3 : 5).setOnTopOfScrim().setDrawScrim(false).show();
         }
 
-        public static void m2729$r8$lambda$OtQBEU3jze9FqRLUauYb7kjWcs(final AnonymousClass1 anonymousClass1, final DialogsActivity dialogsActivity, Context context, ItemOptions itemOptions) {
+        public static void m2738$r8$lambda$OtQBEU3jze9FqRLUauYb7kjWcs(final AnonymousClass1 anonymousClass1, final DialogsActivity dialogsActivity, Context context, ItemOptions itemOptions) {
             anonymousClass1.getClass();
             dialogsActivity.showDialog(new SearchAdsInfoBottomSheet(context, dialogsActivity.getResourceProvider(), new Runnable() {
                 @Override
                 public final void run() {
-                    SearchViewPager.AnonymousClass1.m2730$r8$lambda$Wc78u_lYsxlhySx3Qc0ptMuu4(this.f$0, dialogsActivity);
+                    SearchViewPager.AnonymousClass1.m2739$r8$lambda$Wc78u_lYsxlhySx3Qc0ptMuu4(this.f$0, dialogsActivity);
                 }
             }));
             itemOptions.dismiss();
         }
 
-        public static void m2730$r8$lambda$Wc78u_lYsxlhySx3Qc0ptMuu4(AnonymousClass1 anonymousClass1, DialogsActivity dialogsActivity) {
+        public static void m2739$r8$lambda$Wc78u_lYsxlhySx3Qc0ptMuu4(AnonymousClass1 anonymousClass1, DialogsActivity dialogsActivity) {
             anonymousClass1.removeAllAds();
             BulletinFactory.of(dialogsActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
         }
 
-        public static void m2728$r8$lambda$6dIxMrummqxQKLRqedUM1kRV4(final AnonymousClass1 anonymousClass1, DialogsActivity dialogsActivity, final TLRPC.TL_sponsoredPeer tL_sponsoredPeer, ItemOptions itemOptions) {
+        public static void m2737$r8$lambda$6dIxMrummqxQKLRqedUM1kRV4(final AnonymousClass1 anonymousClass1, DialogsActivity dialogsActivity, final TLRPC.TL_sponsoredPeer tL_sponsoredPeer, ItemOptions itemOptions) {
             anonymousClass1.getClass();
             ReportBottomSheet.openSponsoredPeer(dialogsActivity, tL_sponsoredPeer.random_id, dialogsActivity.getResourceProvider(), new Runnable() {
                 @Override
@@ -695,7 +695,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             itemOptions.dismiss();
         }
 
-        public static void m2733$r8$lambda$llEFeBc6Rc4zl4N_yN_yeEHZO0(AnonymousClass1 anonymousClass1, DialogsActivity dialogsActivity, ItemOptions itemOptions) {
+        public static void m2742$r8$lambda$llEFeBc6Rc4zl4N_yN_yeEHZO0(AnonymousClass1 anonymousClass1, DialogsActivity dialogsActivity, ItemOptions itemOptions) {
             if (UserConfig.getInstance(SearchViewPager.this.currentAccount).isPremium()) {
                 dialogsActivity.getMessagesController().disableAds(true);
                 anonymousClass1.removeAllAds();
@@ -1326,7 +1326,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                SearchViewPager.m2727$r8$lambda$q4YyeqWeEQzvVLmRexiLYcLlAY(this.f$0);
+                SearchViewPager.m2736$r8$lambda$q4YyeqWeEQzvVLmRexiLYcLlAY(this.f$0);
             }
 
             @Override
@@ -1336,7 +1336,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         }, Theme.key_actionBarActionModeDefaultIcon));
     }
 
-    public static void m2727$r8$lambda$q4YyeqWeEQzvVLmRexiLYcLlAY(SearchViewPager searchViewPager) {
+    public static void m2736$r8$lambda$q4YyeqWeEQzvVLmRexiLYcLlAY(SearchViewPager searchViewPager) {
         NumberTextView numberTextView = searchViewPager.selectedMessagesCountTextView;
         if (numberTextView != null) {
             numberTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));

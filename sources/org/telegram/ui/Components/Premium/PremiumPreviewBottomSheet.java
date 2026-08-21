@@ -170,7 +170,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                PremiumPreviewBottomSheet.m2591$r8$lambda$2hyFlf_SbdGeOGC6pY1aVlXWY(this.f$0, i, baseFragment, view, i2);
+                PremiumPreviewBottomSheet.m2601$r8$lambda$2hyFlf_SbdGeOGC6pY1aVlXWY(this.f$0, i, baseFragment, view, i2);
             }
         });
         MediaDataController.getInstance(i).preloadPremiumPreviewStickers();
@@ -183,7 +183,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.containerView.addView(frameLayout, LayoutHelper.createFrame(-1, 140, 87));
     }
 
-    public static void m2591$r8$lambda$2hyFlf_SbdGeOGC6pY1aVlXWY(PremiumPreviewBottomSheet premiumPreviewBottomSheet, int i, BaseFragment baseFragment, View view, int i2) {
+    public static void m2601$r8$lambda$2hyFlf_SbdGeOGC6pY1aVlXWY(PremiumPreviewBottomSheet premiumPreviewBottomSheet, int i, BaseFragment baseFragment, View view, int i2) {
         premiumPreviewBottomSheet.getClass();
         if (view instanceof PremiumFeatureCell) {
             PremiumFeatureCell premiumFeatureCell = (PremiumFeatureCell) view;
@@ -312,7 +312,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PremiumPreviewBottomSheet.m2594$r8$lambda$mWstZlK46PmiR1u7bv64EK1kVQ(this.f$0, valueAnimator);
+                        PremiumPreviewBottomSheet.m2604$r8$lambda$mWstZlK46PmiR1u7bv64EK1kVQ(this.f$0, valueAnimator);
                     }
                 });
                 valueAnimatorOfFloat.setInterpolator(cubicBezierInterpolator);
@@ -327,7 +327,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         }
     }
 
-    public static void m2594$r8$lambda$mWstZlK46PmiR1u7bv64EK1kVQ(PremiumPreviewBottomSheet premiumPreviewBottomSheet, ValueAnimator valueAnimator) {
+    public static void m2604$r8$lambda$mWstZlK46PmiR1u7bv64EK1kVQ(PremiumPreviewBottomSheet premiumPreviewBottomSheet, ValueAnimator valueAnimator) {
         premiumPreviewBottomSheet.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         premiumPreviewBottomSheet.titleViewContainer.getLayoutParams().height = AndroidUtilities.lerp(premiumPreviewBottomSheet.titleView[0].getHeight(), premiumPreviewBottomSheet.titleView[1].getHeight(), fFloatValue);
@@ -985,7 +985,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.enterAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PremiumPreviewBottomSheet.m2595$r8$lambda$yR7iNcJz5laaLLhRw2mPiKsxu8(this.f$0, valueAnimator);
+                PremiumPreviewBottomSheet.m2605$r8$lambda$yR7iNcJz5laaLLhRw2mPiKsxu8(this.f$0, valueAnimator);
             }
         });
         this.enterAnimator.addListener(new AnonymousClass4(rightDrawable));
@@ -995,7 +995,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         return super.onCustomOpenAnimation();
     }
 
-    public static void m2595$r8$lambda$yR7iNcJz5laaLLhRw2mPiKsxu8(PremiumPreviewBottomSheet premiumPreviewBottomSheet, ValueAnimator valueAnimator) {
+    public static void m2605$r8$lambda$yR7iNcJz5laaLLhRw2mPiKsxu8(PremiumPreviewBottomSheet premiumPreviewBottomSheet, ValueAnimator valueAnimator) {
         premiumPreviewBottomSheet.getClass();
         premiumPreviewBottomSheet.enterTransitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         premiumPreviewBottomSheet.container.invalidate();

@@ -89,12 +89,12 @@ public class BackSpaceButtonView extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BackSpaceButtonView.m2691$r8$lambda$RJgduBNT1ld1wSusTo8wjlfmxM(this.f$0, i);
+                BackSpaceButtonView.m2700$r8$lambda$RJgduBNT1ld1wSusTo8wjlfmxM(this.f$0, i);
             }
         }, i);
     }
 
-    public static void m2691$r8$lambda$RJgduBNT1ld1wSusTo8wjlfmxM(BackSpaceButtonView backSpaceButtonView, int i) {
+    public static void m2700$r8$lambda$RJgduBNT1ld1wSusTo8wjlfmxM(BackSpaceButtonView backSpaceButtonView, int i) {
         if (backSpaceButtonView.backspacePressed) {
             Utilities.Callback callback = backSpaceButtonView.onBackspace;
             if (callback != null) {

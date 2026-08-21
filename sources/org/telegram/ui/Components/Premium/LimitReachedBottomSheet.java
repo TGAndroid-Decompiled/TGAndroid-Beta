@@ -383,7 +383,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             this.containerView.post(new Runnable() {
                 @Override
                 public final void run() {
-                    LimitReachedBottomSheet.m2585$r8$lambda$gCE9Xu_7dKKCUmbrZk20hMPRhU(this.f$0);
+                    LimitReachedBottomSheet.m2595$r8$lambda$gCE9Xu_7dKKCUmbrZk20hMPRhU(this.f$0);
                 }
             });
         }
@@ -402,7 +402,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public static void m2585$r8$lambda$gCE9Xu_7dKKCUmbrZk20hMPRhU(LimitReachedBottomSheet limitReachedBottomSheet) {
+    public static void m2595$r8$lambda$gCE9Xu_7dKKCUmbrZk20hMPRhU(LimitReachedBottomSheet limitReachedBottomSheet) {
         if (ChatObject.hasAdminRights(limitReachedBottomSheet.getChat())) {
             if (limitReachedBottomSheet.premiumButtonView.getParent() != null) {
                 ((ViewGroup) limitReachedBottomSheet.premiumButtonView.getParent()).removeView(limitReachedBottomSheet.premiumButtonView);
@@ -475,7 +475,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view2, int i2) {
-                return LimitReachedBottomSheet.m2582$r8$lambda$OvtIN_h6Km8FuZvyq8gjxWurl0(this.f$0, view2, i2);
+                return LimitReachedBottomSheet.m2592$r8$lambda$OvtIN_h6Km8FuZvyq8gjxWurl0(this.f$0, view2, i2);
             }
         });
         this.premiumButtonView.buttonLayout.setOnClickListener(new View.OnClickListener() {
@@ -537,7 +537,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public static boolean m2582$r8$lambda$OvtIN_h6Km8FuZvyq8gjxWurl0(LimitReachedBottomSheet limitReachedBottomSheet, View view, int i) {
+    public static boolean m2592$r8$lambda$OvtIN_h6Km8FuZvyq8gjxWurl0(LimitReachedBottomSheet limitReachedBottomSheet, View view, int i) {
         limitReachedBottomSheet.recyclerListView.getOnItemClickListener().onItemClick(view, i);
         if (limitReachedBottomSheet.type != 19) {
             try {
@@ -647,7 +647,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 builder2.setPositiveButton(LocaleController.getString(R.string.Replace), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        LimitReachedBottomSheet.m2581$r8$lambda$1fClF4kl1Uj3KAIbmX_4RXwBY(this.f$0, alertDialog, i2);
+                        LimitReachedBottomSheet.m2591$r8$lambda$1fClF4kl1Uj3KAIbmX_4RXwBY(this.f$0, alertDialog, i2);
                     }
                 });
                 builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -704,7 +704,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         limitReachedBottomSheet.limitPreviewView.invalidate();
     }
 
-    public static void m2581$r8$lambda$1fClF4kl1Uj3KAIbmX_4RXwBY(LimitReachedBottomSheet limitReachedBottomSheet, AlertDialog alertDialog, int i) {
+    public static void m2591$r8$lambda$1fClF4kl1Uj3KAIbmX_4RXwBY(LimitReachedBottomSheet limitReachedBottomSheet, AlertDialog alertDialog, int i) {
         limitReachedBottomSheet.getClass();
         alertDialog.dismiss();
         limitReachedBottomSheet.boostChannel();
@@ -798,14 +798,14 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             bulletinCreateSimpleBulletin = BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedNonPremium, forcedFirstName)), LocaleController.getString(R.string.UserBlockedNonPremiumButton), new Runnable() {
                 @Override
                 public final void run() {
-                    LimitReachedBottomSheet.m2586$r8$lambda$sHa0hheeddeZaiureo5eCN9LUw(this.f$0);
+                    LimitReachedBottomSheet.m2596$r8$lambda$sHa0hheeddeZaiureo5eCN9LUw(this.f$0);
                 }
             });
         }
         bulletinCreateSimpleBulletin.show();
     }
 
-    public static void m2586$r8$lambda$sHa0hheeddeZaiureo5eCN9LUw(LimitReachedBottomSheet limitReachedBottomSheet) {
+    public static void m2596$r8$lambda$sHa0hheeddeZaiureo5eCN9LUw(LimitReachedBottomSheet limitReachedBottomSheet) {
         limitReachedBottomSheet.getClass();
         if (LaunchActivity.getLastFragment() == null) {
             return;
@@ -1114,7 +1114,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         builder.setPositiveButton(LocaleController.getString(R.string.VoipGroupLeave), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                LimitReachedBottomSheet.m2580$r8$lambda$_HIog_mZHdTCsJcIwVJXnxLh0(this.f$0, arrayList, user, alertDialog, i);
+                LimitReachedBottomSheet.m2590$r8$lambda$_HIog_mZHdTCsJcIwVJXnxLh0(this.f$0, arrayList, user, alertDialog, i);
             }
         });
         AlertDialog alertDialogCreate = builder.create();
@@ -1125,7 +1125,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public static void m2580$r8$lambda$_HIog_mZHdTCsJcIwVJXnxLh0(LimitReachedBottomSheet limitReachedBottomSheet, ArrayList arrayList, TLRPC.User user, AlertDialog alertDialog, int i) {
+    public static void m2590$r8$lambda$_HIog_mZHdTCsJcIwVJXnxLh0(LimitReachedBottomSheet limitReachedBottomSheet, ArrayList arrayList, TLRPC.User user, AlertDialog alertDialog, int i) {
         limitReachedBottomSheet.dismiss();
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i2);

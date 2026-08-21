@@ -151,7 +151,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                InviteMembersBottomSheet.m2390$r8$lambda$60h1CqHYVHgQNlddRTrxNU3fw(this.f$0, j, baseFragment, longSparseArray, context, view, i3);
+                InviteMembersBottomSheet.m2400$r8$lambda$60h1CqHYVHgQNlddRTrxNU3fw(this.f$0, j, baseFragment, longSparseArray, context, view, i3);
             }
         });
         this.listView.setItemAnimator(new ItemAnimator());
@@ -191,7 +191,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).rightMargin = AndroidUtilities.dp(4.0f);
     }
 
-    public static void m2390$r8$lambda$60h1CqHYVHgQNlddRTrxNU3fw(InviteMembersBottomSheet inviteMembersBottomSheet, long j, BaseFragment baseFragment, LongSparseArray longSparseArray, Context context, View view, int i) {
+    public static void m2400$r8$lambda$60h1CqHYVHgQNlddRTrxNU3fw(InviteMembersBottomSheet inviteMembersBottomSheet, long j, BaseFragment baseFragment, LongSparseArray longSparseArray, Context context, View view, int i) {
         String str;
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
         long j2;
@@ -712,7 +712,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
                 @Override
                 public final void onDataSetChanged(int i) {
-                    InviteMembersBottomSheet.SearchAdapter.m2392$r8$lambda$3TSneWtgzbwLU99AoxTzJMSWh0(this.f$0, i);
+                    InviteMembersBottomSheet.SearchAdapter.m2402$r8$lambda$3TSneWtgzbwLU99AoxTzJMSWh0(this.f$0, i);
                 }
 
                 @Override
@@ -722,7 +722,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             });
         }
 
-        public static void m2392$r8$lambda$3TSneWtgzbwLU99AoxTzJMSWh0(SearchAdapter searchAdapter, int i) {
+        public static void m2402$r8$lambda$3TSneWtgzbwLU99AoxTzJMSWh0(SearchAdapter searchAdapter, int i) {
             InviteMembersBottomSheet.this.showItemsAnimated(searchAdapter.currentItemsCount - 1);
             if (searchAdapter.searchRunnable == null && !searchAdapter.searchAdapterHelper.isSearchInProgress() && searchAdapter.getItemCount() <= 2) {
                 InviteMembersBottomSheet.this.emptyView.showProgress(false, true);
@@ -886,12 +886,12 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    InviteMembersBottomSheet.SearchAdapter.m2394$r8$lambda$o2HU2KD49Ho7yJnTX4xVsD2kVw(this.f$0, arrayList, arrayList2);
+                    InviteMembersBottomSheet.SearchAdapter.m2404$r8$lambda$o2HU2KD49Ho7yJnTX4xVsD2kVw(this.f$0, arrayList, arrayList2);
                 }
             });
         }
 
-        public static void m2394$r8$lambda$o2HU2KD49Ho7yJnTX4xVsD2kVw(SearchAdapter searchAdapter, ArrayList arrayList, ArrayList arrayList2) {
+        public static void m2404$r8$lambda$o2HU2KD49Ho7yJnTX4xVsD2kVw(SearchAdapter searchAdapter, ArrayList arrayList, ArrayList arrayList2) {
             searchAdapter.searchRunnable = null;
             searchAdapter.searchResult = arrayList;
             searchAdapter.searchResultNames = arrayList2;
@@ -946,12 +946,12 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    InviteMembersBottomSheet.SearchAdapter.m2393$r8$lambda$kJ7ixIhHh2e4JaQ_cXNttJmOA(this.f$0, str);
+                    InviteMembersBottomSheet.SearchAdapter.m2403$r8$lambda$kJ7ixIhHh2e4JaQ_cXNttJmOA(this.f$0, str);
                 }
             });
         }
 
-        public static void m2393$r8$lambda$kJ7ixIhHh2e4JaQ_cXNttJmOA(final SearchAdapter searchAdapter, final String str) {
+        public static void m2403$r8$lambda$kJ7ixIhHh2e4JaQ_cXNttJmOA(final SearchAdapter searchAdapter, final String str) {
             searchAdapter.searchAdapterHelper.queryServerSearch(str, true, InviteMembersBottomSheet.this.dialogsDelegate != null, true, InviteMembersBottomSheet.this.dialogsDelegate != null, false, 0L, false, 0, 0);
             DispatchQueue dispatchQueue = Utilities.searchQueue;
             Runnable runnable = new Runnable() {

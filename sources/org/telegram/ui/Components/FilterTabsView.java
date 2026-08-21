@@ -1250,7 +1250,7 @@ public abstract class FilterTabsView extends FrameLayout {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            FilterTabsView.AnonymousClass4.m2331$r8$lambda$DghHiTLqtaEBdiK1Uy8XexT6xo(tabView, valueAnimator2);
+                            FilterTabsView.AnonymousClass4.m2341$r8$lambda$DghHiTLqtaEBdiK1Uy8XexT6xo(tabView, valueAnimator2);
                         }
                     });
                     valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -1266,7 +1266,7 @@ public abstract class FilterTabsView extends FrameLayout {
             }
         }
 
-        public static void m2331$r8$lambda$DghHiTLqtaEBdiK1Uy8XexT6xo(TabView tabView, ValueAnimator valueAnimator) {
+        public static void m2341$r8$lambda$DghHiTLqtaEBdiK1Uy8XexT6xo(TabView tabView, ValueAnimator valueAnimator) {
             tabView.changeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             tabView.invalidate();
         }

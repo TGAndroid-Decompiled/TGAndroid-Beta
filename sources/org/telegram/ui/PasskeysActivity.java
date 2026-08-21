@@ -160,12 +160,12 @@ public class PasskeysActivity extends BaseFragment {
         ConnectionsManager.getInstance(passkeysActivity.currentAccount).sendRequestTyped(deletepasskey, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PasskeysActivity.m3594$r8$lambda$xK1B8Km6VAS6_KQOOZZ6bpX61I(this.f$0, i, passkey, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                PasskeysActivity.m3602$r8$lambda$xK1B8Km6VAS6_KQOOZZ6bpX61I(this.f$0, i, passkey, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m3594$r8$lambda$xK1B8Km6VAS6_KQOOZZ6bpX61I(PasskeysActivity passkeysActivity, int i, TL_account.Passkey passkey, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void m3602$r8$lambda$xK1B8Km6VAS6_KQOOZZ6bpX61I(PasskeysActivity passkeysActivity, int i, TL_account.Passkey passkey, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         passkeysActivity.getClass();
         if (bool instanceof TLRPC.TL_boolFalse) {
             BulletinFactory.of(passkeysActivity).showForError("FALSE");
@@ -383,7 +383,7 @@ public class PasskeysActivity extends BaseFragment {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PasskeysActivity.m3592$r8$lambda$Co5KfSIWVwqLpajjmCJiQjZ_j8(round, context, i, bottomSheetCreate, view);
+                PasskeysActivity.m3600$r8$lambda$Co5KfSIWVwqLpajjmCJiQjZ_j8(round, context, i, bottomSheetCreate, view);
             }
         });
         if (z) {
@@ -393,7 +393,7 @@ public class PasskeysActivity extends BaseFragment {
         bottomSheetCreate.show();
     }
 
-    public static void m3592$r8$lambda$Co5KfSIWVwqLpajjmCJiQjZ_j8(final ButtonWithCounterView buttonWithCounterView, final Context context, final int i, final BottomSheet bottomSheet, View view) {
+    public static void m3600$r8$lambda$Co5KfSIWVwqLpajjmCJiQjZ_j8(final ButtonWithCounterView buttonWithCounterView, final Context context, final int i, final BottomSheet bottomSheet, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }

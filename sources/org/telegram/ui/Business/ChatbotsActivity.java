@@ -377,7 +377,7 @@ public class ChatbotsActivity extends BaseFragment {
             new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessBotPermissionsWarning)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsGiftsWarningText, UserObject.getPublicUsername(this.selectedBot)))).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    ChatbotsActivity.m1383$r8$lambda$icMjgQv1AwSgl29gADhWjQ9Os4(this.f$0, runnable, alertDialog, i2);
+                    ChatbotsActivity.m1389$r8$lambda$icMjgQv1AwSgl29gADhWjQ9Os4(this.f$0, runnable, alertDialog, i2);
                 }
             }).makeRed(-1).show();
         } else {
@@ -390,7 +390,7 @@ public class ChatbotsActivity extends BaseFragment {
         runnable.run();
     }
 
-    public static void m1383$r8$lambda$icMjgQv1AwSgl29gADhWjQ9Os4(ChatbotsActivity chatbotsActivity, Runnable runnable, AlertDialog alertDialog, int i) {
+    public static void m1389$r8$lambda$icMjgQv1AwSgl29gADhWjQ9Os4(ChatbotsActivity chatbotsActivity, Runnable runnable, AlertDialog alertDialog, int i) {
         chatbotsActivity.shownGiftsPermissionsAlert = true;
         runnable.run();
     }
@@ -464,7 +464,7 @@ public class ChatbotsActivity extends BaseFragment {
             arrayList.add(uItemAsExpandableSwitch.setChecked(tL_businessBotRights2.reply && tL_businessBotRights2.read_messages && tL_businessBotRights2.delete_received_messages && tL_businessBotRights2.delete_sent_messages).setCollapsed(!this.expandedMessagesSection).setClickCallback(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatbotsActivity.m1375$r8$lambda$Czm4yBZwfeGwNJcyRo_0DVwkdY(this.f$0, view);
+                    ChatbotsActivity.m1381$r8$lambda$Czm4yBZwfeGwNJcyRo_0DVwkdY(this.f$0, view);
                 }
             }));
             if (this.expandedMessagesSection) {
@@ -485,7 +485,7 @@ public class ChatbotsActivity extends BaseFragment {
             arrayList.add(uItemAsExpandableSwitch2.setChecked(tL_businessBotRights4.edit_name && tL_businessBotRights4.edit_bio && tL_businessBotRights4.edit_profile_photo && tL_businessBotRights4.edit_username).setCollapsed(!this.expandedProfileSection).setClickCallback(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatbotsActivity.m1380$r8$lambda$IeThuQWRCcTEYDu6KsQ4OthFu8(this.f$0, view);
+                    ChatbotsActivity.m1386$r8$lambda$IeThuQWRCcTEYDu6KsQ4OthFu8(this.f$0, view);
                 }
             }));
             if (this.expandedProfileSection) {
@@ -508,7 +508,7 @@ public class ChatbotsActivity extends BaseFragment {
             arrayList.add(uItemAsExpandableSwitch3.setChecked(z).setCollapsed(!this.expandedGiftsSection).setClickCallback(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatbotsActivity.m1385$r8$lambda$z7TfxbXrwHeQn1D5ISq6zWCPrI(this.f$0, view);
+                    ChatbotsActivity.m1391$r8$lambda$z7TfxbXrwHeQn1D5ISq6zWCPrI(this.f$0, view);
                 }
             }));
             if (this.expandedGiftsSection) {
@@ -532,7 +532,7 @@ public class ChatbotsActivity extends BaseFragment {
         }
     }
 
-    public static void m1375$r8$lambda$Czm4yBZwfeGwNJcyRo_0DVwkdY(ChatbotsActivity chatbotsActivity, View view) {
+    public static void m1381$r8$lambda$Czm4yBZwfeGwNJcyRo_0DVwkdY(ChatbotsActivity chatbotsActivity, View view) {
         TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
         if (tL_businessBotRights.reply && tL_businessBotRights.read_messages && tL_businessBotRights.delete_received_messages && tL_businessBotRights.delete_sent_messages) {
             tL_businessBotRights.delete_sent_messages = false;
@@ -549,7 +549,7 @@ public class ChatbotsActivity extends BaseFragment {
         chatbotsActivity.checkDone(true);
     }
 
-    public static void m1380$r8$lambda$IeThuQWRCcTEYDu6KsQ4OthFu8(final ChatbotsActivity chatbotsActivity, View view) {
+    public static void m1386$r8$lambda$IeThuQWRCcTEYDu6KsQ4OthFu8(final ChatbotsActivity chatbotsActivity, View view) {
         TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
         if (tL_businessBotRights.edit_name && tL_businessBotRights.edit_bio && tL_businessBotRights.edit_profile_photo && tL_businessBotRights.edit_username) {
             tL_businessBotRights.edit_username = false;
@@ -578,7 +578,7 @@ public class ChatbotsActivity extends BaseFragment {
         chatbotsActivity.checkDone(true);
     }
 
-    public static void m1385$r8$lambda$z7TfxbXrwHeQn1D5ISq6zWCPrI(final ChatbotsActivity chatbotsActivity, View view) {
+    public static void m1391$r8$lambda$z7TfxbXrwHeQn1D5ISq6zWCPrI(final ChatbotsActivity chatbotsActivity, View view) {
         TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
         if (tL_businessBotRights.view_gifts && tL_businessBotRights.sell_gifts && tL_businessBotRights.change_gift_settings && tL_businessBotRights.transfer_and_upgrade_gifts && tL_businessBotRights.transfer_stars) {
             tL_businessBotRights.transfer_stars = false;
@@ -768,7 +768,7 @@ public class ChatbotsActivity extends BaseFragment {
                 checkAlert(i2, !this.rights.sell_gifts, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatbotsActivity.m1379$r8$lambda$Eg7e2A2ngG_W4gZGHZH8sh7gSA(this.f$0, view);
+                        ChatbotsActivity.m1385$r8$lambda$Eg7e2A2ngG_W4gZGHZH8sh7gSA(this.f$0, view);
                     }
                 });
                 return;
@@ -793,14 +793,14 @@ public class ChatbotsActivity extends BaseFragment {
                 checkAlert(i2, !this.rights.transfer_stars, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatbotsActivity.m1382$r8$lambda$hsPWW5pNBSnMMWR34ctuZfiPNQ(this.f$0, view);
+                        ChatbotsActivity.m1388$r8$lambda$hsPWW5pNBSnMMWR34ctuZfiPNQ(this.f$0, view);
                     }
                 });
             } else if (i2 == PERMISSION_STORIES) {
                 checkAlert(i2, !this.rights.manage_stories, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatbotsActivity.m1376$r8$lambda$8xHhfAOEt5ykFzc3Vdm9PAEW4(this.f$0);
+                        ChatbotsActivity.m1382$r8$lambda$8xHhfAOEt5ykFzc3Vdm9PAEW4(this.f$0);
                     }
                 });
             }
@@ -827,7 +827,7 @@ public class ChatbotsActivity extends BaseFragment {
         chatbotsActivity.checkDone(true);
     }
 
-    public static void m1379$r8$lambda$Eg7e2A2ngG_W4gZGHZH8sh7gSA(ChatbotsActivity chatbotsActivity, View view) {
+    public static void m1385$r8$lambda$Eg7e2A2ngG_W4gZGHZH8sh7gSA(ChatbotsActivity chatbotsActivity, View view) {
         chatbotsActivity.getClass();
         TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
         boolean z = !tL_businessBotRights.sell_gifts;
@@ -857,7 +857,7 @@ public class ChatbotsActivity extends BaseFragment {
         chatbotsActivity.checkDone(true);
     }
 
-    public static void m1382$r8$lambda$hsPWW5pNBSnMMWR34ctuZfiPNQ(ChatbotsActivity chatbotsActivity, View view) {
+    public static void m1388$r8$lambda$hsPWW5pNBSnMMWR34ctuZfiPNQ(ChatbotsActivity chatbotsActivity, View view) {
         chatbotsActivity.getClass();
         TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
         boolean z = !tL_businessBotRights.transfer_stars;
@@ -867,7 +867,7 @@ public class ChatbotsActivity extends BaseFragment {
         chatbotsActivity.checkDone(true);
     }
 
-    public static void m1376$r8$lambda$8xHhfAOEt5ykFzc3Vdm9PAEW4(ChatbotsActivity chatbotsActivity) {
+    public static void m1382$r8$lambda$8xHhfAOEt5ykFzc3Vdm9PAEW4(ChatbotsActivity chatbotsActivity) {
         TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
         tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
         chatbotsActivity.listView.adapter.update(true);

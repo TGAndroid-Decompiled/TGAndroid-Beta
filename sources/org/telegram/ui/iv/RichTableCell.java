@@ -105,7 +105,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         richEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
             public final void onSpansChanged() {
-                RichTableCell.m5006$r8$lambda$Su1cqipSUeadHDEPTbqvFgQHo(this.f$0);
+                RichTableCell.m5017$r8$lambda$Su1cqipSUeadHDEPTbqvFgQHo(this.f$0);
             }
         });
         addView(richEditText);
@@ -239,7 +239,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         }
     }
 
-    public static void m5006$r8$lambda$Su1cqipSUeadHDEPTbqvFgQHo(RichTableCell richTableCell) {
+    public static void m5017$r8$lambda$Su1cqipSUeadHDEPTbqvFgQHo(RichTableCell richTableCell) {
         BlockRow blockRow;
         richTableCell.rememberTitleAutoBoldState();
         richTableCell.persistTitle();
@@ -1102,12 +1102,12 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         post(new Runnable() {
             @Override
             public final void run() {
-                RichTableCell.m5005$r8$lambda$OiBw7tU0oyPrRYM2QMmv9Rm2Nc(this.f$0, pagetablecell);
+                RichTableCell.m5016$r8$lambda$OiBw7tU0oyPrRYM2QMmv9Rm2Nc(this.f$0, pagetablecell);
             }
         });
     }
 
-    public static void m5005$r8$lambda$OiBw7tU0oyPrRYM2QMmv9Rm2Nc(RichTableCell richTableCell, TL_iv.pageTableCell pagetablecell) {
+    public static void m5016$r8$lambda$OiBw7tU0oyPrRYM2QMmv9Rm2Nc(RichTableCell richTableCell, TL_iv.pageTableCell pagetablecell) {
         RichTableCellHost richTableCellHostHostForAnchor = richTableCell.grid.hostForAnchor(pagetablecell);
         if (richTableCellHostHostForAnchor == null) {
             return;
@@ -1272,13 +1272,13 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
                 RichTableCell.this.post(new Runnable() {
                     @Override
                     public final void run() {
-                        RichTableCell.AnonymousClass3.m5007$r8$lambda$h4CWbDdD6LfyxuGhoQxoD0zeLU(this.f$0, richEditText, i2, selectionHelper, iChildPosForAnchor, i);
+                        RichTableCell.AnonymousClass3.m5018$r8$lambda$h4CWbDdD6LfyxuGhoQxoD0zeLU(this.f$0, richEditText, i2, selectionHelper, iChildPosForAnchor, i);
                     }
                 });
             }
         }
 
-        public static void m5007$r8$lambda$h4CWbDdD6LfyxuGhoQxoD0zeLU(AnonymousClass3 anonymousClass3, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2, int i3) {
+        public static void m5018$r8$lambda$h4CWbDdD6LfyxuGhoQxoD0zeLU(AnonymousClass3 anonymousClass3, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2, int i3) {
             anonymousClass3.getClass();
             if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd() || !articleTextSelectionHelper.selectRangeOf(RichTableCell.this, i2, i3, i)) {
                 return;

@@ -300,7 +300,7 @@ public class GroupCreateUserCell extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    GroupCreateUserCell.m1490$r8$lambda$0ODu9SijOg8zq0OeAD5ZPfbw(this.f$0, valueAnimator2);
+                    GroupCreateUserCell.m1496$r8$lambda$0ODu9SijOg8zq0OeAD5ZPfbw(this.f$0, valueAnimator2);
                 }
             });
             this.animator.addListener(new AnimatorListenerAdapter() {
@@ -320,7 +320,7 @@ public class GroupCreateUserCell extends FrameLayout {
         invalidate();
     }
 
-    public static void m1490$r8$lambda$0ODu9SijOg8zq0OeAD5ZPfbw(GroupCreateUserCell groupCreateUserCell, ValueAnimator valueAnimator) {
+    public static void m1496$r8$lambda$0ODu9SijOg8zq0OeAD5ZPfbw(GroupCreateUserCell groupCreateUserCell, ValueAnimator valueAnimator) {
         groupCreateUserCell.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float f = 0.18f * fFloatValue;

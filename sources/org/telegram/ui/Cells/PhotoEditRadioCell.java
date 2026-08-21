@@ -43,14 +43,14 @@ public class PhotoEditRadioCell extends FrameLayout {
             radioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PhotoEditRadioCell.m1493$r8$lambda$k8_GxOPRgx8gMS6SfrRCpRMl24(this.f$0, view);
+                    PhotoEditRadioCell.m1499$r8$lambda$k8_GxOPRgx8gMS6SfrRCpRMl24(this.f$0, view);
                 }
             });
         }
         addView(this.tintButtonsContainer, LayoutHelper.createFrame(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
     }
 
-    public static void m1493$r8$lambda$k8_GxOPRgx8gMS6SfrRCpRMl24(PhotoEditRadioCell photoEditRadioCell, View view) {
+    public static void m1499$r8$lambda$k8_GxOPRgx8gMS6SfrRCpRMl24(PhotoEditRadioCell photoEditRadioCell, View view) {
         photoEditRadioCell.getClass();
         RadioButton radioButton = (RadioButton) view;
         if (photoEditRadioCell.currentType == 0) {

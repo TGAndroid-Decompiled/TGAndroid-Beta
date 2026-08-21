@@ -153,7 +153,7 @@ public class QuickRepliesController {
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    QuickRepliesController.m1405$r8$lambda$Pv4a9666ftJ0dFLNQSasnLpFU(this.f$0, messagesStorage, clientUserId, runnable);
+                    QuickRepliesController.m1411$r8$lambda$Pv4a9666ftJ0dFLNQSasnLpFU(this.f$0, messagesStorage, clientUserId, runnable);
                 }
             });
             return;
@@ -191,7 +191,7 @@ public class QuickRepliesController {
         });
     }
 
-    public static void m1405$r8$lambda$Pv4a9666ftJ0dFLNQSasnLpFU(final QuickRepliesController quickRepliesController, MessagesStorage messagesStorage, long j, final Runnable runnable) throws Throwable {
+    public static void m1411$r8$lambda$Pv4a9666ftJ0dFLNQSasnLpFU(final QuickRepliesController quickRepliesController, MessagesStorage messagesStorage, long j, final Runnable runnable) throws Throwable {
         SQLiteCursor sQLiteCursor;
         SQLiteCursor sQLiteCursorQueryFinalized;
         NativeByteBuffer nativeByteBufferByteBufferValue;
@@ -224,7 +224,7 @@ public class QuickRepliesController {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                QuickRepliesController.m1411$r8$lambda$lStxPezov7qA8UtZqS20VKqBE(this.f$0, arrayList2, arrayList3, arrayList, runnable);
+                                QuickRepliesController.m1417$r8$lambda$lStxPezov7qA8UtZqS20VKqBE(this.f$0, arrayList2, arrayList3, arrayList, runnable);
                             }
                         });
                     } catch (Throwable th) {
@@ -292,12 +292,12 @@ public class QuickRepliesController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.m1411$r8$lambda$lStxPezov7qA8UtZqS20VKqBE(this.f$0, arrayList2, arrayList3, arrayList, runnable);
+                QuickRepliesController.m1417$r8$lambda$lStxPezov7qA8UtZqS20VKqBE(this.f$0, arrayList2, arrayList3, arrayList, runnable);
             }
         });
     }
 
-    public static void m1411$r8$lambda$lStxPezov7qA8UtZqS20VKqBE(QuickRepliesController quickRepliesController, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Runnable runnable) {
+    public static void m1417$r8$lambda$lStxPezov7qA8UtZqS20VKqBE(QuickRepliesController quickRepliesController, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Runnable runnable) {
         quickRepliesController.loading = false;
         MessagesController.getInstance(quickRepliesController.currentAccount).putUsers(arrayList, true);
         MessagesController.getInstance(quickRepliesController.currentAccount).putChats(arrayList2, true);
@@ -387,12 +387,12 @@ public class QuickRepliesController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.m1410$r8$lambda$l4nMbWzEG8UBpj48HX1ltTxx8k(this.f$0, messagesStorage);
+                QuickRepliesController.m1416$r8$lambda$l4nMbWzEG8UBpj48HX1ltTxx8k(this.f$0, messagesStorage);
             }
         });
     }
 
-    public static void m1410$r8$lambda$l4nMbWzEG8UBpj48HX1ltTxx8k(QuickRepliesController quickRepliesController, MessagesStorage messagesStorage) {
+    public static void m1416$r8$lambda$l4nMbWzEG8UBpj48HX1ltTxx8k(QuickRepliesController quickRepliesController, MessagesStorage messagesStorage) {
         quickRepliesController.getClass();
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
@@ -647,12 +647,12 @@ public class QuickRepliesController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                QuickRepliesController.m1403$r8$lambda$9Wd33Tegy9qEuSqp9fpbb9qKhw(this.f$0, messagesStorage, quickReply, clientUserId);
+                QuickRepliesController.m1409$r8$lambda$9Wd33Tegy9qEuSqp9fpbb9qKhw(this.f$0, messagesStorage, quickReply, clientUserId);
             }
         });
     }
 
-    public static void m1403$r8$lambda$9Wd33Tegy9qEuSqp9fpbb9qKhw(final QuickRepliesController quickRepliesController, MessagesStorage messagesStorage, final QuickReply quickReply, long j) throws Throwable {
+    public static void m1409$r8$lambda$9Wd33Tegy9qEuSqp9fpbb9qKhw(final QuickRepliesController quickRepliesController, MessagesStorage messagesStorage, final QuickReply quickReply, long j) throws Throwable {
         Exception exc;
         Throwable th;
         NativeByteBuffer nativeByteBufferByteBufferValue;
@@ -738,7 +738,7 @@ public class QuickRepliesController {
             ensureLoaded(new Runnable() {
                 @Override
                 public final void run() {
-                    QuickRepliesController.m1404$r8$lambda$ILQrzhhdWfCrhUjfGpkA2w_elc(this.f$0, message, str, i);
+                    QuickRepliesController.m1410$r8$lambda$ILQrzhhdWfCrhUjfGpkA2w_elc(this.f$0, message, str, i);
                 }
             });
             return true;
@@ -756,7 +756,7 @@ public class QuickRepliesController {
             ensureLoaded(new Runnable() {
                 @Override
                 public final void run() {
-                    QuickRepliesController.m1402$r8$lambda$Kq8nq3VpEWls78V1sxVPWbvE(this.f$0, update);
+                    QuickRepliesController.m1408$r8$lambda$Kq8nq3VpEWls78V1sxVPWbvE(this.f$0, update);
                 }
             });
             return true;
@@ -765,7 +765,7 @@ public class QuickRepliesController {
             ensureLoaded(new Runnable() {
                 @Override
                 public final void run() {
-                    QuickRepliesController.m1406$r8$lambda$_OlYxETwM7qrdh1453x2HTldZg(this.f$0, update);
+                    QuickRepliesController.m1412$r8$lambda$_OlYxETwM7qrdh1453x2HTldZg(this.f$0, update);
                 }
             });
             return true;
@@ -776,13 +776,13 @@ public class QuickRepliesController {
         ensureLoaded(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.m1407$r8$lambda$aUmE9avGvu6QwUBr9QNU6mMImg(this.f$0, update);
+                QuickRepliesController.m1413$r8$lambda$aUmE9avGvu6QwUBr9QNU6mMImg(this.f$0, update);
             }
         });
         return true;
     }
 
-    public static void m1404$r8$lambda$ILQrzhhdWfCrhUjfGpkA2w_elc(QuickRepliesController quickRepliesController, TLRPC.Message message, String str, int i) {
+    public static void m1410$r8$lambda$ILQrzhhdWfCrhUjfGpkA2w_elc(QuickRepliesController quickRepliesController, TLRPC.Message message, String str, int i) {
         quickRepliesController.getClass();
         if ((message.flags & 1073741824) != 0) {
             QuickReply quickReplyFindReply = quickRepliesController.findReply(message.quick_reply_shortcut_id);
@@ -870,7 +870,7 @@ public class QuickRepliesController {
         NotificationCenter.getInstance(quickRepliesController.currentAccount).postNotificationName(NotificationCenter.quickRepliesUpdated, new Object[0]);
     }
 
-    public static void m1402$r8$lambda$Kq8nq3VpEWls78V1sxVPWbvE(QuickRepliesController quickRepliesController, TLRPC.Update update) {
+    public static void m1408$r8$lambda$Kq8nq3VpEWls78V1sxVPWbvE(QuickRepliesController quickRepliesController, TLRPC.Update update) {
         quickRepliesController.getClass();
         TLRPC.TL_quickReply tL_quickReply = ((TL_update.TL_updateNewQuickReply) update).quick_reply;
         QuickReply quickReplyFindReply = quickRepliesController.findReply(tL_quickReply.shortcut_id);
@@ -898,7 +898,7 @@ public class QuickRepliesController {
         NotificationCenter.getInstance(quickRepliesController.currentAccount).postNotificationName(NotificationCenter.quickRepliesUpdated, new Object[0]);
     }
 
-    public static void m1406$r8$lambda$_OlYxETwM7qrdh1453x2HTldZg(QuickRepliesController quickRepliesController, TLRPC.Update update) {
+    public static void m1412$r8$lambda$_OlYxETwM7qrdh1453x2HTldZg(QuickRepliesController quickRepliesController, TLRPC.Update update) {
         quickRepliesController.getClass();
         QuickReply quickReplyFindReply = quickRepliesController.findReply(((TL_update.TL_updateDeleteQuickReply) update).shortcut_id);
         if (quickReplyFindReply != null) {
@@ -909,7 +909,7 @@ public class QuickRepliesController {
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    QuickRepliesController.m1408$r8$lambda$bHK3ut4ePBfrswrOWBKAHIirt4(messagesStorage, i);
+                    QuickRepliesController.m1414$r8$lambda$bHK3ut4ePBfrswrOWBKAHIirt4(messagesStorage, i);
                 }
             });
             quickRepliesController.saveToCache();
@@ -917,7 +917,7 @@ public class QuickRepliesController {
         }
     }
 
-    public static void m1408$r8$lambda$bHK3ut4ePBfrswrOWBKAHIirt4(MessagesStorage messagesStorage, int i) {
+    public static void m1414$r8$lambda$bHK3ut4ePBfrswrOWBKAHIirt4(MessagesStorage messagesStorage, int i) {
         try {
             SQLiteDatabase database = messagesStorage.getDatabase();
             database.executeFast("DELETE FROM business_replies WHERE topic_id = " + i).stepThis().dispose();
@@ -927,7 +927,7 @@ public class QuickRepliesController {
         }
     }
 
-    public static void m1407$r8$lambda$aUmE9avGvu6QwUBr9QNU6mMImg(QuickRepliesController quickRepliesController, TLRPC.Update update) {
+    public static void m1413$r8$lambda$aUmE9avGvu6QwUBr9QNU6mMImg(QuickRepliesController quickRepliesController, TLRPC.Update update) {
         quickRepliesController.getClass();
         TL_update.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TL_update.TL_updateDeleteQuickReplyMessages) update;
         QuickReply quickReplyFindReply = quickRepliesController.findReply(tL_updateDeleteQuickReplyMessages.shortcut_id);
@@ -1027,12 +1027,12 @@ public class QuickRepliesController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.m1412$r8$lambda$t4DGL6UHQlB_EZF3eQYxaGxMg8(this.f$0, messagesStorage, quickReply, tL_messages_sendQuickReplyMessages);
+                QuickRepliesController.m1418$r8$lambda$t4DGL6UHQlB_EZF3eQYxaGxMg8(this.f$0, messagesStorage, quickReply, tL_messages_sendQuickReplyMessages);
             }
         });
     }
 
-    public static void m1412$r8$lambda$t4DGL6UHQlB_EZF3eQYxaGxMg8(final QuickRepliesController quickRepliesController, MessagesStorage messagesStorage, final QuickReply quickReply, final TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages) {
+    public static void m1418$r8$lambda$t4DGL6UHQlB_EZF3eQYxaGxMg8(final QuickRepliesController quickRepliesController, MessagesStorage messagesStorage, final QuickReply quickReply, final TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages) {
         quickRepliesController.getClass();
         final ArrayList arrayList = new ArrayList();
         SQLiteCursor sQLiteCursorQueryFinalized = null;
@@ -1093,12 +1093,12 @@ public class QuickRepliesController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                QuickRepliesController.m1409$r8$lambda$dfgudiwMI8bgwgHvigQI9tvP6Q(this.f$0, tLObject, arrayList, tL_messages_sendQuickReplyMessages, tL_error);
+                QuickRepliesController.m1415$r8$lambda$dfgudiwMI8bgwgHvigQI9tvP6Q(this.f$0, tLObject, arrayList, tL_messages_sendQuickReplyMessages, tL_error);
             }
         });
     }
 
-    public static void m1409$r8$lambda$dfgudiwMI8bgwgHvigQI9tvP6Q(QuickRepliesController quickRepliesController, TLObject tLObject, ArrayList arrayList, TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages, TLRPC.TL_error tL_error) {
+    public static void m1415$r8$lambda$dfgudiwMI8bgwgHvigQI9tvP6Q(QuickRepliesController quickRepliesController, TLObject tLObject, ArrayList arrayList, TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages, TLRPC.TL_error tL_error) {
         quickRepliesController.getClass();
         if (tLObject instanceof TLRPC.TL_messages_messages) {
             ArrayList<TLRPC.Message> arrayList2 = ((TLRPC.TL_messages_messages) tLObject).messages;

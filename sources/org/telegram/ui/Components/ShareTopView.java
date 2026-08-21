@@ -437,12 +437,12 @@ public class ShareTopView extends FrameLayout implements NotificationCenter.Noti
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ShareTopView.m2760$r8$lambda$mKFoh2HtvAFSQQxf684zGN4Dd8(this.f$0, i, tLObject, str);
+                ShareTopView.m2769$r8$lambda$mKFoh2HtvAFSQQxf684zGN4Dd8(this.f$0, i, tLObject, str);
             }
         });
     }
 
-    public static void m2760$r8$lambda$mKFoh2HtvAFSQQxf684zGN4Dd8(ShareTopView shareTopView, int i, TLObject tLObject, String str) {
+    public static void m2769$r8$lambda$mKFoh2HtvAFSQQxf684zGN4Dd8(ShareTopView shareTopView, int i, TLObject tLObject, String str) {
         TLRPC.WebPage webPage;
         if (i != shareTopView.linkRequestSerial) {
             return;

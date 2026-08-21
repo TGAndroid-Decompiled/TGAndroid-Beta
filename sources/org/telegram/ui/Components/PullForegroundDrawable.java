@@ -87,7 +87,7 @@ public abstract class PullForegroundDrawable {
 
     protected abstract float getViewOffset();
 
-    public static void m2673$r8$lambda$8_P5dJC_jsZDGpbWLwWniYCFk(PullForegroundDrawable pullForegroundDrawable, ValueAnimator valueAnimator) {
+    public static void m2682$r8$lambda$8_P5dJC_jsZDGpbWLwWniYCFk(PullForegroundDrawable pullForegroundDrawable, ValueAnimator valueAnimator) {
         pullForegroundDrawable.getClass();
         pullForegroundDrawable.textSwappingProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         View view = pullForegroundDrawable.cell;
@@ -119,7 +119,7 @@ public abstract class PullForegroundDrawable {
         this.textSwappingUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PullForegroundDrawable.m2673$r8$lambda$8_P5dJC_jsZDGpbWLwWniYCFk(this.f$0, valueAnimator);
+                PullForegroundDrawable.m2682$r8$lambda$8_P5dJC_jsZDGpbWLwWniYCFk(this.f$0, valueAnimator);
             }
         };
         this.textInUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
@@ -484,7 +484,7 @@ public abstract class PullForegroundDrawable {
             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                    PullForegroundDrawable.m2676$r8$lambda$wPY0M7eNmXw00Zu8dxTKPSpsuc(this.f$0, valueAnimator4);
+                    PullForegroundDrawable.m2685$r8$lambda$wPY0M7eNmXw00Zu8dxTKPSpsuc(this.f$0, valueAnimator4);
                 }
             });
             this.arrowRotateAnimator.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
@@ -493,7 +493,7 @@ public abstract class PullForegroundDrawable {
         }
     }
 
-    public static void m2676$r8$lambda$wPY0M7eNmXw00Zu8dxTKPSpsuc(PullForegroundDrawable pullForegroundDrawable, ValueAnimator valueAnimator) {
+    public static void m2685$r8$lambda$wPY0M7eNmXw00Zu8dxTKPSpsuc(PullForegroundDrawable pullForegroundDrawable, ValueAnimator valueAnimator) {
         pullForegroundDrawable.getClass();
         pullForegroundDrawable.arrowRotateProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         View view = pullForegroundDrawable.cell;
@@ -517,7 +517,7 @@ public abstract class PullForegroundDrawable {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        PullForegroundDrawable.m2675$r8$lambda$ubxBDYNdcRQCWbjeEeqlOs4jEs(this.f$0, valueAnimator2);
+                        PullForegroundDrawable.m2684$r8$lambda$ubxBDYNdcRQCWbjeEeqlOs4jEs(this.f$0, valueAnimator2);
                     }
                 });
                 this.accentRevalAnimatorIn.setInterpolator(AndroidUtilities.accelerateInterpolator);
@@ -545,7 +545,7 @@ public abstract class PullForegroundDrawable {
         }
     }
 
-    public static void m2675$r8$lambda$ubxBDYNdcRQCWbjeEeqlOs4jEs(PullForegroundDrawable pullForegroundDrawable, ValueAnimator valueAnimator) {
+    public static void m2684$r8$lambda$ubxBDYNdcRQCWbjeEeqlOs4jEs(PullForegroundDrawable pullForegroundDrawable, ValueAnimator valueAnimator) {
         pullForegroundDrawable.getClass();
         pullForegroundDrawable.accentRevalProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         View view = pullForegroundDrawable.cell;
@@ -605,7 +605,7 @@ public abstract class PullForegroundDrawable {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PullForegroundDrawable.m2674$r8$lambda$dZdOnHy94UndVQwFkBKkCeo9co(this.f$0, valueAnimator);
+                PullForegroundDrawable.m2683$r8$lambda$dZdOnHy94UndVQwFkBKkCeo9co(this.f$0, valueAnimator);
             }
         });
         valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -644,7 +644,7 @@ public abstract class PullForegroundDrawable {
         this.outAnimator.start();
     }
 
-    public static void m2674$r8$lambda$dZdOnHy94UndVQwFkBKkCeo9co(PullForegroundDrawable pullForegroundDrawable, ValueAnimator valueAnimator) {
+    public static void m2683$r8$lambda$dZdOnHy94UndVQwFkBKkCeo9co(PullForegroundDrawable pullForegroundDrawable, ValueAnimator valueAnimator) {
         pullForegroundDrawable.getClass();
         pullForegroundDrawable.setOutProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
         View view = pullForegroundDrawable.cell;

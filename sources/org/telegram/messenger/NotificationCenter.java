@@ -501,13 +501,13 @@ public class NotificationCenter {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationCenter.m935$r8$lambda$rjjOb3EwFrCuVgFj9STYS4xdM(this.f$0);
+                    NotificationCenter.m941$r8$lambda$rjjOb3EwFrCuVgFj9STYS4xdM(this.f$0);
                 }
             }, Math.max(17L, 5017 - (jElapsedRealtime - jMin)));
         }
     }
 
-    public static void m935$r8$lambda$rjjOb3EwFrCuVgFj9STYS4xdM(NotificationCenter notificationCenter) {
+    public static void m941$r8$lambda$rjjOb3EwFrCuVgFj9STYS4xdM(NotificationCenter notificationCenter) {
         notificationCenter.getClass();
         notificationCenter.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda5(notificationCenter);
     }

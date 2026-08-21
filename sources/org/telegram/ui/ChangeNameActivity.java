@@ -144,7 +144,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.lastNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i6, KeyEvent keyEvent) {
-                return ChangeNameActivity.m1521$r8$lambda$pYQqOPMW4FTo9sIFLGh8DVhPPo(this.f$0, textView, i6, keyEvent);
+                return ChangeNameActivity.m1527$r8$lambda$pYQqOPMW4FTo9sIFLGh8DVhPPo(this.f$0, textView, i6, keyEvent);
             }
         });
         if (user != null) {
@@ -167,7 +167,7 @@ public class ChangeNameActivity extends BaseFragment {
         return true;
     }
 
-    public static boolean m1521$r8$lambda$pYQqOPMW4FTo9sIFLGh8DVhPPo(ChangeNameActivity changeNameActivity, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m1527$r8$lambda$pYQqOPMW4FTo9sIFLGh8DVhPPo(ChangeNameActivity changeNameActivity, TextView textView, int i, KeyEvent keyEvent) {
         if (i == 6) {
             changeNameActivity.doneButton.performClick();
             return true;
@@ -230,13 +230,13 @@ public class ChangeNameActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeNameActivity.m1520$r8$lambda$obe45pXivvV73tUEq_duePnlNE(this.f$0);
+                    ChangeNameActivity.m1526$r8$lambda$obe45pXivvV73tUEq_duePnlNE(this.f$0);
                 }
             }, 100L);
         }
     }
 
-    public static void m1520$r8$lambda$obe45pXivvV73tUEq_duePnlNE(ChangeNameActivity changeNameActivity) {
+    public static void m1526$r8$lambda$obe45pXivvV73tUEq_duePnlNE(ChangeNameActivity changeNameActivity) {
         EditTextBoldCursor editTextBoldCursor = changeNameActivity.firstNameField;
         if (editTextBoldCursor != null) {
             editTextBoldCursor.requestFocus();

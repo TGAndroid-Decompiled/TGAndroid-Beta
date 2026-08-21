@@ -942,7 +942,7 @@ public class ViewPagerFixed extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ViewPagerFixed.m2940$r8$lambda$6FfcHuGVodImZgtRLY8DDgqWvE(this.f$0, valueAnimator);
+                    ViewPagerFixed.m2949$r8$lambda$6FfcHuGVodImZgtRLY8DDgqWvE(this.f$0, valueAnimator);
                 }
             });
             this.tabsAnimation.playTogether(valueAnimatorOfFloat);
@@ -981,7 +981,7 @@ public class ViewPagerFixed extends FrameLayout {
         }
     }
 
-    public static void m2940$r8$lambda$6FfcHuGVodImZgtRLY8DDgqWvE(ViewPagerFixed viewPagerFixed, ValueAnimator valueAnimator) {
+    public static void m2949$r8$lambda$6FfcHuGVodImZgtRLY8DDgqWvE(ViewPagerFixed viewPagerFixed, ValueAnimator valueAnimator) {
         viewPagerFixed.updateTabProgress.onAnimationUpdate(valueAnimator);
         viewPagerFixed.tabsView.indicatorProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         viewPagerFixed.tabsView.listView.invalidateViews();

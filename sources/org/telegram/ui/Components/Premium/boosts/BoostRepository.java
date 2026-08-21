@@ -7,7 +7,6 @@ import androidx.core.util.Consumer;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ProductDetails;
-import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import j$.util.Objects;
 import java.text.Collator;
@@ -237,15 +236,15 @@ public abstract class BoostRepository {
             tL_inputStorePaymentPremiumGiftCode.flags |= 2;
             tL_inputStorePaymentPremiumGiftCode.message = tL_textWithEntities;
         }
-        BillingController.getInstance().queryProductDetails(Arrays.asList(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tL_premiumGiftCodeOption.store_product).build()), new ProductDetailsResponseListener() {
+        BillingController.getInstance().queryProductDetails(Arrays.asList(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tL_premiumGiftCodeOption.store_product).build()), new BillingController.ProductDetailsResponseListenerLegacy() {
             @Override
             public final void onProductDetailsResponse(BillingResult billingResult, List list2) {
-                BoostRepository.$r8$lambda$mYSDz_ltJBzqsKE5_IeTomNxvh8(tL_inputStorePaymentPremiumGiftCode, tL_premiumGiftCodeOption, connectionsManager, callback2, callback, baseFragment, billingResult, list2);
+                BoostRepository.$r8$lambda$P9bJSmysFud1RqKZaihE1st3qxQ(tL_inputStorePaymentPremiumGiftCode, tL_premiumGiftCodeOption, connectionsManager, callback2, callback, baseFragment, billingResult, list2);
             }
         });
     }
 
-    public static void $r8$lambda$mYSDz_ltJBzqsKE5_IeTomNxvh8(final TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, ConnectionsManager connectionsManager, final Utilities.Callback callback, final Utilities.Callback callback2, final BaseFragment baseFragment, final BillingResult billingResult, final List list) {
+    public static void $r8$lambda$P9bJSmysFud1RqKZaihE1st3qxQ(final TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, ConnectionsManager connectionsManager, final Utilities.Callback callback, final Utilities.Callback callback2, final BaseFragment baseFragment, final BillingResult billingResult, final List list) {
         ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = ((ProductDetails) list.get(0)).getOneTimePurchaseOfferDetails();
         tL_inputStorePaymentPremiumGiftCode.currency = oneTimePurchaseOfferDetails.getPriceCurrencyCode();
         tL_inputStorePaymentPremiumGiftCode.amount = (long) ((oneTimePurchaseOfferDetails.getPriceAmountMicros() / Math.pow(10.0d, 6.0d)) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_premiumGiftCodeOption.currency)));
@@ -474,7 +473,7 @@ public abstract class BoostRepository {
             paymentFormActivity.setPaymentFormCallback(new PaymentFormActivity.PaymentFormCallback() {
                 @Override
                 public final void onInvoiceStatusChanged(PaymentFormActivity.InvoiceStatus invoiceStatus) {
-                    BoostRepository.m2612$r8$lambda$J0yHjds9RgDYKvt_Tecd4MSrg(callback2, callback, invoiceStatus);
+                    BoostRepository.m2622$r8$lambda$J0yHjds9RgDYKvt_Tecd4MSrg(callback2, callback, invoiceStatus);
                 }
             });
             LaunchActivity.getLastFragment().showAsSheet(paymentFormActivity, new BaseFragment.BottomSheetParams());
@@ -483,7 +482,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void m2612$r8$lambda$J0yHjds9RgDYKvt_Tecd4MSrg(Utilities.Callback callback, Utilities.Callback callback2, PaymentFormActivity.InvoiceStatus invoiceStatus) {
+    public static void m2622$r8$lambda$J0yHjds9RgDYKvt_Tecd4MSrg(Utilities.Callback callback, Utilities.Callback callback2, PaymentFormActivity.InvoiceStatus invoiceStatus) {
         if (invoiceStatus == PaymentFormActivity.InvoiceStatus.PAID) {
             callback.run(null);
         } else if (invoiceStatus != PaymentFormActivity.InvoiceStatus.PENDING) {
@@ -518,15 +517,15 @@ public abstract class BoostRepository {
         while (it2.hasNext()) {
             tL_inputStorePaymentPremiumGiveaway.countries_iso2.add(((TLRPC.TL_help_country) ((TLObject) it2.next())).iso2);
         }
-        BillingController.getInstance().queryProductDetails(Arrays.asList(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tL_premiumGiftCodeOption.store_product).build()), new ProductDetailsResponseListener() {
+        BillingController.getInstance().queryProductDetails(Arrays.asList(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tL_premiumGiftCodeOption.store_product).build()), new BillingController.ProductDetailsResponseListenerLegacy() {
             @Override
             public final void onProductDetailsResponse(BillingResult billingResult, List list3) {
-                BoostRepository.$r8$lambda$3JllB8xkLNaulTHhFyBUSMZgAnw(tL_inputStorePaymentPremiumGiveaway, tL_premiumGiftCodeOption, connectionsManager, callback2, callback, baseFragment, billingResult, list3);
+                BoostRepository.$r8$lambda$cCxOkE5YR6ccEJFuv6ReRxQ8V5o(tL_inputStorePaymentPremiumGiveaway, tL_premiumGiftCodeOption, connectionsManager, callback2, callback, baseFragment, billingResult, list3);
             }
         });
     }
 
-    public static void $r8$lambda$3JllB8xkLNaulTHhFyBUSMZgAnw(final TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, ConnectionsManager connectionsManager, final Utilities.Callback callback, final Utilities.Callback callback2, final BaseFragment baseFragment, final BillingResult billingResult, final List list) {
+    public static void $r8$lambda$cCxOkE5YR6ccEJFuv6ReRxQ8V5o(final TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, ConnectionsManager connectionsManager, final Utilities.Callback callback, final Utilities.Callback callback2, final BaseFragment baseFragment, final BillingResult billingResult, final List list) {
         ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = ((ProductDetails) list.get(0)).getOneTimePurchaseOfferDetails();
         tL_inputStorePaymentPremiumGiveaway.currency = oneTimePurchaseOfferDetails.getPriceCurrencyCode();
         tL_inputStorePaymentPremiumGiveaway.amount = (long) ((oneTimePurchaseOfferDetails.getPriceAmountMicros() / Math.pow(10.0d, 6.0d)) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_premiumGiftCodeOption.currency)));
@@ -538,21 +537,21 @@ public abstract class BoostRepository {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BoostRepository.m2611$r8$lambda$EsswBawrvnmZnHQ3bnrVP4EnZM(tL_error, callback, tLObject, list, billingResult, callback, baseFragment, tL_inputStorePaymentPremiumGiveaway);
+                        BoostRepository.m2621$r8$lambda$EsswBawrvnmZnHQ3bnrVP4EnZM(tL_error, callback, tLObject, list, billingResult, callback, baseFragment, tL_inputStorePaymentPremiumGiveaway);
                     }
                 });
             }
         });
     }
 
-    public static void m2611$r8$lambda$EsswBawrvnmZnHQ3bnrVP4EnZM(TLRPC.TL_error tL_error, final Utilities.Callback callback, TLObject tLObject, List list, final BillingResult billingResult, final Utilities.Callback callback2, BaseFragment baseFragment, TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway) {
+    public static void m2621$r8$lambda$EsswBawrvnmZnHQ3bnrVP4EnZM(TLRPC.TL_error tL_error, final Utilities.Callback callback, TLObject tLObject, List list, final BillingResult billingResult, final Utilities.Callback callback2, BaseFragment baseFragment, TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway) {
         if (tL_error != null) {
             callback.run(tL_error);
         } else if (tLObject != null) {
             BillingController.getInstance().addResultListener(((ProductDetails) list.get(0)).getProductId(), new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    BoostRepository.m2621$r8$lambda$ig8rwkvloatAUQHYzF830bssQs(billingResult, callback2, (BillingResult) obj);
+                    BoostRepository.m2630$r8$lambda$ig8rwkvloatAUQHYzF830bssQs(billingResult, callback2, (BillingResult) obj);
                 }
             });
             BillingController.getInstance().setOnCanceled(new Runnable() {
@@ -570,7 +569,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void m2621$r8$lambda$ig8rwkvloatAUQHYzF830bssQs(BillingResult billingResult, final Utilities.Callback callback, BillingResult billingResult2) {
+    public static void m2630$r8$lambda$ig8rwkvloatAUQHYzF830bssQs(BillingResult billingResult, final Utilities.Callback callback, BillingResult billingResult2) {
         if (billingResult.getResponseCode() == 0) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -806,28 +805,28 @@ public abstract class BoostRepository {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BoostRepository.m2609$r8$lambda$9nAfEogN0soBn_lXcWgxn2tWJ8(chat, i, arrayList, callback);
+                        BoostRepository.m2619$r8$lambda$9nAfEogN0soBn_lXcWgxn2tWJ8(chat, i, arrayList, callback);
                     }
                 });
             } else {
-                BillingController.getInstance().queryProductDetails(arrayList2, new ProductDetailsResponseListener() {
+                BillingController.getInstance().queryProductDetails(arrayList2, new BillingController.ProductDetailsResponseListenerLegacy() {
                     @Override
                     public final void onProductDetailsResponse(BillingResult billingResult, List list) {
-                        BoostRepository.m2620$r8$lambda$fMZCR2KPhMM0Iu5D1hwtbi38d8(arrayList, chat, i, callback, billingResult, list);
+                        BoostRepository.$r8$lambda$dvQtAQnEVi0_YaDGkdHmWyjCbOE(arrayList, chat, i, callback, billingResult, list);
                     }
                 });
             }
         }
     }
 
-    public static void m2609$r8$lambda$9nAfEogN0soBn_lXcWgxn2tWJ8(TLRPC.Chat chat, int i, List list, Utilities.Callback callback) {
+    public static void m2619$r8$lambda$9nAfEogN0soBn_lXcWgxn2tWJ8(TLRPC.Chat chat, int i, List list, Utilities.Callback callback) {
         if (chat == null) {
             saveGiftOptionsToCache(i, list);
         }
         callback.run(list);
     }
 
-    public static void m2620$r8$lambda$fMZCR2KPhMM0Iu5D1hwtbi38d8(final List list, final TLRPC.Chat chat, final int i, final Utilities.Callback callback, BillingResult billingResult, List list2) {
+    public static void $r8$lambda$dvQtAQnEVi0_YaDGkdHmWyjCbOE(final List list, final TLRPC.Chat chat, final int i, final Utilities.Callback callback, BillingResult billingResult, List list2) {
         Iterator it = list2.iterator();
         while (it.hasNext()) {
             ProductDetails productDetails = (ProductDetails) it.next();
@@ -1020,14 +1019,14 @@ public abstract class BoostRepository {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BoostRepository.m2615$r8$lambda$WUYk7ourCJ9oJ0U0RVD3z63ZLo(tLObject, messagesController, callback);
+                        BoostRepository.m2625$r8$lambda$WUYk7ourCJ9oJ0U0RVD3z63ZLo(tLObject, messagesController, callback);
                     }
                 });
             }
         });
     }
 
-    public static void m2615$r8$lambda$WUYk7ourCJ9oJ0U0RVD3z63ZLo(TLObject tLObject, MessagesController messagesController, Utilities.Callback callback) {
+    public static void m2625$r8$lambda$WUYk7ourCJ9oJ0U0RVD3z63ZLo(TLObject tLObject, MessagesController messagesController, Utilities.Callback callback) {
         TLRPC.User user;
         if (tLObject instanceof TLRPC.TL_channels_channelParticipants) {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
@@ -1083,14 +1082,14 @@ public abstract class BoostRepository {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BoostRepository.m2614$r8$lambda$Tcbho3VyDg1WkbTTbUJuHfETs(tL_error, callback, callback);
+                        BoostRepository.m2624$r8$lambda$Tcbho3VyDg1WkbTTbUJuHfETs(tL_error, callback, callback);
                     }
                 });
             }
         }, 2);
     }
 
-    public static void m2614$r8$lambda$Tcbho3VyDg1WkbTTbUJuHfETs(TLRPC.TL_error tL_error, Utilities.Callback callback, Utilities.Callback callback2) {
+    public static void m2624$r8$lambda$Tcbho3VyDg1WkbTTbUJuHfETs(TLRPC.TL_error tL_error, Utilities.Callback callback, Utilities.Callback callback2) {
         if (tL_error != null) {
             callback.run(tL_error);
         } else {
@@ -1134,14 +1133,14 @@ public abstract class BoostRepository {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BoostRepository.m2610$r8$lambda$AYphyHq7F1OpltBjRDX6Xs4vps(tL_error, callback, tLObject, messagesController, callback);
+                        BoostRepository.m2620$r8$lambda$AYphyHq7F1OpltBjRDX6Xs4vps(tL_error, callback, tLObject, messagesController, callback);
                     }
                 });
             }
         });
     }
 
-    public static void m2610$r8$lambda$AYphyHq7F1OpltBjRDX6Xs4vps(TLRPC.TL_error tL_error, Utilities.Callback callback, TLObject tLObject, MessagesController messagesController, Utilities.Callback callback2) {
+    public static void m2620$r8$lambda$AYphyHq7F1OpltBjRDX6Xs4vps(TLRPC.TL_error tL_error, Utilities.Callback callback, TLObject tLObject, MessagesController messagesController, Utilities.Callback callback2) {
         if (tL_error != null) {
             callback.run(tL_error);
         } else if (tLObject instanceof TL_stories.TL_premium_myBoosts) {

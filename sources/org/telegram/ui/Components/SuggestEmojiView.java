@@ -764,7 +764,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         this.searchRunnable = new Runnable() {
             @Override
             public final void run() {
-                SuggestEmojiView.m2860$r8$lambda$RlBXZp4VUmQr0y1fHlA1PJ4big(this.f$0, strArrDetectKeyboardLangThrottleFirstWithDelay, str, i);
+                SuggestEmojiView.m2869$r8$lambda$RlBXZp4VUmQr0y1fHlA1PJ4big(this.f$0, strArrDetectKeyboardLangThrottleFirstWithDelay, str, i);
             }
         };
         ArrayList arrayList2 = this.keywordResults;
@@ -775,7 +775,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public static void m2860$r8$lambda$RlBXZp4VUmQr0y1fHlA1PJ4big(final SuggestEmojiView suggestEmojiView, String[] strArr, final String str, final int i) {
+    public static void m2869$r8$lambda$RlBXZp4VUmQr0y1fHlA1PJ4big(final SuggestEmojiView suggestEmojiView, String[] strArr, final String str, final int i) {
         suggestEmojiView.getClass();
         final HashSet hashSet = new HashSet();
         final ArrayList arrayList = new ArrayList();

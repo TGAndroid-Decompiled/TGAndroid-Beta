@@ -439,7 +439,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i4) throws Throwable {
-                ChatAttachAlertDocumentLayout.m2159$r8$lambda$89TLNu9HHXMzEaDt8bFSZtA_Zw(this.f$0, view, i4);
+                ChatAttachAlertDocumentLayout.m2169$r8$lambda$89TLNu9HHXMzEaDt8bFSZtA_Zw(this.f$0, view, i4);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -465,7 +465,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         updateEmptyView();
     }
 
-    public static void m2159$r8$lambda$89TLNu9HHXMzEaDt8bFSZtA_Zw(ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout, View view, int i) throws Throwable {
+    public static void m2169$r8$lambda$89TLNu9HHXMzEaDt8bFSZtA_Zw(ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout, View view, int i) throws Throwable {
         Object item;
         int i2;
         RecyclerView.Adapter adapter = chatAttachAlertDocumentLayout.listView.getAdapter();
@@ -1716,12 +1716,12 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertDocumentLayout.SearchAdapter.m2160$r8$lambda$kcgaKq2sjBkOLhfYcjrN2VE7mo(this.f$0, str, z, arrayList);
+                    ChatAttachAlertDocumentLayout.SearchAdapter.m2170$r8$lambda$kcgaKq2sjBkOLhfYcjrN2VE7mo(this.f$0, str, z, arrayList);
                 }
             });
         }
 
-        public static void m2160$r8$lambda$kcgaKq2sjBkOLhfYcjrN2VE7mo(SearchAdapter searchAdapter, String str, boolean z, ArrayList arrayList) {
+        public static void m2170$r8$lambda$kcgaKq2sjBkOLhfYcjrN2VE7mo(SearchAdapter searchAdapter, String str, boolean z, ArrayList arrayList) {
             searchAdapter.getClass();
             String lowerCase = str.trim().toLowerCase();
             if (lowerCase.length() == 0) {
@@ -2164,12 +2164,12 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertDocumentLayout.SearchAdapter.m2161$r8$lambda$p_3c5_kyxC2Ckh8RSXS4WIGAE(this.f$0, arrayList);
+                    ChatAttachAlertDocumentLayout.SearchAdapter.m2171$r8$lambda$p_3c5_kyxC2Ckh8RSXS4WIGAE(this.f$0, arrayList);
                 }
             });
         }
 
-        public static void m2161$r8$lambda$p_3c5_kyxC2Ckh8RSXS4WIGAE(SearchAdapter searchAdapter, ArrayList arrayList) {
+        public static void m2171$r8$lambda$p_3c5_kyxC2Ckh8RSXS4WIGAE(SearchAdapter searchAdapter, ArrayList arrayList) {
             if (ChatAttachAlertDocumentLayout.this.searching && ChatAttachAlertDocumentLayout.this.listView.getAdapter() != ChatAttachAlertDocumentLayout.this.searchAdapter) {
                 ChatAttachAlertDocumentLayout.this.listView.setAdapter(ChatAttachAlertDocumentLayout.this.searchAdapter);
             }

@@ -229,12 +229,12 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         this.passcodeView.setDelegate(new PasscodeView.PasscodeViewDelegate() {
             @Override
             public final void didAcceptedPassword(PasscodeView passcodeView) {
-                ExternalActionActivity.m3130$r8$lambda$JFp8eynonbG61Sk2LUaujiX7k8(this.f$0, passcodeView);
+                ExternalActionActivity.m3139$r8$lambda$JFp8eynonbG61Sk2LUaujiX7k8(this.f$0, passcodeView);
             }
         });
     }
 
-    public static void m3130$r8$lambda$JFp8eynonbG61Sk2LUaujiX7k8(ExternalActionActivity externalActionActivity, PasscodeView passcodeView) {
+    public static void m3139$r8$lambda$JFp8eynonbG61Sk2LUaujiX7k8(ExternalActionActivity externalActionActivity, PasscodeView passcodeView) {
         ExternalActionActivity externalActionActivity2;
         externalActionActivity.getClass();
         SharedConfig.isWaitingForPasscodeEnter = false;
@@ -354,7 +354,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             iArr[0] = ConnectionsManager.getInstance(i).sendRequest(getauthorizationform, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ExternalActionActivity.m3129$r8$lambda$CGcPPp3tiBZrBoA3OyDwX6V59E(this.f$0, iArr, i, alertDialog, getauthorizationform, stringExtra2, stringExtra, tLObject, tL_error);
+                    ExternalActionActivity.m3138$r8$lambda$CGcPPp3tiBZrBoA3OyDwX6V59E(this.f$0, iArr, i, alertDialog, getauthorizationform, stringExtra2, stringExtra, tLObject, tL_error);
                 }
             }, 10);
         } else {
@@ -389,14 +389,14 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         externalActionActivity.finish();
     }
 
-    public static void m3129$r8$lambda$CGcPPp3tiBZrBoA3OyDwX6V59E(final ExternalActionActivity externalActionActivity, int[] iArr, final int i, final AlertDialog alertDialog, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3138$r8$lambda$CGcPPp3tiBZrBoA3OyDwX6V59E(final ExternalActionActivity externalActionActivity, int[] iArr, final int i, final AlertDialog alertDialog, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, TLObject tLObject, final TLRPC.TL_error tL_error) {
         externalActionActivity.getClass();
         final TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
         if (authorizationform != null) {
             iArr[0] = ConnectionsManager.getInstance(i).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    ExternalActionActivity.m3132$r8$lambda$yuhWWGd62cdVwHyfMYeRoznVNg(this.f$0, alertDialog, i, authorizationform, getauthorizationform, str, str2, tLObject2, tL_error2);
+                    ExternalActionActivity.m3141$r8$lambda$yuhWWGd62cdVwHyfMYeRoznVNg(this.f$0, alertDialog, i, authorizationform, getauthorizationform, str, str2, tLObject2, tL_error2);
                 }
             });
         } else {
@@ -409,7 +409,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         }
     }
 
-    public static void m3132$r8$lambda$yuhWWGd62cdVwHyfMYeRoznVNg(final ExternalActionActivity externalActionActivity, final AlertDialog alertDialog, final int i, final TL_account.authorizationForm authorizationform, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3141$r8$lambda$yuhWWGd62cdVwHyfMYeRoznVNg(final ExternalActionActivity externalActionActivity, final AlertDialog alertDialog, final int i, final TL_account.authorizationForm authorizationform, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         externalActionActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

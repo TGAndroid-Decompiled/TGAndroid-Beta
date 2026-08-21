@@ -698,7 +698,7 @@ public class LinkSpanDrawable {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LinkSpanDrawable.LinksTextView.m2425$r8$lambda$1fTHCSw5YqsMzd3_Yak0CsZC3k(this.f$0, linkSpanDrawable, clickableSpanHit);
+                            LinkSpanDrawable.LinksTextView.m2435$r8$lambda$1fTHCSw5YqsMzd3_Yak0CsZC3k(this.f$0, linkSpanDrawable, clickableSpanHit);
                         }
                     }, ViewConfiguration.getLongPressTimeout());
                     return true;
@@ -726,7 +726,7 @@ public class LinkSpanDrawable {
             return this.pressedLink != null || super.onTouchEvent(motionEvent);
         }
 
-        public static void m2425$r8$lambda$1fTHCSw5YqsMzd3_Yak0CsZC3k(LinksTextView linksTextView, LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+        public static void m2435$r8$lambda$1fTHCSw5YqsMzd3_Yak0CsZC3k(LinksTextView linksTextView, LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
             OnLinkPress onLinkPress = linksTextView.onLongPressListener;
             if (onLinkPress == null || linksTextView.pressedLink != linkSpanDrawable) {
                 return;
@@ -1014,7 +1014,7 @@ public class LinkSpanDrawable {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LinkSpanDrawable.ClickableSmallTextView.m2422$r8$lambda$OqYR9hwV6iW96fIUjMgxbb1w8w(this.f$0, linkSpanDrawable);
+                            LinkSpanDrawable.ClickableSmallTextView.m2432$r8$lambda$OqYR9hwV6iW96fIUjMgxbb1w8w(this.f$0, linkSpanDrawable);
                         }
                     }, ViewConfiguration.getLongPressTimeout());
                     return true;
@@ -1036,7 +1036,7 @@ public class LinkSpanDrawable {
             return this.pressedLink != null || super.onTouchEvent(motionEvent);
         }
 
-        public static void m2422$r8$lambda$OqYR9hwV6iW96fIUjMgxbb1w8w(ClickableSmallTextView clickableSmallTextView, LinkSpanDrawable linkSpanDrawable) {
+        public static void m2432$r8$lambda$OqYR9hwV6iW96fIUjMgxbb1w8w(ClickableSmallTextView clickableSmallTextView, LinkSpanDrawable linkSpanDrawable) {
             if (clickableSmallTextView.pressedLink == linkSpanDrawable) {
                 clickableSmallTextView.performLongClick();
                 clickableSmallTextView.pressedLink = null;

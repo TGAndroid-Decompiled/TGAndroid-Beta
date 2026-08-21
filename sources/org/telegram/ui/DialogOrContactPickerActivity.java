@@ -95,7 +95,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-                return DialogOrContactPickerActivity.m3049$r8$lambda$1s__PWu4d9YS1HEViLlNbikwMg(this.f$0, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
+                return DialogOrContactPickerActivity.m3058$r8$lambda$1s__PWu4d9YS1HEViLlNbikwMg(this.f$0, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
             }
 
             @Override
@@ -123,7 +123,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         this.contactsActivity.onFragmentCreate();
     }
 
-    public static boolean m3049$r8$lambda$1s__PWu4d9YS1HEViLlNbikwMg(DialogOrContactPickerActivity dialogOrContactPickerActivity, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public static boolean m3058$r8$lambda$1s__PWu4d9YS1HEViLlNbikwMg(DialogOrContactPickerActivity dialogOrContactPickerActivity, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         dialogOrContactPickerActivity.getClass();
         if (!arrayList.isEmpty()) {
             long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
@@ -655,7 +655,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         builder.setPositiveButton(LocaleController.getString(R.string.BlockContact), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                DialogOrContactPickerActivity.m3051$r8$lambda$yoCYKYWXmVx7Cyv6V02HXjJqSs(this.f$0, user, alertDialog, i);
+                DialogOrContactPickerActivity.m3060$r8$lambda$yoCYKYWXmVx7Cyv6V02HXjJqSs(this.f$0, user, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -667,7 +667,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         }
     }
 
-    public static void m3051$r8$lambda$yoCYKYWXmVx7Cyv6V02HXjJqSs(DialogOrContactPickerActivity dialogOrContactPickerActivity, TLRPC.User user, AlertDialog alertDialog, int i) {
+    public static void m3060$r8$lambda$yoCYKYWXmVx7Cyv6V02HXjJqSs(DialogOrContactPickerActivity dialogOrContactPickerActivity, TLRPC.User user, AlertDialog alertDialog, int i) {
         dialogOrContactPickerActivity.getClass();
         if (MessagesController.isSupportUser(user)) {
             AlertsCreator.showSimpleToast(dialogOrContactPickerActivity, LocaleController.getString(R.string.ErrorOccurred));

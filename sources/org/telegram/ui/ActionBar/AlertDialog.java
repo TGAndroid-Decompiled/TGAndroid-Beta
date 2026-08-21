@@ -548,7 +548,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     AlertDialog.this.onScrollChangedListener = new ViewTreeObserver.OnScrollChangedListener() {
                         @Override
                         public final void onScrollChanged() {
-                            AlertDialog.AlertDialogView.m1247$r8$lambda$oQYLZN14vydiliTDSL1RTeqes(this.f$0);
+                            AlertDialog.AlertDialogView.m1253$r8$lambda$oQYLZN14vydiliTDSL1RTeqes(this.f$0);
                         }
                     };
                     AlertDialog.this.contentScrollView.getViewTreeObserver().addOnScrollChangedListener(AlertDialog.this.onScrollChangedListener);
@@ -565,7 +565,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             AlertDialog.this.blurShader.setLocalMatrix(AlertDialog.this.blurMatrix);
         }
 
-        public static void m1247$r8$lambda$oQYLZN14vydiliTDSL1RTeqes(AlertDialogView alertDialogView) {
+        public static void m1253$r8$lambda$oQYLZN14vydiliTDSL1RTeqes(AlertDialogView alertDialogView) {
             AlertDialog alertDialog = AlertDialog.this;
             boolean z = false;
             alertDialog.runShadowAnimation(0, alertDialog.titleTextView != null && AlertDialog.this.contentScrollView.getScrollY() > AlertDialog.this.scrollContainer.getTop());
@@ -1022,7 +1022,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     alertDialogCell.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view5) {
-                            AlertDialog.m1244$r8$lambda$WVYQWMlM7ABxmekBKqP6lSkYDc(this.f$0, view5);
+                            AlertDialog.m1250$r8$lambda$WVYQWMlM7ABxmekBKqP6lSkYDc(this.f$0, view5);
                         }
                     });
                 }
@@ -1288,7 +1288,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 textViewWithLoading.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view6) {
-                        AlertDialog.m1241$r8$lambda$MXta1oMDTzNyG08HSfDBgZ2dNo(this.f$0, textViewWithLoading, view6);
+                        AlertDialog.m1247$r8$lambda$MXta1oMDTzNyG08HSfDBgZ2dNo(this.f$0, textViewWithLoading, view6);
                     }
                 });
             }
@@ -1362,7 +1362,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 textViewWithLoading3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view6) {
-                        AlertDialog.m1239$r8$lambda$Ah8gMoIAeLYYHalA89i6n1_nE(this.f$0, textViewWithLoading3, view6);
+                        AlertDialog.m1245$r8$lambda$Ah8gMoIAeLYYHalA89i6n1_nE(this.f$0, textViewWithLoading3, view6);
                     }
                 });
             }
@@ -1399,7 +1399,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 textViewWithLoading4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view6) {
-                        AlertDialog.m1243$r8$lambda$RjbgrOgj3a0QBanvPE8EX_IaDs(this.f$0, textViewWithLoading4, view6);
+                        AlertDialog.m1249$r8$lambda$RjbgrOgj3a0QBanvPE8EX_IaDs(this.f$0, textViewWithLoading4, view6);
                     }
                 });
             }
@@ -1481,7 +1481,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        AlertDialog.m1246$r8$lambda$nZDdnXJLc0jrQ3c3A863LSGuvk(this.f$0, (Bitmap) obj);
+                        AlertDialog.m1252$r8$lambda$nZDdnXJLc0jrQ3c3A863LSGuvk(this.f$0, (Bitmap) obj);
                     }
                 }, 8.0f);
             }
@@ -1490,7 +1490,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return view;
     }
 
-    public static void m1244$r8$lambda$WVYQWMlM7ABxmekBKqP6lSkYDc(AlertDialog alertDialog, View view) {
+    public static void m1250$r8$lambda$WVYQWMlM7ABxmekBKqP6lSkYDc(AlertDialog alertDialog, View view) {
         DialogInterface.OnClickListener onClickListener = alertDialog.onClickListener;
         if (onClickListener != null) {
             onClickListener.onClick(alertDialog, ((Integer) view.getTag()).intValue());
@@ -1498,7 +1498,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         alertDialog.dismiss();
     }
 
-    public static void m1241$r8$lambda$MXta1oMDTzNyG08HSfDBgZ2dNo(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
+    public static void m1247$r8$lambda$MXta1oMDTzNyG08HSfDBgZ2dNo(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
         alertDialog.getClass();
         if (textViewWithLoading.isLoading()) {
             return;
@@ -1526,7 +1526,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public static void m1239$r8$lambda$Ah8gMoIAeLYYHalA89i6n1_nE(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
+    public static void m1245$r8$lambda$Ah8gMoIAeLYYHalA89i6n1_nE(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
         alertDialog.getClass();
         if (textViewWithLoading.isLoading()) {
             return;
@@ -1540,7 +1540,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public static void m1243$r8$lambda$RjbgrOgj3a0QBanvPE8EX_IaDs(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
+    public static void m1249$r8$lambda$RjbgrOgj3a0QBanvPE8EX_IaDs(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
         alertDialog.getClass();
         if (textViewWithLoading.isLoading()) {
             return;
@@ -1554,7 +1554,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public static void m1246$r8$lambda$nZDdnXJLc0jrQ3c3A863LSGuvk(AlertDialog alertDialog, Bitmap bitmap) {
+    public static void m1252$r8$lambda$nZDdnXJLc0jrQ3c3A863LSGuvk(AlertDialog alertDialog, Bitmap bitmap) {
         if (bitmap == null) {
             alertDialog.getClass();
             return;
@@ -1590,23 +1590,23 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return new Browser.Progress(new Runnable() {
             @Override
             public final void run() {
-                AlertDialog.m1240$r8$lambda$B4fp4rFk_mbEvWTBZXG5SwPoB0(button);
+                AlertDialog.m1246$r8$lambda$B4fp4rFk_mbEvWTBZXG5SwPoB0(button);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                AlertDialog.m1242$r8$lambda$QYG6eHoCC4QS5lmdjXDM96Zf40(this.f$0, button, z);
+                AlertDialog.m1248$r8$lambda$QYG6eHoCC4QS5lmdjXDM96Zf40(this.f$0, button, z);
             }
         });
     }
 
-    public static void m1240$r8$lambda$B4fp4rFk_mbEvWTBZXG5SwPoB0(View view) {
+    public static void m1246$r8$lambda$B4fp4rFk_mbEvWTBZXG5SwPoB0(View view) {
         if (view instanceof TextViewWithLoading) {
             ((TextViewWithLoading) view).setLoading(true, true);
         }
     }
 
-    public static void m1242$r8$lambda$QYG6eHoCC4QS5lmdjXDM96Zf40(AlertDialog alertDialog, View view, boolean z) {
+    public static void m1248$r8$lambda$QYG6eHoCC4QS5lmdjXDM96Zf40(AlertDialog alertDialog, View view, boolean z) {
         alertDialog.getClass();
         if (view instanceof TextViewWithLoading) {
             ((TextViewWithLoading) view).setLoading(false, true);
@@ -1695,7 +1695,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             builder.setNegativeButton(LocaleController.getString(R.string.Stop), new OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    AlertDialog.m1245$r8$lambda$_E7pt5tNL0mmrtb5rtksHAkdG4(this.f$0, alertDialog, i);
+                    AlertDialog.m1251$r8$lambda$_E7pt5tNL0mmrtb5rtksHAkdG4(this.f$0, alertDialog, i);
                 }
             });
             builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -1711,7 +1711,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
-    public static void m1245$r8$lambda$_E7pt5tNL0mmrtb5rtksHAkdG4(AlertDialog alertDialog, AlertDialog alertDialog2, int i) {
+    public static void m1251$r8$lambda$_E7pt5tNL0mmrtb5rtksHAkdG4(AlertDialog alertDialog, AlertDialog alertDialog2, int i) {
         DialogInterface.OnCancelListener onCancelListener = alertDialog.onCancelListener;
         if (onCancelListener != null) {
             onCancelListener.onCancel(alertDialog);

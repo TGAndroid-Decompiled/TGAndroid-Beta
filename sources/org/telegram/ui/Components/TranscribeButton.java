@@ -117,7 +117,7 @@ public abstract class TranscribeButton {
         this.inIconDrawable.setOnFinishCallback(new Runnable() {
             @Override
             public final void run() {
-                TranscribeButton.m2898$r8$lambda$FrJYLe3gnPp9wjHBzKhPAAp5c(this.f$0);
+                TranscribeButton.m2907$r8$lambda$FrJYLe3gnPp9wjHBzKhPAAp5c(this.f$0);
             }
         }, 19);
         this.inIconDrawable.setAllowDecodeSingleFrame(true);
@@ -140,7 +140,7 @@ public abstract class TranscribeButton {
         transcribeButton.inIconDrawable.setCurrentFrame(0);
     }
 
-    public static void m2898$r8$lambda$FrJYLe3gnPp9wjHBzKhPAAp5c(TranscribeButton transcribeButton) {
+    public static void m2907$r8$lambda$FrJYLe3gnPp9wjHBzKhPAAp5c(TranscribeButton transcribeButton) {
         transcribeButton.inIconDrawable.stop();
         transcribeButton.outIconDrawable.stop();
         transcribeButton.shouldBeOpen = false;
@@ -808,7 +808,7 @@ public abstract class TranscribeButton {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranscribeButton.m2899$r8$lambda$a2o22si0EBawgKyJsqzCtlJsVw(chatMessageCellDelegate, tL_messages_transcribedAudio);
+                        TranscribeButton.m2908$r8$lambda$a2o22si0EBawgKyJsqzCtlJsVw(chatMessageCellDelegate, tL_messages_transcribedAudio);
                     }
                 });
             }
@@ -825,7 +825,7 @@ public abstract class TranscribeButton {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranscribeButton.m2900$r8$lambda$oaPhGEe95pO5I2f8R2G6iDBAyg(messageObject, chatMessageCellDelegate, i);
+                        TranscribeButton.m2909$r8$lambda$oaPhGEe95pO5I2f8R2G6iDBAyg(messageObject, chatMessageCellDelegate, i);
                     }
                 });
                 return;
@@ -854,13 +854,13 @@ public abstract class TranscribeButton {
         }
     }
 
-    public static void m2899$r8$lambda$a2o22si0EBawgKyJsqzCtlJsVw(ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, TLRPC.TL_messages_transcribedAudio tL_messages_transcribedAudio) {
+    public static void m2908$r8$lambda$a2o22si0EBawgKyJsqzCtlJsVw(ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, TLRPC.TL_messages_transcribedAudio tL_messages_transcribedAudio) {
         if (chatMessageCellDelegate != null) {
             chatMessageCellDelegate.needShowPremiumBulletin(tL_messages_transcribedAudio.trial_remains_num > 0 ? 1 : 2);
         }
     }
 
-    public static void m2900$r8$lambda$oaPhGEe95pO5I2f8R2G6iDBAyg(MessageObject messageObject, ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, int i) {
+    public static void m2909$r8$lambda$oaPhGEe95pO5I2f8R2G6iDBAyg(MessageObject messageObject, ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate, int i) {
         HashMap map = transcribeOperationsByDialogPosition;
         if (map != null) {
             map.remove(Integer.valueOf(reqInfoHash(messageObject)));

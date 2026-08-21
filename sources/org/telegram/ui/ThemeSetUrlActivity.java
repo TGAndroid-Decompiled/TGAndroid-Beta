@@ -84,7 +84,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         return true;
     }
 
-    public static void m4691$r8$lambda$LXgT_wPVPAMcRFpYW0PgPXyOUY(DialogInterface dialogInterface) {
+    public static void m4702$r8$lambda$LXgT_wPVPAMcRFpYW0PgPXyOUY(DialogInterface dialogInterface) {
     }
 
     public class LinkSpan extends ClickableSpan {
@@ -348,7 +348,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             this.createCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ThemeSetUrlActivity.m4692$r8$lambda$R_895X093gjqVQ1GmckfwXIvKw(this.f$0, context, view2);
+                    ThemeSetUrlActivity.m4703$r8$lambda$R_895X093gjqVQ1GmckfwXIvKw(this.f$0, context, view2);
                 }
             });
             TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context);
@@ -403,7 +403,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m4692$r8$lambda$R_895X093gjqVQ1GmckfwXIvKw(ThemeSetUrlActivity themeSetUrlActivity, Context context, View view) {
+    public static void m4703$r8$lambda$R_895X093gjqVQ1GmckfwXIvKw(ThemeSetUrlActivity themeSetUrlActivity, Context context, View view) {
         if (themeSetUrlActivity.getParentActivity() == null) {
             return;
         }
@@ -556,7 +556,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ThemeSetUrlActivity.m4693$r8$lambda$fEguy23oWCjJu6LgOOhTgMwkO0(this.f$0, str);
+                    ThemeSetUrlActivity.m4704$r8$lambda$fEguy23oWCjJu6LgOOhTgMwkO0(this.f$0, str);
                 }
             };
             this.checkRunnable = runnable2;
@@ -565,7 +565,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         return true;
     }
 
-    public static void m4693$r8$lambda$fEguy23oWCjJu6LgOOhTgMwkO0(final ThemeSetUrlActivity themeSetUrlActivity, final String str) {
+    public static void m4704$r8$lambda$fEguy23oWCjJu6LgOOhTgMwkO0(final ThemeSetUrlActivity themeSetUrlActivity, final String str) {
         themeSetUrlActivity.getClass();
         TL_account.createTheme createtheme = new TL_account.createTheme();
         createtheme.slug = str;
@@ -639,7 +639,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public final void onCancel(DialogInterface dialogInterface) {
-                        ThemeSetUrlActivity.m4691$r8$lambda$LXgT_wPVPAMcRFpYW0PgPXyOUY(dialogInterface);
+                        ThemeSetUrlActivity.m4702$r8$lambda$LXgT_wPVPAMcRFpYW0PgPXyOUY(dialogInterface);
                     }
                 });
                 this.progressDialog.show();
@@ -701,7 +701,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ThemeSetUrlActivity.m4690$r8$lambda$KkFSJjRABY16NuH6yZ8TsysW7o(this.f$0, tL_theme);
+                    ThemeSetUrlActivity.m4701$r8$lambda$KkFSJjRABY16NuH6yZ8TsysW7o(this.f$0, tL_theme);
                 }
             });
         } else {
@@ -714,7 +714,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m4690$r8$lambda$KkFSJjRABY16NuH6yZ8TsysW7o(ThemeSetUrlActivity themeSetUrlActivity, TLRPC.TL_theme tL_theme) {
+    public static void m4701$r8$lambda$KkFSJjRABY16NuH6yZ8TsysW7o(ThemeSetUrlActivity themeSetUrlActivity, TLRPC.TL_theme tL_theme) {
         themeSetUrlActivity.getClass();
         try {
             themeSetUrlActivity.progressDialog.dismiss();

@@ -200,7 +200,7 @@ public class RecentVotersCell extends FrameLayout {
                 arrayList.add(Factory.of(MessagesController.getInstance(this.currentAccount).getUserOrChat(peerDialogId), peerDialogId, messagePeerVote.date, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        RecentVotersCell.VotesList.m2958$r8$lambda$FWhD4iE8bM0SvRU6HI1zX8FouU(this.f$0, peerDialogId, view);
+                        RecentVotersCell.VotesList.m2967$r8$lambda$FWhD4iE8bM0SvRU6HI1zX8FouU(this.f$0, peerDialogId, view);
                     }
                 }));
             }
@@ -218,7 +218,7 @@ public class RecentVotersCell extends FrameLayout {
             arrayList.add(FlickerFactory.of());
         }
 
-        public static void m2958$r8$lambda$FWhD4iE8bM0SvRU6HI1zX8FouU(VotesList votesList, long j, View view) {
+        public static void m2967$r8$lambda$FWhD4iE8bM0SvRU6HI1zX8FouU(VotesList votesList, long j, View view) {
             Utilities.Callback callback = votesList.onClick;
             if (callback != null) {
                 callback.run(Long.valueOf(j));

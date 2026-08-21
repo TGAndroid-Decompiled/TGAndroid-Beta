@@ -408,7 +408,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1343getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1349getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -763,7 +763,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.debugBlackScreenRunnable = new Runnable() {
             @Override
             public final void run() {
-                ActionBarLayout.m1224$r8$lambda$P9NMVBFozNo1lFmeoHq0CL3nSE(this.f$0);
+                ActionBarLayout.m1230$r8$lambda$P9NMVBFozNo1lFmeoHq0CL3nSE(this.f$0);
             }
         };
         Insets insets = Insets.NONE;
@@ -2514,7 +2514,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.onOpenAnimationEndRunnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ActionBarLayout.m1227$r8$lambda$sJ3DWoR_DF9PP3YJucIksznII(this.f$0, z4, actionBarPopupWindowLayout, z, baseFragment3, baseFragment2);
+                        ActionBarLayout.m1233$r8$lambda$sJ3DWoR_DF9PP3YJucIksznII(this.f$0, z4, actionBarPopupWindowLayout, z, baseFragment3, baseFragment2);
                     }
                 };
                 boolean zNeedDelayOpenAnimation = baseFragment2.needDelayOpenAnimation();
@@ -2644,7 +2644,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         baseFragment2.onBecomeFullyVisible();
     }
 
-    public static void m1227$r8$lambda$sJ3DWoR_DF9PP3YJucIksznII(ActionBarLayout actionBarLayout, boolean z, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, boolean z2, BaseFragment baseFragment, BaseFragment baseFragment2) {
+    public static void m1233$r8$lambda$sJ3DWoR_DF9PP3YJucIksznII(ActionBarLayout actionBarLayout, boolean z, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, boolean z2, BaseFragment baseFragment, BaseFragment baseFragment2) {
         if (z) {
             actionBarLayout.inPreviewMode = true;
             actionBarLayout.previewMenu = actionBarPopupWindowLayout;
@@ -3372,7 +3372,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                ActionBarLayout.m1226$r8$lambda$i1dfGW4gvrOfWHEPiZgmecrKs(this.f$0, size, themeAnimationSettings, runnable);
+                ActionBarLayout.m1232$r8$lambda$i1dfGW4gvrOfWHEPiZgmecrKs(this.f$0, size, themeAnimationSettings, runnable);
             }
         };
         if (size >= 1 && themeAnimationSettings.applyTheme && themeAnimationSettings.applyTrulyTheme) {
@@ -3398,7 +3398,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         runnable2.run();
     }
 
-    public static void m1226$r8$lambda$i1dfGW4gvrOfWHEPiZgmecrKs(ActionBarLayout actionBarLayout, int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) {
+    public static void m1232$r8$lambda$i1dfGW4gvrOfWHEPiZgmecrKs(ActionBarLayout actionBarLayout, int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) {
         BaseFragment lastFragment;
         Runnable runnable2;
         boolean z = false;
@@ -3809,7 +3809,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         return null;
     }
 
-    public static void m1224$r8$lambda$P9NMVBFozNo1lFmeoHq0CL3nSE(ActionBarLayout actionBarLayout) {
+    public static void m1230$r8$lambda$P9NMVBFozNo1lFmeoHq0CL3nSE(ActionBarLayout actionBarLayout) {
         if (actionBarLayout.attached && actionBarLayout.getLastFragment() != null && actionBarLayout.containerView.getChildCount() == 0) {
             if (BuildVars.DEBUG_VERSION) {
                 FileLog.e(new RuntimeException(TextUtils.join(", ", actionBarLayout.lastActions)));
@@ -3867,7 +3867,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             lastSheet = null;
         } else {
             lastSheet = this.sheetFragment.getLastSheet();
-            if (!lastSheet.attachedToParent() || lastSheet.mo1343getWindowView() == null) {
+            if (!lastSheet.attachedToParent() || lastSheet.mo1349getWindowView() == null) {
                 lastSheet = null;
             }
         }
@@ -3875,7 +3875,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             attachedSheet = lastSheet;
         } else {
             lastSheet = getLastFragment().getLastSheet();
-            if (lastSheet.attachedToParent() && lastSheet.mo1343getWindowView() != null) {
+            if (lastSheet.attachedToParent() && lastSheet.mo1349getWindowView() != null) {
                 attachedSheet = lastSheet;
             }
         }
@@ -3887,7 +3887,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                     this.tabsEvents = false;
                 }
-                return attachedSheet.mo1343getWindowView().dispatchTouchEvent(motionEvent);
+                return attachedSheet.mo1349getWindowView().dispatchTouchEvent(motionEvent);
             }
         }
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {

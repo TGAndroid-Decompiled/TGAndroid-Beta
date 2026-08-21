@@ -173,12 +173,12 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CreateRtmpStreamBottomSheet.m2243$r8$lambda$X7nwlmCC58cOdNf6d8l5Os7rYA(this.f$0, buttonWithCounterView, tLObject);
+                CreateRtmpStreamBottomSheet.m2253$r8$lambda$X7nwlmCC58cOdNf6d8l5Os7rYA(this.f$0, buttonWithCounterView, tLObject);
             }
         });
     }
 
-    public static void m2243$r8$lambda$X7nwlmCC58cOdNf6d8l5Os7rYA(CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet, ButtonWithCounterView buttonWithCounterView, TLObject tLObject) {
+    public static void m2253$r8$lambda$X7nwlmCC58cOdNf6d8l5Os7rYA(CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet, ButtonWithCounterView buttonWithCounterView, TLObject tLObject) {
         createRtmpStreamBottomSheet.getClass();
         buttonWithCounterView.setLoading(false);
         if (tLObject instanceof TL_phone.groupCallStreamRtmpUrl) {
@@ -273,12 +273,12 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         ConnectionsManager.getInstance(createRtmpStreamBottomSheet.currentAccount).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CreateRtmpStreamBottomSheet.m2244$r8$lambda$YlMNIcVCub9KY5ci2FOs46ahHs(this.f$0, buttonWithCounterView, tLObject, tL_error);
+                CreateRtmpStreamBottomSheet.m2254$r8$lambda$YlMNIcVCub9KY5ci2FOs46ahHs(this.f$0, buttonWithCounterView, tLObject, tL_error);
             }
         });
     }
 
-    public static void m2244$r8$lambda$YlMNIcVCub9KY5ci2FOs46ahHs(final CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet, final ButtonWithCounterView buttonWithCounterView, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m2254$r8$lambda$YlMNIcVCub9KY5ci2FOs46ahHs(final CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet, final ButtonWithCounterView buttonWithCounterView, final TLObject tLObject, TLRPC.TL_error tL_error) {
         createRtmpStreamBottomSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -306,12 +306,12 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CreateRtmpStreamBottomSheet.m2242$r8$lambda$BylSXsrpWi1cZInIpBsqmr4Z0(this.f$0, tLObject);
+                CreateRtmpStreamBottomSheet.m2252$r8$lambda$BylSXsrpWi1cZInIpBsqmr4Z0(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m2242$r8$lambda$BylSXsrpWi1cZInIpBsqmr4Z0(CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet, TLObject tLObject) {
+    public static void m2252$r8$lambda$BylSXsrpWi1cZInIpBsqmr4Z0(CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet, TLObject tLObject) {
         createRtmpStreamBottomSheet.getClass();
         if (tLObject == null || !(tLObject instanceof TL_phone.groupCallStreamRtmpUrl)) {
             return;

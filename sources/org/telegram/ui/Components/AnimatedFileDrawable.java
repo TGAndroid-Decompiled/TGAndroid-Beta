@@ -169,12 +169,12 @@ public final class AnimatedFileDrawable extends BitmapDrawable implements Animat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AnimatedFileDrawable.m2009$r8$lambda$RlTSpTUtu0oVWePPjMuvPRoR84(this.f$0);
+                AnimatedFileDrawable.m2015$r8$lambda$RlTSpTUtu0oVWePPjMuvPRoR84(this.f$0);
             }
         });
     }
 
-    public static void m2009$r8$lambda$RlTSpTUtu0oVWePPjMuvPRoR84(AnimatedFileDrawable animatedFileDrawable) {
+    public static void m2015$r8$lambda$RlTSpTUtu0oVWePPjMuvPRoR84(AnimatedFileDrawable animatedFileDrawable) {
         if (animatedFileDrawable.cacheGenRunnable != null) {
             BitmapsCache.decrementTaskCounter();
             animatedFileDrawable.cacheGenRunnable = null;

@@ -50,6 +50,7 @@ import org.telegram.ui.Components.inset.WindowInsetsStateHolder;
 import org.telegram.ui.Stories.recorder.PreviewView;
 
 public class GiftMessageBottomSheet extends BottomSheet {
+    private final Drawable backgroundDrawable;
     private final int captionLimit;
     private final AnimatedTextView captionLimitView;
     private final FrameLayout chatInputBubbleContainer;
@@ -132,6 +133,11 @@ public class GiftMessageBottomSheet extends BottomSheet {
             }
 
             @Override
+            protected Drawable getNewDrawable() {
+                return GiftMessageBottomSheet.this.backgroundDrawable != null ? GiftMessageBottomSheet.this.backgroundDrawable : super.getNewDrawable();
+            }
+
+            @Override
             public void onUpdateBackgroundDrawable(Drawable drawable) {
                 super.onUpdateBackgroundDrawable(drawable);
                 if (drawable instanceof MotionBackgroundDrawable) {
@@ -148,7 +154,9 @@ public class GiftMessageBottomSheet extends BottomSheet {
         WindowAnimatedInsetsProvider windowAnimatedInsetsProvider = new WindowAnimatedInsetsProvider(this.container);
         this.rootAnimatedInsetsListener = windowAnimatedInsetsProvider;
         windowInsetsStateHolder.setupAnimatedInsetsProvider(windowAnimatedInsetsProvider, this.containerView);
-        sizeNotifierFrameLayout.setBackgroundImage(PreviewView.getBackgroundDrawable((Drawable) null, this.currentAccount, j, Theme.isCurrentThemeDark()), false);
+        Drawable backgroundDrawable = PreviewView.getBackgroundDrawable((Drawable) null, this.currentAccount, j, Theme.isCurrentThemeDark());
+        this.backgroundDrawable = backgroundDrawable;
+        sizeNotifierFrameLayout.setBackgroundImage(backgroundDrawable, false);
         StarGiftUniqueActionView starGiftUniqueActionView = new StarGiftUniqueActionView(context, this.currentAccount, resourcesProvider);
         this.starGiftUniqueActionView = starGiftUniqueActionView;
         starGiftUniqueActionView.set(tL_starGiftUnique, UserConfig.getInstance(this.currentAccount).getClientUserId(), null, LocaleController.getString(R.string.GiftMessageSendNow), false);
@@ -480,7 +488,7 @@ public class GiftMessageBottomSheet extends BottomSheet {
         this.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GiftMessageBottomSheet.m3198$r8$lambda$jGkgkXzyTDy0qpT49IJ5Lz1rgI(this.f$0, view);
+                GiftMessageBottomSheet.m3207$r8$lambda$jGkgkXzyTDy0qpT49IJ5Lz1rgI(this.f$0, view);
             }
         });
         TextView textView = new TextView(context);
@@ -547,7 +555,7 @@ public class GiftMessageBottomSheet extends BottomSheet {
         });
     }
 
-    public static void m3198$r8$lambda$jGkgkXzyTDy0qpT49IJ5Lz1rgI(GiftMessageBottomSheet giftMessageBottomSheet, View view) {
+    public static void m3207$r8$lambda$jGkgkXzyTDy0qpT49IJ5Lz1rgI(GiftMessageBottomSheet giftMessageBottomSheet, View view) {
         if (giftMessageBottomSheet.captionLimit - giftMessageBottomSheet.codepointCount < 0) {
             AndroidUtilities.shakeView(giftMessageBottomSheet.captionLimitView);
             return;

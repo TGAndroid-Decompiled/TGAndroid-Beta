@@ -570,12 +570,12 @@ public class FileLoader extends BaseController {
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.AnonymousClass1.m443$r8$lambda$Rs3O13V_5hw4u4o2C0PygpoFfw(this.f$0, z, str, z2, inputFile, inputEncryptedFile, bArr, bArr2, fileUploadOperation);
+                    FileLoader.AnonymousClass1.m451$r8$lambda$Rs3O13V_5hw4u4o2C0PygpoFfw(this.f$0, z, str, z2, inputFile, inputEncryptedFile, bArr, bArr2, fileUploadOperation);
                 }
             });
         }
 
-        public static void m443$r8$lambda$Rs3O13V_5hw4u4o2C0PygpoFfw(AnonymousClass1 anonymousClass1, boolean z, String str, boolean z2, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, FileUploadOperation fileUploadOperation) {
+        public static void m451$r8$lambda$Rs3O13V_5hw4u4o2C0PygpoFfw(AnonymousClass1 anonymousClass1, boolean z, String str, boolean z2, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, FileUploadOperation fileUploadOperation) {
             FileUploadOperation fileUploadOperation2;
             FileUploadOperation fileUploadOperation3;
             if (z) {
@@ -780,7 +780,7 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.m438$r8$lambda$2Ctm0RRnO_gT49ZnU7GbCTeMWM(this.f$0, fileName);
+                FileLoader.m446$r8$lambda$2Ctm0RRnO_gT49ZnU7GbCTeMWM(this.f$0, fileName);
             }
         });
         if (z) {
@@ -793,7 +793,7 @@ public class FileLoader extends BaseController {
         }
     }
 
-    public static void m438$r8$lambda$2Ctm0RRnO_gT49ZnU7GbCTeMWM(FileLoader fileLoader, String str) {
+    public static void m446$r8$lambda$2Ctm0RRnO_gT49ZnU7GbCTeMWM(FileLoader fileLoader, String str) {
         FileLoadOperation fileLoadOperationRemove = fileLoader.loadOperationPaths.remove(str);
         if (fileLoadOperationRemove != null) {
             fileLoadOperationRemove.getQueue().cancel(fileLoadOperationRemove);
@@ -816,12 +816,12 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.m439$r8$lambda$EknGph0ZntSvZj4F4uFewjXlZc(this.f$0, str2, i);
+                FileLoader.m447$r8$lambda$EknGph0ZntSvZj4F4uFewjXlZc(this.f$0, str2, i);
             }
         });
     }
 
-    public static void m439$r8$lambda$EknGph0ZntSvZj4F4uFewjXlZc(FileLoader fileLoader, String str, int i) {
+    public static void m447$r8$lambda$EknGph0ZntSvZj4F4uFewjXlZc(FileLoader fileLoader, String str, int i) {
         int priorityValue;
         FileLoadOperation fileLoadOperation = fileLoader.loadOperationPaths.get(str);
         if (fileLoadOperation == null || fileLoadOperation.getPriority() == (priorityValue = fileLoader.getPriorityValue(i))) {
@@ -1701,12 +1701,12 @@ public class FileLoader extends BaseController {
             FileLoader.fileLoaderQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.AnonymousClass2.m444$r8$lambda$mxbBfeFTETIsHMKtk_6I_mmOw(fileLoadOperation, queue);
+                    FileLoader.AnonymousClass2.m452$r8$lambda$mxbBfeFTETIsHMKtk_6I_mmOw(fileLoadOperation, queue);
                 }
             });
         }
 
-        public static void m444$r8$lambda$mxbBfeFTETIsHMKtk_6I_mmOw(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue) {
+        public static void m452$r8$lambda$mxbBfeFTETIsHMKtk_6I_mmOw(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue) {
             fileLoadOperation.preFinished = true;
             fileLoaderPriorityQueue.checkLoadingOperations();
         }
@@ -1890,14 +1890,14 @@ public class FileLoader extends BaseController {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.m441$r8$lambda$pURvZN6hmOuxGELs9q0TzMbtFE(this.f$0, fileLoadOperationArr, document, imageLocation, obj, i, fileLoadOperationStream, j, z, i2, countDownLatch);
+                FileLoader.m449$r8$lambda$pURvZN6hmOuxGELs9q0TzMbtFE(this.f$0, fileLoadOperationArr, document, imageLocation, obj, i, fileLoadOperationStream, j, z, i2, countDownLatch);
             }
         });
         awaitFileLoadOperation(countDownLatch, true);
         return fileLoadOperationArr[0];
     }
 
-    public static void m441$r8$lambda$pURvZN6hmOuxGELs9q0TzMbtFE(FileLoader fileLoader, FileLoadOperation[] fileLoadOperationArr, TLRPC.Document document, ImageLocation imageLocation, Object obj, int i, FileLoadOperationStream fileLoadOperationStream, long j, boolean z, int i2, CountDownLatch countDownLatch) {
+    public static void m449$r8$lambda$pURvZN6hmOuxGELs9q0TzMbtFE(FileLoader fileLoader, FileLoadOperation[] fileLoadOperationArr, TLRPC.Document document, ImageLocation imageLocation, Object obj, int i, FileLoadOperationStream fileLoadOperationStream, long j, boolean z, int i2, CountDownLatch countDownLatch) {
         fileLoader.getClass();
         String str = null;
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = (document != null || imageLocation == null) ? null : imageLocation.location;
@@ -2758,7 +2758,7 @@ public class FileLoader extends BaseController {
         final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                FileLoader.m440$r8$lambda$gKJsZClCE1qk51wAobZ3vhvknU(str, callback, runnable, i, i2, objArr);
+                FileLoader.m448$r8$lambda$gKJsZClCE1qk51wAobZ3vhvknU(str, callback, runnable, i, i2, objArr);
             }
         }};
         getNotificationCenter().addObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploaded);
@@ -2771,7 +2771,7 @@ public class FileLoader extends BaseController {
         fileLoader.getNotificationCenter().removeObserver(notificationCenterDelegateArr[0], NotificationCenter.fileUploadFailed);
     }
 
-    public static void m440$r8$lambda$gKJsZClCE1qk51wAobZ3vhvknU(String str, Utilities.Callback callback, Runnable runnable, int i, int i2, Object[] objArr) {
+    public static void m448$r8$lambda$gKJsZClCE1qk51wAobZ3vhvknU(String str, Utilities.Callback callback, Runnable runnable, int i, int i2, Object[] objArr) {
         if (i == NotificationCenter.fileUploaded) {
             if (objArr[0] == str) {
                 callback.run((TLRPC.InputFile) objArr[1]);

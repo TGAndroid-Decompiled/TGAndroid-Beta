@@ -144,7 +144,7 @@ public class BusinessLinksController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BusinessLinksController.m1368$r8$lambda$MneD0Kbi_yJhWm2SOIgSq0NhOc(this.f$0, arrayList, arrayList2, arrayList3, z);
+                        BusinessLinksController.m1374$r8$lambda$MneD0Kbi_yJhWm2SOIgSq0NhOc(this.f$0, arrayList, arrayList2, arrayList3, z);
                     }
                 });
             }
@@ -152,7 +152,7 @@ public class BusinessLinksController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BusinessLinksController.m1368$r8$lambda$MneD0Kbi_yJhWm2SOIgSq0NhOc(this.f$0, arrayList, arrayList2, arrayList3, z);
+                    BusinessLinksController.m1374$r8$lambda$MneD0Kbi_yJhWm2SOIgSq0NhOc(this.f$0, arrayList, arrayList2, arrayList3, z);
                 }
             });
         } catch (Throwable th) {
@@ -164,7 +164,7 @@ public class BusinessLinksController {
         }
     }
 
-    public static void m1368$r8$lambda$MneD0Kbi_yJhWm2SOIgSq0NhOc(BusinessLinksController businessLinksController, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, boolean z) {
+    public static void m1374$r8$lambda$MneD0Kbi_yJhWm2SOIgSq0NhOc(BusinessLinksController businessLinksController, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, boolean z) {
         businessLinksController.links.clear();
         businessLinksController.links.addAll(arrayList);
         MessagesController.getInstance(businessLinksController.currentAccount).putUsers(arrayList2, true);
@@ -179,12 +179,12 @@ public class BusinessLinksController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BusinessLinksController.m1369$r8$lambda$bsgrNQlRxtwTTvrtHqg5HBAg8(this.f$0, tLObject);
+                BusinessLinksController.m1375$r8$lambda$bsgrNQlRxtwTTvrtHqg5HBAg8(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m1369$r8$lambda$bsgrNQlRxtwTTvrtHqg5HBAg8(BusinessLinksController businessLinksController, TLObject tLObject) {
+    public static void m1375$r8$lambda$bsgrNQlRxtwTTvrtHqg5HBAg8(BusinessLinksController businessLinksController, TLObject tLObject) {
         businessLinksController.getClass();
         if (tLObject instanceof TL_account.businessChatLinks) {
             TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject;
@@ -245,7 +245,7 @@ public class BusinessLinksController {
             BulletinFactory.of(baseFragment).createUndoBulletin(LocaleController.getString(R.string.BusinessLinkDeleted), true, new Runnable() {
                 @Override
                 public final void run() {
-                    BusinessLinksController.m1370$r8$lambda$ohgflHdA_TOBDCphug8nzdbLpo(this.f$0, iIndexOf, tL_businessChatLinkFindLink);
+                    BusinessLinksController.m1376$r8$lambda$ohgflHdA_TOBDCphug8nzdbLpo(this.f$0, iIndexOf, tL_businessChatLinkFindLink);
                 }
             }, new Runnable() {
                 @Override
@@ -256,7 +256,7 @@ public class BusinessLinksController {
         }
     }
 
-    public static void m1370$r8$lambda$ohgflHdA_TOBDCphug8nzdbLpo(BusinessLinksController businessLinksController, int i, TL_account.TL_businessChatLink tL_businessChatLink) {
+    public static void m1376$r8$lambda$ohgflHdA_TOBDCphug8nzdbLpo(BusinessLinksController businessLinksController, int i, TL_account.TL_businessChatLink tL_businessChatLink) {
         businessLinksController.links.add(i, tL_businessChatLink);
         NotificationCenter.getInstance(businessLinksController.currentAccount).postNotificationName(NotificationCenter.businessLinksUpdated, new Object[0]);
     }
@@ -378,12 +378,12 @@ public class BusinessLinksController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BusinessLinksController.m1367$r8$lambda$8usVRAY8VhEnR5SGzDnV3jydWI(this.f$0, tLObject, tL_businessChatLink, runnable);
+                BusinessLinksController.m1373$r8$lambda$8usVRAY8VhEnR5SGzDnV3jydWI(this.f$0, tLObject, tL_businessChatLink, runnable);
             }
         });
     }
 
-    public static void m1367$r8$lambda$8usVRAY8VhEnR5SGzDnV3jydWI(BusinessLinksController businessLinksController, TLObject tLObject, TL_account.TL_businessChatLink tL_businessChatLink, Runnable runnable) {
+    public static void m1373$r8$lambda$8usVRAY8VhEnR5SGzDnV3jydWI(BusinessLinksController businessLinksController, TLObject tLObject, TL_account.TL_businessChatLink tL_businessChatLink, Runnable runnable) {
         businessLinksController.getClass();
         if (tLObject instanceof TL_account.TL_businessChatLink) {
             TL_account.TL_businessChatLink tL_businessChatLink2 = (TL_account.TL_businessChatLink) tLObject;

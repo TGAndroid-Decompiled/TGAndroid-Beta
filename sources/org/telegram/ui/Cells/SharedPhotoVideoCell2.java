@@ -175,7 +175,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                SharedPhotoVideoCell2.m1501$r8$lambda$oEGFzrvoLAh88JQI3KU35JbcLg(this.f$0, imageReceiver, z, z2, z3);
+                SharedPhotoVideoCell2.m1507$r8$lambda$oEGFzrvoLAh88JQI3KU35JbcLg(this.f$0, imageReceiver, z, z2, z3);
             }
 
             @Override
@@ -196,7 +196,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         setWillNotDraw(false);
     }
 
-    public static void m1501$r8$lambda$oEGFzrvoLAh88JQI3KU35JbcLg(SharedPhotoVideoCell2 sharedPhotoVideoCell2, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void m1507$r8$lambda$oEGFzrvoLAh88JQI3KU35JbcLg(SharedPhotoVideoCell2 sharedPhotoVideoCell2, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         MessageObject messageObject;
         sharedPhotoVideoCell2.getClass();
         if (z && !z2 && (messageObject = sharedPhotoVideoCell2.currentMessageObject) != null && messageObject.hasMediaSpoilers() && sharedPhotoVideoCell2.imageReceiver.getBitmap() != null) {

@@ -52,7 +52,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
     private LinearLayout linearLayout1;
     private TextView textView;
 
-    public static boolean m3322$r8$lambda$_9TeDfLKkBhGucrGhUvCKvDx8M(View view, MotionEvent motionEvent) {
+    public static boolean m3330$r8$lambda$_9TeDfLKkBhGucrGhUvCKvDx8M(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -107,7 +107,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return IdenticonActivity.m3322$r8$lambda$_9TeDfLKkBhGucrGhUvCKvDx8M(view, motionEvent);
+                return IdenticonActivity.m3330$r8$lambda$_9TeDfLKkBhGucrGhUvCKvDx8M(view, motionEvent);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);

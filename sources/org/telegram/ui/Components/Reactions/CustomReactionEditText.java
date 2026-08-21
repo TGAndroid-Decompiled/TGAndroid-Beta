@@ -64,7 +64,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view, boolean z) {
-                CustomReactionEditText.m2705$r8$lambda$4SFGA_l2jkfOeF1MjYJK1KjlQM(this.f$0, view, z);
+                CustomReactionEditText.m2714$r8$lambda$4SFGA_l2jkfOeF1MjYJK1KjlQM(this.f$0, view, z);
             }
         });
         setTextIsSelectable(true);
@@ -72,7 +72,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         setFocusableInTouchMode(false);
     }
 
-    public static void m2705$r8$lambda$4SFGA_l2jkfOeF1MjYJK1KjlQM(CustomReactionEditText customReactionEditText, View view, boolean z) {
+    public static void m2714$r8$lambda$4SFGA_l2jkfOeF1MjYJK1KjlQM(CustomReactionEditText customReactionEditText, View view, boolean z) {
         if (z) {
             customReactionEditText.removeReactionsSpan(true);
             Runnable runnable = customReactionEditText.onFocused;
@@ -131,7 +131,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    CustomReactionEditText.m2706$r8$lambda$ChVxSDasvJ0LQlf1VdZZq1bzww(this.f$0, addReactionsSpan);
+                    CustomReactionEditText.m2715$r8$lambda$ChVxSDasvJ0LQlf1VdZZq1bzww(this.f$0, addReactionsSpan);
                 }
             };
             if (z) {
@@ -143,7 +143,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         }
     }
 
-    public static void m2706$r8$lambda$ChVxSDasvJ0LQlf1VdZZq1bzww(CustomReactionEditText customReactionEditText, AddReactionsSpan addReactionsSpan) {
+    public static void m2715$r8$lambda$ChVxSDasvJ0LQlf1VdZZq1bzww(CustomReactionEditText customReactionEditText, AddReactionsSpan addReactionsSpan) {
         customReactionEditText.getText().delete(customReactionEditText.getText().getSpanStart(addReactionsSpan), customReactionEditText.getText().getSpanEnd(addReactionsSpan));
         customReactionEditText.setCursorVisible(true);
         customReactionEditText.setLongClickable(true);

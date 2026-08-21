@@ -477,7 +477,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                InviteContactsActivity.m3327$r8$lambda$utGCP4ZGu_1zP3r2NUqXP1hqe8(this.f$0, view, i2);
+                InviteContactsActivity.m3335$r8$lambda$utGCP4ZGu_1zP3r2NUqXP1hqe8(this.f$0, view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -513,7 +513,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                InviteContactsActivity.m3328$r8$lambda$8IQgDY8q_lmIwaXjncjYKmThU8(this.f$0, view);
+                InviteContactsActivity.m3336$r8$lambda$8IQgDY8q_lmIwaXjncjYKmThU8(this.f$0, view);
             }
         });
         this.actionBar.setBackgroundColor(getThemedColor(i));
@@ -543,7 +543,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
-    public static void m3327$r8$lambda$utGCP4ZGu_1zP3r2NUqXP1hqe8(InviteContactsActivity inviteContactsActivity, View view, int i) {
+    public static void m3335$r8$lambda$utGCP4ZGu_1zP3r2NUqXP1hqe8(InviteContactsActivity inviteContactsActivity, View view, int i) {
         InviteUserCell inviteUserCell;
         ContactsController.Contact contact;
         if (i != 0) {
@@ -578,7 +578,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         }
     }
 
-    public static void m3328$r8$lambda$8IQgDY8q_lmIwaXjncjYKmThU8(InviteContactsActivity inviteContactsActivity, View view) {
+    public static void m3336$r8$lambda$8IQgDY8q_lmIwaXjncjYKmThU8(InviteContactsActivity inviteContactsActivity, View view) {
         inviteContactsActivity.getClass();
         try {
             StringBuilder sb = new StringBuilder();
@@ -946,22 +946,22 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteContactsActivity.InviteAdapter.AnonymousClass1.m3329$r8$lambda$VKg6QsYfGuwTzPX8OHjjgqVF6c(this.f$0, str);
+                        InviteContactsActivity.InviteAdapter.AnonymousClass1.m3337$r8$lambda$VKg6QsYfGuwTzPX8OHjjgqVF6c(this.f$0, str);
                     }
                 });
             }
 
-            public static void m3329$r8$lambda$VKg6QsYfGuwTzPX8OHjjgqVF6c(final AnonymousClass1 anonymousClass1, final String str) {
+            public static void m3337$r8$lambda$VKg6QsYfGuwTzPX8OHjjgqVF6c(final AnonymousClass1 anonymousClass1, final String str) {
                 anonymousClass1.getClass();
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteContactsActivity.InviteAdapter.AnonymousClass1.m3330$r8$lambda$XRE_T9UOkYnPbe1AQxd95pIGv4(this.f$0, str);
+                        InviteContactsActivity.InviteAdapter.AnonymousClass1.m3338$r8$lambda$XRE_T9UOkYnPbe1AQxd95pIGv4(this.f$0, str);
                     }
                 });
             }
 
-            public static void m3330$r8$lambda$XRE_T9UOkYnPbe1AQxd95pIGv4(AnonymousClass1 anonymousClass1, String str) {
+            public static void m3338$r8$lambda$XRE_T9UOkYnPbe1AQxd95pIGv4(AnonymousClass1 anonymousClass1, String str) {
                 anonymousClass1.getClass();
                 String lowerCase = str.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {

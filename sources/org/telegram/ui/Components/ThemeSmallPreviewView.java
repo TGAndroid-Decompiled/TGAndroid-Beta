@@ -303,7 +303,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
                     chatThemeItem.chatTheme.loadWallpaperThumb(this.lastThemeIndex, new ResultCallback() {
                         @Override
                         public final void onComplete(Object obj) {
-                            ThemeSmallPreviewView.m2883$r8$lambda$vSh5icc_yi6kENgHrLhVI5wlN8(this.f$0, themeId, chatThemeItem, i3, (Pair) obj);
+                            ThemeSmallPreviewView.m2892$r8$lambda$vSh5icc_yi6kENgHrLhVI5wlN8(this.f$0, themeId, chatThemeItem, i3, (Pair) obj);
                         }
 
                         @Override
@@ -378,7 +378,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         }
     }
 
-    public static void m2883$r8$lambda$vSh5icc_yi6kENgHrLhVI5wlN8(ThemeSmallPreviewView themeSmallPreviewView, long j, ChatThemeBottomSheet.ChatThemeItem chatThemeItem, int i, Pair pair) {
+    public static void m2892$r8$lambda$vSh5icc_yi6kENgHrLhVI5wlN8(ThemeSmallPreviewView themeSmallPreviewView, long j, ChatThemeBottomSheet.ChatThemeItem chatThemeItem, int i, Pair pair) {
         themeSmallPreviewView.getClass();
         if (pair == null || ((Long) pair.first).longValue() != j) {
             return;
@@ -453,7 +453,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                    ThemeSmallPreviewView.m2882$r8$lambda$E638TTGL7Vro8ZVt1LJ0k0qIHA(this.f$0, valueAnimator3);
+                    ThemeSmallPreviewView.m2891$r8$lambda$E638TTGL7Vro8ZVt1LJ0k0qIHA(this.f$0, valueAnimator3);
                 }
             });
             this.strokeAlphaAnimator.addListener(new AnimatorListenerAdapter() {
@@ -470,7 +470,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         this.isSelected = z;
     }
 
-    public static void m2882$r8$lambda$E638TTGL7Vro8ZVt1LJ0k0qIHA(ThemeSmallPreviewView themeSmallPreviewView, ValueAnimator valueAnimator) {
+    public static void m2891$r8$lambda$E638TTGL7Vro8ZVt1LJ0k0qIHA(ThemeSmallPreviewView themeSmallPreviewView, ValueAnimator valueAnimator) {
         themeSmallPreviewView.getClass();
         themeSmallPreviewView.selectionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         themeSmallPreviewView.invalidate();

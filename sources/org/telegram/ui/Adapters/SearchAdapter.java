@@ -164,12 +164,12 @@ public abstract class SearchAdapter extends RecyclerListView.SelectionAdapter {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SearchAdapter.m1306$r8$lambda$_vSfLcy9LwO1vSdJCjiHUzEpLw(this.f$0, str, i2, arrayList, i);
+                SearchAdapter.m1312$r8$lambda$_vSfLcy9LwO1vSdJCjiHUzEpLw(this.f$0, str, i2, arrayList, i);
             }
         });
     }
 
-    public static void m1306$r8$lambda$_vSfLcy9LwO1vSdJCjiHUzEpLw(SearchAdapter searchAdapter, String str, int i, ArrayList arrayList, int i2) {
+    public static void m1312$r8$lambda$_vSfLcy9LwO1vSdJCjiHUzEpLw(SearchAdapter searchAdapter, String str, int i, ArrayList arrayList, int i2) {
         int i3;
         searchAdapter.getClass();
         String lowerCase = str.trim().toLowerCase();

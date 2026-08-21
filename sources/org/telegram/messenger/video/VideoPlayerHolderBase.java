@@ -86,7 +86,7 @@ public class VideoPlayerHolderBase {
     private final Runnable updateSeek = new Runnable() {
         @Override
         public final void run() {
-            VideoPlayerHolderBase.m1144$r8$lambda$Eyl2Vq94jm7XI2XxR7O08EAf4(this.f$0);
+            VideoPlayerHolderBase.m1150$r8$lambda$Eyl2Vq94jm7XI2XxR7O08EAf4(this.f$0);
         }
     };
 
@@ -341,7 +341,7 @@ public class VideoPlayerHolderBase {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        VideoPlayerHolderBase.AnonymousClass2.m1152$r8$lambda$NeEfwsiV2l5cT4YJXZLLGYlWKQ(this.f$0, currentPosition);
+                        VideoPlayerHolderBase.AnonymousClass2.m1158$r8$lambda$NeEfwsiV2l5cT4YJXZLLGYlWKQ(this.f$0, currentPosition);
                     }
                 };
                 videoPlayerHolderBase.initRunnable = runnable;
@@ -351,12 +351,12 @@ public class VideoPlayerHolderBase {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayerHolderBase.AnonymousClass2.m1151$r8$lambda$JlaAh_r0EMYD5KXDDi8JKiqT5c(this.f$0);
+                    VideoPlayerHolderBase.AnonymousClass2.m1157$r8$lambda$JlaAh_r0EMYD5KXDDi8JKiqT5c(this.f$0);
                 }
             });
         }
 
-        public static void m1152$r8$lambda$NeEfwsiV2l5cT4YJXZLLGYlWKQ(AnonymousClass2 anonymousClass2, long j) {
+        public static void m1158$r8$lambda$NeEfwsiV2l5cT4YJXZLLGYlWKQ(AnonymousClass2 anonymousClass2, long j) {
             VideoPlayerHolderBase videoPlayerHolderBase;
             Uri uri;
             if (VideoPlayerHolderBase.this.released || (uri = (videoPlayerHolderBase = VideoPlayerHolderBase.this).uri) == null) {
@@ -366,7 +366,7 @@ public class VideoPlayerHolderBase {
             VideoPlayerHolderBase.this.videoPlayer.seekTo(j);
         }
 
-        public static void m1151$r8$lambda$JlaAh_r0EMYD5KXDDi8JKiqT5c(AnonymousClass2 anonymousClass2) {
+        public static void m1157$r8$lambda$JlaAh_r0EMYD5KXDDi8JKiqT5c(AnonymousClass2 anonymousClass2) {
             if (VideoPlayerHolderBase.this.onErrorListener != null) {
                 VideoPlayerHolderBase.this.onErrorListener.run();
                 VideoPlayerHolderBase.this.onErrorListener = null;
@@ -384,7 +384,7 @@ public class VideoPlayerHolderBase {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayerHolderBase.AnonymousClass2.m1150$r8$lambda$IiCThXiJXTNIgoP29o6eMwLd88(this.f$0);
+                    VideoPlayerHolderBase.AnonymousClass2.m1156$r8$lambda$IiCThXiJXTNIgoP29o6eMwLd88(this.f$0);
                 }
             };
             if (VideoPlayerHolderBase.this.surface != null) {
@@ -395,7 +395,7 @@ public class VideoPlayerHolderBase {
             AndroidUtilities.runOnUIThread(runnable, j);
         }
 
-        public static void m1150$r8$lambda$IiCThXiJXTNIgoP29o6eMwLd88(AnonymousClass2 anonymousClass2) {
+        public static void m1156$r8$lambda$IiCThXiJXTNIgoP29o6eMwLd88(AnonymousClass2 anonymousClass2) {
             if (VideoPlayerHolderBase.this.released) {
                 return;
             }
@@ -520,13 +520,13 @@ public class VideoPlayerHolderBase {
             this.dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayerHolderBase.m1142$r8$lambda$sYTElh4T8Kel46C28GlwD7YSk(this.f$0);
+                    VideoPlayerHolderBase.m1148$r8$lambda$sYTElh4T8Kel46C28GlwD7YSk(this.f$0);
                 }
             });
         }
     }
 
-    public static void m1142$r8$lambda$sYTElh4T8Kel46C28GlwD7YSk(VideoPlayerHolderBase videoPlayerHolderBase) {
+    public static void m1148$r8$lambda$sYTElh4T8Kel46C28GlwD7YSk(VideoPlayerHolderBase videoPlayerHolderBase) {
         VideoPlayer videoPlayer = videoPlayerHolderBase.videoPlayer;
         if (videoPlayer != null) {
             Surface surface = videoPlayerHolderBase.surface;
@@ -555,13 +555,13 @@ public class VideoPlayerHolderBase {
             this.dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayerHolderBase.m1148$r8$lambda$k5V7ZOg0_niWDNXjuh8AbQyCaE(this.f$0, f);
+                    VideoPlayerHolderBase.m1154$r8$lambda$k5V7ZOg0_niWDNXjuh8AbQyCaE(this.f$0, f);
                 }
             });
         }
     }
 
-    public static void m1148$r8$lambda$k5V7ZOg0_niWDNXjuh8AbQyCaE(VideoPlayerHolderBase videoPlayerHolderBase, float f) {
+    public static void m1154$r8$lambda$k5V7ZOg0_niWDNXjuh8AbQyCaE(VideoPlayerHolderBase videoPlayerHolderBase, float f) {
         VideoPlayer videoPlayer = videoPlayerHolderBase.videoPlayer;
         if (videoPlayer != null) {
             Surface surface = videoPlayerHolderBase.surface;
@@ -671,12 +671,12 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.m1149$r8$lambda$vhcK6anMbCiIdornxk5khyXYGY(this.f$0);
+                VideoPlayerHolderBase.m1155$r8$lambda$vhcK6anMbCiIdornxk5khyXYGY(this.f$0);
             }
         });
     }
 
-    public static void m1149$r8$lambda$vhcK6anMbCiIdornxk5khyXYGY(VideoPlayerHolderBase videoPlayerHolderBase) {
+    public static void m1155$r8$lambda$vhcK6anMbCiIdornxk5khyXYGY(VideoPlayerHolderBase videoPlayerHolderBase) {
         VideoPlayer videoPlayer = videoPlayerHolderBase.videoPlayer;
         if (videoPlayer != null) {
             videoPlayer.seekTo(0L);
@@ -689,12 +689,12 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.m1143$r8$lambda$1JmyPfX7O1IYAjA91aL_F2SolA(this.f$0, f);
+                VideoPlayerHolderBase.m1149$r8$lambda$1JmyPfX7O1IYAjA91aL_F2SolA(this.f$0, f);
             }
         });
     }
 
-    public static void m1143$r8$lambda$1JmyPfX7O1IYAjA91aL_F2SolA(VideoPlayerHolderBase videoPlayerHolderBase, float f) {
+    public static void m1149$r8$lambda$1JmyPfX7O1IYAjA91aL_F2SolA(VideoPlayerHolderBase videoPlayerHolderBase, float f) {
         VideoPlayer videoPlayer = videoPlayerHolderBase.videoPlayer;
         if (videoPlayer != null) {
             videoPlayer.setVolume(f);
@@ -721,12 +721,12 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.m1147$r8$lambda$V8uLnehJLNonS5NQRMCLtIDLQ0(this.f$0, j);
+                VideoPlayerHolderBase.m1153$r8$lambda$V8uLnehJLNonS5NQRMCLtIDLQ0(this.f$0, j);
             }
         });
     }
 
-    public static void m1147$r8$lambda$V8uLnehJLNonS5NQRMCLtIDLQ0(VideoPlayerHolderBase videoPlayerHolderBase, long j) {
+    public static void m1153$r8$lambda$V8uLnehJLNonS5NQRMCLtIDLQ0(VideoPlayerHolderBase videoPlayerHolderBase, long j) {
         VideoPlayer videoPlayer = videoPlayerHolderBase.videoPlayer;
         if (videoPlayer == null) {
             videoPlayerHolderBase.pendingSeekTo = j;
@@ -739,12 +739,12 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayerHolderBase.m1145$r8$lambda$JpoSD8UdUavBi_IGlKF50fL1qs(this.f$0, j, z, runnable);
+                VideoPlayerHolderBase.m1151$r8$lambda$JpoSD8UdUavBi_IGlKF50fL1qs(this.f$0, j, z, runnable);
             }
         });
     }
 
-    public static void m1145$r8$lambda$JpoSD8UdUavBi_IGlKF50fL1qs(VideoPlayerHolderBase videoPlayerHolderBase, long j, boolean z, Runnable runnable) {
+    public static void m1151$r8$lambda$JpoSD8UdUavBi_IGlKF50fL1qs(VideoPlayerHolderBase videoPlayerHolderBase, long j, boolean z, Runnable runnable) {
         VideoPlayer videoPlayer = videoPlayerHolderBase.videoPlayer;
         if (videoPlayer == null) {
             videoPlayerHolderBase.pendingSeekTo = j;
@@ -761,7 +761,7 @@ public class VideoPlayerHolderBase {
         this.onSeekUpdate = runnable;
     }
 
-    public static void m1144$r8$lambda$Eyl2Vq94jm7XI2XxR7O08EAf4(VideoPlayerHolderBase videoPlayerHolderBase) {
+    public static void m1150$r8$lambda$Eyl2Vq94jm7XI2XxR7O08EAf4(VideoPlayerHolderBase videoPlayerHolderBase) {
         if (videoPlayerHolderBase.videoPlayer == null) {
             return;
         }

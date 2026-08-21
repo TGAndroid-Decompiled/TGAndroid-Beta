@@ -296,7 +296,7 @@ public abstract class TextSelectionHint extends View {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.m2875$r8$lambda$Lje4aq515RDuOBWPgbN3oY167c(this.f$0, valueAnimator);
+                TextSelectionHint.m2884$r8$lambda$Lje4aq515RDuOBWPgbN3oY167c(this.f$0, valueAnimator);
             }
         });
         valueAnimatorOfFloat.setDuration(210L);
@@ -315,7 +315,7 @@ public abstract class TextSelectionHint extends View {
         valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.m2873$r8$lambda$0XPTaIbGpU35GKdRoLzsnVJoE(this.f$0, valueAnimator);
+                TextSelectionHint.m2882$r8$lambda$0XPTaIbGpU35GKdRoLzsnVJoE(this.f$0, valueAnimator);
             }
         });
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
@@ -338,7 +338,7 @@ public abstract class TextSelectionHint extends View {
         AndroidUtilities.runOnUIThread(this.dismissTunnable, 5000L);
     }
 
-    public static void m2875$r8$lambda$Lje4aq515RDuOBWPgbN3oY167c(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
+    public static void m2884$r8$lambda$Lje4aq515RDuOBWPgbN3oY167c(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
         textSelectionHint.getClass();
         textSelectionHint.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         textSelectionHint.invalidate();
@@ -350,7 +350,7 @@ public abstract class TextSelectionHint extends View {
         textSelectionHint.invalidate();
     }
 
-    public static void m2873$r8$lambda$0XPTaIbGpU35GKdRoLzsnVJoE(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
+    public static void m2882$r8$lambda$0XPTaIbGpU35GKdRoLzsnVJoE(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
         textSelectionHint.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         textSelectionHint.startOffsetValue = fFloatValue;

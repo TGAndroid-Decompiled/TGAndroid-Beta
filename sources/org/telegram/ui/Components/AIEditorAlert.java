@@ -260,7 +260,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         round2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view) {
-                return AIEditorAlert.m1914$r8$lambda$d7_4mlv8SBNTz7zW6Laxzvjo7U(this.f$0, resourcesProvider, context, view);
+                return AIEditorAlert.m1920$r8$lambda$d7_4mlv8SBNTz7zW6Laxzvjo7U(this.f$0, resourcesProvider, context, view);
             }
         });
         linearLayout.addView(round2, LayoutHelper.createLinear(48, 48, 5, 10, 0, 0, 0));
@@ -357,7 +357,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
             }).add(R.drawable.msg_share, LocaleController.getString(R.string.AIEditorShareStyle), new Runnable() {
                 @Override
                 public final void run() {
-                    AIEditorAlert.m1919$r8$lambda$uQ2_hiOPvxphsJKBP3Vli1EYsQ(this.f$0, tL_aiComposeTone, context, resourcesProvider);
+                    AIEditorAlert.m1925$r8$lambda$uQ2_hiOPvxphsJKBP3Vli1EYsQ(this.f$0, tL_aiComposeTone, context, resourcesProvider);
                 }
             });
             boolean z = !tL_aiComposeTone.creator;
@@ -374,7 +374,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
                     new AlertDialog.Builder(aIEditorAlert2.getContext(), resourcesProvider).setTitle(LocaleController.getString(R.string.AIEditorDeleteStyle)).setMessage(LocaleController.getString(R.string.AIEditorDeleteStyleText)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i2) {
-                            AIEditorAlert.m1906$r8$lambda$6cSRVL2F3vsi0R0XjWA_S82YmU(aIEditorAlert2, tL_aiComposeTone, alertDialog, i2);
+                            AIEditorAlert.m1912$r8$lambda$6cSRVL2F3vsi0R0XjWA_S82YmU(aIEditorAlert2, tL_aiComposeTone, alertDialog, i2);
                         }
                     }).makeRed(-1).show();
                 }
@@ -392,7 +392,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         aIEditorAlert.updateStyles();
     }
 
-    public static void m1919$r8$lambda$uQ2_hiOPvxphsJKBP3Vli1EYsQ(AIEditorAlert aIEditorAlert, TL_aicompose.TL_aiComposeTone tL_aiComposeTone, Context context, Theme.ResourcesProvider resourcesProvider) {
+    public static void m1925$r8$lambda$uQ2_hiOPvxphsJKBP3Vli1EYsQ(AIEditorAlert aIEditorAlert, TL_aicompose.TL_aiComposeTone tL_aiComposeTone, Context context, Theme.ResourcesProvider resourcesProvider) {
         aIEditorAlert.getClass();
         String str = "https://t.me/addstyle/" + tL_aiComposeTone.slug;
         new ShareAlert(context, null, str, false, str, false, resourcesProvider) {
@@ -421,7 +421,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         }.show();
     }
 
-    public static void m1906$r8$lambda$6cSRVL2F3vsi0R0XjWA_S82YmU(final AIEditorAlert aIEditorAlert, final TL_aicompose.TL_aiComposeTone tL_aiComposeTone, AlertDialog alertDialog, int i) {
+    public static void m1912$r8$lambda$6cSRVL2F3vsi0R0XjWA_S82YmU(final AIEditorAlert aIEditorAlert, final TL_aicompose.TL_aiComposeTone tL_aiComposeTone, AlertDialog alertDialog, int i) {
         aIEditorAlert.getClass();
         final Browser.Progress progressMakeButtonLoading = alertDialog.makeButtonLoading(-1);
         progressMakeButtonLoading.init();
@@ -447,7 +447,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         aIEditorAlert.dismiss();
     }
 
-    public static boolean m1914$r8$lambda$d7_4mlv8SBNTz7zW6Laxzvjo7U(final AIEditorAlert aIEditorAlert, final Theme.ResourcesProvider resourcesProvider, final Context context, View view) {
+    public static boolean m1920$r8$lambda$d7_4mlv8SBNTz7zW6Laxzvjo7U(final AIEditorAlert aIEditorAlert, final Theme.ResourcesProvider resourcesProvider, final Context context, View view) {
         if (aIEditorAlert.editing || !aIEditorAlert.hasSendResult()) {
             return false;
         }
@@ -571,7 +571,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
                 this.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        AIEditorAlert.m1917$r8$lambda$n4gUIJ4uhQCWfAy5pHcR8zZPpo(this.f$0, view);
+                        AIEditorAlert.m1923$r8$lambda$n4gUIJ4uhQCWfAy5pHcR8zZPpo(this.f$0, view);
                     }
                 });
             } else if (this.onUseRichListener != null || this.onUseListener != null) {
@@ -612,7 +612,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
             this.buttonContainer.animate().alpha(this.showLimit ? 0.0f : 1.0f).setInterpolator(cubicBezierInterpolator).setDuration(320L).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    AIEditorAlert.m1918$r8$lambda$r_8TbPE_L94nqx0KwNClwfyxw(this.f$0);
+                    AIEditorAlert.m1924$r8$lambda$r_8TbPE_L94nqx0KwNClwfyxw(this.f$0);
                 }
             }).start();
             return;
@@ -623,7 +623,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         this.buttonContainer.setAlpha(this.showLimit ? 0.0f : 1.0f);
     }
 
-    public static void m1917$r8$lambda$n4gUIJ4uhQCWfAy5pHcR8zZPpo(AIEditorAlert aIEditorAlert, View view) {
+    public static void m1923$r8$lambda$n4gUIJ4uhQCWfAy5pHcR8zZPpo(AIEditorAlert aIEditorAlert, View view) {
         AndroidUtilities.hideKeyboard(aIEditorAlert.promptCell.editText);
         aIEditorAlert.promptText = aIEditorAlert.promptCell.getText().toString();
         aIEditorAlert.updatePromptEditText();
@@ -650,7 +650,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         aIEditorAlert.allButton.setVisibility(8);
     }
 
-    public static void m1918$r8$lambda$r_8TbPE_L94nqx0KwNClwfyxw(AIEditorAlert aIEditorAlert) {
+    public static void m1924$r8$lambda$r_8TbPE_L94nqx0KwNClwfyxw(AIEditorAlert aIEditorAlert) {
         if (aIEditorAlert.showLimit) {
             aIEditorAlert.buttonContainer.setVisibility(8);
         }
@@ -771,7 +771,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
                 new CreateAiStyleAlert(getContext(), this.resourcesProvider).setOnToneCreated(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        AIEditorAlert.m1913$r8$lambda$SLGoyZp4fv6eF_QUz10T_py6jM(this.f$0, (TL_aicompose.AiComposeTone) obj);
+                        AIEditorAlert.m1919$r8$lambda$SLGoyZp4fv6eF_QUz10T_py6jM(this.f$0, (TL_aicompose.AiComposeTone) obj);
                     }
                 }).show();
                 return;
@@ -785,7 +785,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         this.adapter.update(true);
     }
 
-    public static void m1913$r8$lambda$SLGoyZp4fv6eF_QUz10T_py6jM(AIEditorAlert aIEditorAlert, TL_aicompose.AiComposeTone aiComposeTone) {
+    public static void m1919$r8$lambda$SLGoyZp4fv6eF_QUz10T_py6jM(AIEditorAlert aIEditorAlert, TL_aicompose.AiComposeTone aiComposeTone) {
         aIEditorAlert.tonesController.tones.add(0, aiComposeTone);
         aIEditorAlert.updateStyles();
         BulletinFactory.of(aIEditorAlert.bulletinContainer, aIEditorAlert.resourcesProvider).createEmojiBulletin(aiComposeTone.emoji_id, LocaleController.formatString(R.string.AIEditorToneCreatedTitle, aiComposeTone.title), LocaleController.getString(R.string.AIEditorToneCreatedText)).show();
@@ -2146,13 +2146,13 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
                     MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName, null, false, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            AIEditorAlert.Tabs.Tab.m1926$r8$lambda$7C5NwFrfZ1eGYi6VFHAiPHlZLQ(this.f$0, str, (TLRPC.TL_messages_stickerSet) obj);
+                            AIEditorAlert.Tabs.Tab.m1932$r8$lambda$7C5NwFrfZ1eGYi6VFHAiPHlZLQ(this.f$0, str, (TLRPC.TL_messages_stickerSet) obj);
                         }
                     });
                 }
             }
 
-            public static void m1926$r8$lambda$7C5NwFrfZ1eGYi6VFHAiPHlZLQ(Tab tab, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+            public static void m1932$r8$lambda$7C5NwFrfZ1eGYi6VFHAiPHlZLQ(Tab tab, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
                 TLRPC.Document document;
                 tab.getClass();
                 if (tL_messages_stickerSet == null || tL_messages_stickerSet.set == null) {
@@ -2367,7 +2367,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
             this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i4) {
-                    AIEditorAlert.CreateAiStyleAlert.m1924$r8$lambda$Raz_RPPdmBxV2xgg8M30rPNEcQ(this.f$0, resourcesProvider, view, i4);
+                    AIEditorAlert.CreateAiStyleAlert.m1930$r8$lambda$Raz_RPPdmBxV2xgg8M30rPNEcQ(this.f$0, resourcesProvider, view, i4);
                 }
             });
             this.ignoreTouchActionBar = false;
@@ -2423,7 +2423,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
             checkBox2.setChecked(!checkBox2.isChecked(), true);
         }
 
-        public static void m1924$r8$lambda$Raz_RPPdmBxV2xgg8M30rPNEcQ(final CreateAiStyleAlert createAiStyleAlert, Theme.ResourcesProvider resourcesProvider, View view, int i) {
+        public static void m1930$r8$lambda$Raz_RPPdmBxV2xgg8M30rPNEcQ(final CreateAiStyleAlert createAiStyleAlert, Theme.ResourcesProvider resourcesProvider, View view, int i) {
             UItem item = createAiStyleAlert.adapter.getItem(i - 1);
             if (item != null && item.id == 1) {
                 new AlertDialog.Builder(createAiStyleAlert.getContext(), resourcesProvider).setTitle(LocaleController.getString(R.string.AIEditorDeleteStyle)).setMessage(LocaleController.getString(R.string.AIEditorDeleteStyleText)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
@@ -2483,7 +2483,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
                 ConnectionsManager.getInstance(createAiStyleAlert.currentAccount).sendRequestTyped(updatetone, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        AIEditorAlert.CreateAiStyleAlert.m1923$r8$lambda$FjyclB6dgYo5k3GbXdw2s6AW4(this.f$0, resourcesProvider, (TL_aicompose.AiComposeTone) obj, (TLRPC.TL_error) obj2);
+                        AIEditorAlert.CreateAiStyleAlert.m1929$r8$lambda$FjyclB6dgYo5k3GbXdw2s6AW4(this.f$0, resourcesProvider, (TL_aicompose.AiComposeTone) obj, (TLRPC.TL_error) obj2);
                     }
                 });
                 return;
@@ -2496,12 +2496,12 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
             ConnectionsManager.getInstance(createAiStyleAlert.currentAccount).sendRequestTyped(createtone, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    AIEditorAlert.CreateAiStyleAlert.m1925$r8$lambda$vL9txO5BTbBe2FCrR6RM3r7bcA(this.f$0, resourcesProvider, (TL_aicompose.AiComposeTone) obj, (TLRPC.TL_error) obj2);
+                    AIEditorAlert.CreateAiStyleAlert.m1931$r8$lambda$vL9txO5BTbBe2FCrR6RM3r7bcA(this.f$0, resourcesProvider, (TL_aicompose.AiComposeTone) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
 
-        public static void m1923$r8$lambda$FjyclB6dgYo5k3GbXdw2s6AW4(CreateAiStyleAlert createAiStyleAlert, Theme.ResourcesProvider resourcesProvider, TL_aicompose.AiComposeTone aiComposeTone, TLRPC.TL_error tL_error) {
+        public static void m1929$r8$lambda$FjyclB6dgYo5k3GbXdw2s6AW4(CreateAiStyleAlert createAiStyleAlert, Theme.ResourcesProvider resourcesProvider, TL_aicompose.AiComposeTone aiComposeTone, TLRPC.TL_error tL_error) {
             createAiStyleAlert.button.setLoading(false);
             if (aiComposeTone == null) {
                 if (tL_error != null) {
@@ -2516,7 +2516,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
             }
         }
 
-        public static void m1925$r8$lambda$vL9txO5BTbBe2FCrR6RM3r7bcA(CreateAiStyleAlert createAiStyleAlert, Theme.ResourcesProvider resourcesProvider, TL_aicompose.AiComposeTone aiComposeTone, TLRPC.TL_error tL_error) {
+        public static void m1931$r8$lambda$vL9txO5BTbBe2FCrR6RM3r7bcA(CreateAiStyleAlert createAiStyleAlert, Theme.ResourcesProvider resourcesProvider, TL_aicompose.AiComposeTone aiComposeTone, TLRPC.TL_error tL_error) {
             createAiStyleAlert.button.setLoading(false);
             if (aiComposeTone != null) {
                 createAiStyleAlert.dismiss();

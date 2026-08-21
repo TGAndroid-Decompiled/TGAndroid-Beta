@@ -84,19 +84,19 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
     public static void $r8$lambda$1DUxjYFtE69U_qFQRtChVoxzGr8(View view) {
     }
 
-    public static void m3186$r8$lambda$6BJrnfi3ZJ3cJs3Bf_9BJtCOLU(View view) {
+    public static void m3195$r8$lambda$6BJrnfi3ZJ3cJs3Bf_9BJtCOLU(View view) {
     }
 
     public static void $r8$lambda$YeUq2LReHHi1r1GAtZp0wUyzLtQ(View view) {
     }
 
-    public static void m3190$r8$lambda$_AmuCjii1BRDD1h5poia39kI0(View view) {
+    public static void m3199$r8$lambda$_AmuCjii1BRDD1h5poia39kI0(View view) {
     }
 
     public static void $r8$lambda$evhnpTfZlwrtcMSOiMiajabj5Lo(View view) {
     }
 
-    public static void m3193$r8$lambda$lOauVwazGWP_yO4vu_vKA8mJfY(View view) {
+    public static void m3202$r8$lambda$lOauVwazGWP_yO4vu_vKA8mJfY(View view) {
     }
 
     private AuctionJoinSheet(final Context context, final Theme.ResourcesProvider resourcesProvider, final long j, final TL_stars.StarGift starGift, final Runnable runnable) {
@@ -179,7 +179,7 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
         this.showHint = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AuctionJoinSheet.m3194$r8$lambda$o3NL3m2WpXqLKzIKw8DRS3cvA(this.f$0, hintView2Arr, frameLayout2, (View) obj, (CharSequence) obj2);
+                AuctionJoinSheet.m3203$r8$lambda$o3NL3m2WpXqLKzIKw8DRS3cvA(this.f$0, hintView2Arr, frameLayout2, (View) obj, (CharSequence) obj2);
             }
         };
         TableRow tableRowAddRow = tableView.addRow(LocaleController.getString(R.string.GiftValueAveragePrice), "", textViewButtonsArr);
@@ -206,7 +206,7 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
         linksTextView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AuctionJoinSheet.m3185$r8$lambda$3PXWKSWkocdOqfY2fnj0IrdPz8(this.f$0, zArr, resourcesProvider, view);
+                AuctionJoinSheet.m3194$r8$lambda$3PXWKSWkocdOqfY2fnj0IrdPz8(this.f$0, zArr, resourcesProvider, view);
             }
         });
         ScaleStateListAnimator.apply(linksTextView2, 0.02f, 1.5f);
@@ -289,17 +289,17 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
             }, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AuctionJoinSheet.m3193$r8$lambda$lOauVwazGWP_yO4vu_vKA8mJfY(view);
+                    AuctionJoinSheet.m3202$r8$lambda$lOauVwazGWP_yO4vu_vKA8mJfY(view);
                 }
             }, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AuctionJoinSheet.m3190$r8$lambda$_AmuCjii1BRDD1h5poia39kI0(view);
+                    AuctionJoinSheet.m3199$r8$lambda$_AmuCjii1BRDD1h5poia39kI0(view);
                 }
             }, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AuctionJoinSheet.m3186$r8$lambda$6BJrnfi3ZJ3cJs3Bf_9BJtCOLU(view);
+                    AuctionJoinSheet.m3195$r8$lambda$6BJrnfi3ZJ3cJs3Bf_9BJtCOLU(view);
                 }
             }, new View.OnClickListener() {
                 @Override
@@ -431,7 +431,7 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
         updateTable(false);
     }
 
-    public static void m3194$r8$lambda$o3NL3m2WpXqLKzIKw8DRS3cvA(AuctionJoinSheet auctionJoinSheet, HintView2[] hintView2Arr, FrameLayout frameLayout, View view, CharSequence charSequence) {
+    public static void m3203$r8$lambda$o3NL3m2WpXqLKzIKw8DRS3cvA(AuctionJoinSheet auctionJoinSheet, HintView2[] hintView2Arr, FrameLayout frameLayout, View view, CharSequence charSequence) {
         ButtonSpan buttonSpan;
         auctionJoinSheet.getClass();
         HintView2 hintView2 = hintView2Arr[0];
@@ -474,7 +474,7 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
         hintView3.show();
     }
 
-    public static void m3185$r8$lambda$3PXWKSWkocdOqfY2fnj0IrdPz8(final AuctionJoinSheet auctionJoinSheet, final boolean[] zArr, final Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m3194$r8$lambda$3PXWKSWkocdOqfY2fnj0IrdPz8(final AuctionJoinSheet auctionJoinSheet, final boolean[] zArr, final Theme.ResourcesProvider resourcesProvider, View view) {
         auctionJoinSheet.getClass();
         if (zArr[0]) {
             return;
@@ -706,12 +706,12 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
         GiftAuctionController.getInstance(i).getOrRequestAuction(j2, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AuctionJoinSheet.m3192$r8$lambda$hP_lRUuYCaP75u8lhXvsZQZlQw(context, resourcesProvider, i, j, runnable, (GiftAuctionController.Auction) obj, (TLRPC.TL_error) obj2);
+                AuctionJoinSheet.m3201$r8$lambda$hP_lRUuYCaP75u8lhXvsZQZlQw(context, resourcesProvider, i, j, runnable, (GiftAuctionController.Auction) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m3192$r8$lambda$hP_lRUuYCaP75u8lhXvsZQZlQw(Context context, Theme.ResourcesProvider resourcesProvider, int i, long j, Runnable runnable, GiftAuctionController.Auction auction, TLRPC.TL_error tL_error) {
+    public static void m3201$r8$lambda$hP_lRUuYCaP75u8lhXvsZQZlQw(Context context, Theme.ResourcesProvider resourcesProvider, int i, long j, Runnable runnable, GiftAuctionController.Auction auction, TLRPC.TL_error tL_error) {
         if (auction != null) {
             show(context, resourcesProvider, i, j, auction, runnable);
         }

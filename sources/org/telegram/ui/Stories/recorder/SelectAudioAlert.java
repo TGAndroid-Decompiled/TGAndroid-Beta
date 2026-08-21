@@ -691,12 +691,12 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SelectAudioAlert.m4568$r8$lambda$r8O6CqM005fY5SLqz3ixK1cIBc(this.f$0, tLObject);
+                SelectAudioAlert.m4579$r8$lambda$r8O6CqM005fY5SLqz3ixK1cIBc(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m4568$r8$lambda$r8O6CqM005fY5SLqz3ixK1cIBc(SelectAudioAlert selectAudioAlert, TLObject tLObject) {
+    public static void m4579$r8$lambda$r8O6CqM005fY5SLqz3ixK1cIBc(SelectAudioAlert selectAudioAlert, TLObject tLObject) {
         boolean z = false;
         selectAudioAlert.willLoadSharedAudio = false;
         selectAudioAlert.loadingSharedAudio = false;
@@ -953,12 +953,12 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SelectAudioAlert.m4567$r8$lambda$qX0JpFkuCzsLqj1XjRgCu5RRgk(this.f$0, arrayList);
+                SelectAudioAlert.m4578$r8$lambda$qX0JpFkuCzsLqj1XjRgCu5RRgk(this.f$0, arrayList);
             }
         });
     }
 
-    public static void m4567$r8$lambda$qX0JpFkuCzsLqj1XjRgCu5RRgk(SelectAudioAlert selectAudioAlert, ArrayList arrayList) {
+    public static void m4578$r8$lambda$qX0JpFkuCzsLqj1XjRgCu5RRgk(SelectAudioAlert selectAudioAlert, ArrayList arrayList) {
         selectAudioAlert.loadingLocalAudio = false;
         selectAudioAlert.localAudio.addAll(arrayList);
         selectAudioAlert.adapter.update(true);

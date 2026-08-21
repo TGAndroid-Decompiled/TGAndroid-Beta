@@ -95,7 +95,7 @@ public abstract class FragmentUsernameBottomSheet {
         final Runnable runnable = str2 != null ? new Runnable() {
             @Override
             public final void run() {
-                FragmentUsernameBottomSheet.m3177$r8$lambda$S7LCnu5wH87poy8I9lr8lGS5EI(str2, i, bottomSheet, resourcesProvider);
+                FragmentUsernameBottomSheet.m3186$r8$lambda$S7LCnu5wH87poy8I9lr8lGS5EI(str2, i, bottomSheet, resourcesProvider);
             }
         } : null;
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(string, runnable);
@@ -158,7 +158,7 @@ public abstract class FragmentUsernameBottomSheet {
         bottomSheet.show();
     }
 
-    public static void m3177$r8$lambda$S7LCnu5wH87poy8I9lr8lGS5EI(String str, int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider) {
+    public static void m3186$r8$lambda$S7LCnu5wH87poy8I9lr8lGS5EI(String str, int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider) {
         AndroidUtilities.addToClipboard(str);
         if (i == 1) {
             BulletinFactory.of(bottomSheet.getContainer(), resourcesProvider).createCopyBulletin(LocaleController.getString(R.string.PhoneCopied)).show();

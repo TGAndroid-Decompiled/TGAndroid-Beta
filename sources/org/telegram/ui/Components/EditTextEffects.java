@@ -62,7 +62,7 @@ public abstract class EditTextEffects extends EditText {
     public boolean wrapCanvasToFixClipping;
     private NoClipCanvas wrappedCanvas;
 
-    public static void m2269$r8$lambda$PG0FT9UlxiO_xY401FvQP5zTGE(final EditTextEffects editTextEffects) {
+    public static void m2279$r8$lambda$PG0FT9UlxiO_xY401FvQP5zTGE(final EditTextEffects editTextEffects) {
         editTextEffects.postedSpoilerTimeout = false;
         editTextEffects.isSpoilersRevealed = false;
         editTextEffects.invalidateSpoilers();
@@ -104,7 +104,7 @@ public abstract class EditTextEffects extends EditText {
         this.spoilerTimeout = new Runnable() {
             @Override
             public final void run() {
-                EditTextEffects.m2269$r8$lambda$PG0FT9UlxiO_xY401FvQP5zTGE(this.f$0);
+                EditTextEffects.m2279$r8$lambda$PG0FT9UlxiO_xY401FvQP5zTGE(this.f$0);
             }
         };
         this.rect = new Rect();
@@ -131,7 +131,7 @@ public abstract class EditTextEffects extends EditText {
         spoilerEffect.setOnRippleEndCallback(new Runnable() {
             @Override
             public final void run() {
-                EditTextEffects.m2270$r8$lambda$RVffId4i68zranUuatcfhjq0MA(this.f$0);
+                EditTextEffects.m2280$r8$lambda$RVffId4i68zranUuatcfhjq0MA(this.f$0);
             }
         });
         float fSqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
@@ -141,17 +141,17 @@ public abstract class EditTextEffects extends EditText {
         }
     }
 
-    public static void m2270$r8$lambda$RVffId4i68zranUuatcfhjq0MA(final EditTextEffects editTextEffects) {
+    public static void m2280$r8$lambda$RVffId4i68zranUuatcfhjq0MA(final EditTextEffects editTextEffects) {
         editTextEffects.getClass();
         editTextEffects.post(new Runnable() {
             @Override
             public final void run() {
-                EditTextEffects.m2271$r8$lambda$amFFLFztaEXOp2BCKkjMAClDxo(this.f$0);
+                EditTextEffects.m2281$r8$lambda$amFFLFztaEXOp2BCKkjMAClDxo(this.f$0);
             }
         });
     }
 
-    public static void m2271$r8$lambda$amFFLFztaEXOp2BCKkjMAClDxo(EditTextEffects editTextEffects) {
+    public static void m2281$r8$lambda$amFFLFztaEXOp2BCKkjMAClDxo(EditTextEffects editTextEffects) {
         editTextEffects.invalidateSpoilers();
         editTextEffects.checkSpoilerTimeout();
     }

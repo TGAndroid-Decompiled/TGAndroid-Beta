@@ -378,7 +378,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         this.topupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarsIntroActivity.m4239$r8$lambda$LCzRMi_lFXq4FrWRWbTOp_8E18(this.f$0, context, view);
+                StarsIntroActivity.m4250$r8$lambda$LCzRMi_lFXq4FrWRWbTOp_8E18(this.f$0, context, view);
             }
         });
         this.twoButtonsLayout.addView(this.topupButton, LayoutHelper.createLinear(-1, 48, 17.0f, 1, 0, 0, 8, 0));
@@ -441,7 +441,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4239$r8$lambda$LCzRMi_lFXq4FrWRWbTOp_8E18(StarsIntroActivity starsIntroActivity, Context context, View view) {
+    public static void m4250$r8$lambda$LCzRMi_lFXq4FrWRWbTOp_8E18(StarsIntroActivity starsIntroActivity, Context context, View view) {
         starsIntroActivity.getClass();
         new StarsOptionsSheet(context, starsIntroActivity.resourceProvider).show();
     }
@@ -697,7 +697,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     this.drawable.getPaint = new Utilities.CallbackReturn() {
                         @Override
                         public final Object run(Object obj) {
-                            return StarsIntroActivity.AnonymousClass4.m4267$r8$lambda$ECDkGjS75qX98nxJrSYx7aORY(this.f$0, (Integer) obj);
+                            return StarsIntroActivity.AnonymousClass4.m4278$r8$lambda$ECDkGjS75qX98nxJrSYx7aORY(this.f$0, (Integer) obj);
                         }
                     };
                     StarParticlesView.Drawable drawable2 = this.drawable;
@@ -711,7 +711,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
         }
 
-        public static Paint m4267$r8$lambda$ECDkGjS75qX98nxJrSYx7aORY(AnonymousClass4 anonymousClass4, Integer num) {
+        public static Paint m4278$r8$lambda$ECDkGjS75qX98nxJrSYx7aORY(AnonymousClass4 anonymousClass4, Integer num) {
             return anonymousClass4.paints[num.intValue() % anonymousClass4.paints.length];
         }
 
@@ -841,7 +841,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 StarsController.getInstance(this.currentAccount).buy(getParentActivity(), (TL_stars.TL_starsTopupOption) uItem.object, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        StarsIntroActivity.m4245$r8$lambda$ThZ4R5C0vWGOFU21pqsmKYvE8s(this.f$0, uItem, (Boolean) obj, (String) obj2);
+                        StarsIntroActivity.m4256$r8$lambda$ThZ4R5C0vWGOFU21pqsmKYvE8s(this.f$0, uItem, (Boolean) obj, (String) obj2);
                     }
                 }, null);
             }
@@ -850,7 +850,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4245$r8$lambda$ThZ4R5C0vWGOFU21pqsmKYvE8s(StarsIntroActivity starsIntroActivity, UItem uItem, Boolean bool, String str) {
+    public static void m4256$r8$lambda$ThZ4R5C0vWGOFU21pqsmKYvE8s(StarsIntroActivity starsIntroActivity, UItem uItem, Boolean bool, String str) {
         if (starsIntroActivity.getContext() == null) {
             return;
         }
@@ -2441,7 +2441,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             starsBalanceView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StarsIntroActivity.m4255$r8$lambda$mUY6Qqoo42WFKMz3Ac4XQviAI8(starsBalanceView, view);
+                    StarsIntroActivity.m4266$r8$lambda$mUY6Qqoo42WFKMz3Ac4XQviAI8(starsBalanceView, view);
                 }
             });
             frameLayout.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 0.0f, -8.0f, 0.0f));
@@ -2717,13 +2717,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StarsIntroActivity.m4263$r8$lambda$vpIjOReXh8zTLIY2rdvSWlDLes(callback, bottomSheetCreate, buttonWithCounterView, view);
+                    StarsIntroActivity.m4274$r8$lambda$vpIjOReXh8zTLIY2rdvSWlDLes(callback, bottomSheetCreate, buttonWithCounterView, view);
                 }
             });
             bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    StarsIntroActivity.m4264$r8$lambda$w4FKhkRtIxAaT0VafeHKHV_kH8(runnable, dialogInterface);
+                    StarsIntroActivity.m4275$r8$lambda$w4FKhkRtIxAaT0VafeHKHV_kH8(runnable, dialogInterface);
                 }
             });
             bottomSheetCreate.fixNavigationBar();
@@ -2763,7 +2763,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         starsBalanceView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarsIntroActivity.m4255$r8$lambda$mUY6Qqoo42WFKMz3Ac4XQviAI8(starsBalanceView2, view);
+                StarsIntroActivity.m4266$r8$lambda$mUY6Qqoo42WFKMz3Ac4XQviAI8(starsBalanceView2, view);
             }
         });
         frameLayout.addView(starsBalanceView2, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 0.0f, -8.0f, 0.0f));
@@ -2859,13 +2859,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarsIntroActivity.m4263$r8$lambda$vpIjOReXh8zTLIY2rdvSWlDLes(callback, bottomSheetCreate2, buttonWithCounterView, view);
+                StarsIntroActivity.m4274$r8$lambda$vpIjOReXh8zTLIY2rdvSWlDLes(callback, bottomSheetCreate2, buttonWithCounterView, view);
             }
         });
         bottomSheetCreate2.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                StarsIntroActivity.m4264$r8$lambda$w4FKhkRtIxAaT0VafeHKHV_kH8(runnable, dialogInterface);
+                StarsIntroActivity.m4275$r8$lambda$w4FKhkRtIxAaT0VafeHKHV_kH8(runnable, dialogInterface);
             }
         });
         bottomSheetCreate2.fixNavigationBar();
@@ -2873,7 +2873,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return bottomSheetCreate2;
     }
 
-    public static void m4255$r8$lambda$mUY6Qqoo42WFKMz3Ac4XQviAI8(StarsBalanceView starsBalanceView, View view) {
+    public static void m4266$r8$lambda$mUY6Qqoo42WFKMz3Ac4XQviAI8(StarsBalanceView starsBalanceView, View view) {
         BaseFragment lastFragment;
         if (starsBalanceView.lastBalance > 0 && (lastFragment = LaunchActivity.getLastFragment()) != null) {
             BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
@@ -2883,7 +2883,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4263$r8$lambda$vpIjOReXh8zTLIY2rdvSWlDLes(Utilities.Callback callback, final BottomSheet bottomSheet, final ButtonWithCounterView buttonWithCounterView, View view) {
+    public static void m4274$r8$lambda$vpIjOReXh8zTLIY2rdvSWlDLes(Utilities.Callback callback, final BottomSheet bottomSheet, final ButtonWithCounterView buttonWithCounterView, View view) {
         if (callback != null) {
             bottomSheet.setCanDismissWithSwipe(false);
             buttonWithCounterView.setLoading(true);
@@ -2916,7 +2916,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         buttonWithCounterView.setLoading(false);
     }
 
-    public static void m4264$r8$lambda$w4FKhkRtIxAaT0VafeHKHV_kH8(Runnable runnable, DialogInterface dialogInterface) {
+    public static void m4275$r8$lambda$w4FKhkRtIxAaT0VafeHKHV_kH8(Runnable runnable, DialogInterface dialogInterface) {
         if (runnable != null) {
             runnable.run();
         }
@@ -3066,13 +3066,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarsIntroActivity.m4260$r8$lambda$uEYXk9CvtRo81sov3k2iYxLQ08(bottomSheet, buttonWithCounterView);
+                    StarsIntroActivity.m4271$r8$lambda$uEYXk9CvtRo81sov3k2iYxLQ08(bottomSheet, buttonWithCounterView);
                 }
             }, 400L);
         }
     }
 
-    public static void m4260$r8$lambda$uEYXk9CvtRo81sov3k2iYxLQ08(BottomSheet bottomSheet, ButtonWithCounterView buttonWithCounterView) {
+    public static void m4271$r8$lambda$uEYXk9CvtRo81sov3k2iYxLQ08(BottomSheet bottomSheet, ButtonWithCounterView buttonWithCounterView) {
         bottomSheet.setCanDismissWithSwipe(false);
         buttonWithCounterView.setLoading(false);
     }
@@ -3240,13 +3240,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 StarsController.getInstance(this.currentAccount).buy(activityFindActivity, (TL_stars.TL_starsTopupOption) uItem.object, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        StarsIntroActivity.StarsOptionsSheet.m4271$r8$lambda$Y3BA_qnLEPSeylt3e8NjD_SbpI(this.f$0, uItem, (Boolean) obj, (String) obj2);
+                        StarsIntroActivity.StarsOptionsSheet.m4282$r8$lambda$Y3BA_qnLEPSeylt3e8NjD_SbpI(this.f$0, uItem, (Boolean) obj, (String) obj2);
                     }
                 }, null);
             }
         }
 
-        public static void m4271$r8$lambda$Y3BA_qnLEPSeylt3e8NjD_SbpI(StarsOptionsSheet starsOptionsSheet, UItem uItem, Boolean bool, String str) {
+        public static void m4282$r8$lambda$Y3BA_qnLEPSeylt3e8NjD_SbpI(StarsOptionsSheet starsOptionsSheet, UItem uItem, Boolean bool, String str) {
             if (starsOptionsSheet.getContext() == null) {
                 return;
             }
@@ -3615,13 +3615,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 StarsController.getInstance(this.currentAccount).buy(activityFindActivity, (TL_stars.TL_starsTopupOption) uItem.object, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        StarsIntroActivity.StarsNeededSheet.m4270$r8$lambda$ltA80qvLDc7URXEwviEJy7dRtw(this.f$0, uItem, (Boolean) obj, (String) obj2);
+                        StarsIntroActivity.StarsNeededSheet.m4281$r8$lambda$ltA80qvLDc7URXEwviEJy7dRtw(this.f$0, uItem, (Boolean) obj, (String) obj2);
                     }
                 }, this.purposePeer);
             }
         }
 
-        public static void m4270$r8$lambda$ltA80qvLDc7URXEwviEJy7dRtw(StarsNeededSheet starsNeededSheet, UItem uItem, Boolean bool, String str) {
+        public static void m4281$r8$lambda$ltA80qvLDc7URXEwviEJy7dRtw(StarsNeededSheet starsNeededSheet, UItem uItem, Boolean bool, String str) {
             if (starsNeededSheet.getContext() == null) {
                 return;
             }
@@ -4348,7 +4348,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return new Runnable() {
             @Override
             public final void run() {
-                StarsIntroActivity.m4259$r8$lambda$sFFyu7tglm5UYol9TNRZbCKkGk(runnableListen, runnableListen2);
+                StarsIntroActivity.m4270$r8$lambda$sFFyu7tglm5UYol9TNRZbCKkGk(runnableListen, runnableListen2);
             }
         };
     }
@@ -4438,7 +4438,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         MediaDataController.getInstance(i).loadStickersByEmojiOrName(str2, false, tL_messages_stickerSet == null);
     }
 
-    public static void m4259$r8$lambda$sFFyu7tglm5UYol9TNRZbCKkGk(Runnable runnable, Runnable runnable2) {
+    public static void m4270$r8$lambda$sFFyu7tglm5UYol9TNRZbCKkGk(Runnable runnable, Runnable runnable2) {
         runnable.run();
         runnable2.run();
     }
@@ -4822,7 +4822,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                             spannableStringBuilder3.append(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTransactionMessageFeeInfoLink).replace(' ', (char) 160), new Runnable() {
                                 @Override
                                 public final void run() {
-                                    StarsIntroActivity.m4266$r8$lambda$zwULHCHSR6XhVIWPoGD8TwBSpY(j2, i2);
+                                    StarsIntroActivity.m4277$r8$lambda$zwULHCHSR6XhVIWPoGD8TwBSpY(j2, i2);
                                 }
                             }), true));
                         }
@@ -5317,7 +5317,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                             tableView2.addRowUser(LocaleController.getString(R.string.StarGiveawayPrizeTo), i2, clientUserId2, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    StarsIntroActivity.m4237$r8$lambda$JNtk_W66tT8hy6JhNUu67YLzwQ(bottomSheetArr3, i2);
+                                    StarsIntroActivity.m4248$r8$lambda$JNtk_W66tT8hy6JhNUu67YLzwQ(bottomSheetArr3, i2);
                                 }
                             });
                             tableView = tableView2;
@@ -5330,7 +5330,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                                 tableView7.addRowUser(LocaleController.getString(R.string.StarGiveawayPrizeFrom), i, j6, new Runnable() {
                                     @Override
                                     public final void run() {
-                                        StarsIntroActivity.m4248$r8$lambda$_IUToQOzpzvbwAo5dBKoOwLDHs(bottomSheetArr5, i);
+                                        StarsIntroActivity.m4259$r8$lambda$_IUToQOzpzvbwAo5dBKoOwLDHs(bottomSheetArr5, i);
                                     }
                                 });
                             } else {
@@ -5402,13 +5402,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     r0.addRowUser(LocaleController.getString(R.string.StarAffiliate), i2, peerDialogId6, new Runnable() {
                         @Override
                         public final void run() {
-                            StarsIntroActivity.m4243$r8$lambda$Q1S9j1MqeefuyJamTixcTBvy8(bottomSheetArr3, peerDialogId6);
+                            StarsIntroActivity.m4254$r8$lambda$Q1S9j1MqeefuyJamTixcTBvy8(bottomSheetArr3, peerDialogId6);
                         }
                     });
                     r0.addRowUser(LocaleController.getString(R.string.StarAffiliateReferredUser), i2, peerDialogId5, new Runnable() {
                         @Override
                         public final void run() {
-                            StarsIntroActivity.m4250$r8$lambda$csuf9CdysUOI37q7ZUM6flepIQ(bottomSheetArr3, peerDialogId5);
+                            StarsIntroActivity.m4261$r8$lambda$csuf9CdysUOI37q7ZUM6flepIQ(bottomSheetArr3, peerDialogId5);
                         }
                     });
                     r0.addRow(LocaleController.getString(R.string.StarAffiliateCommission), AffiliateProgramFragment.percents(starsTransaction3.starref_commission_permille));
@@ -5427,7 +5427,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                             BotStarsController.getInstance(i10).getConnectedBot(context6, j7, peerDialogId5, new Utilities.Callback() {
                                 @Override
                                 public final void run(Object obj) {
-                                    StarsIntroActivity.m4228$r8$lambda$1gNBS7abUvYE_OQhlnhhwW5IvY(bottomSheetArr, context6, i10, j7, resourcesProvider, (TL_payments.connectedBotStarRef) obj);
+                                    StarsIntroActivity.m4239$r8$lambda$1gNBS7abUvYE_OQhlnhhwW5IvY(bottomSheetArr, context6, i10, j7, resourcesProvider, (TL_payments.connectedBotStarRef) obj);
                                 }
                             });
                         }
@@ -5450,7 +5450,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                         r1.addRowUser(LocaleController.getString(R.string.StarGiveawayPrizeFrom), i, peerDialogId5, new Runnable() {
                             @Override
                             public final void run() {
-                                StarsIntroActivity.m4229$r8$lambda$RJA1IKlBZwzeHkVpaZ9ggEB4(bottomSheetArr4, starsTransaction3, peerDialogId5);
+                                StarsIntroActivity.m4240$r8$lambda$RJA1IKlBZwzeHkVpaZ9ggEB4(bottomSheetArr4, starsTransaction3, peerDialogId5);
                             }
                         });
                         r1.addRowUser(LocaleController.getString(R.string.StarGiveawayPrizeTo), i, UserConfig.getInstance(i).getClientUserId(), new Runnable() {
@@ -5471,7 +5471,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                         r1.addRowUser(LocaleController.getString(R.string.StarSubscriptionTo), i2, peerDialogId5, new Runnable() {
                             @Override
                             public final void run() {
-                                StarsIntroActivity.m4256$r8$lambda$p9IR0rrjiVLGiCJ5k3b28eFKgY(bottomSheetArr4, peerDialogId5, context3);
+                                StarsIntroActivity.m4267$r8$lambda$p9IR0rrjiVLGiCJ5k3b28eFKgY(bottomSheetArr4, peerDialogId5, context3);
                             }
                         });
                         r3 = r1;
@@ -5482,7 +5482,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                             r1.addRowUser(LocaleController.getString(R.string.Gift2To), i, peerDialogId5, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    StarsIntroActivity.m4241$r8$lambda$PSexWNx2HdW3KaXu6hbjpsViEA(bottomSheetArr4, peerDialogId5, context3);
+                                    StarsIntroActivity.m4252$r8$lambda$PSexWNx2HdW3KaXu6hbjpsViEA(bottomSheetArr4, peerDialogId5, context3);
                                 }
                             });
                             r1.addRow(LocaleController.getString(R.string.StarsTransactionPremiumGiftDuration), LocaleController.formatPluralStringComma("Months", starsTransaction3.premium_gift_months));
@@ -5491,7 +5491,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                             r1.addRowUser(LocaleController.getString(R.string.StarsTransactionRecipient), i2, peerDialogId5, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    StarsIntroActivity.m4247$r8$lambda$VNiD53id_DjtqbiCiksxVpI83A(bottomSheetArr4, peerDialogId5, context3);
+                                    StarsIntroActivity.m4258$r8$lambda$VNiD53id_DjtqbiCiksxVpI83A(bottomSheetArr4, peerDialogId5, context3);
                                 }
                             });
                             r3 = r1;
@@ -5818,7 +5818,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         });
     }
 
-    public static void m4266$r8$lambda$zwULHCHSR6XhVIWPoGD8TwBSpY(long j, int i) {
+    public static void m4277$r8$lambda$zwULHCHSR6XhVIWPoGD8TwBSpY(long j, int i) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
             if (j >= 0) {
@@ -5917,7 +5917,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         new GiftSheet(context, i, j, new StarsIntroActivity$$ExternalSyntheticLambda42(bottomSheet)).show();
     }
 
-    public static void m4237$r8$lambda$JNtk_W66tT8hy6JhNUu67YLzwQ(BottomSheet[] bottomSheetArr, int i) {
+    public static void m4248$r8$lambda$JNtk_W66tT8hy6JhNUu67YLzwQ(BottomSheet[] bottomSheetArr, int i) {
         bottomSheetArr[0].dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
@@ -5929,7 +5929,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4248$r8$lambda$_IUToQOzpzvbwAo5dBKoOwLDHs(BottomSheet[] bottomSheetArr, int i) {
+    public static void m4259$r8$lambda$_IUToQOzpzvbwAo5dBKoOwLDHs(BottomSheet[] bottomSheetArr, int i) {
         bottomSheetArr[0].dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
@@ -5975,7 +5975,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4243$r8$lambda$Q1S9j1MqeefuyJamTixcTBvy8(BottomSheet[] bottomSheetArr, long j) {
+    public static void m4254$r8$lambda$Q1S9j1MqeefuyJamTixcTBvy8(BottomSheet[] bottomSheetArr, long j) {
         bottomSheetArr[0].dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
@@ -5983,7 +5983,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4250$r8$lambda$csuf9CdysUOI37q7ZUM6flepIQ(BottomSheet[] bottomSheetArr, long j) {
+    public static void m4261$r8$lambda$csuf9CdysUOI37q7ZUM6flepIQ(BottomSheet[] bottomSheetArr, long j) {
         bottomSheetArr[0].dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
@@ -5991,7 +5991,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4228$r8$lambda$1gNBS7abUvYE_OQhlnhhwW5IvY(BottomSheet[] bottomSheetArr, Context context, int i, long j, Theme.ResourcesProvider resourcesProvider, TL_payments.connectedBotStarRef connectedbotstarref) {
+    public static void m4239$r8$lambda$1gNBS7abUvYE_OQhlnhhwW5IvY(BottomSheet[] bottomSheetArr, Context context, int i, long j, Theme.ResourcesProvider resourcesProvider, TL_payments.connectedBotStarRef connectedbotstarref) {
         bottomSheetArr[0].dismiss();
         ChannelAffiliateProgramsFragment.showShareAffiliateAlert(context, i, connectedbotstarref, j, resourcesProvider);
     }
@@ -6004,7 +6004,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4229$r8$lambda$RJA1IKlBZwzeHkVpaZ9ggEB4(BottomSheet[] bottomSheetArr, TL_stars.StarsTransaction starsTransaction, long j) {
+    public static void m4240$r8$lambda$RJA1IKlBZwzeHkVpaZ9ggEB4(BottomSheet[] bottomSheetArr, TL_stars.StarsTransaction starsTransaction, long j) {
         bottomSheetArr[0].dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
@@ -6039,7 +6039,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4256$r8$lambda$p9IR0rrjiVLGiCJ5k3b28eFKgY(BottomSheet[] bottomSheetArr, long j, Context context) {
+    public static void m4267$r8$lambda$p9IR0rrjiVLGiCJ5k3b28eFKgY(BottomSheet[] bottomSheetArr, long j, Context context) {
         bottomSheetArr[0].dismiss();
         if (UserObject.isService(j)) {
             Browser.openUrl(context, LocaleController.getString(R.string.StarsTransactionUnknownLink));
@@ -6051,7 +6051,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4241$r8$lambda$PSexWNx2HdW3KaXu6hbjpsViEA(BottomSheet[] bottomSheetArr, long j, Context context) {
+    public static void m4252$r8$lambda$PSexWNx2HdW3KaXu6hbjpsViEA(BottomSheet[] bottomSheetArr, long j, Context context) {
         bottomSheetArr[0].dismiss();
         if (UserObject.isService(j)) {
             Browser.openUrl(context, LocaleController.getString(R.string.StarsTransactionUnknownLink));
@@ -6063,7 +6063,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4247$r8$lambda$VNiD53id_DjtqbiCiksxVpI83A(BottomSheet[] bottomSheetArr, long j, Context context) {
+    public static void m4258$r8$lambda$VNiD53id_DjtqbiCiksxVpI83A(BottomSheet[] bottomSheetArr, long j, Context context) {
         bottomSheetArr[0].dismiss();
         if (UserObject.isService(j)) {
             Browser.openUrl(context, LocaleController.getString(R.string.StarsTransactionUnknownLink));
@@ -6422,7 +6422,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                             buttonWithCounterView3.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view) {
-                                    StarsIntroActivity.m4249$r8$lambda$bMLbQQVepNFPt99ZGB3iaHKeVg(buttonWithCounterView3, starsSubscription, i6, bottomSheetArr, z6, z7, tLObject4, view);
+                                    StarsIntroActivity.m4260$r8$lambda$bMLbQQVepNFPt99ZGB3iaHKeVg(buttonWithCounterView3, starsSubscription, i6, bottomSheetArr, z6, z7, tLObject4, view);
                                 }
                             });
                         }
@@ -6749,7 +6749,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                         buttonWithCounterView6.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                StarsIntroActivity.m4249$r8$lambda$bMLbQQVepNFPt99ZGB3iaHKeVg(buttonWithCounterView6, starsSubscription, i6, bottomSheetArr, z9, z10, tLObject6, view);
+                                StarsIntroActivity.m4260$r8$lambda$bMLbQQVepNFPt99ZGB3iaHKeVg(buttonWithCounterView6, starsSubscription, i6, bottomSheetArr, z9, z10, tLObject6, view);
                             }
                         });
                     }
@@ -6845,7 +6845,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                StarsIntroActivity.m4253$r8$lambda$jdcOnrH0PgPxKNXVE1hEWcFE0(buttonWithCounterView, starsSubscription, i, bottomSheetArr, j);
+                StarsIntroActivity.m4264$r8$lambda$jdcOnrH0PgPxKNXVE1hEWcFE0(buttonWithCounterView, starsSubscription, i, bottomSheetArr, j);
             }
         };
         if (starsController.balance.amount < starsSubscription.pricing.amount) {
@@ -6861,7 +6861,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         runnable.run();
     }
 
-    public static void m4253$r8$lambda$jdcOnrH0PgPxKNXVE1hEWcFE0(final ButtonWithCounterView buttonWithCounterView, TL_stars.StarsSubscription starsSubscription, final int i, final BottomSheet[] bottomSheetArr, final long j) {
+    public static void m4264$r8$lambda$jdcOnrH0PgPxKNXVE1hEWcFE0(final ButtonWithCounterView buttonWithCounterView, TL_stars.StarsSubscription starsSubscription, final int i, final BottomSheet[] bottomSheetArr, final long j) {
         buttonWithCounterView.setLoading(true);
         TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
         tL_fulfillStarsSubscription.subscription_id = starsSubscription.id;
@@ -6872,14 +6872,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StarsIntroActivity.m4230$r8$lambda$1aYKVcSuG2LSELCqk6YGGdDaI(buttonWithCounterView, bottomSheetArr, i, j);
+                        StarsIntroActivity.m4241$r8$lambda$1aYKVcSuG2LSELCqk6YGGdDaI(buttonWithCounterView, bottomSheetArr, i, j);
                     }
                 });
             }
         });
     }
 
-    public static void m4230$r8$lambda$1aYKVcSuG2LSELCqk6YGGdDaI(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i, long j) {
+    public static void m4241$r8$lambda$1aYKVcSuG2LSELCqk6YGGdDaI(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i, long j) {
         buttonWithCounterView.setLoading(false);
         BottomSheet bottomSheet = bottomSheetArr[0];
         if (bottomSheet != null) {
@@ -6908,14 +6908,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StarsIntroActivity.m4234$r8$lambda$9YDO1oz7yQK_v0iAyFCkVRyg_g(buttonWithCounterView, bottomSheetArr, i, tLObject, str);
+                        StarsIntroActivity.m4245$r8$lambda$9YDO1oz7yQK_v0iAyFCkVRyg_g(buttonWithCounterView, bottomSheetArr, i, tLObject, str);
                     }
                 });
             }
         });
     }
 
-    public static void m4234$r8$lambda$9YDO1oz7yQK_v0iAyFCkVRyg_g(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i, TLObject tLObject, String str) {
+    public static void m4245$r8$lambda$9YDO1oz7yQK_v0iAyFCkVRyg_g(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i, TLObject tLObject, String str) {
         buttonWithCounterView.setLoading(false);
         BottomSheet bottomSheet = bottomSheetArr[0];
         if (bottomSheet != null) {
@@ -6928,7 +6928,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4249$r8$lambda$bMLbQQVepNFPt99ZGB3iaHKeVg(final ButtonWithCounterView buttonWithCounterView, final TL_stars.StarsSubscription starsSubscription, final int i, final BottomSheet[] bottomSheetArr, final boolean z, final boolean z2, final TLObject tLObject, View view) {
+    public static void m4260$r8$lambda$bMLbQQVepNFPt99ZGB3iaHKeVg(final ButtonWithCounterView buttonWithCounterView, final TL_stars.StarsSubscription starsSubscription, final int i, final BottomSheet[] bottomSheetArr, final boolean z, final boolean z2, final TLObject tLObject, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -6985,7 +6985,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            StarsIntroActivity.m4262$r8$lambda$v_vgNFcTwMDDVzGV44BUag7P1M(buttonWithCounterView, tLObject, bottomSheetArr, resourcesProvider, i, tL_messages_checkChatInvite);
+                            StarsIntroActivity.m4273$r8$lambda$v_vgNFcTwMDDVzGV44BUag7P1M(buttonWithCounterView, tLObject, bottomSheetArr, resourcesProvider, i, tL_messages_checkChatInvite);
                         }
                     });
                 }
@@ -7001,7 +7001,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4262$r8$lambda$v_vgNFcTwMDDVzGV44BUag7P1M(ButtonWithCounterView buttonWithCounterView, TLObject tLObject, BottomSheet[] bottomSheetArr, Theme.ResourcesProvider resourcesProvider, final int i, TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite) {
+    public static void m4273$r8$lambda$v_vgNFcTwMDDVzGV44BUag7P1M(ButtonWithCounterView buttonWithCounterView, TLObject tLObject, BottomSheet[] bottomSheetArr, Theme.ResourcesProvider resourcesProvider, final int i, TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite) {
         buttonWithCounterView.setLoading(false);
         if (tLObject instanceof TLRPC.ChatInvite) {
             TLRPC.ChatInvite chatInvite = (TLRPC.ChatInvite) tLObject;
@@ -7117,7 +7117,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             tableView.addRowLink(LocaleController.getString(R.string.BoostReason), LocaleController.getString(R.string.BoostReasonGiveaway), new Runnable() {
                 @Override
                 public final void run() {
-                    StarsIntroActivity.m4232$r8$lambda$7ZsrleWoA0mADFYg9aN5w130ds(bottomSheetArr, j, boost);
+                    StarsIntroActivity.m4243$r8$lambda$7ZsrleWoA0mADFYg9aN5w130ds(bottomSheetArr, j, boost);
                 }
             });
         }
@@ -7143,7 +7143,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarsIntroActivity.m4265$r8$lambda$w5wFWPeug5L7TCVPFmCvlF4BI(bottomSheetArr, view);
+                StarsIntroActivity.m4276$r8$lambda$w5wFWPeug5L7TCVPFmCvlF4BI(bottomSheetArr, view);
             }
         });
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 16.0f, 8.0f, 16.0f, 0.0f));
@@ -7179,7 +7179,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         safeLastFragment.presentFragment(ChatActivity.of(j));
     }
 
-    public static void m4232$r8$lambda$7ZsrleWoA0mADFYg9aN5w130ds(BottomSheet[] bottomSheetArr, long j, TL_stories.Boost boost) {
+    public static void m4243$r8$lambda$7ZsrleWoA0mADFYg9aN5w130ds(BottomSheet[] bottomSheetArr, long j, TL_stories.Boost boost) {
         BottomSheet bottomSheet = bottomSheetArr[0];
         if (bottomSheet != null) {
             bottomSheet.dismiss();
@@ -7191,7 +7191,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         safeLastFragment.presentFragment(ChatActivity.of(j, boost.giveaway_msg_id));
     }
 
-    public static void m4265$r8$lambda$w5wFWPeug5L7TCVPFmCvlF4BI(BottomSheet[] bottomSheetArr, View view) {
+    public static void m4276$r8$lambda$w5wFWPeug5L7TCVPFmCvlF4BI(BottomSheet[] bottomSheetArr, View view) {
         BottomSheet bottomSheet = bottomSheetArr[0];
         if (bottomSheet != null) {
             bottomSheet.dismiss();
@@ -7238,7 +7238,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.showMediaPriceSheet(android.content.Context, long, boolean, org.telegram.messenger.Utilities$Callback2, org.telegram.ui.ActionBar.Theme$ResourcesProvider):org.telegram.ui.ActionBar.BottomSheet");
     }
 
-    public static boolean m4242$r8$lambda$PUcLBJ7bNknzyrHru5RbTP3EEQ(boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, final EditTextBoldCursor editTextBoldCursor, final BottomSheet[] bottomSheetArr, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m4253$r8$lambda$PUcLBJ7bNknzyrHru5RbTP3EEQ(boolean[] zArr, Utilities.Callback2 callback2, ButtonWithCounterView buttonWithCounterView, final EditTextBoldCursor editTextBoldCursor, final BottomSheet[] bottomSheetArr, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
             return false;
         }
@@ -7277,7 +7277,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             callback2.run(Long.valueOf(TextUtils.isEmpty(string) ? 0L : Long.parseLong(string)), new Runnable() {
                 @Override
                 public final void run() {
-                    StarsIntroActivity.m4236$r8$lambda$GlYDQcjXmO82yQsqRyyzMeiMAI(editTextBoldCursor, bottomSheetArr);
+                    StarsIntroActivity.m4247$r8$lambda$GlYDQcjXmO82yQsqRyyzMeiMAI(editTextBoldCursor, bottomSheetArr);
                 }
             });
             return;
@@ -7286,7 +7286,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         bottomSheetArr[0].dismiss();
     }
 
-    public static void m4236$r8$lambda$GlYDQcjXmO82yQsqRyyzMeiMAI(EditTextBoldCursor editTextBoldCursor, BottomSheet[] bottomSheetArr) {
+    public static void m4247$r8$lambda$GlYDQcjXmO82yQsqRyyzMeiMAI(EditTextBoldCursor editTextBoldCursor, BottomSheet[] bottomSheetArr) {
         AndroidUtilities.hideKeyboard(editTextBoldCursor);
         bottomSheetArr[0].dismiss();
     }
@@ -7301,7 +7301,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             callback2.run(0L, new Runnable() {
                 @Override
                 public final void run() {
-                    StarsIntroActivity.m4244$r8$lambda$SUA6c15Kw8xJ4cZLSHlpKgM6Qg(zArr, editTextBoldCursor, bottomSheetArr);
+                    StarsIntroActivity.m4255$r8$lambda$SUA6c15Kw8xJ4cZLSHlpKgM6Qg(zArr, editTextBoldCursor, bottomSheetArr);
                 }
             });
         } else {
@@ -7310,7 +7310,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void m4244$r8$lambda$SUA6c15Kw8xJ4cZLSHlpKgM6Qg(boolean[] zArr, EditTextBoldCursor editTextBoldCursor, BottomSheet[] bottomSheetArr) {
+    public static void m4255$r8$lambda$SUA6c15Kw8xJ4cZLSHlpKgM6Qg(boolean[] zArr, EditTextBoldCursor editTextBoldCursor, BottomSheet[] bottomSheetArr) {
         zArr[0] = false;
         AndroidUtilities.hideKeyboard(editTextBoldCursor);
         bottomSheetArr[0].dismiss();
@@ -7443,7 +7443,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             StarsController.getInstance(i).getStarGift(starGift.id, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    StarsIntroActivity.m4231$r8$lambda$6yoR4Iq9GbT6hgJd2aiDqi9OdE(textView, (TL_stars.StarGift) obj);
+                    StarsIntroActivity.m4242$r8$lambda$6yoR4Iq9GbT6hgJd2aiDqi9OdE(textView, (TL_stars.StarGift) obj);
                 }
             });
             return;
@@ -7461,7 +7461,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         textView.setText(i2 <= 0 ? LocaleController.formatPluralStringComma("Gift2Availability2ValueNone", starGift.availability_total) : LocaleController.formatPluralStringComma("Gift2Availability4Value", i2, LocaleController.formatNumber(starGift.availability_total, ',')));
     }
 
-    public static void m4231$r8$lambda$6yoR4Iq9GbT6hgJd2aiDqi9OdE(TextView textView, TL_stars.StarGift starGift) {
+    public static void m4242$r8$lambda$6yoR4Iq9GbT6hgJd2aiDqi9OdE(TextView textView, TL_stars.StarGift starGift) {
         String pluralStringComma;
         if (starGift == null) {
             return;

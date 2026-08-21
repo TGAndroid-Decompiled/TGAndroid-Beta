@@ -92,12 +92,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         fetcher.fetch(i, Integer.valueOf(i2), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StickerCategoriesListView.m2824$r8$lambda$ZDQ_VKiRHbBVs7puOYEMcaxZQ(i, (TLRPC.TL_messages_emojiGroups) obj);
+                StickerCategoriesListView.m2833$r8$lambda$ZDQ_VKiRHbBVs7puOYEMcaxZQ(i, (TLRPC.TL_messages_emojiGroups) obj);
             }
         });
     }
 
-    public static void m2824$r8$lambda$ZDQ_VKiRHbBVs7puOYEMcaxZQ(int i, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
+    public static void m2833$r8$lambda$ZDQ_VKiRHbBVs7puOYEMcaxZQ(int i, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
         ArrayList<TLRPC.EmojiGroup> arrayList;
         if (tL_messages_emojiGroups == null || (arrayList = tL_messages_emojiGroups.groups) == null) {
             return;
@@ -156,12 +156,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         fetcher.fetch(UserConfig.selectedAccount, Integer.valueOf(i), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StickerCategoriesListView.m2825$r8$lambda$ebTGacH_rg6j1j9Z08XhIZUViI(this.f$0, emojiCategoryArr, jCurrentTimeMillis, (TLRPC.TL_messages_emojiGroups) obj);
+                StickerCategoriesListView.m2834$r8$lambda$ebTGacH_rg6j1j9Z08XhIZUViI(this.f$0, emojiCategoryArr, jCurrentTimeMillis, (TLRPC.TL_messages_emojiGroups) obj);
             }
         });
     }
 
-    public static void m2825$r8$lambda$ebTGacH_rg6j1j9Z08XhIZUViI(final StickerCategoriesListView stickerCategoriesListView, final EmojiCategory[] emojiCategoryArr, final long j, final TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
+    public static void m2834$r8$lambda$ebTGacH_rg6j1j9Z08XhIZUViI(final StickerCategoriesListView stickerCategoriesListView, final EmojiCategory[] emojiCategoryArr, final long j, final TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
         stickerCategoriesListView.getClass();
         if (tL_messages_emojiGroups != null) {
             NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
@@ -320,7 +320,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    StickerCategoriesListView.m2821$r8$lambda$6JNOjg6kUpFBK4YSQL_woFWINc(this.f$0, valueAnimator2);
+                    StickerCategoriesListView.m2830$r8$lambda$6JNOjg6kUpFBK4YSQL_woFWINc(this.f$0, valueAnimator2);
                 }
             });
             this.categoriesShownAnimator.addListener(new AnimatorListenerAdapter() {
@@ -341,7 +341,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         setCategoriesShownT(r5 != 0 ? 1.0f : 0.0f);
     }
 
-    public static void m2821$r8$lambda$6JNOjg6kUpFBK4YSQL_woFWINc(StickerCategoriesListView stickerCategoriesListView, ValueAnimator valueAnimator) {
+    public static void m2830$r8$lambda$6JNOjg6kUpFBK4YSQL_woFWINc(StickerCategoriesListView stickerCategoriesListView, ValueAnimator valueAnimator) {
         stickerCategoriesListView.getClass();
         stickerCategoriesListView.setCategoriesShownT(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
@@ -718,7 +718,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StickerCategoriesListView.CategoryButton.m2826$r8$lambda$U5F_BfWS_GPWXrSJCnEY6lDDYw(this.f$0, valueAnimator2);
+                        StickerCategoriesListView.CategoryButton.m2835$r8$lambda$U5F_BfWS_GPWXrSJCnEY6lDDYw(this.f$0, valueAnimator2);
                     }
                 });
                 this.loadAnimator.addListener(new AnimatorListenerAdapter() {
@@ -736,7 +736,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             }
         }
 
-        public static void m2826$r8$lambda$U5F_BfWS_GPWXrSJCnEY6lDDYw(CategoryButton categoryButton, ValueAnimator valueAnimator) {
+        public static void m2835$r8$lambda$U5F_BfWS_GPWXrSJCnEY6lDDYw(CategoryButton categoryButton, ValueAnimator valueAnimator) {
             categoryButton.getClass();
             categoryButton.loadProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             categoryButton.invalidate();
@@ -755,7 +755,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            StickerCategoriesListView.CategoryButton.m2827$r8$lambda$aA2TeOugb7SPCGBt3SF2PnedcQ(this.f$0, valueAnimator2);
+                            StickerCategoriesListView.CategoryButton.m2836$r8$lambda$aA2TeOugb7SPCGBt3SF2PnedcQ(this.f$0, valueAnimator2);
                         }
                     });
                     this.selectedAnimator.addListener(new AnimatorListenerAdapter() {
@@ -775,7 +775,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             }
         }
 
-        public static void m2827$r8$lambda$aA2TeOugb7SPCGBt3SF2PnedcQ(CategoryButton categoryButton, ValueAnimator valueAnimator) {
+        public static void m2836$r8$lambda$aA2TeOugb7SPCGBt3SF2PnedcQ(CategoryButton categoryButton, ValueAnimator valueAnimator) {
             categoryButton.getClass();
             categoryButton.updateSelectedT(((Float) valueAnimator.getAnimatedValue()).floatValue());
         }
@@ -1091,12 +1091,12 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             ConnectionsManager.getInstance(i).sendRequest(tL_messages_searchCustomEmoji, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickerCategoriesListView.EmojiSearch.m2828$r8$lambda$S8qTPEYrUlxmW8suBrCSOYi_S0(callback4, tLObject, tL_error);
+                    StickerCategoriesListView.EmojiSearch.m2837$r8$lambda$S8qTPEYrUlxmW8suBrCSOYi_S0(callback4, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m2828$r8$lambda$S8qTPEYrUlxmW8suBrCSOYi_S0(Utilities.Callback4 callback4, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m2837$r8$lambda$S8qTPEYrUlxmW8suBrCSOYi_S0(Utilities.Callback4 callback4, TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject instanceof TLRPC.TL_emojiListNotModified) {
                 Boolean bool = Boolean.TRUE;
                 callback4.run(bool, null, 0L, bool);

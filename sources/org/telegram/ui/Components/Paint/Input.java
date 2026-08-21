@@ -131,7 +131,7 @@ public class Input {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                Input.m2463$r8$lambda$DxnsDqYYnAEf8u9WBbIZMZ6I8(this.f$0, point6, brush2, fMax2, valueAnimator3);
+                Input.m2473$r8$lambda$DxnsDqYYnAEf8u9WBbIZMZ6I8(this.f$0, point6, brush2, fMax2, valueAnimator3);
             }
         });
         this.fillAnimator.addListener(new AnimatorListenerAdapter() {
@@ -158,7 +158,7 @@ public class Input {
         }
     }
 
-    public static void m2463$r8$lambda$DxnsDqYYnAEf8u9WBbIZMZ6I8(Input input, Point point, Brush brush, float f, ValueAnimator valueAnimator) {
+    public static void m2473$r8$lambda$DxnsDqYYnAEf8u9WBbIZMZ6I8(Input input, Point point, Brush brush, float f, ValueAnimator valueAnimator) {
         input.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         Path path = new Path(new Point[]{point});
@@ -264,7 +264,7 @@ public class Input {
                         this.renderView.getPainting().commitPath(null, this.renderView.getCurrentColor(), true, new Runnable() {
                             @Override
                             public final void run() {
-                                Input.m2465$r8$lambda$kD7dz164h0Md9DEJCsD4Ge7hUw(this.f$0);
+                                Input.m2475$r8$lambda$kD7dz164h0Md9DEJCsD4Ge7hUw(this.f$0);
                             }
                         });
                     }
@@ -411,7 +411,7 @@ public class Input {
         fArr[0] = fFloatValue;
     }
 
-    public static void m2465$r8$lambda$kD7dz164h0Md9DEJCsD4Ge7hUw(Input input) {
+    public static void m2475$r8$lambda$kD7dz164h0Md9DEJCsD4Ge7hUw(Input input) {
         Brush brush = input.switchedBrushByStylusFrom;
         if (brush != null) {
             input.renderView.selectBrush(brush);
@@ -518,12 +518,12 @@ public class Input {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                Input.m2464$r8$lambda$RFmGG638y7HswlBC2KbPA020(this.f$0, path);
+                Input.m2474$r8$lambda$RFmGG638y7HswlBC2KbPA020(this.f$0, path);
             }
         });
     }
 
-    public static void m2464$r8$lambda$RFmGG638y7HswlBC2KbPA020(Input input, Path path) {
+    public static void m2474$r8$lambda$RFmGG638y7HswlBC2KbPA020(Input input, Path path) {
         input.getClass();
         input.lastRemainder = path.remainder;
     }

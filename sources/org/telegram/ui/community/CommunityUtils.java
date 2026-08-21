@@ -408,7 +408,7 @@ public abstract class CommunityUtils {
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public final void onCancel(DialogInterface dialogInterface) {
-                        CommunityUtils.PendingRequests.m4883$r8$lambda$M7LZ1q1xTTTz9a3G1cNG5G1Bak(this.f$0, dialogInterface);
+                        CommunityUtils.PendingRequests.m4894$r8$lambda$M7LZ1q1xTTTz9a3G1cNG5G1Bak(this.f$0, dialogInterface);
                     }
                 });
                 this.progressDialog.showDelayed(500L);
@@ -421,7 +421,7 @@ public abstract class CommunityUtils {
             }
         }
 
-        public static void m4883$r8$lambda$M7LZ1q1xTTTz9a3G1cNG5G1Bak(PendingRequests pendingRequests, DialogInterface dialogInterface) {
+        public static void m4894$r8$lambda$M7LZ1q1xTTTz9a3G1cNG5G1Bak(PendingRequests pendingRequests, DialogInterface dialogInterface) {
             ConnectionsManager.getInstance(pendingRequests.currentAccount).cancelRequest(pendingRequests.reqId, true);
             pendingRequests.progressDialog = null;
             pendingRequests.reqId = 0;
@@ -467,7 +467,7 @@ public abstract class CommunityUtils {
         final int iFetchChatsToAddToCommunity = MessagesController.getInstance(i).fetchChatsToAddToCommunity(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CommunityUtils.m4882$r8$lambda$nraCHsVClHd7uy09LZY5LtrLA0(alertDialogArr, baseFragment, i, chat, (ArrayList) obj, (TLRPC.TL_error) obj2);
+                CommunityUtils.m4893$r8$lambda$nraCHsVClHd7uy09LZY5LtrLA0(alertDialogArr, baseFragment, i, chat, (ArrayList) obj, (TLRPC.TL_error) obj2);
             }
         });
         ConnectionsManager.getInstance(i).bindRequestToGuid(iFetchChatsToAddToCommunity, baseFragment.getClassGuid());
@@ -477,12 +477,12 @@ public abstract class CommunityUtils {
         alertDialogArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                CommunityUtils.m4879$r8$lambda$8dXqhjoQeLjKgpGYrpZ1Vx1dHc(i, iFetchChatsToAddToCommunity, alertDialogArr, dialogInterface);
+                CommunityUtils.m4890$r8$lambda$8dXqhjoQeLjKgpGYrpZ1Vx1dHc(i, iFetchChatsToAddToCommunity, alertDialogArr, dialogInterface);
             }
         });
     }
 
-    public static void m4882$r8$lambda$nraCHsVClHd7uy09LZY5LtrLA0(AlertDialog[] alertDialogArr, BaseFragment baseFragment, int i, TLRPC.Chat chat, ArrayList arrayList, TLRPC.TL_error tL_error) {
+    public static void m4893$r8$lambda$nraCHsVClHd7uy09LZY5LtrLA0(AlertDialog[] alertDialogArr, BaseFragment baseFragment, int i, TLRPC.Chat chat, ArrayList arrayList, TLRPC.TL_error tL_error) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog != null) {
             alertDialog.dismiss();
@@ -499,7 +499,7 @@ public abstract class CommunityUtils {
         }
     }
 
-    public static void m4879$r8$lambda$8dXqhjoQeLjKgpGYrpZ1Vx1dHc(int i, int i2, AlertDialog[] alertDialogArr, DialogInterface dialogInterface) {
+    public static void m4890$r8$lambda$8dXqhjoQeLjKgpGYrpZ1Vx1dHc(int i, int i2, AlertDialog[] alertDialogArr, DialogInterface dialogInterface) {
         ConnectionsManager.getInstance(i).cancelRequest(i2, true);
         alertDialogArr[0] = null;
     }
@@ -532,7 +532,7 @@ public abstract class CommunityUtils {
             MessagesController.getInstance(i).convertToMegaGroup(baseFragment.getParentActivity(), chat.id, baseFragment, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j2) {
-                    CommunityUtils.m4880$r8$lambda$L38f6i3Rz4OotbEnUhizO9g0eQ(alertDialog, baseFragment, i, j, z, j2);
+                    CommunityUtils.m4891$r8$lambda$L38f6i3Rz4OotbEnUhizO9g0eQ(alertDialog, baseFragment, i, j, z, j2);
                 }
             });
             return;
@@ -540,7 +540,7 @@ public abstract class CommunityUtils {
         linkToCommunityWithoutConvert(baseFragment, i, chat.id, j, z);
     }
 
-    public static void m4880$r8$lambda$L38f6i3Rz4OotbEnUhizO9g0eQ(AlertDialog alertDialog, BaseFragment baseFragment, int i, long j, boolean z, long j2) {
+    public static void m4891$r8$lambda$L38f6i3Rz4OotbEnUhizO9g0eQ(AlertDialog alertDialog, BaseFragment baseFragment, int i, long j, boolean z, long j2) {
         alertDialog.dismiss();
         if (j2 == 0) {
             return;

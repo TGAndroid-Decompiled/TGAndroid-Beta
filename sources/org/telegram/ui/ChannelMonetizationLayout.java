@@ -286,7 +286,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChannelMonetizationLayout.m1576$r8$lambda$qRUXjc0CDEltm3OlaxIip5aNlU(this.f$0, baseFragment, view);
+                ChannelMonetizationLayout.m1582$r8$lambda$qRUXjc0CDEltm3OlaxIip5aNlU(this.f$0, baseFragment, view);
             }
         });
         linearLayout.addView(round, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
@@ -500,7 +500,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
     }
 
-    public static void m1576$r8$lambda$qRUXjc0CDEltm3OlaxIip5aNlU(final ChannelMonetizationLayout channelMonetizationLayout, final BaseFragment baseFragment, View view) {
+    public static void m1582$r8$lambda$qRUXjc0CDEltm3OlaxIip5aNlU(final ChannelMonetizationLayout channelMonetizationLayout, final BaseFragment baseFragment, View view) {
         channelMonetizationLayout.getClass();
         if (!view.isEnabled() || channelMonetizationLayout.balanceButton.isLoading()) {
             return;
@@ -518,13 +518,13 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             twoStepVerificationActivity.preload(new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelMonetizationLayout.m1571$r8$lambda$UEjXhJSh7_dHN0v4QqADXovkM(this.f$0, baseFragment, twoStepVerificationActivity);
+                    ChannelMonetizationLayout.m1577$r8$lambda$UEjXhJSh7_dHN0v4QqADXovkM(this.f$0, baseFragment, twoStepVerificationActivity);
                 }
             });
         }
     }
 
-    public static void m1571$r8$lambda$UEjXhJSh7_dHN0v4QqADXovkM(ChannelMonetizationLayout channelMonetizationLayout, BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
+    public static void m1577$r8$lambda$UEjXhJSh7_dHN0v4QqADXovkM(ChannelMonetizationLayout channelMonetizationLayout, BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
         channelMonetizationLayout.balanceButton.setLoading(false);
         baseFragment.presentFragment(twoStepVerificationActivity);
     }
@@ -543,7 +543,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             BulletinFactory.of(baseFragment).createSimpleBulletin(channelMonetizationLayout.getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate(), AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("BotStarsWithdrawMinLimit", (int) MessagesController.getInstance(i).starsRevenueWithdrawalMin, new Object[0]), new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelMonetizationLayout.m1566$r8$lambda$31cP9EzJF6PttA8_lZ3DuSyucU(this.f$0, i);
+                    ChannelMonetizationLayout.m1572$r8$lambda$31cP9EzJF6PttA8_lZ3DuSyucU(this.f$0, i);
                 }
             })).show();
             return;
@@ -559,12 +559,12 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         twoStepVerificationActivity.preload(new Runnable() {
             @Override
             public final void run() {
-                ChannelMonetizationLayout.m1572$r8$lambda$bmJu3p9J9oKmPmg7PLglwEqOOs(this.f$0, baseFragment, twoStepVerificationActivity);
+                ChannelMonetizationLayout.m1578$r8$lambda$bmJu3p9J9oKmPmg7PLglwEqOOs(this.f$0, baseFragment, twoStepVerificationActivity);
             }
         });
     }
 
-    public static void m1566$r8$lambda$31cP9EzJF6PttA8_lZ3DuSyucU(ChannelMonetizationLayout channelMonetizationLayout, int i) {
+    public static void m1572$r8$lambda$31cP9EzJF6PttA8_lZ3DuSyucU(ChannelMonetizationLayout channelMonetizationLayout, int i) {
         channelMonetizationLayout.getClass();
         Bulletin.hideVisible();
         if (channelMonetizationLayout.starsBalance.amount < MessagesController.getInstance(i).starsRevenueWithdrawalMin) {
@@ -583,7 +583,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         channelMonetizationLayout.setStarsBalanceButtonText.run();
     }
 
-    public static void m1572$r8$lambda$bmJu3p9J9oKmPmg7PLglwEqOOs(ChannelMonetizationLayout channelMonetizationLayout, BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
+    public static void m1578$r8$lambda$bmJu3p9J9oKmPmg7PLglwEqOOs(ChannelMonetizationLayout channelMonetizationLayout, BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
         channelMonetizationLayout.starsBalanceButton.setLoading(false);
         baseFragment.presentFragment(twoStepVerificationActivity);
     }
@@ -643,13 +643,13 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         twoStepVerificationActivity.preload(new Runnable() {
             @Override
             public final void run() {
-                ChannelMonetizationLayout.m1569$r8$lambda$G6QZMv56j50QvfP2KIySPDWh0Y(this.f$0, baseFragment, twoStepVerificationActivity);
+                ChannelMonetizationLayout.m1575$r8$lambda$G6QZMv56j50QvfP2KIySPDWh0Y(this.f$0, baseFragment, twoStepVerificationActivity);
             }
         });
         return true;
     }
 
-    public static void m1569$r8$lambda$G6QZMv56j50QvfP2KIySPDWh0Y(ChannelMonetizationLayout channelMonetizationLayout, BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
+    public static void m1575$r8$lambda$G6QZMv56j50QvfP2KIySPDWh0Y(ChannelMonetizationLayout channelMonetizationLayout, BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
         channelMonetizationLayout.starsBalanceButton.setLoading(false);
         baseFragment.presentFragment(twoStepVerificationActivity);
     }
@@ -1267,7 +1267,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        ChannelMonetizationLayout.m1567$r8$lambda$7v1m1BCF4Ga14i4LOYPzi9sMlA(this.f$0, limitReachedBottomSheet, (ChannelBoostsController.CanApplyBoost) obj);
+                        ChannelMonetizationLayout.m1573$r8$lambda$7v1m1BCF4Ga14i4LOYPzi9sMlA(this.f$0, limitReachedBottomSheet, (ChannelBoostsController.CanApplyBoost) obj);
                     }
                 });
                 return;
@@ -1279,7 +1279,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
     }
 
-    public static void m1567$r8$lambda$7v1m1BCF4Ga14i4LOYPzi9sMlA(ChannelMonetizationLayout channelMonetizationLayout, LimitReachedBottomSheet limitReachedBottomSheet, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public static void m1573$r8$lambda$7v1m1BCF4Ga14i4LOYPzi9sMlA(ChannelMonetizationLayout channelMonetizationLayout, LimitReachedBottomSheet limitReachedBottomSheet, ChannelBoostsController.CanApplyBoost canApplyBoost) {
         channelMonetizationLayout.getClass();
         limitReachedBottomSheet.setCanApplyBoost(canApplyBoost);
         channelMonetizationLayout.fragment.showDialog(limitReachedBottomSheet);

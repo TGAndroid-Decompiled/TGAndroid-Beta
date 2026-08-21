@@ -121,7 +121,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         getMessagesController().getBoostsController().getBoostsStats(-this.chatId, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChatCustomReactionsEditActivity.m2696$r8$lambda$POZTsX4le8JLvspVQot4FTX6GM(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
+                ChatCustomReactionsEditActivity.m2705$r8$lambda$POZTsX4le8JLvspVQot4FTX6GM(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
             }
         });
         getNotificationCenter().addObserver(this, NotificationCenter.reactionsDidLoad);
@@ -131,7 +131,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         return super.onFragmentCreate();
     }
 
-    public static void m2696$r8$lambda$POZTsX4le8JLvspVQot4FTX6GM(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public static void m2705$r8$lambda$POZTsX4le8JLvspVQot4FTX6GM(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         chatCustomReactionsEditActivity.boostsStatus = tL_premium_boostsStatus;
         if (chatCustomReactionsEditActivity.selectedEmojisMap.keySet().equals(chatCustomReactionsEditActivity.initialSelectedEmojis.keySet())) {
             return;
@@ -232,7 +232,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         this.enableReactionsCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatCustomReactionsEditActivity.m2692$r8$lambda$AHE6gpV7lQiQfO8NXS8DX9ZMc(this.f$0, view);
+                ChatCustomReactionsEditActivity.m2701$r8$lambda$AHE6gpV7lQiQfO8NXS8DX9ZMc(this.f$0, view);
             }
         });
         this.contentLayout.addView(this.enableReactionsCell, LayoutHelper.createLinear(-1, -2));
@@ -310,7 +310,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         this.slideView.set(this.reactionsCount, SlideIntChooseView.Options.make(0, "MaximumReactionsValue", 1, getMessagesController().reactionsUniqMax), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatCustomReactionsEditActivity.m2697$r8$lambda$PhCFVIWDtAS8gSu2gN0K4wNPU(this.f$0, (Integer) obj);
+                ChatCustomReactionsEditActivity.m2706$r8$lambda$PhCFVIWDtAS8gSu2gN0K4wNPU(this.f$0, (Integer) obj);
             }
         });
         this.switchLayout.addView(this.slideView, LayoutHelper.createLinear(-1, -2));
@@ -465,7 +465,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         return frameLayout;
     }
 
-    public static void m2692$r8$lambda$AHE6gpV7lQiQfO8NXS8DX9ZMc(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, View view) {
+    public static void m2701$r8$lambda$AHE6gpV7lQiQfO8NXS8DX9ZMc(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, View view) {
         TextCheckCell textCheckCell;
         if (chatCustomReactionsEditActivity.enableReactionsCell.isChecked() && (textCheckCell = chatCustomReactionsEditActivity.paidCheckCell) != null && textCheckCell.isChecked()) {
             chatCustomReactionsEditActivity.toggleStarsEnabled();
@@ -473,7 +473,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         chatCustomReactionsEditActivity.setCheckedEnableReactionCell(chatCustomReactionsEditActivity.enableReactionsCell.isChecked() ? 2 : 1, chatCustomReactionsEditActivity.enableReactionsCell.isChecked() ? false : chatCustomReactionsEditActivity.paid, true);
     }
 
-    public static void m2697$r8$lambda$PhCFVIWDtAS8gSu2gN0K4wNPU(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, Integer num) {
+    public static void m2706$r8$lambda$PhCFVIWDtAS8gSu2gN0K4wNPU(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, Integer num) {
         chatCustomReactionsEditActivity.getClass();
         chatCustomReactionsEditActivity.reactionsCount = num.intValue();
     }
@@ -524,13 +524,13 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatCustomReactionsEditActivity.m2693$r8$lambda$AySnEt7RrsN2eHiBFYPWJSNGg(this.f$0, tL_error);
+                    ChatCustomReactionsEditActivity.m2702$r8$lambda$AySnEt7RrsN2eHiBFYPWJSNGg(this.f$0, tL_error);
                 }
             }, chatCustomReactionsEditActivity.boostsStatus == null ? 200L : 0L);
         }
     }
 
-    public static void m2693$r8$lambda$AySnEt7RrsN2eHiBFYPWJSNGg(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, TLRPC.TL_error tL_error) {
+    public static void m2702$r8$lambda$AySnEt7RrsN2eHiBFYPWJSNGg(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, TLRPC.TL_error tL_error) {
         if (chatCustomReactionsEditActivity.boostsStatus != null && tL_error.text.equals("BOOSTS_REQUIRED")) {
             ReactionsUtils.showLimitReachedDialogForReactions(-chatCustomReactionsEditActivity.chatId, chatCustomReactionsEditActivity.selectedCustomReactions, chatCustomReactionsEditActivity.boostsStatus);
             return;

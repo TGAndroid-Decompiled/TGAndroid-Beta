@@ -698,13 +698,13 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             emojiTabButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    EmojiTabsStrip.m2295$r8$lambda$hF_668Kx343vW6a4NVZEa1nles(this.f$0, view);
+                    EmojiTabsStrip.m2305$r8$lambda$hF_668Kx343vW6a4NVZEa1nles(this.f$0, view);
                 }
             });
         }
     }
 
-    public static void m2295$r8$lambda$hF_668Kx343vW6a4NVZEa1nles(EmojiTabsStrip emojiTabsStrip, View view) {
+    public static void m2305$r8$lambda$hF_668Kx343vW6a4NVZEa1nles(EmojiTabsStrip emojiTabsStrip, View view) {
         Runnable runnable = emojiTabsStrip.onSettingsOpenRunnable;
         if (runnable != null) {
             runnable.run();
@@ -1329,7 +1329,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        EmojiTabsStrip.EmojiTabButton.m2296$r8$lambda$RBHdUHevmyUeXKyY8S9hVGUOYQ(this.f$0, valueAnimator2);
+                        EmojiTabsStrip.EmojiTabButton.m2306$r8$lambda$RBHdUHevmyUeXKyY8S9hVGUOYQ(this.f$0, valueAnimator2);
                     }
                 });
                 this.lockAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1354,7 +1354,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             this.lockView.setVisibility(z ? 0 : 8);
         }
 
-        public static void m2296$r8$lambda$RBHdUHevmyUeXKyY8S9hVGUOYQ(EmojiTabButton emojiTabButton, ValueAnimator valueAnimator) {
+        public static void m2306$r8$lambda$RBHdUHevmyUeXKyY8S9hVGUOYQ(EmojiTabButton emojiTabButton, ValueAnimator valueAnimator) {
             emojiTabButton.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             emojiTabButton.lockT = fFloatValue;

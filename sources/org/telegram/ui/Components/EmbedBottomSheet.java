@@ -636,13 +636,13 @@ public class EmbedBottomSheet extends BottomSheet {
         this.pipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                EmbedBottomSheet.m2277$r8$lambda$O6NVxHxtixbL3TK8ag5tibp1s(this.f$0, view3);
+                EmbedBottomSheet.m2287$r8$lambda$O6NVxHxtixbL3TK8ag5tibp1s(this.f$0, view3);
             }
         });
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                EmbedBottomSheet.m2279$r8$lambda$SzW7M7iXrzRHJl79CZ9ruXBP7s(this.f$0, view3);
+                EmbedBottomSheet.m2289$r8$lambda$SzW7M7iXrzRHJl79CZ9ruXBP7s(this.f$0, view3);
             }
         };
         ImageView imageView3 = new ImageView(context);
@@ -866,7 +866,7 @@ public class EmbedBottomSheet extends BottomSheet {
         }
     }
 
-    public static void m2277$r8$lambda$O6NVxHxtixbL3TK8ag5tibp1s(EmbedBottomSheet embedBottomSheet, View view) {
+    public static void m2287$r8$lambda$O6NVxHxtixbL3TK8ag5tibp1s(EmbedBottomSheet embedBottomSheet, View view) {
         embedBottomSheet.getClass();
         if (PipVideoOverlay.isVisible()) {
             PipVideoOverlay.dismiss();
@@ -887,7 +887,7 @@ public class EmbedBottomSheet extends BottomSheet {
         }
     }
 
-    public static void m2279$r8$lambda$SzW7M7iXrzRHJl79CZ9ruXBP7s(EmbedBottomSheet embedBottomSheet, View view) {
+    public static void m2289$r8$lambda$SzW7M7iXrzRHJl79CZ9ruXBP7s(EmbedBottomSheet embedBottomSheet, View view) {
         embedBottomSheet.getClass();
         try {
             ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", embedBottomSheet.openUrl));

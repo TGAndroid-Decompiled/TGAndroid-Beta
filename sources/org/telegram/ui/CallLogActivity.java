@@ -241,7 +241,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         private final RLottieImageView imageView;
         private final View progressView;
 
-        public static boolean m1454$r8$lambda$r2yXPcVr5CyXIjl7raCNSCXp8(View view, MotionEvent motionEvent) {
+        public static boolean m1460$r8$lambda$r2yXPcVr5CyXIjl7raCNSCXp8(View view, MotionEvent motionEvent) {
             return true;
         }
 
@@ -262,7 +262,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             rLottieImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    CallLogActivity.EmptyTextProgressView.m1455$r8$lambda$cnIdYaFZ0iLuVdYDvlCvN6grts(this.f$0, view2);
+                    CallLogActivity.EmptyTextProgressView.m1461$r8$lambda$cnIdYaFZ0iLuVdYDvlCvN6grts(this.f$0, view2);
                 }
             });
             TextView textView = new TextView(context);
@@ -292,12 +292,12 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                    return CallLogActivity.EmptyTextProgressView.m1454$r8$lambda$r2yXPcVr5CyXIjl7raCNSCXp8(view2, motionEvent);
+                    return CallLogActivity.EmptyTextProgressView.m1460$r8$lambda$r2yXPcVr5CyXIjl7raCNSCXp8(view2, motionEvent);
                 }
             });
         }
 
-        public static void m1455$r8$lambda$cnIdYaFZ0iLuVdYDvlCvN6grts(EmptyTextProgressView emptyTextProgressView, View view) {
+        public static void m1461$r8$lambda$cnIdYaFZ0iLuVdYDvlCvN6grts(EmptyTextProgressView emptyTextProgressView, View view) {
             if (emptyTextProgressView.imageView.isPlaying()) {
                 return;
             }
@@ -992,7 +992,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         this.topPanelLayout.setOnAnimatedHeightChangedListener(new Runnable() {
             @Override
             public final void run() {
-                CallLogActivity.m1448$r8$lambda$cSpa1HsOBBiFNriA8HdYrNe_0(this.f$0);
+                CallLogActivity.m1454$r8$lambda$cSpa1HsOBBiFNriA8HdYrNe_0(this.f$0);
             }
         });
         BlurredBackgroundDrawable blurredBackgroundDrawableCreate = this.iBlur3FactoryLiquidGlass.create(this.topPanelLayout, BlurredBackgroundProviderImpl.topPanel(this.resourceProvider));
@@ -1122,7 +1122,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public static void m1448$r8$lambda$cSpa1HsOBBiFNriA8HdYrNe_0(CallLogActivity callLogActivity) {
+    public static void m1454$r8$lambda$cSpa1HsOBBiFNriA8HdYrNe_0(CallLogActivity callLogActivity) {
         callLogActivity.blur3_InvalidateBlur();
         callLogActivity.checkUi_listViewPadding();
     }
@@ -1315,7 +1315,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 final int iSendRequest = getConnectionsManager().sendRequest(getgroupcall, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        CallLogActivity.m1441$r8$lambda$OkHhIWKA2MSMYxdWfDEaOx9o68(this.f$0, alertDialog, hashSet, tL_inputGroupCallInviteMessage, z, tLObject, tL_error);
+                        CallLogActivity.m1447$r8$lambda$OkHhIWKA2MSMYxdWfDEaOx9o68(this.f$0, alertDialog, hashSet, tL_inputGroupCallInviteMessage, z, tLObject, tL_error);
                     }
                 });
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -1342,7 +1342,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public static void m1441$r8$lambda$OkHhIWKA2MSMYxdWfDEaOx9o68(final CallLogActivity callLogActivity, final AlertDialog alertDialog, final HashSet hashSet, final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1447$r8$lambda$OkHhIWKA2MSMYxdWfDEaOx9o68(final CallLogActivity callLogActivity, final AlertDialog alertDialog, final HashSet hashSet, final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         callLogActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1633,12 +1633,12 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CallLogActivity.m1439$r8$lambda$CGWiUpo2arwqgOxi3LlJWv1dM8(this.f$0, tLObject, tL_error);
+                CallLogActivity.m1445$r8$lambda$CGWiUpo2arwqgOxi3LlJWv1dM8(this.f$0, tLObject, tL_error);
             }
         }, 2), this.classGuid);
     }
 
-    public static void m1439$r8$lambda$CGWiUpo2arwqgOxi3LlJWv1dM8(final CallLogActivity callLogActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1445$r8$lambda$CGWiUpo2arwqgOxi3LlJWv1dM8(final CallLogActivity callLogActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         callLogActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -2162,13 +2162,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CallLogActivity.m1437$r8$lambda$1EFOwZ77UqkTcqErUyM45xhGTk(strArr, bottomSheetShow, resourcesProvider, view);
+                CallLogActivity.m1443$r8$lambda$1EFOwZ77UqkTcqErUyM45xhGTk(strArr, bottomSheetShow, resourcesProvider, view);
             }
         });
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                CallLogActivity.m1438$r8$lambda$2prmdrrmAf0kUoNk0dOqcJaAs(inputGroupCall, i2, strArr, frameLayout3, linksTextViewMakeLinkTextView3, bottomSheetShow, resourcesProvider);
+                CallLogActivity.m1444$r8$lambda$2prmdrrmAf0kUoNk0dOqcJaAs(inputGroupCall, i2, strArr, frameLayout3, linksTextViewMakeLinkTextView3, bottomSheetShow, resourcesProvider);
             }
         };
         imageView3.setOnClickListener(new View.OnClickListener() {
@@ -2186,7 +2186,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 }).add(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable() {
                     @Override
                     public final void run() {
-                        CallLogActivity.m1451$r8$lambda$ofizaQ8fz8pIkZ0CmoIzuZ1WxU(context, strArr2);
+                        CallLogActivity.m1457$r8$lambda$ofizaQ8fz8pIkZ0CmoIzuZ1WxU(context, strArr2);
                     }
                 }).addIf(z2, R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.RevokeLink), true, runnable2).show();
             }
@@ -2241,12 +2241,12 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).createCopyBulletin(LocaleController.getString(R.string.LinkCopied)).show();
     }
 
-    public static void m1437$r8$lambda$1EFOwZ77UqkTcqErUyM45xhGTk(String[] strArr, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m1443$r8$lambda$1EFOwZ77UqkTcqErUyM45xhGTk(String[] strArr, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view) {
         AndroidUtilities.addToClipboard(strArr[0]);
         BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).createCopyBulletin(LocaleController.getString(R.string.LinkCopied)).show();
     }
 
-    public static void m1438$r8$lambda$2prmdrrmAf0kUoNk0dOqcJaAs(final TLRPC.InputGroupCall inputGroupCall, final int i, final String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider) {
+    public static void m1444$r8$lambda$2prmdrrmAf0kUoNk0dOqcJaAs(final TLRPC.InputGroupCall inputGroupCall, final int i, final String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider) {
         TL_phone.toggleGroupCallSettings togglegroupcallsettings = new TL_phone.toggleGroupCallSettings();
         togglegroupcallsettings.call = inputGroupCall;
         togglegroupcallsettings.reset_invite_hash = true;
@@ -2270,14 +2270,14 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        CallLogActivity.m1445$r8$lambda$XP3zZ7XrhNj3c7Y0VBP453XMXs(tLObject2, strArr, frameLayout, linksTextView, bottomSheet, resourcesProvider);
+                        CallLogActivity.m1451$r8$lambda$XP3zZ7XrhNj3c7Y0VBP453XMXs(tLObject2, strArr, frameLayout, linksTextView, bottomSheet, resourcesProvider);
                     }
                 });
             }
         });
     }
 
-    public static void m1445$r8$lambda$XP3zZ7XrhNj3c7Y0VBP453XMXs(TLObject tLObject, String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider) {
+    public static void m1451$r8$lambda$XP3zZ7XrhNj3c7Y0VBP453XMXs(TLObject tLObject, String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider) {
         if (tLObject instanceof TL_phone.exportedGroupCallInvite) {
             final String strSubstring = ((TL_phone.exportedGroupCallInvite) tLObject).link;
             strArr[0] = strSubstring;
@@ -2324,7 +2324,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).createCopyBulletin(LocaleController.getString(R.string.LinkCopied)).show();
     }
 
-    public static void m1451$r8$lambda$ofizaQ8fz8pIkZ0CmoIzuZ1WxU(Context context, String[] strArr) {
+    public static void m1457$r8$lambda$ofizaQ8fz8pIkZ0CmoIzuZ1WxU(Context context, String[] strArr) {
         QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, LocaleController.getString(R.string.InviteByQRCode), strArr[0], LocaleController.getString(R.string.QRCodeLinkGroupCall), false);
         qRCodeBottomSheet.setCenterAnimation(R.raw.qr_code_logo);
         qRCodeBottomSheet.show();
@@ -2381,7 +2381,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                CallLogActivity.AnonymousClass9.m1453$r8$lambda$HNxXsgbSysl7L8tDBtVrPFkeYc(tLObject, i, z, hashSet, tL_error, baseFragment);
+                                CallLogActivity.AnonymousClass9.m1459$r8$lambda$HNxXsgbSysl7L8tDBtVrPFkeYc(tLObject, i, z, hashSet, tL_error, baseFragment);
                             }
                         });
                     }
@@ -2415,7 +2415,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             VoIPHelper.startCall(user, z, userFull2 != null && userFull2.video_calls_available, anonymousClass9.getParentActivity(), userFull2, AccountInstance.getInstance(i));
         }
 
-        public static void m1453$r8$lambda$HNxXsgbSysl7L8tDBtVrPFkeYc(TLObject tLObject, int i, boolean z, HashSet hashSet, TLRPC.TL_error tL_error, BaseFragment baseFragment) {
+        public static void m1459$r8$lambda$HNxXsgbSysl7L8tDBtVrPFkeYc(TLObject tLObject, int i, boolean z, HashSet hashSet, TLRPC.TL_error tL_error, BaseFragment baseFragment) {
             int i2 = 0;
             if (tLObject instanceof TLRPC.Updates) {
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -2470,14 +2470,14 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        CallLogActivity.m1449$r8$lambda$gyhVDjUE7ARRTUf1l96t6off0(tLObject, i, alertDialog, context, resourcesProvider, runnable);
+                        CallLogActivity.m1455$r8$lambda$gyhVDjUE7ARRTUf1l96t6off0(tLObject, i, alertDialog, context, resourcesProvider, runnable);
                     }
                 });
             }
         });
     }
 
-    public static void m1449$r8$lambda$gyhVDjUE7ARRTUf1l96t6off0(TLObject tLObject, final int i, final AlertDialog alertDialog, final Context context, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
+    public static void m1455$r8$lambda$gyhVDjUE7ARRTUf1l96t6off0(TLObject tLObject, final int i, final AlertDialog alertDialog, final Context context, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
         int i2 = 0;
         if (tLObject instanceof TLRPC.Updates) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -2518,7 +2518,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            CallLogActivity.m1450$r8$lambda$k3EfdJ6Yoam0W237sh_2inFJEA(tLObject2, alertDialog, context, i, exportgroupcallinvite, resourcesProvider, runnable);
+                            CallLogActivity.m1456$r8$lambda$k3EfdJ6Yoam0W237sh_2inFJEA(tLObject2, alertDialog, context, i, exportgroupcallinvite, resourcesProvider, runnable);
                         }
                     });
                 }
@@ -2529,7 +2529,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public static void m1450$r8$lambda$k3EfdJ6Yoam0W237sh_2inFJEA(TLObject tLObject, AlertDialog alertDialog, Context context, int i, TL_phone.exportGroupCallInvite exportgroupcallinvite, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+    public static void m1456$r8$lambda$k3EfdJ6Yoam0W237sh_2inFJEA(TLObject tLObject, AlertDialog alertDialog, Context context, int i, TL_phone.exportGroupCallInvite exportgroupcallinvite, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
         if (tLObject instanceof TL_phone.exportedGroupCallInvite) {
             alertDialog.dismiss();
             showCallLinkSheet(context, i, exportgroupcallinvite.call, ((TL_phone.exportedGroupCallInvite) tLObject).link, resourcesProvider, true, true);
@@ -2546,7 +2546,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             itemOptionsMakeOptions.add(R.drawable.msg_archive_hide, LocaleController.getString(R.string.HideCallTab), new Runnable() {
                 @Override
                 public final void run() {
-                    CallLogActivity.m1442$r8$lambda$Pr5g9Kg58XyB3ftR62jtiBUfGs(this.f$0);
+                    CallLogActivity.m1448$r8$lambda$Pr5g9Kg58XyB3ftR62jtiBUfGs(this.f$0);
                 }
             });
         }
@@ -2560,7 +2560,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         itemOptionsMakeOptions.setTranslationY(-AndroidUtilities.dp(64.0f));
     }
 
-    public static void m1442$r8$lambda$Pr5g9Kg58XyB3ftR62jtiBUfGs(final CallLogActivity callLogActivity) {
+    public static void m1448$r8$lambda$Pr5g9Kg58XyB3ftR62jtiBUfGs(final CallLogActivity callLogActivity) {
         callLogActivity.setCallsTabVisible(false);
         (callLogActivity.hasMainTabs ? BulletinFactory.global() : BulletinFactory.of(callLogActivity)).createSimpleBulletin(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallTabWasHiddenTitle)), LocaleController.getString(R.string.UndoNoCaps), 5000, true, new Runnable() {
             @Override

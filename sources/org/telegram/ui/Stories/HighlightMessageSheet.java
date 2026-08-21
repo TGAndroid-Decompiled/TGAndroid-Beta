@@ -295,7 +295,7 @@ public abstract class HighlightMessageSheet {
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                HighlightMessageSheet.m4301$r8$lambda$TYVdgVFeZEkw19HNzSwaGbMGQ(callback, jArr, bottomSheetShow, view);
+                HighlightMessageSheet.m4312$r8$lambda$TYVdgVFeZEkw19HNzSwaGbMGQ(callback, jArr, bottomSheetShow, view);
             }
         });
     }
@@ -316,7 +316,7 @@ public abstract class HighlightMessageSheet {
         zArr[0] = false;
     }
 
-    public static void m4301$r8$lambda$TYVdgVFeZEkw19HNzSwaGbMGQ(Utilities.Callback callback, long[] jArr, BottomSheet bottomSheet, View view) {
+    public static void m4312$r8$lambda$TYVdgVFeZEkw19HNzSwaGbMGQ(Utilities.Callback callback, long[] jArr, BottomSheet bottomSheet, View view) {
         callback.run(Long.valueOf(jArr[0]));
         bottomSheet.dismiss();
     }

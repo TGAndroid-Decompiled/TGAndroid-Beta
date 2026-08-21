@@ -622,7 +622,7 @@ public class LinkManager {
                                     setRequestId(getConnectionsManager().sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                                         @Override
                                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                            LinkManager.m3401$r8$lambda$IQ_Z2YYGa7BhMAbvIr_OYGr524(this.f$0, str3, tLObject, tL_error);
+                                            LinkManager.m3409$r8$lambda$IQ_Z2YYGa7BhMAbvIr_OYGr524(this.f$0, str3, tLObject, tL_error);
                                         }
                                     }, 10));
                                 } else if (TextUtils.isEmpty(str3) && "passkey".equalsIgnoreCase(str2) && Build.VERSION.SDK_INT >= 28) {
@@ -4818,7 +4818,7 @@ public class LinkManager {
                     getConnectionsManager().sendRequest(tL_users_getFullUser, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            LinkManager.AnonymousClass1.m3406$r8$lambda$HL2XXrJILYHwBHGhWwGPaBAuZE(this.f$0, user, z, tLObject, tL_error);
+                            LinkManager.AnonymousClass1.m3414$r8$lambda$HL2XXrJILYHwBHGhWwGPaBAuZE(this.f$0, user, z, tLObject, tL_error);
                         }
                     });
                     return;
@@ -4837,7 +4837,7 @@ public class LinkManager {
             finishFragment();
         }
 
-        public static void m3406$r8$lambda$HL2XXrJILYHwBHGhWwGPaBAuZE(final AnonymousClass1 anonymousClass1, final TLRPC.User user, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m3414$r8$lambda$HL2XXrJILYHwBHGhWwGPaBAuZE(final AnonymousClass1 anonymousClass1, final TLRPC.User user, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
             anonymousClass1.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -4867,12 +4867,12 @@ public class LinkManager {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LinkManager.AnonymousClass1.m3407$r8$lambda$HXl8PLciMA6n3wwTS5T3bi4tZo(this.f$0, tLObject, z, hashSet, tL_error);
+                    LinkManager.AnonymousClass1.m3415$r8$lambda$HXl8PLciMA6n3wwTS5T3bi4tZo(this.f$0, tLObject, z, hashSet, tL_error);
                 }
             });
         }
 
-        public static void m3407$r8$lambda$HXl8PLciMA6n3wwTS5T3bi4tZo(AnonymousClass1 anonymousClass1, TLObject tLObject, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) {
+        public static void m3415$r8$lambda$HXl8PLciMA6n3wwTS5T3bi4tZo(AnonymousClass1 anonymousClass1, TLObject tLObject, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) {
             anonymousClass1.getClass();
             int i = 0;
             if (tLObject instanceof TLRPC.Updates) {
@@ -4999,7 +4999,7 @@ public class LinkManager {
         }
     }
 
-    public static void m3401$r8$lambda$IQ_Z2YYGa7BhMAbvIr_OYGr524(final LinkManager linkManager, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3409$r8$lambda$IQ_Z2YYGa7BhMAbvIr_OYGr524(final LinkManager linkManager, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         linkManager.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -5021,7 +5021,7 @@ public class LinkManager {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                LinkManager.m3404$r8$lambda$hzRVS3j2oLc6YP6Ai4UdLpLw2s(this.f$0, str);
+                LinkManager.m3412$r8$lambda$hzRVS3j2oLc6YP6Ai4UdLpLw2s(this.f$0, str);
             }
         };
         if (password.has_password) {
@@ -5036,7 +5036,7 @@ public class LinkManager {
         linkManager.presentFragment(twoStepVerificationSetupActivity);
     }
 
-    public static void m3404$r8$lambda$hzRVS3j2oLc6YP6Ai4UdLpLw2s(LinkManager linkManager, String str) {
+    public static void m3412$r8$lambda$hzRVS3j2oLc6YP6Ai4UdLpLw2s(LinkManager linkManager, String str) {
         linkManager.getClass();
         if ("disable".equalsIgnoreCase(str)) {
             linkManager.scrollTo("turnPasswordOffRow");
@@ -5083,12 +5083,12 @@ public class LinkManager {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkManager.m3405$r8$lambda$q1bC5o24mucYv0tXZ1GLOM5QjU(this.f$0, tL_error, tLObject, tL_inputInvoiceSlug, str);
+                LinkManager.m3413$r8$lambda$q1bC5o24mucYv0tXZ1GLOM5QjU(this.f$0, tL_error, tLObject, tL_inputInvoiceSlug, str);
             }
         });
     }
 
-    public static void m3405$r8$lambda$q1bC5o24mucYv0tXZ1GLOM5QjU(final LinkManager linkManager, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, String str) {
+    public static void m3413$r8$lambda$q1bC5o24mucYv0tXZ1GLOM5QjU(final LinkManager linkManager, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, String str) {
         PaymentFormActivity paymentFormActivity;
         if (tL_error != null) {
             linkManager.getClass();
@@ -5205,7 +5205,7 @@ public class LinkManager {
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    LinkManager.m3400$r8$lambda$I3F9JBOvhHnAnrtQk9jLIx5OJM(this.f$0, safeLastFragment, userArr, tL_requestPeerTypeCreateBot);
+                    LinkManager.m3408$r8$lambda$I3F9JBOvhHnAnrtQk9jLIx5OJM(this.f$0, safeLastFragment, userArr, tL_requestPeerTypeCreateBot);
                 }
             };
             MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str, new Consumer() {
@@ -5218,7 +5218,7 @@ public class LinkManager {
         return true;
     }
 
-    public static void m3400$r8$lambda$I3F9JBOvhHnAnrtQk9jLIx5OJM(final LinkManager linkManager, BaseFragment baseFragment, final TLRPC.User[] userArr, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot) {
+    public static void m3408$r8$lambda$I3F9JBOvhHnAnrtQk9jLIx5OJM(final LinkManager linkManager, BaseFragment baseFragment, final TLRPC.User[] userArr, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot) {
         linkManager.getClass();
         CreateBotAlert.show(baseFragment.getContext(), linkManager.currentAccount, userArr[0], tL_requestPeerTypeCreateBot, true, new Utilities.Callback() {
             @Override

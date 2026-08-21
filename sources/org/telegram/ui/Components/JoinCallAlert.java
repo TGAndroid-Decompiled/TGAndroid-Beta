@@ -196,7 +196,7 @@ public class JoinCallAlert extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        JoinCallAlert.m2403$r8$lambda$V1wauqt2O0Je46IaESMYiZZZ6M(alertDialog, tLObject, j, accountInstance, booleanCallback);
+                        JoinCallAlert.m2413$r8$lambda$V1wauqt2O0Je46IaESMYiZZZ6M(alertDialog, tLObject, j, accountInstance, booleanCallback);
                     }
                 });
             }
@@ -213,7 +213,7 @@ public class JoinCallAlert extends BottomSheet {
         }
     }
 
-    public static void m2403$r8$lambda$V1wauqt2O0Je46IaESMYiZZZ6M(AlertDialog alertDialog, TLObject tLObject, long j, AccountInstance accountInstance, MessagesStorage.BooleanCallback booleanCallback) {
+    public static void m2413$r8$lambda$V1wauqt2O0Je46IaESMYiZZZ6M(AlertDialog alertDialog, TLObject tLObject, long j, AccountInstance accountInstance, MessagesStorage.BooleanCallback booleanCallback) {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
@@ -484,7 +484,7 @@ public class JoinCallAlert extends BottomSheet {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i5) {
-                JoinCallAlert.m2402$r8$lambda$L8wCQsOEl6W8m2mZMRyIDKFVxI(this.f$0, chat, view, i5);
+                JoinCallAlert.m2412$r8$lambda$L8wCQsOEl6W8m2mZMRyIDKFVxI(this.f$0, chat, view, i5);
             }
         });
         if (i != 0) {
@@ -588,7 +588,7 @@ public class JoinCallAlert extends BottomSheet {
         bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                JoinCallAlert.m2400$r8$lambda$4JAf63IIftbx3LOa3EKfwgfJKk(this.f$0, joinCallAlertDelegate, view);
+                JoinCallAlert.m2410$r8$lambda$4JAf63IIftbx3LOa3EKfwgfJKk(this.f$0, joinCallAlertDelegate, view);
             }
         });
         if (this.currentType == 0) {
@@ -612,7 +612,7 @@ public class JoinCallAlert extends BottomSheet {
         updateDoneButton(false, chat);
     }
 
-    public static void m2402$r8$lambda$L8wCQsOEl6W8m2mZMRyIDKFVxI(JoinCallAlert joinCallAlert, TLRPC.Chat chat, View view, int i) {
+    public static void m2412$r8$lambda$L8wCQsOEl6W8m2mZMRyIDKFVxI(JoinCallAlert joinCallAlert, TLRPC.Chat chat, View view, int i) {
         if (joinCallAlert.animationInProgress || joinCallAlert.chats.get(i) == joinCallAlert.selectedPeer) {
             return;
         }
@@ -640,7 +640,7 @@ public class JoinCallAlert extends BottomSheet {
         }
     }
 
-    public static void m2400$r8$lambda$4JAf63IIftbx3LOa3EKfwgfJKk(JoinCallAlert joinCallAlert, JoinCallAlertDelegate joinCallAlertDelegate, View view) {
+    public static void m2410$r8$lambda$4JAf63IIftbx3LOa3EKfwgfJKk(JoinCallAlert joinCallAlert, JoinCallAlertDelegate joinCallAlertDelegate, View view) {
         TLRPC.InputPeer inputPeer = MessagesController.getInstance(joinCallAlert.currentAccount).getInputPeer(MessageObject.getPeerId(joinCallAlert.selectedPeer));
         if (joinCallAlert.currentType == 2) {
             if (joinCallAlert.selectedPeer != joinCallAlert.currentPeer) {

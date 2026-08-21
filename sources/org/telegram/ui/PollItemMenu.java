@@ -1558,7 +1558,7 @@ public class PollItemMenu extends Dialog {
                         Runnable runnable = new Runnable() {
                             @Override
                             public final void run() {
-                                PollItemMenu.m3753$r8$lambda$31x8u58Ys8bvf2e9H1IIW9HWUA(this.f$0, z7, pollAnswer5, baseFragment, arrayList6);
+                                PollItemMenu.m3761$r8$lambda$31x8u58Ys8bvf2e9H1IIW9HWUA(this.f$0, z7, pollAnswer5, baseFragment, arrayList6);
                             }
                         };
                         pollAnswer2 = pollAnswer5;
@@ -1608,7 +1608,7 @@ public class PollItemMenu extends Dialog {
             itemOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
                 @Override
                 public final void run() {
-                    PollItemMenu.m3758$r8$lambda$Vje7q6AqEpVpvJfJtSSzuBonV4(this.f$0, pollAnswer2);
+                    PollItemMenu.m3766$r8$lambda$Vje7q6AqEpVpvJfJtSSzuBonV4(this.f$0, pollAnswer2);
                 }
             });
             TLRPC.Peer peer = pollAnswer2.added_by;
@@ -1674,7 +1674,7 @@ public class PollItemMenu extends Dialog {
         pollItemMenu.dismiss(true);
     }
 
-    public static void m3753$r8$lambda$31x8u58Ys8bvf2e9H1IIW9HWUA(PollItemMenu pollItemMenu, boolean z, TLRPC.PollAnswer pollAnswer, BaseFragment baseFragment, ArrayList arrayList) {
+    public static void m3761$r8$lambda$31x8u58Ys8bvf2e9H1IIW9HWUA(PollItemMenu pollItemMenu, boolean z, TLRPC.PollAnswer pollAnswer, BaseFragment baseFragment, ArrayList arrayList) {
         pollItemMenu.getClass();
         if (!z) {
             ArrayList<TLRPC.PollAnswer> arrayList2 = new ArrayList<>(1);
@@ -1699,7 +1699,7 @@ public class PollItemMenu extends Dialog {
         pollItemMenu.dismiss(true);
     }
 
-    public static void m3758$r8$lambda$Vje7q6AqEpVpvJfJtSSzuBonV4(PollItemMenu pollItemMenu, TLRPC.PollAnswer pollAnswer) {
+    public static void m3766$r8$lambda$Vje7q6AqEpVpvJfJtSSzuBonV4(PollItemMenu pollItemMenu, TLRPC.PollAnswer pollAnswer) {
         pollItemMenu.getClass();
         AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(pollAnswer.text, false));
         pollItemMenu.dismiss(true);
@@ -1848,7 +1848,7 @@ public class PollItemMenu extends Dialog {
             itemOptions.add(((Integer) arrayList.get(i)).intValue(), (CharSequence) arrayList2.get(i), new Runnable() {
                 @Override
                 public final void run() {
-                    PollItemMenu.m3759$r8$lambda$vKzgIlnKBbUobJNdi76AiJW_2E(this.f$0, callback, iIntValue);
+                    PollItemMenu.m3767$r8$lambda$vKzgIlnKBbUobJNdi76AiJW_2E(this.f$0, callback, iIntValue);
                 }
             });
         }
@@ -1954,7 +1954,7 @@ public class PollItemMenu extends Dialog {
         pollItemMenu.updateTranslation();
     }
 
-    public static void m3759$r8$lambda$vKzgIlnKBbUobJNdi76AiJW_2E(PollItemMenu pollItemMenu, Utilities.Callback callback, int i) {
+    public static void m3767$r8$lambda$vKzgIlnKBbUobJNdi76AiJW_2E(PollItemMenu pollItemMenu, Utilities.Callback callback, int i) {
         pollItemMenu.getClass();
         callback.run(Integer.valueOf(i));
         boolean z = true;
@@ -2249,7 +2249,7 @@ public class PollItemMenu extends Dialog {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                PollItemMenu.m3755$r8$lambda$5GUwelTn3K5qX6hAn8_eeP_sWU(this.f$0, valueAnimator3);
+                PollItemMenu.m3763$r8$lambda$5GUwelTn3K5qX6hAn8_eeP_sWU(this.f$0, valueAnimator3);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2290,7 +2290,7 @@ public class PollItemMenu extends Dialog {
         this.open2Animator.start();
     }
 
-    public static void m3755$r8$lambda$5GUwelTn3K5qX6hAn8_eeP_sWU(PollItemMenu pollItemMenu, ValueAnimator valueAnimator) {
+    public static void m3763$r8$lambda$5GUwelTn3K5qX6hAn8_eeP_sWU(PollItemMenu pollItemMenu, ValueAnimator valueAnimator) {
         pollItemMenu.getClass();
         pollItemMenu.openProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         pollItemMenu.windowView.invalidate();

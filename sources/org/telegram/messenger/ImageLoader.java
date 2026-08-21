@@ -215,12 +215,12 @@ public class ImageLoader {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.HttpFileTask.m494$r8$lambda$oM1DlNOCIA8foJPRew6fc7i9k(this.f$0, j, j2);
+                    ImageLoader.HttpFileTask.m500$r8$lambda$oM1DlNOCIA8foJPRew6fc7i9k(this.f$0, j, j2);
                 }
             });
         }
 
-        public static void m494$r8$lambda$oM1DlNOCIA8foJPRew6fc7i9k(final HttpFileTask httpFileTask, final long j, final long j2) {
+        public static void m500$r8$lambda$oM1DlNOCIA8foJPRew6fc7i9k(final HttpFileTask httpFileTask, final long j, final long j2) {
             ImageLoader.this.fileProgresses.put(httpFileTask.url, new long[]{j, j2});
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -611,7 +611,7 @@ public class ImageLoader {
                 ImageLoader.this.imageLoadQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ImageLoader.ArtworkLoadTask.m492$r8$lambda$f_al4AP_H0wCHBNHpPL12MnVNs(this.f$0, str);
+                        ImageLoader.ArtworkLoadTask.m498$r8$lambda$f_al4AP_H0wCHBNHpPL12MnVNs(this.f$0, str);
                     }
                 });
             } else if (this.canRetry) {
@@ -625,7 +625,7 @@ public class ImageLoader {
             });
         }
 
-        public static void m492$r8$lambda$f_al4AP_H0wCHBNHpPL12MnVNs(ArtworkLoadTask artworkLoadTask, String str) {
+        public static void m498$r8$lambda$f_al4AP_H0wCHBNHpPL12MnVNs(ArtworkLoadTask artworkLoadTask, String str) {
             CacheImage cacheImage = artworkLoadTask.cacheImage;
             cacheImage.httpTask = ImageLoader.this.new HttpImageTask(cacheImage, 0, str);
             ImageLoader.this.httpTasks.add(artworkLoadTask.cacheImage.httpTask);
@@ -652,7 +652,7 @@ public class ImageLoader {
         private long lastProgressTime;
         private String overrideUrl;
 
-        public static void m496$r8$lambda$cv6vUIEcOP54Auh2HI4OWQaCg0(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m502$r8$lambda$cv6vUIEcOP54Auh2HI4OWQaCg0(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         public HttpImageTask(CacheImage cacheImage, long j) {
@@ -723,7 +723,7 @@ public class ImageLoader {
                             ConnectionsManager.getInstance(this.cacheImage.currentAccount).sendRequest(tL_upload_getWebFile, new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                    ImageLoader.HttpImageTask.m496$r8$lambda$cv6vUIEcOP54Auh2HI4OWQaCg0(tLObject, tL_error);
+                                    ImageLoader.HttpImageTask.m502$r8$lambda$cv6vUIEcOP54Auh2HI4OWQaCg0(tLObject, tL_error);
                                 }
                             });
                         }
@@ -892,7 +892,7 @@ public class ImageLoader {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.HttpImageTask.m495$r8$lambda$kzbON1K01qS3tdb0QMBK7a6XHA(this.f$0, bool);
+                    ImageLoader.HttpImageTask.m501$r8$lambda$kzbON1K01qS3tdb0QMBK7a6XHA(this.f$0, bool);
                 }
             });
             ImageLoader.this.imageLoadQueue.postRunnable(new Runnable() {
@@ -903,7 +903,7 @@ public class ImageLoader {
             }, this.cacheImage.priority);
         }
 
-        public static void m495$r8$lambda$kzbON1K01qS3tdb0QMBK7a6XHA(final HttpImageTask httpImageTask, final Boolean bool) {
+        public static void m501$r8$lambda$kzbON1K01qS3tdb0QMBK7a6XHA(final HttpImageTask httpImageTask, final Boolean bool) {
             ImageLoader.this.fileProgresses.remove(httpImageTask.cacheImage.url);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -1638,7 +1638,7 @@ public class ImageLoader {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ImageLoader.CacheImage.m493$r8$lambda$fNaxYhgmE9E8x5Nbwlvc0lpK9A(this.f$0, drawable, arrayList, arrayList2, str);
+                        ImageLoader.CacheImage.m499$r8$lambda$fNaxYhgmE9E8x5Nbwlvc0lpK9A(this.f$0, drawable, arrayList, arrayList2, str);
                     }
                 });
             } else {
@@ -1662,7 +1662,7 @@ public class ImageLoader {
             }
         }
 
-        public static void m493$r8$lambda$fNaxYhgmE9E8x5Nbwlvc0lpK9A(CacheImage cacheImage, Drawable drawable, ArrayList arrayList, ArrayList arrayList2, String str) {
+        public static void m499$r8$lambda$fNaxYhgmE9E8x5Nbwlvc0lpK9A(CacheImage cacheImage, Drawable drawable, ArrayList arrayList, ArrayList arrayList2, String str) {
             cacheImage.getClass();
             int i = 0;
             if (drawable instanceof AnimatedFileDrawable) {
@@ -1925,12 +1925,12 @@ public class ImageLoader {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.AnonymousClass5.m490$r8$lambda$sV0DP70arjUV_pwTUE2fdgGpvg(this.f$0, file, str, i2, obj, i);
+                    ImageLoader.AnonymousClass5.m496$r8$lambda$sV0DP70arjUV_pwTUE2fdgGpvg(this.f$0, file, str, i2, obj, i);
                 }
             });
         }
 
-        public static void m490$r8$lambda$sV0DP70arjUV_pwTUE2fdgGpvg(AnonymousClass5 anonymousClass5, File file, String str, int i, Object obj, int i2) {
+        public static void m496$r8$lambda$sV0DP70arjUV_pwTUE2fdgGpvg(AnonymousClass5 anonymousClass5, File file, String str, int i, Object obj, int i2) {
             FilePathDatabase.FileMeta fileMetadataFromParent;
             int i3;
             anonymousClass5.getClass();
@@ -1974,7 +1974,7 @@ public class ImageLoader {
                 ImageLoader.this.imageLoadQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ImageLoader.AnonymousClass5.m489$r8$lambda$KUpvvHgzJUGuwCK0tmGAMdncUY(this.f$0, str, fileLoadOperation);
+                        ImageLoader.AnonymousClass5.m495$r8$lambda$KUpvvHgzJUGuwCK0tmGAMdncUY(this.f$0, str, fileLoadOperation);
                     }
                 });
             }
@@ -1992,7 +1992,7 @@ public class ImageLoader {
             }
         }
 
-        public static void m489$r8$lambda$KUpvvHgzJUGuwCK0tmGAMdncUY(AnonymousClass5 anonymousClass5, String str, FileLoadOperation fileLoadOperation) {
+        public static void m495$r8$lambda$KUpvvHgzJUGuwCK0tmGAMdncUY(AnonymousClass5 anonymousClass5, String str, FileLoadOperation fileLoadOperation) {
             CacheImage cacheImage = (CacheImage) ImageLoader.this.imageLoadingByUrlPframe.remove(str);
             if (cacheImage == null) {
                 return;
@@ -2091,12 +2091,12 @@ public class ImageLoader {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ImageLoader.m485$r8$lambda$bace6vELOUCoq4DLR0nHnQHBEk(sparseArrayCreateMediaPaths, runnable);
+                ImageLoader.m491$r8$lambda$bace6vELOUCoq4DLR0nHnQHBEk(sparseArrayCreateMediaPaths, runnable);
             }
         });
     }
 
-    public static void m485$r8$lambda$bace6vELOUCoq4DLR0nHnQHBEk(SparseArray sparseArray, Runnable runnable) {
+    public static void m491$r8$lambda$bace6vELOUCoq4DLR0nHnQHBEk(SparseArray sparseArray, Runnable runnable) {
         FileLoader.setMediaDirs(sparseArray);
         if (runnable != null) {
             runnable.run();
@@ -2126,7 +2126,7 @@ public class ImageLoader {
                         streamConvert.forEach(new Consumer() {
                             @Override
                             public final void s(Object obj) {
-                                ImageLoader.m486$r8$lambda$gOJHwLnGci070vSdd2ZIzBwZVo(file2, (java.nio.file.Path) obj);
+                                ImageLoader.m492$r8$lambda$gOJHwLnGci070vSdd2ZIzBwZVo(file2, (java.nio.file.Path) obj);
                             }
 
                             public Consumer andThen(Consumer consumer) {
@@ -2151,7 +2151,7 @@ public class ImageLoader {
         }
     }
 
-    public static void m486$r8$lambda$gOJHwLnGci070vSdd2ZIzBwZVo(File file, java.nio.file.Path path) {
+    public static void m492$r8$lambda$gOJHwLnGci070vSdd2ZIzBwZVo(File file, java.nio.file.Path path) {
         File file2 = new File(file, path.getFileName().toString());
         if (Files.isDirectory(path, new LinkOption[0])) {
             moveDirectory(path.toFile(), file2);
@@ -3290,12 +3290,12 @@ public class ImageLoader {
         this.imageLoadQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ImageLoader.m484$r8$lambda$Gy3VPEVspwBVgymvjsNme6gYrU(this.f$0, str);
+                ImageLoader.m490$r8$lambda$Gy3VPEVspwBVgymvjsNme6gYrU(this.f$0, str);
             }
         });
     }
 
-    public static void m484$r8$lambda$Gy3VPEVspwBVgymvjsNme6gYrU(ImageLoader imageLoader, String str) {
+    public static void m490$r8$lambda$Gy3VPEVspwBVgymvjsNme6gYrU(ImageLoader imageLoader, String str) {
         imageLoader.getClass();
         String httpUrlExtension = getHttpUrlExtension(str, "jpg");
         String str2 = Utilities.MD5(str) + "." + httpUrlExtension;
@@ -3968,7 +3968,7 @@ public class ImageLoader {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.m487$r8$lambda$gkvLHmlzskGJR6MmYBB4e_r54(this.f$0, httpFileTask2);
+                    ImageLoader.m493$r8$lambda$gkvLHmlzskGJR6MmYBB4e_r54(this.f$0, httpFileTask2);
                 }
             };
             imageLoader2.retryHttpsTasks.put(httpFileTask.url, runnable);
@@ -3980,7 +3980,7 @@ public class ImageLoader {
         }
     }
 
-    public static void m487$r8$lambda$gkvLHmlzskGJR6MmYBB4e_r54(ImageLoader imageLoader, HttpFileTask httpFileTask) {
+    public static void m493$r8$lambda$gkvLHmlzskGJR6MmYBB4e_r54(ImageLoader imageLoader, HttpFileTask httpFileTask) {
         imageLoader.httpFileLoadTasks.add(httpFileTask);
         imageLoader.runHttpFileLoadTasks(null, 0);
     }

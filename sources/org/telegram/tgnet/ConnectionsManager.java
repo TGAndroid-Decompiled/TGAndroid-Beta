@@ -405,12 +405,12 @@ public class ConnectionsManager extends BaseController {
         return sendRequest(tLMethod, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ConnectionsManager.m1212$r8$lambda$8rHrGzkyrliJMokXSq2auMo358(executor, callback2, tLObject, tL_error);
+                ConnectionsManager.m1218$r8$lambda$8rHrGzkyrliJMokXSq2auMo358(executor, callback2, tLObject, tL_error);
             }
         }, null, null, null, i2, i, 1, true);
     }
 
-    public static void m1212$r8$lambda$8rHrGzkyrliJMokXSq2auMo358(Executor executor, final Utilities.Callback2 callback2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1218$r8$lambda$8rHrGzkyrliJMokXSq2auMo358(Executor executor, final Utilities.Callback2 callback2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (executor != null) {
             executor.execute(new Runnable() {
                 @Override
@@ -431,12 +431,12 @@ public class ConnectionsManager extends BaseController {
         return sendRequestTyped(tLMethod, null, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ConnectionsManager.m1213$r8$lambda$InieosX9XRClyBHOcL2r2o8yjQ(this.f$0, executor, callback2, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                ConnectionsManager.m1219$r8$lambda$InieosX9XRClyBHOcL2r2o8yjQ(this.f$0, executor, callback2, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         }, i, i2);
     }
 
-    public static void m1213$r8$lambda$InieosX9XRClyBHOcL2r2o8yjQ(ConnectionsManager connectionsManager, Executor executor, final Utilities.Callback2 callback2, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
+    public static void m1219$r8$lambda$InieosX9XRClyBHOcL2r2o8yjQ(ConnectionsManager connectionsManager, Executor executor, final Utilities.Callback2 callback2, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
         if (updates != null) {
             connectionsManager.getMessagesController().processUpdates(updates, false);
         } else {
@@ -1003,12 +1003,12 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.m1217$r8$lambda$iJf142svstj2g9NXsQdfARxMYQ(i);
+                ConnectionsManager.m1223$r8$lambda$iJf142svstj2g9NXsQdfARxMYQ(i);
             }
         });
     }
 
-    public static void m1217$r8$lambda$iJf142svstj2g9NXsQdfARxMYQ(int i) {
+    public static void m1223$r8$lambda$iJf142svstj2g9NXsQdfARxMYQ(int i) {
         AccountInstance accountInstance = AccountInstance.getInstance(i);
         if (accountInstance.getUserConfig().getClientUserId() != 0) {
             accountInstance.getUserConfig().clearConfig();
@@ -1049,12 +1049,12 @@ public class ConnectionsManager extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.m1214$r8$lambda$Jc16BnGEnyxSmQCZyOXfvy0Eo(i, zIsNetworkOnline, i2);
+                ConnectionsManager.m1220$r8$lambda$Jc16BnGEnyxSmQCZyOXfvy0Eo(i, zIsNetworkOnline, i2);
             }
         });
     }
 
-    public static void m1214$r8$lambda$Jc16BnGEnyxSmQCZyOXfvy0Eo(int i, boolean z, int i2) {
+    public static void m1220$r8$lambda$Jc16BnGEnyxSmQCZyOXfvy0Eo(int i, boolean z, int i2) {
         FileLog.d("13. currentTask == " + currentTask);
         if (currentTask != null || ((i == 0 && Math.abs(lastDnsRequestTime - System.currentTimeMillis()) < 10000) || !z)) {
             if (BuildVars.LOGS_ENABLED) {
@@ -1535,12 +1535,12 @@ public class ConnectionsManager extends BaseController {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ConnectionsManager.GoogleDnsLoadTask.m1218$r8$lambda$9a68kr_j32cxJ4Salm654iZf7s(this.f$0, nativeByteBuffer);
+                    ConnectionsManager.GoogleDnsLoadTask.m1224$r8$lambda$9a68kr_j32cxJ4Salm654iZf7s(this.f$0, nativeByteBuffer);
                 }
             });
         }
 
-        public static void m1218$r8$lambda$9a68kr_j32cxJ4Salm654iZf7s(GoogleDnsLoadTask googleDnsLoadTask, NativeByteBuffer nativeByteBuffer) {
+        public static void m1224$r8$lambda$9a68kr_j32cxJ4Salm654iZf7s(GoogleDnsLoadTask googleDnsLoadTask, NativeByteBuffer nativeByteBuffer) {
             googleDnsLoadTask.getClass();
             FileLog.d("3. currentTask = null, result = " + nativeByteBuffer);
             AsyncTask unused = ConnectionsManager.currentTask = null;
@@ -1757,7 +1757,7 @@ public class ConnectionsManager extends BaseController {
             IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    ConnectionsManager.m1215$r8$lambda$KpSOdlHLUZ6PWXg3ENP5QCbz3s(i, jCurrentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
+                    ConnectionsManager.m1221$r8$lambda$KpSOdlHLUZ6PWXg3ENP5QCbz3s(i, jCurrentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -1771,7 +1771,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void m1215$r8$lambda$KpSOdlHLUZ6PWXg3ENP5QCbz3s(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
+    public static void m1221$r8$lambda$KpSOdlHLUZ6PWXg3ENP5QCbz3s(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
         String str2 = integrityTokenResponse.token();
         if (str2 == null) {
             FileLog.e("account" + i + ": integrity check gave null token in " + (System.currentTimeMillis() - j) + "ms");

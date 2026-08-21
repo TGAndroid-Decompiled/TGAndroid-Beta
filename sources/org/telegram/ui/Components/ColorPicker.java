@@ -241,7 +241,7 @@ public class ColorPicker extends FrameLayout {
             this.radioButton[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ColorPicker.m2232$r8$lambda$QbbY_eDTH0hsopXtnIMWQDZQ80(this.f$0, view);
+                    ColorPicker.m2242$r8$lambda$QbbY_eDTH0hsopXtnIMWQDZQ80(this.f$0, view);
                 }
             });
             i++;
@@ -390,7 +390,7 @@ public class ColorPicker extends FrameLayout {
         this.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ColorPicker.m2234$r8$lambda$qjAvlKcD2j1MWJgo24_Pn5Obs(this.f$0, view);
+                ColorPicker.m2244$r8$lambda$qjAvlKcD2j1MWJgo24_Pn5Obs(this.f$0, view);
             }
         });
         this.addButton.setContentDescription(LocaleController.getString(R.string.Add));
@@ -447,7 +447,7 @@ public class ColorPicker extends FrameLayout {
             this.menuItem.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
                 @Override
                 public final void onItemClick(int i6) {
-                    ColorPicker.m2231$r8$lambda$8qKy6EIyWkzxHw2VODz1vScGAY(this.f$0, i6);
+                    ColorPicker.m2241$r8$lambda$8qKy6EIyWkzxHw2VODz1vScGAY(this.f$0, i6);
                 }
             });
             this.menuItem.setAdditionalYOffset(AndroidUtilities.dp(72.0f));
@@ -464,7 +464,7 @@ public class ColorPicker extends FrameLayout {
         updateColorsPosition(null, 0, false, getMeasuredWidth());
     }
 
-    public static void m2232$r8$lambda$QbbY_eDTH0hsopXtnIMWQDZQ80(ColorPicker colorPicker, View view) {
+    public static void m2242$r8$lambda$QbbY_eDTH0hsopXtnIMWQDZQ80(ColorPicker colorPicker, View view) {
         colorPicker.getClass();
         RadioButton radioButton = (RadioButton) view;
         int i = 0;
@@ -496,7 +496,7 @@ public class ColorPicker extends FrameLayout {
         return true;
     }
 
-    public static void m2234$r8$lambda$qjAvlKcD2j1MWJgo24_Pn5Obs(ColorPicker colorPicker, View view) {
+    public static void m2244$r8$lambda$qjAvlKcD2j1MWJgo24_Pn5Obs(ColorPicker colorPicker, View view) {
         if (colorPicker.colorsAnimator != null) {
             return;
         }
@@ -675,7 +675,7 @@ public class ColorPicker extends FrameLayout {
         }
     }
 
-    public static void m2231$r8$lambda$8qKy6EIyWkzxHw2VODz1vScGAY(ColorPicker colorPicker, int i) {
+    public static void m2241$r8$lambda$8qKy6EIyWkzxHw2VODz1vScGAY(ColorPicker colorPicker, int i) {
         colorPicker.getClass();
         if (i == 1 || i == 2) {
             colorPicker.delegate.openThemeCreate(i == 2);

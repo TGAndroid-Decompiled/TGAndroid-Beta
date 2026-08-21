@@ -822,7 +822,7 @@ public class TagEditCell extends LinearLayout {
         textView.post(new Runnable() {
             @Override
             public final void run() {
-                TagEditCell.m2865$r8$lambda$GBlzvwXOHsFrzzjQGofqQmX7YQ(textView);
+                TagEditCell.m2874$r8$lambda$GBlzvwXOHsFrzzjQGofqQmX7YQ(textView);
             }
         });
     }
@@ -875,7 +875,7 @@ public class TagEditCell extends LinearLayout {
         BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(z ? R.string.TagAdded : R.string.TagEdited), tL_messages_editChatParticipantRank.rank).wrapContent().show();
     }
 
-    public static void m2865$r8$lambda$GBlzvwXOHsFrzzjQGofqQmX7YQ(EditTextBoldCursor editTextBoldCursor) {
+    public static void m2874$r8$lambda$GBlzvwXOHsFrzzjQGofqQmX7YQ(EditTextBoldCursor editTextBoldCursor) {
         editTextBoldCursor.requestFocus();
         editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
         AndroidUtilities.showKeyboard(editTextBoldCursor);

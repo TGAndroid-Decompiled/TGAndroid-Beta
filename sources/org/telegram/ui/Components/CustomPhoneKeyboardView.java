@@ -31,7 +31,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
     private View viewToFindFocus;
     private final View[] views;
 
-    public static void m2250$r8$lambda$6OqSL5_VjNohTkANEHGRrcZr5o(View view) {
+    public static void m2260$r8$lambda$6OqSL5_VjNohTkANEHGRrcZr5o(View view) {
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         return true;
     }
 
-    public static void m2252$r8$lambda$v7aFgCknfjw2JOhcv_EfIBrUrA(CustomPhoneKeyboardView customPhoneKeyboardView) {
+    public static void m2262$r8$lambda$v7aFgCknfjw2JOhcv_EfIBrUrA(CustomPhoneKeyboardView customPhoneKeyboardView) {
         customPhoneKeyboardView.checkFindEditText();
         EditText editText = customPhoneKeyboardView.editText;
         if (editText != null) {
@@ -71,7 +71,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         this.onBackButton = new Runnable() {
             @Override
             public final void run() {
-                CustomPhoneKeyboardView.m2252$r8$lambda$v7aFgCknfjw2JOhcv_EfIBrUrA(this.f$0);
+                CustomPhoneKeyboardView.m2262$r8$lambda$v7aFgCknfjw2JOhcv_EfIBrUrA(this.f$0);
             }
         };
         this.detectLongClick = new Runnable() {
@@ -122,7 +122,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
                 this.views[i2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        CustomPhoneKeyboardView.m2251$r8$lambda$Tn6QkrmAsCDloYYCXomSZPh9Bw(this.f$0, strValueOf, view);
+                        CustomPhoneKeyboardView.m2261$r8$lambda$Tn6QkrmAsCDloYYCXomSZPh9Bw(this.f$0, strValueOf, view);
                     }
                 });
                 addView(this.views[i2]);
@@ -151,7 +151,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CustomPhoneKeyboardView.m2250$r8$lambda$6OqSL5_VjNohTkANEHGRrcZr5o(view);
+                CustomPhoneKeyboardView.m2260$r8$lambda$6OqSL5_VjNohTkANEHGRrcZr5o(view);
             }
         });
         this.views[11] = imageView;
@@ -170,7 +170,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         }
     }
 
-    public static void m2251$r8$lambda$Tn6QkrmAsCDloYYCXomSZPh9Bw(CustomPhoneKeyboardView customPhoneKeyboardView, String str, View view) {
+    public static void m2261$r8$lambda$Tn6QkrmAsCDloYYCXomSZPh9Bw(CustomPhoneKeyboardView customPhoneKeyboardView, String str, View view) {
         customPhoneKeyboardView.checkFindEditText();
         if (customPhoneKeyboardView.editText == null) {
             return;

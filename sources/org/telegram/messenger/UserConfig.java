@@ -314,7 +314,7 @@ public class UserConfig extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UserConfig.m1088$r8$lambda$J7LDZCcykK8LA6ylvc3tKrNqqU(this.f$0, user2);
+                    UserConfig.m1094$r8$lambda$J7LDZCcykK8LA6ylvc3tKrNqqU(this.f$0, user2);
                 }
             });
         }
@@ -329,7 +329,7 @@ public class UserConfig extends BaseController {
         userConfig.getMessagesController().getStoriesController().invalidateStoryLimit();
     }
 
-    public static void m1088$r8$lambda$J7LDZCcykK8LA6ylvc3tKrNqqU(UserConfig userConfig, TLRPC.User user) {
+    public static void m1094$r8$lambda$J7LDZCcykK8LA6ylvc3tKrNqqU(UserConfig userConfig, TLRPC.User user) {
         userConfig.getMessagesController().updatePremium(user.premium);
         NotificationCenter.getInstance(userConfig.currentAccount).postNotificationName(NotificationCenter.currentUserPremiumStatusChanged, new Object[0]);
         userConfig.getMediaDataController().loadPremiumPromo(true);

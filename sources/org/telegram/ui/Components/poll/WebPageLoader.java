@@ -48,12 +48,12 @@ public class WebPageLoader {
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(getwebpagepreview, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                WebPageLoader.m2959$r8$lambda$89_4_9FqSdKxcmvKG9V1pe3W8o(this.f$0, str, (TL_account.webPagePreview) obj, (TLRPC.TL_error) obj2);
+                WebPageLoader.m2968$r8$lambda$89_4_9FqSdKxcmvKG9V1pe3W8o(this.f$0, str, (TL_account.webPagePreview) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m2959$r8$lambda$89_4_9FqSdKxcmvKG9V1pe3W8o(WebPageLoader webPageLoader, String str, TL_account.webPagePreview webpagepreview, TLRPC.TL_error tL_error) {
+    public static void m2968$r8$lambda$89_4_9FqSdKxcmvKG9V1pe3W8o(WebPageLoader webPageLoader, String str, TL_account.webPagePreview webpagepreview, TLRPC.TL_error tL_error) {
         TLRPC.WebPage webPage;
         int i = 0;
         if (webpagepreview != null) {

@@ -123,12 +123,12 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoViewerWebView.YoutubeProxy.m2556$r8$lambda$L7ZujLweiIYoSKzRI9Fp6Ljv5M(this.f$0, i);
+                    PhotoViewerWebView.YoutubeProxy.m2566$r8$lambda$L7ZujLweiIYoSKzRI9Fp6Ljv5M(this.f$0, i);
                 }
             });
         }
 
-        public static void m2556$r8$lambda$L7ZujLweiIYoSKzRI9Fp6Ljv5M(final YoutubeProxy youtubeProxy, int i) {
+        public static void m2566$r8$lambda$L7ZujLweiIYoSKzRI9Fp6Ljv5M(final YoutubeProxy youtubeProxy, int i) {
             PhotoViewerWebView.this.errorButton.setVisibility(8);
             PhotoViewerWebView.this.webView.setVisibility(8);
             if (PhotoViewerWebView.this.errorLayout.getVisibility() == 8) {
@@ -173,7 +173,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
                 PhotoViewerWebView.this.errorButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PhotoViewerWebView.YoutubeProxy.m2558$r8$lambda$HlR0aBk4wXDwLYWN5pxqpHYeQ0(this.f$0, view);
+                        PhotoViewerWebView.YoutubeProxy.m2568$r8$lambda$HlR0aBk4wXDwLYWN5pxqpHYeQ0(this.f$0, view);
                     }
                 });
                 return;
@@ -181,7 +181,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             PhotoViewerWebView.this.errorMessage.setText(LocaleController.getString(R.string.YouTubeVideoErrorHTML));
         }
 
-        public static void m2558$r8$lambda$HlR0aBk4wXDwLYWN5pxqpHYeQ0(YoutubeProxy youtubeProxy, View view) {
+        public static void m2568$r8$lambda$HlR0aBk4wXDwLYWN5pxqpHYeQ0(YoutubeProxy youtubeProxy, View view) {
             youtubeProxy.getClass();
             view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(PhotoViewerWebView.this.currentWebpage.url)));
         }

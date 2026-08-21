@@ -377,7 +377,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             videoEditTextureView.setDelegate(new VideoEditTextureView.VideoEditTextureViewDelegate() {
                 @Override
                 public final void onEGLThreadAvailable(FilterGLThread filterGLThread) {
-                    PhotoFilterView.m2552$r8$lambda$zzDiDi9uEEGmxMrSGMEWVNxwpE(this.f$0, filterGLThread);
+                    PhotoFilterView.m2562$r8$lambda$zzDiDi9uEEGmxMrSGMEWVNxwpE(this.f$0, filterGLThread);
                 }
             });
         } else {
@@ -413,7 +413,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         this.blurControl.setDelegate(new PhotoFilterBlurControl.PhotoFilterLinearBlurControlDelegate() {
             @Override
             public final void valueChanged(PointF pointF, float f2, float f3, float f4) {
-                PhotoFilterView.m2550$r8$lambda$ga0S3FEfImfOPzeBLSd21hSV9M(this.f$0, pointF, f2, f3, f4);
+                PhotoFilterView.m2560$r8$lambda$ga0S3FEfImfOPzeBLSd21hSV9M(this.f$0, pointF, f2, f3, f4);
             }
         });
         PhotoFilterCurvesControl photoFilterCurvesControl = new PhotoFilterCurvesControl(context, this.curvesToolValue);
@@ -469,7 +469,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         this.tuneItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PhotoFilterView.m2549$r8$lambda$9iBtNlZyeC2Wuiq4YwZUvuzaCc(this.f$0, view);
+                PhotoFilterView.m2559$r8$lambda$9iBtNlZyeC2Wuiq4YwZUvuzaCc(this.f$0, view);
             }
         });
         ImageView imageView2 = new ImageView(context);
@@ -481,7 +481,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         this.blurItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PhotoFilterView.m2548$r8$lambda$a8z3Ho4SsDpMN9wcYdj2Gl20FA(this.f$0, view);
+                PhotoFilterView.m2558$r8$lambda$a8z3Ho4SsDpMN9wcYdj2Gl20FA(this.f$0, view);
             }
         });
         if (videoEditTextureView != null) {
@@ -555,7 +555,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 frameLayout4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PhotoFilterView.m2551$r8$lambda$vj_5MLN6XauOWEWwg2i0kskqa4(this.f$0, view);
+                        PhotoFilterView.m2561$r8$lambda$vj_5MLN6XauOWEWwg2i0kskqa4(this.f$0, view);
                     }
                 });
             }
@@ -569,7 +569,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             frameLayout4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PhotoFilterView.m2551$r8$lambda$vj_5MLN6XauOWEWwg2i0kskqa4(this.f$0, view);
+                    PhotoFilterView.m2561$r8$lambda$vj_5MLN6XauOWEWwg2i0kskqa4(this.f$0, view);
                 }
             });
         }
@@ -626,7 +626,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         ((FrameLayout.LayoutParams) this.curvesControl.getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight;
     }
 
-    public static void m2552$r8$lambda$zzDiDi9uEEGmxMrSGMEWVNxwpE(PhotoFilterView photoFilterView, FilterGLThread filterGLThread) {
+    public static void m2562$r8$lambda$zzDiDi9uEEGmxMrSGMEWVNxwpE(PhotoFilterView photoFilterView, FilterGLThread filterGLThread) {
         photoFilterView.eglThread = filterGLThread;
         filterGLThread.setFilterGLThreadDelegate(photoFilterView);
     }
@@ -690,7 +690,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
     }
 
-    public static void m2550$r8$lambda$ga0S3FEfImfOPzeBLSd21hSV9M(PhotoFilterView photoFilterView, PointF pointF, float f, float f2, float f3) {
+    public static void m2560$r8$lambda$ga0S3FEfImfOPzeBLSd21hSV9M(PhotoFilterView photoFilterView, PointF pointF, float f, float f2, float f3) {
         photoFilterView.blurExcludeSize = f2;
         photoFilterView.blurExcludePoint = pointF;
         photoFilterView.blurExcludeBlurSize = f;
@@ -709,7 +709,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
     }
 
-    public static void m2549$r8$lambda$9iBtNlZyeC2Wuiq4YwZUvuzaCc(PhotoFilterView photoFilterView, View view) {
+    public static void m2559$r8$lambda$9iBtNlZyeC2Wuiq4YwZUvuzaCc(PhotoFilterView photoFilterView, View view) {
         photoFilterView.selectedTool = 0;
         photoFilterView.tuneItem.setColorFilter(new PorterDuffColorFilter(photoFilterView.getThemedColor(Theme.key_chat_editMediaButton), PorterDuff.Mode.MULTIPLY));
         photoFilterView.blurItem.setColorFilter((ColorFilter) null);
@@ -717,7 +717,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         photoFilterView.switchMode();
     }
 
-    public static void m2548$r8$lambda$a8z3Ho4SsDpMN9wcYdj2Gl20FA(PhotoFilterView photoFilterView, View view) {
+    public static void m2558$r8$lambda$a8z3Ho4SsDpMN9wcYdj2Gl20FA(PhotoFilterView photoFilterView, View view) {
         photoFilterView.selectedTool = 1;
         photoFilterView.tuneItem.setColorFilter((ColorFilter) null);
         photoFilterView.blurItem.setColorFilter(new PorterDuffColorFilter(photoFilterView.getThemedColor(Theme.key_chat_editMediaButton), PorterDuff.Mode.MULTIPLY));
@@ -733,7 +733,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         photoFilterView.switchMode();
     }
 
-    public static void m2551$r8$lambda$vj_5MLN6XauOWEWwg2i0kskqa4(PhotoFilterView photoFilterView, View view) {
+    public static void m2561$r8$lambda$vj_5MLN6XauOWEWwg2i0kskqa4(PhotoFilterView photoFilterView, View view) {
         photoFilterView.getClass();
         int iIntValue = ((Integer) view.getTag()).intValue();
         photoFilterView.curvesToolValue.activeType = iIntValue;
@@ -1323,7 +1323,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 photoEditToolCell.setSeekBarDelegate(new PhotoEditorSeekBar.PhotoEditorSeekBarDelegate() {
                     @Override
                     public final void onProgressChanged(int i2, int i3) {
-                        PhotoFilterView.ToolsAdapter.m2554$r8$lambda$NFCFdJqzHAEMR_XCVvBuMEBg(this.f$0, i2, i3);
+                        PhotoFilterView.ToolsAdapter.m2564$r8$lambda$NFCFdJqzHAEMR_XCVvBuMEBg(this.f$0, i2, i3);
                     }
                 });
                 view = photoEditToolCell;
@@ -1340,7 +1340,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             return new RecyclerListView.Holder(view);
         }
 
-        public static void m2554$r8$lambda$NFCFdJqzHAEMR_XCVvBuMEBg(ToolsAdapter toolsAdapter, int i, int i2) {
+        public static void m2564$r8$lambda$NFCFdJqzHAEMR_XCVvBuMEBg(ToolsAdapter toolsAdapter, int i, int i2) {
             if (i == PhotoFilterView.this.enhanceTool) {
                 PhotoFilterView.this.enhanceValue = i2;
             } else if (i == PhotoFilterView.this.highlightsTool) {
@@ -1488,7 +1488,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             this.hide = new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoFilterView.EnhanceView.m2553$r8$lambda$u_cJXlUp_0Ivn2dXX8x1eQAPYI(this.f$0);
+                    PhotoFilterView.EnhanceView.m2563$r8$lambda$u_cJXlUp_0Ivn2dXX8x1eQAPYI(this.f$0);
                 }
             };
             this.requestFilterView = runnable;
@@ -1528,7 +1528,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             invalidate();
         }
 
-        public static void m2553$r8$lambda$u_cJXlUp_0Ivn2dXX8x1eQAPYI(EnhanceView enhanceView) {
+        public static void m2563$r8$lambda$u_cJXlUp_0Ivn2dXX8x1eQAPYI(EnhanceView enhanceView) {
             enhanceView.shown = false;
             enhanceView.invalidate();
         }

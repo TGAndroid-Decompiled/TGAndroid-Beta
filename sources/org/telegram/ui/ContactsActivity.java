@@ -1116,7 +1116,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ContactsActivity.m3022$r8$lambda$__kvoP7XTtg3KRbDoIrtIfdKJA(this.f$0, alertDialog, i);
+                ContactsActivity.m3031$r8$lambda$__kvoP7XTtg3KRbDoIrtIfdKJA(this.f$0, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -1130,7 +1130,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         alertDialogCreate.redPositive();
     }
 
-    public static void m3022$r8$lambda$__kvoP7XTtg3KRbDoIrtIfdKJA(ContactsActivity contactsActivity, AlertDialog alertDialog, int i) {
+    public static void m3031$r8$lambda$__kvoP7XTtg3KRbDoIrtIfdKJA(ContactsActivity contactsActivity, AlertDialog alertDialog, int i) {
         contactsActivity.getClass();
         ArrayList<TLRPC.User> arrayList = new ArrayList<>(contactsActivity.selectedContacts.size());
         for (int i2 = 0; i2 < contactsActivity.selectedContacts.size(); i2++) {
@@ -1524,7 +1524,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ContactsActivity.m3021$r8$lambda$UpOTdt0KrQWX_SssImVX0bUXlA(this.f$0);
+                ContactsActivity.m3030$r8$lambda$UpOTdt0KrQWX_SssImVX0bUXlA(this.f$0);
             }
 
             @Override
@@ -1580,7 +1580,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         return arrayList;
     }
 
-    public static void m3021$r8$lambda$UpOTdt0KrQWX_SssImVX0bUXlA(ContactsActivity contactsActivity) {
+    public static void m3030$r8$lambda$UpOTdt0KrQWX_SssImVX0bUXlA(ContactsActivity contactsActivity) {
         RecyclerListView recyclerListView = contactsActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

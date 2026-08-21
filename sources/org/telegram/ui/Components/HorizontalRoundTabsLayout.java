@@ -45,7 +45,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         AnimatedFloat animatedFloat = new AnimatedFloat(new Runnable() {
             @Override
             public final void run() {
-                HorizontalRoundTabsLayout.m2370$r8$lambda$SxhGe3ZCfrAJDDcL0gqo_rvVw(this.f$0);
+                HorizontalRoundTabsLayout.m2380$r8$lambda$SxhGe3ZCfrAJDDcL0gqo_rvVw(this.f$0);
             }
         });
         this.selectorStartX = animatedFloat;
@@ -62,7 +62,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         setHorizontalScrollBarEnabled(false);
     }
 
-    public static void m2370$r8$lambda$SxhGe3ZCfrAJDDcL0gqo_rvVw(HorizontalRoundTabsLayout horizontalRoundTabsLayout) {
+    public static void m2380$r8$lambda$SxhGe3ZCfrAJDDcL0gqo_rvVw(HorizontalRoundTabsLayout horizontalRoundTabsLayout) {
         horizontalRoundTabsLayout.invalidate();
         horizontalRoundTabsLayout.linearLayout.invalidate();
         for (int i = 0; i < horizontalRoundTabsLayout.linearLayout.getChildCount(); i++) {
@@ -90,7 +90,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
             roundTabView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    HorizontalRoundTabsLayout.m2371$r8$lambda$ltceM5IWCb_WYnmqMs3PCSkr3A(this.f$0, i, intCallback, view);
+                    HorizontalRoundTabsLayout.m2381$r8$lambda$ltceM5IWCb_WYnmqMs3PCSkr3A(this.f$0, i, intCallback, view);
                 }
             });
             roundTabView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f));
@@ -103,7 +103,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         }
     }
 
-    public static void m2371$r8$lambda$ltceM5IWCb_WYnmqMs3PCSkr3A(HorizontalRoundTabsLayout horizontalRoundTabsLayout, int i, MessagesStorage.IntCallback intCallback, View view) {
+    public static void m2381$r8$lambda$ltceM5IWCb_WYnmqMs3PCSkr3A(HorizontalRoundTabsLayout horizontalRoundTabsLayout, int i, MessagesStorage.IntCallback intCallback, View view) {
         horizontalRoundTabsLayout.selectedIndex = i;
         horizontalRoundTabsLayout.selectorStartX.set(view.getLeft(), false);
         horizontalRoundTabsLayout.selectorEndX.set(view.getRight(), false);

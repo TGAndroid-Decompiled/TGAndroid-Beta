@@ -573,7 +573,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                RichEditor.m4917$r8$lambda$4gGevx4lBwDe_ZzqF37syC4Ed0(this.f$0, view3);
+                RichEditor.m4928$r8$lambda$4gGevx4lBwDe_ZzqF37syC4Ed0(this.f$0, view3);
             }
         });
         this.topPanel.addView(this.backButton, LayoutHelper.createFrame(44, 44.0f, 51, 8.0f, 8.0f, 8.0f, 8.0f));
@@ -645,7 +645,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.aiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                RichEditor.m4916$r8$lambda$4biD02idLVMjJvr3RaqGbXdwc(this.f$0, view3);
+                RichEditor.m4927$r8$lambda$4biD02idLVMjJvr3RaqGbXdwc(this.f$0, view3);
             }
         });
         FrameLayout frameLayout5 = new FrameLayout(context);
@@ -1111,14 +1111,14 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public static void m4917$r8$lambda$4gGevx4lBwDe_ZzqF37syC4Ed0(RichEditor richEditor, View view) {
+    public static void m4928$r8$lambda$4gGevx4lBwDe_ZzqF37syC4Ed0(RichEditor richEditor, View view) {
         if (richEditor.listView.deselectIfAny()) {
             return;
         }
         richEditor.finishFragment();
     }
 
-    public static void m4916$r8$lambda$4biD02idLVMjJvr3RaqGbXdwc(final RichEditor richEditor, View view) {
+    public static void m4927$r8$lambda$4biD02idLVMjJvr3RaqGbXdwc(final RichEditor richEditor, View view) {
         if (richEditor.listView.isInSelectionMode()) {
             richEditor.onAiStyleSelection();
         } else {
@@ -1151,7 +1151,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading1), R.drawable.iv_h1, LocaleController.getString(R.string.ArticleHeading1), new Runnable() {
             @Override
             public final void run() {
-                RichEditor.m4937$r8$lambda$vDvpaaxTjkUakyRWvcE4wUA5yY(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
+                RichEditor.m4948$r8$lambda$vDvpaaxTjkUakyRWvcE4wUA5yY(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
             }
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -1159,7 +1159,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading2), R.drawable.iv_h2, LocaleController.getString(R.string.ArticleHeading2), new Runnable() {
             @Override
             public final void run() {
-                RichEditor.m4936$r8$lambda$qBgqSiYCXNTH9h40bCu8vr2Q50(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
+                RichEditor.m4947$r8$lambda$qBgqSiYCXNTH9h40bCu8vr2Q50(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
             }
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -1167,7 +1167,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading3), R.drawable.iv_h3, LocaleController.getString(R.string.ArticleHeading3), new Runnable() {
             @Override
             public final void run() {
-                RichEditor.m4928$r8$lambda$bo8X0wrWBdEnttjAo3UqmFplo(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
+                RichEditor.m4939$r8$lambda$bo8X0wrWBdEnttjAo3UqmFplo(this.f$0, blockRowFindFocusedRow, itemOptionsDontFocus);
             }
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -1242,17 +1242,17 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         richEditor.currentMenuVisible = itemOptionsDontFocus.show();
     }
 
-    public static void m4937$r8$lambda$vDvpaaxTjkUakyRWvcE4wUA5yY(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
+    public static void m4948$r8$lambda$vDvpaaxTjkUakyRWvcE4wUA5yY(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
         richEditor.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading1());
         itemOptions.dismiss();
     }
 
-    public static void m4936$r8$lambda$qBgqSiYCXNTH9h40bCu8vr2Q50(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
+    public static void m4947$r8$lambda$qBgqSiYCXNTH9h40bCu8vr2Q50(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
         richEditor.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading2());
         itemOptions.dismiss();
     }
 
-    public static void m4928$r8$lambda$bo8X0wrWBdEnttjAo3UqmFplo(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
+    public static void m4939$r8$lambda$bo8X0wrWBdEnttjAo3UqmFplo(RichEditor richEditor, BlockRow blockRow, ItemOptions itemOptions) {
         richEditor.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading3());
         itemOptions.dismiss();
     }
@@ -1318,7 +1318,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                 itemOptionsDontFocus.add(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
                     @Override
                     public final void run() {
-                        RichEditor.m4925$r8$lambda$O4gPlpnlu692INSExp0DSN92w0(this.f$0, itemOptionsDontFocus);
+                        RichEditor.m4936$r8$lambda$O4gPlpnlu692INSExp0DSN92w0(this.f$0, itemOptionsDontFocus);
                     }
                 });
             }
@@ -1334,7 +1334,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         richEditor.currentMenuVisible = itemOptionsDontFocus.forceTop(true).show();
     }
 
-    public static void m4925$r8$lambda$O4gPlpnlu692INSExp0DSN92w0(RichEditor richEditor, ItemOptions itemOptions) {
+    public static void m4936$r8$lambda$O4gPlpnlu692INSExp0DSN92w0(RichEditor richEditor, ItemOptions itemOptions) {
         richEditor.listView.indentSelection(false);
         itemOptions.dismiss();
     }
@@ -1468,7 +1468,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    RichEditor.m4921$r8$lambda$DqqewMoolDeTO6ymIX1zdfrJNc(this.f$0);
+                    RichEditor.m4932$r8$lambda$DqqewMoolDeTO6ymIX1zdfrJNc(this.f$0);
                 }
             }).start();
             this.formattingPanel.setVisibility(0);
@@ -1482,7 +1482,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             this.trashPanel.animate().alpha(this.bottomPanelType == 2 ? 1.0f : 0.0f).scaleX(this.bottomPanelType == 2 ? 1.0f : 0.8f).scaleY(this.bottomPanelType == 2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    RichEditor.m4923$r8$lambda$HybCnjoB4yQY5ej3eBeGdDWauA(this.f$0);
+                    RichEditor.m4934$r8$lambda$HybCnjoB4yQY5ej3eBeGdDWauA(this.f$0);
                 }
             }).start();
             return;
@@ -1503,7 +1503,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.trashPanel.setScaleY(i == 2 ? 1.0f : 0.8f);
     }
 
-    public static void m4921$r8$lambda$DqqewMoolDeTO6ymIX1zdfrJNc(RichEditor richEditor) {
+    public static void m4932$r8$lambda$DqqewMoolDeTO6ymIX1zdfrJNc(RichEditor richEditor) {
         if (richEditor.bottomPanelType != 0) {
             richEditor.bottomPanel.setVisibility(8);
         }
@@ -1515,7 +1515,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public static void m4923$r8$lambda$HybCnjoB4yQY5ej3eBeGdDWauA(RichEditor richEditor) {
+    public static void m4934$r8$lambda$HybCnjoB4yQY5ej3eBeGdDWauA(RichEditor richEditor) {
         if (richEditor.bottomPanelType != 2) {
             richEditor.trashPanel.setVisibility(8);
         }
@@ -2359,7 +2359,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
             @Override
             public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z, int i4, long j) {
-                RichEditor.m4926$r8$lambda$Sbz8JWBULLYclcV_Bk0GBIKfZ8(this.f$0, chatAttachAlert, messageMedia, i3, z, i4, j);
+                RichEditor.m4937$r8$lambda$Sbz8JWBULLYclcV_Bk0GBIKfZ8(this.f$0, chatAttachAlert, messageMedia, i3, z, i4, j);
             }
         });
         chatAttachAlert.setAudioSelectDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
@@ -2408,7 +2408,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         chatAttachAlert.show();
     }
 
-    public static void m4926$r8$lambda$Sbz8JWBULLYclcV_Bk0GBIKfZ8(RichEditor richEditor, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public static void m4937$r8$lambda$Sbz8JWBULLYclcV_Bk0GBIKfZ8(RichEditor richEditor, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         richEditor.getClass();
         if (messageMedia == null || messageMedia.geo == null) {
             chatAttachAlert.dismiss(true);
@@ -2493,12 +2493,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         openConversionSheet(context, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda1(richEditorListView), new Runnable() {
             @Override
             public final void run() {
-                RichEditor.m4918$r8$lambda$5INSHdIx6t7Khuwx3ZH_RRyeSQ(this.f$0);
+                RichEditor.m4929$r8$lambda$5INSHdIx6t7Khuwx3ZH_RRyeSQ(this.f$0);
             }
         }, getResourceProvider());
     }
 
-    public static void m4918$r8$lambda$5INSHdIx6t7Khuwx3ZH_RRyeSQ(RichEditor richEditor) {
+    public static void m4929$r8$lambda$5INSHdIx6t7Khuwx3ZH_RRyeSQ(RichEditor richEditor) {
         if (UserConfig.getInstance(richEditor.currentAccount).isPremium()) {
             return;
         }
@@ -2666,7 +2666,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                RichEditor.m4927$r8$lambda$U_nVg49r5Vc_2xoSRFa0uSoudg(this.f$0, messageObject, arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, arrayListCollect, dialogId, replyMessage, threadMessage, z, i, i2, messageChatSendParams, sendMonoForumPeerId);
+                RichEditor.m4938$r8$lambda$U_nVg49r5Vc_2xoSRFa0uSoudg(this.f$0, messageObject, arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, arrayListCollect, dialogId, replyMessage, threadMessage, z, i, i2, messageChatSendParams, sendMonoForumPeerId);
             }
         };
         Runnable runnable3 = this.onSentCallback;
@@ -2682,7 +2682,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public static void m4927$r8$lambda$U_nVg49r5Vc_2xoSRFa0uSoudg(RichEditor richEditor, MessageObject messageObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, long j, MessageObject messageObject2, MessageObject messageObject3, boolean z, int i, int i2, SendMessageChatArguments sendMessageChatArguments, long j2) {
+    public static void m4938$r8$lambda$U_nVg49r5Vc_2xoSRFa0uSoudg(RichEditor richEditor, MessageObject messageObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, long j, MessageObject messageObject2, MessageObject messageObject3, boolean z, int i, int i2, SendMessageChatArguments sendMessageChatArguments, long j2) {
         if (messageObject != null) {
             SendMessagesHelper.prepareEditingArticle(AccountInstance.getInstance(richEditor.currentAccount), messageObject, arrayList, arrayList2, arrayList3, arrayList4, false, richEditor.chatActivity);
         } else {
@@ -3401,7 +3401,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         round2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                RichEditor.m4914$r8$lambda$l3bpecYm1v9axzuUl4wf1Nkswo(bottomSheetShow, runnable, view);
+                RichEditor.m4925$r8$lambda$l3bpecYm1v9axzuUl4wf1Nkswo(bottomSheetShow, runnable, view);
             }
         });
         return bottomSheetShow;
@@ -3412,7 +3412,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         runnable.run();
     }
 
-    public static void m4914$r8$lambda$l3bpecYm1v9axzuUl4wf1Nkswo(BottomSheet bottomSheet, Runnable runnable, View view) {
+    public static void m4925$r8$lambda$l3bpecYm1v9axzuUl4wf1Nkswo(BottomSheet bottomSheet, Runnable runnable, View view) {
         bottomSheet.dismiss();
         runnable.run();
     }

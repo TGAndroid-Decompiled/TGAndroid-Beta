@@ -284,12 +284,12 @@ public class ReactedHeaderView extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReactedHeaderView.m2686$r8$lambda$oTvvU_Q8jECjqksT8415vGaDS0(this.f$0, tLObject, tL_error);
+                ReactedHeaderView.m2695$r8$lambda$oTvvU_Q8jECjqksT8415vGaDS0(this.f$0, tLObject, tL_error);
             }
         }, 64);
     }
 
-    public static void m2686$r8$lambda$oTvvU_Q8jECjqksT8415vGaDS0(final ReactedHeaderView reactedHeaderView, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m2695$r8$lambda$oTvvU_Q8jECjqksT8415vGaDS0(final ReactedHeaderView reactedHeaderView, TLObject tLObject, TLRPC.TL_error tL_error) {
         reactedHeaderView.getClass();
         if (tLObject instanceof TLRPC.TL_messages_messageReactionsList) {
             final TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList = (TLRPC.TL_messages_messageReactionsList) tLObject;
@@ -298,13 +298,13 @@ public class ReactedHeaderView extends FrameLayout {
             reactedHeaderView.post(new Runnable() {
                 @Override
                 public final void run() {
-                    ReactedHeaderView.m2685$r8$lambda$DLZ2RF5EmgOFwQ1ufTuC7qqf8Y(this.f$0, i, tL_messages_messageReactionsList);
+                    ReactedHeaderView.m2694$r8$lambda$DLZ2RF5EmgOFwQ1ufTuC7qqf8Y(this.f$0, i, tL_messages_messageReactionsList);
                 }
             });
         }
     }
 
-    public static void m2685$r8$lambda$DLZ2RF5EmgOFwQ1ufTuC7qqf8Y(ReactedHeaderView reactedHeaderView, int i, TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList) {
+    public static void m2694$r8$lambda$DLZ2RF5EmgOFwQ1ufTuC7qqf8Y(ReactedHeaderView reactedHeaderView, int i, TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList) {
         String pluralString;
         String strValueOf;
         if (reactedHeaderView.seenUsers.isEmpty() || reactedHeaderView.seenUsers.size() < i) {

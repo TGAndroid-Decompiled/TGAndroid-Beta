@@ -187,7 +187,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         starsReactionsSheet.dismiss();
     }
 
-    public static void m4274$r8$lambda$bfFmTLBSaoQwQZ7YLwkTvTpWtE(StarsReactionsSheet starsReactionsSheet, View view) {
+    public static void m4285$r8$lambda$bfFmTLBSaoQwQZ7YLwkTvTpWtE(StarsReactionsSheet starsReactionsSheet, View view) {
         CheckBox2 checkBox2 = starsReactionsSheet.checkBox;
         checkBox2.setChecked(!checkBox2.isChecked(), true);
         starsReactionsSheet.peer = starsReactionsSheet.checkBox.isChecked() ? starsReactionsSheet.lastSelectedPeer : 2666000L;
@@ -198,7 +198,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         }
     }
 
-    public static void m4273$r8$lambda$TIgKHs5HGl4gWXSKNBGqWeHttE(final StarsReactionsSheet starsReactionsSheet, final MessageObject messageObject, final ChatActivity chatActivity, int i, boolean z, Context context, Theme.ResourcesProvider resourcesProvider, long j, TLRPC.Chat chat, View view) {
+    public static void m4284$r8$lambda$TIgKHs5HGl4gWXSKNBGqWeHttE(final StarsReactionsSheet starsReactionsSheet, final MessageObject messageObject, final ChatActivity chatActivity, int i, boolean z, Context context, Theme.ResourcesProvider resourcesProvider, long j, TLRPC.Chat chat, View view) {
         if (starsReactionsSheet.sending) {
             return;
         }
@@ -250,7 +250,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarsReactionsSheet.m4275$r8$lambda$qxUdQr9lhn0cBEHJdlb252yws(this.f$0, pendingPaidReactionsSendPaidReaction);
+                StarsReactionsSheet.m4286$r8$lambda$qxUdQr9lhn0cBEHJdlb252yws(this.f$0, pendingPaidReactionsSendPaidReaction);
             }
         });
     }
@@ -261,7 +261,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         AndroidUtilities.runOnUIThread(new StarsReactionsSheet$$ExternalSyntheticLambda14(starsReactionsSheet), 240L);
     }
 
-    public static void m4275$r8$lambda$qxUdQr9lhn0cBEHJdlb252yws(StarsReactionsSheet starsReactionsSheet, final StarsController.PendingPaidReactions pendingPaidReactions) {
+    public static void m4286$r8$lambda$qxUdQr9lhn0cBEHJdlb252yws(StarsReactionsSheet starsReactionsSheet, final StarsController.PendingPaidReactions pendingPaidReactions) {
         starsReactionsSheet.sending = true;
         Objects.requireNonNull(pendingPaidReactions);
         starsReactionsSheet.animate3dIcon(new Runnable() {
@@ -958,7 +958,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StarsReactionsSheet.StarsSlider.m4277$r8$lambda$NaicAq1wm4lKbu2n96zuvbxGAA(this.f$0, i3, i, i4, i2, valueAnimator2);
+                        StarsReactionsSheet.StarsSlider.m4288$r8$lambda$NaicAq1wm4lKbu2n96zuvbxGAA(this.f$0, i3, i, i4, i2, valueAnimator2);
                     }
                 });
                 this.gradientAnimator.addListener(new AnimatorListenerAdapter() {
@@ -983,7 +983,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             invalidate();
         }
 
-        public static void m4277$r8$lambda$NaicAq1wm4lKbu2n96zuvbxGAA(StarsSlider starsSlider, int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
+        public static void m4288$r8$lambda$NaicAq1wm4lKbu2n96zuvbxGAA(StarsSlider starsSlider, int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
             starsSlider.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             starsSlider.gradientColor1 = ColorUtils.blendARGB(i, i2, fFloatValue);

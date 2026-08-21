@@ -278,13 +278,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         void onInvoiceStatusChanged(InvoiceStatus invoiceStatus);
     }
 
-    public static void m3624$r8$lambda$n8ObnsWdeFAzl5V43MAtxv73w(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3632$r8$lambda$n8ObnsWdeFAzl5V43MAtxv73w(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public static void $r8$lambda$N5EBCheEeuvSVEmlqehvGd50Iaw(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
-    public static boolean m3644$r8$lambda$lq9LWx85ffust2Y_olLL_Ztadc(View view, MotionEvent motionEvent) {
+    public static boolean m3652$r8$lambda$lq9LWx85ffust2Y_olLL_Ztadc(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -297,12 +297,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.TelegramWebviewProxy.m3652$r8$lambda$RL4oCZY86KWXr9hnUfC68sItw(this.f$0, str, str2);
+                    PaymentFormActivity.TelegramWebviewProxy.m3660$r8$lambda$RL4oCZY86KWXr9hnUfC68sItw(this.f$0, str, str2);
                 }
             });
         }
 
-        public static void m3652$r8$lambda$RL4oCZY86KWXr9hnUfC68sItw(TelegramWebviewProxy telegramWebviewProxy, String str, String str2) {
+        public static void m3660$r8$lambda$RL4oCZY86KWXr9hnUfC68sItw(TelegramWebviewProxy telegramWebviewProxy, String str, String str2) {
             if (PaymentFormActivity.this.getParentActivity() != null && str.equals("payment_form_submit")) {
                 try {
                     JSONObject jSONObject = new JSONObject(str2);
@@ -773,7 +773,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                             this.inputFields[i9].setOnTouchListener(new View.OnTouchListener() {
                                 @Override
                                 public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                                    return PaymentFormActivity.m3642$r8$lambda$hT4BhQBsShItfGVcQ2f2uOdPCY(this.f$0, view2, motionEvent);
+                                    return PaymentFormActivity.m3650$r8$lambda$hT4BhQBsShItfGVcQ2f2uOdPCY(this.f$0, view2, motionEvent);
                                 }
                             });
                             this.inputFields[i9].setInputType(r7);
@@ -1232,7 +1232,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 this.checkCell1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        PaymentFormActivity.m3646$r8$lambda$tnYLHj6FmZVDfxMwo9veCy07Ag(this.f$0, view2);
+                        PaymentFormActivity.m3654$r8$lambda$tnYLHj6FmZVDfxMwo9veCy07Ag(this.f$0, view2);
                     }
                 });
                 this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
@@ -1664,7 +1664,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                             this.checkCell1.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view2) {
-                                    PaymentFormActivity.m3643$r8$lambda$kqLcr1yFvZ2FoOFmjzqVBJY3VA(this.f$0, view2);
+                                    PaymentFormActivity.m3651$r8$lambda$kqLcr1yFvZ2FoOFmjzqVBJY3VA(this.f$0, view2);
                                 }
                             });
                             this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
@@ -2032,7 +2032,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                         this.checkCell1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view3) {
-                                PaymentFormActivity.m3643$r8$lambda$kqLcr1yFvZ2FoOFmjzqVBJY3VA(this.f$0, view3);
+                                PaymentFormActivity.m3651$r8$lambda$kqLcr1yFvZ2FoOFmjzqVBJY3VA(this.f$0, view3);
                             }
                         });
                         this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
@@ -2152,7 +2152,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     this.inputFields[i18].setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public final boolean onTouch(View view5, MotionEvent motionEvent) {
-                            return PaymentFormActivity.m3644$r8$lambda$lq9LWx85ffust2Y_olLL_Ztadc(view5, motionEvent);
+                            return PaymentFormActivity.m3652$r8$lambda$lq9LWx85ffust2Y_olLL_Ztadc(view5, motionEvent);
                         }
                     });
                     this.inputFields[i18].setInputType(0);
@@ -2613,7 +2613,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                         this.detailSettingsCell[3].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view5) {
-                                PaymentFormActivity.m3645$r8$lambda$qmsPCGLDlaSqYvg9W0nd9jigK4(this.f$0, view5);
+                                PaymentFormActivity.m3653$r8$lambda$qmsPCGLDlaSqYvg9W0nd9jigK4(this.f$0, view5);
                             }
                         });
                     } else {
@@ -2647,7 +2647,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                         this.detailSettingsCell[c3].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view5) {
-                                PaymentFormActivity.m3626$r8$lambda$7bxg_WHOuHtHGXD863z6VpWg(this.f$0, view5);
+                                PaymentFormActivity.m3634$r8$lambda$7bxg_WHOuHtHGXD863z6VpWg(this.f$0, view5);
                             }
                         });
                     } else {
@@ -2842,7 +2842,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             this.settingsCell[0].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view6) {
-                    PaymentFormActivity.m3649$r8$lambda$zQtDgcEy4cmbAoDOjG3_VSHTcY(this.f$0, view6);
+                    PaymentFormActivity.m3657$r8$lambda$zQtDgcEy4cmbAoDOjG3_VSHTcY(this.f$0, view6);
                 }
             });
             this.inputFields = new EditTextBoldCursor[3];
@@ -2908,7 +2908,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 this.inputFields[i37].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public final boolean onEditorAction(TextView textView5, int i41, KeyEvent keyEvent) {
-                        return PaymentFormActivity.m3627$r8$lambda$8HTAiuMGTlm3HOMJIpK4EtuoZE(this.f$0, textView5, i41, keyEvent);
+                        return PaymentFormActivity.m3635$r8$lambda$8HTAiuMGTlm3HOMJIpK4EtuoZE(this.f$0, textView5, i41, keyEvent);
                     }
                 });
                 if (i37 == 1) {
@@ -2932,7 +2932,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         return this.fragmentView;
     }
 
-    public static boolean m3642$r8$lambda$hT4BhQBsShItfGVcQ2f2uOdPCY(final PaymentFormActivity paymentFormActivity, View view, MotionEvent motionEvent) {
+    public static boolean m3650$r8$lambda$hT4BhQBsShItfGVcQ2f2uOdPCY(final PaymentFormActivity paymentFormActivity, View view, MotionEvent motionEvent) {
         if (paymentFormActivity.getParentActivity() == null) {
             return false;
         }
@@ -3055,7 +3055,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3646$r8$lambda$tnYLHj6FmZVDfxMwo9veCy07Ag(PaymentFormActivity paymentFormActivity, View view) {
+    public static void m3654$r8$lambda$tnYLHj6FmZVDfxMwo9veCy07Ag(PaymentFormActivity paymentFormActivity, View view) {
         boolean z = !paymentFormActivity.saveCardInfo;
         paymentFormActivity.saveCardInfo = z;
         paymentFormActivity.checkCell1.setChecked(z);
@@ -3107,7 +3107,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         return true;
     }
 
-    public static void m3643$r8$lambda$kqLcr1yFvZ2FoOFmjzqVBJY3VA(PaymentFormActivity paymentFormActivity, View view) {
+    public static void m3651$r8$lambda$kqLcr1yFvZ2FoOFmjzqVBJY3VA(PaymentFormActivity paymentFormActivity, View view) {
         boolean z = !paymentFormActivity.saveCardInfo;
         paymentFormActivity.saveCardInfo = z;
         paymentFormActivity.checkCell1.setChecked(z);
@@ -3208,7 +3208,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         paymentFormActivity.presentFragment(paymentFormActivity2);
     }
 
-    public static void m3645$r8$lambda$qmsPCGLDlaSqYvg9W0nd9jigK4(PaymentFormActivity paymentFormActivity, View view) {
+    public static void m3653$r8$lambda$qmsPCGLDlaSqYvg9W0nd9jigK4(PaymentFormActivity paymentFormActivity, View view) {
         PaymentFormActivity paymentFormActivity2 = new PaymentFormActivity(paymentFormActivity.invoiceInput, paymentFormActivity.paymentForm, paymentFormActivity.messageObject, paymentFormActivity.invoiceSlug, 0, paymentFormActivity.requestedInfo, paymentFormActivity.shippingOption, paymentFormActivity.tipAmount, null, paymentFormActivity.cardName, paymentFormActivity.validateRequest, paymentFormActivity.saveCardInfo, null, paymentFormActivity.parentFragment, paymentFormActivity.allowUnregistered);
         paymentFormActivity2.setCustomResultReceiver(paymentFormActivity.customResultReceiver);
         paymentFormActivity2.setCustomAnyResultReceiver(paymentFormActivity.customAnyResultReceiver);
@@ -3268,7 +3268,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         paymentFormActivity.presentFragment(paymentFormActivity2);
     }
 
-    public static void m3626$r8$lambda$7bxg_WHOuHtHGXD863z6VpWg(PaymentFormActivity paymentFormActivity, View view) {
+    public static void m3634$r8$lambda$7bxg_WHOuHtHGXD863z6VpWg(PaymentFormActivity paymentFormActivity, View view) {
         PaymentFormActivity paymentFormActivity2 = new PaymentFormActivity(paymentFormActivity.invoiceInput, paymentFormActivity.paymentForm, paymentFormActivity.messageObject, paymentFormActivity.invoiceSlug, 0, paymentFormActivity.requestedInfo, paymentFormActivity.shippingOption, paymentFormActivity.tipAmount, null, paymentFormActivity.cardName, paymentFormActivity.validateRequest, paymentFormActivity.saveCardInfo, null, paymentFormActivity.parentFragment, paymentFormActivity.allowUnregistered);
         paymentFormActivity2.setCustomResultReceiver(paymentFormActivity.customResultReceiver);
         paymentFormActivity2.setCustomAnyResultReceiver(paymentFormActivity.customAnyResultReceiver);
@@ -3393,7 +3393,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         ConnectionsManager.getInstance(paymentFormActivity.currentAccount).sendRequest(new TL_account.resendPasswordEmail(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PaymentFormActivity.m3624$r8$lambda$n8ObnsWdeFAzl5V43MAtxv73w(tLObject, tL_error);
+                PaymentFormActivity.m3632$r8$lambda$n8ObnsWdeFAzl5V43MAtxv73w(tLObject, tL_error);
             }
         }, paymentFormActivity.allowUnregistered ? 8 : 0);
         AlertDialog.Builder builder = new AlertDialog.Builder(paymentFormActivity.getParentActivity());
@@ -3403,7 +3403,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         paymentFormActivity.showDialog(builder.create());
     }
 
-    public static void m3649$r8$lambda$zQtDgcEy4cmbAoDOjG3_VSHTcY(final PaymentFormActivity paymentFormActivity, View view) {
+    public static void m3657$r8$lambda$zQtDgcEy4cmbAoDOjG3_VSHTcY(final PaymentFormActivity paymentFormActivity, View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(paymentFormActivity.getParentActivity());
         String string = LocaleController.getString(R.string.TurnPasswordOffQuestion);
         if (paymentFormActivity.currentPassword.has_secure_values) {
@@ -3426,7 +3426,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static boolean m3627$r8$lambda$8HTAiuMGTlm3HOMJIpK4EtuoZE(PaymentFormActivity paymentFormActivity, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m3635$r8$lambda$8HTAiuMGTlm3HOMJIpK4EtuoZE(PaymentFormActivity paymentFormActivity, TextView textView, int i, KeyEvent keyEvent) {
         if (i == 6) {
             paymentFormActivity.doneItem.performClick();
             return true;
@@ -3499,13 +3499,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         title.setItems((CharSequence[]) arrayList.toArray(new CharSequence[0]), iArr, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i4) {
-                PaymentFormActivity.m3638$r8$lambda$Y_FwaCgqq1zRMwRnn0qiyrZnMQ(this.f$0, runnable, arrayList3, arrayList, dialogInterface, i4);
+                PaymentFormActivity.m3646$r8$lambda$Y_FwaCgqq1zRMwRnn0qiyrZnMQ(this.f$0, runnable, arrayList3, arrayList, dialogInterface, i4);
             }
         });
         showDialog(title.create());
     }
 
-    public static void m3638$r8$lambda$Y_FwaCgqq1zRMwRnn0qiyrZnMQ(PaymentFormActivity paymentFormActivity, final Runnable runnable, List list, List list2, DialogInterface dialogInterface, int i) {
+    public static void m3646$r8$lambda$Y_FwaCgqq1zRMwRnn0qiyrZnMQ(PaymentFormActivity paymentFormActivity, final Runnable runnable, List list, List list2, DialogInterface dialogInterface, int i) {
         paymentFormActivity.getClass();
         PaymentFormActivityDelegate paymentFormActivityDelegate = new PaymentFormActivityDelegate() {
             @Override
@@ -3817,12 +3817,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.m3637$r8$lambda$YNahaVSH5vPagJMtT0YYPp7Q(this.f$0, tL_error, tLObject);
+                PaymentFormActivity.m3645$r8$lambda$YNahaVSH5vPagJMtT0YYPp7Q(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m3637$r8$lambda$YNahaVSH5vPagJMtT0YYPp7Q(final PaymentFormActivity paymentFormActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m3645$r8$lambda$YNahaVSH5vPagJMtT0YYPp7Q(final PaymentFormActivity paymentFormActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         paymentFormActivity.loadingPasswordInfo = false;
         if (tL_error == null) {
             TL_account.Password password = (TL_account.Password) tLObject;
@@ -3848,7 +3848,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.m3634$r8$lambda$LrF7PnrdU6Xmqgo4gMClZJO9Zo(this.f$0);
+                    PaymentFormActivity.m3642$r8$lambda$LrF7PnrdU6Xmqgo4gMClZJO9Zo(this.f$0);
                 }
             };
             paymentFormActivity.shortPollRunnable = runnable;
@@ -3856,7 +3856,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3634$r8$lambda$LrF7PnrdU6Xmqgo4gMClZJO9Zo(PaymentFormActivity paymentFormActivity) {
+    public static void m3642$r8$lambda$LrF7PnrdU6Xmqgo4gMClZJO9Zo(PaymentFormActivity paymentFormActivity) {
         if (paymentFormActivity.shortPollRunnable == null) {
             return;
         }
@@ -3931,13 +3931,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             this.paymentsClient.isReadyToPay(isReadyToPayRequestFromJson).addOnCompleteListener(getParentActivity(), new OnCompleteListener() {
                 @Override
                 public final void onComplete(Task task) {
-                    PaymentFormActivity.m3633$r8$lambda$KwGYr3YDE7FpHtPQ1PjBms92pQ(this.f$0, task);
+                    PaymentFormActivity.m3641$r8$lambda$KwGYr3YDE7FpHtPQ1PjBms92pQ(this.f$0, task);
                 }
             });
         }
     }
 
-    public static void m3633$r8$lambda$KwGYr3YDE7FpHtPQ1PjBms92pQ(PaymentFormActivity paymentFormActivity, Task task) {
+    public static void m3641$r8$lambda$KwGYr3YDE7FpHtPQ1PjBms92pQ(PaymentFormActivity paymentFormActivity, Task task) {
         paymentFormActivity.getClass();
         if (task.isSuccessful()) {
             FrameLayout frameLayout = paymentFormActivity.googlePayContainer;
@@ -4507,7 +4507,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(confirmpasswordemail, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    PaymentFormActivity.m3625$r8$lambda$0YvvzawOPVv3kLgCBrOOTeFY9k(this.f$0, tLObject, tL_error);
+                    PaymentFormActivity.m3633$r8$lambda$0YvvzawOPVv3kLgCBrOOTeFY9k(this.f$0, tLObject, tL_error);
                 }
             }, 10);
             return;
@@ -4569,17 +4569,17 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         });
     }
 
-    public static void m3625$r8$lambda$0YvvzawOPVv3kLgCBrOOTeFY9k(final PaymentFormActivity paymentFormActivity, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3633$r8$lambda$0YvvzawOPVv3kLgCBrOOTeFY9k(final PaymentFormActivity paymentFormActivity, TLObject tLObject, final TLRPC.TL_error tL_error) {
         paymentFormActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.m3632$r8$lambda$JbRc1NZYAiI34WJ5PMJgTGVKg(this.f$0, tL_error);
+                PaymentFormActivity.m3640$r8$lambda$JbRc1NZYAiI34WJ5PMJgTGVKg(this.f$0, tL_error);
             }
         });
     }
 
-    public static void m3632$r8$lambda$JbRc1NZYAiI34WJ5PMJgTGVKg(PaymentFormActivity paymentFormActivity, TLRPC.TL_error tL_error) {
+    public static void m3640$r8$lambda$JbRc1NZYAiI34WJ5PMJgTGVKg(PaymentFormActivity paymentFormActivity, TLRPC.TL_error tL_error) {
         String pluralString;
         paymentFormActivity.showEditDoneProgress(true, false);
         if (tL_error == null) {
@@ -4617,7 +4617,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PaymentFormActivity.m3636$r8$lambda$VldLHnG1NQ7nbg4djTgdjP25eo(this.f$0, z, str, tLObject, tL_error);
+                PaymentFormActivity.m3644$r8$lambda$VldLHnG1NQ7nbg4djTgdjP25eo(this.f$0, z, str, tLObject, tL_error);
             }
         };
         if (!z) {
@@ -4641,7 +4641,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         ConnectionsManager.getInstance(paymentFormActivity.currentAccount).sendRequest(updatepasswordsettings, requestDelegate, 10);
     }
 
-    public static void m3636$r8$lambda$VldLHnG1NQ7nbg4djTgdjP25eo(final PaymentFormActivity paymentFormActivity, final boolean z, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3644$r8$lambda$VldLHnG1NQ7nbg4djTgdjP25eo(final PaymentFormActivity paymentFormActivity, final boolean z, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         paymentFormActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -4659,7 +4659,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 ConnectionsManager.getInstance(paymentFormActivity.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        PaymentFormActivity.m3629$r8$lambda$CTvNGeCzZAaPJtrJf78vOLbeJw(this.f$0, z, tLObject2, tL_error2);
+                        PaymentFormActivity.m3637$r8$lambda$CTvNGeCzZAaPJtrJf78vOLbeJw(this.f$0, z, tLObject2, tL_error2);
                     }
                 }, 8);
                 return;
@@ -4688,7 +4688,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 builder.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        PaymentFormActivity.m3647$r8$lambda$uVpnlZ_JGWn_7K10nhqZ5QRUv8(this.f$0, str, alertDialog, i);
+                        PaymentFormActivity.m3655$r8$lambda$uVpnlZ_JGWn_7K10nhqZ5QRUv8(this.f$0, str, alertDialog, i);
                     }
                 });
                 builder.setMessage(LocaleController.getString(R.string.YourEmailAlmostThereText));
@@ -4719,7 +4719,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3629$r8$lambda$CTvNGeCzZAaPJtrJf78vOLbeJw(final PaymentFormActivity paymentFormActivity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3637$r8$lambda$CTvNGeCzZAaPJtrJf78vOLbeJw(final PaymentFormActivity paymentFormActivity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         paymentFormActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -4739,7 +4739,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3647$r8$lambda$uVpnlZ_JGWn_7K10nhqZ5QRUv8(PaymentFormActivity paymentFormActivity, String str, AlertDialog alertDialog, int i) {
+    public static void m3655$r8$lambda$uVpnlZ_JGWn_7K10nhqZ5QRUv8(PaymentFormActivity paymentFormActivity, String str, AlertDialog alertDialog, int i) {
         paymentFormActivity.waitingForEmail = true;
         paymentFormActivity.currentPassword.email_unconfirmed_pattern = str;
         paymentFormActivity.updatePasswordFields();
@@ -4928,12 +4928,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.AnonymousClass26.m3650$r8$lambda$cP4FCPk11oRXCevrJ9kLFZBpKs(this.f$0);
+                    PaymentFormActivity.AnonymousClass26.m3658$r8$lambda$cP4FCPk11oRXCevrJ9kLFZBpKs(this.f$0);
                 }
             });
         }
 
-        public static void m3650$r8$lambda$cP4FCPk11oRXCevrJ9kLFZBpKs(AnonymousClass26 anonymousClass26) {
+        public static void m3658$r8$lambda$cP4FCPk11oRXCevrJ9kLFZBpKs(AnonymousClass26 anonymousClass26) {
             PaymentFormActivity.this.goToNextStep();
             PaymentFormActivity.this.showEditDoneProgress(true, false);
             PaymentFormActivity.this.setDonePressed(false);
@@ -5092,7 +5092,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.m3628$r8$lambda$9DxS83Yzrqh78_f2EUWf6XiLa0(this.f$0, tLObject2);
+                    PaymentFormActivity.m3636$r8$lambda$9DxS83Yzrqh78_f2EUWf6XiLa0(this.f$0, tLObject2);
                 }
             });
         } else {
@@ -5105,7 +5105,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3628$r8$lambda$9DxS83Yzrqh78_f2EUWf6XiLa0(PaymentFormActivity paymentFormActivity, TLObject tLObject) {
+    public static void m3636$r8$lambda$9DxS83Yzrqh78_f2EUWf6XiLa0(PaymentFormActivity paymentFormActivity, TLObject tLObject) {
         paymentFormActivity.getClass();
         paymentFormActivity.requestedInfo = (TLRPC.TL_payments_validatedRequestedInfo) tLObject;
         if (paymentFormActivity.paymentForm.saved_info != null && !paymentFormActivity.saveShippingInfo) {
@@ -5267,7 +5267,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PaymentFormActivity.m3635$r8$lambda$OBMO4iYx8M4Q1LrKeJBBSW5s(this.f$0, messageArr);
+                        PaymentFormActivity.m3643$r8$lambda$OBMO4iYx8M4Q1LrKeJBBSW5s(this.f$0, messageArr);
                     }
                 });
                 return;
@@ -5276,7 +5276,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PaymentFormActivity.m3648$r8$lambda$xaAgyVTafZhuYHUNz2dh23HM80(this.f$0, tLObject);
+                        PaymentFormActivity.m3656$r8$lambda$xaAgyVTafZhuYHUNz2dh23HM80(this.f$0, tLObject);
                     }
                 });
                 return;
@@ -5294,7 +5294,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3635$r8$lambda$OBMO4iYx8M4Q1LrKeJBBSW5s(final PaymentFormActivity paymentFormActivity, final TLRPC.Message[] messageArr) {
+    public static void m3643$r8$lambda$OBMO4iYx8M4Q1LrKeJBBSW5s(final PaymentFormActivity paymentFormActivity, final TLRPC.Message[] messageArr) {
         String forcedFirstName;
         TLRPC.Chat chat;
         int i;
@@ -5386,7 +5386,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             bulletinCreateSimpleBulletin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaymentFormActivity.m3641$r8$lambda$hSg7liQDCMpBYlajIsseYx6oe8(this.f$0, bulletinCreateSimpleBulletin, z2, messageArr, view);
+                    PaymentFormActivity.m3649$r8$lambda$hSg7liQDCMpBYlajIsseYx6oe8(this.f$0, bulletinCreateSimpleBulletin, z2, messageArr, view);
                 }
             });
         }
@@ -5400,7 +5400,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3641$r8$lambda$hSg7liQDCMpBYlajIsseYx6oe8(final PaymentFormActivity paymentFormActivity, Bulletin bulletin, boolean z, TLRPC.Message[] messageArr, View view) {
+    public static void m3649$r8$lambda$hSg7liQDCMpBYlajIsseYx6oe8(final PaymentFormActivity paymentFormActivity, Bulletin bulletin, boolean z, TLRPC.Message[] messageArr, View view) {
         paymentFormActivity.getClass();
         bulletin.hide();
         if (z) {
@@ -5448,7 +5448,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         lastFragment.showAsSheet(new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject).setCustomResultReceiver(paymentFormActivity.customResultReceiver).setCustomAnyResultReceiver(paymentFormActivity.customAnyResultReceiver), bottomSheetParams);
     }
 
-    public static void m3648$r8$lambda$xaAgyVTafZhuYHUNz2dh23HM80(final PaymentFormActivity paymentFormActivity, TLObject tLObject) {
+    public static void m3656$r8$lambda$xaAgyVTafZhuYHUNz2dh23HM80(final PaymentFormActivity paymentFormActivity, TLObject tLObject) {
         Utilities.Callback callback = paymentFormActivity.customAnyResultReceiver;
         if (callback != null) {
             callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
@@ -5617,22 +5617,22 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         ConnectionsManager.getInstance(paymentFormActivity.currentAccount).sendRequest(tL_payments_getPaymentReceipt, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PaymentFormActivity.m3630$r8$lambda$DyBKY7lLkByMpCTDUj6Cs_n6BA(this.f$0, tLObject, tL_error);
+                PaymentFormActivity.m3638$r8$lambda$DyBKY7lLkByMpCTDUj6Cs_n6BA(this.f$0, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public static void m3630$r8$lambda$DyBKY7lLkByMpCTDUj6Cs_n6BA(final PaymentFormActivity paymentFormActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3638$r8$lambda$DyBKY7lLkByMpCTDUj6Cs_n6BA(final PaymentFormActivity paymentFormActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
         paymentFormActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.m3640$r8$lambda$bCPt2kCcTX7vNiAs0KIYIF_RKw(this.f$0, tLObject);
+                PaymentFormActivity.m3648$r8$lambda$bCPt2kCcTX7vNiAs0KIYIF_RKw(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m3640$r8$lambda$bCPt2kCcTX7vNiAs0KIYIF_RKw(PaymentFormActivity paymentFormActivity, TLObject tLObject) {
+    public static void m3648$r8$lambda$bCPt2kCcTX7vNiAs0KIYIF_RKw(PaymentFormActivity paymentFormActivity, TLObject tLObject) {
         BaseFragment lastFragment;
         paymentFormActivity.getClass();
         if (tLObject instanceof TLRPC.TL_payments_paymentReceiptStars) {
@@ -6168,7 +6168,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             this.springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f2, float f3) {
-                    PaymentFormActivity.BottomFrameLayout.m3651$r8$lambda$Z1wW4WPz0emEysR2N4fxqBfuA(this.f$0, dynamicAnimation, z3, f2, f3);
+                    PaymentFormActivity.BottomFrameLayout.m3659$r8$lambda$Z1wW4WPz0emEysR2N4fxqBfuA(this.f$0, dynamicAnimation, z3, f2, f3);
                 }
             });
             this.springAnimation.start();
@@ -6182,7 +6182,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             bottomFrameLayout.invalidate();
         }
 
-        public static void m3651$r8$lambda$Z1wW4WPz0emEysR2N4fxqBfuA(BottomFrameLayout bottomFrameLayout, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        public static void m3659$r8$lambda$Z1wW4WPz0emEysR2N4fxqBfuA(BottomFrameLayout bottomFrameLayout, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
             if (dynamicAnimation == bottomFrameLayout.springAnimation) {
                 bottomFrameLayout.springAnimation = null;
             }

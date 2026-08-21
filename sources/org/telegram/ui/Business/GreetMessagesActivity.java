@@ -232,24 +232,24 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             getConnectionsManager().sendRequest(updatebusinessgreetingmessage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    GreetMessagesActivity.m1386$r8$lambda$2NWWqTskuEvgkOmKq6Cb3MRL1A(this.f$0, tLObject, tL_error);
+                    GreetMessagesActivity.m1392$r8$lambda$2NWWqTskuEvgkOmKq6Cb3MRL1A(this.f$0, tLObject, tL_error);
                 }
             });
             getMessagesStorage().updateUserInfo(userFull, false);
         }
     }
 
-    public static void m1386$r8$lambda$2NWWqTskuEvgkOmKq6Cb3MRL1A(final GreetMessagesActivity greetMessagesActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1392$r8$lambda$2NWWqTskuEvgkOmKq6Cb3MRL1A(final GreetMessagesActivity greetMessagesActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         greetMessagesActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GreetMessagesActivity.m1388$r8$lambda$ocAK9ho0b_IiRnb9DtqSL9xco(this.f$0, tL_error, tLObject);
+                GreetMessagesActivity.m1394$r8$lambda$ocAK9ho0b_IiRnb9DtqSL9xco(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m1388$r8$lambda$ocAK9ho0b_IiRnb9DtqSL9xco(GreetMessagesActivity greetMessagesActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m1394$r8$lambda$ocAK9ho0b_IiRnb9DtqSL9xco(GreetMessagesActivity greetMessagesActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
             greetMessagesActivity.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);

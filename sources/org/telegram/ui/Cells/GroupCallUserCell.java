@@ -90,13 +90,13 @@ public class GroupCallUserCell extends FrameLayout {
     public void onMuteClick(GroupCallUserCell groupCallUserCell) {
     }
 
-    public static void m1487$r8$lambda$7OG64PnrIQuqBPrWAOjIJ7FSo(GroupCallUserCell groupCallUserCell) {
+    public static void m1493$r8$lambda$7OG64PnrIQuqBPrWAOjIJ7FSo(GroupCallUserCell groupCallUserCell) {
         groupCallUserCell.shakeHandDrawable.setOnFinishCallback(null, 0);
         groupCallUserCell.muteDrawable.setOnFinishCallback(null, 0);
         groupCallUserCell.muteButton.setAnimation(groupCallUserCell.muteDrawable);
     }
 
-    public static void m1488$r8$lambda$QpCABXGBPBtans51i2SP2RKUSQ(GroupCallUserCell groupCallUserCell) {
+    public static void m1494$r8$lambda$QpCABXGBPBtans51i2SP2RKUSQ(GroupCallUserCell groupCallUserCell) {
         int i;
         groupCallUserCell.getClass();
         int iNextInt = Utilities.random.nextInt(100);
@@ -269,13 +269,13 @@ public class GroupCallUserCell extends FrameLayout {
         this.shakeHandCallback = new Runnable() {
             @Override
             public final void run() {
-                GroupCallUserCell.m1487$r8$lambda$7OG64PnrIQuqBPrWAOjIJ7FSo(this.f$0);
+                GroupCallUserCell.m1493$r8$lambda$7OG64PnrIQuqBPrWAOjIJ7FSo(this.f$0);
             }
         };
         this.raiseHandCallback = new Runnable() {
             @Override
             public final void run() {
-                GroupCallUserCell.m1488$r8$lambda$QpCABXGBPBtans51i2SP2RKUSQ(this.f$0);
+                GroupCallUserCell.m1494$r8$lambda$QpCABXGBPBtans51i2SP2RKUSQ(this.f$0);
             }
         };
         this.grayIconColor = Theme.key_voipgroup_mutedIcon;

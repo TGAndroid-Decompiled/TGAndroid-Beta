@@ -78,13 +78,13 @@ public class ChartHeaderView extends FrameLayout {
         this.datesTmp.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-                ChartHeaderView.m1585$r8$lambda$tgKxiNEs5F53OHtaDq3c9lwuEY(this.f$0, view, i, i2, i3, i4, i5, i6, i7, i8);
+                ChartHeaderView.m1591$r8$lambda$tgKxiNEs5F53OHtaDq3c9lwuEY(this.f$0, view, i, i2, i3, i4, i5, i6, i7, i8);
             }
         });
         recolor();
     }
 
-    public static void m1585$r8$lambda$tgKxiNEs5F53OHtaDq3c9lwuEY(ChartHeaderView chartHeaderView, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+    public static void m1591$r8$lambda$tgKxiNEs5F53OHtaDq3c9lwuEY(ChartHeaderView chartHeaderView, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
         TextView textView = chartHeaderView.datesTmp;
         textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
         TextView textView2 = chartHeaderView.dates;

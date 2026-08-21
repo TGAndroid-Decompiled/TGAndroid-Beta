@@ -63,7 +63,7 @@ public class VoIpCoverView extends View {
             valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    VoIpCoverView.m3002$r8$lambda$URxPMLYSrznpmU7xLUEWevhh9k(this.f$0, valueAnimator);
+                    VoIpCoverView.m3011$r8$lambda$URxPMLYSrznpmU7xLUEWevhh9k(this.f$0, valueAnimator);
                 }
             });
             this.positionAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
@@ -72,7 +72,7 @@ public class VoIpCoverView extends View {
         }
     }
 
-    public static void m3002$r8$lambda$URxPMLYSrznpmU7xLUEWevhh9k(VoIpCoverView voIpCoverView, ValueAnimator valueAnimator) {
+    public static void m3011$r8$lambda$URxPMLYSrznpmU7xLUEWevhh9k(VoIpCoverView voIpCoverView, ValueAnimator valueAnimator) {
         voIpCoverView.getClass();
         int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         voIpCoverView.diffX1 = iIntValue;

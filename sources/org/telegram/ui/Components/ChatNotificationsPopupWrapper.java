@@ -121,13 +121,13 @@ public class ChatNotificationsPopupWrapper {
         actionBarMenuSubItemAddItem4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.m2211$r8$lambda$IUt87eeObtHRh9nlOj8Lm3A_hQ(this.f$0, callback, view);
+                ChatNotificationsPopupWrapper.m2221$r8$lambda$IUt87eeObtHRh9nlOj8Lm3A_hQ(this.f$0, callback, view);
             }
         });
         ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_mute_period, LocaleController.getString(R.string.MuteForPopup), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.m2212$r8$lambda$PEbOpDurCCRYUlxQxtL_WRuezo(this.f$0, context, resourcesProvider, i, callback, view);
+                ChatNotificationsPopupWrapper.m2222$r8$lambda$PEbOpDurCCRYUlxQxtL_WRuezo(this.f$0, context, resourcesProvider, i, callback, view);
             }
         });
         ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_customize, LocaleController.getString(R.string.NotificationsCustomize), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
@@ -176,12 +176,12 @@ public class ChatNotificationsPopupWrapper {
         callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected1Time);
     }
 
-    public static void m2211$r8$lambda$IUt87eeObtHRh9nlOj8Lm3A_hQ(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Callback callback, View view) {
+    public static void m2221$r8$lambda$IUt87eeObtHRh9nlOj8Lm3A_hQ(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Callback callback, View view) {
         chatNotificationsPopupWrapper.dismiss();
         callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected2Time);
     }
 
-    public static void m2212$r8$lambda$PEbOpDurCCRYUlxQxtL_WRuezo(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Context context, Theme.ResourcesProvider resourcesProvider, final int i, final Callback callback, View view) {
+    public static void m2222$r8$lambda$PEbOpDurCCRYUlxQxtL_WRuezo(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Context context, Theme.ResourcesProvider resourcesProvider, final int i, final Callback callback, View view) {
         chatNotificationsPopupWrapper.dismiss();
         AlertsCreator.createMuteForPickerDialog(context, resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
@@ -189,14 +189,14 @@ public class ChatNotificationsPopupWrapper {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatNotificationsPopupWrapper.m2213$r8$lambda$jhiS2GRG2Zdjm9uB5JrzKUjxx0(i2, i, callback);
+                        ChatNotificationsPopupWrapper.m2223$r8$lambda$jhiS2GRG2Zdjm9uB5JrzKUjxx0(i2, i, callback);
                     }
                 }, 16L);
             }
         });
     }
 
-    public static void m2213$r8$lambda$jhiS2GRG2Zdjm9uB5JrzKUjxx0(int i, int i2, Callback callback) {
+    public static void m2223$r8$lambda$jhiS2GRG2Zdjm9uB5JrzKUjxx0(int i, int i2, Callback callback) {
         if (i != 0) {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
             notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
@@ -395,7 +395,7 @@ public class ChatNotificationsPopupWrapper {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                ChatNotificationsPopupWrapper.m2209$r8$lambda$2E5Qdzb2TlshZLi5DNrMyDRQJs(i, i, callback);
+                                ChatNotificationsPopupWrapper.m2219$r8$lambda$2E5Qdzb2TlshZLi5DNrMyDRQJs(i, i, callback);
                             }
                         }, 16L);
                     }
@@ -418,7 +418,7 @@ public class ChatNotificationsPopupWrapper {
         new Runnable() {
             @Override
             public final void run() {
-                ChatNotificationsPopupWrapper.m2214$r8$lambda$jslqYv3H4CQpj7lsolTF0FqDk4(currentAccount, j, j2, last2, last);
+                ChatNotificationsPopupWrapper.m2224$r8$lambda$jslqYv3H4CQpj7lsolTF0FqDk4(currentAccount, j, j2, last2, last);
             }
         }.run();
         return itemOptionsMakeSwipeback;
@@ -454,7 +454,7 @@ public class ChatNotificationsPopupWrapper {
         }
     }
 
-    public static void m2209$r8$lambda$2E5Qdzb2TlshZLi5DNrMyDRQJs(int i, int i2, Utilities.Callback callback) {
+    public static void m2219$r8$lambda$2E5Qdzb2TlshZLi5DNrMyDRQJs(int i, int i2, Utilities.Callback callback) {
         if (i != 0) {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
             notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
@@ -479,7 +479,7 @@ public class ChatNotificationsPopupWrapper {
         }
     }
 
-    public static void m2214$r8$lambda$jslqYv3H4CQpj7lsolTF0FqDk4(int i, long j, long j2, ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2) {
+    public static void m2224$r8$lambda$jslqYv3H4CQpj7lsolTF0FqDk4(int i, long j, long j2, ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2) {
         int color;
         if (MessagesController.getInstance(i).isDialogMuted(j, j2)) {
             actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute);

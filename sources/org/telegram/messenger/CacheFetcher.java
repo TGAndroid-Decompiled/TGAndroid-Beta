@@ -76,7 +76,7 @@ public abstract class CacheFetcher<Args, R> {
             cacheFetcher.getRemote(i, obj, l.longValue(), new Utilities.Callback4() {
                 @Override
                 public final void run(Object obj3, Object obj4, Object obj5, Object obj6) {
-                    CacheFetcher.m365$r8$lambda$igJR4yzJOQFxj1rf2xX47xcXuQ(this.f$0, pair, obj2, i, obj, (Boolean) obj3, obj4, (Long) obj5, (Boolean) obj6);
+                    CacheFetcher.m373$r8$lambda$igJR4yzJOQFxj1rf2xX47xcXuQ(this.f$0, pair, obj2, i, obj, (Boolean) obj3, obj4, (Long) obj5, (Boolean) obj6);
                 }
             });
             return;
@@ -85,7 +85,7 @@ public abstract class CacheFetcher<Args, R> {
         cacheFetcher.callCallbacks(pair, obj2, true);
     }
 
-    public static void m365$r8$lambda$igJR4yzJOQFxj1rf2xX47xcXuQ(CacheFetcher cacheFetcher, Pair pair, Object obj, int i, Object obj2, Boolean bool, Object obj3, Long l, Boolean bool2) {
+    public static void m373$r8$lambda$igJR4yzJOQFxj1rf2xX47xcXuQ(CacheFetcher cacheFetcher, Pair pair, Object obj, int i, Object obj2, Boolean bool, Object obj3, Long l, Boolean bool2) {
         CacheFetcher cacheFetcher2;
         Object obj4;
         cacheFetcher.getClass();

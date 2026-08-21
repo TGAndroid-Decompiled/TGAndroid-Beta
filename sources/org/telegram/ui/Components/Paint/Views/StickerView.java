@@ -78,7 +78,7 @@ public class StickerView extends EntityView {
         this.centerImage.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                StickerView.m2530$r8$lambda$U2d8xD0_grLKSYH6Yoyj6_WDdM(this.f$0, imageReceiver, z, z2, z3);
+                StickerView.m2540$r8$lambda$U2d8xD0_grLKSYH6Yoyj6_WDdM(this.f$0, imageReceiver, z, z2, z3);
             }
 
             @Override
@@ -94,7 +94,7 @@ public class StickerView extends EntityView {
         updatePosition();
     }
 
-    public static void m2530$r8$lambda$U2d8xD0_grLKSYH6Yoyj6_WDdM(StickerView stickerView, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void m2540$r8$lambda$U2d8xD0_grLKSYH6Yoyj6_WDdM(StickerView stickerView, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         RLottieDrawable lottieAnimation;
         stickerView.getClass();
         if (!z || z2 || (lottieAnimation = imageReceiver.getLottieAnimation()) == null) {

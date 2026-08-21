@@ -95,13 +95,13 @@ public class ChartPickerDelegate {
             this.a.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChartPickerDelegate.CapturesData.m1583$r8$lambda$ZuHDYXCvGVg7TzhQLVI13QGLMA(this.f$0, valueAnimator);
+                    ChartPickerDelegate.CapturesData.m1589$r8$lambda$ZuHDYXCvGVg7TzhQLVI13QGLMA(this.f$0, valueAnimator);
                 }
             });
             this.a.start();
         }
 
-        public static void m1583$r8$lambda$ZuHDYXCvGVg7TzhQLVI13QGLMA(CapturesData capturesData, ValueAnimator valueAnimator) {
+        public static void m1589$r8$lambda$ZuHDYXCvGVg7TzhQLVI13QGLMA(CapturesData capturesData, ValueAnimator valueAnimator) {
             capturesData.getClass();
             capturesData.aValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             ChartPickerDelegate.this.view.invalidate();

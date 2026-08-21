@@ -245,12 +245,12 @@ public class SharingLiveLocationCell extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SharingLiveLocationCell.m1502$r8$lambda$EeQTBbrkxpQ9t5wAdtyVVa9Sro(this.f$0, d6, d5);
+                SharingLiveLocationCell.m1508$r8$lambda$EeQTBbrkxpQ9t5wAdtyVVa9Sro(this.f$0, d6, d5);
             }
         });
     }
 
-    public static void m1502$r8$lambda$EeQTBbrkxpQ9t5wAdtyVVa9Sro(SharingLiveLocationCell sharingLiveLocationCell, double d, double d2) {
+    public static void m1508$r8$lambda$EeQTBbrkxpQ9t5wAdtyVVa9Sro(SharingLiveLocationCell sharingLiveLocationCell, double d, double d2) {
         sharingLiveLocationCell.lastLat = d;
         sharingLiveLocationCell.lastLong = d2;
         sharingLiveLocationCell.loading = false;

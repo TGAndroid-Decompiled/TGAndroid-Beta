@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 import android.os.SystemClock;
-import com.google.android.exoplayer2.ExoPlayerImpl$$ExternalSyntheticThrowCCEIfNotNull0;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.telegram.messenger.BuildVars;
@@ -18,6 +17,9 @@ public abstract class ForegroundDetector implements Application.ActivityLifecycl
     private CopyOnWriteArrayList<Listener> listeners = new CopyOnWriteArrayList<>();
 
     public interface Listener {
+        void onBecameBackground();
+
+        void onBecameForeground();
     }
 
     @Override
@@ -78,9 +80,8 @@ public abstract class ForegroundDetector implements Application.ActivityLifecycl
             }
             Iterator<Listener> it = this.listeners.iterator();
             while (it.hasNext()) {
-                ExoPlayerImpl$$ExternalSyntheticThrowCCEIfNotNull0.m(it.next());
                 try {
-                    throw null;
+                    it.next().onBecameForeground();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -111,9 +112,8 @@ public abstract class ForegroundDetector implements Application.ActivityLifecycl
             }
             Iterator<Listener> it = this.listeners.iterator();
             while (it.hasNext()) {
-                ExoPlayerImpl$$ExternalSyntheticThrowCCEIfNotNull0.m(it.next());
                 try {
-                    throw null;
+                    it.next().onBecameBackground();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }

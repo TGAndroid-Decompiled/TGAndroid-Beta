@@ -274,12 +274,12 @@ public class PostsSearchContainer extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PostsSearchContainer.m2573$r8$lambda$s3w1T9G7ZRwLy1PGwj6qnFB2Q(this.f$0, tLObject, messagesController, z, tL_channels_searchPosts, z2, j, tL_error, connectionsManager);
+                PostsSearchContainer.m2583$r8$lambda$s3w1T9G7ZRwLy1PGwj6qnFB2Q(this.f$0, tLObject, messagesController, z, tL_channels_searchPosts, z2, j, tL_error, connectionsManager);
             }
         });
     }
 
-    public static void m2573$r8$lambda$s3w1T9G7ZRwLy1PGwj6qnFB2Q(final PostsSearchContainer postsSearchContainer, TLObject tLObject, MessagesController messagesController, final boolean z, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z2, final long j, TLRPC.TL_error tL_error, ConnectionsManager connectionsManager) {
+    public static void m2583$r8$lambda$s3w1T9G7ZRwLy1PGwj6qnFB2Q(final PostsSearchContainer postsSearchContainer, TLObject tLObject, MessagesController messagesController, final boolean z, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z2, final long j, TLRPC.TL_error tL_error, ConnectionsManager connectionsManager) {
         postsSearchContainer.reqId = -1;
         postsSearchContainer.loading = false;
         postsSearchContainer.emptyButton.setLoading(false);
@@ -329,7 +329,7 @@ public class PostsSearchContainer extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PostsSearchContainer.m2569$r8$lambda$MEpgZr0vLNHivZGMkBI490dmvo(this.f$0, z, arrayList);
+                        PostsSearchContainer.m2579$r8$lambda$MEpgZr0vLNHivZGMkBI490dmvo(this.f$0, z, arrayList);
                     }
                 });
             }
@@ -368,13 +368,13 @@ public class PostsSearchContainer extends FrameLayout {
             StarsController.getInstance(postsSearchContainer.currentAccount).getBalance(true, new Runnable() {
                 @Override
                 public final void run() {
-                    PostsSearchContainer.m2571$r8$lambda$kkOD8sxeGrb4XuNQh_D1fhhLI(this.f$0, j);
+                    PostsSearchContainer.m2581$r8$lambda$kkOD8sxeGrb4XuNQh_D1fhhLI(this.f$0, j);
                 }
             }, true);
         }
     }
 
-    public static void m2569$r8$lambda$MEpgZr0vLNHivZGMkBI490dmvo(PostsSearchContainer postsSearchContainer, boolean z, ArrayList arrayList) {
+    public static void m2579$r8$lambda$MEpgZr0vLNHivZGMkBI490dmvo(PostsSearchContainer postsSearchContainer, boolean z, ArrayList arrayList) {
         if (z) {
             arrayList = postsSearchContainer.newsMessages;
         } else {
@@ -388,7 +388,7 @@ public class PostsSearchContainer extends FrameLayout {
         }
     }
 
-    public static void m2571$r8$lambda$kkOD8sxeGrb4XuNQh_D1fhhLI(final PostsSearchContainer postsSearchContainer, long j) {
+    public static void m2581$r8$lambda$kkOD8sxeGrb4XuNQh_D1fhhLI(final PostsSearchContainer postsSearchContainer, long j) {
         Theme.ResourcesProvider darkThemeResourceProvider;
         postsSearchContainer.getClass();
         Activity activity = AndroidUtilities.getActivity();
@@ -466,12 +466,12 @@ public class PostsSearchContainer extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PostsSearchContainer.m2568$r8$lambda$L8fxL6UrNAhNWTVneI_3mmmVlk(this.f$0, tLObject);
+                PostsSearchContainer.m2578$r8$lambda$L8fxL6UrNAhNWTVneI_3mmmVlk(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m2568$r8$lambda$L8fxL6UrNAhNWTVneI_3mmmVlk(PostsSearchContainer postsSearchContainer, TLObject tLObject) {
+    public static void m2578$r8$lambda$L8fxL6UrNAhNWTVneI_3mmmVlk(PostsSearchContainer postsSearchContainer, TLObject tLObject) {
         postsSearchContainer.floodLoading = false;
         if (tLObject instanceof TLRPC.SearchPostsFlood) {
             TLRPC.SearchPostsFlood searchPostsFlood = (TLRPC.SearchPostsFlood) tLObject;
@@ -629,7 +629,7 @@ public class PostsSearchContainer extends FrameLayout {
             this.emptyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PostsSearchContainer.m2572$r8$lambda$prPZhyp_7cNk_LwVwVg47QU79U(this.f$0, view);
+                    PostsSearchContainer.m2582$r8$lambda$prPZhyp_7cNk_LwVwVg47QU79U(this.f$0, view);
                 }
             });
             AndroidUtilities.runOnUIThread(this.updateEmptyViewRunnable, 1000L);
@@ -704,7 +704,7 @@ public class PostsSearchContainer extends FrameLayout {
         this.emptyUnderButtonTextView.setVisibility(8);
     }
 
-    public static void m2572$r8$lambda$prPZhyp_7cNk_LwVwVg47QU79U(PostsSearchContainer postsSearchContainer, View view) {
+    public static void m2582$r8$lambda$prPZhyp_7cNk_LwVwVg47QU79U(PostsSearchContainer postsSearchContainer, View view) {
         postsSearchContainer.emptyButton.setLoading(true);
         postsSearchContainer.load(true);
     }

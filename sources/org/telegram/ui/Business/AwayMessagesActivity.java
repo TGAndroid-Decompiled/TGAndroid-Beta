@@ -291,14 +291,14 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             getConnectionsManager().sendRequest(updatebusinessawaymessage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    AwayMessagesActivity.m1358$r8$lambda$mnzAcQ_74ZIrQbyOE6PGfDzTw8(this.f$0, tLObject, tL_error);
+                    AwayMessagesActivity.m1364$r8$lambda$mnzAcQ_74ZIrQbyOE6PGfDzTw8(this.f$0, tLObject, tL_error);
                 }
             });
             getMessagesStorage().updateUserInfo(userFull, false);
         }
     }
 
-    public static void m1358$r8$lambda$mnzAcQ_74ZIrQbyOE6PGfDzTw8(final AwayMessagesActivity awayMessagesActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1364$r8$lambda$mnzAcQ_74ZIrQbyOE6PGfDzTw8(final AwayMessagesActivity awayMessagesActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         awayMessagesActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

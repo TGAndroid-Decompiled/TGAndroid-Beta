@@ -264,13 +264,13 @@ public class LinkEditActivity extends BaseFragment {
         this.timeEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LinkEditActivity.m3397$r8$lambda$YoooOzlJskdWIdDSFU0RBDHu5c(this.f$0, context, view);
+                LinkEditActivity.m3405$r8$lambda$YoooOzlJskdWIdDSFU0RBDHu5c(this.f$0, context, view);
             }
         });
         this.timeChooseView.setCallback(new SlideChooseView.Callback() {
             @Override
             public final void onOptionSelected(int i6) {
-                LinkEditActivity.m3392$r8$lambda$2citYq6ROglkaysQ9uqZ9fS0I4(this.f$0, i6);
+                LinkEditActivity.m3400$r8$lambda$2citYq6ROglkaysQ9uqZ9fS0I4(this.f$0, i6);
             }
 
             @Override
@@ -373,7 +373,7 @@ public class LinkEditActivity extends BaseFragment {
         this.approveCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LinkEditActivity.m3395$r8$lambda$QfUvrSvB4lUtcWVVCyTWF1Te0(this.f$0, z, view);
+                LinkEditActivity.m3403$r8$lambda$QfUvrSvB4lUtcWVVCyTWF1Te0(this.f$0, z, view);
             }
         });
         sectionsLinearLayout.addView(this.approveCell, LayoutHelper.createLinear(-1, 56));
@@ -528,7 +528,7 @@ public class LinkEditActivity extends BaseFragment {
             this.revokeLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    LinkEditActivity.m3398$r8$lambda$eUSugxv82voLuaOFpNzqkK2H8I(this.f$0, view);
+                    LinkEditActivity.m3406$r8$lambda$eUSugxv82voLuaOFpNzqkK2H8I(this.f$0, view);
                 }
             });
             sectionsLinearLayout.addView(this.revokeLink);
@@ -565,7 +565,7 @@ public class LinkEditActivity extends BaseFragment {
         return sizeNotifierFrameLayout;
     }
 
-    public static void m3397$r8$lambda$YoooOzlJskdWIdDSFU0RBDHu5c(final LinkEditActivity linkEditActivity, Context context, View view) {
+    public static void m3405$r8$lambda$YoooOzlJskdWIdDSFU0RBDHu5c(final LinkEditActivity linkEditActivity, Context context, View view) {
         linkEditActivity.getClass();
         AlertsCreator.createDatePickerDialog(context, LocaleController.getString(R.string.ExpireAfter), LocaleController.getString(R.string.SetTimeLimit), -1L, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
@@ -575,7 +575,7 @@ public class LinkEditActivity extends BaseFragment {
         });
     }
 
-    public static void m3392$r8$lambda$2citYq6ROglkaysQ9uqZ9fS0I4(LinkEditActivity linkEditActivity, int i) {
+    public static void m3400$r8$lambda$2citYq6ROglkaysQ9uqZ9fS0I4(LinkEditActivity linkEditActivity, int i) {
         if (i < linkEditActivity.dispalyedDates.size()) {
             linkEditActivity.timeEditText.setText(LocaleController.formatDateAudio(((Integer) linkEditActivity.dispalyedDates.get(i)).intValue() + linkEditActivity.getConnectionsManager().getCurrentTime(), false));
         } else {
@@ -594,7 +594,7 @@ public class LinkEditActivity extends BaseFragment {
         linkEditActivity.ignoreSet = false;
     }
 
-    public static void m3395$r8$lambda$QfUvrSvB4lUtcWVVCyTWF1Te0(LinkEditActivity linkEditActivity, boolean z, View view) {
+    public static void m3403$r8$lambda$QfUvrSvB4lUtcWVVCyTWF1Te0(LinkEditActivity linkEditActivity, boolean z, View view) {
         if (z) {
             linkEditActivity.getClass();
             return;
@@ -674,7 +674,7 @@ public class LinkEditActivity extends BaseFragment {
         AndroidUtilities.hideKeyboard(linkEditActivity.subEditPriceCell.editText);
     }
 
-    public static void m3398$r8$lambda$eUSugxv82voLuaOFpNzqkK2H8I(final LinkEditActivity linkEditActivity, View view) {
+    public static void m3406$r8$lambda$eUSugxv82voLuaOFpNzqkK2H8I(final LinkEditActivity linkEditActivity, View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(linkEditActivity.getParentActivity());
         builder.setMessage(LocaleController.getString(R.string.RevokeAlert));
         builder.setTitle(LocaleController.getString(R.string.RevokeLink));
@@ -852,12 +852,12 @@ public class LinkEditActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkEditActivity.m3393$r8$lambda$nxv476e8O6CIp8Aml46x7aPl4(this.f$0, tL_error, tLObject);
+                LinkEditActivity.m3401$r8$lambda$nxv476e8O6CIp8Aml46x7aPl4(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m3393$r8$lambda$nxv476e8O6CIp8Aml46x7aPl4(LinkEditActivity linkEditActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m3401$r8$lambda$nxv476e8O6CIp8Aml46x7aPl4(LinkEditActivity linkEditActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         linkEditActivity.loading = false;
         AlertDialog alertDialog = linkEditActivity.progressDialog;
         if (alertDialog != null) {
@@ -879,12 +879,12 @@ public class LinkEditActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkEditActivity.m3394$r8$lambda$PGwSLGzJxmAOdJFmFz5CoKhpew(this.f$0, tL_error, tLObject);
+                LinkEditActivity.m3402$r8$lambda$PGwSLGzJxmAOdJFmFz5CoKhpew(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m3394$r8$lambda$PGwSLGzJxmAOdJFmFz5CoKhpew(LinkEditActivity linkEditActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m3402$r8$lambda$PGwSLGzJxmAOdJFmFz5CoKhpew(LinkEditActivity linkEditActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         linkEditActivity.loading = false;
         AlertDialog alertDialog = linkEditActivity.progressDialog;
         if (alertDialog != null) {
@@ -1100,7 +1100,7 @@ public class LinkEditActivity extends BaseFragment {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                LinkEditActivity.m3399$r8$lambda$epYkJqVB7jD8xiTefNUNfxy61g(this.f$0);
+                LinkEditActivity.m3407$r8$lambda$epYkJqVB7jD8xiTefNUNfxy61g(this.f$0);
             }
 
             @Override
@@ -1140,7 +1140,7 @@ public class LinkEditActivity extends BaseFragment {
         return arrayList;
     }
 
-    public static void m3399$r8$lambda$epYkJqVB7jD8xiTefNUNfxy61g(LinkEditActivity linkEditActivity) {
+    public static void m3407$r8$lambda$epYkJqVB7jD8xiTefNUNfxy61g(LinkEditActivity linkEditActivity) {
         TextInfoPrivacyCell textInfoPrivacyCell = linkEditActivity.dividerUses;
         if (textInfoPrivacyCell != null) {
             textInfoPrivacyCell.getContext();

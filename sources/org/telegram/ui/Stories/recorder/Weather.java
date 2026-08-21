@@ -114,7 +114,7 @@ public abstract class Weather {
         final Runnable runnableFetch = fetch(location.getLatitude(), location.getLongitude(), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Weather.m4655$r8$lambda$ubN9jkSqwNZ09lyaxiXHqabpo(z, alertDialog, callback, (Weather.State) obj);
+                Weather.m4666$r8$lambda$ubN9jkSqwNZ09lyaxiXHqabpo(z, alertDialog, callback, (Weather.State) obj);
             }
         });
         if (!z || runnableFetch == null) {
@@ -128,7 +128,7 @@ public abstract class Weather {
         });
     }
 
-    public static void m4655$r8$lambda$ubN9jkSqwNZ09lyaxiXHqabpo(boolean z, AlertDialog alertDialog, Utilities.Callback callback, State state) {
+    public static void m4666$r8$lambda$ubN9jkSqwNZ09lyaxiXHqabpo(boolean z, AlertDialog alertDialog, Utilities.Callback callback, State state) {
         if (z) {
             alertDialog.dismissUnless(350L);
         }
@@ -159,7 +159,7 @@ public abstract class Weather {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                Weather.m4656$r8$lambda$zc5k0Ozww0sdCSMlUOJeTQzUs(messagesController, userArr, d, d2, iArr, connectionsManager, callback, str);
+                Weather.m4667$r8$lambda$zc5k0Ozww0sdCSMlUOJeTQzUs(messagesController, userArr, d, d2, iArr, connectionsManager, callback, str);
             }
         };
         if (userArr[0] == null) {
@@ -182,12 +182,12 @@ public abstract class Weather {
         return new Runnable() {
             @Override
             public final void run() {
-                Weather.m4654$r8$lambda$pVz5ZF43ADALZvvq5I3OLcOx2I(iArr, connectionsManager);
+                Weather.m4665$r8$lambda$pVz5ZF43ADALZvvq5I3OLcOx2I(iArr, connectionsManager);
             }
         };
     }
 
-    public static void m4656$r8$lambda$zc5k0Ozww0sdCSMlUOJeTQzUs(MessagesController messagesController, TLRPC.User[] userArr, final double d, final double d2, final int[] iArr, ConnectionsManager connectionsManager, final Utilities.Callback callback, final String str) {
+    public static void m4667$r8$lambda$zc5k0Ozww0sdCSMlUOJeTQzUs(MessagesController messagesController, TLRPC.User[] userArr, final double d, final double d2, final int[] iArr, ConnectionsManager connectionsManager, final Utilities.Callback callback, final String str) {
         TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
         tL_messages_getInlineBotResults.bot = messagesController.getInputUser(userArr[0]);
         tL_messages_getInlineBotResults.query = "";
@@ -254,7 +254,7 @@ public abstract class Weather {
         callback.run(null);
     }
 
-    public static void m4654$r8$lambda$pVz5ZF43ADALZvvq5I3OLcOx2I(int[] iArr, ConnectionsManager connectionsManager) {
+    public static void m4665$r8$lambda$pVz5ZF43ADALZvvq5I3OLcOx2I(int[] iArr, ConnectionsManager connectionsManager) {
         int i = iArr[0];
         if (i != 0) {
             connectionsManager.cancelRequest(i, true);

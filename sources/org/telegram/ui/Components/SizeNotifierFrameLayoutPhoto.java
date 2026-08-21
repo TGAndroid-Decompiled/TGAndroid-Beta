@@ -67,12 +67,12 @@ public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayo
         post(new Runnable() {
             @Override
             public final void run() {
-                SizeNotifierFrameLayoutPhoto.m2814$r8$lambda$P7SZp_2m8n1mZLvJ0vGjJ0xWr4(this.f$0, z);
+                SizeNotifierFrameLayoutPhoto.m2823$r8$lambda$P7SZp_2m8n1mZLvJ0vGjJ0xWr4(this.f$0, z);
             }
         });
     }
 
-    public static void m2814$r8$lambda$P7SZp_2m8n1mZLvJ0vGjJ0xWr4(SizeNotifierFrameLayoutPhoto sizeNotifierFrameLayoutPhoto, boolean z) {
+    public static void m2823$r8$lambda$P7SZp_2m8n1mZLvJ0vGjJ0xWr4(SizeNotifierFrameLayoutPhoto sizeNotifierFrameLayoutPhoto, boolean z) {
         SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = sizeNotifierFrameLayoutPhoto.delegate;
         if (sizeNotifierFrameLayoutDelegate != null) {
             sizeNotifierFrameLayoutDelegate.onSizeChanged(sizeNotifierFrameLayoutPhoto.keyboardHeight, z);

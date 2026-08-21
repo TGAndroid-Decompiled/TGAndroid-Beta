@@ -420,7 +420,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                 this.description.post(new Runnable() {
                     @Override
                     public final void run() {
-                        ReassignBoostBottomSheet.TopCell.m2645$r8$lambda$obDywsXXdigYdh_1vzUK2wRSoI(this.f$0, iIndexOf);
+                        ReassignBoostBottomSheet.TopCell.m2654$r8$lambda$obDywsXXdigYdh_1vzUK2wRSoI(this.f$0, iIndexOf);
                     }
                 });
             } catch (Exception e) {
@@ -439,7 +439,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             }, 220L);
         }
 
-        public static void m2645$r8$lambda$obDywsXXdigYdh_1vzUK2wRSoI(TopCell topCell, int i) {
+        public static void m2654$r8$lambda$obDywsXXdigYdh_1vzUK2wRSoI(TopCell topCell, int i) {
             topCell.getClass();
             try {
                 if (topCell.description.getLayout().getLineForOffset(i) == 0) {

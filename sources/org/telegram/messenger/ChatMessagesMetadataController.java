@@ -154,7 +154,7 @@ public class ChatMessagesMetadataController {
         this.reactionsRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getMessagesReactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChatMessagesMetadataController.m369$r8$lambda$xbfr_rJ_Vv3SlLBtnioI0_HMa8(this.f$0, tLObject, tL_error);
+                ChatMessagesMetadataController.m377$r8$lambda$xbfr_rJ_Vv3SlLBtnioI0_HMa8(this.f$0, tLObject, tL_error);
             }
         })));
         if (this.reactionsRequests.size() > 5) {
@@ -162,7 +162,7 @@ public class ChatMessagesMetadataController {
         }
     }
 
-    public static void m369$r8$lambda$xbfr_rJ_Vv3SlLBtnioI0_HMa8(ChatMessagesMetadataController chatMessagesMetadataController, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m377$r8$lambda$xbfr_rJ_Vv3SlLBtnioI0_HMa8(ChatMessagesMetadataController chatMessagesMetadataController, TLObject tLObject, TLRPC.TL_error tL_error) {
         chatMessagesMetadataController.getClass();
         if (tL_error == null) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;

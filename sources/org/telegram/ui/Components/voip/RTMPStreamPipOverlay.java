@@ -80,7 +80,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            RTMPStreamPipOverlay.m2984$r8$lambda$_Tk57sOrJpPZZCDoVxB9cVvUIA((RTMPStreamPipOverlay) obj, f);
+            RTMPStreamPipOverlay.m2993$r8$lambda$_Tk57sOrJpPZZCDoVxB9cVvUIA((RTMPStreamPipOverlay) obj, f);
         }
     });
     private static RTMPStreamPipOverlay instance = new RTMPStreamPipOverlay();
@@ -124,7 +124,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
     private Runnable dismissControlsCallback = new Runnable() {
         @Override
         public final void run() {
-            RTMPStreamPipOverlay.m2983$r8$lambda$5hWfXb7hfmxXoOt6eBAHhLIawU(this.f$0);
+            RTMPStreamPipOverlay.m2992$r8$lambda$5hWfXb7hfmxXoOt6eBAHhLIawU(this.f$0);
         }
     };
 
@@ -150,14 +150,14 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         AndroidUtilities.updateViewLayout(rTMPStreamPipOverlay.windowManager, rTMPStreamPipOverlay.contentView, layoutParams);
     }
 
-    public static void m2984$r8$lambda$_Tk57sOrJpPZZCDoVxB9cVvUIA(RTMPStreamPipOverlay rTMPStreamPipOverlay, float f) {
+    public static void m2993$r8$lambda$_Tk57sOrJpPZZCDoVxB9cVvUIA(RTMPStreamPipOverlay rTMPStreamPipOverlay, float f) {
         WindowManager.LayoutParams layoutParams = rTMPStreamPipOverlay.windowLayoutParams;
         rTMPStreamPipOverlay.pipY = f;
         layoutParams.y = (int) f;
         AndroidUtilities.updateViewLayout(rTMPStreamPipOverlay.windowManager, rTMPStreamPipOverlay.contentView, layoutParams);
     }
 
-    public static void m2983$r8$lambda$5hWfXb7hfmxXoOt6eBAHhLIawU(RTMPStreamPipOverlay rTMPStreamPipOverlay) {
+    public static void m2992$r8$lambda$5hWfXb7hfmxXoOt6eBAHhLIawU(RTMPStreamPipOverlay rTMPStreamPipOverlay) {
         rTMPStreamPipOverlay.isShowingControls = false;
         rTMPStreamPipOverlay.toggleControls(false);
         rTMPStreamPipOverlay.postedDismissControls = false;
@@ -540,7 +540,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                RTMPStreamPipOverlay.m2982$r8$lambda$3rL7lGcqh4hmab5qShhnR274jU(context, view3);
+                RTMPStreamPipOverlay.m2991$r8$lambda$3rL7lGcqh4hmab5qShhnR274jU(context, view3);
             }
         });
         this.controlsView.addView(imageView2, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, 48, 0.0f));
@@ -607,7 +607,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    RTMPStreamPipOverlay.AnonymousClass3.m2985$r8$lambda$F8PCOTp4wZhD9jX4K2MScoPeUY(this.f$0);
+                    RTMPStreamPipOverlay.AnonymousClass3.m2994$r8$lambda$F8PCOTp4wZhD9jX4K2MScoPeUY(this.f$0);
                 }
             });
             SpringForce spring = ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring();
@@ -625,7 +625,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             return true;
         }
 
-        public static void m2985$r8$lambda$F8PCOTp4wZhD9jX4K2MScoPeUY(AnonymousClass3 anonymousClass3) {
+        public static void m2994$r8$lambda$F8PCOTp4wZhD9jX4K2MScoPeUY(AnonymousClass3 anonymousClass3) {
             RTMPStreamPipOverlay.this.contentFrameLayout.invalidate();
             if (RTMPStreamPipOverlay.this.contentFrameLayout.isInLayout()) {
                 return;
@@ -721,12 +721,12 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    RTMPStreamPipOverlay.AnonymousClass8.m2986$r8$lambda$qKtX04EN3wby1G8XylIMoAAemY(this.f$0, i, i2);
+                    RTMPStreamPipOverlay.AnonymousClass8.m2995$r8$lambda$qKtX04EN3wby1G8XylIMoAAemY(this.f$0, i, i2);
                 }
             });
         }
 
-        public static void m2986$r8$lambda$qKtX04EN3wby1G8XylIMoAAemY(AnonymousClass8 anonymousClass8, int i, int i2) {
+        public static void m2995$r8$lambda$qKtX04EN3wby1G8XylIMoAAemY(AnonymousClass8 anonymousClass8, int i, int i2) {
             if (RTMPStreamPipOverlay.this.pipSource != null) {
                 RTMPStreamPipOverlay.this.pipSource.setContentRatio(i, i2);
             }
@@ -734,7 +734,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         }
     }
 
-    public static void m2982$r8$lambda$3rL7lGcqh4hmab5qShhnR274jU(Context context, View view) {
+    public static void m2991$r8$lambda$3rL7lGcqh4hmab5qShhnR274jU(Context context, View view) {
         if (VoIPService.getSharedInstance() != null) {
             Intent action = new Intent(context, (Class<?>) LaunchActivity.class).setAction("voip_chat");
             action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());

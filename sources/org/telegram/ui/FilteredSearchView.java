@@ -327,7 +327,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                FilteredSearchView.m3164$r8$lambda$MqR83hxs2tPOACNjTbZC6WEEMA(this.f$0, view, i);
+                FilteredSearchView.m3173$r8$lambda$MqR83hxs2tPOACNjTbZC6WEEMA(this.f$0, view, i);
             }
         });
         recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
@@ -397,7 +397,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         checkUi_floatingDateView();
     }
 
-    public static void m3164$r8$lambda$MqR83hxs2tPOACNjTbZC6WEEMA(FilteredSearchView filteredSearchView, View view, int i) {
+    public static void m3173$r8$lambda$MqR83hxs2tPOACNjTbZC6WEEMA(FilteredSearchView filteredSearchView, View view, int i) {
         filteredSearchView.getClass();
         if (view instanceof SharedDocumentCell) {
             filteredSearchView.onItemClick(i, view, ((SharedDocumentCell) view).getMessage(), 0);
@@ -781,12 +781,12 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         ConnectionsManager.getInstance(i).sendRequestTyped(obj, new Utilities.Callback2() {
             @Override
             public final void run(Object obj2, Object obj3) {
-                FilteredSearchView.m3165$r8$lambda$pNiV7h7hy8WrMs6XcZUUAiYPTs(this.f$0, i, str, i2, z, mediaFilterData, j, j3, arrayList6, arrayList5, (TLRPC.messages_Messages) obj2, (TLRPC.TL_error) obj3);
+                FilteredSearchView.m3174$r8$lambda$pNiV7h7hy8WrMs6XcZUUAiYPTs(this.f$0, i, str, i2, z, mediaFilterData, j, j3, arrayList6, arrayList5, (TLRPC.messages_Messages) obj2, (TLRPC.TL_error) obj3);
             }
         });
     }
 
-    public static void m3165$r8$lambda$pNiV7h7hy8WrMs6XcZUUAiYPTs(final FilteredSearchView filteredSearchView, final int i, final String str, final int i2, final boolean z, final FiltersView.MediaFilterData mediaFilterData, final long j, final long j2, final ArrayList arrayList, final ArrayList arrayList2, final TLRPC.messages_Messages messages_messages, final TLRPC.TL_error tL_error) {
+    public static void m3174$r8$lambda$pNiV7h7hy8WrMs6XcZUUAiYPTs(final FilteredSearchView filteredSearchView, final int i, final String str, final int i2, final boolean z, final FiltersView.MediaFilterData mediaFilterData, final long j, final long j2, final ArrayList arrayList, final ArrayList arrayList2, final TLRPC.messages_Messages messages_messages, final TLRPC.TL_error tL_error) {
         filteredSearchView.getClass();
         final ArrayList arrayList3 = new ArrayList();
         if (tL_error == null) {
@@ -800,12 +800,12 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FilteredSearchView.m3163$r8$lambda$2ug52XQSTS8sNwyuwDe18gqb8A(this.f$0, i2, tL_error, messages_messages, i, z, str, arrayList3, mediaFilterData, j, j2, arrayList, arrayList2);
+                FilteredSearchView.m3172$r8$lambda$2ug52XQSTS8sNwyuwDe18gqb8A(this.f$0, i2, tL_error, messages_messages, i, z, str, arrayList3, mediaFilterData, j, j2, arrayList, arrayList2);
             }
         });
     }
 
-    public static void m3163$r8$lambda$2ug52XQSTS8sNwyuwDe18gqb8A(FilteredSearchView filteredSearchView, int i, TLRPC.TL_error tL_error, TLRPC.messages_Messages messages_messages, int i2, boolean z, String str, ArrayList arrayList, FiltersView.MediaFilterData mediaFilterData, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
+    public static void m3172$r8$lambda$2ug52XQSTS8sNwyuwDe18gqb8A(FilteredSearchView filteredSearchView, int i, TLRPC.TL_error tL_error, TLRPC.messages_Messages messages_messages, int i2, boolean z, String str, ArrayList arrayList, FiltersView.MediaFilterData mediaFilterData, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
         String string;
         if (i != filteredSearchView.requestIndex) {
             return;

@@ -1235,7 +1235,7 @@ public class LocaleController {
                         applyRemoteLanguage(localeInfo2, localeInfo2.baseLangCode, false, i, new Runnable() {
                             @Override
                             public final void run() {
-                                LocaleController.m499$r8$lambda$_SX1GPVneAdJmQcxjn_ezFAswY(this.f$0, i);
+                                LocaleController.m505$r8$lambda$_SX1GPVneAdJmQcxjn_ezFAswY(this.f$0, i);
                             }
                         });
                     } else {
@@ -1259,7 +1259,7 @@ public class LocaleController {
         }
     }
 
-    public static void m499$r8$lambda$_SX1GPVneAdJmQcxjn_ezFAswY(LocaleController localeController, int i) {
+    public static void m505$r8$lambda$_SX1GPVneAdJmQcxjn_ezFAswY(LocaleController localeController, int i) {
         localeController.checkingUpdateForCurrentRemoteLocale = false;
         localeController.checkPatchLangpack(i);
     }
@@ -1320,13 +1320,13 @@ public class LocaleController {
             reloadCurrentRemoteLocale(i, null, true, new Runnable() {
                 @Override
                 public final void run() {
-                    LocaleController.m500$r8$lambda$c4tRQr7mPx9q66ff7sDGVMRxiU(this.f$0, currentLanguageName, runnable);
+                    LocaleController.m506$r8$lambda$c4tRQr7mPx9q66ff7sDGVMRxiU(this.f$0, currentLanguageName, runnable);
                 }
             });
         }
     }
 
-    public static void m500$r8$lambda$c4tRQr7mPx9q66ff7sDGVMRxiU(final LocaleController localeController, final String str, final Runnable runnable) {
+    public static void m506$r8$lambda$c4tRQr7mPx9q66ff7sDGVMRxiU(final LocaleController localeController, final String str, final Runnable runnable) {
         localeController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -3668,7 +3668,7 @@ public class LocaleController {
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                LocaleController.m498$r8$lambda$M8xnqQcNw5oaI4ZxKjhICarw5Y(iArr, iArr2, runnable);
+                LocaleController.m504$r8$lambda$M8xnqQcNw5oaI4ZxKjhICarw5Y(iArr, iArr2, runnable);
             }
         };
         if (z) {
@@ -3686,7 +3686,7 @@ public class LocaleController {
                     ConnectionsManager.getInstance(i).sendRequest(tL_langpack_getDifference, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            LocaleController.m501$r8$lambda$vr1ezyi6vtH49prbyo8hxfft_o(this.f$0, localeInfo, i, runnable2, tLObject, tL_error);
+                            LocaleController.m507$r8$lambda$vr1ezyi6vtH49prbyo8hxfft_o(this.f$0, localeInfo, i, runnable2, tLObject, tL_error);
                         }
                     }, 8);
                 }
@@ -3716,7 +3716,7 @@ public class LocaleController {
             return ConnectionsManager.getInstance(i).sendRequest(tL_langpack_getDifference2, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    LocaleController.m497$r8$lambda$445YH_ybb9s4GpnVpLvIHRNVs(this.f$0, localeInfo, i, runnable2, tLObject, tL_error);
+                    LocaleController.m503$r8$lambda$445YH_ybb9s4GpnVpLvIHRNVs(this.f$0, localeInfo, i, runnable2, tLObject, tL_error);
                 }
             }, 8);
         }
@@ -3735,7 +3735,7 @@ public class LocaleController {
         }, 8);
     }
 
-    public static void m498$r8$lambda$M8xnqQcNw5oaI4ZxKjhICarw5Y(int[] iArr, int[] iArr2, Runnable runnable) {
+    public static void m504$r8$lambda$M8xnqQcNw5oaI4ZxKjhICarw5Y(int[] iArr, int[] iArr2, Runnable runnable) {
         int i = iArr[0] + 1;
         iArr[0] = i;
         if (i < iArr2[0] || runnable == null) {
@@ -3749,7 +3749,7 @@ public class LocaleController {
         localeController.saveRemoteLocaleStrings(localeInfo, (TLRPC.TL_langPackDifference) tLObject, i, runnable);
     }
 
-    public static void m501$r8$lambda$vr1ezyi6vtH49prbyo8hxfft_o(final LocaleController localeController, final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m507$r8$lambda$vr1ezyi6vtH49prbyo8hxfft_o(final LocaleController localeController, final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         localeController.getClass();
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -3778,7 +3778,7 @@ public class LocaleController {
         localeController.saveRemoteLocaleStrings(localeInfo, (TLRPC.TL_langPackDifference) tLObject, i, runnable);
     }
 
-    public static void m497$r8$lambda$445YH_ybb9s4GpnVpLvIHRNVs(final LocaleController localeController, final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m503$r8$lambda$445YH_ybb9s4GpnVpLvIHRNVs(final LocaleController localeController, final LocaleInfo localeInfo, final int i, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         localeController.getClass();
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {

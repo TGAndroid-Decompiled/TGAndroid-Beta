@@ -546,7 +546,7 @@ public class PieChartView extends StackLinearChartView {
             ValueAnimator valueAnimatorCreateAnimator = createAnimator(pieChartViewData.drawingPart, f4 == 0.0f ? 0.0f : this.values[i] / f4, new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PieChartView.m1584$r8$lambda$ehJqdBgwdULrwxdWHpFfWVZY4c(this.f$0, pieChartViewData, valueAnimator);
+                    PieChartView.m1590$r8$lambda$ehJqdBgwdULrwxdWHpFfWVZY4c(this.f$0, pieChartViewData, valueAnimator);
                 }
             });
             pieChartViewData.animator = valueAnimatorCreateAnimator;
@@ -555,7 +555,7 @@ public class PieChartView extends StackLinearChartView {
         }
     }
 
-    public static void m1584$r8$lambda$ehJqdBgwdULrwxdWHpFfWVZY4c(PieChartView pieChartView, PieChartViewData pieChartViewData, ValueAnimator valueAnimator) {
+    public static void m1590$r8$lambda$ehJqdBgwdULrwxdWHpFfWVZY4c(PieChartView pieChartView, PieChartViewData pieChartViewData, ValueAnimator valueAnimator) {
         pieChartView.getClass();
         pieChartViewData.drawingPart = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         pieChartView.invalidate();

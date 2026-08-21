@@ -812,12 +812,12 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        EmojiBottomSheet.GifPage.GifAdapter.m4482$r8$lambda$m70fc89SLsHwkMGQ5YmeSPWcXs(this.f$0, tLObject, str, z);
+                        EmojiBottomSheet.GifPage.GifAdapter.m4493$r8$lambda$m70fc89SLsHwkMGQ5YmeSPWcXs(this.f$0, tLObject, str, z);
                     }
                 });
             }
 
-            public static void m4482$r8$lambda$m70fc89SLsHwkMGQ5YmeSPWcXs(GifAdapter gifAdapter, TLObject tLObject, String str, boolean z) {
+            public static void m4493$r8$lambda$m70fc89SLsHwkMGQ5YmeSPWcXs(GifAdapter gifAdapter, TLObject tLObject, String str, boolean z) {
                 if (gifAdapter.requesting) {
                     if (tLObject instanceof TLRPC.messages_BotResults) {
                         TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
@@ -1548,7 +1548,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 mediaDataController.getEmojiSuggestions(currentKeyboardLanguage, adapter.query, false, new MediaDataController.KeywordResultCallback() {
                     @Override
                     public final void run(ArrayList arrayList, String str2) {
-                        EmojiBottomSheet.Page.Adapter.m4484$r8$lambda$jiaHJzsw3THTTCXfmN9EkUeTuc(this.f$0, str, mediaDataController, arrayList, str2);
+                        EmojiBottomSheet.Page.Adapter.m4495$r8$lambda$jiaHJzsw3THTTCXfmN9EkUeTuc(this.f$0, str, mediaDataController, arrayList, str2);
                     }
                 }, null, false, false, false, true, 50, false);
             }
@@ -1586,7 +1586,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 }
             }
 
-            public static void m4484$r8$lambda$jiaHJzsw3THTTCXfmN9EkUeTuc(Adapter adapter, String str, MediaDataController mediaDataController, ArrayList arrayList, String str2) {
+            public static void m4495$r8$lambda$jiaHJzsw3THTTCXfmN9EkUeTuc(Adapter adapter, String str, MediaDataController mediaDataController, ArrayList arrayList, String str2) {
                 ArrayList<TLRPC.Document> arrayList2;
                 ArrayList<TLRPC.Document> arrayList3;
                 ArrayList arrayList4;
@@ -3021,13 +3021,13 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                     SearchField.this.clear.animate().scaleX(SearchField.this.clearVisible ? 1.0f : 0.7f).scaleY(SearchField.this.clearVisible ? 1.0f : 0.7f).alpha(SearchField.this.clearVisible ? 1.0f : 0.0f).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            EmojiBottomSheet.SearchField.AnonymousClass3.m4486$r8$lambda$HVu_4fiP12sQRbtRdV9r4Ixis(this.f$0);
+                            EmojiBottomSheet.SearchField.AnonymousClass3.m4497$r8$lambda$HVu_4fiP12sQRbtRdV9r4Ixis(this.f$0);
                         }
                     }).setInterpolator(cubicBezierInterpolator).setDuration(320L).setStartDelay(SearchField.this.clearVisible ? 240L : 0L).start();
                 }
             }
 
-            public static void m4486$r8$lambda$HVu_4fiP12sQRbtRdV9r4Ixis(AnonymousClass3 anonymousClass3) {
+            public static void m4497$r8$lambda$HVu_4fiP12sQRbtRdV9r4Ixis(AnonymousClass3 anonymousClass3) {
                 if (SearchField.this.clearVisible) {
                     return;
                 }
@@ -3103,7 +3103,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 this.categoriesListView.setOnScrollIntoOccupiedWidth(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        EmojiBottomSheet.SearchField.m4485$r8$lambda$P2IBWlJOiWkQI9v6VG3H5_PMmc(this.f$0, (Integer) obj);
+                        EmojiBottomSheet.SearchField.m4496$r8$lambda$P2IBWlJOiWkQI9v6VG3H5_PMmc(this.f$0, (Integer) obj);
                     }
                 });
                 this.categoriesListView.setOnCategoryClick(new Utilities.Callback() {
@@ -3117,7 +3117,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             }
         }
 
-        public static void m4485$r8$lambda$P2IBWlJOiWkQI9v6VG3H5_PMmc(SearchField searchField, Integer num) {
+        public static void m4496$r8$lambda$P2IBWlJOiWkQI9v6VG3H5_PMmc(SearchField searchField, Integer num) {
             searchField.editText.animate().cancel();
             searchField.editText.setTranslationX(-Math.max(0, num.intValue()));
             searchField.updateButton();
@@ -3416,7 +3416,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                     Weather.fetch(false, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            EmojiBottomSheet.StoryWidgetsCell.m4487$r8$lambda$zJDOyGzYFYu1dQhx2ZNgGXjy5Y(this.f$0, buttonArr, (Weather.State) obj);
+                            EmojiBottomSheet.StoryWidgetsCell.m4498$r8$lambda$zJDOyGzYFYu1dQhx2ZNgGXjy5Y(this.f$0, buttonArr, (Weather.State) obj);
                         }
                     });
                     charSequence = spannableStringBuilder;
@@ -3437,7 +3437,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             }
         }
 
-        public static void m4487$r8$lambda$zJDOyGzYFYu1dQhx2ZNgGXjy5Y(StoryWidgetsCell storyWidgetsCell, Button[] buttonArr, Weather.State state) {
+        public static void m4498$r8$lambda$zJDOyGzYFYu1dQhx2ZNgGXjy5Y(StoryWidgetsCell storyWidgetsCell, Button[] buttonArr, Weather.State state) {
             String temperature;
             storyWidgetsCell.getClass();
             Button button = buttonArr[0];
@@ -3600,7 +3600,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 Collections.sort(this.visibleReactions, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return EmojiBottomSheet.StoryWidgetsCell.ReactionWidget.m4488$r8$lambda$M0r5PWt2OPKJuCVT6lv8Fy7TH8((ReactionsLayoutInBubble.VisibleReaction) obj, (ReactionsLayoutInBubble.VisibleReaction) obj2);
+                        return EmojiBottomSheet.StoryWidgetsCell.ReactionWidget.m4499$r8$lambda$M0r5PWt2OPKJuCVT6lv8Fy7TH8((ReactionsLayoutInBubble.VisibleReaction) obj, (ReactionsLayoutInBubble.VisibleReaction) obj2);
                     }
                 });
                 if (!this.visibleReactions.isEmpty()) {
@@ -3609,7 +3609,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 this.progressToNext.set(1.0f, true);
             }
 
-            public static int m4488$r8$lambda$M0r5PWt2OPKJuCVT6lv8Fy7TH8(ReactionsLayoutInBubble.VisibleReaction visibleReaction, ReactionsLayoutInBubble.VisibleReaction visibleReaction2) {
+            public static int m4499$r8$lambda$M0r5PWt2OPKJuCVT6lv8Fy7TH8(ReactionsLayoutInBubble.VisibleReaction visibleReaction, ReactionsLayoutInBubble.VisibleReaction visibleReaction2) {
                 String str = visibleReaction.emojicon;
                 int i = 0;
                 int i2 = (str == null || !str.equals("❤")) ? 0 : -1;
@@ -3683,12 +3683,12 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            EmojiBottomSheet.StoryWidgetsCell.ReactionWidget.AnonymousClass1.m4489$r8$lambda$gIPXHtWXvt5ZaZvGbBqUUd9mtM(this.f$0);
+                            EmojiBottomSheet.StoryWidgetsCell.ReactionWidget.AnonymousClass1.m4500$r8$lambda$gIPXHtWXvt5ZaZvGbBqUUd9mtM(this.f$0);
                         }
                     });
                 }
 
-                public static void m4489$r8$lambda$gIPXHtWXvt5ZaZvGbBqUUd9mtM(AnonymousClass1 anonymousClass1) {
+                public static void m4500$r8$lambda$gIPXHtWXvt5ZaZvGbBqUUd9mtM(AnonymousClass1 anonymousClass1) {
                     if (ReactionWidget.this.visibleReactions.isEmpty()) {
                         return;
                     }

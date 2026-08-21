@@ -923,7 +923,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                             valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    ChatListItemAnimator.m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr2, viewHolder, valueAnimator);
+                                    ChatListItemAnimator.m5029$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr2, viewHolder, valueAnimator);
                                 }
                             });
                             Animator[] animatorArr = new Animator[1];
@@ -1071,7 +1071,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                         valueAnimatorOfFloat9.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ChatListItemAnimator.m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr3, viewHolder, valueAnimator);
+                                ChatListItemAnimator.m5029$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr3, viewHolder, valueAnimator);
                             }
                         });
                         Animator[] animatorArr2 = new Animator[1];
@@ -1249,7 +1249,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                         valueAnimatorOfFloat17.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                ChatListItemAnimator.m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr4, viewHolder, valueAnimator);
+                                ChatListItemAnimator.m5029$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr4, viewHolder, valueAnimator);
                             }
                         });
                         Animator[] animatorArr3 = new Animator[1];
@@ -1412,7 +1412,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
                     valueAnimatorOfFloat114.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatListItemAnimator.m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr5, viewHolder, valueAnimator);
+                            ChatListItemAnimator.m5029$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(moveInfoExtended, transitionParams2, z4, f4, f5, chatMessageCell, iArr5, viewHolder, valueAnimator);
                         }
                     });
                     Animator[] animatorArr4 = new Animator[1];
@@ -1582,7 +1582,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         this.animators.put(viewHolder, animatorSet);
     }
 
-    public static void m5018$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(MoveInfoExtended moveInfoExtended, ChatMessageCell.TransitionParams transitionParams, boolean z, float f, float f2, ChatMessageCell chatMessageCell, int[] iArr, RecyclerView.ViewHolder viewHolder, ValueAnimator valueAnimator) {
+    public static void m5029$r8$lambda$om2k4wYSnG7ii6RhLEuKuITF6s(MoveInfoExtended moveInfoExtended, ChatMessageCell.TransitionParams transitionParams, boolean z, float f, float f2, ChatMessageCell chatMessageCell, int[] iArr, RecyclerView.ViewHolder viewHolder, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float f3 = 1.0f - fFloatValue;
         float f4 = (moveInfoExtended.imageX * f3) + (transitionParams.animateToImageX * fFloatValue);
@@ -2257,7 +2257,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
             thanosEffect.animate(view, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatListItemAnimator.m5016$r8$lambda$0Fw2DeKdCu1fL7NSC9LfaHUiJ8(this.f$0, view, viewHolder);
+                    ChatListItemAnimator.m5027$r8$lambda$0Fw2DeKdCu1fL7NSC9LfaHUiJ8(this.f$0, view, viewHolder);
                 }
             });
             this.thanosViews.add(view);
@@ -2286,7 +2286,7 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         this.recyclerListView.stopScroll();
     }
 
-    public static void m5016$r8$lambda$0Fw2DeKdCu1fL7NSC9LfaHUiJ8(ChatListItemAnimator chatListItemAnimator, View view, RecyclerView.ViewHolder viewHolder) {
+    public static void m5027$r8$lambda$0Fw2DeKdCu1fL7NSC9LfaHUiJ8(ChatListItemAnimator chatListItemAnimator, View view, RecyclerView.ViewHolder viewHolder) {
         chatListItemAnimator.getClass();
         view.setVisibility(0);
         if (chatListItemAnimator.mRemoveAnimations.remove(viewHolder)) {
@@ -2312,14 +2312,14 @@ public abstract class ChatListItemAnimator extends DefaultItemAnimator {
         thanosEffect.animateGroup(arrayList2, new Runnable() {
             @Override
             public final void run() {
-                ChatListItemAnimator.m5017$r8$lambda$Gr_Ym_CfugNbnWQr848cwBmg(this.f$0, arrayList2, arrayList);
+                ChatListItemAnimator.m5028$r8$lambda$Gr_Ym_CfugNbnWQr848cwBmg(this.f$0, arrayList2, arrayList);
             }
         });
         this.thanosViews.add((View) arrayList2.get(0));
         this.recyclerListView.stopScroll();
     }
 
-    public static void m5017$r8$lambda$Gr_Ym_CfugNbnWQr848cwBmg(ChatListItemAnimator chatListItemAnimator, ArrayList arrayList, ArrayList arrayList2) {
+    public static void m5028$r8$lambda$Gr_Ym_CfugNbnWQr848cwBmg(ChatListItemAnimator chatListItemAnimator, ArrayList arrayList, ArrayList arrayList2) {
         chatListItemAnimator.getClass();
         for (int i = 0; i < arrayList.size(); i++) {
             ((View) arrayList.get(i)).setVisibility(0);

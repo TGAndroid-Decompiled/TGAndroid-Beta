@@ -253,12 +253,12 @@ public class Camera2Session {
         this.handler.post(new Runnable() {
             @Override
             public final void run() {
-                Camera2Session.m1095$r8$lambda$9XvuwtWfJlNKuRGR6prp1HeyQ(this.f$0, surfaceTexture);
+                Camera2Session.m1101$r8$lambda$9XvuwtWfJlNKuRGR6prp1HeyQ(this.f$0, surfaceTexture);
             }
         });
     }
 
-    public static void m1095$r8$lambda$9XvuwtWfJlNKuRGR6prp1HeyQ(Camera2Session camera2Session, SurfaceTexture surfaceTexture) {
+    public static void m1101$r8$lambda$9XvuwtWfJlNKuRGR6prp1HeyQ(Camera2Session camera2Session, SurfaceTexture surfaceTexture) {
         camera2Session.surfaceTexture = surfaceTexture;
         if (surfaceTexture != null) {
             surfaceTexture.setDefaultBufferSize(camera2Session.getPreviewWidth(), camera2Session.getPreviewHeight());

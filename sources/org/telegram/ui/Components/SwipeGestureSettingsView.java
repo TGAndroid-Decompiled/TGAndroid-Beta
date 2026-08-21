@@ -99,7 +99,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
         this.picker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public final String format(int i3) {
-                return SwipeGestureSettingsView.m2863$r8$lambda$wmjRpPKY79yrqKxg2ozJCgEyaA(this.f$0, i3);
+                return SwipeGestureSettingsView.m2872$r8$lambda$wmjRpPKY79yrqKxg2ozJCgEyaA(this.f$0, i3);
             }
         });
         this.picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -128,7 +128,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
         this.currentIconValue = this.picker.getValue();
     }
 
-    public static String m2863$r8$lambda$wmjRpPKY79yrqKxg2ozJCgEyaA(SwipeGestureSettingsView swipeGestureSettingsView, int i) {
+    public static String m2872$r8$lambda$wmjRpPKY79yrqKxg2ozJCgEyaA(SwipeGestureSettingsView swipeGestureSettingsView, int i) {
         return swipeGestureSettingsView.strings[i];
     }
 
@@ -163,7 +163,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    SwipeGestureSettingsView.m2862$r8$lambda$YgpkfuTuKiC_0DdKcX7KXwRWws(this.f$0);
+                    SwipeGestureSettingsView.m2871$r8$lambda$YgpkfuTuKiC_0DdKcX7KXwRWws(this.f$0);
                 }
             };
             this.swapIconRunnable = runnable;
@@ -171,7 +171,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
         }
     }
 
-    public static void m2862$r8$lambda$YgpkfuTuKiC_0DdKcX7KXwRWws(SwipeGestureSettingsView swipeGestureSettingsView) {
+    public static void m2871$r8$lambda$YgpkfuTuKiC_0DdKcX7KXwRWws(SwipeGestureSettingsView swipeGestureSettingsView) {
         swipeGestureSettingsView.swapIconRunnable = null;
         swipeGestureSettingsView.swapIcons();
     }

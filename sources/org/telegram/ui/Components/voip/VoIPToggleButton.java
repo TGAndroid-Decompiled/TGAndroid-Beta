@@ -115,14 +115,14 @@ public class VoIPToggleButton extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIPToggleButton.m3001$r8$lambda$LHVBRsfkg8ePZAAg_eXxZyuiL8(this.f$0, valueAnimator2);
+                VoIPToggleButton.m3010$r8$lambda$LHVBRsfkg8ePZAAg_eXxZyuiL8(this.f$0, valueAnimator2);
             }
         });
         this.pressedScaleAnimator.setDuration(150L);
         this.pressedScaleAnimator.start();
     }
 
-    public static void m3001$r8$lambda$LHVBRsfkg8ePZAAg_eXxZyuiL8(VoIPToggleButton voIPToggleButton, ValueAnimator valueAnimator) {
+    public static void m3010$r8$lambda$LHVBRsfkg8ePZAAg_eXxZyuiL8(VoIPToggleButton voIPToggleButton, ValueAnimator valueAnimator) {
         voIPToggleButton.getClass();
         voIPToggleButton.pressedScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         voIPToggleButton.invalidate();

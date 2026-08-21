@@ -231,12 +231,12 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PrivacyControlActivity.m3778$r8$lambda$MyVz_gUaYJK0DY9jkoLlJ4NK0(this.f$0, photoSize2, inputFile, inputFile2, d, videoSize, photoSize);
+                PrivacyControlActivity.m3786$r8$lambda$MyVz_gUaYJK0DY9jkoLlJ4NK0(this.f$0, photoSize2, inputFile, inputFile2, d, videoSize, photoSize);
             }
         });
     }
 
-    public static void m3778$r8$lambda$MyVz_gUaYJK0DY9jkoLlJ4NK0(final PrivacyControlActivity privacyControlActivity, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2) {
+    public static void m3786$r8$lambda$MyVz_gUaYJK0DY9jkoLlJ4NK0(final PrivacyControlActivity privacyControlActivity, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2) {
         privacyControlActivity.avatarForRest = photoSize;
         privacyControlActivity.avatarForRestPhoto = null;
         privacyControlActivity.updateAvatarForRestInfo();
@@ -261,7 +261,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             privacyControlActivity.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    PrivacyControlActivity.m3787$r8$lambda$j9VDgoHtgIbKgCa1HqJmqh_ao(this.f$0, tLObject, tL_error);
+                    PrivacyControlActivity.m3795$r8$lambda$j9VDgoHtgIbKgCa1HqJmqh_ao(this.f$0, tLObject, tL_error);
                 }
             });
             TLRPC.TL_user tL_user = new TLRPC.TL_user();
@@ -277,17 +277,17 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         privacyControlActivity.updateRows(false);
     }
 
-    public static void m3787$r8$lambda$j9VDgoHtgIbKgCa1HqJmqh_ao(final PrivacyControlActivity privacyControlActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3795$r8$lambda$j9VDgoHtgIbKgCa1HqJmqh_ao(final PrivacyControlActivity privacyControlActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
         privacyControlActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PrivacyControlActivity.m3783$r8$lambda$Dr_mPl1PENi7sYJpVrN6Q_Ok(this.f$0, tLObject);
+                PrivacyControlActivity.m3791$r8$lambda$Dr_mPl1PENi7sYJpVrN6Q_Ok(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m3783$r8$lambda$Dr_mPl1PENi7sYJpVrN6Q_Ok(PrivacyControlActivity privacyControlActivity, TLObject tLObject) {
+    public static void m3791$r8$lambda$Dr_mPl1PENi7sYJpVrN6Q_Ok(PrivacyControlActivity privacyControlActivity, TLObject tLObject) {
         privacyControlActivity.getClass();
         if (tLObject != null) {
             TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
@@ -1110,7 +1110,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             AlertDialog alertDialogCreate = AlertsCreator.createSimpleAlert(privacyControlActivity.getContext(), LocaleController.getString(R.string.RemovePublicPhoto), LocaleController.getString(R.string.RemovePhotoForRestDescription), LocaleController.getString(R.string.Remove), new Runnable() {
                 @Override
                 public final void run() {
-                    PrivacyControlActivity.m3777$r8$lambda$CBJcJz3GHHub6KjfwHcZRfD8o(this.f$0);
+                    PrivacyControlActivity.m3785$r8$lambda$CBJcJz3GHHub6KjfwHcZRfD8o(this.f$0);
                 }
             }, null).create();
             alertDialogCreate.show();
@@ -1131,7 +1131,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }, new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        PrivacyControlActivity.m3780$r8$lambda$55DDHOC5HVNGKSyIH386R4DX6I(this.f$0, dialogInterface);
+                        PrivacyControlActivity.m3788$r8$lambda$55DDHOC5HVNGKSyIH386R4DX6I(this.f$0, dialogInterface);
                     }
                 }, 0);
                 privacyControlActivity.cameraDrawable.setCurrentFrame(0);
@@ -1238,7 +1238,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             groupCreateActivity.setDelegate(new GroupCreateActivity.GroupCreateActivityDelegate() {
                 @Override
                 public final void didSelectUsers(boolean z4, boolean z5, ArrayList arrayList2) {
-                    PrivacyControlActivity.m3786$r8$lambda$ZKI5f00qZPe0vv6KYbP_JjyKU(this.f$0, i, z3, z4, z5, arrayList2);
+                    PrivacyControlActivity.m3794$r8$lambda$ZKI5f00qZPe0vv6KYbP_JjyKU(this.f$0, i, z3, z4, z5, arrayList2);
                 }
             });
             groupCreateActivity.setShowDiscardConfirm(true);
@@ -1380,7 +1380,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         }
     }
 
-    public static void m3777$r8$lambda$CBJcJz3GHHub6KjfwHcZRfD8o(PrivacyControlActivity privacyControlActivity) {
+    public static void m3785$r8$lambda$CBJcJz3GHHub6KjfwHcZRfD8o(PrivacyControlActivity privacyControlActivity) {
         TLRPC.Photo photo;
         privacyControlActivity.avatarForRest = null;
         privacyControlActivity.avatarForRestPhoto = null;
@@ -1405,7 +1405,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         NotificationCenter.getInstance(privacyControlActivity.currentAccount).postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
     }
 
-    public static void m3780$r8$lambda$55DDHOC5HVNGKSyIH386R4DX6I(PrivacyControlActivity privacyControlActivity, DialogInterface dialogInterface) {
+    public static void m3788$r8$lambda$55DDHOC5HVNGKSyIH386R4DX6I(PrivacyControlActivity privacyControlActivity, DialogInterface dialogInterface) {
         if (!privacyControlActivity.imageUpdater.isUploadingImage()) {
             privacyControlActivity.cameraDrawable.setCustomEndFrame(86);
             privacyControlActivity.setAvatarCell.imageView.playAnimation();
@@ -1424,7 +1424,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         privacyControlActivity.presentFragment(new PremiumPreviewFragment("settings"));
     }
 
-    public static void m3786$r8$lambda$ZKI5f00qZPe0vv6KYbP_JjyKU(PrivacyControlActivity privacyControlActivity, int i, boolean z, boolean z2, boolean z3, ArrayList arrayList) {
+    public static void m3794$r8$lambda$ZKI5f00qZPe0vv6KYbP_JjyKU(PrivacyControlActivity privacyControlActivity, int i, boolean z, boolean z2, boolean z3, ArrayList arrayList) {
         int i2 = 0;
         if (i == privacyControlActivity.neverShareRow) {
             privacyControlActivity.currentMinus = arrayList;
@@ -1452,12 +1452,12 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         BulletinFactory.of(this).createSimpleBulletin(R.raw.star_premium_2, LocaleController.getString(R.string.OptionPremiumRequiredTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.OptionPremiumRequiredMessage)), LocaleController.getString(R.string.OptionPremiumRequiredButton), new Runnable() {
             @Override
             public final void run() {
-                PrivacyControlActivity.m3784$r8$lambda$Pgy6KQsE7YBYBCkdr5d8rGWPkk(this.f$0);
+                PrivacyControlActivity.m3792$r8$lambda$Pgy6KQsE7YBYBCkdr5d8rGWPkk(this.f$0);
             }
         }).show();
     }
 
-    public static void m3784$r8$lambda$Pgy6KQsE7YBYBCkdr5d8rGWPkk(PrivacyControlActivity privacyControlActivity) {
+    public static void m3792$r8$lambda$Pgy6KQsE7YBYBCkdr5d8rGWPkk(PrivacyControlActivity privacyControlActivity) {
         privacyControlActivity.getClass();
         privacyControlActivity.presentFragment(new PremiumPreviewFragment("noncontacts"));
     }
@@ -1698,7 +1698,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(setprivacy2, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PrivacyControlActivity.m3788$r8$lambda$mbiKKJvVOJacwsbyxmBjLPozjk(this.f$0, atomicInteger, tLObject, tL_error);
+                PrivacyControlActivity.m3796$r8$lambda$mbiKKJvVOJacwsbyxmBjLPozjk(this.f$0, atomicInteger, tLObject, tL_error);
             }
         }, 2);
         if (this.rulesType == 0 && this.selectedReadValue != this.currentReadValue) {
@@ -1747,7 +1747,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             getConnectionsManager().sendRequest(setglobalprivacysettings3, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    PrivacyControlActivity.m3781$r8$lambda$7j6bYzfKjm_TuYGjJu_Zdwobnw(this.f$0, globalPrivacySettings7, setglobalprivacysettings3, atomicInteger, tLObject, tL_error);
+                    PrivacyControlActivity.m3789$r8$lambda$7j6bYzfKjm_TuYGjJu_Zdwobnw(this.f$0, globalPrivacySettings7, setglobalprivacysettings3, atomicInteger, tLObject, tL_error);
                 }
             });
         }
@@ -1797,12 +1797,12 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PrivacyControlActivity.m3779$r8$lambda$36edSkqQzAVnw9kCvOHWYjFOHs(this.f$0, tL_error, zArr, globalPrivacySettings, setglobalprivacysettings);
+                PrivacyControlActivity.m3787$r8$lambda$36edSkqQzAVnw9kCvOHWYjFOHs(this.f$0, tL_error, zArr, globalPrivacySettings, setglobalprivacysettings);
             }
         });
     }
 
-    public static void m3779$r8$lambda$36edSkqQzAVnw9kCvOHWYjFOHs(PrivacyControlActivity privacyControlActivity, TLRPC.TL_error tL_error, boolean[] zArr, TLRPC.GlobalPrivacySettings globalPrivacySettings, TL_account.setGlobalPrivacySettings setglobalprivacysettings) {
+    public static void m3787$r8$lambda$36edSkqQzAVnw9kCvOHWYjFOHs(PrivacyControlActivity privacyControlActivity, TLRPC.TL_error tL_error, boolean[] zArr, TLRPC.GlobalPrivacySettings globalPrivacySettings, TL_account.setGlobalPrivacySettings setglobalprivacysettings) {
         if (tL_error != null) {
             privacyControlActivity.showErrorAlert();
             return;
@@ -1853,7 +1853,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         BulletinFactory.of(privacyControlActivity).showForError(tL_error);
     }
 
-    public static void m3788$r8$lambda$mbiKKJvVOJacwsbyxmBjLPozjk(final PrivacyControlActivity privacyControlActivity, final AtomicInteger atomicInteger, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3796$r8$lambda$mbiKKJvVOJacwsbyxmBjLPozjk(final PrivacyControlActivity privacyControlActivity, final AtomicInteger atomicInteger, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         privacyControlActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1884,12 +1884,12 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PrivacyControlActivity.m3785$r8$lambda$TQhsgqIQvOKVcdyWhynBo7yKNU(this.f$0, globalPrivacySettings, setglobalprivacysettings, atomicInteger);
+                PrivacyControlActivity.m3793$r8$lambda$TQhsgqIQvOKVcdyWhynBo7yKNU(this.f$0, globalPrivacySettings, setglobalprivacysettings, atomicInteger);
             }
         });
     }
 
-    public static void m3785$r8$lambda$TQhsgqIQvOKVcdyWhynBo7yKNU(PrivacyControlActivity privacyControlActivity, TLRPC.GlobalPrivacySettings globalPrivacySettings, TL_account.setGlobalPrivacySettings setglobalprivacysettings, AtomicInteger atomicInteger) {
+    public static void m3793$r8$lambda$TQhsgqIQvOKVcdyWhynBo7yKNU(PrivacyControlActivity privacyControlActivity, TLRPC.GlobalPrivacySettings globalPrivacySettings, TL_account.setGlobalPrivacySettings setglobalprivacysettings, AtomicInteger atomicInteger) {
         privacyControlActivity.getClass();
         boolean z = setglobalprivacysettings.settings.hide_read_marks;
         privacyControlActivity.currentReadValue = z;
@@ -1899,7 +1899,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         }
     }
 
-    public static void m3781$r8$lambda$7j6bYzfKjm_TuYGjJu_Zdwobnw(final PrivacyControlActivity privacyControlActivity, final TLRPC.GlobalPrivacySettings globalPrivacySettings, final TL_account.setGlobalPrivacySettings setglobalprivacysettings, final AtomicInteger atomicInteger, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3789$r8$lambda$7j6bYzfKjm_TuYGjJu_Zdwobnw(final PrivacyControlActivity privacyControlActivity, final TLRPC.GlobalPrivacySettings globalPrivacySettings, final TL_account.setGlobalPrivacySettings setglobalprivacysettings, final AtomicInteger atomicInteger, TLObject tLObject, TLRPC.TL_error tL_error) {
         privacyControlActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -3219,12 +3219,12 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PrivacyControlActivity.ListAdapter.m3789$r8$lambda$xAomkG8hWWYzEKzSLTVV82vecY(this.f$0, tLObject, userFull, tL_birthday, tL_error);
+                    PrivacyControlActivity.ListAdapter.m3797$r8$lambda$xAomkG8hWWYzEKzSLTVV82vecY(this.f$0, tLObject, userFull, tL_birthday, tL_error);
                 }
             });
         }
 
-        public static void m3789$r8$lambda$xAomkG8hWWYzEKzSLTVV82vecY(ListAdapter listAdapter, TLObject tLObject, TLRPC.UserFull userFull, TL_account.TL_birthday tL_birthday, TLRPC.TL_error tL_error) {
+        public static void m3797$r8$lambda$xAomkG8hWWYzEKzSLTVV82vecY(ListAdapter listAdapter, TLObject tLObject, TLRPC.UserFull userFull, TL_account.TL_birthday tL_birthday, TLRPC.TL_error tL_error) {
             String str;
             listAdapter.getClass();
             if (tLObject instanceof TLRPC.TL_boolTrue) {

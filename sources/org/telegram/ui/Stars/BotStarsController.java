@@ -147,13 +147,13 @@ public class BotStarsController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.m4079$r8$lambda$KbPi69xXbiMIuc4szqdvonZMps(this.f$0, j, tLObject, tL_error);
+                BotStarsController.m4088$r8$lambda$KbPi69xXbiMIuc4szqdvonZMps(this.f$0, j, tLObject, tL_error);
             }
         });
         return tL_payments_starsRevenueStats;
     }
 
-    public static void m4079$r8$lambda$KbPi69xXbiMIuc4szqdvonZMps(final BotStarsController botStarsController, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4088$r8$lambda$KbPi69xXbiMIuc4szqdvonZMps(final BotStarsController botStarsController, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
         botStarsController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -199,12 +199,12 @@ public class BotStarsController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsController.m4078$r8$lambda$FdHsq8Iu5m9EPD6mu5CD8juE8o(this.f$0, tLObject, j);
+                BotStarsController.m4087$r8$lambda$FdHsq8Iu5m9EPD6mu5CD8juE8o(this.f$0, tLObject, j);
             }
         });
     }
 
-    public static void m4078$r8$lambda$FdHsq8Iu5m9EPD6mu5CD8juE8o(BotStarsController botStarsController, TLObject tLObject, long j) {
+    public static void m4087$r8$lambda$FdHsq8Iu5m9EPD6mu5CD8juE8o(BotStarsController botStarsController, TLObject tLObject, long j) {
         botStarsController.getClass();
         if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
             botStarsController.tonStats.put(Long.valueOf(j), (TLRPC.TL_payments_starsRevenueStats) tLObject);
@@ -304,12 +304,12 @@ public class BotStarsController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.m4081$r8$lambda$q3J6_s2NaHwFlpUTn6KH4gphc(this.f$0, transactionsState, i, j, tLObject, tL_error);
+                BotStarsController.m4090$r8$lambda$q3J6_s2NaHwFlpUTn6KH4gphc(this.f$0, transactionsState, i, j, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4081$r8$lambda$q3J6_s2NaHwFlpUTn6KH4gphc(final BotStarsController botStarsController, final TransactionsState transactionsState, final int i, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4090$r8$lambda$q3J6_s2NaHwFlpUTn6KH4gphc(final BotStarsController botStarsController, final TransactionsState transactionsState, final int i, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
         botStarsController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -408,12 +408,12 @@ public class BotStarsController {
             this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getconnectedstarrefbots, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BotStarsController.ChannelConnectedBots.m4083$r8$lambda$fgKXC2HLOUs81OUqtZ3pKxGP60(this.f$0, tLObject, tL_error);
+                    BotStarsController.ChannelConnectedBots.m4092$r8$lambda$fgKXC2HLOUs81OUqtZ3pKxGP60(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m4083$r8$lambda$fgKXC2HLOUs81OUqtZ3pKxGP60(final ChannelConnectedBots channelConnectedBots, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4092$r8$lambda$fgKXC2HLOUs81OUqtZ3pKxGP60(final ChannelConnectedBots channelConnectedBots, final TLObject tLObject, TLRPC.TL_error tL_error) {
             channelConnectedBots.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -682,12 +682,12 @@ public class BotStarsController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.m4082$r8$lambda$wYbKLxwHOuOEzwU_smPizHhfac(this.f$0, tLObject, tL_error);
+                BotStarsController.m4091$r8$lambda$wYbKLxwHOuOEzwU_smPizHhfac(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4082$r8$lambda$wYbKLxwHOuOEzwU_smPizHhfac(final BotStarsController botStarsController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4091$r8$lambda$wYbKLxwHOuOEzwU_smPizHhfac(final BotStarsController botStarsController, final TLObject tLObject, TLRPC.TL_error tL_error) {
         botStarsController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -754,7 +754,7 @@ public class BotStarsController {
         final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getconnectedstarrefbot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.m4080$r8$lambda$_74SYN3orOOKGVp21cGi7a16Q(this.f$0, alertDialog, j2, callback, tLObject, tL_error);
+                BotStarsController.m4089$r8$lambda$_74SYN3orOOKGVp21cGi7a16Q(this.f$0, alertDialog, j2, callback, tLObject, tL_error);
             }
         });
         alertDialog.setCanCancel(true);
@@ -767,17 +767,17 @@ public class BotStarsController {
         alertDialog.showDelayed(200L);
     }
 
-    public static void m4080$r8$lambda$_74SYN3orOOKGVp21cGi7a16Q(final BotStarsController botStarsController, final AlertDialog alertDialog, final long j, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4089$r8$lambda$_74SYN3orOOKGVp21cGi7a16Q(final BotStarsController botStarsController, final AlertDialog alertDialog, final long j, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
         botStarsController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsController.m4077$r8$lambda$2F6I1a3kZP6dTRCIxezZ4FPDsg(this.f$0, alertDialog, tLObject, j, callback);
+                BotStarsController.m4086$r8$lambda$2F6I1a3kZP6dTRCIxezZ4FPDsg(this.f$0, alertDialog, tLObject, j, callback);
             }
         });
     }
 
-    public static void m4077$r8$lambda$2F6I1a3kZP6dTRCIxezZ4FPDsg(BotStarsController botStarsController, AlertDialog alertDialog, TLObject tLObject, long j, Utilities.Callback callback) {
+    public static void m4086$r8$lambda$2F6I1a3kZP6dTRCIxezZ4FPDsg(BotStarsController botStarsController, AlertDialog alertDialog, TLObject tLObject, long j, Utilities.Callback callback) {
         botStarsController.getClass();
         alertDialog.dismiss();
         if (tLObject instanceof TL_payments.connectedStarRefBots) {

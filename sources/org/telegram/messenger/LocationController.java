@@ -177,13 +177,13 @@ public class LocationController extends BaseController implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LocationController.m509$r8$lambda$u7Vfvf943owbh4DLfD1W3PzS5s(this.f$0);
+                LocationController.m515$r8$lambda$u7Vfvf943owbh4DLfD1W3PzS5s(this.f$0);
             }
         });
         loadSharingLocations();
     }
 
-    public static void m509$r8$lambda$u7Vfvf943owbh4DLfD1W3PzS5s(LocationController locationController) {
+    public static void m515$r8$lambda$u7Vfvf943owbh4DLfD1W3PzS5s(LocationController locationController) {
         LocationController locationController2 = locationController.getAccountInstance().getLocationController();
         locationController.getNotificationCenter().addObserver(locationController2, NotificationCenter.didReceiveNewMessages);
         locationController.getNotificationCenter().addObserver(locationController2, NotificationCenter.messagesDeleted);
@@ -294,7 +294,7 @@ public class LocationController extends BaseController implements NotificationCe
             ApplicationLoader.getLocationServiceProvider().checkLocationSettings(this.locationRequest, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    LocationController.m502$r8$lambda$fMydX1IjI9g5Ojys97tWpHM0(this.f$0, (Integer) obj);
+                    LocationController.m508$r8$lambda$fMydX1IjI9g5Ojys97tWpHM0(this.f$0, (Integer) obj);
                 }
             });
         } catch (Throwable th) {
@@ -302,7 +302,7 @@ public class LocationController extends BaseController implements NotificationCe
         }
     }
 
-    public static void m502$r8$lambda$fMydX1IjI9g5Ojys97tWpHM0(final LocationController locationController, final Integer num) {
+    public static void m508$r8$lambda$fMydX1IjI9g5Ojys97tWpHM0(final LocationController locationController, final Integer num) {
         locationController.getClass();
         int iIntValue = num.intValue();
         if (iIntValue == 0) {
@@ -667,12 +667,12 @@ public class LocationController extends BaseController implements NotificationCe
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                LocationController.m508$r8$lambda$khMNgORJn3Oaqu2rzEN5zjk9c(this.f$0);
+                LocationController.m514$r8$lambda$khMNgORJn3Oaqu2rzEN5zjk9c(this.f$0);
             }
         });
     }
 
-    public static void m508$r8$lambda$khMNgORJn3Oaqu2rzEN5zjk9c(LocationController locationController) {
+    public static void m514$r8$lambda$khMNgORJn3Oaqu2rzEN5zjk9c(LocationController locationController) {
         locationController.locationEndWatchTime = 0L;
         locationController.requests.clear();
         locationController.sharingLocationsMap.clear();
@@ -933,12 +933,12 @@ public class LocationController extends BaseController implements NotificationCe
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                LocationController.m503$r8$lambda$00GcIy1SsXUYRIfX834XEVps3E(this.f$0, j);
+                LocationController.m509$r8$lambda$00GcIy1SsXUYRIfX834XEVps3E(this.f$0, j);
             }
         });
     }
 
-    public static void m503$r8$lambda$00GcIy1SsXUYRIfX834XEVps3E(final LocationController locationController, long j) {
+    public static void m509$r8$lambda$00GcIy1SsXUYRIfX834XEVps3E(final LocationController locationController, long j) {
         final SharingLocationInfo sharingLocationInfo = (SharingLocationInfo) locationController.sharingLocationsMap.get(j);
         locationController.sharingLocationsMap.remove(j);
         if (sharingLocationInfo != null) {
@@ -1036,7 +1036,7 @@ public class LocationController extends BaseController implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LocationController.m507$r8$lambda$U8Its0TOahEEH3WaaPh4B0PAYk(this.f$0);
+                LocationController.m513$r8$lambda$U8Its0TOahEEH3WaaPh4B0PAYk(this.f$0);
             }
         });
     }
@@ -1049,7 +1049,7 @@ public class LocationController extends BaseController implements NotificationCe
         }
     }
 
-    public static void m507$r8$lambda$U8Its0TOahEEH3WaaPh4B0PAYk(LocationController locationController) {
+    public static void m513$r8$lambda$U8Its0TOahEEH3WaaPh4B0PAYk(LocationController locationController) {
         locationController.sharingLocationsUI.clear();
         locationController.sharingLocationsMapUI.clear();
         locationController.stopService();
@@ -1145,12 +1145,12 @@ public class LocationController extends BaseController implements NotificationCe
         getConnectionsManager().sendRequest(tL_messages_getRecentLocations, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LocationController.m504$r8$lambda$1zXew2v6e3YngrFa22Zg8CAY(this.f$0, j, tLObject, tL_error);
+                LocationController.m510$r8$lambda$1zXew2v6e3YngrFa22Zg8CAY(this.f$0, j, tLObject, tL_error);
             }
         });
     }
 
-    public static void m504$r8$lambda$1zXew2v6e3YngrFa22Zg8CAY(final LocationController locationController, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m510$r8$lambda$1zXew2v6e3YngrFa22Zg8CAY(final LocationController locationController, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
         locationController.getClass();
         if (tL_error != null) {
             return;
@@ -2104,7 +2104,7 @@ public class LocationController extends BaseController implements NotificationCe
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                LocationController.m506$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
+                                LocationController.m512$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
                             }
                         });
                     }
@@ -2150,7 +2150,7 @@ public class LocationController extends BaseController implements NotificationCe
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    LocationController.m506$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
+                                    LocationController.m512$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
                                 }
                             });
                         }
@@ -2201,14 +2201,14 @@ public class LocationController extends BaseController implements NotificationCe
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    LocationController.m506$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
+                                    LocationController.m512$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
                                 }
                             });
                         }
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                LocationController.m506$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
+                                LocationController.m512$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
                             }
                         });
                     }
@@ -2233,7 +2233,7 @@ public class LocationController extends BaseController implements NotificationCe
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LocationController.m506$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
+                        LocationController.m512$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
                     }
                 });
             }
@@ -2245,12 +2245,12 @@ public class LocationController extends BaseController implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LocationController.m506$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
+                LocationController.m512$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(locationFetchCallback, str2, str, r5, r6, location);
             }
         });
     }
 
-    public static void m506$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(LocationFetchCallback locationFetchCallback, String str, String str2, TLRPC.TL_messageMediaVenue tL_messageMediaVenue, TLRPC.TL_messageMediaVenue tL_messageMediaVenue2, Location location) {
+    public static void m512$r8$lambda$8phspgl9XnVUhiI1NM3sbFuOEw(LocationFetchCallback locationFetchCallback, String str, String str2, TLRPC.TL_messageMediaVenue tL_messageMediaVenue, TLRPC.TL_messageMediaVenue tL_messageMediaVenue2, Location location) {
         callbacks.remove(locationFetchCallback);
         locationFetchCallback.onLocationAddressAvailable(str, str2, tL_messageMediaVenue, tL_messageMediaVenue2, location);
     }

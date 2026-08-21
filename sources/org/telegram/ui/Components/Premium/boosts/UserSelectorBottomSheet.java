@@ -193,12 +193,12 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.m2652$r8$lambda$2JLkkUMBNB7wbbEXFBb_eqtjCM(this.f$0, tLObject);
+                UserSelectorBottomSheet.m2661$r8$lambda$2JLkkUMBNB7wbbEXFBb_eqtjCM(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m2652$r8$lambda$2JLkkUMBNB7wbbEXFBb_eqtjCM(UserSelectorBottomSheet userSelectorBottomSheet, TLObject tLObject) {
+    public static void m2661$r8$lambda$2JLkkUMBNB7wbbEXFBb_eqtjCM(UserSelectorBottomSheet userSelectorBottomSheet, TLObject tLObject) {
         TLObject userOrChat;
         TLObject userOrChat2;
         userSelectorBottomSheet.searchResult.clear();
@@ -406,7 +406,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    UserSelectorBottomSheet.m2651$r8$lambda$QCy2m6YxxkXfCM8aJZsv7DVncM(this.f$0, view2);
+                    UserSelectorBottomSheet.m2660$r8$lambda$QCy2m6YxxkXfCM8aJZsv7DVncM(this.f$0, view2);
                 }
             });
             selectorBtnCell.addView(linearLayout, LayoutHelper.createLinear(-2, -2, 17, 0, 0, 0, 8));
@@ -514,7 +514,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         selectorSearchCell.updateSpans(false, hashSet, new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.m2655$r8$lambda$OVnsOhLy9pDu8q_q2MqWFXG1og(this.f$0);
+                UserSelectorBottomSheet.m2664$r8$lambda$OVnsOhLy9pDu8q_q2MqWFXG1og(this.f$0);
             }
         }, null);
         selectorHeaderCell.setText(getTitle());
@@ -539,7 +539,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public static void m2651$r8$lambda$QCy2m6YxxkXfCM8aJZsv7DVncM(UserSelectorBottomSheet userSelectorBottomSheet, View view) {
+    public static void m2660$r8$lambda$QCy2m6YxxkXfCM8aJZsv7DVncM(UserSelectorBottomSheet userSelectorBottomSheet, View view) {
         CheckBox2 checkBox2 = userSelectorBottomSheet.videoCheckbox;
         checkBox2.setChecked(!checkBox2.isChecked(), true);
     }
@@ -650,7 +650,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             userSelectorBottomSheet.searchField.updateSpans(true, userSelectorBottomSheet.selectedIds, new Runnable() {
                 @Override
                 public final void run() {
-                    UserSelectorBottomSheet.m2650$r8$lambda$5XBYufr0uXpSzhX_pYwoMOYcnI(this.f$0);
+                    UserSelectorBottomSheet.m2659$r8$lambda$5XBYufr0uXpSzhX_pYwoMOYcnI(this.f$0);
                 }
             }, null);
             userSelectorBottomSheet.updateList(true, true);
@@ -658,7 +658,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public static void m2650$r8$lambda$5XBYufr0uXpSzhX_pYwoMOYcnI(UserSelectorBottomSheet userSelectorBottomSheet) {
+    public static void m2659$r8$lambda$5XBYufr0uXpSzhX_pYwoMOYcnI(UserSelectorBottomSheet userSelectorBottomSheet) {
         userSelectorBottomSheet.checkEditTextHint();
         userSelectorBottomSheet.updateList(true, false);
     }
@@ -711,7 +711,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         userSelectorBottomSheet.updateList(true, false);
     }
 
-    public static void m2655$r8$lambda$OVnsOhLy9pDu8q_q2MqWFXG1og(UserSelectorBottomSheet userSelectorBottomSheet) {
+    public static void m2664$r8$lambda$OVnsOhLy9pDu8q_q2MqWFXG1og(UserSelectorBottomSheet userSelectorBottomSheet) {
         userSelectorBottomSheet.checkEditTextHint();
         userSelectorBottomSheet.updateList(true, false);
     }
@@ -945,7 +945,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             return item.withCall(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    UserSelectorBottomSheet.m2658$r8$lambda$cCklPGnT7INa8urQ_glO51JQvA(this.f$0, j, view);
+                    UserSelectorBottomSheet.m2667$r8$lambda$cCklPGnT7INa8urQ_glO51JQvA(this.f$0, j, view);
                 }
             }, new View.OnClickListener() {
                 @Override
@@ -957,7 +957,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         return item.withOptions(openOptions(item.user));
     }
 
-    public static void m2658$r8$lambda$cCklPGnT7INa8urQ_glO51JQvA(UserSelectorBottomSheet userSelectorBottomSheet, long j, View view) {
+    public static void m2667$r8$lambda$cCklPGnT7INa8urQ_glO51JQvA(UserSelectorBottomSheet userSelectorBottomSheet, long j, View view) {
         userSelectorBottomSheet.selectedIds.add(Long.valueOf(j));
         Utilities.Callback2 callback2 = userSelectorBottomSheet.onUsersSelectedListener;
         if (callback2 != null) {
@@ -1202,7 +1202,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 }).add(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new Runnable() {
                     @Override
                     public final void run() {
-                        UserSelectorBottomSheet.m2654$r8$lambda$KTm_RzEGg85h2YWkNV_TbOqsVI(userSelectorBottomSheet, user2);
+                        UserSelectorBottomSheet.m2663$r8$lambda$KTm_RzEGg85h2YWkNV_TbOqsVI(userSelectorBottomSheet, user2);
                     }
                 }).show();
             }
@@ -1233,7 +1233,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         baseFragment.presentFragment(new ChatActivity(bundle2));
     }
 
-    public static void m2654$r8$lambda$KTm_RzEGg85h2YWkNV_TbOqsVI(UserSelectorBottomSheet userSelectorBottomSheet, TLRPC.User user) {
+    public static void m2663$r8$lambda$KTm_RzEGg85h2YWkNV_TbOqsVI(UserSelectorBottomSheet userSelectorBottomSheet, TLRPC.User user) {
         if (user == null) {
             userSelectorBottomSheet.getClass();
             return;
@@ -1383,7 +1383,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         AlertsCreator.createBirthdayPickerDialog(getContext(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                UserSelectorBottomSheet.m2657$r8$lambda$XvVa3k7_RvHz84AThKMa6JQQuM(this.f$0, (TL_account.TL_birthday) obj);
+                UserSelectorBottomSheet.m2666$r8$lambda$XvVa3k7_RvHz84AThKMa6JQQuM(this.f$0, (TL_account.TL_birthday) obj);
             }
         }, new Runnable() {
             @Override
@@ -1393,7 +1393,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }, false, false, this.resourcesProvider).show();
     }
 
-    public static void m2657$r8$lambda$XvVa3k7_RvHz84AThKMa6JQQuM(final UserSelectorBottomSheet userSelectorBottomSheet, TL_account.TL_birthday tL_birthday) {
+    public static void m2666$r8$lambda$XvVa3k7_RvHz84AThKMa6JQQuM(final UserSelectorBottomSheet userSelectorBottomSheet, TL_account.TL_birthday tL_birthday) {
         userSelectorBottomSheet.getClass();
         TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
         updatebirthday.flags |= 1;

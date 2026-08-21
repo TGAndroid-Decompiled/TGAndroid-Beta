@@ -128,7 +128,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         this.someReactions.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatReactionsEditActivity.m1870$r8$lambda$BQBjVZd855ZrdewemEcL6dcKOk(this.f$0, view);
+                ChatReactionsEditActivity.m1876$r8$lambda$BQBjVZd855ZrdewemEcL6dcKOk(this.f$0, view);
             }
         });
         this.disableReactions.setOnClickListener(new View.OnClickListener() {
@@ -260,7 +260,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         });
     }
 
-    public static void m1870$r8$lambda$BQBjVZd855ZrdewemEcL6dcKOk(final ChatReactionsEditActivity chatReactionsEditActivity, View view) {
+    public static void m1876$r8$lambda$BQBjVZd855ZrdewemEcL6dcKOk(final ChatReactionsEditActivity chatReactionsEditActivity, View view) {
         chatReactionsEditActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

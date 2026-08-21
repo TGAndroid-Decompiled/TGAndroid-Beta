@@ -142,12 +142,12 @@ public class RichQuoteAuthorCell extends RichBlockCell implements Theme.Colorabl
             richEditText.post(new Runnable() {
                 @Override
                 public final void run() {
-                    RichQuoteAuthorCell.AnonymousClass1.m5004$r8$lambda$lsMMXJGkHCkQyF1Y50cn_0jhYY(this.f$0, richEditText, i2, selectionHelper, i);
+                    RichQuoteAuthorCell.AnonymousClass1.m5015$r8$lambda$lsMMXJGkHCkQyF1Y50cn_0jhYY(this.f$0, richEditText, i2, selectionHelper, i);
                 }
             });
         }
 
-        public static void m5004$r8$lambda$lsMMXJGkHCkQyF1Y50cn_0jhYY(AnonymousClass1 anonymousClass1, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2) {
+        public static void m5015$r8$lambda$lsMMXJGkHCkQyF1Y50cn_0jhYY(AnonymousClass1 anonymousClass1, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2) {
             anonymousClass1.getClass();
             if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd()) {
                 return;

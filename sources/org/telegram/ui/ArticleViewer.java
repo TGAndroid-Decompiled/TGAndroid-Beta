@@ -1765,7 +1765,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                    return ArticleViewer.m1323$r8$lambda$KP5gqrhtudlBM4w0StRXQ50PlY(this.f$0, view2, motionEvent);
+                    return ArticleViewer.m1329$r8$lambda$KP5gqrhtudlBM4w0StRXQ50PlY(this.f$0, view2, motionEvent);
                 }
             });
             this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
@@ -1802,7 +1802,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public final void onDismiss() {
-                    ArticleViewer.m1325$r8$lambda$OlGvX7s8Os5CzIwvkIoT1MDAgE(this.f$0);
+                    ArticleViewer.m1331$r8$lambda$OlGvX7s8Os5CzIwvkIoT1MDAgE(this.f$0);
                 }
             });
         }
@@ -1817,7 +1817,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         this.popupWindow.startAnimation();
     }
 
-    public static boolean m1323$r8$lambda$KP5gqrhtudlBM4w0StRXQ50PlY(ArticleViewer articleViewer, View view, MotionEvent motionEvent) {
+    public static boolean m1329$r8$lambda$KP5gqrhtudlBM4w0StRXQ50PlY(ArticleViewer articleViewer, View view, MotionEvent motionEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         articleViewer.getClass();
         if (motionEvent.getActionMasked() != 0 || (actionBarPopupWindow = articleViewer.popupWindow) == null || !actionBarPopupWindow.isShowing()) {
@@ -1854,7 +1854,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         articleViewer.popupWindow.dismiss(true);
     }
 
-    public static void m1325$r8$lambda$OlGvX7s8Os5CzIwvkIoT1MDAgE(ArticleViewer articleViewer) {
+    public static void m1331$r8$lambda$OlGvX7s8Os5CzIwvkIoT1MDAgE(ArticleViewer articleViewer) {
         View view = articleViewer.pressedLinkOwnerView;
         if (view != null) {
             articleViewer.pressedLinkOwnerLayout = null;
@@ -4349,7 +4349,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         final Utilities.Callback0Return callback0Return = new Utilities.Callback0Return() {
             @Override
             public final Object run() {
-                return ArticleViewer.m1321$r8$lambda$HaPNdsnbfAIWZKi0V6IisLz0Qo(this.f$0, str, zArr, progress);
+                return ArticleViewer.m1327$r8$lambda$HaPNdsnbfAIWZKi0V6IisLz0Qo(this.f$0, str, zArr, progress);
             }
         };
         final int i = this.lastReqId + 1;
@@ -4375,7 +4375,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
     }
 
-    public static Boolean m1321$r8$lambda$HaPNdsnbfAIWZKi0V6IisLz0Qo(final ArticleViewer articleViewer, String str, boolean[] zArr, final Browser.Progress progress) {
+    public static Boolean m1327$r8$lambda$HaPNdsnbfAIWZKi0V6IisLz0Qo(final ArticleViewer articleViewer, String str, boolean[] zArr, final Browser.Progress progress) {
         articleViewer.getClass();
         if (!Browser.isInternalUri(Uri.parse(str), zArr)) {
             return Boolean.FALSE;
@@ -4384,7 +4384,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             progress.onEnd(new Runnable() {
                 @Override
                 public final void run() {
-                    ArticleViewer.m1312$r8$lambda$Dh1TtKkYZfQl4vd3QtYe4vkaas(this.f$0, progress);
+                    ArticleViewer.m1318$r8$lambda$Dh1TtKkYZfQl4vd3QtYe4vkaas(this.f$0, progress);
                 }
             });
         } else {
@@ -4397,7 +4397,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         return Boolean.TRUE;
     }
 
-    public static void m1312$r8$lambda$Dh1TtKkYZfQl4vd3QtYe4vkaas(ArticleViewer articleViewer, Browser.Progress progress) {
+    public static void m1318$r8$lambda$Dh1TtKkYZfQl4vd3QtYe4vkaas(ArticleViewer articleViewer, Browser.Progress progress) {
         Sheet sheet = articleViewer.sheet;
         if (sheet != null) {
             sheet.dismiss(true);
@@ -4412,12 +4412,12 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.m1329$r8$lambda$YeZS7Z1m7b__vQJuTZuqioQ754(this.f$0, i, progress, tLObject, str, callback0Return, tL_messages_getWebPage);
+                ArticleViewer.m1335$r8$lambda$YeZS7Z1m7b__vQJuTZuqioQ754(this.f$0, i, progress, tLObject, str, callback0Return, tL_messages_getWebPage);
             }
         });
     }
 
-    public static void m1329$r8$lambda$YeZS7Z1m7b__vQJuTZuqioQ754(ArticleViewer articleViewer, int i, Browser.Progress progress, TLObject tLObject, String str, Utilities.Callback0Return callback0Return, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) {
+    public static void m1335$r8$lambda$YeZS7Z1m7b__vQJuTZuqioQ754(ArticleViewer articleViewer, int i, Browser.Progress progress, TLObject tLObject, String str, Utilities.Callback0Return callback0Return, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) {
         if (articleViewer.openUrlReqId == 0 || i != articleViewer.lastReqId) {
             return;
         }
@@ -4893,7 +4893,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         this.lineProgressTickRunnable = new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.m1313$r8$lambda$PkB_OWpgEv53u5Z50kBAuyAkzo(this.f$0);
+                ArticleViewer.m1319$r8$lambda$PkB_OWpgEv53u5Z50kBAuyAkzo(this.f$0);
             }
         };
         this.actionBar.backButton.setOnClickListener(new View.OnClickListener() {
@@ -4911,13 +4911,13 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         this.actionBar.setMenuListener(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ArticleViewer.m1331$r8$lambda$oyenaJiIEBdqpn1ucVVCSlM34(this.f$0, activity, (Integer) obj);
+                ArticleViewer.m1337$r8$lambda$oyenaJiIEBdqpn1ucVVCSlM34(this.f$0, activity, (Integer) obj);
             }
         });
         this.actionBar.forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ArticleViewer.m1326$r8$lambda$Q9ttjUaz5PtHMFJdnACPzhBG1E(this.f$0, view);
+                ArticleViewer.m1332$r8$lambda$Q9ttjUaz5PtHMFJdnACPzhBG1E(this.f$0, view);
             }
         });
         FrameLayout frameLayout5 = new FrameLayout(this.parentActivity) {
@@ -4981,7 +4981,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         this.searchDownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ArticleViewer.m1318$r8$lambda$6cHVSwocU6x8FF8j8fxqM_KyWE(this.f$0, view);
+                ArticleViewer.m1324$r8$lambda$6cHVSwocU6x8FF8j8fxqM_KyWE(this.f$0, view);
             }
         });
         this.searchDownButton.setContentDescription(LocaleController.getString(R.string.AccDescrSearchPrev));
@@ -5223,7 +5223,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 addressBarList.setCurrent(favicon, title, TextUtils.isEmpty(strMagic2tonsite) ? "about:blank" : strMagic2tonsite, new Runnable() {
                     @Override
                     public final void run() {
-                        ArticleViewer.m1322$r8$lambda$JoDetxThDveIF_uf0TiV_KFOFY(this.f$0, strMagic2tonsite);
+                        ArticleViewer.m1328$r8$lambda$JoDetxThDveIF_uf0TiV_KFOFY(this.f$0, strMagic2tonsite);
                     }
                 }, new Utilities.Callback() {
                     @Override
@@ -5245,7 +5245,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             articleViewer.actionBar.showAddress("", new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ArticleViewer.m1327$r8$lambda$RYC3ysSAvYmUl4WmMfR7yjiIGg(pageLayout, activity, (String) obj);
+                    ArticleViewer.m1333$r8$lambda$RYC3ysSAvYmUl4WmMfR7yjiIGg(pageLayout, activity, (String) obj);
                 }
             });
             return;
@@ -5264,7 +5264,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         pageLayout.listView.smoothScrollToPosition(0);
     }
 
-    public static void m1322$r8$lambda$JoDetxThDveIF_uf0TiV_KFOFY(ArticleViewer articleViewer, String str) {
+    public static void m1328$r8$lambda$JoDetxThDveIF_uf0TiV_KFOFY(ArticleViewer articleViewer, String str) {
         EditTextBoldCursor editTextBoldCursor = articleViewer.actionBar.addressEditText;
         if (TextUtils.isEmpty(str)) {
             str = "about:blank";
@@ -5323,7 +5323,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         BulletinFactory.of(pageLayout.webViewContainer, articleViewer.getResourcesProvider()).createCopyLinkBulletin().show(true);
     }
 
-    public static void m1327$r8$lambda$RYC3ysSAvYmUl4WmMfR7yjiIGg(PageLayout pageLayout, Activity activity, String str) {
+    public static void m1333$r8$lambda$RYC3ysSAvYmUl4WmMfR7yjiIGg(PageLayout pageLayout, Activity activity, String str) {
         if (TextUtils.isEmpty(str) || pageLayout.getWebView() == null) {
             return;
         }
@@ -5350,7 +5350,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
     }
 
-    public static void m1313$r8$lambda$PkB_OWpgEv53u5Z50kBAuyAkzo(ArticleViewer articleViewer) {
+    public static void m1319$r8$lambda$PkB_OWpgEv53u5Z50kBAuyAkzo(ArticleViewer articleViewer) {
         float currentProgress = 0.7f - articleViewer.actionBar.lineProgressView.getCurrentProgress();
         if (currentProgress > 0.0f) {
             float f = currentProgress < 0.25f ? 0.01f : 0.02f;
@@ -5546,7 +5546,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 articleViewer.checkScrollAnimated(new Runnable() {
                     @Override
                     public final void run() {
-                        ArticleViewer.m1333$r8$lambda$xnv36_4Ug1kvNf8_3DxTwoJzaA(this.f$0, itemOptionsMakeOptions, rotation);
+                        ArticleViewer.m1339$r8$lambda$xnv36_4Ug1kvNf8_3DxTwoJzaA(this.f$0, itemOptionsMakeOptions, rotation);
                     }
                 });
                 return true;
@@ -5561,7 +5561,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
     }
 
-    public static void m1333$r8$lambda$xnv36_4Ug1kvNf8_3DxTwoJzaA(final ArticleViewer articleViewer, ItemOptions itemOptions, final float f) {
+    public static void m1339$r8$lambda$xnv36_4Ug1kvNf8_3DxTwoJzaA(final ArticleViewer articleViewer, ItemOptions itemOptions, final float f) {
         articleViewer.actionBar.backButtonDrawable.setRotation(0.0f, true);
         itemOptions.setOnDismiss(new Runnable() {
             @Override
@@ -5572,7 +5572,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         itemOptions.show();
     }
 
-    public static void m1331$r8$lambda$oyenaJiIEBdqpn1ucVVCSlM34(final ArticleViewer articleViewer, Activity activity, Integer num) {
+    public static void m1337$r8$lambda$oyenaJiIEBdqpn1ucVVCSlM34(final ArticleViewer articleViewer, Activity activity, Integer num) {
         WebInstantView.Loader loader;
         final String url;
         File file;
@@ -5751,7 +5751,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 articleViewer.fontCells[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ArticleViewer.m1316$r8$lambda$1klKANibvfE4ityBW1DxeIGiM(this.f$0, view);
+                        ArticleViewer.m1322$r8$lambda$1klKANibvfE4ityBW1DxeIGiM(this.f$0, view);
                     }
                 });
                 linearLayout.addView(articleViewer.fontCells[i], LayoutHelper.createLinear(-1, 50));
@@ -5802,7 +5802,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
     }
 
-    public static void m1316$r8$lambda$1klKANibvfE4ityBW1DxeIGiM(ArticleViewer articleViewer, View view) {
+    public static void m1322$r8$lambda$1klKANibvfE4ityBW1DxeIGiM(ArticleViewer articleViewer, View view) {
         articleViewer.getClass();
         int iIntValue = ((Integer) view.getTag()).intValue();
         articleViewer.selectedFont = iIntValue;
@@ -5823,7 +5823,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
     }
 
-    public static void m1326$r8$lambda$Q9ttjUaz5PtHMFJdnACPzhBG1E(ArticleViewer articleViewer, View view) {
+    public static void m1332$r8$lambda$Q9ttjUaz5PtHMFJdnACPzhBG1E(ArticleViewer articleViewer, View view) {
         Sheet sheet = articleViewer.sheet;
         if (sheet != null) {
             sheet.dismiss(true);
@@ -5848,7 +5848,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         articleViewer.scrollToSearchIndex(articleViewer.currentSearchIndex - 1);
     }
 
-    public static void m1318$r8$lambda$6cHVSwocU6x8FF8j8fxqM_KyWE(ArticleViewer articleViewer, View view) {
+    public static void m1324$r8$lambda$6cHVSwocU6x8FF8j8fxqM_KyWE(ArticleViewer articleViewer, View view) {
         if (articleViewer.pages[0].isWeb()) {
             if (articleViewer.pages[0].getWebView() != null) {
                 articleViewer.pages[0].getWebView().findNext(true);
@@ -6119,12 +6119,12 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.m1332$r8$lambda$pzxBP4TjcG84s42arZ7LA2mvRY(this.f$0, arrayList, map, str, i);
+                ArticleViewer.m1338$r8$lambda$pzxBP4TjcG84s42arZ7LA2mvRY(this.f$0, arrayList, map, str, i);
             }
         });
     }
 
-    public static void m1332$r8$lambda$pzxBP4TjcG84s42arZ7LA2mvRY(final ArticleViewer articleViewer, ArrayList arrayList, HashMap map, final String str, final int i) {
+    public static void m1338$r8$lambda$pzxBP4TjcG84s42arZ7LA2mvRY(final ArticleViewer articleViewer, ArrayList arrayList, HashMap map, final String str, final int i) {
         String lowerCase;
         articleViewer.getClass();
         final ArrayList arrayList2 = new ArrayList();
@@ -6550,7 +6550,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ArticleViewer.m1315$r8$lambda$xP_ZCFtcze5LOXHZJJAkmqEh0U(this.f$0, animatorSet);
+                        ArticleViewer.m1321$r8$lambda$xP_ZCFtcze5LOXHZJJAkmqEh0U(this.f$0, animatorSet);
                     }
                 });
             } else if (r5 != 0) {
@@ -6665,12 +6665,12 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ArticleViewer.AnonymousClass26.m1334$r8$lambda$hy3szg7sy_HcVwloLcKiFMBOsA(this.f$0);
+                    ArticleViewer.AnonymousClass26.m1340$r8$lambda$hy3szg7sy_HcVwloLcKiFMBOsA(this.f$0);
                 }
             });
         }
 
-        public static void m1334$r8$lambda$hy3szg7sy_HcVwloLcKiFMBOsA(AnonymousClass26 anonymousClass26) {
+        public static void m1340$r8$lambda$hy3szg7sy_HcVwloLcKiFMBOsA(AnonymousClass26 anonymousClass26) {
             ArticleViewer.this.notificationsLocker.unlock();
             if (ArticleViewer.this.animationEndRunnable != null) {
                 ArticleViewer.this.animationEndRunnable.run();
@@ -6679,7 +6679,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
     }
 
-    public static void m1315$r8$lambda$xP_ZCFtcze5LOXHZJJAkmqEh0U(ArticleViewer articleViewer, AnimatorSet animatorSet) {
+    public static void m1321$r8$lambda$xP_ZCFtcze5LOXHZJJAkmqEh0U(ArticleViewer articleViewer, AnimatorSet animatorSet) {
         articleViewer.notificationsLocker.lock();
         animatorSet.start();
     }
@@ -6858,7 +6858,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         this.animationEndRunnable = new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.m1330$r8$lambda$otGbxImAz2f5K07bLi9GP7Ue8(this.f$0);
+                ArticleViewer.m1336$r8$lambda$otGbxImAz2f5K07bLi9GP7Ue8(this.f$0);
             }
         };
         animatorSet.setDuration(150L);
@@ -6886,7 +6886,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         this.videoStates.clear();
     }
 
-    public static void m1330$r8$lambda$otGbxImAz2f5K07bLi9GP7Ue8(ArticleViewer articleViewer) {
+    public static void m1336$r8$lambda$otGbxImAz2f5K07bLi9GP7Ue8(ArticleViewer articleViewer) {
         FrameLayout frameLayout = articleViewer.containerView;
         if (frameLayout == null) {
             return;
@@ -6919,13 +6919,13 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         this.containerView.post(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.m1324$r8$lambda$OWu0QVKYfcb3uR4NciX7LYKKYM(this.f$0);
+                ArticleViewer.m1330$r8$lambda$OWu0QVKYfcb3uR4NciX7LYKKYM(this.f$0);
             }
         });
         NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.articleClosed, new Object[0]);
     }
 
-    public static void m1324$r8$lambda$OWu0QVKYfcb3uR4NciX7LYKKYM(ArticleViewer articleViewer) {
+    public static void m1330$r8$lambda$OWu0QVKYfcb3uR4NciX7LYKKYM(ArticleViewer articleViewer) {
         articleViewer.getClass();
         try {
             if (articleViewer.windowView.getParent() != null) {
@@ -6950,14 +6950,14 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ArticleViewer.m1317$r8$lambda$2rhW2LfNfDa61aBbL2Y3O1tacw(iArticleViewer, webpageAdapter, tL_error, tLObject, i, blockChannelCell);
+                        ArticleViewer.m1323$r8$lambda$2rhW2LfNfDa61aBbL2Y3O1tacw(iArticleViewer, webpageAdapter, tL_error, tLObject, i, blockChannelCell);
                     }
                 });
             }
         });
     }
 
-    public static void m1317$r8$lambda$2rhW2LfNfDa61aBbL2Y3O1tacw(IArticleViewer iArticleViewer, WebpageAdapter webpageAdapter, TLRPC.TL_error tL_error, TLObject tLObject, int i, BlockChannelCell blockChannelCell) {
+    public static void m1323$r8$lambda$2rhW2LfNfDa61aBbL2Y3O1tacw(IArticleViewer iArticleViewer, WebpageAdapter webpageAdapter, TLRPC.TL_error tL_error, TLObject tLObject, int i, BlockChannelCell blockChannelCell) {
         iArticleViewer.loadingChannel = false;
         if (webpageAdapter.blocks.isEmpty()) {
             return;
@@ -7029,7 +7029,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ArticleViewer.m1319$r8$lambda$8C1j81eT1F90rB_oMzEI4lk8(i, tL_chatInviteJoinResultWebView, chat);
+                    ArticleViewer.m1325$r8$lambda$8C1j81eT1F90rB_oMzEI4lk8(i, tL_chatInviteJoinResultWebView, chat);
                 }
             });
             z2 = true;
@@ -7059,7 +7059,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         AlertsCreator.processError(i, tL_error, null, tL_channels_joinChannel, Boolean.TRUE);
     }
 
-    public static void m1319$r8$lambda$8C1j81eT1F90rB_oMzEI4lk8(int i, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, TLRPC.Chat chat) {
+    public static void m1325$r8$lambda$8C1j81eT1F90rB_oMzEI4lk8(int i, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, TLRPC.Chat chat) {
         MessagesController.getInstance(i).putUsers(tL_chatInviteJoinResultWebView.users, false);
         BotGuardHelper.getInstance(i).openGuardBotWebApp(-chat.id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
     }
@@ -9909,7 +9909,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
 
                 @Override
                 public final void onSeekBarDrag(float f) {
-                    ArticleViewer.BlockAudioCell.m1335$r8$lambda$onWXUk4yW2xLd5ZqM978dvGUD4(this.f$0, f);
+                    ArticleViewer.BlockAudioCell.m1341$r8$lambda$onWXUk4yW2xLd5ZqM978dvGUD4(this.f$0, f);
                 }
 
                 @Override
@@ -9929,7 +9929,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             });
         }
 
-        public static void m1335$r8$lambda$onWXUk4yW2xLd5ZqM978dvGUD4(BlockAudioCell blockAudioCell, float f) {
+        public static void m1341$r8$lambda$onWXUk4yW2xLd5ZqM978dvGUD4(BlockAudioCell blockAudioCell, float f) {
             MessageObject messageObject = blockAudioCell.currentMessageObject;
             if (messageObject == null) {
                 return;
@@ -10815,12 +10815,12 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ArticleViewer.BlockEmbedCell.TelegramWebviewProxy.m1338$r8$lambda$hlqx8Glqos33L49VQWnIpI3HE(this.f$0, str, str2);
+                        ArticleViewer.BlockEmbedCell.TelegramWebviewProxy.m1344$r8$lambda$hlqx8Glqos33L49VQWnIpI3HE(this.f$0, str, str2);
                     }
                 });
             }
 
-            public static void m1338$r8$lambda$hlqx8Glqos33L49VQWnIpI3HE(TelegramWebviewProxy telegramWebviewProxy, String str, String str2) {
+            public static void m1344$r8$lambda$hlqx8Glqos33L49VQWnIpI3HE(TelegramWebviewProxy telegramWebviewProxy, String str, String str2) {
                 telegramWebviewProxy.getClass();
                 if ("resize_frame".equals(str)) {
                     try {
@@ -10990,7 +10990,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ArticleViewer.BlockEmbedCell.AnonymousClass2.m1336$r8$lambda$zEYPDQvHGbVnmSyRGPLKY_wfzk(this.f$0);
+                            ArticleViewer.BlockEmbedCell.AnonymousClass2.m1342$r8$lambda$zEYPDQvHGbVnmSyRGPLKY_wfzk(this.f$0);
                         }
                     }, 100L);
                     return;
@@ -10998,7 +10998,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 customViewCallback.onCustomViewHidden();
             }
 
-            public static void m1336$r8$lambda$zEYPDQvHGbVnmSyRGPLKY_wfzk(AnonymousClass2 anonymousClass2) {
+            public static void m1342$r8$lambda$zEYPDQvHGbVnmSyRGPLKY_wfzk(AnonymousClass2 anonymousClass2) {
                 if (ArticleViewer.this.customView != null) {
                     ArticleViewer.this.fullscreenVideoContainer.addView(ArticleViewer.this.customView, LayoutHelper.createFrame(-1, -1.0f));
                     ArticleViewer.this.fullscreenVideoContainer.setVisibility(0);
@@ -17067,14 +17067,14 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 this.scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
                     @Override
                     public final void onScrollChange(View view, int i, int i2, int i3, int i4) {
-                        ArticleViewer.BlockPreformattedCell.m1340$r8$lambda$fYbii4utZcw0xZTy2jm0MtMKPc(iArticleViewer, view, i, i2, i3, i4);
+                        ArticleViewer.BlockPreformattedCell.m1346$r8$lambda$fYbii4utZcw0xZTy2jm0MtMKPc(iArticleViewer, view, i, i2, i3, i4);
                     }
                 });
             }
             setWillNotDraw(false);
         }
 
-        public static void m1340$r8$lambda$fYbii4utZcw0xZTy2jm0MtMKPc(IArticleViewer iArticleViewer, View view, int i, int i2, int i3, int i4) {
+        public static void m1346$r8$lambda$fYbii4utZcw0xZTy2jm0MtMKPc(IArticleViewer iArticleViewer, View view, int i, int i2, int i3, int i4) {
             TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper = iArticleViewer.getTextSelectionHelper(null);
             if (textSelectionHelper == null || !textSelectionHelper.isInSelectionMode()) {
                 return;
@@ -18257,13 +18257,13 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             webViewSwipeContainer.setDelegate(new ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.Delegate() {
                 @Override
                 public final void onDismiss(boolean z) {
-                    ArticleViewer.PageLayout.m1341$r8$lambda$BI1vzQb2_U8uMRTczfBU_v7fw(this.f$0, z);
+                    ArticleViewer.PageLayout.m1347$r8$lambda$BI1vzQb2_U8uMRTczfBU_v7fw(this.f$0, z);
                 }
             });
             webViewSwipeContainer.setScrollListener(new Runnable() {
                 @Override
                 public final void run() {
-                    ArticleViewer.PageLayout.m1342$r8$lambda$V5sTrsBFUWAGgNfN0QEgX4XUmU(this.f$0);
+                    ArticleViewer.PageLayout.m1348$r8$lambda$V5sTrsBFUWAGgNfN0QEgX4XUmU(this.f$0);
                 }
             });
             Sheet sheet2 = ArticleViewer.this.sheet;
@@ -18298,7 +18298,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             }
         }
 
-        public static void m1341$r8$lambda$BI1vzQb2_U8uMRTczfBU_v7fw(PageLayout pageLayout, boolean z) {
+        public static void m1347$r8$lambda$BI1vzQb2_U8uMRTczfBU_v7fw(PageLayout pageLayout, boolean z) {
             Sheet sheet = ArticleViewer.this.sheet;
             if (sheet != null) {
                 pageLayout.swipeBack = true;
@@ -18306,7 +18306,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             }
         }
 
-        public static void m1342$r8$lambda$V5sTrsBFUWAGgNfN0QEgX4XUmU(PageLayout pageLayout) {
+        public static void m1348$r8$lambda$V5sTrsBFUWAGgNfN0QEgX4XUmU(PageLayout pageLayout) {
             pageLayout.webViewContainer.invalidateViewPortHeight();
             ErrorContainer errorContainer = pageLayout.errorContainer;
             if (errorContainer != null) {
@@ -18961,7 +18961,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         @Override
-        public WindowView mo1343getWindowView() {
+        public WindowView mo1349getWindowView() {
             return this.windowView;
         }
 
@@ -19358,7 +19358,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1343getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1349getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

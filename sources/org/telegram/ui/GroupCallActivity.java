@@ -522,7 +522,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         return f2;
     }
 
-    public static void m3277$r8$lambda$_YrqkqkohdH6mXwgsnpz0Pkz9U() {
+    public static void m3285$r8$lambda$_YrqkqkohdH6mXwgsnpz0Pkz9U() {
         if (VoIPService.getSharedInstance() == null) {
             return;
         }
@@ -1275,7 +1275,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        GroupCallActivity.m3275$r8$lambda$OlOa4aRrguO9lBD4sUp1QvyHyc(this.f$0);
+                        GroupCallActivity.m3283$r8$lambda$OlOa4aRrguO9lBD4sUp1QvyHyc(this.f$0);
                     }
                 }, 3000L);
             }
@@ -1538,7 +1538,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public static void m3275$r8$lambda$OlOa4aRrguO9lBD4sUp1QvyHyc(GroupCallActivity groupCallActivity) {
+    public static void m3283$r8$lambda$OlOa4aRrguO9lBD4sUp1QvyHyc(GroupCallActivity groupCallActivity) {
         if (groupCallActivity.isStillConnecting()) {
             groupCallActivity.updateState(true, false);
         }
@@ -1811,7 +1811,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            GroupCallActivity.m3262$r8$lambda$lZBlNWw0unbY8azkAFslxiZO_c(this.f$0);
+                            GroupCallActivity.m3270$r8$lambda$lZBlNWw0unbY8azkAFslxiZO_c(this.f$0);
                         }
                     };
                     this.updateCallRecordRunnable = runnable;
@@ -1901,7 +1901,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.actionBar.setTitleRightMargin(AndroidUtilities.dp(48.0f) * 2);
     }
 
-    public static void m3262$r8$lambda$lZBlNWw0unbY8azkAFslxiZO_c(GroupCallActivity groupCallActivity) {
+    public static void m3270$r8$lambda$lZBlNWw0unbY8azkAFslxiZO_c(GroupCallActivity groupCallActivity) {
         groupCallActivity.updateRecordCallText();
         AndroidUtilities.runOnUIThread(groupCallActivity.updateCallRecordRunnable, 1000L);
     }
@@ -1934,7 +1934,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallActivity.m3268$r8$lambda$93eSzpgS8XVzTm6hjP7Nm8Wk7U(editTextBoldCursor);
+                    GroupCallActivity.m3276$r8$lambda$93eSzpgS8XVzTm6hjP7Nm8Wk7U(editTextBoldCursor);
                 }
             }, 100L);
         }
@@ -1970,7 +1970,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public static void m3268$r8$lambda$93eSzpgS8XVzTm6hjP7Nm8Wk7U(EditTextBoldCursor editTextBoldCursor) {
+    public static void m3276$r8$lambda$93eSzpgS8XVzTm6hjP7Nm8Wk7U(EditTextBoldCursor editTextBoldCursor) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
@@ -2082,7 +2082,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.unmuteRunnable = new Runnable() {
             @Override
             public final void run() {
-                GroupCallActivity.m3277$r8$lambda$_YrqkqkohdH6mXwgsnpz0Pkz9U();
+                GroupCallActivity.m3285$r8$lambda$_YrqkqkohdH6mXwgsnpz0Pkz9U();
             }
         };
         this.pressRunnable = new Runnable() {
@@ -2252,7 +2252,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         groupCallActivity.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                GroupCallActivity.m3285$r8$lambda$p_6G40nrGrawLEkbAvs3CT13So(this.f$0, dialogInterface);
+                GroupCallActivity.m3293$r8$lambda$p_6G40nrGrawLEkbAvs3CT13So(this.f$0, dialogInterface);
             }
         });
         groupCallActivity.setDimBehindAlpha(75);
@@ -4394,7 +4394,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         voIPToggleButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GroupCallActivity.m3269$r8$lambda$AI4DNRsgThTqCHz5mWNoWfjjWc(this.f$0, view);
+                GroupCallActivity.m3277$r8$lambda$AI4DNRsgThTqCHz5mWNoWfjjWc(this.f$0, view);
             }
         });
         groupCallActivityButtonsLayout.addButton(voIPToggleButton4);
@@ -4803,7 +4803,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         groupCallActivity.fullscreenUsersListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view3, int i17) {
-                GroupCallActivity.m3279$r8$lambda$bTfQvaWPGeqnmotbKVyrJHDRI(this.f$0, view3, i17);
+                GroupCallActivity.m3287$r8$lambda$bTfQvaWPGeqnmotbKVyrJHDRI(this.f$0, view3, i17);
             }
         });
         groupCallActivity.fullscreenUsersListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -5303,7 +5303,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         imageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view6) {
-                GroupCallActivity.m3286$r8$lambda$snaN3KJOrUOuO0oPNJxFGfkfnc(this.f$0, view6);
+                GroupCallActivity.m3294$r8$lambda$snaN3KJOrUOuO0oPNJxFGfkfnc(this.f$0, view6);
             }
         });
         frameLayout3.addView(imageView3, LayoutHelper.createFrame(48, 48, 85));
@@ -5453,7 +5453,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
                 @Override
                 public final void onValueChange(NumberPicker numberPicker4, int i20, int i21) {
-                    GroupCallActivity.m3287$r8$lambda$urgStnjcyATXs5qmRqF4yxPq9o(this.f$0, numberPicker, numberPicker2, numberPicker3, numberPicker4, i20, i21);
+                    GroupCallActivity.m3295$r8$lambda$urgStnjcyATXs5qmRqF4yxPq9o(this.f$0, numberPicker, numberPicker2, numberPicker3, numberPicker4, i20, i21);
                 }
             };
             numberPicker.setOnValueChangedListener(onValueChangeListener);
@@ -5572,7 +5572,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         });
     }
 
-    public static void m3285$r8$lambda$p_6G40nrGrawLEkbAvs3CT13So(GroupCallActivity groupCallActivity, DialogInterface dialogInterface) {
+    public static void m3293$r8$lambda$p_6G40nrGrawLEkbAvs3CT13So(GroupCallActivity groupCallActivity, DialogInterface dialogInterface) {
         groupCallActivity.getClass();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (groupCallActivity.anyEnterEventSent && (safeLastFragment instanceof ChatActivity)) {
@@ -5583,7 +5583,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     class AnonymousClass6 extends ActionBar.ActionBarMenuOnItemClick {
         final Activity val$context;
 
-        public static void m3294$r8$lambda$t6jC1WSfURy5tDSUywPpDZ0crs(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m3302$r8$lambda$t6jC1WSfURy5tDSUywPpDZ0crs(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         AnonymousClass6(Activity activity) {
@@ -5670,7 +5670,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     builder2.setPositiveButton(LocaleController.getString(R.string.Stop), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i3) {
-                            GroupCallActivity.AnonymousClass6.m3291$r8$lambda$I0LQn72CBqy1Zyr85PUn98EiZM(this.f$0, z, alertDialog, i3);
+                            GroupCallActivity.AnonymousClass6.m3299$r8$lambda$I0LQn72CBqy1Zyr85PUn98EiZM(this.f$0, z, alertDialog, i3);
                         }
                     });
                     builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -5785,7 +5785,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 builder3.setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i4) {
-                        GroupCallActivity.AnonymousClass6.m3293$r8$lambda$ge2ugusO7UlM0gaKKZ709zckrg(this.f$0, editTextBoldCursor, builder3, alertDialog, i4);
+                        GroupCallActivity.AnonymousClass6.m3301$r8$lambda$ge2ugusO7UlM0gaKKZ709zckrg(this.f$0, editTextBoldCursor, builder3, alertDialog, i4);
                     }
                 });
                 final AlertDialog alertDialogCreate3 = builder3.create();
@@ -5811,7 +5811,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 JoinCallAlert.open(GroupCallActivity.this.getContext(), -GroupCallActivity.this.getChatId(), GroupCallActivity.this.accountInstance, null, 2, GroupCallActivity.this.selfPeer, new JoinCallAlert.JoinCallAlertDelegate() {
                     @Override
                     public final void didSelectChat(TLRPC.InputPeer inputPeer, boolean z2, boolean z3, boolean z4) {
-                        GroupCallActivity.AnonymousClass6.m3292$r8$lambda$ZfEzsHzuO4Jf1yVCxRMi_m9Ks(this.f$0, inputPeer, z2, z3, z4);
+                        GroupCallActivity.AnonymousClass6.m3300$r8$lambda$ZfEzsHzuO4Jf1yVCxRMi_m9Ks(this.f$0, inputPeer, z2, z3, z4);
                     }
                 });
                 return;
@@ -5916,7 +5916,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
         }
 
-        public static void m3291$r8$lambda$I0LQn72CBqy1Zyr85PUn98EiZM(AnonymousClass6 anonymousClass6, boolean z, AlertDialog alertDialog, int i) {
+        public static void m3299$r8$lambda$I0LQn72CBqy1Zyr85PUn98EiZM(AnonymousClass6 anonymousClass6, boolean z, AlertDialog alertDialog, int i) {
             GroupCallActivity.this.call.toggleRecord(null, 0);
             GroupCallActivity.this.getUndoView().showWithAction(0L, z ? 101 : 40, (Runnable) null);
         }
@@ -6022,14 +6022,14 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             return false;
         }
 
-        public static void m3293$r8$lambda$ge2ugusO7UlM0gaKKZ709zckrg(AnonymousClass6 anonymousClass6, EditTextBoldCursor editTextBoldCursor, AlertDialog.Builder builder, AlertDialog alertDialog, int i) {
+        public static void m3301$r8$lambda$ge2ugusO7UlM0gaKKZ709zckrg(AnonymousClass6 anonymousClass6, EditTextBoldCursor editTextBoldCursor, AlertDialog.Builder builder, AlertDialog alertDialog, int i) {
             anonymousClass6.getClass();
             AndroidUtilities.hideKeyboard(editTextBoldCursor);
             GroupCallActivity.this.call.setTitle(editTextBoldCursor.getText().toString());
             builder.getDismissRunnable().run();
         }
 
-        public static void m3292$r8$lambda$ZfEzsHzuO4Jf1yVCxRMi_m9Ks(AnonymousClass6 anonymousClass6, TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3) {
+        public static void m3300$r8$lambda$ZfEzsHzuO4Jf1yVCxRMi_m9Ks(AnonymousClass6 anonymousClass6, TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3) {
             TLObject chat;
             GroupCallActivity groupCallActivity = GroupCallActivity.this;
             if (groupCallActivity.call == null) {
@@ -6070,7 +6070,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 GroupCallActivity.this.accountInstance.getConnectionsManager().sendRequest(savedefaultgroupcalljoinas, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                        GroupCallActivity.AnonymousClass6.m3294$r8$lambda$t6jC1WSfURy5tDSUywPpDZ0crs(tLObject2, tL_error);
+                        GroupCallActivity.AnonymousClass6.m3302$r8$lambda$t6jC1WSfURy5tDSUywPpDZ0crs(tLObject2, tL_error);
                     }
                 });
                 GroupCallActivity.this.updateItems();
@@ -6193,7 +6193,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     }).add(R.drawable.msg_remove, LocaleController.getString(R.string.GroupCallDiscardInvite), new Runnable() {
                         @Override
                         public final void run() {
-                            GroupCallActivity.m3264$r8$lambda$0K9Qs3u6uEsY0Xz6nHfHgISBY(this.f$0, invitedUser, l);
+                            GroupCallActivity.m3272$r8$lambda$0K9Qs3u6uEsY0Xz6nHfHgISBY(this.f$0, invitedUser, l);
                         }
                     }).setScrimViewBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), groupCallActivity.listViewBackgroundPaint.getColor())).setDimAlpha(96).show();
                     return;
@@ -6213,7 +6213,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }).add(R.drawable.msg_remove, LocaleController.getString(R.string.GroupCallDiscardInvite), new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallActivity.m3264$r8$lambda$0K9Qs3u6uEsY0Xz6nHfHgISBY(this.f$0, invitedUser, l);
+                    GroupCallActivity.m3272$r8$lambda$0K9Qs3u6uEsY0Xz6nHfHgISBY(this.f$0, invitedUser, l);
                 }
             }).setScrimViewBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), groupCallActivity.listViewBackgroundPaint.getColor())).setDimAlpha(96).show();
             return;
@@ -6296,7 +6296,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }).setOnUsersSelector(new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    GroupCallActivity.m3267$r8$lambda$6Xf7ED9fyGvNZyIXYjRLKrc4Y(this.f$0, call, (Boolean) obj, (HashSet) obj2);
+                    GroupCallActivity.m3275$r8$lambda$6Xf7ED9fyGvNZyIXYjRLKrc4Y(this.f$0, call, (Boolean) obj, (HashSet) obj2);
                 }
             }).show();
             return;
@@ -6313,7 +6313,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         ConnectionsManager.getInstance(groupCallActivity.currentAccount).sendRequest(declineconferencecallinvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                GroupCallActivity.m3272$r8$lambda$HcifWn1vVAW9sKDBgZG71sE7TU(this.f$0, tLObject, tL_error);
+                GroupCallActivity.m3280$r8$lambda$HcifWn1vVAW9sKDBgZG71sE7TU(this.f$0, tLObject, tL_error);
             }
         });
         ChatObject.Call call = groupCallActivity.call;
@@ -6324,14 +6324,14 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public static void m3272$r8$lambda$HcifWn1vVAW9sKDBgZG71sE7TU(GroupCallActivity groupCallActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3280$r8$lambda$HcifWn1vVAW9sKDBgZG71sE7TU(GroupCallActivity groupCallActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
         groupCallActivity.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(groupCallActivity.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
     }
 
-    public static void m3264$r8$lambda$0K9Qs3u6uEsY0Xz6nHfHgISBY(final GroupCallActivity groupCallActivity, ChatObject.Call.InvitedUser invitedUser, Long l) {
+    public static void m3272$r8$lambda$0K9Qs3u6uEsY0Xz6nHfHgISBY(final GroupCallActivity groupCallActivity, ChatObject.Call.InvitedUser invitedUser, Long l) {
         groupCallActivity.getClass();
         TL_phone.declineConferenceCallInvite declineconferencecallinvite = new TL_phone.declineConferenceCallInvite();
         declineconferencecallinvite.msg_id = invitedUser.msg_id;
@@ -6360,7 +6360,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public static void m3267$r8$lambda$6Xf7ED9fyGvNZyIXYjRLKrc4Y(final GroupCallActivity groupCallActivity, final ChatObject.Call call, Boolean bool, HashSet hashSet) {
+    public static void m3275$r8$lambda$6Xf7ED9fyGvNZyIXYjRLKrc4Y(final GroupCallActivity groupCallActivity, final ChatObject.Call call, Boolean bool, HashSet hashSet) {
         TLRPC.GroupCall groupCall;
         VoIPService sharedInstance;
         ChatObject.Call call2 = groupCallActivity.call;
@@ -6413,7 +6413,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallActivity.m3288$r8$lambda$wzqNQ3_xqpRSsoqltDaH3fIRlE(this.f$0, updates, j);
+                    GroupCallActivity.m3296$r8$lambda$wzqNQ3_xqpRSsoqltDaH3fIRlE(this.f$0, updates, j);
                 }
             });
         } else if (tL_error != null && "USER_PRIVACY_RESTRICTED".equalsIgnoreCase(tL_error.text)) {
@@ -6430,7 +6430,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         });
     }
 
-    public static void m3288$r8$lambda$wzqNQ3_xqpRSsoqltDaH3fIRlE(GroupCallActivity groupCallActivity, TLRPC.Updates updates, long j) {
+    public static void m3296$r8$lambda$wzqNQ3_xqpRSsoqltDaH3fIRlE(GroupCallActivity groupCallActivity, TLRPC.Updates updates, long j) {
         groupCallActivity.getClass();
         TLRPC.Update update = updates.update;
         int i = 0;
@@ -6591,7 +6591,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public static void m3269$r8$lambda$AI4DNRsgThTqCHz5mWNoWfjjWc(final GroupCallActivity groupCallActivity, View view) {
+    public static void m3277$r8$lambda$AI4DNRsgThTqCHz5mWNoWfjjWc(final GroupCallActivity groupCallActivity, View view) {
         final int nextAudioOutputValue = groupCallActivity.getNextAudioOutputValue();
         groupCallActivity.cacheAudioOutputValue = Integer.valueOf(nextAudioOutputValue);
         groupCallActivity.updateState(true, true);
@@ -6599,12 +6599,12 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupCallActivity.m3266$r8$lambda$5zJWowUEy6XyWhv0GjqgpOHTYs(this.f$0, nextAudioOutputValue);
+                GroupCallActivity.m3274$r8$lambda$5zJWowUEy6XyWhv0GjqgpOHTYs(this.f$0, nextAudioOutputValue);
             }
         });
     }
 
-    public static void m3266$r8$lambda$5zJWowUEy6XyWhv0GjqgpOHTYs(GroupCallActivity groupCallActivity, int i) {
+    public static void m3274$r8$lambda$5zJWowUEy6XyWhv0GjqgpOHTYs(GroupCallActivity groupCallActivity, int i) {
         groupCallActivity.setAudioOutputValue(i);
         BulletinFactory.of(groupCallActivity.topBulletinContainer, new DarkBlueThemeResourcesProvider()).createSimpleBulletin(groupCallActivity.getContext().getResources().getDrawable(groupCallActivity.getAudioOutputToastIcon(i)).mutate(), groupCallActivity.getAudioOutputToastText(i)).show(groupCallActivity.isBulletinTop());
     }
@@ -6659,7 +6659,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     GroupCallActivity.this.accountInstance.getConnectionsManager().sendRequest(startscheduledgroupcall, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            GroupCallActivity.AnonymousClass19.m3289$r8$lambda$dbnG9N8smvlt4aPmfHYF3QMXUo(this.f$0, tLObject, tL_error);
+                            GroupCallActivity.AnonymousClass19.m3297$r8$lambda$dbnG9N8smvlt4aPmfHYF3QMXUo(this.f$0, tLObject, tL_error);
                         }
                     });
                     return;
@@ -6794,7 +6794,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             groupCallActivity.updateMuteButton(groupCallActivity.muteButtonState, true);
         }
 
-        public static void m3289$r8$lambda$dbnG9N8smvlt4aPmfHYF3QMXUo(AnonymousClass19 anonymousClass19, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m3297$r8$lambda$dbnG9N8smvlt4aPmfHYF3QMXUo(AnonymousClass19 anonymousClass19, TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject != null) {
                 GroupCallActivity.this.accountInstance.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             } else {
@@ -6912,13 +6912,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    GroupCallActivity.AnonymousClass20.m3290$r8$lambda$bpH4UL4y5ei1QEa0DkyoyC3uvE(this.f$0, textView, view);
+                    GroupCallActivity.AnonymousClass20.m3298$r8$lambda$bpH4UL4y5ei1QEa0DkyoyC3uvE(this.f$0, textView, view);
                 }
             });
             return textView;
         }
 
-        public static void m3290$r8$lambda$bpH4UL4y5ei1QEa0DkyoyC3uvE(AnonymousClass20 anonymousClass20, TextView textView, View view) {
+        public static void m3298$r8$lambda$bpH4UL4y5ei1QEa0DkyoyC3uvE(AnonymousClass20 anonymousClass20, TextView textView, View view) {
             GroupCallActivity groupCallActivity = GroupCallActivity.this;
             ChatObject.Call call = groupCallActivity.call;
             if (call == null || !call.recording) {
@@ -6936,7 +6936,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         groupCallActivity.showRecordHint(groupCallActivity.actionBar.getTitleTextView());
     }
 
-    public static void m3279$r8$lambda$bTfQvaWPGeqnmotbKVyrJHDRI(GroupCallActivity groupCallActivity, View view, int i) {
+    public static void m3287$r8$lambda$bTfQvaWPGeqnmotbKVyrJHDRI(GroupCallActivity groupCallActivity, View view, int i) {
         groupCallActivity.getClass();
         GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell = (GroupCallFullscreenAdapter.GroupCallUserCell) view;
         if (groupCallUserCell.getVideoParticipant() == null) {
@@ -6956,7 +6956,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         return false;
     }
 
-    public static void m3286$r8$lambda$snaN3KJOrUOuO0oPNJxFGfkfnc(GroupCallActivity groupCallActivity, View view) {
+    public static void m3294$r8$lambda$snaN3KJOrUOuO0oPNJxFGfkfnc(GroupCallActivity groupCallActivity, View view) {
         Editable text = groupCallActivity.callMessageEnterView.getText();
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         tL_textWithEntities.text = text.toString();
@@ -6972,7 +6972,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         groupCallActivity.scheduleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                GroupCallActivity.m3263$r8$lambda$xLUCrg5M1n7G8bvQ6XNYFDzMqU(this.f$0, valueAnimator);
+                GroupCallActivity.m3271$r8$lambda$xLUCrg5M1n7G8bvQ6XNYFDzMqU(this.f$0, valueAnimator);
             }
         });
         groupCallActivity.scheduleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -7005,12 +7005,12 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         accountInstance.getConnectionsManager().sendRequest(creategroupcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                GroupCallActivity.m3284$r8$lambda$nOcnuCCsIAqsQdIiLjMQ7h0REs(this.f$0, chat, inputPeer, tLObject, tL_error);
+                GroupCallActivity.m3292$r8$lambda$nOcnuCCsIAqsQdIiLjMQ7h0REs(this.f$0, chat, inputPeer, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public static void m3263$r8$lambda$xLUCrg5M1n7G8bvQ6XNYFDzMqU(GroupCallActivity groupCallActivity, ValueAnimator valueAnimator) {
+    public static void m3271$r8$lambda$xLUCrg5M1n7G8bvQ6XNYFDzMqU(GroupCallActivity groupCallActivity, ValueAnimator valueAnimator) {
         groupCallActivity.getClass();
         groupCallActivity.switchToButtonProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         groupCallActivity.updateScheduleUI(true);
@@ -7018,7 +7018,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         groupCallActivity.listView.invalidate();
     }
 
-    public static void m3284$r8$lambda$nOcnuCCsIAqsQdIiLjMQ7h0REs(final GroupCallActivity groupCallActivity, final TLRPC.Chat chat, final TLRPC.InputPeer inputPeer, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3292$r8$lambda$nOcnuCCsIAqsQdIiLjMQ7h0REs(final GroupCallActivity groupCallActivity, final TLRPC.Chat chat, final TLRPC.InputPeer inputPeer, TLObject tLObject, final TLRPC.TL_error tL_error) {
         groupCallActivity.getClass();
         if (tLObject != null) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -7094,7 +7094,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         return LocaleController.getInstance().getFormatterScheduleYear().format(j2);
     }
 
-    public static void m3287$r8$lambda$urgStnjcyATXs5qmRqF4yxPq9o(GroupCallActivity groupCallActivity, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, NumberPicker numberPicker4, int i, int i2) {
+    public static void m3295$r8$lambda$urgStnjcyATXs5qmRqF4yxPq9o(GroupCallActivity groupCallActivity, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, NumberPicker numberPicker4, int i, int i2) {
         groupCallActivity.getClass();
         try {
             groupCallActivity.container.performHapticFeedback(3, 2);
@@ -7735,7 +7735,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     this.actionBar.getTitleTextView().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            GroupCallActivity.m3271$r8$lambda$HXTqzvwi6YEaHhu4rJr_UVLB0c(this.f$0, view);
+                            GroupCallActivity.m3279$r8$lambda$HXTqzvwi6YEaHhu4rJr_UVLB0c(this.f$0, view);
                         }
                     });
                 } else {
@@ -7792,7 +7792,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public static void m3271$r8$lambda$HXTqzvwi6YEaHhu4rJr_UVLB0c(GroupCallActivity groupCallActivity, View view) {
+    public static void m3279$r8$lambda$HXTqzvwi6YEaHhu4rJr_UVLB0c(GroupCallActivity groupCallActivity, View view) {
         ChatObject.Call call = groupCallActivity.call;
         if (call == null || !call.recording) {
             return;
@@ -8098,7 +8098,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallActivity.m3276$r8$lambda$P4VABHUGMHUIjwh5qPDaUwFVyk(this.f$0, alertDialogArr, iSendRequest);
+                    GroupCallActivity.m3284$r8$lambda$P4VABHUGMHUIjwh5qPDaUwFVyk(this.f$0, alertDialogArr, iSendRequest);
                 }
             }, 500L);
         }
@@ -8110,7 +8110,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallActivity.m3270$r8$lambda$As2dBMmPV1BhsbvdWpEYzYXoCU(this.f$0, j, alertDialogArr, user);
+                    GroupCallActivity.m3278$r8$lambda$As2dBMmPV1BhsbvdWpEYzYXoCU(this.f$0, j, alertDialogArr, user);
                 }
             });
         } else {
@@ -8124,7 +8124,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public static void m3270$r8$lambda$As2dBMmPV1BhsbvdWpEYzYXoCU(GroupCallActivity groupCallActivity, long j, AlertDialog[] alertDialogArr, TLRPC.User user) {
+    public static void m3278$r8$lambda$As2dBMmPV1BhsbvdWpEYzYXoCU(GroupCallActivity groupCallActivity, long j, AlertDialog[] alertDialogArr, TLRPC.User user) {
         ChatObject.Call call = groupCallActivity.call;
         if (call == null || groupCallActivity.delayedGroupCallUpdated) {
             return;
@@ -8157,7 +8157,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public static void m3276$r8$lambda$P4VABHUGMHUIjwh5qPDaUwFVyk(final GroupCallActivity groupCallActivity, AlertDialog[] alertDialogArr, final int i) {
+    public static void m3284$r8$lambda$P4VABHUGMHUIjwh5qPDaUwFVyk(final GroupCallActivity groupCallActivity, AlertDialog[] alertDialogArr, final int i) {
         groupCallActivity.getClass();
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog == null) {
@@ -9801,7 +9801,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                GroupCallActivity.m3283$r8$lambda$l_lXYSsA5smsS2fm9Va8QaBHyA(this.f$0, keyEvent);
+                GroupCallActivity.m3291$r8$lambda$l_lXYSsA5smsS2fm9Va8QaBHyA(this.f$0, keyEvent);
             }
         });
         final LinearLayout linearLayout = new LinearLayout(getContext());
@@ -10162,7 +10162,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         return true;
     }
 
-    public static void m3283$r8$lambda$l_lXYSsA5smsS2fm9Va8QaBHyA(GroupCallActivity groupCallActivity, KeyEvent keyEvent) {
+    public static void m3291$r8$lambda$l_lXYSsA5smsS2fm9Va8QaBHyA(GroupCallActivity groupCallActivity, KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         groupCallActivity.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = groupCallActivity.scrimPopupWindow) != null && actionBarPopupWindow.isShowing()) {
@@ -11120,17 +11120,17 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             });
         }
 
-        public static void m3297$r8$lambda$wYciZjCgn_K7vRA4cNW4YveIRg(final AvatarUpdaterDelegate avatarUpdaterDelegate, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m3305$r8$lambda$wYciZjCgn_K7vRA4cNW4YveIRg(final AvatarUpdaterDelegate avatarUpdaterDelegate, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             avatarUpdaterDelegate.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallActivity.AvatarUpdaterDelegate.m3295$r8$lambda$2vNtGBcerjIp93BB8UwMKvXPls(this.f$0, tL_error, tLObject, str);
+                    GroupCallActivity.AvatarUpdaterDelegate.m3303$r8$lambda$2vNtGBcerjIp93BB8UwMKvXPls(this.f$0, tL_error, tLObject, str);
                 }
             });
         }
 
-        public static void m3295$r8$lambda$2vNtGBcerjIp93BB8UwMKvXPls(AvatarUpdaterDelegate avatarUpdaterDelegate, TLRPC.TL_error tL_error, TLObject tLObject, String str) {
+        public static void m3303$r8$lambda$2vNtGBcerjIp93BB8UwMKvXPls(AvatarUpdaterDelegate avatarUpdaterDelegate, TLRPC.TL_error tL_error, TLObject tLObject, String str) {
             if (avatarUpdaterDelegate.uploadingImageLocation != null) {
                 GroupCallActivity.this.avatarsViewPager.removeUploadingImage(avatarUpdaterDelegate.uploadingImageLocation);
                 avatarUpdaterDelegate.uploadingImageLocation = null;
@@ -11193,7 +11193,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             GroupCallActivity.this.accountInstance.getUserConfig().saveConfig(true);
         }
 
-        public static void m3296$r8$lambda$c4W1HAGcfQuxlRpLfn90h8wr7E(AvatarUpdaterDelegate avatarUpdaterDelegate) {
+        public static void m3304$r8$lambda$c4W1HAGcfQuxlRpLfn90h8wr7E(AvatarUpdaterDelegate avatarUpdaterDelegate) {
             if (avatarUpdaterDelegate.uploadingImageLocation != null) {
                 GroupCallActivity.this.avatarsViewPager.removeUploadingImage(avatarUpdaterDelegate.uploadingImageLocation);
                 avatarUpdaterDelegate.uploadingImageLocation = null;
@@ -11227,7 +11227,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 GroupCallActivity.this.accountInstance.getMessagesController().changeChatAvatar(-avatarUpdaterDelegate.peerId, null, inputFile, inputFile2, videoSize, d, str, photoSize.location, photoSize2.location, new Runnable() {
                     @Override
                     public final void run() {
-                        GroupCallActivity.AvatarUpdaterDelegate.m3296$r8$lambda$c4W1HAGcfQuxlRpLfn90h8wr7E(this.f$0);
+                        GroupCallActivity.AvatarUpdaterDelegate.m3304$r8$lambda$c4W1HAGcfQuxlRpLfn90h8wr7E(this.f$0);
                     }
                 });
                 return;
@@ -11250,7 +11250,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             GroupCallActivity.this.accountInstance.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    GroupCallActivity.AvatarUpdaterDelegate.m3297$r8$lambda$wYciZjCgn_K7vRA4cNW4YveIRg(this.f$0, str, tLObject, tL_error);
+                    GroupCallActivity.AvatarUpdaterDelegate.m3305$r8$lambda$wYciZjCgn_K7vRA4cNW4YveIRg(this.f$0, str, tLObject, tL_error);
                 }
             });
         }
@@ -12027,12 +12027,12 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    GroupCallActivity.CallEncryptionCell.m3298$r8$lambda$BaQI9qOswWYpmjWpISAT4MloKY(this.f$0, context, view);
+                    GroupCallActivity.CallEncryptionCell.m3306$r8$lambda$BaQI9qOswWYpmjWpISAT4MloKY(this.f$0, context, view);
                 }
             });
         }
 
-        public static void m3298$r8$lambda$BaQI9qOswWYpmjWpISAT4MloKY(CallEncryptionCell callEncryptionCell, Context context, View view) {
+        public static void m3306$r8$lambda$BaQI9qOswWYpmjWpISAT4MloKY(CallEncryptionCell callEncryptionCell, Context context, View view) {
             callEncryptionCell.getClass();
             new EncryptionCallDialog(context, callEncryptionCell).show();
         }
@@ -12287,22 +12287,22 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(exportgroupcallinvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                GroupCallActivity.m3282$r8$lambda$hK5sRpV1heWx2A0pvl5bmcXlmc(this.f$0, alertDialog, exportgroupcallinvite, tLObject, tL_error);
+                GroupCallActivity.m3290$r8$lambda$hK5sRpV1heWx2A0pvl5bmcXlmc(this.f$0, alertDialog, exportgroupcallinvite, tLObject, tL_error);
             }
         });
     }
 
-    public static void m3282$r8$lambda$hK5sRpV1heWx2A0pvl5bmcXlmc(final GroupCallActivity groupCallActivity, final AlertDialog alertDialog, final TL_phone.exportGroupCallInvite exportgroupcallinvite, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3290$r8$lambda$hK5sRpV1heWx2A0pvl5bmcXlmc(final GroupCallActivity groupCallActivity, final AlertDialog alertDialog, final TL_phone.exportGroupCallInvite exportgroupcallinvite, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         groupCallActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GroupCallActivity.m3280$r8$lambda$gvJz3mmx7m1gXVQtN6H9yZfa78(this.f$0, alertDialog, tLObject, exportgroupcallinvite, tL_error);
+                GroupCallActivity.m3288$r8$lambda$gvJz3mmx7m1gXVQtN6H9yZfa78(this.f$0, alertDialog, tLObject, exportgroupcallinvite, tL_error);
             }
         });
     }
 
-    public static void m3280$r8$lambda$gvJz3mmx7m1gXVQtN6H9yZfa78(GroupCallActivity groupCallActivity, AlertDialog alertDialog, TLObject tLObject, TL_phone.exportGroupCallInvite exportgroupcallinvite, TLRPC.TL_error tL_error) {
+    public static void m3288$r8$lambda$gvJz3mmx7m1gXVQtN6H9yZfa78(GroupCallActivity groupCallActivity, AlertDialog alertDialog, TLObject tLObject, TL_phone.exportGroupCallInvite exportgroupcallinvite, TLRPC.TL_error tL_error) {
         TLRPC.GroupCall groupCall;
         groupCallActivity.getClass();
         alertDialog.dismiss();

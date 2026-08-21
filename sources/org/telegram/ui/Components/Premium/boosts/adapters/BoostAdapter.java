@@ -54,12 +54,12 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         BoostRepository.loadParticipantsCount(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BoostAdapter.m2660$r8$lambda$lcFDLfyq3_4twOSLqgXFGbGA5o(this.f$0, (HashMap) obj);
+                BoostAdapter.m2669$r8$lambda$lcFDLfyq3_4twOSLqgXFGbGA5o(this.f$0, (HashMap) obj);
             }
         });
     }
 
-    public static void m2660$r8$lambda$lcFDLfyq3_4twOSLqgXFGbGA5o(BoostAdapter boostAdapter, HashMap map) {
+    public static void m2669$r8$lambda$lcFDLfyq3_4twOSLqgXFGbGA5o(BoostAdapter boostAdapter, HashMap map) {
         boostAdapter.chatsParticipantsCount.clear();
         boostAdapter.chatsParticipantsCount.putAll(map);
     }

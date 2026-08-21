@@ -90,7 +90,7 @@ public class TableView extends android.widget.TableLayout {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    TableView.m2864$r8$lambda$94D2tet7nd1WDBXBAcVpSQDBqE(charSequence2, runnable, view);
+                    TableView.m2873$r8$lambda$94D2tet7nd1WDBXBAcVpSQDBqE(charSequence2, runnable, view);
                 }
             });
             ScaleStateListAnimator.apply(imageView);
@@ -100,7 +100,7 @@ public class TableView extends android.widget.TableLayout {
         return addRowUnpadded(charSequence, frameLayout);
     }
 
-    public static void m2864$r8$lambda$94D2tet7nd1WDBXBAcVpSQDBqE(CharSequence charSequence, Runnable runnable, View view) {
+    public static void m2873$r8$lambda$94D2tet7nd1WDBXBAcVpSQDBqE(CharSequence charSequence, Runnable runnable, View view) {
         AndroidUtilities.addToClipboard(charSequence);
         runnable.run();
     }

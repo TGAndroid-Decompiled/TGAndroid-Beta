@@ -414,7 +414,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
                 AnonymousClass1.this.val$baseFragment.getOrCreateStoryViewer().open(AnonymousClass1.this.getContext(), j, new StoryViewer.PlaceProvider() {
                     @Override
                     public final boolean findView(long j2, int i, int i2, int i3, StoryViewer.TransitionViewHolder transitionViewHolder) {
-                        return ChatAvatarContainer.AnonymousClass1.C00271.m2208$r8$lambda$PmGxdEyxPKWlc8L_ePd4pumuYQ(this.f$0, j2, i, i2, i3, transitionViewHolder);
+                        return ChatAvatarContainer.AnonymousClass1.C00271.m2218$r8$lambda$PmGxdEyxPKWlc8L_ePd4pumuYQ(this.f$0, j2, i, i2, i3, transitionViewHolder);
                     }
 
                     @Override
@@ -429,7 +429,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
                 });
             }
 
-            public static boolean m2208$r8$lambda$PmGxdEyxPKWlc8L_ePd4pumuYQ(C00271 c00271, long j, int i, int i2, int i3, StoryViewer.TransitionViewHolder transitionViewHolder) {
+            public static boolean m2218$r8$lambda$PmGxdEyxPKWlc8L_ePd4pumuYQ(C00271 c00271, long j, int i, int i2, int i3, StoryViewer.TransitionViewHolder transitionViewHolder) {
                 AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
                 ImageReceiver imageReceiver = anonymousClass1.imageReceiver;
                 transitionViewHolder.storyImage = imageReceiver;
@@ -862,7 +862,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
         duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                ChatAvatarContainer.m2205$r8$lambda$0LRr7bKAvd0vhRKTQcI2se70Lo(this.f$0);
+                ChatAvatarContainer.m2215$r8$lambda$0LRr7bKAvd0vhRKTQcI2se70Lo(this.f$0);
             }
         }).start();
         addView(simpleTextView);
@@ -889,14 +889,14 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
         simpleTextView2.animate().alpha(0.0f).setDuration(350L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                ChatAvatarContainer.m2206$r8$lambda$_EXG5ffekJck7YcX0A58mP6qs(this.f$0);
+                ChatAvatarContainer.m2216$r8$lambda$_EXG5ffekJck7YcX0A58mP6qs(this.f$0);
             }
         }).start();
         addView(simpleTextView2);
         setClipChildren(false);
     }
 
-    public static void m2205$r8$lambda$0LRr7bKAvd0vhRKTQcI2se70Lo(ChatAvatarContainer chatAvatarContainer) {
+    public static void m2215$r8$lambda$0LRr7bKAvd0vhRKTQcI2se70Lo(ChatAvatarContainer chatAvatarContainer) {
         SimpleTextView simpleTextView = (SimpleTextView) chatAvatarContainer.titleTextLargerCopyView.get();
         if (simpleTextView != null) {
             chatAvatarContainer.removeView(simpleTextView);
@@ -904,7 +904,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
         }
     }
 
-    public static void m2206$r8$lambda$_EXG5ffekJck7YcX0A58mP6qs(ChatAvatarContainer chatAvatarContainer) {
+    public static void m2216$r8$lambda$_EXG5ffekJck7YcX0A58mP6qs(ChatAvatarContainer chatAvatarContainer) {
         SimpleTextView simpleTextView = (SimpleTextView) chatAvatarContainer.subtitleTextLargerCopyView.get();
         if (simpleTextView != null) {
             chatAvatarContainer.removeView(simpleTextView);
@@ -1072,7 +1072,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
         this.starFgItem.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.0f).scaleY(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                ChatAvatarContainer.m2207$r8$lambda$dk5qC4LZMGc5jJIEkVWS6ZLSTA(this.f$0, z);
+                ChatAvatarContainer.m2217$r8$lambda$dk5qC4LZMGc5jJIEkVWS6ZLSTA(this.f$0, z);
             }
         }).start();
     }
@@ -1085,7 +1085,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
         }
     }
 
-    public static void m2207$r8$lambda$dk5qC4LZMGc5jJIEkVWS6ZLSTA(ChatAvatarContainer chatAvatarContainer, boolean z) {
+    public static void m2217$r8$lambda$dk5qC4LZMGc5jJIEkVWS6ZLSTA(ChatAvatarContainer chatAvatarContainer, boolean z) {
         if (z) {
             chatAvatarContainer.getClass();
         } else {

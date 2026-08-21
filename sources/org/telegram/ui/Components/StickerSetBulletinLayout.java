@@ -199,7 +199,7 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
                     this.subtitleTextView.setText(AndroidUtilities.premiumText(LocaleController.formatString(R.string.LimitReachedFavoriteGifsSubtitle, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).savedGifsLimitPremium)), new Runnable() {
                         @Override
                         public final void run() {
-                            StickerSetBulletinLayout.m2829$r8$lambda$57QwHCVIjZ3fyt7ykEQYpLyG_I(context);
+                            StickerSetBulletinLayout.m2838$r8$lambda$57QwHCVIjZ3fyt7ykEQYpLyG_I(context);
                         }
                     }));
                     return;
@@ -220,7 +220,7 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
         }
     }
 
-    public static void m2829$r8$lambda$57QwHCVIjZ3fyt7ykEQYpLyG_I(Context context) {
+    public static void m2838$r8$lambda$57QwHCVIjZ3fyt7ykEQYpLyG_I(Context context) {
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         if (activityFindActivity instanceof LaunchActivity) {
             ((LaunchActivity) activityFindActivity).presentFragment(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(9)));

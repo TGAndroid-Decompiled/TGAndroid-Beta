@@ -143,7 +143,7 @@ public class BottomSheetTabs extends FrameLayout {
         new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BottomSheetTabs.m1258$r8$lambda$t3dh2AB0YwSRv4W_LOo3bJIbuQ(this.f$0, webTabData, (BaseFragment) obj);
+                BottomSheetTabs.m1264$r8$lambda$t3dh2AB0YwSRv4W_LOo3bJIbuQ(this.f$0, webTabData, (BaseFragment) obj);
             }
         }.run(lastFragment);
         if (webTabData.needsContext) {
@@ -161,7 +161,7 @@ public class BottomSheetTabs extends FrameLayout {
         }
     }
 
-    public static void m1258$r8$lambda$t3dh2AB0YwSRv4W_LOo3bJIbuQ(BottomSheetTabs bottomSheetTabs, WebTabData webTabData, BaseFragment baseFragment) {
+    public static void m1264$r8$lambda$t3dh2AB0YwSRv4W_LOo3bJIbuQ(BottomSheetTabs bottomSheetTabs, WebTabData webTabData, BaseFragment baseFragment) {
         bottomSheetTabs.getClass();
         if (baseFragment == null) {
             return;
@@ -499,7 +499,7 @@ public class BottomSheetTabs extends FrameLayout {
         AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                BottomSheetTabs.m1257$r8$lambda$rgkkl5LsHmsPhNQPlagMItkXc0(this.f$0, zArr, webTabData, callback, alertDialogArr, alertDialog, i);
+                BottomSheetTabs.m1263$r8$lambda$rgkkl5LsHmsPhNQPlagMItkXc0(this.f$0, zArr, webTabData, callback, alertDialogArr, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
@@ -511,14 +511,14 @@ public class BottomSheetTabs extends FrameLayout {
         alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                BottomSheetTabs.m1259$r8$lambda$wYmzJHTOpTZmii2flzYplpdWs(zArr, callback, dialogInterface);
+                BottomSheetTabs.m1265$r8$lambda$wYmzJHTOpTZmii2flzYplpdWs(zArr, callback, dialogInterface);
             }
         });
         alertDialogArr[0].show();
         ((TextView) alertDialogArr[0].getButton(-1)).setTextColor(Theme.getColor(Theme.key_text_RedBold));
     }
 
-    public static void m1257$r8$lambda$rgkkl5LsHmsPhNQPlagMItkXc0(BottomSheetTabs bottomSheetTabs, boolean[] zArr, WebTabData webTabData, Utilities.Callback callback, AlertDialog[] alertDialogArr, AlertDialog alertDialog, int i) {
+    public static void m1263$r8$lambda$rgkkl5LsHmsPhNQPlagMItkXc0(BottomSheetTabs bottomSheetTabs, boolean[] zArr, WebTabData webTabData, Utilities.Callback callback, AlertDialog[] alertDialogArr, AlertDialog alertDialog, int i) {
         bottomSheetTabs.getClass();
         zArr[0] = true;
         bottomSheetTabs.removeTab(webTabData, true);
@@ -532,7 +532,7 @@ public class BottomSheetTabs extends FrameLayout {
         alertDialogArr[0].dismiss();
     }
 
-    public static void m1259$r8$lambda$wYmzJHTOpTZmii2flzYplpdWs(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+    public static void m1265$r8$lambda$wYmzJHTOpTZmii2flzYplpdWs(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
         if (zArr[0]) {
             return;
         }
@@ -722,7 +722,7 @@ public class BottomSheetTabs extends FrameLayout {
         private final Rect tmpRect;
         private final RectF tmpRectF;
 
-        public static void m1260$r8$lambda$rKrZd3N_R6LXhNBcOtjYQdSVzc(Boolean bool) {
+        public static void m1266$r8$lambda$rKrZd3N_R6LXhNBcOtjYQdSVzc(Boolean bool) {
         }
 
         public TabsAccessibilityHelper(View view) {
@@ -835,7 +835,7 @@ public class BottomSheetTabs extends FrameLayout {
             BottomSheetTabs.this.removeTab(webTabData, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BottomSheetTabs.TabsAccessibilityHelper.m1260$r8$lambda$rKrZd3N_R6LXhNBcOtjYQdSVzc((Boolean) obj);
+                    BottomSheetTabs.TabsAccessibilityHelper.m1266$r8$lambda$rKrZd3N_R6LXhNBcOtjYQdSVzc((Boolean) obj);
                 }
             });
             return true;

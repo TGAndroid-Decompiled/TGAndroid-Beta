@@ -65,7 +65,7 @@ public class UserNameResolver {
         final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                UserNameResolver.m1089$r8$lambda$1Yk5ZpB3LxtubF9sBJ2DTAOZIo(this.f$0, str, tLObject2, tL_error);
+                UserNameResolver.m1095$r8$lambda$1Yk5ZpB3LxtubF9sBJ2DTAOZIo(this.f$0, str, tLObject2, tL_error);
             }
         });
         return new Runnable() {
@@ -76,17 +76,17 @@ public class UserNameResolver {
         };
     }
 
-    public static void m1089$r8$lambda$1Yk5ZpB3LxtubF9sBJ2DTAOZIo(final UserNameResolver userNameResolver, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1095$r8$lambda$1Yk5ZpB3LxtubF9sBJ2DTAOZIo(final UserNameResolver userNameResolver, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         userNameResolver.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                UserNameResolver.m1090$r8$lambda$N_TP1RdEDy8CFh9lbHlZ7xPnqw(this.f$0, str, tL_error, tLObject);
+                UserNameResolver.m1096$r8$lambda$N_TP1RdEDy8CFh9lbHlZ7xPnqw(this.f$0, str, tL_error, tLObject);
             }
         }, 2L);
     }
 
-    public static void m1090$r8$lambda$N_TP1RdEDy8CFh9lbHlZ7xPnqw(UserNameResolver userNameResolver, String str, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m1096$r8$lambda$N_TP1RdEDy8CFh9lbHlZ7xPnqw(UserNameResolver userNameResolver, String str, TLRPC.TL_error tL_error, TLObject tLObject) {
         BaseFragment lastFragment;
         ArrayList<Consumer> arrayListRemove = userNameResolver.resolvingConsumers.remove(str);
         if (arrayListRemove == null) {

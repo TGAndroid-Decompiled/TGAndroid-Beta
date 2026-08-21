@@ -59,14 +59,14 @@ public abstract class MessageAuthorView extends FrameLayout {
         ConnectionsManager.getInstance(i).sendRequest(tL_channels_getMessageAuthor, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MessageAuthorView.m3542$r8$lambda$Klk0joMhrJzkjSfXJ4Xmm0xa6I(this.f$0, i, tLObject, tL_error);
+                MessageAuthorView.m3550$r8$lambda$Klk0joMhrJzkjSfXJ4Xmm0xa6I(this.f$0, i, tLObject, tL_error);
             }
         });
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector), 6, 0));
         setEnabled(false);
     }
 
-    public static void m3542$r8$lambda$Klk0joMhrJzkjSfXJ4Xmm0xa6I(final MessageAuthorView messageAuthorView, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3550$r8$lambda$Klk0joMhrJzkjSfXJ4Xmm0xa6I(final MessageAuthorView messageAuthorView, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
         messageAuthorView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

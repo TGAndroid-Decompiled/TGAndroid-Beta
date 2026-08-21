@@ -711,7 +711,7 @@ public class MessagesStorage extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m868$r8$lambda$Iw4tCICvrfGOmVtmB4M_3eGykc(this.f$0);
+                MessagesStorage.m874$r8$lambda$Iw4tCICvrfGOmVtmB4M_3eGykc(this.f$0);
             }
         });
     }
@@ -721,7 +721,7 @@ public class MessagesStorage extends BaseController {
         NotificationCenter.getInstance(messagesStorage.currentAccount).postNotificationName(NotificationCenter.onDatabaseMigration, Boolean.TRUE);
     }
 
-    public static void m868$r8$lambda$Iw4tCICvrfGOmVtmB4M_3eGykc(MessagesStorage messagesStorage) {
+    public static void m874$r8$lambda$Iw4tCICvrfGOmVtmB4M_3eGykc(MessagesStorage messagesStorage) {
         messagesStorage.databaseMigrationInProgress = false;
         NotificationCenter.getInstance(messagesStorage.currentAccount).postNotificationName(NotificationCenter.onDatabaseMigration, Boolean.FALSE);
     }
@@ -781,12 +781,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m916$r8$lambda$nndIL4dytlcZiRH7rm7qy9X_AA(this.f$0, z);
+                MessagesStorage.m922$r8$lambda$nndIL4dytlcZiRH7rm7qy9X_AA(this.f$0, z);
             }
         });
     }
 
-    public static void m916$r8$lambda$nndIL4dytlcZiRH7rm7qy9X_AA(final MessagesStorage messagesStorage, boolean z) {
+    public static void m922$r8$lambda$nndIL4dytlcZiRH7rm7qy9X_AA(final MessagesStorage messagesStorage, boolean z) {
         messagesStorage.cleanupInternal(true);
         messagesStorage.openDatabase(1);
         if (z) {
@@ -803,12 +803,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m829$r8$lambda$J5CjT7tz5SzpQ2N33lZhLRulA(this.f$0, i, i2, bArr);
+                MessagesStorage.m835$r8$lambda$J5CjT7tz5SzpQ2N33lZhLRulA(this.f$0, i, i2, bArr);
             }
         });
     }
 
-    public static void m829$r8$lambda$J5CjT7tz5SzpQ2N33lZhLRulA(MessagesStorage messagesStorage, int i, int i2, byte[] bArr) {
+    public static void m835$r8$lambda$J5CjT7tz5SzpQ2N33lZhLRulA(MessagesStorage messagesStorage, int i, int i2, byte[] bArr) {
         messagesStorage.getClass();
         try {
             SQLitePreparedStatement sQLitePreparedStatementExecuteFast = messagesStorage.database.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
@@ -857,12 +857,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m842$r8$lambda$4zjUXSWQAjifnLY4JGcfPZpOQo(this.f$0);
+                MessagesStorage.m848$r8$lambda$4zjUXSWQAjifnLY4JGcfPZpOQo(this.f$0);
             }
         });
     }
 
-    public static void m842$r8$lambda$4zjUXSWQAjifnLY4JGcfPZpOQo(MessagesStorage messagesStorage) {
+    public static void m848$r8$lambda$4zjUXSWQAjifnLY4JGcfPZpOQo(MessagesStorage messagesStorage) {
         messagesStorage.getClass();
         try {
             LongSparseArray longSparseArray = new LongSparseArray();
@@ -915,13 +915,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m866$r8$lambda$IqPacnkBb17BhEhRFFtUCYj4To(this.f$0, andAdd, nativeByteBuffer);
+                MessagesStorage.m872$r8$lambda$IqPacnkBb17BhEhRFFtUCYj4To(this.f$0, andAdd, nativeByteBuffer);
             }
         });
         return andAdd;
     }
 
-    public static void m866$r8$lambda$IqPacnkBb17BhEhRFFtUCYj4To(MessagesStorage messagesStorage, long j, NativeByteBuffer nativeByteBuffer) {
+    public static void m872$r8$lambda$IqPacnkBb17BhEhRFFtUCYj4To(MessagesStorage messagesStorage, long j, NativeByteBuffer nativeByteBuffer) {
         messagesStorage.getClass();
         try {
             SQLitePreparedStatement sQLitePreparedStatementExecuteFast = messagesStorage.database.executeFast("REPLACE INTO pending_tasks VALUES(?, ?)");
@@ -940,12 +940,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m888$r8$lambda$XK1YwVl1lYI9A9cN5Xwi6LUta0(this.f$0, j);
+                MessagesStorage.m894$r8$lambda$XK1YwVl1lYI9A9cN5Xwi6LUta0(this.f$0, j);
             }
         });
     }
 
-    public static void m888$r8$lambda$XK1YwVl1lYI9A9cN5Xwi6LUta0(MessagesStorage messagesStorage, long j) {
+    public static void m894$r8$lambda$XK1YwVl1lYI9A9cN5Xwi6LUta0(MessagesStorage messagesStorage, long j) {
         messagesStorage.getClass();
         try {
             messagesStorage.database.executeFast("DELETE FROM pending_tasks WHERE id = " + j).stepThis().dispose();
@@ -958,12 +958,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m882$r8$lambda$UNfBMOzoF_HuBEkN8ELDsPwo0Q(this.f$0);
+                MessagesStorage.m888$r8$lambda$UNfBMOzoF_HuBEkN8ELDsPwo0Q(this.f$0);
             }
         });
     }
 
-    public static void m882$r8$lambda$UNfBMOzoF_HuBEkN8ELDsPwo0Q(final MessagesStorage messagesStorage) {
+    public static void m888$r8$lambda$UNfBMOzoF_HuBEkN8ELDsPwo0Q(final MessagesStorage messagesStorage) {
         final long int64;
         messagesStorage.getClass();
         try {
@@ -1470,12 +1470,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m847$r8$lambda$8tfxQ91l0f5BHBLpeiU_NiXZT0(this.f$0);
+                MessagesStorage.m853$r8$lambda$8tfxQ91l0f5BHBLpeiU_NiXZT0(this.f$0);
             }
         });
     }
 
-    public static void m847$r8$lambda$8tfxQ91l0f5BHBLpeiU_NiXZT0(MessagesStorage messagesStorage) {
+    public static void m853$r8$lambda$8tfxQ91l0f5BHBLpeiU_NiXZT0(MessagesStorage messagesStorage) {
         messagesStorage.getClass();
         try {
             messagesStorage.database.executeFast("DELETE FROM unread_push_messages WHERE is_reaction = 2").stepThis().dispose();
@@ -2929,7 +2929,7 @@ public class MessagesStorage extends BaseController {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        MessagesStorage.m925$r8$lambda$wxdjLEccn4yfHQRkE7FHKg3bQo(this.f$0, clientUserId, arrayList);
+                                        MessagesStorage.m931$r8$lambda$wxdjLEccn4yfHQRkE7FHKg3bQo(this.f$0, clientUserId, arrayList);
                                     }
                                 });
                             } catch (Exception e2) {
@@ -2965,7 +2965,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public static void m925$r8$lambda$wxdjLEccn4yfHQRkE7FHKg3bQo(MessagesStorage messagesStorage, long j, ArrayList arrayList) {
+    public static void m931$r8$lambda$wxdjLEccn4yfHQRkE7FHKg3bQo(MessagesStorage messagesStorage, long j, ArrayList arrayList) {
         messagesStorage.getMessagesController().markDialogMessageAsDeleted(j, arrayList);
         messagesStorage.getNotificationCenter().postNotificationName(NotificationCenter.messagesDeleted, arrayList, 0L, Boolean.FALSE);
     }
@@ -3090,12 +3090,12 @@ public class MessagesStorage extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m864$r8$lambda$I1KMl0iLxzTHue37Yw9NSe_YEs(this.f$0);
+                MessagesStorage.m870$r8$lambda$I1KMl0iLxzTHue37Yw9NSe_YEs(this.f$0);
             }
         });
     }
 
-    public static void m864$r8$lambda$I1KMl0iLxzTHue37Yw9NSe_YEs(MessagesStorage messagesStorage) {
+    public static void m870$r8$lambda$I1KMl0iLxzTHue37Yw9NSe_YEs(MessagesStorage messagesStorage) {
         for (int i = 0; i < 2; i++) {
             messagesStorage.getUserConfig().setDialogsLoadOffset(i, 0, 0, 0L, 0L, 0L, 0L);
             messagesStorage.getUserConfig().setTotalDialogsCount(i, 0);
@@ -3112,12 +3112,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m840$r8$lambda$4wzbVdYaOzp5E6HGV8hketmL0E(this.f$0);
+                MessagesStorage.m846$r8$lambda$4wzbVdYaOzp5E6HGV8hketmL0E(this.f$0);
             }
         });
     }
 
-    public static void m840$r8$lambda$4wzbVdYaOzp5E6HGV8hketmL0E(final MessagesStorage messagesStorage) {
+    public static void m846$r8$lambda$4wzbVdYaOzp5E6HGV8hketmL0E(final MessagesStorage messagesStorage) {
         messagesStorage.cleanupInternal(true);
         messagesStorage.clearLoadingDialogsOffsets();
         messagesStorage.openDatabase(1);
@@ -4862,7 +4862,7 @@ public class MessagesStorage extends BaseController {
                             Collections.sort(arrayList15, new Comparator() {
                                 @Override
                                 public final int compare(Object obj, Object obj2) {
-                                    return MessagesStorage.m892$r8$lambda$Z9nhSVW5ENneeNzo5QTxNWoQCw(longSparseIntArray, (Long) obj, (Long) obj2);
+                                    return MessagesStorage.m898$r8$lambda$Z9nhSVW5ENneeNzo5QTxNWoQCw(longSparseIntArray, (Long) obj, (Long) obj2);
                                 }
                             });
                             int size8 = arrayList15.size();
@@ -5318,7 +5318,7 @@ public class MessagesStorage extends BaseController {
         messagesStorage2.checkSQLException(e);
     }
 
-    public static int m892$r8$lambda$Z9nhSVW5ENneeNzo5QTxNWoQCw(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
+    public static int m898$r8$lambda$Z9nhSVW5ENneeNzo5QTxNWoQCw(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
         int i = longSparseIntArray.get(l.longValue());
         int i2 = longSparseIntArray.get(l2.longValue());
         if (i > i2) {
@@ -5440,12 +5440,12 @@ public class MessagesStorage extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m838$r8$lambda$2hYoB9drHOL848Q9JPbtKLot9c(this.f$0);
+                MessagesStorage.m844$r8$lambda$2hYoB9drHOL848Q9JPbtKLot9c(this.f$0);
             }
         });
     }
 
-    public static void m838$r8$lambda$2hYoB9drHOL848Q9JPbtKLot9c(MessagesStorage messagesStorage) {
+    public static void m844$r8$lambda$2hYoB9drHOL848Q9JPbtKLot9c(MessagesStorage messagesStorage) {
         ArrayList<MessagesController.DialogFilter> arrayList = messagesStorage.getMessagesController().dialogFilters;
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
@@ -5490,12 +5490,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m831$r8$lambda$W4coLuuT9DQf9K5vWJ9bQI8_Jw(this.f$0, arrayList);
+                MessagesStorage.m837$r8$lambda$W4coLuuT9DQf9K5vWJ9bQI8_Jw(this.f$0, arrayList);
             }
         });
     }
 
-    public static void m831$r8$lambda$W4coLuuT9DQf9K5vWJ9bQI8_Jw(MessagesStorage messagesStorage, ArrayList arrayList) {
+    public static void m837$r8$lambda$W4coLuuT9DQf9K5vWJ9bQI8_Jw(MessagesStorage messagesStorage, ArrayList arrayList) {
         messagesStorage.dialogFilters.clear();
         messagesStorage.dialogFiltersMap.clear();
         messagesStorage.dialogFilters.addAll(arrayList);
@@ -5988,12 +5988,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m930$r8$lambda$zRXuwyZspBc6gH9dttNIOiYflE(this.f$0, i, arrayList);
+                MessagesStorage.m936$r8$lambda$zRXuwyZspBc6gH9dttNIOiYflE(this.f$0, i, arrayList);
             }
         });
     }
 
-    public static void m930$r8$lambda$zRXuwyZspBc6gH9dttNIOiYflE(MessagesStorage messagesStorage, int i, ArrayList arrayList) throws Throwable {
+    public static void m936$r8$lambda$zRXuwyZspBc6gH9dttNIOiYflE(MessagesStorage messagesStorage, int i, ArrayList arrayList) throws Throwable {
         Throwable th;
         SQLiteDatabase sQLiteDatabase;
         Exception e;
@@ -6091,12 +6091,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m924$r8$lambda$vfMHZdquyJhf8nUFuUruOG5Mco(this.f$0, j);
+                MessagesStorage.m930$r8$lambda$vfMHZdquyJhf8nUFuUruOG5Mco(this.f$0, j);
             }
         });
     }
 
-    public static void m924$r8$lambda$vfMHZdquyJhf8nUFuUruOG5Mco(MessagesStorage messagesStorage, long j) {
+    public static void m930$r8$lambda$vfMHZdquyJhf8nUFuUruOG5Mco(MessagesStorage messagesStorage, long j) {
         messagesStorage.getClass();
         try {
             messagesStorage.database.executeFast("DELETE FROM wallpapers2 WHERE uid = " + j).stepThis().dispose();
@@ -6203,12 +6203,12 @@ public class MessagesStorage extends BaseController {
         executeInStorageQueue(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m910$r8$lambda$jvo2zzfphmGylC438A2cMmlLM0(this.f$0, i, j, j2);
+                MessagesStorage.m916$r8$lambda$jvo2zzfphmGylC438A2cMmlLM0(this.f$0, i, j, j2);
             }
         });
     }
 
-    public static void m910$r8$lambda$jvo2zzfphmGylC438A2cMmlLM0(final MessagesStorage messagesStorage, int i, final long j, long j2) throws Throwable {
+    public static void m916$r8$lambda$jvo2zzfphmGylC438A2cMmlLM0(final MessagesStorage messagesStorage, int i, final long j, long j2) throws Throwable {
         SQLiteCursor sQLiteCursor;
         SQLiteCursor sQLiteCursor2;
         SQLitePreparedStatement sQLitePreparedStatement;
@@ -6467,12 +6467,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m828$r8$lambda$I5mKs98sr7O2Hr1QYz1WIBqs(this.f$0, j, j2);
+                MessagesStorage.m834$r8$lambda$I5mKs98sr7O2Hr1QYz1WIBqs(this.f$0, j, j2);
             }
         });
     }
 
-    public static void m828$r8$lambda$I5mKs98sr7O2Hr1QYz1WIBqs(MessagesStorage messagesStorage, final long j, long j2) throws Throwable {
+    public static void m834$r8$lambda$I5mKs98sr7O2Hr1QYz1WIBqs(MessagesStorage messagesStorage, final long j, long j2) throws Throwable {
         long j3;
         ArrayList<String> arrayList;
         final MessagesStorage messagesStorage2 = messagesStorage;
@@ -6513,7 +6513,7 @@ public class MessagesStorage extends BaseController {
                                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                                         @Override
                                                         public final void run() {
-                                                            MessagesStorage.m850$r8$lambda$AphHWw2QVR1cMivouRyTwTzJLM(this.f$0, arrayList4, j, arrayList2);
+                                                            MessagesStorage.m856$r8$lambda$AphHWw2QVR1cMivouRyTwTzJLM(this.f$0, arrayList4, j, arrayList2);
                                                         }
                                                     });
                                                     messagesStorage.markMessagesAsDeletedInternal(j, arrayList2, false, 0, 0);
@@ -6549,7 +6549,7 @@ public class MessagesStorage extends BaseController {
                                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                                     @Override
                                                     public final void run() {
-                                                        MessagesStorage.m850$r8$lambda$AphHWw2QVR1cMivouRyTwTzJLM(this.f$0, arrayList4, j, arrayList2);
+                                                        MessagesStorage.m856$r8$lambda$AphHWw2QVR1cMivouRyTwTzJLM(this.f$0, arrayList4, j, arrayList2);
                                                     }
                                                 });
                                                 messagesStorage.markMessagesAsDeletedInternal(j, arrayList2, false, 0, 0);
@@ -6588,7 +6588,7 @@ public class MessagesStorage extends BaseController {
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    MessagesStorage.m850$r8$lambda$AphHWw2QVR1cMivouRyTwTzJLM(this.f$0, arrayList4, j, arrayList2);
+                                    MessagesStorage.m856$r8$lambda$AphHWw2QVR1cMivouRyTwTzJLM(this.f$0, arrayList4, j, arrayList2);
                                 }
                             });
                             messagesStorage.markMessagesAsDeletedInternal(j, arrayList2, false, 0, 0);
@@ -6642,7 +6642,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public static void m850$r8$lambda$AphHWw2QVR1cMivouRyTwTzJLM(MessagesStorage messagesStorage, ArrayList arrayList, long j, ArrayList arrayList2) {
+    public static void m856$r8$lambda$AphHWw2QVR1cMivouRyTwTzJLM(MessagesStorage messagesStorage, ArrayList arrayList, long j, ArrayList arrayList2) {
         messagesStorage.getFileLoader().cancelLoadFiles(arrayList);
         messagesStorage.getMessagesController().markDialogMessageAsDeleted(j, arrayList2);
     }
@@ -6802,12 +6802,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m841$r8$lambda$4P6A4gtyXvqv1W6kMpvYBj7pv4(this.f$0, messages_dialogs, i6, i2, i3, i4, i5, message, i, longSparseArray, longSparseArray2);
+                MessagesStorage.m847$r8$lambda$4P6A4gtyXvqv1W6kMpvYBj7pv4(this.f$0, messages_dialogs, i6, i2, i3, i4, i5, message, i, longSparseArray, longSparseArray2);
             }
         });
     }
 
-    public static void m841$r8$lambda$4P6A4gtyXvqv1W6kMpvYBj7pv4(MessagesStorage messagesStorage, TLRPC.messages_Dialogs messages_dialogs, int i, int i2, int i3, int i4, int i5, TLRPC.Message message, int i6, LongSparseArray longSparseArray, LongSparseArray longSparseArray2) throws Throwable {
+    public static void m847$r8$lambda$4P6A4gtyXvqv1W6kMpvYBj7pv4(MessagesStorage messagesStorage, TLRPC.messages_Dialogs messages_dialogs, int i, int i2, int i3, int i4, int i5, TLRPC.Message message, int i6, LongSparseArray longSparseArray, LongSparseArray longSparseArray2) throws Throwable {
         SQLiteCursor sQLiteCursor;
         SQLiteDatabase sQLiteDatabase;
         long j;
@@ -6885,7 +6885,7 @@ public class MessagesStorage extends BaseController {
             Collections.sort(arrayList2, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return MessagesStorage.m914$r8$lambda$nTdaU5Wn9V4xKyrW38hNDE5z7A(longSparseIntArray, (Long) obj, (Long) obj2);
+                    return MessagesStorage.m920$r8$lambda$nTdaU5Wn9V4xKyrW38hNDE5z7A(longSparseIntArray, (Long) obj, (Long) obj2);
                 }
             });
             while (true) {
@@ -7044,7 +7044,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public static int m914$r8$lambda$nTdaU5Wn9V4xKyrW38hNDE5z7A(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
+    public static int m920$r8$lambda$nTdaU5Wn9V4xKyrW38hNDE5z7A(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
         int i = longSparseIntArray.get(l.longValue());
         int i2 = longSparseIntArray.get(l2.longValue());
         if (i < i2) {
@@ -7057,12 +7057,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m878$r8$lambda$TnNs8Bm04YZVYR2pImRN_proMk(this.f$0, arrayList, j);
+                MessagesStorage.m884$r8$lambda$TnNs8Bm04YZVYR2pImRN_proMk(this.f$0, arrayList, j);
             }
         });
     }
 
-    public static void m878$r8$lambda$TnNs8Bm04YZVYR2pImRN_proMk(MessagesStorage messagesStorage, ArrayList arrayList, long j) throws Throwable {
+    public static void m884$r8$lambda$TnNs8Bm04YZVYR2pImRN_proMk(MessagesStorage messagesStorage, ArrayList arrayList, long j) throws Throwable {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast;
         SQLiteCursor sQLiteCursor;
         int i;
@@ -7602,12 +7602,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m903$r8$lambda$fHYm4qf9rZC307ZfNxwlcKelq4(this.f$0, j, poll, pollResults);
+                MessagesStorage.m909$r8$lambda$fHYm4qf9rZC307ZfNxwlcKelq4(this.f$0, j, poll, pollResults);
             }
         });
     }
 
-    public static void m903$r8$lambda$fHYm4qf9rZC307ZfNxwlcKelq4(MessagesStorage messagesStorage, long j, TLRPC.Poll poll, TLRPC.PollResults pollResults) throws Throwable {
+    public static void m909$r8$lambda$fHYm4qf9rZC307ZfNxwlcKelq4(MessagesStorage messagesStorage, long j, TLRPC.Poll poll, TLRPC.PollResults pollResults) throws Throwable {
         SQLitePreparedStatement sQLitePreparedStatement;
         int i;
         ?? QueryFinalized;
@@ -8236,13 +8236,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m853$r8$lambda$BpT9s0dnzRNiG7gR2aBfLPApk(this.f$0, i, j, tL_messageReactions);
+                MessagesStorage.m859$r8$lambda$BpT9s0dnzRNiG7gR2aBfLPApk(this.f$0, i, j, tL_messageReactions);
             }
         });
     }
 
-    public static void m853$r8$lambda$BpT9s0dnzRNiG7gR2aBfLPApk(org.telegram.messenger.MessagesStorage r20, int r21, long r22, org.telegram.tgnet.TLRPC.TL_messageReactions r24) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.m853$r8$lambda$BpT9s0dnzRNiG7gR2aBfLPApk(org.telegram.messenger.MessagesStorage, int, long, org.telegram.tgnet.TLRPC$TL_messageReactions):void");
+    public static void m859$r8$lambda$BpT9s0dnzRNiG7gR2aBfLPApk(org.telegram.messenger.MessagesStorage r20, int r21, long r22, org.telegram.tgnet.TLRPC.TL_messageReactions r24) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.m859$r8$lambda$BpT9s0dnzRNiG7gR2aBfLPApk(org.telegram.messenger.MessagesStorage, int, long, org.telegram.tgnet.TLRPC$TL_messageReactions):void");
     }
 
     class SavedReactionsUpdate {
@@ -8571,12 +8571,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m877$r8$lambda$SYCQc23394Y7bpgF3l8i2Z03KI(this.f$0, i, j, message, str);
+                MessagesStorage.m883$r8$lambda$SYCQc23394Y7bpgF3l8i2Z03KI(this.f$0, i, j, message, str);
             }
         });
     }
 
-    public static void m877$r8$lambda$SYCQc23394Y7bpgF3l8i2Z03KI(MessagesStorage messagesStorage, int i, long j, TLRPC.Message message, String str) throws Throwable {
+    public static void m883$r8$lambda$SYCQc23394Y7bpgF3l8i2Z03KI(MessagesStorage messagesStorage, int i, long j, TLRPC.Message message, String str) throws Throwable {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast;
         messagesStorage.getClass();
         SQLitePreparedStatement sQLitePreparedStatement = null;
@@ -8984,12 +8984,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m862$r8$lambda$GhQ0XqOCTPTwmJiDyU7VgnyO2Y(this.f$0, j2, j, i);
+                MessagesStorage.m868$r8$lambda$GhQ0XqOCTPTwmJiDyU7VgnyO2Y(this.f$0, j2, j, i);
             }
         });
     }
 
-    public static void m862$r8$lambda$GhQ0XqOCTPTwmJiDyU7VgnyO2Y(MessagesStorage messagesStorage, long j, long j2, int i) throws Throwable {
+    public static void m868$r8$lambda$GhQ0XqOCTPTwmJiDyU7VgnyO2Y(MessagesStorage messagesStorage, long j, long j2, int i) throws Throwable {
         messagesStorage.getClass();
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -10316,12 +10316,12 @@ public class MessagesStorage extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m909$r8$lambda$jnJX_jtUAWWjeIkjOPejV8KE(this.f$0);
+                MessagesStorage.m915$r8$lambda$jnJX_jtUAWWjeIkjOPejV8KE(this.f$0);
             }
         });
     }
 
-    public static void m909$r8$lambda$jnJX_jtUAWWjeIkjOPejV8KE(MessagesStorage messagesStorage) {
+    public static void m915$r8$lambda$jnJX_jtUAWWjeIkjOPejV8KE(MessagesStorage messagesStorage) {
         ArrayList<MessagesController.DialogFilter> arrayList = messagesStorage.getMessagesController().dialogFilters;
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
@@ -10666,7 +10666,7 @@ public class MessagesStorage extends BaseController {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                MessagesStorage.m912$r8$lambda$komz1SODsY5xE1XwvzJGj50do(this.f$0, chatFullTLdeserialize);
+                                MessagesStorage.m918$r8$lambda$komz1SODsY5xE1XwvzJGj50do(this.f$0, chatFullTLdeserialize);
                             }
                         });
                         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = messagesStorage.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
@@ -10708,7 +10708,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public static void m912$r8$lambda$komz1SODsY5xE1XwvzJGj50do(MessagesStorage messagesStorage, TLRPC.ChatFull chatFull) {
+    public static void m918$r8$lambda$komz1SODsY5xE1XwvzJGj50do(MessagesStorage messagesStorage, TLRPC.ChatFull chatFull) {
         NotificationCenter notificationCenter = messagesStorage.getNotificationCenter();
         int i = NotificationCenter.chatInfoDidLoad;
         Boolean bool = Boolean.FALSE;
@@ -10719,12 +10719,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m885$r8$lambda$Vr59FqDaXW2goKr5dhlkRXyT7A(this.f$0, j);
+                MessagesStorage.m891$r8$lambda$Vr59FqDaXW2goKr5dhlkRXyT7A(this.f$0, j);
             }
         });
     }
 
-    public static void m885$r8$lambda$Vr59FqDaXW2goKr5dhlkRXyT7A(MessagesStorage messagesStorage, long j) throws Throwable {
+    public static void m891$r8$lambda$Vr59FqDaXW2goKr5dhlkRXyT7A(MessagesStorage messagesStorage, long j) throws Throwable {
         messagesStorage.getClass();
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -10945,12 +10945,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m851$r8$lambda$BbXdwbddZVYVdbLSSa5kBAgXS8(this.f$0, tLObject, str);
+                MessagesStorage.m857$r8$lambda$BbXdwbddZVYVdbLSSa5kBAgXS8(this.f$0, tLObject, str);
             }
         });
     }
 
-    public static void m851$r8$lambda$BbXdwbddZVYVdbLSSa5kBAgXS8(MessagesStorage messagesStorage, TLObject tLObject, String str) throws Throwable {
+    public static void m857$r8$lambda$BbXdwbddZVYVdbLSSa5kBAgXS8(MessagesStorage messagesStorage, TLObject tLObject, String str) throws Throwable {
         int i;
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast;
         messagesStorage.getClass();
@@ -11144,12 +11144,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m919$r8$lambda$quaWkjGQr1sz4EMY_qRmjXEg98(this.f$0, user, z, i);
+                MessagesStorage.m925$r8$lambda$quaWkjGQr1sz4EMY_qRmjXEg98(this.f$0, user, z, i);
             }
         });
     }
 
-    public static void m919$r8$lambda$quaWkjGQr1sz4EMY_qRmjXEg98(final MessagesStorage messagesStorage, TLRPC.User user, boolean z, int i) throws Throwable {
+    public static void m925$r8$lambda$quaWkjGQr1sz4EMY_qRmjXEg98(final MessagesStorage messagesStorage, TLRPC.User user, boolean z, int i) throws Throwable {
         Throwable th;
         TLRPC.UserFull userFull;
         SQLiteCursor sQLiteCursor;
@@ -11501,12 +11501,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m876$r8$lambda$S8j9EOogElJQ9M6QNGNDmD46nM(this.f$0, userFull, z);
+                MessagesStorage.m882$r8$lambda$S8j9EOogElJQ9M6QNGNDmD46nM(this.f$0, userFull, z);
             }
         });
     }
 
-    public static void m876$r8$lambda$S8j9EOogElJQ9M6QNGNDmD46nM(MessagesStorage messagesStorage, TLRPC.UserFull userFull, boolean z) throws Throwable {
+    public static void m882$r8$lambda$S8j9EOogElJQ9M6QNGNDmD46nM(MessagesStorage messagesStorage, TLRPC.UserFull userFull, boolean z) throws Throwable {
         SQLiteCursor sQLiteCursorQueryFinalized;
         messagesStorage.getClass();
         TLRPC.User user = userFull.user;
@@ -11623,12 +11623,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m849$r8$lambda$AcMNCoiS1FbLRI6rRVixtjxeWg(this.f$0, j, requirementToContact);
+                MessagesStorage.m855$r8$lambda$AcMNCoiS1FbLRI6rRVixtjxeWg(this.f$0, j, requirementToContact);
             }
         });
     }
 
-    public static void m849$r8$lambda$AcMNCoiS1FbLRI6rRVixtjxeWg(MessagesStorage messagesStorage, long j, TL_account.RequirementToContact requirementToContact) throws Throwable {
+    public static void m855$r8$lambda$AcMNCoiS1FbLRI6rRVixtjxeWg(MessagesStorage messagesStorage, long j, TL_account.RequirementToContact requirementToContact) throws Throwable {
         SQLiteCursor sQLiteCursorQueryFinalized;
         TLRPC.UserFull userFullTLdeserialize;
         messagesStorage.getClass();
@@ -11703,12 +11703,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m897$r8$lambda$b_h5t9m5g3GCxnx5uWOOzen4c(this.f$0, j2, j);
+                MessagesStorage.m903$r8$lambda$b_h5t9m5g3GCxnx5uWOOzen4c(this.f$0, j2, j);
             }
         });
     }
 
-    public static void m897$r8$lambda$b_h5t9m5g3GCxnx5uWOOzen4c(MessagesStorage messagesStorage, long j, long j2) {
+    public static void m903$r8$lambda$b_h5t9m5g3GCxnx5uWOOzen4c(MessagesStorage messagesStorage, long j, long j2) {
         messagesStorage.getClass();
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
@@ -12041,12 +12041,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m844$r8$lambda$6b0_BtokjCZcdMh001aGxiktMQ(this.f$0, z, map, i2, j, arrayList, i, z2);
+                MessagesStorage.m850$r8$lambda$6b0_BtokjCZcdMh001aGxiktMQ(this.f$0, z, map, i2, j, arrayList, i, z2);
             }
         });
     }
 
-    public static void m844$r8$lambda$6b0_BtokjCZcdMh001aGxiktMQ(final MessagesStorage messagesStorage, boolean z, final HashMap map, final int i, final long j, final ArrayList arrayList, int i2, boolean z2) throws Throwable {
+    public static void m850$r8$lambda$6b0_BtokjCZcdMh001aGxiktMQ(final MessagesStorage messagesStorage, boolean z, final HashMap map, final int i, final long j, final ArrayList arrayList, int i2, boolean z2) throws Throwable {
         SQLiteCursor sQLiteCursor;
         ?? r16;
         SQLiteDatabase sQLiteDatabase;
@@ -12422,12 +12422,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m906$r8$lambda$gzaDA4EcaXi1Qn6ZQ1VdZpd_l0(this.f$0, j, i, j2, j3, i2);
+                MessagesStorage.m912$r8$lambda$gzaDA4EcaXi1Qn6ZQ1VdZpd_l0(this.f$0, j, i, j2, j3, i2);
             }
         });
     }
 
-    public static void m906$r8$lambda$gzaDA4EcaXi1Qn6ZQ1VdZpd_l0(final MessagesStorage messagesStorage, long j, int i, long j2, long j3, int i2) throws Throwable {
+    public static void m912$r8$lambda$gzaDA4EcaXi1Qn6ZQ1VdZpd_l0(final MessagesStorage messagesStorage, long j, int i, long j2, long j3, int i2) throws Throwable {
         SQLiteCursor sQLiteCursor;
         final TLRPC.ChatFull chatFullTLdeserialize;
         TLRPC.ChatParticipant tL_chatParticipant;
@@ -12495,7 +12495,7 @@ public class MessagesStorage extends BaseController {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            MessagesStorage.m859$r8$lambda$EMyWygDu9z__4xTF13LjjfemNc(this.f$0, chatFullTLdeserialize);
+                            MessagesStorage.m865$r8$lambda$EMyWygDu9z__4xTF13LjjfemNc(this.f$0, chatFullTLdeserialize);
                         }
                     });
                     SQLitePreparedStatement sQLitePreparedStatementExecuteFast = messagesStorage.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
@@ -12546,7 +12546,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public static void m859$r8$lambda$EMyWygDu9z__4xTF13LjjfemNc(MessagesStorage messagesStorage, TLRPC.ChatFull chatFull) {
+    public static void m865$r8$lambda$EMyWygDu9z__4xTF13LjjfemNc(MessagesStorage messagesStorage, TLRPC.ChatFull chatFull) {
         NotificationCenter notificationCenter = messagesStorage.getNotificationCenter();
         int i = NotificationCenter.chatInfoDidLoad;
         Boolean bool = Boolean.FALSE;
@@ -12621,7 +12621,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m896$r8$lambda$_jYhk51VBrD1rxKpRUuM0M8qo(this.f$0, j, j2, atomicReference, countDownLatch);
+                MessagesStorage.m902$r8$lambda$_jYhk51VBrD1rxKpRUuM0M8qo(this.f$0, j, j2, atomicReference, countDownLatch);
             }
         });
         try {
@@ -12632,7 +12632,7 @@ public class MessagesStorage extends BaseController {
         return (TLRPC.Message) atomicReference.get();
     }
 
-    public static void m896$r8$lambda$_jYhk51VBrD1rxKpRUuM0M8qo(MessagesStorage messagesStorage, long j, long j2, AtomicReference atomicReference, CountDownLatch countDownLatch) {
+    public static void m902$r8$lambda$_jYhk51VBrD1rxKpRUuM0M8qo(MessagesStorage messagesStorage, long j, long j2, AtomicReference atomicReference, CountDownLatch countDownLatch) {
         messagesStorage.getClass();
         SQLiteCursor sQLiteCursorQueryFinalized = null;
         try {
@@ -14039,7 +14039,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m879$r8$lambda$TwvHTabdmK7biu_lqMDxTV5OTo(this.f$0, chatFullArr, j, z, z2, z3, i, countDownLatch);
+                MessagesStorage.m885$r8$lambda$TwvHTabdmK7biu_lqMDxTV5OTo(this.f$0, chatFullArr, j, z, z2, z3, i, countDownLatch);
             }
         });
         if (countDownLatch != null) {
@@ -14051,7 +14051,7 @@ public class MessagesStorage extends BaseController {
         return chatFullArr[0];
     }
 
-    public static void m879$r8$lambda$TwvHTabdmK7biu_lqMDxTV5OTo(MessagesStorage messagesStorage, TLRPC.ChatFull[] chatFullArr, long j, boolean z, boolean z2, boolean z3, int i, CountDownLatch countDownLatch) {
+    public static void m885$r8$lambda$TwvHTabdmK7biu_lqMDxTV5OTo(MessagesStorage messagesStorage, TLRPC.ChatFull[] chatFullArr, long j, boolean z, boolean z2, boolean z3, int i, CountDownLatch countDownLatch) {
         chatFullArr[0] = messagesStorage.loadChatInfoInternal(j, z, z2, z3, i);
         if (countDownLatch != null) {
             countDownLatch.countDown();
@@ -14607,12 +14607,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m837$r8$lambda$25TlthG4jLAYys35zqPOABc9Fc(this.f$0, str, str2);
+                MessagesStorage.m843$r8$lambda$25TlthG4jLAYys35zqPOABc9Fc(this.f$0, str, str2);
             }
         });
     }
 
-    public static void m837$r8$lambda$25TlthG4jLAYys35zqPOABc9Fc(MessagesStorage messagesStorage, String str, String str2) {
+    public static void m843$r8$lambda$25TlthG4jLAYys35zqPOABc9Fc(MessagesStorage messagesStorage, String str, String str2) {
         messagesStorage.getClass();
         try {
             if (str.length() != 0) {
@@ -14771,12 +14771,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m901$r8$lambda$ca8pX9Sw_LnSjz4EWptZjcQsa4(this.f$0, z);
+                MessagesStorage.m907$r8$lambda$ca8pX9Sw_LnSjz4EWptZjcQsa4(this.f$0, z);
             }
         });
     }
 
-    public static void m901$r8$lambda$ca8pX9Sw_LnSjz4EWptZjcQsa4(MessagesStorage messagesStorage, boolean z) {
+    public static void m907$r8$lambda$ca8pX9Sw_LnSjz4EWptZjcQsa4(MessagesStorage messagesStorage, boolean z) {
         SQLiteCursor sQLiteCursorQueryFinalized;
         int iIntValue;
         int iMin;
@@ -15126,12 +15126,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m886$r8$lambda$Vzv8D2VFUTSfCiDIrcttkYXPRY(this.f$0);
+                MessagesStorage.m892$r8$lambda$Vzv8D2VFUTSfCiDIrcttkYXPRY(this.f$0);
             }
         });
     }
 
-    public static void m886$r8$lambda$Vzv8D2VFUTSfCiDIrcttkYXPRY(MessagesStorage messagesStorage) throws Throwable {
+    public static void m892$r8$lambda$Vzv8D2VFUTSfCiDIrcttkYXPRY(MessagesStorage messagesStorage) throws Throwable {
         SQLiteCursor sQLiteCursorQueryFinalized;
         Exception e;
         messagesStorage.getClass();
@@ -15627,7 +15627,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.getMessagesInternal(long, long, int, int, int, int, int, int, int, long, int, boolean, boolean, org.telegram.messenger.Timer):java.lang.Runnable");
     }
 
-    public static int m915$r8$lambda$nhfVi_P1zHMqTKt5VxFH6zbrpE(TLRPC.Message message, TLRPC.Message message2) {
+    public static int m921$r8$lambda$nhfVi_P1zHMqTKt5VxFH6zbrpE(TLRPC.Message message, TLRPC.Message message2) {
         int i;
         int i2;
         int i3;
@@ -15724,12 +15724,12 @@ public class MessagesStorage extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m875$r8$lambda$RJ5nKJjPfHJskMm8kXTKte4WA(taskStart2, messagesInternal);
+                MessagesStorage.m881$r8$lambda$RJ5nKJjPfHJskMm8kXTKte4WA(taskStart2, messagesInternal);
             }
         });
     }
 
-    public static void m875$r8$lambda$RJ5nKJjPfHJskMm8kXTKte4WA(Timer.Task task, Runnable runnable) {
+    public static void m881$r8$lambda$RJ5nKJjPfHJskMm8kXTKte4WA(Timer.Task task, Runnable runnable) {
         Timer.done(task);
         runnable.run();
     }
@@ -15738,12 +15738,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m857$r8$lambda$DZ7bhdTzAPQcHuLI4v8MGWfn3E(this.f$0);
+                MessagesStorage.m863$r8$lambda$DZ7bhdTzAPQcHuLI4v8MGWfn3E(this.f$0);
             }
         });
     }
 
-    public static void m857$r8$lambda$DZ7bhdTzAPQcHuLI4v8MGWfn3E(MessagesStorage messagesStorage) {
+    public static void m863$r8$lambda$DZ7bhdTzAPQcHuLI4v8MGWfn3E(MessagesStorage messagesStorage) {
         messagesStorage.getClass();
         try {
             messagesStorage.database.executeFast("DELETE FROM sent_files_v2 WHERE 1").stepThis().dispose();
@@ -15886,12 +15886,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m871$r8$lambda$NLoyiUl50rDBpNQpOahdUpTeoM(this.f$0, i);
+                MessagesStorage.m877$r8$lambda$NLoyiUl50rDBpNQpOahdUpTeoM(this.f$0, i);
             }
         });
     }
 
-    public static void m871$r8$lambda$NLoyiUl50rDBpNQpOahdUpTeoM(MessagesStorage messagesStorage, int i) {
+    public static void m877$r8$lambda$NLoyiUl50rDBpNQpOahdUpTeoM(MessagesStorage messagesStorage, int i) {
         messagesStorage.getClass();
         try {
             messagesStorage.database.executeFast("DELETE FROM shortcut_widget WHERE id = " + i).stepThis().dispose();
@@ -16165,12 +16165,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m845$r8$lambda$6nHdenVyRxXHWVf_tMg10wiskY(this.f$0, str, tLObject, i, str2);
+                MessagesStorage.m851$r8$lambda$6nHdenVyRxXHWVf_tMg10wiskY(this.f$0, str, tLObject, i, str2);
             }
         });
     }
 
-    public static void m845$r8$lambda$6nHdenVyRxXHWVf_tMg10wiskY(MessagesStorage messagesStorage, String str, TLObject tLObject, int i, String str2) {
+    public static void m851$r8$lambda$6nHdenVyRxXHWVf_tMg10wiskY(MessagesStorage messagesStorage, String str, TLObject tLObject, int i, String str2) {
         TLRPC.MessageMedia tL_messageMediaDocument;
         messagesStorage.getClass();
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
@@ -17218,12 +17218,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m929$r8$lambda$zIwhijLJQtQSuJ42zhTVbPDb8A(this.f$0, z, i, j);
+                MessagesStorage.m935$r8$lambda$zIwhijLJQtQSuJ42zhTVbPDb8A(this.f$0, z, i, j);
             }
         });
     }
 
-    public static void m929$r8$lambda$zIwhijLJQtQSuJ42zhTVbPDb8A(MessagesStorage messagesStorage, boolean z, int i, long j) throws Throwable {
+    public static void m935$r8$lambda$zIwhijLJQtQSuJ42zhTVbPDb8A(MessagesStorage messagesStorage, boolean z, int i, long j) throws Throwable {
         messagesStorage.getClass();
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -18871,12 +18871,12 @@ public class MessagesStorage extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m905$r8$lambda$guRWfeSROd8048rVHN7znAwxb8(this.f$0, arrayList);
+                MessagesStorage.m911$r8$lambda$guRWfeSROd8048rVHN7znAwxb8(this.f$0, arrayList);
             }
         });
     }
 
-    public static void m905$r8$lambda$guRWfeSROd8048rVHN7znAwxb8(MessagesStorage messagesStorage, ArrayList arrayList) throws Throwable {
+    public static void m911$r8$lambda$guRWfeSROd8048rVHN7znAwxb8(MessagesStorage messagesStorage, ArrayList arrayList) throws Throwable {
         SQLiteDatabase sQLiteDatabase;
         SQLiteDatabase sQLiteDatabase2;
         messagesStorage.getClass();
@@ -19136,12 +19136,12 @@ public class MessagesStorage extends BaseController {
         executeInStorageQueue(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m926$r8$lambda$xMfLjdk443NLHuj9ElHg5Xinf8(this.f$0, arrayList, runnable);
+                MessagesStorage.m932$r8$lambda$xMfLjdk443NLHuj9ElHg5Xinf8(this.f$0, arrayList, runnable);
             }
         });
     }
 
-    public static void m926$r8$lambda$xMfLjdk443NLHuj9ElHg5Xinf8(MessagesStorage messagesStorage, ArrayList arrayList, Runnable runnable) throws Throwable {
+    public static void m932$r8$lambda$xMfLjdk443NLHuj9ElHg5Xinf8(MessagesStorage messagesStorage, ArrayList arrayList, Runnable runnable) throws Throwable {
         messagesStorage.processAnchoredEphemeralMessagesInternal(arrayList);
         runnable.run();
     }
@@ -19358,7 +19358,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public static void m858$r8$lambda$E1D_vTAm73lSafkHKpKWDj_31w(final MessagesStorage messagesStorage, final Utilities.Callback callback, final long j, final long j2) {
+    public static void m864$r8$lambda$E1D_vTAm73lSafkHKpKWDj_31w(final MessagesStorage messagesStorage, final Utilities.Callback callback, final long j, final long j2) {
         messagesStorage.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -19372,7 +19372,7 @@ public class MessagesStorage extends BaseController {
         executeInStorageQueue(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m858$r8$lambda$E1D_vTAm73lSafkHKpKWDj_31w(this.f$0, callback, j, j2);
+                MessagesStorage.m864$r8$lambda$E1D_vTAm73lSafkHKpKWDj_31w(this.f$0, callback, j, j2);
             }
         });
     }
@@ -19504,12 +19504,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m867$r8$lambda$Iu3tBl1TI9gjOta6MQk1oDvQZM(this.f$0, i, message);
+                MessagesStorage.m873$r8$lambda$Iu3tBl1TI9gjOta6MQk1oDvQZM(this.f$0, i, message);
             }
         });
     }
 
-    public static void m867$r8$lambda$Iu3tBl1TI9gjOta6MQk1oDvQZM(MessagesStorage messagesStorage, int i, TLRPC.Message message) {
+    public static void m873$r8$lambda$Iu3tBl1TI9gjOta6MQk1oDvQZM(MessagesStorage messagesStorage, int i, TLRPC.Message message) {
         messagesStorage.getClass();
         try {
             long j = message.id;
@@ -19608,12 +19608,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m860$r8$lambda$ER81WsKlAlDltgPIZ8Vj50430(this.f$0, i, i2, i3);
+                MessagesStorage.m866$r8$lambda$ER81WsKlAlDltgPIZ8Vj50430(this.f$0, i, i2, i3);
             }
         });
     }
 
-    public static void m860$r8$lambda$ER81WsKlAlDltgPIZ8Vj50430(MessagesStorage messagesStorage, int i, int i2, int i3) {
+    public static void m866$r8$lambda$ER81WsKlAlDltgPIZ8Vj50430(MessagesStorage messagesStorage, int i, int i2, int i3) {
         messagesStorage.getClass();
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
@@ -22209,12 +22209,12 @@ public class MessagesStorage extends BaseController {
         executeInStorageQueue(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m852$r8$lambda$BgHdQaRpUd6WwOoQfACgI3GUuI(this.f$0, i, j, j2);
+                MessagesStorage.m858$r8$lambda$BgHdQaRpUd6WwOoQfACgI3GUuI(this.f$0, i, j, j2);
             }
         });
     }
 
-    public static void m852$r8$lambda$BgHdQaRpUd6WwOoQfACgI3GUuI(MessagesStorage messagesStorage, int i, long j, long j2) {
+    public static void m858$r8$lambda$BgHdQaRpUd6WwOoQfACgI3GUuI(MessagesStorage messagesStorage, int i, long j, long j2) {
         messagesStorage.getClass();
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
@@ -22549,7 +22549,7 @@ public class MessagesStorage extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.m928$r8$lambda$y0aukd7PhkzVp89XSCeqL1x9Uo(this.f$0, arrayList2);
+                    MessagesStorage.m934$r8$lambda$y0aukd7PhkzVp89XSCeqL1x9Uo(this.f$0, arrayList2);
                 }
             });
         } catch (Throwable th2) {
@@ -22560,7 +22560,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public static void m928$r8$lambda$y0aukd7PhkzVp89XSCeqL1x9Uo(MessagesStorage messagesStorage, ArrayList arrayList) {
+    public static void m934$r8$lambda$y0aukd7PhkzVp89XSCeqL1x9Uo(MessagesStorage messagesStorage, ArrayList arrayList) {
         messagesStorage.getClass();
         int size = arrayList.size();
         int i = 0;
@@ -22578,12 +22578,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m834$r8$lambda$0ZMZ7VNdT4wXl_efoOm4Xv2Ec(this.f$0, j, arrayList, i2, i);
+                MessagesStorage.m840$r8$lambda$0ZMZ7VNdT4wXl_efoOm4Xv2Ec(this.f$0, j, arrayList, i2, i);
             }
         });
     }
 
-    public static void m834$r8$lambda$0ZMZ7VNdT4wXl_efoOm4Xv2Ec(MessagesStorage messagesStorage, long j, ArrayList arrayList, int i, int i2) throws Throwable {
+    public static void m840$r8$lambda$0ZMZ7VNdT4wXl_efoOm4Xv2Ec(MessagesStorage messagesStorage, long j, ArrayList arrayList, int i, int i2) throws Throwable {
         SQLiteCursor sQLiteCursorQueryFinalized;
         Exception e;
         int i3;
@@ -24968,12 +24968,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m889$r8$lambda$XNH0VENRzJIE8rbqOVbxW4AL8k(this.f$0, message, z, arrayList, arrayList2);
+                MessagesStorage.m895$r8$lambda$XNH0VENRzJIE8rbqOVbxW4AL8k(this.f$0, message, z, arrayList, arrayList2);
             }
         });
     }
 
-    public static void m889$r8$lambda$XNH0VENRzJIE8rbqOVbxW4AL8k(final MessagesStorage messagesStorage, TLRPC.Message message, boolean z, ArrayList arrayList, ArrayList arrayList2) throws Throwable {
+    public static void m895$r8$lambda$XNH0VENRzJIE8rbqOVbxW4AL8k(final MessagesStorage messagesStorage, TLRPC.Message message, boolean z, ArrayList arrayList, ArrayList arrayList2) throws Throwable {
         SQLitePreparedStatement sQLitePreparedStatement;
         SQLitePreparedStatement sQLitePreparedStatement2;
         SQLitePreparedStatement sQLitePreparedStatement3;
@@ -25825,7 +25825,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$238(int, org.telegram.tgnet.TLRPC$messages_Messages, long, long, int, int, boolean):void");
     }
 
-    public static void m922$r8$lambda$uU_hQFGHyuEn7_ZZW8n8mFK0gI(MessagesStorage messagesStorage, ArrayList arrayList) {
+    public static void m928$r8$lambda$uU_hQFGHyuEn7_ZZW8n8mFK0gI(MessagesStorage messagesStorage, ArrayList arrayList) {
         if (messagesStorage.getMessagesController().getSavedMessagesController().updateSavedDialogs(arrayList)) {
             messagesStorage.getMessagesController().getSavedMessagesController().update();
         }
@@ -27238,12 +27238,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m893$r8$lambda$_5RPiZwdDOTyexrMTGL6FatXLg(this.f$0, j, intCallback);
+                MessagesStorage.m899$r8$lambda$_5RPiZwdDOTyexrMTGL6FatXLg(this.f$0, j, intCallback);
             }
         });
     }
 
-    public static void m893$r8$lambda$_5RPiZwdDOTyexrMTGL6FatXLg(MessagesStorage messagesStorage, long j, final IntCallback intCallback) {
+    public static void m899$r8$lambda$_5RPiZwdDOTyexrMTGL6FatXLg(MessagesStorage messagesStorage, long j, final IntCallback intCallback) {
         messagesStorage.getClass();
         SQLiteCursor sQLiteCursorQueryFinalized = null;
         try {
@@ -27275,12 +27275,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m854$r8$lambda$C1EXkrjo18Khh2tiKK2FSEE5Zs(this.f$0, arrayList, arrayList2, i, j);
+                MessagesStorage.m860$r8$lambda$C1EXkrjo18Khh2tiKK2FSEE5Zs(this.f$0, arrayList, arrayList2, i, j);
             }
         });
     }
 
-    public static void m854$r8$lambda$C1EXkrjo18Khh2tiKK2FSEE5Zs(MessagesStorage messagesStorage, ArrayList arrayList, ArrayList arrayList2, int i, long j) throws Throwable {
+    public static void m860$r8$lambda$C1EXkrjo18Khh2tiKK2FSEE5Zs(MessagesStorage messagesStorage, ArrayList arrayList, ArrayList arrayList2, int i, long j) throws Throwable {
         boolean z;
         messagesStorage.getClass();
         SQLitePreparedStatement sQLitePreparedStatement = null;
@@ -27431,12 +27431,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m921$r8$lambda$u4oIytTZBP0aDv_LkcTqAVMqP8(this.f$0, arrayList, i);
+                MessagesStorage.m927$r8$lambda$u4oIytTZBP0aDv_LkcTqAVMqP8(this.f$0, arrayList, i);
             }
         });
     }
 
-    public static void m921$r8$lambda$u4oIytTZBP0aDv_LkcTqAVMqP8(MessagesStorage messagesStorage, ArrayList arrayList, int i) throws Throwable {
+    public static void m927$r8$lambda$u4oIytTZBP0aDv_LkcTqAVMqP8(MessagesStorage messagesStorage, ArrayList arrayList, int i) throws Throwable {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast;
         messagesStorage.getClass();
         SQLiteCursor sQLiteCursor = null;
@@ -27525,12 +27525,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m904$r8$lambda$g8FDf_we8kLcynE8k0tBjzsVPg(this.f$0, j, z);
+                MessagesStorage.m910$r8$lambda$g8FDf_we8kLcynE8k0tBjzsVPg(this.f$0, j, z);
             }
         });
     }
 
-    public static void m904$r8$lambda$g8FDf_we8kLcynE8k0tBjzsVPg(MessagesStorage messagesStorage, long j, boolean z) {
+    public static void m910$r8$lambda$g8FDf_we8kLcynE8k0tBjzsVPg(MessagesStorage messagesStorage, long j, boolean z) {
         SQLiteCursor sQLiteCursorQueryFinalized;
         int iIntValue;
         int i;
@@ -27803,12 +27803,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m900$r8$lambda$cWpDJp3VNQ4N_uWvclOo7STJUg(this.f$0, j, intCallback);
+                MessagesStorage.m906$r8$lambda$cWpDJp3VNQ4N_uWvclOo7STJUg(this.f$0, j, intCallback);
             }
         });
     }
 
-    public static void m900$r8$lambda$cWpDJp3VNQ4N_uWvclOo7STJUg(MessagesStorage messagesStorage, long j, final IntCallback intCallback) {
+    public static void m906$r8$lambda$cWpDJp3VNQ4N_uWvclOo7STJUg(MessagesStorage messagesStorage, long j, final IntCallback intCallback) {
         messagesStorage.getClass();
         final int[] iArr = new int[1];
         SQLiteCursor sQLiteCursorQueryFinalized = null;
@@ -28007,7 +28007,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m855$r8$lambda$CAXFEnrhidhUsPXmoUSUGrsHe8(this.f$0, chatArr, j, countDownLatch);
+                MessagesStorage.m861$r8$lambda$CAXFEnrhidhUsPXmoUSUGrsHe8(this.f$0, chatArr, j, countDownLatch);
             }
         });
         try {
@@ -28018,7 +28018,7 @@ public class MessagesStorage extends BaseController {
         return chatArr[0];
     }
 
-    public static void m855$r8$lambda$CAXFEnrhidhUsPXmoUSUGrsHe8(MessagesStorage messagesStorage, TLRPC.Chat[] chatArr, long j, CountDownLatch countDownLatch) {
+    public static void m861$r8$lambda$CAXFEnrhidhUsPXmoUSUGrsHe8(MessagesStorage messagesStorage, TLRPC.Chat[] chatArr, long j, CountDownLatch countDownLatch) {
         chatArr[0] = messagesStorage.getChat(j);
         countDownLatch.countDown();
     }
@@ -29012,12 +29012,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m884$r8$lambda$Vqr09xeUXH64vb0lhHVF5_oo5M(this.f$0, j2, z, str4, j, i, str2, str3, str);
+                MessagesStorage.m890$r8$lambda$Vqr09xeUXH64vb0lhHVF5_oo5M(this.f$0, j2, z, str4, j, i, str2, str3, str);
             }
         });
     }
 
-    public static void m884$r8$lambda$Vqr09xeUXH64vb0lhHVF5_oo5M(MessagesStorage messagesStorage, long j, boolean z, String str, long j2, int i, String str2, String str3, String str4) throws Throwable {
+    public static void m890$r8$lambda$Vqr09xeUXH64vb0lhHVF5_oo5M(MessagesStorage messagesStorage, long j, boolean z, String str, long j2, int i, String str2, String str3, String str4) throws Throwable {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast;
         SQLitePreparedStatement sQLitePreparedStatement;
         int iIntValue;
@@ -29643,12 +29643,12 @@ public class MessagesStorage extends BaseController {
         executeInStorageQueue(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                MessagesStorage.m869$r8$lambda$J8AlJj8s_7iN2kvJBn1UwrjDks(this.f$0, callback);
+                MessagesStorage.m875$r8$lambda$J8AlJj8s_7iN2kvJBn1UwrjDks(this.f$0, callback);
             }
         });
     }
 
-    public static void m869$r8$lambda$J8AlJj8s_7iN2kvJBn1UwrjDks(MessagesStorage messagesStorage, final Utilities.Callback callback) throws Throwable {
+    public static void m875$r8$lambda$J8AlJj8s_7iN2kvJBn1UwrjDks(MessagesStorage messagesStorage, final Utilities.Callback callback) throws Throwable {
         SQLiteCursor sQLiteCursorQueryFinalized;
         SQLiteException e;
         SQLiteCursor sQLiteCursor;
@@ -29775,12 +29775,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.m861$r8$lambda$GLw12TLOSQteaEWh7_prDy8ee0(this.f$0, j, consumer);
+                MessagesStorage.m867$r8$lambda$GLw12TLOSQteaEWh7_prDy8ee0(this.f$0, j, consumer);
             }
         });
     }
 
-    public static void m861$r8$lambda$GLw12TLOSQteaEWh7_prDy8ee0(MessagesStorage messagesStorage, long j, Consumer consumer) {
+    public static void m867$r8$lambda$GLw12TLOSQteaEWh7_prDy8ee0(MessagesStorage messagesStorage, long j, Consumer consumer) {
         messagesStorage.getClass();
         ArrayList arrayList = new ArrayList();
         SQLiteCursor sQLiteCursorQueryFinalized = null;

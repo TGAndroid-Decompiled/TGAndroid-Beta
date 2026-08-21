@@ -143,7 +143,7 @@ public class AvatarsDrawable {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    AvatarsDrawable.m2041$r8$lambda$dbY2pkEUFqKoRp3_gjWp5DYND8(this.f$0, valueAnimator2);
+                    AvatarsDrawable.m2051$r8$lambda$dbY2pkEUFqKoRp3_gjWp5DYND8(this.f$0, valueAnimator2);
                 }
             });
             this.transitionProgressAnimator.addListener(new AnimatorListenerAdapter() {
@@ -175,7 +175,7 @@ public class AvatarsDrawable {
         invalidate();
     }
 
-    public static void m2041$r8$lambda$dbY2pkEUFqKoRp3_gjWp5DYND8(AvatarsDrawable avatarsDrawable, ValueAnimator valueAnimator) {
+    public static void m2051$r8$lambda$dbY2pkEUFqKoRp3_gjWp5DYND8(AvatarsDrawable avatarsDrawable, ValueAnimator valueAnimator) {
         avatarsDrawable.getClass();
         avatarsDrawable.transitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         avatarsDrawable.invalidate();

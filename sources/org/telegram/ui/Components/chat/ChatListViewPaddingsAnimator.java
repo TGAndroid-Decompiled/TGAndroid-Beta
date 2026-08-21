@@ -32,7 +32,7 @@ public class ChatListViewPaddingsAnimator {
                 AndroidUtilities.doOnLayout(this.recyclerView, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatListViewPaddingsAnimator.m2949$r8$lambda$fxkL3v1ztfbD0K8IGhfI5mu4(this.f$0, i4);
+                        ChatListViewPaddingsAnimator.m2958$r8$lambda$fxkL3v1ztfbD0K8IGhfI5mu4(this.f$0, i4);
                     }
                 });
             }
@@ -41,7 +41,7 @@ public class ChatListViewPaddingsAnimator {
         recyclerView.setPadding(recyclerView.getPaddingLeft(), i, this.recyclerView.getPaddingRight(), i3);
     }
 
-    public static void m2949$r8$lambda$fxkL3v1ztfbD0K8IGhfI5mu4(ChatListViewPaddingsAnimator chatListViewPaddingsAnimator, int i) {
+    public static void m2958$r8$lambda$fxkL3v1ztfbD0K8IGhfI5mu4(ChatListViewPaddingsAnimator chatListViewPaddingsAnimator, int i) {
         chatListViewPaddingsAnimator.getClass();
         try {
             chatListViewPaddingsAnimator.recyclerView.scrollBy(0, i);

@@ -465,7 +465,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
                 wallpaperParallaxEffect.setCallback(new WallpaperParallaxEffect.Callback() {
                     @Override
                     public final void onOffsetsChanged(int i, int i2, float f) {
-                        SizeNotifierFrameLayout.m2812$r8$lambda$JMVdveNAG11TpQatuumc7lS6w(this.f$0, i, i2, f);
+                        SizeNotifierFrameLayout.m2821$r8$lambda$JMVdveNAG11TpQatuumc7lS6w(this.f$0, i, i2, f);
                     }
                 });
                 if (getMeasuredWidth() != 0 && getMeasuredHeight() != 0) {
@@ -488,7 +488,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
         }
     }
 
-    public static void m2812$r8$lambda$JMVdveNAG11TpQatuumc7lS6w(SizeNotifierFrameLayout sizeNotifierFrameLayout, int i, int i2, float f) {
+    public static void m2821$r8$lambda$JMVdveNAG11TpQatuumc7lS6w(SizeNotifierFrameLayout sizeNotifierFrameLayout, int i, int i2, float f) {
         sizeNotifierFrameLayout.translationX = i;
         sizeNotifierFrameLayout.translationY = i2;
         sizeNotifierFrameLayout.bgAngle = f;
@@ -572,12 +572,12 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
         post(new Runnable() {
             @Override
             public final void run() {
-                SizeNotifierFrameLayout.m2813$r8$lambda$8ijoaTb1Cype_8aW1C5XYf1Hds(this.f$0, z);
+                SizeNotifierFrameLayout.m2822$r8$lambda$8ijoaTb1Cype_8aW1C5XYf1Hds(this.f$0, z);
             }
         });
     }
 
-    public static void m2813$r8$lambda$8ijoaTb1Cype_8aW1C5XYf1Hds(SizeNotifierFrameLayout sizeNotifierFrameLayout, boolean z) {
+    public static void m2822$r8$lambda$8ijoaTb1Cype_8aW1C5XYf1Hds(SizeNotifierFrameLayout sizeNotifierFrameLayout, boolean z) {
         SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = sizeNotifierFrameLayout.delegate;
         if (sizeNotifierFrameLayoutDelegate != null) {
             sizeNotifierFrameLayoutDelegate.onSizeChanged(sizeNotifierFrameLayout.keyboardHeight, z);

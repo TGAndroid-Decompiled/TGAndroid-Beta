@@ -315,7 +315,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
                             @Override
                             public final boolean test(Object obj) {
-                                return LanguageSelectActivity.m3335$r8$lambda$mPoukI7YM3gn8zCN1ToTeZn9SI(str2, (String) obj);
+                                return LanguageSelectActivity.m3343$r8$lambda$mPoukI7YM3gn8zCN1ToTeZn9SI(str2, (String) obj);
                             }
                         });
                     }
@@ -342,17 +342,17 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LanguageSelectActivity.m3334$r8$lambda$iqThVjWIji3sgJXpW1Cb6s6d7U(this.f$0);
+                LanguageSelectActivity.m3342$r8$lambda$iqThVjWIji3sgJXpW1Cb6s6d7U(this.f$0);
             }
         }, 10L);
     }
 
-    public static void m3334$r8$lambda$iqThVjWIji3sgJXpW1Cb6s6d7U(LanguageSelectActivity languageSelectActivity) {
+    public static void m3342$r8$lambda$iqThVjWIji3sgJXpW1Cb6s6d7U(LanguageSelectActivity languageSelectActivity) {
         languageSelectActivity.actionBar.closeSearchField();
         languageSelectActivity.updateLanguage();
     }
 
-    public static boolean m3335$r8$lambda$mPoukI7YM3gn8zCN1ToTeZn9SI(String str, String str2) {
+    public static boolean m3343$r8$lambda$mPoukI7YM3gn8zCN1ToTeZn9SI(String str, String str2) {
         return str2 != null && str2.equals(str);
     }
 
@@ -382,7 +382,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                     builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i2) {
-                            LanguageSelectActivity.m3336$r8$lambda$qeLaUgj2LpYsPe4F6TWW1i7ByY(this.f$0, localeInfo, alertDialog, i2);
+                            LanguageSelectActivity.m3344$r8$lambda$qeLaUgj2LpYsPe4F6TWW1i7ByY(this.f$0, localeInfo, alertDialog, i2);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -401,7 +401,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         }
     }
 
-    public static void m3336$r8$lambda$qeLaUgj2LpYsPe4F6TWW1i7ByY(LanguageSelectActivity languageSelectActivity, LocaleController.LocaleInfo localeInfo, AlertDialog alertDialog, int i) {
+    public static void m3344$r8$lambda$qeLaUgj2LpYsPe4F6TWW1i7ByY(LanguageSelectActivity languageSelectActivity, LocaleController.LocaleInfo localeInfo, AlertDialog alertDialog, int i) {
         languageSelectActivity.getClass();
         if (LocaleController.getInstance().deleteLanguage(localeInfo, languageSelectActivity.currentAccount)) {
             languageSelectActivity.fillLanguages();
@@ -439,7 +439,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         Comparator comparator = new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return LanguageSelectActivity.m3333$r8$lambda$_FbdPmeWIkGDvFCvZ_P2xG0b2M(currentLocaleInfo, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
+                return LanguageSelectActivity.m3341$r8$lambda$_FbdPmeWIkGDvFCvZ_P2xG0b2M(currentLocaleInfo, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
             }
         };
         this.sortedLanguages = new ArrayList();
@@ -458,7 +458,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         Collections.sort(this.unofficialLanguages, comparator);
     }
 
-    public static int m3333$r8$lambda$_FbdPmeWIkGDvFCvZ_P2xG0b2M(LocaleController.LocaleInfo localeInfo, LocaleController.LocaleInfo localeInfo2, LocaleController.LocaleInfo localeInfo3) {
+    public static int m3341$r8$lambda$_FbdPmeWIkGDvFCvZ_P2xG0b2M(LocaleController.LocaleInfo localeInfo, LocaleController.LocaleInfo localeInfo2, LocaleController.LocaleInfo localeInfo3) {
         if (localeInfo2 == localeInfo) {
             return -1;
         }

@@ -279,7 +279,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i3) {
-                return DialogStoriesCell.m4296$r8$lambda$iZpO6_i7iOjjkqrorlW7zdmwI4(this.f$0, view, i3);
+                return DialogStoriesCell.m4307$r8$lambda$iZpO6_i7iOjjkqrorlW7zdmwI4(this.f$0, view, i3);
             }
         });
         this.recyclerListView.setAdapter(this.adapter);
@@ -425,7 +425,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         dialogStoriesCell.openStoryForCell((StoryCell) view, false);
     }
 
-    public static boolean m4296$r8$lambda$iZpO6_i7iOjjkqrorlW7zdmwI4(DialogStoriesCell dialogStoriesCell, View view, int i) {
+    public static boolean m4307$r8$lambda$iZpO6_i7iOjjkqrorlW7zdmwI4(DialogStoriesCell dialogStoriesCell, View view, int i) {
         if (dialogStoriesCell.collapsedProgress != 0.0f || dialogStoriesCell.overscrollProgress != 0.0f) {
             return false;
         }
@@ -545,7 +545,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             orCreateStoryViewer.open(dialogStoriesCell.getContext(), null, arrayList, size, null, null, StoriesListPlaceProvider.of(dialogStoriesCell.recyclerListView).with(new StoriesListPlaceProvider.LoadNextInterface() {
                 @Override
                 public final void loadNext(boolean z4) {
-                    DialogStoriesCell.m4298$r8$lambda$x0us1vaudtfA_a2EN8Y0lqrdM8(this.f$0, z2, z4);
+                    DialogStoriesCell.m4309$r8$lambda$x0us1vaudtfA_a2EN8Y0lqrdM8(this.f$0, z2, z4);
                 }
             }).setPaginationParaments(dialogStoriesCell.type == 1, z3, z2), false);
         }
@@ -560,12 +560,12 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         orCreateStoryViewer2.open(dialogStoriesCell.getContext(), null, arrayList, size, null, null, StoriesListPlaceProvider.of(dialogStoriesCell.recyclerListView).with(new StoriesListPlaceProvider.LoadNextInterface() {
             @Override
             public final void loadNext(boolean z4) {
-                DialogStoriesCell.m4298$r8$lambda$x0us1vaudtfA_a2EN8Y0lqrdM8(this.f$0, z2, z4);
+                DialogStoriesCell.m4309$r8$lambda$x0us1vaudtfA_a2EN8Y0lqrdM8(this.f$0, z2, z4);
             }
         }).setPaginationParaments(dialogStoriesCell.type == 1, z3, z2), false);
     }
 
-    public static void m4298$r8$lambda$x0us1vaudtfA_a2EN8Y0lqrdM8(DialogStoriesCell dialogStoriesCell, boolean z, boolean z2) {
+    public static void m4309$r8$lambda$x0us1vaudtfA_a2EN8Y0lqrdM8(DialogStoriesCell dialogStoriesCell, boolean z, boolean z2) {
         dialogStoriesCell.getClass();
         if (!z && z2) {
             dialogStoriesCell.storiesController.loadNextStories(dialogStoriesCell.type == 1);
@@ -1781,7 +1781,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                     DialogStoriesCell.this.animationRunnable = new Runnable() {
                         @Override
                         public final void run() {
-                            DialogStoriesCell.StoryCell.m4299$r8$lambda$Ncll0VsR_VlZQLC9COQA7Mjr0(this.f$0);
+                            DialogStoriesCell.StoryCell.m4310$r8$lambda$Ncll0VsR_VlZQLC9COQA7Mjr0(this.f$0);
                         }
                     };
                 }
@@ -1826,7 +1826,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             storyCell.textView.setTranslationY(AndroidUtilities.dp(5.0f) * f);
         }
 
-        public static void m4299$r8$lambda$Ncll0VsR_VlZQLC9COQA7Mjr0(StoryCell storyCell) {
+        public static void m4310$r8$lambda$Ncll0VsR_VlZQLC9COQA7Mjr0(StoryCell storyCell) {
             if (DialogStoriesCell.this.textAnimator != null) {
                 DialogStoriesCell.this.textAnimator.start();
             }
@@ -1966,7 +1966,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                DialogStoriesCell.StoryCell.m4300$r8$lambda$eYeNNiW5WF236pWDrz4A6BMMhs(this.f$0, valueAnimator);
+                                DialogStoriesCell.StoryCell.m4311$r8$lambda$eYeNNiW5WF236pWDrz4A6BMMhs(this.f$0, valueAnimator);
                             }
                         });
                         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -2052,7 +2052,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             super.dispatchDraw(canvas);
         }
 
-        public static void m4300$r8$lambda$eYeNNiW5WF236pWDrz4A6BMMhs(StoryCell storyCell, ValueAnimator valueAnimator) {
+        public static void m4311$r8$lambda$eYeNNiW5WF236pWDrz4A6BMMhs(StoryCell storyCell, ValueAnimator valueAnimator) {
             storyCell.params.progressToSegments = AndroidUtilities.lerp(0.0f, 1.0f - DialogStoriesCell.this.collapsedProgress2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
             storyCell.invalidate();
         }
@@ -2391,7 +2391,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
             @Override
             public final void run() {
-                DialogStoriesCell.m4295$r8$lambda$cAxV0LXQaLeTA7TgP2k3qIMUwo(this.f$0);
+                DialogStoriesCell.m4306$r8$lambda$cAxV0LXQaLeTA7TgP2k3qIMUwo(this.f$0);
             }
         });
         ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannableStringBuilderReplaceSingleTag.getSpans(0, spannableStringBuilderReplaceSingleTag.length(), ClickableSpan.class);
@@ -2408,7 +2408,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         return this.premiumHint;
     }
 
-    public static void m4295$r8$lambda$cAxV0LXQaLeTA7TgP2k3qIMUwo(DialogStoriesCell dialogStoriesCell) {
+    public static void m4306$r8$lambda$cAxV0LXQaLeTA7TgP2k3qIMUwo(DialogStoriesCell dialogStoriesCell) {
         HintView2 hintView2 = dialogStoriesCell.premiumHint;
         if (hintView2 != null) {
             hintView2.hide();

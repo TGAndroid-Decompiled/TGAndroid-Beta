@@ -64,7 +64,7 @@ public class OutlineTextContainerView extends FrameLayout {
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            OutlineTextContainerView.m2455$r8$lambda$_HDnhwxl2YegjHeIRPL_ae39j8((OutlineTextContainerView) obj, f);
+            OutlineTextContainerView.m2465$r8$lambda$_HDnhwxl2YegjHeIRPL_ae39j8((OutlineTextContainerView) obj, f);
         }
     }).setMultiplier(100.0f);
 
@@ -85,7 +85,7 @@ public class OutlineTextContainerView extends FrameLayout {
         outlineTextContainerView.invalidate();
     }
 
-    public static void m2455$r8$lambda$_HDnhwxl2YegjHeIRPL_ae39j8(OutlineTextContainerView outlineTextContainerView, float f) {
+    public static void m2465$r8$lambda$_HDnhwxl2YegjHeIRPL_ae39j8(OutlineTextContainerView outlineTextContainerView, float f) {
         outlineTextContainerView.errorProgress = f;
         outlineTextContainerView.updateColor();
     }

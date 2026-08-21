@@ -125,14 +125,14 @@ public abstract class ChatListCell extends LinearLayout {
             this.listView[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatListCell.m1477$r8$lambda$3Cqz9x1Ry6vrpGHY_qD7qAvgEg(this.f$0, z, view);
+                    ChatListCell.m1483$r8$lambda$3Cqz9x1Ry6vrpGHY_qD7qAvgEg(this.f$0, z, view);
                 }
             });
             i++;
         }
     }
 
-    public static void m1477$r8$lambda$3Cqz9x1Ry6vrpGHY_qD7qAvgEg(ChatListCell chatListCell, boolean z, View view) {
+    public static void m1483$r8$lambda$3Cqz9x1Ry6vrpGHY_qD7qAvgEg(ChatListCell chatListCell, boolean z, View view) {
         for (int i = 0; i < 2; i++) {
             chatListCell.listView[i].button.setChecked(chatListCell.listView[i] == view, true);
         }

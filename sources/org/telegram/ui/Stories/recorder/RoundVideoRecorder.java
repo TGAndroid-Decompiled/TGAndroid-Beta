@@ -105,7 +105,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         CameraController.getInstance().recordVideo(roundVideoRecorder.cameraView.getCameraSessionObject(), roundVideoRecorder.file, false, new CameraController.VideoTakeCallback() {
             @Override
             public final void onFinishVideoRecording(String str, long j) {
-                RoundVideoRecorder.m4562$r8$lambda$5M3sgeIAnsDtyLJD8aVEiZANs(this.f$0, str, j);
+                RoundVideoRecorder.m4573$r8$lambda$5M3sgeIAnsDtyLJD8aVEiZANs(this.f$0, str, j);
             }
         }, new Runnable() {
             @Override
@@ -115,7 +115,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         }, roundVideoRecorder.cameraView, true);
     }
 
-    public static void m4562$r8$lambda$5M3sgeIAnsDtyLJD8aVEiZANs(RoundVideoRecorder roundVideoRecorder, String str, long j) {
+    public static void m4573$r8$lambda$5M3sgeIAnsDtyLJD8aVEiZANs(RoundVideoRecorder roundVideoRecorder, String str, long j) {
         roundVideoRecorder.getClass();
         roundVideoRecorder.recordingStopped = System.currentTimeMillis();
         AndroidUtilities.cancelRunOnUIThread(roundVideoRecorder.stopRunnable);
@@ -255,7 +255,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
             roundVideoRecorder.cameraView.animate().scaleX(0.0f).scaleY(1.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    RoundVideoRecorder.m4563$r8$lambda$d_WviE3E0VioCHM97QIf2y9hxI(this.f$0);
+                    RoundVideoRecorder.m4574$r8$lambda$d_WviE3E0VioCHM97QIf2y9hxI(this.f$0);
                 }
             }).start();
             return;
@@ -293,7 +293,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         roundVideoRecorder.cameraViewAnimator.start();
     }
 
-    public static void m4563$r8$lambda$d_WviE3E0VioCHM97QIf2y9hxI(RoundVideoRecorder roundVideoRecorder) {
+    public static void m4574$r8$lambda$d_WviE3E0VioCHM97QIf2y9hxI(RoundVideoRecorder roundVideoRecorder) {
         if (roundVideoRecorder.getParent() instanceof ViewGroup) {
             ((ViewGroup) roundVideoRecorder.getParent()).removeView(roundVideoRecorder);
         }

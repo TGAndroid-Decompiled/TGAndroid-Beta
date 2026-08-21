@@ -131,7 +131,7 @@ public abstract class CreateBotAlert {
         editTextCell.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView4, int i4, KeyEvent keyEvent) {
-                return CreateBotAlert.m2237$r8$lambda$Z87qQ9FB7PN4baMJPXCnYjip_4(editTextCell2, textView4, i4, keyEvent);
+                return CreateBotAlert.m2247$r8$lambda$Z87qQ9FB7PN4baMJPXCnYjip_4(editTextCell2, textView4, i4, keyEvent);
             }
         });
         final TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context, resourcesProvider);
@@ -162,7 +162,7 @@ public abstract class CreateBotAlert {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                CreateBotAlert.m2238$r8$lambda$duLcuQuCStUZz3PaAYwTmfqe0(editTextCell2, iArr2, i, strArr, strArr2, round, textInfoPrivacyCell2, resourcesProvider, iArr3);
+                CreateBotAlert.m2248$r8$lambda$duLcuQuCStUZz3PaAYwTmfqe0(editTextCell2, iArr2, i, strArr, strArr2, round, textInfoPrivacyCell2, resourcesProvider, iArr3);
             }
         };
         final Runnable runnable2 = new Runnable() {
@@ -216,7 +216,7 @@ public abstract class CreateBotAlert {
         bottomSheetCreate.show();
     }
 
-    public static boolean m2237$r8$lambda$Z87qQ9FB7PN4baMJPXCnYjip_4(EditTextCell editTextCell, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m2247$r8$lambda$Z87qQ9FB7PN4baMJPXCnYjip_4(EditTextCell editTextCell, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
             return false;
         }
@@ -226,7 +226,7 @@ public abstract class CreateBotAlert {
         return true;
     }
 
-    public static void m2238$r8$lambda$duLcuQuCStUZz3PaAYwTmfqe0(EditTextCell editTextCell, int[] iArr, int i, final String[] strArr, final String[] strArr2, final ButtonWithCounterView buttonWithCounterView, final TextInfoPrivacyCell textInfoPrivacyCell, final Theme.ResourcesProvider resourcesProvider, final int[] iArr2) {
+    public static void m2248$r8$lambda$duLcuQuCStUZz3PaAYwTmfqe0(EditTextCell editTextCell, int[] iArr, int i, final String[] strArr, final String[] strArr2, final ButtonWithCounterView buttonWithCounterView, final TextInfoPrivacyCell textInfoPrivacyCell, final Theme.ResourcesProvider resourcesProvider, final int[] iArr2) {
         final String str = ((Object) editTextCell.getText()) + "bot";
         if (str.length() < 4) {
             if (iArr[0] >= 0) {
@@ -355,12 +355,12 @@ public abstract class CreateBotAlert {
                 bulletinFactoryOf.createSimpleBulletin(i2, string2, highlightBotFather(context, AndroidUtilities.replaceSingleLink(string, Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider), new Runnable() {
                     @Override
                     public final void run() {
-                        CreateBotAlert.m2239$r8$lambda$xZYcFF9Rk1bcL4YP6Sw5LitsM0(bottomSheet);
+                        CreateBotAlert.m2249$r8$lambda$xZYcFF9Rk1bcL4YP6Sw5LitsM0(bottomSheet);
                     }
                 }), new Runnable() {
                     @Override
                     public final void run() {
-                        CreateBotAlert.m2236$r8$lambda$UVa_TRG5c6A9jayVCV9VEts8OU(bottomSheet, context);
+                        CreateBotAlert.m2246$r8$lambda$UVa_TRG5c6A9jayVCV9VEts8OU(bottomSheet, context);
                     }
                 }, resourcesProvider)).setDuration(8000).show();
             } else {
@@ -382,7 +382,7 @@ public abstract class CreateBotAlert {
         }
     }
 
-    public static void m2239$r8$lambda$xZYcFF9Rk1bcL4YP6Sw5LitsM0(BottomSheet bottomSheet) {
+    public static void m2249$r8$lambda$xZYcFF9Rk1bcL4YP6Sw5LitsM0(BottomSheet bottomSheet) {
         bottomSheet.dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
@@ -390,7 +390,7 @@ public abstract class CreateBotAlert {
         }
     }
 
-    public static void m2236$r8$lambda$UVa_TRG5c6A9jayVCV9VEts8OU(BottomSheet bottomSheet, Context context) {
+    public static void m2246$r8$lambda$UVa_TRG5c6A9jayVCV9VEts8OU(BottomSheet bottomSheet, Context context) {
         bottomSheet.dismiss();
         Browser.openUrl(context, "https://t.me/BotFather?start=deletebot");
     }

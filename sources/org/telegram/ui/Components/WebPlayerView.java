@@ -1828,7 +1828,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         this.fullscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WebPlayerView.m2942$r8$lambda$tD6hV8maxsB7YUSKl_k2WHAQZs(this.f$0, view);
+                WebPlayerView.m2951$r8$lambda$tD6hV8maxsB7YUSKl_k2WHAQZs(this.f$0, view);
             }
         });
         ImageView imageView3 = new ImageView(context);
@@ -1849,7 +1849,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             this.inlineButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    WebPlayerView.m2941$r8$lambda$AnZJdEi4MV_49Wo2YQxIoyWGXg(this.f$0, view);
+                    WebPlayerView.m2950$r8$lambda$AnZJdEi4MV_49Wo2YQxIoyWGXg(this.f$0, view);
                 }
             });
         }
@@ -1883,7 +1883,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public static void m2942$r8$lambda$tD6hV8maxsB7YUSKl_k2WHAQZs(WebPlayerView webPlayerView, View view) {
+    public static void m2951$r8$lambda$tD6hV8maxsB7YUSKl_k2WHAQZs(WebPlayerView webPlayerView, View view) {
         if (!webPlayerView.initied || webPlayerView.changingTextureView || webPlayerView.switchingInlineMode || !webPlayerView.firstFrameRendered) {
             return;
         }
@@ -1907,7 +1907,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         webPlayerView.updatePlayButton();
     }
 
-    public static void m2941$r8$lambda$AnZJdEi4MV_49Wo2YQxIoyWGXg(WebPlayerView webPlayerView, View view) {
+    public static void m2950$r8$lambda$AnZJdEi4MV_49Wo2YQxIoyWGXg(WebPlayerView webPlayerView, View view) {
         if (webPlayerView.textureView == null || !webPlayerView.delegate.checkInlinePermissions() || webPlayerView.changingTextureView || webPlayerView.switchingInlineMode || !webPlayerView.firstFrameRendered) {
             return;
         }

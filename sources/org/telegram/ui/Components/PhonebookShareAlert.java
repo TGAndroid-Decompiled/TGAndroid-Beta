@@ -504,13 +504,13 @@ public class PhonebookShareAlert extends BottomSheet {
                 viewCreateView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PhonebookShareAlert.m2547$r8$lambda$r26d4a8MgLGKUKEtG8IXivMAX8(this.f$0, i3, viewCreateView, view);
+                        PhonebookShareAlert.m2557$r8$lambda$r26d4a8MgLGKUKEtG8IXivMAX8(this.f$0, i3, viewCreateView, view);
                     }
                 });
                 viewCreateView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view) {
-                        return PhonebookShareAlert.m2545$r8$lambda$4bgC5FNcR05JMf4uE4y0FoRUGs(this.f$0, i3, resourcesProvider, parentActivity, view);
+                        return PhonebookShareAlert.m2555$r8$lambda$4bgC5FNcR05JMf4uE4y0FoRUGs(this.f$0, i3, resourcesProvider, parentActivity, view);
                     }
                 });
             }
@@ -575,12 +575,12 @@ public class PhonebookShareAlert extends BottomSheet {
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view4) {
-                PhonebookShareAlert.m2544$r8$lambda$0yJdbdyMfDT6h6Wc37h2HMKwFw(this.f$0, resourcesProvider, view4);
+                PhonebookShareAlert.m2554$r8$lambda$0yJdbdyMfDT6h6Wc37h2HMKwFw(this.f$0, resourcesProvider, view4);
             }
         });
     }
 
-    public static void m2547$r8$lambda$r26d4a8MgLGKUKEtG8IXivMAX8(final PhonebookShareAlert phonebookShareAlert, int i, View view, View view2) {
+    public static void m2557$r8$lambda$r26d4a8MgLGKUKEtG8IXivMAX8(final PhonebookShareAlert phonebookShareAlert, int i, View view, View view2) {
         final AndroidUtilities.VcardItem vcardItem;
         boolean z = false;
         int i2 = phonebookShareAlert.phoneStartRow;
@@ -661,7 +661,7 @@ public class PhonebookShareAlert extends BottomSheet {
         }
     }
 
-    public static boolean m2545$r8$lambda$4bgC5FNcR05JMf4uE4y0FoRUGs(PhonebookShareAlert phonebookShareAlert, int i, Theme.ResourcesProvider resourcesProvider, Context context, View view) {
+    public static boolean m2555$r8$lambda$4bgC5FNcR05JMf4uE4y0FoRUGs(PhonebookShareAlert phonebookShareAlert, int i, Theme.ResourcesProvider resourcesProvider, Context context, View view) {
         AndroidUtilities.VcardItem vcardItem;
         int i2 = phonebookShareAlert.phoneStartRow;
         if (i >= i2 && i < phonebookShareAlert.phoneEndRow) {
@@ -698,7 +698,7 @@ public class PhonebookShareAlert extends BottomSheet {
         return true;
     }
 
-    public static void m2544$r8$lambda$0yJdbdyMfDT6h6Wc37h2HMKwFw(final PhonebookShareAlert phonebookShareAlert, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m2554$r8$lambda$0yJdbdyMfDT6h6Wc37h2HMKwFw(final PhonebookShareAlert phonebookShareAlert, Theme.ResourcesProvider resourcesProvider, View view) {
         StringBuilder sb;
         if (phonebookShareAlert.isImport) {
             AlertDialog.Builder builder = new AlertDialog.Builder(phonebookShareAlert.getContext());
@@ -1038,7 +1038,7 @@ public class PhonebookShareAlert extends BottomSheet {
             AlertsCreator.createScheduleDatePickerDialog(phonebookShareAlert.getContext(), ((ChatActivity) phonebookShareAlert.parentFragment).getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i2, int i3) {
-                    PhonebookShareAlert.m2546$r8$lambda$YGdBFhMbzmEuhakzJSYUw2jQ1w(this.f$0, z, i2, i3);
+                    PhonebookShareAlert.m2556$r8$lambda$YGdBFhMbzmEuhakzJSYUw2jQ1w(this.f$0, z, i2, i3);
                 }
             }, resourcesProvider);
         } else {
@@ -1046,18 +1046,18 @@ public class PhonebookShareAlert extends BottomSheet {
             AlertsCreator.ensurePaidMessageConfirmation(phonebookShareAlert.currentAccount, baseFragment2 instanceof ChatActivity ? ((ChatActivity) baseFragment2).getDialogId() : 0L, 1, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    PhonebookShareAlert.m2543$r8$lambda$0q02QGzTRbkOsdoOwawtN2hNfc(this.f$0, (Long) obj);
+                    PhonebookShareAlert.m2553$r8$lambda$0q02QGzTRbkOsdoOwawtN2hNfc(this.f$0, (Long) obj);
                 }
             });
         }
     }
 
-    public static void m2546$r8$lambda$YGdBFhMbzmEuhakzJSYUw2jQ1w(PhonebookShareAlert phonebookShareAlert, boolean z, int i, int i2) {
+    public static void m2556$r8$lambda$YGdBFhMbzmEuhakzJSYUw2jQ1w(PhonebookShareAlert phonebookShareAlert, boolean z, int i, int i2) {
         phonebookShareAlert.delegate.didSelectContact(phonebookShareAlert.currentUser, z, i, 0L, false, 0L);
         phonebookShareAlert.dismiss();
     }
 
-    public static void m2543$r8$lambda$0q02QGzTRbkOsdoOwawtN2hNfc(PhonebookShareAlert phonebookShareAlert, Long l) {
+    public static void m2553$r8$lambda$0q02QGzTRbkOsdoOwawtN2hNfc(PhonebookShareAlert phonebookShareAlert, Long l) {
         phonebookShareAlert.delegate.didSelectContact(phonebookShareAlert.currentUser, true, 0, 0L, false, l.longValue());
         phonebookShareAlert.dismiss();
     }

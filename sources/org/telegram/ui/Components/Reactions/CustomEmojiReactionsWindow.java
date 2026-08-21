@@ -199,7 +199,7 @@ public class CustomEmojiReactionsWindow {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CustomEmojiReactionsWindow.m2700$r8$lambda$BJ5Ncz9SJbnuKIi5JfNBXNhPxU(this.f$0, view);
+                CustomEmojiReactionsWindow.m2709$r8$lambda$BJ5Ncz9SJbnuKIi5JfNBXNhPxU(this.f$0, view);
             }
         });
         this.attachToParent = i == 2 || i == 4 || i == 5 || z;
@@ -286,7 +286,7 @@ public class CustomEmojiReactionsWindow {
         }
     }
 
-    public static void m2700$r8$lambda$BJ5Ncz9SJbnuKIi5JfNBXNhPxU(CustomEmojiReactionsWindow customEmojiReactionsWindow, View view) {
+    public static void m2709$r8$lambda$BJ5Ncz9SJbnuKIi5JfNBXNhPxU(CustomEmojiReactionsWindow customEmojiReactionsWindow, View view) {
         if (customEmojiReactionsWindow.enterTransitionFinished) {
             customEmojiReactionsWindow.dismiss();
         }
@@ -517,7 +517,7 @@ public class CustomEmojiReactionsWindow {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                CustomEmojiReactionsWindow.m2703$r8$lambda$yOlxLzKu6EQw5AnyFz5wVp4ets(this.f$0, z, valueAnimator2);
+                CustomEmojiReactionsWindow.m2712$r8$lambda$yOlxLzKu6EQw5AnyFz5wVp4ets(this.f$0, z, valueAnimator2);
             }
         });
         if (!z) {
@@ -582,7 +582,7 @@ public class CustomEmojiReactionsWindow {
         HwEmojis.enableHw();
     }
 
-    public static void m2703$r8$lambda$yOlxLzKu6EQw5AnyFz5wVp4ets(CustomEmojiReactionsWindow customEmojiReactionsWindow, boolean z, ValueAnimator valueAnimator) {
+    public static void m2712$r8$lambda$yOlxLzKu6EQw5AnyFz5wVp4ets(CustomEmojiReactionsWindow customEmojiReactionsWindow, boolean z, ValueAnimator valueAnimator) {
         customEmojiReactionsWindow.valueAnimator = null;
         customEmojiReactionsWindow.enterTransitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         customEmojiReactionsWindow.updateContainersAlpha();
@@ -686,7 +686,7 @@ public class CustomEmojiReactionsWindow {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    CustomEmojiReactionsWindow.m2702$r8$lambda$iH7iCGXhzjMLCg6qX89KRGcQHg(this.f$0, arrayList, valueAnimator);
+                    CustomEmojiReactionsWindow.m2711$r8$lambda$iH7iCGXhzjMLCg6qX89KRGcQHg(this.f$0, arrayList, valueAnimator);
                 }
             });
             this.animators.add(valueAnimatorOfFloat);
@@ -709,7 +709,7 @@ public class CustomEmojiReactionsWindow {
         }
     }
 
-    public static void m2702$r8$lambda$iH7iCGXhzjMLCg6qX89KRGcQHg(CustomEmojiReactionsWindow customEmojiReactionsWindow, ArrayList arrayList, ValueAnimator valueAnimator) {
+    public static void m2711$r8$lambda$iH7iCGXhzjMLCg6qX89KRGcQHg(CustomEmojiReactionsWindow customEmojiReactionsWindow, ArrayList arrayList, ValueAnimator valueAnimator) {
         customEmojiReactionsWindow.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         for (int i = 0; i < arrayList.size(); i++) {
@@ -785,12 +785,12 @@ public class CustomEmojiReactionsWindow {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CustomEmojiReactionsWindow.m2701$r8$lambda$QrQmh9OtQpTmYlLdn1MkzbiWAU(this.f$0);
+                CustomEmojiReactionsWindow.m2710$r8$lambda$QrQmh9OtQpTmYlLdn1MkzbiWAU(this.f$0);
             }
         });
     }
 
-    public static void m2701$r8$lambda$QrQmh9OtQpTmYlLdn1MkzbiWAU(CustomEmojiReactionsWindow customEmojiReactionsWindow) {
+    public static void m2710$r8$lambda$QrQmh9OtQpTmYlLdn1MkzbiWAU(CustomEmojiReactionsWindow customEmojiReactionsWindow) {
         if (customEmojiReactionsWindow.windowView.getParent() == null) {
             return;
         }

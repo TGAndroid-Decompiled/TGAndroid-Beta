@@ -30,7 +30,7 @@ public class SenderSelectView extends View {
     }, new SimpleFloatPropertyCompat.Setter() {
         @Override
         public final void set(Object obj, float f) {
-            SenderSelectView.m2740$r8$lambda$K0kIe8gi8ce3Pl7QoAyAgwuavA((SenderSelectView) obj, f);
+            SenderSelectView.m2749$r8$lambda$K0kIe8gi8ce3Pl7QoAyAgwuavA((SenderSelectView) obj, f);
         }
     }).setMultiplier(100.0f);
     private AvatarDrawable avatarDrawable;
@@ -44,7 +44,7 @@ public class SenderSelectView extends View {
     private boolean scaleOut;
     private Drawable selectorDrawable;
 
-    public static void m2740$r8$lambda$K0kIe8gi8ce3Pl7QoAyAgwuavA(SenderSelectView senderSelectView, float f) {
+    public static void m2749$r8$lambda$K0kIe8gi8ce3Pl7QoAyAgwuavA(SenderSelectView senderSelectView, float f) {
         senderSelectView.menuProgress = f;
         senderSelectView.invalidate();
     }

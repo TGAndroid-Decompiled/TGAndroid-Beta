@@ -215,13 +215,13 @@ public class BitmapsCache {
             RLottieDrawable.lottieCacheGenerateQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    BitmapsCache.m1127$r8$lambda$75FwZaXfPh7AZ0gZ3tKl5Rqbyg();
+                    BitmapsCache.m1133$r8$lambda$75FwZaXfPh7AZ0gZ3tKl5Rqbyg();
                 }
             });
         }
     }
 
-    public static void m1127$r8$lambda$75FwZaXfPh7AZ0gZ3tKl5Rqbyg() {
+    public static void m1133$r8$lambda$75FwZaXfPh7AZ0gZ3tKl5Rqbyg() {
         CacheGeneratorSharedTools cacheGeneratorSharedTools = sharedTools;
         if (cacheGeneratorSharedTools != null) {
             cacheGeneratorSharedTools.release();

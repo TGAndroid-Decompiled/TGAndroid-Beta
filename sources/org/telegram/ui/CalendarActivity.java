@@ -498,12 +498,12 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         getConnectionsManager().sendRequest(tL_messages_getSearchResultsCalendar, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CalendarActivity.m1433$r8$lambda$1uaIeSWehfv9bJIugmlIOeKv48(this.f$0, calendar, tLObject, tL_error);
+                CalendarActivity.m1439$r8$lambda$1uaIeSWehfv9bJIugmlIOeKv48(this.f$0, calendar, tLObject, tL_error);
             }
         });
     }
 
-    public static void m1433$r8$lambda$1uaIeSWehfv9bJIugmlIOeKv48(final CalendarActivity calendarActivity, final Calendar calendar, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1439$r8$lambda$1uaIeSWehfv9bJIugmlIOeKv48(final CalendarActivity calendarActivity, final Calendar calendar, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         calendarActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -996,7 +996,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        CalendarActivity.MonthView.AnonymousClass2.m1435$r8$lambda$EBNfvt7IVwEI5a5pN3W09rQDQU(this.f$0, dayAtCoord, view);
+                        CalendarActivity.MonthView.AnonymousClass2.m1441$r8$lambda$EBNfvt7IVwEI5a5pN3W09rQDQU(this.f$0, dayAtCoord, view);
                     }
                 });
                 actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
@@ -1017,7 +1017,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                     actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            CalendarActivity.MonthView.AnonymousClass2.m1436$r8$lambda$hBTslemae22zjnjGUSIgHwdpGU(this.f$0, view);
+                            CalendarActivity.MonthView.AnonymousClass2.m1442$r8$lambda$hBTslemae22zjnjGUSIgHwdpGU(this.f$0, view);
                         }
                     });
                     actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
@@ -1046,7 +1046,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 CalendarActivity.this.presentFragmentAsPreviewWithMenu(chatActivity, actionBarPopupWindowLayout);
             }
 
-            public static void m1435$r8$lambda$EBNfvt7IVwEI5a5pN3W09rQDQU(final AnonymousClass2 anonymousClass2, final PeriodDay periodDay, View view) {
+            public static void m1441$r8$lambda$EBNfvt7IVwEI5a5pN3W09rQDQU(final AnonymousClass2 anonymousClass2, final PeriodDay periodDay, View view) {
                 if (((BaseFragment) CalendarActivity.this).parentLayout != null && ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() >= 3) {
                     final BaseFragment baseFragment = (BaseFragment) ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().get(((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() - 3);
                     if (baseFragment instanceof ChatActivity) {
@@ -1075,7 +1075,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 CalendarActivity.this.finishPreviewFragment();
             }
 
-            public static void m1436$r8$lambda$hBTslemae22zjnjGUSIgHwdpGU(AnonymousClass2 anonymousClass2, View view) {
+            public static void m1442$r8$lambda$hBTslemae22zjnjGUSIgHwdpGU(AnonymousClass2 anonymousClass2, View view) {
                 if (((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() >= 3) {
                     final BaseFragment baseFragment = (BaseFragment) ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().get(((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() - 3);
                     if (baseFragment instanceof ChatActivity) {
@@ -1672,7 +1672,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CalendarActivity.m1434$r8$lambda$qhtR6ewb3iAMzVYxvRRByzrF8k(this.f$0, valueAnimator);
+                CalendarActivity.m1440$r8$lambda$qhtR6ewb3iAMzVYxvRRByzrF8k(this.f$0, valueAnimator);
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
@@ -1708,7 +1708,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public static void m1434$r8$lambda$qhtR6ewb3iAMzVYxvRRByzrF8k(CalendarActivity calendarActivity, ValueAnimator valueAnimator) {
+    public static void m1440$r8$lambda$qhtR6ewb3iAMzVYxvRRByzrF8k(CalendarActivity calendarActivity, ValueAnimator valueAnimator) {
         calendarActivity.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         for (int i = 0; i < calendarActivity.listView.getChildCount(); i++) {

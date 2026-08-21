@@ -158,7 +158,7 @@ public class GroupCallMessagesController extends BaseController {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                GroupCallMessagesController.m1158$r8$lambda$BoiMzYkL9iUych8eS3PH9Yfbqk(groupCallMessage);
+                GroupCallMessagesController.m1164$r8$lambda$BoiMzYkL9iUych8eS3PH9Yfbqk(groupCallMessage);
             }
         };
         AndroidUtilities.runOnUIThread(runnable, 1000L);
@@ -171,7 +171,7 @@ public class GroupCallMessagesController extends BaseController {
         return true;
     }
 
-    public static void m1158$r8$lambda$BoiMzYkL9iUych8eS3PH9Yfbqk(GroupCallMessage groupCallMessage) {
+    public static void m1164$r8$lambda$BoiMzYkL9iUych8eS3PH9Yfbqk(GroupCallMessage groupCallMessage) {
         groupCallMessage.setIsSendDelayed(true);
         groupCallMessage.notifyStateUpdate();
     }

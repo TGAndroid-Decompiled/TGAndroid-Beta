@@ -2013,7 +2013,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                         @Override
                                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                                            DialogCell.m1483$r8$lambda$4MJcpxSv6aRe2eKgPzb4WO4fgA(this.f$0, valueAnimator2);
+                                            DialogCell.m1489$r8$lambda$4MJcpxSv6aRe2eKgPzb4WO4fgA(this.f$0, valueAnimator2);
                                         }
                                     });
                                     this.reactionsMentionsAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2062,7 +2062,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                                    DialogCell.m1484$r8$lambda$RqQBvBMWh2KGY2K5m0CRQI7VvA(this.f$0, valueAnimator3);
+                                    DialogCell.m1490$r8$lambda$RqQBvBMWh2KGY2K5m0CRQI7VvA(this.f$0, valueAnimator3);
                                 }
                             });
                             this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2662,13 +2662,13 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return z18;
     }
 
-    public static void m1484$r8$lambda$RqQBvBMWh2KGY2K5m0CRQI7VvA(DialogCell dialogCell, ValueAnimator valueAnimator) {
+    public static void m1490$r8$lambda$RqQBvBMWh2KGY2K5m0CRQI7VvA(DialogCell dialogCell, ValueAnimator valueAnimator) {
         dialogCell.getClass();
         dialogCell.countChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         dialogCell.invalidate();
     }
 
-    public static void m1483$r8$lambda$4MJcpxSv6aRe2eKgPzb4WO4fgA(DialogCell dialogCell, ValueAnimator valueAnimator) {
+    public static void m1489$r8$lambda$4MJcpxSv6aRe2eKgPzb4WO4fgA(DialogCell dialogCell, ValueAnimator valueAnimator) {
         dialogCell.getClass();
         dialogCell.reactionsMentionsChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         dialogCell.invalidate();

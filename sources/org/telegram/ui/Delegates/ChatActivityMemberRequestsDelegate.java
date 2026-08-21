@@ -94,7 +94,7 @@ public class ChatActivityMemberRequestsDelegate {
             this.closeView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatActivityMemberRequestsDelegate.m3042$r8$lambda$v3BL8H_wviE3TA4avi8CBc5w3A(this.f$0, view);
+                    ChatActivityMemberRequestsDelegate.m3051$r8$lambda$v3BL8H_wviE3TA4avi8CBc5w3A(this.f$0, view);
                 }
             });
             this.root.addView(this.closeView, LayoutHelper.createFrame(36, -1.0f, 53, 0.0f, 0.0f, 4.0f, 0.0f));
@@ -106,7 +106,7 @@ public class ChatActivityMemberRequestsDelegate {
         return this.root;
     }
 
-    public static void m3042$r8$lambda$v3BL8H_wviE3TA4avi8CBc5w3A(ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate, View view) {
+    public static void m3051$r8$lambda$v3BL8H_wviE3TA4avi8CBc5w3A(ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate, View view) {
         chatActivityMemberRequestsDelegate.fragment.getMessagesController().setChatPendingRequestsOnClose(chatActivityMemberRequestsDelegate.currentChat.id, chatActivityMemberRequestsDelegate.pendingRequestsCount);
         chatActivityMemberRequestsDelegate.closePendingRequestsCount = chatActivityMemberRequestsDelegate.pendingRequestsCount;
         chatActivityMemberRequestsDelegate.animatePendingRequests(false, true);

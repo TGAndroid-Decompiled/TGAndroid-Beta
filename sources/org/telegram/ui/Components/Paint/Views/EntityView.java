@@ -834,7 +834,7 @@ public abstract class EntityView extends FrameLayout {
         entityView.angleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                EntityView.m2485$r8$lambda$oRal2LDvGzBKX20jhxz9DmeLKI(this.f$0, valueAnimator3);
+                EntityView.m2495$r8$lambda$oRal2LDvGzBKX20jhxz9DmeLKI(this.f$0, valueAnimator3);
             }
         });
         entityView.angleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -849,7 +849,7 @@ public abstract class EntityView extends FrameLayout {
         entityView.angleAnimator.start();
     }
 
-    public static void m2485$r8$lambda$oRal2LDvGzBKX20jhxz9DmeLKI(EntityView entityView, ValueAnimator valueAnimator) {
+    public static void m2495$r8$lambda$oRal2LDvGzBKX20jhxz9DmeLKI(EntityView entityView, ValueAnimator valueAnimator) {
         float fLerpAngle = AndroidUtilities.lerpAngle(entityView.angle, entityView.currentStickyAngle, valueAnimator.getAnimatedFraction());
         entityView.stickyAnimatedAngle = fLerpAngle;
         entityView.rotateInternal(fLerpAngle);
@@ -903,7 +903,7 @@ public abstract class EntityView extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    EntityView.m2487$r8$lambda$P93JL3GoKa93l_QUjT17FPa1pw(this.f$0, valueAnimator2);
+                    EntityView.m2497$r8$lambda$P93JL3GoKa93l_QUjT17FPa1pw(this.f$0, valueAnimator2);
                 }
             });
             this.selectAnimator.addListener(new AnimatorListenerAdapter() {
@@ -922,7 +922,7 @@ public abstract class EntityView extends FrameLayout {
         }
     }
 
-    public static void m2487$r8$lambda$P93JL3GoKa93l_QUjT17FPa1pw(EntityView entityView, ValueAnimator valueAnimator) {
+    public static void m2497$r8$lambda$P93JL3GoKa93l_QUjT17FPa1pw(EntityView entityView, ValueAnimator valueAnimator) {
         entityView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         entityView.selectT = fFloatValue;
@@ -1154,7 +1154,7 @@ public abstract class EntityView extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    EntityView.m2488$r8$lambda$amIs7RBXE6T9Eb2QG9mxvQBPow(this.f$0, valueAnimator2);
+                    EntityView.m2498$r8$lambda$amIs7RBXE6T9Eb2QG9mxvQBPow(this.f$0, valueAnimator2);
                 }
             });
             this.trashAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -1168,7 +1168,7 @@ public abstract class EntityView extends FrameLayout {
         }
     }
 
-    public static void m2488$r8$lambda$amIs7RBXE6T9Eb2QG9mxvQBPow(EntityView entityView, ValueAnimator valueAnimator) {
+    public static void m2498$r8$lambda$amIs7RBXE6T9Eb2QG9mxvQBPow(EntityView entityView, ValueAnimator valueAnimator) {
         entityView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         entityView.trashScale = fFloatValue;

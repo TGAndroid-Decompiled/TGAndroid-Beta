@@ -445,7 +445,7 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
         itemOptionsMakeOptions.add(R.drawable.msg_share, LocaleController.getString(R.string.LinkActionShare), new Runnable() {
             @Override
             public final void run() {
-                BusinessLinksActivity.m1366$r8$lambda$BA2m941QN_lMFHHVrcm0T7jojA(this.f$0, tL_businessChatLink);
+                BusinessLinksActivity.m1372$r8$lambda$BA2m941QN_lMFHHVrcm0T7jojA(this.f$0, tL_businessChatLink);
             }
         });
         itemOptionsMakeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.Rename), new Runnable() {
@@ -471,7 +471,7 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
         BulletinFactory.of(LaunchActivity.getLastFragment()).createCopyLinkBulletin().show();
     }
 
-    public static void m1366$r8$lambda$BA2m941QN_lMFHHVrcm0T7jojA(BusinessLinksActivity businessLinksActivity, TL_account.TL_businessChatLink tL_businessChatLink) {
+    public static void m1372$r8$lambda$BA2m941QN_lMFHHVrcm0T7jojA(BusinessLinksActivity businessLinksActivity, TL_account.TL_businessChatLink tL_businessChatLink) {
         businessLinksActivity.getClass();
         Intent intent = new Intent(businessLinksActivity.getContext(), (Class<?>) LaunchActivity.class);
         intent.setAction("android.intent.action.SEND");

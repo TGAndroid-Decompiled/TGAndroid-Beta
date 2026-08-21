@@ -185,7 +185,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
     public static void $r8$lambda$Q3jDeh5uayCpzn49ZrZfQ7NJ9q0(DialogInterface dialogInterface, int i) {
     }
 
-    public static void m1879$r8$lambda$XGcFDpfrPJk_cEX0SQrzTbpuI(DialogInterface dialogInterface, int i) {
+    public static void m1885$r8$lambda$XGcFDpfrPJk_cEX0SQrzTbpuI(DialogInterface dialogInterface, int i) {
     }
 
     public ChatRightsEditActivity(long j, long j2, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i, boolean z, boolean z2, String str2) {
@@ -676,13 +676,13 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i4) {
-                ChatRightsEditActivity.m1878$r8$lambda$QOXIY2WkMBpvC6wPuBXsBz41v8(this.f$0, context, view2, i4);
+                ChatRightsEditActivity.m1884$r8$lambda$QOXIY2WkMBpvC6wPuBXsBz41v8(this.f$0, context, view2, i4);
             }
         });
         return this.fragmentView;
     }
 
-    public static void m1878$r8$lambda$QOXIY2WkMBpvC6wPuBXsBz41v8(final ChatRightsEditActivity chatRightsEditActivity, Context context, View view, int i) {
+    public static void m1884$r8$lambda$QOXIY2WkMBpvC6wPuBXsBz41v8(final ChatRightsEditActivity chatRightsEditActivity, Context context, View view, int i) {
         int i2;
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
         TLRPC.TL_chatBannedRights tL_chatBannedRights2;
@@ -825,7 +825,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                     bottomSheetCellArr[i6].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            ChatRightsEditActivity.m1875$r8$lambda$6aTHyd9Yq_WLunfz55ByrPTZ_8(this.f$0, builder, view2);
+                            ChatRightsEditActivity.m1881$r8$lambda$6aTHyd9Yq_WLunfz55ByrPTZ_8(this.f$0, builder, view2);
                         }
                     });
                     i6++;
@@ -1119,7 +1119,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         }
     }
 
-    public static void m1875$r8$lambda$6aTHyd9Yq_WLunfz55ByrPTZ_8(final ChatRightsEditActivity chatRightsEditActivity, BottomSheet.Builder builder, View view) {
+    public static void m1881$r8$lambda$6aTHyd9Yq_WLunfz55ByrPTZ_8(final ChatRightsEditActivity chatRightsEditActivity, BottomSheet.Builder builder, View view) {
         chatRightsEditActivity.getClass();
         int iIntValue = ((Integer) view.getTag()).intValue();
         if (iIntValue == 0) {
@@ -1161,7 +1161,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 datePickerDialog.setButton(-2, LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        ChatRightsEditActivity.m1879$r8$lambda$XGcFDpfrPJk_cEX0SQrzTbpuI(dialogInterface, i);
+                        ChatRightsEditActivity.m1885$r8$lambda$XGcFDpfrPJk_cEX0SQrzTbpuI(dialogInterface, i);
                     }
                 });
                 datePickerDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -1394,7 +1394,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 ConnectionsManager.getInstance(chatRightsEditActivity.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error2) {
-                        ChatRightsEditActivity.m1874$r8$lambda$3itFB5MC7vaMuEz_XJtBsiy3Ro(this.f$0, twoStepVerificationActivity, tLObject, tL_error2);
+                        ChatRightsEditActivity.m1880$r8$lambda$3itFB5MC7vaMuEz_XJtBsiy3Ro(this.f$0, twoStepVerificationActivity, tLObject, tL_error2);
                     }
                 }, 8);
                 return;
@@ -1480,7 +1480,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             builder2.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
-                    ChatRightsEditActivity.m1876$r8$lambda$BMJnSRSYcCO54G9S6ZFoScvAI(this.f$0, alertDialog, i3);
+                    ChatRightsEditActivity.m1882$r8$lambda$BMJnSRSYcCO54G9S6ZFoScvAI(this.f$0, alertDialog, i3);
                 }
             });
             builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1508,12 +1508,12 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         chatRightsEditActivity.presentFragment(twoStepVerificationActivity);
     }
 
-    public static void m1876$r8$lambda$BMJnSRSYcCO54G9S6ZFoScvAI(ChatRightsEditActivity chatRightsEditActivity, AlertDialog alertDialog, int i) {
+    public static void m1882$r8$lambda$BMJnSRSYcCO54G9S6ZFoScvAI(ChatRightsEditActivity chatRightsEditActivity, AlertDialog alertDialog, int i) {
         chatRightsEditActivity.getClass();
         chatRightsEditActivity.presentFragment(new TwoStepVerificationSetupActivity(6, null));
     }
 
-    public static void m1874$r8$lambda$3itFB5MC7vaMuEz_XJtBsiy3Ro(final ChatRightsEditActivity chatRightsEditActivity, final TwoStepVerificationActivity twoStepVerificationActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1880$r8$lambda$3itFB5MC7vaMuEz_XJtBsiy3Ro(final ChatRightsEditActivity chatRightsEditActivity, final TwoStepVerificationActivity twoStepVerificationActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         chatRightsEditActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1853,7 +1853,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatRightsEditActivity.onDonePressed(boolean):void");
     }
 
-    public static void m1873$r8$lambda$iy9CC7FSFVdQ74CRdbesxpxpdM(ChatRightsEditActivity chatRightsEditActivity, long j) {
+    public static void m1879$r8$lambda$iy9CC7FSFVdQ74CRdbesxpxpdM(ChatRightsEditActivity chatRightsEditActivity, long j) {
         if (j == 0) {
             chatRightsEditActivity.getClass();
             return;
@@ -1909,7 +1909,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             chatRightsEditActivity.getMessagesController().addUserToChat(chatRightsEditActivity.currentChat.id, chatRightsEditActivity.currentUser, 0, chatRightsEditActivity.botHash, chatRightsEditActivity, true, runnable, new MessagesController.ErrorDelegate() {
                 @Override
                 public final boolean run(TLRPC.TL_error tL_error) {
-                    return ChatRightsEditActivity.m1880$r8$lambda$e_562ckZia5O3tIrLdtSt3VYlE(this.f$0, tL_error);
+                    return ChatRightsEditActivity.m1886$r8$lambda$e_562ckZia5O3tIrLdtSt3VYlE(this.f$0, tL_error);
                 }
             });
         }
@@ -1948,7 +1948,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         return true;
     }
 
-    public static boolean m1880$r8$lambda$e_562ckZia5O3tIrLdtSt3VYlE(ChatRightsEditActivity chatRightsEditActivity, TLRPC.TL_error tL_error) {
+    public static boolean m1886$r8$lambda$e_562ckZia5O3tIrLdtSt3VYlE(ChatRightsEditActivity chatRightsEditActivity, TLRPC.TL_error tL_error) {
         chatRightsEditActivity.setLoading(false);
         return true;
     }
@@ -2514,7 +2514,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                         textCheckCell2.setCollapseArrow(String.format(Locale.US, "%d/10", Integer.valueOf(sendMediaSelectedCount)), !ChatRightsEditActivity.this.sendMediaExpanded, new Runnable() {
                             @Override
                             public final void run() {
-                                ChatRightsEditActivity.ListAdapter.m1882$r8$lambda$KPE8isAillW2R0b8pLGbFOBC8(this.f$0, textCheckCell2);
+                                ChatRightsEditActivity.ListAdapter.m1888$r8$lambda$KPE8isAillW2R0b8pLGbFOBC8(this.f$0, textCheckCell2);
                             }
                         });
                         textCheckCell2.setIcon(ChatRightsEditActivity.this.allDefaultMediaBanned() ? R.drawable.permission_locked : 0);
@@ -2524,7 +2524,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                         textCheckCell2.setCollapseArrow(String.format(Locale.US, "%d/3", Integer.valueOf(channelMessagesSelectedCount)), !ChatRightsEditActivity.this.channelMessagesExpanded, new Runnable() {
                             @Override
                             public final void run() {
-                                ChatRightsEditActivity.ListAdapter.m1881$r8$lambda$0S22g_T7wEUU1ZGTw9_SNEWEgg(this.f$0, textCheckCell2);
+                                ChatRightsEditActivity.ListAdapter.m1887$r8$lambda$0S22g_T7wEUU1ZGTw9_SNEWEgg(this.f$0, textCheckCell2);
                             }
                         });
                     } else if (i == ChatRightsEditActivity.this.channelStoriesRow) {
@@ -2772,7 +2772,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             }
         }
 
-        public static void m1882$r8$lambda$KPE8isAillW2R0b8pLGbFOBC8(ListAdapter listAdapter, TextCheckCell2 textCheckCell2) {
+        public static void m1888$r8$lambda$KPE8isAillW2R0b8pLGbFOBC8(ListAdapter listAdapter, TextCheckCell2 textCheckCell2) {
             listAdapter.getClass();
             if (textCheckCell2.isEnabled()) {
                 if (ChatRightsEditActivity.this.allDefaultMediaBanned()) {
@@ -2785,7 +2785,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             }
         }
 
-        public static void m1881$r8$lambda$0S22g_T7wEUU1ZGTw9_SNEWEgg(ListAdapter listAdapter, TextCheckCell2 textCheckCell2) {
+        public static void m1887$r8$lambda$0S22g_T7wEUU1ZGTw9_SNEWEgg(ListAdapter listAdapter, TextCheckCell2 textCheckCell2) {
             listAdapter.getClass();
             if (textCheckCell2.isEnabled()) {
                 boolean zIsChecked = textCheckCell2.isChecked();

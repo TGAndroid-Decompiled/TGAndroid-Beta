@@ -658,7 +658,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                TopicsTabsView.m2889$r8$lambda$Ouv9jPHE0DZAjZ_M6zd3mS0s(this.f$0, valueAnimator2);
+                TopicsTabsView.m2898$r8$lambda$Ouv9jPHE0DZAjZ_M6zd3mS0s(this.f$0, valueAnimator2);
             }
         });
         this.animator.addListener(new AnonymousClass5(z));
@@ -667,7 +667,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         this.animator.start();
     }
 
-    public static void m2889$r8$lambda$Ouv9jPHE0DZAjZ_M6zd3mS0s(TopicsTabsView topicsTabsView, ValueAnimator valueAnimator) {
+    public static void m2898$r8$lambda$Ouv9jPHE0DZAjZ_M6zd3mS0s(TopicsTabsView topicsTabsView, ValueAnimator valueAnimator) {
         topicsTabsView.getClass();
         topicsTabsView.sidemenuT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         topicsTabsView.updateSidemenuPosition();
@@ -725,12 +725,12 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                TopicsTabsView.m2891$r8$lambda$chbCGYqgTG1VKxaseTE3IqgPAU(this.f$0);
+                TopicsTabsView.m2900$r8$lambda$chbCGYqgTG1VKxaseTE3IqgPAU(this.f$0);
             }
         });
     }
 
-    public static void m2891$r8$lambda$chbCGYqgTG1VKxaseTE3IqgPAU(TopicsTabsView topicsTabsView) {
+    public static void m2900$r8$lambda$chbCGYqgTG1VKxaseTE3IqgPAU(TopicsTabsView topicsTabsView) {
         if (topicsTabsView.isLoadingVisible()) {
             topicsTabsView.loadMore();
         }
@@ -1057,7 +1057,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
                 itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getPluralString("DeleteTopics", 1), new Runnable() {
                     @Override
                     public final void run() {
-                        TopicsTabsView.m2892$r8$lambda$xefYQ3LMmbHgrxWAmYharA3yVQ(this.f$0, itemOptionsMakeOptions, tL_forumTopic);
+                        TopicsTabsView.m2901$r8$lambda$xefYQ3LMmbHgrxWAmYharA3yVQ(this.f$0, itemOptionsMakeOptions, tL_forumTopic);
                     }
                 });
             }
@@ -1174,13 +1174,13 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicsTabsView.m2893$r8$lambda$zIF3WS6gBDJ7yjSwFuk0hefuu4(this.f$0, updates);
+                    TopicsTabsView.m2902$r8$lambda$zIF3WS6gBDJ7yjSwFuk0hefuu4(this.f$0, updates);
                 }
             }, 1000L);
         }
     }
 
-    public static void m2893$r8$lambda$zIF3WS6gBDJ7yjSwFuk0hefuu4(TopicsTabsView topicsTabsView, TLRPC.Updates updates) {
+    public static void m2902$r8$lambda$zIF3WS6gBDJ7yjSwFuk0hefuu4(TopicsTabsView topicsTabsView, TLRPC.Updates updates) {
         topicsTabsView.getClass();
         MessagesController.getInstance(topicsTabsView.currentAccount).loadFullChat(updates.chats.get(0).id, 0, true);
     }
@@ -1224,7 +1224,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         MessagesController.getInstance(topicsTabsView.currentAccount).getTopicsController().toggleCloseTopic(-topicsTabsView.dialogId, tL_forumTopic.id, !tL_forumTopic.closed);
     }
 
-    public static void m2892$r8$lambda$xefYQ3LMmbHgrxWAmYharA3yVQ(TopicsTabsView topicsTabsView, ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
+    public static void m2901$r8$lambda$xefYQ3LMmbHgrxWAmYharA3yVQ(TopicsTabsView topicsTabsView, ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
         topicsTabsView.getClass();
         itemOptions.dismiss();
         HashSet hashSet = new HashSet();
@@ -2142,7 +2142,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    TopicsTabsView.HorizontalTabView.m2894$r8$lambda$TDsOFi3FwdP_MUlURVFg_7rA(this.f$0, valueAnimator2);
+                    TopicsTabsView.HorizontalTabView.m2903$r8$lambda$TDsOFi3FwdP_MUlURVFg_7rA(this.f$0, valueAnimator2);
                 }
             });
             this.selectAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2157,7 +2157,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             this.selectAnimator.start();
         }
 
-        public static void m2894$r8$lambda$TDsOFi3FwdP_MUlURVFg_7rA(HorizontalTabView horizontalTabView, ValueAnimator valueAnimator) {
+        public static void m2903$r8$lambda$TDsOFi3FwdP_MUlURVFg_7rA(HorizontalTabView horizontalTabView, ValueAnimator valueAnimator) {
             horizontalTabView.getClass();
             horizontalTabView.selectT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             horizontalTabView.updateTextColor();
@@ -2386,7 +2386,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         BulletinFactory.of(topicsTabsView.fragment).createUndoBulletin(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), new Runnable() {
             @Override
             public final void run() {
-                TopicsTabsView.m2887$r8$lambda$J9vP3WN3JX9LdWejzzbScFixRI(this.f$0, hashSet, arrayList, j);
+                TopicsTabsView.m2896$r8$lambda$J9vP3WN3JX9LdWejzzbScFixRI(this.f$0, hashSet, arrayList, j);
             }
         }, new Runnable() {
             @Override
@@ -2397,7 +2397,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         alertDialog.dismiss();
     }
 
-    public static void m2887$r8$lambda$J9vP3WN3JX9LdWejzzbScFixRI(TopicsTabsView topicsTabsView, HashSet hashSet, ArrayList arrayList, long j) {
+    public static void m2896$r8$lambda$J9vP3WN3JX9LdWejzzbScFixRI(TopicsTabsView topicsTabsView, HashSet hashSet, ArrayList arrayList, long j) {
         topicsTabsView.excludeTopics.removeAll(hashSet);
         topicsTabsView.updateTabs();
         int size = arrayList.size();

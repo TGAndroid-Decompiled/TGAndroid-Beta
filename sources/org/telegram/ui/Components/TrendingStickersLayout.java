@@ -228,7 +228,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         final RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                TrendingStickersLayout.m2925$r8$lambda$gqs6cF_hOFlYRaC05DPtaWYnAA(this.f$0, view, i2);
+                TrendingStickersLayout.m2934$r8$lambda$gqs6cF_hOFlYRaC05DPtaWYnAA(this.f$0, view, i2);
             }
         };
         recyclerListView.setOnTouchListener(new View.OnTouchListener() {
@@ -341,7 +341,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         notificationCenter.addObserver(this, NotificationCenter.featuredStickersDidLoad);
     }
 
-    public static void m2925$r8$lambda$gqs6cF_hOFlYRaC05DPtaWYnAA(TrendingStickersLayout trendingStickersLayout, View view, int i) {
+    public static void m2934$r8$lambda$gqs6cF_hOFlYRaC05DPtaWYnAA(TrendingStickersLayout trendingStickersLayout, View view, int i) {
         TLRPC.StickerSetCovered setForPosition;
         RecyclerView.Adapter adapter = trendingStickersLayout.listView.getAdapter();
         StickersSearchAdapter stickersSearchAdapter = trendingStickersLayout.searchAdapter;
@@ -747,7 +747,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                     featuredStickerSetCell2.setAddOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            TrendingStickersLayout.TrendingStickersAdapter.m2926$r8$lambda$2ypphmhSsCEffaApTCZ7W4ZNdw(this.f$0, view2);
+                            TrendingStickersLayout.TrendingStickersAdapter.m2935$r8$lambda$2ypphmhSsCEffaApTCZ7W4ZNdw(this.f$0, view2);
                         }
                     });
                     featuredStickerSetCell2.getImageView().setLayerNum(3);
@@ -759,7 +759,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             return new RecyclerListView.Holder(emptyCell);
         }
 
-        public static void m2926$r8$lambda$2ypphmhSsCEffaApTCZ7W4ZNdw(TrendingStickersAdapter trendingStickersAdapter, View view) {
+        public static void m2935$r8$lambda$2ypphmhSsCEffaApTCZ7W4ZNdw(TrendingStickersAdapter trendingStickersAdapter, View view) {
             trendingStickersAdapter.getClass();
             FeaturedStickerSetCell2 featuredStickerSetCell2 = (FeaturedStickerSetCell2) view.getParent();
             TLRPC.StickerSetCovered stickerSet = featuredStickerSetCell2.getStickerSet();

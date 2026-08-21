@@ -482,12 +482,12 @@ public class DataUsage2Activity extends BaseFragment {
             highlightRow(new RecyclerListView.IntReturnCallback() {
                 @Override
                 public final int run() {
-                    return DataUsage2Activity.ListView.m3039$r8$lambda$O6gB0sgzbu5JObAjeE9R53Fro8(this.f$0, i);
+                    return DataUsage2Activity.ListView.m3048$r8$lambda$O6gB0sgzbu5JObAjeE9R53Fro8(this.f$0, i);
                 }
             });
         }
 
-        public static int m3039$r8$lambda$O6gB0sgzbu5JObAjeE9R53Fro8(ListView listView, int i) {
+        public static int m3048$r8$lambda$O6gB0sgzbu5JObAjeE9R53Fro8(ListView listView, int i) {
             int i2 = 0;
             while (true) {
                 if (i2 >= listView.itemInners.size()) {

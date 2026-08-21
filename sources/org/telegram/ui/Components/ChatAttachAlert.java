@@ -757,7 +757,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                                ChatAttachAlert.AnonymousClass1.m2147$r8$lambda$jlfGBgZH3a8Rg2pp0tjd8Al3AU(this.f$0, valueAnimator2);
+                                ChatAttachAlert.AnonymousClass1.m2157$r8$lambda$jlfGBgZH3a8Rg2pp0tjd8Al3AU(this.f$0, valueAnimator2);
                             }
                         });
                         this.botButtonAnimator.addListener(new AnimatorListenerAdapter() {
@@ -816,7 +816,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         }
 
-        public static void m2147$r8$lambda$jlfGBgZH3a8Rg2pp0tjd8Al3AU(AnonymousClass1 anonymousClass1, ValueAnimator valueAnimator) {
+        public static void m2157$r8$lambda$jlfGBgZH3a8Rg2pp0tjd8Al3AU(AnonymousClass1 anonymousClass1, ValueAnimator valueAnimator) {
             anonymousClass1.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             ChatAttachAlert.this.buttonsRecyclerViewWrapper.setAlpha(1.0f - fFloatValue);
@@ -1255,7 +1255,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             glassTabViewCreateAttachBotTab.getBackupImageView().imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                 @Override
                 public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                    ChatAttachAlert.AttachBotButton.m2148$r8$lambda$Q4NR2NsLg9EoXirNGvADBmdOEU(imageReceiver, z, z2, z3);
+                    ChatAttachAlert.AttachBotButton.m2158$r8$lambda$Q4NR2NsLg9EoXirNGvADBmdOEU(imageReceiver, z, z2, z3);
                 }
 
                 @Override
@@ -1271,7 +1271,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             addView(this.glassTabView, LayoutHelper.createFrame(-1, -1.0f));
         }
 
-        public static void m2148$r8$lambda$Q4NR2NsLg9EoXirNGvADBmdOEU(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        public static void m2158$r8$lambda$Q4NR2NsLg9EoXirNGvADBmdOEU(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
             Drawable drawable = imageReceiver.getDrawable();
             if (drawable instanceof RLottieDrawable) {
                 RLottieDrawable rLottieDrawable = (RLottieDrawable) drawable;
@@ -1569,7 +1569,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.iBlur3Capture = new IBlur3Capture() {
             @Override
             public final void capture(Canvas canvas, RectF rectF4) {
-                ChatAttachAlert.m2145$r8$lambda$x5I8ghpSRep5DF7z5acXsneI9c(this.f$0, canvas, rectF4);
+                ChatAttachAlert.m2155$r8$lambda$x5I8ghpSRep5DF7z5acXsneI9c(this.f$0, canvas, rectF4);
             }
 
             @Override
@@ -1722,7 +1722,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.motionItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlert.m2139$r8$lambda$kZgc3zq2gMWBNqYfuEtk9BhQQI(this.f$0, view);
+                ChatAttachAlert.m2149$r8$lambda$kZgc3zq2gMWBNqYfuEtk9BhQQI(this.f$0, view);
             }
         });
         TextView textView2 = new TextView(context) {
@@ -1785,7 +1785,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.optionsItem.addSubItem(1, R.drawable.msg_addbot, LocaleController.getString(R.string.StickerCreateEmpty)).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlert.m2146$r8$lambda$xhISNtOk_T0lREcznX8rMM8Tpo(this.f$0, resourcesProvider, view);
+                ChatAttachAlert.m2156$r8$lambda$xhISNtOk_T0lREcznX8rMM8Tpo(this.f$0, resourcesProvider, view);
             }
         });
         this.optionsItem.setMenuYOffset(AndroidUtilities.dp(-12.0f));
@@ -2099,7 +2099,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.buttonsRecyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i8) {
-                ChatAttachAlert.m2142$r8$lambda$qXIHkUrgR5iMzperioi89jQqH0(this.f$0, resourcesProvider, view, i8);
+                ChatAttachAlert.m2152$r8$lambda$qXIHkUrgR5iMzperioi89jQqH0(this.f$0, resourcesProvider, view, i8);
             }
         });
         this.buttonsRecyclerView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -2145,7 +2145,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.moveCaptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlert.m2129$r8$lambda$MIjeLv6TnwE7wJ4oQvrW6pYQI(this.f$0, view);
+                ChatAttachAlert.m2139$r8$lambda$MIjeLv6TnwE7wJ4oQvrW6pYQI(this.f$0, view);
             }
         });
         this.frameLayout2 = new AnonymousClass17(context);
@@ -2541,7 +2541,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.topCommentMoveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlert.m2133$r8$lambda$R4KK8WxbkNdWJ37eLexM7mlbjU(this.f$0, view);
+                ChatAttachAlert.m2143$r8$lambda$R4KK8WxbkNdWJ37eLexM7mlbjU(this.f$0, view);
             }
         });
         ImageView imageView6 = new ImageView(context);
@@ -2683,12 +2683,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }).setStrokeColorTop(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z5) {
-                return ChatAttachAlert.m2127$r8$lambda$JFuvbyhZmR6gkd84Oyl3s5Y(this.f$0, resourcesProvider2, z5);
+                return ChatAttachAlert.m2137$r8$lambda$JFuvbyhZmR6gkd84Oyl3s5Y(this.f$0, resourcesProvider2, z5);
             }
         }).setStrokeColorBottom(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z5) {
-                return ChatAttachAlert.m2128$r8$lambda$JuCIGbOUgFeNpxVqRGDzkJprQA(this.f$0, resourcesProvider2, z5);
+                return ChatAttachAlert.m2138$r8$lambda$JuCIGbOUgFeNpxVqRGDzkJprQA(this.f$0, resourcesProvider2, z5);
             }
         }).setShadowColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
@@ -2699,7 +2699,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         replaceAnimator.replace(1L, false);
     }
 
-    public static void m2145$r8$lambda$x5I8ghpSRep5DF7z5acXsneI9c(ChatAttachAlert chatAttachAlert, Canvas canvas, RectF rectF) {
+    public static void m2155$r8$lambda$x5I8ghpSRep5DF7z5acXsneI9c(ChatAttachAlert chatAttachAlert, Canvas canvas, RectF rectF) {
         Canvas canvas2;
         RectF rectF2;
         AttachAlertLayout attachAlertLayout;
@@ -3854,7 +3854,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2139$r8$lambda$kZgc3zq2gMWBNqYfuEtk9BhQQI(ChatAttachAlert chatAttachAlert, View view) {
+    public static void m2149$r8$lambda$kZgc3zq2gMWBNqYfuEtk9BhQQI(ChatAttachAlert chatAttachAlert, View view) {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = chatAttachAlert.photoLayout;
         if (chatAttachAlertPhotoLayout == null) {
             return;
@@ -3946,7 +3946,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         chatAttachAlert.dismiss();
     }
 
-    public static void m2146$r8$lambda$xhISNtOk_T0lREcznX8rMM8Tpo(ChatAttachAlert chatAttachAlert, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m2156$r8$lambda$xhISNtOk_T0lREcznX8rMM8Tpo(ChatAttachAlert chatAttachAlert, Theme.ResourcesProvider resourcesProvider, View view) {
         chatAttachAlert.optionsItem.toggleSubMenu();
         PhotoViewer.getInstance().setParentActivity(chatAttachAlert.baseFragment, resourcesProvider);
         PhotoViewer.getInstance().setParentAlert(chatAttachAlert);
@@ -4025,7 +4025,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2142$r8$lambda$qXIHkUrgR5iMzperioi89jQqH0(final ChatAttachAlert chatAttachAlert, Theme.ResourcesProvider resourcesProvider, View view, int i) {
+    public static void m2152$r8$lambda$qXIHkUrgR5iMzperioi89jQqH0(final ChatAttachAlert chatAttachAlert, Theme.ResourcesProvider resourcesProvider, View view, int i) {
         BaseFragment lastFragment = chatAttachAlert.baseFragment;
         if (lastFragment == null) {
             lastFragment = LaunchActivity.getLastFragment();
@@ -4096,7 +4096,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 } else {
                     if (chatAttachAlert.locationLayout == null) {
                         AttachAlertLayout[] attachAlertLayoutArr = chatAttachAlert.layouts;
-                        ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = new ChatAttachAlertLocationLayout(chatAttachAlert, chatAttachAlert.getContext(), resourcesProvider, true ^ chatAttachAlert.isPollAttach);
+                        ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = new ChatAttachAlertLocationLayout(chatAttachAlert, chatAttachAlert.getContext(), resourcesProvider, (chatAttachAlert.isPollAttach || chatAttachAlert.restrictEphemeralMessageTypes) ? false : true);
                         chatAttachAlert.locationLayout = chatAttachAlertLocationLayout;
                         attachAlertLayoutArr[5] = chatAttachAlertLocationLayout;
                         ChatAttachAlertLocationLayout.LocationActivityDelegate locationActivityDelegate = chatAttachAlert.locationActivityDelegate;
@@ -4266,7 +4266,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         chatAttachAlertBotWebViewLayout.getWebViewContainer().onMainButtonPressed();
     }
 
-    public static void m2129$r8$lambda$MIjeLv6TnwE7wJ4oQvrW6pYQI(ChatAttachAlert chatAttachAlert, View view) {
+    public static void m2139$r8$lambda$MIjeLv6TnwE7wJ4oQvrW6pYQI(ChatAttachAlert chatAttachAlert, View view) {
         if (chatAttachAlert.captionAbove) {
             return;
         }
@@ -4480,7 +4480,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2133$r8$lambda$R4KK8WxbkNdWJ37eLexM7mlbjU(ChatAttachAlert chatAttachAlert, View view) {
+    public static void m2143$r8$lambda$R4KK8WxbkNdWJ37eLexM7mlbjU(ChatAttachAlert chatAttachAlert, View view) {
         if (chatAttachAlert.captionAbove) {
             chatAttachAlert.toggleCaptionAbove();
         }
@@ -4499,7 +4499,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }).setOnSend(chatAttachAlert.dialogId, chatAttachAlert.editingMessageObject != null, new Utilities.Callback4() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                ChatAttachAlert.m2137$r8$lambda$gFBrUTy814KTmySWdjOqnoTAOs(this.f$0, (CharSequence) obj, (Integer) obj2, (Integer) obj3, (Boolean) obj4);
+                ChatAttachAlert.m2147$r8$lambda$gFBrUTy814KTmySWdjOqnoTAOs(this.f$0, (CharSequence) obj, (Integer) obj2, (Integer) obj3, (Boolean) obj4);
             }
         }).show();
     }
@@ -4509,7 +4509,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         chatAttachAlert.topCommentTextView.setSelection(charSequence.length(), charSequence.length());
     }
 
-    public static void m2137$r8$lambda$gFBrUTy814KTmySWdjOqnoTAOs(ChatAttachAlert chatAttachAlert, CharSequence charSequence, Integer num, Integer num2, Boolean bool) {
+    public static void m2147$r8$lambda$gFBrUTy814KTmySWdjOqnoTAOs(ChatAttachAlert chatAttachAlert, CharSequence charSequence, Integer num, Integer num2, Boolean bool) {
         chatAttachAlert.topCommentTextView.setText(charSequence);
         chatAttachAlert.topCommentTextView.setSelection(charSequence.length(), charSequence.length());
         chatAttachAlert.onWriteButtonPressed();
@@ -5376,7 +5376,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     AlertsCreator.createScheduleDatePickerDialog(chatAttachAlert2.getContext(), j2, new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
                         public final void didSelectDate(boolean z11, int i25, int i26) {
-                            ChatAttachAlert.m2134$r8$lambda$RNMkiyAT0gG67AbNzAdULcAGxc(chatAttachAlert2, z11, i25, i26);
+                            ChatAttachAlert.m2144$r8$lambda$RNMkiyAT0gG67AbNzAdULcAGxc(chatAttachAlert2, z11, i25, i26);
                         }
                     }, resourcesProvider2);
                 }
@@ -5552,7 +5552,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         chatAttachAlert.messageSendPreview.scrollTo(!chatAttachAlert.captionAbove);
     }
 
-    public static void m2134$r8$lambda$RNMkiyAT0gG67AbNzAdULcAGxc(ChatAttachAlert chatAttachAlert, boolean z, int i, int i2) {
+    public static void m2144$r8$lambda$RNMkiyAT0gG67AbNzAdULcAGxc(ChatAttachAlert chatAttachAlert, boolean z, int i, int i2) {
         ChatAttachAlert chatAttachAlert2;
         boolean zSendPressed;
         MessageSendPreview messageSendPreview = chatAttachAlert.messageSendPreview;
@@ -5669,14 +5669,14 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         return BlurredBackgroundProviderImpl.solveSrcColor(color, color2, f);
     }
 
-    public static int m2127$r8$lambda$JFuvbyhZmR6gkd84Oyl3s5Y(ChatAttachAlert chatAttachAlert, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public static int m2137$r8$lambda$JFuvbyhZmR6gkd84Oyl3s5Y(ChatAttachAlert chatAttachAlert, Theme.ResourcesProvider resourcesProvider, boolean z) {
         if (chatAttachAlert.hasOverridenWebviewBackgroundColor) {
             return 0;
         }
         return z ? 687865855 : -1;
     }
 
-    public static int m2128$r8$lambda$JuCIGbOUgFeNpxVqRGDzkJprQA(ChatAttachAlert chatAttachAlert, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public static int m2138$r8$lambda$JuCIGbOUgFeNpxVqRGDzkJprQA(ChatAttachAlert chatAttachAlert, Theme.ResourcesProvider resourcesProvider, boolean z) {
         if (chatAttachAlert.hasOverridenWebviewBackgroundColor) {
             return 0;
         }
@@ -5890,13 +5890,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             BulletinFactory.of(this.sizeNotifierFrameLayout, this.resourcesProvider).createCaptionLimitBulletin(MessagesController.getInstance(this.currentAccount).captionLengthLimitPremium, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlert.m2140$r8$lambda$lMEaQPY4V7aBRO_jkGQA1N3Wic(this.f$0, baseFragment);
+                    ChatAttachAlert.m2150$r8$lambda$lMEaQPY4V7aBRO_jkGQA1N3Wic(this.f$0, baseFragment);
                 }
             }).show();
         }
     }
 
-    public static void m2140$r8$lambda$lMEaQPY4V7aBRO_jkGQA1N3Wic(ChatAttachAlert chatAttachAlert, BaseFragment baseFragment) {
+    public static void m2150$r8$lambda$lMEaQPY4V7aBRO_jkGQA1N3Wic(ChatAttachAlert chatAttachAlert, BaseFragment baseFragment) {
         chatAttachAlert.dismiss(true);
         if (baseFragment != null) {
             baseFragment.presentFragment(new PremiumPreviewFragment("caption_limit"));
@@ -6112,7 +6112,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         if (i == 6 && AndroidUtilities.isMapsInstalled(this.baseFragment)) {
             if (this.locationLayout == null) {
                 AttachAlertLayout[] attachAlertLayoutArr = this.layouts;
-                ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = new ChatAttachAlertLocationLayout(this, getContext(), this.resourcesProvider, true ^ this.isPollAttach);
+                ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = new ChatAttachAlertLocationLayout(this, getContext(), this.resourcesProvider, (this.isPollAttach || this.restrictEphemeralMessageTypes) ? false : true);
                 this.locationLayout = chatAttachAlertLocationLayout;
                 attachAlertLayoutArr[5] = chatAttachAlertLocationLayout;
                 ChatAttachAlertLocationLayout.LocationActivityDelegate locationActivityDelegate = this.locationActivityDelegate;
@@ -6272,7 +6272,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlert.m2144$r8$lambda$u73ImYJAglFrFE339jAJn27kN8(this.f$0);
+                    ChatAttachAlert.m2154$r8$lambda$u73ImYJAglFrFE339jAJn27kN8(this.f$0);
                 }
             };
             AttachAlertLayout attachAlertLayout5 = this.currentAttachLayout;
@@ -6351,7 +6351,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2144$r8$lambda$u73ImYJAglFrFE339jAJn27kN8(ChatAttachAlert chatAttachAlert) {
+    public static void m2154$r8$lambda$u73ImYJAglFrFE339jAJn27kN8(ChatAttachAlert chatAttachAlert) {
         AttachAlertLayout attachAlertLayout;
         ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview;
         chatAttachAlert.viewChangeAnimator = null;
@@ -6436,7 +6436,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         springAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f2, float f3) {
-                ChatAttachAlert.m2117$r8$lambda$1K6AhmeDDr2DTUrKadvxKjQgEY(this.f$0, alpha, f, z, dynamicAnimation, f2, f3);
+                ChatAttachAlert.m2127$r8$lambda$1K6AhmeDDr2DTUrKadvxKjQgEY(this.f$0, alpha, f, z, dynamicAnimation, f2, f3);
             }
         });
         springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
@@ -6452,7 +6452,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         chatAttachAlert.viewChangeAnimator = springAnimation;
     }
 
-    public static void m2117$r8$lambda$1K6AhmeDDr2DTUrKadvxKjQgEY(ChatAttachAlert chatAttachAlert, float f, float f2, boolean z, DynamicAnimation dynamicAnimation, float f3, float f4) {
+    public static void m2127$r8$lambda$1K6AhmeDDr2DTUrKadvxKjQgEY(ChatAttachAlert chatAttachAlert, float f, float f2, boolean z, DynamicAnimation dynamicAnimation, float f3, float f4) {
         float f5 = f3 / 500.0f;
         chatAttachAlert.ATTACH_ALERT_LAYOUT_TRANSLATION.set(chatAttachAlert.currentAttachLayout, Float.valueOf(f5));
         chatAttachAlert.actionBar.setAlpha(AndroidUtilities.lerp(f, f2, f5));
@@ -6644,7 +6644,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             this.audioLayout.setDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
                 @Override
                 public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i2, int i3, long j, boolean z3, long j2) {
-                    ChatAttachAlert.m2143$r8$lambda$qkQmkAVCg3Pz1yvqIp3ts7OQA(this.f$0, arrayList, charSequence, z2, i2, i3, j, z3, j2);
+                    ChatAttachAlert.m2153$r8$lambda$qkQmkAVCg3Pz1yvqIp3ts7OQA(this.f$0, arrayList, charSequence, z2, i2, i3, j, z3, j2);
                 }
             });
             if (this.isPollAttach) {
@@ -6665,7 +6665,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2143$r8$lambda$qkQmkAVCg3Pz1yvqIp3ts7OQA(ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public static void m2153$r8$lambda$qkQmkAVCg3Pz1yvqIp3ts7OQA(ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
         ChatAttachAlertAudioLayout.AudioSelectDelegate audioSelectDelegate = chatAttachAlert.audioSelectDelegate;
         if (audioSelectDelegate != null) {
             audioSelectDelegate.didSelectAudio(arrayList, charSequence, z, i, i2, j, z2, j2);
@@ -6689,14 +6689,14 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             chatAttachAlertColorsLayout.setDelegate(new androidx.core.util.Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChatAttachAlert.m2120$r8$lambda$5FrMtWP0bAxsGde_ew23MpudC4(this.f$0, obj);
+                    ChatAttachAlert.m2130$r8$lambda$5FrMtWP0bAxsGde_ew23MpudC4(this.f$0, obj);
                 }
             });
         }
         showLayout(this.colorsLayout);
     }
 
-    public static void m2120$r8$lambda$5FrMtWP0bAxsGde_ew23MpudC4(ChatAttachAlert chatAttachAlert, Object obj) {
+    public static void m2130$r8$lambda$5FrMtWP0bAxsGde_ew23MpudC4(ChatAttachAlert chatAttachAlert, Object obj) {
         ChatAttachViewDelegate chatAttachViewDelegate = chatAttachAlert.delegate;
         if (chatAttachViewDelegate != null) {
             chatAttachViewDelegate.onWallpaperSelected(obj);
@@ -7067,7 +7067,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ChatAttachAlert.m2115$r8$lambda$9lOm59w9AQC_MuMDsXte7rD18(this.f$0, valueAnimator2);
+                ChatAttachAlert.m2125$r8$lambda$9lOm59w9AQC_MuMDsXte7rD18(this.f$0, valueAnimator2);
             }
         });
         SpringAnimation springAnimation = this.appearSpringAnimation;
@@ -7099,13 +7099,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlert.m2118$r8$lambda$2SaMkzEtrVKbMfnc1o1dAik6z4(this.f$0, animationNotificationsLocker, bottomSheetDelegateInterface);
+                ChatAttachAlert.m2128$r8$lambda$2SaMkzEtrVKbMfnc1o1dAik6z4(this.f$0, animationNotificationsLocker, bottomSheetDelegateInterface);
             }
         };
         this.appearSpringAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                ChatAttachAlert.m2131$r8$lambda$NYxWA99Do483lPbAOt5Wm0SbxQ(this.f$0, runnable, dynamicAnimation, z, f, f2);
+                ChatAttachAlert.m2141$r8$lambda$NYxWA99Do483lPbAOt5Wm0SbxQ(this.f$0, runnable, dynamicAnimation, z, f, f2);
             }
         });
         this.currentSheetAnimation.addListener(new AnimatorListenerAdapter() {
@@ -7134,7 +7134,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ChatAttachAlert.m2116$r8$lambda$qJ1F_bV_JdKoglD2q3XH5xD6YU(this.f$0, valueAnimator2);
+                ChatAttachAlert.m2126$r8$lambda$qJ1F_bV_JdKoglD2q3XH5xD6YU(this.f$0, valueAnimator2);
             }
         });
         valueAnimatorOfFloat2.setStartDelay(25L);
@@ -7144,7 +7144,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         return true;
     }
 
-    public static void m2115$r8$lambda$9lOm59w9AQC_MuMDsXte7rD18(ChatAttachAlert chatAttachAlert, ValueAnimator valueAnimator) {
+    public static void m2125$r8$lambda$9lOm59w9AQC_MuMDsXte7rD18(ChatAttachAlert chatAttachAlert, ValueAnimator valueAnimator) {
         chatAttachAlert.getClass();
         chatAttachAlert.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         BottomSheet.ContainerView containerView = chatAttachAlert.container;
@@ -7153,7 +7153,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2118$r8$lambda$2SaMkzEtrVKbMfnc1o1dAik6z4(ChatAttachAlert chatAttachAlert, AnimationNotificationsLocker animationNotificationsLocker, BottomSheet.BottomSheetDelegateInterface bottomSheetDelegateInterface) {
+    public static void m2128$r8$lambda$2SaMkzEtrVKbMfnc1o1dAik6z4(ChatAttachAlert chatAttachAlert, AnimationNotificationsLocker animationNotificationsLocker, BottomSheet.BottomSheetDelegateInterface bottomSheetDelegateInterface) {
         chatAttachAlert.currentSheetAnimation = null;
         chatAttachAlert.appearSpringAnimation = null;
         animationNotificationsLocker.unlock();
@@ -7172,7 +7172,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
     }
 
-    public static void m2131$r8$lambda$NYxWA99Do483lPbAOt5Wm0SbxQ(ChatAttachAlert chatAttachAlert, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+    public static void m2141$r8$lambda$NYxWA99Do483lPbAOt5Wm0SbxQ(ChatAttachAlert chatAttachAlert, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
         AnimatorSet animatorSet = chatAttachAlert.currentSheetAnimation;
         if (animatorSet == null || animatorSet.isRunning()) {
             return;
@@ -7180,7 +7180,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         runnable.run();
     }
 
-    public static void m2116$r8$lambda$qJ1F_bV_JdKoglD2q3XH5xD6YU(ChatAttachAlert chatAttachAlert, ValueAnimator valueAnimator) {
+    public static void m2126$r8$lambda$qJ1F_bV_JdKoglD2q3XH5xD6YU(ChatAttachAlert chatAttachAlert, ValueAnimator valueAnimator) {
         chatAttachAlert.getClass();
         chatAttachAlert.setNavBarAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
@@ -7208,12 +7208,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlert.m2132$r8$lambda$Palh6pxTFNEZbyimSpkUh1O_6s(this.f$0, editTextBoldCursor, z);
+                ChatAttachAlert.m2142$r8$lambda$Palh6pxTFNEZbyimSpkUh1O_6s(this.f$0, editTextBoldCursor, z);
             }
         }, zNeedEnterComment ? 200L : 0L);
     }
 
-    public static void m2132$r8$lambda$Palh6pxTFNEZbyimSpkUh1O_6s(ChatAttachAlert chatAttachAlert, final EditTextBoldCursor editTextBoldCursor, boolean z) {
+    public static void m2142$r8$lambda$Palh6pxTFNEZbyimSpkUh1O_6s(ChatAttachAlert chatAttachAlert, final EditTextBoldCursor editTextBoldCursor, boolean z) {
         chatAttachAlert.setFocusable(true);
         editTextBoldCursor.requestFocus();
         if (z) {
@@ -7810,7 +7810,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             this.motionItem.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.6f).scaleY(z2 ? 1.0f : 0.6f).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlert.m2141$r8$lambda$onvaZGkEjkuhNXjtKAp25JpOgI(this.f$0, z2);
+                    ChatAttachAlert.m2151$r8$lambda$onvaZGkEjkuhNXjtKAp25JpOgI(this.f$0, z2);
                 }
             }).start();
         } else {
@@ -7821,7 +7821,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2141$r8$lambda$onvaZGkEjkuhNXjtKAp25JpOgI(ChatAttachAlert chatAttachAlert, boolean z) {
+    public static void m2151$r8$lambda$onvaZGkEjkuhNXjtKAp25JpOgI(ChatAttachAlert chatAttachAlert, boolean z) {
         if (z) {
             chatAttachAlert.getClass();
         } else {
@@ -7930,7 +7930,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         if (this.isStoryLocationPicker || this.isBizLocationPicker || this.isLocationPicker) {
             if (this.locationLayout == null) {
                 AttachAlertLayout[] attachAlertLayoutArr = this.layouts;
-                ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = new ChatAttachAlertLocationLayout(this, getContext(), this.resourcesProvider, (this.isPollAttach || this.isLocationPicker) ? false : true);
+                ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = new ChatAttachAlertLocationLayout(this, getContext(), this.resourcesProvider, (this.isPollAttach || this.isLocationPicker || this.restrictEphemeralMessageTypes) ? false : true);
                 this.locationLayout = chatAttachAlertLocationLayout;
                 attachAlertLayoutArr[5] = chatAttachAlertLocationLayout;
                 ChatAttachAlertLocationLayout.LocationActivityDelegate locationActivityDelegate = this.locationActivityDelegate;
@@ -8191,7 +8191,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 this.buttonsRecyclerViewWrapper.animate().alpha(z ? 0.0f : 1.0f).translationY(z ? AndroidUtilities.dp(48.0f) : 0.0f).setDuration(180L).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatAttachAlert.m2125$r8$lambda$F_2WwrSKh6zeLj_OzRDQxugYiU(this.f$0, z);
+                        ChatAttachAlert.m2135$r8$lambda$F_2WwrSKh6zeLj_OzRDQxugYiU(this.f$0, z);
                     }
                 }).start();
                 return;
@@ -8202,7 +8202,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2125$r8$lambda$F_2WwrSKh6zeLj_OzRDQxugYiU(ChatAttachAlert chatAttachAlert, boolean z) {
+    public static void m2135$r8$lambda$F_2WwrSKh6zeLj_OzRDQxugYiU(ChatAttachAlert chatAttachAlert, boolean z) {
         if (z) {
             chatAttachAlert.buttonsRecyclerViewWrapper.setVisibility(4);
         } else {
@@ -8297,13 +8297,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         viewPropertyAnimatorScaleY.setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlert.m2119$r8$lambda$3Abzd2IKdCfG0OnGzOVDiK_mU0(this.f$0, z2);
+                ChatAttachAlert.m2129$r8$lambda$3Abzd2IKdCfG0OnGzOVDiK_mU0(this.f$0, z2);
             }
         }).start();
         this.topAiButton.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.6f).scaleY(z2 ? 1.0f : 0.6f).setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlert.m2130$r8$lambda$NYChqFBCxMveUk0Aq1a6CPVRng(this.f$0, z2);
+                ChatAttachAlert.m2140$r8$lambda$NYChqFBCxMveUk0Aq1a6CPVRng(this.f$0, z2);
             }
         }).start();
         if (z2) {
@@ -8318,7 +8318,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2119$r8$lambda$3Abzd2IKdCfG0OnGzOVDiK_mU0(ChatAttachAlert chatAttachAlert, boolean z) {
+    public static void m2129$r8$lambda$3Abzd2IKdCfG0OnGzOVDiK_mU0(ChatAttachAlert chatAttachAlert, boolean z) {
         if (z) {
             chatAttachAlert.getClass();
         } else {
@@ -8326,7 +8326,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public static void m2130$r8$lambda$NYChqFBCxMveUk0Aq1a6CPVRng(ChatAttachAlert chatAttachAlert, boolean z) {
+    public static void m2140$r8$lambda$NYChqFBCxMveUk0Aq1a6CPVRng(ChatAttachAlert chatAttachAlert, boolean z) {
         if (z) {
             chatAttachAlert.getClass();
         } else {
@@ -8810,7 +8810,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    ChatAttachAlert.m2122$r8$lambda$AyPZX92ztpgipgCqbbqxt8giBE(this.f$0, dialogInterface);
+                    ChatAttachAlert.m2132$r8$lambda$AyPZX92ztpgipgCqbbqxt8giBE(this.f$0, dialogInterface);
                 }
             }).setOnPreDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -8841,7 +8841,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         AndroidUtilities.setNavigationBarColor((Dialog) this, ColorUtils.setAlphaComponent(getThemedColor(Theme.key_windowBackgroundGray), 0), true, new AndroidUtilities.IntColorCallback() {
             @Override
             public final void run(int i2) {
-                ChatAttachAlert.m2121$r8$lambda$89ISqsmZFXCMNzK88NNY4kcn_k(this.f$0, i2);
+                ChatAttachAlert.m2131$r8$lambda$89ISqsmZFXCMNzK88NNY4kcn_k(this.f$0, i2);
             }
         });
         if (lastFragment != null) {
@@ -8857,7 +8857,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         chatAttachAlert.dismiss();
     }
 
-    public static void m2122$r8$lambda$AyPZX92ztpgipgCqbbqxt8giBE(ChatAttachAlert chatAttachAlert, DialogInterface dialogInterface) {
+    public static void m2132$r8$lambda$AyPZX92ztpgipgCqbbqxt8giBE(ChatAttachAlert chatAttachAlert, DialogInterface dialogInterface) {
         SpringAnimation springAnimation = chatAttachAlert.appearSpringAnimation;
         if (springAnimation != null) {
             springAnimation.cancel();
@@ -8869,7 +8869,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         chatAttachAlert.appearSpringAnimation.start();
     }
 
-    public static void m2121$r8$lambda$89ISqsmZFXCMNzK88NNY4kcn_k(ChatAttachAlert chatAttachAlert, int i) {
+    public static void m2131$r8$lambda$89ISqsmZFXCMNzK88NNY4kcn_k(ChatAttachAlert chatAttachAlert, int i) {
         chatAttachAlert.navBarColorKey = -1;
         chatAttachAlert.navBarColor = i;
         chatAttachAlert.containerView.invalidate();

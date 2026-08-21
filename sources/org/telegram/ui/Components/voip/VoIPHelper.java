@@ -238,7 +238,7 @@ public abstract class VoIPHelper {
                     title.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, objArr))).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i5) {
-                            VoIPHelper.m2990$r8$lambda$3GMa3hKZd7eKIbVcOcnpSYULo(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance, alertDialog, i5);
+                            VoIPHelper.m2999$r8$lambda$3GMa3hKZd7eKIbVcOcnpSYULo(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance, alertDialog, i5);
                         }
                     }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
                     return;
@@ -259,12 +259,12 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void m2990$r8$lambda$3GMa3hKZd7eKIbVcOcnpSYULo(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) {
+    public static void m2999$r8$lambda$3GMa3hKZd7eKIbVcOcnpSYULo(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) {
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPHelper.m2991$r8$lambda$7KXQyz01xjcfi5gz80JsoQnDao(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance);
+                    VoIPHelper.m3000$r8$lambda$7KXQyz01xjcfi5gz80JsoQnDao(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance);
                 }
             });
         } else {
@@ -272,7 +272,7 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void m2991$r8$lambda$7KXQyz01xjcfi5gz80JsoQnDao(TLRPC.User user, TLRPC.Chat chat, String str, boolean z, boolean z2, boolean z3, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
+    public static void m3000$r8$lambda$7KXQyz01xjcfi5gz80JsoQnDao(TLRPC.User user, TLRPC.Chat chat, String str, boolean z, boolean z2, boolean z3, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
         lastCallTime = 0L;
         doInitiateCall(user, chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, true, true);
     }
@@ -704,7 +704,7 @@ public abstract class VoIPHelper {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                VoIPHelper.m2989$r8$lambda$2o7tLPhFx5PtbnDRgrzU5sWjIg(betterRatingView, iArr, linearLayout2, editTextBoldCursor, zArr, j2, j, z2, i, logFile, context, alertDialogCreate, textView, checkBoxCell2, textView2, button, view);
+                VoIPHelper.m2998$r8$lambda$2o7tLPhFx5PtbnDRgrzU5sWjIg(betterRatingView, iArr, linearLayout2, editTextBoldCursor, zArr, j2, j, z2, i, logFile, context, alertDialogCreate, textView, checkBoxCell2, textView2, button, view);
             }
         });
     }
@@ -738,7 +738,7 @@ public abstract class VoIPHelper {
         ((TextView) view).setText(LocaleController.getString(i < 4 ? R.string.Next : R.string.Send).toUpperCase());
     }
 
-    public static void m2989$r8$lambda$2o7tLPhFx5PtbnDRgrzU5sWjIg(BetterRatingView betterRatingView, int[] iArr, LinearLayout linearLayout, EditTextBoldCursor editTextBoldCursor, final boolean[] zArr, long j, long j2, boolean z, int i, final File file, final Context context, AlertDialog alertDialog, TextView textView, CheckBoxCell checkBoxCell, TextView textView2, View view, View view2) {
+    public static void m2998$r8$lambda$2o7tLPhFx5PtbnDRgrzU5sWjIg(BetterRatingView betterRatingView, int[] iArr, LinearLayout linearLayout, EditTextBoldCursor editTextBoldCursor, final boolean[] zArr, long j, long j2, boolean z, int i, final File file, final Context context, AlertDialog alertDialog, TextView textView, CheckBoxCell checkBoxCell, TextView textView2, View view, View view2) {
         if (betterRatingView.getRating() >= 4 || iArr[0] == 1) {
             final int i2 = UserConfig.selectedAccount;
             final TL_phone.setCallRating setcallrating = new TL_phone.setCallRating();
@@ -766,7 +766,7 @@ public abstract class VoIPHelper {
             ConnectionsManager.getInstance(i).sendRequest(setcallrating, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    VoIPHelper.m2994$r8$lambda$_IMzZcdN3bYb4XsU6s2akXo1Wk(i2, zArr, file, setcallrating, arrayList, context, tLObject, tL_error);
+                    VoIPHelper.m3003$r8$lambda$_IMzZcdN3bYb4XsU6s2akXo1Wk(i2, zArr, file, setcallrating, arrayList, context, tLObject, tL_error);
                 }
             });
             alertDialog.dismiss();
@@ -785,7 +785,7 @@ public abstract class VoIPHelper {
         ((TextView) view).setText(LocaleController.getString(R.string.Send).toUpperCase());
     }
 
-    public static void m2994$r8$lambda$_IMzZcdN3bYb4XsU6s2akXo1Wk(int i, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3003$r8$lambda$_IMzZcdN3bYb4XsU6s2akXo1Wk(int i, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.TL_updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
@@ -843,7 +843,7 @@ public abstract class VoIPHelper {
             textCheckCell3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    VoIPHelper.m2992$r8$lambda$FOFDPztKGTZ_breLHbon9i3KBo(globalMainSettings, textCheckCell3, view);
+                    VoIPHelper.m3001$r8$lambda$FOFDPztKGTZ_breLHbon9i3KBo(globalMainSettings, textCheckCell3, view);
                 }
             });
             linearLayout.addView(textCheckCell3);
@@ -869,7 +869,7 @@ public abstract class VoIPHelper {
         textCheckCell.setChecked(z2);
     }
 
-    public static void m2992$r8$lambda$FOFDPztKGTZ_breLHbon9i3KBo(SharedPreferences sharedPreferences, TextCheckCell textCheckCell, View view) {
+    public static void m3001$r8$lambda$FOFDPztKGTZ_breLHbon9i3KBo(SharedPreferences sharedPreferences, TextCheckCell textCheckCell, View view) {
         boolean z = sharedPreferences.getBoolean("dbg_force_connection_service", false);
         SharedPreferences.Editor editorEdit = sharedPreferences.edit();
         boolean z2 = !z;

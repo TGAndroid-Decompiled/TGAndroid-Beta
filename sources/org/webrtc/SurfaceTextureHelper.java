@@ -247,12 +247,12 @@ public class SurfaceTextureHelper {
         ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new Runnable() {
             @Override
             public final void run() {
-                SurfaceTextureHelper.m5088$r8$lambda$jUIwGbGYma12MJWwtNX3pmv6zE(this.f$0);
+                SurfaceTextureHelper.m5099$r8$lambda$jUIwGbGYma12MJWwtNX3pmv6zE(this.f$0);
             }
         });
     }
 
-    public static void m5088$r8$lambda$jUIwGbGYma12MJWwtNX3pmv6zE(SurfaceTextureHelper surfaceTextureHelper) {
+    public static void m5099$r8$lambda$jUIwGbGYma12MJWwtNX3pmv6zE(SurfaceTextureHelper surfaceTextureHelper) {
         surfaceTextureHelper.isQuitting = true;
         if (surfaceTextureHelper.isTextureInUse) {
             return;

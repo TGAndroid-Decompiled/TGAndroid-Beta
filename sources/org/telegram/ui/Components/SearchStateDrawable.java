@@ -96,7 +96,7 @@ public class SearchStateDrawable extends Drawable {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        SearchStateDrawable.m2721$r8$lambda$vUNpdGSxmtEg60zra0aT28JE(this.f$0, i, z);
+                        SearchStateDrawable.m2730$r8$lambda$vUNpdGSxmtEg60zra0aT28JE(this.f$0, i, z);
                     }
                 };
                 this.delaySetProgress = runnable;
@@ -141,7 +141,7 @@ public class SearchStateDrawable extends Drawable {
         invalidateSelf();
     }
 
-    public static void m2721$r8$lambda$vUNpdGSxmtEg60zra0aT28JE(SearchStateDrawable searchStateDrawable, int i, boolean z) {
+    public static void m2730$r8$lambda$vUNpdGSxmtEg60zra0aT28JE(SearchStateDrawable searchStateDrawable, int i, boolean z) {
         searchStateDrawable.delaySetProgress = null;
         searchStateDrawable.setIconState(i, z, true);
     }

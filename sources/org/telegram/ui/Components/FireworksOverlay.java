@@ -360,13 +360,13 @@ public class FireworksOverlay extends View {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FireworksOverlay.m2333$r8$lambda$TdBXviA6ch6Fl3bB7PGubx5g8s(this.f$0);
+                FireworksOverlay.m2343$r8$lambda$TdBXviA6ch6Fl3bB7PGubx5g8s(this.f$0);
             }
         });
         onStop();
     }
 
-    public static void m2333$r8$lambda$TdBXviA6ch6Fl3bB7PGubx5g8s(FireworksOverlay fireworksOverlay) {
+    public static void m2343$r8$lambda$TdBXviA6ch6Fl3bB7PGubx5g8s(FireworksOverlay fireworksOverlay) {
         if (fireworksOverlay.started) {
             return;
         }

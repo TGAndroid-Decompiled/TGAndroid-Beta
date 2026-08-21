@@ -972,7 +972,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             showDialog(this.sharingProgressDialog, new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    ThemeActivity.m4669$r8$lambda$pDhCLvXW9kAM_5k3xcl4TfOjCk(this.f$0, dialogInterface);
+                    ThemeActivity.m4680$r8$lambda$pDhCLvXW9kAM_5k3xcl4TfOjCk(this.f$0, dialogInterface);
                 }
             });
             return;
@@ -995,7 +995,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public static void m4669$r8$lambda$pDhCLvXW9kAM_5k3xcl4TfOjCk(ThemeActivity themeActivity, DialogInterface dialogInterface) {
+    public static void m4680$r8$lambda$pDhCLvXW9kAM_5k3xcl4TfOjCk(ThemeActivity themeActivity, DialogInterface dialogInterface) {
         themeActivity.sharingProgressDialog = null;
         themeActivity.sharingTheme = null;
         themeActivity.sharingAccent = null;
@@ -1165,7 +1165,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 builder.setPositiveButton(LocaleController.getString("Reset", R.string.Reset), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        ThemeActivity.AnonymousClass1.m4675$r8$lambda$woc2Pg8UDVLyp7jztIHSTeuY(this.f$0, alertDialog, i2);
+                        ThemeActivity.AnonymousClass1.m4686$r8$lambda$woc2Pg8UDVLyp7jztIHSTeuY(this.f$0, alertDialog, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1227,7 +1227,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public static void m4675$r8$lambda$woc2Pg8UDVLyp7jztIHSTeuY(AnonymousClass1 anonymousClass1, AlertDialog alertDialog, int i) {
+        public static void m4686$r8$lambda$woc2Pg8UDVLyp7jztIHSTeuY(AnonymousClass1 anonymousClass1, AlertDialog alertDialog, int i) {
             boolean fontSize = ThemeActivity.this.setFontSize(AndroidUtilities.isTablet() ? 18 : 16);
             if (ThemeActivity.this.setBubbleRadius(17, true)) {
                 fontSize = true;
@@ -1371,7 +1371,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 radioColorCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ThemeActivity.m4672$r8$lambda$vBy7czrF7UI6WXFqTpHTwgqqvM(this.f$0, i5, atomicReference, view2);
+                        ThemeActivity.m4683$r8$lambda$vBy7czrF7UI6WXFqTpHTwgqqvM(this.f$0, i5, atomicReference, view2);
                     }
                 });
                 i5++;
@@ -1433,7 +1433,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             radioColorCell3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ThemeActivity.m4668$r8$lambda$o88CKzHyrJdHWq83ol_Gg0RIn4(this.f$0, atomicReference3, view2);
+                    ThemeActivity.m4679$r8$lambda$o88CKzHyrJdHWq83ol_Gg0RIn4(this.f$0, atomicReference3, view2);
                 }
             });
             RadioColorCell radioColorCell4 = new RadioColorCell(themeActivity.getParentActivity());
@@ -1476,7 +1476,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         ThemeActivity.verifyAge(themeActivity2.getContext(), themeActivity2.currentAccount, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                ThemeActivity.m4663$r8$lambda$F5FZy6So8EmIHL3PewrVJsS0(themeActivity2, runnable, (Boolean) obj);
+                                ThemeActivity.m4674$r8$lambda$F5FZy6So8EmIHL3PewrVJsS0(themeActivity2, runnable, (Boolean) obj);
                             }
                         }, themeActivity2.getResourceProvider());
                     }
@@ -1647,7 +1647,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public static void m4672$r8$lambda$vBy7czrF7UI6WXFqTpHTwgqqvM(ThemeActivity themeActivity, int i, AtomicReference atomicReference, View view) {
+    public static void m4683$r8$lambda$vBy7czrF7UI6WXFqTpHTwgqqvM(ThemeActivity themeActivity, int i, AtomicReference atomicReference, View view) {
         themeActivity.getClass();
         SharedConfig.setDistanceSystemType(i);
         themeActivity.updateDistance = true;
@@ -1669,7 +1669,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         ((Dialog) atomicReference.get()).dismiss();
     }
 
-    public static void m4668$r8$lambda$o88CKzHyrJdHWq83ol_Gg0RIn4(ThemeActivity themeActivity, AtomicReference atomicReference, View view) {
+    public static void m4679$r8$lambda$o88CKzHyrJdHWq83ol_Gg0RIn4(ThemeActivity themeActivity, AtomicReference atomicReference, View view) {
         themeActivity.getClass();
         SharedConfig.recordViaSco = false;
         SharedConfig.saveConfig();
@@ -1723,7 +1723,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public static void m4663$r8$lambda$F5FZy6So8EmIHL3PewrVJsS0(ThemeActivity themeActivity, Runnable runnable, Boolean bool) {
+    public static void m4674$r8$lambda$F5FZy6So8EmIHL3PewrVJsS0(ThemeActivity themeActivity, Runnable runnable, Boolean bool) {
         themeActivity.getClass();
         if (bool.booleanValue()) {
             runnable.run();
@@ -1776,13 +1776,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         builder.setPositiveButton(LocaleController.getString("CreateTheme", R.string.CreateTheme), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ThemeActivity.m4674$r8$lambda$zw9LyNQJjGMm0eyR_387UkgXP8(this.f$0, alertDialog, i);
+                ThemeActivity.m4685$r8$lambda$zw9LyNQJjGMm0eyR_387UkgXP8(this.f$0, alertDialog, i);
             }
         });
         showDialog(builder.create());
     }
 
-    public static void m4674$r8$lambda$zw9LyNQJjGMm0eyR_387UkgXP8(ThemeActivity themeActivity, AlertDialog alertDialog, int i) {
+    public static void m4685$r8$lambda$zw9LyNQJjGMm0eyR_387UkgXP8(ThemeActivity themeActivity, AlertDialog alertDialog, int i) {
         themeActivity.getClass();
         AlertsCreator.createThemeCreateDialog(themeActivity, 0, null, null);
     }
@@ -1840,7 +1840,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ThemeActivity.m4671$r8$lambda$uozHzELxr3wVaxAYbSzijnvu_w(buttonWithCounterView, messagesController, str, i, context, resourcesProvider, i2, callback, bottomSheetArr, view);
+                ThemeActivity.m4682$r8$lambda$uozHzELxr3wVaxAYbSzijnvu_w(buttonWithCounterView, messagesController, str, i, context, resourcesProvider, i2, callback, bottomSheetArr, view);
             }
         });
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 7, 2, 29, 2, 14));
@@ -1849,7 +1849,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         bottomSheetShow.fixNavigationBar();
     }
 
-    public static void m4671$r8$lambda$uozHzELxr3wVaxAYbSzijnvu_w(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, final String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, View view) {
+    public static void m4682$r8$lambda$uozHzELxr3wVaxAYbSzijnvu_w(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, final String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -1857,12 +1857,12 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         PermissionRequest.ensurePermission(R.raw.permission_request_camera, R.string.AgeVerificationNeedCameraPermission, "android.permission.CAMERA", new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ThemeActivity.m4666$r8$lambda$XlJxHor5V0Uy8jknfANjs6yLaU(buttonWithCounterView, messagesController, str, i, context, resourcesProvider, i2, callback, bottomSheetArr, (Boolean) obj);
+                ThemeActivity.m4677$r8$lambda$XlJxHor5V0Uy8jknfANjs6yLaU(buttonWithCounterView, messagesController, str, i, context, resourcesProvider, i2, callback, bottomSheetArr, (Boolean) obj);
             }
         });
     }
 
-    public static void m4666$r8$lambda$XlJxHor5V0Uy8jknfANjs6yLaU(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, Boolean bool) {
+    public static void m4677$r8$lambda$XlJxHor5V0Uy8jknfANjs6yLaU(final ButtonWithCounterView buttonWithCounterView, final MessagesController messagesController, String str, final int i, final Context context, final Theme.ResourcesProvider resourcesProvider, final int i2, final Utilities.Callback callback, final BottomSheet[] bottomSheetArr, Boolean bool) {
         if (!bool.booleanValue()) {
             buttonWithCounterView.setLoading(false);
         } else {
@@ -1895,7 +1895,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         botWebViewSheet.setOnVerifiedAge(new Utilities.Callback4() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                ThemeActivity.m4665$r8$lambda$RDYnJnFitcwfnyCjEBWrLOKAqw(i2, botWebViewSheet, callback, (Boolean) obj, (Double) obj2, (String) obj3, (Double) obj4);
+                ThemeActivity.m4676$r8$lambda$RDYnJnFitcwfnyCjEBWrLOKAqw(i2, botWebViewSheet, callback, (Boolean) obj, (Double) obj2, (String) obj3, (Double) obj4);
             }
         });
         botWebViewSheet.setDefaultFullsize(true);
@@ -1907,7 +1907,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         bottomSheetArr[0].dismiss();
     }
 
-    public static void m4665$r8$lambda$RDYnJnFitcwfnyCjEBWrLOKAqw(int i, BotWebViewSheet botWebViewSheet, Utilities.Callback callback, Boolean bool, Double d, String str, Double d2) {
+    public static void m4676$r8$lambda$RDYnJnFitcwfnyCjEBWrLOKAqw(int i, BotWebViewSheet botWebViewSheet, Utilities.Callback callback, Boolean bool, Double d, String str, Double d2) {
         boolean zBooleanValue;
         if (d != null) {
             zBooleanValue = d.doubleValue() >= ((double) i);
@@ -2042,12 +2042,12 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ThemeActivity.m4667$r8$lambda$bvzBk_XlcvyXki6qKoYqWj7WE(this.f$0, locality);
+                ThemeActivity.m4678$r8$lambda$bvzBk_XlcvyXki6qKoYqWj7WE(this.f$0, locality);
             }
         });
     }
 
-    public static void m4667$r8$lambda$bvzBk_XlcvyXki6qKoYqWj7WE(ThemeActivity themeActivity, String str) {
+    public static void m4678$r8$lambda$bvzBk_XlcvyXki6qKoYqWj7WE(ThemeActivity themeActivity, String str) {
         RecyclerListView.Holder holder;
         themeActivity.getClass();
         Theme.autoNightCityName = str;
@@ -2410,7 +2410,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        ThemeActivity.ListAdapter.m4676$r8$lambda$6Aryyeh6g9qSqvSjJ71n_XgnhY(this.f$0, themeInfo, alertDialog, i2);
+                        ThemeActivity.ListAdapter.m4687$r8$lambda$6Aryyeh6g9qSqvSjJ71n_XgnhY(this.f$0, themeInfo, alertDialog, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -2527,7 +2527,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public static void m4676$r8$lambda$6Aryyeh6g9qSqvSjJ71n_XgnhY(ListAdapter listAdapter, Theme.ThemeInfo themeInfo, AlertDialog alertDialog, int i) {
+        public static void m4687$r8$lambda$6Aryyeh6g9qSqvSjJ71n_XgnhY(ListAdapter listAdapter, Theme.ThemeInfo themeInfo, AlertDialog alertDialog, int i) {
             listAdapter.getClass();
             MessagesController.getInstance(themeInfo.account).saveTheme(themeInfo, null, themeInfo == Theme.getCurrentNightTheme(), true);
             if (Theme.deleteTheme(themeInfo)) {
@@ -3323,7 +3323,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ThemeActivity.m4662$r8$lambda$ClPdEBJ7Chuy4EHDuol94dMYw(this.f$0);
+                ThemeActivity.m4673$r8$lambda$ClPdEBJ7Chuy4EHDuol94dMYw(this.f$0);
             }
 
             @Override
@@ -3334,7 +3334,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return arrayList;
     }
 
-    public static void m4662$r8$lambda$ClPdEBJ7Chuy4EHDuol94dMYw(ThemeActivity themeActivity) {
+    public static void m4673$r8$lambda$ClPdEBJ7Chuy4EHDuol94dMYw(ThemeActivity themeActivity) {
         for (int i = 0; i < themeActivity.listView.getChildCount(); i++) {
             View childAt = themeActivity.listView.getChildAt(i);
             if (childAt instanceof AppIconsSelectorCell) {

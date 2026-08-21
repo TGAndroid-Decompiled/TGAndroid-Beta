@@ -307,7 +307,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             SpringAnimation springAnimation2 = (SpringAnimation) ((SpringAnimation) new SpringAnimation(new FloatValueHolder(z4 ? 0.0f : 1000.0f)).setSpring(new SpringForce(z4 ? 1000.0f : 0.0f).setStiffness(1500.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    ShareDialogCell.m1498$r8$lambda$JZ0P1ksfY4hdbQwJiTRGd7V0(this.f$0, dynamicAnimation, f, f2);
+                    ShareDialogCell.m1504$r8$lambda$JZ0P1ksfY4hdbQwJiTRGd7V0(this.f$0, dynamicAnimation, f, f2);
                 }
             })).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
@@ -331,7 +331,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         this.topicWasVisible = z4;
     }
 
-    public static void m1498$r8$lambda$JZ0P1ksfY4hdbQwJiTRGd7V0(ShareDialogCell shareDialogCell, DynamicAnimation dynamicAnimation, float f, float f2) {
+    public static void m1504$r8$lambda$JZ0P1ksfY4hdbQwJiTRGd7V0(ShareDialogCell shareDialogCell, DynamicAnimation dynamicAnimation, float f, float f2) {
         float f3 = f / 1000.0f;
         shareDialogCell.topicTextView.setAlpha(f3);
         float f4 = 1.0f - f3;

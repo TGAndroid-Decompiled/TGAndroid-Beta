@@ -1,5 +1,6 @@
 package org.telegram.messenger.utils.tlutils;
 
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 
 public abstract class TLKeyboardHelper {
@@ -19,5 +20,21 @@ public abstract class TLKeyboardHelper {
             }
         }
         return null;
+    }
+
+    public static boolean isForceReply(TLRPC.ReplyMarkup replyMarkup) {
+        if (replyMarkup == null) {
+            return false;
+        }
+        if (replyMarkup instanceof TLRPC.TL_replyKeyboardForceReply) {
+            return true;
+        }
+        if (replyMarkup instanceof TLRPC.TL_replyInlineMarkup) {
+            return replyMarkup.force_reply;
+        }
+        if (replyMarkup instanceof TLRPC.TL_replyKeyboardMarkup) {
+            return replyMarkup.force_reply;
+        }
+        return false;
     }
 }

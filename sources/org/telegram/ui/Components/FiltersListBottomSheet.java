@@ -239,7 +239,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i3) {
-                FiltersListBottomSheet.m2332$r8$lambda$yPiFoLCkBJevHKLzC2xHtH7Og(this.f$0, view2, i3);
+                FiltersListBottomSheet.m2342$r8$lambda$yPiFoLCkBJevHKLzC2xHtH7Og(this.f$0, view2, i3);
             }
         });
         this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
@@ -260,7 +260,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
     }
 
-    public static void m2332$r8$lambda$yPiFoLCkBJevHKLzC2xHtH7Og(FiltersListBottomSheet filtersListBottomSheet, View view, int i) {
+    public static void m2342$r8$lambda$yPiFoLCkBJevHKLzC2xHtH7Og(FiltersListBottomSheet filtersListBottomSheet, View view, int i) {
         filtersListBottomSheet.delegate.didSelectFilter(filtersListBottomSheet.adapter.getItem(i), view instanceof BottomSheet.BottomSheetCell ? ((BottomSheet.BottomSheetCell) view).isChecked() : false);
         filtersListBottomSheet.dismiss();
     }

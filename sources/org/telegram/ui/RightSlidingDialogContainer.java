@@ -205,24 +205,24 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         this.replaceAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                RightSlidingDialogContainer.m3981$r8$lambda$id1rogzV9qOevvyOhPbPQoQ72Y(this.f$0, dynamicAnimation, f, f2);
+                RightSlidingDialogContainer.m3990$r8$lambda$id1rogzV9qOevvyOhPbPQoQ72Y(this.f$0, dynamicAnimation, f, f2);
             }
         });
         this.replaceAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                RightSlidingDialogContainer.m3979$r8$lambda$CD3mTbU7btmmcWJTSy1oasOvmM(this.f$0, baseFragment2, baseFragment, dynamicAnimation, z, f, f2);
+                RightSlidingDialogContainer.m3988$r8$lambda$CD3mTbU7btmmcWJTSy1oasOvmM(this.f$0, baseFragment2, baseFragment, dynamicAnimation, z, f, f2);
             }
         });
         this.replaceAnimation.start();
     }
 
-    public static void m3981$r8$lambda$id1rogzV9qOevvyOhPbPQoQ72Y(RightSlidingDialogContainer rightSlidingDialogContainer, DynamicAnimation dynamicAnimation, float f, float f2) {
+    public static void m3990$r8$lambda$id1rogzV9qOevvyOhPbPQoQ72Y(RightSlidingDialogContainer rightSlidingDialogContainer, DynamicAnimation dynamicAnimation, float f, float f2) {
         rightSlidingDialogContainer.replaceProgress = f / 1000.0f;
         rightSlidingDialogContainer.invalidate();
     }
 
-    public static void m3979$r8$lambda$CD3mTbU7btmmcWJTSy1oasOvmM(RightSlidingDialogContainer rightSlidingDialogContainer, BaseFragment baseFragment, BaseFragment baseFragment2, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+    public static void m3988$r8$lambda$CD3mTbU7btmmcWJTSy1oasOvmM(RightSlidingDialogContainer rightSlidingDialogContainer, BaseFragment baseFragment, BaseFragment baseFragment2, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
         if (rightSlidingDialogContainer.replaceAnimation == null) {
             return;
         }
@@ -430,7 +430,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            RightSlidingDialogContainer.m3980$r8$lambda$TuEvtWFX_cGYvU2OxBJm6x2pE(this.f$0, valueAnimator);
+                            RightSlidingDialogContainer.m3989$r8$lambda$TuEvtWFX_cGYvU2OxBJm6x2pE(this.f$0, valueAnimator);
                         }
                     });
                     this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -468,7 +468,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         return this.startedTracking;
     }
 
-    public static void m3980$r8$lambda$TuEvtWFX_cGYvU2OxBJm6x2pE(RightSlidingDialogContainer rightSlidingDialogContainer, ValueAnimator valueAnimator) {
+    public static void m3989$r8$lambda$TuEvtWFX_cGYvU2OxBJm6x2pE(RightSlidingDialogContainer rightSlidingDialogContainer, ValueAnimator valueAnimator) {
         rightSlidingDialogContainer.getClass();
         rightSlidingDialogContainer.openedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         rightSlidingDialogContainer.updateOpenAnimationProgress();

@@ -210,7 +210,7 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
             chatActivityBlurredRoundPageDownButtonCreate.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    return ChatActivitySideControlsButtonsLayout.m2953$r8$lambda$JdeiqiDS9vK0cMHPWKAOLhYoUA(this.f$0, i, view);
+                    return ChatActivitySideControlsButtonsLayout.m2962$r8$lambda$JdeiqiDS9vK0cMHPWKAOLhYoUA(this.f$0, i, view);
                 }
             });
             if (i == 6) {
@@ -241,7 +241,7 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
         }
     }
 
-    public static boolean m2953$r8$lambda$JdeiqiDS9vK0cMHPWKAOLhYoUA(ChatActivitySideControlsButtonsLayout chatActivitySideControlsButtonsLayout, int i, View view) {
+    public static boolean m2962$r8$lambda$JdeiqiDS9vK0cMHPWKAOLhYoUA(ChatActivitySideControlsButtonsLayout chatActivitySideControlsButtonsLayout, int i, View view) {
         ButtonOnLongClickListener buttonOnLongClickListener = chatActivitySideControlsButtonsLayout.onLongClickListener;
         if (buttonOnLongClickListener != null) {
             return buttonOnLongClickListener.onLongClick(i, view);

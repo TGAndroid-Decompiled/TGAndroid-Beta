@@ -262,12 +262,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewSheet.m4820$r8$lambda$DCLnpefspF3cKG10fzqKOvqTpU(this.f$0, string);
+                BotWebViewSheet.m4831$r8$lambda$DCLnpefspF3cKG10fzqKOvqTpU(this.f$0, string);
             }
         }, 200L);
     }
 
-    public static void m4820$r8$lambda$DCLnpefspF3cKG10fzqKOvqTpU(BotWebViewSheet botWebViewSheet, final String str) {
+    public static void m4831$r8$lambda$DCLnpefspF3cKG10fzqKOvqTpU(BotWebViewSheet botWebViewSheet, final String str) {
         botWebViewSheet.getClass();
         botWebViewSheet.showBulletin(new Utilities.CallbackReturn() {
             @Override
@@ -311,12 +311,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         ConnectionsManager.getInstance(botWebViewSheet.currentAccount).sendRequest(tL_messages_prolongWebView, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotWebViewSheet.m4827$r8$lambda$s2PtDEFvVIbvcLXS67atgeNfEI(this.f$0, tLObject, tL_error);
+                BotWebViewSheet.m4838$r8$lambda$s2PtDEFvVIbvcLXS67atgeNfEI(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4827$r8$lambda$s2PtDEFvVIbvcLXS67atgeNfEI(final BotWebViewSheet botWebViewSheet, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4838$r8$lambda$s2PtDEFvVIbvcLXS67atgeNfEI(final BotWebViewSheet botWebViewSheet, TLObject tLObject, final TLRPC.TL_error tL_error) {
         botWebViewSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -644,7 +644,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         botButtons.setOnButtonClickListener(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BotWebViewSheet.m4823$r8$lambda$ewBebiJ2R2NkactmnJRNg89s(this.f$0, (Boolean) obj);
+                BotWebViewSheet.m4834$r8$lambda$ewBebiJ2R2NkactmnJRNg89s(this.f$0, (Boolean) obj);
             }
         });
         this.botButtons.setOnResizeListener(new Runnable() {
@@ -675,7 +675,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.fullscreenButtons.setOnCollapseClickListener(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewSheet.m4824$r8$lambda$fR_PZN517ustV5BvUIIAagrPik(this.f$0);
+                BotWebViewSheet.m4835$r8$lambda$fR_PZN517ustV5BvUIIAagrPik(this.f$0);
             }
         });
         this.fullscreenButtons.setOnMenuClickListener(new Runnable() {
@@ -997,12 +997,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             ConnectionsManager.getInstance(BotWebViewSheet.this.currentAccount).sendRequest(toggleuseremojistatuspermission, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BotWebViewSheet.AnonymousClass3.m4833$r8$lambda$fEFGszjyeIAu6gdwzeKpB3XYc0(this.f$0, tLObject, tL_error);
+                    BotWebViewSheet.AnonymousClass3.m4844$r8$lambda$fEFGszjyeIAu6gdwzeKpB3XYc0(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m4833$r8$lambda$fEFGszjyeIAu6gdwzeKpB3XYc0(final AnonymousClass3 anonymousClass3, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m4844$r8$lambda$fEFGszjyeIAu6gdwzeKpB3XYc0(final AnonymousClass3 anonymousClass3, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             anonymousClass3.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -1085,7 +1085,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 paymentFormActivity.setPaymentFormCallback(new PaymentFormActivity.PaymentFormCallback() {
                     @Override
                     public final void onInvoiceStatusChanged(PaymentFormActivity.InvoiceStatus invoiceStatus) {
-                        BotWebViewSheet.AnonymousClass3.m4832$r8$lambda$8pBhQdIMbkPrhPqtjcb8kZMRoY(this.f$0, overlayActionBarLayoutDialog, str, invoiceStatus);
+                        BotWebViewSheet.AnonymousClass3.m4843$r8$lambda$8pBhQdIMbkPrhPqtjcb8kZMRoY(this.f$0, overlayActionBarLayoutDialog, str, invoiceStatus);
                     }
                 });
                 paymentFormActivity.setResourcesProvider(this.val$resourcesProvider);
@@ -1093,7 +1093,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
         }
 
-        public static void m4832$r8$lambda$8pBhQdIMbkPrhPqtjcb8kZMRoY(AnonymousClass3 anonymousClass3, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, String str, PaymentFormActivity.InvoiceStatus invoiceStatus) {
+        public static void m4843$r8$lambda$8pBhQdIMbkPrhPqtjcb8kZMRoY(AnonymousClass3 anonymousClass3, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, String str, PaymentFormActivity.InvoiceStatus invoiceStatus) {
             anonymousClass3.getClass();
             if (invoiceStatus != PaymentFormActivity.InvoiceStatus.PENDING) {
                 overlayActionBarLayoutDialog.dismiss();
@@ -1241,7 +1241,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
     }
 
-    public static void m4823$r8$lambda$ewBebiJ2R2NkactmnJRNg89s(BotWebViewSheet botWebViewSheet, Boolean bool) {
+    public static void m4834$r8$lambda$ewBebiJ2R2NkactmnJRNg89s(BotWebViewSheet botWebViewSheet, Boolean bool) {
         if (botWebViewSheet.webViewContainer != null) {
             if (bool.booleanValue()) {
                 botWebViewSheet.webViewContainer.onMainButtonPressed();
@@ -1258,7 +1258,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         botWebViewSheet.onCheckDismissByUser();
     }
 
-    public static void m4824$r8$lambda$fR_PZN517ustV5BvUIIAagrPik(BotWebViewSheet botWebViewSheet) {
+    public static void m4835$r8$lambda$fR_PZN517ustV5BvUIIAagrPik(BotWebViewSheet botWebViewSheet) {
         botWebViewSheet.forceExpnaded = true;
         botWebViewSheet.dismiss(true, null);
     }
@@ -1433,7 +1433,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                return BotWebViewSheet.m4830$r8$lambda$vtQLlun3FEzMs2jxFqv4zCQD3I(this.f$0, view, windowInsets);
+                return BotWebViewSheet.m4841$r8$lambda$vtQLlun3FEzMs2jxFqv4zCQD3I(this.f$0, view, windowInsets);
             }
         });
         if (this.fullscreen && ((botButtons = this.botButtons) == null || botButtons.getTotalHeight() <= 0)) {
@@ -1450,7 +1450,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.botDownloadsUpdate);
     }
 
-    public static WindowInsets m4830$r8$lambda$vtQLlun3FEzMs2jxFqv4zCQD3I(BotWebViewSheet botWebViewSheet, View view, WindowInsets windowInsets) {
+    public static WindowInsets m4841$r8$lambda$vtQLlun3FEzMs2jxFqv4zCQD3I(BotWebViewSheet botWebViewSheet, View view, WindowInsets windowInsets) {
         botWebViewSheet.getClass();
         WindowInsetsCompat windowInsetsCompat = WindowInsetsCompat.toWindowInsetsCompat(windowInsets, view);
         Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.navigationBars());
@@ -1890,7 +1890,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestWebView2, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BotWebViewSheet.m4819$r8$lambda$2toRd11VFnE3AHJJG6hSdIaDyY(this.f$0, tLObject, tL_error);
+                    BotWebViewSheet.m4830$r8$lambda$2toRd11VFnE3AHJJG6hSdIaDyY(this.f$0, tLObject, tL_error);
                 }
             });
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.webViewResultSent);
@@ -1977,7 +1977,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestMainWebView, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotWebViewSheet.m4825$r8$lambda$jBosqiv3J4I4wRQVsICB99VHX0(this.f$0, tLObject, tL_error);
+                BotWebViewSheet.m4836$r8$lambda$jBosqiv3J4I4wRQVsICB99VHX0(this.f$0, tLObject, tL_error);
             }
         }, 66);
     }
@@ -2002,7 +2002,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         botWebViewSheet.applyAppBotSettings(botappsettings, true);
     }
 
-    public static void m4819$r8$lambda$2toRd11VFnE3AHJJG6hSdIaDyY(final BotWebViewSheet botWebViewSheet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4830$r8$lambda$2toRd11VFnE3AHJJG6hSdIaDyY(final BotWebViewSheet botWebViewSheet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         botWebViewSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -2090,7 +2090,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
     }
 
-    public static void m4825$r8$lambda$jBosqiv3J4I4wRQVsICB99VHX0(final BotWebViewSheet botWebViewSheet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4836$r8$lambda$jBosqiv3J4I4wRQVsICB99VHX0(final BotWebViewSheet botWebViewSheet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         botWebViewSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -2189,7 +2189,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }).add(R.drawable.msg_retry, LocaleController.getString(R.string.BotWebViewReloadPage), new Runnable() {
             @Override
             public final void run() {
-                BotWebViewSheet.m4818$r8$lambda$BiRon4FW4qOOI_E6GWeWg89tAw(this.f$0);
+                BotWebViewSheet.m4829$r8$lambda$BiRon4FW4qOOI_E6GWeWg89tAw(this.f$0);
             }
         }).addIf(this.onVerifiedAge == null && user != null && user.bot_has_main_app, R.drawable.msg_home, LocaleController.getString(R.string.AddShortcut), new Runnable() {
             @Override
@@ -2246,7 +2246,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         botWebViewSheet.dismiss(true);
     }
 
-    public static void m4818$r8$lambda$BiRon4FW4qOOI_E6GWeWg89tAw(BotWebViewSheet botWebViewSheet) {
+    public static void m4829$r8$lambda$BiRon4FW4qOOI_E6GWeWg89tAw(BotWebViewSheet botWebViewSheet) {
         if (botWebViewSheet.webViewContainer.getWebView() != null) {
             botWebViewSheet.webViewContainer.getWebView().animate().cancel();
             botWebViewSheet.webViewContainer.getWebView().animate().alpha(0.0f).start();
@@ -2343,7 +2343,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BotWebViewSheet.m4829$r8$lambda$vGsI7GPbISv81TdixovJBFoc(this.f$0, fileDownload, view);
+                    BotWebViewSheet.m4840$r8$lambda$vGsI7GPbISv81TdixovJBFoc(this.f$0, fileDownload, view);
                 }
             });
         }
@@ -2351,7 +2351,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.fullscreenButtons.setDownloading(botDownloads.isDownloading());
     }
 
-    public static void m4829$r8$lambda$vGsI7GPbISv81TdixovJBFoc(BotWebViewSheet botWebViewSheet, BotDownloads.FileDownload fileDownload, View view) {
+    public static void m4840$r8$lambda$vGsI7GPbISv81TdixovJBFoc(BotWebViewSheet botWebViewSheet, BotDownloads.FileDownload fileDownload, View view) {
         botWebViewSheet.getClass();
         if (fileDownload.isDownloading()) {
             fileDownload.cancel();
@@ -2461,12 +2461,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         new AlertDialog.Builder(LaunchActivity.getLastFragment().getContext()).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotRemoveFromMenu, tL_attachMenuBot.short_name))).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i3) {
-                BotWebViewSheet.m4828$r8$lambda$uIn1j0k8zAK1QSr4PfDD44GQQo(i, j, tL_attachMenuBot, runnable, alertDialog, i3);
+                BotWebViewSheet.m4839$r8$lambda$uIn1j0k8zAK1QSr4PfDD44GQQo(i, j, tL_attachMenuBot, runnable, alertDialog, i3);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
     }
 
-    public static void m4828$r8$lambda$uIn1j0k8zAK1QSr4PfDD44GQQo(final int i, long j, TLRPC.TL_attachMenuBot tL_attachMenuBot, Runnable runnable, AlertDialog alertDialog, int i2) {
+    public static void m4839$r8$lambda$uIn1j0k8zAK1QSr4PfDD44GQQo(final int i, long j, TLRPC.TL_attachMenuBot tL_attachMenuBot, Runnable runnable, AlertDialog alertDialog, int i2) {
         TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
         tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i).getInputUser(j);
         tL_messages_toggleBotInAttachMenu.enabled = false;
@@ -3030,7 +3030,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1343getWindowView() {
+    public WindowView mo1349getWindowView() {
         return this.windowView;
     }
 

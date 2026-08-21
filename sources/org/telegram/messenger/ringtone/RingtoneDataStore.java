@@ -284,12 +284,12 @@ public class RingtoneDataStore {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                RingtoneDataStore.m1120$r8$lambda$Mdg5w4rlsxgqwUCTRRhNBwi42A(this.f$0, arrayList);
+                RingtoneDataStore.m1126$r8$lambda$Mdg5w4rlsxgqwUCTRRhNBwi42A(this.f$0, arrayList);
             }
         });
     }
 
-    public static void m1120$r8$lambda$Mdg5w4rlsxgqwUCTRRhNBwi42A(final RingtoneDataStore ringtoneDataStore, ArrayList arrayList) {
+    public static void m1126$r8$lambda$Mdg5w4rlsxgqwUCTRRhNBwi42A(final RingtoneDataStore ringtoneDataStore, ArrayList arrayList) {
         final TLRPC.Document document;
         File pathToAttach;
         ringtoneDataStore.getClass();

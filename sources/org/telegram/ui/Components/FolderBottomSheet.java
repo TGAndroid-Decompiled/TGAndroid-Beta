@@ -127,7 +127,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             AlertDialog alertDialogCreate = new AlertDialog.Builder(baseFragment.getContext()).setTitle(LocaleController.getString(R.string.FilterDelete)).setMessage(LocaleController.getString(R.string.FilterDeleteAlertLinks)).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
-                    FolderBottomSheet.m2345$r8$lambda$lp5dkVKpHmrmggBQ9OGJZjkB5o(callback, alertDialog, i3);
+                    FolderBottomSheet.m2355$r8$lambda$lp5dkVKpHmrmggBQ9OGJZjkB5o(callback, alertDialog, i3);
                 }
             }).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
@@ -157,14 +157,14 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        FolderBottomSheet.m2343$r8$lambda$cCDM0O0ir7WgxsrczN4I5ZeImM(baseFragment, tLObject, i, callback);
+                        FolderBottomSheet.m2353$r8$lambda$cCDM0O0ir7WgxsrczN4I5ZeImM(baseFragment, tLObject, i, callback);
                     }
                 });
             }
         });
     }
 
-    public static void m2343$r8$lambda$cCDM0O0ir7WgxsrczN4I5ZeImM(BaseFragment baseFragment, TLObject tLObject, int i, Utilities.Callback callback) {
+    public static void m2353$r8$lambda$cCDM0O0ir7WgxsrczN4I5ZeImM(BaseFragment baseFragment, TLObject tLObject, int i, Utilities.Callback callback) {
         FolderBottomSheet folderBottomSheet;
         if (baseFragment.getParentActivity() == null) {
             return;
@@ -186,7 +186,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         baseFragment.showDialog(folderBottomSheet);
     }
 
-    public static void m2345$r8$lambda$lp5dkVKpHmrmggBQ9OGJZjkB5o(Utilities.Callback callback, AlertDialog alertDialog, int i) {
+    public static void m2355$r8$lambda$lp5dkVKpHmrmggBQ9OGJZjkB5o(Utilities.Callback callback, AlertDialog alertDialog, int i) {
         if (callback != null) {
             callback.run(Boolean.FALSE);
         }
@@ -489,7 +489,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                     final Utilities.Callback callback2 = new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            FolderBottomSheet.m2346$r8$lambda$wEnCJ760kZ5fg6O8Mjl7ycU2rg(this.f$0, arrayList2, (BaseFragment) obj);
+                            FolderBottomSheet.m2356$r8$lambda$wEnCJ760kZ5fg6O8Mjl7ycU2rg(this.f$0, arrayList2, (BaseFragment) obj);
                         }
                     };
                     if (this.updates != null) {
@@ -503,7 +503,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                         callback = new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                FolderBottomSheet.m2340$r8$lambda$LnLGAcIF3RNRFVPwgtxewCpCVw(parentLayout, callback2, (Integer) obj);
+                                FolderBottomSheet.m2350$r8$lambda$LnLGAcIF3RNRFVPwgtxewCpCVw(parentLayout, callback2, (Integer) obj);
                             }
                         };
                     }
@@ -613,7 +613,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         ((Runnable) pair.first).run();
     }
 
-    public static void m2346$r8$lambda$wEnCJ760kZ5fg6O8Mjl7ycU2rg(FolderBottomSheet folderBottomSheet, ArrayList arrayList, BaseFragment baseFragment) {
+    public static void m2356$r8$lambda$wEnCJ760kZ5fg6O8Mjl7ycU2rg(FolderBottomSheet folderBottomSheet, ArrayList arrayList, BaseFragment baseFragment) {
         String pluralString;
         if (folderBottomSheet.updates != null || (folderBottomSheet.invite instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready)) {
             BulletinFactory bulletinFactoryOf = BulletinFactory.of(baseFragment);
@@ -630,7 +630,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FolderLinkAddedTitle, folderBottomSheet.escapedTitle)), LocaleController.formatPluralString("FolderLinkAddedSubtitle", arrayList.size(), new Object[0])).setDuration(5000).show();
     }
 
-    public static void m2340$r8$lambda$LnLGAcIF3RNRFVPwgtxewCpCVw(INavigationLayout iNavigationLayout, final Utilities.Callback callback, final Integer num) {
+    public static void m2350$r8$lambda$LnLGAcIF3RNRFVPwgtxewCpCVw(INavigationLayout iNavigationLayout, final Utilities.Callback callback, final Integer num) {
         List fragmentStack = iNavigationLayout.getFragmentStack();
         boolean z = true;
         final BaseFragment baseFragment = null;
@@ -930,7 +930,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        FolderBottomSheet.Button.m2348$r8$lambda$tjTn0DifLbSg8D0rYd6G1Ifsmg(this.f$0, valueAnimator2);
+                        FolderBottomSheet.Button.m2358$r8$lambda$tjTn0DifLbSg8D0rYd6G1Ifsmg(this.f$0, valueAnimator2);
                     }
                 });
                 this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -946,7 +946,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             }
         }
 
-        public static void m2348$r8$lambda$tjTn0DifLbSg8D0rYd6G1Ifsmg(Button button, ValueAnimator valueAnimator) {
+        public static void m2358$r8$lambda$tjTn0DifLbSg8D0rYd6G1Ifsmg(Button button, ValueAnimator valueAnimator) {
             button.getClass();
             button.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             button.invalidate();
@@ -967,7 +967,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    FolderBottomSheet.Button.m2347$r8$lambda$QQDdsEjx4I1AwK8gPQKL767UjE(this.f$0, valueAnimator2);
+                    FolderBottomSheet.Button.m2357$r8$lambda$QQDdsEjx4I1AwK8gPQKL767UjE(this.f$0, valueAnimator2);
                 }
             });
             this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -982,7 +982,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.countAnimator.start();
         }
 
-        public static void m2347$r8$lambda$QQDdsEjx4I1AwK8gPQKL767UjE(Button button, ValueAnimator valueAnimator) {
+        public static void m2357$r8$lambda$QQDdsEjx4I1AwK8gPQKL767UjE(Button button, ValueAnimator valueAnimator) {
             button.getClass();
             button.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
             button.invalidate();
@@ -1329,12 +1329,12 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.actionTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    FolderBottomSheet.HeaderCell.m2349$r8$lambda$kFktNU1EJbYmEg4fSZvDobQYVY(runnable, view);
+                    FolderBottomSheet.HeaderCell.m2359$r8$lambda$kFktNU1EJbYmEg4fSZvDobQYVY(runnable, view);
                 }
             });
         }
 
-        public static void m2349$r8$lambda$kFktNU1EJbYmEg4fSZvDobQYVY(Runnable runnable, View view) {
+        public static void m2359$r8$lambda$kFktNU1EJbYmEg4fSZvDobQYVY(Runnable runnable, View view) {
             if (runnable != null) {
                 runnable.run();
             }

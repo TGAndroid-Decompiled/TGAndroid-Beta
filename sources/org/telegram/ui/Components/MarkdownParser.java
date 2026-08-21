@@ -470,7 +470,7 @@ public abstract class MarkdownParser {
         Collections.sort(arrayList4, Comparator$CC.comparingInt(new ToIntFunction() {
             @Override
             public final int applyAsInt(Object obj) {
-                return MarkdownParser.m2428$r8$lambda$TSB6PtQnqwUe3b0sV6pwVmIyyw((HtmlTag) obj);
+                return MarkdownParser.m2438$r8$lambda$TSB6PtQnqwUe3b0sV6pwVmIyyw((HtmlTag) obj);
             }
         }));
         int size2 = arrayList4.size();
@@ -528,7 +528,7 @@ public abstract class MarkdownParser {
         return textconcat3;
     }
 
-    public static int m2428$r8$lambda$TSB6PtQnqwUe3b0sV6pwVmIyyw(HtmlTag htmlTag) {
+    public static int m2438$r8$lambda$TSB6PtQnqwUe3b0sV6pwVmIyyw(HtmlTag htmlTag) {
         return htmlTag.end() - htmlTag.start();
     }
 

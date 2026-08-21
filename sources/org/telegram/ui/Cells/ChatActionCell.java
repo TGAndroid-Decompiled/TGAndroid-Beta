@@ -1475,7 +1475,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     topicSeparator.setOnClickListener(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActionCell.m1475$r8$lambda$cDTZBrfYD_jYF1ibOtCKrrbAMk(this.f$0);
+                            ChatActionCell.m1481$r8$lambda$cDTZBrfYD_jYF1ibOtCKrrbAMk(this.f$0);
                         }
                     });
                 }
@@ -1514,7 +1514,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
     }
 
-    public static void m1475$r8$lambda$cDTZBrfYD_jYF1ibOtCKrrbAMk(ChatActionCell chatActionCell) {
+    public static void m1481$r8$lambda$cDTZBrfYD_jYF1ibOtCKrrbAMk(ChatActionCell chatActionCell) {
         ChatActionCellDelegate chatActionCellDelegate = chatActionCell.delegate;
         if (chatActionCellDelegate != null) {
             chatActionCellDelegate.onTopicClick(chatActionCell);
@@ -1976,7 +1976,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                                 spoilerEffect2.setOnRippleEndCallback(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        ChatActionCell.m1476$r8$lambda$mUNFCe4MBIqd3uzNBOTkDvvGtw(this.f$0);
+                                        ChatActionCell.m1482$r8$lambda$mUNFCe4MBIqd3uzNBOTkDvvGtw(this.f$0);
                                     }
                                 });
                                 float fSqrt = (float) Math.sqrt(Math.pow(this.giftPremiumText.layout.getWidth(), 2.0d) + Math.pow(this.giftPremiumText.layout.getHeight(), 2.0d));
@@ -2046,7 +2046,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         return !zCheckBotButtonMotionEvent ? super.onTouchEvent(motionEvent) : zCheckBotButtonMotionEvent;
     }
 
-    public static void m1476$r8$lambda$mUNFCe4MBIqd3uzNBOTkDvvGtw(final ChatActionCell chatActionCell) {
+    public static void m1482$r8$lambda$mUNFCe4MBIqd3uzNBOTkDvvGtw(final ChatActionCell chatActionCell) {
         chatActionCell.getClass();
         chatActionCell.post(new Runnable() {
             @Override

@@ -454,12 +454,12 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostsActivity.m1354$r8$lambda$egbWcQ_PpcqChbRkszTFuN5TMc(this.f$0, tL_premium_boostsStatus);
+                BoostsActivity.m1360$r8$lambda$egbWcQ_PpcqChbRkszTFuN5TMc(this.f$0, tL_premium_boostsStatus);
             }
         });
     }
 
-    public static void m1354$r8$lambda$egbWcQ_PpcqChbRkszTFuN5TMc(BoostsActivity boostsActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public static void m1360$r8$lambda$egbWcQ_PpcqChbRkszTFuN5TMc(BoostsActivity boostsActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         boostsActivity.boostsStatus = tL_premium_boostsStatus;
         boostsActivity.loadCanApplyBoosts();
         boostsActivity.progressLayout.animate().cancel();
@@ -502,7 +502,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             loadOnlyGifts(null, new Runnable() {
                 @Override
                 public final void run() {
-                    BoostsActivity.m1351$r8$lambda$1GqRzFvE_EsK6vcE35EIohDiE(this.f$0);
+                    BoostsActivity.m1357$r8$lambda$1GqRzFvE_EsK6vcE35EIohDiE(this.f$0);
                 }
             });
         } else {
@@ -527,12 +527,12 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         NotificationCenter.getInstance(boostsActivity.currentAccount).doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                BoostsActivity.m1352$r8$lambda$QsylhBcLa5kv2jebMnFzOYukB0(this.f$0);
+                BoostsActivity.m1358$r8$lambda$QsylhBcLa5kv2jebMnFzOYukB0(this.f$0);
             }
         });
     }
 
-    public static void m1352$r8$lambda$QsylhBcLa5kv2jebMnFzOYukB0(final BoostsActivity boostsActivity) {
+    public static void m1358$r8$lambda$QsylhBcLa5kv2jebMnFzOYukB0(final BoostsActivity boostsActivity) {
         boostsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -547,7 +547,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         boostsActivity.updateRows(true);
     }
 
-    public static void m1351$r8$lambda$1GqRzFvE_EsK6vcE35EIohDiE(BoostsActivity boostsActivity) {
+    public static void m1357$r8$lambda$1GqRzFvE_EsK6vcE35EIohDiE(BoostsActivity boostsActivity) {
         boostsActivity.usersLoading = false;
         boostsActivity.updateRows(true);
     }
@@ -575,12 +575,12 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BoostsActivity.m1353$r8$lambda$VOpzH1C0C93t57xstJQK6Zvi5g(this.f$0, countDownLatch, tLObject, runnable);
+                BoostsActivity.m1359$r8$lambda$VOpzH1C0C93t57xstJQK6Zvi5g(this.f$0, countDownLatch, tLObject, runnable);
             }
         });
     }
 
-    public static void m1353$r8$lambda$VOpzH1C0C93t57xstJQK6Zvi5g(BoostsActivity boostsActivity, CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
+    public static void m1359$r8$lambda$VOpzH1C0C93t57xstJQK6Zvi5g(BoostsActivity boostsActivity, CountDownLatch countDownLatch, TLObject tLObject, Runnable runnable) {
         boostsActivity.getClass();
         if (countDownLatch != null) {
             countDownLatch.countDown();
@@ -871,13 +871,13 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             headerButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BoostsActivity.AnonymousClass5.m1355$r8$lambda$9yNix3pfTtmaRwFH07EZl4b6A0(this.f$0, view);
+                    BoostsActivity.AnonymousClass5.m1361$r8$lambda$9yNix3pfTtmaRwFH07EZl4b6A0(this.f$0, view);
                 }
             });
             headerButtonView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BoostsActivity.AnonymousClass5.m1356$r8$lambda$IgjlIhIJ0NwaCnGMnBI5HBGMvw(this.f$0, view);
+                    BoostsActivity.AnonymousClass5.m1362$r8$lambda$IgjlIhIJ0NwaCnGMnBI5HBGMvw(this.f$0, view);
                 }
             });
             headerButtonView3.setOnClickListener(new View.OnClickListener() {
@@ -896,12 +896,12 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             addView(linearLayout, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 19.0f, 0.0f, 0.0f));
         }
 
-        public static void m1355$r8$lambda$9yNix3pfTtmaRwFH07EZl4b6A0(AnonymousClass5 anonymousClass5, View view) {
+        public static void m1361$r8$lambda$9yNix3pfTtmaRwFH07EZl4b6A0(AnonymousClass5 anonymousClass5, View view) {
             BoostsActivity boostsActivity = BoostsActivity.this;
             LimitReachedBottomSheet.openBoostsForUsers(boostsActivity, true, boostsActivity.dialogId, BoostsActivity.this.canApplyBoost, BoostsActivity.this.boostsStatus, null);
         }
 
-        public static void m1356$r8$lambda$IgjlIhIJ0NwaCnGMnBI5HBGMvw(final AnonymousClass5 anonymousClass5, View view) {
+        public static void m1362$r8$lambda$IgjlIhIJ0NwaCnGMnBI5HBGMvw(final AnonymousClass5 anonymousClass5, View view) {
             BoostsActivity.this.updateDialogVisibility(true);
             BoostsActivity boostsActivity = BoostsActivity.this;
             BoostPagerBottomSheet.show(boostsActivity, boostsActivity.dialogId, ((BaseFragment) BoostsActivity.this).resourceProvider);

@@ -35,7 +35,7 @@ public class ShapeDetector {
     private Runnable detect = new Runnable() {
         @Override
         public final void run() {
-            ShapeDetector.m2483$r8$lambda$nqveIXGn67co06Ms1Bb_Os5JfM(this.f$0);
+            ShapeDetector.m2493$r8$lambda$nqveIXGn67co06Ms1Bb_Os5JfM(this.f$0);
         }
     };
 
@@ -177,12 +177,12 @@ public class ShapeDetector {
         queue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ShapeDetector.m2482$r8$lambda$OTSSOXXz1D93SF52xzh08SvNKk(this.f$0);
+                ShapeDetector.m2492$r8$lambda$OTSSOXXz1D93SF52xzh08SvNKk(this.f$0);
             }
         });
     }
 
-    public static void m2482$r8$lambda$OTSSOXXz1D93SF52xzh08SvNKk(ShapeDetector shapeDetector) {
+    public static void m2492$r8$lambda$OTSSOXXz1D93SF52xzh08SvNKk(ShapeDetector shapeDetector) {
         AnonymousClass1 anonymousClass1;
         char c;
         String string;
@@ -235,7 +235,7 @@ public class ShapeDetector {
         }
     }
 
-    public static void m2483$r8$lambda$nqveIXGn67co06Ms1Bb_Os5JfM(final ShapeDetector shapeDetector) {
+    public static void m2493$r8$lambda$nqveIXGn67co06Ms1Bb_Os5JfM(final ShapeDetector shapeDetector) {
         String str;
         if (shapeDetector.busy.get()) {
             return;

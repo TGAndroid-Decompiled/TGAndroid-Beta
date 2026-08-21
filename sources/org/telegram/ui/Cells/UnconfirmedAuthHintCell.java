@@ -48,7 +48,7 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
     private final TextView titleTextView;
     private final TextViewWithLoading yesButton;
 
-    public static void m1517$r8$lambda$BxLL04nNHETLUQ16lksruDUVQc(ArrayList arrayList) {
+    public static void m1523$r8$lambda$BxLL04nNHETLUQ16lksruDUVQc(ArrayList arrayList) {
     }
 
     public UnconfirmedAuthHintCell(Context context) {
@@ -166,7 +166,7 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         MessagesController.getInstance(i).getUnconfirmedAuthController().confirm(arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                UnconfirmedAuthHintCell.m1517$r8$lambda$BxLL04nNHETLUQ16lksruDUVQc((ArrayList) obj);
+                UnconfirmedAuthHintCell.m1523$r8$lambda$BxLL04nNHETLUQ16lksruDUVQc((ArrayList) obj);
             }
         });
         MessagesController.getInstance(i).getUnconfirmedAuthController().cleanup();
@@ -182,12 +182,12 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         MessagesController.getInstance(i).getUnconfirmedAuthController().deny(arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                UnconfirmedAuthHintCell.m1516$r8$lambda$1BUkAiR1j7HMXFvSH7w9Sv39rc(this.f$0, i, (ArrayList) obj);
+                UnconfirmedAuthHintCell.m1522$r8$lambda$1BUkAiR1j7HMXFvSH7w9Sv39rc(this.f$0, i, (ArrayList) obj);
             }
         });
     }
 
-    public static void m1516$r8$lambda$1BUkAiR1j7HMXFvSH7w9Sv39rc(UnconfirmedAuthHintCell unconfirmedAuthHintCell, int i, ArrayList arrayList) {
+    public static void m1522$r8$lambda$1BUkAiR1j7HMXFvSH7w9Sv39rc(UnconfirmedAuthHintCell unconfirmedAuthHintCell, int i, ArrayList arrayList) {
         unconfirmedAuthHintCell.getClass();
         if (LaunchActivity.isActive) {
             unconfirmedAuthHintCell.showLoginPreventedSheet(arrayList);
@@ -349,23 +349,23 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         round.setTimer(5, new Runnable() {
             @Override
             public final void run() {
-                UnconfirmedAuthHintCell.m1519$r8$lambda$sjRWXBHKvFpazvxwtiyIFnxmFs(bottomSheetShow);
+                UnconfirmedAuthHintCell.m1525$r8$lambda$sjRWXBHKvFpazvxwtiyIFnxmFs(bottomSheetShow);
             }
         });
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UnconfirmedAuthHintCell.m1518$r8$lambda$FmPsg7Mq8dur9rHWnNTbvXVYpo(round, bottomSheetShow, view);
+                UnconfirmedAuthHintCell.m1524$r8$lambda$FmPsg7Mq8dur9rHWnNTbvXVYpo(round, bottomSheetShow, view);
             }
         });
     }
 
-    public static void m1519$r8$lambda$sjRWXBHKvFpazvxwtiyIFnxmFs(BottomSheet bottomSheet) {
+    public static void m1525$r8$lambda$sjRWXBHKvFpazvxwtiyIFnxmFs(BottomSheet bottomSheet) {
         bottomSheet.setCanDismissWithSwipe(true);
         bottomSheet.setCanDismissWithTouchOutside(true);
     }
 
-    public static void m1518$r8$lambda$FmPsg7Mq8dur9rHWnNTbvXVYpo(ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, View view) {
+    public static void m1524$r8$lambda$FmPsg7Mq8dur9rHWnNTbvXVYpo(ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, View view) {
         if (buttonWithCounterView.isTimerActive()) {
             AndroidUtilities.shakeViewSpring(buttonWithCounterView, 3.0f);
             BotWebViewVibrationEffect.APP_ERROR.vibrate();

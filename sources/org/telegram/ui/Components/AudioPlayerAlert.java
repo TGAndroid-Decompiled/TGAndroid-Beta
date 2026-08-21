@@ -120,6 +120,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     private boolean blurredAnimationInProgress;
     private FrameLayout blurredView;
     private View[] buttons;
+    private boolean castAvailable;
     private ActionBarMenuSubItem castItem;
     private CastMediaRouteButton castItemButton;
     private CoverContainer coverContainer;
@@ -189,14 +190,14 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     private ButtonWithCounterView unsaveFromProfileButton;
     private boolean wasLight;
 
-    public static boolean $r8$lambda$6QTicm63cMsuZYocl1sfDSEJeVo(View view, MotionEvent motionEvent) {
+    public static void $r8$lambda$IXzzw3VQCTwcJSmKUBp5h8XdP5o() {
+    }
+
+    public static boolean $r8$lambda$LAkpbeoX34Rrjo3x0KAS1ztLLys(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public static void $r8$lambda$V9gZKd_m2LXAFe7N_RoMgFw_e3U() {
-    }
-
-    public static void $r8$lambda$ltYCnOpDl1ezTPTx0kaKP4sWjOM() {
+    public static void $r8$lambda$TiCrh53jB2WHfFA_w4P9RkF8HoM() {
     }
 
     @Override
@@ -223,7 +224,6 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
     public AudioPlayerAlert(final Context context, final Theme.ResourcesProvider resourcesProvider) {
         boolean z;
-        boolean z2;
         ActionBarMenu actionBarMenu;
         TLRPC.User user;
         super(context, true, resourcesProvider);
@@ -310,6 +310,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 return Float.valueOf(AudioPlayerAlert.this.actionBarSlide);
             }
         };
+        this.doNotOverlayNavigationBar = true;
         fixNavigationBar();
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null) {
@@ -389,8 +390,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
 
             @Override
-            protected void onLayout(boolean z3, int i, int i2, int i3, int i4) {
-                super.onLayout(z3, i, i2, i3, i4);
+            protected void onLayout(boolean z2, int i, int i2, int i3, int i4) {
+                super.onLayout(z2, i, i2, i3, i4);
                 AudioPlayerAlert.this.updateLayout();
                 AudioPlayerAlert.this.updateEmptyViewPosition();
             }
@@ -411,6 +412,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             @Override
             protected void onDraw(Canvas canvas) {
                 float f;
+                float fMin;
                 if (AudioPlayerAlert.this.playlist.size() <= 1) {
                     ((BottomSheet) AudioPlayerAlert.this).shadowDrawable.setBounds(0, (getMeasuredHeight() - AudioPlayerAlert.this.playerLayout.getMeasuredHeight()) - ((BottomSheet) AudioPlayerAlert.this).backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight());
                     ((BottomSheet) AudioPlayerAlert.this).shadowDrawable.draw(canvas);
@@ -432,16 +434,17 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 int measuredHeight = getMeasuredHeight() + AndroidUtilities.dp(15.0f) + ((BottomSheet) AudioPlayerAlert.this).backgroundPaddingTop;
                 if (AudioPlayerAlert.this.isProfilePlaylist || ((BottomSheet) AudioPlayerAlert.this).backgroundPaddingTop + translationY >= ActionBar.getCurrentActionBarHeight()) {
                     f = 1.0f;
+                    fMin = 0.0f;
                 } else {
                     float fDp = iDp + AndroidUtilities.dp(4.0f);
-                    float fMin = Math.min(1.0f, ((ActionBar.getCurrentActionBarHeight() - translationY) - ((BottomSheet) AudioPlayerAlert.this).backgroundPaddingTop) / fDp);
+                    fMin = Math.min(1.0f, ((ActionBar.getCurrentActionBarHeight() - translationY) - ((BottomSheet) AudioPlayerAlert.this).backgroundPaddingTop) / fDp);
                     int currentActionBarHeight = (int) ((ActionBar.getCurrentActionBarHeight() - fDp) * fMin);
                     translationY -= currentActionBarHeight;
                     iDp2 -= currentActionBarHeight;
                     measuredHeight += currentActionBarHeight;
                     f = 1.0f - fMin;
                 }
-                int i = AndroidUtilities.statusBarHeight;
+                int i = (int) (AndroidUtilities.statusBarHeight * (1.0f - fMin));
                 int i2 = translationY + i;
                 int i3 = iDp2 + i;
                 ((BottomSheet) AudioPlayerAlert.this).shadowDrawable.setBounds(0, i2, getMeasuredWidth(), measuredHeight);
@@ -541,9 +544,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.actionBar.setTitleColor(getThemedColor(i2));
         this.actionBar.setSubtitleColor(getThemedColor(Theme.key_player_actionBarSubtitle));
         this.actionBar.setOccupyStatusBar(true);
-        ActionBar actionBar3 = this.actionBar;
-        actionBar3.menuOccupyBack = true;
-        ActionBarMenu actionBarMenuCreateMenu = actionBar3.createMenu();
+        ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
         actionBarMenuCreateMenu.setLayoutParams(LayoutHelper.createFrame(-1, -1, 119));
         View view = new View(context);
         this.actionBarBackground = view;
@@ -570,8 +571,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         view3.setBackgroundColor(getThemedColor(Theme.key_dialogShadowLine));
         this.playerLayout = new FrameLayout(context) {
             @Override
-            protected void onLayout(boolean z3, int i3, int i4, int i5, int i6) {
-                super.onLayout(z3, i3, i4, i5, i6);
+            protected void onLayout(boolean z2, int i3, int i4, int i5, int i6) {
+                super.onLayout(z2, i3, i4, i5, i6);
                 if (AudioPlayerAlert.this.playbackSpeedButton == null || AudioPlayerAlert.this.durationTextView == null) {
                     return;
                 }
@@ -647,8 +648,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
 
             @Override
-            public void onSeekBarDrag(boolean z3, float f) {
-                if (z3) {
+            public void onSeekBarDrag(boolean z2, float f) {
+                if (z2) {
                     MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f);
                 }
                 MessageObject playingMessageObject2 = MediaController.getInstance().getPlayingMessageObject();
@@ -659,8 +660,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
 
             @Override
-            public void onSeekBarPressed(boolean z3) {
-                AudioPlayerAlert.this.draggingSeekBar = z3;
+            public void onSeekBarPressed(boolean z2) {
+                AudioPlayerAlert.this.draggingSeekBar = z2;
             }
 
             @Override
@@ -707,7 +708,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.playbackSpeedButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
             public final void onItemClick(int i4) {
-                AudioPlayerAlert.m2028$r8$lambda$v4HbMeMRpYSOyGbBlwzhhl2yJE(this.f$0, i4);
+                AudioPlayerAlert.m2040$r8$lambda$v4HbMeMRpYSOyGbBlwzhhl2yJE(this.f$0, i4);
             }
         });
         ActionBarMenuItem actionBarMenuItem2 = this.playbackSpeedButton;
@@ -722,7 +723,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.speedSlider.setOnValueChange(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AudioPlayerAlert.m2019$r8$lambda$ACvKs27RnqSem7oPfkk09zrtBA(this.f$0, (Float) obj, (Boolean) obj2);
+                AudioPlayerAlert.m2026$r8$lambda$ACvKs27RnqSem7oPfkk09zrtBA(this.f$0, (Float) obj, (Boolean) obj2);
             }
         });
         this.speedItems[0] = this.playbackSpeedButton.addSubItem(0, R.drawable.msg_speed_slow, LocaleController.getString(R.string.SpeedSlow));
@@ -753,7 +754,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         updatePlaybackButton(false);
         FrameLayout frameLayout2 = new FrameLayout(context) {
             @Override
-            protected void onLayout(boolean z3, int i4, int i5, int i6, int i7) {
+            protected void onLayout(boolean z2, int i4, int i5, int i6, int i7) {
                 int iDp = ((i6 - i4) - AndroidUtilities.dp(248.0f)) / 4;
                 for (int i8 = 0; i8 < 5; i8++) {
                     int iDp2 = AndroidUtilities.dp((i8 * 48) + 4) + (iDp * i8);
@@ -851,18 +852,18 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.optionsIcon = chooseQualityLayout$QualityIcon;
         actionBarMenuItem5.setIcon(chooseQualityLayout$QualityIcon);
         this.optionsButton.setLongClickEnabled(false);
-        this.optionsButton.setShowSubmenuByMove(false);
-        this.optionsButton.setSubMenuOpenSide(2);
         this.optionsButton.setAdditionalYOffset(-AndroidUtilities.dp(197.0f));
         this.optionsButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i4), 1, AndroidUtilities.dp(18.0f)));
+        this.optionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view4) {
+                this.f$0.showMenuOptions(view4);
+            }
+        });
         frameLayout2.addView(this.optionsButton, LayoutHelper.createFrame(48, 48, 51));
-        this.optionsButton.addSubItem(1, R.drawable.msg_forward, LocaleController.getString(R.string.Forward));
-        this.optionsButton.addSubItem(2, R.drawable.msg_shareout, LocaleController.getString(R.string.ShareFile));
-        this.optionsButton.addSubItem(5, R.drawable.msg_download, LocaleController.getString(R.string.SaveToMusic));
-        this.optionsButton.addSubItem(4, R.drawable.msg_message, LocaleController.getString(R.string.ShowInChat));
         CastMediaRouteButton castMediaRouteButton = new CastMediaRouteButton(context) {
             @Override
-            public void stateUpdated(boolean z3) {
+            public void stateUpdated(boolean z2) {
                 AudioPlayerAlert.this.updateColors();
                 if (AudioPlayerAlert.this.optionsIcon != null) {
                     AudioPlayerAlert.this.optionsIcon.setCasting(CastSync.isActive(), true);
@@ -870,36 +871,22 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
         };
         this.castItemButton = castMediaRouteButton;
+        this.castAvailable = true;
         try {
             castMediaRouteButton.setRouteSelector(CastContext.getSharedInstance(context).getMergedSelector());
-            z = true;
         } catch (Exception e) {
             FileLog.e(e);
-            z = false;
+            this.castAvailable = false;
         }
         this.castItemButton.setVisibility(4);
-        if (z) {
-            ActionBarMenuSubItem actionBarMenuSubItemAddSubItem = this.optionsButton.addSubItem(6, R.drawable.menu_video_chromecast, LocaleController.getString(R.string.VideoPlayerChromecast));
-            this.castItem = actionBarMenuSubItemAddSubItem;
-            actionBarMenuSubItemAddSubItem.addView(this.castItemButton, 0, LayoutHelper.createFrame(-1, -1.0f));
-            updateColors();
-        }
         ChooseQualityLayout$QualityIcon chooseQualityLayout$QualityIcon2 = this.optionsIcon;
         if (chooseQualityLayout$QualityIcon2 != null) {
-            z2 = true;
+            z = true;
             chooseQualityLayout$QualityIcon2.setCasting(CastSync.isActive(), true);
         } else {
-            z2 = true;
+            z = true;
         }
-        this.optionsButton.addSubItem(7, R.drawable.msg_delete, LocaleController.getString(R.string.ProfilePlaylistRemoveFromProfile));
-        this.optionsButton.setSubItemShown(7, false);
-        this.optionsButton.setShowedFromBottom(z2);
-        this.optionsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view4) {
-                this.f$0.optionsButton.toggleSubMenu();
-            }
-        });
+        this.optionsButton.setShowedFromBottom(z);
         this.optionsButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
             public final void onItemClick(int i7) {
@@ -916,7 +903,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.emptyView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view4, MotionEvent motionEvent) {
-                return AudioPlayerAlert.$r8$lambda$6QTicm63cMsuZYocl1sfDSEJeVo(view4, motionEvent);
+                return AudioPlayerAlert.$r8$lambda$LAkpbeoX34Rrjo3x0KAS1ztLLys(view4, motionEvent);
             }
         });
         ImageView imageView3 = new ImageView(context);
@@ -945,8 +932,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             boolean ignoreLayout;
 
             @Override
-            protected void onLayout(boolean z3, int i8, int i9, int i10, int i11) {
-                super.onLayout(z3, i8, i9, i10, i11);
+            protected void onLayout(boolean z2, int i8, int i9, int i10, int i11) {
+                super.onLayout(z2, i8, i9, i10, i11);
                 if (AudioPlayerAlert.this.searchOpenPosition == -1 || AudioPlayerAlert.this.actionBar.isSearchFieldVisible()) {
                     if (AudioPlayerAlert.this.scrollToSong) {
                         AudioPlayerAlert.this.scrollToSong = false;
@@ -996,13 +983,13 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view4, int i8) {
-                AudioPlayerAlert.m2031$r8$lambda$yeNk8Hkb7S42SN0wbWaPcfywto(view4, i8);
+                AudioPlayerAlert.$r8$lambda$k5j5mYpbTAWIiNU8DJEUejpHLwA(view4, i8);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view4, int i8) {
-                return AudioPlayerAlert.$r8$lambda$mkeIrnaZlsrkvLyUciF1YKnc5xI(this.f$0, view4, i8);
+                return AudioPlayerAlert.$r8$lambda$4OzyJLsu1ns8RdRboE9Tz90C4AA(this.f$0, view4, i8);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -1053,7 +1040,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.saveToProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view4) {
-                AudioPlayerAlert.m2018$r8$lambda$8rxl3h2KgKUlOUTwJ9rYQ6xhgk(this.f$0, resourcesProvider, view4);
+                AudioPlayerAlert.$r8$lambda$ebrzioALUJF5Mq6xZZG4N5swV1c(this.f$0, resourcesProvider, view4);
             }
         });
         this.playerLayout.addView(this.saveToProfileButton, LayoutHelper.createFrame(-1, 42.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
@@ -1063,14 +1050,15 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.unsaveFromProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view4) {
-                AudioPlayerAlert.$r8$lambda$nyQqmhXerizS4PTlfCmr_5lddz8(this.f$0, resourcesProvider, view4);
+                AudioPlayerAlert.m2036$r8$lambda$cKEsJd_2bla72zDhYdo_cLDeG8(this.f$0, resourcesProvider, view4);
             }
         });
         this.playerLayout.addView(this.unsaveFromProfileButton, LayoutHelper.createFrame(-1, 42.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
         MessagesController.SavedMusicList savedMusicList = MediaController.getInstance().currentSavedMusicList;
         this.savedMusicList = savedMusicList;
-        boolean z3 = savedMusicList != null;
-        this.isProfilePlaylist = z3;
+        boolean z2 = savedMusicList != null;
+        this.isProfilePlaylist = z2;
+        this.actionBar.menuOccupyBack = z2;
         this.padWithItem = isMyList();
         this.playlist = MediaController.getInstance().getPlaylist();
         if (isMyList()) {
@@ -1126,7 +1114,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         searchField.setTextColor(getThemedColor(i9));
         searchField.setHintTextColor(getThemedColor(Theme.key_player_time));
         searchField.setCursorColor(getThemedColor(i9));
-        if (z3) {
+        if (z2) {
             this.listView.setSections();
             setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider));
             this.actionBar.setAlpha(1.0f);
@@ -1307,7 +1295,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
-    public static void m2028$r8$lambda$v4HbMeMRpYSOyGbBlwzhhl2yJE(AudioPlayerAlert audioPlayerAlert, int i) {
+    public static void m2040$r8$lambda$v4HbMeMRpYSOyGbBlwzhhl2yJE(AudioPlayerAlert audioPlayerAlert, int i) {
         audioPlayerAlert.getClass();
         if (i >= 0) {
             float[] fArr = speeds;
@@ -1319,7 +1307,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
-    public static void m2019$r8$lambda$ACvKs27RnqSem7oPfkk09zrtBA(AudioPlayerAlert audioPlayerAlert, Float f, Boolean bool) {
+    public static void m2026$r8$lambda$ACvKs27RnqSem7oPfkk09zrtBA(AudioPlayerAlert audioPlayerAlert, Float f, Boolean bool) {
         audioPlayerAlert.getClass();
         audioPlayerAlert.slidingSpeed = !bool.booleanValue();
         MediaController.getInstance().setPlaybackSpeed(true, audioPlayerAlert.speedSlider.getSpeed(f.floatValue()));
@@ -1685,13 +1673,13 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
-    public static void m2031$r8$lambda$yeNk8Hkb7S42SN0wbWaPcfywto(View view, int i) {
+    public static void $r8$lambda$k5j5mYpbTAWIiNU8DJEUejpHLwA(View view, int i) {
         if (view instanceof AudioPlayerCell) {
             ((AudioPlayerCell) view).didPressedButton();
         }
     }
 
-    public static boolean $r8$lambda$mkeIrnaZlsrkvLyUciF1YKnc5xI(AudioPlayerAlert audioPlayerAlert, View view, int i) {
+    public static boolean $r8$lambda$4OzyJLsu1ns8RdRboE9Tz90C4AA(AudioPlayerAlert audioPlayerAlert, View view, int i) {
         audioPlayerAlert.getClass();
         if (!(view instanceof AudioPlayerCell) || audioPlayerAlert.isMyList()) {
             return false;
@@ -1701,7 +1689,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         return true;
     }
 
-    public static void m2018$r8$lambda$8rxl3h2KgKUlOUTwJ9rYQ6xhgk(AudioPlayerAlert audioPlayerAlert, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void $r8$lambda$ebrzioALUJF5Mq6xZZG4N5swV1c(AudioPlayerAlert audioPlayerAlert, Theme.ResourcesProvider resourcesProvider, View view) {
         audioPlayerAlert.getClass();
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject == null || audioPlayerAlert.parentActivity == null) {
@@ -1710,14 +1698,14 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         audioPlayerAlert.saveToProfile(playingMessageObject, true, new Runnable() {
             @Override
             public final void run() {
-                AudioPlayerAlert.$r8$lambda$ltYCnOpDl1ezTPTx0kaKP4sWjOM();
+                AudioPlayerAlert.$r8$lambda$TiCrh53jB2WHfFA_w4P9RkF8HoM();
             }
         }, false);
         audioPlayerAlert.setVisibleInProfile(true);
         BulletinFactory.of((FrameLayout) audioPlayerAlert.containerView, resourcesProvider).createSimpleBulletin(R.raw.saved_messages, LocaleController.getString(R.string.AudioSaveToMyProfileSaved)).show();
     }
 
-    public static void $r8$lambda$nyQqmhXerizS4PTlfCmr_5lddz8(AudioPlayerAlert audioPlayerAlert, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m2036$r8$lambda$cKEsJd_2bla72zDhYdo_cLDeG8(AudioPlayerAlert audioPlayerAlert, Theme.ResourcesProvider resourcesProvider, View view) {
         audioPlayerAlert.getClass();
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject == null || audioPlayerAlert.parentActivity == null) {
@@ -1726,7 +1714,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         audioPlayerAlert.saveToProfile(playingMessageObject, false, new Runnable() {
             @Override
             public final void run() {
-                AudioPlayerAlert.$r8$lambda$V9gZKd_m2LXAFe7N_RoMgFw_e3U();
+                AudioPlayerAlert.$r8$lambda$IXzzw3VQCTwcJSmKUBp5h8XdP5o();
             }
         }, false);
         audioPlayerAlert.setVisibleInProfile(false);
@@ -1969,7 +1957,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 saveToProfile(playingMessageObject, false, new Runnable() {
                     @Override
                     public final void run() {
-                        AudioPlayerAlert.$r8$lambda$42EJXRsBdV7VVq5Cwpdwl0rsozc(this.f$0, playingMessageObject);
+                        AudioPlayerAlert.m2022$r8$lambda$ihrW_HndzYxr8KTlmYevfreK3Q(this.f$0, playingMessageObject);
                     }
                 }, false);
                 return;
@@ -1978,7 +1966,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     new SelectAudioAlert(getContext(), true, null, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            AudioPlayerAlert.m2030$r8$lambda$yIFWqsstNddulOzx84O0voJ0Q(this.f$0, (MessageObject) obj);
+                            AudioPlayerAlert.$r8$lambda$OexwjFXZi0VHMm1Jz45IX0ubWlo(this.f$0, (MessageObject) obj);
                         }
                     }, null).withoutSavedMusic().show();
                     return;
@@ -2011,7 +1999,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         dismiss();
     }
 
-    public static void $r8$lambda$42EJXRsBdV7VVq5Cwpdwl0rsozc(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject) {
+    public static void m2022$r8$lambda$ihrW_HndzYxr8KTlmYevfreK3Q(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject) {
         MessagesController.SavedMusicList savedMusicList = audioPlayerAlert.savedMusicList;
         if (savedMusicList != null) {
             savedMusicList.remove(messageObject);
@@ -2024,7 +2012,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
-    public static void m2030$r8$lambda$yIFWqsstNddulOzx84O0voJ0Q(final AudioPlayerAlert audioPlayerAlert, MessageObject messageObject) {
+    public static void $r8$lambda$OexwjFXZi0VHMm1Jz45IX0ubWlo(final AudioPlayerAlert audioPlayerAlert, MessageObject messageObject) {
         final TLRPC.Document document;
         if (messageObject == null) {
             audioPlayerAlert.getClass();
@@ -2041,7 +2029,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 FileLoader.getInstance(audioPlayerAlert.currentAccount).uploadFile(file.getAbsolutePath(), new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        AudioPlayerAlert.m2016$r8$lambda$hulpRpKlWOUCvdLLTlqrj6iTaw(this.f$0, alertDialog, document, (TLRPC.InputFile) obj);
+                        AudioPlayerAlert.$r8$lambda$vaIo0fEnAfDGRrQZ7RUUznQfCgg(this.f$0, alertDialog, document, (TLRPC.InputFile) obj);
                     }
                 });
                 return;
@@ -2064,7 +2052,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         ConnectionsManager.getInstance(audioPlayerAlert.currentAccount).sendRequest(tL_account_saveMusic, null);
     }
 
-    public static void m2016$r8$lambda$hulpRpKlWOUCvdLLTlqrj6iTaw(final AudioPlayerAlert audioPlayerAlert, final AlertDialog alertDialog, TLRPC.Document document, TLRPC.InputFile inputFile) {
+    public static void $r8$lambda$vaIo0fEnAfDGRrQZ7RUUznQfCgg(final AudioPlayerAlert audioPlayerAlert, final AlertDialog alertDialog, TLRPC.Document document, TLRPC.InputFile inputFile) {
         audioPlayerAlert.getClass();
         if (inputFile == null) {
             alertDialog.dismiss();
@@ -2080,22 +2068,22 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         ConnectionsManager.getInstance(audioPlayerAlert.currentAccount).sendRequest(tL_messages_uploadMedia, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AudioPlayerAlert.$r8$lambda$OU88v9_dXk6DuYR6xiuY0BEWPu4(this.f$0, alertDialog, tLObject, tL_error);
+                AudioPlayerAlert.$r8$lambda$57_oR9KtZ3pbkLqQu9qk8cNVUcE(this.f$0, alertDialog, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$OU88v9_dXk6DuYR6xiuY0BEWPu4(final AudioPlayerAlert audioPlayerAlert, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$57_oR9KtZ3pbkLqQu9qk8cNVUcE(final AudioPlayerAlert audioPlayerAlert, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
         audioPlayerAlert.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AudioPlayerAlert.$r8$lambda$6wTK6PJF7kGIzHaCfGls_pz6X9c(this.f$0, alertDialog, tLObject);
+                AudioPlayerAlert.$r8$lambda$6Ebi5kFqsieKsaNttJNcKw6KiGs(this.f$0, alertDialog, tLObject);
             }
         });
     }
 
-    public static void $r8$lambda$6wTK6PJF7kGIzHaCfGls_pz6X9c(AudioPlayerAlert audioPlayerAlert, AlertDialog alertDialog, TLObject tLObject) {
+    public static void $r8$lambda$6Ebi5kFqsieKsaNttJNcKw6KiGs(AudioPlayerAlert audioPlayerAlert, AlertDialog alertDialog, TLObject tLObject) {
         audioPlayerAlert.getClass();
         alertDialog.dismiss();
         if (tLObject instanceof TLRPC.TL_messageMediaDocument) {
@@ -2569,8 +2557,6 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             this.optionsButton.showSubItem(5);
             this.optionsButton.setAdditionalYOffset(-AndroidUtilities.dp(197.0f));
         }
-        this.optionsButton.setSubItemShown(4, playingMessageObject.getId() > 0);
-        this.optionsButton.setSubItemShown(7, isMyList());
         checkIfMusicDownloaded(playingMessageObject);
         boolean z4 = !z2;
         updateProgress(playingMessageObject, z4);
@@ -2910,12 +2896,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.ListAdapter.m2035$r8$lambda$zghuyfZAPqj5peizX5NzMqmYo(this.f$0, str, arrayList);
+                    AudioPlayerAlert.ListAdapter.m2045$r8$lambda$zghuyfZAPqj5peizX5NzMqmYo(this.f$0, str, arrayList);
                 }
             });
         }
 
-        public static void m2035$r8$lambda$zghuyfZAPqj5peizX5NzMqmYo(ListAdapter listAdapter, String str, ArrayList arrayList) {
+        public static void m2045$r8$lambda$zghuyfZAPqj5peizX5NzMqmYo(ListAdapter listAdapter, String str, ArrayList arrayList) {
             TLRPC.Document document;
             boolean zContains;
             String str2;
@@ -3008,7 +2994,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                AudioPlayerAlert.$r8$lambda$8ixzLk8E6qoCkwBnp16OofkllgE(this.f$0);
+                AudioPlayerAlert.m2032$r8$lambda$QPQl3a3PblVv13zp1tgdBvgpjE(this.f$0);
             }
 
             @Override
@@ -3104,7 +3090,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         return arrayList;
     }
 
-    public static void $r8$lambda$8ixzLk8E6qoCkwBnp16OofkllgE(AudioPlayerAlert audioPlayerAlert) {
+    public static void m2032$r8$lambda$QPQl3a3PblVv13zp1tgdBvgpjE(AudioPlayerAlert audioPlayerAlert) {
         audioPlayerAlert.searchItem.getSearchField().setCursorColor(audioPlayerAlert.getThemedColor(Theme.key_player_actionBarTitle));
         ActionBarMenuItem actionBarMenuItem = audioPlayerAlert.repeatButton;
         actionBarMenuItem.setIconColor(audioPlayerAlert.getThemedColor(((Integer) actionBarMenuItem.getTag()).intValue()));
@@ -3146,12 +3132,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_account_saveMusic, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AudioPlayerAlert.$r8$lambda$zVBMm8EpUH9DWfQYk6f0RU2vvTc(this.f$0, z2, messageObject, z, runnable, j, document, tLObject, tL_error);
+                AudioPlayerAlert.$r8$lambda$YP2IGciLMZZTocbtWJmwTE5WMMI(this.f$0, z2, messageObject, z, runnable, j, document, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$zVBMm8EpUH9DWfQYk6f0RU2vvTc(final AudioPlayerAlert audioPlayerAlert, boolean z, MessageObject messageObject, final boolean z2, final Runnable runnable, final long j, final TLRPC.Document document, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$YP2IGciLMZZTocbtWJmwTE5WMMI(final AudioPlayerAlert audioPlayerAlert, boolean z, MessageObject messageObject, final boolean z2, final Runnable runnable, final long j, final TLRPC.Document document, TLObject tLObject, final TLRPC.TL_error tL_error) {
         audioPlayerAlert.getClass();
         if (tL_error != null && FileRefController.isFileRefError(tL_error.text)) {
             if (z || messageObject.getId() < 0) {
@@ -3171,7 +3157,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 ConnectionsManager.getInstance(audioPlayerAlert.currentAccount).sendRequest(tL_messages_getMessages, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        AudioPlayerAlert.m2022$r8$lambda$V2Iq7ZO7VCX40M4pxI8tTMInGU(this.f$0, id, z2, runnable, tLObject2, tL_error2);
+                        AudioPlayerAlert.m2028$r8$lambda$CULDwcTymQJIm2IyuwFtSTw76A(this.f$0, id, z2, runnable, tLObject2, tL_error2);
                     }
                 });
                 return;
@@ -3183,7 +3169,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             ConnectionsManager.getInstance(audioPlayerAlert.currentAccount).sendRequest(tL_channels_getMessages, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    AudioPlayerAlert.$r8$lambda$_TD0tPUCGP3n2SDeWa7xdeMmT0k(this.f$0, id2, z2, runnable, tLObject2, tL_error2);
+                    AudioPlayerAlert.m2035$r8$lambda$bUtQKFrxVYkptC0XXTOblwdIUI(this.f$0, id2, z2, runnable, tLObject2, tL_error2);
                 }
             });
             return;
@@ -3200,12 +3186,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AudioPlayerAlert.$r8$lambda$g8_BrbnB9OKoVFqbKvNYSMKOwbo(this.f$0, j, z2, document, runnable);
+                AudioPlayerAlert.$r8$lambda$b3BHvRpUmihUuqVEWQyeXKQwNM4(this.f$0, j, z2, document, runnable);
             }
         });
     }
 
-    public static void m2022$r8$lambda$V2Iq7ZO7VCX40M4pxI8tTMInGU(final AudioPlayerAlert audioPlayerAlert, int i, boolean z, Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m2028$r8$lambda$CULDwcTymQJIm2IyuwFtSTw76A(final AudioPlayerAlert audioPlayerAlert, int i, boolean z, Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
         TLRPC.Message message;
         audioPlayerAlert.getClass();
         if (!(tLObject instanceof TLRPC.messages_Messages)) {
@@ -3248,7 +3234,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
-    public static void $r8$lambda$_TD0tPUCGP3n2SDeWa7xdeMmT0k(final AudioPlayerAlert audioPlayerAlert, int i, boolean z, Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m2035$r8$lambda$bUtQKFrxVYkptC0XXTOblwdIUI(final AudioPlayerAlert audioPlayerAlert, int i, boolean z, Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
         TLRPC.Message message;
         audioPlayerAlert.getClass();
         if (!(tLObject instanceof TLRPC.messages_Messages)) {
@@ -3291,7 +3277,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
-    public static void $r8$lambda$g8_BrbnB9OKoVFqbKvNYSMKOwbo(AudioPlayerAlert audioPlayerAlert, long j, boolean z, TLRPC.Document document, Runnable runnable) {
+    public static void $r8$lambda$b3BHvRpUmihUuqVEWQyeXKQwNM4(AudioPlayerAlert audioPlayerAlert, long j, boolean z, TLRPC.Document document, Runnable runnable) {
         MessagesController.getInstance(audioPlayerAlert.currentAccount).getSavedMusicIds().update(j, z);
         long clientUserId = UserConfig.getInstance(audioPlayerAlert.currentAccount).getClientUserId();
         TLRPC.UserFull userFull = MessagesController.getInstance(audioPlayerAlert.currentAccount).getUserFull(clientUserId);
@@ -3314,58 +3300,181 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
+    public void showMenuOptions(View view) {
+        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+        if (playingMessageObject == null) {
+            return;
+        }
+        final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((ViewGroup) this.container, this.resourcesProvider, view, true);
+        final ItemOptions itemOptionsBuildSaveOptions = buildSaveOptions(itemOptionsMakeOptions, playingMessageObject);
+        if (!isMyList()) {
+            itemOptionsMakeOptions.addIf(!this.noforwards, R.drawable.msg_stories_save, LocaleController.getString(R.string.AudioSaveTo), new Runnable() {
+                @Override
+                public final void run() {
+                    itemOptionsMakeOptions.openSwipeback(itemOptionsBuildSaveOptions);
+                }
+            });
+            if (!this.noforwards && itemOptionsMakeOptions.getLast() != null) {
+                itemOptionsMakeOptions.getLast().setRightIcon(R.drawable.msg_arrowright);
+            }
+            itemOptionsMakeOptions.addGap();
+        }
+        itemOptionsMakeOptions.addIf(!this.noforwards, R.drawable.msg_forward, LocaleController.getString(R.string.Forward), new Runnable() {
+            @Override
+            public final void run() {
+                AudioPlayerAlert.$r8$lambda$ClFL_47sEVfl0EHNFV8bE3SXZYE(this.f$0, itemOptionsMakeOptions);
+            }
+        });
+        itemOptionsMakeOptions.addIf(!this.noforwards, R.drawable.msg_shareout, LocaleController.getString(R.string.ShareFile), new Runnable() {
+            @Override
+            public final void run() {
+                AudioPlayerAlert.$r8$lambda$eZz0aF0Fqm6KaJCuntOLFmyu5RI(this.f$0, itemOptionsMakeOptions);
+            }
+        });
+        itemOptionsMakeOptions.addIf(playingMessageObject.getId() > 0, R.drawable.msg_message, LocaleController.getString(R.string.ShowInChat), new Runnable() {
+            @Override
+            public final void run() {
+                AudioPlayerAlert.m2034$r8$lambda$XTSzIRyAuIoDXheGdJEmvTt0Y(this.f$0, itemOptionsMakeOptions);
+            }
+        });
+        if (this.castAvailable) {
+            ActionBarMenuSubItem actionBarMenuSubItemAdd = itemOptionsMakeOptions.add();
+            this.castItem = actionBarMenuSubItemAdd;
+            actionBarMenuSubItemAdd.setTextAndIcon(LocaleController.getString(R.string.VideoPlayerChromecast), R.drawable.menu_video_chromecast);
+            this.castItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    AudioPlayerAlert.m2023$r8$lambda$lx9DIm9GeYrs9IZgn_1qtQWg(this.f$0, itemOptionsMakeOptions, view2);
+                }
+            });
+            AndroidUtilities.removeFromParent(this.castItemButton);
+            this.castItem.addView(this.castItemButton, 0, LayoutHelper.createFrame(-1, -1.0f));
+            updateColors();
+        }
+        itemOptionsMakeOptions.addIf(isMyList(), R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.ProfilePlaylistRemoveFromProfile), true, new Runnable() {
+            @Override
+            public final void run() {
+                AudioPlayerAlert.m2024$r8$lambda$1DZIjAfHVmWvg6BH7nxokKDRo(this.f$0, itemOptionsMakeOptions);
+            }
+        });
+        itemOptionsMakeOptions.setTranslationY(AndroidUtilities.dp(64.0f));
+        itemOptionsMakeOptions.show();
+    }
+
+    public static void $r8$lambda$ClFL_47sEVfl0EHNFV8bE3SXZYE(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions) {
+        audioPlayerAlert.getClass();
+        itemOptions.dismiss();
+        audioPlayerAlert.onSubItemClick(1);
+    }
+
+    public static void $r8$lambda$eZz0aF0Fqm6KaJCuntOLFmyu5RI(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions) {
+        audioPlayerAlert.getClass();
+        itemOptions.dismiss();
+        audioPlayerAlert.onSubItemClick(2);
+    }
+
+    public static void m2034$r8$lambda$XTSzIRyAuIoDXheGdJEmvTt0Y(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions) {
+        audioPlayerAlert.getClass();
+        itemOptions.dismiss();
+        audioPlayerAlert.onSubItemClick(4);
+    }
+
+    public static void m2023$r8$lambda$lx9DIm9GeYrs9IZgn_1qtQWg(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions, View view) {
+        audioPlayerAlert.getClass();
+        itemOptions.dismiss();
+        audioPlayerAlert.onSubItemClick(7);
+    }
+
+    public static void m2024$r8$lambda$1DZIjAfHVmWvg6BH7nxokKDRo(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions) {
+        audioPlayerAlert.getClass();
+        itemOptions.dismiss();
+        audioPlayerAlert.onSubItemClick(7);
+    }
+
+    private ItemOptions buildSaveOptions(final ItemOptions itemOptions, final MessageObject messageObject) {
+        MessagesController.SavedMusicIds savedMusicIds = MessagesController.getInstance(this.currentAccount).getSavedMusicIds();
+        TLRPC.Document document = messageObject.getDocument();
+        long j = document != null ? document.id : 0L;
+        ItemOptions itemOptionsMakeSwipeback = itemOptions.makeSwipeback();
+        itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda333(itemOptions));
+        itemOptionsMakeSwipeback.addGap();
+        itemOptionsMakeSwipeback.addIf(!savedMusicIds.ids.contains(Long.valueOf(j)), R.drawable.left_status_profile, LocaleController.getString(R.string.AudioSaveToMyProfile), new Runnable() {
+            @Override
+            public final void run() {
+                AudioPlayerAlert.m2038$r8$lambda$sRxnEkHFR14Kl9DiFqCOjxs1o(this.f$0, messageObject, itemOptions);
+            }
+        });
+        itemOptionsMakeSwipeback.add(R.drawable.msg_saved, LocaleController.getString(R.string.AudioSaveToSavedMessages), new Runnable() {
+            @Override
+            public final void run() {
+                AudioPlayerAlert.m2041$r8$lambda$wJrmGViKU6qJsKJp4QHm_l6_yg(this.f$0, messageObject, itemOptions);
+            }
+        });
+        itemOptionsMakeSwipeback.add(R.drawable.menu_download_round, LocaleController.getString(R.string.AudioSaveToMusicFolder), new Runnable() {
+            @Override
+            public final void run() {
+                AudioPlayerAlert.$r8$lambda$3NNxg2S4iuYWql5f4MyH3dn_Ovc(this.f$0, messageObject, itemOptions);
+            }
+        });
+        itemOptionsMakeSwipeback.addGap();
+        itemOptionsMakeSwipeback.addText(LocaleController.getString(R.string.AudioSaveToInfo), 12, AndroidUtilities.dp(200.0f));
+        return itemOptionsMakeSwipeback;
+    }
+
+    public static void m2038$r8$lambda$sRxnEkHFR14Kl9DiFqCOjxs1o(final AudioPlayerAlert audioPlayerAlert, MessageObject messageObject, final ItemOptions itemOptions) {
+        audioPlayerAlert.getClass();
+        audioPlayerAlert.saveToProfile(messageObject, true, new Runnable() {
+            @Override
+            public final void run() {
+                AudioPlayerAlert.m2027$r8$lambda$AcwTT8qXV6eHrnkz0bvZMTDbY(this.f$0, itemOptions);
+            }
+        }, false);
+    }
+
+    public static void m2027$r8$lambda$AcwTT8qXV6eHrnkz0bvZMTDbY(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions) {
+        audioPlayerAlert.setVisibleInProfile(true);
+        BulletinFactory.of((FrameLayout) audioPlayerAlert.containerView, audioPlayerAlert.resourcesProvider).createSimpleBulletin(R.raw.saved_messages, LocaleController.getString(R.string.AudioSaveToMyProfileSaved)).show();
+        itemOptions.dismiss();
+    }
+
+    public static void m2041$r8$lambda$wJrmGViKU6qJsKJp4QHm_l6_yg(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject, ItemOptions itemOptions) {
+        audioPlayerAlert.forward(messageObject, UserConfig.getInstance(audioPlayerAlert.currentAccount).getClientUserId());
+        itemOptions.dismiss();
+        BulletinFactory.of((FrameLayout) audioPlayerAlert.containerView, audioPlayerAlert.resourcesProvider).createSimpleBulletin(R.raw.saved_messages, LocaleController.getString(R.string.AudioSaveToSavedMessagesSaved)).show();
+    }
+
+    public static void $r8$lambda$3NNxg2S4iuYWql5f4MyH3dn_Ovc(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject, ItemOptions itemOptions) {
+        audioPlayerAlert.saveToMusic(messageObject);
+        itemOptions.dismiss();
+    }
+
     public void showOptions(AudioPlayerCell audioPlayerCell, final MessageObject messageObject) {
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((ViewGroup) this.container, this.resourcesProvider, (View) audioPlayerCell, true);
         if (isMyList()) {
             itemOptionsMakeOptions.addIf(!this.noforwards, R.drawable.msg_forward, LocaleController.getString(R.string.Forward), new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.$r8$lambda$ug3VKZhvCwpuRbWNrKvXfTg8PPM(this.f$0, itemOptionsMakeOptions, messageObject);
+                    AudioPlayerAlert.$r8$lambda$0sFviusKfFd9wAaHYSHGmhJRADU(this.f$0, itemOptionsMakeOptions, messageObject);
                 }
             });
             itemOptionsMakeOptions.addIf(!this.noforwards, R.drawable.msg_shareout, LocaleController.getString(R.string.ShareFile), new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.$r8$lambda$yFVwfG1IQtRvpBI8qxC5LN0g7BE(this.f$0, itemOptionsMakeOptions, messageObject);
+                    AudioPlayerAlert.m2033$r8$lambda$SiXLEddZxoCKAfh23OmvEz5dDw(this.f$0, itemOptionsMakeOptions, messageObject);
                 }
             });
             itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.m2023$r8$lambda$Y_6w4RtSYdqbLUcHogEUBtVcmM(this.f$0, messageObject, itemOptionsMakeOptions);
+                    AudioPlayerAlert.$r8$lambda$_1Q0dKoWPms0P0MfzdyLXZOFZ1E(this.f$0, messageObject, itemOptionsMakeOptions);
                 }
             });
         } else {
-            MessagesController.SavedMusicIds savedMusicIds = MessagesController.getInstance(this.currentAccount).getSavedMusicIds();
-            TLRPC.Document document = messageObject.getDocument();
-            long j = document != null ? document.id : 0L;
-            final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda333(itemOptionsMakeOptions));
-            itemOptionsMakeSwipeback.addGap();
-            itemOptionsMakeSwipeback.addIf(!savedMusicIds.ids.contains(Long.valueOf(j)), R.drawable.left_status_profile, LocaleController.getString(R.string.AudioSaveToMyProfile), new Runnable() {
-                @Override
-                public final void run() {
-                    AudioPlayerAlert.$r8$lambda$5UpPlGr2raE2wBbM3yFqcPLpVGI(this.f$0, messageObject, itemOptionsMakeOptions);
-                }
-            });
-            itemOptionsMakeSwipeback.add(R.drawable.msg_saved, LocaleController.getString(R.string.AudioSaveToSavedMessages), new Runnable() {
-                @Override
-                public final void run() {
-                    AudioPlayerAlert.m2026$r8$lambda$ee663kU6swAAct16UoDRoTnvXY(this.f$0, messageObject, itemOptionsMakeOptions);
-                }
-            });
-            itemOptionsMakeSwipeback.add(R.drawable.menu_download_round, LocaleController.getString(R.string.AudioSaveToMusicFolder), new Runnable() {
-                @Override
-                public final void run() {
-                    AudioPlayerAlert.m2020$r8$lambda$OxWhkXo0GLeIWBXSKPNwXem8gc(this.f$0, messageObject, itemOptionsMakeOptions);
-                }
-            });
-            itemOptionsMakeSwipeback.addGap();
-            itemOptionsMakeSwipeback.addText(LocaleController.getString(R.string.AudioSaveToInfo), 12, AndroidUtilities.dp(200.0f));
+            final ItemOptions itemOptionsBuildSaveOptions = buildSaveOptions(itemOptionsMakeOptions, messageObject);
             itemOptionsMakeOptions.addIf(!this.noforwards, R.drawable.msg_stories_save, LocaleController.getString(R.string.AudioSaveTo), new Runnable() {
                 @Override
                 public final void run() {
-                    itemOptionsMakeOptions.openSwipeback(itemOptionsMakeSwipeback);
+                    itemOptionsMakeOptions.openSwipeback(itemOptionsBuildSaveOptions);
                 }
             });
             if (!this.noforwards && itemOptionsMakeOptions.getLast() != null) {
@@ -3375,82 +3484,24 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             itemOptionsMakeOptions.addIf(!this.noforwards, R.drawable.msg_forward, LocaleController.getString(R.string.Forward), new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.$r8$lambda$0sFviusKfFd9wAaHYSHGmhJRADU(this.f$0, itemOptionsMakeOptions, messageObject);
+                    AudioPlayerAlert.$r8$lambda$QgcnqQ6ggZyJRnJWAeCmOalA32c(this.f$0, itemOptionsMakeOptions, messageObject);
                 }
             });
             itemOptionsMakeOptions.addIf(!this.noforwards, R.drawable.msg_share, LocaleController.getString(R.string.ShareFile), new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.m2021$r8$lambda$SiXLEddZxoCKAfh23OmvEz5dDw(this.f$0, itemOptionsMakeOptions, messageObject);
+                    AudioPlayerAlert.$r8$lambda$x2gh0lSG_UNR3YN9XW1diG0baQg(this.f$0, itemOptionsMakeOptions, messageObject);
                 }
             });
             itemOptionsMakeOptions.addIf(messageObject.getId() > 0, R.drawable.msg_view_file, LocaleController.getString(R.string.ShowInChat), new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.m2029$r8$lambda$xcNqPQbM2FQVpiqLm8fwu6E1CQ(this.f$0, messageObject);
+                    AudioPlayerAlert.m2025$r8$lambda$91_uD5nHR42cxCdUs0qrefMTZE(this.f$0, messageObject);
                 }
             });
         }
         itemOptionsMakeOptions.setGravity(LocaleController.isRTL ? 3 : 5);
         itemOptionsMakeOptions.show();
-    }
-
-    public static void $r8$lambda$ug3VKZhvCwpuRbWNrKvXfTg8PPM(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions, MessageObject messageObject) {
-        audioPlayerAlert.getClass();
-        itemOptions.dismiss();
-        audioPlayerAlert.forward(messageObject);
-    }
-
-    public static void $r8$lambda$yFVwfG1IQtRvpBI8qxC5LN0g7BE(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions, MessageObject messageObject) {
-        audioPlayerAlert.getClass();
-        itemOptions.dismiss();
-        audioPlayerAlert.share(messageObject);
-    }
-
-    public static void m2023$r8$lambda$Y_6w4RtSYdqbLUcHogEUBtVcmM(final AudioPlayerAlert audioPlayerAlert, final MessageObject messageObject, final ItemOptions itemOptions) {
-        audioPlayerAlert.getClass();
-        audioPlayerAlert.saveToProfile(messageObject, false, new Runnable() {
-            @Override
-            public final void run() {
-                AudioPlayerAlert.$r8$lambda$OyY5ndQRyLak2zWPfwl_cR_lJ0w(this.f$0, messageObject, itemOptions);
-            }
-        }, false);
-    }
-
-    public static void $r8$lambda$OyY5ndQRyLak2zWPfwl_cR_lJ0w(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject, ItemOptions itemOptions) {
-        audioPlayerAlert.savedMusicList.remove(messageObject);
-        audioPlayerAlert.playlist.remove(messageObject);
-        audioPlayerAlert.listAdapter.notifyDataSetChanged();
-        itemOptions.dismiss();
-        audioPlayerAlert.setVisibleInProfile(false);
-        BulletinFactory.of((FrameLayout) audioPlayerAlert.containerView, audioPlayerAlert.resourcesProvider).createSimpleBulletin(R.raw.ic_delete, LocaleController.getString(R.string.AudioSaveToMyProfileUnsaved)).show();
-    }
-
-    public static void $r8$lambda$5UpPlGr2raE2wBbM3yFqcPLpVGI(final AudioPlayerAlert audioPlayerAlert, MessageObject messageObject, final ItemOptions itemOptions) {
-        audioPlayerAlert.getClass();
-        audioPlayerAlert.saveToProfile(messageObject, true, new Runnable() {
-            @Override
-            public final void run() {
-                AudioPlayerAlert.$r8$lambda$paPfS2E5JuLpjIYUxORDIrCstCc(this.f$0, itemOptions);
-            }
-        }, false);
-    }
-
-    public static void $r8$lambda$paPfS2E5JuLpjIYUxORDIrCstCc(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions) {
-        audioPlayerAlert.setVisibleInProfile(true);
-        BulletinFactory.of((FrameLayout) audioPlayerAlert.containerView, audioPlayerAlert.resourcesProvider).createSimpleBulletin(R.raw.saved_messages, LocaleController.getString(R.string.AudioSaveToMyProfileSaved)).show();
-        itemOptions.dismiss();
-    }
-
-    public static void m2026$r8$lambda$ee663kU6swAAct16UoDRoTnvXY(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject, ItemOptions itemOptions) {
-        audioPlayerAlert.forward(messageObject, UserConfig.getInstance(audioPlayerAlert.currentAccount).getClientUserId());
-        itemOptions.dismiss();
-        BulletinFactory.of((FrameLayout) audioPlayerAlert.containerView, audioPlayerAlert.resourcesProvider).createSimpleBulletin(R.raw.saved_messages, LocaleController.getString(R.string.AudioSaveToSavedMessagesSaved)).show();
-    }
-
-    public static void m2020$r8$lambda$OxWhkXo0GLeIWBXSKPNwXem8gc(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject, ItemOptions itemOptions) {
-        audioPlayerAlert.saveToMusic(messageObject);
-        itemOptions.dismiss();
     }
 
     public static void $r8$lambda$0sFviusKfFd9wAaHYSHGmhJRADU(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions, MessageObject messageObject) {
@@ -3459,13 +3510,44 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         audioPlayerAlert.forward(messageObject);
     }
 
-    public static void m2021$r8$lambda$SiXLEddZxoCKAfh23OmvEz5dDw(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions, MessageObject messageObject) {
+    public static void m2033$r8$lambda$SiXLEddZxoCKAfh23OmvEz5dDw(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions, MessageObject messageObject) {
         audioPlayerAlert.getClass();
         itemOptions.dismiss();
         audioPlayerAlert.share(messageObject);
     }
 
-    public static void m2029$r8$lambda$xcNqPQbM2FQVpiqLm8fwu6E1CQ(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject) {
+    public static void $r8$lambda$_1Q0dKoWPms0P0MfzdyLXZOFZ1E(final AudioPlayerAlert audioPlayerAlert, final MessageObject messageObject, final ItemOptions itemOptions) {
+        audioPlayerAlert.getClass();
+        audioPlayerAlert.saveToProfile(messageObject, false, new Runnable() {
+            @Override
+            public final void run() {
+                AudioPlayerAlert.$r8$lambda$SdstRAtgFsyYdA0kvHKEsnBUY4k(this.f$0, messageObject, itemOptions);
+            }
+        }, false);
+    }
+
+    public static void $r8$lambda$SdstRAtgFsyYdA0kvHKEsnBUY4k(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject, ItemOptions itemOptions) {
+        audioPlayerAlert.savedMusicList.remove(messageObject);
+        audioPlayerAlert.playlist.remove(messageObject);
+        audioPlayerAlert.listAdapter.notifyDataSetChanged();
+        itemOptions.dismiss();
+        audioPlayerAlert.setVisibleInProfile(false);
+        BulletinFactory.of((FrameLayout) audioPlayerAlert.containerView, audioPlayerAlert.resourcesProvider).createSimpleBulletin(R.raw.ic_delete, LocaleController.getString(R.string.AudioSaveToMyProfileUnsaved)).show();
+    }
+
+    public static void $r8$lambda$QgcnqQ6ggZyJRnJWAeCmOalA32c(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions, MessageObject messageObject) {
+        audioPlayerAlert.getClass();
+        itemOptions.dismiss();
+        audioPlayerAlert.forward(messageObject);
+    }
+
+    public static void $r8$lambda$x2gh0lSG_UNR3YN9XW1diG0baQg(AudioPlayerAlert audioPlayerAlert, ItemOptions itemOptions, MessageObject messageObject) {
+        audioPlayerAlert.getClass();
+        itemOptions.dismiss();
+        audioPlayerAlert.share(messageObject);
+    }
+
+    public static void m2025$r8$lambda$91_uD5nHR42cxCdUs0qrefMTZE(AudioPlayerAlert audioPlayerAlert, MessageObject messageObject) {
         audioPlayerAlert.getClass();
         int i = UserConfig.selectedAccount;
         int i2 = audioPlayerAlert.currentAccount;
@@ -3663,7 +3745,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList3, CharSequence charSequence, boolean z, boolean z2, int i3, int i4, TopicsFragment topicsFragment) {
-                return AudioPlayerAlert.$r8$lambda$YPsHndpoPTMGFzWJemDVUtSXinU(this.f$0, arrayList, tL_document, messageObject, dialogsActivity2, arrayList3, charSequence, z, z2, i3, i4, topicsFragment);
+                return AudioPlayerAlert.m2031$r8$lambda$O4lmwF3Cdr9abHg3UvhaG6R1YI(this.f$0, arrayList, tL_document, messageObject, dialogsActivity2, arrayList3, charSequence, z, z2, i3, i4, topicsFragment);
             }
 
             @Override
@@ -3675,7 +3757,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         dismiss();
     }
 
-    public static boolean $r8$lambda$YPsHndpoPTMGFzWJemDVUtSXinU(AudioPlayerAlert audioPlayerAlert, ArrayList arrayList, TLRPC.TL_document tL_document, MessageObject messageObject, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public static boolean m2031$r8$lambda$O4lmwF3Cdr9abHg3UvhaG6R1YI(AudioPlayerAlert audioPlayerAlert, ArrayList arrayList, TLRPC.TL_document tL_document, MessageObject messageObject, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         String pluralStringComma;
         long j;
         ArrayList arrayList3 = arrayList;
@@ -3814,7 +3896,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    AudioPlayerAlert.CoverContainer.m2032$r8$lambda$fkF2vGavqOZgdsKRRz84wVaCZk(backupImageView2, zHasBitmapImage, valueAnimator);
+                    AudioPlayerAlert.CoverContainer.m2042$r8$lambda$fkF2vGavqOZgdsKRRz84wVaCZk(backupImageView2, zHasBitmapImage, valueAnimator);
                 }
             });
             if (zHasBitmapImage) {
@@ -3842,7 +3924,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             this.animatorSet.start();
         }
 
-        public static void m2032$r8$lambda$fkF2vGavqOZgdsKRRz84wVaCZk(BackupImageView backupImageView, boolean z, ValueAnimator valueAnimator) {
+        public static void m2042$r8$lambda$fkF2vGavqOZgdsKRRz84wVaCZk(BackupImageView backupImageView, boolean z, ValueAnimator valueAnimator) {
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             backupImageView.setScaleX(fFloatValue);
             backupImageView.setScaleY(fFloatValue);
@@ -4149,13 +4231,13 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.rightPaddingAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                AudioPlayerAlert.$r8$lambda$4vHZzv8KCFKEJQJLfimt2uRAa6Q(this.f$0, valueAnimator2);
+                AudioPlayerAlert.$r8$lambda$miqere8t5vdkBg_kgJp5VHgIPQo(this.f$0, valueAnimator2);
             }
         });
         this.rightPaddingAnimator.start();
     }
 
-    public static void $r8$lambda$4vHZzv8KCFKEJQJLfimt2uRAa6Q(AudioPlayerAlert audioPlayerAlert, ValueAnimator valueAnimator) {
+    public static void $r8$lambda$miqere8t5vdkBg_kgJp5VHgIPQo(AudioPlayerAlert audioPlayerAlert, ValueAnimator valueAnimator) {
         audioPlayerAlert.titleTextView.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
         audioPlayerAlert.authorTextView.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
     }

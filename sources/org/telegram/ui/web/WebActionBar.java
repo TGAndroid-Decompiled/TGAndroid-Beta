@@ -156,7 +156,7 @@ public abstract class WebActionBar extends FrameLayout {
         this.longPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                WebActionBar.m5064$r8$lambda$9ZMBVSSnV0qdTnZp4VsZXM3ae8(this.f$0);
+                WebActionBar.m5075$r8$lambda$9ZMBVSSnV0qdTnZp4VsZXM3ae8(this.f$0);
             }
         };
         this.longClicked = false;
@@ -393,7 +393,7 @@ public abstract class WebActionBar extends FrameLayout {
                     itemOptionsMakeOptions.setOnDismiss(instantViewLoader.listen(new Runnable() {
                         @Override
                         public final void run() {
-                            WebActionBar.m5063$r8$lambda$zKzXttVJ6e13AUVkJ7gntuI9R8(last, instantViewLoader);
+                            WebActionBar.m5074$r8$lambda$zKzXttVJ6e13AUVkJ7gntuI9R8(last, instantViewLoader);
                         }
                     }));
                 }
@@ -429,7 +429,7 @@ public abstract class WebActionBar extends FrameLayout {
         };
     }
 
-    public static void m5063$r8$lambda$zKzXttVJ6e13AUVkJ7gntuI9R8(ActionBarMenuSubItem actionBarMenuSubItem, WebInstantView.Loader loader) {
+    public static void m5074$r8$lambda$zKzXttVJ6e13AUVkJ7gntuI9R8(ActionBarMenuSubItem actionBarMenuSubItem, WebInstantView.Loader loader) {
         actionBarMenuSubItem.setEnabled(loader.getWebPage() != null);
         actionBarMenuSubItem.animate().alpha(actionBarMenuSubItem.isEnabled() ? 1.0f : 0.5f);
     }
@@ -655,7 +655,7 @@ public abstract class WebActionBar extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                WebActionBar.m5066$r8$lambda$WByNFthCusmydDaujgGSYZiADw(this.f$0, i, f2, f3, valueAnimator2);
+                WebActionBar.m5077$r8$lambda$WByNFthCusmydDaujgGSYZiADw(this.f$0, i, f2, f3, valueAnimator2);
             }
         });
         this.colorAnimator.addListener(new AnimatorListenerAdapter() {
@@ -667,7 +667,7 @@ public abstract class WebActionBar extends FrameLayout {
         this.colorAnimator.start();
     }
 
-    public static void m5066$r8$lambda$WByNFthCusmydDaujgGSYZiADw(WebActionBar webActionBar, int i, float f, float f2, ValueAnimator valueAnimator) {
+    public static void m5077$r8$lambda$WByNFthCusmydDaujgGSYZiADw(WebActionBar webActionBar, int i, float f, float f2, ValueAnimator valueAnimator) {
         webActionBar.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         webActionBar.setColors(ColorUtils.blendARGB(webActionBar.fromBackgroundColor, i, fFloatValue), AndroidUtilities.lerp(f, f2, fFloatValue), false);
@@ -891,7 +891,7 @@ public abstract class WebActionBar extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    WebActionBar.m5067$r8$lambda$pSo3FG_nRnjI6gxWNO_CKgLMc(this.f$0, valueAnimator2);
+                    WebActionBar.m5078$r8$lambda$pSo3FG_nRnjI6gxWNO_CKgLMc(this.f$0, valueAnimator2);
                 }
             });
             this.searchAnimator.addListener(new AnimatorListenerAdapter() {
@@ -949,7 +949,7 @@ public abstract class WebActionBar extends FrameLayout {
         AndroidUtilities.updateViewShow(imageView, z3, true, z2);
     }
 
-    public static void m5067$r8$lambda$pSo3FG_nRnjI6gxWNO_CKgLMc(WebActionBar webActionBar, ValueAnimator valueAnimator) {
+    public static void m5078$r8$lambda$pSo3FG_nRnjI6gxWNO_CKgLMc(WebActionBar webActionBar, ValueAnimator valueAnimator) {
         webActionBar.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         webActionBar.searchingProgress = fFloatValue;
@@ -1018,7 +1018,7 @@ public abstract class WebActionBar extends FrameLayout {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    WebActionBar.m5065$r8$lambda$LHGz88t7wFeW1WLsnjl3Low6Zo(this.f$0, valueAnimator2);
+                    WebActionBar.m5076$r8$lambda$LHGz88t7wFeW1WLsnjl3Low6Zo(this.f$0, valueAnimator2);
                 }
             });
             this.addressAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1072,7 +1072,7 @@ public abstract class WebActionBar extends FrameLayout {
         }, this.addressing ? 100L : 0L);
     }
 
-    public static void m5065$r8$lambda$LHGz88t7wFeW1WLsnjl3Low6Zo(WebActionBar webActionBar, ValueAnimator valueAnimator) {
+    public static void m5076$r8$lambda$LHGz88t7wFeW1WLsnjl3Low6Zo(WebActionBar webActionBar, ValueAnimator valueAnimator) {
         webActionBar.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         webActionBar.addressingProgress = fFloatValue;
@@ -1093,7 +1093,7 @@ public abstract class WebActionBar extends FrameLayout {
         return this.addressing;
     }
 
-    public static void m5064$r8$lambda$9ZMBVSSnV0qdTnZp4VsZXM3ae8(WebActionBar webActionBar) {
+    public static void m5075$r8$lambda$9ZMBVSSnV0qdTnZp4VsZXM3ae8(WebActionBar webActionBar) {
         webActionBar.longClicked = true;
         if (webActionBar.getParent() != null) {
             webActionBar.getParent().requestDisallowInterceptTouchEvent(true);

@@ -377,13 +377,13 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             this.oneButtonsLayout.animate().alpha(z ? 0.0f : 1.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    TONIntroActivity.m4658$r8$lambda$fL8Wa5lj42_4kZTkCddQBvA1JU(this.f$0, z);
+                    TONIntroActivity.m4669$r8$lambda$fL8Wa5lj42_4kZTkCddQBvA1JU(this.f$0, z);
                 }
             }).start();
             this.twoButtonsLayout.animate().alpha(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    TONIntroActivity.m4657$r8$lambda$HK2sp5GJ6niPU1VJyccWP_ccL0(this.f$0, z);
+                    TONIntroActivity.m4668$r8$lambda$HK2sp5GJ6niPU1VJyccWP_ccL0(this.f$0, z);
                 }
             }).start();
             return;
@@ -396,7 +396,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.oneButtonsLayout.setVisibility(z ? 8 : 0);
     }
 
-    public static void m4658$r8$lambda$fL8Wa5lj42_4kZTkCddQBvA1JU(TONIntroActivity tONIntroActivity, boolean z) {
+    public static void m4669$r8$lambda$fL8Wa5lj42_4kZTkCddQBvA1JU(TONIntroActivity tONIntroActivity, boolean z) {
         if (z) {
             tONIntroActivity.oneButtonsLayout.setVisibility(8);
         } else {
@@ -404,7 +404,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         }
     }
 
-    public static void m4657$r8$lambda$HK2sp5GJ6niPU1VJyccWP_ccL0(TONIntroActivity tONIntroActivity, boolean z) {
+    public static void m4668$r8$lambda$HK2sp5GJ6niPU1VJyccWP_ccL0(TONIntroActivity tONIntroActivity, boolean z) {
         if (z) {
             tONIntroActivity.getClass();
         } else {
@@ -603,7 +603,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                     this.drawable.getPaint = new Utilities.CallbackReturn() {
                         @Override
                         public final Object run(Object obj) {
-                            return TONIntroActivity.AnonymousClass4.m4659$r8$lambda$xSfyRSAjxu8EQXAvDOHBgRHNlk(this.f$0, (Integer) obj);
+                            return TONIntroActivity.AnonymousClass4.m4670$r8$lambda$xSfyRSAjxu8EQXAvDOHBgRHNlk(this.f$0, (Integer) obj);
                         }
                     };
                     StarParticlesView.Drawable drawable2 = this.drawable;
@@ -617,7 +617,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             }
         }
 
-        public static Paint m4659$r8$lambda$xSfyRSAjxu8EQXAvDOHBgRHNlk(AnonymousClass4 anonymousClass4, Integer num) {
+        public static Paint m4670$r8$lambda$xSfyRSAjxu8EQXAvDOHBgRHNlk(AnonymousClass4 anonymousClass4, Integer num) {
             return anonymousClass4.paints[num.intValue() % anonymousClass4.paints.length];
         }
 

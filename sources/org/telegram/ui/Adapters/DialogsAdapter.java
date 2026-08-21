@@ -589,23 +589,23 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DialogsAdapter.m1283$r8$lambda$CtARitgMZbsN7GvrKtTRCd9gJI(this.f$0, callback, runnable, arrayList2);
+                DialogsAdapter.m1289$r8$lambda$CtARitgMZbsN7GvrKtTRCd9gJI(this.f$0, callback, runnable, arrayList2);
             }
         });
     }
 
-    public static void m1283$r8$lambda$CtARitgMZbsN7GvrKtTRCd9gJI(final DialogsAdapter dialogsAdapter, DiffUtil.Callback callback, final Runnable runnable, final ArrayList arrayList) {
+    public static void m1289$r8$lambda$CtARitgMZbsN7GvrKtTRCd9gJI(final DialogsAdapter dialogsAdapter, DiffUtil.Callback callback, final Runnable runnable, final ArrayList arrayList) {
         dialogsAdapter.getClass();
         final DiffUtil.DiffResult diffResultCalculateDiff = DiffUtil.calculateDiff(callback);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DialogsAdapter.m1285$r8$lambda$ZCoDrHh_pGVJVxfAFe8bXEPEyY(this.f$0, runnable, arrayList, diffResultCalculateDiff);
+                DialogsAdapter.m1291$r8$lambda$ZCoDrHh_pGVJVxfAFe8bXEPEyY(this.f$0, runnable, arrayList, diffResultCalculateDiff);
             }
         });
     }
 
-    public static void m1285$r8$lambda$ZCoDrHh_pGVJVxfAFe8bXEPEyY(DialogsAdapter dialogsAdapter, Runnable runnable, ArrayList arrayList, DiffUtil.DiffResult diffResult) {
+    public static void m1291$r8$lambda$ZCoDrHh_pGVJVxfAFe8bXEPEyY(DialogsAdapter dialogsAdapter, Runnable runnable, ArrayList arrayList, DiffUtil.DiffResult diffResult) {
         if (dialogsAdapter.isCalculatingDiff) {
             dialogsAdapter.isCalculatingDiff = false;
             if (runnable != null) {
@@ -647,7 +647,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         return (itemViewType == 1 || itemViewType == 5 || itemViewType == 3 || itemViewType == 8 || itemViewType == 7 || itemViewType == 10 || itemViewType == 11 || itemViewType == 13 || itemViewType == 15 || itemViewType == 16 || itemViewType == 18 || itemViewType == 19 || itemViewType == 20) ? false : true;
     }
 
-    public static void m1284$r8$lambda$EXCeF2i2LielJgYIusBKSgSfU(DialogsAdapter dialogsAdapter, View view) {
+    public static void m1290$r8$lambda$EXCeF2i2LielJgYIusBKSgSfU(DialogsAdapter dialogsAdapter, View view) {
         MessagesController.getInstance(dialogsAdapter.currentAccount).hintDialogs.clear();
         MessagesController.getGlobalMainSettings().edit().remove("installReferer").commit();
         dialogsAdapter.notifyDataSetChanged();
@@ -714,7 +714,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        DialogsAdapter.m1284$r8$lambda$EXCeF2i2LielJgYIusBKSgSfU(this.f$0, view);
+                        DialogsAdapter.m1290$r8$lambda$EXCeF2i2LielJgYIusBKSgSfU(this.f$0, view);
                     }
                 });
                 break;

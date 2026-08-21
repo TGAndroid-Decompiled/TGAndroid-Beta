@@ -86,7 +86,7 @@ public class StarReactionsOverlay extends View {
         this.longPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                StarReactionsOverlay.m4183$r8$lambda$0uHECMoWtP0e3UehsSAglCpI(this.f$0, chatActivity);
+                StarReactionsOverlay.m4192$r8$lambda$0uHECMoWtP0e3UehsSAglCpI(this.f$0, chatActivity);
             }
         };
     }
@@ -98,7 +98,7 @@ public class StarReactionsOverlay extends View {
         starReactionsOverlay.hide();
     }
 
-    public static void m4183$r8$lambda$0uHECMoWtP0e3UehsSAglCpI(StarReactionsOverlay starReactionsOverlay, ChatActivity chatActivity) {
+    public static void m4192$r8$lambda$0uHECMoWtP0e3UehsSAglCpI(StarReactionsOverlay starReactionsOverlay, ChatActivity chatActivity) {
         MessageObject messageObject;
         TLRPC.TL_messageReactions tL_messageReactions;
         TLRPC.TL_messageReactions tL_messageReactions2;
@@ -462,12 +462,12 @@ public class StarReactionsOverlay extends View {
         focusTo(0.0f, new Runnable() {
             @Override
             public final void run() {
-                StarReactionsOverlay.m4184$r8$lambda$iQ5dtsasBSzNkUVm6jAsrkCkto(this.f$0);
+                StarReactionsOverlay.m4193$r8$lambda$iQ5dtsasBSzNkUVm6jAsrkCkto(this.f$0);
             }
         });
     }
 
-    public static void m4184$r8$lambda$iQ5dtsasBSzNkUVm6jAsrkCkto(StarReactionsOverlay starReactionsOverlay) {
+    public static void m4193$r8$lambda$iQ5dtsasBSzNkUVm6jAsrkCkto(StarReactionsOverlay starReactionsOverlay) {
         starReactionsOverlay.setMessageCell(null);
         starReactionsOverlay.clearEffects();
     }

@@ -588,14 +588,14 @@ public class ChannelBoostLayout extends FrameLayout {
             loadOnlyGifts(null, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelBoostLayout.m1544$r8$lambda$Yn9d3OTxj8S4ja7NwgiC5UU6Gw(this.f$0);
+                    ChannelBoostLayout.m1550$r8$lambda$Yn9d3OTxj8S4ja7NwgiC5UU6Gw(this.f$0);
                 }
             });
         } else {
             loadOnlyBoosts(null, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelBoostLayout.m1545$r8$lambda$d7vyIwnRlk3NlITRXX8W6w_48(this.f$0);
+                    ChannelBoostLayout.m1551$r8$lambda$d7vyIwnRlk3NlITRXX8W6w_48(this.f$0);
                 }
             });
         }
@@ -613,22 +613,22 @@ public class ChannelBoostLayout extends FrameLayout {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelBoostLayout.m1546$r8$lambda$gnaW0lu2o7JU43k9fsYeRmZRBI(this.f$0);
+                ChannelBoostLayout.m1552$r8$lambda$gnaW0lu2o7JU43k9fsYeRmZRBI(this.f$0);
             }
         });
     }
 
-    public static void m1546$r8$lambda$gnaW0lu2o7JU43k9fsYeRmZRBI(ChannelBoostLayout channelBoostLayout) {
+    public static void m1552$r8$lambda$gnaW0lu2o7JU43k9fsYeRmZRBI(ChannelBoostLayout channelBoostLayout) {
         channelBoostLayout.usersLoading = false;
         channelBoostLayout.updateRows(true);
     }
 
-    public static void m1544$r8$lambda$Yn9d3OTxj8S4ja7NwgiC5UU6Gw(ChannelBoostLayout channelBoostLayout) {
+    public static void m1550$r8$lambda$Yn9d3OTxj8S4ja7NwgiC5UU6Gw(ChannelBoostLayout channelBoostLayout) {
         channelBoostLayout.usersLoading = false;
         channelBoostLayout.updateRows(true);
     }
 
-    public static void m1545$r8$lambda$d7vyIwnRlk3NlITRXX8W6w_48(ChannelBoostLayout channelBoostLayout) {
+    public static void m1551$r8$lambda$d7vyIwnRlk3NlITRXX8W6w_48(ChannelBoostLayout channelBoostLayout) {
         channelBoostLayout.usersLoading = false;
         channelBoostLayout.updateRows(true);
     }
@@ -641,12 +641,12 @@ public class ChannelBoostLayout extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_premium_getBoostsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelBoostLayout.m1543$r8$lambda$S9Pz4JotZX_U56uiBAd2lFXDYA(this.f$0, countDownLatch, runnable, tLObject, tL_error);
+                ChannelBoostLayout.m1549$r8$lambda$S9Pz4JotZX_U56uiBAd2lFXDYA(this.f$0, countDownLatch, runnable, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public static void m1543$r8$lambda$S9Pz4JotZX_U56uiBAd2lFXDYA(final ChannelBoostLayout channelBoostLayout, final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1549$r8$lambda$S9Pz4JotZX_U56uiBAd2lFXDYA(final ChannelBoostLayout channelBoostLayout, final CountDownLatch countDownLatch, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         channelBoostLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

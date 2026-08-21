@@ -26,7 +26,7 @@ public final class VoIPPendingCall {
         return new VoIPPendingCall(activity, j, z, 1000L, accountInstance);
     }
 
-    public static void m1169$r8$lambda$edP4Tyseyyaa_Rhro5SI9dhuHU(VoIPPendingCall voIPPendingCall, int i, int i2, Object[] objArr) {
+    public static void m1175$r8$lambda$edP4Tyseyyaa_Rhro5SI9dhuHU(VoIPPendingCall voIPPendingCall, int i, int i2, Object[] objArr) {
         voIPPendingCall.getClass();
         if (i == NotificationCenter.didUpdateConnectionState) {
             voIPPendingCall.onConnectionStateUpdated(false);
@@ -37,7 +37,7 @@ public final class VoIPPendingCall {
         NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                VoIPPendingCall.m1169$r8$lambda$edP4Tyseyyaa_Rhro5SI9dhuHU(this.f$0, i, i2, objArr);
+                VoIPPendingCall.m1175$r8$lambda$edP4Tyseyyaa_Rhro5SI9dhuHU(this.f$0, i, i2, objArr);
             }
         };
         this.observer = notificationCenterDelegate;

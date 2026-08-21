@@ -275,7 +275,7 @@ public class EnableTopicsActivity extends BaseFragment {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        EnableTopicsActivity.TopicsLayoutSwitcher.m3128$r8$lambda$sqKtdnSmyIjj0uJ9DPW4ShSUNo(this.f$0, valueAnimator2);
+                        EnableTopicsActivity.TopicsLayoutSwitcher.m3137$r8$lambda$sqKtdnSmyIjj0uJ9DPW4ShSUNo(this.f$0, valueAnimator2);
                     }
                 });
                 this.animator.addListener(new AnimatorListenerAdapter() {
@@ -327,7 +327,7 @@ public class EnableTopicsActivity extends BaseFragment {
             }
         }
 
-        public static void m3128$r8$lambda$sqKtdnSmyIjj0uJ9DPW4ShSUNo(TopicsLayoutSwitcher topicsLayoutSwitcher, ValueAnimator valueAnimator) {
+        public static void m3137$r8$lambda$sqKtdnSmyIjj0uJ9DPW4ShSUNo(TopicsLayoutSwitcher topicsLayoutSwitcher, ValueAnimator valueAnimator) {
             topicsLayoutSwitcher.getClass();
             topicsLayoutSwitcher.tabsAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             BackupImageView backupImageView = topicsLayoutSwitcher.leftImageView;

@@ -1303,12 +1303,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageSendPreview.m3544$r8$lambda$hu3jiRbqLKrwaIMfMCC39C4yY(this.f$0, view);
+                MessageSendPreview.m3552$r8$lambda$hu3jiRbqLKrwaIMfMCC39C4yY(this.f$0, view);
             }
         }, 100L);
     }
 
-    public static void m3544$r8$lambda$hu3jiRbqLKrwaIMfMCC39C4yY(MessageSendPreview messageSendPreview, View view) {
+    public static void m3552$r8$lambda$hu3jiRbqLKrwaIMfMCC39C4yY(MessageSendPreview messageSendPreview, View view) {
         messageSendPreview.getClass();
         AndroidUtilities.showKeyboard(view);
         ChatActivityEnterView.SendButton sendButton = messageSendPreview.anchorSendButton;
@@ -1428,7 +1428,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                         MessageSendPreview.this.drawEditText.run(canvas2, new Utilities.Callback0Return() {
                             @Override
                             public final Object run() {
-                                return MessageSendPreview.AnonymousClass2.m3545$r8$lambda$bUhhqt52v92mqfIlEmSTKg8vBs(this.f$0, canvas2, f6);
+                                return MessageSendPreview.AnonymousClass2.m3553$r8$lambda$bUhhqt52v92mqfIlEmSTKg8vBs(this.f$0, canvas2, f6);
                             }
                         });
                     }
@@ -1581,7 +1581,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
         }
 
-        public static Boolean m3545$r8$lambda$bUhhqt52v92mqfIlEmSTKg8vBs(AnonymousClass2 anonymousClass2, Canvas canvas, float f) {
+        public static Boolean m3553$r8$lambda$bUhhqt52v92mqfIlEmSTKg8vBs(AnonymousClass2 anonymousClass2, Canvas canvas, float f) {
             anonymousClass2.getClass();
             canvas.save();
             canvas.translate(MessageSendPreview.this.editText.getX(), MessageSendPreview.this.editText.getY() - MessageSendPreview.this.editText.getScrollY());

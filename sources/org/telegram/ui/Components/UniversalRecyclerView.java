@@ -121,7 +121,7 @@ public class UniversalRecyclerView extends RecyclerListView {
 
                 @Override
                 public final void onItemClick(View view, int i5, float f, float f2) {
-                    UniversalRecyclerView.m2929$r8$lambda$HwQsKjqfgq0fWaQ2U15BPbk4E(this.f$0, callback5, view, i5, f, f2);
+                    UniversalRecyclerView.m2938$r8$lambda$HwQsKjqfgq0fWaQ2U15BPbk4E(this.f$0, callback5, view, i5, f, f2);
                 }
             });
         }
@@ -185,7 +185,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         setItemAnimator(defaultItemAnimator);
     }
 
-    public static void m2929$r8$lambda$HwQsKjqfgq0fWaQ2U15BPbk4E(UniversalRecyclerView universalRecyclerView, Utilities.Callback5 callback5, View view, int i, float f, float f2) {
+    public static void m2938$r8$lambda$HwQsKjqfgq0fWaQ2U15BPbk4E(UniversalRecyclerView universalRecyclerView, Utilities.Callback5 callback5, View view, int i, float f, float f2) {
         UItem item = universalRecyclerView.adapter.getItem(i);
         if (item == null) {
             return;

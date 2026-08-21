@@ -644,12 +644,12 @@ public class FilterGLThread extends DispatchQueue {
         postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FilterGLThread.m2329$r8$lambda$XqE_FnMz0TUGXg250zUymX_GPg(this.f$0, i, i2);
+                FilterGLThread.m2339$r8$lambda$XqE_FnMz0TUGXg250zUymX_GPg(this.f$0, i, i2);
             }
         });
     }
 
-    public static void m2329$r8$lambda$XqE_FnMz0TUGXg250zUymX_GPg(FilterGLThread filterGLThread, int i, int i2) {
+    public static void m2339$r8$lambda$XqE_FnMz0TUGXg250zUymX_GPg(FilterGLThread filterGLThread, int i, int i2) {
         filterGLThread.surfaceWidth = i;
         filterGLThread.surfaceHeight = i2;
     }

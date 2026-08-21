@@ -272,7 +272,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         return true;
     }
 
-    public static boolean m1538$r8$lambda$jAlypGwhTAgRhhBaFgBF5z7YCc(String str) {
+    public static boolean m1544$r8$lambda$jAlypGwhTAgRhhBaFgBF5z7YCc(String str) {
         return str != null;
     }
 
@@ -562,13 +562,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAdminLogActivity.m1540$r8$lambda$nxL7wqbtKPsQI5edvBE5RxCjKQ(this.f$0, tL_channels_adminLogResults);
+                    ChannelAdminLogActivity.m1546$r8$lambda$nxL7wqbtKPsQI5edvBE5RxCjKQ(this.f$0, tL_channels_adminLogResults);
                 }
             });
         }
     }
 
-    public static void m1540$r8$lambda$nxL7wqbtKPsQI5edvBE5RxCjKQ(ChannelAdminLogActivity channelAdminLogActivity, TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults) {
+    public static void m1546$r8$lambda$nxL7wqbtKPsQI5edvBE5RxCjKQ(ChannelAdminLogActivity channelAdminLogActivity, TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults) {
         MessageObject messageObject;
         TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent;
         channelAdminLogActivity.reloadingLastMessages = false;
@@ -747,7 +747,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             MediaDataController.getInstance(channelAdminLogActivity.currentAccount).loadReplyMessagesForMessages(arrayList, -channelAdminLogActivity.currentChat.id, 0, 0L, new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAdminLogActivity.m1536$r8$lambda$Ug5Q6Gjr35q_42R6tAB7h1mA4(this.f$0);
+                    ChannelAdminLogActivity.m1542$r8$lambda$Ug5Q6Gjr35q_42R6tAB7h1mA4(this.f$0);
                 }
             }, channelAdminLogActivity.getClassGuid(), null);
         }
@@ -771,7 +771,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
     }
 
-    public static void m1536$r8$lambda$Ug5Q6Gjr35q_42R6tAB7h1mA4(ChannelAdminLogActivity channelAdminLogActivity) {
+    public static void m1542$r8$lambda$Ug5Q6Gjr35q_42R6tAB7h1mA4(ChannelAdminLogActivity channelAdminLogActivity) {
         channelAdminLogActivity.saveScrollPosition(false);
         channelAdminLogActivity.chatAdapter.notifyDataSetChanged();
     }
@@ -920,7 +920,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public final boolean test(Object obj) {
-                return ChannelAdminLogActivity.m1538$r8$lambda$jAlypGwhTAgRhhBaFgBF5z7YCc((String) obj);
+                return ChannelAdminLogActivity.m1544$r8$lambda$jAlypGwhTAgRhhBaFgBF5z7YCc((String) obj);
             }
         }).limit(4L).toArray())), "un1", user));
         if (z2 && arrayList.size() > 1) {
@@ -1710,7 +1710,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChannelAdminLogActivity.m1530$r8$lambda$16l3UDicnYMjl1WuArd9bygVEE(this.f$0, view2);
+                ChannelAdminLogActivity.m1536$r8$lambda$16l3UDicnYMjl1WuArd9bygVEE(this.f$0, view2);
             }
         });
         this.bottomOverlayChatText.setTextSize(1, 15.0f);
@@ -1724,7 +1724,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.bottomOverlayChat2.setButtonOnClickListener(4, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChannelAdminLogActivity.m1532$r8$lambda$8FXzgz6l3rpz7lXzOMkvmvXIb0(this.f$0, view2);
+                ChannelAdminLogActivity.m1538$r8$lambda$8FXzgz6l3rpz7lXzOMkvmvXIb0(this.f$0, view2);
             }
         });
         FrameLayout frameLayout3 = new FrameLayout(context);
@@ -1823,7 +1823,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
     }
 
-    public static void m1530$r8$lambda$16l3UDicnYMjl1WuArd9bygVEE(final ChannelAdminLogActivity channelAdminLogActivity, View view) {
+    public static void m1536$r8$lambda$16l3UDicnYMjl1WuArd9bygVEE(final ChannelAdminLogActivity channelAdminLogActivity, View view) {
         if (channelAdminLogActivity.getParentActivity() == null) {
             return;
         }
@@ -1832,13 +1832,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         adminLogFilterAlert2.setAdminLogFilterAlertDelegate(new AdminLogFilterAlert2.AdminLogFilterAlertDelegate() {
             @Override
             public final void didSelectRights(TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, LongSparseArray longSparseArray) {
-                ChannelAdminLogActivity.m1537$r8$lambda$W35APlpEJX_bK2iyRNT2Y3s6bI(this.f$0, tL_channelAdminLogEventsFilter, longSparseArray);
+                ChannelAdminLogActivity.m1543$r8$lambda$W35APlpEJX_bK2iyRNT2Y3s6bI(this.f$0, tL_channelAdminLogEventsFilter, longSparseArray);
             }
         });
         channelAdminLogActivity.showDialog(adminLogFilterAlert2);
     }
 
-    public static void m1537$r8$lambda$W35APlpEJX_bK2iyRNT2Y3s6bI(ChannelAdminLogActivity channelAdminLogActivity, TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, LongSparseArray longSparseArray) {
+    public static void m1543$r8$lambda$W35APlpEJX_bK2iyRNT2Y3s6bI(ChannelAdminLogActivity channelAdminLogActivity, TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, LongSparseArray longSparseArray) {
         channelAdminLogActivity.currentFilter = tL_channelAdminLogEventsFilter;
         channelAdminLogActivity.selectedAdmins = longSparseArray;
         if (tL_channelAdminLogEventsFilter != null || longSparseArray != null) {
@@ -1849,7 +1849,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         channelAdminLogActivity.loadMessages(true);
     }
 
-    public static void m1532$r8$lambda$8FXzgz6l3rpz7lXzOMkvmvXIb0(ChannelAdminLogActivity channelAdminLogActivity, View view) {
+    public static void m1538$r8$lambda$8FXzgz6l3rpz7lXzOMkvmvXIb0(ChannelAdminLogActivity channelAdminLogActivity, View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(channelAdminLogActivity.getParentActivity());
         if (channelAdminLogActivity.currentChat.megagroup) {
             builder.setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EventLogInfoDetail)));
@@ -2179,7 +2179,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     getMessagesController().getChannelParticipant(this.currentChat, user2, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            ChannelAdminLogActivity.m1534$r8$lambda$JbB3P6TYbINL8Xv14cGuBKlgGw(this.f$0, arrayList5, arrayList3, arrayList2, runnable, (TLRPC.ChannelParticipant) obj);
+                            ChannelAdminLogActivity.m1540$r8$lambda$JbB3P6TYbINL8Xv14cGuBKlgGw(this.f$0, arrayList5, arrayList3, arrayList2, runnable, (TLRPC.ChannelParticipant) obj);
                         }
                     });
                 } else {
@@ -2509,7 +2509,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ChannelAdminLogActivity.m1533$r8$lambda$FfieVa8V4D5NwE5P2buo9k1O2M(this.f$0, i2, arrayList, num, view2);
+                        ChannelAdminLogActivity.m1539$r8$lambda$FfieVa8V4D5NwE5P2buo9k1O2M(this.f$0, i2, arrayList, num, view2);
                     }
                 });
             }
@@ -2599,24 +2599,24 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         channelAdminLogActivity.scrimPopupWindow.dimBehind();
     }
 
-    public static void m1533$r8$lambda$FfieVa8V4D5NwE5P2buo9k1O2M(ChannelAdminLogActivity channelAdminLogActivity, int i, ArrayList arrayList, Integer num, View view) {
+    public static void m1539$r8$lambda$FfieVa8V4D5NwE5P2buo9k1O2M(ChannelAdminLogActivity channelAdminLogActivity, int i, ArrayList arrayList, Integer num, View view) {
         if (channelAdminLogActivity.selectedObject == null || i >= arrayList.size()) {
             return;
         }
         channelAdminLogActivity.processSelectedOption(num.intValue());
     }
 
-    public static void m1534$r8$lambda$JbB3P6TYbINL8Xv14cGuBKlgGw(final ChannelAdminLogActivity channelAdminLogActivity, final ArrayList arrayList, final ArrayList arrayList2, final ArrayList arrayList3, final Runnable runnable, final TLRPC.ChannelParticipant channelParticipant) {
+    public static void m1540$r8$lambda$JbB3P6TYbINL8Xv14cGuBKlgGw(final ChannelAdminLogActivity channelAdminLogActivity, final ArrayList arrayList, final ArrayList arrayList2, final ArrayList arrayList3, final Runnable runnable, final TLRPC.ChannelParticipant channelParticipant) {
         channelAdminLogActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelAdminLogActivity.m1535$r8$lambda$Mxnlk01bjYx_1pPLcDhoVQQDQc(this.f$0, channelParticipant, arrayList, arrayList2, arrayList3, runnable);
+                ChannelAdminLogActivity.m1541$r8$lambda$Mxnlk01bjYx_1pPLcDhoVQQDQc(this.f$0, channelParticipant, arrayList, arrayList2, arrayList3, runnable);
             }
         });
     }
 
-    public static void m1535$r8$lambda$Mxnlk01bjYx_1pPLcDhoVQQDQc(ChannelAdminLogActivity channelAdminLogActivity, TLRPC.ChannelParticipant channelParticipant, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Runnable runnable) {
+    public static void m1541$r8$lambda$Mxnlk01bjYx_1pPLcDhoVQQDQc(ChannelAdminLogActivity channelAdminLogActivity, TLRPC.ChannelParticipant channelParticipant, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Runnable runnable) {
         TLRPC.ChatParticipants chatParticipants;
         channelAdminLogActivity.selectedParticipant = channelParticipant;
         if (channelParticipant != null) {
@@ -2860,7 +2860,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                                                     getConnectionsManager().sendRequest(tL_channels_reportAntiSpamFalsePositive, new RequestDelegate() {
                                                         @Override
                                                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                                            ChannelAdminLogActivity.m1539$r8$lambda$nEFBVBhRY9lDTIGNpzLiCIJohA(this.f$0, tLObject, tL_error);
+                                                            ChannelAdminLogActivity.m1545$r8$lambda$nEFBVBhRY9lDTIGNpzLiCIJohA(this.f$0, tLObject, tL_error);
                                                         }
                                                     });
                                                     break;
@@ -2999,7 +2999,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.selectedParticipant = null;
     }
 
-    public static void m1539$r8$lambda$nEFBVBhRY9lDTIGNpzLiCIJohA(final ChannelAdminLogActivity channelAdminLogActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1545$r8$lambda$nEFBVBhRY9lDTIGNpzLiCIJohA(final ChannelAdminLogActivity channelAdminLogActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
         channelAdminLogActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -3092,12 +3092,12 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChannelAdminLogActivity.m1541$r8$lambda$szILR6xeKjD9PqjAKQ22oYNtQ4(this.f$0, tL_error, tLObject);
+                ChannelAdminLogActivity.m1547$r8$lambda$szILR6xeKjD9PqjAKQ22oYNtQ4(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m1541$r8$lambda$szILR6xeKjD9PqjAKQ22oYNtQ4(ChannelAdminLogActivity channelAdminLogActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m1547$r8$lambda$szILR6xeKjD9PqjAKQ22oYNtQ4(ChannelAdminLogActivity channelAdminLogActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         TLRPC.ChatFull chatFull;
         channelAdminLogActivity.getClass();
         if (tL_error == null) {
@@ -4708,7 +4708,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
-                            ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.m1542$r8$lambda$UGuA3H1s2oBDjkIfNA1TKZyFyg(this.f$0, url2, dialogInterface, i);
+                            ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.m1548$r8$lambda$UGuA3H1s2oBDjkIfNA1TKZyFyg(this.f$0, url2, dialogInterface, i);
                         }
                     });
                     ChannelAdminLogActivity.this.showDialog(builder.create());
@@ -4734,7 +4734,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 Browser.openUrl((Context) ChannelAdminLogActivity.this.getParentActivity(), url2, true);
             }
 
-            public static void m1542$r8$lambda$UGuA3H1s2oBDjkIfNA1TKZyFyg(AnonymousClass1 anonymousClass1, String str, DialogInterface dialogInterface, int i) {
+            public static void m1548$r8$lambda$UGuA3H1s2oBDjkIfNA1TKZyFyg(AnonymousClass1 anonymousClass1, String str, DialogInterface dialogInterface, int i) {
                 if (i == 0) {
                     Browser.openUrl((Context) ChannelAdminLogActivity.this.getParentActivity(), str, true);
                     return;

@@ -112,13 +112,13 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateGroupCallBottomSheet.m2240$r8$lambda$CYAEiO_2cpVXuO37hNPmhrHjWo(this.f$0, view);
+                CreateGroupCallBottomSheet.m2250$r8$lambda$CYAEiO_2cpVXuO37hNPmhrHjWo(this.f$0, view);
             }
         });
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateGroupCallBottomSheet.m2241$r8$lambda$eHvArFxBCULSOIdXzQEcgjei4E(this.f$0, view);
+                CreateGroupCallBottomSheet.m2251$r8$lambda$eHvArFxBCULSOIdXzQEcgjei4E(this.f$0, view);
             }
         });
         RecyclerListView recyclerListView = this.recyclerListView;
@@ -134,12 +134,12 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         updateTitle();
     }
 
-    public static void m2240$r8$lambda$CYAEiO_2cpVXuO37hNPmhrHjWo(CreateGroupCallBottomSheet createGroupCallBottomSheet, View view) {
+    public static void m2250$r8$lambda$CYAEiO_2cpVXuO37hNPmhrHjWo(CreateGroupCallBottomSheet createGroupCallBottomSheet, View view) {
         createGroupCallBottomSheet.selectAfterDismiss = MessagesController.getInstance(createGroupCallBottomSheet.currentAccount).getInputPeer(MessageObject.getPeerId(createGroupCallBottomSheet.selectedPeer));
         createGroupCallBottomSheet.dismiss();
     }
 
-    public static void m2241$r8$lambda$eHvArFxBCULSOIdXzQEcgjei4E(CreateGroupCallBottomSheet createGroupCallBottomSheet, View view) {
+    public static void m2251$r8$lambda$eHvArFxBCULSOIdXzQEcgjei4E(CreateGroupCallBottomSheet createGroupCallBottomSheet, View view) {
         createGroupCallBottomSheet.selectAfterDismiss = MessagesController.getInstance(createGroupCallBottomSheet.currentAccount).getInputPeer(MessageObject.getPeerId(createGroupCallBottomSheet.selectedPeer));
         createGroupCallBottomSheet.isScheduleSelected = true;
         createGroupCallBottomSheet.dismiss();

@@ -86,7 +86,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             ((CheckItem) this.checkItems.get(i2)).item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    KeepMediaPopupView.m3332$r8$lambda$gJbfQ1tfCIXv9LvH3NBBOEW7Eo(this.f$0, i3, view2);
+                    KeepMediaPopupView.m3340$r8$lambda$gJbfQ1tfCIXv9LvH3NBBOEW7Eo(this.f$0, i3, view2);
                 }
             });
         }
@@ -127,7 +127,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
 
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
-                    return KeepMediaPopupView.m3331$r8$lambda$M1LuTvYvWSvGUaoqf7ir8pzWmA(this.f$0, dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
+                    return KeepMediaPopupView.m3339$r8$lambda$M1LuTvYvWSvGUaoqf7ir8pzWmA(this.f$0, dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
                 }
 
                 @Override
@@ -145,7 +145,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         baseFragment.presentFragment(cacheChatsExceptionsFragment);
     }
 
-    public static boolean m3331$r8$lambda$M1LuTvYvWSvGUaoqf7ir8pzWmA(KeepMediaPopupView keepMediaPopupView, final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public static boolean m3339$r8$lambda$M1LuTvYvWSvGUaoqf7ir8pzWmA(KeepMediaPopupView keepMediaPopupView, final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         keepMediaPopupView.getClass();
         final CacheByChatsController.KeepMediaException keepMediaException = null;
         int i3 = 0;
@@ -180,7 +180,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         return true;
     }
 
-    public static void m3332$r8$lambda$gJbfQ1tfCIXv9LvH3NBBOEW7Eo(KeepMediaPopupView keepMediaPopupView, int i, View view) {
+    public static void m3340$r8$lambda$gJbfQ1tfCIXv9LvH3NBBOEW7Eo(KeepMediaPopupView keepMediaPopupView, int i, View view) {
         keepMediaPopupView.window.dismiss();
         int i2 = keepMediaPopupView.currentType;
         if (i2 >= 0) {

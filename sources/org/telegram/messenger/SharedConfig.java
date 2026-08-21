@@ -192,10 +192,10 @@ public class SharedConfig {
     public @interface PerformanceClass {
     }
 
-    public static void m1038$r8$lambda$AgzMnIFjDK3Boj0GV34UBf8Qd8(AlertDialog alertDialog, int i) {
+    public static void m1044$r8$lambda$AgzMnIFjDK3Boj0GV34UBf8Qd8(AlertDialog alertDialog, int i) {
     }
 
-    public static void m1039$r8$lambda$c1nolnMM8hkF5gEowxjTAWjtKM() {
+    public static void m1045$r8$lambda$c1nolnMM8hkF5gEowxjTAWjtKM() {
     }
 
     public static boolean loopStickers() {
@@ -224,7 +224,7 @@ public class SharedConfig {
         ImageLoader.getInstance().checkMediaPaths(new Runnable() {
             @Override
             public final void run() {
-                SharedConfig.m1039$r8$lambda$c1nolnMM8hkF5gEowxjTAWjtKM();
+                SharedConfig.m1045$r8$lambda$c1nolnMM8hkF5gEowxjTAWjtKM();
             }
         });
         readOnlyStorageDirAlertShowed = true;
@@ -234,7 +234,7 @@ public class SharedConfig {
         builder.setPositiveButton(LocaleController.getString(R.string.DoNotUseSDCard), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                SharedConfig.m1038$r8$lambda$AgzMnIFjDK3Boj0GV34UBf8Qd8(alertDialog, i);
+                SharedConfig.m1044$r8$lambda$AgzMnIFjDK3Boj0GV34UBf8Qd8(alertDialog, i);
             }
         });
         AlertDialog alertDialogCreate = builder.create();
@@ -1445,7 +1445,7 @@ public class SharedConfig {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return SharedConfig.m1037$r8$lambda$3gtbUfC6wnjRm8ZleoIGK_ytoQ((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
+                return SharedConfig.m1043$r8$lambda$3gtbUfC6wnjRm8ZleoIGK_ytoQ((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
             }
         });
         SerializedData serializedData = new SerializedData();
@@ -1484,7 +1484,7 @@ public class SharedConfig {
         serializedData.cleanup();
     }
 
-    public static int m1037$r8$lambda$3gtbUfC6wnjRm8ZleoIGK_ytoQ(ProxyInfo proxyInfo, ProxyInfo proxyInfo2) {
+    public static int m1043$r8$lambda$3gtbUfC6wnjRm8ZleoIGK_ytoQ(ProxyInfo proxyInfo, ProxyInfo proxyInfo2) {
         ProxyInfo proxyInfo3 = currentProxy;
         long j = proxyInfo3 == proxyInfo ? -200000L : 0L;
         if (!proxyInfo.available) {

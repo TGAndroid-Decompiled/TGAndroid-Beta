@@ -55,7 +55,7 @@ public class VoipCoverEmoji {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoipCoverEmoji.m3011$r8$lambda$wHt6k9uscPhbPWg_LHAc3R59JM(this.f$0, view, valueAnimator);
+                VoipCoverEmoji.m3020$r8$lambda$wHt6k9uscPhbPWg_LHAc3R59JM(this.f$0, view, valueAnimator);
             }
         });
         this.fromRandomX = this.toRandomX + AndroidUtilities.dp(12.0f);
@@ -80,7 +80,7 @@ public class VoipCoverEmoji {
         this.positionAnimator.setDuration(2000L);
     }
 
-    public static void m3011$r8$lambda$wHt6k9uscPhbPWg_LHAc3R59JM(VoipCoverEmoji voipCoverEmoji, View view, ValueAnimator valueAnimator) {
+    public static void m3020$r8$lambda$wHt6k9uscPhbPWg_LHAc3R59JM(VoipCoverEmoji voipCoverEmoji, View view, ValueAnimator valueAnimator) {
         int i = voipCoverEmoji.fromRandomX;
         voipCoverEmoji.randomX = (int) (i + ((voipCoverEmoji.toRandomX - i) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
         int i2 = voipCoverEmoji.fromRandomY;
@@ -107,7 +107,7 @@ public class VoipCoverEmoji {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoipCoverEmoji.m3009$r8$lambda$miXq0gBKf7xgbCSyjE5Wab9Atg(this.f$0, i, i2, valueAnimator);
+                VoipCoverEmoji.m3018$r8$lambda$miXq0gBKf7xgbCSyjE5Wab9Atg(this.f$0, i, i2, valueAnimator);
             }
         });
         long j = 350;
@@ -128,7 +128,7 @@ public class VoipCoverEmoji {
         valueAnimatorOfInt.start();
     }
 
-    public static void m3009$r8$lambda$miXq0gBKf7xgbCSyjE5Wab9Atg(final VoipCoverEmoji voipCoverEmoji, int i, int i2, ValueAnimator valueAnimator) {
+    public static void m3018$r8$lambda$miXq0gBKf7xgbCSyjE5Wab9Atg(final VoipCoverEmoji voipCoverEmoji, int i, int i2, ValueAnimator valueAnimator) {
         voipCoverEmoji.getClass();
         voipCoverEmoji.scale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         voipCoverEmoji.parent.invalidate();
@@ -140,14 +140,14 @@ public class VoipCoverEmoji {
         valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoipCoverEmoji.m3010$r8$lambda$vxSsdPi5ywC15U_CG3iukpYj5I(this.f$0, valueAnimator2);
+                VoipCoverEmoji.m3019$r8$lambda$vxSsdPi5ywC15U_CG3iukpYj5I(this.f$0, valueAnimator2);
             }
         });
         voipCoverEmoji.diffXAnimator.setDuration(((long) i2) - valueAnimator.getCurrentPlayTime());
         voipCoverEmoji.diffXAnimator.start();
     }
 
-    public static void m3010$r8$lambda$vxSsdPi5ywC15U_CG3iukpYj5I(VoipCoverEmoji voipCoverEmoji, ValueAnimator valueAnimator) {
+    public static void m3019$r8$lambda$vxSsdPi5ywC15U_CG3iukpYj5I(VoipCoverEmoji voipCoverEmoji, ValueAnimator valueAnimator) {
         voipCoverEmoji.getClass();
         int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         if (voipCoverEmoji.posX <= voipCoverEmoji.getCenterX()) {

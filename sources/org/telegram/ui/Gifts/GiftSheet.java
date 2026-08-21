@@ -38,7 +38,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ProductDetails;
-import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import j$.util.Collection;
 import j$.util.function.Predicate$CC;
@@ -407,7 +406,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i7) {
-                    GiftSheet.m3206$r8$lambda$yfwp97YIm0Cazo8ORbAe2pMj14(this.f$0, context2, i, callback, j, view, i7);
+                    GiftSheet.m3214$r8$lambda$yfwp97YIm0Cazo8ORbAe2pMj14(this.f$0, context2, i, callback, j, view, i7);
                 }
             });
             updatePremiumTiers();
@@ -460,7 +459,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i7) {
-                GiftSheet.m3206$r8$lambda$yfwp97YIm0Cazo8ORbAe2pMj14(this.f$0, context2, i, callback, j, view, i7);
+                GiftSheet.m3214$r8$lambda$yfwp97YIm0Cazo8ORbAe2pMj14(this.f$0, context2, i, callback, j, view, i7);
             }
         });
         updatePremiumTiers();
@@ -579,7 +578,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }
     }
 
-    public static void m3206$r8$lambda$yfwp97YIm0Cazo8ORbAe2pMj14(final GiftSheet giftSheet, final Context context, final int i, final Utilities.Callback callback, final long j, View view, int i2) {
+    public static void m3214$r8$lambda$yfwp97YIm0Cazo8ORbAe2pMj14(final GiftSheet giftSheet, final Context context, final int i, final Utilities.Callback callback, final long j, View view, int i2) {
         TL_stars.SavedStarGift savedStarGift;
         UItem item = giftSheet.adapter.getItem(i2 - 1);
         if (item != null && item.instanceOf(GiftCell.Factory.class)) {
@@ -632,7 +631,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     starGiftSheet.openTransferAlert(j, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj3) {
-                            GiftSheet.m3205$r8$lambda$l8zWD8s0kKNTpWMZDe9QdpdxyY(this.f$0, starGiftSheet, j, callback, (Browser.Progress) obj3);
+                            GiftSheet.m3213$r8$lambda$l8zWD8s0kKNTpWMZDe9QdpdxyY(this.f$0, starGiftSheet, j, callback, (Browser.Progress) obj3);
                         }
                     });
                     return;
@@ -679,7 +678,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     AuctionJoinSheet.show(context, giftSheet.resourcesProvider, i, j, starGift.id, new Runnable() {
                         @Override
                         public final void run() {
-                            GiftSheet.m3202$r8$lambda$U4SvLzlV_wGO_2lca5dLDyXDHk(this.f$0, callback);
+                            GiftSheet.m3211$r8$lambda$U4SvLzlV_wGO_2lca5dLDyXDHk(this.f$0, callback);
                         }
                     });
                     return;
@@ -695,7 +694,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 final Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        GiftSheet.m3200$r8$lambda$DynSurx3frvTWWhCQkxI9gD8yM(this.f$0, context, i, starGift, callback);
+                        GiftSheet.m3209$r8$lambda$DynSurx3frvTWWhCQkxI9gD8yM(this.f$0, context, i, starGift, callback);
                     }
                 };
                 if (starGift.locked_until_date > ConnectionsManager.getInstance(i).getCurrentTime()) {
@@ -750,7 +749,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         giftSheet.dismiss();
     }
 
-    public static void m3205$r8$lambda$l8zWD8s0kKNTpWMZDe9QdpdxyY(final GiftSheet giftSheet, final StarGiftSheet starGiftSheet, long j, final Utilities.Callback callback, final Browser.Progress progress) {
+    public static void m3213$r8$lambda$l8zWD8s0kKNTpWMZDe9QdpdxyY(final GiftSheet giftSheet, final StarGiftSheet starGiftSheet, long j, final Utilities.Callback callback, final Browser.Progress progress) {
         giftSheet.getClass();
         progress.init();
         starGiftSheet.doTransfer(j, new Utilities.Callback() {
@@ -791,7 +790,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         giftSheet.dismiss();
     }
 
-    public static void m3202$r8$lambda$U4SvLzlV_wGO_2lca5dLDyXDHk(GiftSheet giftSheet, Utilities.Callback callback) {
+    public static void m3211$r8$lambda$U4SvLzlV_wGO_2lca5dLDyXDHk(GiftSheet giftSheet, Utilities.Callback callback) {
         if (callback != null) {
             giftSheet.getClass();
             callback.run(Boolean.FALSE);
@@ -799,7 +798,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         giftSheet.dismiss();
     }
 
-    public static void m3200$r8$lambda$DynSurx3frvTWWhCQkxI9gD8yM(final GiftSheet giftSheet, Context context, int i, TL_stars.StarGift starGift, final Utilities.Callback callback) {
+    public static void m3209$r8$lambda$DynSurx3frvTWWhCQkxI9gD8yM(final GiftSheet giftSheet, Context context, int i, TL_stars.StarGift starGift, final Utilities.Callback callback) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
         long j = giftSheet.dialogId;
@@ -832,12 +831,12 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GiftSheet.m3199$r8$lambda$1kf5fVK1CHuclBOmXx_Wx_x4lg(this.f$0, alertDialog, tLObject, runnable, callback, tL_error);
+                GiftSheet.m3208$r8$lambda$1kf5fVK1CHuclBOmXx_Wx_x4lg(this.f$0, alertDialog, tLObject, runnable, callback, tL_error);
             }
         });
     }
 
-    public static void m3199$r8$lambda$1kf5fVK1CHuclBOmXx_Wx_x4lg(final GiftSheet giftSheet, AlertDialog alertDialog, TLObject tLObject, Runnable runnable, final Utilities.Callback callback, TLRPC.TL_error tL_error) {
+    public static void m3208$r8$lambda$1kf5fVK1CHuclBOmXx_Wx_x4lg(final GiftSheet giftSheet, AlertDialog alertDialog, TLObject tLObject, Runnable runnable, final Utilities.Callback callback, TLRPC.TL_error tL_error) {
         giftSheet.getClass();
         alertDialog.dismiss();
         if (tLObject instanceof TL_stars.checkCanSendGiftResultOk) {
@@ -855,14 +854,14 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 ((EffectsTextView) messageTextView).setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
                     @Override
                     public final void run(ClickableSpan clickableSpan) {
-                        GiftSheet.m3204$r8$lambda$iRRponwPeEpog06Sg2w74tjp5E(this.f$0, alertDialogShow, callback, messageTextView, clickableSpan);
+                        GiftSheet.m3212$r8$lambda$iRRponwPeEpog06Sg2w74tjp5E(this.f$0, alertDialogShow, callback, messageTextView, clickableSpan);
                     }
                 });
             }
         }
     }
 
-    public static void m3204$r8$lambda$iRRponwPeEpog06Sg2w74tjp5E(GiftSheet giftSheet, AlertDialog alertDialog, Utilities.Callback callback, TextView textView, ClickableSpan clickableSpan) {
+    public static void m3212$r8$lambda$iRRponwPeEpog06Sg2w74tjp5E(GiftSheet giftSheet, AlertDialog alertDialog, Utilities.Callback callback, TextView textView, ClickableSpan clickableSpan) {
         giftSheet.getClass();
         alertDialog.dismiss();
         if (callback != null) {
@@ -1033,10 +1032,10 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 }
             } else if (!arrayList.isEmpty()) {
                 System.currentTimeMillis();
-                BillingController.getInstance().queryProductDetails(arrayList, new ProductDetailsResponseListener() {
+                BillingController.getInstance().queryProductDetails(arrayList, new BillingController.ProductDetailsResponseListenerLegacy() {
                     @Override
                     public final void onProductDetailsResponse(BillingResult billingResult, List list2) {
-                        GiftSheet.m3203$r8$lambda$fEKigUHZTFHaEjb_tJh_rV_U7Q(this.f$0, billingResult, list2);
+                        GiftSheet.$r8$lambda$2DUk7xpNvdByZNBiN5aq7EF6AO0(this.f$0, billingResult, list2);
                     }
                 });
             }
@@ -1045,13 +1044,13 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             BoostRepository.loadGiftOptions(this.currentAccount, null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj2) {
-                    GiftSheet.m3201$r8$lambda$HJZMqJMz9GYVpIen1uETMpGXh0(this.f$0, (List) obj2);
+                    GiftSheet.m3210$r8$lambda$HJZMqJMz9GYVpIen1uETMpGXh0(this.f$0, (List) obj2);
                 }
             });
         }
     }
 
-    public static void m3203$r8$lambda$fEKigUHZTFHaEjb_tJh_rV_U7Q(final GiftSheet giftSheet, BillingResult billingResult, List list) {
+    public static void $r8$lambda$2DUk7xpNvdByZNBiN5aq7EF6AO0(final GiftSheet giftSheet, BillingResult billingResult, List list) {
         int i;
         giftSheet.getClass();
         Iterator it = list.iterator();
@@ -1100,7 +1099,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }
     }
 
-    public static void m3201$r8$lambda$HJZMqJMz9GYVpIen1uETMpGXh0(GiftSheet giftSheet, List list) {
+    public static void m3210$r8$lambda$HJZMqJMz9GYVpIen1uETMpGXh0(GiftSheet giftSheet, List list) {
         if (giftSheet.getContext() == null || !giftSheet.isShown()) {
             return;
         }
@@ -1804,7 +1803,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 this.pinView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.3f).scaleY(z ? 1.0f : 0.3f).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        GiftSheet.GiftCell.m3207$r8$lambda$iU7tGMrtRn15Bx5pUwtofwI7_g(this.f$0, z);
+                        GiftSheet.GiftCell.m3215$r8$lambda$iU7tGMrtRn15Bx5pUwtofwI7_g(this.f$0, z);
                     }
                 }).start();
             } else {
@@ -1815,7 +1814,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
         }
 
-        public static void m3207$r8$lambda$iU7tGMrtRn15Bx5pUwtofwI7_g(GiftCell giftCell, boolean z) {
+        public static void m3215$r8$lambda$iU7tGMrtRn15Bx5pUwtofwI7_g(GiftCell giftCell, boolean z) {
             if (z) {
                 giftCell.getClass();
             } else {

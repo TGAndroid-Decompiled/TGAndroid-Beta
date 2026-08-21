@@ -298,7 +298,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             LocationActivity.this.lastPressedMarkerView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    LocationActivity.MapOverlayView.m3417$r8$lambda$P9lfQWAZdkR9ImpFeAJNt4ceSM(this.f$0, venueLocation, view);
+                    LocationActivity.MapOverlayView.m3425$r8$lambda$P9lfQWAZdkR9ImpFeAJNt4ceSM(this.f$0, venueLocation, view);
                 }
             });
             TextView textView = new TextView(context);
@@ -361,7 +361,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             LocationActivity.this.map.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLng(iMarker.getPosition()), 300, null);
         }
 
-        public static void m3417$r8$lambda$P9lfQWAZdkR9ImpFeAJNt4ceSM(final MapOverlayView mapOverlayView, final VenueLocation venueLocation, View view) {
+        public static void m3425$r8$lambda$P9lfQWAZdkR9ImpFeAJNt4ceSM(final MapOverlayView mapOverlayView, final VenueLocation venueLocation, View view) {
             if (LocationActivity.this.parentFragment == null || !LocationActivity.this.parentFragment.isInScheduleMode()) {
                 LocationActivity.this.delegate.didSelectLocation(venueLocation.venue, LocationActivity.this.locationType, true, 0, 0L);
                 LocationActivity.this.finishFragment();
@@ -808,7 +808,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LocationActivity.m3412$r8$lambda$EmhefR8ZnXkolfaki0AKRkaJLY(this.f$0, view);
+                LocationActivity.m3420$r8$lambda$EmhefR8ZnXkolfaki0AKRkaJLY(this.f$0, view);
             }
         });
         TextView textView = new TextView(context);
@@ -1113,7 +1113,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         new Thread(new Runnable() {
             @Override
             public final void run() {
-                LocationActivity.m3413$r8$lambda$REILUOusJ1dJa5AlJtsmIEkDok(this.f$0, iMapView);
+                LocationActivity.m3421$r8$lambda$REILUOusJ1dJa5AlJtsmIEkDok(this.f$0, iMapView);
             }
         }).start();
         MessageObject messageObject5 = this.messageObject;
@@ -1267,7 +1267,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public static void m3412$r8$lambda$EmhefR8ZnXkolfaki0AKRkaJLY(LocationActivity locationActivity, View view) {
+    public static void m3420$r8$lambda$EmhefR8ZnXkolfaki0AKRkaJLY(LocationActivity locationActivity, View view) {
         IMapsProvider.IMap iMap;
         Activity parentActivity;
         if (Build.VERSION.SDK_INT >= 23 && (parentActivity = locationActivity.getParentActivity()) != null && parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
@@ -1652,7 +1652,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public static void m3413$r8$lambda$REILUOusJ1dJa5AlJtsmIEkDok(final LocationActivity locationActivity, final IMapsProvider.IMapView iMapView) {
+    public static void m3421$r8$lambda$REILUOusJ1dJa5AlJtsmIEkDok(final LocationActivity locationActivity, final IMapsProvider.IMapView iMapView) {
         locationActivity.getClass();
         try {
             iMapView.onCreate(null);
@@ -2053,7 +2053,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         ProximitySheet proximitySheet = new ProximitySheet(getParentActivity(), user, new ProximitySheet.onRadiusPickerChange() {
             @Override
             public final boolean run(boolean z, int i) {
-                return LocationActivity.m3415$r8$lambda$a2VZvzX3eqzxSL1Ksnx9xJjLGQ(this.f$0, z, i);
+                return LocationActivity.m3423$r8$lambda$a2VZvzX3eqzxSL1Ksnx9xJjLGQ(this.f$0, z, i);
             }
         }, new ProximitySheet.onRadiusPickerChange() {
             @Override
@@ -2071,7 +2071,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.proximitySheet.show();
     }
 
-    public static boolean m3415$r8$lambda$a2VZvzX3eqzxSL1Ksnx9xJjLGQ(LocationActivity locationActivity, boolean z, int i) {
+    public static boolean m3423$r8$lambda$a2VZvzX3eqzxSL1Ksnx9xJjLGQ(LocationActivity locationActivity, boolean z, int i) {
         IMapsProvider.ICircle iCircle = locationActivity.proximityCircle;
         if (iCircle != null) {
             iCircle.setRadius(i);
@@ -2701,14 +2701,14 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         builder.setNegativeButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                LocationActivity.m3414$r8$lambda$_jLp2zRJpPLifIkYSwg5jMY64(this.f$0, alertDialog, i);
+                LocationActivity.m3422$r8$lambda$_jLp2zRJpPLifIkYSwg5jMY64(this.f$0, alertDialog, i);
             }
         });
         builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
         showDialog(builder.create());
     }
 
-    public static void m3414$r8$lambda$_jLp2zRJpPLifIkYSwg5jMY64(LocationActivity locationActivity, AlertDialog alertDialog, int i) {
+    public static void m3422$r8$lambda$_jLp2zRJpPLifIkYSwg5jMY64(LocationActivity locationActivity, AlertDialog alertDialog, int i) {
         if (locationActivity.getParentActivity() == null) {
             return;
         }
@@ -3524,7 +3524,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                LocationActivity.m3411$r8$lambda$7Bw4GtT8VWeYGKJ8BbJeQrbI0I(this.f$0);
+                LocationActivity.m3419$r8$lambda$7Bw4GtT8VWeYGKJ8BbJeQrbI0I(this.f$0);
             }
 
             @Override
@@ -3654,7 +3654,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         return arrayList;
     }
 
-    public static void m3411$r8$lambda$7Bw4GtT8VWeYGKJ8BbJeQrbI0I(LocationActivity locationActivity) {
+    public static void m3419$r8$lambda$7Bw4GtT8VWeYGKJ8BbJeQrbI0I(LocationActivity locationActivity) {
         locationActivity.mapTypeButton.setIconColor(locationActivity.getThemedColor(Theme.key_location_actionIcon));
         locationActivity.mapTypeButton.redrawPopup(locationActivity.getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
         locationActivity.mapTypeButton.setPopupItemsColor(locationActivity.getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), true);

@@ -317,7 +317,7 @@ public class PinchToZoomHelper {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PinchToZoomHelper.m3745$r8$lambda$D1zGapCNpit4jUkz0z9Kadd5D8(this.f$0, valueAnimator);
+                    PinchToZoomHelper.m3753$r8$lambda$D1zGapCNpit4jUkz0z9Kadd5D8(this.f$0, valueAnimator);
                 }
             });
             this.finishTransition.addListener(new AnimatorListenerAdapter() {
@@ -336,7 +336,7 @@ public class PinchToZoomHelper {
         }
     }
 
-    public static void m3745$r8$lambda$D1zGapCNpit4jUkz0z9Kadd5D8(PinchToZoomHelper pinchToZoomHelper, ValueAnimator valueAnimator) {
+    public static void m3753$r8$lambda$D1zGapCNpit4jUkz0z9Kadd5D8(PinchToZoomHelper pinchToZoomHelper, ValueAnimator valueAnimator) {
         pinchToZoomHelper.getClass();
         pinchToZoomHelper.finishProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         pinchToZoomHelper.invalidateViews();

@@ -68,7 +68,7 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
             activeAuctionCell.buttonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ActiveAuctionsSheet.m3180$r8$lambda$BFltsclDpKFn9dcf8fhGTpjFE(this.f$0, context, resourcesProvider, auction2, view);
+                    ActiveAuctionsSheet.m3189$r8$lambda$BFltsclDpKFn9dcf8fhGTpjFE(this.f$0, context, resourcesProvider, auction2, view);
                 }
             });
             linearLayout.addView(activeAuctionCell, LayoutHelper.createLinear(-1, -2));
@@ -77,7 +77,7 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
         onActiveAuctionsUpdate(activeAuctions);
     }
 
-    public static void m3180$r8$lambda$BFltsclDpKFn9dcf8fhGTpjFE(ActiveAuctionsSheet activeAuctionsSheet, Context context, Theme.ResourcesProvider resourcesProvider, GiftAuctionController.Auction auction, View view) {
+    public static void m3189$r8$lambda$BFltsclDpKFn9dcf8fhGTpjFE(ActiveAuctionsSheet activeAuctionsSheet, Context context, Theme.ResourcesProvider resourcesProvider, GiftAuctionController.Auction auction, View view) {
         activeAuctionsSheet.getClass();
         new AuctionBidSheet(context, resourcesProvider, null, auction).show();
         activeAuctionsSheet.dismiss();

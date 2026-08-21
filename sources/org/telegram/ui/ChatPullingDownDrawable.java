@@ -561,7 +561,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatPullingDownDrawable.m1869$r8$lambda$XARAs3T61iLl6FkPouU7kMYeLE(this.f$0, view, valueAnimator);
+                    ChatPullingDownDrawable.m1875$r8$lambda$XARAs3T61iLl6FkPouU7kMYeLE(this.f$0, view, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -571,7 +571,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatPullingDownDrawable.m1868$r8$lambda$OWeQBiP8NhUm_MNZliCgXNK1U(this.f$0, view, valueAnimator);
+                    ChatPullingDownDrawable.m1874$r8$lambda$OWeQBiP8NhUm_MNZliCgXNK1U(this.f$0, view, valueAnimator);
                 }
             });
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_BOTH;
@@ -633,14 +633,14 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         this.showReleaseAnimator.start();
     }
 
-    public static void m1869$r8$lambda$XARAs3T61iLl6FkPouU7kMYeLE(ChatPullingDownDrawable chatPullingDownDrawable, View view, ValueAnimator valueAnimator) {
+    public static void m1875$r8$lambda$XARAs3T61iLl6FkPouU7kMYeLE(ChatPullingDownDrawable chatPullingDownDrawable, View view, ValueAnimator valueAnimator) {
         chatPullingDownDrawable.getClass();
         chatPullingDownDrawable.swipeToReleaseProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         view.invalidate();
         chatPullingDownDrawable.fragmentView.invalidate();
     }
 
-    public static void m1868$r8$lambda$OWeQBiP8NhUm_MNZliCgXNK1U(ChatPullingDownDrawable chatPullingDownDrawable, View view, ValueAnimator valueAnimator) {
+    public static void m1874$r8$lambda$OWeQBiP8NhUm_MNZliCgXNK1U(ChatPullingDownDrawable chatPullingDownDrawable, View view, ValueAnimator valueAnimator) {
         chatPullingDownDrawable.getClass();
         chatPullingDownDrawable.bounceProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         view.invalidate();

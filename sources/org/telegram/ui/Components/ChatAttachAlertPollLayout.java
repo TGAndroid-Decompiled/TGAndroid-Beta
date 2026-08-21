@@ -185,7 +185,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         void sendPoll(TLRPC.MessageMedia messageMedia, CharSequence charSequence, PollAttachedMediaPack pollAttachedMediaPack, ArrayList arrayList, boolean z, int i, long j);
     }
 
-    public static void m2191$r8$lambda$9w1_RlEquHPRRrWP2y0Rh0aFE() {
+    public static void m2201$r8$lambda$9w1_RlEquHPRRrWP2y0Rh0aFE() {
     }
 
     public static int getAllowedLayoutsForIndex(int i) {
@@ -548,7 +548,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                             }, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    ChatAttachAlertPollLayout.m2191$r8$lambda$9w1_RlEquHPRRrWP2y0Rh0aFE();
+                                    ChatAttachAlertPollLayout.m2201$r8$lambda$9w1_RlEquHPRRrWP2y0Rh0aFE();
                                 }
                             }, new AlertsCreator.ScheduleDatePickerColors(resourcesProvider2), resourcesProvider2);
                         }
@@ -1073,7 +1073,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        ChatAttachAlertPollLayout.m2198$r8$lambda$lL1y8MEp05fG1S1VZgZJ4HKn0U(this.f$0, chatActivity, tL_messageMediaPoll, arrayList, (Long) obj);
+                        ChatAttachAlertPollLayout.m2208$r8$lambda$lL1y8MEp05fG1S1VZgZJ4HKn0U(this.f$0, chatActivity, tL_messageMediaPoll, arrayList, (Long) obj);
                     }
                 });
                 return;
@@ -1081,13 +1081,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void m2198$r8$lambda$lL1y8MEp05fG1S1VZgZJ4HKn0U(final ChatAttachAlertPollLayout chatAttachAlertPollLayout, ChatActivity chatActivity, final TLRPC.TL_messageMediaPoll tL_messageMediaPoll, final ArrayList arrayList, final Long l) {
+    public static void m2208$r8$lambda$lL1y8MEp05fG1S1VZgZJ4HKn0U(final ChatAttachAlertPollLayout chatAttachAlertPollLayout, ChatActivity chatActivity, final TLRPC.TL_messageMediaPoll tL_messageMediaPoll, final ArrayList arrayList, final Long l) {
         chatAttachAlertPollLayout.getClass();
         if (chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(chatActivity.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
-                    ChatAttachAlertPollLayout.m2193$r8$lambda$KEYfHzg7g_pLQgp7vyVvPYE9j4(this.f$0, tL_messageMediaPoll, arrayList, l, z, i, i2);
+                    ChatAttachAlertPollLayout.m2203$r8$lambda$KEYfHzg7g_pLQgp7vyVvPYE9j4(this.f$0, tL_messageMediaPoll, arrayList, l, z, i, i2);
                 }
             });
         } else {
@@ -1096,7 +1096,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void m2193$r8$lambda$KEYfHzg7g_pLQgp7vyVvPYE9j4(ChatAttachAlertPollLayout chatAttachAlertPollLayout, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, ArrayList arrayList, Long l, boolean z, int i, int i2) {
+    public static void m2203$r8$lambda$KEYfHzg7g_pLQgp7vyVvPYE9j4(ChatAttachAlertPollLayout chatAttachAlertPollLayout, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, ArrayList arrayList, Long l, boolean z, int i, int i2) {
         chatAttachAlertPollLayout.delegate.sendPoll(tL_messageMediaPoll, chatAttachAlertPollLayout.descriptionString, chatAttachAlertPollLayout.attachedMedia, arrayList, z, i, l.longValue());
         chatAttachAlertPollLayout.parentAlert.dismiss(true);
     }
@@ -1868,7 +1868,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ChatAttachAlertPollLayout.m2192$r8$lambda$GyJOBRYo1WByXxDuL6nil52r1g(this.f$0, valueAnimator);
+                            ChatAttachAlertPollLayout.m2202$r8$lambda$GyJOBRYo1WByXxDuL6nil52r1g(this.f$0, valueAnimator);
                         }
                     });
                     this.isAnimatePopupClosing = true;
@@ -1890,7 +1890,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void m2192$r8$lambda$GyJOBRYo1WByXxDuL6nil52r1g(ChatAttachAlertPollLayout chatAttachAlertPollLayout, ValueAnimator valueAnimator) {
+    public static void m2202$r8$lambda$GyJOBRYo1WByXxDuL6nil52r1g(ChatAttachAlertPollLayout chatAttachAlertPollLayout, ValueAnimator valueAnimator) {
         chatAttachAlertPollLayout.getClass();
         chatAttachAlertPollLayout.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
@@ -2825,13 +2825,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     textView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public final boolean onEditorAction(TextView textView2, int i3, KeyEvent keyEvent) {
-                            return ChatAttachAlertPollLayout.ListAdapter.m2204$r8$lambda$4Bqb_O4NWJ_3XScijjTypCJ_wo(this.f$0, pollEditTextCell2, textView2, i3, keyEvent);
+                            return ChatAttachAlertPollLayout.ListAdapter.m2214$r8$lambda$4Bqb_O4NWJ_3XScijjTypCJ_wo(this.f$0, pollEditTextCell2, textView2, i3, keyEvent);
                         }
                     });
                     textView.setOnKeyListener(new View.OnKeyListener() {
                         @Override
                         public final boolean onKey(View view, int i3, KeyEvent keyEvent) {
-                            return ChatAttachAlertPollLayout.ListAdapter.m2203$r8$lambda$3KVDPGbSyw9E5cNTsjfrmIl1t0(pollEditTextCell2, view, i3, keyEvent);
+                            return ChatAttachAlertPollLayout.ListAdapter.m2213$r8$lambda$3KVDPGbSyw9E5cNTsjfrmIl1t0(pollEditTextCell2, view, i3, keyEvent);
                         }
                     });
                     headerCell = pollEditTextCell2;
@@ -2947,7 +2947,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             ChatAttachAlertPollLayout.this.openAttachOrReplaceMenuForOptions(adapterPosition);
         }
 
-        public static boolean m2204$r8$lambda$4Bqb_O4NWJ_3XScijjTypCJ_wo(ListAdapter listAdapter, PollEditTextCell pollEditTextCell, TextView textView, int i, KeyEvent keyEvent) {
+        public static boolean m2214$r8$lambda$4Bqb_O4NWJ_3XScijjTypCJ_wo(ListAdapter listAdapter, PollEditTextCell pollEditTextCell, TextView textView, int i, KeyEvent keyEvent) {
             int adapterPosition;
             if (i != 5) {
                 listAdapter.getClass();
@@ -2975,7 +2975,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             return true;
         }
 
-        public static boolean m2203$r8$lambda$3KVDPGbSyw9E5cNTsjfrmIl1t0(PollEditTextCell pollEditTextCell, View view, int i, KeyEvent keyEvent) {
+        public static boolean m2213$r8$lambda$3KVDPGbSyw9E5cNTsjfrmIl1t0(PollEditTextCell pollEditTextCell, View view, int i, KeyEvent keyEvent) {
             EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
             if (i != 67 || keyEvent.getAction() != 0 || editTextBoldCursor.length() != 0) {
                 return false;
@@ -3184,7 +3184,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             AlertsCreator.showAddLinkToPoll(getContext(), this.resourcesProvider, pollAttachedMediaLink.url, pollAttachedMediaLink.getWebPage(), new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ChatAttachAlertPollLayout.m2196$r8$lambda$XaeNsqWPPPzMS5mskxib8HxNdA(this.f$0, i, (String) obj);
+                    ChatAttachAlertPollLayout.m2206$r8$lambda$XaeNsqWPPPzMS5mskxib8HxNdA(this.f$0, i, (String) obj);
                 }
             }, new Runnable() {
                 @Override
@@ -3443,7 +3443,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void m2196$r8$lambda$XaeNsqWPPPzMS5mskxib8HxNdA(ChatAttachAlertPollLayout chatAttachAlertPollLayout, int i, String str) {
+    public static void m2206$r8$lambda$XaeNsqWPPPzMS5mskxib8HxNdA(ChatAttachAlertPollLayout chatAttachAlertPollLayout, int i, String str) {
         chatAttachAlertPollLayout.getClass();
         chatAttachAlertPollLayout.setAttachedMedia(i, new PollAttachedMediaLink(str));
     }

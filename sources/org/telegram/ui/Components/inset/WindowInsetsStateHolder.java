@@ -259,13 +259,13 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
             view.postOnAnimation(new Runnable() {
                 @Override
                 public final void run() {
-                    WindowInsetsStateHolder.m2955$r8$lambda$OCxQKGVtc5dkOsTKLOJpG9eYbc(this.f$0);
+                    WindowInsetsStateHolder.m2964$r8$lambda$OCxQKGVtc5dkOsTKLOJpG9eYbc(this.f$0);
                 }
             });
         }
     }
 
-    public static void m2955$r8$lambda$OCxQKGVtc5dkOsTKLOJpG9eYbc(WindowInsetsStateHolder windowInsetsStateHolder) {
+    public static void m2964$r8$lambda$OCxQKGVtc5dkOsTKLOJpG9eYbc(WindowInsetsStateHolder windowInsetsStateHolder) {
         int i = windowInsetsStateHolder.activeAnimations - 1;
         windowInsetsStateHolder.activeAnimations = i;
         if (i == 0) {

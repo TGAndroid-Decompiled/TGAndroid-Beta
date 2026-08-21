@@ -2445,12 +2445,12 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayer.m2933$r8$lambda$jHDPBzEYTX7Ejy5EPvqufc8rUw(this.f$0, playbackException);
+                VideoPlayer.m2942$r8$lambda$jHDPBzEYTX7Ejy5EPvqufc8rUw(this.f$0, playbackException);
             }
         });
     }
 
-    public static void m2933$r8$lambda$jHDPBzEYTX7Ejy5EPvqufc8rUw(final VideoPlayer videoPlayer, PlaybackException playbackException) {
+    public static void m2942$r8$lambda$jHDPBzEYTX7Ejy5EPvqufc8rUw(final VideoPlayer videoPlayer, PlaybackException playbackException) {
         videoPlayer.getClass();
         Throwable cause = playbackException.getCause();
         if ((cause instanceof MediaCodecDecoderException) && (cause.toString().contains("av1") || cause.toString().contains("av01"))) {
@@ -2673,12 +2673,12 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             VideoPlayer.this.audioUpdateHandler.postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoPlayer.VisualizerBufferSink.m2935$r8$lambda$Myh3QgvyZsRU_nWxyyX94cMmBE(this.f$0);
+                    VideoPlayer.VisualizerBufferSink.m2944$r8$lambda$Myh3QgvyZsRU_nWxyyX94cMmBE(this.f$0);
                 }
             }, 80L);
         }
 
-        public static void m2935$r8$lambda$Myh3QgvyZsRU_nWxyyX94cMmBE(VisualizerBufferSink visualizerBufferSink) {
+        public static void m2944$r8$lambda$Myh3QgvyZsRU_nWxyyX94cMmBE(VisualizerBufferSink visualizerBufferSink) {
             VideoPlayer.this.audioUpdateHandler.removeCallbacksAndMessages(null);
             VideoPlayer.this.audioVisualizerDelegate.onVisualizerUpdate(false, true, null);
         }

@@ -175,14 +175,14 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                RLottieDrawable.m2683$r8$lambda$RSAaTV5WT95EcZ43Gn4_uuGyE8(this.f$0);
+                RLottieDrawable.m2692$r8$lambda$RSAaTV5WT95EcZ43Gn4_uuGyE8(this.f$0);
             }
         };
         this.cacheGenerateTask = runnable;
         dispatchQueue.postRunnable(runnable);
     }
 
-    public static void m2683$r8$lambda$RSAaTV5WT95EcZ43Gn4_uuGyE8(RLottieDrawable rLottieDrawable) {
+    public static void m2692$r8$lambda$RSAaTV5WT95EcZ43Gn4_uuGyE8(RLottieDrawable rLottieDrawable) {
         rLottieDrawable.getClass();
         try {
             BitmapsCache bitmapsCache = rLottieDrawable.bitmapsCache;

@@ -315,7 +315,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final void onItemClick(View view, int i4, float f, float f2) {
-                DeleteMessagesBottomSheet.m2254$r8$lambda$b3KiU874kdM6Th7oBLZPfIUl4(this.f$0, view, i4, f, f2);
+                DeleteMessagesBottomSheet.m2264$r8$lambda$b3KiU874kdM6Th7oBLZPfIUl4(this.f$0, view, i4, f, f2);
             }
         });
         this.takeTranslationIntoAccount = true;
@@ -468,7 +468,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
                 @Override
                 public final Object apply(Object obj) {
-                    return DeleteMessagesBottomSheet.m2253$r8$lambda$QUv3cgwFTXSWXwE54QKQYxRR5s((TLRPC.ChannelParticipant) obj);
+                    return DeleteMessagesBottomSheet.m2263$r8$lambda$QUv3cgwFTXSWXwE54QKQYxRR5s((TLRPC.ChannelParticipant) obj);
                 }
 
                 public Function compose(Function function) {
@@ -485,7 +485,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         this.actionBar.setTitle(getTitle());
     }
 
-    public static void m2254$r8$lambda$b3KiU874kdM6Th7oBLZPfIUl4(DeleteMessagesBottomSheet deleteMessagesBottomSheet, View view, int i, float f, float f2) {
+    public static void m2264$r8$lambda$b3KiU874kdM6Th7oBLZPfIUl4(DeleteMessagesBottomSheet deleteMessagesBottomSheet, View view, int i, float f, float f2) {
         UItem item = deleteMessagesBottomSheet.adapter.getItem(i - 1);
         if (item == null) {
             return;
@@ -502,7 +502,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static TLRPC.TL_chatBannedRights m2253$r8$lambda$QUv3cgwFTXSWXwE54QKQYxRR5s(TLRPC.ChannelParticipant channelParticipant) {
+    public static TLRPC.TL_chatBannedRights m2263$r8$lambda$QUv3cgwFTXSWXwE54QKQYxRR5s(TLRPC.ChannelParticipant channelParticipant) {
         if (channelParticipant == null) {
             return null;
         }
@@ -740,12 +740,12 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                DeleteMessagesBottomSheet.m2256$r8$lambda$mAk3J3Gcrpi1NAxT8OhpyTpTuI(this.f$0, tLObject, inputPeer, i, iArr);
+                DeleteMessagesBottomSheet.m2266$r8$lambda$mAk3J3Gcrpi1NAxT8OhpyTpTuI(this.f$0, tLObject, inputPeer, i, iArr);
             }
         });
     }
 
-    public static void m2256$r8$lambda$mAk3J3Gcrpi1NAxT8OhpyTpTuI(DeleteMessagesBottomSheet deleteMessagesBottomSheet, TLObject tLObject, final TLRPC.InputPeer inputPeer, int i, int[] iArr) {
+    public static void m2266$r8$lambda$mAk3J3Gcrpi1NAxT8OhpyTpTuI(DeleteMessagesBottomSheet deleteMessagesBottomSheet, TLObject tLObject, final TLRPC.InputPeer inputPeer, int i, int[] iArr) {
         deleteMessagesBottomSheet.getClass();
         if (tLObject instanceof TLRPC.TL_messages_channelMessages) {
             deleteMessagesBottomSheet.participantMessageCounts[i] = ((TLRPC.TL_messages_channelMessages) tLObject).count - ((int) Collection.EL.stream(deleteMessagesBottomSheet.messages).filter(new Predicate() {
@@ -1235,7 +1235,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final boolean test(Object obj) {
-                return DeleteMessagesBottomSheet.m2255$r8$lambda$lFbWGGAdvmuNNsZX8KbbTPqLy4(this.f$0, (MessageObject) obj);
+                return DeleteMessagesBottomSheet.m2265$r8$lambda$lFbWGGAdvmuNNsZX8KbbTPqLy4(this.f$0, (MessageObject) obj);
             }
         }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda18()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda257()));
         final ArrayList<Integer> arrayList2 = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
@@ -1261,7 +1261,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 this.deleteAll.forEach(new Utilities.IndexedConsumer() {
                     @Override
                     public final void accept(Object obj, int i) {
-                        DeleteMessagesBottomSheet.m2257$r8$lambda$stWKLrZ5tvb6V6AurfCV1FJRx4(this.f$0, arrayList, arrayList2, (TLObject) obj, i);
+                        DeleteMessagesBottomSheet.m2267$r8$lambda$stWKLrZ5tvb6V6AurfCV1FJRx4(this.f$0, arrayList, arrayList2, (TLObject) obj, i);
                     }
                 });
             }
@@ -1308,7 +1308,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static boolean m2255$r8$lambda$lFbWGGAdvmuNNsZX8KbbTPqLy4(DeleteMessagesBottomSheet deleteMessagesBottomSheet, MessageObject messageObject) {
+    public static boolean m2265$r8$lambda$lFbWGGAdvmuNNsZX8KbbTPqLy4(DeleteMessagesBottomSheet deleteMessagesBottomSheet, MessageObject messageObject) {
         deleteMessagesBottomSheet.getClass();
         TLRPC.Peer peer = messageObject.messageOwner.peer_id;
         return !(peer == null || peer.chat_id == (-deleteMessagesBottomSheet.mergeDialogId)) || deleteMessagesBottomSheet.mergeDialogId == 0;
@@ -1325,7 +1325,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         return j == (-j2) && j2 != 0;
     }
 
-    public static void m2257$r8$lambda$stWKLrZ5tvb6V6AurfCV1FJRx4(DeleteMessagesBottomSheet deleteMessagesBottomSheet, ArrayList arrayList, ArrayList arrayList2, TLObject tLObject, int i) {
+    public static void m2267$r8$lambda$stWKLrZ5tvb6V6AurfCV1FJRx4(DeleteMessagesBottomSheet deleteMessagesBottomSheet, ArrayList arrayList, ArrayList arrayList2, TLObject tLObject, int i) {
         deleteMessagesBottomSheet.getClass();
         long dialogId = DialogObject.getDialogId(tLObject);
         int size = arrayList.size();

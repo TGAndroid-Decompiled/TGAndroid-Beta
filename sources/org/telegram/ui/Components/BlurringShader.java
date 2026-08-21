@@ -81,7 +81,7 @@ public class BlurringShader {
         this.invalidateViews = new Runnable() {
             @Override
             public final void run() {
-                BlurringShader.m2046$r8$lambda$HxR6Sw23apEPPF4dQweOVHm5gs(this.f$0);
+                BlurringShader.m2056$r8$lambda$HxR6Sw23apEPPF4dQweOVHm5gs(this.f$0);
             }
         };
         this.iMatrix = new Matrix();
@@ -356,7 +356,7 @@ public class BlurringShader {
         }
     }
 
-    public static void m2046$r8$lambda$HxR6Sw23apEPPF4dQweOVHm5gs(BlurringShader blurringShader) {
+    public static void m2056$r8$lambda$HxR6Sw23apEPPF4dQweOVHm5gs(BlurringShader blurringShader) {
         BlurManager blurManager = blurringShader.currentManager;
         if (blurManager != null) {
             blurManager.invalidate();
@@ -657,7 +657,7 @@ public class BlurringShader {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    BlurringShader.ThumbBlurer.m2048$r8$lambda$goVMWQSWSY2TeqR9_KANkBXgrU(this.f$0, bitmap, i, i2, str, z);
+                    BlurringShader.ThumbBlurer.m2058$r8$lambda$goVMWQSWSY2TeqR9_KANkBXgrU(this.f$0, bitmap, i, i2, str, z);
                 }
             };
             this.generate = runnable;
@@ -665,7 +665,7 @@ public class BlurringShader {
             return this.thumbBitmap;
         }
 
-        public static void m2048$r8$lambda$goVMWQSWSY2TeqR9_KANkBXgrU(final ThumbBlurer thumbBlurer, final Bitmap bitmap, int i, int i2, final String str, final boolean z) {
+        public static void m2058$r8$lambda$goVMWQSWSY2TeqR9_KANkBXgrU(final ThumbBlurer thumbBlurer, final Bitmap bitmap, int i, int i2, final String str, final boolean z) {
             int i3;
             int i4;
             thumbBlurer.getClass();

@@ -110,7 +110,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
             new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsItemAnimator.m2263$r8$lambda$Tmkt5WHPBtOWx6TOR3yKVwc0EI(this.f$0, arrayList2);
+                    DialogsItemAnimator.m2273$r8$lambda$Tmkt5WHPBtOWx6TOR3yKVwc0EI(this.f$0, arrayList2);
                 }
             }.run();
         }
@@ -139,7 +139,7 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
         }.run();
     }
 
-    public static void m2263$r8$lambda$Tmkt5WHPBtOWx6TOR3yKVwc0EI(DialogsItemAnimator dialogsItemAnimator, ArrayList arrayList) {
+    public static void m2273$r8$lambda$Tmkt5WHPBtOWx6TOR3yKVwc0EI(DialogsItemAnimator dialogsItemAnimator, ArrayList arrayList) {
         dialogsItemAnimator.getClass();
         int size = arrayList.size();
         int i = 0;

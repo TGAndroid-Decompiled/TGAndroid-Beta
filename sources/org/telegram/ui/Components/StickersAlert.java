@@ -186,7 +186,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         return true;
     }
 
-    public static void m2840$r8$lambda$MPfi4H_Q_4xK6PJv1XHlWrd4No(AlertDialog alertDialog, int i) {
+    public static void m2849$r8$lambda$MPfi4H_Q_4xK6PJv1XHlWrd4No(AlertDialog alertDialog, int i) {
     }
 
     @Override
@@ -418,12 +418,12 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             ConnectionsManager.getInstance(((BottomSheet) StickersAlert.this).currentAccount).sendRequest(tL_stickers_removeStickerFromSet, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickersAlert.AnonymousClass1.m2849$r8$lambda$9PhUUgTP9AMTkAhVfgy6TyrigU(this.f$0, zIsEmpty, alertDialog, tLObject, tL_error);
+                    StickersAlert.AnonymousClass1.m2858$r8$lambda$9PhUUgTP9AMTkAhVfgy6TyrigU(this.f$0, zIsEmpty, alertDialog, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m2849$r8$lambda$9PhUUgTP9AMTkAhVfgy6TyrigU(final AnonymousClass1 anonymousClass1, final boolean z, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m2858$r8$lambda$9PhUUgTP9AMTkAhVfgy6TyrigU(final AnonymousClass1 anonymousClass1, final boolean z, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
             anonymousClass1.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -647,7 +647,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                StickersAlert.m2836$r8$lambda$9LfRCJkage7kHiBtpkM0ts5M5g(this.f$0, obj, tL_messages_getAttachedStickers, requestDelegate, tLObject2, tL_error);
+                StickersAlert.m2845$r8$lambda$9LfRCJkage7kHiBtpkM0ts5M5g(this.f$0, obj, tL_messages_getAttachedStickers, requestDelegate, tLObject2, tL_error);
             }
         });
         init(context);
@@ -658,12 +658,12 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.m2835$r8$lambda$3gJ5CsRqLGKPCD4KETk_TPyOYk(this.f$0, tL_error, tLObject, tL_messages_getAttachedStickers);
+                StickersAlert.m2844$r8$lambda$3gJ5CsRqLGKPCD4KETk_TPyOYk(this.f$0, tL_error, tLObject, tL_messages_getAttachedStickers);
             }
         });
     }
 
-    public static void m2835$r8$lambda$3gJ5CsRqLGKPCD4KETk_TPyOYk(StickersAlert stickersAlert, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers) {
+    public static void m2844$r8$lambda$3gJ5CsRqLGKPCD4KETk_TPyOYk(StickersAlert stickersAlert, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers) {
         stickersAlert.reqId = 0;
         if (tL_error == null && (tLObject instanceof Vector)) {
             Vector vector = (Vector) tLObject;
@@ -694,7 +694,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         stickersAlert.dismiss();
     }
 
-    public static void m2836$r8$lambda$9LfRCJkage7kHiBtpkM0ts5M5g(StickersAlert stickersAlert, Object obj, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m2845$r8$lambda$9LfRCJkage7kHiBtpkM0ts5M5g(StickersAlert stickersAlert, Object obj, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error) {
         stickersAlert.getClass();
         if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && obj != null) {
             FileRefController.getInstance(stickersAlert.currentAccount).requestReference(obj, tL_messages_getAttachedStickers, requestDelegate);
@@ -717,13 +717,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                StickersAlert.m2837$r8$lambda$B539QgU2mx9DK3rf8CVTsKLiKc(this.f$0, arrayList, arrayList2);
+                StickersAlert.m2846$r8$lambda$B539QgU2mx9DK3rf8CVTsKLiKc(this.f$0, arrayList, arrayList2);
             }
         });
         init(context);
     }
 
-    public static void m2837$r8$lambda$B539QgU2mx9DK3rf8CVTsKLiKc(final StickersAlert stickersAlert, ArrayList arrayList, ArrayList arrayList2) throws Throwable {
+    public static void m2846$r8$lambda$B539QgU2mx9DK3rf8CVTsKLiKc(final StickersAlert stickersAlert, ArrayList arrayList, ArrayList arrayList2) throws Throwable {
         Uri uri;
         String stickerExt;
         int i;
@@ -1363,7 +1363,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i3) {
-                StickersAlert.m2831$r8$lambda$43Y0HWNRO5Tx6BI7_WX81lQpW8(this.f$0, view2, i3);
+                StickersAlert.m2840$r8$lambda$43Y0HWNRO5Tx6BI7_WX81lQpW8(this.f$0, view2, i3);
             }
         };
         this.stickersOnItemClickListener = onItemClickListener;
@@ -1411,7 +1411,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                StickersAlert.m2846$r8$lambda$wMixouaGO06FIzG79bnlqf6Qjk(this.f$0, view2);
+                StickersAlert.m2855$r8$lambda$wMixouaGO06FIzG79bnlqf6Qjk(this.f$0, view2);
             }
         });
         this.optionsButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
@@ -1513,7 +1513,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         return ContentPreviewViewer.getInstance().onTouch(motionEvent, stickersAlert.gridView, 0, stickersAlert.stickersOnItemClickListener, stickersAlert.previewDelegate, stickersAlert.resourcesProvider);
     }
 
-    public static void m2831$r8$lambda$43Y0HWNRO5Tx6BI7_WX81lQpW8(final StickersAlert stickersAlert, View view, int i) {
+    public static void m2840$r8$lambda$43Y0HWNRO5Tx6BI7_WX81lQpW8(final StickersAlert stickersAlert, View view, int i) {
         TLRPC.StickerSet stickerSet;
         stickersAlert.getClass();
         if (view instanceof AddStickerBtnView) {
@@ -1606,7 +1606,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    public static void m2846$r8$lambda$wMixouaGO06FIzG79bnlqf6Qjk(StickersAlert stickersAlert, View view) {
+    public static void m2855$r8$lambda$wMixouaGO06FIzG79bnlqf6Qjk(StickersAlert stickersAlert, View view) {
         stickersAlert.checkOptions();
         stickersAlert.optionsButton.toggleSubMenu();
     }
@@ -1656,7 +1656,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 ActionBarMenuItem.addItem(actionBarPopupWindowLayout, 0, LocaleController.getString(R.string.StickersRemoveForMe), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StickersAlert.m2839$r8$lambda$CY35sfGrphJeuc8TBBV5Et7En4(this.f$0, view);
+                        StickersAlert.m2848$r8$lambda$CY35sfGrphJeuc8TBBV5Et7En4(this.f$0, view);
                     }
                 });
                 actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
@@ -1672,7 +1672,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             messageContainsEmojiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StickersAlert.m2843$r8$lambda$_jVGeCIF0NU9L0LI8mvMNEGZIA(this.f$0, view);
+                    StickersAlert.m2852$r8$lambda$_jVGeCIF0NU9L0LI8mvMNEGZIA(this.f$0, view);
                 }
             });
             messageContainsEmojiButton.setTag(R.id.fit_width_tag, 1);
@@ -1689,7 +1689,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    public static void m2839$r8$lambda$CY35sfGrphJeuc8TBBV5Et7En4(StickersAlert stickersAlert, View view) {
+    public static void m2848$r8$lambda$CY35sfGrphJeuc8TBBV5Et7En4(StickersAlert stickersAlert, View view) {
         stickersAlert.optionsButton.closeSubMenu();
         stickersAlert.dismiss();
         MediaDataController.getInstance(stickersAlert.currentAccount).toggleStickerSet(stickersAlert.getContext(), stickersAlert.stickerSet, 1, stickersAlert.parentFragment, true, true);
@@ -1710,7 +1710,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         MediaDataController.getInstance(stickersAlert.currentAccount).toggleStickerSet(stickersAlert.getContext(), stickersAlert.stickerSet, 1, stickersAlert.parentFragment, false, false);
     }
 
-    public static void m2843$r8$lambda$_jVGeCIF0NU9L0LI8mvMNEGZIA(final StickersAlert stickersAlert, View view) {
+    public static void m2852$r8$lambda$_jVGeCIF0NU9L0LI8mvMNEGZIA(final StickersAlert stickersAlert, View view) {
         stickersAlert.optionsButton.closeSubMenu();
         stickersAlert.dismiss();
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1903,14 +1903,14 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StickersAlert.m2845$r8$lambda$jWh6ecjiGTRikOqzU3D0YbRXok(tLObject, callback);
+                        StickersAlert.m2854$r8$lambda$jWh6ecjiGTRikOqzU3D0YbRXok(tLObject, callback);
                     }
                 });
             }
         });
     }
 
-    public static void m2845$r8$lambda$jWh6ecjiGTRikOqzU3D0YbRXok(TLObject tLObject, Utilities.Callback callback) {
+    public static void m2854$r8$lambda$jWh6ecjiGTRikOqzU3D0YbRXok(TLObject tLObject, Utilities.Callback callback) {
         boolean z;
         if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
@@ -2092,7 +2092,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     stickersAlert.setButton(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            StickersAlert.m2842$r8$lambda$XWWyOVlOew6QVkwSTBePsuLRrE(this.f$0, view);
+                            StickersAlert.m2851$r8$lambda$XWWyOVlOew6QVkwSTBePsuLRrE(this.f$0, view);
                         }
                     }, pluralString, Theme.key_featuredStickers_buttonText, Theme.key_featuredStickers_addButton, Theme.key_featuredStickers_addButtonPressed);
                 } else {
@@ -2108,7 +2108,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                         setButton(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                StickersAlert.m2838$r8$lambda$ByFU3LmXvIWf8u_39V2nw9UgPk(this.f$0, view);
+                                StickersAlert.m2847$r8$lambda$ByFU3LmXvIWf8u_39V2nw9UgPk(this.f$0, view);
                             }
                         }, str, Theme.key_text_RedBold);
                     }
@@ -2223,7 +2223,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         MediaDataController.getInstance(stickersAlert.currentAccount).loadStickers(i, false, true);
     }
 
-    public static void m2842$r8$lambda$XWWyOVlOew6QVkwSTBePsuLRrE(StickersAlert stickersAlert, View view) {
+    public static void m2851$r8$lambda$XWWyOVlOew6QVkwSTBePsuLRrE(StickersAlert stickersAlert, View view) {
         if (stickersAlert.isEditModeEnabled) {
             stickersAlert.disableEditMode();
         } else {
@@ -2240,7 +2240,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         MediaDataController.getInstance(stickersAlert.currentAccount).toggleStickerSet(stickersAlert.getContext(), stickersAlert.stickerSet, 1, stickersAlert.parentFragment, true, stickersAlert.showTooltipWhenToggle);
     }
 
-    public static void m2838$r8$lambda$ByFU3LmXvIWf8u_39V2nw9UgPk(StickersAlert stickersAlert, View view) {
+    public static void m2847$r8$lambda$ByFU3LmXvIWf8u_39V2nw9UgPk(StickersAlert stickersAlert, View view) {
         StickersAlertInstallDelegate stickersAlertInstallDelegate = stickersAlert.installDelegate;
         if (stickersAlertInstallDelegate != null) {
             stickersAlertInstallDelegate.onStickerSetUninstalled();
@@ -2258,7 +2258,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         builder.setPositiveButton(LocaleController.getString(R.string.Next), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                StickersAlert.m2840$r8$lambda$MPfi4H_Q_4xK6PJv1XHlWrd4No(alertDialog, i);
+                StickersAlert.m2849$r8$lambda$MPfi4H_Q_4xK6PJv1XHlWrd4No(alertDialog, i);
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
@@ -2337,7 +2337,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StickersAlert.m2844$r8$lambda$ii7hTmU08zRpiUtUZf21GghWV0(editTextBoldCursor);
+                        StickersAlert.m2853$r8$lambda$ii7hTmU08zRpiUtUZf21GghWV0(editTextBoldCursor);
                     }
                 });
             }
@@ -2360,7 +2360,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         return true;
     }
 
-    public static void m2844$r8$lambda$ii7hTmU08zRpiUtUZf21GghWV0(EditTextBoldCursor editTextBoldCursor) {
+    public static void m2853$r8$lambda$ii7hTmU08zRpiUtUZf21GghWV0(EditTextBoldCursor editTextBoldCursor) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
@@ -3056,7 +3056,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     stickerEmojiCell.editModeIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            StickersAlert.GridAdapter.m2850$r8$lambda$YgCESj4ymvcE8s8EZm72G1M1s(this.f$0, stickerEmojiCell, view);
+                            StickersAlert.GridAdapter.m2859$r8$lambda$YgCESj4ymvcE8s8EZm72G1M1s(this.f$0, stickerEmojiCell, view);
                         }
                     });
                     return;
@@ -3076,7 +3076,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
         }
 
-        public static void m2850$r8$lambda$YgCESj4ymvcE8s8EZm72G1M1s(GridAdapter gridAdapter, StickerEmojiCell stickerEmojiCell, View view) {
+        public static void m2859$r8$lambda$YgCESj4ymvcE8s8EZm72G1M1s(GridAdapter gridAdapter, StickerEmojiCell stickerEmojiCell, View view) {
             gridAdapter.getClass();
             ContentPreviewViewer.getInstance().setDelegate(StickersAlert.this.previewDelegate);
             ContentPreviewViewer.getInstance().showMenuFor(stickerEmojiCell);
@@ -3351,7 +3351,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        StickersAlert.StickersShaker.m2852$r8$lambda$jKrvSJk5DDM7O9gOCpa8pn1cdk(this.f$0, i, valueAnimator);
+                        StickersAlert.StickersShaker.m2861$r8$lambda$jKrvSJk5DDM7O9gOCpa8pn1cdk(this.f$0, i, valueAnimator);
                     }
                 });
                 valueAnimatorOfFloat3.setRepeatCount(-1);
@@ -3380,7 +3380,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             list.set(i, f);
         }
 
-        public static void m2852$r8$lambda$jKrvSJk5DDM7O9gOCpa8pn1cdk(StickersShaker stickersShaker, int i, ValueAnimator valueAnimator) {
+        public static void m2861$r8$lambda$jKrvSJk5DDM7O9gOCpa8pn1cdk(StickersShaker stickersShaker, int i, ValueAnimator valueAnimator) {
             List list = stickersShaker.imageTranslationsY;
             Float f = (Float) valueAnimator.getAnimatedValue();
             f.getClass();
@@ -3395,7 +3395,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            StickersAlert.StickersShaker.m2851$r8$lambda$bikvG7gWWCDfZfTk9GYw1EkGjU(this.f$0, i, valueAnimator);
+                            StickersAlert.StickersShaker.m2860$r8$lambda$bikvG7gWWCDfZfTk9GYw1EkGjU(this.f$0, i, valueAnimator);
                         }
                     });
                     valueAnimatorOfFloat.setDuration(100L);
@@ -3435,7 +3435,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             this.rotateAnimators.clear();
         }
 
-        public static void m2851$r8$lambda$bikvG7gWWCDfZfTk9GYw1EkGjU(StickersShaker stickersShaker, int i, ValueAnimator valueAnimator) {
+        public static void m2860$r8$lambda$bikvG7gWWCDfZfTk9GYw1EkGjU(StickersShaker stickersShaker, int i, ValueAnimator valueAnimator) {
             List list = stickersShaker.imageRotations;
             Float f = (Float) valueAnimator.getAnimatedValue();
             f.getClass();

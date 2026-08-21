@@ -495,7 +495,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.spansContainer.getSpansContainer().setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GroupCreateActivity.m3302$r8$lambda$yjdao1bmW89JKmu7SiKOYyknBk(this.f$0, view);
+                GroupCreateActivity.m3310$r8$lambda$yjdao1bmW89JKmu7SiKOYyknBk(this.f$0, view);
             }
         });
         FragmentSpansContainer fragmentSpansContainer2 = this.spansContainer;
@@ -584,7 +584,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i4) {
-                GroupCreateActivity.m3310$r8$lambda$hf4H3ADuBmv9VEGo2RelWcSeM(this.f$0, context, view, i4);
+                GroupCreateActivity.m3318$r8$lambda$hf4H3ADuBmv9VEGo2RelWcSeM(this.f$0, context, view, i4);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -715,7 +715,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 groupCreateActivity.listView.postOnAnimation(new Runnable() {
                     @Override
                     public final void run() {
-                        GroupCreateActivity.m3307$r8$lambda$JIklVxnbgcIioqE3u7E8Qs110(this.f$0);
+                        GroupCreateActivity.m3315$r8$lambda$JIklVxnbgcIioqE3u7E8Qs110(this.f$0);
                     }
                 });
             }
@@ -737,7 +737,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         return this.fragmentView;
     }
 
-    public static void m3302$r8$lambda$yjdao1bmW89JKmu7SiKOYyknBk(GroupCreateActivity groupCreateActivity, View view) {
+    public static void m3310$r8$lambda$yjdao1bmW89JKmu7SiKOYyknBk(GroupCreateActivity groupCreateActivity, View view) {
         groupCreateActivity.searchField.editText.clearFocus();
         groupCreateActivity.searchField.editText.requestFocus();
         AndroidUtilities.showKeyboard(groupCreateActivity.searchField.editText);
@@ -751,7 +751,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         return false;
     }
 
-    public static void m3310$r8$lambda$hf4H3ADuBmv9VEGo2RelWcSeM(final GroupCreateActivity groupCreateActivity, Context context, View view, int i) {
+    public static void m3318$r8$lambda$hf4H3ADuBmv9VEGo2RelWcSeM(final GroupCreateActivity groupCreateActivity, Context context, View view, int i) {
         long j;
         if (i == groupCreateActivity.adapter.createCallLinkRow) {
             CallLogActivity.createCallLink(context, groupCreateActivity.currentAccount, groupCreateActivity.resourceProvider, new Runnable() {
@@ -850,7 +850,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                                     builder2.setPositiveButton(LocaleController.getString(R.string.AddAsAdmin), new AlertDialog.OnButtonClickListener() {
                                         @Override
                                         public final void onClick(AlertDialog alertDialog, int i2) {
-                                            GroupCreateActivity.m3303$r8$lambda$4XrUwCNBpOM2vA9UnLTDhgF7yA(this.f$0, user, alertDialog, i2);
+                                            GroupCreateActivity.m3311$r8$lambda$4XrUwCNBpOM2vA9UnLTDhgF7yA(this.f$0, user, alertDialog, i2);
                                         }
                                     });
                                     builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -883,14 +883,14 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3303$r8$lambda$4XrUwCNBpOM2vA9UnLTDhgF7yA(GroupCreateActivity groupCreateActivity, TLRPC.User user, AlertDialog alertDialog, int i) {
+    public static void m3311$r8$lambda$4XrUwCNBpOM2vA9UnLTDhgF7yA(GroupCreateActivity groupCreateActivity, TLRPC.User user, AlertDialog alertDialog, int i) {
         groupCreateActivity.delegate2.needAddBot(user);
         if (groupCreateActivity.searchField.editText.length() > 0) {
             groupCreateActivity.searchField.editText.setText((CharSequence) null);
         }
     }
 
-    public static void m3307$r8$lambda$JIklVxnbgcIioqE3u7E8Qs110(GroupCreateActivity groupCreateActivity) {
+    public static void m3315$r8$lambda$JIklVxnbgcIioqE3u7E8Qs110(GroupCreateActivity groupCreateActivity) {
         groupCreateActivity.checkUi_listClip();
         groupCreateActivity.blur3_InvalidateBlur();
     }
@@ -982,12 +982,12 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.doOnPreDraw(this.listView, new Runnable() {
             @Override
             public final void run() {
-                GroupCreateActivity.m3306$r8$lambda$DLVfX5BrfmE6F4KFrofnXxUj14(this.f$0, i);
+                GroupCreateActivity.m3314$r8$lambda$DLVfX5BrfmE6F4KFrofnXxUj14(this.f$0, i);
             }
         });
     }
 
-    public static void m3306$r8$lambda$DLVfX5BrfmE6F4KFrofnXxUj14(GroupCreateActivity groupCreateActivity, int i) {
+    public static void m3314$r8$lambda$DLVfX5BrfmE6F4KFrofnXxUj14(GroupCreateActivity groupCreateActivity, int i) {
         groupCreateActivity.getClass();
         AnimatorSet animatorSet = new AnimatorSet();
         int childCount = groupCreateActivity.listView.getChildCount();
@@ -1246,7 +1246,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             builder.setPositiveButton(LocaleController.getString(R.string.Add), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    GroupCreateActivity.m3311$r8$lambda$wXHQzTmuu8bE5r7iGP67nSVbQ(this.f$0, checkBoxCellArr, alertDialog, i2);
+                    GroupCreateActivity.m3319$r8$lambda$wXHQzTmuu8bE5r7iGP67nSVbQ(this.f$0, checkBoxCellArr, alertDialog, i2);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1304,7 +1304,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
     }
 
-    public static void m3311$r8$lambda$wXHQzTmuu8bE5r7iGP67nSVbQ(GroupCreateActivity groupCreateActivity, CheckBoxCell[] checkBoxCellArr, AlertDialog alertDialog, int i) {
+    public static void m3319$r8$lambda$wXHQzTmuu8bE5r7iGP67nSVbQ(GroupCreateActivity groupCreateActivity, CheckBoxCell[] checkBoxCellArr, AlertDialog alertDialog, int i) {
         groupCreateActivity.getClass();
         int i2 = 0;
         CheckBoxCell checkBoxCell = checkBoxCellArr[0];
@@ -1881,14 +1881,14 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCreateActivity.GroupCreateAdapter.m3312$r8$lambda$factPfOJckaZD5_Aj0SsOW3sdM(this.f$0, str);
+                    GroupCreateActivity.GroupCreateAdapter.m3320$r8$lambda$factPfOJckaZD5_Aj0SsOW3sdM(this.f$0, str);
                 }
             };
             this.searchRunnable = runnable;
             dispatchQueue.postRunnable(runnable, 300L);
         }
 
-        public static void m3312$r8$lambda$factPfOJckaZD5_Aj0SsOW3sdM(final GroupCreateAdapter groupCreateAdapter, final String str) {
+        public static void m3320$r8$lambda$factPfOJckaZD5_Aj0SsOW3sdM(final GroupCreateAdapter groupCreateAdapter, final String str) {
             groupCreateAdapter.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

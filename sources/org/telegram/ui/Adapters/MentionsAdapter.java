@@ -359,22 +359,22 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.lastReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MentionsAdapter.m1295$r8$lambda$AffoJHTKkZmQ_azaCO4vltWJzM(this.f$0, str, tLObject, tL_error);
+                MentionsAdapter.m1301$r8$lambda$AffoJHTKkZmQ_azaCO4vltWJzM(this.f$0, str, tLObject, tL_error);
             }
         });
     }
 
-    public static void m1295$r8$lambda$AffoJHTKkZmQ_azaCO4vltWJzM(final MentionsAdapter mentionsAdapter, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1301$r8$lambda$AffoJHTKkZmQ_azaCO4vltWJzM(final MentionsAdapter mentionsAdapter, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         mentionsAdapter.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MentionsAdapter.m1301$r8$lambda$wn91zgqvphjFG0nsqFo8J1dKbc(this.f$0, str, tLObject);
+                MentionsAdapter.m1307$r8$lambda$wn91zgqvphjFG0nsqFo8J1dKbc(this.f$0, str, tLObject);
             }
         });
     }
 
-    public static void m1301$r8$lambda$wn91zgqvphjFG0nsqFo8J1dKbc(MentionsAdapter mentionsAdapter, String str, TLObject tLObject) {
+    public static void m1307$r8$lambda$wn91zgqvphjFG0nsqFo8J1dKbc(MentionsAdapter mentionsAdapter, String str, TLObject tLObject) {
         ArrayList arrayList;
         mentionsAdapter.lastReqId = 0;
         if (str.equals(mentionsAdapter.lastSticker) && (tLObject instanceof TLRPC.TL_messages_stickers)) {
@@ -643,13 +643,13 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i) {
-                            MentionsAdapter.m1300$r8$lambda$vKm2jnehT0bBetKIrBbn4T8h2E(this.f$0, zArr, alertDialog, i);
+                            MentionsAdapter.m1306$r8$lambda$vKm2jnehT0bBetKIrBbn4T8h2E(this.f$0, zArr, alertDialog, i);
                         }
                     });
                     this.parentFragment.showDialog(builder.create(), new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
-                            MentionsAdapter.m1302$r8$lambda$wnxqc5Lojznr_6niaInwI8KWpE(this.f$0, zArr, dialogInterface);
+                            MentionsAdapter.m1308$r8$lambda$wnxqc5Lojznr_6niaInwI8KWpE(this.f$0, zArr, dialogInterface);
                         }
                     });
                 } else {
@@ -682,13 +682,13 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public static void m1300$r8$lambda$vKm2jnehT0bBetKIrBbn4T8h2E(MentionsAdapter mentionsAdapter, boolean[] zArr, AlertDialog alertDialog, int i) {
+    public static void m1306$r8$lambda$vKm2jnehT0bBetKIrBbn4T8h2E(MentionsAdapter mentionsAdapter, boolean[] zArr, AlertDialog alertDialog, int i) {
         mentionsAdapter.getClass();
         zArr[0] = true;
         mentionsAdapter.onLocationUnavailable();
     }
 
-    public static void m1302$r8$lambda$wnxqc5Lojznr_6niaInwI8KWpE(MentionsAdapter mentionsAdapter, boolean[] zArr, DialogInterface dialogInterface) {
+    public static void m1308$r8$lambda$wnxqc5Lojznr_6niaInwI8KWpE(MentionsAdapter mentionsAdapter, boolean[] zArr, DialogInterface dialogInterface) {
         mentionsAdapter.getClass();
         if (zArr[0]) {
             return;
@@ -848,12 +848,12 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MentionsAdapter.AnonymousClass4.m1303$r8$lambda$m8BXuePyYlp3o_WtWb6BQAxPko(this.f$0, str, tL_error, tLObject, messagesController, messagesStorage);
+                    MentionsAdapter.AnonymousClass4.m1309$r8$lambda$m8BXuePyYlp3o_WtWb6BQAxPko(this.f$0, str, tL_error, tLObject, messagesController, messagesStorage);
                 }
             });
         }
 
-        public static void m1303$r8$lambda$m8BXuePyYlp3o_WtWb6BQAxPko(AnonymousClass4 anonymousClass4, String str, TLRPC.TL_error tL_error, TLObject tLObject, MessagesController messagesController, MessagesStorage messagesStorage) {
+        public static void m1309$r8$lambda$m8BXuePyYlp3o_WtWb6BQAxPko(AnonymousClass4 anonymousClass4, String str, TLRPC.TL_error tL_error, TLObject tLObject, MessagesController messagesController, MessagesStorage messagesStorage) {
             if (MentionsAdapter.this.searchingContextUsername == null || !MentionsAdapter.this.searchingContextUsername.equals(str)) {
                 return;
             }
@@ -964,7 +964,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MentionsAdapter.m1296$r8$lambda$FEVHHL3jLtKUMGMF3sKKFq47k(this.f$0, str, z, user, str2, messagesStorage, string, tLObject, tL_error);
+                MentionsAdapter.m1302$r8$lambda$FEVHHL3jLtKUMGMF3sKKFq47k(this.f$0, str, z, user, str2, messagesStorage, string, tLObject, tL_error);
             }
         };
         long j = user.id;
@@ -995,17 +995,17 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.contextQueryReqid = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getInlineBotResults, requestDelegate, 2);
     }
 
-    public static void m1296$r8$lambda$FEVHHL3jLtKUMGMF3sKKFq47k(final MentionsAdapter mentionsAdapter, final String str, final boolean z, final TLRPC.User user, final String str2, final MessagesStorage messagesStorage, final String str3, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1302$r8$lambda$FEVHHL3jLtKUMGMF3sKKFq47k(final MentionsAdapter mentionsAdapter, final String str, final boolean z, final TLRPC.User user, final String str2, final MessagesStorage messagesStorage, final String str3, final TLObject tLObject, TLRPC.TL_error tL_error) {
         mentionsAdapter.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MentionsAdapter.m1299$r8$lambda$eV3DaMEBh4FLqclvdf9Dshac84(this.f$0, str, z, tLObject, user, str2, messagesStorage, str3);
+                MentionsAdapter.m1305$r8$lambda$eV3DaMEBh4FLqclvdf9Dshac84(this.f$0, str, z, tLObject, user, str2, messagesStorage, str3);
             }
         });
     }
 
-    public static void m1299$r8$lambda$eV3DaMEBh4FLqclvdf9Dshac84(MentionsAdapter mentionsAdapter, String str, boolean z, TLObject tLObject, TLRPC.User user, String str2, MessagesStorage messagesStorage, String str3) {
+    public static void m1305$r8$lambda$eV3DaMEBh4FLqclvdf9Dshac84(MentionsAdapter mentionsAdapter, String str, boolean z, TLObject tLObject, TLRPC.User user, String str2, MessagesStorage messagesStorage, String str3) {
         boolean z2;
         if (str.equals(mentionsAdapter.searchingContextQuery)) {
             mentionsAdapter.contextQueryReqid = 0;
@@ -1889,7 +1889,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                                             Runnable runnable4 = new Runnable() {
                                                 @Override
                                                 public final void run() {
-                                                    MentionsAdapter.m1298$r8$lambda$aqOFF8rYLGVmfQrjC23gXAXSy4(this.f$0, arrayList5, longSparseArray);
+                                                    MentionsAdapter.m1304$r8$lambda$aqOFF8rYLGVmfQrjC23gXAXSy4(this.f$0, arrayList5, longSparseArray);
                                                 }
                                             };
                                             this.cancelDelayRunnable = runnable4;
@@ -3305,7 +3305,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         showUsersResult(arrayList5, longSparseArray, true);
     }
 
-    public static void m1298$r8$lambda$aqOFF8rYLGVmfQrjC23gXAXSy4(MentionsAdapter mentionsAdapter, ArrayList arrayList, LongSparseArray longSparseArray) {
+    public static void m1304$r8$lambda$aqOFF8rYLGVmfQrjC23gXAXSy4(MentionsAdapter mentionsAdapter, ArrayList arrayList, LongSparseArray longSparseArray) {
         mentionsAdapter.cancelDelayRunnable = null;
         mentionsAdapter.showUsersResult(arrayList, longSparseArray, true);
     }
@@ -3355,22 +3355,22 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             mentionsAdapter.channelReqId = connectionsManager.sendRequest(tL_channels_getParticipants, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    MentionsAdapter.AnonymousClass7.m1304$r8$lambda$GbNyoj88ETEeDcc6FugJEVVLBI(this.f$0, iAccess$1704, arrayList, longSparseArray, messagesController, tLObject, tL_error);
+                    MentionsAdapter.AnonymousClass7.m1310$r8$lambda$GbNyoj88ETEeDcc6FugJEVVLBI(this.f$0, iAccess$1704, arrayList, longSparseArray, messagesController, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m1304$r8$lambda$GbNyoj88ETEeDcc6FugJEVVLBI(final AnonymousClass7 anonymousClass7, final int i, final ArrayList arrayList, final LongSparseArray longSparseArray, final MessagesController messagesController, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m1310$r8$lambda$GbNyoj88ETEeDcc6FugJEVVLBI(final AnonymousClass7 anonymousClass7, final int i, final ArrayList arrayList, final LongSparseArray longSparseArray, final MessagesController messagesController, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             anonymousClass7.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MentionsAdapter.AnonymousClass7.m1305$r8$lambda$K8UUnJxcF5nCg3Gd8FW7m5C7y8(this.f$0, i, arrayList, longSparseArray, tL_error, tLObject, messagesController);
+                    MentionsAdapter.AnonymousClass7.m1311$r8$lambda$K8UUnJxcF5nCg3Gd8FW7m5C7y8(this.f$0, i, arrayList, longSparseArray, tL_error, tLObject, messagesController);
                 }
             });
         }
 
-        public static void m1305$r8$lambda$K8UUnJxcF5nCg3Gd8FW7m5C7y8(AnonymousClass7 anonymousClass7, int i, ArrayList arrayList, LongSparseArray longSparseArray, TLRPC.TL_error tL_error, TLObject tLObject, MessagesController messagesController) {
+        public static void m1311$r8$lambda$K8UUnJxcF5nCg3Gd8FW7m5C7y8(AnonymousClass7 anonymousClass7, int i, ArrayList arrayList, LongSparseArray longSparseArray, TLRPC.TL_error tL_error, TLObject tLObject, MessagesController messagesController) {
             if (MentionsAdapter.this.channelReqId != 0 && i == MentionsAdapter.this.channelLastReqId && MentionsAdapter.this.searchResultUsernamesMap != null && MentionsAdapter.this.searchResultUsernames != null) {
                 MentionsAdapter.this.showUsersResult(arrayList, longSparseArray, false);
                 if (tL_error == null) {

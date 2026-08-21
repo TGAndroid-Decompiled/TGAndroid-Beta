@@ -691,12 +691,12 @@ public class DataSettingsActivity extends BaseFragment {
         dataSettingsActivity.getConnectionsManager().sendRequest(new TLRPC.TL_messages_clearAllDrafts(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                DataSettingsActivity.m3038$r8$lambda$6CsX4cNxn3MkUOKGiaVtAKJ4(this.f$0, tLObject, tL_error);
+                DataSettingsActivity.m3047$r8$lambda$6CsX4cNxn3MkUOKGiaVtAKJ4(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m3038$r8$lambda$6CsX4cNxn3MkUOKGiaVtAKJ4(final DataSettingsActivity dataSettingsActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3047$r8$lambda$6CsX4cNxn3MkUOKGiaVtAKJ4(final DataSettingsActivity dataSettingsActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
         dataSettingsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

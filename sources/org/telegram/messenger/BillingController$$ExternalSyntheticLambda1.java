@@ -1,13 +1,12 @@
 package org.telegram.messenger;
 
 import com.android.billingclient.api.BillingResult;
-import com.android.billingclient.api.ProductDetailsResponseListener;
 import java.util.List;
 
-public final class BillingController$$ExternalSyntheticLambda3 implements ProductDetailsResponseListener {
+public final class BillingController$$ExternalSyntheticLambda1 implements BillingController.ProductDetailsResponseListenerLegacy {
     public final BillingController f$0;
 
-    public BillingController$$ExternalSyntheticLambda3(BillingController billingController) {
+    public BillingController$$ExternalSyntheticLambda1(BillingController billingController) {
         this.f$0 = billingController;
     }
 

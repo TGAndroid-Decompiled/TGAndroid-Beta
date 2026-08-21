@@ -692,7 +692,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PrivateVideoPreviewDialogNew.m2981$r8$lambda$YNA4YQHVAO3gE5tqZaYvDVzSHo(this.f$0, valueAnimator);
+                    PrivateVideoPreviewDialogNew.m2990$r8$lambda$YNA4YQHVAO3gE5tqZaYvDVzSHo(this.f$0, valueAnimator);
                 }
             });
             valueAnimatorOfFloat2.addListener(new AnimatorListenerAdapter() {
@@ -735,7 +735,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         privateVideoPreviewDialogNew.invalidate();
     }
 
-    public static void m2981$r8$lambda$YNA4YQHVAO3gE5tqZaYvDVzSHo(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, ValueAnimator valueAnimator) {
+    public static void m2990$r8$lambda$YNA4YQHVAO3gE5tqZaYvDVzSHo(PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew, ValueAnimator valueAnimator) {
         privateVideoPreviewDialogNew.getClass();
         privateVideoPreviewDialogNew.openProgress1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float fDp = privateVideoPreviewDialogNew.startLocationX + AndroidUtilities.dp(28.0f);

@@ -74,7 +74,7 @@ public class CropRotationWheel extends FrameLayout {
         this.mirrorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropRotationWheel.m2247$r8$lambda$_kKv5ZU5duqWNkbWStPVNLUqE(this.f$0, view);
+                CropRotationWheel.m2257$r8$lambda$_kKv5ZU5duqWNkbWStPVNLUqE(this.f$0, view);
             }
         });
         this.mirrorButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -107,7 +107,7 @@ public class CropRotationWheel extends FrameLayout {
         this.rotation90Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropRotationWheel.m2246$r8$lambda$4pWpcLGhBIA87ldncOPMZyJpZQ(this.f$0, view);
+                CropRotationWheel.m2256$r8$lambda$4pWpcLGhBIA87ldncOPMZyJpZQ(this.f$0, view);
             }
         });
         this.rotation90Button.setContentDescription(LocaleController.getString(R.string.AccDescrRotate));
@@ -120,7 +120,7 @@ public class CropRotationWheel extends FrameLayout {
         setRotation(0.0f, false);
     }
 
-    public static void m2247$r8$lambda$_kKv5ZU5duqWNkbWStPVNLUqE(CropRotationWheel cropRotationWheel, View view) {
+    public static void m2257$r8$lambda$_kKv5ZU5duqWNkbWStPVNLUqE(CropRotationWheel cropRotationWheel, View view) {
         RotationWheelListener rotationWheelListener = cropRotationWheel.rotationListener;
         if (rotationWheelListener != null) {
             cropRotationWheel.setMirrored(rotationWheelListener.mirror());
@@ -139,7 +139,7 @@ public class CropRotationWheel extends FrameLayout {
         }
     }
 
-    public static void m2246$r8$lambda$4pWpcLGhBIA87ldncOPMZyJpZQ(CropRotationWheel cropRotationWheel, View view) {
+    public static void m2256$r8$lambda$4pWpcLGhBIA87ldncOPMZyJpZQ(CropRotationWheel cropRotationWheel, View view) {
         RotationWheelListener rotationWheelListener = cropRotationWheel.rotationListener;
         if (rotationWheelListener != null) {
             cropRotationWheel.setRotated(rotationWheelListener.rotate90Pressed());

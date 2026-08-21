@@ -741,7 +741,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                         AlertsCreator.createScheduleDatePickerDialog(PollCreateActivity.this.parentFragment.getParentActivity(), PollCreateActivity.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                             @Override
                             public final void didSelectDate(boolean z, int i7, int i8) {
-                                PollCreateActivity.AnonymousClass2.m3749$r8$lambda$Nd_8ka_3sTkoeHSrKSOphM3kow(this.f$0, tL_messageMediaPoll, arrayList, z, i7, i8);
+                                PollCreateActivity.AnonymousClass2.m3757$r8$lambda$Nd_8ka_3sTkoeHSrKSOphM3kow(this.f$0, tL_messageMediaPoll, arrayList, z, i7, i8);
                             }
                         });
                         return;
@@ -807,7 +807,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     AlertsCreator.createScheduleDatePickerDialog(PollCreateActivity.this.parentFragment.getParentActivity(), PollCreateActivity.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
                         public final void didSelectDate(boolean z, int i11, int i12) {
-                            PollCreateActivity.AnonymousClass2.m3748$r8$lambda$G9wZ1elIZxXvUTytkl2Z_VRlWA(this.f$0, tL_messageMediaToDo, z, i11, i12);
+                            PollCreateActivity.AnonymousClass2.m3756$r8$lambda$G9wZ1elIZxXvUTytkl2Z_VRlWA(this.f$0, tL_messageMediaToDo, z, i11, i12);
                         }
                     });
                 } else {
@@ -817,12 +817,12 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             }
         }
 
-        public static void m3748$r8$lambda$G9wZ1elIZxXvUTytkl2Z_VRlWA(AnonymousClass2 anonymousClass2, TLRPC.TL_messageMediaToDo tL_messageMediaToDo, boolean z, int i, int i2) {
+        public static void m3756$r8$lambda$G9wZ1elIZxXvUTytkl2Z_VRlWA(AnonymousClass2 anonymousClass2, TLRPC.TL_messageMediaToDo tL_messageMediaToDo, boolean z, int i, int i2) {
             PollCreateActivity.this.delegate.sendPoll(tL_messageMediaToDo, null, z, i);
             PollCreateActivity.this.finishFragment();
         }
 
-        public static void m3749$r8$lambda$Nd_8ka_3sTkoeHSrKSOphM3kow(AnonymousClass2 anonymousClass2, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, ArrayList arrayList, boolean z, int i, int i2) {
+        public static void m3757$r8$lambda$Nd_8ka_3sTkoeHSrKSOphM3kow(AnonymousClass2 anonymousClass2, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, ArrayList arrayList, boolean z, int i, int i2) {
             PollCreateActivity.this.delegate.sendPoll(tL_messageMediaPoll, arrayList, z, i);
             PollCreateActivity.this.finishFragment();
         }
@@ -1381,7 +1381,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PollCreateActivity.m3747$r8$lambda$yp5aq0CECswlgJfloGqbvtHXc(this.f$0, f, f2, valueAnimator);
+                PollCreateActivity.m3755$r8$lambda$yp5aq0CECswlgJfloGqbvtHXc(this.f$0, f, f2, valueAnimator);
             }
         });
         valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -1395,7 +1395,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         valueAnimatorOfFloat.start();
     }
 
-    public static void m3747$r8$lambda$yp5aq0CECswlgJfloGqbvtHXc(PollCreateActivity pollCreateActivity, float f, float f2, ValueAnimator valueAnimator) {
+    public static void m3755$r8$lambda$yp5aq0CECswlgJfloGqbvtHXc(PollCreateActivity pollCreateActivity, float f, float f2, ValueAnimator valueAnimator) {
         pollCreateActivity.getClass();
         pollCreateActivity.emojiView.setTranslationY(AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
     }
@@ -1484,7 +1484,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PollCreateActivity.m3746$r8$lambda$fO3VA2kn5bIxq9ZAmlYEjWuwlQ(this.f$0, valueAnimator);
+                        PollCreateActivity.m3754$r8$lambda$fO3VA2kn5bIxq9ZAmlYEjWuwlQ(this.f$0, valueAnimator);
                     }
                 });
                 valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -1519,7 +1519,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    public static void m3746$r8$lambda$fO3VA2kn5bIxq9ZAmlYEjWuwlQ(PollCreateActivity pollCreateActivity, ValueAnimator valueAnimator) {
+    public static void m3754$r8$lambda$fO3VA2kn5bIxq9ZAmlYEjWuwlQ(PollCreateActivity pollCreateActivity, ValueAnimator valueAnimator) {
         pollCreateActivity.getClass();
         pollCreateActivity.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
@@ -2264,13 +2264,13 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     textView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public final boolean onEditorAction(TextView textView2, int i2, KeyEvent keyEvent) {
-                            return PollCreateActivity.ListAdapter.m3750$r8$lambda$CjCfNCrb5lbvsuS0J5JXXx0(this.f$0, pollEditTextCell2, textView2, i2, keyEvent);
+                            return PollCreateActivity.ListAdapter.m3758$r8$lambda$CjCfNCrb5lbvsuS0J5JXXx0(this.f$0, pollEditTextCell2, textView2, i2, keyEvent);
                         }
                     });
                     textView.setOnKeyListener(new View.OnKeyListener() {
                         @Override
                         public final boolean onKey(View view, int i2, KeyEvent keyEvent) {
-                            return PollCreateActivity.ListAdapter.m3751$r8$lambda$dNeJEm63DShYxRjXrpacmFzg4(pollEditTextCell2, view, i2, keyEvent);
+                            return PollCreateActivity.ListAdapter.m3759$r8$lambda$dNeJEm63DShYxRjXrpacmFzg4(pollEditTextCell2, view, i2, keyEvent);
                         }
                     });
                     shadowSectionCell = pollEditTextCell2;
@@ -2343,7 +2343,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             return new RecyclerListView.Holder(shadowSectionCell);
         }
 
-        public static boolean m3750$r8$lambda$CjCfNCrb5lbvsuS0J5JXXx0(ListAdapter listAdapter, PollEditTextCell pollEditTextCell, TextView textView, int i, KeyEvent keyEvent) {
+        public static boolean m3758$r8$lambda$CjCfNCrb5lbvsuS0J5JXXx0(ListAdapter listAdapter, PollEditTextCell pollEditTextCell, TextView textView, int i, KeyEvent keyEvent) {
             int adapterPosition;
             if (i != 5) {
                 listAdapter.getClass();
@@ -2371,7 +2371,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             return true;
         }
 
-        public static boolean m3751$r8$lambda$dNeJEm63DShYxRjXrpacmFzg4(PollEditTextCell pollEditTextCell, View view, int i, KeyEvent keyEvent) {
+        public static boolean m3759$r8$lambda$dNeJEm63DShYxRjXrpacmFzg4(PollEditTextCell pollEditTextCell, View view, int i, KeyEvent keyEvent) {
             EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
             if (i != 67 || keyEvent.getAction() != 0 || editTextBoldCursor.length() != 0) {
                 return false;

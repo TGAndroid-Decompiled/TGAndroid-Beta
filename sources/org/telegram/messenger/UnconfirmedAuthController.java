@@ -46,12 +46,12 @@ public class UnconfirmedAuthController {
         MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                UnconfirmedAuthController.m1083$r8$lambda$sVywaiWUyML0vTM9FoXGs8X4N8(this.f$0);
+                UnconfirmedAuthController.m1089$r8$lambda$sVywaiWUyML0vTM9FoXGs8X4N8(this.f$0);
             }
         });
     }
 
-    public static void m1083$r8$lambda$sVywaiWUyML0vTM9FoXGs8X4N8(final UnconfirmedAuthController unconfirmedAuthController) {
+    public static void m1089$r8$lambda$sVywaiWUyML0vTM9FoXGs8X4N8(final UnconfirmedAuthController unconfirmedAuthController) {
         unconfirmedAuthController.getClass();
         final ArrayList<TLRPC.User> arrayList = new ArrayList<>();
         ArrayList<Long> arrayList2 = new ArrayList<>();
@@ -84,7 +84,7 @@ public class UnconfirmedAuthController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        UnconfirmedAuthController.m1079$r8$lambda$AYxuHLoFiguf5DKG73A5YvY6ME(this.f$0, arrayList, hashSet, arrayList3);
+                        UnconfirmedAuthController.m1085$r8$lambda$AYxuHLoFiguf5DKG73A5YvY6ME(this.f$0, arrayList, hashSet, arrayList3);
                     }
                 });
             }
@@ -92,7 +92,7 @@ public class UnconfirmedAuthController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UnconfirmedAuthController.m1079$r8$lambda$AYxuHLoFiguf5DKG73A5YvY6ME(this.f$0, arrayList, hashSet, arrayList3);
+                    UnconfirmedAuthController.m1085$r8$lambda$AYxuHLoFiguf5DKG73A5YvY6ME(this.f$0, arrayList, hashSet, arrayList3);
                 }
             });
         } catch (Throwable th) {
@@ -103,7 +103,7 @@ public class UnconfirmedAuthController {
         }
     }
 
-    public static void m1079$r8$lambda$AYxuHLoFiguf5DKG73A5YvY6ME(UnconfirmedAuthController unconfirmedAuthController, ArrayList arrayList, HashSet hashSet, ArrayList arrayList2) {
+    public static void m1085$r8$lambda$AYxuHLoFiguf5DKG73A5YvY6ME(UnconfirmedAuthController unconfirmedAuthController, ArrayList arrayList, HashSet hashSet, ArrayList arrayList2) {
         MessagesController.getInstance(unconfirmedAuthController.currentAccount).putUsers(arrayList, true);
         boolean zIsEmpty = unconfirmedAuthController.auths.isEmpty();
         int i = 0;
@@ -216,13 +216,13 @@ public class UnconfirmedAuthController {
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    UnconfirmedAuthController.m1081$r8$lambda$hE7pNnSoML3GYVuT1bXHnfsKUE(this.f$0);
+                    UnconfirmedAuthController.m1087$r8$lambda$hE7pNnSoML3GYVuT1bXHnfsKUE(this.f$0);
                 }
             });
         }
     }
 
-    public static void m1081$r8$lambda$hE7pNnSoML3GYVuT1bXHnfsKUE(final UnconfirmedAuthController unconfirmedAuthController) {
+    public static void m1087$r8$lambda$hE7pNnSoML3GYVuT1bXHnfsKUE(final UnconfirmedAuthController unconfirmedAuthController) {
         SQLiteDatabase database = MessagesStorage.getInstance(unconfirmedAuthController.currentAccount).getDatabase();
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
@@ -281,7 +281,7 @@ public class UnconfirmedAuthController {
             callbackArr[i] = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    UnconfirmedAuthController.m1082$r8$lambda$s03l1nRxgy6Lr_3nNXQXlCZPK0(zArr, i, z, unconfirmedAuth, (Runnable) obj);
+                    UnconfirmedAuthController.m1088$r8$lambda$s03l1nRxgy6Lr_3nNXQXlCZPK0(zArr, i, z, unconfirmedAuth, (Runnable) obj);
                 }
             };
         }
@@ -313,16 +313,16 @@ public class UnconfirmedAuthController {
         }
     }
 
-    public static void m1080$r8$lambda$NJhReUHqCliAHaxOC3AKA_h2IU(boolean[] zArr, int i, Runnable runnable, Boolean bool) {
+    public static void m1086$r8$lambda$NJhReUHqCliAHaxOC3AKA_h2IU(boolean[] zArr, int i, Runnable runnable, Boolean bool) {
         zArr[i] = bool.booleanValue();
         runnable.run();
     }
 
-    public static void m1082$r8$lambda$s03l1nRxgy6Lr_3nNXQXlCZPK0(final boolean[] zArr, final int i, boolean z, UnconfirmedAuth unconfirmedAuth, final Runnable runnable) {
+    public static void m1088$r8$lambda$s03l1nRxgy6Lr_3nNXQXlCZPK0(final boolean[] zArr, final int i, boolean z, UnconfirmedAuth unconfirmedAuth, final Runnable runnable) {
         Utilities.Callback<Boolean> callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                UnconfirmedAuthController.m1080$r8$lambda$NJhReUHqCliAHaxOC3AKA_h2IU(zArr, i, runnable, (Boolean) obj);
+                UnconfirmedAuthController.m1086$r8$lambda$NJhReUHqCliAHaxOC3AKA_h2IU(zArr, i, runnable, (Boolean) obj);
             }
         };
         if (z) {
@@ -445,7 +445,7 @@ public class UnconfirmedAuthController {
                 ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequestTyped(confirmbotconnection, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        UnconfirmedAuthController.UnconfirmedAuth.m1086$r8$lambda$SFYpSZ1e2YH5OWljaueQlfLrkc(this.f$0, callback, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                        UnconfirmedAuthController.UnconfirmedAuth.m1092$r8$lambda$SFYpSZ1e2YH5OWljaueQlfLrkc(this.f$0, callback, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                     }
                 });
             } else {
@@ -461,7 +461,7 @@ public class UnconfirmedAuthController {
             }
         }
 
-        public static void m1086$r8$lambda$SFYpSZ1e2YH5OWljaueQlfLrkc(UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+        public static void m1092$r8$lambda$SFYpSZ1e2YH5OWljaueQlfLrkc(UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
             unconfirmedAuth.getClass();
             if (callback != null) {
                 callback.run(Boolean.valueOf(((bool instanceof TLRPC.TL_boolTrue) && tL_error == null) || UnconfirmedAuthController.this.debug));
@@ -474,12 +474,12 @@ public class UnconfirmedAuthController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UnconfirmedAuthController.UnconfirmedAuth.m1084$r8$lambda$7YVefWwACBZcsKyjhfmbWjrFpg(this.f$0, callback, tLObject, tL_error);
+                    UnconfirmedAuthController.UnconfirmedAuth.m1090$r8$lambda$7YVefWwACBZcsKyjhfmbWjrFpg(this.f$0, callback, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m1084$r8$lambda$7YVefWwACBZcsKyjhfmbWjrFpg(UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m1090$r8$lambda$7YVefWwACBZcsKyjhfmbWjrFpg(UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
             unconfirmedAuth.getClass();
             if (callback != null) {
                 callback.run(Boolean.valueOf(((tLObject instanceof TLRPC.TL_boolTrue) && tL_error == null) || UnconfirmedAuthController.this.debug));
@@ -496,7 +496,7 @@ public class UnconfirmedAuthController {
                 ConnectionsManager.getInstance(UnconfirmedAuthController.this.currentAccount).sendRequest(updateconnectedbot, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        UnconfirmedAuthController.UnconfirmedAuth.m1087$r8$lambda$UtQCVywGIkVj_bkEomRVvvkxI(this.f$0, callback, tLObject, tL_error);
+                        UnconfirmedAuthController.UnconfirmedAuth.m1093$r8$lambda$UtQCVywGIkVj_bkEomRVvvkxI(this.f$0, callback, tLObject, tL_error);
                     }
                 });
                 return;
@@ -511,7 +511,7 @@ public class UnconfirmedAuthController {
             });
         }
 
-        public static void m1087$r8$lambda$UtQCVywGIkVj_bkEomRVvvkxI(final UnconfirmedAuth unconfirmedAuth, final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m1093$r8$lambda$UtQCVywGIkVj_bkEomRVvvkxI(final UnconfirmedAuth unconfirmedAuth, final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             unconfirmedAuth.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -543,12 +543,12 @@ public class UnconfirmedAuthController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    UnconfirmedAuthController.UnconfirmedAuth.m1085$r8$lambda$9FjW0bKm0mL90Dv2RomJVmkNnI(this.f$0, callback, tLObject, tL_error);
+                    UnconfirmedAuthController.UnconfirmedAuth.m1091$r8$lambda$9FjW0bKm0mL90Dv2RomJVmkNnI(this.f$0, callback, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m1085$r8$lambda$9FjW0bKm0mL90Dv2RomJVmkNnI(UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m1091$r8$lambda$9FjW0bKm0mL90Dv2RomJVmkNnI(UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
             unconfirmedAuth.getClass();
             if (callback != null) {
                 callback.run(Boolean.valueOf(((tLObject instanceof TLRPC.TL_boolTrue) && tL_error == null) || UnconfirmedAuthController.this.debug));

@@ -270,7 +270,7 @@ public class JoinGroupAlert extends BottomSheet {
         textView6.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                JoinGroupAlert.m2407$r8$lambda$MV_tQ_9ptxGKYuynaLfo2IUbGY(this.f$0, j, i, view);
+                JoinGroupAlert.m2417$r8$lambda$MV_tQ_9ptxGKYuynaLfo2IUbGY(this.f$0, j, i, view);
             }
         });
     }
@@ -280,7 +280,7 @@ public class JoinGroupAlert extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinGroupAlert.m2404$r8$lambda$BrvctanFLceaFz3wLwDfbW4AUM(this.f$0);
+                JoinGroupAlert.m2414$r8$lambda$BrvctanFLceaFz3wLwDfbW4AUM(this.f$0);
             }
         }, 400L);
         if (joinGroupAlert.chatInvite == null && joinGroupAlert.currentChat != null) {
@@ -292,7 +292,7 @@ public class JoinGroupAlert extends BottomSheet {
             }, new MessagesController.ErrorDelegate() {
                 @Override
                 public final boolean run(TLRPC.TL_error tL_error) {
-                    return JoinGroupAlert.m2409$r8$lambda$hwb40nhsS3HSXAD8YJHeRE0PoA(this.f$0, z, tL_error);
+                    return JoinGroupAlert.m2419$r8$lambda$hwb40nhsS3HSXAD8YJHeRE0PoA(this.f$0, z, tL_error);
                 }
             });
             return;
@@ -307,7 +307,7 @@ public class JoinGroupAlert extends BottomSheet {
         }, 2);
     }
 
-    public static void m2404$r8$lambda$BrvctanFLceaFz3wLwDfbW4AUM(JoinGroupAlert joinGroupAlert) {
+    public static void m2414$r8$lambda$BrvctanFLceaFz3wLwDfbW4AUM(JoinGroupAlert joinGroupAlert) {
         if (joinGroupAlert.isDismissed()) {
             return;
         }
@@ -315,7 +315,7 @@ public class JoinGroupAlert extends BottomSheet {
         joinGroupAlert.requestProgressView.setVisibility(0);
     }
 
-    public static boolean m2409$r8$lambda$hwb40nhsS3HSXAD8YJHeRE0PoA(final JoinGroupAlert joinGroupAlert, final boolean z, TLRPC.TL_error tL_error) {
+    public static boolean m2419$r8$lambda$hwb40nhsS3HSXAD8YJHeRE0PoA(final JoinGroupAlert joinGroupAlert, final boolean z, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             joinGroupAlert.getClass();
             if ("INVITE_REQUEST_SENT".equals(tL_error.text)) {
@@ -348,7 +348,7 @@ public class JoinGroupAlert extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinGroupAlert.m2410$r8$lambda$qH6o3HVIsx9pTpmWPgxFo8V_34(this.f$0, tL_error, z, tL_messages_importChatInvite);
+                JoinGroupAlert.m2420$r8$lambda$qH6o3HVIsx9pTpmWPgxFo8V_34(this.f$0, tL_error, z, tL_messages_importChatInvite);
             }
         });
     }
@@ -358,7 +358,7 @@ public class JoinGroupAlert extends BottomSheet {
         BotGuardHelper.getInstance(joinGroupAlert.currentAccount).openGuardBotWebApp(j, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
     }
 
-    public static void m2410$r8$lambda$qH6o3HVIsx9pTpmWPgxFo8V_34(final JoinGroupAlert joinGroupAlert, TLRPC.TL_error tL_error, final boolean z, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+    public static void m2420$r8$lambda$qH6o3HVIsx9pTpmWPgxFo8V_34(final JoinGroupAlert joinGroupAlert, TLRPC.TL_error tL_error, final boolean z, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
         BaseFragment baseFragment = joinGroupAlert.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
@@ -379,7 +379,7 @@ public class JoinGroupAlert extends BottomSheet {
         joinGroupAlert.dismiss();
     }
 
-    public static void m2407$r8$lambda$MV_tQ_9ptxGKYuynaLfo2IUbGY(final JoinGroupAlert joinGroupAlert, final long j, final int i, View view) {
+    public static void m2417$r8$lambda$MV_tQ_9ptxGKYuynaLfo2IUbGY(final JoinGroupAlert joinGroupAlert, final long j, final int i, View view) {
         joinGroupAlert.dismiss();
         final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
         tL_messages_importChatInvite.hash = joinGroupAlert.hash;
@@ -404,7 +404,7 @@ public class JoinGroupAlert extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        JoinGroupAlert.m2406$r8$lambda$JvWnz_OARFn0uXc5HHxoYoAtuQ(this.f$0, tL_chatInviteJoinResultWebView, j);
+                        JoinGroupAlert.m2416$r8$lambda$JvWnz_OARFn0uXc5HHxoYoAtuQ(this.f$0, tL_chatInviteJoinResultWebView, j);
                     }
                 });
             }
@@ -418,7 +418,7 @@ public class JoinGroupAlert extends BottomSheet {
         });
     }
 
-    public static void m2406$r8$lambda$JvWnz_OARFn0uXc5HHxoYoAtuQ(JoinGroupAlert joinGroupAlert, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j) {
+    public static void m2416$r8$lambda$JvWnz_OARFn0uXc5HHxoYoAtuQ(JoinGroupAlert joinGroupAlert, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j) {
         MessagesController.getInstance(joinGroupAlert.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
         BotGuardHelper.getInstance(joinGroupAlert.currentAccount).openGuardBotWebApp(j, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
     }

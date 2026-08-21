@@ -100,13 +100,13 @@ public class ViewsForPeerStoriesRequester {
         this.currentReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesViews, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ViewsForPeerStoriesRequester.m4453$r8$lambda$Ro741gksRp0n0clrr1WHUZUJks(this.f$0, tL_stories_getStoriesViews, tLObject, tL_error);
+                ViewsForPeerStoriesRequester.m4464$r8$lambda$Ro741gksRp0n0clrr1WHUZUJks(this.f$0, tL_stories_getStoriesViews, tLObject, tL_error);
             }
         });
         return true;
     }
 
-    public static void m4453$r8$lambda$Ro741gksRp0n0clrr1WHUZUJks(final ViewsForPeerStoriesRequester viewsForPeerStoriesRequester, final TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4464$r8$lambda$Ro741gksRp0n0clrr1WHUZUJks(final ViewsForPeerStoriesRequester viewsForPeerStoriesRequester, final TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews, final TLObject tLObject, TLRPC.TL_error tL_error) {
         viewsForPeerStoriesRequester.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

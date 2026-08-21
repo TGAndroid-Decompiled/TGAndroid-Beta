@@ -343,7 +343,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    TranslateAlert2.m2901$r8$lambda$hIQqDVFHyI4E16DO4jB6xnsgMk(this.f$0, tL_textWithEntities, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                    TranslateAlert2.m2910$r8$lambda$hIQqDVFHyI4E16DO4jB6xnsgMk(this.f$0, tL_textWithEntities, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
                 }
             }));
             return;
@@ -362,7 +362,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TranslateAlert2.m2902$r8$lambda$pYSrfd0XHCLtHp5h97GxZkjRm4(this.f$0, tL_textWithEntities, tLObject, tL_error);
+                TranslateAlert2.m2911$r8$lambda$pYSrfd0XHCLtHp5h97GxZkjRm4(this.f$0, tL_textWithEntities, tLObject, tL_error);
             }
         }));
     }
@@ -405,7 +405,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         animatedTextView.setText(languageName(str));
     }
 
-    public static void m2901$r8$lambda$hIQqDVFHyI4E16DO4jB6xnsgMk(TranslateAlert2 translateAlert2, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, TLRPC.TL_error tL_error) {
+    public static void m2910$r8$lambda$hIQqDVFHyI4E16DO4jB6xnsgMk(TranslateAlert2 translateAlert2, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, TLRPC.TL_error tL_error) {
         translateAlert2.reqId = null;
         if (tL_error != null && "TRANSLATIONS_DISABLED_ALT".equalsIgnoreCase(tL_error.text)) {
             translateAlert2.translateAlt();
@@ -433,7 +433,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         translateAlert2.adapter.updateMainView(translateAlert2.textViewContainer);
     }
 
-    public static void m2902$r8$lambda$pYSrfd0XHCLtHp5h97GxZkjRm4(final TranslateAlert2 translateAlert2, final TLRPC.TL_textWithEntities tL_textWithEntities, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m2911$r8$lambda$pYSrfd0XHCLtHp5h97GxZkjRm4(final TranslateAlert2 translateAlert2, final TLRPC.TL_textWithEntities tL_textWithEntities, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         translateAlert2.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -710,7 +710,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            TranslateAlert2.AnonymousClass5.m2905$r8$lambda$EJo9S1zdx0isGruy5xMAQ05zgw(callback4, str);
+                            TranslateAlert2.AnonymousClass5.m2914$r8$lambda$EJo9S1zdx0isGruy5xMAQ05zgw(callback4, str);
                         }
                     });
                 } catch (Exception e2) {
@@ -722,7 +722,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             }
         }
 
-        public static void m2905$r8$lambda$EJo9S1zdx0isGruy5xMAQ05zgw(Utilities.Callback2 callback2, String str) {
+        public static void m2914$r8$lambda$EJo9S1zdx0isGruy5xMAQ05zgw(Utilities.Callback2 callback2, String str) {
             if (callback2 != null) {
                 callback2.run(str, Boolean.FALSE);
             }

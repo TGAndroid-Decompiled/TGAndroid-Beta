@@ -699,7 +699,7 @@ public class ItemOptions {
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ItemOptions.m2398$r8$lambda$SbKCir6XeIbUCr4nHWqs_2xWw(this.f$0, runnable, view2);
+                ItemOptions.m2408$r8$lambda$SbKCir6XeIbUCr4nHWqs_2xWw(this.f$0, runnable, view2);
             }
         });
         int i3 = this.minWidthDp;
@@ -712,7 +712,7 @@ public class ItemOptions {
         return this;
     }
 
-    public static void m2398$r8$lambda$SbKCir6XeIbUCr4nHWqs_2xWw(ItemOptions itemOptions, Runnable runnable, View view) {
+    public static void m2408$r8$lambda$SbKCir6XeIbUCr4nHWqs_2xWw(ItemOptions itemOptions, Runnable runnable, View view) {
         if (runnable != null) {
             itemOptions.getClass();
             runnable.run();
@@ -757,7 +757,7 @@ public class ItemOptions {
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ItemOptions.m2395$r8$lambda$57pcsdA9rGxTWwUNJE32fR8ncE(this.f$0, runnable, view2);
+                ItemOptions.m2405$r8$lambda$57pcsdA9rGxTWwUNJE32fR8ncE(this.f$0, runnable, view2);
             }
         });
         int i4 = this.minWidthDp;
@@ -770,7 +770,7 @@ public class ItemOptions {
         return this;
     }
 
-    public static void m2395$r8$lambda$57pcsdA9rGxTWwUNJE32fR8ncE(ItemOptions itemOptions, Runnable runnable, View view) {
+    public static void m2405$r8$lambda$57pcsdA9rGxTWwUNJE32fR8ncE(ItemOptions itemOptions, Runnable runnable, View view) {
         if (runnable != null) {
             itemOptions.getClass();
             runnable.run();
@@ -923,14 +923,14 @@ public class ItemOptions {
         actionBarPopupWindowLayout2.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                ItemOptions.m2399$r8$lambda$bYzTlcbiehAZWRw5Lmjo6wfFO8(this.f$0, keyEvent);
+                ItemOptions.m2409$r8$lambda$bYzTlcbiehAZWRw5Lmjo6wfFO8(this.f$0, keyEvent);
             }
         });
         this.layout.addView(this.lastLayout, LayoutHelper.createLinear(-1, -2, 48, !z ? -8 : 0, z ? -8 : 0, 0, 0));
         return this;
     }
 
-    public static void m2399$r8$lambda$bYzTlcbiehAZWRw5Lmjo6wfFO8(ItemOptions itemOptions, KeyEvent keyEvent) {
+    public static void m2409$r8$lambda$bYzTlcbiehAZWRw5Lmjo6wfFO8(ItemOptions itemOptions, KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         itemOptions.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = itemOptions.actionBarPopupWindow) != null && actionBarPopupWindow.isShowing()) {
@@ -1442,7 +1442,7 @@ public class ItemOptions {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            ItemOptions.m2396$r8$lambda$JLL5ZrcPXvQwTyg0UCGvjd13F8(this.f$0, valueAnimator2);
+                            ItemOptions.m2406$r8$lambda$JLL5ZrcPXvQwTyg0UCGvjd13F8(this.f$0, valueAnimator2);
                         }
                     });
                     this.dimAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1663,7 +1663,7 @@ public class ItemOptions {
         return true;
     }
 
-    public static void m2396$r8$lambda$JLL5ZrcPXvQwTyg0UCGvjd13F8(ItemOptions itemOptions, ValueAnimator valueAnimator) {
+    public static void m2406$r8$lambda$JLL5ZrcPXvQwTyg0UCGvjd13F8(ItemOptions itemOptions, ValueAnimator valueAnimator) {
         itemOptions.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         DimView dimView = itemOptions.dimView;
@@ -1705,7 +1705,7 @@ public class ItemOptions {
         View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
             @Override
             public final void onLayoutChange(View view2, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-                ItemOptions.m2397$r8$lambda$PGV6Pa9ZJO1w6bRpndvNoYzq1w(this.f$0, view2, i, i2, i3, i4, i5, i6, i7, i8);
+                ItemOptions.m2407$r8$lambda$PGV6Pa9ZJO1w6bRpndvNoYzq1w(this.f$0, view2, i, i2, i3, i4, i5, i6, i7, i8);
             }
         };
         this.followLayoutListener = onLayoutChangeListener;
@@ -1729,7 +1729,7 @@ public class ItemOptions {
         itemOptions.reposition();
     }
 
-    public static void m2397$r8$lambda$PGV6Pa9ZJO1w6bRpndvNoYzq1w(ItemOptions itemOptions, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+    public static void m2407$r8$lambda$PGV6Pa9ZJO1w6bRpndvNoYzq1w(ItemOptions itemOptions, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
         if (itemOptions.isShown()) {
             itemOptions.reposition();
         }

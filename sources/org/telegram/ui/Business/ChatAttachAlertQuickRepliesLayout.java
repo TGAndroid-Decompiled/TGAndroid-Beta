@@ -155,7 +155,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
                 AndroidUtilities.forEachViews((RecyclerView) this.f$0.listView, new Consumer() {
                     @Override
                     public final void accept(Object obj2) {
-                        ChatAttachAlertQuickRepliesLayout.m1372$r8$lambda$LvFiaOEAzJTrFmm8PU1c7yRW10((View) obj2);
+                        ChatAttachAlertQuickRepliesLayout.m1378$r8$lambda$LvFiaOEAzJTrFmm8PU1c7yRW10((View) obj2);
                     }
                 });
             }
@@ -209,7 +209,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         updateEmptyView();
     }
 
-    public static void m1372$r8$lambda$LvFiaOEAzJTrFmm8PU1c7yRW10(View view) {
+    public static void m1378$r8$lambda$LvFiaOEAzJTrFmm8PU1c7yRW10(View view) {
         if (view instanceof QuickRepliesActivity.QuickReplyView) {
             ((QuickRepliesActivity.QuickReplyView) view).invalidateEmojis();
         }

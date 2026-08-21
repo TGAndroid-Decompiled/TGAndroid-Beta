@@ -290,7 +290,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.firstNameField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                return ContactAddActivity.m3013$r8$lambda$3Ke0YFOZiSmmGaLyyocYBbwso0(this.f$0, textView6, i3, keyEvent);
+                return ContactAddActivity.m3022$r8$lambda$3Ke0YFOZiSmmGaLyyocYBbwso0(this.f$0, textView6, i3, keyEvent);
             }
         });
         this.firstNameField.editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -321,7 +321,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.noteField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                return ContactAddActivity.m3016$r8$lambda$R6Hd7gjnA3L0IzvXDmd_zGagyU(this.f$0, textView6, i3, keyEvent);
+                return ContactAddActivity.m3025$r8$lambda$R6Hd7gjnA3L0IzvXDmd_zGagyU(this.f$0, textView6, i3, keyEvent);
             }
         });
         if (!this.addContact) {
@@ -343,7 +343,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.suggestPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ContactAddActivity.m3018$r8$lambda$_EzzeNPOlfXaByXkvKt2mLFsuM(this.f$0, user, rLottieDrawable, view2);
+                    ContactAddActivity.m3027$r8$lambda$_EzzeNPOlfXaByXkvKt2mLFsuM(this.f$0, user, rLottieDrawable, view2);
                 }
             });
             TextCell textCell3 = new TextCell(context, this.resourcesProvider);
@@ -454,7 +454,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         return frameLayout;
     }
 
-    public static boolean m3013$r8$lambda$3Ke0YFOZiSmmGaLyyocYBbwso0(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m3022$r8$lambda$3Ke0YFOZiSmmGaLyyocYBbwso0(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
             contactAddActivity.getClass();
             return false;
@@ -479,7 +479,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         return true;
     }
 
-    public static boolean m3016$r8$lambda$R6Hd7gjnA3L0IzvXDmd_zGagyU(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m3025$r8$lambda$R6Hd7gjnA3L0IzvXDmd_zGagyU(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
         if (i == 6) {
             contactAddActivity.doneButton.performClick();
             return true;
@@ -488,7 +488,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         return false;
     }
 
-    public static void m3018$r8$lambda$_EzzeNPOlfXaByXkvKt2mLFsuM(final ContactAddActivity contactAddActivity, TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
+    public static void m3027$r8$lambda$_EzzeNPOlfXaByXkvKt2mLFsuM(final ContactAddActivity contactAddActivity, TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
         TLRPC.UserProfilePhoto userProfilePhoto;
         contactAddActivity.photoSelectedType = 1;
         contactAddActivity.imageUpdater.setUser(user);
@@ -529,7 +529,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ContactAddActivity.m3015$r8$lambda$EH0aC7TQw_tVreAqbFCIFNP6pg(this.f$0, rLottieDrawable, dialogInterface);
+                ContactAddActivity.m3024$r8$lambda$EH0aC7TQw_tVreAqbFCIFNP6pg(this.f$0, rLottieDrawable, dialogInterface);
             }
         }, 1);
         rLottieDrawable.setCurrentFrame(0);
@@ -537,7 +537,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         contactAddActivity.setAvatarCell.imageView.playAnimation();
     }
 
-    public static void m3015$r8$lambda$EH0aC7TQw_tVreAqbFCIFNP6pg(ContactAddActivity contactAddActivity, RLottieDrawable rLottieDrawable, DialogInterface dialogInterface) {
+    public static void m3024$r8$lambda$EH0aC7TQw_tVreAqbFCIFNP6pg(ContactAddActivity contactAddActivity, RLottieDrawable rLottieDrawable, DialogInterface dialogInterface) {
         if (!contactAddActivity.imageUpdater.isUploadingImage()) {
             rLottieDrawable.setCustomEndFrame(86);
             contactAddActivity.setAvatarCell.imageView.playAnimation();
@@ -708,7 +708,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             new AlertDialog.Builder(getParentActivity(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.DeleteContact)).setMessage(LocaleController.getString(R.string.AreYouSureDeleteContact)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i3) {
-                    ContactAddActivity.m3012$r8$lambda$e3wlnV0R6aSXk3GYIRYW8Z9SQw(this.f$0, user, alertDialog, i3);
+                    ContactAddActivity.m3021$r8$lambda$e3wlnV0R6aSXk3GYIRYW8Z9SQw(this.f$0, user, alertDialog, i3);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             return;
@@ -720,7 +720,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    public static void m3012$r8$lambda$e3wlnV0R6aSXk3GYIRYW8Z9SQw(ContactAddActivity contactAddActivity, TLRPC.User user, AlertDialog alertDialog, int i) {
+    public static void m3021$r8$lambda$e3wlnV0R6aSXk3GYIRYW8Z9SQw(ContactAddActivity contactAddActivity, TLRPC.User user, AlertDialog alertDialog, int i) {
         contactAddActivity.getClass();
         ArrayList<TLRPC.User> arrayList = new ArrayList<>();
         arrayList.add(user);
@@ -951,12 +951,12 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactAddActivity.m3020$r8$lambda$qYGxjBsWvau4rfOiPeoUNv2Vxo(this.f$0);
+                ContactAddActivity.m3029$r8$lambda$qYGxjBsWvau4rfOiPeoUNv2Vxo(this.f$0);
             }
         });
     }
 
-    public static void m3020$r8$lambda$qYGxjBsWvau4rfOiPeoUNv2Vxo(ContactAddActivity contactAddActivity) {
+    public static void m3029$r8$lambda$qYGxjBsWvau4rfOiPeoUNv2Vxo(ContactAddActivity contactAddActivity) {
         contactAddActivity.getClass();
         ImageUpdater.ImageUpdaterDelegate.CC.$default$didUploadFailed(contactAddActivity);
         if (contactAddActivity.suggestPhotoMessageFinal != null) {
@@ -1117,7 +1117,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ContactAddActivity.m3017$r8$lambda$T_6M11wWMFrF7SslX27q5BlHQ(this.f$0);
+                ContactAddActivity.m3026$r8$lambda$T_6M11wWMFrF7SslX27q5BlHQ(this.f$0);
             }
 
             @Override
@@ -1162,7 +1162,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         return arrayList;
     }
 
-    public static void m3017$r8$lambda$T_6M11wWMFrF7SslX27q5BlHQ(ContactAddActivity contactAddActivity) {
+    public static void m3026$r8$lambda$T_6M11wWMFrF7SslX27q5BlHQ(ContactAddActivity contactAddActivity) {
         TLRPC.User user;
         if (contactAddActivity.avatarImage == null || (user = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id))) == null) {
             return;

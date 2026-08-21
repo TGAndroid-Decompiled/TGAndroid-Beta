@@ -1102,7 +1102,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             messagesController.getUserNameResolver().resolve(str2, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChatAttachAlertAudioLayout.m2151$r8$lambda$aVLTVmNMIg0F_Mmknzvc1pDa_I(this.f$0, messagesController, (Long) obj);
+                    ChatAttachAlertAudioLayout.m2161$r8$lambda$aVLTVmNMIg0F_Mmknzvc1pDa_I(this.f$0, messagesController, (Long) obj);
                 }
             });
             return;
@@ -1128,7 +1128,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         updateWithSavingScroll();
     }
 
-    public static void m2151$r8$lambda$aVLTVmNMIg0F_Mmknzvc1pDa_I(ChatAttachAlertAudioLayout chatAttachAlertAudioLayout, MessagesController messagesController, Long l) {
+    public static void m2161$r8$lambda$aVLTVmNMIg0F_Mmknzvc1pDa_I(ChatAttachAlertAudioLayout chatAttachAlertAudioLayout, MessagesController messagesController, Long l) {
         chatAttachAlertAudioLayout.resolvingGlobalAudioBot = false;
         TLRPC.User user = l == null ? null : messagesController.getUser(l);
         chatAttachAlertAudioLayout.globalAudioBot = user;

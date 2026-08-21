@@ -373,7 +373,7 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         this.controlsAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PipVideoOverlay.m2561$r8$lambda$sNtMJuM27rzGqFBqHFiiwHDe2w(this.f$0, valueAnimator);
+                PipVideoOverlay.m2571$r8$lambda$sNtMJuM27rzGqFBqHFiiwHDe2w(this.f$0, valueAnimator);
             }
         });
         this.controlsAnimator.addListener(new AnimatorListenerAdapter() {
@@ -385,7 +385,7 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         this.controlsAnimator.start();
     }
 
-    public static void m2561$r8$lambda$sNtMJuM27rzGqFBqHFiiwHDe2w(PipVideoOverlay pipVideoOverlay, ValueAnimator valueAnimator) {
+    public static void m2571$r8$lambda$sNtMJuM27rzGqFBqHFiiwHDe2w(PipVideoOverlay pipVideoOverlay, ValueAnimator valueAnimator) {
         pipVideoOverlay.getClass();
         pipVideoOverlay.controlsView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }

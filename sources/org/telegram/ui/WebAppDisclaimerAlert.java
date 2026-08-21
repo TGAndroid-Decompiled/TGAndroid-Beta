@@ -68,7 +68,7 @@ public class WebAppDisclaimerAlert {
         webAppDisclaimerAlert.cell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WebAppDisclaimerAlert.m4793$r8$lambda$ICLm3wirtfJP4fPzJ1h4N5G00Y(this.f$0, view);
+                WebAppDisclaimerAlert.m4804$r8$lambda$ICLm3wirtfJP4fPzJ1h4N5G00Y(this.f$0, view);
             }
         });
         webAppDisclaimerAlert.cell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));
@@ -86,7 +86,7 @@ public class WebAppDisclaimerAlert {
         alertDialog.dismiss();
     }
 
-    public static void m4793$r8$lambda$ICLm3wirtfJP4fPzJ1h4N5G00Y(WebAppDisclaimerAlert webAppDisclaimerAlert, View view) {
+    public static void m4804$r8$lambda$ICLm3wirtfJP4fPzJ1h4N5G00Y(WebAppDisclaimerAlert webAppDisclaimerAlert, View view) {
         CheckBoxCell checkBoxCell = webAppDisclaimerAlert.cell;
         checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
         webAppDisclaimerAlert.positiveButton.setEnabled(webAppDisclaimerAlert.cell.isChecked());

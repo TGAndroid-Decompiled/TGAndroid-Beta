@@ -213,12 +213,12 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         Utilities.cacheClearQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.m1425$r8$lambda$fNB1ypvT1aLKISN4xQOCLaHAGk(callback);
+                CacheControlActivity.m1431$r8$lambda$fNB1ypvT1aLKISN4xQOCLaHAGk(callback);
             }
         });
     }
 
-    public static void m1425$r8$lambda$fNB1ypvT1aLKISN4xQOCLaHAGk(final Utilities.Callback callback) {
+    public static void m1431$r8$lambda$fNB1ypvT1aLKISN4xQOCLaHAGk(final Utilities.Callback callback) {
         canceled = false;
         long directorySize = getDirectorySize(FileLoader.checkDirectory(4), 5);
         long directorySize2 = getDirectorySize(FileLoader.checkDirectory(4), 4);
@@ -409,13 +409,13 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.m1424$r8$lambda$eIKtbV3MgtErOBeHi0KUGif4Gs(this.f$0);
+                CacheControlActivity.m1430$r8$lambda$eIKtbV3MgtErOBeHi0KUGif4Gs(this.f$0);
             }
         });
         cacheControlActivity.loadDialogEntities();
     }
 
-    public static void m1424$r8$lambda$eIKtbV3MgtErOBeHi0KUGif4Gs(CacheControlActivity cacheControlActivity) {
+    public static void m1430$r8$lambda$eIKtbV3MgtErOBeHi0KUGif4Gs(CacheControlActivity cacheControlActivity) {
         cacheControlActivity.resumeDelayedFragmentAnimation();
         cacheControlActivity.calculating = false;
         cacheControlActivity.updateRows(true);
@@ -499,12 +499,12 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         cacheControlActivity.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.m1422$r8$lambda$aBIEZGyIRK2fCmhGlaFutzMkA(this.f$0, arrayList2, arrayList3, arrayList, cacheModel);
+                CacheControlActivity.m1428$r8$lambda$aBIEZGyIRK2fCmhGlaFutzMkA(this.f$0, arrayList2, arrayList3, arrayList, cacheModel);
             }
         });
     }
 
-    public static void m1422$r8$lambda$aBIEZGyIRK2fCmhGlaFutzMkA(final CacheControlActivity cacheControlActivity, ArrayList arrayList, ArrayList arrayList2, final ArrayList arrayList3, final CacheModel cacheModel) {
+    public static void m1428$r8$lambda$aBIEZGyIRK2fCmhGlaFutzMkA(final CacheControlActivity cacheControlActivity, ArrayList arrayList, ArrayList arrayList2, final ArrayList arrayList3, final CacheModel cacheModel) {
         cacheControlActivity.getClass();
         final ArrayList<TLRPC.User> arrayList4 = new ArrayList<>();
         final ArrayList<TLRPC.Chat> arrayList5 = new ArrayList<>();
@@ -1504,7 +1504,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
             @Override
             public final void onItemClick(View view, int i5, float f, float f2) {
-                CacheControlActivity.m1419$r8$lambda$6ef44v0WJsBzYR2RpS4z3VX4Gs(this.f$0, view, i5, f, f2);
+                CacheControlActivity.m1425$r8$lambda$6ef44v0WJsBzYR2RpS4z3VX4Gs(this.f$0, view, i5, f, f2);
             }
         });
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -1526,7 +1526,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         return this.fragmentView;
     }
 
-    public static void m1419$r8$lambda$6ef44v0WJsBzYR2RpS4z3VX4Gs(final CacheControlActivity cacheControlActivity, View view, int i, float f, float f2) {
+    public static void m1425$r8$lambda$6ef44v0WJsBzYR2RpS4z3VX4Gs(final CacheControlActivity cacheControlActivity, View view, int i, float f, float f2) {
         if (cacheControlActivity.getParentActivity() != null && i >= 0 && i < cacheControlActivity.itemInners.size()) {
             ItemInner itemInner = (ItemInner) cacheControlActivity.itemInners.get(i);
             if (itemInner.viewType == 11 && (view instanceof CheckBoxCell)) {
@@ -1753,12 +1753,12 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         getFileLoader().getFileLoaderQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.m1420$r8$lambda$79R6aYGYeoO9rwbuCgVAqohPr0(this.f$0, arrayList, alertDialog);
+                CacheControlActivity.m1426$r8$lambda$79R6aYGYeoO9rwbuCgVAqohPr0(this.f$0, arrayList, alertDialog);
             }
         });
     }
 
-    public static void m1420$r8$lambda$79R6aYGYeoO9rwbuCgVAqohPr0(final CacheControlActivity cacheControlActivity, ArrayList arrayList, final AlertDialog alertDialog) {
+    public static void m1426$r8$lambda$79R6aYGYeoO9rwbuCgVAqohPr0(final CacheControlActivity cacheControlActivity, ArrayList arrayList, final AlertDialog alertDialog) {
         cacheControlActivity.getClass();
         for (int i = 0; i < arrayList.size(); i++) {
             ((CacheModel.FileInfo) arrayList.get(i)).file.delete();
@@ -2251,7 +2251,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CacheControlActivity.ClearCacheButtonInternal.m1428$r8$lambda$DFB8J4ZotA_jtiCLO6rXD74jI(this.f$0, zArr, jArr, bottomSheet);
+                    CacheControlActivity.ClearCacheButtonInternal.m1434$r8$lambda$DFB8J4ZotA_jtiCLO6rXD74jI(this.f$0, zArr, jArr, bottomSheet);
                 }
             }, 150L);
             CacheControlActivity.this.cleanupFolders(new Utilities.Callback2() {
@@ -2280,7 +2280,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
         }
 
-        public static void m1428$r8$lambda$DFB8J4ZotA_jtiCLO6rXD74jI(ClearCacheButtonInternal clearCacheButtonInternal, boolean[] zArr, long[] jArr, BottomSheet bottomSheet) {
+        public static void m1434$r8$lambda$DFB8J4ZotA_jtiCLO6rXD74jI(ClearCacheButtonInternal clearCacheButtonInternal, boolean[] zArr, long[] jArr, BottomSheet bottomSheet) {
             clearCacheButtonInternal.getClass();
             if (zArr[0]) {
                 return;
@@ -2894,7 +2894,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                             checkBoxCell.setOnSectionsClickListener(new View.OnClickListener() {
                                 @Override
                                 public final void onClick(View view) {
-                                    CacheControlActivity.ListAdapter.m1429$r8$lambda$L9W36c6jAPZfVeGM2WRLwOGaI(this.f$0, view);
+                                    CacheControlActivity.ListAdapter.m1435$r8$lambda$L9W36c6jAPZfVeGM2WRLwOGaI(this.f$0, view);
                                 }
                             }, new View.OnClickListener() {
                                 @Override
@@ -2934,7 +2934,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             textCell.setSubtitle(pluralString);
         }
 
-        public static void m1429$r8$lambda$L9W36c6jAPZfVeGM2WRLwOGaI(ListAdapter listAdapter, View view) {
+        public static void m1435$r8$lambda$L9W36c6jAPZfVeGM2WRLwOGaI(ListAdapter listAdapter, View view) {
             CacheControlActivity cacheControlActivity = CacheControlActivity.this;
             cacheControlActivity.collapsed = !cacheControlActivity.collapsed;
             CacheControlActivity.this.updateRows();

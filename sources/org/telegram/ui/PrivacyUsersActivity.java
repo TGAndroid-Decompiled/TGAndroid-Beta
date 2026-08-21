@@ -136,7 +136,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         this.listView.setItemSelectorColorProvider(new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                return PrivacyUsersActivity.m3799$r8$lambda$z89hZfZTBvoBO5XtM69sx9Kyv4(this.f$0, (Integer) obj);
+                return PrivacyUsersActivity.m3807$r8$lambda$z89hZfZTBvoBO5XtM69sx9Kyv4(this.f$0, (Integer) obj);
             }
         });
         this.listView.setEmptyView(this.emptyView);
@@ -188,7 +188,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         return this.fragmentView;
     }
 
-    public static Integer m3799$r8$lambda$z89hZfZTBvoBO5XtM69sx9Kyv4(PrivacyUsersActivity privacyUsersActivity, Integer num) {
+    public static Integer m3807$r8$lambda$z89hZfZTBvoBO5XtM69sx9Kyv4(PrivacyUsersActivity privacyUsersActivity, Integer num) {
         privacyUsersActivity.getClass();
         if (num.intValue() == privacyUsersActivity.deleteAllRow) {
             return Integer.valueOf(Theme.multAlpha(Theme.getColor(Theme.key_text_RedRegular), 0.12f));
@@ -201,7 +201,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             AlertDialog alertDialogCreate = AlertsCreator.createSimpleAlert(privacyUsersActivity.getContext(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new Runnable() {
                 @Override
                 public final void run() {
-                    PrivacyUsersActivity.m3800$r8$lambda$86kBhdOdFnUOHGp6EgsghOis38(this.f$0);
+                    PrivacyUsersActivity.m3808$r8$lambda$86kBhdOdFnUOHGp6EgsghOis38(this.f$0);
                 }
             }, null).create();
             alertDialogCreate.show();
@@ -229,7 +229,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             groupCreateActivity.setDelegate(new GroupCreateActivity.GroupCreateActivityDelegate() {
                 @Override
                 public final void didSelectUsers(boolean z, boolean z2, ArrayList arrayList) {
-                    PrivacyUsersActivity.m3801$r8$lambda$ZVZ8B2d3z9giqJMLYjr0DewVqk(this.f$0, z, z2, arrayList);
+                    PrivacyUsersActivity.m3809$r8$lambda$ZVZ8B2d3z9giqJMLYjr0DewVqk(this.f$0, z, z2, arrayList);
                 }
             });
             privacyUsersActivity.presentFragment(groupCreateActivity);
@@ -254,13 +254,13 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public static void m3800$r8$lambda$86kBhdOdFnUOHGp6EgsghOis38(PrivacyUsersActivity privacyUsersActivity) {
+    public static void m3808$r8$lambda$86kBhdOdFnUOHGp6EgsghOis38(PrivacyUsersActivity privacyUsersActivity) {
         privacyUsersActivity.uidArray.clear();
         privacyUsersActivity.updateRows();
         privacyUsersActivity.finishFragment();
     }
 
-    public static void m3801$r8$lambda$ZVZ8B2d3z9giqJMLYjr0DewVqk(PrivacyUsersActivity privacyUsersActivity, boolean z, boolean z2, ArrayList arrayList) {
+    public static void m3809$r8$lambda$ZVZ8B2d3z9giqJMLYjr0DewVqk(PrivacyUsersActivity privacyUsersActivity, boolean z, boolean z2, ArrayList arrayList) {
         privacyUsersActivity.getClass();
         int size = arrayList.size();
         int i = 0;
@@ -426,7 +426,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             return itemViewType == 0 || itemViewType == 2 || itemViewType == 4;
         }
 
-        public static boolean m3803$r8$lambda$4zdDOFOc1rfEsoVRG2n2jTn4dI(ListAdapter listAdapter, ManageChatUserCell manageChatUserCell, boolean z) {
+        public static boolean m3811$r8$lambda$4zdDOFOc1rfEsoVRG2n2jTn4dI(ListAdapter listAdapter, ManageChatUserCell manageChatUserCell, boolean z) {
             if (z) {
                 PrivacyUsersActivity.this.showUnblockAlert((Long) manageChatUserCell.getTag(), manageChatUserCell);
                 return true;
@@ -443,7 +443,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 manageChatUserCell.setDelegate(new ManageChatUserCell.ManageChatUserCellDelegate() {
                     @Override
                     public final boolean onOptionsButtonCheck(ManageChatUserCell manageChatUserCell2, boolean z) {
-                        return PrivacyUsersActivity.ListAdapter.m3803$r8$lambda$4zdDOFOc1rfEsoVRG2n2jTn4dI(this.f$0, manageChatUserCell2, z);
+                        return PrivacyUsersActivity.ListAdapter.m3811$r8$lambda$4zdDOFOc1rfEsoVRG2n2jTn4dI(this.f$0, manageChatUserCell2, z);
                     }
                 });
                 textInfoPrivacyCell = manageChatUserCell;
@@ -578,7 +578,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                PrivacyUsersActivity.m3802$r8$lambda$n2AHQWXpa1KiiRXGirznhMhlYU(this.f$0);
+                PrivacyUsersActivity.m3810$r8$lambda$n2AHQWXpa1KiiRXGirznhMhlYU(this.f$0);
             }
 
             @Override
@@ -616,7 +616,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         return arrayList;
     }
 
-    public static void m3802$r8$lambda$n2AHQWXpa1KiiRXGirznhMhlYU(PrivacyUsersActivity privacyUsersActivity) {
+    public static void m3810$r8$lambda$n2AHQWXpa1KiiRXGirznhMhlYU(PrivacyUsersActivity privacyUsersActivity) {
         RecyclerListView recyclerListView = privacyUsersActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

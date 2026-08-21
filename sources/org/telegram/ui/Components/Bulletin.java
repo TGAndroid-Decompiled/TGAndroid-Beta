@@ -346,7 +346,7 @@ public class Bulletin {
         View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
             @Override
             public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-                Bulletin.m2049$r8$lambda$EK4f9AYCEtEvv50krIdm5KR9yQ(this.f$0, z, view, i, i2, i3, i4, i5, i6, i7, i8);
+                Bulletin.m2059$r8$lambda$EK4f9AYCEtEvv50krIdm5KR9yQ(this.f$0, z, view, i, i2, i3, i4, i5, i6, i7, i8);
             }
         };
         this.containerLayoutListener = onLayoutChangeListener;
@@ -369,7 +369,7 @@ public class Bulletin {
         return this;
     }
 
-    public static void m2049$r8$lambda$EK4f9AYCEtEvv50krIdm5KR9yQ(final Bulletin bulletin, boolean z, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+    public static void m2059$r8$lambda$EK4f9AYCEtEvv50krIdm5KR9yQ(final Bulletin bulletin, boolean z, View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
         Delegate delegate = bulletin.currentDelegate;
         if ((delegate == null || delegate.allowLayoutChanges()) && !z) {
             Delegate delegate2 = bulletin.currentDelegate;
@@ -613,7 +613,7 @@ public class Bulletin {
                     }, new Runnable() {
                         @Override
                         public final void run() {
-                            Bulletin.m2051$r8$lambda$ihyP8UXFpzF4u9NgOEgkgnAqU(this.f$0);
+                            Bulletin.m2061$r8$lambda$ihyP8UXFpzF4u9NgOEgkgnAqU(this.f$0);
                         }
                     }, new Consumer() {
                         @Override
@@ -636,7 +636,7 @@ public class Bulletin {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        Bulletin.m2050$r8$lambda$Z8FKud5kyFhXRNv4YzqFE8bBnI(this.f$0);
+                        Bulletin.m2060$r8$lambda$Z8FKud5kyFhXRNv4YzqFE8bBnI(this.f$0);
                     }
                 });
             }
@@ -648,7 +648,7 @@ public class Bulletin {
         }
     }
 
-    public static void m2051$r8$lambda$ihyP8UXFpzF4u9NgOEgkgnAqU(Bulletin bulletin) {
+    public static void m2061$r8$lambda$ihyP8UXFpzF4u9NgOEgkgnAqU(Bulletin bulletin) {
         Delegate delegate = bulletin.currentDelegate;
         if (delegate != null && !bulletin.layout.top) {
             delegate.onBottomOffsetChange(0.0f);
@@ -678,7 +678,7 @@ public class Bulletin {
         }
     }
 
-    public static void m2050$r8$lambda$Z8FKud5kyFhXRNv4YzqFE8bBnI(Bulletin bulletin) {
+    public static void m2060$r8$lambda$Z8FKud5kyFhXRNv4YzqFE8bBnI(Bulletin bulletin) {
         bulletin.containerLayout.removeView(bulletin.parentLayout);
         bulletin.containerLayout.removeOnLayoutChangeListener(bulletin.containerLayoutListener);
     }
@@ -832,7 +832,7 @@ public class Bulletin {
                     springAnimation2.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f3, float f4) {
-                            Bulletin.ParentLayout.AnonymousClass1.m2057$r8$lambda$V6A0CjIhWmVfAcEIQPQ3X99qLc(dynamicAnimation, f3, f4);
+                            Bulletin.ParentLayout.AnonymousClass1.m2067$r8$lambda$V6A0CjIhWmVfAcEIQPQ3X99qLc(dynamicAnimation, f3, f4);
                         }
                     });
                     springAnimation.getSpring().setDampingRatio(1.0f);
@@ -850,7 +850,7 @@ public class Bulletin {
                 }
             }
 
-            public static void m2057$r8$lambda$V6A0CjIhWmVfAcEIQPQ3X99qLc(DynamicAnimation dynamicAnimation, float f, float f2) {
+            public static void m2067$r8$lambda$V6A0CjIhWmVfAcEIQPQ3X99qLc(DynamicAnimation dynamicAnimation, float f, float f2) {
                 if (f <= 0.0f) {
                     dynamicAnimation.cancel();
                 }
@@ -1385,7 +1385,7 @@ public class Bulletin {
                     springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                            Bulletin.Layout.SpringTransition.m2054$r8$lambda$l75tbtgbX7e0wzIDlEvtqUbJ8Y(layout, runnable2, dynamicAnimation, z, f, f2);
+                            Bulletin.Layout.SpringTransition.m2064$r8$lambda$l75tbtgbX7e0wzIDlEvtqUbJ8Y(layout, runnable2, dynamicAnimation, z, f, f2);
                         }
                     });
                 }
@@ -1403,7 +1403,7 @@ public class Bulletin {
                 }
             }
 
-            public static void m2054$r8$lambda$l75tbtgbX7e0wzIDlEvtqUbJ8Y(Layout layout, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+            public static void m2064$r8$lambda$l75tbtgbX7e0wzIDlEvtqUbJ8Y(Layout layout, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
                 layout.setInOutOffset(0.0f);
                 if (z) {
                     return;
@@ -2017,12 +2017,12 @@ public class Bulletin {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.m2055$r8$lambda$HdCIalCFHnQpdIMPc9a8pfJAUE(this.f$0, visibleReaction, z, i, i2);
+                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.m2065$r8$lambda$HdCIalCFHnQpdIMPc9a8pfJAUE(this.f$0, visibleReaction, z, i, i2);
                     }
                 }, 300L);
             }
 
-            public static void m2055$r8$lambda$HdCIalCFHnQpdIMPc9a8pfJAUE(AnonymousClass2 anonymousClass2, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, final int i, final int i2) {
+            public static void m2065$r8$lambda$HdCIalCFHnQpdIMPc9a8pfJAUE(AnonymousClass2 anonymousClass2, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, final int i, final int i2) {
                 TLRPC.Document documentFindDocument;
                 anonymousClass2.getClass();
                 final BaseFragment lastFragment = LaunchActivity.getLastFragment();
@@ -2043,12 +2043,12 @@ public class Bulletin {
                 BulletinFactory.of(lastFragment).createMessagesTaggedBulletin(LottieLayoutWithReactions.this.messagesCount, documentFindDocument, z ? new Runnable() {
                     @Override
                     public final void run() {
-                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.m2056$r8$lambda$UC3vxyU24W1FSJxXmIS48LVHZ0(i, i2, lastFragment);
+                        Bulletin.LottieLayoutWithReactions.AnonymousClass2.m2066$r8$lambda$UC3vxyU24W1FSJxXmIS48LVHZ0(i, i2, lastFragment);
                     }
                 } : null).show(true);
             }
 
-            public static void m2056$r8$lambda$UC3vxyU24W1FSJxXmIS48LVHZ0(int i, int i2, BaseFragment baseFragment) {
+            public static void m2066$r8$lambda$UC3vxyU24W1FSJxXmIS48LVHZ0(int i, int i2, BaseFragment baseFragment) {
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", UserConfig.getInstance(i).getClientUserId());
                 bundle.putInt("message_id", i2);
@@ -2658,7 +2658,7 @@ public class Bulletin {
             ViewCompat.setOnApplyWindowInsetsListener(bulletinWindowLayout, new OnApplyWindowInsetsListener() {
                 @Override
                 public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                    return Bulletin.BulletinWindow.m2052$r8$lambda$MGanTAKgS8oNBPaqZZzwfvbzlo(this.f$0, view, windowInsetsCompat);
+                    return Bulletin.BulletinWindow.m2062$r8$lambda$MGanTAKgS8oNBPaqZZzwfvbzlo(this.f$0, view, windowInsetsCompat);
                 }
             });
             int i = Build.VERSION.SDK_INT;
@@ -2739,7 +2739,7 @@ public class Bulletin {
             }
         }
 
-        public static WindowInsetsCompat m2052$r8$lambda$MGanTAKgS8oNBPaqZZzwfvbzlo(BulletinWindow bulletinWindow, View view, WindowInsetsCompat windowInsetsCompat) {
+        public static WindowInsetsCompat m2062$r8$lambda$MGanTAKgS8oNBPaqZZzwfvbzlo(BulletinWindow bulletinWindow, View view, WindowInsetsCompat windowInsetsCompat) {
             bulletinWindow.getClass();
             bulletinWindow.applyInsets(AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false));
             view.requestLayout();

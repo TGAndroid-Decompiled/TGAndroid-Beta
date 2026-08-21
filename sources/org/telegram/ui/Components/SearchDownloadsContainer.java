@@ -390,12 +390,12 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SearchDownloadsContainer.m2718$r8$lambda$9lAt6Se6w2h2oiX0QNRmd9b9lA(this.f$0, str, arrayList3, arrayList4);
+                SearchDownloadsContainer.m2727$r8$lambda$9lAt6Se6w2h2oiX0QNRmd9b9lA(this.f$0, str, arrayList3, arrayList4);
             }
         });
     }
 
-    public static void m2718$r8$lambda$9lAt6Se6w2h2oiX0QNRmd9b9lA(SearchDownloadsContainer searchDownloadsContainer, String str, ArrayList arrayList, ArrayList arrayList2) {
+    public static void m2727$r8$lambda$9lAt6Se6w2h2oiX0QNRmd9b9lA(SearchDownloadsContainer searchDownloadsContainer, String str, ArrayList arrayList, ArrayList arrayList2) {
         if (str.equals(searchDownloadsContainer.lastQueryString)) {
             if (searchDownloadsContainer.rowCount == 0) {
                 searchDownloadsContainer.itemsEnterAnimator.showItemsAnimated(0);

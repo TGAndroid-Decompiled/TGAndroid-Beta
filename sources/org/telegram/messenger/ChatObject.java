@@ -1117,12 +1117,12 @@ public class ChatObject {
             this.currentAccount.getConnectionsManager().sendRequest(getgroupcall, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChatObject.Call.m371$r8$lambda$GzNH1IhUEMzXIruu5neIx97uNY(this.f$0, tLObject, tL_error);
+                    ChatObject.Call.m379$r8$lambda$GzNH1IhUEMzXIruu5neIx97uNY(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m371$r8$lambda$GzNH1IhUEMzXIruu5neIx97uNY(final Call call, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m379$r8$lambda$GzNH1IhUEMzXIruu5neIx97uNY(final Call call, final TLObject tLObject, TLRPC.TL_error tL_error) {
             call.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -1158,22 +1158,22 @@ public class ChatObject {
             this.currentAccount.getConnectionsManager().sendRequest(getgroupparticipants, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChatObject.Call.m372$r8$lambda$nHg5TZ7swYWM9dPLjtVTrUFCc(this.f$0, tLObject, tL_error);
+                    ChatObject.Call.m380$r8$lambda$nHg5TZ7swYWM9dPLjtVTrUFCc(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m372$r8$lambda$nHg5TZ7swYWM9dPLjtVTrUFCc(final Call call, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m380$r8$lambda$nHg5TZ7swYWM9dPLjtVTrUFCc(final Call call, final TLObject tLObject, TLRPC.TL_error tL_error) {
             call.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatObject.Call.m373$r8$lambda$oKQGKUpVrcQaH9wVDLUlTFnkaw(this.f$0, tLObject);
+                    ChatObject.Call.m381$r8$lambda$oKQGKUpVrcQaH9wVDLUlTFnkaw(this.f$0, tLObject);
                 }
             });
         }
 
-        public static void m373$r8$lambda$oKQGKUpVrcQaH9wVDLUlTFnkaw(Call call, TLObject tLObject) {
+        public static void m381$r8$lambda$oKQGKUpVrcQaH9wVDLUlTFnkaw(Call call, TLObject tLObject) {
             call.getClass();
             call.lastGroupCallReloadTime = SystemClock.elapsedRealtime();
             call.loadingGroupCall = false;

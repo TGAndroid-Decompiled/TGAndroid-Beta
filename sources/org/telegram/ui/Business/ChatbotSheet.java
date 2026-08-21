@@ -211,12 +211,12 @@ public class ChatbotSheet extends BottomSheetWithRecyclerListView {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatbotSheet.m1374$r8$lambda$tOpa5os6ICPtjTHyn2lyJelbUw(this.f$0, runnable);
+                ChatbotSheet.m1380$r8$lambda$tOpa5os6ICPtjTHyn2lyJelbUw(this.f$0, runnable);
             }
         });
     }
 
-    public static void m1374$r8$lambda$tOpa5os6ICPtjTHyn2lyJelbUw(ChatbotSheet chatbotSheet, Runnable runnable) {
+    public static void m1380$r8$lambda$tOpa5os6ICPtjTHyn2lyJelbUw(ChatbotSheet chatbotSheet, Runnable runnable) {
         BusinessChatbotController.getInstance(chatbotSheet.currentAccount).invalidate(true);
         if (runnable != null) {
             runnable.run();
@@ -379,7 +379,7 @@ public class ChatbotSheet extends BottomSheetWithRecyclerListView {
             duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatbotSheet.m1373$r8$lambda$pY7JrmUyXtZFhutEWnyRwmSM8k(this.f$0, z2);
+                    ChatbotSheet.m1379$r8$lambda$pY7JrmUyXtZFhutEWnyRwmSM8k(this.f$0, z2);
                 }
             }).start();
             this.terminateButton.setVisibility(0);
@@ -392,7 +392,7 @@ public class ChatbotSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void m1373$r8$lambda$pY7JrmUyXtZFhutEWnyRwmSM8k(ChatbotSheet chatbotSheet, boolean z) {
+    public static void m1379$r8$lambda$pY7JrmUyXtZFhutEWnyRwmSM8k(ChatbotSheet chatbotSheet, boolean z) {
         if (z) {
             chatbotSheet.getClass();
         } else {

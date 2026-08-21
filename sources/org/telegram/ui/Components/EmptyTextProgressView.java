@@ -24,7 +24,7 @@ public class EmptyTextProgressView extends FrameLayout {
     private TextView textView;
     private LinearLayout textViewLayout;
 
-    public static boolean m2326$r8$lambda$Vq18KDUqpLFj2u41GI6nolj8(View view, MotionEvent motionEvent) {
+    public static boolean m2336$r8$lambda$Vq18KDUqpLFj2u41GI6nolj8(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -74,7 +74,7 @@ public class EmptyTextProgressView extends FrameLayout {
         setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                return EmptyTextProgressView.m2326$r8$lambda$Vq18KDUqpLFj2u41GI6nolj8(view2, motionEvent);
+                return EmptyTextProgressView.m2336$r8$lambda$Vq18KDUqpLFj2u41GI6nolj8(view2, motionEvent);
             }
         });
     }

@@ -132,7 +132,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                LiteModeSettingsActivity.m3408$r8$lambda$UjYFGZuQC79daPf2ke4bOF_PXM(this.f$0, view, i, f, f2);
+                LiteModeSettingsActivity.m3416$r8$lambda$UjYFGZuQC79daPf2ke4bOF_PXM(this.f$0, view, i, f, f2);
             }
         });
         this.fragmentView = this.contentView;
@@ -141,7 +141,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public static void m3408$r8$lambda$UjYFGZuQC79daPf2ke4bOF_PXM(LiteModeSettingsActivity liteModeSettingsActivity, View view, int i, float f, float f2) {
+    public static void m3416$r8$lambda$UjYFGZuQC79daPf2ke4bOF_PXM(LiteModeSettingsActivity liteModeSettingsActivity, View view, int i, float f, float f2) {
         int expandedIndex;
         liteModeSettingsActivity.getClass();
         if (view == null || i < 0 || i >= liteModeSettingsActivity.items.size()) {
@@ -231,12 +231,12 @@ public class LiteModeSettingsActivity extends BaseFragment {
         this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
             @Override
             public final int run() {
-                return LiteModeSettingsActivity.m3409$r8$lambda$sVuUwulOjX_0iWbyVRgUMQ2Dsg(this.f$0, i);
+                return LiteModeSettingsActivity.m3417$r8$lambda$sVuUwulOjX_0iWbyVRgUMQ2Dsg(this.f$0, i);
             }
         });
     }
 
-    public static int m3409$r8$lambda$sVuUwulOjX_0iWbyVRgUMQ2Dsg(LiteModeSettingsActivity liteModeSettingsActivity, int i) {
+    public static int m3417$r8$lambda$sVuUwulOjX_0iWbyVRgUMQ2Dsg(LiteModeSettingsActivity liteModeSettingsActivity, int i) {
         liteModeSettingsActivity.layoutManager.scrollToPositionWithOffset(i, AndroidUtilities.dp(60.0f));
         return i;
     }

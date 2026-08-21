@@ -334,7 +334,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i2) {
-                InviteLinkBottomSheet.m2386$r8$lambda$NTr7CT2fMjcci3TBUA8adXqga4(this.f$0, tL_chatInviteExported, map, chatFull, context, j, baseFragment, view2, i2);
+                InviteLinkBottomSheet.m2396$r8$lambda$NTr7CT2fMjcci3TBUA8adXqga4(this.f$0, tL_chatInviteExported, map, chatFull, context, j, baseFragment, view2, i2);
             }
         });
         TextView textView = new TextView(context);
@@ -376,7 +376,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         updateColors();
     }
 
-    public static void m2386$r8$lambda$NTr7CT2fMjcci3TBUA8adXqga4(final InviteLinkBottomSheet inviteLinkBottomSheet, final TLRPC.TL_chatInviteExported tL_chatInviteExported, HashMap map, TLRPC.ChatFull chatFull, final Context context, final long j, final BaseFragment baseFragment, View view, int i) {
+    public static void m2396$r8$lambda$NTr7CT2fMjcci3TBUA8adXqga4(final InviteLinkBottomSheet inviteLinkBottomSheet, final TLRPC.TL_chatInviteExported tL_chatInviteExported, HashMap map, TLRPC.ChatFull chatFull, final Context context, final long j, final BaseFragment baseFragment, View view, int i) {
         TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
         TLRPC.TL_chatInviteImporter tL_chatInviteImporter2;
         final TLRPC.User user;
@@ -436,7 +436,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            InviteLinkBottomSheet.m2388$r8$lambda$osQzYDuVub9XaUvXN2VtbyAo8(this.f$0, user, baseFragment);
+                            InviteLinkBottomSheet.m2398$r8$lambda$osQzYDuVub9XaUvXN2VtbyAo8(this.f$0, user, baseFragment);
                         }
                     }, 100L);
                     inviteLinkBottomSheet.dismiss();
@@ -451,7 +451,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteLinkBottomSheet.m2388$r8$lambda$osQzYDuVub9XaUvXN2VtbyAo8(this.f$0, user, baseFragment);
+                        InviteLinkBottomSheet.m2398$r8$lambda$osQzYDuVub9XaUvXN2VtbyAo8(this.f$0, user, baseFragment);
                     }
                 }, 100L);
                 inviteLinkBottomSheet.dismiss();
@@ -475,7 +475,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         showSubscriptionSheet(context, inviteLinkBottomSheet.currentAccount, -j, tL_chatInviteExported.subscription_pricing, tL_chatInviteImporter, channelParticipant, inviteLinkBottomSheet.resourcesProvider);
     }
 
-    public static void m2388$r8$lambda$osQzYDuVub9XaUvXN2VtbyAo8(InviteLinkBottomSheet inviteLinkBottomSheet, TLRPC.User user, BaseFragment baseFragment) {
+    public static void m2398$r8$lambda$osQzYDuVub9XaUvXN2VtbyAo8(InviteLinkBottomSheet inviteLinkBottomSheet, TLRPC.User user, BaseFragment baseFragment) {
         inviteLinkBottomSheet.getClass();
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", user.id);
@@ -550,12 +550,12 @@ public class InviteLinkBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                InviteLinkBottomSheet.m2387$r8$lambda$eeMGUetJqG4Q25LnHcHYbQSiJY(this.f$0, tLObject);
+                InviteLinkBottomSheet.m2397$r8$lambda$eeMGUetJqG4Q25LnHcHYbQSiJY(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m2387$r8$lambda$eeMGUetJqG4Q25LnHcHYbQSiJY(InviteLinkBottomSheet inviteLinkBottomSheet, TLObject tLObject) {
+    public static void m2397$r8$lambda$eeMGUetJqG4Q25LnHcHYbQSiJY(InviteLinkBottomSheet inviteLinkBottomSheet, TLObject tLObject) {
         inviteLinkBottomSheet.getClass();
         if (tLObject instanceof Vector) {
             Vector vector = (Vector) tLObject;
@@ -813,12 +813,12 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteLinkBottomSheet.Adapter.AnonymousClass2.m2389$r8$lambda$xppI1Zr8GH4ZVWeVBnyO63PC_A(this.f$0, tL_error, tLObject);
+                        InviteLinkBottomSheet.Adapter.AnonymousClass2.m2399$r8$lambda$xppI1Zr8GH4ZVWeVBnyO63PC_A(this.f$0, tL_error, tLObject);
                     }
                 });
             }
 
-            public static void m2389$r8$lambda$xppI1Zr8GH4ZVWeVBnyO63PC_A(AnonymousClass2 anonymousClass2, TLRPC.TL_error tL_error, TLObject tLObject) {
+            public static void m2399$r8$lambda$xppI1Zr8GH4ZVWeVBnyO63PC_A(AnonymousClass2 anonymousClass2, TLRPC.TL_error tL_error, TLObject tLObject) {
                 anonymousClass2.getClass();
                 if (tL_error == null) {
                     if (tLObject instanceof TLRPC.TL_messages_exportedChatInviteReplaced) {
@@ -1344,7 +1344,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
             ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_getChatInviteImporters, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    InviteLinkBottomSheet.m2385$r8$lambda$HuGIzlOmASQejqjrz_i3BDXNzk(this.f$0, arrayList2, z, z2, z5, z4, tLObject, tL_error);
+                    InviteLinkBottomSheet.m2395$r8$lambda$HuGIzlOmASQejqjrz_i3BDXNzk(this.f$0, arrayList2, z, z2, z5, z4, tLObject, tL_error);
                 }
             });
         }
@@ -1375,12 +1375,12 @@ public class InviteLinkBottomSheet extends BottomSheet {
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_getChatInviteImporters, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                InviteLinkBottomSheet.m2385$r8$lambda$HuGIzlOmASQejqjrz_i3BDXNzk(this.f$0, arrayList2, z, z2, z5, z4, tLObject, tL_error);
+                InviteLinkBottomSheet.m2395$r8$lambda$HuGIzlOmASQejqjrz_i3BDXNzk(this.f$0, arrayList2, z, z2, z5, z4, tLObject, tL_error);
             }
         });
     }
 
-    public static void m2385$r8$lambda$HuGIzlOmASQejqjrz_i3BDXNzk(final InviteLinkBottomSheet inviteLinkBottomSheet, final List list, final boolean z, final boolean z2, final boolean z3, final boolean z4, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m2395$r8$lambda$HuGIzlOmASQejqjrz_i3BDXNzk(final InviteLinkBottomSheet inviteLinkBottomSheet, final List list, final boolean z, final boolean z2, final boolean z3, final boolean z4, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         inviteLinkBottomSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

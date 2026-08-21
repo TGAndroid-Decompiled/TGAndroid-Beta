@@ -530,7 +530,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    WallpapersListActivity.AnonymousClass2.m4788$r8$lambda$1B7jWEpv3usY6_kIDMcq9VHHkY(this.f$0, alertDialog, i2);
+                    WallpapersListActivity.AnonymousClass2.m4799$r8$lambda$1B7jWEpv3usY6_kIDMcq9VHHkY(this.f$0, alertDialog, i2);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -542,7 +542,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             }
         }
 
-        public static void m4788$r8$lambda$1B7jWEpv3usY6_kIDMcq9VHHkY(final AnonymousClass2 anonymousClass2, AlertDialog alertDialog, int i) {
+        public static void m4799$r8$lambda$1B7jWEpv3usY6_kIDMcq9VHHkY(final AnonymousClass2 anonymousClass2, AlertDialog alertDialog, int i) {
             WallpapersListActivity.this.progressDialog = new AlertDialog(WallpapersListActivity.this.getParentActivity(), 3);
             WallpapersListActivity.this.progressDialog.setCanCancel(false);
             WallpapersListActivity.this.progressDialog.show();
@@ -721,12 +721,12 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         ConnectionsManager.getInstance(wallpapersListActivity.currentAccount).sendRequest(new TL_account.resetWallPapers(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                WallpapersListActivity.m4786$r8$lambda$plnluGjWCIUIIl9iDWFWVAy0Y(this.f$0, tLObject, tL_error);
+                WallpapersListActivity.m4797$r8$lambda$plnluGjWCIUIIl9iDWFWVAy0Y(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4786$r8$lambda$plnluGjWCIUIIl9iDWFWVAy0Y(final WallpapersListActivity wallpapersListActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4797$r8$lambda$plnluGjWCIUIIl9iDWFWVAy0Y(final WallpapersListActivity wallpapersListActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
         wallpapersListActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1121,12 +1121,12 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(getwallpapers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                WallpapersListActivity.m4783$r8$lambda$7zYtv6K0xW92C4pSJLixru3o7g(this.f$0, z, tLObject, tL_error);
+                WallpapersListActivity.m4794$r8$lambda$7zYtv6K0xW92C4pSJLixru3o7g(this.f$0, z, tLObject, tL_error);
             }
         }), this.classGuid);
     }
 
-    public static void m4783$r8$lambda$7zYtv6K0xW92C4pSJLixru3o7g(final WallpapersListActivity wallpapersListActivity, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4794$r8$lambda$7zYtv6K0xW92C4pSJLixru3o7g(final WallpapersListActivity wallpapersListActivity, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         wallpapersListActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1301,7 +1301,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 Collections.sort(this.wallPapers, new Comparator() {
                     @Override
                     public final int compare(Object obj2, Object obj3) {
-                        return WallpapersListActivity.m4785$r8$lambda$X3yZjldfwBnZ8wMqTasT2ktGL8(this.f$0, j, str, zIsDark, obj2, obj3);
+                        return WallpapersListActivity.m4796$r8$lambda$X3yZjldfwBnZ8wMqTasT2ktGL8(this.f$0, j, str, zIsDark, obj2, obj3);
                     }
                 });
             } catch (Exception e) {
@@ -1362,7 +1362,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         }
     }
 
-    public static int m4785$r8$lambda$X3yZjldfwBnZ8wMqTasT2ktGL8(WallpapersListActivity wallpapersListActivity, long j, String str, boolean z, Object obj, Object obj2) {
+    public static int m4796$r8$lambda$X3yZjldfwBnZ8wMqTasT2ktGL8(WallpapersListActivity wallpapersListActivity, long j, String str, boolean z, Object obj, Object obj2) {
         wallpapersListActivity.getClass();
         if (obj instanceof ColorWallpaper) {
             obj = ((ColorWallpaper) obj).parentWallpaper;
@@ -1644,12 +1644,12 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             ConnectionsManager.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    WallpapersListActivity.SearchAdapter.m4790$r8$lambda$aFh6x1UW2_LzlIvxZPBj40akb4(this.f$0, tLObject, tL_error);
+                    WallpapersListActivity.SearchAdapter.m4801$r8$lambda$aFh6x1UW2_LzlIvxZPBj40akb4(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m4790$r8$lambda$aFh6x1UW2_LzlIvxZPBj40akb4(final SearchAdapter searchAdapter, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4801$r8$lambda$aFh6x1UW2_LzlIvxZPBj40akb4(final SearchAdapter searchAdapter, final TLObject tLObject, TLRPC.TL_error tL_error) {
             searchAdapter.getClass();
             if (tLObject != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1703,13 +1703,13 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             this.imageReqId = ConnectionsManager.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    WallpapersListActivity.SearchAdapter.m4789$r8$lambda$20W4i7ifNTaxs1i3t5ioKSjUFo(this.f$0, i, tLObject, tL_error);
+                    WallpapersListActivity.SearchAdapter.m4800$r8$lambda$20W4i7ifNTaxs1i3t5ioKSjUFo(this.f$0, i, tLObject, tL_error);
                 }
             });
             ConnectionsManager.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).bindRequestToGuid(this.imageReqId, ((BaseFragment) WallpapersListActivity.this).classGuid);
         }
 
-        public static void m4789$r8$lambda$20W4i7ifNTaxs1i3t5ioKSjUFo(final SearchAdapter searchAdapter, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4800$r8$lambda$20W4i7ifNTaxs1i3t5ioKSjUFo(final SearchAdapter searchAdapter, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
             searchAdapter.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

@@ -202,7 +202,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final void onItemClick(View view, int i6, float f, float f2) {
-                SelectorBottomSheet.m2648$r8$lambda$q9tZrG2dHginLI047fMFqvlto(this.f$0, view, i6, f, f2);
+                SelectorBottomSheet.m2657$r8$lambda$q9tZrG2dHginLI047fMFqvlto(this.f$0, view, i6, f, f2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -225,7 +225,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         loadData(3, true, null);
     }
 
-    public static void m2648$r8$lambda$q9tZrG2dHginLI047fMFqvlto(final SelectorBottomSheet selectorBottomSheet, View view, int i, float f, float f2) {
+    public static void m2657$r8$lambda$q9tZrG2dHginLI047fMFqvlto(final SelectorBottomSheet selectorBottomSheet, View view, int i, float f, float f2) {
         TLRPC.Chat chat;
         selectorBottomSheet.getClass();
         if (view instanceof TextCell) {
@@ -475,13 +475,13 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }, new Runnable() {
             @Override
             public final void run() {
-                SelectorBottomSheet.m2649$r8$lambda$rOPx9CNYNi2wciVKm_Y6d_mEr4(this.f$0);
+                SelectorBottomSheet.m2658$r8$lambda$rOPx9CNYNi2wciVKm_Y6d_mEr4(this.f$0);
             }
         });
         return true;
     }
 
-    public static void m2649$r8$lambda$rOPx9CNYNi2wciVKm_Y6d_mEr4(SelectorBottomSheet selectorBottomSheet) {
+    public static void m2658$r8$lambda$rOPx9CNYNi2wciVKm_Y6d_mEr4(SelectorBottomSheet selectorBottomSheet) {
         selectorBottomSheet.selectedIds.clear();
         selectorBottomSheet.openedIds.clear();
         selectorBottomSheet.dismiss();

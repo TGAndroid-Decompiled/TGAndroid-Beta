@@ -552,7 +552,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             phonebookShareAlert.setDelegate(new PhonebookShareAlertDelegate() {
                 @Override
                 public final void didSelectContact(TLRPC.User user3, boolean z, int i2, long j, boolean z2, long j2) {
-                    ChatAttachAlertContactsLayout.m2155$r8$lambda$VAy_qnTnGly2ou0OqagNK6Us78(this.f$0, user3, z, i2, j, z2, j2);
+                    ChatAttachAlertContactsLayout.m2165$r8$lambda$VAy_qnTnGly2ou0OqagNK6Us78(this.f$0, user3, z, i2, j, z2, j2);
                 }
 
                 @Override
@@ -564,7 +564,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public static void m2155$r8$lambda$VAy_qnTnGly2ou0OqagNK6Us78(ChatAttachAlertContactsLayout chatAttachAlertContactsLayout, TLRPC.User user, boolean z, int i, long j, boolean z2, long j2) {
+    public static void m2165$r8$lambda$VAy_qnTnGly2ou0OqagNK6Us78(ChatAttachAlertContactsLayout chatAttachAlertContactsLayout, TLRPC.User user, boolean z, int i, long j, boolean z2, long j2) {
         chatAttachAlertContactsLayout.parentAlert.dismiss(true);
         chatAttachAlertContactsLayout.delegate.didSelectContact(user, z, i, j, z2, j2);
     }
@@ -1103,12 +1103,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertContactsLayout.ShareSearchAdapter.m2157$r8$lambda$v2YTDGtRV7nrKvFD16WqCdupow(this.f$0, str, i);
+                    ChatAttachAlertContactsLayout.ShareSearchAdapter.m2167$r8$lambda$v2YTDGtRV7nrKvFD16WqCdupow(this.f$0, str, i);
                 }
             });
         }
 
-        public static void m2157$r8$lambda$v2YTDGtRV7nrKvFD16WqCdupow(final ShareSearchAdapter shareSearchAdapter, final String str, final int i) {
+        public static void m2167$r8$lambda$v2YTDGtRV7nrKvFD16WqCdupow(final ShareSearchAdapter shareSearchAdapter, final String str, final int i) {
             shareSearchAdapter.getClass();
             final int i2 = UserConfig.selectedAccount;
             final ArrayList arrayList = new ArrayList(ContactsController.getInstance(i2).contactsBook.values());
@@ -1342,12 +1342,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertContactsLayout.ShareSearchAdapter.m2156$r8$lambda$Z5bW9m8vz7hl2reMoLrASBs7iY(this.f$0, i, arrayList, arrayList2);
+                    ChatAttachAlertContactsLayout.ShareSearchAdapter.m2166$r8$lambda$Z5bW9m8vz7hl2reMoLrASBs7iY(this.f$0, i, arrayList, arrayList2);
                 }
             });
         }
 
-        public static void m2156$r8$lambda$Z5bW9m8vz7hl2reMoLrASBs7iY(ShareSearchAdapter shareSearchAdapter, int i, ArrayList arrayList, ArrayList arrayList2) {
+        public static void m2166$r8$lambda$Z5bW9m8vz7hl2reMoLrASBs7iY(ShareSearchAdapter shareSearchAdapter, int i, ArrayList arrayList, ArrayList arrayList2) {
             if (i != shareSearchAdapter.lastSearchId) {
                 return;
             }

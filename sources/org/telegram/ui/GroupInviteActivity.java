@@ -108,13 +108,13 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                GroupInviteActivity.m3317$r8$lambda$wnfBykg4qtvDlfNrCL3sGcC48E(this.f$0, view, i);
+                GroupInviteActivity.m3325$r8$lambda$wnfBykg4qtvDlfNrCL3sGcC48E(this.f$0, view, i);
             }
         });
         return this.fragmentView;
     }
 
-    public static void m3317$r8$lambda$wnfBykg4qtvDlfNrCL3sGcC48E(final GroupInviteActivity groupInviteActivity, View view, int i) {
+    public static void m3325$r8$lambda$wnfBykg4qtvDlfNrCL3sGcC48E(final GroupInviteActivity groupInviteActivity, View view, int i) {
         if (groupInviteActivity.getParentActivity() == null) {
             return;
         }
@@ -198,7 +198,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                GroupInviteActivity.m3316$r8$lambda$flazjxHjB3Lw9JnjaScZFlylto(this.f$0, z, tLObject, tL_error);
+                GroupInviteActivity.m3324$r8$lambda$flazjxHjB3Lw9JnjaScZFlylto(this.f$0, z, tLObject, tL_error);
             }
         }), this.classGuid);
         ListAdapter listAdapter = this.listAdapter;
@@ -207,7 +207,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public static void m3316$r8$lambda$flazjxHjB3Lw9JnjaScZFlylto(final GroupInviteActivity groupInviteActivity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3324$r8$lambda$flazjxHjB3Lw9JnjaScZFlylto(final GroupInviteActivity groupInviteActivity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         groupInviteActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

@@ -243,12 +243,12 @@ public class FilterCreateActivity extends BaseFragment {
         this.requestingInvitesReqId = getConnectionsManager().sendRequest(tL_chatlists_getExportedInvites, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                FilterCreateActivity.m3151$r8$lambda$TaHW9_rIXZWe7pm7gh4MtsX3eA(this.f$0, tLObject, tL_error);
+                FilterCreateActivity.m3160$r8$lambda$TaHW9_rIXZWe7pm7gh4MtsX3eA(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m3151$r8$lambda$TaHW9_rIXZWe7pm7gh4MtsX3eA(final FilterCreateActivity filterCreateActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3160$r8$lambda$TaHW9_rIXZWe7pm7gh4MtsX3eA(final FilterCreateActivity filterCreateActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
         filterCreateActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -291,7 +291,7 @@ public class FilterCreateActivity extends BaseFragment {
         this.items.add(ItemInner.asAnimatedHeader(LocaleController.getString(R.string.FilterNameHeader), hasAnimatedEmojis(this.newFilterName) ? LocaleController.getString(this.newFilterAnimations ? R.string.FilterNameAnimationsDisable : R.string.FilterNameAnimationsEnable) : null, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                FilterCreateActivity.m3148$r8$lambda$Gk3NboPjyShZ88K1DCwZNekbCk(this.f$0, view);
+                FilterCreateActivity.m3157$r8$lambda$Gk3NboPjyShZ88K1DCwZNekbCk(this.f$0, view);
             }
         }));
         this.nameRow = this.items.size();
@@ -328,7 +328,7 @@ public class FilterCreateActivity extends BaseFragment {
                 this.items.add(ItemInner.asButton(R.drawable.arrow_more, LocaleController.formatPluralString("FilterShowMoreChats", this.newAlwaysShow.size() - 5, new Object[0]), false).whenClicked(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        FilterCreateActivity.m3152$r8$lambda$ZRhz3Xdqbvovh2vBawNzwJ3BLs(this.f$0, view);
+                        FilterCreateActivity.m3161$r8$lambda$ZRhz3Xdqbvovh2vBawNzwJ3BLs(this.f$0, view);
                     }
                 }));
             }
@@ -360,7 +360,7 @@ public class FilterCreateActivity extends BaseFragment {
                     this.items.add(ItemInner.asButton(R.drawable.arrow_more, LocaleController.formatPluralString("FilterShowMoreChats", this.newNeverShow.size() - 5, new Object[0]), false).whenClicked(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            FilterCreateActivity.m3155$r8$lambda$n_1HsXGOclZ7v7Hzo4Y8CqOK3o(this.f$0, view);
+                            FilterCreateActivity.m3164$r8$lambda$n_1HsXGOclZ7v7Hzo4Y8CqOK3o(this.f$0, view);
                         }
                     }));
                 }
@@ -410,7 +410,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
     }
 
-    public static void m3148$r8$lambda$Gk3NboPjyShZ88K1DCwZNekbCk(FilterCreateActivity filterCreateActivity, View view) {
+    public static void m3157$r8$lambda$Gk3NboPjyShZ88K1DCwZNekbCk(FilterCreateActivity filterCreateActivity, View view) {
         String string;
         filterCreateActivity.newFilterAnimations = !filterCreateActivity.newFilterAnimations;
         HeaderCellWithRight headerCellWithRight = filterCreateActivity.nameHeaderCell;
@@ -436,12 +436,12 @@ public class FilterCreateActivity extends BaseFragment {
         }
     }
 
-    public static void m3152$r8$lambda$ZRhz3Xdqbvovh2vBawNzwJ3BLs(FilterCreateActivity filterCreateActivity, View view) {
+    public static void m3161$r8$lambda$ZRhz3Xdqbvovh2vBawNzwJ3BLs(FilterCreateActivity filterCreateActivity, View view) {
         filterCreateActivity.includeExpanded = true;
         filterCreateActivity.updateRows();
     }
 
-    public static void m3155$r8$lambda$n_1HsXGOclZ7v7Hzo4Y8CqOK3o(FilterCreateActivity filterCreateActivity, View view) {
+    public static void m3164$r8$lambda$n_1HsXGOclZ7v7Hzo4Y8CqOK3o(FilterCreateActivity filterCreateActivity, View view) {
         filterCreateActivity.excludeExpanded = true;
         filterCreateActivity.updateRows();
     }
@@ -626,7 +626,7 @@ public class FilterCreateActivity extends BaseFragment {
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                FilterCreateActivity.m3147$r8$lambda$C4JsGSvFPhXvFmVHdz6SR2AqJA(this.f$0, view, i);
+                FilterCreateActivity.m3156$r8$lambda$C4JsGSvFPhXvFmVHdz6SR2AqJA(this.f$0, view, i);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -659,7 +659,7 @@ public class FilterCreateActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public static void m3147$r8$lambda$C4JsGSvFPhXvFmVHdz6SR2AqJA(final FilterCreateActivity filterCreateActivity, View view, int i) {
+    public static void m3156$r8$lambda$C4JsGSvFPhXvFmVHdz6SR2AqJA(final FilterCreateActivity filterCreateActivity, View view, int i) {
         final ItemInner itemInner;
         if (filterCreateActivity.getParentActivity() == null || (itemInner = (ItemInner) filterCreateActivity.items.get(i)) == null) {
             return;
@@ -675,7 +675,7 @@ public class FilterCreateActivity extends BaseFragment {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        FilterCreateActivity.m3143$r8$lambda$0EuwRbTm8uDZtVAd5Z5P87Rpe8(this.f$0, itemInner);
+                        FilterCreateActivity.m3152$r8$lambda$0EuwRbTm8uDZtVAd5Z5P87Rpe8(this.f$0, itemInner);
                     }
                 };
                 if (filterCreateActivity.doneItem.isEnabled()) {
@@ -695,7 +695,7 @@ public class FilterCreateActivity extends BaseFragment {
         itemInner.onClickListener.onClick(view);
     }
 
-    public static void m3143$r8$lambda$0EuwRbTm8uDZtVAd5Z5P87Rpe8(FilterCreateActivity filterCreateActivity, ItemInner itemInner) {
+    public static void m3152$r8$lambda$0EuwRbTm8uDZtVAd5Z5P87Rpe8(FilterCreateActivity filterCreateActivity, ItemInner itemInner) {
         FilterChatlistActivity filterChatlistActivity = new FilterChatlistActivity(filterCreateActivity.filter, itemInner.link);
         filterChatlistActivity.setOnEdit(new FilterCreateActivity$$ExternalSyntheticLambda23(filterCreateActivity));
         filterChatlistActivity.setOnDelete(new FilterCreateActivity$$ExternalSyntheticLambda24(filterCreateActivity));
@@ -788,7 +788,7 @@ public class FilterCreateActivity extends BaseFragment {
             filterCreateActivity.getConnectionsManager().sendRequest(tL_chatlists_exportChatlistInvite, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    FilterCreateActivity.m3154$r8$lambda$cTqBV2KILTTE9jwQcOgkCpqI(this.f$0, tLObject, tL_error);
+                    FilterCreateActivity.m3163$r8$lambda$cTqBV2KILTTE9jwQcOgkCpqI(this.f$0, tLObject, tL_error);
                 }
             });
             return;
@@ -799,17 +799,17 @@ public class FilterCreateActivity extends BaseFragment {
         filterCreateActivity.presentFragment(filterChatlistActivity);
     }
 
-    public static void m3154$r8$lambda$cTqBV2KILTTE9jwQcOgkCpqI(final FilterCreateActivity filterCreateActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m3163$r8$lambda$cTqBV2KILTTE9jwQcOgkCpqI(final FilterCreateActivity filterCreateActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         filterCreateActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                FilterCreateActivity.m3144$r8$lambda$0T3HxIm1q6inlL0SLBzG48dLdc(this.f$0, tL_error, tLObject);
+                FilterCreateActivity.m3153$r8$lambda$0T3HxIm1q6inlL0SLBzG48dLdc(this.f$0, tL_error, tLObject);
             }
         });
     }
 
-    public static void m3144$r8$lambda$0T3HxIm1q6inlL0SLBzG48dLdc(final FilterCreateActivity filterCreateActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
+    public static void m3153$r8$lambda$0T3HxIm1q6inlL0SLBzG48dLdc(final FilterCreateActivity filterCreateActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
         filterCreateActivity.getClass();
         if (processErrors(tL_error, filterCreateActivity, BulletinFactory.of(filterCreateActivity)) && (tLObject instanceof TL_chatlists.TL_chatlists_exportedChatlistInvite)) {
             hideNew(0);
@@ -956,12 +956,12 @@ public class FilterCreateActivity extends BaseFragment {
         filterCreateActivity.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                FilterCreateActivity.m3153$r8$lambda$ayzov50h936vMNH1OYyXa6gXhA(this.f$0, alertDialog2, tLObject, tL_error);
+                FilterCreateActivity.m3162$r8$lambda$ayzov50h936vMNH1OYyXa6gXhA(this.f$0, alertDialog2, tLObject, tL_error);
             }
         });
     }
 
-    public static void m3153$r8$lambda$ayzov50h936vMNH1OYyXa6gXhA(final FilterCreateActivity filterCreateActivity, final AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m3162$r8$lambda$ayzov50h936vMNH1OYyXa6gXhA(final FilterCreateActivity filterCreateActivity, final AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
         filterCreateActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1029,13 +1029,13 @@ public class FilterCreateActivity extends BaseFragment {
         usersSelectActivity.setDelegate(new UsersSelectActivity.FilterUsersActivityDelegate() {
             @Override
             public final void didSelectChats(ArrayList arrayList, int i) {
-                FilterCreateActivity.m3150$r8$lambda$SyfJUfDo97HNVHsLVlG839RMyU(this.f$0, z, arrayList, i);
+                FilterCreateActivity.m3159$r8$lambda$SyfJUfDo97HNVHsLVlG839RMyU(this.f$0, z, arrayList, i);
             }
         });
         presentFragment(usersSelectActivity);
     }
 
-    public static void m3150$r8$lambda$SyfJUfDo97HNVHsLVlG839RMyU(FilterCreateActivity filterCreateActivity, boolean z, ArrayList arrayList, int i) {
+    public static void m3159$r8$lambda$SyfJUfDo97HNVHsLVlG839RMyU(FilterCreateActivity filterCreateActivity, boolean z, ArrayList arrayList, int i) {
         filterCreateActivity.newFilterFlags = i;
         if (z) {
             filterCreateActivity.onUpdate(true, filterCreateActivity.newAlwaysShow, arrayList);
@@ -1221,7 +1221,7 @@ public class FilterCreateActivity extends BaseFragment {
         builder.setPositiveButton(LocaleController.getString(R.string.StickersRemove), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                FilterCreateActivity.m3146$r8$lambda$3ui7c63oWdetZVRrGWyU0mjDM(this.f$0, itemInner, z, alertDialog, i);
+                FilterCreateActivity.m3155$r8$lambda$3ui7c63oWdetZVRrGWyU0mjDM(this.f$0, itemInner, z, alertDialog, i);
             }
         });
         AlertDialog alertDialogCreate = builder.create();
@@ -1232,7 +1232,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
     }
 
-    public static void m3146$r8$lambda$3ui7c63oWdetZVRrGWyU0mjDM(FilterCreateActivity filterCreateActivity, ItemInner itemInner, boolean z, AlertDialog alertDialog, int i) {
+    public static void m3155$r8$lambda$3ui7c63oWdetZVRrGWyU0mjDM(FilterCreateActivity filterCreateActivity, ItemInner itemInner, boolean z, AlertDialog alertDialog, int i) {
         filterCreateActivity.getClass();
         if (itemInner.flags > 0) {
             filterCreateActivity.newFilterFlags = (~itemInner.flags) & filterCreateActivity.newFilterFlags;
@@ -1276,12 +1276,12 @@ public class FilterCreateActivity extends BaseFragment {
         saveFilterToServer(this.filter, this.newFilterFlags, charSequenceArr[0].toString(), getMediaDataController().getEntities(charSequenceArr, false), !this.newFilterAnimations, this.newFilterColor, this.newAlwaysShow, this.newNeverShow, this.newPinned, this.creatingNew, false, this.hasUserChanged, true, z, this, new Runnable() {
             @Override
             public final void run() {
-                FilterCreateActivity.m3149$r8$lambda$IgAdxYphxUD274_DfPnj4l7AyE(this.f$0, runnable);
+                FilterCreateActivity.m3158$r8$lambda$IgAdxYphxUD274_DfPnj4l7AyE(this.f$0, runnable);
             }
         });
     }
 
-    public static void m3149$r8$lambda$IgAdxYphxUD274_DfPnj4l7AyE(FilterCreateActivity filterCreateActivity, Runnable runnable) {
+    public static void m3158$r8$lambda$IgAdxYphxUD274_DfPnj4l7AyE(FilterCreateActivity filterCreateActivity, Runnable runnable) {
         filterCreateActivity.hasUserChanged = false;
         filterCreateActivity.creatingNew = false;
         filterCreateActivity.filter.flags = filterCreateActivity.newFilterFlags;
@@ -1959,7 +1959,7 @@ public class FilterCreateActivity extends BaseFragment {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                FilterCreateActivity.m3156$r8$lambda$neKoxp5pAbaIHKZEr0mKdH_2lk(this.f$0);
+                FilterCreateActivity.m3165$r8$lambda$neKoxp5pAbaIHKZEr0mKdH_2lk(this.f$0);
             }
 
             @Override
@@ -1998,7 +1998,7 @@ public class FilterCreateActivity extends BaseFragment {
         return arrayList;
     }
 
-    public static void m3156$r8$lambda$neKoxp5pAbaIHKZEr0mKdH_2lk(FilterCreateActivity filterCreateActivity) {
+    public static void m3165$r8$lambda$neKoxp5pAbaIHKZEr0mKdH_2lk(FilterCreateActivity filterCreateActivity) {
         RecyclerListView recyclerListView = filterCreateActivity.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
@@ -2274,7 +2274,7 @@ public class FilterCreateActivity extends BaseFragment {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            FilterCreateActivity.LinkCell.m3161$r8$lambda$dQeOcRSur5uZzkah0GC5OrjHW0(this.f$0, valueAnimator2);
+                            FilterCreateActivity.LinkCell.m3170$r8$lambda$dQeOcRSur5uZzkah0GC5OrjHW0(this.f$0, valueAnimator2);
                         }
                     });
                     this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2295,7 +2295,7 @@ public class FilterCreateActivity extends BaseFragment {
             }
         }
 
-        public static void m3161$r8$lambda$dQeOcRSur5uZzkah0GC5OrjHW0(LinkCell linkCell, ValueAnimator valueAnimator) {
+        public static void m3170$r8$lambda$dQeOcRSur5uZzkah0GC5OrjHW0(LinkCell linkCell, ValueAnimator valueAnimator) {
             linkCell.getClass();
             linkCell.revokeT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             linkCell.invalidate();
@@ -3039,12 +3039,12 @@ public class FilterCreateActivity extends BaseFragment {
             getBaseFragment().getConnectionsManager().sendRequest(tL_chatlists_exportChatlistInvite, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    FilterCreateActivity.FilterInvitesBottomSheet.m3159$r8$lambda$wEeoSNIvKUkuBK4nOPhPGICbJE(this.f$0, tLObject, tL_error);
+                    FilterCreateActivity.FilterInvitesBottomSheet.m3168$r8$lambda$wEeoSNIvKUkuBK4nOPhPGICbJE(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m3159$r8$lambda$wEeoSNIvKUkuBK4nOPhPGICbJE(final FilterInvitesBottomSheet filterInvitesBottomSheet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m3168$r8$lambda$wEeoSNIvKUkuBK4nOPhPGICbJE(final FilterInvitesBottomSheet filterInvitesBottomSheet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             filterInvitesBottomSheet.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

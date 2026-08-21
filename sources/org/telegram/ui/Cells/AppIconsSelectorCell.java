@@ -96,13 +96,13 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                AppIconsSelectorCell.m1470$r8$lambda$oTbx71RAHcxSmC2tUl4LIq23L0(this.f$0, baseFragment, context, view, i2);
+                AppIconsSelectorCell.m1476$r8$lambda$oTbx71RAHcxSmC2tUl4LIq23L0(this.f$0, baseFragment, context, view, i2);
             }
         });
         updateIconsVisibility();
     }
 
-    public static void m1470$r8$lambda$oTbx71RAHcxSmC2tUl4LIq23L0(AppIconsSelectorCell appIconsSelectorCell, BaseFragment baseFragment, Context context, View view, int i) {
+    public static void m1476$r8$lambda$oTbx71RAHcxSmC2tUl4LIq23L0(AppIconsSelectorCell appIconsSelectorCell, BaseFragment baseFragment, Context context, View view, int i) {
         appIconsSelectorCell.getClass();
         IconHolderView iconHolderView = (IconHolderView) view;
         LauncherIconController.LauncherIcon launcherIcon = (LauncherIconController.LauncherIcon) appIconsSelectorCell.availableIcons.get(i);

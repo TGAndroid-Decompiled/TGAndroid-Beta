@@ -288,7 +288,7 @@ public class CameraScanActivity extends BaseFragment {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    CameraScanActivity.m1462$r8$lambda$h0QM4TZIC8uAZSqpiFdZwBukWY(this.f$0);
+                    CameraScanActivity.m1468$r8$lambda$h0QM4TZIC8uAZSqpiFdZwBukWY(this.f$0);
                 }
             });
         }
@@ -302,7 +302,7 @@ public class CameraScanActivity extends BaseFragment {
         }
     }
 
-    public static void m1462$r8$lambda$h0QM4TZIC8uAZSqpiFdZwBukWY(CameraScanActivity cameraScanActivity) {
+    public static void m1468$r8$lambda$h0QM4TZIC8uAZSqpiFdZwBukWY(CameraScanActivity cameraScanActivity) {
         cameraScanActivity.getClass();
         cameraScanActivity.qrReader = new QRCodeReader();
         cameraScanActivity.visionQrReader = new BarcodeDetector.Builder(ApplicationLoader.applicationContext).setBarcodeFormats(256).build();
@@ -710,7 +710,7 @@ public class CameraScanActivity extends BaseFragment {
                 this.galleryButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        CameraScanActivity.m1465$r8$lambda$rr899fBIYgVLsDftE9ozgr2T1Q(this.f$0, view);
+                        CameraScanActivity.m1471$r8$lambda$rr899fBIYgVLsDftE9ozgr2T1Q(this.f$0, view);
                     }
                 });
             }
@@ -732,7 +732,7 @@ public class CameraScanActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public static void m1465$r8$lambda$rr899fBIYgVLsDftE9ozgr2T1Q(CameraScanActivity cameraScanActivity, View view) {
+    public static void m1471$r8$lambda$rr899fBIYgVLsDftE9ozgr2T1Q(CameraScanActivity cameraScanActivity, View view) {
         if (cameraScanActivity.getParentActivity() == null) {
             return;
         }
@@ -840,7 +840,7 @@ public class CameraScanActivity extends BaseFragment {
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    CameraScanActivity.m1459$r8$lambda$TIFzzFu1HPT7gozYw92dZNJJTg(this.f$0, valueAnimator2);
+                    CameraScanActivity.m1465$r8$lambda$TIFzzFu1HPT7gozYw92dZNJJTg(this.f$0, valueAnimator2);
                 }
             });
             this.recognizedAnimator.setDuration((long) (Math.abs(this.recognizedT - this.newRecognizedT) * 300.0f));
@@ -855,7 +855,7 @@ public class CameraScanActivity extends BaseFragment {
             springAnimation2.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f3, float f4) {
-                    CameraScanActivity.m1458$r8$lambda$S4ha81UG7eqFRAZn6mHcsRXYk8(this.f$0, dynamicAnimation, f3, f4);
+                    CameraScanActivity.m1464$r8$lambda$S4ha81UG7eqFRAZn6mHcsRXYk8(this.f$0, dynamicAnimation, f3, f4);
                 }
             });
             this.useRecognizedBoundsAnimator.setSpring(new SpringForce(500.0f));
@@ -865,7 +865,7 @@ public class CameraScanActivity extends BaseFragment {
         }
     }
 
-    public static void m1459$r8$lambda$TIFzzFu1HPT7gozYw92dZNJJTg(CameraScanActivity cameraScanActivity, ValueAnimator valueAnimator) {
+    public static void m1465$r8$lambda$TIFzzFu1HPT7gozYw92dZNJJTg(CameraScanActivity cameraScanActivity, ValueAnimator valueAnimator) {
         cameraScanActivity.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         cameraScanActivity.recognizedT = fFloatValue;
@@ -878,7 +878,7 @@ public class CameraScanActivity extends BaseFragment {
         cameraScanActivity.fragmentView.invalidate();
     }
 
-    public static void m1458$r8$lambda$S4ha81UG7eqFRAZn6mHcsRXYk8(CameraScanActivity cameraScanActivity, DynamicAnimation dynamicAnimation, float f, float f2) {
+    public static void m1464$r8$lambda$S4ha81UG7eqFRAZn6mHcsRXYk8(CameraScanActivity cameraScanActivity, DynamicAnimation dynamicAnimation, float f, float f2) {
         float f3 = f / 500.0f;
         if (!cameraScanActivity.recognized) {
             f3 = 1.0f - f3;
@@ -1139,12 +1139,12 @@ public class CameraScanActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CameraScanActivity.m1457$r8$lambda$K24kVPbUB68Ughq4vJ62nS1yJw(this.f$0);
+                CameraScanActivity.m1463$r8$lambda$K24kVPbUB68Ughq4vJ62nS1yJw(this.f$0);
             }
         });
     }
 
-    public static void m1457$r8$lambda$K24kVPbUB68Ughq4vJ62nS1yJw(CameraScanActivity cameraScanActivity) {
+    public static void m1463$r8$lambda$K24kVPbUB68Ughq4vJ62nS1yJw(CameraScanActivity cameraScanActivity) {
         if (cameraScanActivity.recognizedMrzView.getTag() != null) {
             cameraScanActivity.recognizedMrzView.setTag(null);
             cameraScanActivity.recognizedMrzView.animate().setDuration(200L).alpha(0.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
@@ -1168,7 +1168,7 @@ public class CameraScanActivity extends BaseFragment {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                CameraScanActivity.m1456$r8$lambda$7e2VrgBhv3s7crdzBcz_tEvZzo(this.f$0, resultRecognize);
+                                CameraScanActivity.m1462$r8$lambda$7e2VrgBhv3s7crdzBcz_tEvZzo(this.f$0, resultRecognize);
                             }
                         });
                         return;
@@ -1241,7 +1241,7 @@ public class CameraScanActivity extends BaseFragment {
                         cameraScanActivity.handler.postDelayed(new Runnable() {
                             @Override
                             public final void run() {
-                                CameraScanActivity.m1464$r8$lambda$hi5uJMwEBzVe3rU21g6HRqqt8(this.f$0);
+                                CameraScanActivity.m1470$r8$lambda$hi5uJMwEBzVe3rU21g6HRqqt8(this.f$0);
                             }
                         }, Math.max(16L, ((long) (1000 / cameraScanActivity.sps)) - ((long) cameraScanActivity.averageProcessTime)));
                     }
@@ -1266,7 +1266,7 @@ public class CameraScanActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(cameraScanActivity.requestShot, 500L);
     }
 
-    public static void m1456$r8$lambda$7e2VrgBhv3s7crdzBcz_tEvZzo(final CameraScanActivity cameraScanActivity, MrzRecognizer.Result result) {
+    public static void m1462$r8$lambda$7e2VrgBhv3s7crdzBcz_tEvZzo(final CameraScanActivity cameraScanActivity, MrzRecognizer.Result result) {
         cameraScanActivity.recognizedMrzView.setText(result.rawMRZ);
         cameraScanActivity.recognizedMrzView.animate().setDuration(200L).alpha(1.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
         CameraScanActivityDelegate cameraScanActivityDelegate = cameraScanActivity.delegate;
@@ -1289,12 +1289,12 @@ public class CameraScanActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CameraScanActivity.m1461$r8$lambda$do9LWYVPUOV9hf_q2gPoXio4n8(this.f$0);
+                CameraScanActivity.m1467$r8$lambda$do9LWYVPUOV9hf_q2gPoXio4n8(this.f$0);
             }
         });
     }
 
-    public static void m1461$r8$lambda$do9LWYVPUOV9hf_q2gPoXio4n8(CameraScanActivity cameraScanActivity) {
+    public static void m1467$r8$lambda$do9LWYVPUOV9hf_q2gPoXio4n8(CameraScanActivity cameraScanActivity) {
         CameraScanActivityDelegate cameraScanActivityDelegate = cameraScanActivity.delegate;
         if (cameraScanActivityDelegate != null) {
             cameraScanActivityDelegate.didFindQr(cameraScanActivity.recognizedText);
@@ -1330,7 +1330,7 @@ public class CameraScanActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(cameraScanActivity), 500L);
     }
 
-    public static void m1464$r8$lambda$hi5uJMwEBzVe3rU21g6HRqqt8(CameraScanActivity cameraScanActivity) {
+    public static void m1470$r8$lambda$hi5uJMwEBzVe3rU21g6HRqqt8(CameraScanActivity cameraScanActivity) {
         CameraView cameraView = cameraScanActivity.cameraView;
         if (cameraView != null) {
             cameraScanActivity.processShot(cameraView.getTextureView().getBitmap());

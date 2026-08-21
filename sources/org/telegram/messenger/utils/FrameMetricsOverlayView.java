@@ -164,7 +164,7 @@ public final class FrameMetricsOverlayView extends View {
         Window.OnFrameMetricsAvailableListener onFrameMetricsAvailableListener = new Window.OnFrameMetricsAvailableListener() {
             @Override
             public final void onFrameMetricsAvailable(Window window, FrameMetrics frameMetrics, int i) {
-                FrameMetricsOverlayView.m1128$r8$lambda$m42WIPdz4HTot3OVFKZa0YbcXM(window, frameMetrics, i);
+                FrameMetricsOverlayView.m1134$r8$lambda$m42WIPdz4HTot3OVFKZa0YbcXM(window, frameMetrics, i);
             }
         };
         this.listener = onFrameMetricsAvailableListener;
@@ -180,7 +180,7 @@ public final class FrameMetricsOverlayView extends View {
         this.uiHandler.post(this.redraw);
     }
 
-    public static void m1128$r8$lambda$m42WIPdz4HTot3OVFKZa0YbcXM(Window window, FrameMetrics frameMetrics, int i) {
+    public static void m1134$r8$lambda$m42WIPdz4HTot3OVFKZa0YbcXM(Window window, FrameMetrics frameMetrics, int i) {
         for (Metric metric : Metric.values()) {
             if (!metric.isAvailable()) {
                 metric.last = Long.MIN_VALUE;

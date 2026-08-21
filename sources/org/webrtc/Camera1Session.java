@@ -203,7 +203,7 @@ class Camera1Session implements CameraSession {
         this.surfaceTextureHelper.startListening(new VideoSink() {
             @Override
             public final void onFrame(VideoFrame videoFrame) {
-                Camera1Session.m5080$r8$lambda$k7glvNgoUNlSpCxWPGSZJ_J0i8(this.f$0, videoFrame);
+                Camera1Session.m5091$r8$lambda$k7glvNgoUNlSpCxWPGSZJ_J0i8(this.f$0, videoFrame);
             }
 
             @Override
@@ -213,7 +213,7 @@ class Camera1Session implements CameraSession {
         });
     }
 
-    public static void m5080$r8$lambda$k7glvNgoUNlSpCxWPGSZJ_J0i8(Camera1Session camera1Session, VideoFrame videoFrame) {
+    public static void m5091$r8$lambda$k7glvNgoUNlSpCxWPGSZJ_J0i8(Camera1Session camera1Session, VideoFrame videoFrame) {
         camera1Session.checkIsOnCameraThread();
         if (camera1Session.state != SessionState.RUNNING) {
             Logging.d("Camera1Session", "Texture frame captured but camera is no longer running.");
@@ -252,7 +252,7 @@ class Camera1Session implements CameraSession {
                         Camera1Session.this.cameraThreadHandler.post(new Runnable() {
                             @Override
                             public final void run() {
-                                Camera1Session.AnonymousClass2.m5081$r8$lambda$rkcBsJ2UyoFna4iXxAKCg8ch1E(anonymousClass2, bArr);
+                                Camera1Session.AnonymousClass2.m5092$r8$lambda$rkcBsJ2UyoFna4iXxAKCg8ch1E(anonymousClass2, bArr);
                             }
                         });
                     }
@@ -264,7 +264,7 @@ class Camera1Session implements CameraSession {
             Logging.e("Camera1Session", "Callback from a different camera. This should never happen.");
         }
 
-        public static void m5081$r8$lambda$rkcBsJ2UyoFna4iXxAKCg8ch1E(AnonymousClass2 anonymousClass2, byte[] bArr) {
+        public static void m5092$r8$lambda$rkcBsJ2UyoFna4iXxAKCg8ch1E(AnonymousClass2 anonymousClass2, byte[] bArr) {
             if (Camera1Session.this.state == SessionState.RUNNING) {
                 Camera1Session.this.camera.addCallbackBuffer(bArr);
             }

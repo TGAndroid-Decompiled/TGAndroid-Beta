@@ -229,7 +229,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             ThanosEffect thanosEffect = new ThanosEffect(getContext(), new Runnable() {
                 @Override
                 public final void run() {
-                    StickerMakerView.m2520$r8$lambda$AdTrwcDdrG9beAOxBE91LipFls(this.f$0);
+                    StickerMakerView.m2530$r8$lambda$AdTrwcDdrG9beAOxBE91LipFls(this.f$0);
                 }
             });
             this.thanosEffect = thanosEffect;
@@ -238,7 +238,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         return this.thanosEffect;
     }
 
-    public static void m2520$r8$lambda$AdTrwcDdrG9beAOxBE91LipFls(StickerMakerView stickerMakerView) {
+    public static void m2530$r8$lambda$AdTrwcDdrG9beAOxBE91LipFls(StickerMakerView stickerMakerView) {
         ThanosEffect thanosEffect = stickerMakerView.thanosEffect;
         if (thanosEffect != null) {
             stickerMakerView.thanosEffect = null;
@@ -920,23 +920,23 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         segment(bitmap, i, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StickerMakerView.m2527$r8$lambda$pNEWj8ybBhYsNez2tC9CDilasA(this.f$0, i, callback, (List) obj);
+                StickerMakerView.m2537$r8$lambda$pNEWj8ybBhYsNez2tC9CDilasA(this.f$0, i, callback, (List) obj);
             }
         }, callback);
     }
 
-    public static void m2527$r8$lambda$pNEWj8ybBhYsNez2tC9CDilasA(final StickerMakerView stickerMakerView, final int i, final Utilities.Callback callback, final List list) {
+    public static void m2537$r8$lambda$pNEWj8ybBhYsNez2tC9CDilasA(final StickerMakerView stickerMakerView, final int i, final Utilities.Callback callback, final List list) {
         stickerMakerView.getClass();
         final ArrayList arrayList = new ArrayList();
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.m2529$r8$lambda$s1HbOjn6hS84B_arOtyiC21DUg(this.f$0, i, list, arrayList, callback);
+                StickerMakerView.m2539$r8$lambda$s1HbOjn6hS84B_arOtyiC21DUg(this.f$0, i, list, arrayList, callback);
             }
         });
     }
 
-    public static void m2529$r8$lambda$s1HbOjn6hS84B_arOtyiC21DUg(final StickerMakerView stickerMakerView, int i, List list, final ArrayList arrayList, final Utilities.Callback callback) {
+    public static void m2539$r8$lambda$s1HbOjn6hS84B_arOtyiC21DUg(final StickerMakerView stickerMakerView, int i, List list, final ArrayList arrayList, final Utilities.Callback callback) {
         if (stickerMakerView.sourceBitmap == null || stickerMakerView.segmentingLoaded) {
             return;
         }
@@ -1004,7 +1004,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.m2526$r8$lambda$nMs9I37Zq4jD0FhbpPdIm6besE(this.f$0, arrayList);
+                StickerMakerView.m2536$r8$lambda$nMs9I37Zq4jD0FhbpPdIm6besE(this.f$0, arrayList);
             }
         });
     }
@@ -1015,7 +1015,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         callback.run(segmentedObject);
     }
 
-    public static void m2526$r8$lambda$nMs9I37Zq4jD0FhbpPdIm6besE(StickerMakerView stickerMakerView, ArrayList arrayList) {
+    public static void m2536$r8$lambda$nMs9I37Zq4jD0FhbpPdIm6besE(StickerMakerView stickerMakerView, ArrayList arrayList) {
         stickerMakerView.empty = false;
         SegmentedObject[] segmentedObjectArr = (SegmentedObject[]) arrayList.toArray(new SegmentedObject[0]);
         stickerMakerView.objects = segmentedObjectArr;
@@ -1078,14 +1078,14 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public final void onFailure(Exception exc) {
-                StickerMakerView.m2522$r8$lambda$QkOQGadWItMpK6M8nPzpFivg0(this.f$0, bitmap, i, callback2, callback, exc);
+                StickerMakerView.m2532$r8$lambda$QkOQGadWItMpK6M8nPzpFivg0(this.f$0, bitmap, i, callback2, callback, exc);
             }
         });
         if (this.detectedEmoji == null) {
             ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS).process(inputImageFromBitmap).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    StickerMakerView.m2519$r8$lambda$A3pe74UFcEuGzGOMiVDeRvGm4E(this.f$0, (List) obj);
+                    StickerMakerView.m2529$r8$lambda$A3pe74UFcEuGzGOMiVDeRvGm4E(this.f$0, (List) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -1108,7 +1108,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         callback.run(arrayList);
     }
 
-    public static void m2522$r8$lambda$QkOQGadWItMpK6M8nPzpFivg0(final StickerMakerView stickerMakerView, final Bitmap bitmap, final int i, final Utilities.Callback callback, Utilities.Callback callback2, Exception exc) {
+    public static void m2532$r8$lambda$QkOQGadWItMpK6M8nPzpFivg0(final StickerMakerView stickerMakerView, final Bitmap bitmap, final int i, final Utilities.Callback callback, Utilities.Callback callback2, Exception exc) {
         stickerMakerView.segmentingLoading = false;
         FileLog.e(exc);
         if (isWaitingMlKitError(exc) && stickerMakerView.isAttachedToWindow()) {
@@ -1124,7 +1124,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public static void m2519$r8$lambda$A3pe74UFcEuGzGOMiVDeRvGm4E(StickerMakerView stickerMakerView, List list) {
+    public static void m2529$r8$lambda$A3pe74UFcEuGzGOMiVDeRvGm4E(StickerMakerView stickerMakerView, List list) {
         stickerMakerView.getClass();
         if (list.size() <= 0) {
             FileLog.d("objimg: no objects");
@@ -1541,12 +1541,12 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.m2521$r8$lambda$HDWnPCXe0RtoBLEbFbZtCwlWI4(this.f$0, callback, str2, str, charSequence, z, j, stickerSet, document, document2, videoEditedInfo, str3, callback2);
+                StickerMakerView.m2531$r8$lambda$HDWnPCXe0RtoBLEbFbZtCwlWI4(this.f$0, callback, str2, str, charSequence, z, j, stickerSet, document, document2, videoEditedInfo, str3, callback2);
             }
         }, 300L);
     }
 
-    public static void m2521$r8$lambda$HDWnPCXe0RtoBLEbFbZtCwlWI4(StickerMakerView stickerMakerView, Utilities.Callback callback, String str, String str2, CharSequence charSequence, boolean z, long j, TLRPC.StickerSet stickerSet, TLRPC.Document document, TLRPC.Document document2, VideoEditedInfo videoEditedInfo, String str3, Utilities.Callback2 callback2) {
+    public static void m2531$r8$lambda$HDWnPCXe0RtoBLEbFbZtCwlWI4(StickerMakerView stickerMakerView, Utilities.Callback callback, String str, String str2, CharSequence charSequence, boolean z, long j, TLRPC.StickerSet stickerSet, TLRPC.Document document, TLRPC.Document document2, VideoEditedInfo videoEditedInfo, String str3, Utilities.Callback2 callback2) {
         StickerUploader stickerUploader;
         boolean z2 = callback == null || (stickerUploader = stickerMakerView.stickerUploader) == null || !stickerUploader.uploaded;
         if (z2) {
@@ -1606,7 +1606,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         this.loadingToast.setOnCancelListener(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.m2523$r8$lambda$XwKl9o4j0Y5DA46FINKtnnTD2g(this.f$0);
+                StickerMakerView.m2533$r8$lambda$XwKl9o4j0Y5DA46FINKtnnTD2g(this.f$0);
             }
         });
         if (this.loadingToast.getParent() == null) {
@@ -1615,7 +1615,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         this.loadingToast.show();
     }
 
-    public static void m2523$r8$lambda$XwKl9o4j0Y5DA46FINKtnnTD2g(StickerMakerView stickerMakerView) {
+    public static void m2533$r8$lambda$XwKl9o4j0Y5DA46FINKtnnTD2g(StickerMakerView stickerMakerView) {
         StickerUploader stickerUploader = stickerMakerView.stickerUploader;
         if (stickerUploader != null) {
             if (stickerUploader.messageObject != null) {
@@ -1662,22 +1662,22 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_uploadMedia, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StickerMakerView.m2518$r8$lambda$Fd7CTrCDx0i4ik59HK7IZoVZQc(this.f$0, stickerUploader, tLObject, tL_error);
+                StickerMakerView.m2528$r8$lambda$Fd7CTrCDx0i4ik59HK7IZoVZQc(this.f$0, stickerUploader, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public static void m2518$r8$lambda$Fd7CTrCDx0i4ik59HK7IZoVZQc(final StickerMakerView stickerMakerView, final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m2528$r8$lambda$Fd7CTrCDx0i4ik59HK7IZoVZQc(final StickerMakerView stickerMakerView, final StickerUploader stickerUploader, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         stickerMakerView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.m2528$r8$lambda$q58zRAYyAEEAsXdMbMt9Nm9cgc(this.f$0, tLObject, stickerUploader, tL_error);
+                StickerMakerView.m2538$r8$lambda$q58zRAYyAEEAsXdMbMt9Nm9cgc(this.f$0, tLObject, stickerUploader, tL_error);
             }
         });
     }
 
-    public static void m2528$r8$lambda$q58zRAYyAEEAsXdMbMt9Nm9cgc(StickerMakerView stickerMakerView, TLObject tLObject, StickerUploader stickerUploader, TLRPC.TL_error tL_error) {
+    public static void m2538$r8$lambda$q58zRAYyAEEAsXdMbMt9Nm9cgc(StickerMakerView stickerMakerView, TLObject tLObject, StickerUploader stickerUploader, TLRPC.TL_error tL_error) {
         stickerMakerView.getClass();
         if (tLObject instanceof TLRPC.TL_messageMediaDocument) {
             TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) tLObject;
@@ -1847,12 +1847,12 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickerMakerView.m2525$r8$lambda$jgTd5oJVU0fjSBWrJAm3jSXwk(this.f$0, tLObject, i, stickerUploader, tL_error);
+                StickerMakerView.m2535$r8$lambda$jgTd5oJVU0fjSBWrJAm3jSXwk(this.f$0, tLObject, i, stickerUploader, tL_error);
             }
         });
     }
 
-    public static void m2525$r8$lambda$jgTd5oJVU0fjSBWrJAm3jSXwk(final StickerMakerView stickerMakerView, final TLObject tLObject, int i, final StickerUploader stickerUploader, TLRPC.TL_error tL_error) {
+    public static void m2535$r8$lambda$jgTd5oJVU0fjSBWrJAm3jSXwk(final StickerMakerView stickerMakerView, final TLObject tLObject, int i, final StickerUploader stickerUploader, TLRPC.TL_error tL_error) {
         boolean z;
         stickerMakerView.getClass();
         if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
@@ -1865,7 +1865,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickerMakerView.m2524$r8$lambda$eMaS2PJ0br7Q74vuYBGKAebmU(this.f$0, tLObject, stickerUploader);
+                    StickerMakerView.m2534$r8$lambda$eMaS2PJ0br7Q74vuYBGKAebmU(this.f$0, tLObject, stickerUploader);
                 }
             }, 250L);
             z = true;
@@ -1881,7 +1881,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    public static void m2524$r8$lambda$eMaS2PJ0br7Q74vuYBGKAebmU(StickerMakerView stickerMakerView, TLObject tLObject, StickerUploader stickerUploader) {
+    public static void m2534$r8$lambda$eMaS2PJ0br7Q74vuYBGKAebmU(StickerMakerView stickerMakerView, TLObject tLObject, StickerUploader stickerUploader) {
         stickerMakerView.getClass();
         NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
         int i = NotificationCenter.customStickerCreated;

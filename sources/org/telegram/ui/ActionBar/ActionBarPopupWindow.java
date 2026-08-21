@@ -784,7 +784,7 @@ public class ActionBarPopupWindow extends PopupWindow {
             setTouchInterceptor(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
-                    return ActionBarPopupWindow.m1238$r8$lambda$BKuwjXCAdgJUTMwXcr2uJCIcY(this.f$0, contentView, view, motionEvent);
+                    return ActionBarPopupWindow.m1244$r8$lambda$BKuwjXCAdgJUTMwXcr2uJCIcY(this.f$0, contentView, view, motionEvent);
                 }
             });
         }
@@ -799,7 +799,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         }
     }
 
-    public static boolean m1238$r8$lambda$BKuwjXCAdgJUTMwXcr2uJCIcY(ActionBarPopupWindow actionBarPopupWindow, View view, View view2, MotionEvent motionEvent) {
+    public static boolean m1244$r8$lambda$BKuwjXCAdgJUTMwXcr2uJCIcY(ActionBarPopupWindow actionBarPopupWindow, View view, View view2, MotionEvent motionEvent) {
         actionBarPopupWindow.getClass();
         if (motionEvent.getAction() != 0) {
             return false;

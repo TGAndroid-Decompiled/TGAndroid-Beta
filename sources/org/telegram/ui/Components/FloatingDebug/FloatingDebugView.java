@@ -300,7 +300,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                FloatingDebugView.m2336$r8$lambda$4lLmCAuY2AGWko_NYgixZN2yNo(this.f$0, view, i);
+                FloatingDebugView.m2346$r8$lambda$4lLmCAuY2AGWko_NYgixZN2yNo(this.f$0, view, i);
             }
         });
         this.bigLayout.addView(this.listView, LayoutHelper.createLinear(-1, 0, 1.0f));
@@ -331,7 +331,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         }
     }
 
-    public static void m2336$r8$lambda$4lLmCAuY2AGWko_NYgixZN2yNo(FloatingDebugView floatingDebugView, View view, int i) {
+    public static void m2346$r8$lambda$4lLmCAuY2AGWko_NYgixZN2yNo(FloatingDebugView floatingDebugView, View view, int i) {
         Runnable runnable = ((FloatingDebugController.DebugItem) floatingDebugView.debugItems.get(i)).action;
         if (runnable != null) {
             runnable.run();
@@ -525,7 +525,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         arrayList.add(new FloatingDebugController.DebugItem(Theme.isCurrentThemeDark() ? "Switch to day theme" : "Switch to dark theme", new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.m2337$r8$lambda$8_MUVGbGGL4kMp8iACSoBLL1NU();
+                FloatingDebugView.m2347$r8$lambda$8_MUVGbGGL4kMp8iACSoBLL1NU();
             }
         }));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugSendLogs), new Runnable() {
@@ -555,7 +555,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         Toast.makeText(floatingDebugView.getContext(), LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuWebViewDebugEnabled : R.string.DebugMenuWebViewDebugDisabled), 0).show();
     }
 
-    public static void m2337$r8$lambda$8_MUVGbGGL4kMp8iACSoBLL1NU() {
+    public static void m2347$r8$lambda$8_MUVGbGGL4kMp8iACSoBLL1NU() {
         final Theme.ThemeInfo theme;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
         String str = "Blue";

@@ -107,7 +107,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         return true;
     }
 
-    public static boolean m3658$r8$lambda$YZz6451RuRRNMrM7rWGGWTCB5g(View view, MotionEvent motionEvent) {
+    public static boolean m3666$r8$lambda$YZz6451RuRRNMrM7rWGGWTCB5g(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -409,7 +409,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.frameLayout2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                return PhotoAlbumPickerActivity.m3658$r8$lambda$YZz6451RuRRNMrM7rWGGWTCB5g(view2, motionEvent);
+                return PhotoAlbumPickerActivity.m3666$r8$lambda$YZz6451RuRRNMrM7rWGGWTCB5g(view2, motionEvent);
             }
         });
         EditTextEmoji editTextEmoji = this.commentTextView;
@@ -519,7 +519,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             AlertsCreator.createScheduleDatePickerDialog(photoAlbumPickerActivity.getParentActivity(), photoAlbumPickerActivity.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
-                    PhotoAlbumPickerActivity.m3657$r8$lambda$86u_s2wPS37UEewUTgHw3KO4as(this.f$0, z, i, i2);
+                    PhotoAlbumPickerActivity.m3665$r8$lambda$86u_s2wPS37UEewUTgHw3KO4as(this.f$0, z, i, i2);
                 }
             });
         } else {
@@ -528,7 +528,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         }
     }
 
-    public static void m3657$r8$lambda$86u_s2wPS37UEewUTgHw3KO4as(PhotoAlbumPickerActivity photoAlbumPickerActivity, boolean z, int i, int i2) {
+    public static void m3665$r8$lambda$86u_s2wPS37UEewUTgHw3KO4as(PhotoAlbumPickerActivity photoAlbumPickerActivity, boolean z, int i, int i2) {
         photoAlbumPickerActivity.sendSelectedPhotos(photoAlbumPickerActivity.selectedPhotos, photoAlbumPickerActivity.selectedPhotosOrder, z, i);
         photoAlbumPickerActivity.finishFragment();
     }

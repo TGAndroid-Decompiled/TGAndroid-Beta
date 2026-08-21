@@ -114,7 +114,7 @@ public class AvatarPreviewer {
             ViewCompat.setOnApplyWindowInsetsListener(layout, new OnApplyWindowInsetsListener() {
                 @Override
                 public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                    return AvatarPreviewer.m1347$r8$lambda$baHesU_j19n_OBG0wGe2cl2bH8(this.f$0, view, windowInsetsCompat);
+                    return AvatarPreviewer.m1353$r8$lambda$baHesU_j19n_OBG0wGe2cl2bH8(this.f$0, view, windowInsetsCompat);
                 }
             });
         }
@@ -135,7 +135,7 @@ public class AvatarPreviewer {
         this.visible = true;
     }
 
-    public static WindowInsetsCompat m1347$r8$lambda$baHesU_j19n_OBG0wGe2cl2bH8(AvatarPreviewer avatarPreviewer, View view, WindowInsetsCompat windowInsetsCompat) {
+    public static WindowInsetsCompat m1353$r8$lambda$baHesU_j19n_OBG0wGe2cl2bH8(AvatarPreviewer avatarPreviewer, View view, WindowInsetsCompat windowInsetsCompat) {
         avatarPreviewer.getClass();
         Insets defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
         Layout layout = avatarPreviewer.layout;
@@ -601,7 +601,7 @@ public class AvatarPreviewer {
                     actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            AvatarPreviewer.Layout.m1350$r8$lambda$U08UCfIaOuD4GSUzyTBLd73RU(this.f$0, menuItem, view);
+                            AvatarPreviewer.Layout.m1356$r8$lambda$U08UCfIaOuD4GSUzyTBLd73RU(this.f$0, menuItem, view);
                         }
                     });
                     i++;
@@ -623,7 +623,7 @@ public class AvatarPreviewer {
             }
         }
 
-        public static void m1350$r8$lambda$U08UCfIaOuD4GSUzyTBLd73RU(Layout layout, MenuItem menuItem, View view) {
+        public static void m1356$r8$lambda$U08UCfIaOuD4GSUzyTBLd73RU(Layout layout, MenuItem menuItem, View view) {
             layout.setShowing(false);
             layout.callback.onMenuClick(menuItem);
         }

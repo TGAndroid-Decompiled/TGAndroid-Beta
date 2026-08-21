@@ -83,7 +83,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
     ValueAnimator.AnimatorUpdateListener animatorToCameraMiniUpdater = new ValueAnimator.AnimatorUpdateListener() {
         @Override
         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-            VoIPPiPView.m2996$r8$lambda$0u_rs1T8dMurX4F1zw22xgwMSo(this.f$0, valueAnimator);
+            VoIPPiPView.m3005$r8$lambda$0u_rs1T8dMurX4F1zw22xgwMSo(this.f$0, valueAnimator);
         }
     };
     float[] point = new float[2];
@@ -164,7 +164,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         IPipSourceDelegate.CC.$default$pipRenderForeground(this, canvas);
     }
 
-    public static void m2996$r8$lambda$0u_rs1T8dMurX4F1zw22xgwMSo(VoIPPiPView voIPPiPView, ValueAnimator valueAnimator) {
+    public static void m3005$r8$lambda$0u_rs1T8dMurX4F1zw22xgwMSo(VoIPPiPView voIPPiPView, ValueAnimator valueAnimator) {
         voIPPiPView.getClass();
         voIPPiPView.progressToCameraMini = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         voIPPiPView.floatingView.invalidate();
@@ -357,7 +357,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             this.enlargeIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    VoIPPiPView.m2997$r8$lambda$QH8lxOVhcP8AYGt9T40rIextRU(this.f$0, context, view2);
+                    VoIPPiPView.m3006$r8$lambda$QH8lxOVhcP8AYGt9T40rIextRU(this.f$0, context, view2);
                 }
             });
         }
@@ -377,7 +377,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         }
     }
 
-    public static void m2997$r8$lambda$QH8lxOVhcP8AYGt9T40rIextRU(VoIPPiPView voIPPiPView, Context context, View view) {
+    public static void m3006$r8$lambda$QH8lxOVhcP8AYGt9T40rIextRU(VoIPPiPView voIPPiPView, Context context, View view) {
         voIPPiPView.getClass();
         boolean z = context instanceof LaunchActivity;
         if (z && !ApplicationLoader.mainInterfacePaused) {
@@ -918,7 +918,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    VoIPPiPView.FloatingView.m2998$r8$lambda$IozzDMM2wo9rwKfitkKti6NbPU(scaleX2, valueAnimator);
+                    VoIPPiPView.FloatingView.m3007$r8$lambda$IozzDMM2wo9rwKfitkKti6NbPU(scaleX2, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setDuration(300L).setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -945,7 +945,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    VoIPPiPView.FloatingView.m2999$r8$lambda$nnUQfHzfHnDL_MoShkmrtDfByk(f, f2, voIPPiPView, valueAnimator);
+                    VoIPPiPView.FloatingView.m3008$r8$lambda$nnUQfHzfHnDL_MoShkmrtDfByk(f, f2, voIPPiPView, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
@@ -960,7 +960,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             VoIPPiPView.this.expandAnimator = valueAnimatorOfFloat;
         }
 
-        public static void m2999$r8$lambda$nnUQfHzfHnDL_MoShkmrtDfByk(float f, float f2, VoIPPiPView voIPPiPView, ValueAnimator valueAnimator) {
+        public static void m3008$r8$lambda$nnUQfHzfHnDL_MoShkmrtDfByk(float f, float f2, VoIPPiPView voIPPiPView, ValueAnimator valueAnimator) {
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             float f3 = (f * (1.0f - fFloatValue)) + (f2 * fFloatValue);
             voIPPiPView.floatingView.setScaleX(f3);
@@ -970,7 +970,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             voIPPiPView.floatingView.invalidateOutline();
         }
 
-        public static void m2998$r8$lambda$IozzDMM2wo9rwKfitkKti6NbPU(float f, ValueAnimator valueAnimator) {
+        public static void m3007$r8$lambda$IozzDMM2wo9rwKfitkKti6NbPU(float f, ValueAnimator valueAnimator) {
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             float f2 = (1.0f - fFloatValue) + (f * fFloatValue);
             if (VoIPPiPView.expandedInstance != null) {

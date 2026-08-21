@@ -438,7 +438,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                 profileNotificationsActivity.showDialog(AlertsCreator.createVibrationSelectDialog(profileNotificationsActivity.getParentActivity(), profileNotificationsActivity.dialogId, profileNotificationsActivity.topicId, false, false, new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileNotificationsActivity.m3931$r8$lambda$O56buEIfPJVKTVbfOMgdYppxMA(this.f$0);
+                        ProfileNotificationsActivity.m3940$r8$lambda$O56buEIfPJVKTVbfOMgdYppxMA(this.f$0);
                     }
                 }, profileNotificationsActivity.resourcesProvider));
                 return;
@@ -496,7 +496,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                 profileNotificationsActivity.showDialog(AlertsCreator.createColorSelectDialog(profileNotificationsActivity.getParentActivity(), profileNotificationsActivity.dialogId, profileNotificationsActivity.topicId, -1, new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileNotificationsActivity.m3930$r8$lambda$rLUT39PrlRnpTY_23ZbQ_JSF7c(this.f$0);
+                        ProfileNotificationsActivity.m3939$r8$lambda$rLUT39PrlRnpTY_23ZbQ_JSF7c(this.f$0);
                     }
                 }, profileNotificationsActivity.resourcesProvider));
                 return;
@@ -548,7 +548,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         }
     }
 
-    public static void m3931$r8$lambda$O56buEIfPJVKTVbfOMgdYppxMA(ProfileNotificationsActivity profileNotificationsActivity) {
+    public static void m3940$r8$lambda$O56buEIfPJVKTVbfOMgdYppxMA(ProfileNotificationsActivity profileNotificationsActivity) {
         ListAdapter listAdapter = profileNotificationsActivity.adapter;
         if (listAdapter != null) {
             listAdapter.notifyItemChanged(profileNotificationsActivity.vibrateRow);
@@ -577,7 +577,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         }
     }
 
-    public static void m3930$r8$lambda$rLUT39PrlRnpTY_23ZbQ_JSF7c(ProfileNotificationsActivity profileNotificationsActivity) {
+    public static void m3939$r8$lambda$rLUT39PrlRnpTY_23ZbQ_JSF7c(ProfileNotificationsActivity profileNotificationsActivity) {
         ListAdapter listAdapter = profileNotificationsActivity.adapter;
         if (listAdapter != null) {
             listAdapter.notifyItemChanged(profileNotificationsActivity.colorRow);

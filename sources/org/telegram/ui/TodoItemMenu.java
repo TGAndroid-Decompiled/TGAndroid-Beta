@@ -326,7 +326,7 @@ public class TodoItemMenu extends Dialog {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TodoItemMenu.setCell(org.telegram.ui.ChatActivity, org.telegram.ui.Cells.ChatMessageCell, int):void");
     }
 
-    public static void m4700$r8$lambda$x2dXIcFbJ6q81GGwaVgcWB1pus(TodoItemMenu todoItemMenu, ChatActivity chatActivity, int i) {
+    public static void m4711$r8$lambda$x2dXIcFbJ6q81GGwaVgcWB1pus(TodoItemMenu todoItemMenu, ChatActivity chatActivity, int i) {
         todoItemMenu.getClass();
         if (chatActivity.isInScheduleMode()) {
             Toast.makeText(todoItemMenu.getContext(), LocaleController.getString(R.string.MessageScheduledTodo), 1).show();
@@ -360,7 +360,7 @@ public class TodoItemMenu extends Dialog {
         todoItemMenu.dismiss(true);
     }
 
-    public static void m4698$r8$lambda$lwkw1jBO0rk5uvXe8Fuuaiky_8(TodoItemMenu todoItemMenu, TLRPC.TodoItem todoItem) {
+    public static void m4709$r8$lambda$lwkw1jBO0rk5uvXe8Fuuaiky_8(TodoItemMenu todoItemMenu, TLRPC.TodoItem todoItem) {
         todoItemMenu.getClass();
         AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(todoItem.title, false));
         todoItemMenu.dismiss(true);
@@ -373,14 +373,14 @@ public class TodoItemMenu extends Dialog {
         pollCreateActivity.setDelegate(new PollCreateActivity.PollCreateActivityDelegate() {
             @Override
             public final void sendPoll(TLRPC.MessageMedia messageMedia, ArrayList arrayList, boolean z, int i2) {
-                TodoItemMenu.m4694$r8$lambda$HPWE9j3FnBxgAR5PiSTMRlaw5E(this.f$0, chatActivity, messageMedia, arrayList, z, i2);
+                TodoItemMenu.m4705$r8$lambda$HPWE9j3FnBxgAR5PiSTMRlaw5E(this.f$0, chatActivity, messageMedia, arrayList, z, i2);
             }
         });
         chatActivity.presentFragment(pollCreateActivity);
         todoItemMenu.dismiss(false);
     }
 
-    public static void m4694$r8$lambda$HPWE9j3FnBxgAR5PiSTMRlaw5E(TodoItemMenu todoItemMenu, ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, ArrayList arrayList, boolean z, int i) {
+    public static void m4705$r8$lambda$HPWE9j3FnBxgAR5PiSTMRlaw5E(TodoItemMenu todoItemMenu, ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, ArrayList arrayList, boolean z, int i) {
         todoItemMenu.getClass();
         if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
             TLRPC.MessageMedia messageMedia2 = todoItemMenu.messageObject.messageOwner.media;
@@ -824,12 +824,12 @@ public class TodoItemMenu extends Dialog {
         ScrimOptions.makeGlobalBlurBitmaps(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                TodoItemMenu.m4699$r8$lambda$pIwQRs4pjNAYQkvJj4KnT5OX34(this.f$0, view, (Bitmap) obj, (Bitmap) obj2);
+                TodoItemMenu.m4710$r8$lambda$pIwQRs4pjNAYQkvJj4KnT5OX34(this.f$0, view, (Bitmap) obj, (Bitmap) obj2);
             }
         });
     }
 
-    public static void m4699$r8$lambda$pIwQRs4pjNAYQkvJj4KnT5OX34(TodoItemMenu todoItemMenu, View view, Bitmap bitmap, Bitmap bitmap2) {
+    public static void m4710$r8$lambda$pIwQRs4pjNAYQkvJj4KnT5OX34(TodoItemMenu todoItemMenu, View view, Bitmap bitmap, Bitmap bitmap2) {
         if (view != null) {
             todoItemMenu.getClass();
             view.setVisibility(0);

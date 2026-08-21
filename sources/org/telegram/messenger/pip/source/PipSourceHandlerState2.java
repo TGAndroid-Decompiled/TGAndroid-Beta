@@ -198,7 +198,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         AndroidUtilities.doOnPreDraw(this.source.contentView, Trigger.run(new Trigger.Callback() {
             @Override
             public final void run(boolean z) {
-                PipSourceHandlerState2.m1116$r8$lambda$5ZF6tf4lCT3nStrKGYxbw_Tsic(this.f$0, z);
+                PipSourceHandlerState2.m1122$r8$lambda$5ZF6tf4lCT3nStrKGYxbw_Tsic(this.f$0, z);
             }
         }, 300L));
         Log.i("PIP_DEBUG", "[HANDLER] pre detach 2");
@@ -217,7 +217,7 @@ public class PipSourceHandlerState2 implements IPipActivityListener, IPipActivit
         });
     }
 
-    public static void m1116$r8$lambda$5ZF6tf4lCT3nStrKGYxbw_Tsic(final PipSourceHandlerState2 pipSourceHandlerState2, boolean z) {
+    public static void m1122$r8$lambda$5ZF6tf4lCT3nStrKGYxbw_Tsic(final PipSourceHandlerState2 pipSourceHandlerState2, boolean z) {
         pipSourceHandlerState2.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

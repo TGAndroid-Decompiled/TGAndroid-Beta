@@ -187,7 +187,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_checkUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChannelCreateActivity.m1563$r8$lambda$jLBJIy0iI3PrAmxZ3GtkrqUIn4(this.f$0, tLObject, tL_error);
+                    ChannelCreateActivity.m1569$r8$lambda$jLBJIy0iI3PrAmxZ3GtkrqUIn4(this.f$0, tLObject, tL_error);
                 }
             });
             return;
@@ -218,7 +218,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         channelCreateActivity.canCreatePublic = z;
     }
 
-    public static void m1563$r8$lambda$jLBJIy0iI3PrAmxZ3GtkrqUIn4(final ChannelCreateActivity channelCreateActivity, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1569$r8$lambda$jLBJIy0iI3PrAmxZ3GtkrqUIn4(final ChannelCreateActivity channelCreateActivity, TLObject tLObject, final TLRPC.TL_error tL_error) {
         channelCreateActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -624,7 +624,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             channelCreateActivity.avatarOverlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
-                    ChannelCreateActivity.m1562$r8$lambda$UTM0UiGYGiLTWCDwSgugPpYsS4(this.f$0, view3);
+                    ChannelCreateActivity.m1568$r8$lambda$UTM0UiGYGiLTWCDwSgugPpYsS4(this.f$0, view3);
                 }
             });
             int i4 = R.raw.camera;
@@ -709,7 +709,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             channelCreateActivity.descriptionTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i6, KeyEvent keyEvent) {
-                    return ChannelCreateActivity.m1558$r8$lambda$MzIiRW4anGWKajiO55sQn2H8ek(this.f$0, textView, i6, keyEvent);
+                    return ChannelCreateActivity.m1564$r8$lambda$MzIiRW4anGWKajiO55sQn2H8ek(this.f$0, textView, i6, keyEvent);
                 }
             });
             channelCreateActivity.descriptionTextView.addTextChangedListener(new TextWatcher() {
@@ -1056,7 +1056,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         }
     }
 
-    public static void m1562$r8$lambda$UTM0UiGYGiLTWCDwSgugPpYsS4(final ChannelCreateActivity channelCreateActivity, View view) {
+    public static void m1568$r8$lambda$UTM0UiGYGiLTWCDwSgugPpYsS4(final ChannelCreateActivity channelCreateActivity, View view) {
         channelCreateActivity.imageUpdater.openMenu(channelCreateActivity.avatar != null, new Runnable() {
             @Override
             public final void run() {
@@ -1065,7 +1065,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ChannelCreateActivity.m1557$r8$lambda$6fiDIkBXgbYwVJOBpZ18cefwlQ(this.f$0, dialogInterface);
+                ChannelCreateActivity.m1563$r8$lambda$6fiDIkBXgbYwVJOBpZ18cefwlQ(this.f$0, dialogInterface);
             }
         }, 0);
         channelCreateActivity.cameraDrawable.setCurrentFrame(0);
@@ -1087,7 +1087,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         channelCreateActivity.cameraDrawable.setCurrentFrame(0);
     }
 
-    public static void m1557$r8$lambda$6fiDIkBXgbYwVJOBpZ18cefwlQ(ChannelCreateActivity channelCreateActivity, DialogInterface dialogInterface) {
+    public static void m1563$r8$lambda$6fiDIkBXgbYwVJOBpZ18cefwlQ(ChannelCreateActivity channelCreateActivity, DialogInterface dialogInterface) {
         if (!channelCreateActivity.imageUpdater.isUploadingImage()) {
             channelCreateActivity.cameraDrawable.setCustomEndFrame(86);
             channelCreateActivity.avatarEditor.playAnimation();
@@ -1108,7 +1108,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         return true;
     }
 
-    public static boolean m1558$r8$lambda$MzIiRW4anGWKajiO55sQn2H8ek(ChannelCreateActivity channelCreateActivity, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean m1564$r8$lambda$MzIiRW4anGWKajiO55sQn2H8ek(ChannelCreateActivity channelCreateActivity, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 6) {
             channelCreateActivity.getClass();
             return false;
@@ -1157,12 +1157,12 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getExportedChatInvites, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelCreateActivity.m1561$r8$lambda$SmIx06omrcZ6UK4PdeKUR3BGno(this.f$0, tLObject, tL_error);
+                ChannelCreateActivity.m1567$r8$lambda$SmIx06omrcZ6UK4PdeKUR3BGno(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m1561$r8$lambda$SmIx06omrcZ6UK4PdeKUR3BGno(final ChannelCreateActivity channelCreateActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m1567$r8$lambda$SmIx06omrcZ6UK4PdeKUR3BGno(final ChannelCreateActivity channelCreateActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         channelCreateActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1483,12 +1483,12 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelCreateActivity.m1564$r8$lambda$yYHjkypD92tbX8xMZ5MwPAf3l8(this.f$0, tLObject, tL_error);
+                ChannelCreateActivity.m1570$r8$lambda$yYHjkypD92tbX8xMZ5MwPAf3l8(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m1564$r8$lambda$yYHjkypD92tbX8xMZ5MwPAf3l8(final ChannelCreateActivity channelCreateActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1570$r8$lambda$yYHjkypD92tbX8xMZ5MwPAf3l8(final ChannelCreateActivity channelCreateActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
         channelCreateActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1726,13 +1726,13 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         limitReachedBottomSheet.onSuccessRunnable = new Runnable() {
             @Override
             public final void run() {
-                ChannelCreateActivity.m1560$r8$lambda$R96TD3rqXcLO4fK_fZ2FGPCck(this.f$0);
+                ChannelCreateActivity.m1566$r8$lambda$R96TD3rqXcLO4fK_fZ2FGPCck(this.f$0);
             }
         };
         showDialog(limitReachedBottomSheet);
     }
 
-    public static void m1560$r8$lambda$R96TD3rqXcLO4fK_fZ2FGPCck(ChannelCreateActivity channelCreateActivity) {
+    public static void m1566$r8$lambda$R96TD3rqXcLO4fK_fZ2FGPCck(ChannelCreateActivity channelCreateActivity) {
         channelCreateActivity.canCreatePublic = true;
         channelCreateActivity.updatePrivatePublic();
     }
@@ -1743,7 +1743,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChannelCreateActivity.m1559$r8$lambda$Pn9Ahmnr68U1cnAGgtWoJEr6gk(this.f$0);
+                ChannelCreateActivity.m1565$r8$lambda$Pn9Ahmnr68U1cnAGgtWoJEr6gk(this.f$0);
             }
 
             @Override
@@ -1841,7 +1841,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         return arrayList;
     }
 
-    public static void m1559$r8$lambda$Pn9Ahmnr68U1cnAGgtWoJEr6gk(ChannelCreateActivity channelCreateActivity) {
+    public static void m1565$r8$lambda$Pn9Ahmnr68U1cnAGgtWoJEr6gk(ChannelCreateActivity channelCreateActivity) {
         LinearLayout linearLayout = channelCreateActivity.adminnedChannelsLayout;
         if (linearLayout != null) {
             int childCount = linearLayout.getChildCount();

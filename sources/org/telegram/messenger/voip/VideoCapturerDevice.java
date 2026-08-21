@@ -158,12 +158,12 @@ public class VideoCapturerDevice {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.m1163$r8$lambda$WnjFMxB08I8YzlSW6epLzMKUVk(this.f$0, j, str);
+                VideoCapturerDevice.m1169$r8$lambda$WnjFMxB08I8YzlSW6epLzMKUVk(this.f$0, j, str);
             }
         });
     }
 
-    public static void m1163$r8$lambda$WnjFMxB08I8YzlSW6epLzMKUVk(final VideoCapturerDevice videoCapturerDevice, final long j, String str) {
+    public static void m1169$r8$lambda$WnjFMxB08I8YzlSW6epLzMKUVk(final VideoCapturerDevice videoCapturerDevice, final long j, String str) {
         if (eglBase == null) {
             videoCapturerDevice.getClass();
             return;
@@ -209,7 +209,7 @@ public class VideoCapturerDevice {
             videoCapturerDevice.handler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoCapturerDevice.m1164$r8$lambda$ph0yUMzqysQZgx647fiNcsQp0E(this.f$0, j);
+                    VideoCapturerDevice.m1170$r8$lambda$ph0yUMzqysQZgx647fiNcsQp0E(this.f$0, j);
                 }
             });
         } else {
@@ -233,12 +233,12 @@ public class VideoCapturerDevice {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoCapturerDevice.AnonymousClass1.m1167$r8$lambda$ZQSuWiFDNOs2qmwnLNxKb4FvRU();
+                    VideoCapturerDevice.AnonymousClass1.m1173$r8$lambda$ZQSuWiFDNOs2qmwnLNxKb4FvRU();
                 }
             });
         }
 
-        public static void m1167$r8$lambda$ZQSuWiFDNOs2qmwnLNxKb4FvRU() {
+        public static void m1173$r8$lambda$ZQSuWiFDNOs2qmwnLNxKb4FvRU() {
             if (VoIPService.getSharedInstance() != null) {
                 VoIPService.getSharedInstance().stopScreenCapture();
             }
@@ -303,7 +303,7 @@ public class VideoCapturerDevice {
         }
     }
 
-    public static void m1164$r8$lambda$ph0yUMzqysQZgx647fiNcsQp0E(VideoCapturerDevice videoCapturerDevice, long j) {
+    public static void m1170$r8$lambda$ph0yUMzqysQZgx647fiNcsQp0E(VideoCapturerDevice videoCapturerDevice, long j) {
         if (videoCapturerDevice.videoCapturerSurfaceTextureHelper == null) {
             return;
         }
@@ -351,24 +351,24 @@ public class VideoCapturerDevice {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.m1165$r8$lambda$tWWq7K5oLpDVktEqxq8w86JpRk(this.f$0, j, i);
+                VideoCapturerDevice.m1171$r8$lambda$tWWq7K5oLpDVktEqxq8w86JpRk(this.f$0, j, i);
             }
         });
     }
 
-    public static void m1165$r8$lambda$tWWq7K5oLpDVktEqxq8w86JpRk(final VideoCapturerDevice videoCapturerDevice, final long j, final int i) {
+    public static void m1171$r8$lambda$tWWq7K5oLpDVktEqxq8w86JpRk(final VideoCapturerDevice videoCapturerDevice, final long j, final int i) {
         if (videoCapturerDevice.nativePtr != j) {
             return;
         }
         videoCapturerDevice.handler.post(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.m1162$r8$lambda$9CYHyBYqHvhB158m7MJkCRHEvc(this.f$0, i, j);
+                VideoCapturerDevice.m1168$r8$lambda$9CYHyBYqHvhB158m7MJkCRHEvc(this.f$0, i, j);
             }
         });
     }
 
-    public static void m1162$r8$lambda$9CYHyBYqHvhB158m7MJkCRHEvc(VideoCapturerDevice videoCapturerDevice, int i, long j) {
+    public static void m1168$r8$lambda$9CYHyBYqHvhB158m7MJkCRHEvc(VideoCapturerDevice videoCapturerDevice, int i, long j) {
         if (videoCapturerDevice.videoCapturer == null) {
             return;
         }
@@ -391,12 +391,12 @@ public class VideoCapturerDevice {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoCapturerDevice.m1166$r8$lambda$uxYR57vEWDUx0LNxuDv8MGhbXY(this.f$0);
+                VideoCapturerDevice.m1172$r8$lambda$uxYR57vEWDUx0LNxuDv8MGhbXY(this.f$0);
             }
         });
     }
 
-    public static void m1166$r8$lambda$uxYR57vEWDUx0LNxuDv8MGhbXY(final VideoCapturerDevice videoCapturerDevice) {
+    public static void m1172$r8$lambda$uxYR57vEWDUx0LNxuDv8MGhbXY(final VideoCapturerDevice videoCapturerDevice) {
         videoCapturerDevice.getClass();
         int i = 0;
         while (true) {

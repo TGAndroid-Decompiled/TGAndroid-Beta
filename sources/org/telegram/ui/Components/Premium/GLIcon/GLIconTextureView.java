@@ -509,7 +509,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                GLIconTextureView.m2576$r8$lambda$RoeAmLTxcl1yTBHo_oeMcSmbWQ(this.f$0, f, f3, f2, valueAnimator);
+                GLIconTextureView.m2586$r8$lambda$RoeAmLTxcl1yTBHo_oeMcSmbWQ(this.f$0, f, f3, f2, valueAnimator);
             }
         });
         this.backAnimation.setDuration(600L);
@@ -522,7 +522,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         scheduleIdleAnimation(this.idleDelay);
     }
 
-    public static void m2576$r8$lambda$RoeAmLTxcl1yTBHo_oeMcSmbWQ(GLIconTextureView gLIconTextureView, float f, float f2, float f3, ValueAnimator valueAnimator) {
+    public static void m2586$r8$lambda$RoeAmLTxcl1yTBHo_oeMcSmbWQ(GLIconTextureView gLIconTextureView, float f, float f2, float f3, ValueAnimator valueAnimator) {
         gLIconTextureView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;

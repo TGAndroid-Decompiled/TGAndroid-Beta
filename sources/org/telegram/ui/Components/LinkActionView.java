@@ -171,7 +171,7 @@ public class LinkActionView extends LinearLayout {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LinkActionView.m2415$r8$lambda$GdmrPsYezW0N6pTedfsmWFkzr0(this.f$0, bottomSheet, baseFragment, view);
+                LinkActionView.m2425$r8$lambda$GdmrPsYezW0N6pTedfsmWFkzr0(this.f$0, bottomSheet, baseFragment, view);
             }
         });
         if (z) {
@@ -185,7 +185,7 @@ public class LinkActionView extends LinearLayout {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LinkActionView.m2418$r8$lambda$QcdWEyXT6wW81m7iLwyJMrSpoQ(this.f$0, baseFragment, view);
+                LinkActionView.m2428$r8$lambda$QcdWEyXT6wW81m7iLwyJMrSpoQ(this.f$0, baseFragment, view);
             }
         });
         textView4.setOnClickListener(new View.OnClickListener() {
@@ -209,7 +209,7 @@ public class LinkActionView extends LinearLayout {
         updateColors();
     }
 
-    public static void m2415$r8$lambda$GdmrPsYezW0N6pTedfsmWFkzr0(LinkActionView linkActionView, BottomSheet bottomSheet, BaseFragment baseFragment, View view) {
+    public static void m2425$r8$lambda$GdmrPsYezW0N6pTedfsmWFkzr0(LinkActionView linkActionView, BottomSheet bottomSheet, BaseFragment baseFragment, View view) {
         linkActionView.getClass();
         try {
             if (linkActionView.link == null) {
@@ -226,7 +226,7 @@ public class LinkActionView extends LinearLayout {
         }
     }
 
-    public static void m2418$r8$lambda$QcdWEyXT6wW81m7iLwyJMrSpoQ(LinkActionView linkActionView, BaseFragment baseFragment, View view) {
+    public static void m2428$r8$lambda$QcdWEyXT6wW81m7iLwyJMrSpoQ(LinkActionView linkActionView, BaseFragment baseFragment, View view) {
         linkActionView.getClass();
         try {
             if (linkActionView.link == null) {
@@ -294,7 +294,7 @@ public class LinkActionView extends LinearLayout {
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    LinkActionView.m2416$r8$lambda$MgnzTSxmmx9sc9_0VMNbeYUsX4(this.f$0, view2);
+                    LinkActionView.m2426$r8$lambda$MgnzTSxmmx9sc9_0VMNbeYUsX4(this.f$0, view2);
                 }
             });
         }
@@ -315,7 +315,7 @@ public class LinkActionView extends LinearLayout {
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    LinkActionView.m2417$r8$lambda$Obm1F2FlYs9ohLUyDmyxFJP34(this.f$0, view2);
+                    LinkActionView.m2427$r8$lambda$Obm1F2FlYs9ohLUyDmyxFJP34(this.f$0, view2);
                 }
             });
             actionBarPopupWindowLayout.addView((View) actionBarMenuSubItem3, LayoutHelper.createLinear(-1, 48));
@@ -396,7 +396,7 @@ public class LinkActionView extends LinearLayout {
         }
     }
 
-    public static void m2416$r8$lambda$MgnzTSxmmx9sc9_0VMNbeYUsX4(LinkActionView linkActionView, View view) {
+    public static void m2426$r8$lambda$MgnzTSxmmx9sc9_0VMNbeYUsX4(LinkActionView linkActionView, View view) {
         ActionBarPopupWindow actionBarPopupWindow = linkActionView.actionBarPopupWindow;
         if (actionBarPopupWindow != null) {
             actionBarPopupWindow.dismiss();
@@ -404,7 +404,7 @@ public class LinkActionView extends LinearLayout {
         linkActionView.delegate.editLink();
     }
 
-    public static void m2417$r8$lambda$Obm1F2FlYs9ohLUyDmyxFJP34(LinkActionView linkActionView, View view) {
+    public static void m2427$r8$lambda$Obm1F2FlYs9ohLUyDmyxFJP34(LinkActionView linkActionView, View view) {
         ActionBarPopupWindow actionBarPopupWindow = linkActionView.actionBarPopupWindow;
         if (actionBarPopupWindow != null) {
             actionBarPopupWindow.dismiss();
@@ -667,12 +667,12 @@ public class LinkActionView extends LinearLayout {
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_getChatInviteImporters, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LinkActionView.m2420$r8$lambda$U38hCAYWHlYmwzUK47QeZI11xI(this.f$0, tL_chatInviteExported, tLObject, tL_error);
+                LinkActionView.m2430$r8$lambda$U38hCAYWHlYmwzUK47QeZI11xI(this.f$0, tL_chatInviteExported, tLObject, tL_error);
             }
         });
     }
 
-    public static void m2420$r8$lambda$U38hCAYWHlYmwzUK47QeZI11xI(final LinkActionView linkActionView, final TLRPC.TL_chatInviteExported tL_chatInviteExported, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m2430$r8$lambda$U38hCAYWHlYmwzUK47QeZI11xI(final LinkActionView linkActionView, final TLRPC.TL_chatInviteExported tL_chatInviteExported, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         linkActionView.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

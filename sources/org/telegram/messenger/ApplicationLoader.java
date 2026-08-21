@@ -342,7 +342,9 @@ public class ApplicationLoader extends Application {
         } catch (Throwable unused) {
         }
         super.onCreate();
+        String helloWorld = AndroidUtilities.getHelloWorld();
         if (BuildVars.LOGS_ENABLED) {
+            FileLog.d(helloWorld);
             StringBuilder sb = new StringBuilder();
             sb.append("app start time = ");
             long jElapsedRealtime = SystemClock.elapsedRealtime();
@@ -381,6 +383,12 @@ public class ApplicationLoader extends Application {
                     }
                 }
             };
+            new ANRDetector(new Runnable() {
+                @Override
+                public final void run() {
+                    FileLog.dumpANR();
+                }
+            });
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
             }

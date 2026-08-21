@@ -49,7 +49,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         linksTextView2.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
             public final void run(ClickableSpan clickableSpan) {
-                SponsoredMessageInfoView.m4063$r8$lambda$pxURcfHOfjULqOH58B8ckLRDcM(this.f$0, runnable, clickableSpan);
+                SponsoredMessageInfoView.m4072$r8$lambda$pxURcfHOfjULqOH58B8ckLRDcM(this.f$0, runnable, clickableSpan);
             }
         });
         LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(context);
@@ -122,7 +122,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         clickableSpan.onClick(sponsoredMessageInfoView);
     }
 
-    public static void m4063$r8$lambda$pxURcfHOfjULqOH58B8ckLRDcM(SponsoredMessageInfoView sponsoredMessageInfoView, Runnable runnable, ClickableSpan clickableSpan) {
+    public static void m4072$r8$lambda$pxURcfHOfjULqOH58B8ckLRDcM(SponsoredMessageInfoView sponsoredMessageInfoView, Runnable runnable, ClickableSpan clickableSpan) {
         sponsoredMessageInfoView.getClass();
         if (runnable != null) {
             runnable.run();

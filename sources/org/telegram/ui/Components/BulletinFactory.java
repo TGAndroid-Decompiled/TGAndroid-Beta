@@ -841,7 +841,7 @@ public final class BulletinFactory {
         lottieLayout.textView.setText(AndroidUtilities.replaceSingleTag(fileType.getText(i), new Runnable() {
             @Override
             public final void run() {
-                BulletinFactory.m2058$r8$lambda$8J3OiIFslIyIXkHdLTVDv63vFs();
+                BulletinFactory.m2068$r8$lambda$8J3OiIFslIyIXkHdLTVDv63vFs();
             }
         }));
         if (fileType.icon.paddingBottom != 0) {
@@ -850,7 +850,7 @@ public final class BulletinFactory {
         return create(lottieLayout, 1500);
     }
 
-    public static void m2058$r8$lambda$8J3OiIFslIyIXkHdLTVDv63vFs() {
+    public static void m2068$r8$lambda$8J3OiIFslIyIXkHdLTVDv63vFs() {
         LaunchActivity launchActivity = LaunchActivity.instance;
         if (launchActivity == null || launchActivity.isFinishing()) {
             return;

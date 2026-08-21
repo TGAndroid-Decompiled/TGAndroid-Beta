@@ -82,12 +82,12 @@ public class VoIPDebugToSend {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                VoIPDebugToSend.m1168$r8$lambda$we_Hd6reQlC4bpQw3SW3N7tMqQ(this.f$0, data, file, savecalldebug);
+                VoIPDebugToSend.m1174$r8$lambda$we_Hd6reQlC4bpQw3SW3N7tMqQ(this.f$0, data, file, savecalldebug);
             }
         });
     }
 
-    public static void m1168$r8$lambda$we_Hd6reQlC4bpQw3SW3N7tMqQ(final VoIPDebugToSend voIPDebugToSend, Data data, final File file, final TL_phone.saveCallDebug savecalldebug) {
+    public static void m1174$r8$lambda$we_Hd6reQlC4bpQw3SW3N7tMqQ(final VoIPDebugToSend voIPDebugToSend, Data data, final File file, final TL_phone.saveCallDebug savecalldebug) {
         voIPDebugToSend.getClass();
         if (AndroidUtilities.gzip(new File(data.logPath), file)) {
             AndroidUtilities.runOnUIThread(new Runnable() {

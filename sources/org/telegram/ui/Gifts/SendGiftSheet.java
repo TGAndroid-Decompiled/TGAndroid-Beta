@@ -147,7 +147,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public static void m3255$r8$lambda$hh4_msf_hjnFhzoAq65wNt339M(SendGiftSheet sendGiftSheet, boolean z, boolean z2, TL_stars.StarGift starGift, GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, View view, int i) {
+    public static void m3263$r8$lambda$hh4_msf_hjnFhzoAq65wNt339M(SendGiftSheet sendGiftSheet, boolean z, boolean z2, TL_stars.StarGift starGift, GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, View view, int i) {
         UniversalAdapter universalAdapter = sendGiftSheet.adapter;
         if (!sendGiftSheet.reverseLayout) {
             i--;
@@ -333,12 +333,12 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         StarsController.getInstance(this.currentAccount).buyStarGift(this.starGift, this.anonymous, this.upgrade, this.dialogId, getMessage(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                SendGiftSheet.m3254$r8$lambda$dhnddA5Unqoi5MDvSA18YYNZw0(this.f$0, (Boolean) obj, (String) obj2);
+                SendGiftSheet.m3262$r8$lambda$dhnddA5Unqoi5MDvSA18YYNZw0(this.f$0, (Boolean) obj, (String) obj2);
             }
         });
     }
 
-    public static void m3254$r8$lambda$dhnddA5Unqoi5MDvSA18YYNZw0(SendGiftSheet sendGiftSheet, Boolean bool, String str) {
+    public static void m3262$r8$lambda$dhnddA5Unqoi5MDvSA18YYNZw0(SendGiftSheet sendGiftSheet, Boolean bool, String str) {
         TL_stars.StarGift starGift;
         sendGiftSheet.getClass();
         if (bool.booleanValue()) {
@@ -439,7 +439,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
                 StarsController.getInstance(this.currentAccount).buyPremiumGift(this.dialogId, tL_premiumGiftOption, getMessage(), new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        SendGiftSheet.m3253$r8$lambda$NpB2LuAlPglvYe1t0TPOkAOsE(this.f$0, user, (Boolean) obj, (String) obj2);
+                        SendGiftSheet.m3261$r8$lambda$NpB2LuAlPglvYe1t0TPOkAOsE(this.f$0, user, (Boolean) obj, (String) obj2);
                     }
                 });
                 return;
@@ -528,7 +528,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         MessagesController.getInstance(sendGiftSheet.currentAccount).getMainSettings().edit().putBoolean("show_gift_for_" + sendGiftSheet.dialogId, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + sendGiftSheet.dialogId, true).apply();
     }
 
-    public static void m3253$r8$lambda$NpB2LuAlPglvYe1t0TPOkAOsE(SendGiftSheet sendGiftSheet, final TLRPC.User user, Boolean bool, String str) {
+    public static void m3261$r8$lambda$NpB2LuAlPglvYe1t0TPOkAOsE(SendGiftSheet sendGiftSheet, final TLRPC.User user, Boolean bool, String str) {
         sendGiftSheet.getClass();
         if (bool.booleanValue()) {
             Runnable runnable = sendGiftSheet.closeParentSheet;
@@ -566,12 +566,12 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SendGiftSheet.m3258$r8$lambda$xLVeke1px54zpWH2PDuFOP9QBY(this.f$0, tLObject, tL_inputStorePaymentGiftPremium, tL_error, tL_payments_canPurchaseStore);
+                SendGiftSheet.m3266$r8$lambda$xLVeke1px54zpWH2PDuFOP9QBY(this.f$0, tLObject, tL_inputStorePaymentGiftPremium, tL_error, tL_payments_canPurchaseStore);
             }
         });
     }
 
-    public static void m3258$r8$lambda$xLVeke1px54zpWH2PDuFOP9QBY(SendGiftSheet sendGiftSheet, TLObject tLObject, TLRPC.TL_inputStorePaymentGiftPremium tL_inputStorePaymentGiftPremium, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+    public static void m3266$r8$lambda$xLVeke1px54zpWH2PDuFOP9QBY(SendGiftSheet sendGiftSheet, TLObject tLObject, TLRPC.TL_inputStorePaymentGiftPremium tL_inputStorePaymentGiftPremium, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
         sendGiftSheet.getClass();
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             BillingController.getInstance().launchBillingFlow(sendGiftSheet.getBaseFragment().getParentActivity(), AccountInstance.getInstance(sendGiftSheet.currentAccount), tL_inputStorePaymentGiftPremium, Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(sendGiftSheet.premiumTier.googlePlayProductDetails).build()));

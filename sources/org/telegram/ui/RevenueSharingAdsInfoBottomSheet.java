@@ -99,7 +99,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(string, i3, 0, new Runnable() {
             @Override
             public final void run() {
-                RevenueSharingAdsInfoBottomSheet.m3978$r8$lambda$R4U02FYSqLTAVF0U1LqkNW4QiA(this.f$0);
+                RevenueSharingAdsInfoBottomSheet.m3987$r8$lambda$R4U02FYSqLTAVF0U1LqkNW4QiA(this.f$0);
             }
         })), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
@@ -119,7 +119,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i3, 0, new Runnable() {
             @Override
             public final void run() {
-                RevenueSharingAdsInfoBottomSheet.m3977$r8$lambda$PJkIyHBIsVcimj9JbbgcGzI7QU(this.f$0);
+                RevenueSharingAdsInfoBottomSheet.m3986$r8$lambda$PJkIyHBIsVcimj9JbbgcGzI7QU(this.f$0);
             }
         });
         SpannableString spannableString = new SpannableString(">");
@@ -157,7 +157,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         this.adapter.update(false);
     }
 
-    public static void m3978$r8$lambda$R4U02FYSqLTAVF0U1LqkNW4QiA(RevenueSharingAdsInfoBottomSheet revenueSharingAdsInfoBottomSheet) {
+    public static void m3987$r8$lambda$R4U02FYSqLTAVF0U1LqkNW4QiA(RevenueSharingAdsInfoBottomSheet revenueSharingAdsInfoBottomSheet) {
         revenueSharingAdsInfoBottomSheet.getClass();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
@@ -167,7 +167,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheetWithRecyclerLis
         revenueSharingAdsInfoBottomSheet.dismiss();
     }
 
-    public static void m3977$r8$lambda$PJkIyHBIsVcimj9JbbgcGzI7QU(RevenueSharingAdsInfoBottomSheet revenueSharingAdsInfoBottomSheet) {
+    public static void m3986$r8$lambda$PJkIyHBIsVcimj9JbbgcGzI7QU(RevenueSharingAdsInfoBottomSheet revenueSharingAdsInfoBottomSheet) {
         revenueSharingAdsInfoBottomSheet.dismiss();
         Browser.openUrl(revenueSharingAdsInfoBottomSheet.getContext(), LocaleController.getString(R.string.PromoteUrl));
     }

@@ -35,7 +35,7 @@ public class AttachBotIntroTopView extends View {
         this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                AttachBotIntroTopView.m2015$r8$lambda$9E3iq6y937AHcDGuDGtpyutUaQ(this.f$0, imageReceiver2, z, z2, z3);
+                AttachBotIntroTopView.m2021$r8$lambda$9E3iq6y937AHcDGuDGtpyutUaQ(this.f$0, imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -54,7 +54,7 @@ public class AttachBotIntroTopView extends View {
         this.paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
-    public static void m2015$r8$lambda$9E3iq6y937AHcDGuDGtpyutUaQ(final AttachBotIntroTopView attachBotIntroTopView, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void m2021$r8$lambda$9E3iq6y937AHcDGuDGtpyutUaQ(final AttachBotIntroTopView attachBotIntroTopView, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         attachBotIntroTopView.getClass();
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

@@ -162,7 +162,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         pickerBottomLayout.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                SharingLocationsAlert.m2810$r8$lambda$nlYHrikSIiFwip_42nHbmfAH6g(this.f$0, view2);
+                SharingLocationsAlert.m2819$r8$lambda$nlYHrikSIiFwip_42nHbmfAH6g(this.f$0, view2);
             }
         });
         pickerBottomLayout.doneButtonTextView.setTextColor(getThemedColor(Theme.key_dialogTextBlue2));
@@ -188,7 +188,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         sharingLocationsAlert.dismiss();
     }
 
-    public static void m2810$r8$lambda$nlYHrikSIiFwip_42nHbmfAH6g(SharingLocationsAlert sharingLocationsAlert, View view) {
+    public static void m2819$r8$lambda$nlYHrikSIiFwip_42nHbmfAH6g(SharingLocationsAlert sharingLocationsAlert, View view) {
         for (int i = 0; i < 4; i++) {
             sharingLocationsAlert.getClass();
             LocationController.getInstance(i).removeAllLocationSharings();
